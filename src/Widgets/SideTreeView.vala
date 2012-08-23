@@ -732,7 +732,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                 else if(iter == playlists_history_iter)
                     p.name = Time.local(time_t()).format(_("Play History (%Y-%b-%e %l:%M %p)"));
                 else
-                    p.name = _("Unkown playlist");
+                    p.name = _("Unknown playlist");
             }
         }
         

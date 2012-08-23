@@ -199,7 +199,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "播放历史(%Y-%b-%e %l:%M %p)"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:830
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr "未知播放列表"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:840

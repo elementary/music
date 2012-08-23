@@ -205,7 +205,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "Riproduci Cronologia (%Y-%b-%e %l:%M %p)"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:830
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr "Playlist Sconosciuta"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:840
