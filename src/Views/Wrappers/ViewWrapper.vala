@@ -445,11 +445,11 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         bool have_media = media_count > 0;
 
         // show alert or welcome screen if there's no media
-        if (have_media)
+        if (have_media) {
             select_proper_content_view ();
-        else if (has_welcome_screen)
+        } else if (has_welcome_screen) {
             set_active_view (ViewType.WELCOME);
-        else if (has_embedded_alert) {
+        } else if (has_embedded_alert) {
             set_no_media_alert ();
             set_active_view (ViewType.ALERT);
         }
@@ -675,11 +675,11 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         debug ("%s : UPDATING media", hint.to_string ());
 
         // find which media belong here
-        Gee.LinkedList<Media> should_be, should_show;
+        Gee.Collection<Media> should_be = media;
+        Gee.LinkedList<Media> should_show;
 
-        Search.full_search_in_media_list (media, out should_be, null, null, null, null, hint);
-        Search.full_search_in_media_list (media, out should_show, null, null, null, null, hint,
-                                          get_search_string ());
+        Search.smart_search (media, out should_be, "");
+        Search.smart_search (media, out should_show, get_search_string ());
 
         var to_add_show = new Gee.LinkedList<Media> ();
         var to_remove_show = new Gee.LinkedList<Media> ();
@@ -752,7 +752,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
         // Do search since Showing Media depends on the search string
         Gee.LinkedList<Media> media_to_show;
-        Search.search_in_media_list (to_add, out media_to_show, get_search_string ());
+        Search.smart_search (to_add, out media_to_show, get_search_string ());
 
         // Update showing media
         foreach (var m in media_to_show) {

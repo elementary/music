@@ -53,7 +53,7 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 			    case Category.RATING:
 				    return _("Ratings");
                 default:
-                    return "Unknown";
+                    assert_not_reached ();
 		    }
         }
 	}
