@@ -31,8 +31,6 @@ public abstract class Noise.GenericList : FastView {
 	protected GLib.Icon playing_icon;
 	protected GLib.Icon completed_icon;
 
-    private TreeViewColumnSizer sizer = new TreeViewColumnSizer ();
-
 	public GenericList (ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
 		base (types);
 		this.tvs = tvs;
@@ -87,10 +85,6 @@ public abstract class Noise.GenericList : FastView {
 		this.relative_id = parent_wrapper.relative_id;
 	}
 
-    public void resize_columns (int new_total_width) {
-        sizer.ideal_total_width = new_total_width;
-    }
-
 	private void add_column_chooser_menu_item (TreeViewColumn tvc) {
 		var col_name = tvc.title;
 		if (get_hint () == ViewWrapper.Hint.MUSIC && col_name == TreeViewSetup.COLUMN_NUM)
@@ -107,9 +101,7 @@ public abstract class Noise.GenericList : FastView {
             column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
             column_chooser_menu.show_all ();
 
-            autosize_menu_item.activate.connect ( () => {
-                sizer.queue_resize ();
-            });
+            autosize_menu_item.activate.connect (columns_autosize);
         }
 
 		var menu_item = new Gtk.CheckMenuItem.with_label (col_name);
@@ -122,7 +114,7 @@ public abstract class Noise.GenericList : FastView {
 		menu_item.toggled.connect ( () => {
 			tvc.visible = menu_item.active;
 
-            sizer.queue_resize ();
+            columns_autosize ();
 		});
 	}
 
@@ -183,28 +175,24 @@ public abstract class Noise.GenericList : FastView {
 
 		foreach (TreeViewColumn tvc in tvs.get_columns()) {
             bool column_resizable = true;
-            var column_sizing = Gtk.TreeViewColumnSizing.FIXED;
-            int column_width = tvc.fixed_width;
+            int column_width = 24;
 
 			if (tvc.title != TreeViewSetup.COLUMN_BLANK && tvc.title != TreeViewSetup.COLUMN_ID) {
 				if (tvc.title == TreeViewSetup.COLUMN_BITRATE) {
 					insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.bitrate_func);
 					column_resizable = false;
+					column_width = 70;
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_LENGTH) {
 					insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.length_func);
 					column_resizable = false;
-					column_sizing = Gtk.TreeViewColumnSizing.FIXED;
+					column_width = 50;
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_DATE_ADDED) {
 					insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.date_func);
-					column_sizing = Gtk.TreeViewColumnSizing.GROW_ONLY;
-					column_resizable = false;
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_LAST_PLAYED) {
 					insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.date_func);
-					column_sizing = Gtk.TreeViewColumnSizing.GROW_ONLY;
-					column_resizable = false;
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_RATING) {
 					var rating_renderer = new Granite.Widgets.CellRendererRating ();
@@ -215,27 +203,23 @@ public abstract class Noise.GenericList : FastView {
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_YEAR) {
 					insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.intelligent_func);
-					column_sizing = Gtk.TreeViewColumnSizing.GROW_ONLY;
 					column_resizable = false;
+					column_width = 50;
 			    }
 				else if (tvc.title == TreeViewSetup.COLUMN_NUM) {
 				    insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.intelligent_func);
-					column_sizing = Gtk.TreeViewColumnSizing.GROW_ONLY;
 					column_resizable = false;
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_TRACK) {
 				    insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.intelligent_func);
-					column_sizing = Gtk.TreeViewColumnSizing.GROW_ONLY;
 					column_resizable = false;
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_PLAYS) {
 				    insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.intelligent_func);
-					column_sizing = Gtk.TreeViewColumnSizing.GROW_ONLY;
 					column_resizable = false;
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_SKIPS) {
 				    insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.intelligent_func);
-					column_sizing = Gtk.TreeViewColumnSizing.GROW_ONLY;
 					column_resizable = false;
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_TITLE) {
@@ -256,7 +240,6 @@ public abstract class Noise.GenericList : FastView {
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_BPM) {
 					insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), CellDataFunctionHelper.intelligent_func);
-					column_sizing = Gtk.TreeViewColumnSizing.GROW_ONLY;
 					column_resizable = false;
 			    }
 			    else {
@@ -274,7 +257,7 @@ public abstract class Noise.GenericList : FastView {
                 inserted_column.fixed_width = column_width;
                 inserted_column.resizable = column_resizable;
                 inserted_column.expand = column_resizable;
-				inserted_column.sizing = column_sizing;
+				inserted_column.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
 				inserted_column.sort_column_id = index;
 				inserted_column.sort_indicator = false;
@@ -333,6 +316,14 @@ public abstract class Noise.GenericList : FastView {
 			}
 			else {
 			    warning ("Inserting unknown column");
+
+				tvc.fixed_width = 24;
+				tvc.clickable = true;
+				tvc.sort_column_id = index; 
+				tvc.resizable = false;
+				tvc.reorderable = false;
+				tvc.sort_indicator = false;
+
 			    insert_column (tvc, index);
                 tvc.get_button ().button_press_event.connect ( (e) => {
                     return view_header_click (e, false);
@@ -348,25 +339,6 @@ public abstract class Noise.GenericList : FastView {
 
             index++;
 		}
-
-        // Set up sizer
-        var columns = new Gee.LinkedList<TreeViewColumnSizer.Column> ();
-
-        foreach (var tvc in this.get_columns ()) {
-            var sizer_col = new TreeViewColumnSizer.Column ();
-            sizer_col.column = tvc;
-
-            if (tvc.title == TreeViewSetup.COLUMN_TITLE || tvc.title == TreeViewSetup.COLUMN_ARTIST)
-                sizer_col.priority = TreeViewColumnSizer.SizePriority.HIGH;
-            else if (tvc.title == TreeViewSetup.COLUMN_ALBUM || tvc.title == TreeViewSetup.COLUMN_GENRE)
-                sizer_col.priority = TreeViewColumnSizer.SizePriority.MEDIUM;
-            else
-                sizer_col.priority = TreeViewColumnSizer.SizePriority.LOW;
-
-            columns.add (sizer_col);
-        }
-
-        sizer.columns = columns;
 	}
 
 	private Media? get_media_from_index (int index) {

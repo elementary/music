@@ -81,32 +81,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		this.lw = view_wrapper.lw;
 
 		this.list_scrolled = new ScrolledWindow (null, null);
-		//this.list_scrolled.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
 
-		/* We'll re-take the hint based approach after 1.0. Right now MusicListView is our
-		 * unique widget
-		 */
-#if 0
-		switch (tvs.get_hint()) {
-			case ViewWrapper.Hint.MUSIC:
-			case ViewWrapper.Hint.HISTORY:
-			case ViewWrapper.Hint.QUEUE:
-			case ViewWrapper.Hint.PLAYLIST:
-			case ViewWrapper.Hint.SMART_PLAYLIST:
-			case ViewWrapper.Hint.AUDIOBOOK:
-			case ViewWrapper.Hint.SIMILAR:
-			case ViewWrapper.Hint.DEVICE_AUDIO:
-			case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
-			case ViewWrapper.Hint.CDROM:
-			//case ViewWrapper.Hint.ALBUM_LIST:
-				list_view = new MusicListView (view_wrapper, tvs);
-				break;
-			default:
-				critical ("NO LIST VIEW AVAILABLE FOR HINT -> %s", tvs.get_hint().to_string());
-				// don't add anything
-				break;
-		}
-#endif
 		list_view = new MusicListView (view_wrapper, tvs);
 
 		list_view.rows_reordered.connect ( () => {
@@ -117,13 +92,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 			import_requested (to_import);
 		});
 
-		// Put the list inside a scrolled window
 		list_scrolled.add (list_view);
-
-        // Monitor size changes on parent wrapper
-        this.view_wrapper.size_allocate.connect ( (alloc) => {
-            list_view.resize_columns (alloc.width);
-        });
 
 
 		if (add_browser)
