@@ -65,12 +65,12 @@ public class Noise.FastView : TreeView {
 	}
 	
 	/** Should not be manipulated by client */
-	public HashTable<int, Object> get_table() {
+	public unowned HashTable<int, Object> get_table() {
 		return table;
 	}
 	
 	/** Should not be manipulated by client */
-	public HashTable<int, Object> get_visible_table() {
+	public unowned HashTable<int, Object> get_visible_table() {
 		return showing;
 	}
 	
@@ -78,7 +78,7 @@ public class Noise.FastView : TreeView {
 		return (int)iter.user_data;
 	}
 	
-	public Object get_object_from_index(int index) {
+	public Object? get_object_from_index(int index) {
 		return showing.get(index);
 	}
 	

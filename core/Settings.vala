@@ -42,10 +42,14 @@ namespace Noise.Settings {
         public int column_browser_width { get; set; }
         public int column_browser_height { get; set; }
         public bool column_browser_enabled { get; set; }
+        public bool show_album_art_in_list_view { get; set; }
         public string[] column_browser_visible_columns { get; set; }
         public int column_browser_position { get; set; }
 
         public SavedState () {
+            if (_instance != null)
+                error ("Use Settings.SavedState.instance");
+
             base ("org.pantheon.noise.SavedState");
         }
     }
@@ -74,6 +78,9 @@ namespace Noise.Settings {
         public string[] plugins_enabled { get; set;}
         
         public Main ()  {
+            if (_instance != null)
+                error ("Use Settings.Main.instance");
+
             base ("org.pantheon.noise.Settings");
         }
     }
@@ -94,6 +101,9 @@ namespace Noise.Settings {
         public string[] custom_presets { get; set;}
         
         public Equalizer () {
+            if (_instance != null)
+                error ("Use Settings.Equalizer.instance");
+
             base ("org.pantheon.noise.Equalizer");
         }
         

@@ -76,6 +76,8 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
             int new_mode = mode_button.selected;
             if (new_mode <= 2) // only consider first 3 items
                 selected = (Mode)new_mode;
+            else if (mode_button.sensitive);
+                selected = mode; // restore last valid mode
         });
     }
 
@@ -90,8 +92,8 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
     // De-select items when the widget is made insensitive, for appearance reasons
     public new void set_sensitive (bool sensitive) {
         // select fourth invisible mode to appear as de-selected
-        mode_button.set_active (sensitive ? (int)mode : 3);
         mode_button.set_sensitive (sensitive);
+        mode_button.set_active (sensitive ? (int)mode : 3);
     }
 
     // CRAPPY API
