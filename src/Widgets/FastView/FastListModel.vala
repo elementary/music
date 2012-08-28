@@ -93,6 +93,16 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 		}
 	}
 
+	public Object get_object (TreeIter iter) {
+        Object? object = null;
+
+		int row = (int)iter.user_data;
+		if (row < rows.size ())
+			object = rows.get (row);
+
+        return object;
+	}
+
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
 		iter = TreeIter();
 		return false;

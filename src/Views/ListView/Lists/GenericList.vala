@@ -48,7 +48,7 @@ public abstract class Noise.GenericList : FastView {
 		set_headers_clickable(true);
 		set_headers_visible (tvs.column_headers_visible);
 		set_fixed_height_mode(true);
-		set_rules_hint(true);
+		set_rules_hint(!CellDataFunctionHelper.smart_album_art_enabled);
 		set_reorderable(false);
 
 		playing_icon = Icons.NOW_PLAYING_SYMBOLIC.get_gicon ();
@@ -116,8 +116,8 @@ public abstract class Noise.GenericList : FastView {
 
             smart_album_art_menu_item.toggled.connect ( () => {
                 CellDataFunctionHelper.smart_album_art_enabled = smart_album_art_menu_item.active;
+         	    set_rules_hint(!CellDataFunctionHelper.smart_album_art_enabled);
                 queue_draw ();
-                
             });
 #endif
 
@@ -248,7 +248,7 @@ public abstract class Noise.GenericList : FastView {
 				else if (tvc.title == TreeViewSetup.COLUMN_ALBUM) {
 #if HAVE_SMART_ALBUM_COLUMN
 					insert_column_with_data_func (index, tvc.title, new SmartAlbumRenderer (), cell_data_helper.album_art_func);
-					set_row_separator_func (cell_data_helper.row_separator_func);
+					// XXX set_row_separator_func (cell_data_helper.row_separator_func);
 #else
 					insert_column_with_data_func (index, tvc.title, new TextFieldRenderer (), cell_data_helper.string_func);
 #endif

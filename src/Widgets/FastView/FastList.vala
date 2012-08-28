@@ -22,6 +22,65 @@
 using Gtk;
 
 public class Noise.FastView : TreeView {
+/*
+    public class SeparatorMedia : Media {
+        public SeparatorMedia () {
+            base ("");
+        }
+    }
+
+    private class DataModel : Gtk.TreeModelFilter {
+
+        public bool have_separators { get; set; default = false; }
+        private FastModel fm;
+
+        // ALBUM+ALBUM_ARTIST KEY / Separator Media
+        private Gee.HashMap<string, SeparatorMedia> separators;
+
+        public DataModel (List<Type> types) {
+            Object (child_model: new FastModel (types));
+            fm = child_model as FastModel;
+            separators = new Gee.HashMap<string, SeparatorMedia> ();
+
+            set_filter_visible_func (filter_visible_func);
+            notify.connect (refilter);
+        }
+
+        public set_table (HashTable<int, Object> table) {
+            // Analyze items and create separators based on them
+            foreach (var key in table.get_keys ()) {
+                var m = table.get (key) as Media;
+                if (m != null) {
+                    if (!separators.has_key (get_separator_key (m)) {
+                    
+                    }
+                }
+            }
+
+            fm.set_table (table);
+        }
+
+        protected string get_separator_key (Media m) {
+            string album_name = m.album;
+            string artist_name = m.album_artist;
+
+            if (artist_name == "")
+                artist_name = m.artist;
+
+            return @"$artist_name-$album_name";
+        }
+
+        private bool filter_visible_func (Gtk.TreeModel child_model, Gtk.TreeIter iter) {
+            bool item_visible = true;
+
+            var object = fm.get_object (iter);
+            if (object != null && object is SeparatorMedia)
+                item_visible = have_separators;
+
+            return item_visible;
+        }
+    }
+*/
 #if HAVE_BUILTIN_SHUFFLE
 	public static const int SHUFFLE_COLUMN_ID = -3;
 #endif
@@ -30,7 +89,8 @@ public class Noise.FastView : TreeView {
 	List<Type> columns;
 	protected HashTable<int, Object> table; // is not the same object as showing.
 	protected HashTable<int, Object> showing; // should never point to table.
-	
+
+
 	/* sortable stuff */
 	public delegate int SortCompareFunc (int sort_column_id, Gtk.SortType sort_direction, Object a, Object b);
 	protected int sort_column_id;
