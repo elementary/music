@@ -132,8 +132,9 @@ OPTIONS
     --target-glib=2.32
     --define=USE_GRANITE_DECORATED_WINDOW
     #--define=HAVE_ADD_PLAYLIST_AS_BUTTON
-    --define=HAVE_SMART_ALBUM_COLUMN
+    #--define=HAVE_SMART_ALBUM_COLUMN
     #--define=GTK_ICON_VIEW_BUG_IS_FIXED  ## TODO: define this automatically when gtk+.3.0 >= 3.4.3
+    #--define=ENABLE_EXPERIMENTAL
     ${ADD_OPTIONS}
 GENERATE_VAPI
     noise

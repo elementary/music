@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-12 15:19-0600\n"
+"POT-Creation-Date: 2012-08-19 22:40-0600\n"
 "PO-Revision-Date: 2012-07-16 04:47+0000\n"
 "Last-Translator: Dani Pratomo <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
@@ -15,390 +15,368 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"X-Launchpad-Export-Date: 2012-08-28 10:23+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
 
-#: /home/victored/noise/po/../src//config.vala:14
+#: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
 msgstr "Dengarkan Musik"
 
-#: /home/victored/noise/po/../src//config.vala:15
+#: /home/victor/noise/po/../src//config.vala:15
 msgid "Music Player"
 msgstr "Pemutar Musik"
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:218
+#: /home/victor/noise/po/../src//LibraryManager.vala:203
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Mengimpor musik dari %s..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:265
+#: /home/victor/noise/po/../src//LibraryManager.vala:251
 msgid "Adding files to library..."
 msgstr "Menambah berkas ke pustaka..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:290
+#: /home/victor/noise/po/../src//LibraryManager.vala:301
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Menambah musik dari %s ke pustaka..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:317
+#: /home/victor/noise/po/../src//LibraryManager.vala:330
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Memindai ulang perubahan. Mungkin makan waktu..."
 
-#: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:25
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victored/noise/po/../src//LibraryWindow.vala:661
-#: /home/victored/noise/po/../core//Media.vala:35
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
+#: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
+#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victor/noise/po/../src//LibraryWindow.vala:621
+#: /home/victor/noise/po/../core//Media.vala:35
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
 msgid "Unknown Artist"
 msgstr "Artis Tak Dikenal"
 
-#: /home/victored/noise/po/../src//Objects/Playlist.vala:203
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:282
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:371
+#: /home/victor/noise/po/../src//Objects/Playlist.vala:203
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
 msgid "Radio Station"
 msgstr "Stasiun Radio"
 
-#: /home/victored/noise/po/../src//Objects/TrackInfo.vala:26
+#: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
 msgstr "Trek Tak Dikenal"
 
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victored/noise/po/../src//LibraryWindow.vala:662
-#: /home/victored/noise/po/../core//Media.vala:34
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
+#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
+#: /home/victor/noise/po/../src//LibraryWindow.vala:622
+#: /home/victor/noise/po/../core//Media.vala:34
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
 msgid "Unknown Album"
 msgstr "Album Tak Diketahui"
 
-#: /home/victored/noise/po/../src//Widgets/PresetList.vala:47
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
+#: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Otomatis"
 
-#: /home/victored/noise/po/../src//Widgets/PresetList.vala:48
+#: /home/victor/noise/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
 msgstr "Hapus Ini"
 
-#: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:98
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:58
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:91
+msgid "Off"
+msgstr "Padam"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:58
+msgid "Enable Repeat"
+msgstr "Nyalakan Pengulangan"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:59
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:284
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:373
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
+msgid "Song"
+msgstr "Lagu"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:59
+msgid "Repeat Song"
+msgstr "Putar Ulang Lagu"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:60
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
+msgid "Album"
+msgstr "Album"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:60
+msgid "Repeat Album"
+msgstr "Putar Ulang Album"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:61
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
+msgid "Artist"
+msgstr "Artis"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:61
+msgid "Repeat Artist"
+msgstr "Putar Ulang Artis"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:62
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:92
+msgid "All"
+msgstr "Semua"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:62
+msgid "Repeat All"
+msgstr "Putar Ulang Semua"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:91
+msgid "Enable Shuffle"
+msgstr "Hidupkan Putar Acak"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:92
+msgid "Disable Shuffle"
+msgstr "Matikan Putar Acak"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:125
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:136
+msgid "Add Playlist"
+msgstr "Tambahkan Daftar Putar"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:137
+msgid "Add Smart Playlist"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:178
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:211
+msgid "Hide"
+msgstr "Sembunyikan"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:178
+msgid "Show Equalizer"
+msgstr "Tampilkan Ekualiser"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:179
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:212
+msgid "Show"
+msgstr "Tampilkan"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:179
+msgid "Hide Equalizer"
+msgstr "Sembunyikan Ekualiser"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:211
+msgid "Show Info Panel"
+msgstr "Tampilkan Panel Info"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:212
+msgid "Hide Info Panel"
+msgstr "Sembunyikan Panel Info"
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:74
 msgid "Sync"
 msgstr "Sinkronisasi"
 
-#: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:267
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
 msgstr "Bebas"
 
-#: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:380
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
 msgstr "Menggunakan %s dari %s (%.2f%)"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:95
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victored/noise/po/../src//LibraryWindow.vala:179
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:71
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
+#: /home/victor/noise/po/../src//LibraryWindow.vala:177
 msgid "Import to Library"
 msgstr "Impor ke Pustaka"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:101
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:77
 msgid "Eject"
 msgstr "Keluarkan Media"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:112
-#: /home/victored/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:51
-msgid "Add Podcast"
-msgstr "Tambah Podcast"
-
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:113
-msgid "Download new Episodes"
-msgstr "Unduh Episode baru"
-
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:123
-msgid "Import Stations"
-msgstr "Impor Stasiun"
-
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:131
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:88
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
 msgid "New Playlist"
 msgstr "Daftarputar Baru"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:132
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:89
 msgid "New Smart Playlist"
 msgstr "Daftarputar Pintar Baru"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:133
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:90
 msgid "Edit"
 msgstr "Sunting"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:134
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:91
 msgid "Remove"
 msgstr "Singkirkan"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:135
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:92
 msgid "Save as Playlist"
 msgstr "Simpan sebagai Daftarputar"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:136
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:93
 msgid "Export..."
 msgstr "Ekspor..."
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:137
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:94
 msgid "Import Playlists"
 msgstr "Mengimpor Daftarputar"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:175
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:132
 msgid "Library"
 msgstr "Pustaka"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:176
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:133
 msgid "Devices"
 msgstr "Perangkat"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:177
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:134
 msgid "Network"
 msgstr "Jaringan"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:178
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
 msgid "Playlists"
 msgstr "Daftarputar"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:269
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:299
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victored/noise/po/../src//LibraryWindow.vala:478
-msgid "Music"
-msgstr "Musik"
-
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:274
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:304
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:113
-msgid "Podcasts"
-msgstr "Podcast"
-
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:705
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:610
 msgid "This device is syncing"
 msgstr "Perangkat sedang disinkronkan"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:705
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:610
 msgid "Please wait until the current sync is finished to do this action."
 msgstr "Harap tunggu sinkronisasi selesai baru jalankan perintah ini."
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:707
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:612
 msgid "This device is in transfer"
 msgstr "Perangkat sedang transfer"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:707
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:612
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr "Harap tunggu transfer selesai baru jalankan perintah ini."
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:826
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:828
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:830
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unkown playlist"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:840
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:924
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
 msgstr "Daftarputar"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:937
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:842
 #, c-format
 msgid "Import %s"
 msgstr "Impor %s"
 
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:37
-msgid "Add Playlist"
-msgstr "Tambahkan Daftar Putar"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:40
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:47
-msgid "Off"
-msgstr "Padam"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:40
-msgid "Enable Repeat"
-msgstr "Nyalakan Pengulangan"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:41
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:537
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
-msgid "Song"
-msgstr "Lagu"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:41
-msgid "Repeat Song"
-msgstr "Putar Ulang Lagu"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:42
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:252
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
-msgid "Album"
-msgstr "Album"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:42
-msgid "Repeat Album"
-msgstr "Putar Ulang Album"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:43
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:253
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
-msgid "Artist"
-msgstr "Artis"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:43
-msgid "Repeat Artist"
-msgstr "Putar Ulang Artis"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:44
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:48
-msgid "All"
-msgstr "Semua"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:44
-msgid "Repeat All"
-msgstr "Putar Ulang Semua"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:47
-msgid "Enable Shuffle"
-msgstr "Hidupkan Putar Acak"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:48
-msgid "Disable Shuffle"
-msgstr "Matikan Putar Acak"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:51
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:55
-msgid "Hide"
-msgstr "Sembunyikan"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:51
-msgid "Show Info Panel"
-msgstr "Tampilkan Panel Info"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:52
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:56
-msgid "Show"
-msgstr "Tampilkan"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:52
-msgid "Hide Info Panel"
-msgstr "Sembunyikan Panel Info"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:55
-msgid "Show Equalizer"
-msgstr "Tampilkan Ekualiser"
-
-#: /home/victored/noise/po/../src//Widgets/BottomStatusBar.vala:56
-msgid "Hide Equalizer"
-msgstr "Sembunyikan Ekualiser"
-
-#: /home/victored/noise/po/../src//Widgets/TopDisplay.vala:69
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
-#: /home/victored/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:81
+#: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:69
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
 msgid "Cancel"
 msgstr "Batal"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:85
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
 msgstr "Ekualiser"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:152
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
 msgstr "Simpan set awal"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:160
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:160
 msgid "Close"
 msgstr "Tutup"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Sesuka)"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:418
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:418
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Sesuka %i)"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 msgid "Custom Preset"
 msgstr "Set Awal Sesuka"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:424
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:424
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Set Awal Sesuka %i"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
 msgstr "Berkas Tak Terimpor"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
 msgstr "Tak dapat mengimpor %d item dari %s"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr "%s tak dapat mengimpor %d item. Mungkin berkas rusak."
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
 msgstr "Buang semua berkas rusak ke tempat sampah"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:71
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
 msgstr "Pindah ke Tong Sampah"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
 msgstr "Abaikan"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
 msgstr "hapus"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
 msgstr "Lokasi Berkas"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
 msgstr "Pilih berkas satu-satu untuk dipindah ke tong sampah:"
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
 msgstr "Ekspor Daftar Putar"
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
 msgstr "Tetapkan Folder Musik"
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Tetapkan Folder Musik?"
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -407,26 +385,26 @@ msgstr ""
 "Anda yakin untuk menetapkan folder musik ke %s? Pustaka akan diatur ulang "
 "dan daftar putar akan hilang."
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:84
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
 msgid "Choose Music Folder"
 msgstr "Pilih Folder Musik"
 
-#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
 msgstr "Pasang Pengaya"
 
-#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
 msgid "Do Nothing"
 msgstr "Jangan Lakukan Apapun"
 
-#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
 msgstr "Pengaya GStreamer tak terpasang"
 
-#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
@@ -435,130 +413,129 @@ msgstr ""
 "Pengaya jenis media %s tak terpasang.\n"
 "Apa yang ingin Anda perbuat?"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:76
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:76
 msgid "Metadata"
 msgstr "Metadata"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:78
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:78
 msgid "Lyrics"
 msgstr "Lirik"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:87
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:152
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
-#: /home/victored/noise/po/../plugins//internet-radio/StationEditor.vala:70
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:87
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:65
 msgid "Done"
 msgstr "Selesai"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:174
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:345
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:174
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:345
 #, c-format
 msgid "Editing %s by %s"
 msgstr "Mengubah %s oleh %s"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:176
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:347
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:176
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:347
 #, c-format
 msgid "Editing %s"
 msgstr "Mengubah %s"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:179
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:350
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:179
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:350
 #, c-format
 msgid "Editing %i songs"
 msgstr "Mengubah %i lagu"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:185
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
 msgid "Title"
 msgstr "Judul"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:187
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:187
 msgid "Album Artist"
 msgstr "Artis Album"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:189
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:189
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Genre"
 msgstr "Aliran"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:256
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 msgid "Composer"
 msgstr "Komposer"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
 msgid "Grouping"
 msgstr "Pengelompokan"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:255
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:192
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 msgid "Comment"
 msgstr "Komentar"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:193
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
 msgid "Track"
 msgstr "Track"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:194
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:194
 msgid "Disc"
 msgstr "Cakram"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:195
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
 msgid "Year"
 msgstr "Tahun"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:196
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 msgid "Rating"
 msgstr "Peringkat"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:198
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:198
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Media Type"
 msgstr "Jenis Media"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:242
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:242
 msgid "Try again"
 msgstr "Coba lagi"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:295
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:295
 #, c-format
 msgid "Lyrics not found for \"%s\" by \"%s\""
 msgstr "Lirik tidak ditemukan untuk \"%s\" oleh \"%s\""
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:539
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:369
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:539
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:285
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:374
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
 msgid "Podcast"
 msgstr "Podcast"
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
 msgstr "Tambah media ke Pustaka"
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
 msgstr "Lanjutkan Sinkronisasi"
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
 msgstr "Hentikan Sinkronisasi"
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
@@ -568,34 +545,34 @@ msgstr ""
 "ada di daftar singkronisasi. Apakah anda ingin mengimpornya ke pustaka "
 "terlebih dahulu?"
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
 msgstr "Sinkronisasi akan menghapus %i item dari %s"
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
 msgstr "Singkronisasi akan menghapus 1 item dari %s"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:145
-#: /home/victored/noise/po/../src//LibraryWindow.vala:183
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:145
+#: /home/victor/noise/po/../src//LibraryWindow.vala:181
 msgid "Preferences"
 msgstr "Pengaturan"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:205
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:205
 msgid "General"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:219
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:219
 msgid "Select Music Folder"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:226
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:226
 msgid "Music Folder Location"
 msgstr "Lokasi folder musik"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:232
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:232
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
@@ -603,178 +580,178 @@ msgstr ""
 "Anda harus menunggu hingga operasi file sebelumnya selesai sebelum mengatur "
 "folder musik anda"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:244
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:244
 msgid "Keep Music folder organized"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:245
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:245
 msgid "Copy files to Music folder when adding to Library"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:247
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:247
 msgid "Write metadata to file"
 msgstr "Tulis metadata ke berkas"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:262
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:262
 msgid "Library Management"
 msgstr "Pengaturan Pustaka"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:269
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:269
 msgid "Use Noise as the default Music application"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:274
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:274
 msgid "System Integration"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:56
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
 msgstr "Pengubah Daftar Putar Pintar"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:67
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
 msgid "Name of Playlist"
 msgstr "Nama Daftarputar"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
 msgid "Rules"
 msgstr "Peraturan"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:72
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:80
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
 msgid "Options"
 msgstr "Pilihan"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Playlist Title"
 msgstr "Nama Daftar Putar"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "Match"
 msgstr "Cocok"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
 msgid "any"
 msgstr "sembarang"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:92
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "all"
 msgstr "semua"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
 msgid "of the following:"
 msgstr "dari hal berikut:"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:120
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
 msgid "Limit to"
 msgstr "Batasi sampai"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:122
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
 msgid "items"
 msgstr "item-item"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:254
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Date Added"
 msgstr "Tanggal Ditambahkan"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Date Released"
 msgstr "Tanggal Rilis"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Last Played"
 msgstr "Terakhir Diputar"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:445
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:450
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 msgid "Length"
 msgstr "Panjang"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 msgid "Playcount"
 msgstr "Jumlah putar"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
 msgid "Skipcount"
 msgstr "jumlah diskip"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:370
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:286
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
 msgstr "Buku audio"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:339
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:344
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is"
 msgstr "adalah"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:340
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:345
 msgid "contains"
 msgstr "mengandung"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:341
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:346
 msgid "does not contain"
 msgstr "tidak mengandung"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is not"
 msgstr "bukan"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:420
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:425
 msgid "is exactly"
 msgstr "Tepatnya"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 msgid "is at most"
 msgstr "paling banyak"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:408
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:413
 msgid "is at least"
 msgstr "paling sedikit"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:421
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:426
 msgid "is within"
 msgstr "di antara"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:422
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:427
 msgid "is before"
 msgstr "sebelum"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:446
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:451
 msgid "seconds"
 msgstr "detik"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:450
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:455
 msgid "days ago"
 msgstr "hari yang lalu"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:454
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:459
 msgid "kbps"
 msgstr "kbps"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
 msgstr "Impor dari Perangkat"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
 msgstr "impor media dari %s"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
@@ -783,66 +760,66 @@ msgstr ""
 "Berkas berikut ditemukan di %s, tapi belum ada di pustaka. Cek semua berkas "
 "yang ingin anda impor"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
 msgstr "Impor semua media"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
 msgstr "Impor"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
 msgstr "Jangan Mengimpor"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
 msgstr "Impor %i item dari %s"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
 msgstr "Import %s dari %s"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
 msgid "ID"
 msgstr "ID"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
 msgstr "Pilih media satu-persatu untuk diimpor"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
 msgstr "Periksa Item"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
 msgstr "Periksa Album"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
 msgstr "Periksa Artis"
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:60
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
 msgstr "Lepas Media"
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
 msgstr "Tempatkan Media"
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
 msgstr "Periksa ulang Pustaka"
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:69
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
 msgid "Could not find media file"
 msgstr "Tidak dapat menemukan berkas media"
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:78
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
@@ -850,38 +827,38 @@ msgstr ""
 "Berkas musik untuk %s oleh %s tidak dapat ditemukan. Apa yang ingin Anda "
 "lakukan?"
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
 msgstr "%i berkas media tidak dapat ditemukan. Apa yang ingin Anda lakukan?"
 
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:138
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
 #, c-format
 msgid "The name %s is already in use"
 msgstr "Nama %s sudah digunakan"
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
 msgstr "Hapus dari %s"
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 msgid "Station"
 msgstr "Stasiun"
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
 msgstr "Hapus %d %s dari %s?"
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Hapus \"%s\" Dari %s?"
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
 msgid ""
 "This will remove the %s from your library and from any device that "
@@ -890,75 +867,75 @@ msgstr ""
 "Proses ini akan menghapus %s dari pustakan dan dari semua perangkat yang "
 "sudah disingkronisasi otomatis dengan %s."
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:43
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
 msgstr "Membatalkan Sinkronisasi"
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:43
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
 "Sinkronisasi Perangkat telah dibatalkan. Operasi akan berhenti setelah media "
 "berikut."
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:47
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
 msgstr "Membatalkan Impor"
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:47
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
 "Impor dari perangkat telah dibatalkan. Operasi akan berhenti setelah media "
 "berikut."
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:128
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:86
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
 msgid "No External Songs"
 msgstr "Tidak Ada Lagu Eksternal"
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:86
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
 "Ada lagu-lagu yang ditemukan pada perangkat yang tidak ada dalam pustaka "
 "Anda."
 
-#: /home/victored/noise/po/../src//Views/GridView/PopupListView.vala:168
+#: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
 #, c-format
 msgid "%s by %s"
 msgstr "%s oleh %s"
 
-#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:550
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
 msgstr "%d menit"
 
-#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:553
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
 msgstr "%d jam"
 
-#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:556
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
 msgstr "%d hari"
 
-#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
 msgstr "%u item, %s, %s"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:72
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid "No songs in Queue"
 msgstr "Tidak ada lagu di antrian"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:72
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -968,11 +945,11 @@ msgstr ""
 "diinginkan lalu pilih <b>Antrian</b>. Ketika lagu selesai diputar, lagu "
 "dalam antrian akan diputar dahulu sebelum memutar lagu-lagu di daftar putar."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:37
+#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
 msgstr "Tidak ada lagu di Riwayat"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:37
+#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -981,47 +958,55 @@ msgstr ""
 "Lagu yang sudah diputar akan ditambahkan ke Riwayat.\n"
 "Anda dapat melihat semua lagu yang telah Anda putar di sesi ini."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
 msgstr "Ambil Sejumlah Nada"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr "Nampaknya %s tidak dapat menemukan musik Anda."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
 msgstr "Lokasi"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
 msgstr "Ubah Folder Musik Anda"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:128
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 msgid "All the songs in this device are already in your library."
 msgstr "Semua lagu di perangkat ini sudah ada di pustaka Anda."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:394
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:381
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:396
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
+msgid "No media"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:572
+msgid "Sorry, there is no music that matches your search"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "No Songs"
 msgstr "Tidak ada lagu"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1029,11 +1014,11 @@ msgstr ""
 "Untuk menambahkan lagu ini ke daftar putar, gunakan <b>klik kanan</b> di "
 "lagu yang diinginkan lalu pilih <Tambah ke Daftar Putar</b>."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:77
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
 msgstr "Sunting Daftar Putar Pintar"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1045,261 +1030,278 @@ msgstr ""
 "kanan</b> dalam daring dan klik <b>Sunting</b>. Sebagai tambahan, Anda dapat "
 "menge-klik pada di bawah."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:41
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
 msgstr "CD Audio Tidak Valid"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:41
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s tidak dapat membaca isi CD Suara"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:85
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 #, c-format
 msgid "%i tracks"
 msgstr "%i lagu"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:85
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 msgid "1 track"
 msgstr "1 lagu"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
+#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
 msgstr "Perangkat tak teraih"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
+#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
+msgid "N/A"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:172
 #, c-format
 msgid "%i kbps"
 msgstr "%i kbps"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Episode"
 msgstr "Episode"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
 msgid "Name"
 msgstr "Nama"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Date"
 msgstr "Tanggal"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
 msgid "Category"
 msgstr "Kategori"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
 msgstr "Pulser"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "BPM"
 msgstr "BPM"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "Plays"
 msgstr "Putar"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:54
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:54
 msgid "Skips"
 msgstr "Lewatkan"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
 msgid "#"
 msgstr "#"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Remove from Library"
 msgstr "Hapus dari Pustaka"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:107
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "Remove from Queue"
 msgstr "Hapus dari Antrian."
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:124
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:124
 msgid "Remove from Device"
 msgstr "Hapus dari Perangkat"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Scroll to Current Song"
 msgstr "Gulung ke Lagu Ini"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
 msgstr "Ubah Info Lagu"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "Show in File Browser"
 msgstr "Buka di Peramban Berkas"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victored/noise/po/../src//LibraryWindow.vala:491
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
+#: /home/victor/noise/po/../src//LibraryWindow.vala:473
 msgid "Queue"
 msgstr "Antrian"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
 msgid "Add to Playlist"
 msgstr "Tambahkan ke Playlist"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Remove Song"
 msgstr "Hapus Lagu"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Impor %i dari %i berkas yang terpilih."
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
 msgid "Import this song"
 msgstr "Impor lagu ini"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:259
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:259
 #, c-format
 msgid "Import %i songs"
 msgstr "Impor %i lagu"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
+#: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:105
+msgid "Autosize columns"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
 msgstr "Aliran"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
 msgid "Artists"
 msgstr "Artis"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
 msgid "Albums"
 msgstr "Album"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
 msgid "Years"
 msgstr "Tahun"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
 msgid "Ratings"
 msgstr "Nilai"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
 msgid "Unrated"
 msgstr "Tanpa peringkat"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
 msgid "1 Star"
 msgstr "1 Bintang"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:193
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:193
 #, c-format
 msgid "%s Stars"
 msgstr "%s bintang"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "All Genres"
 msgstr "Semua Aliran"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:243
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:243
 #, c-format
 msgid "All %i Genres"
 msgstr "Semua Aliran %i"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
 msgid "No Genres"
 msgstr "Tidak ada Aliran"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
 msgid "All Artists"
 msgstr "Semua Artis"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
 #, c-format
 msgid "All %i Artists"
 msgstr "Semua Artis %i"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "No Artists"
 msgstr "Tidak ada Artis"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "All Albums"
 msgstr "Semua Album"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:259
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:259
 #, c-format
 msgid "All %i Albums"
 msgstr "Semua Album %i"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
 msgid "No Albums"
 msgstr "Tidak ada Album"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
 msgid "All Years"
 msgstr "Semua Tahun"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
 #, c-format
 msgid "All %i Years"
 msgstr "Semua Tahun %i"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
 msgid "No Years"
 msgstr "Tidak Ada Tahun"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
 msgid "All Ratings"
 msgstr "Semua Peringkat"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
 msgid "No Ratings"
 msgstr "Tanpa Peringkat"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
 msgid "On Left"
 msgstr "Di Kiri"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
 msgid "On Top"
 msgstr "Di Atas"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:77
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
 msgstr "Nama Perangkat:"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:80
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:80
 msgid "Device Name"
 msgstr "Nama Perangkat"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:82
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:82
 msgid "Automatically sync when plugged in:"
 msgstr "Sinkronkan otomatis ketika terpasang:"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Sync:"
 msgstr "Singkronisasi:"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:111
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:111
 msgid "Other Files"
 msgstr "Berkas lain"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:384
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
+#: /home/victor/noise/po/../src//LibraryWindow.vala:463
+msgid "Music"
+msgstr "Musik"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:113
+msgid "Podcasts"
+msgstr "Podcast"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:384
 msgid "All Music"
 msgstr "Semua Musik"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:387
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:387
 msgid "All Podcasts"
 msgstr "Semua Podcast"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
 msgid "Sync Failed"
 msgstr "Sinkronisasi Gagal"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
@@ -1307,253 +1309,253 @@ msgstr ""
 "Daftarputar dengan nama %s digunakan untuk singkronisasi perangkat %s, "
 "tetapi tidak dapat ditemukan."
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Cannot Sync"
 msgstr "Tidak Dapat Mensinkroniasi"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Tidak dapat mensinkronisasi perangkat dengan pengaturan sinkronisasi ini. "
 "Tidak cukup tempat di disk"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
 msgstr "Perangkat sudah tersinkronisasi"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:403
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:403
 msgid "Favorite Songs"
 msgstr "Lagu kesukaan"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:413
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:413
 msgid "Recently Added"
 msgstr "Terakhir Ditambahkan"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:435
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:435
 msgid "Recent Favorites"
 msgstr "Terakhir disukai"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:445
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:445
 msgid "Never Played"
 msgstr "Belum pernah dimainkan"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:455
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:455
 msgid "Over Played"
 msgstr "Dimainkan berulang-ulang"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:465
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
 msgstr "Bukan yang baru saja dimainkan"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:180
+#: /home/victor/noise/po/../src//LibraryWindow.vala:178
 msgid "Rescan Music Folder"
 msgstr "Pindai Ulang Folder Musik"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:204
+#: /home/victor/noise/po/../src//LibraryWindow.vala:201
 msgid "Search Music"
 msgstr "Cari Musik"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:496
+#: /home/victor/noise/po/../src//LibraryWindow.vala:477
 msgid "History"
 msgstr "Riwayat"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:661
+#: /home/victor/noise/po/../src//LibraryWindow.vala:621
 msgid " by "
 msgstr " oleh "
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:662
+#: /home/victor/noise/po/../src//LibraryWindow.vala:622
 msgid " on "
 msgstr " Menyala "
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:870
+#: /home/victor/noise/po/../src//LibraryWindow.vala:830
 msgid "Import Music"
 msgstr "Impor Musik"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:894
+#: /home/victor/noise/po/../src//LibraryWindow.vala:862
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>sedang mengimpor</b> musik dari <b>%s</b> ke pustaka."
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:909
+#: /home/victor/noise/po/../src//LibraryWindow.vala:877
 msgid "Rescanning music folder for changes"
 msgstr "Sedang memindai folder musik untuk perubahan"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:916
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victor/noise/po/../src//LibraryWindow.vala:884
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "Could not find Music Folder"
 msgstr "Tak menemukan Folder Musik"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:916
+#: /home/victor/noise/po/../src//LibraryWindow.vala:884
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Pastikan folder musik Anda dapat diakses dan di-mount"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:950
 msgid "Import Complete"
 msgstr "Impor Selesai"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:950
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s telah diimpor ke Pustaka."
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:70
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
 msgstr "Datar"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:71
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
 msgstr "Klasik"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:72
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
 msgstr "Klub"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:73
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
 msgstr "Dansa"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:74
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
 msgstr "Bass Penuh"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:75
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
 msgstr "Trebel Penuh"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:76
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
 msgstr "Penuh Bass + Trebel"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:77
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
 msgstr "Headfon"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:78
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
 msgstr "Aula Besar"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:79
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
 msgstr "Langsung"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:80
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
 msgstr "Pesta"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:81
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
 msgstr "Pop"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:82
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
 msgstr "Reggae"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:83
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
 msgstr "Rock"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:84
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
 msgstr "Lembut"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:85
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
 msgstr "Ska"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:86
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
 msgstr "Rock Lembut"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:87
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
 msgstr "Tekno"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:82
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:78
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:82
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
 msgstr "%s dan %s"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:63
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s, dan %s"
 
-#: /home/victored/noise/po/../core//Media.vala:33
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
+#: /home/victor/noise/po/../core//Media.vala:33
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
 msgid "Unknown Title"
 msgstr "Judul Tak Diketahui"
 
-#: /home/victored/noise/po/../core//Media.vala:36
+#: /home/victor/noise/po/../core//Media.vala:36
 msgid "Unknown Genre"
 msgstr ""
 
-#: /home/victored/noise/po/../core//Media.vala:38
+#: /home/victor/noise/po/../core//Media.vala:38
 msgid "Various Artists"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
 "Pastikan folder musik dapat diakses dan sudah dikaitkan sebelum mengimpor CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 msgid "No songs on CD"
 msgstr "Tak ada lagu dalam CD"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "%s tak menemukan lagu dalam CD. Tak ada lagu yang diimpor."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s sudah mulai mengimpor"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1561,119 +1563,119 @@ msgid ""
 msgstr ""
 "Harap tunggu sampai %s selesai dengan impor ini sebelum mengimpor CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid "Ripping track 1"
 msgstr "Merenggut trek 1"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
 #, c-format
 msgid "Importing track %i"
 msgstr "Mengimpor trek %i"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
 msgid "CD Import Complete"
 msgstr "Selesai Impor CD"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s selesai mengimpor %i lagu dari Audio CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s selesai mengimpor sebuah lagu dari Audio CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Impor CD akan <b>dibatalkan</b> setelah impor berikut."
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
 #, c-format
 msgid "Syncing <b>%s</b>..."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:680
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:680
 #, c-format
 msgid "Removing from <b>%s</b>..."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:911
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:911
 #, c-format
 msgid "Importing <b>%s</b> to library..."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:64
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:64
 msgid "Similar"
 msgstr "Serupa"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
 msgstr "media"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
 msgid "Similar Media"
 msgstr "Media Serupa"
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling already Enabled"
 msgstr "Scrobbling sudah diaktifkan"
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
 msgstr "Berhasil!"
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete login"
 msgstr "Login selesai"
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:39
 msgid "Last.fm"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:53
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:56
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:67
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:67
 msgid "Last.fm Integration"
 msgstr "Integrasi Last.fm"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
 msgstr "Mencari lagu yang mirip"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
 msgstr "Mencari lagu-lagu yang serupa dengan %s melalui %s"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:99
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
 msgid "Similar to %s"
 msgstr "Sama seperti %s"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:127
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 msgid "No similar songs found"
 msgstr "Tidak ditemukan lagu yang mirip"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:127
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -1684,11 +1686,11 @@ msgstr ""
 "Pastikan semua informasi lagu sudah benar dan anda tersambung dengan "
 "internet. Beberapa lagu mungkin jadi tidak memiliki padanan."
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:141
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
 msgstr "Tinjau Lagu Serupa"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:141
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1699,44 +1701,14 @@ msgstr ""
 "dengan yang sedang diputar. Kemudian Anda bisa mulai memutar lagu-lagu itu, "
 "atau menyimpannya sebagai sebuah daftar putar."
 
-#: /home/victored/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:76
-#: /home/victored/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:84
-#, c-format
-msgid "Podcast RSS Source"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:77
-msgid "Podcast Source..."
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:80
-msgid "Add"
-msgstr "Tambahkan"
-
-#: /home/victored/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
-msgid "No Podcasts Found"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
-msgid ""
-"The provided source is invalid. Make sure you are entering an RSS feed in "
-"XML format."
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//internet-radio/RadioListView.vala:76
-msgid "Remove Station"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//internet-radio/StationEditor.vala:68
-msgid "Previous"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//internet-radio/StationEditor.vala:69
-msgid "Next"
-msgstr ""
-
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Impor beberapa lagu dari CD audio"
+
+#~ msgid "Add"
+#~ msgstr "Tambahkan"
+
+#~ msgid "Download new Episodes"
+#~ msgstr "Unduh Episode baru"
 
 #, c-format
 #~ msgid "All %i Ratings"
@@ -1834,3 +1806,9 @@ msgstr ""
 #, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s detik"
+
+#~ msgid "Import Stations"
+#~ msgstr "Impor Stasiun"
+
+#~ msgid "Add Podcast"
+#~ msgstr "Tambah Podcast"
