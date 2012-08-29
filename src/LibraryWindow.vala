@@ -1117,7 +1117,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         // Save info pane (context pane) width
         Settings.SavedState.instance.more_width = info_panel.get_allocated_width ();
-        Settings.SavedState.instance.more_visible = info_panel.visible;
 
         // Save sidebar width
         Settings.SavedState.instance.sidebar_width = main_hpaned.position;
