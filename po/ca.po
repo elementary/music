@@ -6,17 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
 "PO-Revision-Date: 2012-07-26 11:50+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:23+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-08-13 05:53+0000\n"
+"X-Generator: Launchpad (build 15791)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -903,8 +904,7 @@ msgstr "No hi ha cap cançó externa"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "No s'ha pogut trobar cap cançó al dispositiu que no sigui a la vostra "
 "biblioteca."
@@ -1554,8 +1554,7 @@ msgstr "No hi ha cap cançó al CD"
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"El %s no ha pogut trobar cap cançó al CD. No es pot importar cap cançó"
+msgstr "El %s no ha pogut trobar cap cançó al CD. No es pot importar cap cançó"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
@@ -1714,6 +1713,12 @@ msgstr ""
 #~ msgid "Add Podcast"
 #~ msgstr "Afegeix un podcast"
 
+#~ msgid "Download new Episodes"
+#~ msgstr "Baixa episodis nous"
+
+#~ msgid "Import Stations"
+#~ msgstr "Importa estacions"
+
 #~ msgid "Add"
 #~ msgstr "Afegeix"
 
@@ -1726,21 +1731,18 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Podcasts no sentits"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i àlbums"
 
 #~ msgid "1 album"
 #~ msgstr "1 àlbum"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i cançons"
 
 #~ msgid "1 song"
 #~ msgstr "1 cançó"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i hores"
 
@@ -1753,29 +1755,20 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 segon"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s segons"
 
 #~ msgid "1 minute"
 #~ msgstr "1 minut"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dies"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minuts"
 
 #~ msgid "Music Folder"
 #~ msgstr "Carpeta de música"
-
-#~ msgid "Download new Episodes"
-#~ msgstr "Baixa episodis nous"
-
-#~ msgid "Import Stations"
-#~ msgstr "Importa estacions"
 
 #~ msgid "Disable Repeat"
 #~ msgstr "Desactiva la repetició"
@@ -1783,14 +1776,12 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Importa elements multimèdia d'un dispositiu"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Totes les %i valoracions"
 
 #~ msgid "Keep music folder organized"
 #~ msgstr "Mantén organitzada la carpeta de música"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i elements"
 

@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-25 12:45+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"PO-Revision-Date: 2012-08-17 01:32+0000\n"
+"Last-Translator: leo  <shing80333@gmail.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:24+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
-"Language: \n"
+"X-Launchpad-Export-Date: 2012-08-17 05:12+0000\n"
+"X-Generator: Launchpad (build 15810)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -539,7 +539,9 @@ msgstr "停止同步"
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
-msgstr "如果您繼續同步，媒體將從 %s 移除，因為它們並不在同步清單中。您想要先把它們匯入您的珍藏館中嗎？"
+msgstr ""
+"如果您繼續同步，媒體將從 %s 移除，因為它們並不在同步清單中。您想要先把它們匯"
+"入您的珍藏館中嗎？"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
@@ -750,7 +752,8 @@ msgstr "從 %s 匯入媒體"
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
-msgstr "%s 中找到下列檔案，但不在您的珍藏館中。請勾選您想匯入珍藏館的所有檔案。"
+msgstr ""
+"%s 中找到下列檔案，但不在您的珍藏館中。請勾選您想匯入珍藏館的所有檔案。"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -884,8 +887,7 @@ msgstr "沒有外部的歌曲"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "這部裝置中沒有您珍藏館中沒有的歌曲。"
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -923,7 +925,8 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"要添加歌曲至佇列，必須在曲目上 <b>雙擊滑鼠</b>，並選擇<b>佇列</b>。在目前播放的清單中，當一首歌結束後將優先播放剛佇列的歌曲。"
+"要添加歌曲至佇列，必須在曲目上 <b>雙擊滑鼠</b>，並選擇<b>佇列</b>。在目前播放"
+"的清單中，當一首歌結束後將優先播放剛佇列的歌曲。"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
@@ -988,7 +991,9 @@ msgstr "沒有歌曲"
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr "若要添加歌曲至播放清單，請對曲目<b>雙擊滑鼠</b>，並選擇<b>加入至播放清單</b>。"
+msgstr ""
+"若要添加歌曲至播放清單，請對曲目<b>雙擊滑鼠</b>，並選擇<b>加入至播放清單</"
+"b>。"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
@@ -1001,8 +1006,8 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"本播放清單將自動篩選加入符合規則的音樂。若要修改規則，請在側邊欄對該規則<b>雙擊滑鼠</b>，並按一下</b>編輯</b>。此外，您也可以點選側邊欄下方"
-"的按鈕並編輯。"
+"本播放清單將自動篩選加入符合規則的音樂。若要修改規則，請在側邊欄對該規則<b>雙"
+"擊滑鼠</b>，並按一下</b>編輯</b>。此外，您也可以點選側邊欄下方的按鈕並編輯。"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1645,8 +1650,8 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
-"%s 無法在您的珍藏館中找到類似 %s (演出者 %s) "
-"的歌曲。請確定所有歌曲的資訊都正確，而且您也連接至網際網路。不過有些歌曲也可能找不到相符的類似歌曲。"
+"%s 無法在您的珍藏館中找到類似 %s (演出者 %s) 的歌曲。請確定所有歌曲的資訊都正"
+"確，而且您也連接至網際網路。不過有些歌曲也可能找不到相符的類似歌曲。"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
@@ -1658,7 +1663,12 @@ msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
-msgstr "在這個檢視畫面中，%s 將自動尋找類似您現正在播放歌曲的其他歌曲。您可以接著開始播放它們，或者將它們另存為播放清單供您往後播放。"
+msgstr ""
+"在這個檢視畫面中，%s 將自動尋找類似您現正在播放歌曲的其他歌曲。您可以接著開始"
+"播放它們，或者將它們另存為播放清單供您往後播放。"
+
+#~ msgid "Add Podcast"
+#~ msgstr "加入 Podcast"
 
 #~ msgid "Download new Episodes"
 #~ msgstr "下載新節目"
@@ -1666,20 +1676,47 @@ msgstr "在這個檢視畫面中，%s 將自動尋找類似您現正在播放歌
 #~ msgid "Import Stations"
 #~ msgstr "匯入電臺"
 
+#~ msgid "Unknown playlist"
+#~ msgstr "未知的播放清單"
+
+#~ msgid "Podcast RSS Source"
+#~ msgstr "Podcast RSS 來源"
+
+#~ msgid "Podcast Source..."
+#~ msgstr "Podcast 來源..."
+
+#~ msgid "Add"
+#~ msgstr "加入"
+
+#~ msgid "No Podcasts Found"
+#~ msgstr "找不到 Podcast"
+
+#~ msgid ""
+#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
+#~ "XML format."
+#~ msgstr "提供的來源無效。請確定您輸入的是 XML 格式的 RSS 饋流。"
+
+#~ msgid "Remove Station"
+#~ msgstr "移除電臺"
+
+#~ msgid "Previous"
+#~ msgstr "上一個"
+
+#~ msgid "Next"
+#~ msgstr "下一個"
+
 #~ msgid "Music Folder"
 #~ msgstr "音樂資料夾"
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "從音訊 CD 匯入歌曲"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i 張專輯"
 
 #~ msgid "Recently Played"
 #~ msgstr "最近播放"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i 小時"
 
@@ -1695,34 +1732,24 @@ msgstr "在這個檢視畫面中，%s 將自動尋找類似您現正在播放歌
 #~ msgid "1 second"
 #~ msgstr "1 秒"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s 秒"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i 天"
 
 #~ msgid "Import media from device"
 #~ msgstr "從裝置匯入媒體"
 
-#~ msgid "Add Podcast"
-#~ msgstr "加入 Podcast"
-
-#~ msgid "Add"
-#~ msgstr "加入"
-
 #~ msgid "1 album"
 #~ msgstr "1 張專輯"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i 首歌曲"
 
 #~ msgid "1 song"
 #~ msgstr "1 首歌曲"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "所有 %i 個評等"
 
@@ -1732,7 +1759,6 @@ msgstr "在這個檢視畫面中，%s 將自動尋找類似您現正在播放歌
 #~ msgid "Disable Repeat"
 #~ msgstr "停用重複播放"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i 分鐘"
 

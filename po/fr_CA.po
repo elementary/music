@@ -6,17 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
 "PO-Revision-Date: 2012-06-24 20:35+0000\n"
 "Last-Translator: Simon <Unknown>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:24+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
+"X-Generator: Launchpad (build 15791)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -904,8 +905,7 @@ msgstr "Aucune chanson externe"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Aucune chanson que vous ne possédez pas dans votre bibliothèque n'a été "
 "trouvée."
@@ -1597,8 +1597,7 @@ msgstr "%s a fini d'importer une chanson depuis le CD audio."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"L'importation du CD sera <b>annulée</b> après l'importation en cours."
+msgstr "L'importation du CD sera <b>annulée</b> après l'importation en cours."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
@@ -1711,9 +1710,6 @@ msgstr ""
 "celle que vous lirez. Vous pourrez alors lire ces chansons ou les "
 "enregistrer dans une liste de lecture."
 
-#~ msgid "Add"
-#~ msgstr "Ajouter"
-
 #~ msgid "Add Podcast"
 #~ msgstr "Ajouter un Podcast"
 
@@ -1723,7 +1719,9 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "Importer des stations"
 
-#, c-format
+#~ msgid "Add"
+#~ msgstr "Ajouter"
+
 #~ msgid "All %i Ratings"
 #~ msgstr "Tous %i les classements"
 
@@ -1739,11 +1737,9 @@ msgstr ""
 #~ msgid "Music Folder"
 #~ msgstr "Dossier Musique"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albums"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i chansons"
 

@@ -6,17 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-23 11:08+0000\n"
+"PO-Revision-Date: 2012-08-03 06:50+0000\n"
 "Last-Translator: Zahirovic Mensur <Unknown>\n"
 "Language-Team: Swedish\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:24+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
+"X-Generator: Launchpad (build 15791)\n"
 "X-Poedit-Language: Swedish\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -898,8 +899,7 @@ msgstr "Inga externa låtar"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Inga låtar hittades på denna enhet som inte redan fanns i ditt bibliotek."
 
@@ -1706,8 +1706,36 @@ msgstr ""
 #~ msgid "Download new Episodes"
 #~ msgstr "Hämta nya avsnitt"
 
+#~ msgid "Import Stations"
+#~ msgstr "Importera stationer"
+
+#~ msgid "Podcast RSS Source"
+#~ msgstr "RSS-källa för poddsändning"
+
+#~ msgid "Podcast Source..."
+#~ msgstr "Poddsändningskälla..."
+
 #~ msgid "Add"
 #~ msgstr "Lägg till"
+
+#~ msgid "No Podcasts Found"
+#~ msgstr "Inga poddsändningar hittades"
+
+#~ msgid ""
+#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
+#~ "XML format."
+#~ msgstr ""
+#~ "Den angivna källan är ogiltig. Se till att du anger en RSS-kanal i XML-"
+#~ "format."
+
+#~ msgid "Remove Station"
+#~ msgstr "Ta Bort Stationen"
+
+#~ msgid "Previous"
+#~ msgstr "Föregående"
+
+#~ msgid "Next"
+#~ msgstr "Framåt"
 
 #~ msgid "Music Folder"
 #~ msgstr "Musikmapp"
@@ -1730,7 +1758,6 @@ msgstr ""
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "Klicka här för att göra om Last.fm inloggningen"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Alla %i Betyg"
 
@@ -1740,23 +1767,18 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Olyssnade Podsändningar"
 
-#~ msgid "Import Stations"
-#~ msgstr "Importera stationer"
-
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Importera låtar från ljudskiva"
 
 #~ msgid "Import media from device"
 #~ msgstr "Importera media från enhet"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i låtar"
 
@@ -1772,11 +1794,9 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 sekund"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekunder"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i timmar"
 
@@ -1786,10 +1806,8 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 timme"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minuter"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dagar"

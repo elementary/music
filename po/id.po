@@ -6,17 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
 "PO-Revision-Date: 2012-07-16 04:47+0000\n"
 "Last-Translator: Dani Pratomo <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:23+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
+"X-Generator: Launchpad (build 15791)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -900,8 +901,7 @@ msgstr "Tidak Ada Lagu Eksternal"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Ada lagu-lagu yang ditemukan pada perangkat yang tidak ada dalam pustaka "
 "Anda."
@@ -1560,8 +1560,7 @@ msgstr "%s sudah mulai mengimpor"
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
-msgstr ""
-"Harap tunggu sampai %s selesai dengan impor ini sebelum mengimpor CD."
+msgstr "Harap tunggu sampai %s selesai dengan impor ini sebelum mengimpor CD."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid "Ripping track 1"
@@ -1701,16 +1700,21 @@ msgstr ""
 "dengan yang sedang diputar. Kemudian Anda bisa mulai memutar lagu-lagu itu, "
 "atau menyimpannya sebagai sebuah daftar putar."
 
-#~ msgid "Import songs from audio CD"
-#~ msgstr "Impor beberapa lagu dari CD audio"
-
-#~ msgid "Add"
-#~ msgstr "Tambahkan"
+#~ msgid "Add Podcast"
+#~ msgstr "Tambah Podcast"
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Unduh Episode baru"
 
-#, c-format
+#~ msgid "Import Stations"
+#~ msgstr "Impor Stasiun"
+
+#~ msgid "Add"
+#~ msgstr "Tambahkan"
+
+#~ msgid "Import songs from audio CD"
+#~ msgstr "Impor beberapa lagu dari CD audio"
+
 #~ msgid "All %i Ratings"
 #~ msgstr "Semua Peringkat %i"
 
@@ -1741,17 +1745,15 @@ msgstr ""
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "Klik untuk mengulang proses login Last.fm"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i hari"
 
-#, c-format
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Untuk integrasi Last.fm, Anda harus memberi izin pada %s. Anda hanya perlu "
-#~ "melakukan ini satu kali."
+#~ "Untuk integrasi Last.fm, Anda harus memberi izin pada %s. Anda hanya "
+#~ "perlu melakukan ini satu kali."
 
 #~ msgid "1 day"
 #~ msgstr "1 hari"
@@ -1762,7 +1764,6 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Podcast yang belum pernah didengar"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i jam"
 
@@ -1772,25 +1773,21 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 jam"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i menit"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i item"
 
 #~ msgid "1 item"
 #~ msgstr "1 item"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i lagu"
 
@@ -1803,12 +1800,5 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 detik"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s detik"
-
-#~ msgid "Import Stations"
-#~ msgstr "Impor Stasiun"
-
-#~ msgid "Add Podcast"
-#~ msgstr "Tambah Podcast"

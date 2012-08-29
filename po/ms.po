@@ -6,17 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-22 06:39+0000\n"
+"PO-Revision-Date: 2012-08-12 00:15+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
+"Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:24+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
+"X-Generator: Launchpad (build 15791)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -895,8 +896,7 @@ msgstr "Tiada Lagu Luaran"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Tiada lagu ditemui dalam peranti ini yang mana bukan dalam pustaka anda."
 
@@ -1022,9 +1022,9 @@ msgid ""
 "below."
 msgstr ""
 "Senarai main ini akan dipopulasikan secara automatik dengan lagu yang anda "
-"padankan peraturannya. Untuk ubahsuai peraturan ini, guna  <b>klik "
-"sekunder</b> padanya dalam palang sisi dan klik <b>Sunting</b>. Selain itu, "
-"anda boleh klik pada butang dibawah."
+"padankan peraturannya. Untuk ubahsuai peraturan ini, guna  <b>klik sekunder</"
+"b> padanya dalam palang sisi dan klik <b>Sunting</b>. Selain itu, anda boleh "
+"klik pada butang dibawah."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1545,8 +1545,7 @@ msgstr "Tiada lagu dalam CD"
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"%s tidak dapat cari sebarang lagu dalam CD. Tiada lagu boleh diimport"
+msgstr "%s tidak dapat cari sebarang lagu dalam CD. Tiada lagu boleh diimport"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
@@ -1701,6 +1700,46 @@ msgstr ""
 "lagu yang anda sedang mainkan. Anda boleh mula memainkan lagu tersebut, atau "
 "simpan ia sebagai senarai main kemudian."
 
+#~ msgid "Add Podcast"
+#~ msgstr "Tambah Podcast"
+
+#~ msgid "Download new Episodes"
+#~ msgstr "Muat turun Episod baru"
+
+#~ msgid "Import Stations"
+#~ msgstr "Import Stesen"
+
+#~ msgid "Unknown playlist"
+#~ msgstr "Senarai main tidak diketahui"
+
+#~ msgid "Podcast RSS Source"
+#~ msgstr "Sumber RSS Podcast"
+
+#~ msgid "Podcast Source..."
+#~ msgstr "Sumber Podcast..."
+
+#~ msgid "Add"
+#~ msgstr "Tambah"
+
+#~ msgid "No Podcasts Found"
+#~ msgstr "Tiada Podcast Ditemui"
+
+#~ msgid ""
+#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
+#~ "XML format."
+#~ msgstr ""
+#~ "Sumber yang disediakan tidak sah. Pastikan anda masukkan suapan RSS dalam "
+#~ "format XML."
+
+#~ msgid "Remove Station"
+#~ msgstr "Buang Stesen"
+
+#~ msgid "Previous"
+#~ msgstr "Terdahulu"
+
+#~ msgid "Next"
+#~ msgstr "Berikutnya"
+
 #~ msgid "Recently Played"
 #~ msgstr "Baru Dimainkan"
 
@@ -1713,11 +1752,9 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 saat"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s saat"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i jam"
 
@@ -1727,18 +1764,11 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 jam"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minit"
 
 #~ msgid "Music Folder"
 #~ msgstr "Folder Muzik"
-
-#~ msgid "Add"
-#~ msgstr "Tambah"
-
-#~ msgid "Add Podcast"
-#~ msgstr "Tambah Podcast"
 
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Podcast Belum Didengari"
@@ -1746,11 +1776,9 @@ msgstr ""
 #~ msgid "Disable Repeat"
 #~ msgstr "Lumpuhkan Ulang"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Semua %i Penarafan"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
@@ -1760,22 +1788,14 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Import media dari peranti"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i lagu"
 
 #~ msgid "1 song"
 #~ msgstr "1 lagu"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i hari"
-
-#~ msgid "Download new Episodes"
-#~ msgstr "Muat turun Episod baru"
-
-#~ msgid "Import Stations"
-#~ msgstr "Import Stesen"
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Benarkan Scrobbling"
@@ -1786,15 +1806,13 @@ msgstr ""
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "Klik untuk buat semula Proses Daftar Masuk Last.fm"
 
-#, c-format
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Untuk membenarkan penyepaduan Last.fm, anda mesti beri keizinan kepada %s. "
-#~ "Anda perlu buat ini sekali sahaja."
+#~ "Untuk membenarkan penyepaduan Last.fm, anda mesti beri keizinan kepada "
+#~ "%s. Anda perlu buat ini sekali sahaja."
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i item"
 

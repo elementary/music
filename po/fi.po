@@ -6,17 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-19 10:35+0000\n"
+"PO-Revision-Date: 2012-07-25 17:38+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:23+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
+"X-Generator: Launchpad (build 15791)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -352,7 +353,7 @@ msgstr "Siirrä roskakoriin"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr "Ohita"
+msgstr "Jätä huomiotta"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
@@ -885,8 +886,7 @@ msgstr "Ei ulkoisia kappaleita"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -968,8 +968,8 @@ msgstr[1] ""
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] "%u kappale"
-msgstr[1] "%u kappaletta"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
 msgid "No media"
@@ -1448,23 +1448,23 @@ msgstr "Techno"
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d sekunti"
-msgstr[1] "%d sekuntia"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:44
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] "%u minuutti"
-msgstr[1] "%u minuuttia"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] "%u sekunti"
-msgstr[1] "%u sekuntia"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:78
@@ -1478,15 +1478,15 @@ msgstr "%s ja %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] "%u päivä"
-msgstr[1] "%u päivää"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] "%u tunti"
-msgstr[1] "%u tuntia"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:76
 #, c-format
@@ -1676,6 +1676,9 @@ msgstr ""
 #~ msgid "Download new Episodes"
 #~ msgstr "Lataa uusia jaksoja"
 
+#~ msgid "Import Stations"
+#~ msgstr "Tuo asemia"
+
 #~ msgid "Add"
 #~ msgstr "Lisää"
 
@@ -1685,13 +1688,9 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Tuo tiedostot laitteesta"
 
-#~ msgid "Import Stations"
-#~ msgstr "Tuo asemia"
-
 #~ msgid "Music Folder"
 #~ msgstr "Musiikkikansio"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albumia"
 
@@ -1701,21 +1700,18 @@ msgstr ""
 #~ msgid "1 item"
 #~ msgstr "Yksi kohde"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i kappaletta"
 
 #~ msgid "1 song"
 #~ msgstr "Yksi kappale"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i kohdetta"
 
 #~ msgid "Recently Played"
 #~ msgstr "Viimeksi soitetut"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i tuntia"
 
@@ -1731,15 +1727,12 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 sekunti"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekuntia"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minuuttia"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i päivää"
 

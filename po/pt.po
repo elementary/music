@@ -6,17 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-21 15:55+0000\n"
-"Last-Translator: Laurentino <laurentinolopes@gmail.com>\n"
+"PO-Revision-Date: 2012-07-31 16:36+0000\n"
+"Last-Translator: Rafael da Silva Lima <Unknown>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:24+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
+"X-Generator: Launchpad (build 15791)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -889,8 +890,7 @@ msgstr "A cancelar importação"
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
-msgstr ""
-"A importação foi cancelada. A operação será terminada após esta faixa."
+msgstr "A importação foi cancelada. A operação será terminada após esta faixa."
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
@@ -900,8 +900,7 @@ msgstr "Sem faixas externas"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "Todas as faixas deste dispositivo já existem na sua coleção."
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -1708,8 +1707,8 @@ msgstr ""
 "àquela que está a reproduzir. Pode então reproduzir as faixas encontradas ou "
 "gravar as faixas como uma lista de reprodução."
 
-#~ msgid "Add"
-#~ msgstr "Adicionar"
+#~ msgid "Add Podcast"
+#~ msgstr "Adicionar podcast"
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Transferir novos episódios"
@@ -1717,13 +1716,35 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "Importar estações"
 
-#~ msgid "Add Podcast"
-#~ msgstr "Adicionar podcast"
+#~ msgid "Podcast RSS Source"
+#~ msgstr "Fonte RSS do Podcast"
+
+#~ msgid "Podcast Source..."
+#~ msgstr "Fonte do Podcast..."
+
+#~ msgid "Add"
+#~ msgstr "Adicionar"
+
+#~ msgid "No Podcasts Found"
+#~ msgstr "Não foram encontrados Podcasts"
+
+#~ msgid ""
+#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
+#~ "XML format."
+#~ msgstr "A fonte escolhida é inválida. Escolha um canal RSS no formato XML."
+
+#~ msgid "Remove Station"
+#~ msgstr "Remover Estação"
+
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+
+#~ msgid "Next"
+#~ msgstr "Seguinte"
 
 #~ msgid "Music Folder"
 #~ msgstr "Pasta de músicas"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i álbuns"
 
@@ -1733,7 +1754,6 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Importar faixas do CD áudio"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i faixas"
 
@@ -1743,7 +1763,6 @@ msgstr ""
 #~ msgid "1 song"
 #~ msgstr "1 faixa"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Todas as %i avaliações"
 
@@ -1756,7 +1775,6 @@ msgstr ""
 #~ msgid "Disable Repeat"
 #~ msgstr "Desativar repetição"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i horas"
 
@@ -1772,15 +1790,12 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 segundo"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s segundos"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dias"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutos"
 

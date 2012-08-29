@@ -11,13 +11,14 @@ msgstr ""
 "PO-Revision-Date: 2012-08-14 08:07+0000\n"
 "Last-Translator: Łukasz Szeremeta <Unknown>\n"
 "Language-Team: polski <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:24+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-08-15 05:14+0000\n"
+"X-Generator: Launchpad (build 15801)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -900,8 +901,7 @@ msgstr "Brak zewnętrznych nagrań"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Nie odnaleziono nagrań na urządzeniu, które nie znajdują się w kolekcji."
 
@@ -1598,8 +1598,7 @@ msgstr "%s zakończył importowanie utworu z nośnika CD."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"Importowanie nośnika CD będzie <b>anulowane</b> po aktualnym imporcie."
+msgstr "Importowanie nośnika CD będzie <b>anulowane</b> po aktualnym imporcie."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
@@ -1718,8 +1717,39 @@ msgstr ""
 #~ msgid "Download new Episodes"
 #~ msgstr "Pobierz nowe odcinki"
 
+#~ msgid "Import Stations"
+#~ msgstr "Zaimportuj stacje"
+
+#~ msgid "Unknown playlist"
+#~ msgstr "Nieznana lista odtwarzania"
+
+#~ msgid "Podcast RSS Source"
+#~ msgstr "Źródło RSS podcastu"
+
+#~ msgid "Podcast Source..."
+#~ msgstr "Źródło podcastu..."
+
 #~ msgid "Add"
 #~ msgstr "Dodaj"
+
+#~ msgid "No Podcasts Found"
+#~ msgstr "Nie odnaleziono podcastów"
+
+#~ msgid ""
+#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
+#~ "XML format."
+#~ msgstr ""
+#~ "Podane źródło jest nieprawidłowe. Proszę się upewnić, że podane źródło "
+#~ "RSS jest w formacie XML."
+
+#~ msgid "Remove Station"
+#~ msgstr "Usuń stację"
+
+#~ msgid "Previous"
+#~ msgstr "Poprzednie"
+
+#~ msgid "Next"
+#~ msgstr "Następne"
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Zaimportuj nagrania z płyty Audio CD"
@@ -1733,13 +1763,12 @@ msgstr ""
 #~ msgid "Music Folder"
 #~ msgstr "Katalog z muzyką"
 
-#, c-format
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Aby umożliwić integrację Last.fm., musisz podać uprawnienia do %s. Wystarczy "
-#~ "to zrobić tylko jeden raz."
+#~ "Aby umożliwić integrację Last.fm., musisz podać uprawnienia do %s. "
+#~ "Wystarczy to zrobić tylko jeden raz."
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Scrobbluj"
@@ -1759,7 +1788,6 @@ msgstr ""
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "Kliknij, aby powtórzyć logowanie do Last.fm"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albumów"
 
@@ -1769,14 +1797,12 @@ msgstr ""
 #~ msgid "1 song"
 #~ msgstr "1 utwór"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i obiektów"
 
 #~ msgid "1 item"
 #~ msgstr "1 obiekt"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i utworów"
 
@@ -1786,7 +1812,6 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Nieprzesłuchane podcasty"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i godzin"
 
@@ -1799,27 +1824,20 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 godzina"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minut"
 
 #~ msgid "1 second"
 #~ msgstr "1 sekunda"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekund"
 
 #~ msgid "Click on the button to edit playlist rules"
 #~ msgstr "Kliknij, aby zmodyfikować reguły listy odtwarzania"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dni"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Wszystkie %i ocen"
-
-#~ msgid "Import Stations"
-#~ msgstr "Zaimportuj stacje"

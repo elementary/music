@@ -6,17 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
 "PO-Revision-Date: 2012-08-13 08:56+0000\n"
 "Last-Translator: Mark Lutring <marcus@elitemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:23+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-08-14 05:21+0000\n"
+"X-Generator: Launchpad (build 15791)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -874,8 +875,7 @@ msgstr "Szinkronizálás visszavonása"
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
-"Eszköz szinkronizáció visszavonva. Művelet leáll a mostani média után."
+msgstr "Eszköz szinkronizáció visszavonva. Művelet leáll a mostani média után."
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
@@ -898,8 +898,7 @@ msgstr "Nincs külső dal"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Nem található olyan zeneszám ezen az eszközön ami megtalálható lenne a "
 "gyűjteményében."
@@ -1028,8 +1027,8 @@ msgid ""
 msgstr ""
 "Ez a lejátszólista automatikusan fog felépülni azokból a zeneszámokból "
 "amelyek megfelelnek a szabályoknak. A szabályok megváltoztatásához "
-"kattintson <b>jobb gombbal</b> az oldalsávon, és válassza a "
-"<b>Szerkesztés</b> lehetőséget, vagy rá is kattinthat az alább lévő gombra."
+"kattintson <b>jobb gombbal</b> az oldalsávon, és válassza a <b>Szerkesztés</"
+"b> lehetőséget, vagy rá is kattinthat az alább lévő gombra."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1697,11 +1696,38 @@ msgid ""
 "for later."
 msgstr ""
 
+#~ msgid "Add Podcast"
+#~ msgstr "Podcast hozzáadása"
+
+#~ msgid "Download new Episodes"
+#~ msgstr "Új epizódok letöltése"
+
 #~ msgid "Import Stations"
 #~ msgstr "Állomások importálása"
 
-#~ msgid "Add Podcast"
-#~ msgstr "Podcast hozzáadása"
+#~ msgid "Unknown playlist"
+#~ msgstr "Ismeretlen lejátszólista"
+
+#~ msgid "Podcast RSS Source"
+#~ msgstr "Podcast RSS forrás"
+
+#~ msgid "Podcast Source..."
+#~ msgstr "Podcast forrás..."
+
+#~ msgid "Add"
+#~ msgstr "Hozzáadás"
+
+#~ msgid "No Podcasts Found"
+#~ msgstr "Nem található Podcast"
+
+#~ msgid "Remove Station"
+#~ msgstr "Állomás eltávolítása"
+
+#~ msgid "Previous"
+#~ msgstr "Előző"
+
+#~ msgid "Next"
+#~ msgstr "Következő"
 
 #~ msgid "Music Folder"
 #~ msgstr "Zenemappa"
@@ -1715,22 +1741,15 @@ msgstr ""
 #~ msgid "Keep music folder organized"
 #~ msgstr "Hagyja meg a zenemappa rendezettségét"
 
-#~ msgid "Add"
-#~ msgstr "Hozzáadás"
-
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i nap"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i óra"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i perc"
 
@@ -1740,7 +1759,6 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Dalok importálása Hang CD-ről"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i dal"
 
@@ -1750,7 +1768,6 @@ msgstr ""
 #~ msgid "1 item"
 #~ msgstr "1 elem"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i elem"
 
@@ -1769,7 +1786,6 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 óra"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s másodperc"
 
@@ -1779,15 +1795,11 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Nemhallott podcastek"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Mind a(z) %i értékelés"
 
 #~ msgid "Import media from device"
 #~ msgstr "Média importálása eszközről"
-
-#~ msgid "Download new Episodes"
-#~ msgstr "Új epizódok letöltése"
 
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "Kattintson ide a Last.fm bejelentkező folyamat ismétléséhez"
