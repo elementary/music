@@ -41,7 +41,7 @@ public class Noise.GridView : ContentView, GridLayout {
 		}
 	}
 
-	public ViewWrapper parent_view_wrapper { get { return parent_widget as ViewWrapper; } }
+	public ViewWrapper parent_view_wrapper { get; private set; }
 
 	// album-key / album-media
 	Gee.HashMap<string, Gee.HashMap<Media, int>> album_info;
@@ -50,9 +50,9 @@ public class Noise.GridView : ContentView, GridLayout {
 	private LibraryWindow lw;
 
 	public GridView (ViewWrapper view_wrapper) {
-        base (view_wrapper);
 		lm = view_wrapper.lm;
 		lw = view_wrapper.lw;
+		parent_view_wrapper = view_wrapper;
 
 		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
 

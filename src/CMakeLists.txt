@@ -31,7 +31,6 @@ vala_precompile(VALA_C
     Objects/MediaArtCache.vala
     Objects/MediaKeyListener.vala
 
-    Widgets/SidebarPaned.vala
     Widgets/NavigationArrows.vala
     Widgets/SmartAlbumRenderer.vala
     Widgets/TopDisplay.vala
@@ -90,7 +89,6 @@ vala_precompile(VALA_C
     Views/ListView/ColumnBrowser/MusicColumnBrowser.vala
 
     Views/ListView/Lists/TreeViewSetup.vala
-    Views/ListView/Lists/TreeViewColumnSizer.vala
     Views/ListView/Lists/CellDataFunctionHelper.vala
     Views/ListView/Lists/GenericList.vala
     Views/ListView/Lists/MusicListView.vala
@@ -133,10 +131,10 @@ OPTIONS
     --vapidir=${CMAKE_BINARY_DIR}/core/
     --target-glib=2.32
     --define=USE_GRANITE_DECORATED_WINDOW
-    --define=TRACE_COLUMN_SIZER
     #--define=HAVE_ADD_PLAYLIST_AS_BUTTON
     #--define=HAVE_SMART_ALBUM_COLUMN
-    #--define=GTK_ICON_VIEW_BUG_IS_FIXED
+    #--define=GTK_ICON_VIEW_BUG_IS_FIXED  ## TODO: define this automatically when gtk+.3.0 >= 3.4.3
+    #--define=ENABLE_EXPERIMENTAL
     ${ADD_OPTIONS}
 GENERATE_VAPI
     noise
@@ -144,9 +142,11 @@ GENERATE_HEADER
     noise
 )
 
-add_definitions(${DEPS_CFLAGS} ${SQLHEAVY_CFLAGS})
+set(EXEC_NAME ${CMAKE_PROJECT_NAME})
+
+add_definitions(${NORMAL_CFLAGS})
 include_directories(${CMAKE_BINARY_DIR}/core)
-link_directories(${SQLHEAVY_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
-add_executable(noise ${VALA_C})
-target_link_libraries (noise ${DEPS_LIBRARIES} ${SQLHEAVY_LIBRARIES} noise-core)
-install (TARGETS noise RUNTIME DESTINATION bin)
+link_directories(${NORMAL_LINK_DIRS})
+add_executable(${EXEC_NAME} ${VALA_C})
+target_link_libraries (${EXEC_NAME} ${NORMAL_LIBRARIES} noise-core)
+install (TARGETS ${EXEC_NAME} RUNTIME DESTINATION bin)

@@ -23,91 +23,121 @@
 using Gtk;
 using Gdk;
 
-namespace Noise.CellDataFunctionHelper {
+public class Noise.CellDataFunctionHelper {
+    public Noise.GenericList view;
+    private static string NOT_AVAILABLE = _("N/A");
 
-    private const string NOT_AVAILABLE = N_("N/A");
+#if HAVE_SMART_ALBUM_COLUMN
+    // We want ALL the views to follow this
+    private static bool? _smart_album_art_enabled;
+    public static bool smart_album_art_enabled {
+        get {
+            if (_smart_album_art_enabled == null)
+                _smart_album_art_enabled = Settings.SavedState.instance.show_album_art_in_list_view;
+
+            return _smart_album_art_enabled;
+        }
+        set {
+            _smart_album_art_enabled = value;
+            Settings.SavedState.instance.show_album_art_in_list_view = value;
+        }
+    }
+#endif
+
+    public CellDataFunctionHelper (GenericList view) {
+        this.view = view;
+    }
 
 #if HAVE_SMART_ALBUM_COLUMN
     // for Smart album column
-    public static void album_art_func (Gtk.TreeViewColumn tvc, Gtk.CellRenderer renderer,
-                                         Gtk.TreeModel tree_model, Gtk.TreeIter iter) {
-        var view = tvc.get_tree_view () as Noise.FastView;
+    public void album_art_func (Gtk.TreeViewColumn tvc, Gtk.CellRenderer renderer,
+                                Gtk.TreeModel tree_model, Gtk.TreeIter iter) {
+        int index = view.get_index_from_iter (iter);
 
-        if (view == null)
+        var m = view.get_media_from_index (index);
+        if (m == null)
             return;
-
-        int index = (int)iter.user_data;
-
-        var m = view.get_object_from_index (index) as Media;
-        return_if_fail (m != null);
 
         var cell = renderer as SmartAlbumRenderer;
         return_if_fail (cell != null);
 
         cell.m = m;
 
-        var cover_art = CoverartCache.instance.get_cover (m);
+        if (smart_album_art_enabled) {
+            var cover_art = CoverartCache.instance.get_cover (m);
+            if (cover_art != null) {
+                int range, top, bottom, current = index;
+                range = get_coverart_boundaries (view, m, current, out top, out bottom);
 
-        if (cover_art != null) {
-            int top, bottom, current, range;
+                // We have enough space to draw art
+                if (can_display_art (range)) {
+                    cell.icon = cover_art;
+                    cell.top = top;
+                    cell.bottom = bottom;
+                    cell.current = current;
+                    cell.xalign = 0.5f;
 
-            current = index;
-
-            for (top = current; top >= 0; --top) {
-                var top_media = view.get_object_from_index (top) as Media;
-
-                if (top_media == null || top_media.album != m.album) {
-                    ++top;
-                    break;
+                    return;
                 }
-                else if (top == 0) {
-                    break;
-                }
-            }
-
-            for (bottom = current; bottom < view.get_visible_table().size(); ++bottom) {
-                if ((view.get_object_from_index(bottom) as Media).album != m.album) {
-                    --bottom;
-                    break;
-                }
-            }
-
-            range = (bottom - top) + 1;
-            //warning ("range is %d, top is %d, bottom is %d, current is %d\n", range, top, bottom, current);
-
-            // We have enough space to draw art
-            if (range >= 6) {
-                cell.icon = cover_art;
-                cell.top = top;
-                cell.bottom = bottom;
-                cell.current = current;
-                cell.xalign = 0.5f;
-            }
-            else {
-                cell.icon = null;
-                cell.xalign = 0f;
             }
         }
-        else {
-            cell.xalign = 0f;
-            cell.icon = null;
+
+        cell.xalign = 0;
+        cell.icon = null;
+    }
+
+    public bool row_separator_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
+        int range = 0, top = 0, bottom = 0, current = view.get_index_from_iter (iter);
+        var m = view.get_media_from_index (current);
+
+        if (m != null)
+            range = get_coverart_boundaries (view, m, current, out top, out bottom);
+
+        return smart_album_art_enabled && current == bottom && can_display_art (range);
+    }
+
+    private bool can_display_art (int range) {
+        // We need 8 rows for the image, but also 2 extra rows for Album name and year.
+        // Since displaying the year is not vital (there's a dedicated column for that),
+        // we can be okay with 9 rows
+        return range >= 9;
+    }
+
+    private int get_coverart_boundaries (GenericList view, Media current_media, int current_index,
+                                         out int top, out int bottom) {
+        for (top = current_index; top >= 0; --top) {
+            var top_media = view.get_media_from_index (top);
+
+            if (top_media == null || top_media.album != current_media.album) {
+                ++top;
+                break;
+            }
+            else if (top == 0) {
+                break;
+            }
         }
+
+        for (bottom = current_index; bottom < view.get_visible_table().size(); ++bottom) {
+            var bottom_media = view.get_media_from_index(bottom);
+            if (bottom_media == null || bottom_media.album != current_media.album) {
+                --bottom;
+                break;
+            }
+        }
+
+        //warning ("range is %d, top is %d, bottom is %d, current is %d\n", range, top, bottom, current);
+        return bottom - top + 1;
     }
 #endif
 
     /** For spinner/unique icon on each row **/
-    public static void icon_func (CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
+    public void icon_func (CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
         var tvc = layout as Gtk.TreeViewColumn;
 
         return_if_fail (tvc != null);
 
-        var view = tvc.get_tree_view () as Noise.FastView;
-
-        if (view == null)
-            return;
-
         bool showIndicator = false;
-        var s = view.get_object_from_index((int)iter.user_data) as Media;
+        var s = view.get_object_from_index(view.get_index_from_iter (iter)) as Media;
 
         if (s == null)
             return;
@@ -118,9 +148,9 @@ namespace Noise.CellDataFunctionHelper {
             Value? icon;
             model.get_value (iter, MusicListView.MusicColumn.ICON, out icon); // ICON column is same for all
 
-            /* Themed icon */
-            (renderer as CellRendererPixbuf).follow_state = true;
-            (renderer as CellRendererPixbuf).gicon = (icon as GLib.Icon);
+            var pix_renderer = renderer as CellRendererPixbuf;
+            pix_renderer.follow_state = true;
+            pix_renderer.gicon = (icon as GLib.Icon);
 
             renderer.visible = !showIndicator;
             renderer.width = showIndicator ? 0 : 16;
@@ -136,7 +166,7 @@ namespace Noise.CellDataFunctionHelper {
     }
 
     // for Track, Year, #, Plays, Skips. Simply shows nothing if less than 1.
-    public static void intelligent_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public void intelligent_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
         tree_model.get_value(iter, tvc.sort_column_id, out val);
 
@@ -146,7 +176,7 @@ namespace Noise.CellDataFunctionHelper {
             ((CellRendererText)cell).markup = String.escape (val.get_int().to_string());
     }
 
-    public static void string_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public void string_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
         tree_model.get_value(iter, tvc.sort_column_id, out val);
 
@@ -159,7 +189,7 @@ namespace Noise.CellDataFunctionHelper {
     }
 
     // for Bitrate. Append 'kbps'
-    public static void bitrate_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public void bitrate_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
         tree_model.get_value(iter, tvc.sort_column_id, out val);
 
@@ -173,7 +203,7 @@ namespace Noise.CellDataFunctionHelper {
     }
 
     // turns int of seconds into pretty length mm:ss format
-    public static void length_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public void length_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
         tree_model.get_value(iter, tvc.sort_column_id, out val);
 
@@ -188,7 +218,7 @@ namespace Noise.CellDataFunctionHelper {
     }
 
     // turns seconds since Jan 1, 1970 into date format
-    public static void date_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public void date_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
         tree_model.get_value(iter, tvc.sort_column_id, out val);
 
@@ -196,7 +226,7 @@ namespace Noise.CellDataFunctionHelper {
         var text_cell = cell as CellRendererText;
 
         if (n <= 0)
-            text_cell.markup = "";
+            text_cell.markup = _("Never");
         else {
             var t = Time.local (n);
             var str = TimeUtils.pretty_timestamp_from_time (t);
@@ -204,7 +234,7 @@ namespace Noise.CellDataFunctionHelper {
         }
     }
 
-    public static void rating_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public void rating_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
         tree_model.get_value(iter, tvc.sort_column_id, out val);
 

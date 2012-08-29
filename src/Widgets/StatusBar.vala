@@ -227,5 +227,10 @@ private class Noise.InfoPanelChooser : Noise.SimpleOptionChooser {
 
         bool visible = val == 1;
         App.main_window.info_panel.visible = visible;
+
+        // We write the new state to settings in this method as this is the only user-facing widget
+        // for hiding and showing the context pane. Any other visibility change we do internally
+        // or elsewhere should not be saved
+        Settings.SavedState.instance.more_visible = visible;
     }
 }

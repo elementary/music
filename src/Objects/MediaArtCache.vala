@@ -174,6 +174,8 @@ public class Noise.CoverartCache : MediaArtCache {
 
 
     public CoverartCache () {
+        assert (_instance == null);
+
         base ("album-art");
 
         bool dummy;

@@ -51,20 +51,20 @@ public class Noise.QueueViewWrapper : ViewWrapper {
          lm.media_removed.connect (on_library_media_removed);
     }
 
-    private async void on_queue_cleared () {
-        yield set_media_async (new Gee.LinkedList<Media> ());
+    private void on_queue_cleared () {
+        set_media_async (new Gee.LinkedList<Media> ());
     }
 
-    private async void on_media_queued (Gee.Collection<Media> queued) {
-        yield add_media_async (queued);
+    private void on_media_queued (Gee.Collection<Media> queued) {
+        add_media_async (queued);
     }
 
-    private async void on_media_unqueued (Gee.Collection<Media> unqueued) {
-        yield remove_media_async (unqueued);
+    private void on_media_unqueued (Gee.Collection<Media> unqueued) {
+        remove_media_async (unqueued);
     }
 
-    private async void on_library_media_removed (Gee.Collection<int> ids) {
-        yield remove_media_async (lm.media_from_ids (ids));
+    private void on_library_media_removed (Gee.Collection<int> ids) {
+        remove_media_async (lm.media_from_ids (ids));
     }
 
     protected override void set_no_media_alert () {

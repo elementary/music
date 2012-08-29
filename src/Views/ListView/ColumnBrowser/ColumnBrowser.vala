@@ -271,7 +271,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 			}
 
 			// Perform search
-			Search.search_in_media_list (media, out _media_results, "", search_artist, search_album,
+			Search.search_in_media_list (media, out _media_results, search_artist, search_album,
 			                             search_genre, search_year, search_rating);
 		}
 		else {
