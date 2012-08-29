@@ -6,18 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-14 10:12+0000\n"
-"Last-Translator: Wang Dianjin <Unknown>\n"
+"PO-Revision-Date: 2012-08-29 05:06+0000\n"
+"Last-Translator: kroq-gar78 <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-08-15 05:15+0000\n"
-"X-Generator: Launchpad (build 15801)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:33+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -271,7 +270,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "播放历史(%Y-%b-%e %l:%M %p)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr "未知播放列表"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -539,9 +538,7 @@ msgstr "停止同步"
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
-msgstr ""
-"如果您继续同步，媒体将从 %s 中移除因为它们不在同步列表中。您先要将它们导入到"
-"库中吗？"
+msgstr "如果您继续同步，媒体将从 %s 中移除因为它们不在同步列表中。您先要将它们导入到库中吗？"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
@@ -886,7 +883,8 @@ msgstr "无外部歌曲"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr "该设备上未发现您库中没有的歌曲。"
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -923,9 +921,7 @@ msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
-msgstr ""
-"要添加歌曲到队列，使用 <b>右击</b> 条目并选择<b>队列</b>。当歌曲结束时，队列"
-"歌曲将先于当前播放列表中的下一首歌曲播放。"
+msgstr "要添加歌曲到队列，使用 <b>右击</b> 条目并选择<b>队列</b>。当歌曲结束时，队列歌曲将先于当前播放列表中的下一首歌曲播放。"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
@@ -990,9 +986,7 @@ msgstr "无歌曲"
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr ""
-"要添加歌曲到该播放列表，请在条目上使用<b>二次点击</b>，选择<b>添加到播放列表"
-"</b>即可。"
+msgstr "要添加歌曲到该播放列表，请在条目上使用<b>二次点击</b>，选择<b>添加到播放列表</b>即可。"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
@@ -1005,8 +999,7 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"该播放列表将自动按其规则排出歌曲流行度。如果要修改这些规则，请在侧边栏上使用"
-"<b>右键点击</b>并点击<b>编辑</b>。或者，您可以点击下方的按钮。"
+"该播放列表将自动按其规则排出歌曲流行度。如果要修改这些规则，请在侧边栏上使用<b>右键点击</b>并点击<b>编辑</b>。或者，您可以点击下方的按钮。"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1648,9 +1641,7 @@ msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
-msgstr ""
-"%s 无法找到与库中 %s(艺人-%s)类似的歌曲。请确认所有的歌曲信息正确且您已连接到"
-"网络。部分歌曲可能无法匹配。"
+msgstr "%s 无法找到与库中 %s(艺人-%s)类似的歌曲。请确认所有的歌曲信息正确且您已连接到网络。部分歌曲可能无法匹配。"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
@@ -1662,9 +1653,10 @@ msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
-msgstr ""
-"在该视图中，%s 将自动查找与正在播放歌曲类似的歌曲。然后您可以播放这些歌曲，或"
-"稍后将它们保存为播放列表。"
+msgstr "在该视图中，%s 将自动查找与正在播放歌曲类似的歌曲。然后您可以播放这些歌曲，或稍后将它们保存为播放列表。"
+
+#~ msgid "Add"
+#~ msgstr "添加"
 
 #~ msgid "Add Podcast"
 #~ msgstr "添加播客"
@@ -1675,35 +1667,7 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "导入电台"
 
-#~ msgid "Unknown playlist"
-#~ msgstr "未知播放列表"
-
-#~ msgid "Podcast RSS Source"
-#~ msgstr "播客 RSS 源"
-
-#~ msgid "Podcast Source..."
-#~ msgstr "播客源..."
-
-#~ msgid "Add"
-#~ msgstr "添加"
-
-#~ msgid "No Podcasts Found"
-#~ msgstr "未发现播客"
-
-#~ msgid ""
-#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
-#~ "XML format."
-#~ msgstr "您提供的源无效。请确定您输入的 RSS 订阅是 XML 格式。"
-
-#~ msgid "Remove Station"
-#~ msgstr "删除电台"
-
-#~ msgid "Previous"
-#~ msgstr "上一个"
-
-#~ msgid "Next"
-#~ msgstr "下一个"
-
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "所有 %i 评分"
 
@@ -1716,9 +1680,10 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "从设备导入媒体"
 
+#, c-format
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You "
-#~ "only need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You only "
+#~ "need to do this once."
 #~ msgstr "要允许 Last.fm 移植，您必须授权 %s。您只需执行一次该操作。"
 
 #~ msgid "Copy files to music folder when added to library"
@@ -1748,6 +1713,7 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "未收听的播客"
 
+#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i 小时"
 
@@ -1760,24 +1726,29 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 小时"
 
+#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i 分钟"
 
+#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i 天"
 
+#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i 张专辑"
 
 #~ msgid "1 album"
 #~ msgstr "1 张专辑"
 
+#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i 个条目"
 
 #~ msgid "1 item"
 #~ msgstr "1 个项目"
 
+#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i 首歌曲"
 
@@ -1790,5 +1761,32 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 秒"
 
+#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s 秒"
+
+#~ msgid "Unkown playlist"
+#~ msgstr "未知播放列表"
+
+#~ msgid "Podcast RSS Source"
+#~ msgstr "播客 RSS 源"
+
+#~ msgid "Podcast Source..."
+#~ msgstr "播客源..."
+
+#~ msgid "No Podcasts Found"
+#~ msgstr "未发现播客"
+
+#~ msgid ""
+#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
+#~ "XML format."
+#~ msgstr "您提供的源无效。请确定您输入的 RSS 订阅是 XML 格式。"
+
+#~ msgid "Remove Station"
+#~ msgstr "删除电台"
+
+#~ msgid "Previous"
+#~ msgstr "上一个"
+
+#~ msgid "Next"
+#~ msgstr "下一个"

@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-02 00:59+0000\n"
+"PO-Revision-Date: 2012-08-29 05:07+0000\n"
 "Last-Translator: Franco Villar <franco_227@msn.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: es\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -262,7 +262,8 @@ msgstr "Este elemento está haciendo transferencias"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:612
 msgid "Please wait until the current transfer is finished to do this action."
-msgstr "Espere hasta que la transferencia finalice para ejecutar esta acción."
+msgstr ""
+"Espere hasta que la transferencia finalice para ejecutar esta acción."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
@@ -273,7 +274,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -902,7 +903,8 @@ msgstr "No hay canciones externas"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
 "No se encontraron canciones en este dispositivo que no estuviesen en su "
 "biblioteca."
@@ -1713,39 +1715,8 @@ msgstr ""
 #~ msgid "Add Podcast"
 #~ msgstr "Agregar podcast"
 
-#~ msgid "Download new Episodes"
-#~ msgstr "Descargar episodios nuevos"
-
-#~ msgid "Import Stations"
-#~ msgstr "Importar estaciones"
-
-#~ msgid "Podcast RSS Source"
-#~ msgstr "Canal RSS del podcast"
-
-#~ msgid "Podcast Source..."
-#~ msgstr "Origen del podcast…"
-
 #~ msgid "Add"
 #~ msgstr "Añadir"
-
-#~ msgid "No Podcasts Found"
-#~ msgstr "No se encontraron podcasts"
-
-#~ msgid ""
-#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
-#~ "XML format."
-#~ msgstr ""
-#~ "La fuente proporcionada es inválida. Asegúrese de que introduce un canal "
-#~ "RSS en formato XML."
-
-#~ msgid "Remove Station"
-#~ msgstr "Eliminar Estación"
-
-#~ msgid "Previous"
-#~ msgstr "Anterior"
-
-#~ msgid "Next"
-#~ msgstr "Siguiente"
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Importar canciones desde un CD de audio"
@@ -1753,6 +1724,7 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Importar contenido desde un dispositivo"
 
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Todas las %i valoraciones"
 
@@ -1777,15 +1749,17 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 hora"
 
+#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i días"
 
 #~ msgid "1 minute"
 #~ msgstr "1 minuto"
 
+#, c-format
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You "
-#~ "only need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You only "
+#~ "need to do this once."
 #~ msgstr ""
 #~ "Para permitir la integración con Last.fm, debe dar permisos a %s. Sólo "
 #~ "necesita hacerlo una vez."
@@ -1797,11 +1771,19 @@ msgstr ""
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "Click para volver a realizar el proceso de autorización en Last.fm"
 
+#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i horas"
 
+#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutos"
+
+#~ msgid "Download new Episodes"
+#~ msgstr "Descargar episodios nuevos"
+
+#~ msgid "Import Stations"
+#~ msgstr "Importar estaciones"
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Activar scrobbling"
@@ -1809,18 +1791,21 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Podcasts no escuchados"
 
+#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albums"
 
 #~ msgid "1 album"
 #~ msgstr "1 álbum"
 
+#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i objetos"
 
 #~ msgid "1 item"
 #~ msgstr "1 elemento"
 
+#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i canciones"
 
@@ -1833,8 +1818,34 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 segundo"
 
+#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s segundos"
 
 #~ msgid "Unsuccessful. Click to try again."
 #~ msgstr "Sin éxito. Pulse para intentar nuevamente."
+
+#~ msgid "Podcast RSS Source"
+#~ msgstr "Canal RSS del podcast"
+
+#~ msgid "Podcast Source..."
+#~ msgstr "Origen del podcast…"
+
+#~ msgid "No Podcasts Found"
+#~ msgstr "No se encontraron podcasts"
+
+#~ msgid ""
+#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
+#~ "XML format."
+#~ msgstr ""
+#~ "La fuente proporcionada es inválida. Asegúrese de que introduce un canal RSS "
+#~ "en formato XML."
+
+#~ msgid "Remove Station"
+#~ msgstr "Eliminar Estación"
+
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+
+#~ msgid "Next"
+#~ msgstr "Siguiente"

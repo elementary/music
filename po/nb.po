@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2012-08-02 23:24+0000\n"
 "Last-Translator: Skandee <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
-"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: nb\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -273,7 +273,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -899,7 +899,8 @@ msgstr "Ingen eksterne sanger"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr "Fant ingen sanger på enheten som ikke var i biblioteket ditt."
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -1313,7 +1314,8 @@ msgstr "kan ikke synkronisere"
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr "Kan ikke synkronisere med de valgte instillingene. For lite diskplass."
+msgstr ""
+"Kan ikke synkronisere med de valgte instillingene. For lite diskplass."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
@@ -1692,24 +1694,25 @@ msgid ""
 "for later."
 msgstr ""
 
-#~ msgid "Add Podcast"
-#~ msgstr "Legg til podcast"
-
 #~ msgid "Download new Episodes"
 #~ msgstr "Last ned nye episoder"
 
 #~ msgid "Import Stations"
 #~ msgstr "Importer stasjoner"
 
-#~ msgid "Add"
-#~ msgstr "Legg til"
+#~ msgid "Add Podcast"
+#~ msgstr "Legg til podcast"
 
 #~ msgid "Music Folder"
 #~ msgstr "Musikkmappe"
 
+#~ msgid "Add"
+#~ msgstr "Legg til"
+
 #~ msgid "Disable Repeat"
 #~ msgstr "Slå av gjentagelse"
 
+#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
@@ -1719,9 +1722,11 @@ msgstr ""
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
+#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i sanger"
 
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Alle %i vurderinger"
 
@@ -1731,6 +1736,7 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Ikke avspilte podcaster"
 
+#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i timer"
 
@@ -1743,14 +1749,17 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "En time"
 
+#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutter"
 
 #~ msgid "1 second"
 #~ msgstr "1 sekund"
 
+#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekunder"
 
+#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i Dag"

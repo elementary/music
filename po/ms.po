@@ -6,18 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-12 00:15+0000\n"
-"Last-Translator: abuyop <Unknown>\n"
+"PO-Revision-Date: 2012-08-29 05:04+0000\n"
+"Last-Translator: kroq-gar78 <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
-"Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -271,7 +270,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "Main Sejarah (%Y-%b-%e %l:%M %p)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr "Senarai main tidak diketahui"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -896,7 +895,8 @@ msgstr "Tiada Lagu Luaran"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
 "Tiada lagu ditemui dalam peranti ini yang mana bukan dalam pustaka anda."
 
@@ -1022,9 +1022,9 @@ msgid ""
 "below."
 msgstr ""
 "Senarai main ini akan dipopulasikan secara automatik dengan lagu yang anda "
-"padankan peraturannya. Untuk ubahsuai peraturan ini, guna  <b>klik sekunder</"
-"b> padanya dalam palang sisi dan klik <b>Sunting</b>. Selain itu, anda boleh "
-"klik pada butang dibawah."
+"padankan peraturannya. Untuk ubahsuai peraturan ini, guna  <b>klik "
+"sekunder</b> padanya dalam palang sisi dan klik <b>Sunting</b>. Selain itu, "
+"anda boleh klik pada butang dibawah."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1545,7 +1545,8 @@ msgstr "Tiada lagu dalam CD"
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr "%s tidak dapat cari sebarang lagu dalam CD. Tiada lagu boleh diimport"
+msgstr ""
+"%s tidak dapat cari sebarang lagu dalam CD. Tiada lagu boleh diimport"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
@@ -1700,8 +1701,75 @@ msgstr ""
 "lagu yang anda sedang mainkan. Anda boleh mula memainkan lagu tersebut, atau "
 "simpan ia sebagai senarai main kemudian."
 
+#~ msgid "Recently Played"
+#~ msgstr "Baru Dimainkan"
+
+#~ msgid "1 album"
+#~ msgstr "1 album"
+
+#~ msgid "1 day"
+#~ msgstr "1 hari"
+
+#~ msgid "1 second"
+#~ msgstr "1 saat"
+
+#, c-format
+#~ msgid "%s seconds"
+#~ msgstr "%s saat"
+
+#, c-format
+#~ msgid "%i hours"
+#~ msgstr "%i jam"
+
+#~ msgid "1 minute"
+#~ msgstr "1 minit"
+
+#~ msgid "1 hour"
+#~ msgstr "1 jam"
+
+#, c-format
+#~ msgid "%i minutes"
+#~ msgstr "%i minit"
+
+#~ msgid "Music Folder"
+#~ msgstr "Folder Muzik"
+
+#~ msgid "Add"
+#~ msgstr "Tambah"
+
 #~ msgid "Add Podcast"
 #~ msgstr "Tambah Podcast"
+
+#~ msgid "Unheard Podcasts"
+#~ msgstr "Podcast Belum Didengari"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Lumpuhkan Ulang"
+
+#, c-format
+#~ msgid "All %i Ratings"
+#~ msgstr "Semua %i Penarafan"
+
+#, c-format
+#~ msgid "%i albums"
+#~ msgstr "%i album"
+
+#~ msgid "Import songs from audio CD"
+#~ msgstr "Import lagu dari CD audio"
+
+#~ msgid "Import media from device"
+#~ msgstr "Import media dari peranti"
+
+#, c-format
+#~ msgid "%i songs"
+#~ msgstr "%i lagu"
+
+#~ msgid "1 song"
+#~ msgstr "1 lagu"
+
+#, c-format
+#~ msgid "%i days"
+#~ msgstr "%i hari"
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Muat turun Episod baru"
@@ -1709,7 +1777,43 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "Import Stesen"
 
-#~ msgid "Unknown playlist"
+#~ msgid "Enable Scrobbling"
+#~ msgstr "Benarkan Scrobbling"
+
+#~ msgid "Unsuccessful. Click to try again."
+#~ msgstr "Tidak berjaya. Klik untuk cuba lagi."
+
+#~ msgid "Click to redo the Last.fm Login Process"
+#~ msgstr "Klik untuk buat semula Proses Daftar Masuk Last.fm"
+
+#, c-format
+#~ msgid ""
+#~ "To allow for Last.fm integration, you must give permission to %s. You only "
+#~ "need to do this once."
+#~ msgstr ""
+#~ "Untuk membenarkan penyepaduan Last.fm, anda mesti beri keizinan kepada %s. "
+#~ "Anda perlu buat ini sekali sahaja."
+
+#, c-format
+#~ msgid "%i items"
+#~ msgstr "%i item"
+
+#~ msgid "1 item"
+#~ msgstr "1 item"
+
+#~ msgid "Click on the button to edit playlist rules"
+#~ msgstr "Klik pada butang untuk sunting peraturan senarai main"
+
+#~ msgid "Copy files to music folder when added to library"
+#~ msgstr "Salin fail ke folder muzik bila tambah ke pustaka"
+
+#~ msgid "Automatically download new podcast episodes"
+#~ msgstr "Muat turun episod podcast baru secara automatik"
+
+#~ msgid "Keep music folder organized"
+#~ msgstr "Kekalkan folder muzik diurus"
+
+#~ msgid "Unkown playlist"
 #~ msgstr "Senarai main tidak diketahui"
 
 #~ msgid "Podcast RSS Source"
@@ -1717,9 +1821,6 @@ msgstr ""
 
 #~ msgid "Podcast Source..."
 #~ msgstr "Sumber Podcast..."
-
-#~ msgid "Add"
-#~ msgstr "Tambah"
 
 #~ msgid "No Podcasts Found"
 #~ msgstr "Tiada Podcast Ditemui"
@@ -1739,94 +1840,3 @@ msgstr ""
 
 #~ msgid "Next"
 #~ msgstr "Berikutnya"
-
-#~ msgid "Recently Played"
-#~ msgstr "Baru Dimainkan"
-
-#~ msgid "1 album"
-#~ msgstr "1 album"
-
-#~ msgid "1 day"
-#~ msgstr "1 hari"
-
-#~ msgid "1 second"
-#~ msgstr "1 saat"
-
-#~ msgid "%s seconds"
-#~ msgstr "%s saat"
-
-#~ msgid "%i hours"
-#~ msgstr "%i jam"
-
-#~ msgid "1 minute"
-#~ msgstr "1 minit"
-
-#~ msgid "1 hour"
-#~ msgstr "1 jam"
-
-#~ msgid "%i minutes"
-#~ msgstr "%i minit"
-
-#~ msgid "Music Folder"
-#~ msgstr "Folder Muzik"
-
-#~ msgid "Unheard Podcasts"
-#~ msgstr "Podcast Belum Didengari"
-
-#~ msgid "Disable Repeat"
-#~ msgstr "Lumpuhkan Ulang"
-
-#~ msgid "All %i Ratings"
-#~ msgstr "Semua %i Penarafan"
-
-#~ msgid "%i albums"
-#~ msgstr "%i album"
-
-#~ msgid "Import songs from audio CD"
-#~ msgstr "Import lagu dari CD audio"
-
-#~ msgid "Import media from device"
-#~ msgstr "Import media dari peranti"
-
-#~ msgid "%i songs"
-#~ msgstr "%i lagu"
-
-#~ msgid "1 song"
-#~ msgstr "1 lagu"
-
-#~ msgid "%i days"
-#~ msgstr "%i hari"
-
-#~ msgid "Enable Scrobbling"
-#~ msgstr "Benarkan Scrobbling"
-
-#~ msgid "Unsuccessful. Click to try again."
-#~ msgstr "Tidak berjaya. Klik untuk cuba lagi."
-
-#~ msgid "Click to redo the Last.fm Login Process"
-#~ msgstr "Klik untuk buat semula Proses Daftar Masuk Last.fm"
-
-#~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You "
-#~ "only need to do this once."
-#~ msgstr ""
-#~ "Untuk membenarkan penyepaduan Last.fm, anda mesti beri keizinan kepada "
-#~ "%s. Anda perlu buat ini sekali sahaja."
-
-#~ msgid "%i items"
-#~ msgstr "%i item"
-
-#~ msgid "1 item"
-#~ msgstr "1 item"
-
-#~ msgid "Click on the button to edit playlist rules"
-#~ msgstr "Klik pada butang untuk sunting peraturan senarai main"
-
-#~ msgid "Copy files to music folder when added to library"
-#~ msgstr "Salin fail ke folder muzik bila tambah ke pustaka"
-
-#~ msgid "Automatically download new podcast episodes"
-#~ msgstr "Muat turun episod podcast baru secara automatik"
-
-#~ msgid "Keep music folder organized"
-#~ msgstr "Kekalkan folder muzik diurus"

@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2012-06-03 05:07+0000\n"
 "Last-Translator: Cameron White <cameronwhite91@gmail.com>\n"
 "Language-Team: English (Canada) <en_CA@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:33+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: \n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -260,7 +260,8 @@ msgstr "This device is in transfer"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:612
 msgid "Please wait until the current transfer is finished to do this action."
-msgstr "Please wait until the current transfer is finished to do this action."
+msgstr ""
+"Please wait until the current transfer is finished to do this action."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
@@ -271,7 +272,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -874,7 +875,8 @@ msgstr "Cancelling Sync"
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr "Device Sync has been cancelled. Operation will stop after this media."
+msgstr ""
+"Device Sync has been cancelled. Operation will stop after this media."
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
@@ -896,8 +898,10 @@ msgstr "No External Songs"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
-msgstr "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr ""
+"There were no songs found on this device that are not in your library."
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
 #, c-format
@@ -1695,6 +1699,9 @@ msgstr ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 
+#~ msgid "Add"
+#~ msgstr "Add"
+
 #~ msgid "Add Podcast"
 #~ msgstr "Add Podcast"
 
@@ -1704,9 +1711,7 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "Import Stations"
 
-#~ msgid "Add"
-#~ msgstr "Add"
-
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "All %i Ratings"
 
@@ -1731,12 +1736,13 @@ msgstr ""
 #~ msgid "Keep music folder organized"
 #~ msgstr "Keep music folder organized"
 
+#, c-format
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You "
-#~ "only need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You only "
+#~ "need to do this once."
 #~ msgstr ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You "
-#~ "only need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You only "
+#~ "need to do this once."
 
 #~ msgid "Copy files to music folder when added to library"
 #~ msgstr "Copy files to music folder when added to library"
@@ -1753,6 +1759,7 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Unheard Podcasts"
 
+#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i hours"
 
@@ -1765,18 +1772,22 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 hour"
 
+#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutes"
 
+#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i days"
 
+#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albums"
 
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
+#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i songs"
 
@@ -1786,5 +1797,6 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 second"
 
+#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s seconds"

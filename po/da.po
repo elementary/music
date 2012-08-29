@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-14 19:31+0000\n"
-"Last-Translator: Niclas Moeslund Overby <Unknown>\n"
+"PO-Revision-Date: 2012-08-29 05:06+0000\n"
+"Last-Translator: kroq-gar78 <Unknown>\n"
 "Language-Team: Danish <da@li.org>\n"
-"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-15 05:14+0000\n"
-"X-Generator: Launchpad (build 15801)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: da\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -275,7 +275,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "Afspil Historie (%Y-%b-%e %l:%M %p)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr "Ukendt Afspilningsliste"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -903,7 +903,8 @@ msgstr "Ingen eksterne sange"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr "Der er ingen sange på denne enhed, som ikke er i dit bibliotek."
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -1708,52 +1709,13 @@ msgstr ""
 "kan så starte med at afspille disse sange eller gemme dem som en "
 "afspilningsliste til senere."
 
-#~ msgid "Add Podcast"
-#~ msgstr "Tilføj podcast"
-
-#~ msgid "Download new Episodes"
-#~ msgstr "Hent nye episoder"
-
-#~ msgid "Import Stations"
-#~ msgstr "Importér stationer"
-
-#~ msgid "Unknown playlist"
-#~ msgstr "Ukendt Afspilningsliste"
-
-#~ msgid "Podcast RSS Source"
-#~ msgstr "Podcast RSS Kilde"
-
-#~ msgid "Podcast Source..."
-#~ msgstr "Podcast Kilde..."
-
-#~ msgid "Add"
-#~ msgstr "Tilføj"
-
-#~ msgid "No Podcasts Found"
-#~ msgstr "Ingen Podcasts Fundet"
-
-#~ msgid ""
-#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
-#~ "XML format."
-#~ msgstr ""
-#~ "Den angivne kilde er ugyldigt. Sørg for at du indtaster et RSS-feed i XML-"
-#~ "format."
-
-#~ msgid "Remove Station"
-#~ msgstr "Fjern Station"
-
-#~ msgid "Previous"
-#~ msgstr "Forrige"
-
-#~ msgid "Next"
-#~ msgstr "Næste"
-
 #~ msgid "Recently Played"
 #~ msgstr "Afspillet for nyligt"
 
 #~ msgid "Disable Repeat"
 #~ msgstr "Slå gentagelse fra"
 
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Alle %i bedømmelser"
 
@@ -1775,9 +1737,11 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 sekund"
 
+#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekunder"
 
+#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i timer"
 
@@ -1787,26 +1751,70 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 time"
 
+#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutter"
 
+#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dage"
 
 #~ msgid "Music Folder"
 #~ msgstr "Musikmappe"
 
+#~ msgid "Add"
+#~ msgstr "Tilføj"
+
+#~ msgid "Download new Episodes"
+#~ msgstr "Hent nye episoder"
+
+#~ msgid "Add Podcast"
+#~ msgstr "Tilføj podcast"
+
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Uhørte podcasts"
 
+#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albums"
 
+#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i sange"
+
+#~ msgid "Import Stations"
+#~ msgstr "Importér stationer"
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Aktiver Scrobbling"
 
 #~ msgid "Unsuccessful. Click to try again."
 #~ msgstr "Mislykkedes. Klik for at prøve igen."
+
+#~ msgid "Unkown playlist"
+#~ msgstr "Ukendt Afspilningsliste"
+
+#~ msgid "Podcast RSS Source"
+#~ msgstr "Podcast RSS Kilde"
+
+#~ msgid "Podcast Source..."
+#~ msgstr "Podcast Kilde..."
+
+#~ msgid "No Podcasts Found"
+#~ msgstr "Ingen Podcasts Fundet"
+
+#~ msgid ""
+#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
+#~ "XML format."
+#~ msgstr ""
+#~ "Den angivne kilde er ugyldigt. Sørg for at du indtaster et RSS-feed i XML-"
+#~ "format."
+
+#~ msgid "Remove Station"
+#~ msgstr "Fjern Station"
+
+#~ msgid "Previous"
+#~ msgstr "Forrige"
+
+#~ msgid "Next"
+#~ msgstr "Næste"

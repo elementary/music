@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2012-07-16 08:45+0000\n"
 "Last-Translator: Joji Bronner <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: ja\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -43,8 +43,7 @@ msgstr "%s から楽曲をライブラリに追加しています..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:330
 msgid "Rescanning music for changes. This may take a while..."
-msgstr ""
-"楽曲の変更を再スキャンしています。この操作は少し時間がかかることがあります..."
+msgstr "楽曲の変更を再スキャンしています。この操作は少し時間がかかることがあります..."
 
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
@@ -272,7 +271,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -339,9 +338,7 @@ msgstr "%d 個の項目を %s から取り込むことができません"
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-"%s は %d 個の項目を取り込むことができませんでした。ファイルが壊れている可能性"
-"があります。"
+msgstr "%s は %d 個の項目を取り込むことができませんでした。ファイルが壊れている可能性があります。"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
@@ -385,9 +382,7 @@ msgstr "音楽フォルダを設定しますか？"
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
-msgstr ""
-"音楽フォルダを %s に設定してもよろしいですか？ この操作はライブラリを初期化"
-"し、プレイリストを削除します。"
+msgstr "音楽フォルダを %s に設定してもよろしいですか？ この操作はライブラリを初期化し、プレイリストを削除します。"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
@@ -887,7 +882,8 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -1278,8 +1274,7 @@ msgstr "同期失敗"
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"%s のプレイリストがデバイス %s との同期に使われていますが、見つかりません。"
+msgstr "%s のプレイリストがデバイス %s との同期に使われていますが、見つかりません。"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
@@ -1289,8 +1284,7 @@ msgstr "同期出来ません"
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"ディスク容量が不足しているため、選択された設定ではデバイスと同期出来ません。"
+msgstr "ディスク容量が不足しているため、選択された設定ではデバイスと同期出来ません。"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
@@ -1360,8 +1354,7 @@ msgstr "音楽フォルダが見つかりません"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:884
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
-"音楽フォルダがマウントされており、アクセス可能である事を確認して下さい。"
+msgstr "音楽フォルダがマウントされており、アクセス可能である事を確認して下さい。"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:950
 msgid "Import Complete"
@@ -1510,9 +1503,7 @@ msgstr ""
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
-msgstr ""
-"CDを取り込む前に音楽フォルダがアクセス可能でマウントされているか確認してくだ"
-"さい。"
+msgstr "CDを取り込む前に音楽フォルダがアクセス可能でマウントされているか確認してください。"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 msgid "No songs on CD"
@@ -1521,9 +1512,7 @@ msgstr "CDに楽曲がありません"
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"%s はCD内に楽曲を見つけることができなかったため、取り込むことができませんでし"
-"た。"
+msgstr "%s はCD内に楽曲を見つけることができなかったため、取り込むことができませんでした。"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
@@ -1669,6 +1658,9 @@ msgid ""
 "for later."
 msgstr ""
 
+#~ msgid "Add"
+#~ msgstr "追加"
+
 #~ msgid "Add Podcast"
 #~ msgstr "ポッドキャストを追加"
 
@@ -1678,9 +1670,7 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "局を追加する"
 
-#~ msgid "Add"
-#~ msgstr "追加"
-
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "全 %i 評価"
 

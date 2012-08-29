@@ -11,14 +11,14 @@ msgstr ""
 "PO-Revision-Date: 2012-07-17 11:31+0000\n"
 "Last-Translator: Sergey Koptev <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:33+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: uk\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -274,7 +274,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -900,7 +900,8 @@ msgstr "Немає зовнішніх композицій"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
 "Не знайдено жодної композиції на цьому пристрої, якої немає у вашій "
 "бібліотеці."
@@ -1697,8 +1698,8 @@ msgid ""
 "for later."
 msgstr ""
 
-#~ msgid "Add Podcast"
-#~ msgstr "Додати подкаст"
+#~ msgid "Import songs from audio CD"
+#~ msgstr "Імпорт музики з аудіо-CD"
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Завантажити нові епізоди"
@@ -1706,9 +1707,10 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "Імпорт станцій"
 
-#~ msgid "Import songs from audio CD"
-#~ msgstr "Імпорт музики з аудіо-CD"
+#~ msgid "Add Podcast"
+#~ msgstr "Додати подкаст"
 
+#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i годин(и)"
 
@@ -1718,6 +1720,7 @@ msgstr ""
 #~ msgid "1 day"
 #~ msgstr "1 день"
 
+#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s секунд(и)"
 
@@ -1727,27 +1730,32 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 секунда"
 
+#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i днів"
 
+#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i хвилин(и)"
 
 #~ msgid "Music Folder"
 #~ msgstr "Тека з музикою"
 
+#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i альбомІв"
 
 #~ msgid "1 album"
 #~ msgstr "1 альбом"
 
+#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i композицій"
 
 #~ msgid "1 song"
 #~ msgstr "1 композиція"
 
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Всі %i оцінки"
 

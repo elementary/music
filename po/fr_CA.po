@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2012-06-24 20:35+0000\n"
 "Last-Translator: Simon <Unknown>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:33+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: \n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -274,7 +274,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -905,7 +905,8 @@ msgstr "Aucune chanson externe"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
 "Aucune chanson que vous ne possédez pas dans votre bibliothèque n'a été "
 "trouvée."
@@ -1597,7 +1598,8 @@ msgstr "%s a fini d'importer une chanson depuis le CD audio."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "L'importation du CD sera <b>annulée</b> après l'importation en cours."
+msgstr ""
+"L'importation du CD sera <b>annulée</b> après l'importation en cours."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
@@ -1710,6 +1712,9 @@ msgstr ""
 "celle que vous lirez. Vous pourrez alors lire ces chansons ou les "
 "enregistrer dans une liste de lecture."
 
+#~ msgid "Add"
+#~ msgstr "Ajouter"
+
 #~ msgid "Add Podcast"
 #~ msgstr "Ajouter un Podcast"
 
@@ -1719,9 +1724,7 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "Importer des stations"
 
-#~ msgid "Add"
-#~ msgstr "Ajouter"
-
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Tous %i les classements"
 
@@ -1737,9 +1740,11 @@ msgstr ""
 #~ msgid "Music Folder"
 #~ msgstr "Dossier Musique"
 
+#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albums"
 
+#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i chansons"
 

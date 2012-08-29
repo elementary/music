@@ -11,14 +11,14 @@ msgstr ""
 "PO-Revision-Date: 2012-07-30 17:39+0000\n"
 "Last-Translator: MarkoD <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
-"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
+"n%100==4 ? 3 : 0);\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: sl\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -272,7 +272,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -883,7 +883,8 @@ msgstr "Ni zunanjih pesmi"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr "Na napravi ni bilo najdenih pesmi, ki niso v tvoji knjižnici."
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -1658,15 +1659,16 @@ msgid ""
 "for later."
 msgstr ""
 
+#~ msgid "Add"
+#~ msgstr "Dodaj"
+
 #~ msgid "Add Podcast"
 #~ msgstr "Dodaj poddajo"
 
 #~ msgid "Import Stations"
 #~ msgstr "Uvozi postaje"
 
-#~ msgid "Add"
-#~ msgstr "Dodaj"
-
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Vseh %i ocenitev"
 
@@ -1682,12 +1684,14 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Neslišane poddaje"
 
+#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albumov"
 
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
+#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i pesmi"
 
@@ -1700,9 +1704,11 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 sekunda"
 
+#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekund"
 
+#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i ur"
 
@@ -1712,9 +1718,11 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 ura"
 
+#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minut"
 
+#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dni"
 

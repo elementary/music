@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2012-08-04 08:58+0000\n"
 "Last-Translator: KombuchaMushroom <enekosar@gmail.com>\n"
 "Language-Team: Basque <eu@li.org>\n"
-"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:53+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: eu\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -275,7 +275,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -896,7 +896,8 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -1532,7 +1533,8 @@ msgstr "Kantarik ez CDan"
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr "%s-(e)k ezin izan du kantarik aurkitu CDan. Ezin da kantarik inportatu"
+msgstr ""
+"%s-(e)k ezin izan du kantarik aurkitu CDan. Ezin da kantarik inportatu"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
@@ -1681,20 +1683,20 @@ msgid ""
 "for later."
 msgstr ""
 
+#~ msgid "Import Stations"
+#~ msgstr "Inportatu kateak"
+
 #~ msgid "Add Podcast"
 #~ msgstr "Gehitu podcast-a"
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Deskargatu atal berriak"
 
-#~ msgid "Import Stations"
-#~ msgstr "Inportatu kateak"
+#~ msgid "Music Folder"
+#~ msgstr "Musikaren karpeta"
 
 #~ msgid "Add"
 #~ msgstr "Gehitu"
-
-#~ msgid "Music Folder"
-#~ msgstr "Musikaren karpeta"
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Inportatu kantak audio CDtik"
@@ -1702,18 +1704,21 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Inportatu edukiak gailutik"
 
+#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
 #~ msgid "1 album"
 #~ msgstr "Album 1"
 
+#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i kanta"
 
 #~ msgid "1 song"
 #~ msgstr "Kanta 1"
 
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "%i balorazioak"
 
@@ -1729,9 +1734,11 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "Segundo 1"
 
+#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s segundo"
 
+#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i ordu"
 
@@ -1744,8 +1751,10 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "Ordu 1"
 
+#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutu"
 
+#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i egun"

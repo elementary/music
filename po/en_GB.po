@@ -6,18 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-14 16:25+0000\n"
+"PO-Revision-Date: 2012-08-29 05:04+0000\n"
 "Last-Translator: Anthony Harrington <untaintableangel@hotmail.co.uk>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-15 05:15+0000\n"
-"X-Generator: Launchpad (build 15801)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:33+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -260,7 +259,8 @@ msgstr "This device is in transfer"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:612
 msgid "Please wait until the current transfer is finished to do this action."
-msgstr "Please wait until the current transfer is finished to do this action."
+msgstr ""
+"Please wait until the current transfer is finished to do this action."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
@@ -271,7 +271,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "Play History (%Y-%b-%e %l:%M %p)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr "Unknown playlist"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -874,7 +874,8 @@ msgstr "Cancelling Sync"
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr "Device Sync has been cancelled. Operation will stop after this media."
+msgstr ""
+"Device Sync has been cancelled. Operation will stop after this media."
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
@@ -896,8 +897,10 @@ msgstr "No External Songs"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
-msgstr "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr ""
+"There were no songs found on this device that are not in your library."
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
 #, c-format
@@ -1703,10 +1706,113 @@ msgstr ""
 #~ msgid "Download new Episodes"
 #~ msgstr "Download new Episodes"
 
+#~ msgid "Add"
+#~ msgstr "Add"
+
+#~ msgid "Import songs from audio CD"
+#~ msgstr "Import songs from audio CD"
+
+#~ msgid "Import media from device"
+#~ msgstr "Import media from device"
+
 #~ msgid "Import Stations"
 #~ msgstr "Import Stations"
 
-#~ msgid "Unknown playlist"
+#~ msgid "Enable Scrobbling"
+#~ msgstr "Enable Scrobbling"
+
+#~ msgid "Music Folder"
+#~ msgstr "Music Folder"
+
+#~ msgid "Unsuccessful. Click to try again."
+#~ msgstr "Unsuccessful. Click to try again."
+
+#, c-format
+#~ msgid ""
+#~ "To allow for Last.fm integration, you must give permission to %s. You only "
+#~ "need to do this once."
+#~ msgstr ""
+#~ "To allow for Last.fm integration, you must give permission to %s. You only "
+#~ "need to do this once."
+
+#~ msgid "Copy files to music folder when added to library"
+#~ msgstr "Copy files to music folder when added to library"
+
+#~ msgid "Automatically download new podcast episodes"
+#~ msgstr "Automatically download new podcast episodes"
+
+#~ msgid "Click to redo the Last.fm Login Process"
+#~ msgstr "Click to redo the Last.fm Login Process"
+
+#, c-format
+#~ msgid "All %i Ratings"
+#~ msgstr "All %i Ratings"
+
+#~ msgid "Recently Played"
+#~ msgstr "Recently Played"
+
+#~ msgid "Unheard Podcasts"
+#~ msgstr "Unheard Podcasts"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Disable Repeat"
+
+#, c-format
+#~ msgid "%i hours"
+#~ msgstr "%i hours"
+
+#~ msgid "1 day"
+#~ msgstr "1 day"
+
+#~ msgid "1 hour"
+#~ msgstr "1 hour"
+
+#, c-format
+#~ msgid "%i minutes"
+#~ msgstr "%i minutes"
+
+#~ msgid "1 minute"
+#~ msgstr "1 minute"
+
+#, c-format
+#~ msgid "%i days"
+#~ msgstr "%i days"
+
+#~ msgid "Keep music folder organized"
+#~ msgstr "Keep music folder organised"
+
+#, c-format
+#~ msgid "%i albums"
+#~ msgstr "%i albums"
+
+#~ msgid "1 album"
+#~ msgstr "1 album"
+
+#, c-format
+#~ msgid "%i items"
+#~ msgstr "%i items"
+
+#~ msgid "1 item"
+#~ msgstr "1 item"
+
+#, c-format
+#~ msgid "%i songs"
+#~ msgstr "%i songs"
+
+#~ msgid "1 song"
+#~ msgstr "1 song"
+
+#~ msgid "Click on the button to edit playlist rules"
+#~ msgstr "Click on the button to edit playlist rules"
+
+#~ msgid "1 second"
+#~ msgstr "1 second"
+
+#, c-format
+#~ msgid "%s seconds"
+#~ msgstr "%s seconds"
+
+#~ msgid "Unkown playlist"
 #~ msgstr "Unknown playlist"
 
 #~ msgid "Podcast RSS Source"
@@ -1714,9 +1820,6 @@ msgstr ""
 
 #~ msgid "Podcast Source..."
 #~ msgstr "Podcast Source..."
-
-#~ msgid "Add"
-#~ msgstr "Add"
 
 #~ msgid "No Podcasts Found"
 #~ msgstr "No Podcasts Found"
@@ -1736,94 +1839,3 @@ msgstr ""
 
 #~ msgid "Next"
 #~ msgstr "Next"
-
-#~ msgid "Import songs from audio CD"
-#~ msgstr "Import songs from audio CD"
-
-#~ msgid "Import media from device"
-#~ msgstr "Import media from device"
-
-#~ msgid "Enable Scrobbling"
-#~ msgstr "Enable Scrobbling"
-
-#~ msgid "Music Folder"
-#~ msgstr "Music Folder"
-
-#~ msgid "Unsuccessful. Click to try again."
-#~ msgstr "Unsuccessful. Click to try again."
-
-#~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You "
-#~ "only need to do this once."
-#~ msgstr ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You "
-#~ "only need to do this once."
-
-#~ msgid "Copy files to music folder when added to library"
-#~ msgstr "Copy files to music folder when added to library"
-
-#~ msgid "Automatically download new podcast episodes"
-#~ msgstr "Automatically download new podcast episodes"
-
-#~ msgid "Click to redo the Last.fm Login Process"
-#~ msgstr "Click to redo the Last.fm Login Process"
-
-#~ msgid "All %i Ratings"
-#~ msgstr "All %i Ratings"
-
-#~ msgid "Recently Played"
-#~ msgstr "Recently Played"
-
-#~ msgid "Unheard Podcasts"
-#~ msgstr "Unheard Podcasts"
-
-#~ msgid "Disable Repeat"
-#~ msgstr "Disable Repeat"
-
-#~ msgid "%i hours"
-#~ msgstr "%i hours"
-
-#~ msgid "1 day"
-#~ msgstr "1 day"
-
-#~ msgid "1 hour"
-#~ msgstr "1 hour"
-
-#~ msgid "%i minutes"
-#~ msgstr "%i minutes"
-
-#~ msgid "1 minute"
-#~ msgstr "1 minute"
-
-#~ msgid "%i days"
-#~ msgstr "%i days"
-
-#~ msgid "Keep music folder organized"
-#~ msgstr "Keep music folder organised"
-
-#~ msgid "%i albums"
-#~ msgstr "%i albums"
-
-#~ msgid "1 album"
-#~ msgstr "1 album"
-
-#~ msgid "%i items"
-#~ msgstr "%i items"
-
-#~ msgid "1 item"
-#~ msgstr "1 item"
-
-#~ msgid "%i songs"
-#~ msgstr "%i songs"
-
-#~ msgid "1 song"
-#~ msgstr "1 song"
-
-#~ msgid "Click on the button to edit playlist rules"
-#~ msgstr "Click on the button to edit playlist rules"
-
-#~ msgid "1 second"
-#~ msgstr "1 second"
-
-#~ msgid "%s seconds"
-#~ msgstr "%s seconds"

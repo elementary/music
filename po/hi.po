@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2012-05-23 21:53+0000\n"
 "Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
 "Language-Team: Hindi <hi@li.org>\n"
-"Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
-"X-Generator: Launchpad (build 15791)\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Generator: Launchpad (build 15864)\n"
+"Language: hi\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -271,7 +271,7 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
+msgid "Unknown playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
@@ -882,7 +882,8 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
@@ -1503,8 +1504,8 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
-"कृपया सुनिश्चित करें कि अपने संगीत फ़ोल्डर सुलभ और सीडी आयात करने से पहले माउन्ट किया गया "
-"है."
+"कृपया सुनिश्चित करें कि अपने संगीत फ़ोल्डर सुलभ और सीडी आयात करने से पहले "
+"माउन्ट किया गया है."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 msgid "No songs on CD"

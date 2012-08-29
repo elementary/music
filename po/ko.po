@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-08-28 10:24+0000\n"
+"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
 "X-Generator: Launchpad (build 15864)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -270,8 +270,8 @@ msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "최근 재생 (%Y-%b-%e %l:%M %p)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unkown playlist"
-msgstr "알 수 없는 재생 목록"
+msgid "Unknown playlist"
+msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
@@ -1656,3 +1656,6 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+
+#~ msgid "Unkown playlist"
+#~ msgstr "알 수 없는 재생 목록"
