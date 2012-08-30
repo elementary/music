@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-29 05:04+0000\n"
-"Last-Translator: kroq-gar78 <Unknown>\n"
+"PO-Revision-Date: 2012-08-29 13:41+0000\n"
+"Last-Translator: Guillaume F <marsguo@wanadoo.fr>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Launchpad-Export-Date: 2012-08-30 05:27+0000\n"
 "X-Generator: Launchpad (build 15864)\n"
 "Language: \n"
 
@@ -1008,11 +1008,11 @@ msgstr[1] "%u albums"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
 msgid "No media"
-msgstr ""
+msgstr "Aucun média"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:572
 msgid "Sorry, there is no music that matches your search"
-msgstr ""
+msgstr "Désolé, aucune musique ne correspond à votre recherche"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -1168,7 +1168,7 @@ msgstr "Importer %i musiques"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:105
 msgid "Autosize columns"
-msgstr ""
+msgstr "Taille automatique pour les colonnes"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"

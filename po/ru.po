@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-29 05:03+0000\n"
-"Last-Translator: kroq-gar78 <Unknown>\n"
+"PO-Revision-Date: 2012-08-29 14:13+0000\n"
+"Last-Translator: Nikita Putko <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-08-29 05:32+0000\n"
+"X-Launchpad-Export-Date: 2012-08-30 05:27+0000\n"
 "X-Generator: Launchpad (build 15864)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -278,7 +278,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
-msgstr ""
+msgstr "Неизвестный список воспроизведения"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
@@ -573,7 +573,7 @@ msgstr "Общие"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:219
 msgid "Select Music Folder"
-msgstr ""
+msgstr "Выберите папку с музыкой"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:226
 msgid "Music Folder Location"
@@ -589,11 +589,11 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:244
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Упорядочивать файлы в папке с музыкой"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:245
 msgid "Copy files to Music folder when adding to Library"
-msgstr ""
+msgstr "Копировать файлы в папку с музыкой при добавлении в библиотеку"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:247
 msgid "Write metadata to file"
@@ -1005,7 +1005,7 @@ msgstr[2] "%u композиций"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
 msgid "No media"
-msgstr ""
+msgstr "Нет диска"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:572
 msgid "Sorry, there is no music that matches your search"
@@ -1072,7 +1072,7 @@ msgstr "%s не может получить доступ к этому сете�
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
-msgstr ""
+msgstr "Н/Д"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:172
 #, c-format
@@ -1646,7 +1646,7 @@ msgstr "Похожие файлы"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr ""
+msgstr "Дать разрешение Noise"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
@@ -1677,6 +1677,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Чтобы включить интеграцию Last.fm, необходимо дать разрешение Noise. Это "
+"потребуется только один раз."
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:67
 msgid "Last.fm Integration"
