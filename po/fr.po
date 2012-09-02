@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-30 21:29+0000\n"
-"Last-Translator: Benoît LAMY <Unknown>\n"
+"PO-Revision-Date: 2012-09-02 00:34+0000\n"
+"Last-Translator: PerfectCarl <Unknown>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-08-31 05:14+0000\n"
-"X-Generator: Launchpad (build 15887)\n"
+"X-Launchpad-Export-Date: 2012-09-02 04:55+0000\n"
+"X-Generator: Launchpad (build 15890)\n"
 "Language: \n"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:383
@@ -66,7 +66,7 @@ msgstr "Artiste inconnu"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
 msgid "Radio Station"
-msgstr "Sation de radio"
+msgstr "Station radio"
 
 #: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
