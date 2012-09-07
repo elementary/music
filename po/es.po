@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-09-05 20:34+0000\n"
+"PO-Revision-Date: 2012-09-07 03:15+0000\n"
 "Last-Translator: Victor Eduardo <victoreduardm@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-06 04:56+0000\n"
-"X-Generator: Launchpad (build 15909)\n"
+"X-Launchpad-Export-Date: 2012-09-07 05:14+0000\n"
+"X-Generator: Launchpad (build 15914)\n"
 "Language: es\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -79,7 +79,7 @@ msgstr "Automático"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr "Elimina el elemento actual"
+msgstr "Eliminar el elemento actual"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:58
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:91
@@ -168,7 +168,7 @@ msgstr "Mostrar"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:179
 msgid "Hide Equalizer"
-msgstr "Esconder ecualizador"
+msgstr "Ocultar ecualizador"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:211
 msgid "Show Info Panel"
@@ -248,7 +248,7 @@ msgstr "Listas de reproducción"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:610
 msgid "This device is syncing"
-msgstr "Este dispositivo está en sincronización"
+msgstr "Este dispositivo se está sincronizando"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:610
 msgid "Please wait until the current sync is finished to do this action."
@@ -336,12 +336,12 @@ msgstr "Archivos no importados"
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr "No se pudo importar %d artículos de %s"
+msgstr "No se pudo importar %d elementos desde %s"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s no pudo importar %d artículos. Los archivos pueden estar dañados."
+msgstr "%s no pudo importar %d elementos. Los archivos pueden estar dañados."
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
@@ -553,12 +553,12 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr "La sincronización removerá %i artículos de %s"
+msgstr "La sincronización removerá %i elementos de %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr "La sincronización removerá 1 artículo de %s"
+msgstr "La sincronización eliminará 1 elemento de %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:145
 #: /home/victor/noise/po/../src//LibraryWindow.vala:181
@@ -608,7 +608,7 @@ msgstr "Usar Noise como reproductor de audio por defecto"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:274
 msgid "System Integration"
-msgstr ""
+msgstr "Integración con el sistema"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
@@ -742,7 +742,7 @@ msgstr "segundos"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:455
 msgid "days ago"
-msgstr "dias atras"
+msgstr "dias atrás"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:459
 msgid "kbps"
@@ -781,12 +781,12 @@ msgstr "No Importar"
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr "Importar %i artículos de %s"
+msgstr "Importar %i elementos desde %s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr "Importar %s de %s"
+msgstr "Importar %s desde %s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
@@ -1580,12 +1580,12 @@ msgstr "Extrayendo pista 1"
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
 #, c-format
 msgid "Importing track %i"
-msgstr "Extrayendo pista %i"
+msgstr "Importando pista %i"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
 msgid "CD Import Complete"
-msgstr "Extracción completa del CD."
+msgstr "Importación de CD finalizada"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
 #, c-format
