@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-08-29 05:04+0000\n"
-"Last-Translator: Anthony Harrington <untaintableangel@hotmail.co.uk>\n"
+"PO-Revision-Date: 2012-09-07 17:51+0000\n"
+"Last-Translator: Vesnar Teach <vesnarteach@gmail.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-30 05:28+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-09-08 05:32+0000\n"
+"X-Generator: Launchpad (build 15914)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -309,21 +309,21 @@ msgstr "Close"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom)"
-msgstr "%s (Customised)"
+msgstr "%s (Custom)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:418
 #, c-format
 msgid "%s (Custom %i)"
-msgstr "%s (Customised %i)"
+msgstr "%s (Custom %i)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 msgid "Custom Preset"
-msgstr "Customised Preset"
+msgstr "Custom Preset"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:424
 #, c-format
 msgid "Custom Preset %i"
-msgstr "Customised Preset %i"
+msgstr "Custom Preset %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -1811,31 +1811,3 @@ msgstr ""
 #, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s seconds"
-
-#~ msgid "Unkown playlist"
-#~ msgstr "Unknown playlist"
-
-#~ msgid "Podcast RSS Source"
-#~ msgstr "Podcast RSS Source"
-
-#~ msgid "Podcast Source..."
-#~ msgstr "Podcast Source..."
-
-#~ msgid "No Podcasts Found"
-#~ msgstr "No Podcasts Found"
-
-#~ msgid ""
-#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
-#~ "XML format."
-#~ msgstr ""
-#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
-#~ "XML format."
-
-#~ msgid "Remove Station"
-#~ msgstr "Remove Station"
-
-#~ msgid "Previous"
-#~ msgstr "Previous"
-
-#~ msgid "Next"
-#~ msgstr "Next"
