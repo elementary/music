@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-09-08 19:28+0000\n"
+"PO-Revision-Date: 2012-09-09 21:50+0000\n"
 "Last-Translator: Rus F Adrian <adirusf@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2012-09-09 05:08+0000\n"
-"X-Generator: Launchpad (build 15914)\n"
+"X-Launchpad-Export-Date: 2012-09-10 05:00+0000\n"
+"X-Generator: Launchpad (build 15924)\n"
 "Language: ro\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -191,7 +191,7 @@ msgstr "Gratuit/Liber"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "Utilizează %s din %s  (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:71
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
@@ -547,6 +547,9 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Dacă sincronizarea continuă, multimedia va fi eliminat din %s pentru că nu "
+"se află în lista de sincronizare. Dorești să imporți acestea în bibliotecă "
+"prima dată?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
@@ -765,7 +768,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr ""
+msgstr "Importă toată multimedia"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
@@ -792,7 +795,7 @@ msgstr "Identitate"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Selectează multimedia individual pentru import:"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
@@ -808,11 +811,11 @@ msgstr "Verifică Artistul"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
-msgstr ""
+msgstr "Elimină Multimedia"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
-msgstr ""
+msgstr "Locație Multimedia"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
@@ -878,6 +881,8 @@ msgstr "Anulează Sincronizarea"
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
+"Sincronizarea dispozitivului a fost anulată. Operațiunea se va opri după "
+"multimedia."
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
@@ -889,12 +894,14 @@ msgstr "Anulează Importarea"
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
+"Importarea din dispozitiv a fost anulată. Operațiunea se oprește după acest "
+"multimedia."
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
 msgid "No External Songs"
-msgstr ""
+msgstr "Nu există Piese Externe"
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
@@ -938,6 +945,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Pentru a adăuga piese la coadă,  folosește <b>clic dreapta</b>  pe un "
+"articol și alege <>Coadă</b>. Când o piesă se termină, se redă piesele de la "
+"coadă înaintea celor din lista curentă de redare."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
@@ -980,6 +990,7 @@ msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albume"
+msgstr[2] "%u albume"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
@@ -987,6 +998,7 @@ msgid "%u song"
 msgid_plural "%u songs"
 msgstr[0] "%u piesă"
 msgstr[1] "%u piese"
+msgstr[2] "%u piese"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
 msgid "No media"
@@ -1000,13 +1012,15 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "No Songs"
-msgstr ""
+msgstr "Nici o piesă"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Pentru a adăuga piese  în această listă de redare,  folosește <b>click "
+"dreapta</b>  pe un articol și alege <b>Adaugă  în Lista de redare</b>."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
@@ -1019,6 +1033,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Această listă de redare se populează automat cu piesele care se potrivesc "
+"regulilor. Pentru a modifica aceste reguli, folosiți<b>clic dreapta</b> pe "
+"el în bara laterală și faceți clic pe <b>Editare</b>.Opțional, aveți "
+"posibilitatea să faceți clic pe butonul de mai jos."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1045,7 +1063,7 @@ msgstr "Dispozitiv inaccesibil"
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s nu s-a conectat la acest dispozitiv de rețea"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
@@ -1074,7 +1092,7 @@ msgstr "Categorie"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
-msgstr ""
+msgstr "Pulser"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "BPM"
@@ -1221,12 +1239,12 @@ msgstr "Fără Album"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
 msgid "All Years"
-msgstr ""
+msgstr "Toți Anii"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "Toți %i ani"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
 msgid "No Years"
@@ -1234,7 +1252,7 @@ msgstr "Fără An"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
 msgid "All Ratings"
-msgstr ""
+msgstr "Toate Evaluările"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
 msgid "No Ratings"
@@ -1283,7 +1301,7 @@ msgstr "Toată muzica"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:387
 msgid "All Podcasts"
-msgstr ""
+msgstr "Toate Podcasturile"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
@@ -1296,6 +1314,8 @@ msgstr "Sincronizare eșuată"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"Lista de redare cu numele %s este folosit pentru sincronizarea "
+"dispozitivului %s, dar nu a fost găsit."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
@@ -1331,7 +1351,7 @@ msgstr "Niciodată redat"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:455
 msgid "Over Played"
-msgstr ""
+msgstr "Redat în exces"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
@@ -1533,6 +1553,8 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"Asigură-te că folderul tău cu muzică este accesibil și montat înainte de-a "
+"importa acest CD."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 msgid "No songs on CD"
@@ -1546,7 +1568,7 @@ msgstr "%s nu a găsit nici o piesă pe CD. Nici o piesă nu a fost importată"
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
 msgid "%s is already doing an import"
-msgstr ""
+msgstr "%s importă deja."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
@@ -1554,10 +1576,12 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
+"Te rog așteaptă până %s este finalizat cu importarea curentă înainte de a "
+"importa acest CD."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid "Ripping track 1"
-msgstr ""
+msgstr "Extrage piesa 1"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
 #, c-format
@@ -1567,7 +1591,7 @@ msgstr "Importă piesa %i"
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
 msgid "CD Import Complete"
-msgstr ""
+msgstr "Importare CD Finalizat"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
 #, c-format
@@ -1581,7 +1605,7 @@ msgstr "%s a finalizat de importat  o piesă de pe CD Audio."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
+msgstr "Importare CD va fi <b>anulat</b> după importarea curentă."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
@@ -1621,7 +1645,7 @@ msgstr "Eșuat. Încearcă din nou."
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling already Enabled"
-msgstr ""
+msgstr "Scrobbling este deja activat"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1637,13 +1661,15 @@ msgstr "Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Apasă pentru a reface procesul de logare Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Pentru a permite integrarea Last.fm, trebuie să acorzi permisiune la Noise. "
+"O sigură dată este suficient."
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:67
 msgid "Last.fm Integration"
@@ -1680,7 +1706,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
-msgstr ""
+msgstr "Vizualizare Piese Similare"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
@@ -1689,6 +1715,9 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"În această vizualizare,%s va găsi automat piese similare cu cele curent "
+"redate. Apoi poți să redai aceste piese, sau să le salvezi mai târziu ca "
+"listă de redare."
 
 #~ msgid "Add Podcast"
 #~ msgstr "Adaugă podcast"
