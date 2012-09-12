@@ -44,8 +44,8 @@ public class Noise.PresetList : ComboBox {
 	private ListStore store;
 
 	private const string SEPARATOR_NAME = "<separator_item_unique_name>";
-	private const string AUTOMATIC_MODE = N_("Automatic");
-	private const string DELETE_PRESET = N_("Delete Current");
+	private static string AUTOMATIC_MODE = _("Automatic");
+	private static string DELETE_PRESET = _("Delete Current");
 
 	public PresetList() {
 		ncustompresets = 0;
@@ -174,18 +174,13 @@ public class Noise.PresetList : ComboBox {
 		string option;
 		store.get (it, 1, out option);
 
-		if (option != null)
-			switch (option)
-			{
-				case AUTOMATIC_MODE:
-					automatic_selected = true;
-					remove_delete_option();
-					automatic_preset_chosen();
-					break;
-				case DELETE_PRESET:
-					delete_preset_chosen ();
-					break;
-			}
+		if (option == AUTOMATIC_MODE) {
+			automatic_selected = true;
+			remove_delete_option();
+			automatic_preset_chosen();
+		} else if (option == DELETE_PRESET) {
+			delete_preset_chosen ();
+		}
 	}
 
 	public void selectAutomaticPreset() {
