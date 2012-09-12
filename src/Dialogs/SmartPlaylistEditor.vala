@@ -265,7 +265,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         _field.append_text(_("Grouping"));
         _field.append_text(_("Last Played"));
         _field.append_text(_("Length"));
-        _field.append_text(_("Media Type"));
         _field.append_text(_("Playcount"));
         _field.append_text(_("Rating"));
         _field.append_text(_("Skipcount"));
@@ -279,15 +278,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         if(needs_value (q.field)) {
             _value.text = q.value;
         }
-#if HAVE_OTHER_MEDIA_TYPES
-        else if(q.field == SmartQuery.FieldType.MEDIA_TYPE) {
-            _valueOption.append_text(_("Song"));
-            _valueOption.append_text(_("Podcast"));
-            _valueOption.append_text(_("Audiobook"));
-            _valueOption.append_text(_("Radio Station"));
-            _valueOption.set_active(int.parse(q.value));
-        }
-#endif
         else if(q.field == SmartQuery.FieldType.RATING) {
             _valueRating.rating = int.parse (q.value);
         }
@@ -321,8 +311,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         
         if(needs_value ((SmartQuery.FieldType)_field.get_active ()))
             rv.value = _value.text;
-        else if(_field.get_active() == SmartQuery.FieldType.MEDIA_TYPE)
-            rv.value = _valueOption.get_active().to_string();
         else if(_field.get_active() == SmartQuery.FieldType.RATING)
             rv.value = _valueRating.rating.to_string();
         else
@@ -361,39 +349,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
                     break;
             }
         }
-#if HAVE_OTHER_MEDIA_TYPES
-        else if(_field.get_active () == SmartQuery.FieldType.MEDIA_TYPE) {
-            _value.hide();
-            _valueNumerical.hide();
-            _valueOption.show();
-            _valueRating.hide();
-            
-            // upate valueOption 
-            _valueOption.remove_all();
-            _valueOption.append_text(_("Song"));
-            _valueOption.append_text(_("Podcast"));
-            _valueOption.append_text(_("Audiobook"));
-            _valueOption.append_text(_("Radio Station"));
-            _valueOption.set_active(int.parse(_q.value));
-            
-            _comparator.remove_all();
-            
-            _comparator.append_text(_("is"));
-            _comparator.append_text(_("is not"));
-            comparators.insert (0, SmartQuery.ComparatorType.IS);
-            comparators.insert (1, SmartQuery.ComparatorType.IS_NOT);
-
-            switch (_q.comparator)
-            {
-                case SmartQuery.ComparatorType.IS_NOT:
-                    _comparator.set_active(1);
-                    break;
-                default: // SmartQuery.ComparatorType.IS or unset
-                    _comparator.set_active(0);
-                    break;
-            }
-        }
-#endif
         else {
             if(is_rating ((SmartQuery.FieldType)_field.get_active ())) {
                 _valueNumerical.hide();

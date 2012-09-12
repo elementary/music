@@ -291,13 +291,6 @@ public class Noise.SmartPlaylist : Object {
                     return now.compare(played) > 0;
                 }
                 break;
-            case Noise.SmartQuery.FieldType.MEDIA_TYPE:
-                if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return s.mediatype == int.parse(q.value);
-                else if(q.comparator == SmartQuery.ComparatorType.IS_NOT)
-                    return s.mediatype != int.parse(q.value);
-                
-                break;
         }
         
         return false;

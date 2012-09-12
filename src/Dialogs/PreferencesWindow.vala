@@ -77,8 +77,8 @@ public class Noise.PreferencesWindow : Gtk.Window {
         }
 
         /**
-         * Not abstract since some sections may save their preferences in real time.
-         * Return false to prevent the window from being closed.
+         * Write changes to settings. It is not abstract since some sections may save their
+         * preferences in real-time. Return false to prevent the window from being closed.
          *
          * @return whether the preferences window can be closed
          */
@@ -163,7 +163,7 @@ public class Noise.PreferencesWindow : Gtk.Window {
         main_grid.attach (main_static_notebook, 0, 0, 1, 1);
         main_grid.attach (save_button, 0, 1, 1, 1);
 
-        // Use a fixedbin widget so that we're always in control of the window size
+        // Use a fixedbin widget so that we're always in control of the window size (at least its width)
         var size_wrapper = new FixedBin (WINDOW_WIDTH, -1, WINDOW_WIDTH, -1);
         size_wrapper.set_widget (main_grid);
 

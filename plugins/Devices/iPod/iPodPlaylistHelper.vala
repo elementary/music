@@ -150,6 +150,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
 		else if(q.field == SmartQuery.FieldType.DATE_RELEASED) {
 			// no equivalant
 		}
+/*
 		else if(q.field == SmartQuery.FieldType.MEDIA_TYPE) {
 			rule.field = GPod.SPLField.VIDEO_KIND;
 			if(q.value == "0") {
@@ -165,7 +166,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
 				rule.tovalue = (uint64)GPod.MediaType.AUDIOBOOK;
 			}
 		}
-
+*/
 		rule.tounits = 1;
 		
 		// set action type
@@ -302,6 +303,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
             case SmartQuery.FieldType.DATE_RELEASED:
                 // no equivelant
                 break;
+/*
             case SmartQuery.FieldType.MEDIA_TYPE:
                 rule.field = GPod.SPLField.VIDEO_KIND;
                 if(value == "0") {
@@ -319,20 +321,28 @@ public class Noise.Plugins.iPodPlaylistHelper {
                     rule.tovalue = 0x00000008;
                 }
                 break;
+*/            
             }
-            
+
             // set action type
             if(comparator == SmartQuery.ComparatorType.IS) {
+/*
                 if(field == SmartQuery.FieldType.MEDIA_TYPE)
                     rule.action = GPod.SPLAction.BINARY_AND;
                 else
                     rule.action = GPod.SPLAction.IS_STRING;
+*/
+                rule.action = GPod.SPLAction.IS_STRING;
+
             }
             else if(comparator == SmartQuery.ComparatorType.IS_NOT) {
+/*
                 if(field == SmartQuery.FieldType.MEDIA_TYPE)
                     rule.action = GPod.SPLAction.NOT_BINARY_AND;
                 else
                     rule.action = GPod.SPLAction.IS_NOT_INT;
+*/
+                rule.action = GPod.SPLAction.IS_NOT_INT;
             }
             else if(comparator == SmartQuery.ComparatorType.CONTAINS) {
                 rule.action = GPod.SPLAction.CONTAINS;
