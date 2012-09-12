@@ -57,9 +57,8 @@ public class Noise.MediaEditor : Window {
 		this.resizable = false;
 		
 		this.set_size_request (520, -1);
-		
+
 		lf = new LyricFetcher();
-		lf.lyrics_fetched.connect(lyricsFetched);
 		
 		_lm = lm;
 		
@@ -239,19 +238,16 @@ public class Noise.MediaEditor : Window {
 		lyricsInfobarLabel.ellipsize = Pango.EllipsizeMode.END;
 		
 		lyricsInfobar = new InfoBar();
-		lyricsInfobar.add_buttons(_("Try again"), Gtk.ResponseType.OK);
 		lyricsInfobar.set_message_type (Gtk.MessageType.INFO);
 		
 		(lyricsInfobar.get_content_area() as Gtk.Container).add (lyricsInfobarLabel);
 
-		lyricsInfobar.response.connect(fetchLyricsClicked);
-		
 		lyricsText = new TextView();
 		lyricsText.set_wrap_mode(WrapMode.WORD_CHAR);
 		lyricsText.get_buffer().text = _lm.media_from_id(_medias.get(0)).lyrics;
-		
+
 		var text_scroll = new ScrolledWindow(null, null);		
-		text_scroll.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
+		text_scroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		
 		text_scroll.add(lyricsText);
 		
@@ -263,37 +259,40 @@ public class Noise.MediaEditor : Window {
 		return lyricsContent;
 	}
 	
-	public void fetchLyricsClicked() {
-		fetch_lyrics (true);
+	public async void fetchLyricsClicked() {
+		yield fetch_lyrics (true);
 	}
 	
-	private void fetch_lyrics (bool overwrite) {
+	private async void fetch_lyrics (bool overwrite) {
 		lyricsInfobar.hide();
 		Media s = _lm.media_from_id(_medias.get(0));
 
 		// fetch lyrics here
-		if (!(!String.is_white_space (s.lyrics) && !overwrite))
-			lf.fetch_lyrics(s.artist, s.album_artist, s.title);
+		if (!(!String.is_white_space (s.lyrics) && !overwrite)) {
+			s.lyrics = yield lf.fetch_lyrics_async (s);
+
+            var current_media = _lm.media_from_id (_medias.get(0));
+            if (current_media == s)
+                lyricsFetched (s);
+	    }
 	}
 	
 
-	public void lyricsFetched(Lyrics lyrics) {
+	public void lyricsFetched (Media m) {
+        Gdk.threads_enter ();
+
 		lyricsInfobarLabel.set_text ("");
 		lyricsInfobar.hide();
 
-		string song_title = fields["Title"].get_value();
-		string song_artist = fields["Artist"].get_value();
-
-		if (lyrics.title != song_title)
-			return;
-
-		if (!String.is_white_space (lyrics.content)) {
-			lyricsText.get_buffer().text = lyrics.content;
+		if (!String.is_white_space (m.lyrics)) {
+			lyricsText.get_buffer().text = m.lyrics;
 		}
 		else {
 			lyricsInfobar.show_all();
-			lyricsInfobarLabel.set_text (_("Lyrics not found for \"%s\" by \"%s\"").printf (song_title, song_artist));
+			lyricsInfobarLabel.set_markup (_("Lyrics not found for %s").printf ("<i>" + String.escape (m.title) + "</i>"));
 		}
+
+        Gdk.threads_leave ();
 	}
 
 	
@@ -338,7 +337,7 @@ public class Noise.MediaEditor : Window {
 		_medias = newMedias;
 		
 		Media sum = _lm.media_from_id(newMedias.get(0));
-		
+
 		// be explicit to improve translations
 		if(_medias.size == 1) {
 			if (sum.artist != "")
@@ -371,12 +370,11 @@ public class Noise.MediaEditor : Window {
 #endif	
 		if(lyricsText == null) {
 			var lyrics = createLyricsContent ();
-			notebook.append_page(lyrics, new Label("Lyrics"));
+			notebook.append_page(lyrics, new Label(_("Lyrics")));
 			lyrics.show_all();
 		}
-		else {
-			lyricsText.get_buffer().text = sum.lyrics;
-		}
+
+		lyricsText.get_buffer().text = sum.lyrics;
 
 		fetch_lyrics (false);
 	}
