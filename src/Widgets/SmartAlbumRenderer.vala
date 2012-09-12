@@ -1,3 +1,5 @@
+#if HAVE_SMART_ALBUM_COLUMN
+
 using Gtk;
 
 public class Noise.SmartAlbumRenderer : CellRendererText {
@@ -80,3 +82,4 @@ public class Noise.SmartAlbumRenderer : CellRendererText {
     }
 }
 
+#endif
