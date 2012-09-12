@@ -24,19 +24,24 @@ using Gtk;
 using Gee;
 
 public class Noise.InfoPanel : Gtk.EventBox {
+    public signal void to_update();
+
+    public unowned Media? current_media { get; private set; }
+
     private LibraryManager lm;
     private LibraryWindow lw;
-    
+
     private Label title;
     private Label artist;
     private Gtk.Image coverArt;
     private Granite.Widgets.Rating rating;
     private Label album;
-    private Label year;
+    private Label year_label;
     private int place = 1;
     private Gtk.Grid container;
     
-    public signal void to_update();
+    private const string TITLE_MARKUP = "<span size=\"large\"><b>%s</b></span>";
+
 
     public InfoPanel(LibraryManager lmm, LibraryWindow lww) {
         lm = lmm;
@@ -44,20 +49,18 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
         buildUI();
 
-        lm.media_updated.connect (on_media_updated);
-        App.player.media_played.connect (on_media_played);
-        CoverartCache.instance.changed.connect (on_media_updated);
+        App.player.media_played.connect_after (on_media_played);
+        lm.media_updated.connect_after (on_media_updated);
+        CoverartCache.instance.changed.connect_after (on_media_updated);
     }
     
     public int add_view (Gtk.Widget view) {
-    
         container.attach (view, 0, place, 1, 1);
         place++;
         return place-1;
     }
     
     private void buildUI() {
-
         // add View class
         this.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
         
@@ -69,20 +72,20 @@ public class Noise.InfoPanel : Gtk.EventBox {
         coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
         rating = new Granite.Widgets.Rating (true, IconSize.MENU, true); // centered = true
         album = new Label("");
-        year = new Label("");
+        year_label = new Label("");
 
         /* ellipsize */
         title.set_hexpand (true);
         title.ellipsize = Pango.EllipsizeMode.END;
         artist.ellipsize = Pango.EllipsizeMode.END;
         album.ellipsize = Pango.EllipsizeMode.END;
-        year.ellipsize = Pango.EllipsizeMode.END;
+        year_label.ellipsize = Pango.EllipsizeMode.END;
 
         var content = new Gtk.Grid ();
         content.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 
         // margins
-        coverArt.halign = title.halign = artist.halign = album.halign = year.halign = Gtk.Align.CENTER;
+        coverArt.halign = title.halign = artist.halign = album.halign = year_label.halign = Gtk.Align.CENTER;
 
         // expand so that the rating can be set within the whole width.
         // The widget centers itself.
@@ -95,7 +98,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
         content.attach (rating, 0, 2, 1, 1);
         content.attach (artist, 0, 3, 1, 1);
         content.attach (album, 0, 4, 1, 1);
-        content.attach (year, 0, 5, 1, 1);
+        content.attach (year_label, 0, 5, 1, 1);
 
         container.attach (content, 0, 0, 1, 1);
 
@@ -108,61 +111,59 @@ public class Noise.InfoPanel : Gtk.EventBox {
     }
 
     private void update_visibilities() {
-
         // Don't show rating for external media
         bool hide_rating = true;
-        if (App.player.media_info != null && App.player.media_info.media != null)
-            hide_rating = App.player.media_info.media.isTemporary;
+
+        if (current_media != null)
+            hide_rating = current_media.isTemporary;
+
         rating.set_no_show_all (hide_rating);
         rating.set_visible (!hide_rating);
-        
+
         to_update ();
+
+        // Auto-hide if there's no active media
+        no_show_all = current_media == null;
+        if (no_show_all)
+            hide ();
+        else
+            show_all ();
     }
 
     private void on_media_played () {
-        update_metadata ();
-        update_cover_art ();
-        update_visibilities ();
+        current_media = App.player.media_info.media;
+        on_media_updated ();
     }
-    
-    private void on_media_updated () {
-        update_metadata ();
-        update_cover_art ();
-        update_visibilities ();
-    }
-    
-    private void update_metadata() {
-        if (App.player.media_info == null || App.player.media_info.media == null)
-            return;
 
-        title.set_markup("<span size=\"large\"><b>" + String.escape (App.player.media_info.media.title) + "</b></span>");
-        artist.set_text(App.player.media_info.media.artist);
-        album.set_text(App.player.media_info.media.album);
+    private void on_media_updated () {
+        update_visibilities ();
+        update_metadata ();
+        update_cover_art ();
+    }
+
+    private void update_metadata () {
+        bool none = current_media == null;
+        title.set_markup (none ? "" : Markup.printf_escaped (TITLE_MARKUP, current_media.title));
+        artist.set_text (none ? "" : current_media.artist);
+        album.set_text (none ? "" : current_media.album);
 
         // do rating stuff
-        rating.rating = (int)App.player.media_info.media.rating;
+        rating.rating = none ? 0 : (int)current_media.rating;
 
-        if(App.player.media_info.media.year > 1900)
-            year.set_markup("<span size=\"x-small\">" + String.escape ("(%d)".printf ((int)App.player.media_info.media.year)) + "</span>");
-        else
-            year.set_markup("");
+        var year = none ? 0 : current_media.year;
+        var year_str = year > 1900 ? "<span size=\"x-small\">" + year.to_string () + "</span>" : "";
+        year_label.set_markup (year_str);
     }
     
     private void update_cover_art () {
-        if (App.player.media_info == null)
-            return;
-
-        var m = App.player.media_info.media;
-
-        if (m != null)
-            coverArt.set_from_pixbuf (CoverartCache.instance.get_cover (m));
+        if (current_media != null)
+            coverArt.set_from_pixbuf (CoverartCache.instance.get_cover (current_media));
     }
     
     private void ratingChanged(int new_rating) {
-        if (App.player.media_info == null || App.player.media_info.media == null)
-            return;
-
-        App.player.media_info.media.rating = new_rating;
-        lm.update_media_item (App.player.media_info.media, false, true);
+        if (current_media != null) {
+            current_media.rating = new_rating;
+            lm.update_media_item (current_media, false, true);
+        }
     }
 }
