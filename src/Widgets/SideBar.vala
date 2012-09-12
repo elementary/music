@@ -29,11 +29,11 @@ using Gdk;
 
 namespace Granite.Widgets {
 	
-	public class CellRendererExpander : CellRenderer {
+	public class ExpanderRenderer : CellRenderer {
 		public bool expanded;
 		public static int EXPANDER_SIZE = 8;
 		
-		public CellRendererExpander() {
+		public ExpanderRenderer() {
 			expanded = false;
 		}
 		
@@ -79,7 +79,7 @@ namespace Granite.Widgets {
 		CellRendererPixbuf pix_cell;
 		CellRendererText text_cell;
 		CellRendererPixbuf clickable_cell;
-		CellRendererExpander expander_cell;
+		ExpanderRenderer expander_cell;
 		
 		TreeIter? selectedIter;
 		
@@ -148,7 +148,7 @@ namespace Granite.Widgets {
 			clickable_cell.stock_size = 16;
 			
 			// add expander
-			expander_cell = new CellRendererExpander();
+			expander_cell = new ExpanderRenderer();
 			col.pack_start(expander_cell, false);
 			col.set_cell_data_func(expander_cell, expanderCellDataFunc);
 			
@@ -222,7 +222,7 @@ namespace Granite.Widgets {
 			TreePath path = model.get_path(iter);
 			
 			renderer.visible = (path.get_depth() == 1);
-			((CellRendererExpander)renderer).expanded = is_row_expanded(path);
+			((ExpanderRenderer)renderer).expanded = is_row_expanded(path);
 		}
 		
 		/* Convenient add/remove/edit methods */
