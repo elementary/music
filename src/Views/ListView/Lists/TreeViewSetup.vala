@@ -25,35 +25,32 @@ using Gtk;
 
 public class Noise.TreeViewSetup : Object {
 	// FIXME: Should be dynamic
-	public static const int MUSIC_COLUMN_COUNT = 18;
-	public static const int PODCAST_COLUMN_COUNT = 12;
-	public static const int RADIO_COLUMN_COUNT = 6;
+	public static const int MUSIC_COLUMN_COUNT = 17;
 
-	public static string COLUMN_BLANK = " ";
-	public static string COLUMN_BITRATE = _("Bitrate");
-	public static string COLUMN_ID = _("ID");
-	public static string COLUMN_EPISODE = _("Episode");
-	public static string COLUMN_NAME = _("Name");
-	public static string COLUMN_LENGTH = _("Length");
-	public static string COLUMN_TITLE = _("Title");
-	public static string COLUMN_ALBUM = _("Album");
-	public static string COLUMN_ARTIST = _("Artist");
-	public static string COLUMN_GENRE = _("Genre");
-	public static string COLUMN_YEAR = _("Year");
-	public static string COLUMN_PODCAST = _("Podcast");
-	public static string COLUMN_DATE = _("Date");
-	public static string COLUMN_CATEGORY = _("Category");
-	public static string COLUMN_COMMENT = _("Comment");
-	public static string COLUMN_RATING = _("Rating");
-	public static string COLUMN_PULSER = _("Pulser");
-	public static string COLUMN_STATION = _("Station");
-	public static string COLUMN_DATE_ADDED = _("Date Added");
-	public static string COLUMN_LAST_PLAYED = _("Last Played");
-	public static string COLUMN_BPM = _("BPM");
-	public static string COLUMN_PLAYS = _("Plays");
-	public static string COLUMN_SKIPS = _("Skips");
-	public static string COLUMN_TRACK = _("Track");
-	public static string COLUMN_NUM = _("#");
+	public static string COLUMN_BLANK { get; private set; default = " "; }
+	public static string COLUMN_BITRATE { get; private set; default = _("Bitrate"); }
+	public static string COLUMN_ID { get; private set; default = _("ID"); }
+	public static string COLUMN_EPISODE { get; private set; default = _("Episode"); }
+	public static string COLUMN_NAME { get; private set; default = _("Name"); }
+	public static string COLUMN_LENGTH { get; private set; default = _("Length"); }
+	public static string COLUMN_TITLE { get; private set; default = _("Title"); }
+	public static string COLUMN_ALBUM { get; private set; default = _("Album"); }
+	public static string COLUMN_ARTIST { get; private set; default = _("Artist"); }
+	public static string COLUMN_GENRE { get; private set; default = _("Genre"); }
+	public static string COLUMN_YEAR { get; private set; default = _("Year"); }
+	public static string COLUMN_PODCAST { get; private set; default = _("Podcast"); }
+	public static string COLUMN_DATE { get; private set; default = _("Date"); }
+	public static string COLUMN_CATEGORY { get; private set; default = _("Category"); }
+	public static string COLUMN_COMMENT { get; private set; default = _("Comment"); }
+	public static string COLUMN_RATING { get; private set; default = _("Rating"); }
+	public static string COLUMN_STATION { get; private set; default = _("Station"); }
+	public static string COLUMN_DATE_ADDED { get; private set; default = _("Date Added"); }
+	public static string COLUMN_LAST_PLAYED { get; private set; default = _("Last Played"); }
+	public static string COLUMN_BPM { get; private set; default = _("BPM"); }
+	public static string COLUMN_PLAYS { get; private set; default = _("Plays"); }
+	public static string COLUMN_SKIPS { get; private set; default = _("Skips"); }
+	public static string COLUMN_TRACK { get; private set; default = _("Track"); }
+	public static string COLUMN_NUM { get; private set; default = _("#"); }
 
 	private ViewWrapper.Hint hint;
 	public int sort_column_id; // Index of sort column
@@ -136,9 +133,6 @@ public class Noise.TreeViewSetup : Object {
 			_columns.append((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", COLUMN_BPM, 
 											"visible", false));
-			_columns.append((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", COLUMN_PULSER, 
-											"visible", false));
 		}
 		else {
 			_columns.append((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
@@ -192,9 +186,6 @@ public class Noise.TreeViewSetup : Object {
 			_columns.append((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", COLUMN_BPM, 
 											"visible", false));
-			_columns.append((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", COLUMN_PULSER, 
-											"visible", false));
 		}
 		
 		
@@ -210,7 +201,8 @@ public class Noise.TreeViewSetup : Object {
 				_columns.nth_data(index).set_attributes(crpix, "pixbuf", index);
 				CellRendererSpinner crspin = new CellRendererSpinner();
 				_columns.nth_data(index).pack_start(crspin, true);
-				
+
+/*				
 				if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 					_columns.nth_data(index).add_attribute(crspin, "pulse", PODCAST_COLUMN_COUNT - 1);
 				}
@@ -225,7 +217,8 @@ public class Noise.TreeViewSetup : Object {
 				}
 				
 				crspin.active = true;
-				
+*/
+
 			}
 			else {
 				CellRendererPixbuf crpix = new CellRendererPixbuf();
@@ -289,7 +282,7 @@ public class Noise.TreeViewSetup : Object {
 				var crSpin = new CellRendererSpinner();
 				crSpin.active = true;
 				tvc.pack_start(crSpin, true);
-				
+/*
 				if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 					tvc.add_attribute(crSpin, "pulse", PODCAST_COLUMN_COUNT - 1);
 				}
@@ -302,6 +295,7 @@ public class Noise.TreeViewSetup : Object {
 				else {
 					tvc.add_attribute(crSpin, "pulse", 17);
 				}
+*/
 			}
 			else {
 				tvc = new Gtk.TreeViewColumn.with_attributes(pieces_of_column[0], new Gtk.CellRendererPixbuf(), "pixbuf", index, null);

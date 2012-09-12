@@ -279,7 +279,7 @@ public abstract class Noise.GenericList : FastView {
                 inserted_column.fixed_width = column_width;
                 inserted_column.resizable = column_resizable;
                 inserted_column.expand = column_resizable;
-				//inserted_column.sizing = Gtk.TreeViewColumnSizing.FIXED;
+				inserted_column.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
 				inserted_column.sort_column_id = index;
 				inserted_column.sort_indicator = false;
@@ -354,7 +354,6 @@ public abstract class Noise.GenericList : FastView {
 			}
 
             var inserted_column = get_column (index);
-
             assert (inserted_column != null);
 
 		    inserted_column.notify["width"].connect (viewHeadersResized);

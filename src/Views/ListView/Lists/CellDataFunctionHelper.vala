@@ -24,7 +24,7 @@ using Gtk;
 using Gdk;
 
 public class Noise.CellDataFunctionHelper {
-    public Noise.GenericList view;
+    public GenericList view;
     private static string NOT_AVAILABLE = _("N/A");
 
 #if HAVE_SMART_ALBUM_COLUMN
@@ -141,8 +141,8 @@ public class Noise.CellDataFunctionHelper {
 
         if (s == null)
             return;
-        else
-            showIndicator = s.showIndicator;
+
+        showIndicator = s.showIndicator;
 
         if (renderer is CellRendererPixbuf) {
             Value? icon;
@@ -156,9 +156,8 @@ public class Noise.CellDataFunctionHelper {
             renderer.width = showIndicator ? 0 : 16;
         }
         if (renderer is CellRendererSpinner) {
-            if (showIndicator) {
-                ((CellRendererSpinner)renderer).active = true;
-            }
+            if (showIndicator)
+                (renderer as Gtk.CellRendererSpinner).active = true;
 
             renderer.visible = showIndicator;
             renderer.width = showIndicator ? 16 : 0;
@@ -169,11 +168,7 @@ public class Noise.CellDataFunctionHelper {
     public void intelligent_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
         tree_model.get_value(iter, tvc.sort_column_id, out val);
-
-        if (val.get_int() <= 0)
-            ((CellRendererText)cell).markup = "";
-        else
-            ((CellRendererText)cell).markup = String.escape (val.get_int().to_string());
+        (cell as CellRendererText).text = val.get_int() <= 0 ? "": val.get_int().to_string();
     }
 
     public void string_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
@@ -185,7 +180,7 @@ public class Noise.CellDataFunctionHelper {
         if (str == null)
             return;
 
-        ((CellRendererText)cell).markup = String.escape (str);
+        (cell as CellRendererText).text = str;
     }
 
     // for Bitrate. Append 'kbps'
@@ -196,10 +191,7 @@ public class Noise.CellDataFunctionHelper {
         var n = val.get_int ();
         var text_cell = cell as CellRendererText;
 
-        if (n <= 0)
-            text_cell.markup = NOT_AVAILABLE;
-        else
-            text_cell.markup = _("%i kbps").printf (n);
+        text_cell.text = n <= 0 ? NOT_AVAILABLE : _("%i kbps").printf (n);
     }
 
     // turns int of seconds into pretty length mm:ss format
@@ -211,10 +203,7 @@ public class Noise.CellDataFunctionHelper {
 
         uint ms = (uint)val.get_int ();
 
-        if (ms <= 0)
-            text_cell.markup = NOT_AVAILABLE;
-        else
-            text_cell.markup = String.escape (TimeUtils.pretty_length_from_ms (ms));
+        text_cell.text = (ms <= 0) ? NOT_AVAILABLE : TimeUtils.pretty_length_from_ms (ms);
     }
 
     // turns seconds since Jan 1, 1970 into date format
@@ -225,12 +214,11 @@ public class Noise.CellDataFunctionHelper {
         int n = val.get_int ();
         var text_cell = cell as CellRendererText;
 
-        if (n <= 0)
-            text_cell.markup = _("Never");
-        else {
+        if (n <= 0) {
+            text_cell.text = _("Never");
+        } else {
             var t = Time.local (n);
-            var str = TimeUtils.pretty_timestamp_from_time (t);
-            text_cell.markup = String.escape (str);
+            text_cell.text = TimeUtils.pretty_timestamp_from_time (t);
         }
     }
 

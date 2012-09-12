@@ -55,7 +55,6 @@ public class Noise.MusicListView : GenericList {
 		DATE_ADDED,
 		LAST_PLAYED,
 		BPM,
-		PULSER
 	}
 
 	/**
@@ -81,7 +80,6 @@ public class Noise.MusicListView : GenericList {
 		types.append(typeof(int)); // date added
 		types.append(typeof(int)); // last played
 		types.append(typeof(int)); // bpm
-		types.append(typeof(int)); // pulser};
 		
 		base(view_wrapper, types, tvs);
 
@@ -639,9 +637,9 @@ public class Noise.MusicListView : GenericList {
 			val = (int)s.last_played;
 		else if(column == MusicColumn.BPM)
 			val = (int)s.bpm;
-		else// if(column == 17)
-			val = (int)s.pulseProgress;
-		
+		else
+		    assert_not_reached ();
+
 		return val;
 	}
 }
