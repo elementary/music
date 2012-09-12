@@ -389,7 +389,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         return "%s, %s, %s".printf (media_text, time_text, size_text);
     }
 
-    public async void update_statusbar_info () {
+    public void update_statusbar_info () {
         if (!is_current_wrapper)
             return;
 
@@ -600,6 +600,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             set_media (new_media);
             return false;
         });
+        yield;
     }
 
     public async void add_media_async (Gee.Collection<Media> to_add) {
@@ -609,6 +610,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             add_media (to_add);
             return false;
         });
+        yield;
     }
 
     public async void remove_media_async (Gee.Collection<Media> to_remove) {
@@ -618,6 +620,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             remove_media (to_remove);
             return false;
         });
+        yield;
     }
 
     public async void update_media_async (Gee.Collection<Media> to_update) {
@@ -627,6 +630,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             update_media (to_update);
             return false;
         });
+        yield;
     }
 
 
@@ -664,6 +668,8 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
     /**
      * Do search to find which ones should be added, removed from this particular view
+     *
+     * This is needed when the user adds/removes songs while a search filter is active.
      */
     private void update_media (Gee.Collection<Media> media) {
         if (media.size < 1)
