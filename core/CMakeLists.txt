@@ -1,5 +1,3 @@
-add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
-
 vala_precompile(VALA_C
     PluginManager.vala
     Settings.vala
@@ -23,9 +21,9 @@ PACKAGES
 OPTIONS
     --thread
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
-    GENERATE_VAPI
+GENERATE_VAPI
     noise-core
-    GENERATE_HEADER
+GENERATE_HEADER
     noise-core
 )
 add_definitions(${DEPS_CFLAGS})
