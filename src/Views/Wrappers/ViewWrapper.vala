@@ -674,11 +674,16 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
         debug ("%s : UPDATING media", hint.to_string ());
 
-        // find which media belong here
-        Gee.Collection<Media> should_be = media;
+        // find which media belong here. We currently "skip" this check since
+        // it's not needed. It will be needed in the future once Noise starts
+        // handling more media types. For now, the search function doesn't care
+        // about it.
+        var should_be = new Gee.HashSet<Media> ();
+        foreach (var m in media)
+            should_be.add (m);
+
         Gee.LinkedList<Media> should_show;
 
-        Search.smart_search (media, out should_be, "");
         Search.smart_search (media, out should_show, get_search_string ());
 
         var to_add_show = new Gee.LinkedList<Media> ();
@@ -697,18 +702,30 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             }
         }
 
-        // remove elements
-        
-        foreach (var m in media) {
-            if (!should_be.contains (m)) {
-                media_table.remove (m);
-            }
 
-            if (!should_show.contains (m)) {
+
+        // Remove elements
+        var media_to_remove = new Gee.LinkedList<Media> ();
+
+        // We make a copy of the should_show list, since querying for the existence
+        // of an item in the list inside the loop (see below) is extremely inefficient,
+        // so the time we spend creating the copy really pays off.
+        var should_show_set = new Gee.HashSet<Media> ();
+        foreach (var m in should_show)
+            should_show_set.add (m);
+
+        foreach (var m in media) { // We query the updated media, not media_table
+            if (!should_be.contains (m))
+                media_to_remove.add (m);
+
+            if (!should_show_set.contains (m)) {
                 to_remove_show.add (m);
                 visible_media_table.remove (m);
             }
         }
+
+        foreach (var m in media_to_remove)
+            media_table.remove (m);
 
         add_media_to_content_views (to_add_show);
         remove_media_from_content_views (to_remove_show);
