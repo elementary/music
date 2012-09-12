@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-19 22:40-0600\n"
-"PO-Revision-Date: 2012-07-26 11:50+0000\n"
+"PO-Revision-Date: 2012-09-07 15:19+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-30 05:27+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-09-08 05:32+0000\n"
+"X-Generator: Launchpad (build 15914)\n"
 "Language: ca\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -151,7 +151,7 @@ msgstr "Afegeix una llista de reproducció"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:137
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Afegeix una llista de reproducció intel·ligent"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:178
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:211
@@ -267,19 +267,19 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Cua de reproducció (%e-%b-%Y a las %H:%M)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Historial de reproducció (%e-%b-%Y a las %H:%M)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
-msgstr ""
+msgstr "Llista de reproducció desconeguda"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
-msgstr ""
+msgstr "Exporta la llista de reproducció"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
@@ -567,11 +567,11 @@ msgstr "Preferències"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:205
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:219
 msgid "Select Music Folder"
-msgstr ""
+msgstr "Seleccioneu la carpeta de música"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:226
 msgid "Music Folder Location"
@@ -587,11 +587,12 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:244
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Mantén la carpeta de música organitzada"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:245
 msgid "Copy files to Music folder when adding to Library"
 msgstr ""
+"Copia els fitxers a la carpeta de música quan siguin afegides a la biblioteca"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:247
 msgid "Write metadata to file"
@@ -603,11 +604,11 @@ msgstr "Gestió de la biblioteca"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:269
 msgid "Use Noise as the default Music application"
-msgstr ""
+msgstr "Utilitza el Noise com a reproductor d'àudio predeterminat"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:274
 msgid "System Integration"
-msgstr ""
+msgstr "Integració amb el sistema"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
@@ -814,7 +815,7 @@ msgstr "Suprimeix l'element multimèdia"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
-msgstr "Troba elments multimèdia"
+msgstr "Troba elements multimèdia"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
@@ -988,23 +989,23 @@ msgstr "Totes les cançons d'aquest dispositiu ja són a la vostra biblioteca"
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u àlbum"
+msgstr[1] "%u àlbums"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u cançó"
+msgstr[1] "%u cançons"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
 msgid "No media"
-msgstr ""
+msgstr "Cap element multimèdia"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:572
 msgid "Sorry, there is no music that matches your search"
-msgstr ""
+msgstr "No hi ha cap fitxer que coincideixi amb la vostra cerca"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -1065,7 +1066,7 @@ msgstr "El %s no ha pogut accedir a aquest dispositiu en xarxa"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
-msgstr ""
+msgstr "No disponible"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:172
 #, c-format
@@ -1161,7 +1162,7 @@ msgstr "Importa %i cançons"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:105
 msgid "Autosize columns"
-msgstr ""
+msgstr "Ajustament automàtic de les columnes"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
@@ -1325,7 +1326,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "No es pot sincronitzar el dispositiu amb la configuració seleccionada. No hi "
-"ha prou espai al disc"
+"ha prou espai al disc."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
@@ -1482,23 +1483,23 @@ msgstr "Techno"
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d segon"
+msgstr[1] "%d segons"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:44
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u minut"
+msgstr[1] "%u minuts"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u segon"
+msgstr[1] "%u segons"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:78
@@ -1512,15 +1513,15 @@ msgstr "%s i %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u dia"
+msgstr[1] "%u dies"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u hora"
+msgstr[1] "%u hores"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:76
 #, c-format
@@ -1534,11 +1535,11 @@ msgstr "Títol desconegut"
 
 #: /home/victor/noise/po/../core//Media.vala:36
 msgid "Unknown Genre"
-msgstr ""
+msgstr "Gènere desconegut"
 
 #: /home/victor/noise/po/../core//Media.vala:38
 msgid "Various Artists"
-msgstr ""
+msgstr "Artistes diversos"
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid ""
@@ -1605,17 +1606,17 @@ msgstr ""
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "S'està sincronitzant <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:680
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "S'estàn eliminant elements de <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:911
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "S'està important <b>%s</b> a la biblioteca..."
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:64
 msgid "Similar"
@@ -1631,41 +1632,43 @@ msgstr "Elements multimèdia similars"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr ""
+msgstr "Concedeix permís al Noise"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "No hi ha hagut èxit. Feu clic per tornar-ho a intentar."
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling already Enabled"
-msgstr ""
+msgstr "L'scrobbling ja està activat"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
-msgstr ""
+msgstr "L'operació s'ha realitzat correctament."
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete login"
-msgstr ""
+msgstr "Inici de sessió completat"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:39
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Feu clic per tornar a realitzar l'inici de sessió al Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Per permetre la integració amb el Last.fm, heu de concedir permís al Noise. "
+"Només ho heu de fer un cop."
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:67
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Integració amb el Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
