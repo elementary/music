@@ -53,7 +53,7 @@ public class Noise.DataBaseManager : GLib.Object {
                 error ("Could not create data directory: %s", err.message);
         }
 
-        string database_path = Path.build_filename (database_dir.get_path (), "database_1_4.db");
+        string database_path = Path.build_filename (database_dir.get_path (), "database_1_5.db");
         var database_file = File.new_for_path (database_path);
 
         bool new_db = !database_file.query_exists ();
