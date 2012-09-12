@@ -349,12 +349,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             notification.update (primary_text, secondary_text, "");
         }
 
-        // If the passed pixbuf is NULL, let's use the app's icon
-        var image = pixbuf;
-        if (image == null)
-            image = Icons.NOISE.render (null, null, 48);
-
-        notification.set_image_from_pixbuf (image);
+        if (pixbuf != null)
+            notification.set_image_from_pixbuf (pixbuf);
+        else
+            notification.icon_name = Icons.NOISE.name;
 
         try {
             notification.show ();
@@ -375,9 +373,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         try {
             string path = CoverartCache.instance.get_cached_image_path_for_media (media);
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (path, 48, 48);
-        }
-        catch (Error err) {
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (path, 64, 64);
+        } catch (Error err) {
             // Media often doesn't have an associated album art,
             // so we shouldn't treat this as an unexpected error.
             message (err.message);
