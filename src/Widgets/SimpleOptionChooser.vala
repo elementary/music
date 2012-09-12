@@ -35,7 +35,7 @@ public class Noise.SimpleOptionChooser : EventBox {
 
     public int current_option { get { return clicked_index; } }
 
-	public signal void option_changed ();
+	public signal void option_changed (bool by_user = false);
 
     private bool menu_only_mode;
 
@@ -54,7 +54,7 @@ public class Noise.SimpleOptionChooser : EventBox {
 		set_visible_window(false);
 	}
 
-	public void setOption(int index) {
+	public void setOption(int index, bool notify = true) {
 		if(index >= items.size)
 			return;
 
@@ -62,7 +62,8 @@ public class Noise.SimpleOptionChooser : EventBox {
 
 		clicked_index = index;
 
-		option_changed ();
+        if (notify)
+    		option_changed ();
 
 		if (get_child () != null)
 			remove (get_child ());
@@ -103,13 +104,16 @@ public class Noise.SimpleOptionChooser : EventBox {
 	public override bool button_press_event (Gdk.EventButton event) {
 		if (event.type == Gdk.EventType.BUTTON_PRESS) {
 			if(event.button == 1 && !menu_only_mode) {
+				// Silently set the options. We emit the option_changed signal below.
 				if(clicked_index == 0) {
-					setOption(previous_index);
+					setOption(previous_index, false);
 				}
 				else {
 					previous_index = clicked_index;
-					setOption(0);
+					setOption(0, false);
 				}
+
+				option_changed (true); // #true since the user made the change
 			}
 			else if (menu != null && items.size > 1) {
 				menu.popup (null, null, null, 3, event.time);
