@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-09-12 04:56+0000\n"
-"X-Generator: Launchpad (build 15930)\n"
+"X-Launchpad-Export-Date: 2012-09-13 05:02+0000\n"
+"X-Generator: Launchpad (build 15944)\n"
 "Language: \n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -1824,6 +1824,3 @@ msgstr ""
 #, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Nie odnaleziono tekstu utworu „%s” w wykonaniu „%s”"
-
-#~ msgid "Autosize columns"
-#~ msgstr "Automatyczny rozmiar kolumn"

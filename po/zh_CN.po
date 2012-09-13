@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-09-12 04:57+0000\n"
-"X-Generator: Launchpad (build 15930)\n"
+"X-Launchpad-Export-Date: 2012-09-13 05:02+0000\n"
+"X-Generator: Launchpad (build 15944)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -1764,6 +1764,3 @@ msgstr "在该视图中，%s 将自动查找与正在播放歌曲类似的歌曲
 #, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s 秒"
-
-#~ msgid "Autosize columns"
-#~ msgstr "自动调整列大小"

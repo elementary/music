@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2012-09-12 04:56+0000\n"
-"X-Generator: Launchpad (build 15930)\n"
+"X-Launchpad-Export-Date: 2012-09-13 05:02+0000\n"
+"X-Generator: Launchpad (build 15944)\n"
 "Language: sl\n"
 
 #: /home/victor/noise/po/../src//config.vala:14

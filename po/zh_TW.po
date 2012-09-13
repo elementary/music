@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-09-12 04:57+0000\n"
-"X-Generator: Launchpad (build 15930)\n"
+"X-Launchpad-Export-Date: 2012-09-13 05:02+0000\n"
+"X-Generator: Launchpad (build 15944)\n"
 "Language: \n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -1744,6 +1744,3 @@ msgstr "在這個檢視畫面中，%s 將自動尋找類似您現正在播放歌
 
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "請點擊以再次執行 Last.fm 登入程序"
-
-#~ msgid "Autosize columns"
-#~ msgstr "自動調整欄的大小"

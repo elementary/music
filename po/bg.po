@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-12 04:56+0000\n"
-"X-Generator: Launchpad (build 15930)\n"
+"X-Launchpad-Export-Date: 2012-09-13 05:01+0000\n"
+"X-Generator: Launchpad (build 15944)\n"
 "Language: bg\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -1825,6 +1825,3 @@ msgstr ""
 #~ msgid "Copy files to music folder when added to library"
 #~ msgstr ""
 #~ "Копиране на файлове в папката за музика, когато са добавени в библиотеката"
-
-#~ msgid "Autosize columns"
-#~ msgstr "Автоматичен размер на колоните"

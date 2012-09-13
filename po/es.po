@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-12 04:56+0000\n"
-"X-Generator: Launchpad (build 15930)\n"
+"X-Launchpad-Export-Date: 2012-09-13 05:02+0000\n"
+"X-Generator: Launchpad (build 15944)\n"
 "Language: es\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -1827,6 +1827,3 @@ msgstr ""
 
 #~ msgid "Unsuccessful. Click to try again."
 #~ msgstr "Sin éxito. Pulse para intentar nuevamente."
-
-#~ msgid "Autosize columns"
-#~ msgstr "Ajuste automático de las columnas"
