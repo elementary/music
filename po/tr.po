@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-11 20:35-0600\n"
-"PO-Revision-Date: 2012-06-30 22:01+0000\n"
-"Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
+"PO-Revision-Date: 2012-09-13 22:02+0000\n"
+"Last-Translator: Ferhat TUNÇTAN <ferhattnctn66@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:02+0000\n"
+"X-Launchpad-Export-Date: 2012-09-14 05:13+0000\n"
 "X-Generator: Launchpad (build 15944)\n"
 "Language: tr\n"
 
@@ -61,7 +61,7 @@ msgstr "Radio istasyonu"
 
 #: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
-msgstr ""
+msgstr "Bilinmeyen Parça"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//LibraryWindow.vala:619
@@ -96,7 +96,7 @@ msgstr "Şarkı"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:59
 msgid "Repeat Song"
-msgstr ""
+msgstr "Şarkı Tekrar Çal"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:60
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:187
@@ -108,7 +108,7 @@ msgstr "Albüm"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:60
 msgid "Repeat Album"
-msgstr ""
+msgstr "Albümü Tekrar Çal"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:61
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
@@ -120,7 +120,7 @@ msgstr "Sanatçı"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:61
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Sanatçıyı Tekrar Çal"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:62
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:92
@@ -129,7 +129,7 @@ msgstr "Tümü"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:62
 msgid "Repeat All"
-msgstr ""
+msgstr "Tümünü Tekrar Çal"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:91
 msgid "Enable Shuffle"
@@ -146,7 +146,7 @@ msgstr "Çalma Listesi Ekle"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:137
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Akıllı Çalma Listesi Ekle"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:178
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:211
@@ -185,7 +185,7 @@ msgstr "Ücretsiz"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "%s 'nin %s 'i Kullanılıyor (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:71
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
@@ -263,19 +263,19 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Kuyruğu oynat (%Y-%b-%e %l:%M %p)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Geçmişi Oynat (%Y-%b-%e %l:%M %p)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
-msgstr ""
+msgstr "Bilinmeyen Çalma Listesi"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
-msgstr ""
+msgstr "Çalma Listesini Aktar"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
@@ -509,7 +509,7 @@ msgstr "Medya Türü"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "%s için Şarkı Sözleri bulunamadı"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67

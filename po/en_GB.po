@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-09-11 20:35-0600\n"
-"PO-Revision-Date: 2012-09-07 17:51+0000\n"
-"Last-Translator: Vesnar Teach <vesnarteach@gmail.com>\n"
+"PO-Revision-Date: 2012-09-13 09:29+0000\n"
+"Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:02+0000\n"
+"X-Launchpad-Export-Date: 2012-09-14 05:13+0000\n"
 "X-Generator: Launchpad (build 15944)\n"
 
 #: /home/victor/noise/po/../src//config.vala:14
@@ -506,7 +506,7 @@ msgstr "Media Type"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Lyrics not found for %s"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
@@ -1048,7 +1048,7 @@ msgstr "%i kbps"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:218
 msgid "Never"
-msgstr ""
+msgstr "Never"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
@@ -1135,11 +1135,11 @@ msgstr "Import %i songs"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:108
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Autosize Columns"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:115
 msgid "Display Album Art"
-msgstr ""
+msgstr "Display Album Art"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"

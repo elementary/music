@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-11 20:35-0600\n"
-"PO-Revision-Date: 2012-09-07 15:12+0000\n"
-"Last-Translator: Alfredo Hernández <Unknown>\n"
+"PO-Revision-Date: 2012-09-14 05:09+0000\n"
+"Last-Translator: Franco Villar <franco_227@msn.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:02+0000\n"
+"X-Launchpad-Export-Date: 2012-09-14 05:13+0000\n"
 "X-Generator: Launchpad (build 15944)\n"
 "Language: es\n"
 
@@ -510,7 +510,7 @@ msgstr "Tipo de medio"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Letra no encontrada para %s"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
@@ -543,7 +543,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr "La sincronización removerá %i elementos de %s"
+msgstr "La sincronización eliminará %i elementos de %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
@@ -843,7 +843,7 @@ msgstr "¿Eliminar %d %s de %s?"
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr "¿Eliminar \"%s\" de %s?"
+msgstr "¿Eliminar «%s» de %s?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
@@ -978,7 +978,7 @@ msgstr[1] "%u álbumes"
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] "%u cancion"
+msgstr[0] "%u canción"
 msgstr[1] "%u canciones"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
@@ -1057,7 +1057,7 @@ msgstr "%i kbps"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:218
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
@@ -1144,11 +1144,11 @@ msgstr "Importar %i canciones"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:108
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Tamaño de columnas automático"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:115
 msgid "Display Album Art"
-msgstr ""
+msgstr "Mostrar portada del álbum"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"

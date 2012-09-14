@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-11 20:35-0600\n"
-"PO-Revision-Date: 2012-09-09 21:50+0000\n"
+"PO-Revision-Date: 2012-09-13 19:31+0000\n"
 "Last-Translator: Rus F Adrian <adirusf@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:02+0000\n"
+"X-Launchpad-Export-Date: 2012-09-14 05:13+0000\n"
 "X-Generator: Launchpad (build 15944)\n"
 "Language: ro\n"
 
@@ -511,7 +511,7 @@ msgstr "Tip Multimedia"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Versurile nu au fost găsite pentru %s"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
@@ -1059,7 +1059,7 @@ msgstr "%i kb/s"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:218
 msgid "Never"
-msgstr ""
+msgstr "Niciodată"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
@@ -1150,7 +1150,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:115
 msgid "Display Album Art"
-msgstr ""
+msgstr "Afișați Coperta Albumului"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
