@@ -29,9 +29,9 @@
 private class LastFM.PreferencesSection : Noise.PreferencesWindow.Section {
     static string ENABLE_SCROBBLING = _("Give Noise Permission");
     static string LOGIN_UNSUCCESSFUL = _("Unsuccessful. Click To Try Again.");
-    static string SCROBBLING_ENABLED = _("Scrobbling already Enabled");
+    static string SCROBBLING_ENABLED = _("Scrobbling Already Enabled");
     static string LOGIN_SUCCESSFUL = _("Success!");
-    static string COMPLETE_LOGIN = _("Complete login");
+    static string COMPLETE_LOGIN = _("Complete Login");
 
     private Core core;
 
