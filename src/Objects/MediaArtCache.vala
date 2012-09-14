@@ -44,6 +44,9 @@ public abstract class Noise.MediaArtCache {
         var image_dir = FileUtils.get_cache_directory ().get_child (folder_name);
         pixbuf_cache = new PixbufCache (image_dir);
 
+        // The key parameter is not useful for our purposes (there's no way to get the media
+        // corresponding to the @key parameter without scanning the entire cache, which is not
+        // efficient by any means), so we use a lambda function as a bridge in order to discard it.
         pixbuf_cache.filter_func = (key, orig_pix, apply_to_file) => {
             return filter_func (orig_pix, out apply_to_file);
         };
@@ -60,14 +63,16 @@ public abstract class Noise.MediaArtCache {
      * This function is called before storing a pixbuf in the cache, allowing
      * to transform it. The changes are applied to the cache file when apply_to_file
      * is set to true.
-     * See {@link Noise.PixbufCache.filter_func} for more information.
+     *
+     * @see Noise.PixbufCache.filter_func
      */
     protected abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file);
 
 
     /**
      * Verifies whether the media object m has a corresponding image in the cache.
-     * See {@link Noise.PixbufCache.has_image} for more information.
+     *
+     * @see Noise.PixbufCache.has_image
      */
     public bool has_image (Media m) {
         return pixbuf_cache.has_image (get_key (m));
@@ -75,25 +80,27 @@ public abstract class Noise.MediaArtCache {
 
 
     /**
-     * Returns the location of the image on disk. This call does no blocking I/O.
-     * See {@link Noise.PixbufCache.get_cached_image_path} for more information.
+     * Returns the location of the media's image on disk. This call does no blocking I/O.
+     * A path is returned even if there's no associated image in the cache (i.e. the file
+     * pointed by the path doesn't exist).
+     * Since there is no guarantee that the returned path will be valid, don't write code
+     * that crashes if it isn't. You can call has_image() to verify the existance of the
+     * image, and it will reliably help to avoid errors most of the time (under normal
+     * conditions, where every cached image has an associated file and there is no race
+     * between threads).
      */
-    protected string get_cached_image_path (string key) {
-        return pixbuf_cache.get_cached_image_path (key);
+    public string get_cached_image_path_for_media (Media m) {
+        return get_cached_image_path (get_key (m));
     }
 
 
     /**
-     * Returns the location of the media's image on disk. This call does no blocking I/O.
-     * A path is returned even if there's no associated image in the cache (i.e. the path
-     * doesn't exist).
-     * Since there is no guarantee that the returned path will be valid, don't write code
-     * that crashes if it isn't. You can call has_image() to verify the existance of the
-     * image, and it will reliably help to avoid errors most of the time (under normal
-     * conditions where every cached image has an associated file).
+     * Returns the location of the image on disk. This call does no blocking I/O.
+     *
+     * @see Noise.PixbufCache.get_cached_image_path
      */
-    public string get_cached_image_path_for_media (Media m) {
-        return pixbuf_cache.get_cached_image_path (get_key (m));
+    protected string get_cached_image_path (string key) {
+        return pixbuf_cache.get_cached_image_path (key);
     }
 
 
@@ -144,212 +151,10 @@ public abstract class Noise.MediaArtCache {
         return pixbuf_cache.get_image (get_key (m), lookup_file);
     }
 
-
     protected void queue_notify () {
         Idle.add ( () => {
             changed ();
             return false;
         });
-    }
-}
-
-
-/**
- * Stores and fetches album-art images
- */
-public class Noise.CoverartCache : MediaArtCache {
-
-    public Gdk.Pixbuf DEFAULT_IMAGE;
-
-    private static CoverartCache? _instance = null;
-    public static CoverartCache instance {
-        get {
-            if (_instance == null)
-                _instance = new CoverartCache ();
-            return _instance;
-        }
-    }
-
-    private Mutex mutex;
-
-
-    public CoverartCache () {
-        assert (_instance == null);
-
-        base ("album-art");
-
-        bool dummy;
-        DEFAULT_IMAGE = filter_func (Icons.DEFAULT_ALBUM_ART.render (null), out dummy);
-    }
-
-
-    // add a shadow to every image
-    protected override Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file) {
-        apply_to_file = false;
-        return PixbufUtils.get_pixbuf_shadow (pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
-    }
-
-
-    protected override string get_key (Media m) {
-        string album_name = m.album;
-        string artist_name = m.album_artist;
-
-        if (artist_name == "")
-            artist_name = m.artist;
-
-        return @"$artist_name-$album_name";
-    }
-
-
-    public Gdk.Pixbuf get_cover (Media m) {
-        var image = get_image (m, false);
-        return image ?? DEFAULT_IMAGE;
-    }
-
-
-    public async void fetch_all_cover_art_async (Gee.Collection<Media> media) {
-        yield fetch_folder_images_async (media);
-        yield load_for_media_async (media);
-    }
-
-
-    public async void load_for_media_async (Gee.Collection<Media> media) {
-        SourceFunc callback = load_for_media_async.callback;
-
-        try {
-            new Thread<void*>.try (null, () => {
-                load_for_media (media);
-
-                Idle.add ((owned)callback);
-                return null;
-            });
-        } catch (Error err) {
-            warning ("Could not create thread to fetch all cover art: %s", err.message);
-        }
-
-        yield;
-    }
-
-
-    public void load_for_media (Gee.Collection<Media> media) {
-        mutex.lock ();
-        debug ("READING CACHED COVERART");
-
-        var used_keys_set = new Gee.HashSet<string> ();
-
-        foreach (var m in media) {
-            string key = get_key (m);
-
-            if (!used_keys_set.contains (key) && !has_image (m)) {
-                debug ("Getting [%s]", key);
-
-                // Pass true to lookup_file in order to fetch the images for the first time
-                get_image (m, true);
-
-                used_keys_set.add (key);
-            }
-        }
-
-        debug ("FINISHED LOADING CACHED COVERART");
-        mutex.unlock ();
-
-        queue_notify ();
-    }
-
-
-    public async void fetch_folder_images_async (Gee.Collection<Media> media) {
-        SourceFunc callback = fetch_folder_images_async.callback;
-
-        try {
-            new Thread<void*>.try (null, () => {
-                fetch_folder_images (media);
-
-                Idle.add ((owned)callback);
-                return null;
-            });
-        } catch (Error err) {
-            warning ("Could not create thread to fetch all cover art: %s", err.message);
-        }
-
-        yield;
-    }
-
-
-    /**
-     * Looks up for image types in the media's directory. We look for image files
-     * that follow certain name patterns, like "album.png", "folder.jpg", etc.
-     */
-    public void fetch_folder_images (Gee.Collection<Media> media) {
-        mutex.lock ();
-
-        foreach (var m in media) {
-            if (!has_image (m)) {
-                var art_file = lookup_folder_image_file (m);
-                if (art_file != null)
-                    cache_image_from_file (m, art_file);
-            }
-        }
-
-        mutex.unlock ();
-
-        queue_notify ();
-    }
-
-
-    // Awesome method taken from BeatBox's FileOperator.vala (adapted to use Noise's internal API)
-    private static File? lookup_folder_image_file (Media m) {
-        File? rv = null, media_file = m.file;
-
-        if (!media_file.query_exists ())
-            return rv;
-
-        var album_folder = media_file.get_parent ();
-
-        if (album_folder == null)
-            return rv;
-
-        // Don't consider generic image names if the album folder doesn't contain the name of
-        // the media's album. This is probably the simpler way to prevent considering images
-        // from folders that contain multiple unrelated tracks.
-        bool generic_folder = !album_folder.get_path ().contains (m.album);
-
-        string[] image_types = { "jpg", "jpeg", "png" };
-        Gee.Collection<File> image_files;
-        FileUtils.enumerate_files (album_folder, image_types, false, out image_files);
-
-        // Choose an image based on priorities.
-        foreach (var file in image_files) {
-            string file_path = file.get_path ().down ();
-
-            if (generic_folder) {
-                if (file_path.contains (m.album)) {
-                    rv = file;
-                    break;
-                }
-
-                continue;
-            }
-
-
-            if (file_path.contains ("folder")) {
-                rv = file;
-                break;
-            }
-
-            if (file_path.contains ("cover")) {
-                rv = file;
-            } else if (rv != null) {
-                if (!rv.get_path ().contains ("cover") && file_path.contains ("album"))
-                    rv = file;
-                else if (!rv.get_path ().contains ("album") && file_path.contains ("front"))
-                    rv = file;
-                else if (!rv.get_path ().contains ("front") && file_path.contains (m.album))
-                    rv = file;
-            } else {
-                rv = file;
-            }
-        }
-
-        return rv;
     }
 }

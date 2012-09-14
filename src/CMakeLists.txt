@@ -29,6 +29,7 @@ vala_precompile(VALA_C
     Objects/ArtistInfo.vala
     Objects/TrackInfo.vala
     Objects/MediaArtCache.vala
+    Objects/CoverartCache.vala
     Objects/MediaKeyListener.vala
 
     Widgets/NavigationArrows.vala
