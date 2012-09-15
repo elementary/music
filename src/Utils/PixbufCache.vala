@@ -34,7 +34,7 @@
  * Pixbuf images are permanently stored at the directory passed to the constructor,
  * and use JPEG buffers by default, since they are much lighter in terms of
  * resource usage and rendering time, while offering acceptable quality. A
- * different image format can be specified at construct-time.
+ * different image format can be specified at construct-time too.
  *
  * When saving changes to the cache directory, a MD5-based name is used, which
  * is in turn computed from the image's key. This often works better than escaping
@@ -46,11 +46,11 @@
  * unnecessary disk access when possible.
  *
  * Other notes:
- * ## This class offers basic thread safety. It should be okay to call any of the
- *    public API methods from different threads.
- * ## This class should be kept as generic as possible. It currently does not
- *    depend on Noise's internal API (except for PixbufUtils). It should be easy
- *    to port it to another application.
+ * 1. This class offers basic thread safety. It should be okay to call any of the
+ * public API methods from different threads.
+ * 1. This class should be kept as generic as possible. It currently does not
+ * depend on Noise's internal API (except for PixbufUtils). It should be easy
+ * to port it to another application.
  */
 public class Noise.PixbufCache {
 
@@ -58,11 +58,10 @@ public class Noise.PixbufCache {
         owned get { return pixbuf_map.read_only_view; }
     }
 
-    protected Gee.HashMap<string, Gdk.Pixbuf> pixbuf_map;
-    protected File image_dir { get; private set; }
+    public string image_format { get; private set; default = "jpeg"; }
 
-    private string image_format = "jpeg";
-    private Mutex mutex;
+    private File image_dir;
+    private Gee.HashMap<string, Gdk.Pixbuf> pixbuf_map;
 
 
     /**
@@ -72,7 +71,7 @@ public class Noise.PixbufCache {
      * @param image_dir a {@link GLib.File} representing the cache directory.
      * @param image_format a string specifying the image format, or null to use
      *        the default format (JPEG). Valid image formats are those supported
-     *        by {@link Gdk.Pixbuf.save()}.
+     *        by {@link Gdk.Pixbuf.save}.
      */
     public PixbufCache (File image_dir, string? image_format = null) {
         pixbuf_map = new Gee.HashMap<string, Gdk.Pixbuf> ();
@@ -84,8 +83,7 @@ public class Noise.PixbufCache {
 
         try {
             image_dir.make_directory_with_parents (null);
-        }
-        catch (Error err) {
+        } catch (Error err) {
             if (!(err is IOError.EXISTS))
                 warning ("Could not create image cache directory: %s", err.message);
         }
@@ -97,7 +95,7 @@ public class Noise.PixbufCache {
      * table and/or saving it to a file. Its purpose is to allow client code to
      * make modifications to the passed image (e.g. adding a drop shadow, etc.)
      * Changes are *not* reflected on disk, unless apply_to_file is true. Otherwise
-     * the unmodified version (@param pix) is written to disk. This is useful when you
+     * the unmodified version (//pix//) is written to disk. This is useful when you
      * want to store a low-quality copy on primary memory while keeping the high-quality
      * version on disk.
      *
@@ -137,15 +135,12 @@ public class Noise.PixbufCache {
      * the associated file from the cache directory.
      */
     public Gdk.Pixbuf? decache_image (string key) {
-        mutex.lock ();
-
         Gdk.Pixbuf? val;
-        pixbuf_map.unset (key, out val);
 
-        // Delete image...
-        delete_file (get_cached_image_path (key));
-
-        mutex.unlock ();
+        lock (pixbuf_map) {
+            pixbuf_map.unset (key, out val);
+            delete_file (get_cached_image_path (key));
+        }
 
         return val;
     }
@@ -162,25 +157,20 @@ public class Noise.PixbufCache {
      */
     public void cache_image (string key, Gdk.Pixbuf image) {
         bool apply_to_disk = false;
-        Gdk.Pixbuf? modified_pix;
+        Gdk.Pixbuf? modified_pix = null;
 
-        if (filter_func != null) {
-            modified_pix = filter_func (key, image, out apply_to_disk);
+        modified_pix = (filter_func != null) ? filter_func (key, image, out apply_to_disk) : image;
 
-            if (modified_pix == null)
-                return;
-        } else {
-            modified_pix = image;
+        if (modified_pix != null) {
+            lock (pixbuf_map) {
+                pixbuf_map.set (key, modified_pix);
+
+                // Save image to disk
+                var to_save = apply_to_disk ? modified_pix : image;
+
+                save_pixbuf_to_file (key, to_save);
+            }
         }
-
-        mutex.lock ();
-        pixbuf_map.set (key, modified_pix);
-
-        // Save image to disk
-        var to_save = apply_to_disk ? modified_pix : image;
-
-        save_pixbuf_to_file (key, to_save);
-        mutex.unlock ();
     }
 
 

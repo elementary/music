@@ -33,8 +33,6 @@
  */
 public class Noise.CoverartCache : MediaArtCache {
 
-    public Gdk.Pixbuf DEFAULT_IMAGE;
-
     private static CoverartCache? _instance = null;
     public static CoverartCache instance {
         get {
@@ -44,7 +42,7 @@ public class Noise.CoverartCache : MediaArtCache {
         }
     }
 
-    private Mutex mutex;
+    private Gdk.Pixbuf default_image;
 
 
     public CoverartCache () {
@@ -53,7 +51,7 @@ public class Noise.CoverartCache : MediaArtCache {
         base ("album-art");
 
         bool dummy;
-        DEFAULT_IMAGE = filter_func (Icons.DEFAULT_ALBUM_ART.render (null), out dummy);
+        default_image = filter_func (Icons.DEFAULT_ALBUM_ART.render (null), out dummy);
     }
 
 
@@ -77,7 +75,7 @@ public class Noise.CoverartCache : MediaArtCache {
 
     public Gdk.Pixbuf get_cover (Media m) {
         var image = get_image (m, false);
-        return image ?? DEFAULT_IMAGE;
+        return image ?? default_image;
     }
 
 
@@ -106,7 +104,6 @@ public class Noise.CoverartCache : MediaArtCache {
 
 
     public void load_for_media (Gee.Collection<Media> media) {
-        mutex.lock ();
         debug ("READING CACHED COVERART");
 
         var used_keys_set = new Gee.HashSet<string> ();
@@ -125,7 +122,6 @@ public class Noise.CoverartCache : MediaArtCache {
         }
 
         debug ("FINISHED LOADING CACHED COVERART");
-        mutex.unlock ();
 
         queue_notify ();
     }
@@ -154,8 +150,6 @@ public class Noise.CoverartCache : MediaArtCache {
      * that follow certain name patterns, like "album.png", "folder.jpg", etc.
      */
     public void fetch_folder_images (Gee.Collection<Media> media) {
-        mutex.lock ();
-
         foreach (var m in media) {
             if (!has_image (m)) {
                 var art_file = lookup_folder_image_file (m);
@@ -163,8 +157,6 @@ public class Noise.CoverartCache : MediaArtCache {
                     cache_image_from_file (m, art_file);
             }
         }
-
-        mutex.unlock ();
 
         queue_notify ();
     }
