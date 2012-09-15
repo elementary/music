@@ -25,229 +25,164 @@
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  *
- * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
- *              Victor Eduardo <victoreduardm@gmail.com>
+ * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
+/**
+ * An Icon Object
+ *
+ * Icon objects point to icon files or generic icon names. The API provides convenience
+ * methods for rendering the icon to a {@link Gdk.Pixbuf} image or {@link Gtk.Image} widgets.
+ *
+ * When an icon points to an absolute path (e.g. /usr/share/noise/icons/default-cover-art.png),
+ * the image is loaded from that specific file and not from any icon theme. Otherwise, the icon
+ * is searched in the available icon themes. Please note though that it's not necessary to pass
+ * an absolute path in order to get backup icon (i.e. icons shipped along with the application)
+ * support, since the application's icon path is also queried when looking up for named icons,
+ * which means that shipping a backup icon file and installing it to a sub-directory named "hicolor"
+ * is enough for making sure that the icon will always be available/found. For instance:
+ *
+ * {{{
+ * // To provide a fallback, simply install a fallback icon. e.g. ${NOISE_ICON_DIR}/hicolor/starred.svg
+ * var icon = new Noise.Icon ("starred");
+ *
+ * // Supposing the icon was not found in any icon theme, the fallback icon file will be used instead
+ * icon.render (Gtk.IconSize.MENU);
+ * }}}
+ *
+ * This class is actually a wrapper around {@link GLib.Icon} that allows easy backup-icon management.
+ */
 public class Noise.Icon : Object {
 
-    public enum Category {
-        MIMETYPE,
-        ACTION,
-        STATUS,
-        APP,
-        OTHER
-    }
-
-    public enum FileType {
-        SVG,
-        PNG
-    }
-
-    private const string MIMETYPES_FOLDER = "mimetypes";
-    private const string ACTIONS_FOLDER = "actions";
-    private const string STATUS_FOLDER = "status";
-    private const string APPS_FOLDER = "apps";
-    private const string OTHER_FOLDER = "other";
-
-    private const string PNG_EXT = ".png";
-    private const string SVG_EXT = ".svg";
-
-
-    public string name { get; private set; }
-
-    public bool has_backup {
+    private static Gtk.IconTheme? _theme;
+    public static Gtk.IconTheme theme {
         get {
-            return (this.backup != null);
+            if (_theme == null) {
+                _theme = Gtk.IconTheme.get_default ();
+
+                // This only works if Build.ICON_DIR contains a sub-directory named "hicolor"
+                // containing all the icons (possibly organized into sub-folders as well)
+                _theme.append_search_path (Path.build_filename (Build.ICON_DIR));
+            }
+
+            return _theme;
         }
     }
-
-    public string backup_filename {
-        get {
-            if (backup == null)
-                return "";
-
-            return backup;
-        }
-    }
-
-    private string? backup;
-    private int? size;
-    private Category? type;
-    private FileType? file_type;
 
     /**
-     * @param name icon name
-     *
-     * The following parameters are only necessary if has_backup is true.
-     * @param size pixel-size of the backup icon
-     * @param type Icon category
-     * @param file_type Icon type (SVG or PNG)
-     * FIXME deprecate has_backup
-     * @param has_backup whether a backup exists or not. It will be deprecated in the future since it's redundant
+     * The name of the icon, as passed to the constructor. If the icon points to an absolute
+     * file name, this will return null.
      */
-    public Icon (string name, int? size = 16, Category? type = Category.ACTION, FileType? file_type = FileType.SVG, bool has_backup = false) {
+    public string? name { get; private set; }
 
-        this.name = name;
-        this.size = size;
-        this.type = type;
-        this.file_type = file_type;
+    /**
+     * The absolute file name of the icon, as passed to the constructor. If the icon points to
+     * an icon name instead, this will return null.
+     */
+    public string? file_name { get; private set; }
 
-        /**
-         * The following code creates a backup path for the icon.
-         * This ensures consistency in the way we store icons in the
-         * 'images' folder.
-         **/
-        if (has_backup && type != null && size != null) {
-            string size_folder, type_folder, actual_icon_name;
+    /**
+     * The {@link GLib.Icon} representing the icon.
+     */
+    public GLib.Icon gicon { get; private set; }
 
-            if (size != null)
-                size_folder = size.to_string() + "x" + size.to_string();
-            else
-                size_folder = "";
 
-            switch (type)
-            {
-                case Category.MIMETYPE:
-                    type_folder = MIMETYPES_FOLDER;
-                    break;
-                case Category.ACTION:
-                    type_folder = ACTIONS_FOLDER;
-                    break;
-                case Category.STATUS:
-                    type_folder = STATUS_FOLDER;
-                    break;
-                case Category.APP:
-                    type_folder = APPS_FOLDER;
-                    break;
-                default:
-                    type_folder = OTHER_FOLDER;
-                    break;
-            }
-
-            if (file_type != null) {
-                switch (file_type)
-                {
-                    case FileType.SVG:
-                        actual_icon_name = this.name + SVG_EXT;
-                        break;
-                    case FileType.PNG:
-                        actual_icon_name = this.name + PNG_EXT;
-                        break;
-                    default:
-                        actual_icon_name = this.name + SVG_EXT;
-                        break;
-                }
-            }
-            else {
-                actual_icon_name = name + SVG_EXT;
-            }
-
-            var icon_path = Path.build_path ("/", Build.ICON_DIR, size_folder, type_folder);
-            Gtk.IconTheme.get_default().append_search_path (icon_path);
-            this.backup = Path.build_filename ("/", Build.ICON_DIR, size_folder, type_folder, actual_icon_name);
-        }
-        else {
-            this.backup = null;
+    /**
+     * Creates a new icon object.
+     *
+     * @param file_name A filename pointing to the icon file. If it is an absolute file name,
+     * the icon will be loaded from the file it points to; otherwise, it is assumed that the
+     * string only specifies the icon name (without filename extension), and it will be loaded from
+     * the available icon themes.
+     */
+    public Icon (string file_name) {
+        if (Path.is_absolute (file_name)) {
+            this.file_name = file_name;
+            gicon = new FileIcon (File.new_for_path (this.file_name));
+        } else {
+            this.name = file_name;
+            gicon = new ThemedIcon.with_default_fallbacks (this.name);
         }
     }
 
-    public GLib.Icon get_gicon () {
-        return new ThemedIcon.with_default_fallbacks (this.name);
-    }
 
     public Gtk.IconInfo? get_icon_info (int size) {
-        var icon_theme = Gtk.IconTheme.get_default ();
-        var lookup_flags = Gtk.IconLookupFlags.GENERIC_FALLBACK;
-        return icon_theme.lookup_by_gicon (get_gicon(), size, lookup_flags);
+        return theme.lookup_by_gicon (gicon, size, Gtk.IconLookupFlags.GENERIC_FALLBACK);
     }
 
-    public Gdk.Pixbuf? render (Gtk.IconSize? size, Gtk.StyleContext? context = null, int px_size = 0) {
-        Gdk.Pixbuf? rv = null;
-
-        // Don't load image as a regular icon if it's a PNG and belongs
-        // to the project's folder.
-        if (file_type == FileType.PNG && has_backup && size == null) {
-            try {
-                rv = new Gdk.Pixbuf.from_file (backup);
-            } catch (Error err) {
-                warning ("Could not load PNG image: %s\n", err.message);
-            }
-
-            return rv;
-        }
-
-        int pixel_size = get_pixel_size (size, px_size);
-
-        // Try to load icon from theme
-        if (Gtk.IconTheme.get_default().has_icon(this.name)) {
-            try {
-                var icon_info = get_icon_info (pixel_size);
-
-                if (icon_info != null) {
-                    if (context != null)
-                        rv = icon_info.load_symbolic_for_context (context);
-                    else
-                        rv = icon_info.load_icon ();
-                }
-            } catch (Error err) {
-                message ("%s, falling back to default.", err.message);
-            }
-        }
-
-        // If the above failed, use available backup
-        if (rv == null && has_backup) {
-            try {
-                message ("Loading backup icon for %s", this.name);
-                rv = new Gdk.Pixbuf.from_file_at_size (this.backup, pixel_size, pixel_size);
-            } catch (Error err) {
-                warning ("Couldn't load backup icon: %s", err.message);
-            }
-        }
-
-        return rv;
-    }
 
     /**
-     * Use this method for loading symbolic icons. They will follow every state.
-     **/
-    public Gtk.Image render_image (Gtk.IconSize? size, Gtk.StyleContext? ctx = null, int px_size = 0) {
-        var rv = new Gtk.Image ();
-        int pixel_size = get_pixel_size (size, px_size);
-        rv.set_pixel_size (pixel_size);
+     * Creates a new {@link Gdk.Pixbuf} from the icon at the specified icon size.
+     *
+     * @param size The pixbuf's icon size.
+     * @param style_context The style context used to render the icon, or null to use none.
+     * @return a newly-created Gdk.Pixbuf; or null if it wasn't found.
+     * @see Noise.Icon.render_at_size
+     */
+    public Gdk.Pixbuf? render (Gtk.IconSize size, Gtk.StyleContext? style_context = null) {
+        int width, height;
+        Gtk.icon_size_lookup (size, out width, out height);
+        return render_at_size (int.max (width, height), style_context);
+    }
 
-        // The passed icon size won't be used since we already set the pixel size above
 
-        if (Gtk.IconTheme.get_default().has_icon (this.name) && size != null) {
-            // Try to load icon from theme. 
-            rv.set_from_gicon (get_gicon (), Gtk.IconSize.MENU);
-        } else if (has_backup) {
-            // If the icon theme doesn't contain the icon, load backup
-            message ("Loading %s from backup", this.name);
-            rv.set_from_file (this.backup);
-        } else {
-            // And if there was no backup, use the default method
-            message ("Loading %s using default method", this.name);
-            rv.set_from_pixbuf (this.render (null, ctx, pixel_size));
+    /**
+     * Creates a new {@link Gdk.Pixbuf} from the icon at the specified pixel size.
+     *
+     * @param pixel_size The pixbuf's pixel size.
+     * @param style_context The style context used to render the icon, or null to use none.
+     * @return a newly-created Gdk.Pixbuf; or null if it wasn't found.
+     * @see Noise.Icon.render
+     */
+    public Gdk.Pixbuf? render_at_size (int pixel_size, Gtk.StyleContext? style_context = null) {
+        Gdk.Pixbuf? rv = null;
+
+        try {
+            var icon_info = get_icon_info (pixel_size);
+
+            if (icon_info != null) {
+                if (style_context != null)
+                    rv = icon_info.load_symbolic_for_context (style_context);
+                else
+                    rv = icon_info.load_icon ();
+            }
+
+            // If we failed at loading the icon, try to load the default "missing-image"
+            if (rv == null) {
+                warning ("Icon not found: %s", file_name ?? name);
+                rv = theme.load_icon (Gtk.Stock.MISSING_IMAGE, pixel_size,
+                                      Gtk.IconLookupFlags.GENERIC_FALLBACK);
+            }
+        } catch (Error err) {
+            warning ("Could not load icon [%s]: %s", file_name ?? name, err.message);
         }
 
         return rv;
     }
 
 
-    public int get_pixel_size (Gtk.IconSize? size, int px_size = 0) {
-        int rv = 0;
+    /**
+     * Creates a new {@link Gtk.Image} displaying the icon at the specified size.
+     *
+     * @param size The image's icon size.
+     * @return a newly-created Gtk.Image.
+     * @see Noise.Icon.render_image_at_size
+     */
+    public Gtk.Image render_image (Gtk.IconSize size) {
+        return new Gtk.Image.from_gicon (gicon, size);
+    }
 
-        // If a null size was passed, use original size
-        if (size != null) {
-            int dummy_width;
-            Gtk.icon_size_lookup (size, out dummy_width, out rv);
-        } else if (px_size > 0) {
-            rv = px_size;
-        } else if (this.size != null) {
-            rv = this.size;
-        }
 
+    /**
+     * Creates a new {@link Gtk.Image} displaying the icon at the specified pixel size.
+     *
+     * @param pixel_size The image's pixel size.
+     * @return a newly-created Gtk.Image.
+     * @see Noise.Icon.render_image
+     */
+    public Gtk.Image render_image_at_size (int pixel_size) {
+        var rv = render_image (Gtk.IconSize.MENU);
+        rv.set_pixel_size (pixel_size);
         return rv;
     }
 }
