@@ -28,7 +28,8 @@
 
 public class Noise.PreferencesWindow : Gtk.Window {
 
-    public const int WINDOW_WIDTH = 420;
+    public const int MIN_WIDTH = 420;
+    public const int MIN_HEIGHT = 300;
 
     /**
      * A section in the preferences dialog. Each section has a page in the window's
@@ -138,8 +139,7 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
 
     private void build_ui (Gtk.Window parent_window) {
-        set_size_request (WINDOW_WIDTH, -1);
-        set_default_size (WINDOW_WIDTH, -1);
+        set_size_request (MIN_WIDTH, MIN_HEIGHT);
 
         // Window properties
         title = _("Preferences");
@@ -163,11 +163,7 @@ public class Noise.PreferencesWindow : Gtk.Window {
         main_grid.attach (main_static_notebook, 0, 0, 1, 1);
         main_grid.attach (save_button, 0, 1, 1, 1);
 
-        // Use a fixedbin widget so that we're always in control of the window size (at least its width)
-        var size_wrapper = new FixedBin (WINDOW_WIDTH, -1, WINDOW_WIDTH, -1);
-        size_wrapper.set_widget (main_grid);
-
-        add (size_wrapper);
+        add (main_grid);
     }
 
 
