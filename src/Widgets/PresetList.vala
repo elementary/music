@@ -1,7 +1,7 @@
 /*-
  * Copyright (c) 2011-2012	   Scott Ringwelski <sgringwe@mtu.edu>
  *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * Originally Written by Scott Ringwelski and Victor Eduardo for
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or
@@ -44,6 +44,8 @@ public class Noise.PresetList : ComboBox {
 	private ListStore store;
 
 	private const string SEPARATOR_NAME = "<separator_item_unique_name>";
+
+    // We cannot make these constants due to issues with N_()
 	private static string AUTOMATIC_MODE = _("Automatic");
 	private static string DELETE_PRESET = _("Delete Current");
 

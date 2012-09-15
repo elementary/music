@@ -46,22 +46,19 @@ public class Noise.PopupListView : Window {
 	public PopupListView (GridView grid_view) {
 #if USE_GRANITE_DECORATED_WINDOW
         base ("", "album-list-view", "album-list-view");
-#endif
 
-		this.view_wrapper = grid_view.parent_view_wrapper;
-		this.lm = view_wrapper.lm;
+        // Don't destroy the window
+		this.delete_event.connect (hide_on_delete);
 
-		set_transient_for (lm.lw);
-		destroy_with_parent = true;
-		set_skip_taskbar_hint (true);
-		set_resizable(false);
-
-#if !USE_GRANITE_DECORATED_WINDOW
+        // Hide titlebar (we want to set a title, but not showing it!)
+        this.show_title = false;
+#else
 		window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 
 		// window stuff
-		set_decorated(false);
-		set_has_resize_grip(false);
+		decorated = false;
+		has_resize_grip = false;
+		resizable = false;
 
 		// close button
 		var close = new Gtk.Button ();
@@ -72,19 +69,25 @@ public class Noise.PopupListView : Window {
 		close.halign = Gtk.Align.START;
 		close.set_relief(Gtk.ReliefStyle.NONE);
 		close.clicked.connect( () =>  { this.hide(); });
-#else
-        // Don't destroy the window
-		this.delete_event.connect (hide_on_delete);
 
-        // Hide titlebar (we want to set a title, but not showing it!)
-        this.show_title = false;
+		/* Make window draggable */
+		UI.make_window_draggable (this);
 #endif
+
+		this.view_wrapper = grid_view.parent_view_wrapper;
+		this.lm = view_wrapper.lm;
+
+		transient_for = lm.lw;
+		destroy_with_parent = true;
+		skip_taskbar_hint = true;
+
+
 		// album artist/album labels
 		album_label = new Label ("");
 		artist_label = new Label ("");
 
 		// Apply special style: Level-2 header
-		UI.apply_style_to_label (album_label, UI.TextStyle.H2);
+		Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, album_label);
 
 		album_label.ellipsize = Pango.EllipsizeMode.END;
 		artist_label.ellipsize = Pango.EllipsizeMode.END;
@@ -124,11 +127,6 @@ public class Noise.PopupListView : Window {
 		add(vbox);
 
 		rating.rating_changed.connect(rating_changed);
-
-#if !USE_GRANITE_DECORATED_WINDOW
-		/* Make window draggable */
-		UI.make_window_draggable (this);
-#endif
 	}
 
 	/**

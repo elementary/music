@@ -157,16 +157,7 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
     private void set_theming () {
         // Change background color
         const string STYLESHEET = "*:selected{background-color:@transparent;}";
-
-        var style_provider = new Gtk.CssProvider();
-
-        try  {
-            style_provider.load_from_data (STYLESHEET, -1);
-        } catch (Error e) {
-            warning ("Couldn't load style provider: %s", e.message);
-        }
-
-        icon_view.get_style_context ().add_provider (style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        Granite.Widgets.Utils.set_theming (icon_view, STYLESHEET, null, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
 
     private void on_item_activated (Gtk.TreePath? path) {
