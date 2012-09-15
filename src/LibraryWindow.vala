@@ -89,7 +89,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         App.player.player.end_of_stream.connect (end_of_stream);
         App.player.player.current_position_update.connect (current_position_update);
-        App.player.media_played.connect (media_played);
+        App.player.media_played.connect_after (media_played);
         App.player.playback_stopped.connect (playback_stopped);
 
 
@@ -578,8 +578,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         topDisplay.set_scale_sensitivity(media_active);
 
-        bool show_info_panel = Settings.SavedState.instance.more_visible && media_active && folder_set;
+        bool show_info_panel = Settings.SavedState.instance.more_visible && info_panel.can_show_up;
         info_panel.set_visible (show_info_panel);
+
+        statusbar.info_panel_item.set_sensitive (info_panel.can_show_up);
 
         statusbar.set_sensitive (folder_set && have_media);
 

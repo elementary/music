@@ -26,7 +26,8 @@ using Gee;
 public class Noise.InfoPanel : Gtk.EventBox {
     public signal void to_update();
 
-    public unowned Media? current_media { get; private set; }
+    public unowned Media current_media { get { return App.player.media_info.media; } }
+    public bool can_show_up { get { return App.player.media_active; } }
 
     private LibraryManager lm;
     private LibraryWindow lw;
@@ -49,9 +50,9 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
         buildUI();
 
-        App.player.media_played.connect_after (on_media_played);
+        App.player.media_played.connect_after (on_media_updated);
         lm.media_updated.connect_after (on_media_updated);
-        CoverartCache.instance.changed.connect_after (on_media_updated);
+        CoverartCache.instance.changed.connect_after (update_cover_art);
     }
     
     public int add_view (Gtk.Widget view) {
@@ -121,18 +122,6 @@ public class Noise.InfoPanel : Gtk.EventBox {
         rating.set_visible (!hide_rating);
 
         to_update ();
-
-        // Auto-hide if there's no active media
-        no_show_all = current_media == null;
-        if (no_show_all)
-            hide ();
-        else
-            show_all ();
-    }
-
-    private void on_media_played () {
-        current_media = App.player.media_info.media;
-        on_media_updated ();
     }
 
     private void on_media_updated () {
