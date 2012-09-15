@@ -22,12 +22,12 @@
 
 public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
-    private static const int MARGIN = 78;
-    private static const int MAX_WIDTH = 850;
+    private const int MARGIN = 78;
+    private const int MAX_WIDTH = 850;
 
-    const string PRIMARY_TEXT_MARKUP = "<span weight=\"bold\" size=\"larger\">%s</span>";
+    private const string PRIMARY_TEXT_MARKUP = "<span weight=\"bold\" size=\"larger\">%s</span>";
 
-    protected int image_size {
+    private int image_size {
         get {
             return image.pixel_size;
         }
@@ -101,13 +101,14 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         }
     }
 
+    private Gtk.MessageType _message_type = Gtk.MessageType.QUESTION;
+
     /**
      * Warning level of the message.
      * Besides defining what icon to use, it also defines whether the primary and secondary
      * text are selectable or not.
      * The text is selectable for the WARNING, ERROR and QUESTION types.
      */
-    private Gtk.MessageType _message_type = Gtk.MessageType.QUESTION;
     public Gtk.MessageType message_type {
         get {
             return _message_type;
@@ -125,6 +126,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
     }
 
     private Gtk.Action[] ? _actions = null;
+
     /**
      * All these actions are mapped to buttons
      */
@@ -163,13 +165,13 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         set { set_widget_visible (action_button_box, value); }
     }
 
-    protected Gtk.Grid content_grid;
-    protected Gtk.Image image;
-    protected Gtk.Spinner spinner;
+    private Gtk.Grid content_grid;
+    private Gtk.Image image;
+    private Gtk.Spinner spinner;
     private Gtk.EventBox image_box;
-    protected Gtk.Label primary_text_label;
-    protected Gtk.Label secondary_text_label;
-    protected Gtk.ButtonBox action_button_box;
+    private Gtk.Label primary_text_label;
+    private Gtk.Label secondary_text_label;
+    private Gtk.ButtonBox action_button_box;
 
     public EmbeddedAlert () {
         var style = this.get_style_context ();
