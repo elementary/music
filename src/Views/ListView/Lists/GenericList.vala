@@ -45,6 +45,8 @@ public abstract class Noise.GenericList : FastView {
 		// Set sort data from saved session
 		set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
 
+        enable_search = false; // we don't want the built-in search
+
 		set_headers_clickable(true);
 		set_headers_visible (tvs.column_headers_visible);
 		set_fixed_height_mode(true);
