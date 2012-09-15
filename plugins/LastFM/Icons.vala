@@ -38,8 +38,8 @@ namespace LastFM.Icons {
 	 * Loads icon information and renders [preloaded] pixbufs
 	 **/
 	public void init () {
-		LASTFM_LOVE = new Noise.Icon ("lastfm-love", 16, Noise.Icon.Category.ACTION, null, true);
-		LASTFM_BAN = new Noise.Icon ("lastfm-ban", 16, Noise.Icon.Category.ACTION, null, true);
+		LASTFM_LOVE = new Noise.Icon ("love");
+		LASTFM_BAN = new Noise.Icon ("ban");
 	}
 }
 

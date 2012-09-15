@@ -51,7 +51,8 @@ public class Noise.CoverartCache : MediaArtCache {
         base ("album-art");
 
         bool dummy;
-        default_image = filter_func (Icons.DEFAULT_ALBUM_ART.render (null), out dummy);
+        var default_pix = Icons.DEFAULT_ALBUM_ART.render_at_size (Icons.DEFAULT_ALBUM_ART_SIZE);
+        default_image = filter_func (default_pix, out dummy);
     }
 
 

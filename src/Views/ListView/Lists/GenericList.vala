@@ -57,8 +57,8 @@ public abstract class Noise.GenericList : FastView {
 #endif
 		set_reorderable(false);
 
-		playing_icon = Icons.NOW_PLAYING_SYMBOLIC.get_gicon ();
-		completed_icon = Icons.PROCESS_COMPLETED.get_gicon ();
+		playing_icon = Icons.NOW_PLAYING_SYMBOLIC.gicon;
+		completed_icon = Icons.PROCESS_COMPLETED.gicon;
 		
 		// drag source
 		TargetEntry te = { "text/uri-list", TargetFlags.SAME_APP, 0};

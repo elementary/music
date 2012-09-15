@@ -154,7 +154,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         this.set_title (App.instance.get_name ());
-        this.set_icon (Icons.NOISE.render (null, null, 48));
+        this.set_icon (Icons.NOISE.render_at_size (64));
 
         // set up drag dest stuff
         /*

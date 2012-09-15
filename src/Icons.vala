@@ -41,6 +41,7 @@ namespace Noise.Icons {
      * Size of the cover art used in the album view
      **/
     public const int ALBUM_VIEW_IMAGE_SIZE = 168;
+    public const int DEFAULT_ALBUM_ART_SIZE = 138;
 
     /**
      * RENDERED ICONS.
@@ -123,30 +124,30 @@ namespace Noise.Icons {
         is_initted = true;
 
         // 128 x 128
-        DEFAULT_ALBUM_ART = new Icon ("albumart", 138, Icon.Category.MIMETYPE, null, true);
-        MUSIC_FOLDER = new Icon ("folder-music", 128, Icon.Category.MIMETYPE, null, true);
+        DEFAULT_ALBUM_ART = new Icon ("albumart");
+        MUSIC_FOLDER = new Icon ("folder-music");
 
         // 22 x 22
         HISTORY = new Icon ("document-open-recent");
 
         // 16 x 16
-        NOISE = new Icon ("noise", 16, Icon.Category.APP, null, true);
-        MUSIC = new Icon ("library-music", 16, Icon.Category.MIMETYPE, null, true);
-        AUDIO_CD = new Icon ("media-cdrom-audio", 16, Icon.Category.MIMETYPE, null, true);
-        AUDIO_DEVICE = new Icon ("multimedia-player", 16, Icon.Category.MIMETYPE, null, true);
-        NETWORK_DEVICE = new Icon ("monitor", 16, Icon.Category.MIMETYPE, null, true);
-        PLAYLIST = new Icon ("playlist", 16, Icon.Category.MIMETYPE, null, true);
-        SMART_PLAYLIST = new Icon ("playlist-automatic", 16, Icon.Category.MIMETYPE, null, true);
-        STARRED = new Icon ("starred", 16, Icon.Category.STATUS, null, true);
-        NOT_STARRED = new Icon ("non-starred", 16, Icon.Category.STATUS, null, true);
+        NOISE = new Icon ("noise");
+        MUSIC = new Icon ("library-music");
+        AUDIO_CD = new Icon ("media-cdrom-audio");
+        AUDIO_DEVICE = new Icon ("multimedia-player");
+        NETWORK_DEVICE = new Icon ("monitor");
+        PLAYLIST = new Icon ("playlist");
+        SMART_PLAYLIST = new Icon ("playlist-automatic");
+        STARRED = new Icon ("starred");
+        NOT_STARRED = new Icon ("non-starred");
 
         // SYMBOLIC ICONS (16 x 16)
-        PANE_SHOW_SYMBOLIC = new Icon ("pane-show-symbolic", 16, Icon.Category.ACTION, null, true);
-        PANE_HIDE_SYMBOLIC = new Icon ("pane-hide-symbolic", 16, Icon.Category.ACTION, null, true);
-        EQ_SYMBOLIC = new Icon ("media-eq-symbolic", 16, Icon.Category.ACTION, null, true);
+        PANE_SHOW_SYMBOLIC = new Icon ("pane-show-symbolic");
+        PANE_HIDE_SYMBOLIC = new Icon ("pane-hide-symbolic");
+        EQ_SYMBOLIC = new Icon ("media-eq-symbolic");
 
-        REPEAT_OFF = new Icon ("media-playlist-no-repeat-symbolic", 16, Icon.Category.STATUS, null, true);
-        SHUFFLE_OFF = new Icon ("media-playlist-no-shuffle-symbolic", 16, Icon.Category.STATUS, null, true);
+        REPEAT_OFF = new Icon ("media-playlist-no-repeat-symbolic");
+        SHUFFLE_OFF = new Icon ("media-playlist-no-shuffle-symbolic");
 
         NOW_PLAYING_SYMBOLIC = new Icon ("audio-volume-high-symbolic");
 
@@ -167,8 +168,8 @@ namespace Noise.Icons {
         // Render Pixbufs ...
 
         // 168x168
-        var shadow_icon = new Icon ("albumart-shadow", 168, Icon.Category.OTHER, Icon.FileType.PNG, true);
-        DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render (null);
+        var shadow_icon = new Icon ("albumart-shadow");
+        DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render_at_size (168);
     }
 
     public bool get_is_initted () {
