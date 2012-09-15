@@ -28,10 +28,7 @@ namespace Noise.PixbufUtils {
      * @param stretch whether to strech the image inside the square or keep the original dimensions
      * @return original pixbuf + drop shadow
      **/
-    public Gdk.Pixbuf? get_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size, bool stretch = true)
-    {
-        return_val_if_fail (pixbuf != null, null);
-
+    public Gdk.Pixbuf? get_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size, bool stretch = true) {
         const int SHADOW_SIZE = 15;
 
         int S_WIDTH = (stretch)? surface_size: pixbuf.width;
@@ -68,11 +65,10 @@ namespace Noise.PixbufUtils {
     /**
      * @param surface_size size of the new pixbuf. Set a value of 0 to use the pixbuf's default size.
      **/
-    public Gdk.Pixbuf? render_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size = Icons.ALBUM_VIEW_IMAGE_SIZE,
+    public Gdk.Pixbuf? render_pixbuf_shadow (Gdk.Pixbuf pixbuf,
+                                             int surface_size = Icons.ALBUM_VIEW_IMAGE_SIZE,
                                              int shadow_size = 5, double alpha = 0.75)
     {
-        return_val_if_fail (pixbuf != null, null);
-
         int S_WIDTH = (surface_size > 0)? surface_size : pixbuf.width;
         int S_HEIGHT = (surface_size > 0)? surface_size : pixbuf.height;
 
@@ -87,8 +83,11 @@ namespace Noise.PixbufUtils {
 
         buffer_surface.fast_blur (2, 3);
 
-        Gdk.cairo_set_source_pixbuf (buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT,
-                                     Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
+        Gdk.cairo_set_source_pixbuf (buffer_surface.context,
+                                     pixbuf.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR),
+                                     shadow_size,
+                                     shadow_size);
+
         buffer_surface.context.paint();
 
         return buffer_surface.load_to_pixbuf();

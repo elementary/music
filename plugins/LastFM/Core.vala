@@ -29,10 +29,10 @@ using Gee;
 
 namespace LastFM {
 
-    /** NOTICE: These API keys and secrets are unique to Noise and Noise
-     * only. To get your own, FREE key go to http://www.last.fm/api/account */
-    public static const string api = "8659cfc191c2cde0b33bb4970fcbbd49";
-    public static const string secret = "f61323da870d6ed9322dc51c875357c6";
+    // NOTICE: These API keys and secrets are unique to Noise and Noise
+    // only. To get your own, FREE key go to http://www.last.fm/api/account
+    public const string API = "8659cfc191c2cde0b33bb4970fcbbd49";
+    public const string SECRET = "f61323da870d6ed9322dc51c875357c6";
 
     public class Core : Object {
         Noise.LibraryManager lm;
@@ -63,8 +63,8 @@ namespace LastFM {
             _artists = new HashMap<string, LastFM.ArtistInfo>();
             _albums = new HashMap<string, LastFM.AlbumInfo>();
             _tracks = new HashMap<string, LastFM.TrackInfo>();
-            
-            _artists_lock.lock();
+
+           _artists_lock.lock();
             foreach(Noise.ArtistInfo a in lm.dbm.load_artists()) {
                 _artists.set(a.name, (LastFM.ArtistInfo)a);
             }
@@ -81,7 +81,7 @@ namespace LastFM {
                 _tracks.set(t.name + " by " + t.artist, (LastFM.TrackInfo)t);
             }
             _tracks_lock.unlock();
-            
+
             similarMedias.similar_retrieved.connect(similar_retrieved_signal);
         }
         
@@ -196,27 +196,27 @@ namespace LastFM {
         }
         
         public string generate_getsession_signature(string token) {
-            return generate_md5("api_key" + api + "methodauth.getSessiontoken" + token + secret);
+            return generate_md5("api_key" + API + "methodauth.getSessiontoken" + token + SECRET);
         }
         
         public string generate_tracklove_signature(string artist, string track) {
-            return generate_md5("api_key" + api + "artist" + artist + "methodtrack.lovesk" + lastfm_settings.session_key + "track" + track + secret);
+            return generate_md5("api_key" + API + "artist" + artist + "methodtrack.lovesk" + lastfm_settings.session_key + "track" + track + SECRET);
         }
         
         public string generate_trackban_signature(string artist, string track) {
-            return generate_md5("api_key" + api + "artist" + artist + "methodtrack.bansk" + lastfm_settings.session_key + "track" + track + secret);
+            return generate_md5("api_key" + API + "artist" + artist + "methodtrack.bansk" + lastfm_settings.session_key + "track" + track + SECRET);
         }
         
         public string generate_trackscrobble_signature(string artist, string track, int timestamp) {
-            return generate_md5("api_key" + api + "artist" + artist + "methodtrack.scrobblesk" + lastfm_settings.session_key + "timestamp" + timestamp.to_string() + "track" + track + secret);
+            return generate_md5("api_key" + API + "artist" + artist + "methodtrack.scrobblesk" + lastfm_settings.session_key + "timestamp" + timestamp.to_string() + "track" + track + SECRET);
         }
         
         public string generate_trackupdatenowplaying_signature(string artist, string track) {
-            return generate_md5("api_key" + api + "artist" + artist + "methodtrack.updateNowPlayingsk" + lastfm_settings.session_key + "track" + track + secret);
+            return generate_md5("api_key" + API + "artist" + artist + "methodtrack.updateNowPlayingsk" + lastfm_settings.session_key + "track" + track + SECRET);
         }
         
         public string? getToken() {
-            var url = "http://ws.audioscrobbler.com/2.0/?method=auth.gettoken&api_key=" + api;
+            var url = "http://ws.audioscrobbler.com/2.0/?method=auth.gettoken&api_key=" + API;
             
             Xml.Doc* doc = Parser.parse_file (url);
             if(doc == null) return null;
@@ -235,7 +235,7 @@ namespace LastFM {
         
         public string? getSessionKey(string token) {
             var sig = generate_getsession_signature(token);
-            var url = "http://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=" + api + "&api_sig=" + sig + "&token=" + token;
+            var url = "http://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=" + API + "&api_sig=" + sig + "&token=" + token;
             
             message ("url: %s\n", url);
             
@@ -264,13 +264,13 @@ namespace LastFM {
                 return false;
             }
             
-            var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_tracklove_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.love&sk=" + lastfm_settings.session_key + "&track=" + fix_for_url(title);
+            var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + API + "&api_sig=" + generate_tracklove_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.love&sk=" + lastfm_settings.session_key + "&track=" + fix_for_url(title);
             
             Soup.SessionSync session = new Soup.SessionSync();
             Soup.Message message = new Soup.Message ("POST", uri);
             
             var headers = new Soup.MessageHeaders(MessageHeadersType.REQUEST);
-            headers.append("api_key", api);
+            headers.append("api_key", API);
             headers.append("api_sig", generate_tracklove_signature(artist, title));
             headers.append("artist", artist);
             headers.append("method", "track.love");
@@ -294,13 +294,13 @@ namespace LastFM {
                 return false;
             }
             
-            var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_trackban_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.ban&sk=" + lastfm_settings.session_key + "&track=" + fix_for_url(title);
+            var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + API + "&api_sig=" + generate_trackban_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.ban&sk=" + lastfm_settings.session_key + "&track=" + fix_for_url(title);
             
             Soup.SessionSync session = new Soup.SessionSync();
             Soup.Message message = new Soup.Message ("POST", uri);
             
             var headers = new Soup.MessageHeaders(MessageHeadersType.REQUEST);
-            headers.append("api_key", api);
+            headers.append("api_key", API);
             headers.append("api_sig", generate_trackban_signature(artist, title));
             headers.append("artist", artist);
             headers.append("method", "track.ban");
@@ -405,11 +405,12 @@ namespace LastFM {
                 if (coverart_cache.has_image (current_media))
                     return null;
 
-                if (album.url_image != null && album.url_image.url != null) {
-                    message ("Caching last.fm image from URL: %s", album.url_image.url);
+                if (album.image_uri != "") {
+                    message ("Caching last.fm image from URL: %s", album.image_uri);
 
                     fetch_info_guard.lock ();
-                    coverart_cache.cache_image_from_file (current_media, File.new_for_uri (album.url_image.url));
+                    var image_file = File.new_for_uri (album.image_uri);
+                    coverart_cache.cache_image_from_file (current_media, image_file);
                     fetch_info_guard.unlock ();
                 }
 
@@ -484,13 +485,13 @@ namespace LastFM {
             
             var artist = Noise.App.player.media_info.media.artist;
             var title = Noise.App.player.media_info.media.title;
-            var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_trackupdatenowplaying_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.updateNowPlaying&sk=" + lastfm_settings.session_key + "&track=" + fix_for_url(title);
+            var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + API + "&api_sig=" + generate_trackupdatenowplaying_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.updateNowPlaying&sk=" + lastfm_settings.session_key + "&track=" + fix_for_url(title);
             
             Soup.SessionSync session = new Soup.SessionSync();
             Soup.Message message = new Soup.Message ("POST", uri);
             
             var headers = new Soup.MessageHeaders(MessageHeadersType.REQUEST);
-            headers.append("api_key", api);
+            headers.append("api_key", API);
             headers.append("api_sig", generate_trackupdatenowplaying_signature(artist, title));
             headers.append("artist", artist);
             headers.append("method", "track.updateNowPlaying");
@@ -532,13 +533,13 @@ namespace LastFM {
             var timestamp = (int)time_t();
             var artist = current_media.artist;
             var title = current_media.title;
-            var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_trackscrobble_signature(artist, title, timestamp) + "&artist=" + fix_for_url(artist) + "&method=track.scrobble&sk=" + lastfm_settings.session_key + "&timestamp=" + timestamp.to_string() + "&track=" + fix_for_url(title);
+            var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + API + "&api_sig=" + generate_trackscrobble_signature(artist, title, timestamp) + "&artist=" + fix_for_url(artist) + "&method=track.scrobble&sk=" + lastfm_settings.session_key + "&timestamp=" + timestamp.to_string() + "&track=" + fix_for_url(title);
             
             Soup.SessionSync session = new Soup.SessionSync();
             Soup.Message message = new Soup.Message ("POST", uri);
             
             var headers = new Soup.MessageHeaders(MessageHeadersType.REQUEST);
-            headers.append("api_key", api);
+            headers.append("api_key", API);
             headers.append("api_sig", generate_trackscrobble_signature(artist, title, timestamp));
             headers.append("artist", artist);
             headers.append("method", "track.scrobble");

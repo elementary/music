@@ -43,7 +43,7 @@ public class LastFM.TrackInfo : Noise.TrackInfo {
 		string track_fixed = LastFM.Core.fix_for_url(track);
 		string artist_fixed = LastFM.Core.fix_for_url(artist);
 		
-		string url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=" + api + "&artist=" + artist_fixed + "&track=" + track_fixed;
+		string url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=" + API + "&artist=" + artist_fixed + "&track=" + track_fixed;
 		
 		/*Soup.SessionSync session = new Soup.SessionSync();
 		Soup.Message message = new Soup.Message ("GET", url);

@@ -30,8 +30,6 @@ public class LastFM.ArtistInfo : Noise.ArtistInfo {
     public string url;// last fm url
     public int streamable; // 1 = true
     
-    public LastFM.Image url_image = new LastFM.Image();
-    
     public Gee.ArrayList<LastFM.Tag> tags = new Gee.ArrayList<LastFM.Tag>();
     public Gee.ArrayList<LastFM.ArtistInfo> similarArtists = new Gee.ArrayList<LastFM.ArtistInfo>();
     
@@ -48,7 +46,7 @@ public class LastFM.ArtistInfo : Noise.ArtistInfo {
     public ArtistInfo.with_artist(string artist) {
         var artist_fixed = LastFM.Core.fix_for_url(artist);
         
-        var url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=" + api + "&artist=" + artist_fixed;
+        var url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=" + API + "&artist=" + artist_fixed;
         
         /*Soup.SessionSync session = new Soup.SessionSync();
         Soup.Message message = new Soup.Message ("GET", url);
@@ -120,12 +118,8 @@ public class LastFM.ArtistInfo : Noise.ArtistInfo {
                 else if(node_name == "streamable")
                     this.streamable = int.parse(node_content);
                 else if(node_name == "image") {
-                    if(iter->get_prop("size") == "extralarge") {
-                        url_image = new LastFM.Image.with_url(node_content, true);
-                        url_image.set_size(200, 300);
-                        if (url_image.image != null)
-                            image_uri = this.get_image_uri_from_pixbuf(url_image.image);
-                    }
+                    if(iter->get_prop("size") == "extralarge")
+                        image_uri = node_content;
                 }
             }
             else if(parent == "artiststats") {

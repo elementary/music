@@ -36,19 +36,7 @@ public class Noise.AlbumInfo : Object {
     public AlbumInfo () {
         
     }
-    
-    public string get_image_uri_from_pixbuf (Gdk.Pixbuf image) {
-        string path = (GLib.Path.build_path ("/", Environment.get_user_cache_dir (), "noise", "album-art") +"/"+ artist+"-"+ name+".png");
-        try {
-            image.save (path, "png");
-            return path;
-        }
-        catch (GLib.Error err) {
-            warning ("Could not generate image: %s", err.message);
-        }
-        return "";
-    }
-    
+
     public string get_releasedate_as_string () {
         return (("%d/%d/%d").printf ((int)releasedate.get_day (), (int)releasedate.get_month (), (int)releasedate.get_year ()));
     }

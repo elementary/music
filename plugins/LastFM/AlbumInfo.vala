@@ -33,8 +33,6 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
     
     private LastFM.Tag tagToAdd;
     
-    public LastFM.Image url_image = new LastFM.Image();
-    
     //public signal void album_info_retrieved(LastFM.AlbumInfo info);
     
     public AlbumInfo() {
@@ -44,7 +42,7 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
         string album_fixed = LastFM.Core.fix_for_url(album);
         string artist_fixed = LastFM.Core.fix_for_url(artist);
         
-        var url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + api + "&artist=" + artist_fixed + "&album=" + album_fixed;
+        var url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + API + "&artist=" + artist_fixed + "&album=" + album_fixed;
         
         /*Soup.SessionSync session = new Soup.SessionSync();
         Soup.Message message = new Soup.Message ("GET", url);
@@ -126,13 +124,8 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
                 else if(node_name == "listeners")
                     this.listeners = int.parse(node_content);
                 else if(node_name == "image") {
-                    if(iter->get_prop("size") == "large") {
-                        url_image = new LastFM.Image.with_url(node_content, true);
-                        url_image.set_size(500, 500);
-
-                        if (url_image.image != null)
-                            image_uri = this.get_image_uri_from_pixbuf(url_image.image);
-                    }
+                    if(iter->get_prop("size") == "large")
+                        image_uri = node_content;
                 }
             }
             else if(parent == "albumtoptagstag") {

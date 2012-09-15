@@ -20,6 +20,8 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
+// TODO: Noise.ArtistInfo and Noise.AlbumInfo have so many common fields that there should
+// be a base class for them.
 public class Noise.ArtistInfo : Object {
     
     public string name { get; set; default=_("Unknown Artist"); }
@@ -46,17 +48,4 @@ public class Noise.ArtistInfo : Object {
         this.name = name;
         this.mbid = mbid;
     }
-    
-    public string get_image_uri_from_pixbuf (Gdk.Pixbuf image) {
-        string path = (GLib.Path.build_path ("/", Environment.get_user_cache_dir (), "noise", "album-art") +"/" + name+"-"+ mbid +".png");
-        try {
-            image.save (path, "png");
-            return path;
-        }
-        catch (GLib.Error err) {
-            warning ("Could not generate image: %s", err.message);
-        }
-        return "";
-    }
-    
 }

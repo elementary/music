@@ -85,7 +85,7 @@ public class LastFM.SimilarMedias : Object {
 	public void getSimilarTracks(string title, string artist) {
 		var artist_fixed = LastFM.Core.fix_for_url(artist);
 		var title_fixed =  LastFM.Core.fix_for_url(title);
-		var url = "http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=" + artist_fixed + "&track=" + title_fixed + "&api_key=" + LastFM.api;
+		var url = "http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=" + artist_fixed + "&track=" + title_fixed + "&api_key=" + LastFM.API;
 		
 		Soup.SessionSync session = new Soup.SessionSync();
 		Soup.Message message = new Soup.Message ("GET", url);

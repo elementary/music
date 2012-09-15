@@ -78,7 +78,7 @@ private class LastFM.PreferencesSection : Noise.PreferencesWindow.Section {
                 warning ("Could not get a token. check internet connection");
             }
             else {
-                string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.api
+                string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.API
                                   + "&token=" + lastfm_token;
                 try {
                     AppInfo.launch_default_for_uri (auth_uri, null);
