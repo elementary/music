@@ -11,7 +11,6 @@ vala_precompile(VALA_C
     Utils/Numeric.vala
     Utils/UI.vala
     Utils/CompareFunctionHolder.vala
-
 PACKAGES
     gtk+-3.0
     libpeas-1.0
@@ -26,8 +25,10 @@ GENERATE_VAPI
 GENERATE_HEADER
     noise-core
 )
-add_definitions(${DEPS_CFLAGS})
-link_directories(${LIB_PATHS})
+
+add_definitions(${NORMAL_CFLAGS})
+#link_directories(${LIB_PATHS})
+link_directories(${NORMAL_LINK_DIRS})
 add_library(noise-core SHARED ${VALA_C})
-target_link_libraries(noise-core ${DEPS_LIBRARIES})
+target_link_libraries(noise-core ${NORMAL_LIBRARIES})
 install (TARGETS noise-core DESTINATION lib)

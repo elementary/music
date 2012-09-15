@@ -1,3 +1,5 @@
+configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_SOURCE_DIR}/src/config.vala)
+
 vala_precompile(VALA_C
     ${CMAKE_SOURCE_DIR}/src/config.vala
 

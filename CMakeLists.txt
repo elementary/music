@@ -16,10 +16,10 @@ pkg_check_modules(DEPS
     gstreamer-interfaces-0.10
     gstreamer-pbutils-0.10
     gstreamer-cdda-0.10
-    taglib_c #TODO: remove
+    taglib_c
     gio-2.0
     libxml-2.0
-    libnotify # TODO: should be a soft dependency
+    libnotify # FIXME should be a soft dependency
     libsoup-2.4
     json-glib-1.0
     gio-unix-2.0
@@ -60,7 +60,6 @@ set(VERSION "1.0")
 set(VERSION_INFO "Pre-Release")
 set(PLUGIN_DIR "${CMAKE_INSTALL_PREFIX}/lib/noise/plugins")
 set(ICON_DIR "${CMAKE_INSTALL_PREFIX}/share/noise/icons/hicolor")
-configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_SOURCE_DIR}/src/config.vala)
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 
 add_subdirectory(core)
