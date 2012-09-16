@@ -53,7 +53,6 @@ public class Noise.LyricFetcher : Object {
  */
 
 private class AZLyricsFetcher : Object {
-
     private const string URL_FORMAT = "http://www.azlyrics.com/lyrics/%s/%s.html";
 
     public string fetch_lyrics (string title, string album_artist, string artist) {
@@ -67,8 +66,7 @@ private class AZLyricsFetcher : Object {
         try {
             page.load_contents (null, out uintcontent, out etag_out);
             load_successful = true;
-        }
-        catch (Error err) {
+        } catch (Error err) {
             load_successful = false;
         }
 
@@ -79,8 +77,7 @@ private class AZLyricsFetcher : Object {
                 page = File.new_for_uri (url);
                 page.load_contents (null, out uintcontent, out etag_out);
                 load_successful = true;
-            }
-            catch (Error err) {
+            } catch (Error err) {
                 load_successful = false;
             }
         }
@@ -122,12 +119,12 @@ private class AZLyricsFetcher : Object {
         if (start != -1 && end != -1 && end > start)
             lyrics = content.substring (start, end - start);
 
-		try {
-			lyrics = new Regex ("<.*?>").replace (lyrics, -1, 0, "");
-		} catch (RegexError err) {
-			warning ("Could not parse lyrics: %s", err.message);
+        try {
+            lyrics = new Regex ("<.*?>").replace (lyrics, -1, 0, "");
+        } catch (RegexError err) {
+            warning ("Could not parse lyrics: %s", err.message);
             return "";
-		}
+        }
 
         rv.append (lyrics);
         rv.append ("\n");

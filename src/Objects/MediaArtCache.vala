@@ -151,6 +151,7 @@ public abstract class Noise.MediaArtCache {
         return pixbuf_cache.get_image (get_key (m), lookup_file);
     }
 
+
     protected void queue_notify () {
         Idle.add ( () => {
             changed ();

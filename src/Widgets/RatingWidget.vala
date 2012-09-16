@@ -24,7 +24,6 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-
 namespace Granite.Widgets {
 
     public class Rating : Gtk.EventBox {

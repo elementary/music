@@ -32,7 +32,6 @@
 /**
  * A place to store icon information and pixbufs.
  */
-
 public class Noise.Icons {
 
     /**
