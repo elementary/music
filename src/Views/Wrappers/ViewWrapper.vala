@@ -696,9 +696,10 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         var to_remove_show = new Gee.LinkedList<Media> ();
 
         // add elements that should be here
-        foreach (var m in should_be)
+        foreach (var m in should_be) {
             if (!media_table.contains (m))
                 media_table.add (m);
+        }
 
         // add elements that should show
         foreach (var m in should_show) {
@@ -707,8 +708,6 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
                 visible_media_table.add (m);
             }
         }
-
-
 
         // Remove elements
         var media_to_remove = new Gee.LinkedList<Media> ();
