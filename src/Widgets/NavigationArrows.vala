@@ -1,5 +1,6 @@
 //
-//  Copyright (C) 2012 Mario Guerriero <mefrio.g@gmail.com>
+//  Copyright (C) 2012 Mario Guerriero <mefrio.g@gmail.com>,
+//                     Victor Eduardo <victoreduardm@gmail.com>
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -15,121 +16,43 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-using Gtk;
-using Gdk;
+public class Granite.Widgets.NavigationArrows : Gtk.Box {
+    public signal void previous_clicked ();
+    public signal void next_clicked ();
 
-namespace Granite.Widgets {
+    private Gtk.Button previous_button;
+    private Gtk.Button next_button;
 
-    public class NavigationArrows : Gtk.Box {
+    public NavigationArrows () {
+        orientation = Gtk.Orientation.HORIZONTAL;
+        homogeneous = true;
+        spacing = 0;
 
-        public signal void previous_clicked ();
-        public signal void next_clicked ();
+        can_focus = true;
 
-        // Style properties. Please note that style class names are for internal
-        // use only. Theme developers should use GraniteWidgetsNavigationArrows instead.
-        internal static CssProvider style_provider;
-        internal static StyleContext widget_style;
-        private const int style_priority = Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION;
-        
-        private Gtk.Button previous_button;
-        private Gtk.Button next_button;
-        
-        private const string STYLESHEET = """
-            .GraniteNavigationArrows .button {
-                -GtkToolbar-button-relief: normal;
-                border-radius: 0 0 0 0;
-                border-style: solid;
-                border-width: 1px 0 1px 1px;
+        previous_button = new Gtk.Button ();
+        var previous_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
+        previous_button.set_image (previous_image);
 
-                -unico-outer-stroke-width: 1px 0 1px 0;
-                -unico-outer-stroke-radius: 0 0 0 0;
-            }
+        previous_button.clicked.connect ( () => {
+            previous_clicked ();
+        });
 
-            .GraniteNavigationArrows .button:active,
-            .GraniteNavigationArrows .button:insensitive {
-                -unico-outer-stroke-width: 1px 0 1px 0;
-            }
+        next_button = new Gtk.Button ();
+        var next_image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.MENU);
+        next_button.set_image (next_image);
 
-            .GraniteNavigationArrows .button:first-child {
-                border-radius: 3px 0 0 3px;
-                border-width: 1px 0 1px 1px;
+        next_button.clicked.connect ( () => {
+            next_clicked ();
+        });
 
-                -unico-outer-stroke-width: 1px 0 1px 1px;
-            }
+        add (previous_button);
+        add (next_button);
 
-            .GraniteNavigationArrows .button:last-child {
-                border-radius: 0 3px 3px 0;
-                border-width: 1px;
+        var style = get_style_context ();
+        style.add_class (Gtk.STYLE_CLASS_LINKED);
+        style.add_class ("raised"); // Needed for toolbars
 
-                -unico-outer-stroke-width: 1px 1px 1px 0;
-            }
-        """;
-
-        public NavigationArrows () {
-
-            if (style_provider == null)
-            {
-                style_provider = new CssProvider ();
-                try {
-                    style_provider.load_from_data (STYLESHEET, -1);
-                } catch (Error e) {
-                    warning ("GraniteNavigationArrows: %s. The widget will not look as intended", e.message);
-                }
-            }
-
-            widget_style = get_style_context ();
-            widget_style.add_class ("GraniteNavigationArrows");
-
-            homogeneous = true;
-            spacing = 0;
-            app_paintable = true;
-    
-            set_visual (get_screen ().get_rgba_visual ());
-
-            can_focus = true;
-            
-            previous_button = new NavigationArrow ();
-            var previous_image = new Image.from_icon_name ("go-previous-symbolic", IconSize.MENU);
-            previous_button.set_image (previous_image);
-            
-            previous_button.clicked.connect (() => {
-                previous_clicked ();
-            });
-            
-            next_button = new NavigationArrow ();
-            var next_image = new Image.from_icon_name ("go-next-symbolic", IconSize.MENU);
-            next_button.set_image (next_image);
-            
-            next_button.clicked.connect (() => {
-                next_clicked ();
-            });
-            
-            add (previous_button);
-            add (next_button);
-            previous_button.show_all ();
-            next_button.show_all ();
-        }
-
-        public void set_item_visible (int index, bool val) {
-            var item = get_children ().nth_data (index);
-            if (item == null)
-                return;
-
-            item.set_no_show_all (!val);
-            item.set_visible (val);
-        }
-
-    }
-
-    private class NavigationArrow : Gtk.Button {
-        public NavigationArrow () {
-            can_focus = false;
-
-            const int style_priority = Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION;
-
-            get_style_context ().add_class ("raised");
-            get_style_context ().add_provider (NavigationArrows.style_provider, style_priority);
-        }
+        show_all ();
     }
 }
-
