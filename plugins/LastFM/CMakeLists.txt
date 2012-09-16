@@ -3,7 +3,6 @@ vala_precompile(VALA_C
         Core.vala
         Settings.vala
         AlbumInfo.vala
-        Icons.vala
         Tag.vala
         TrackInfo.vala
         ArtistInfo.vala

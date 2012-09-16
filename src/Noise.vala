@@ -151,8 +151,10 @@ public class Noise.App : Granite.Application {
         plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
         plugins.hook_app (this);
 
-        // Load icon information
+        // Load icon information. Needed until vala supports initialization of static
+        // members. See https://bugzilla.gnome.org/show_bug.cgi?id=543189
         Icons.init ();
+
         player = new PlaybackManager ();
         library_manager = new LibraryManager ();
         main_window = new LibraryWindow ();

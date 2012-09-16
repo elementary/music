@@ -33,9 +33,7 @@
  * A place to store icon information and pixbufs.
  */
 
-namespace Noise.Icons {
-
-    private bool is_initted = false;
+public class Noise.Icons {
 
     /**
      * Size of the cover art used in the album view
@@ -43,136 +41,63 @@ namespace Noise.Icons {
     public const int ALBUM_VIEW_IMAGE_SIZE = 168;
     public const int DEFAULT_ALBUM_ART_SIZE = 138;
 
+    public static Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF { get; private set; }
+
+    public static Icon DEFAULT_ALBUM_ART { get; private set; default = new Icon ("albumart"); }
+    public static Icon MUSIC_FOLDER { get; private set; default = new Icon ("folder-music"); }
+    public static Icon HISTORY { get; private set; default = new Icon ("document-open-recent"); }
+    public static Icon NOISE { get; private set; default = new Icon ("noise"); }
+    public static Icon MUSIC { get; private set; default = new Icon ("library-music"); }
+    public static Icon AUDIO_CD { get; private set; default = new Icon ("media-cdrom-audio"); }
+    public static Icon AUDIO_DEVICE { get; private set; default = new Icon ("multimedia-player"); }
+    public static Icon NETWORK_DEVICE { get; private set; default = new Icon ("monitor"); }
+    public static Icon PLAYLIST { get; private set; default = new Icon ("playlist"); }
+    public static Icon SMART_PLAYLIST { get; private set; default = new Icon ("playlist-automatic"); }
+    public static Icon STARRED { get; private set; default = new Icon ("starred"); }
+    public static Icon NOT_STARRED { get; private set; default = new Icon ("non-starred"); }
+    public static Icon LOVE { get; private set; default = new Icon ("love"); }
+    public static Icon BAN { get; private set; default = new Icon ("ban"); }
+
+    public static Icon PANE_SHOW_SYMBOLIC { get; private set; default = new Icon ("pane-show-symbolic"); }
+    public static Icon PANE_HIDE_SYMBOLIC { get; private set; default = new Icon ("pane-hide-symbolic"); }
+    public static Icon EQ_SYMBOLIC { get; private set; default = new Icon ("media-eq-symbolic"); }
+    public static Icon EJECT_SYMBOLIC { get; private set; default = new Icon ("media-eject-symbolic"); }
+    public static Icon NOW_PLAYING_SYMBOLIC { get; private set; default = new Icon ("audio-volume-high-symbolic"); }
+    public static Icon STARRED_SYMBOLIC { get; private set; default = new Icon ("starred-symbolic"); }
+    public static Icon NOT_STARRED_SYMBOLIC { get; private set; default = new Icon ("non-starred-symbolic"); }
+    public static Icon PROCESS_COMPLETED { get; private set; default = new Icon ("process-completed-symbolic"); }
+    public static Icon PROCESS_ERROR { get; private set; default = new Icon ("process-error-symbolic"); }
+    public static Icon PROCESS_STOP { get; private set; default = new Icon ("process-stop-symbolic"); }
+    public static Icon REPEAT_ON { get; private set; default = new Icon ("media-playlist-repeat-symbolic"); }
+    public static Icon REPEAT_ONE { get; private set; default = new Icon ("media-playlist-repeat-one-symbolic"); }
+    public static Icon REPEAT_OFF { get; private set; default = new Icon ("media-playlist-no-repeat-symbolic"); }
+    public static Icon SHUFFLE_ON { get; private set; default = new Icon ("media-playlist-shuffle-symbolic"); }
+    public static Icon SHUFFLE_OFF { get; private set; default = new Icon ("media-playlist-no-shuffle-symbolic"); }
+    public static Icon VIEW_COLUMN { get; private set; default = new Icon ("view-column-symbolic"); }
+    public static Icon VIEW_DETAILS { get; private set; default = new Icon ("view-list-symbolic"); }
+    public static Icon VIEW_ICONS { get; private set; default = new Icon ("view-grid-symbolic"); }
+    public static Icon VIEW_VIDEO { get; private set; default = new Icon ("view-video-symbolic"); }
+
+    static construct {
+        var default_shadow = new Icon ("albumart-shadow");
+        DEFAULT_ALBUM_SHADOW_PIXBUF = default_shadow.render_at_size (ALBUM_VIEW_IMAGE_SIZE);
+    }
+
     /**
-     * RENDERED ICONS.
-     * These are pre-rendered pixbufs. Any static image which otherwise would need
-     * to be rendered many times should be a preloaded pixbuf. They are loaded
-     * in the init() function.
+     * XXX Inits the class.
+     * This is needed until vala really supports initialization of static members.
+     * Please refer to https://bugzilla.gnome.org/show_bug.cgi?id=543189 for more information.
      */
-    public Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF;
-
-
-    /**
-     * ICON INFORMATION
-     * Use render() or render_image() to load these icons
-    **/
-
-    // 128 x 128
-    public Icon DEFAULT_ALBUM_ART;
-    public Icon MUSIC_FOLDER;
-
-    // 22 x 22
-    public Icon HISTORY;
-
-    // 16 x 16
-    public Icon NOISE;
-    public Icon MUSIC;
-    public Icon AUDIO_CD;
-    public Icon AUDIO_DEVICE;
-    public Icon NETWORK_DEVICE;
-    public Icon PLAYLIST;
-    public Icon SMART_PLAYLIST;
-
-
-    public Icon STARRED;
-    public Icon NOT_STARRED;
-
-    // SYMBOLIC ICONS
-    public Icon PANE_HIDE_SYMBOLIC;
-    public Icon PANE_SHOW_SYMBOLIC;
-
-    public Icon EQ_SYMBOLIC;
-
-    public Icon EJECT_SYMBOLIC;
-
-    public Icon NOW_PLAYING_SYMBOLIC;
-
-    public Icon STARRED_SYMBOLIC;
-    public Icon NOT_STARRED_SYMBOLIC;
-
-    public Icon PROCESS_COMPLETED;
-    public Icon PROCESS_ERROR;
-    public Icon PROCESS_STOP;
-
-    public Icon SHUFFLE_ON;
-    public Icon SHUFFLE_OFF;
-    public Icon REPEAT_ON;
-    public Icon REPEAT_ONE;
-    public Icon REPEAT_OFF;
-
-    public Icon VIEW_COLUMN;
-    public Icon VIEW_DETAILS;
-    public Icon VIEW_ICONS;
-    public Icon VIEW_VIDEO;
-
-
-    public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
-        var icon = new Icon (icon_name);
-        return icon.render (size, context);
+    public static void init () {
+        // dummy instantiation to init static members
+        new Icons ();
     }
 
-    public Gtk.Image? render_image (string icon_name, Gtk.IconSize size) {
-        var icon = new Icon (icon_name);
-        return icon.render_image (size);
+    public static Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
+        return new Icon (icon_name).render (size, context);
     }
 
-    /**
-     * Loads icon information and renders [preloaded] pixbufs
-     **/
-    public void init () {
-        assert (!is_initted);
-        is_initted = true;
-
-        // 128 x 128
-        DEFAULT_ALBUM_ART = new Icon ("albumart");
-        MUSIC_FOLDER = new Icon ("folder-music");
-
-        // 22 x 22
-        HISTORY = new Icon ("document-open-recent");
-
-        // 16 x 16
-        NOISE = new Icon ("noise");
-        MUSIC = new Icon ("library-music");
-        AUDIO_CD = new Icon ("media-cdrom-audio");
-        AUDIO_DEVICE = new Icon ("multimedia-player");
-        NETWORK_DEVICE = new Icon ("monitor");
-        PLAYLIST = new Icon ("playlist");
-        SMART_PLAYLIST = new Icon ("playlist-automatic");
-        STARRED = new Icon ("starred");
-        NOT_STARRED = new Icon ("non-starred");
-
-        // SYMBOLIC ICONS (16 x 16)
-        PANE_SHOW_SYMBOLIC = new Icon ("pane-show-symbolic");
-        PANE_HIDE_SYMBOLIC = new Icon ("pane-hide-symbolic");
-        EQ_SYMBOLIC = new Icon ("media-eq-symbolic");
-
-        REPEAT_OFF = new Icon ("media-playlist-no-repeat-symbolic");
-        SHUFFLE_OFF = new Icon ("media-playlist-no-shuffle-symbolic");
-
-        NOW_PLAYING_SYMBOLIC = new Icon ("audio-volume-high-symbolic");
-
-        EJECT_SYMBOLIC = new Icon ("media-eject-symbolic");
-        STARRED_SYMBOLIC = new Icon ("starred-symbolic");
-        NOT_STARRED_SYMBOLIC = new Icon ("non-starred-symbolic");
-        PROCESS_COMPLETED = new Icon ("process-completed-symbolic");
-        PROCESS_ERROR = new Icon ("process-error-symbolic");
-        PROCESS_STOP = new Icon ("process-stop-symbolic");
-        SHUFFLE_ON = new Icon ("media-playlist-shuffle-symbolic");
-        REPEAT_ON = new Icon ("media-playlist-repeat-symbolic");
-        REPEAT_ONE = new Icon ("media-playlist-repeat-one-symbolic");
-        VIEW_COLUMN = new Icon ("view-column-symbolic");
-        VIEW_DETAILS = new Icon ("view-list-symbolic");
-        VIEW_ICONS = new Icon ("view-grid-symbolic");
-        VIEW_VIDEO = new Icon ("view-video-symbolic");
-
-        // Render Pixbufs ...
-
-        // 168x168
-        var shadow_icon = new Icon ("albumart-shadow");
-        DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render_at_size (168);
-    }
-
-    public bool get_is_initted () {
-        return is_initted;
+    public static Gtk.Image? render_image (string icon_name, Gtk.IconSize size) {
+        return new Icon (icon_name).render_image (size);
     }
 }
