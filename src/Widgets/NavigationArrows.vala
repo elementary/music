@@ -17,21 +17,38 @@
 //
 
 public class Granite.Widgets.NavigationArrows : Gtk.Box {
+    private const string PREVIOUS_ICON = "go-previous";
+    private const string NEXT_ICON = "go-next";
+    private const string PREVIOUS_ICON_SYMBOLIC = "go-previous-symbolic";
+    private const string NEXT_ICON_SYMBOLIC = "go-next-symbolic";
+
     public signal void previous_clicked ();
     public signal void next_clicked ();
+
+    public bool can_go_back {
+        get { return previous_button.sensitive; }
+        set { previous_button.sensitive = value; }
+    }
+
+    public bool can_go_next {
+        get { return next_button.sensitive; }
+        set { next_button.sensitive = value; }
+    }
 
     private Gtk.Button previous_button;
     private Gtk.Button next_button;
 
-    public NavigationArrows () {
+
+    public NavigationArrows (bool symbolic = true) {
         orientation = Gtk.Orientation.HORIZONTAL;
         homogeneous = true;
         spacing = 0;
 
-        can_focus = true;
+        can_focus = false;
 
         previous_button = new Gtk.Button ();
-        var previous_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
+        var previous_icon_name = symbolic ? PREVIOUS_ICON_SYMBOLIC : PREVIOUS_ICON;
+        var previous_image = new Gtk.Image.from_icon_name (previous_icon_name, Gtk.IconSize.MENU);
         previous_button.set_image (previous_image);
 
         previous_button.clicked.connect ( () => {
@@ -39,7 +56,8 @@ public class Granite.Widgets.NavigationArrows : Gtk.Box {
         });
 
         next_button = new Gtk.Button ();
-        var next_image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.MENU);
+        var next_icon_name = symbolic ? NEXT_ICON_SYMBOLIC : NEXT_ICON;
+        var next_image = new Gtk.Image.from_icon_name (next_icon_name, Gtk.IconSize.MENU);
         next_button.set_image (next_image);
 
         next_button.clicked.connect ( () => {
