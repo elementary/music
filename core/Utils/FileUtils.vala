@@ -65,7 +65,7 @@ namespace Noise.FileUtils {
         }
 
         foreach (var file in files) {
-            if (cancellable != null && cancellable.is_cancelled ())
+            if (Utils.is_cancelled (cancellable))
                 break;
 
             try {
@@ -158,7 +158,7 @@ namespace Noise.FileUtils {
         }
 
         private inline bool is_cancelled () {
-            return (cancellable != null) ? cancellable.is_cancelled () : false;
+            return Utils.is_cancelled (cancellable);
         }
 
         private void enumerate_files_internal (File folder, ref Gee.Collection<File>? files,
