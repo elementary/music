@@ -206,20 +206,34 @@ public class Noise.CellDataFunctionHelper {
         text_cell.text = (ms <= 0) ? NOT_AVAILABLE : TimeUtils.pretty_length_from_ms (ms);
     }
 
+    public string get_date_func_sample_string () {
+        return get_date_string (1324512000);
+    }
+
     // turns seconds since Jan 1, 1970 into date format
     public void date_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
         tree_model.get_value(iter, tvc.sort_column_id, out val);
 
         int n = val.get_int ();
+
         var text_cell = cell as CellRendererText;
+        assert (text_cell != null);
+
+        text_cell.text = get_date_string (n);
+    }
+
+    private inline string get_date_string (int n) {
+        string text = "";
 
         if (n <= 0) {
-            text_cell.text = _("Never");
+            text = _("Never");
         } else {
             var t = Time.local (n);
-            text_cell.text = TimeUtils.pretty_timestamp_from_time (t);
+            text = TimeUtils.pretty_timestamp_from_time (t);
         }
+
+        return text;
     }
 
     public void rating_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {

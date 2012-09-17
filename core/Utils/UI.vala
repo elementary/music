@@ -49,51 +49,31 @@ namespace Noise.UI {
     }
 
     /**
-     * elementaryOS fonts
+     * Sets a fixed size for a tree view column based on a set of strings to be displayed in the column.
+     *
+     * @param treeview the Gtk.TreeView containing the column
+     * @param column the Gtk.TreeViewColumn to size
+     * @param renderer the Gtk.CellRenderer used in the column
+     * @param strings a set of strings to base the size on
+     * @param padding a small amount of extra padding for the column
      */
+    public void set_tree_view_column_fixed_width (Gtk.Widget treeview, Gtk.TreeViewColumn column,
+                                                  Gtk.CellRendererText renderer, string[] strings, int padding)
+    {
+	    int max_width = 0;
 
-    public enum TextStyle {
-        TITLE,
-        H1,
-        H2,
-        H3;
+	    foreach (var str in strings) {
+		    renderer.text = str;
 
-        public string get_stylesheet (out string style_class = null) {
-            switch (this) {
-                case TITLE:
-                    style_class = "title";
-                    return @".$style_class { font: raleway 36; }";
-                case H1:
-                    style_class = "h1";
-                    return @".$style_class { font: open sans bold 24; }";
-                case H2:
-                    style_class = "h2";
-                    return @".$style_class { font: open sans light 18; }";
-                case H3:
-                    style_class = "h3";
-                    return @".$style_class { font: open sans bold 12; }";
-                default:
-                    assert_not_reached ();
-            }
-        }
-    }
+		    // XXX should we use minimum size instead?
+		    Gtk.Requisition natural_size;
+		    renderer.get_preferred_size (treeview, null, out natural_size);
 
-    public void apply_style_to_label (Gtk.Label label, TextStyle text_style) {
-        var style_provider = new Gtk.CssProvider ();
-        var style_context = label.get_style_context ();
+		    if (natural_size.width > max_width)
+			    max_width = natural_size.width;
+	    }
 
-        string style_class, stylesheet;
-        stylesheet = text_style.get_stylesheet (out style_class);
-        style_context.add_class (style_class);
-
-        try {
-            style_provider.load_from_data (stylesheet, -1);
-        } catch (Error err) {
-            warning ("Couldn't apply style to label: %s", err.message);
-            return;
-        }
-
-        style_context.add_provider (style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+	    column.fixed_width = max_width + padding;
     }
 }
 
