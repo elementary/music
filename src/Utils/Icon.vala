@@ -61,7 +61,8 @@ public class Noise.Icon : Object {
                 _theme = Gtk.IconTheme.get_default ();
 
                 // This only works if Build.ICON_DIR contains a sub-directory named "hicolor"
-                // containing all the icons (possibly organized into sub-folders as well)
+                // containing all the fallback icons (possibly organized into sub-folders as well),
+                // or if the icons are immediate children of this directory.
                 _theme.append_search_path (Path.build_filename (Build.ICON_DIR));
             }
 
@@ -116,7 +117,7 @@ public class Noise.Icon : Object {
      *
      * @param size The pixbuf's icon size.
      * @param style_context The style context used to render the icon, or null to use none.
-     * @return a newly-created Gdk.Pixbuf; or null if it wasn't found.
+     * @return a newly-created Gdk.Pixbuf displaying the icon (or a "missing-image" icon)
      * @see Noise.Icon.render_at_size
      */
     public Gdk.Pixbuf? render (Gtk.IconSize size, Gtk.StyleContext? style_context = null) {
@@ -131,7 +132,7 @@ public class Noise.Icon : Object {
      *
      * @param pixel_size The pixbuf's pixel size.
      * @param style_context The style context used to render the icon, or null to use none.
-     * @return a newly-created Gdk.Pixbuf; or null if it wasn't found.
+     * @return a newly-created Gdk.Pixbuf displaying the icon (or a "missing-image" icon)
      * @see Noise.Icon.render
      */
     public Gdk.Pixbuf? render_at_size (int pixel_size, Gtk.StyleContext? style_context = null) {
