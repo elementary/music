@@ -38,7 +38,6 @@ public class Noise.EqualizerWindow : Gtk.Window {
 	private bool apply_changes;
 	private bool initialized;
 	private bool adding_preset;
-	private bool closing;
 
 	private const int ANIMATION_TIMEOUT = 20;
 
@@ -59,7 +58,6 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		label_list = new List<Label>();
 		target_levels = new Gee.ArrayList<int>();
 
-		closing = false;
 		adding_preset = false;
 		initialized = false;
 		apply_changes = false;
@@ -193,14 +191,14 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		new_preset_entry.icon_press.connect (new_preset_entry_icon_pressed);
 		new_preset_entry.focus_out_event.connect (on_entry_focus_out);
 
-		close_button.clicked.connect(on_quit);
+		close_button.clicked.connect ( () => destroy () );
 		destroy.connect(on_quit);
 
 		show_all();
 	}
 
 	bool on_entry_focus_out () {
-		if (!closing)
+		if (!in_destruction ())
 			new_preset_entry.grab_focus();
 		return false;
 	}
@@ -274,7 +272,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 			target_levels.add(i);
 		}
 
-		if (closing || (initialized && !apply_changes) || adding_preset) {
+		if (in_destruction () || (initialized && !apply_changes) || adding_preset) {
 			set_target_levels ();
 		}
 		else if (!in_transition) {
@@ -301,7 +299,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 			double targetLvl = target_levels.get(index);
 			double difference = targetLvl - currLvl;
 
-			if (closing || Math.fabs(difference) <= 1) {
+			if (in_destruction () || Math.fabs(difference) <= 1) {
 				scale_list.nth_data(index).set_value(targetLvl);
 				// if switching from the automatic mode, apply the changes correctly
 				if (!preset_combo.automatic_chosen && targetLvl == 0)
@@ -344,7 +342,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 
 	void on_default_preset_modified () {
 
-		if(adding_preset || closing)
+		if(adding_preset || in_destruction ())
 			return;
 
 		adding_preset = true;
@@ -453,8 +451,6 @@ public class Noise.EqualizerWindow : Gtk.Window {
 	}
 
 	void on_quit () {
-		closing = true;
-
 		if (in_transition)
 			set_target_levels ();
 		else if (adding_preset)
@@ -463,8 +459,6 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		save_presets ();
 		Settings.Equalizer.instance.selected_preset = (preset_combo.getSelectedPreset() != null)? preset_combo.getSelectedPreset().name : "";
 		Settings.Equalizer.instance.auto_switch_preset = preset_combo.automatic_chosen;
-
-		destroy();
 	}
 }
 
