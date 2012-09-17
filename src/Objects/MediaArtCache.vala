@@ -47,8 +47,8 @@ public abstract class Noise.MediaArtCache {
         // The key parameter is not useful for our purposes (there's no way to get the media
         // corresponding to the @key parameter without scanning the entire cache, which is not
         // efficient by any means), so we use a lambda function as a bridge in order to discard it.
-        pixbuf_cache.filter_func = (key, orig_pix, apply_to_file) => {
-            return filter_func (orig_pix, out apply_to_file);
+        pixbuf_cache.filter_func = (key, orig_pix) => {
+            return filter_func (orig_pix);
         };
     }
 
@@ -61,12 +61,11 @@ public abstract class Noise.MediaArtCache {
 
     /**
      * This function is called before storing a pixbuf in the cache, allowing
-     * to transform it. The changes are applied to the cache file when apply_to_file
-     * is set to true.
+     * to transform it.
      *
      * @see Noise.PixbufCache.filter_func
      */
-    protected abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file);
+    protected abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix);
 
 
     /**

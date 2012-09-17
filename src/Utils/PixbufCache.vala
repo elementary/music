@@ -92,20 +92,15 @@ public class Noise.PixbufCache {
 
     /**
      * This method is called right before storing a pixbuf in the in-memory
-     * table and/or saving it to a file. Its purpose is to allow client code to
-     * make modifications to the passed image (e.g. adding a drop shadow, etc.)
-     * Changes are *not* reflected on disk, unless apply_to_file is true. Otherwise
-     * the unmodified version (//pix//) is written to disk. This is useful when you
-     * want to store a low-quality copy on primary memory while keeping the high-quality
-     * version on disk.
+     * table. Its purpose is to allow client code to make modifications to the passed image
+     * (e.g. adding a drop shadow, etc.) Changes are *not* reflected on disk.
      *
      * You can also use this method to prevent the storage of certain images in
      * the cache. To do so it just needs to set the new pixbuf to null. In such case,
      * the call to cache_image() will have no effect, since null pixbufs are not added
      * to the internal table, nor saved to disk.
      */
-    public delegate Gdk.Pixbuf? FilterFunction (string key, Gdk.Pixbuf orig_pixbuf,
-                                                out bool apply_to_file);
+    public delegate Gdk.Pixbuf? FilterFunction (string key, Gdk.Pixbuf orig_pixbuf);
     public unowned FilterFunction? filter_func;
 
 
@@ -156,20 +151,13 @@ public class Noise.PixbufCache {
      * since the old pixbuf and cached image are overwritten.
      */
     public void cache_image (string key, Gdk.Pixbuf image) {
-        bool apply_to_disk = false;
-        Gdk.Pixbuf? modified_pix = null;
-
-        modified_pix = (filter_func != null) ? filter_func (key, image, out apply_to_disk) : image;
+        Gdk.Pixbuf? modified_pix = (filter_func != null) ? filter_func (key, image) : image;
 
         if (modified_pix != null) {
             lock (pixbuf_map) {
                 pixbuf_map.set (key, modified_pix);
-
-                // Save image to disk
-                var to_save = apply_to_disk ? modified_pix : image;
-
-                save_pixbuf_to_file (key, to_save);
             }
+            save_pixbuf_to_file (key, image); // Store orginal
         }
     }
 

@@ -50,15 +50,13 @@ public class Noise.CoverartCache : MediaArtCache {
 
         base ("album-art");
 
-        bool dummy;
         var default_pix = Icons.DEFAULT_ALBUM_ART.render_at_size (Icons.DEFAULT_ALBUM_ART_SIZE);
-        default_image = filter_func (default_pix, out dummy);
+        default_image = filter_func (default_pix);
     }
 
 
     // add a shadow to every image
-    protected override Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file) {
-        apply_to_file = false;
+    protected override Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix) {
         return PixbufUtils.get_pixbuf_shadow (pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
     }
 
