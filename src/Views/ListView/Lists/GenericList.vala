@@ -206,7 +206,10 @@ public abstract class Noise.GenericList : FastView {
             bool column_resizable = true;
             int column_width = -1;
             var test_strings = new string[0];
-            test_strings += tvc.title;
+
+            if (headers_visible)
+                test_strings += tvc.title;
+
             Gtk.CellRenderer? renderer = null;
 
 			if (tvc.title != TreeViewSetup.COLUMN_BLANK && tvc.title != TreeViewSetup.COLUMN_ID) {
@@ -252,7 +255,9 @@ public abstract class Noise.GenericList : FastView {
                     test_strings += "0000";
 			    }
 				else if (tvc.title == TreeViewSetup.COLUMN_NUM) {
-				    renderer = new TextFieldRenderer ();
+				    var text_renderer = new TextFieldRenderer ();
+				    text_renderer.style = Pango.Style.ITALIC;
+				    renderer = text_renderer;
 				    insert_column_with_data_func (index, tvc.title, renderer, cell_data_helper.intelligent_func);
 					column_resizable = false;
                     test_strings += "00000";
