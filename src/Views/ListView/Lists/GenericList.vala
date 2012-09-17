@@ -147,21 +147,31 @@ public abstract class Noise.GenericList : FastView {
 	public void set_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
 		var new_table = new HashTable<int, Object> (null, null);
 
-		foreach (var m in to_add)
+		foreach (var m in to_add) {
+            if (Utils.is_cancelled (cancellable))
+                return;
 			new_table.set ((int)new_table.size(), m);
+        }
 
 		// set table and resort
-		set_table (new_table, true);
+        if (!Utils.is_cancelled (cancellable))
+    		set_table (new_table, true, cancellable);
 	}
 
 	/* If a Media is in to_remove but not in table, will just ignore */
 	public void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
 		var to_remove_set = new Gee.HashSet<Media> (null, null);
-		foreach (var m in to_remove)
+		foreach (var m in to_remove) {
+            if (Utils.is_cancelled (cancellable))
+                return;
 			to_remove_set.add (m);
+        }
 
 		var new_table = new HashTable<int, Object> (null, null);
 		for (int i = 0; i < table.size (); ++i) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			var m = table.get (i) as Media;
 			// create a new table. if not in to_remove, and is in table, add it.
 			if (m != null && !to_remove_set.contains (m))
@@ -169,18 +179,24 @@ public abstract class Noise.GenericList : FastView {
 	    }
 		
 		// no need to resort, just removing
-		set_table(new_table, false);
-		get_selection().unselect_all(); // XXX
+        if (!Utils.is_cancelled (cancellable)) {
+		    set_table(new_table, false, cancellable);
+		    get_selection().unselect_all(); // XXX
+        }
 	}
 	
 	/** Does NOT check for duplicates */
 	public void add_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
 		// skip calling set_table and just do it ourselves (faster)
-		foreach (var m in to_add)
+		foreach (var m in to_add) {
+            if (Utils.is_cancelled (cancellable))
+                return;
 			table.set ((int)table.size(), m);
+        }
 
 		// resort the new songs in. this will also call do_search
-		resort ();
+        if (!Utils.is_cancelled (cancellable))
+		    resort (cancellable);
 	}
 
 

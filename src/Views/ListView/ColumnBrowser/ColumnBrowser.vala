@@ -223,11 +223,14 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 		return column;
 	}
 
-	public void set_media (Gee.Collection<Media> media, string? search = null) {
+	public void set_media (Gee.Collection<Media> media, Cancellable? cancellable) {
+        if (Utils.is_cancelled (cancellable))
+            return;
+
 		this.media = media;
         reset_filters ();
-        update_search_results (BrowserColumn.Category.RATING);
-        populate_columns (BrowserColumn.Category.RATING, true);
+        update_search_results (BrowserColumn.Category.RATING, cancellable);
+        populate_columns (BrowserColumn.Category.RATING, true, cancellable);
 	}
 
 	private void column_row_activated () {
@@ -235,13 +238,15 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 	}
 
 	private void column_selection_changed (BrowserColumn.Category category, string val) {
-        update_search_results (category);
-		populate_columns (category);
-
+        update_search_results (category, null);
+		populate_columns (category, false, null);
 		changed ();
 	}
 
-    private void update_search_results (BrowserColumn.Category parent_category) {
+    private void update_search_results (BrowserColumn.Category parent_category, Cancellable? cancellable) {
+        if (Utils.is_cancelled (cancellable))
+            return;
+
 		if (filtered) {
 			var search_rating = -1; // ~ All
 			var search_year   = -1; // ~ All
@@ -250,6 +255,9 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 			var search_album  = ""; // ~ All
 
 			foreach (var col in columns) {
+                if (Utils.is_cancelled (cancellable))
+                    break;
+
 				// Higher hierarchical levels (parent columns)
 				if (col.category <= parent_category) {
 					if (col.category == BrowserColumn.Category.GENRE) {
@@ -272,47 +280,69 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
 			// Perform search
 			Search.search_in_media_list (media, out _media_results, search_artist, search_album,
-			                             search_genre, search_year, search_rating);
+			                             search_genre, search_year, search_rating, cancellable);
 		}
 		else {
 			_media_results = media;
 		}
     }
 
-    private void populate_columns (BrowserColumn.Category category, bool inclusive = false) {
+    private void populate_columns (BrowserColumn.Category category, bool inclusive, Cancellable? cancellable) {
+        if (Utils.is_cancelled (cancellable))
+            return;
+
 		// Now re-populate the child columns
 		foreach (var column in columns) {
+            if (Utils.is_cancelled (cancellable))
+                break;
+
 			// Child columns
 			if ((inclusive) ? column.category >= category : column.category > category) {
 				var column_set = new Gee.HashMap<string, int> ();
 
 				if (column.category == BrowserColumn.Category.GENRE) {
 					foreach (var m in _media_results) {
+                        if (Utils.is_cancelled (cancellable))
+                            break;
+
 					    column_set.set (m.genre, 1);
 					}
 				}
 				if (column.category == BrowserColumn.Category.ARTIST) {
 					foreach (var m in _media_results) {
+                        if (Utils.is_cancelled (cancellable))
+                            break;
+
 					    column_set.set (m.album_artist, 1);
 					}
 				}
 				if (column.category == BrowserColumn.Category.ALBUM) {
 					foreach (var m in _media_results) {
+                        if (Utils.is_cancelled (cancellable))
+                            break;
+
 					    column_set.set (m.album, 1);
 					}
 				}
 				if (column.category == BrowserColumn.Category.YEAR) {
 					foreach (var m in _media_results) {
+                        if (Utils.is_cancelled (cancellable))
+                            break;
+
 					    column_set.set (m.year.to_string (), 1);
 					}
 				}
 				if (column.category == BrowserColumn.Category.RATING) {
 					foreach (var m in _media_results) {
+                        if (Utils.is_cancelled (cancellable))
+                            break;
+
 					    column_set.set (m.rating.to_string (), 1);
 					}
 				}
 
-				column.populate (column_set);
+                if (!Utils.is_cancelled (cancellable))
+    				column.populate (column_set, cancellable);
 			}
 		}
     }

@@ -61,7 +61,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 					column_browser.show_all ();
 
 					if (column_browser.media_results == null)
-						column_browser.set_media (get_visible_media ());
+						column_browser.set_media (get_visible_media (), null);
 				}
 				else {
 					// Before hiding, reset the filters to "All..."
@@ -296,21 +296,21 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		return list_view.get_is_current_list ();
 	}
 
-	public void add_media (Gee.Collection<Media> to_add) {
-    	list_view.add_media (to_add);
+	public void add_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
+    	list_view.add_media (to_add, cancellable);
 		if (has_column_browser)
-            column_browser.set_media (get_visible_media ());
+            column_browser.set_media (get_visible_media (), cancellable);
 	}
 
-	public void remove_media (Gee.Collection<Media> to_remove) {
-    	list_view.remove_media (to_remove);
+	public void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
+    	list_view.remove_media (to_remove, cancellable);
 		if (has_column_browser)
-            column_browser.set_media (get_visible_media ());
+            column_browser.set_media (get_visible_media (), cancellable);
 	}
 
-	public void set_media (Gee.Collection<Media> media) {
-		list_view.set_media (media);
+	public void set_media (Gee.Collection<Media> media, Cancellable? cancellable = null) {
+		list_view.set_media (media, cancellable);
 		if (has_column_browser)
-			column_browser.set_media (media);
+			column_browser.set_media (media, cancellable);
 	}
 }

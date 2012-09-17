@@ -113,16 +113,19 @@ public class Noise.GridView : ContentView, GridLayout {
 		return (m != null) ? m.album_artist + m.album : "";
 	}
 
-	public void set_media (Gee.Collection<Media> to_add) {
+	public void set_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
 		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
         clear_objects ();
-		add_media (to_add);
+		add_media (to_add, cancellable);
 	}
 
 	// checks for duplicates
-	public void add_media (Gee.Collection<Media> media) {
+	public void add_media (Gee.Collection<Media> media, Cancellable? cancellable = null) {
 		var to_append = new Gee.HashMap<string, Media> ();
 		foreach (var m in media) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			if (m == null)
 				continue;
 			
@@ -147,10 +150,11 @@ public class Noise.GridView : ContentView, GridLayout {
 				album_media.set (m, 1);
 		}
 
-		add_objects (to_append.values);
+        if (!Utils.is_cancelled (cancellable))
+    		add_objects (to_append.values, cancellable);
 	}
 
-	public void remove_media (Gee.Collection<Media> to_remove) {
+	public void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
 		/* There is a special case. Let's say that we're removing
 		 * song1, song2 and song5 from Album X, and the album currently
 		 * contains song1, song2, song5, and song3. Then we shouldn't remove
@@ -160,6 +164,9 @@ public class Noise.GridView : ContentView, GridLayout {
 		// classify media by album
 		var to_remove_album_info = new Gee.HashMap <string, Gee.LinkedList<Media>> ();
 		foreach (var m in to_remove) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			if (m == null)
 				continue;
 			
@@ -178,6 +185,9 @@ public class Noise.GridView : ContentView, GridLayout {
 
 		// Then use the list to verify which albums are in the album view
 		foreach (var album_key in to_remove_album_info.keys) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			if (album_info.has_key (album_key)) {
 				// get current media list
 				var current_media = album_info.get (album_key);
@@ -186,6 +196,8 @@ public class Noise.GridView : ContentView, GridLayout {
 				var to_remove_media = to_remove_album_info.get (album_key);
 
 				foreach (var m in to_remove_media) {
+                    if (Utils.is_cancelled (cancellable))
+                        return;
 					current_media.unset (m);
 				}
 				
@@ -205,12 +217,16 @@ public class Noise.GridView : ContentView, GridLayout {
 		var objects_to_remove = new Gee.HashMap<GLib.Object, int> ();
 
 		foreach (var album_representation in get_visible_media ()) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			var key = get_key (album_representation);
 			if (albums_to_remove.has_key (key))
 				objects_to_remove.set (album_representation, 1);
 		}
 
-		remove_objects (objects_to_remove);
+        if (!Utils.is_cancelled (cancellable))
+    		remove_objects (objects_to_remove, cancellable);
 	}
 
 	public int get_relative_id () {

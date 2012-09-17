@@ -49,16 +49,16 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
     protected abstract Value val_func (int row, int column, Object o);
     protected abstract int compare_func (Object a, Object b);
 
-    protected void add_objects (Gee.Collection<Object> objects) {
-        icon_view.add_objects (objects);
+    protected void add_objects (Gee.Collection<Object> objects, Cancellable? cancellable) {
+        icon_view.add_objects (objects, cancellable);
     }
 
-    protected void remove_objects (Gee.HashMap<Object, int> objects) {
-        icon_view.remove_objects (objects);
+    protected void remove_objects (Gee.HashMap<Object, int> objects, Cancellable? cancellable) {
+        icon_view.remove_objects (objects, cancellable);
     }
 
     protected void clear_objects () {
-        icon_view.set_table (new HashTable<int, Object> (null, null));
+        icon_view.set_table (new HashTable<int, Object> (null, null), true, null);
     }
 
     protected List<unowned Object> get_objects () {

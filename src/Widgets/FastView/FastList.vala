@@ -120,7 +120,7 @@ public class Noise.FastView : TreeView {
 		
 		fm.reorder_requested.connect(reorder_requested);
 		
-		set_table(table);
+		set_table(table, true, null);
 		set_model(fm);
 	}
 	
@@ -146,13 +146,14 @@ public class Noise.FastView : TreeView {
 		fm.set_value_func(func);
 	}
 
-	public void set_table (HashTable<int, GLib.Object> table, bool do_resort = true) {
-		this.table = table;
+	public void set_table (HashTable<int, GLib.Object> table, bool do_resort, Cancellable? cancellable) {
+        if (!Utils.is_cancelled (cancellable))
+    		this.table = table;
 		
 		if (do_resort)
-			resort (); // this also calls search
+			resort (cancellable); // this also calls search
 		else
-			do_search ();
+			do_search (null, cancellable);
 	}
 
 #if HAVE_BUILTIN_SEARCH
@@ -161,7 +162,10 @@ public class Noise.FastView : TreeView {
 	}
 #endif
 	
-	public void do_search (string? search = null) {
+	public void do_search (string? search = null, Cancellable? cancellable) {
+        if (Utils.is_cancelled (cancellable))
+            return;
+
 		var old_size = showing.size();
 		
 		showing.remove_all();
@@ -173,6 +177,9 @@ public class Noise.FastView : TreeView {
 		if(last_search == "") {
 #endif
 			for(int i = 0; i < table.size(); ++i) {
+                if (Utils.is_cancelled (cancellable))
+                    return;
+
 				showing.set(i, table.get(i));
 			}
 #if HAVE_BUILTIN_SEARCH
@@ -183,32 +190,38 @@ public class Noise.FastView : TreeView {
 #endif
 		
 		if(showing.size() == old_size) {
-			fm.set_table(showing);
+			fm.set_table(showing, cancellable);
 			queue_draw();
 		}
 		else if(old_size == 0) { // if first population, just do normal
 			set_model(null);
-			fm.set_table(showing);
+			fm.set_table(showing, cancellable);
 			set_model(fm);
 		}
 		else if(old_size > showing.size()) { // removing
 			while(fm.iter_n_children(null) > showing.size()) {
+                if (Utils.is_cancelled (cancellable))
+                    return;
+
 				TreeIter iter;
 				fm.iter_nth_child(out iter, null, fm.iter_n_children(null) - 1);
 				fm.remove(iter);
 			}
 			
-			fm.set_table(showing);
+			fm.set_table(showing, cancellable);
 			queue_draw();
 		}
 		else if(showing.size() > old_size) { // adding
 			TreeIter iter;
 			
 			while(fm.iter_n_children(null) < showing.size()) {
+                if (Utils.is_cancelled (cancellable))
+                    return;
+
 				fm.append(out iter);
 			}
 			
-			fm.set_table(showing);
+			fm.set_table(showing, cancellable);
 			queue_draw();
 		}
 	}
@@ -244,22 +257,22 @@ public class Noise.FastView : TreeView {
 		else
 			shuffle ();
 #else
-		quicksort (0, (int) (table.size() - 1));
+		quicksort (0, (int)table.size() - 1, null);
 #endif
 		
-		do_search ();
+		do_search (null, null);
 		
 		// Let it be known the row order changed
 		rows_reordered();
 	}
 	
-	public void resort () {
+	public void resort (Cancellable? cancellable = null) {
 #if HAVE_BUILTIN_SHUFFLE
 		if(sort_column_id != SHUFFLE_COLUMN_ID)
 #endif
-			quicksort(0, (int)(table.size() - 1));
+			quicksort(0, (int)(table.size() - 1), cancellable);
 		
-		do_search (null);
+		do_search (null, cancellable);
 	}
 	
 	public void set_compare_func (SortCompareFunc func) {
@@ -272,12 +285,18 @@ public class Noise.FastView : TreeView {
 		table.set (b, temp);
 	}
 	
-	public void quicksort (int start, int end) {
+	public void quicksort (int start, int end, Cancellable? cancellable) {
+        if (Utils.is_cancelled (cancellable))
+            return;
+
 		var pivot = table.get((start+end)/2);
 		int i = start;
 		int j = end;
 		
 		while(i <= j) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			while(i < end && compare_func (sort_column_id, sort_direction, table.get(i), pivot) < 0) ++i;
 			while(j > start && compare_func (sort_column_id, sort_direction, table.get(j), pivot) > 0) --j;
 			if(i <= j) {
@@ -287,9 +306,9 @@ public class Noise.FastView : TreeView {
 		}
 		
 		if(start < j)
-			quicksort (start, j);
+			quicksort (start, j, cancellable);
 		if(i < end)
-			quicksort (i, end);
+			quicksort (i, end, cancellable);
 	}
 
 #if HAVE_BUILTIN_SHUFFLE

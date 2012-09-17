@@ -191,10 +191,16 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	 * @objects Must be a consecutive ordered hash table with indexes 
 	 * 0-n where n is size of the hashtable (no gaps).
 	**/
-	public void set_table (HashTable<int, Object> table) {
-		rows.remove_all();
-		for(int i = 0; i < table.size(); ++i)
+	public void set_table (HashTable<int, Object> table, Cancellable? cancellable) {
+        if (!Utils.is_cancelled (cancellable))
+    		rows.remove_all();
+
+		for(int i = 0; i < table.size(); ++i) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			rows.set(i, table.get(i));
+		}
 	}
 	
 	/** Crucial. Must be set by user. Allows for this model to be abstract

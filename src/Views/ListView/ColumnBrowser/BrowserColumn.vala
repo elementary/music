@@ -190,7 +190,10 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 		return _selected;
 	}
 
-	public async void populate (HashMap<string, int> items) {
+	public async void populate (HashMap<string, int> items, Cancellable? cancellable) {
+        if (Utils.is_cancelled (cancellable))
+            return;
+
 		view.get_selection ().freeze_notify ();
 
 		items.unset ("");
@@ -199,7 +202,7 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 
 		model = new BrowserColumnModel (category);
 
-		model.append_items (items.keys, false);
+		model.append_items (items.keys, false, cancellable);
 		model.set_sort_column_id (0, Gtk.SortType.ASCENDING);
 
 		view.set_model (model);

@@ -169,7 +169,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 	}
 
 	/** convenience method to insert medias into the model. No iters returned. **/
-	public void append_items (Collection<string> medias, bool emit) {
+	public void append_items (Collection<string> medias, bool emit, Cancellable? cancellable) {
 		add_first_element ();
 
 		// We do some data validation for numeric values later
@@ -182,6 +182,9 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 
 
 		foreach (string s in medias) {
+            if (Utils.is_cancelled (cancellable))
+                break;
+
 			// if it is rating column, add "Stars" after the number
 			if (is_rating) {
 				int rating = int.parse (s);

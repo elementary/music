@@ -40,7 +40,7 @@ public class Noise.FastGrid : IconView {
 		showing = new HashTable<int, GLib.Object>(null, null);
 		fm = new FastGridModel();
 
-		set_table(table);
+		set_table(table, true, null);
 		set_model(fm);
 
 		set_pixbuf_column(PIXBUF_COLUMN);
@@ -70,20 +70,23 @@ public class Noise.FastGrid : IconView {
 		fm.set_value_func(func);
 	}
 
-	public void set_table (HashTable<int, GLib.Object> table, bool do_resort = true) {
+	public void set_table (HashTable<int, GLib.Object> table, bool do_resort, Cancellable? cancellable) {
 		this.table = table;
 
 		if(do_resort)
-			resort(); // this also calls search
+			resort(cancellable); // this also calls search
 		else
-			do_search(null);
+			do_search(null, cancellable);
 	}
 
 	// If a GLib.Object is in objects but not in table, will just ignore
-	public void remove_objects (Gee.HashMap<GLib.Object, int> objects) {
+	public void remove_objects (Gee.HashMap<GLib.Object, int> objects, Cancellable? cancellable) {
 		int index = 0;
 		var new_table = new HashTable<int, GLib.Object>(null, null);
 		for(int i = 0; i < table.size(); ++i) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			GLib.Object o = table.get(i);
 
 			// create a new table. if not in objects, and is in table, add it.
@@ -93,22 +96,30 @@ public class Noise.FastGrid : IconView {
 		}
 
 		// no need to resort, just removing
-		set_table(new_table, false);
+        if (!Utils.is_cancelled (cancellable))
+		    set_table(new_table, false, cancellable);
 		//get_selection().unselect_all();
 	}
 
 	// Does NOT check for duplicates
-	public void add_objects (Gee.Collection<GLib.Object> objects) {
+	public void add_objects (Gee.Collection<GLib.Object> objects, Cancellable? cancellable) {
 		// skip calling set_table and just do it ourselves (faster)
 		foreach(var o in objects) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			table.set((int)table.size(), o);
 		}
 		
 		// resort the new songs in. this will also call do_search
-		resort ();
+        if (!Utils.is_cancelled (cancellable))
+    		resort (cancellable);
 	}
 	
-	public void do_search (string? search) {
+	public void do_search (string? search, Cancellable? cancellable) {
+        if (Utils.is_cancelled (cancellable))
+            return;
+
 		var old_size = showing.size();
 		showing.remove_all();
 		
@@ -116,32 +127,38 @@ public class Noise.FastGrid : IconView {
 			showing.set(i, table.get(i));
 		
 		if(showing.size() == old_size) {
-			fm.set_table(showing);
+			fm.set_table(showing, cancellable);
 			queue_draw();
 		}
 		else if(old_size == 0) { // if first population, just do normal
 			set_model(null);
-			fm.set_table(showing);
+			fm.set_table(showing, cancellable);
 			set_model(fm);
 		}
 		else if(old_size > showing.size()) { // removing
 			while(fm.iter_n_children(null) > showing.size()) {
+                if (Utils.is_cancelled (cancellable))
+                    return;
+
 				TreeIter iter;
 				fm.iter_nth_child(out iter, null, fm.iter_n_children(null) - 1);
 				fm.remove(iter);
 			}
 			
-			fm.set_table(showing);
+			fm.set_table(showing, cancellable);
 			queue_draw();
 		}
 		else if(showing.size() > old_size) { // adding
 			TreeIter iter;
 			
 			while(fm.iter_n_children(null) < showing.size()) {
+                if (Utils.is_cancelled (cancellable))
+                    return;
+
 				fm.append(out iter);
 			}
 			
-			fm.set_table(showing);
+			fm.set_table(showing, cancellable);
 			queue_draw();
 		}
 	}
@@ -158,9 +175,12 @@ public class Noise.FastGrid : IconView {
 		compare_func = func;
 	}
 	
-	public void resort () {
-		quicksort(0, (int)(table.size() - 1));
-		do_search (null);
+	public void resort (Cancellable? cancellable) {
+        if (Utils.is_cancelled (cancellable))
+            return;
+
+		quicksort(0, (int)(table.size() - 1), cancellable);
+		do_search (null, cancellable);
 	}
 	
 	void swap (int a, int b) {
@@ -169,22 +189,29 @@ public class Noise.FastGrid : IconView {
 		table.set(b, temp);
 	}
 	
-	public void quicksort (int start, int end) {
+	public void quicksort (int start, int end, Cancellable? cancellable) {
+        if (Utils.is_cancelled (cancellable))
+            return;
+
 		GLib.Object pivot = table.get((start+end)/2);
 		int i = start;
 		int j = end;
 		
 		while(i <= j) {
+            if (Utils.is_cancelled (cancellable))
+                return;
+
 			while(i < end && compare_func (table.get(i), pivot) < 0) ++i;
 			while(j > start && compare_func (table.get(j), pivot) > 0) --j;
+
 			if(i <= j) {
 				swap(i, j);
 				++i; --j;
 			}
 		}
 		
-		if(start < j)	quicksort (start, j);
-		if(i < end)		quicksort (i, end);
+		if(start < j)	quicksort (start, j, cancellable);
+		if(i < end)		quicksort (i, end, cancellable);
 	}
 }
 
