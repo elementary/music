@@ -68,15 +68,10 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 	public void finish_initialization() {
 		lm.progress_cancel_clicked.connect(cancel_transfer);
 		
-		try {
-			new Thread<void*>.try (null, finish_initialization_thread);
-		}
-		catch(GLib.Error err) {
-			warning ("ERROR: Could not create thread to finish ipod initialization: %s \n", err.message);
-		}
+	    Threads.add (finish_initialization_thread);
 	}
 	
-	void* finish_initialization_thread() {
+	void finish_initialization_thread() {
 		medias = CDDA.getMediaList(mount.get_default_location().get_path());
 		if(medias.size > 0) {
 			setDisplayName(medias.get(0).album);
@@ -87,8 +82,6 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 			
 			return false;
 		});
-		
-		return null;
 	}
 	
 	public string getContentType() {

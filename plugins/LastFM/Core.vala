@@ -229,7 +229,6 @@ namespace LastFM {
                     return iter->get_content();
                 }
             }
-            
             return null;
         }
         
@@ -254,7 +253,6 @@ namespace LastFM {
                     }
                 }
             }
-            
             return null;
         }
         
@@ -324,17 +322,13 @@ namespace LastFM {
         Mutex fetch_info_guard;
 
         public void fetchCurrentTrackInfo() {
-            try {
-                new Thread<void*>.try (null, track_thread_function);
-            } catch(GLib.Error err) {
-                warning ("ERROR: Could not create last fm thread: %s \n", err.message);
-            }
+            Noise.Threads.add (track_thread_function);
         }
         
-        void* track_thread_function () {
+        void track_thread_function () {
             var current_media = Noise.App.player.media_info.media;
             if (current_media == null)
-                return null;
+                return;
 
             string album_artist_s = current_media.album_artist;
             string track_s = current_media.title;
@@ -356,23 +350,17 @@ namespace LastFM {
                     Noise.App.player.media_info.track = track;
                 fetch_info_guard.unlock ();
             }
-
-            return null;
         }
         
         public void fetchCurrentAlbumInfo() {
-            try {
-                new Thread<void*>.try (null, album_thread_function);
-            } catch(GLib.Error err) {
-                warning ("ERROR: Could not create last fm thread: %s \n", err.message);
-            }
+            Noise.Threads.add (album_thread_function);
         }
 
-        void* album_thread_function () {
+        void album_thread_function () {
 
             var current_media = Noise.App.player.media_info.media;
             if (current_media == null)
-                return null;
+                return;
 
             string album_artist_s = current_media.album_artist;
             string album_s = current_media.album;
@@ -388,7 +376,7 @@ namespace LastFM {
                 if (album != null) 
                     save_album (album);
                 else
-                    return null;
+                    return;
 
                 /* If on same song, update Noise.App.player.media_info.album */
                 fetch_info_guard.lock ();
@@ -403,7 +391,7 @@ namespace LastFM {
                 var coverart_cache = Noise.CoverartCache.instance;
 
                 if (coverart_cache.has_image (current_media))
-                    return null;
+                    return;
 
                 if (album.image_uri != "") {
                     message ("Caching last.fm image from URL: %s", album.image_uri);
@@ -418,24 +406,18 @@ namespace LastFM {
             else {
                 message ("Not fetching album info or art");
             }
-
-            return null;
         }
         
         /** Fetches artist info for currently playing song's artist
          */
         public void fetchCurrentArtistInfo() {
-            try {
-                new Thread<void*>.try (null, artist_thread_function);
-            } catch(GLib.Error err) {
-                message ("ERROR: Could not create last fm thread: %s \n", err.message);
-            }
+            Noise.Threads.add (artist_thread_function);
         }
         
-        void* artist_thread_function () {
+        void artist_thread_function () {
             var current_media = Noise.App.player.media_info.media;
             if (current_media == null)
-                return null;
+                return;
 
             string album_artist_s = current_media.album_artist;
             if (album_artist_s == "")
@@ -460,28 +442,22 @@ namespace LastFM {
 
                 fetch_info_guard.unlock ();
             }
-
-            return null;
         }
         
         /** Update's the user's currently playing track on last.fm
          * 
          */
         public void postNowPlaying() {
-            try {
-                new Thread<void*>.try (null, update_nowplaying_thread_function);
-            } catch(GLib.Error err) {
-                warning ("ERROR: Could not create last fm thread: %s \n", err.message);
-            }
+            Noise.Threads.add (update_nowplaying_thread_function);
         }
         
-        void* update_nowplaying_thread_function() {
+        void update_nowplaying_thread_function() {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
                 message ("Last.FM user not logged in\n");
-                return null;
+                return;
             }
             if(!Noise.App.player.media_active)
-                return null;
+                return;
             
             var artist = Noise.App.player.media_info.media.artist;
             var title = Noise.App.player.media_info.media.title;
@@ -502,31 +478,22 @@ namespace LastFM {
             
             /* send the HTTP request */
             session.send_message(message);
-            
-            if(message.response_body.length == 0)
-                return null;
-
-            return null;
         }
         
         /**
          * Scrobbles the currently playing track to last.fm
          */
         public void postScrobbleTrack() {
-            try {
-                new Thread<void*>.try (null, scrobble_thread_function);
-            } catch(GLib.Error err) {
-                warning ("ERROR: Could not create last fm thread: %s \n", err.message);
-            }
+            Noise.Threads.add (scrobble_thread_function);
         }
         
-        void* scrobble_thread_function () {
+        void scrobble_thread_function () {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
                 message ("Last.FM user not logged in\n");
-                return null;
+                return;
             }
             if(!Noise.App.player.media_active)
-                return null;
+                return;
 
             var current_media = Noise.App.player.media_info.media;
             
@@ -551,11 +518,6 @@ namespace LastFM {
             
             /* send the HTTP request */
             session.send_message(message);
-            
-            if(message.response_body.length == 0)
-                return null;
-            
-            return null;
         }
         
         public void fetchCurrentSimilarSongs() {

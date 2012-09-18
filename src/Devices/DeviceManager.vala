@@ -56,17 +56,11 @@ public class Noise.DeviceManager : GLib.Object {
 	}
 	
 	public void loadPreExistingMounts() {
-		
 		// this can take time if we have to rev up the cd drive
-		try {
-			new Thread<void*>.try (null, get_pre_existing_mounts);
-		}
-		catch(GLib.Error err) {
-			warning ("Could not create mount getter thread: %s", err.message);
-		}
+		Threads.add (get_pre_existing_mounts);
 	}
 	
-	public void* get_pre_existing_mounts () {
+	public void get_pre_existing_mounts () {
 		var mounts = new LinkedList<Mount>();
 		var volumes = new LinkedList<Volume>();
 		
@@ -90,8 +84,6 @@ public class Noise.DeviceManager : GLib.Object {
 			
 			return false;
 		});
-		
-		return null;
 	}
 	
 	void volume_added(Volume volume) {

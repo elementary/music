@@ -76,13 +76,8 @@ public class Noise.DataBaseUpdater : GLib.Object {
 
 	private async void update_db_async () {
 		if(!inThread) {
-			try {
-				inThread = true;
-				new Thread<void*>.try (null, update_db_thread_function);
-			}
-			catch(Error err) {
-				warning ("Could not create thread to update database: %s \n", err.message);
-			}
+			inThread = true;
+			Threads.add (update_db_thread_function);
 		}
 	}
 	
@@ -95,7 +90,7 @@ public class Noise.DataBaseUpdater : GLib.Object {
 		update_db_async ();
 	}
 	
-	public void* update_db_thread_function () {
+	public void update_db_thread_function () {
 		while(true) {
 			GLib.Object next;
 			
@@ -126,13 +121,13 @@ public class Noise.DataBaseUpdater : GLib.Object {
 			}
 			else {
 				inThread = false;
-				update_mutex.unlock();
-				remove_mutex.unlock();
-				return null;
 			}
 			
 			update_mutex.unlock();
 			remove_mutex.unlock();
+
+            if (!inThread)
+                break;
 		}
 
 	}

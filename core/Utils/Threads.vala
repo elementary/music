@@ -41,7 +41,7 @@ public class Noise.Threads {
         }
     }
 
-    private const int MAX_THREADS = -1; // Unlimited
+    private const int MAX_THREADS = 10;
     private const int MAX_UNUSED_THREADS = 5;
 
     private static ThreadPool<TaskFuncWrapper>? thread_pool;
@@ -71,9 +71,9 @@ public class Noise.Threads {
             } catch (Error err) {
                 error ("Couldn't create default thread pool: %s", err.message);
             }
-        }
 
-        thread_pool.set_max_unused_threads (MAX_UNUSED_THREADS);
+            thread_pool.set_max_unused_threads (MAX_UNUSED_THREADS);
+        }
     }
 
     private static void task_func (TaskFuncWrapper wrapper) {

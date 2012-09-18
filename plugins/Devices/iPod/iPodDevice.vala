@@ -89,15 +89,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             
         });
         
-        try {
-            new Thread<void*>.try (null, finish_initialization_thread);
-        }
-        catch(GLib.Error err) {
-            stdout.printf("ERROR: Could not create thread to finish ipod initialization: %s \n", err.message);
-        }
+        Threads.add (finish_initialization_thread);
     }
     
-    void* finish_initialization_thread() {
+    void finish_initialization_thread() {
         // get all songs first
         for(int i = 0; i < db.tracks.length(); ++i) {
             unowned GPod.Track t = db.tracks.nth_data(i);
@@ -145,8 +140,6 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             
             return false;
         });
-        
-        return null;
     }
     
     public bool isNew() {
@@ -311,13 +304,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         to_add = new HashMap<Noise.Media, unowned GPod.Track>();
         this.list = list;
         
-        try {
-            new Thread<void*>.try (null, sync_medias_thread);
-        }
-        catch(GLib.Error err) {
-            stdout.printf("ERROR: Could not create thread to sync medias: %s \n", err.message);
-            return false;
-        }
+        Threads.add (sync_medias_thread);
         
         return true;
     }
@@ -347,7 +334,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         return get_capacity() > list_size;
     }
     
-    void* sync_medias_thread() {
+    void sync_medias_thread() {
         currently_syncing = true;
         bool error_occurred = false;
         index = 0;
@@ -493,7 +480,6 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return false;
         });
         
-        return null;
     }
     
     /**********************************
@@ -528,18 +514,12 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         to_add = new HashMap<Noise.Media, unowned GPod.Track>();
         this.list = list;
         
-        try {
-            new Thread<void*>.try (null, add_medias_thread);
-        }
-        catch(GLib.Error err) {
-            stdout.printf("ERROR: Could not create thread to add medias: %s \n", err.message);
-            return false;
-        }
+        Threads.add (add_medias_thread);
         
         return true;
     }
     
-    void* add_medias_thread() {
+    void add_medias_thread() {
         currently_syncing = true;
         bool error_occurred = false;
         index = 0;
@@ -599,8 +579,6 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             
             return false;
         });
-        
-        return null;
     }
     
     /* Adds to track list, mpl, and copies the file over */
@@ -682,18 +660,12 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         lm.lw.update_sensitivities();
         this.list = list;
         
-        try {
-            new Thread<void*>.try (null, remove_medias_thread);
-        }
-        catch(GLib.Error err) {
-            stdout.printf("ERROR: Could not create thread to remove medias: %s \n", err.message);
-            return false;
-        }
+        Threads.add (remove_medias_thread);
         
         return true;
     }
     
-    void* remove_medias_thread() {
+    void remove_medias_thread() {
         currently_syncing = true;
         bool error_occurred = false;
         index = 0;
@@ -768,8 +740,6 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             
             return false;
         });
-        
-        return null;
     }
     
     void remove_media(GPod.Track t) {
@@ -911,20 +881,14 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         lm.start_file_operations(_("Importing <b>%s</b> to library...").printf((list.size > 1) ? list.size.to_string() : (list.get(0)).title));
         current_operation = "Importing <b>" + ((list.size > 1) ? list.size.to_string() : (list.get(0)).title) + "</b> items to library...";
         
-        try {
-            new Thread<void*>.try (null, transfer_medias_thread);
-        }
-        catch(GLib.Error err) {
-            warning ("Could not create thread to transfer medias: %s \n", err.message);
-            return false;
-        }
+        Threads.add (transfer_medias_thread);
         
         return true;
     }
     
-    void* transfer_medias_thread() {
+    void transfer_medias_thread() {
         if(this.list == null || this.list.size == 0)
-            return null;
+            return;
         
         currently_transferring = true;
         transfer_cancelled = false;
@@ -961,7 +925,5 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             
             return false;
         });
-        
-        return null;
     }
 }

@@ -125,23 +125,18 @@ public class Noise.FileOperator : Object {
 		}
 		
 		if(!inThread) {
-			try {
-				inThread = true;
-				new Thread<void*>.try (null, save_media_thread);
-			}
-			catch(GLib.Error err) {
-				warning ("Could not create thread to rescan music folder: %s\n", err.message);
-			}
+			inThread = true;
+			Threads.add (save_media_thread);
 		}
 	}
 
-	public void* save_media_thread () {
+	public void save_media_thread () {
 		while(true) {
 			Media s = toSave.poll();
 			
 			if(s == null) {
 				inThread = false;
-				return null;
+				return;
 			}
 			
 			if(Settings.Main.instance.write_metadata_to_file) {
@@ -417,12 +412,7 @@ public class Noise.FileOperator : Object {
 		if((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && Settings.Main.instance.copy_imported_music) {
 			fo_progress("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 			
-			try {
-				new Thread<void*>.try (null, copy_imports_thread);
-			}
-			catch(GLib.Error err) {
-				warning("Could not create thread to rescan music folder: %s\n", err.message);
-			}
+		    Threads.add (copy_imports_thread);
 		}
 		else {
 			lm.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
@@ -430,9 +420,9 @@ public class Noise.FileOperator : Object {
 		}
 	}
 	
-	public void* copy_imports_thread() {
+	public void copy_imports_thread() {
 		resetProgress(all_new_imports.size);
-		
+
 		foreach(Media s in all_new_imports) {
 			if(!cancelled) {
 				//current_operation = "<b>Copying " + s.title + "</b> to <b>Music Folder</b>";
@@ -448,7 +438,5 @@ public class Noise.FileOperator : Object {
 			
 			return false;
 		});
-		
-		return null;
 	}
 }
