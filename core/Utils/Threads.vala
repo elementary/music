@@ -33,8 +33,8 @@ public class Noise.Threads {
 
     public delegate void TaskFunc ();
 
-    private class TaskFuncWrapper {
-        public unowned TaskFunc func { get; private set; }
+    private class TaskFuncWrapper : Object {
+        public unowned TaskFunc func;
 
         public TaskFuncWrapper (TaskFunc func) {
             this.func = func;
@@ -76,9 +76,8 @@ public class Noise.Threads {
         thread_pool.set_max_unused_threads (MAX_UNUSED_THREADS);
     }
 
-    private static void task_func (TaskFuncWrapper task) {
-        // execute the task
-        if (task.func != null)
-            task.func ();
+    private static void task_func (TaskFuncWrapper wrapper) {
+        if (wrapper.func != null)
+            wrapper.func ();
     }
 }
