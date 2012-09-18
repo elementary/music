@@ -226,25 +226,25 @@ public class Noise.LibraryManager : Object {
     }
 
     private async void set_music_folder_async () {
-        try {
-            new Thread<void*>.try (null, () => {
-                var music_folder_file = File.new_for_path(Settings.Main.instance.music_folder);
-                LinkedList<string> files = new LinkedList<string>();
+        SourceFunc callback = set_music_folder_async.callback;
 
-                var items = fo.count_music_files(music_folder_file, ref files);
-                debug ("found %d items to import\n", items);
+        Threads.add ( () => {
+            var music_folder_file = File.new_for_path(Settings.Main.instance.music_folder);
+            LinkedList<string> files = new LinkedList<string>();
 
-                var to_import = remove_duplicate_files (files);
+            var items = fo.count_music_files(music_folder_file, ref files);
+            debug ("found %d items to import\n", items);
 
-                fo.resetProgress(to_import.size - 1);
-                Timeout.add(100, doProgressNotificationWithTimeout);
-                fo.import_files(to_import, FileOperator.ImportType.SET);
+            var to_import = remove_duplicate_files (files);
 
-                return null;
-            });
-        } catch (Error err) {
-            warning (err.message);
-        }
+            fo.resetProgress(to_import.size - 1);
+            Timeout.add(100, doProgressNotificationWithTimeout);
+            fo.import_files(to_import, FileOperator.ImportType.SET);
+
+            Idle.add ((owned) callback);
+        });
+
+        yield;
     }
 
     public void add_files_to_library (LinkedList<string> files) {
@@ -255,21 +255,19 @@ public class Noise.LibraryManager : Object {
     }
 
     private async void add_files_to_library_async () {
+        SourceFunc callback = add_files_to_library_async.callback;
 
-        try {
-            new Thread<void*>.try (null, () => {
+        Threads.add ( () => {
+            var to_import = remove_duplicate_files (temp_add_files);
 
-                var to_import = remove_duplicate_files (temp_add_files);
+            fo.resetProgress(to_import.size - 1);
+            Timeout.add(100, doProgressNotificationWithTimeout);
+            fo.import_files(to_import, FileOperator.ImportType.IMPORT);
 
-                fo.resetProgress(to_import.size - 1);
-                Timeout.add(100, doProgressNotificationWithTimeout);
-                fo.import_files(to_import, FileOperator.ImportType.IMPORT);
+            Idle.add ((owned) callback);
+        });
 
-                return null;
-            });
-        } catch (Error err) {
-            warning (err.message);
-        }
+        yield;
     }
 
     private Gee.LinkedList<string> remove_duplicate_files (Gee.LinkedList<string> files) {
@@ -305,25 +303,24 @@ public class Noise.LibraryManager : Object {
     }
 
     private async void add_folder_to_library_async () {
-        try {
-            new Thread<void*>.try (null, () => {
-                var file = File.new_for_path(temp_add_folder);
-                var files = new LinkedList<string>();
+        SourceFunc callback = add_folder_to_library_async.callback;
 
-                fo.count_music_files(file, ref files);
+        Threads.add ( () => {
+            var file = File.new_for_path(temp_add_folder);
+            var files = new LinkedList<string>();
 
-                var to_import = remove_duplicate_files (files);
+            fo.count_music_files(file, ref files);
 
-                fo.resetProgress (to_import.size - 1);
-                Timeout.add(100, doProgressNotificationWithTimeout);
-                fo.import_files (to_import, FileOperator.ImportType.IMPORT);
+            var to_import = remove_duplicate_files (files);
 
-                return null;
-            });
-        } catch (Error err) {
-            warning (err.message);
-        }
+            fo.resetProgress (to_import.size - 1);
+            Timeout.add(100, doProgressNotificationWithTimeout);
+            fo.import_files (to_import, FileOperator.ImportType.IMPORT);
 
+            Idle.add ((owned) callback);
+        });
+
+        yield;
     }
 
     public void rescan_music_folder() {
@@ -333,65 +330,61 @@ public class Noise.LibraryManager : Object {
     }
 
     private async void rescan_music_folder_async () {
-        try {
-            new Thread<void*>.try (null, () => {
-                HashMap<string, Media> paths = new Gee.HashMap<string, Media>();
-                LinkedList<Media> to_remove = new LinkedList<Media>();
-                LinkedList<string> to_import = new LinkedList<string>();
+        SourceFunc callback = rescan_music_folder_async.callback;
 
-                fo.resetProgress(100);
+        var paths = new Gee.HashMap<string, Media>();
+        var to_remove = new Gee.LinkedList<Media>();
+        var to_import = new Gee.LinkedList<string>();
+
+        Threads.add ( () => {
+            fo.resetProgress(100);
+            Timeout.add(100, doProgressNotificationWithTimeout);
+
+            var music_folder_dir = Settings.Main.instance.music_folder;
+            foreach(Media s in _media.values) {
+                if(!s.isTemporary && !s.isPreview && s.uri.contains(music_folder_dir))
+                    paths.set(s.uri, s);
+
+                if(s.uri.contains(music_folder_dir) && !File.new_for_uri(s.uri).query_exists())
+                        to_remove.add(s);
+            }
+            fo.index = 5;
+
+            // get a list of the current files
+            var files = new LinkedList<string>();
+            fo.count_music_files(File.new_for_path(music_folder_dir), ref files);
+            fo.index = 10;
+
+            foreach(string s in files) {
+                // XXX: libraries are not necessarily local. This will fail
+                // for remote libraries FIXME
+                if(paths.get("file://" + s) == null)
+                    to_import.add(s);
+            }
+
+            debug ("Importing %d new songs\n", to_import.size);
+            if(to_import.size > 0) {
+                fo.resetProgress(to_import.size);
                 Timeout.add(100, doProgressNotificationWithTimeout);
+                fo.import_files(to_import, FileOperator.ImportType.RESCAN);
+            }
+            else {
+                fo.index = 90;
+            }
 
-                var music_folder_dir = Settings.Main.instance.music_folder;
-                foreach(Media s in _media.values) {
-                    if(!s.isTemporary && !s.isPreview && s.uri.contains(music_folder_dir))
-                        paths.set(s.uri, s);
+            Idle.add ((owned) callback);
+        });
 
-                    if(s.uri.contains(music_folder_dir) && !File.new_for_uri(s.uri).query_exists())
-                            to_remove.add(s);
-                }
-                fo.index = 5;
+        yield;
 
-                // get a list of the current files
-                var files = new LinkedList<string>();
-                fo.count_music_files(File.new_for_path(music_folder_dir), ref files);
-                fo.index = 10;
+        if (!fo.cancelled)
+            remove_media(to_remove, false);
 
-                foreach(string s in files) {
-                    // XXX: libraries are not necessarily local. This will fail
-                    // for remote libraries FIXME
-                    if(paths.get("file://" + s) == null)
-                        to_import.add(s);
-                }
+        if (to_import.size == 0)
+            finish_file_operations();
 
-                debug ("Importing %d new songs\n", to_import.size);
-                if(to_import.size > 0) {
-                    fo.resetProgress(to_import.size);
-                    Timeout.add(100, doProgressNotificationWithTimeout);
-                    fo.import_files(to_import, FileOperator.ImportType.RESCAN);
-                }
-                else {
-                    fo.index = 90;
-                }
-
-                Idle.add( () => {
-                    if (!fo.cancelled)
-                        remove_media(to_remove, false);
-                    if (to_import.size == 0) {
-                        finish_file_operations();
-                    }
-
-                    // after we're done with that, rescan album arts
-                    CoverartCache.instance.fetch_all_cover_art_async (media ());
-
-                    return false;
-                });
-
-                return null;
-            });
-        } catch (Error err) {
-            warning (err.message);
-        }
+        // after we're done with that, rescan album arts
+        yield CoverartCache.instance.fetch_all_cover_art_async (media ());
     }
 
     public void play_files (File[] files) {
@@ -433,15 +426,10 @@ public class Noise.LibraryManager : Object {
 
 
     public void recheck_files_not_found() {
-        try {
-            new Thread<void*>.try (null, recheck_files_not_found_thread);
-        }
-        catch(Error err) {
-            warning ("Could not create thread to check file locations: %s\n", err.message);
-        }
+        Threads.add (recheck_files_not_found_thread);
     }
 
-    public void* recheck_files_not_found_thread () {
+    public void recheck_files_not_found_thread () {
         message ("IMPLEMENT FILE NOT FOUND CHECK !!");
 
 #if 0
@@ -493,7 +481,6 @@ public class Noise.LibraryManager : Object {
             return false;
         });
 #endif
-        return null;
     }
 
 
@@ -585,17 +572,17 @@ public class Noise.LibraryManager : Object {
     }
 
     public async void save_smart_playlists() {
-        try {
-            new Thread<void*>.try (null, () => {
-                _smart_playlists_lock.lock ();
-                dbm.save_smart_playlists(smart_playlists ());
-                _smart_playlists_lock.unlock ();
+        SourceFunc callback = save_smart_playlists.callback;
 
-                return null;
-            });
-        } catch (Error err) {
-            warning (err.message);
-        }
+        Threads.add ( () => {
+            _smart_playlists_lock.lock ();
+            dbm.save_smart_playlists(smart_playlists ());
+            _smart_playlists_lock.unlock ();
+
+            Idle.add ((owned) callback);
+        });
+
+        yield;
     }
 
     public int add_smart_playlist(SmartPlaylist p) {
@@ -726,18 +713,17 @@ public class Noise.LibraryManager : Object {
     }
 
     public async void save_media() {
+        SourceFunc callback = save_media.callback;
 
-        try {
-            new Thread<void*>.try (null, () => {
-                _media_lock.lock ();
-                dbm.update_media (_media.values);
-                _media_lock.unlock ();
+        Threads.add ( () => {
+            _media_lock.lock ();
+            dbm.update_media (_media.values);
+            _media_lock.unlock ();
 
-                return null;
-            });
-        } catch (Error err) {
-            warning (err.message);
-        }
+            Idle.add ((owned) callback);
+        });
+
+        yield;
     }
 
     /** Used extensively. All other media data stores a media rowid, and then
