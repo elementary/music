@@ -511,25 +511,47 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         lw.searchField.set_text ("");
     }
 
+
+
+    private Cancellable? search_cancellable;
+
+    private async void cancel_search () {
+        var old_cancellable = search_cancellable;
+        search_cancellable = new Cancellable ();
+        SourceFunc cb = cancel_search.callback;
+
+        Threads.add ( () => {
+            debug ("Cancelling last search");
+            old_cancellable.cancel ();
+            Idle.add_full (0, (owned)cb);
+        });
+
+        yield;
+    }
+
     /**
      * Description:
      * Updates the data in visible_media and re-populates all the views.
      * Primarily used for searches
      */
-    protected virtual void update_visible_media () {
-        debug ("%s : UPDATING VISIBLE MEDIA", hint.to_string ());
+    protected virtual async void update_visible_media () {
+        cancel_search ();
 
         // LOCK
         updating_media_data.lock ();
+        var cancellable = search_cancellable;
 
+        debug ("%s : UPDATING VISIBLE MEDIA", hint.to_string ());
         visible_media_table = new Gee.HashSet<Media> ();
         var to_search = get_search_string ();
+
+        debug ("-- Updating view wrapper for search string '%s'", to_search);
 
         var search_results = new Gee.LinkedList<Media> ();
 
         if (to_search != "") {
             // Perform search
-            Search.smart_search (get_media_list (), out search_results, to_search);
+            Search.smart_search (get_media_list (), out search_results, to_search, cancellable);
 
             foreach (var m in search_results) {
                 visible_media_table.add (m);
@@ -546,9 +568,9 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         // UNLOCK
         updating_media_data.unlock ();
 
-        set_content_views_media (search_results);
+        set_content_views_media (search_results, cancellable);
 
-        if (is_current_wrapper) {
+        if (is_current_wrapper && !cancellable.is_cancelled ()) {
             update_library_window_widgets ();
             // Check whether we should show the embedded alert in case there's no media
             if (check_have_media ()) {
@@ -846,42 +868,42 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
     /* Content view stuff */
 
-    private void add_media_to_content_views (Gee.Collection<Media> to_add) {
+    private void add_media_to_content_views (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
         // The order matters here. Make sure we apply the action to the current view first
         if (current_view == ViewType.LIST) {
             if (has_list_view)
-                list_view.add_media (to_add);
+                list_view.add_media (to_add, cancellable);
             if (has_grid_view)
-                    grid_view.add_media (to_add);
+                    grid_view.add_media (to_add, cancellable);
         }
         else {
             if (has_grid_view)
-                grid_view.add_media (to_add);
+                grid_view.add_media (to_add, cancellable);
             if (has_list_view)
-                list_view.add_media (to_add);
+                list_view.add_media (to_add, cancellable);
         }
     }
 
-    private void remove_media_from_content_views (Gee.Collection<Media> to_remove) {
+    private void remove_media_from_content_views (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
         if (has_list_view)
-            list_view.remove_media (to_remove);
+            list_view.remove_media (to_remove, cancellable);
         if (has_grid_view)
-            grid_view.remove_media (to_remove);
+            grid_view.remove_media (to_remove, cancellable);
     }
 
-    private void set_content_views_media (Gee.Collection<Media> new_media) {
+    private void set_content_views_media (Gee.Collection<Media> new_media, Cancellable? cancellable) {
         // The order matters here. Make sure we apply the action to the current view first
         if (current_view == ViewType.LIST) {
             if (has_list_view)
-                list_view.set_media (new_media);
+                list_view.set_media (new_media, cancellable);
             if (has_grid_view)
-                grid_view.set_media (new_media);
+                grid_view.set_media (new_media, cancellable);
         }
         else {
             if (has_grid_view)
-                grid_view.set_media (new_media);
+                grid_view.set_media (new_media, cancellable);
             if (has_list_view)
-                list_view.set_media (new_media);
+                list_view.set_media (new_media, cancellable);
         }
     }
 }
