@@ -35,7 +35,7 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	private SortType sort_direction;
 	
 	/* user specific function for get_value() */
-	public delegate Value ValueReturnFunc (int row, int column, Object o);
+	public delegate Value? ValueReturnFunc (int row, int column, Object o);
 	private unowned ValueReturnFunc value_func;
 	
 	public signal void reorder_requested (int column, Gtk.SortType direction);
@@ -81,15 +81,16 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	
 	public void get_value (TreeIter iter, int column, out Value val) {
 		val = Value(get_column_type(column));
-		
-		if(iter.stamp != this.stamp || column < 0 || column >= get_n_columns()) {
+
+		if (iter.stamp != this.stamp || column < 0 || column >= get_n_columns())
 			return;
-		}
-		
+
 		int row = (int)iter.user_data;
 		if(!(row >= rows.size())) {
 			var object = rows.get(row);
-			val = value_func(row, column, object);
+			var val_tmp = value_func(row, column, object);
+			if (val_tmp != null)
+			    val = val_tmp;
 		}
 	}
 

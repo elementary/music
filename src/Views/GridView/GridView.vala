@@ -275,38 +275,36 @@ public class Noise.GridView : ContentView, GridLayout {
 	}
 
 
-	protected override Value val_func (int row, int column, Object o) {
+	protected override Value? val_func (int row, int column, Object o) {
+		Value? val = null;
 		var s = o as Media;
 
-		Value val;
-
-		if (column == Column.PIXBUF) {
-    		val = CoverartCache.instance.get_cover (s);
-		}
-		else if (column == Column.MARKUP) {
-			string TEXT_MARKUP = @"%s\n<span foreground=\"#999\">%s</span>";
+        if (s != null) {
+		    if (column == Column.PIXBUF) {
+        		val = CoverartCache.instance.get_cover (s);
+		    } else if (column == Column.MARKUP) {
+			    string TEXT_MARKUP = @"%s\n<span foreground=\"#999\">%s</span>";
 			
-			string album, album_artist;
-			if(s.album.length > 25)
-				album = s.album.substring (0, 21) + "...";
-			else
-				album = s.album;
+			    string album, album_artist;
+			    if (s.album.length > 25)
+				    album = s.album.substring (0, 21) + "...";
+			    else
+				    album = s.album;
 
-			if(s.album_artist.length > 25)
-				album_artist = s.album_artist.substring(0, 21) + "...";
-			else
-				album_artist = s.album_artist;
+			    if (s.album_artist.length > 25)
+				    album_artist = s.album_artist.substring (0, 21) + "...";
+			    else
+				    album_artist = s.album_artist;
 
-			val = Markup.printf_escaped (TEXT_MARKUP, album, album_artist);
-		}
-		else if(column == Column.TOOLTIP) {
-			string TOOLTIP_MARKUP = @"<span size=\"large\"><b>%s</b></span>\n%s";
-			val = Markup.printf_escaped (TOOLTIP_MARKUP, s.album, s.album_artist);
-		}
-		else {
-			val = s;
-		}
-		
+			    val = Markup.printf_escaped (TEXT_MARKUP, album, album_artist);
+		    } else if (column == Column.TOOLTIP) {
+			    string TOOLTIP_MARKUP = @"<span size=\"large\"><b>%s</b></span>\n%s";
+			    val = Markup.printf_escaped (TOOLTIP_MARKUP, s.album, s.album_artist);
+		    } else {
+			    val = s;
+		    }
+        }
+
 		return val;
 	}
 

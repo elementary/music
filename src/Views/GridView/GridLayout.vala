@@ -46,7 +46,7 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
     }
 
     protected abstract void item_activated (Object? object);
-    protected abstract Value val_func (int row, int column, Object o);
+    protected abstract Value? val_func (int row, int column, Object o);
     protected abstract int compare_func (Object a, Object b);
 
     protected void add_objects (Gee.Collection<Object> objects, Cancellable? cancellable) {

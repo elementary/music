@@ -591,54 +591,54 @@ public class Noise.MusicListView : GenericList {
 		return rv;
 	}
 	
-	protected Value view_value_func (int row, int column, Object o) {
-		Value val;
+	protected Value? view_value_func (int row, int column, Object o) {
+		Value? val = null;
 		var s = o as Media;
-		
-		if(column == MusicColumn.ROWID)
-			val = s.rowid;
-		else if(column == MusicColumn.ICON) {
-			if(App.player.media_info.media != null && App.player.media_info.media == s)
-				val = playing_icon;
-			else if(tvs.get_hint() == ViewWrapper.Hint.CDROM && !s.isTemporary)
-				val = completed_icon;
-			else if(s.unique_status_image != null)
-				val = s.unique_status_image;
-			else
-				val = Value(typeof(GLib.Icon));
-		}
-		else if(column == MusicColumn.NUMBER)
-			val = (int)(row + 1);
-		else if(column == MusicColumn.TRACK)
-			val = (int)s.track;
-		else if(column == MusicColumn.TITLE)
-			val = s.title;
-		else if(column == MusicColumn.LENGTH)
-			val = (int)s.length;
-		else if(column == MusicColumn.ARTIST)
-			val = s.artist;
-		else if(column == MusicColumn.ALBUM)
-			val = s.album;
-		else if(column == MusicColumn.GENRE)
-			val = s.genre;
-		else if(column == MusicColumn.YEAR)
-			val = (int)s.year;
-		else if(column == MusicColumn.BITRATE)
-			val = (int)s.bitrate;
-		else if(column == MusicColumn.RATING)
-			val = (int)s.rating;
-		else if(column == MusicColumn.PLAY_COUNT)
-			val = (int)s.play_count;
-		else if(column == MusicColumn.SKIP_COUNT)
-			val = (int)s.skip_count;
-		else if(column == MusicColumn.DATE_ADDED)
-			val = (int)s.date_added;
-		else if(column == MusicColumn.LAST_PLAYED)
-			val = (int)s.last_played;
-		else if(column == MusicColumn.BPM)
-			val = (int)s.bpm;
-		else
-		    assert_not_reached ();
+
+        if (s != null) {
+		    if(column == MusicColumn.ROWID)
+			    val = s.rowid;
+		    else if(column == MusicColumn.ICON) {
+			    if(App.player.media_info.media != null && App.player.media_info.media == s)
+				    val = playing_icon;
+			    else if(tvs.get_hint() == ViewWrapper.Hint.CDROM && !s.isTemporary)
+				    val = completed_icon;
+			    else if(s.unique_status_image != null)
+				    val = s.unique_status_image;
+		    }
+		    else if(column == MusicColumn.NUMBER)
+			    val = (int)(row + 1);
+		    else if(column == MusicColumn.TRACK)
+			    val = (int)s.track;
+		    else if(column == MusicColumn.TITLE)
+			    val = s.title;
+		    else if(column == MusicColumn.LENGTH)
+			    val = (int)s.length;
+		    else if(column == MusicColumn.ARTIST)
+			    val = s.artist;
+		    else if(column == MusicColumn.ALBUM)
+			    val = s.album;
+		    else if(column == MusicColumn.GENRE)
+			    val = s.genre;
+		    else if(column == MusicColumn.YEAR)
+			    val = (int)s.year;
+		    else if(column == MusicColumn.BITRATE)
+			    val = (int)s.bitrate;
+		    else if(column == MusicColumn.RATING)
+			    val = (int)s.rating;
+		    else if(column == MusicColumn.PLAY_COUNT)
+			    val = (int)s.play_count;
+		    else if(column == MusicColumn.SKIP_COUNT)
+			    val = (int)s.skip_count;
+		    else if(column == MusicColumn.DATE_ADDED)
+			    val = (int)s.date_added;
+		    else if(column == MusicColumn.LAST_PLAYED)
+			    val = (int)s.last_played;
+		    else if(column == MusicColumn.BPM)
+			    val = (int)s.bpm;
+		    else
+		        assert_not_reached ();
+        }
 
 		return val;
 	}
