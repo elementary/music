@@ -54,7 +54,7 @@ namespace Noise.Search {
 
             foreach (var m in to_search) {
                 if (Utils.is_cancelled (cancellable))
-                    return;
+                    break;
 
                 if (m.rating == parsed_rating)
                     results.add (m);
@@ -70,7 +70,7 @@ namespace Noise.Search {
         if (search == "") {
             foreach (var m in to_search) {
                 if (Utils.is_cancelled (cancellable))
-                    return;
+                    break;
 
                 results.add (m);
             }
@@ -80,7 +80,7 @@ namespace Noise.Search {
 
         foreach (var m in to_search) {
             if (Utils.is_cancelled (cancellable))
-                return;
+                break;
 
             if (search == m.year.to_string ()) {
                 results.add (m);
@@ -123,7 +123,7 @@ namespace Noise.Search {
 
         foreach (var media in to_search) {
             if (Utils.is_cancelled (cancellable))
-                return;
+                break;
 
             if (rating == -1 || media.rating == rating)
             {
@@ -154,7 +154,7 @@ namespace Noise.Search {
 
         for (int i = 0; str.get_next_char (ref i, out c);) {
             if (Utils.is_cancelled (cancellable))
-                return "";
+                break;
 
             var sc = strip_char (c);
 
