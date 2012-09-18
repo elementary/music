@@ -87,16 +87,10 @@ public class Noise.CoverartCache : MediaArtCache {
     public async void load_for_media_async (Gee.Collection<Media> media) {
         SourceFunc callback = load_for_media_async.callback;
 
-        try {
-            new Thread<void*>.try (null, () => {
-                load_for_media (media);
-
-                Idle.add ((owned)callback);
-                return null;
-            });
-        } catch (Error err) {
-            warning ("Could not create thread to fetch all cover art: %s", err.message);
-        }
+        Threads.add ( () => {
+            load_for_media (media);
+            Idle.add ((owned)callback);
+        });
 
         yield;
     }

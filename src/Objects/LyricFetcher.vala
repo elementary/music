@@ -26,17 +26,13 @@ public class Noise.LyricFetcher : Object {
         SourceFunc cb = fetch_lyrics_async.callback;
         string lyrics = "";
 
-        try {
-            new Thread<void*>.try (null, () => {
-                lyrics = fetch_lyrics (m);
-                Idle.add ((owned)cb);
-                return null;
-            });
-        } catch (Error err) {
-            warning ("ERROR: Could not create lyrics thread: %s \n", err.message);
-        }
+        Threads.add ( () => {
+            lyrics = fetch_lyrics (m);
+            Idle.add ((owned) cb);
+        });
 
         yield;
+
         return lyrics;
     }
 

@@ -46,7 +46,8 @@
  * // To provide a fallback, simply install a fallback icon. e.g. ${NOISE_ICON_DIR}/hicolor/starred.svg
  * var icon = new Noise.Icon ("starred");
  *
- * // Supposing the icon was not found in any icon theme, the fallback icon file will be used instead
+ * // Supposing the icon was not found in any icon theme, the fallback icon file will be used instead,
+ * // so this operation will never fail.
  * icon.render (Gtk.IconSize.MENU);
  * }}}
  *
