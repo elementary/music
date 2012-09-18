@@ -12,6 +12,7 @@ vala_precompile(VALA_C
     Utils/UI.vala
     Utils/CompareFunctionHolder.vala
     Utils/Utils.vala
+    Utils/Threads.vala
 PACKAGES
     gtk+-3.0
     libpeas-1.0
