@@ -120,7 +120,7 @@ public class Noise.App : Granite.Application {
         translate_url = "https://translations.launchpad.net/noise";
 
         about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>",
-                         "Victor Eduardo M. <victoreduardm@gmail.com>",
+                         "Victor Eduardo <victor@elementaryos.org>",
                          "Corentin Noël <tintou@mailoo.org>", null};
 
         about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
