@@ -223,9 +223,6 @@ public abstract class Noise.GenericList : FastView {
             int column_width = -1;
             var test_strings = new string[0];
 
-            if (headers_visible)
-                test_strings += tvc.title;
-
             Gtk.CellRenderer? renderer = null;
 
 			if (tvc.title != TreeViewSetup.COLUMN_BLANK && tvc.title != TreeViewSetup.COLUMN_ID) {
@@ -353,7 +350,24 @@ public abstract class Noise.GenericList : FastView {
 				inserted_column.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
 				inserted_column.sort_column_id = index;
-				inserted_column.sort_indicator = false;
+				inserted_column.sort_indicator = true;
+
+                var header_button = inserted_column.get_button ();
+
+                // Make sure the title text is always fully displayed when the headers are visible
+                if (headers_visible) {
+                    Gtk.Requisition natural_size;
+                    header_button.get_preferred_size (null, out natural_size);
+
+                    if (natural_size.width > inserted_column.fixed_width)
+                        inserted_column.fixed_width = natural_size.width;
+
+                    // Add extra width for the order indicator arrows
+                    if (inserted_column.sort_indicator)
+                        inserted_column.fixed_width += 5; // roughly estimated arrow width
+                }
+
+                inserted_column.min_width = inserted_column.fixed_width;
 
 				// This is probably the best place to disable the columns we don't want
 				// for especific views, like the CD view. FIXME: we need to properly abstract this
@@ -382,7 +396,7 @@ public abstract class Noise.GenericList : FastView {
 					add_column_chooser_menu_item (inserted_column);
 				}
 
-                inserted_column.get_button ().button_press_event.connect ( (e) => {
+                header_button.button_press_event.connect ( (e) => {
                     return view_header_click (e, false);
                 });
 			}
@@ -408,8 +422,6 @@ public abstract class Noise.GenericList : FastView {
                 });
 			}
 			else {
-			    warning ("Inserting unknown column");
-
 				tvc.fixed_width = 24;
 				tvc.clickable = true;
 				tvc.sort_column_id = index; 
