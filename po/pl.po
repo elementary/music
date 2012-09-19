@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-15 20:34-0600\n"
-"PO-Revision-Date: 2012-09-17 17:16+0000\n"
+"PO-Revision-Date: 2012-09-18 20:56+0000\n"
 "Last-Translator: Marcin Wierzbicki <marcin.wierzb@gmail.com>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-09-18 05:31+0000\n"
+"X-Launchpad-Export-Date: 2012-09-19 05:08+0000\n"
 "X-Generator: Launchpad (build 15966)\n"
 "Language: \n"
 
@@ -1141,7 +1141,7 @@ msgstr "Importowanie %i nagrań"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:110
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Dopasuj rozmiar kolumn automatycznie"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:117
 msgid "Display Album Art"
@@ -1627,7 +1627,7 @@ msgstr "Nie udało się. Kliknij żeby spróbować ponownie."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "Scrobblowanie zostało już włączone"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1635,7 +1635,7 @@ msgstr "Zakończono pomyślnie!"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Kompletne logowanie"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
 msgid "Last.fm"
