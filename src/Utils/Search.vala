@@ -49,7 +49,7 @@ namespace Noise.Search {
         string search = "";
         int parsed_rating = get_rating_from_string (search_str.strip ());
 
-        if (parsed_rating >= 0) {
+        if (parsed_rating > 0) {
             parsed_rating = parsed_rating.clamp (0, 5);
 
             foreach (var m in to_search) {
@@ -67,7 +67,7 @@ namespace Noise.Search {
 
         search = get_valid_search_string (search_str, cancellable);
 
-        if (search == "") {
+        if (search.strip () == "") {
             foreach (var m in to_search) {
                 if (Utils.is_cancelled (cancellable))
                     break;
@@ -194,9 +194,22 @@ namespace Noise.Search {
 
     /**
      * Parses a rating from stars. e.g. "***" => 3
-     * Returns -1 if rating_string doesn't represent a valid rating
+     * Returns -1 if rating_string doesn't represent a valid rating.
+     *
+     * This method ''never'' returns zero. It simply doesn't make sense to
+     * return a rating of zero for any given empty string.
+     *
+     * Samples of valid strings:
+     *   "*"
+     *   "****"
+     * Samples of invalid strings:
+     *   ""
+     *   "  "
+     *   "**a"
      */
-    private inline int get_rating_from_string (string rating_string) {
+    private inline int get_rating_from_string (string rating_string)
+        ensures (result != 0 || result == -1)
+    {
         int i;
         unichar c;
 
@@ -205,6 +218,7 @@ namespace Noise.Search {
                 return -1;
         }
 
-        return i;
+
+        return i > 0 ? i : -1;
     }
 }
