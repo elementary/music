@@ -55,13 +55,13 @@
 public class Noise.PixbufCache {
 
     public Gee.Map<string, Gdk.Pixbuf> images {
-        owned get { return pixbuf_map.read_only_view; }
+        owned get { return image_map.read_only_view; }
     }
 
     public string image_format { get; private set; default = "jpeg"; }
 
     private File image_dir;
-    private Gee.HashMap<string, Gdk.Pixbuf> pixbuf_map;
+    private Gee.HashMap<string, Gdk.Pixbuf> image_map;
 
 
     /**
@@ -74,7 +74,7 @@ public class Noise.PixbufCache {
      *        by {@link Gdk.Pixbuf.save}.
      */
     public PixbufCache (File image_dir, string? image_format = null) {
-        pixbuf_map = new Gee.HashMap<string, Gdk.Pixbuf> ();
+        image_map = new Gee.HashMap<string, Gdk.Pixbuf> ();
 
         if (image_format != null)
             this.image_format = image_format;
@@ -108,16 +108,17 @@ public class Noise.PixbufCache {
      * Verifies whether the key has a corresponding image in the cache.
      */
     public bool has_image (string key) {
-        return pixbuf_map.has_key (key);
+        return image_map.has_key (key);
     }
 
 
     /**
      * Returns the location of an image on disk. This call does no blocking I/O.
-     * Use it to consistently read/write cached image files.
+     * Use it to consistently read cached image files.
      *
-     * This method computes a path based on the passed key, and thus it doesn't
-     * know whether the returned path exists or not.
+     * This method only computes a path based on the passed key, and thus it
+     * doesn't know whether the returned path exists or not. You can always use
+     * {@link Noise.PixbufCache.has_image} to check for that.
      */
     public string get_cached_image_path (string key) {
         string filename = Checksum.compute_for_string (ChecksumType.MD5, key + image_format);
@@ -132,8 +133,8 @@ public class Noise.PixbufCache {
     public Gdk.Pixbuf? decache_image (string key) {
         Gdk.Pixbuf? val;
 
-        lock (pixbuf_map) {
-            pixbuf_map.unset (key, out val);
+        lock (image_map) {
+            image_map.unset (key, out val);
             delete_file (get_cached_image_path (key));
         }
 
@@ -151,14 +152,7 @@ public class Noise.PixbufCache {
      * since the old pixbuf and cached image are overwritten.
      */
     public void cache_image (string key, Gdk.Pixbuf image) {
-        Gdk.Pixbuf? modified_pix = (filter_func != null) ? filter_func (key, image) : image;
-
-        if (modified_pix != null) {
-            lock (pixbuf_map) {
-                pixbuf_map.set (key, modified_pix);
-            }
-            save_pixbuf_to_file (key, image); // Store orginal
-        }
+        cache_image_internal (key, image, true);
     }
 
 
@@ -167,13 +161,9 @@ public class Noise.PixbufCache {
      * first fetches the image from the given file.
      */
     public void cache_image_from_file (string key, File image_file, Cancellable? c = null) {
-        try {
-            var image = PixbufUtils.get_pixbuf_from_file (image_file, c);
-            if (image != null)
-                cache_image (key, image);
-        } catch (Error err) {
-            warning ("Could not cache image from URI [%s]: %s", image_file.get_uri (), err.message);
-        }
+        var image = load_image_from_file (image_file, c);
+        if (image != null)
+            cache_image (key, image);
     }
 
 
@@ -188,19 +178,56 @@ public class Noise.PixbufCache {
      *         a valid {@link Gdk.Pixbuf}
      */
     public Gdk.Pixbuf? get_image (string key, bool lookup_file = true) {
-        if (lookup_file && !pixbuf_map.has_key (key)) {
+        if (lookup_file && !image_map.has_key (key)) {
             var image_file = File.new_for_path (get_cached_image_path (key));
-            cache_image_from_file (key, image_file);
+            var image = load_image_from_file (image_file, null);
+            if (image != null)
+                cache_image_internal (key, image, false);
         }
 
-        return pixbuf_map.get (key);
+        return image_map.get (key);
     }
 
 
     /**
+     * Adds an image to the hash map and also writes the image to disk if save_to_disk is true.
+     */
+    private void cache_image_internal (string key, Gdk.Pixbuf image, bool save_to_disk) {
+        Gdk.Pixbuf? modified_image = (filter_func != null) ? filter_func (key, image) : image;
+
+        if (modified_image != null) {
+            lock (image_map) {
+                image_map.set (key, modified_image);
+            }
+
+            // We store the unmodified image. Otherwise modifications would be applied over and
+            // over again every time the images are retrieved from disk.
+            if (save_to_disk)
+                save_image_to_file (key, image);
+        }
+    }
+
+
+    /**
+     * Central place for retrieving images from permanent-storage locations. This is not
+     * limited to this cache's local directory.
+     */
+    private Gdk.Pixbuf? load_image_from_file (File image_file, Cancellable? cancellable) {
+        Gdk.Pixbuf? image = null;
+
+        try {
+            image = PixbufUtils.get_pixbuf_from_file (image_file, cancellable);
+        } catch (Error err) {
+            warning ("Could not get image from file [%s]: %s", image_file.get_uri (), err.message);
+        }
+
+        return image;
+    }
+
+    /**
      * Stores a pixbuf in the cache directory
      */
-    private void save_pixbuf_to_file (string key, Gdk.Pixbuf to_save) {
+    private void save_image_to_file (string key, Gdk.Pixbuf to_save) {
         debug ("Saving cached image for: %s", key);
 
         try {
