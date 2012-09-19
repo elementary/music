@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-11 20:35-0600\n"
+"POT-Creation-Date: 2012-09-15 20:34-0600\n"
 "PO-Revision-Date: 2012-08-29 05:06+0000\n"
 "Last-Translator: kroq-gar78 <Unknown>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -15,369 +15,369 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:01+0000\n"
+"X-Launchpad-Export-Date: 2012-09-17 05:00+0000\n"
 "X-Generator: Launchpad (build 15944)\n"
 "Language: da\n"
 
-#: /home/victor/noise/po/../src//config.vala:14
+#: /home/victored/noise/po/../src//config.vala:16
 msgid "Listen to music"
 msgstr "Lyt til musik"
 
-#: /home/victor/noise/po/../src//config.vala:15
+#: /home/victored/noise/po/../src//config.vala:17
 msgid "Music Player"
 msgstr "Musikafspiller"
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:203
+#: /home/victored/noise/po/../src//LibraryManager.vala:203
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Importerer musik fra %s..."
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:251
+#: /home/victored/noise/po/../src//LibraryManager.vala:251
 msgid "Adding files to library..."
 msgstr "Tilføjer filer til bibliotek..."
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:301
+#: /home/victored/noise/po/../src//LibraryManager.vala:301
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Tilføjer musik fra %s til bibliotek..."
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:330
+#: /home/victored/noise/po/../src//LibraryManager.vala:330
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Genskanner musik for ændringer. Dette kan tage et stykke tid..."
 
-#: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
-#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victor/noise/po/../src//LibraryWindow.vala:618
-#: /home/victor/noise/po/../core//Media.vala:35
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
+#: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victored/noise/po/../src//LibraryWindow.vala:620
+#: /home/victored/noise/po/../core//Media.vala:35
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
 msgid "Unknown Artist"
 msgstr "Ukendt kunstner"
 
-#: /home/victor/noise/po/../src//Objects/Playlist.vala:203
+#: /home/victored/noise/po/../src//Objects/Playlist.vala:203
 msgid "Radio Station"
 msgstr "Radiostation"
 
-#: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
+#: /home/victored/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
 msgstr "Ukendt Track"
 
-#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victor/noise/po/../src//LibraryWindow.vala:619
-#: /home/victor/noise/po/../core//Media.vala:34
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
+#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
+#: /home/victored/noise/po/../src//LibraryWindow.vala:621
+#: /home/victored/noise/po/../core//Media.vala:34
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
 msgid "Unknown Album"
 msgstr "Ukendt album"
 
-#: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
+#: /home/victored/noise/po/../src//Widgets/PresetList.vala:49
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Automatisk"
 
-#: /home/victor/noise/po/../src//Widgets/PresetList.vala:48
+#: /home/victored/noise/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
 msgstr "Slet nuværende"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:58
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:91
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:60
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:93
 msgid "Off"
 msgstr "Slået fra"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:58
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:60
 msgid "Enable Repeat"
 msgstr "Slå gentagelse til"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:59
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:535
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:61
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:535
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
 msgid "Song"
 msgstr "Sang"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:59
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:61
 msgid "Repeat Song"
 msgstr "Gentag Sang"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:60
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:187
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:62
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:187
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 msgid "Album"
 msgstr "Album"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:60
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:62
 msgid "Repeat Album"
 msgstr "Gentag Album"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:61
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:63
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:185
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
 msgid "Artist"
 msgstr "Kunstner"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:61
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:63
 msgid "Repeat Artist"
 msgstr "Gentag Kunstner"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:62
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:92
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:64
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:94
 msgid "All"
 msgstr "Alle"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:62
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:64
 msgid "Repeat All"
 msgstr "Gentag Alt"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:91
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:93
 msgid "Enable Shuffle"
 msgstr "Slå blanding til"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:92
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:94
 msgid "Disable Shuffle"
 msgstr "Slå blanding fra"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:125
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:136
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:127
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:138
 msgid "Add Playlist"
 msgstr "Tilføj afspilningsliste"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:137
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:139
 msgid "Add Smart Playlist"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:178
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:211
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:183
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:216
 msgid "Hide"
 msgstr "Skjul"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:178
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:183
 msgid "Show Equalizer"
 msgstr "Vis Equalizer"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:179
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:212
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:184
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:217
 msgid "Show"
 msgstr "Vis"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:179
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:184
 msgid "Hide Equalizer"
 msgstr "Skjul Equalizer"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:211
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:216
 msgid "Show Info Panel"
 msgstr "Vis info panel"
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:212
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:217
 msgid "Hide Info Panel"
 msgstr "Skjul info panel"
 
-#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:74
+#: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:237
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:74
 msgid "Sync"
 msgstr "Synkronisér"
 
-#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
+#: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
 msgstr "Gratis"
 
-#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
+#: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
 msgstr "Bruger %s af %s (%.2f%)"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:71
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
-#: /home/victor/noise/po/../src//LibraryWindow.vala:177
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:71
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
+#: /home/victored/noise/po/../src//LibraryWindow.vala:177
 msgid "Import to Library"
 msgstr "Importér til bibliotek"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:77
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:77
 msgid "Eject"
 msgstr "Skub ud"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:88
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:88
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "New Playlist"
 msgstr "Ny afspilningsliste"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:89
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:89
 msgid "New Smart Playlist"
 msgstr "Ny smart-afspilningsliste"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:90
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:90
 msgid "Edit"
 msgstr "Redigér"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:91
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:91
 msgid "Remove"
 msgstr "Fjern"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:92
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:92
 msgid "Save as Playlist"
 msgstr "Gem som afspilningsliste"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:93
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:93
 msgid "Export..."
 msgstr "Eksportér..."
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:94
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:94
 msgid "Import Playlists"
 msgstr "Importér spillelister"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:132
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:132
 msgid "Library"
 msgstr "Bibliotek"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:133
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:133
 msgid "Devices"
 msgstr "Enheder"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:134
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:134
 msgid "Network"
 msgstr "Netværk"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:135
 msgid "Playlists"
 msgstr "Afspilningslister"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:610
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:610
 msgid "This device is syncing"
 msgstr "Denne enhed synkroniserer"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:610
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:610
 msgid "Please wait until the current sync is finished to do this action."
 msgstr ""
 "Vent venligst indtil den nuværende synkronisering er færdiggjort, for at "
 "udføre denne handling."
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:612
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:612
 msgid "This device is in transfer"
 msgstr "Denne enhed er i overførsel"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:612
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:612
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
 "Vent venligst indtil den nuværende overførsel er færdig for at udføre denne "
 "handling."
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:731
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:733
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "Afspil Historie (%Y-%b-%e %l:%M %p)"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:735
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
 msgstr "Ukendt Afspilningsliste"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:745
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
 msgstr "Eksporter Afspilningsliste"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:829
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
 msgstr "Afspilningsliste"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:842
+#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:842
 #, c-format
 msgid "Import %s"
 msgstr "Importér %s"
 
-#: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:69
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+#: /home/victored/noise/po/../src//Widgets/TopDisplay.vala:69
+#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
 msgid "Cancel"
 msgstr "Annullér"
 
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
 msgstr "Equalizer"
 
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
 msgstr "Gem forudindstilling"
 
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:160
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:160
 msgid "Close"
 msgstr "Luk"
 
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (brugerdefineret)"
 
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:418
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:418
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (brugerdefineret %i)"
 
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 msgid "Custom Preset"
 msgstr "Brugervalgt preset"
 
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:424
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:424
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Brugerdefineret forudstillet %i"
 
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
 msgstr "Ikke importerede filer"
 
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
 msgstr "Kunne ikke importere %d elementer fra %s"
 
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr "%s kunne ikke importere %d elementer. Filerne kan være beskadiget."
 
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
 msgstr "Flyt alle korrupte filer til  papirkurven"
 
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
 msgstr "Flyt til papirkurv"
 
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
 msgstr "Ignorér"
 
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
 msgstr "slet"
 
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
 msgstr "Filplacering"
 
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
 msgstr "Vælg individuelle filer at flytte til papirkurven:"
 
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
 msgstr "Eksporter afspilingsliste"
 
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
 msgstr "Angiv musikmappe"
 
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Angiv musikmappe?"
 
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -386,26 +386,26 @@ msgstr ""
 "Er du sikker på at du vil sætte musik mappen til %s? Dette vil nulstille dit "
 "bibliotek og fjerne dine afspilningslister."
 
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
+#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
+#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
 msgid "Choose Music Folder"
 msgstr "Vælg musik mappe"
 
-#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
 msgstr "Installér udvidelse"
 
-#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
+#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
 msgid "Do Nothing"
 msgstr "Gør intet"
 
-#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
 msgstr "Krævet GStreamer udvidelse ikke installeret"
 
-#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
@@ -414,123 +414,123 @@ msgstr ""
 "Udvidelsen for medie typen %s er ikke installeret.\n"
 "Hvad vil du gerne gøre?"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:75
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:75
 msgid "Metadata"
 msgstr "Metadata"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:77
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:373
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:77
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:373
 msgid "Lyrics"
 msgstr "Lyrik"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:86
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:152
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:65
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:86
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:65
 msgid "Done"
 msgstr "Udført"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:173
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:344
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:173
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:344
 #, c-format
 msgid "Editing %s by %s"
 msgstr "Redigérer %s af %s"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:175
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:346
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:175
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:346
 #, c-format
 msgid "Editing %s"
 msgstr "Redigerer %s"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:178
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:349
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:178
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:349
 #, c-format
 msgid "Editing %i songs"
 msgstr "Redigerer %i sange"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:184
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:184
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
 msgid "Title"
 msgstr "Titel"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:186
 msgid "Album Artist"
 msgstr "Albumkunstner"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:476
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:476
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
 msgid "Genre"
 msgstr "Genre"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:189
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:189
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 msgid "Composer"
 msgstr "Komponist"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:476
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:476
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
 msgid "Grouping"
 msgstr "Gruppering"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Comment"
 msgstr "Kommentar"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:192
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "Track"
 msgstr "Nummer"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:193
 msgid "Disc"
 msgstr "Disk"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:194
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:194
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
 msgid "Year"
 msgstr "År"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:195
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
 msgid "Rating"
 msgstr "Bedømmelse"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:197
 msgid "Media Type"
 msgstr "Medietype"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:292
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
+#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:537
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Podcast"
 msgstr "Podcast"
 
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
+#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
 msgstr "Importér medier til bibliotek"
 
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
+#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
 msgstr "Genoptag synkronisering"
 
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
+#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
 msgstr "Stop synkronisering"
 
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
+#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
@@ -540,34 +540,34 @@ msgstr ""
 "ikke er på synkroniseringslisten. Vil du importere dem til dit bibliotek "
 "først?"
 
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
+#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
 msgstr "Synkronisation vil fjerne %i elementer fra %s"
 
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
+#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
 msgstr "Synkronisation vil fjerne 1 element fra %s"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:145
-#: /home/victor/noise/po/../src//LibraryWindow.vala:181
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:145
+#: /home/victored/noise/po/../src//LibraryWindow.vala:181
 msgid "Preferences"
 msgstr "Præferencer"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:205
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:201
 msgid "General"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:219
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:215
 msgid "Select Music Folder"
 msgstr "Vælg Musikmappe"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:226
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:222
 msgid "Music Folder Location"
 msgstr "Musik mappe placering"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:232
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:228
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
@@ -575,167 +575,167 @@ msgstr ""
 "Du skal vente indtil foregående fil operationer er færdig før du angiver din "
 "musik mappe"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:244
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:240
 msgid "Keep Music folder organized"
 msgstr "Hold Musikmappe organiseret"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:245
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:241
 msgid "Copy files to Music folder when adding to Library"
 msgstr "Kopier filer til Musikmappe, når de tilføjes til Bibliotek"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:247
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:243
 msgid "Write metadata to file"
 msgstr "Skriv metadata til fil"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:262
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:258
 msgid "Library Management"
 msgstr "Bibliotekshåndtering"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:269
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:265
 msgid "Use Noise as the default Music application"
 msgstr "Brug Noise som standard Musik applikation"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:274
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:270
 msgid "System Integration"
 msgstr "Systemintegration"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
 msgstr "Intelligent afspilningsliste redigering"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
+#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
 msgid "Name of Playlist"
 msgstr "Navn på afspilningsliste"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
 msgid "Rules"
 msgstr "Regler"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
 msgid "Options"
 msgstr "Indstillinger"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Playlist Title"
 msgstr "Titel på afspilingsliste"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "Match"
 msgstr "Match"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
 msgid "any"
 msgstr "enhver"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "all"
 msgstr "alle"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
 msgid "of the following:"
 msgstr "af følgende:"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
 msgid "Limit to"
 msgstr "Begræns til"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
 msgid "items"
 msgstr "elementer"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:31
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:31
 msgid "Bitrate"
 msgstr "Bithastighed"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 msgid "Date Added"
 msgstr "Dato tilføjet"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Date Released"
 msgstr "Dato frigivet"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Last Played"
 msgstr "Sidst afspillet"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Length"
 msgstr "Varighed"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Playcount"
 msgstr "Antal gange afspillet"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
 msgstr "\"Spring over\" tæller"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:332
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
 msgstr "er"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
 msgid "contains"
 msgstr "indeholder"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
 msgid "does not contain"
 msgstr "indeholder ikke"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 msgid "is exactly"
 msgstr "er nøjaktig"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is at most"
 msgstr "er højst"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "is at least"
 msgstr "er mindst"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is within"
 msgstr "er indenfor"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is before"
 msgstr "er inden"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
 msgid "seconds"
 msgstr "sekunder"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:410
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:410
 msgid "days ago"
 msgstr "dage siden"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:414
+#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:414
 msgid "kbps"
 msgstr "kbps"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
 msgstr "Importér fra enhed"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
 msgstr "Importér medier fra %s"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
@@ -744,107 +744,107 @@ msgstr ""
 "De følgende filer blev fundet på %s, men er ikke i dit bibliotek. Tjek alle "
 "de filer du gerne vil importere."
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
 msgstr "Importér alle medier"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
 msgstr "Importér"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
 msgstr "Importér ikke"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
 msgstr "Importér %i elementer fra %s"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
 msgstr "Importér %s fra %s"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
 msgid "ID"
 msgstr "ID"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
 msgstr "Vælg individuelle medier at importere:"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
 msgstr "Tjek element"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
 msgstr "Tjek album"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
 msgstr "Tjek kunster"
 
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
+#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
 msgstr "Fjern medie"
 
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
+#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
 msgstr "Find medie"
 
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
+#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
 msgstr "Genskan bibliotek"
 
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
+#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
 msgid "Could not find media file"
 msgstr "Kunne ikke finde mediefil"
 
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
+#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
 msgstr "Musik filen for %s af %s kunne ikke findes. Hvad vil du gerne gøre?"
 
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
+#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
 msgstr "%i medie filer kunne ikke findes. Hvad vil du gerne gøre?"
 
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
 #, c-format
 msgid "The name %s is already in use"
 msgstr "Navnet %s er allerede i brug"
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
 msgstr "Fjern fra %s"
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
 msgstr "Lydbog"
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 msgid "Station"
 msgstr "Station"
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
 msgstr "Fjern %d %s fra %s?"
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Fjern \"%s\" fra %s?"
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
+#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
 msgid ""
 "This will remove the %s from your library and from any device that "
@@ -853,73 +853,73 @@ msgstr ""
 "Dette vil fjerne %s fra dit bibliotek og fra enhver enhed der automatisk "
 "synkroniserer med %s."
 
-#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
+#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:42
+#: /home/victored/noise/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
 msgstr "Afbryder synkronisering"
 
-#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
+#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:42
+#: /home/victored/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
 "Enhed synkronisering er blevet afbrudt. Handling vil stoppe efter dette "
 "medie."
 
-#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
+#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:46
+#: /home/victored/noise/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
 msgstr "Afbryder importering"
 
-#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
+#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:46
+#: /home/victored/noise/po/../src//Views/DeviceView.vala:47
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
 "Importering fra enhed er blevet afbrudt. Handling vil stoppe efter dette "
 "medie."
 
-#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
+#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
+#: /home/victored/noise/po/../src//Views/DeviceView.vala:86
 msgid "No External Songs"
 msgstr "Ingen eksterne sange"
 
-#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
+#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/victored/noise/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr "Der er ingen sange på denne enhed, som ikke er i dit bibliotek."
 
-#: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
+#: /home/victored/noise/po/../src//Views/GridView/PopupListView.vala:166
 #, c-format
 msgid "%s by %s"
 msgstr "%s af %s"
 
-#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:550
+#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
 msgstr "%d minutter"
 
-#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:553
+#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
 msgstr "%d timer"
 
-#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:556
+#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
 msgstr "%d dage"
 
-#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
 msgstr "%u elementer, %s, %s"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
+#: /home/victored/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid "No songs in Queue"
 msgstr "Ingen sange i kø"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
+#: /home/victored/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -929,11 +929,11 @@ msgstr ""
 "<b>kø</b>. Når en sang er færdig, vil sangene i køen blive afspillet først "
 "før den næste sang i den nuværende afspilninsliste."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
+#: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
 msgstr "Ingen sange i historik"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
+#: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -944,55 +944,55 @@ msgstr ""
 "Du kan bruge denne liste til at se alle sange du har afspillet under den "
 "nuværende session."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
+#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
 msgstr "Få nogle melodier"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
+#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr "%s kan ikke finde din musik."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
 msgstr "Find"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
 msgstr "Ændre din musik mappe"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
+#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 msgid "All the songs in this device are already in your library."
 msgstr "Alle sangene på denne enhed er allerede i dit bibliotek."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:381
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:381
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albummer"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:383
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
 msgstr[0] "%u sang"
 msgstr[1] "%u sange"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
 msgid "No media"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:572
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:572
 msgid "Sorry, there is no music that matches your search"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
+#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "No Songs"
 msgstr "Ingen sange"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
+#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1000,11 +1000,11 @@ msgstr ""
 "For at tilføje sange til denne afspilningsliste, brug <b>højreklik</b> på et "
 "element og vælg <b>tilføj til afspilningsliste</b>."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
+#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
 msgstr "Rediger intelligent afspilningsliste"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1015,282 +1015,282 @@ msgstr ""
 "dens regler. For at redigere disse regler, brug <b>højreklik</b> på den i "
 "sidebaren og klik på <b>redigér</b>. Du kan også klikke på knappen nedenfor."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
+#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
 msgstr "Lyd CD ugyldig"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
+#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s kunne ikke læse indholdet af denne lyd CD"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
+#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 #, c-format
 msgid "%i tracks"
 msgstr "%i numre"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
+#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 msgid "1 track"
 msgstr "1 nummer"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
+#: /home/victored/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
 msgstr "Enhed utilgængelig"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
+#: /home/victored/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
 msgstr "%s kunne ikke få adgang til denne netværksenhed"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
+#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
+#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
 #, c-format
 msgid "%i kbps"
 msgstr "%i kbps"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:218
+#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:218
 msgid "Never"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
 msgstr "Episode"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
 msgid "Name"
 msgstr "Navn"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
 msgid "Date"
 msgstr "Dato"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
 msgid "Category"
 msgstr "Kategori"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 msgid "BPM"
 msgstr "Taktslag/min"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Plays"
 msgstr "Antal afspilninger"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Skips"
 msgstr "Overspringninger"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
+#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "#"
 msgstr "#"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgid "Remove from Library"
 msgstr "Fjern fra biblioteket"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:105
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:105
 msgid "Remove from Queue"
 msgstr "Fjern fra kø"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:122
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:122
 msgid "Remove from Device"
 msgstr "Fjern fra enhed"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:146
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:146
 msgid "Scroll to Current Song"
 msgstr "Rul til nuværende sang"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:147
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:147
 msgid "Edit Song Info"
 msgstr "Redigér sang info"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Show in File Browser"
 msgstr "Vis i filbrowser"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
-#: /home/victor/noise/po/../src//LibraryWindow.vala:470
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
+#: /home/victored/noise/po/../src//LibraryWindow.vala:470
 msgid "Queue"
 msgstr "Kø"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
 msgid "Add to Playlist"
 msgstr "Tilføj til afspilningsliste"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
 msgid "Remove Song"
 msgstr "Fjern sang"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:253
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:253
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Importér %i af %i valgte sange"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
 msgid "Import this song"
 msgstr "Importér denne sang"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
+#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
 #, c-format
 msgid "Import %i songs"
 msgstr "Importér %i sange"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:108
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:110
 msgid "Autosize Columns"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:115
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:117
 msgid "Display Album Art"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
 msgstr "Genrer"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
 msgid "Artists"
 msgstr "Kunstnere"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
 msgid "Albums"
 msgstr "Albummer"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
 msgid "Years"
 msgstr "År"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
 msgid "Ratings"
 msgstr "Bedømmelser"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
 msgid "Unrated"
 msgstr "Ikke bedømt"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
 msgid "1 Star"
 msgstr "1 stjerne"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:193
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:193
 #, c-format
 msgid "%s Stars"
 msgstr "%s stjerner"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "All Genres"
 msgstr "Alle genrer"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:243
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:243
 #, c-format
 msgid "All %i Genres"
 msgstr "Alle %i genrer"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
 msgid "No Genres"
 msgstr "Ingen genrer"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
 msgid "All Artists"
 msgstr "Alle kunstnere"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
 #, c-format
 msgid "All %i Artists"
 msgstr "Alle %i kunstnere"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "No Artists"
 msgstr "Ingen kunstnere"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "All Albums"
 msgstr "Alle albums"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:259
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:259
 #, c-format
 msgid "All %i Albums"
 msgstr "Alle %i albums"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
 msgid "No Albums"
 msgstr "Ingen albums"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
 msgid "All Years"
 msgstr "Alle år"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
 #, c-format
 msgid "All %i Years"
 msgstr "Alle %i år"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
 msgid "No Years"
 msgstr "Ingen år"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
 msgid "All Ratings"
 msgstr "Alle bedømmelser"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
 msgid "No Ratings"
 msgstr "Ingen bedømmelser"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
 msgid "On Left"
 msgstr "Til venstre"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
 msgid "On Top"
 msgstr "Øverst"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:77
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
 msgstr "Enhedsnavn:"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:80
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:80
 msgid "Device Name"
 msgstr "Enhedsnavn"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:82
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:82
 msgid "Automatically sync when plugged in:"
 msgstr "Automatisk synkroniser når tilsluttet"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Sync:"
 msgstr "Synkroniser:"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:111
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:111
 msgid "Other Files"
 msgstr "Andre filer"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:460
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:112
+#: /home/victored/noise/po/../src//LibraryWindow.vala:460
 msgid "Music"
 msgstr "Musik"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:113
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Podcasts"
 msgstr "Podcasts"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:384
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:384
 msgid "All Music"
 msgstr "Al musik"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:387
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:387
 msgid "All Podcasts"
 msgstr "Alle podcasts"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:555
 msgid "Sync Failed"
 msgstr "Synkronisation fejlede"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:555
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
@@ -1298,232 +1298,232 @@ msgstr ""
 "Afspilningslisten ved navn %s bliver brugt til at synkronisere enhed %s, men "
 "den kunne ikke findes."
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Cannot Sync"
 msgstr "Kan ikke synkronisere"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Kan ikke synkronisere enhed med valgte synkronisationsindstillinger. Ikke "
 "nok plads på disken"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
 msgstr "Enheden er allerede i gang med at synkronisere"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:403
+#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:403
 msgid "Favorite Songs"
 msgstr "Favorit sange"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:413
+#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:413
 msgid "Recently Added"
 msgstr "Tilføjet for nyligt"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:435
+#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:435
 msgid "Recent Favorites"
 msgstr "Seneste favoritter"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:445
+#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:445
 msgid "Never Played"
 msgstr "Aldrig afspillede"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:455
+#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:455
 msgid "Over Played"
 msgstr "Overspillet"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:465
+#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
 msgstr "Ikke afspillet for nyligt"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:178
+#: /home/victored/noise/po/../src//LibraryWindow.vala:178
 msgid "Rescan Music Folder"
 msgstr "Genskan musik mappen"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:201
+#: /home/victored/noise/po/../src//LibraryWindow.vala:201
 msgid "Search Music"
 msgstr "Søg musik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:474
+#: /home/victored/noise/po/../src//LibraryWindow.vala:474
 msgid "History"
 msgstr "Historik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:618
+#: /home/victored/noise/po/../src//LibraryWindow.vala:620
 msgid " by "
 msgstr " af "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:619
+#: /home/victored/noise/po/../src//LibraryWindow.vala:621
 msgid " on "
 msgstr " på "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:827
+#: /home/victored/noise/po/../src//LibraryWindow.vala:829
 msgid "Import Music"
 msgstr "Importér musik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:859
+#: /home/victored/noise/po/../src//LibraryWindow.vala:861
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importerer</b> musik fra <b>%s</b> til bibliotek."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:874
+#: /home/victored/noise/po/../src//LibraryWindow.vala:876
 msgid "Rescanning music folder for changes"
 msgstr "Genskanner musik mappe for ændringer"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:881
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../src//LibraryWindow.vala:883
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "Could not find Music Folder"
 msgstr "Kunne ikke finde musik mappe"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:881
+#: /home/victored/noise/po/../src//LibraryWindow.vala:883
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Venligst sørg for at din musik mappe er tilgængelig og monteret."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:947
+#: /home/victored/noise/po/../src//LibraryWindow.vala:949
 msgid "Import Complete"
 msgstr "Importering færdig"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:947
+#: /home/victored/noise/po/../src//LibraryWindow.vala:949
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s har importeret dit bibliotek."
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
 msgstr "Flad"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
 msgstr "Klassisk"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
 msgstr "Club"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
 msgstr "Dance"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
 msgstr "Fuld bas"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
 msgstr "Fuld diskant"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
 msgstr "Fuld bas + diskant"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
 msgstr "Hovedtelefoner"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
 msgstr "Stor sal"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
 msgstr "Live"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
 msgstr "Party"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
 msgstr "Pop"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:82
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
 msgstr "Reggae"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:83
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
 msgstr "Rock"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:84
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
 msgstr "Blødt"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:85
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
 msgstr "Ska"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:86
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
 msgstr "Blød rock"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
+#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
 msgstr "Techno"
 
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:36
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:69
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u minut"
 msgstr[1] "%u minutter"
 
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:46
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
 msgstr[0] "%u sekund"
 msgstr[1] "%u sekunder"
 
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:78
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:82
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:90
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:82
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
 msgstr "%s og %s"
 
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:63
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u dag"
 msgstr[1] "%u dage"
 
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:66
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u time"
 msgstr[1] "%u timer"
 
-#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:76
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s og %s"
 
-#: /home/victor/noise/po/../core//Media.vala:33
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
+#: /home/victored/noise/po/../core//Media.vala:33
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
 msgid "Unknown Title"
 msgstr "Ukendt titel"
 
-#: /home/victor/noise/po/../core//Media.vala:36
+#: /home/victored/noise/po/../core//Media.vala:36
 msgid "Unknown Genre"
 msgstr "Ukendt Genre"
 
-#: /home/victor/noise/po/../core//Media.vala:38
+#: /home/victored/noise/po/../core//Media.vala:38
 msgid "Various Artists"
 msgstr "Forskellige Kunstnere"
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1531,22 +1531,22 @@ msgstr ""
 "Venligst sørg for at din musik mappe er tilgængelig og monteret før "
 "importering af CD'en."
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 msgid "No songs on CD"
 msgstr "Ingen sange på CD"
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "%s kunne ikke finde nogen sange på CD'en. Ingen sange kan blive importeret"
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s importerer allerede"
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1555,92 +1555,92 @@ msgstr ""
 "Vent venligst indtil %s er færdigt med den nuværende importering før "
 "importering af CD'en."
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid "Ripping track 1"
 msgstr "Ripper track 1"
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
 #, c-format
 msgid "Importing track %i"
 msgstr "Importerer nummer %i"
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
 msgid "CD Import Complete"
 msgstr "CD importering fuldført"
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s har færdiggjort at importere %i sange fra lyd CD."
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s har færdiggjort importering af en sang fra lyd CD."
 
-#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "CD importering vil blive <b>annulleret</b> efter nuværende importering."
 
-#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
-#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
 #, c-format
 msgid "Syncing <b>%s</b>..."
 msgstr "Synkroniserer <b>%s</b>..."
 
-#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:680
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:680
 #, c-format
 msgid "Removing from <b>%s</b>..."
 msgstr "Fjerner fra <b>%s</b>..."
 
-#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:911
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:911
 #, c-format
 msgid "Importing <b>%s</b> to library..."
 msgstr "Importerer <b>%s</b> til bibliotek..."
 
-#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:64
+#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
 msgstr "Lignende"
 
-#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+#: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
 msgstr "medie"
 
-#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
+#: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
 msgid "Similar Media"
 msgstr "Lignende medie"
 
-#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
 msgstr "Giv Noise Tilladelse"
 
-#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
 msgstr "Mislykkedes. Klik For At Prøve Igen."
 
-#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:32
-msgid "Scrobbling already Enabled"
-msgstr "Scrobbling er alleredet Aktiveret"
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+msgid "Scrobbling Already Enabled"
+msgstr ""
 
-#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
 msgstr "Succes!"
 
-#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:34
-msgid "Complete login"
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+msgid "Complete Login"
 msgstr ""
 
-#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:39
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:53
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
 msgstr ""
 
-#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:56
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
@@ -1648,29 +1648,29 @@ msgstr ""
 "For at muliggøre Last.fm integration, skal du give tilladelse til Noise. Du "
 "behøver kun at gøre det en gang."
 
-#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:67
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:67
 msgid "Last.fm Integration"
 msgstr "Last.fm Integration"
 
-#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
 msgstr "Henter lignende sange"
 
-#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
 msgstr "Finder lignende sange til %s af %s"
 
-#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:100
+#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
 msgid "Similar to %s"
 msgstr "Lignende til %s"
 
-#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 msgid "No similar songs found"
 msgstr "Ingen lignende sange fundet"
 
-#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -1681,11 +1681,11 @@ msgstr ""
 "alle sang info er korrekte og at du er tilsluttet til internettet. Nogle "
 "sange har måske ikke nogen lignende sange."
 
-#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
 msgstr "Lignende sang visning"
 
-#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1787,6 +1787,9 @@ msgstr ""
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Aktiver Scrobbling"
+
+#~ msgid "Scrobbling already Enabled"
+#~ msgstr "Scrobbling er alleredet Aktiveret"
 
 #~ msgid "Unsuccessful. Click to try again."
 #~ msgstr "Mislykkedes. Klik for at prøve igen."
