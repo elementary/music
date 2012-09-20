@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-09-15 20:34-0600\n"
+"POT-Creation-Date: 2012-09-19 13:31-0600\n"
 "PO-Revision-Date: 2012-08-29 05:03+0000\n"
 "Last-Translator: kroq-gar78 <Unknown>\n"
 "Language-Team: Swedish\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-17 05:01+0000\n"
-"X-Generator: Launchpad (build 15944)\n"
+"X-Launchpad-Export-Date: 2012-09-20 05:01+0000\n"
+"X-Generator: Launchpad (build 15985)\n"
 "X-Poedit-Language: Swedish\n"
 
 #: /home/victored/noise/po/../src//config.vala:16
@@ -36,12 +36,12 @@ msgstr "Importerar musik från %s..."
 msgid "Adding files to library..."
 msgstr "Lägger till filer till biblioteket..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:301
+#: /home/victored/noise/po/../src//LibraryManager.vala:299
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Lägger till musik från %s till biblioteket..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:330
+#: /home/victored/noise/po/../src//LibraryManager.vala:327
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Söker efter ändringar i musiken. Detta kan ta en stund..."
 
@@ -290,33 +290,33 @@ msgstr "Importera %s"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:85
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:83
 msgid "Equalizer"
 msgstr "Equalizer"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:152
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:150
 msgid "Save preset"
 msgstr "Spara inställningar"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:160
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:158
 msgid "Close"
 msgstr "Stäng"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:414
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Anpassad)"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:418
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Anpassad %i)"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:420
 msgid "Custom Preset"
 msgstr "Anpassad förinställning"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:424
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Anpassad förinställning %i"
@@ -974,11 +974,11 @@ msgid_plural "%u songs"
 msgstr[0] "%u låt"
 msgstr[1] "%u låtar"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:590
 msgid "No media"
 msgstr "Ingen media"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:572
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
 msgstr "Ty värr, det finns ingen musik som matchar din sökning"
 
@@ -1046,7 +1046,9 @@ msgstr "N/A"
 msgid "%i kbps"
 msgstr "%i kbps"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:218
+#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:251
 msgid "Never"
 msgstr ""
 
@@ -1141,6 +1143,26 @@ msgstr ""
 msgid "Display Album Art"
 msgstr ""
 
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:233
+msgid "1234 kbps"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:299
+msgid "Sample Title"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:304
+msgid "Sample Artist"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:307
+msgid "Sample Album"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:320
+msgid "Sample Genre"
+msgstr ""
+
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
 msgstr "Genrer"
@@ -1161,76 +1183,76 @@ msgstr "År"
 msgid "Ratings"
 msgstr "Betyg"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:192
 msgid "Unrated"
 msgstr "Inte betygsatt"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:194
 msgid "1 Star"
 msgstr "1 Stjärna"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:193
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:196
 #, c-format
 msgid "%s Stars"
 msgstr "%s Stjärnor"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
 msgid "All Genres"
 msgstr "Alla Genrer"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:243
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 #, c-format
 msgid "All %i Genres"
 msgstr "Alla %i Genrer"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Genres"
 msgstr "Inga Genrer"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:252
 msgid "All Artists"
 msgstr "Alla Artister"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
 #, c-format
 msgid "All %i Artists"
 msgstr "Alla %i Artister"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
 msgid "No Artists"
 msgstr "Inga Artister"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
 msgid "All Albums"
 msgstr "Alla Album"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:259
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 #, c-format
 msgid "All %i Albums"
 msgstr "Alla %i Album"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "No Albums"
 msgstr "Inga Album"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:268
 msgid "All Years"
 msgstr "Alla År"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
 #, c-format
 msgid "All %i Years"
 msgstr "Alla %i År"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
 msgid "No Years"
 msgstr "Inga År"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:276
 msgid "All Ratings"
 msgstr "Alla Betyg"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:278
 msgid "No Ratings"
 msgstr "Inga Betyg"
 
@@ -1366,7 +1388,7 @@ msgid "Rescanning music folder for changes"
 msgstr "Söker efter ändringar i musikmappen"
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:883
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
 msgid "Could not find Music Folder"
 msgstr "Musikmappen kunde inte hittas"
 
@@ -1517,7 +1539,7 @@ msgstr "Okänd genre"
 msgid "Various Artists"
 msgstr "Diverse artister"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1525,21 +1547,21 @@ msgstr ""
 "Vänligen se till att din musikmapp är tillgänglig och monterad innan du "
 "importerar CD:n."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "No songs on CD"
 msgstr "Inga låtar på CD:n"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "%s hittade inga låtar på CD:n. Inga låtar kan importeras."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s gör redan en import"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1548,47 +1570,47 @@ msgstr ""
 "Var snäll och vänta tills %s har slutfört den aktuella importen före "
 "importering av CD:n."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:245
 msgid "Ripping track 1"
 msgstr "Kopierar spår 1"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:322
 #, c-format
 msgid "Importing track %i"
 msgstr "Importerar spår %i"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
 msgid "CD Import Complete"
 msgstr "CD-importen är färdig"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s har slutfört importen av %i låtar från Audio CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s har slutfört importen av en låt från Audio CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:368
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "CD-importen kommer att bli <b>avbruten</b> efter den aktuella importen."
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:301
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:511
 #, c-format
 msgid "Syncing <b>%s</b>..."
 msgstr "Synkroniserar <b>%s</b>..."
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:680
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:658
 #, c-format
 msgid "Removing from <b>%s</b>..."
 msgstr "Tar bort från <b>%s</b>..."
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:911
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:881
 #, c-format
 msgid "Importing <b>%s</b> to library..."
 msgstr "Importerar <b>%s</b> till biblioteket..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-09-15 20:34-0600\n"
+"POT-Creation-Date: 2012-09-19 13:31-0600\n"
 "PO-Revision-Date: 2012-09-16 15:52+0000\n"
 "Last-Translator: Wang Dianjin <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-09-17 05:01+0000\n"
-"X-Generator: Launchpad (build 15944)\n"
+"X-Launchpad-Export-Date: 2012-09-20 05:01+0000\n"
+"X-Generator: Launchpad (build 15985)\n"
 
 #: /home/victored/noise/po/../src//config.vala:16
 msgid "Listen to music"
@@ -35,12 +35,12 @@ msgstr "正在从 %s... 导入音乐"
 msgid "Adding files to library..."
 msgstr "正在添加文件到库..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:301
+#: /home/victored/noise/po/../src//LibraryManager.vala:299
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "正在添加 %s 中的音乐到库..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:330
+#: /home/victored/noise/po/../src//LibraryManager.vala:327
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "正在重新扫描音乐，请稍后..."
 
@@ -289,33 +289,33 @@ msgstr "导入 %s"
 msgid "Cancel"
 msgstr "取消"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:85
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:83
 msgid "Equalizer"
 msgstr "均衡器"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:152
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:150
 msgid "Save preset"
 msgstr "保存预设"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:160
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:158
 msgid "Close"
 msgstr "关闭"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:414
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (自定义)"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:418
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (自定义 %i)"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:420
 msgid "Custom Preset"
 msgstr "自定义预设"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:424
+#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 #, c-format
 msgid "Custom Preset %i"
 msgstr "自定义预设 %i"
@@ -952,11 +952,11 @@ msgid "%u song"
 msgid_plural "%u songs"
 msgstr[0] "%u 首歌曲"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:568
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:590
 msgid "No media"
 msgstr "无介质"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:572
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
 msgstr "对不起，没有与您的搜索相匹配的音乐"
 
@@ -1020,7 +1020,9 @@ msgstr "不可用"
 msgid "%i kbps"
 msgstr "%i kb/秒"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:218
+#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:251
 msgid "Never"
 msgstr "永不"
 
@@ -1115,6 +1117,26 @@ msgstr "自动调整栏的大小"
 msgid "Display Album Art"
 msgstr "显示唱片艺术家"
 
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:233
+msgid "1234 kbps"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:299
+msgid "Sample Title"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:304
+msgid "Sample Artist"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:307
+msgid "Sample Album"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:320
+msgid "Sample Genre"
+msgstr ""
+
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
 msgstr "流派"
@@ -1135,76 +1157,76 @@ msgstr "年份"
 msgid "Ratings"
 msgstr "评分"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:192
 msgid "Unrated"
 msgstr "未评分"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:194
 msgid "1 Star"
 msgstr "1 星"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:193
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:196
 #, c-format
 msgid "%s Stars"
 msgstr "%s 星"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
 msgid "All Genres"
 msgstr "所有流派"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:243
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 #, c-format
 msgid "All %i Genres"
 msgstr "所有 %i 流派"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Genres"
 msgstr "无流派"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:252
 msgid "All Artists"
 msgstr "所有艺术家"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
 #, c-format
 msgid "All %i Artists"
 msgstr "所有 %i 艺术家"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
 msgid "No Artists"
 msgstr "无艺术家"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
 msgid "All Albums"
 msgstr "全部专辑"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:259
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 #, c-format
 msgid "All %i Albums"
 msgstr "所有 %i 专辑"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "No Albums"
 msgstr "无专辑"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:268
 msgid "All Years"
 msgstr "所有年份"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
 #, c-format
 msgid "All %i Years"
 msgstr "所有 %i 年份"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
 msgid "No Years"
 msgstr "无年份"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:276
 msgid "All Ratings"
 msgstr "所有评分"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:278
 msgid "No Ratings"
 msgstr "无评分"
 
@@ -1337,7 +1359,7 @@ msgid "Rescanning music folder for changes"
 msgstr "重新扫描改动的音乐文件夹"
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:883
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
 msgid "Could not find Music Folder"
 msgstr "找不到音乐文件夹"
 
@@ -1483,73 +1505,73 @@ msgstr "未知流派"
 msgid "Various Artists"
 msgstr "群星"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr "请确认您的音乐文件夹可访问并在导入 CD 前已挂载。"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "No songs on CD"
 msgstr "CD 上无歌曲"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "%s 无法在 CD 上找到任何歌曲。未导入歌曲"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s 已经正在导入"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr "在导入 CD 前请等待 %s 完成当前导入。"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:245
 msgid "Ripping track 1"
 msgstr "正在抓取音轨 1"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:322
 #, c-format
 msgid "Importing track %i"
 msgstr "正在导入音轨 %i"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
 msgid "CD Import Complete"
 msgstr "CD 导入完成"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s 已完成音频 CD 中 %i 首歌曲导入。"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s 已完成音频 CD 中 1 首歌曲导入。"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:368
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "在当前导入完成后，CD 导入将被<b>取消</b>。"
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:308
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:525
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:301
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:511
 #, c-format
 msgid "Syncing <b>%s</b>..."
 msgstr "正在同步 <b>%s</b>..."
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:680
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:658
 #, c-format
 msgid "Removing from <b>%s</b>..."
 msgstr "正在从<b>%s</b>移除..."
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:911
+#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:881
 #, c-format
 msgid "Importing <b>%s</b> to library..."
 msgstr "正在将 <b>%s</b> 导入到库中..."
