@@ -23,7 +23,7 @@ Build-Depends: cmake (>= 2.6),
                libtagc0-dev (>= 1.6.3),
                libxml2-dev (>= 2.7.7),
                libzeitgeist-dev,
-               valac-0.16
+               valac-0.16 | valac (>= 0.16)
 Standards-Version: 3.9.2
 Homepage: https://launchpad.net/noise
 
