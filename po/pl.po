@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-19 13:31-0600\n"
-"PO-Revision-Date: 2012-09-18 20:56+0000\n"
-"Last-Translator: Marcin Wierzbicki <marcin.wierzb@gmail.com>\n"
+"PO-Revision-Date: 2012-09-22 02:11+0000\n"
+"Last-Translator: Piotr Sokół <Unknown>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-09-20 05:00+0000\n"
+"X-Launchpad-Export-Date: 2012-09-22 05:25+0000\n"
 "X-Generator: Launchpad (build 15985)\n"
 "Language: \n"
 
@@ -186,7 +186,7 @@ msgstr "Darmowe"
 
 #: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr "Używając %s z %s (%.2f%)"
+msgstr "W użyciu %s z %s (%.2f%)"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:71
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
@@ -250,7 +250,7 @@ msgstr "Urządzenie jest synchronizowane"
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:610
 msgid "Please wait until the current sync is finished to do this action."
 msgstr ""
-"Proszę zaczekać do zakończenia synchronizacji przed wykonaniem tego "
+"Proszę zaczekać do zakończenia synchronizowania przed wykonaniem tego "
 "działania."
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:612
@@ -562,7 +562,7 @@ msgstr "Ogólne"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:215
 msgid "Select Music Folder"
-msgstr "Wybierz folder z muzyką"
+msgstr "Wybierz katalog z muzyką"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:222
 msgid "Music Folder Location"
@@ -578,16 +578,15 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:240
 msgid "Keep Music folder organized"
-msgstr "Przechowuj folder z muzyką zorganizowany"
+msgstr "Utrzymywanie uporządkowanego katalogu z muzyką"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:241
 msgid "Copy files to Music folder when adding to Library"
-msgstr ""
-"Kopiowanie plików do Muzycznego Folderu podczas dodawania do biblioteki"
+msgstr "Kopiowanie plików do katalogu z muzyką podczas dodawania do kolekcji"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:243
 msgid "Write metadata to file"
-msgstr "Zapisz metadane do pliku"
+msgstr "Zapisywanie etykiet do plików"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:258
 msgid "Library Management"
@@ -595,7 +594,7 @@ msgstr "Zarządzanie kolekcją"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:265
 msgid "Use Noise as the default Music application"
-msgstr "Użyj Noise jako domyślny odtwarzacz muzyki"
+msgstr "Ustaw jako domyślny odtwarzacz muzyki"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:270
 msgid "System Integration"
@@ -677,15 +676,15 @@ msgstr "Czas trwania"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Playcount"
-msgstr "Liczba odtworzeń"
+msgstr "Ilość odtworzeń"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
-msgstr "Pomiń zliczanie"
+msgstr "Ilość pominięć"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
-msgstr "jest"
+msgstr "brzmi"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
 msgid "contains"
@@ -698,15 +697,15 @@ msgstr "nie zawiera"
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 msgid "is exactly"
-msgstr "jest dokładnie"
+msgstr "wynosi dokładnie"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is at most"
-msgstr "jest co najwyżej"
+msgstr "wynosi co najwyżej"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "is at least"
-msgstr "jest co najmniej"
+msgstr "wynosi co najmniej"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is within"
@@ -924,9 +923,10 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"Aby dodać utwory do kolejki, użyj <b>środkowego kliknięcia</ b> na elemencie "
-"i wybierz <b>kolejkę</ b>. Gdy piosenka się zakończy, kolejkowane utwory "
-"będą odtwarzane do następnego utworu w aktualnej liście odtworzeń."
+"Aby dodać utwory do kolejki, należy kliknąc <b>prawym przyciskiem</b> myszy "
+"na elemencie i wybrać polecenie <b>Kolejka</b>. Kiedy odtwarzanie bieżącego "
+"nagrania zostanie zakończone, nagrania znajdujące się w kolejce zostaną "
+"odtworzone przed nagraniami pochodzącymi z listy odtwarzania."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
@@ -938,9 +938,9 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
-"Po odtworzeniu części utworu zostanie on dodany do listy historii.\n"
-"Można korzystać z tej listy, aby zobaczyć wszystkie utwory, które odegrano w "
-"trakcie bieżącej sesji."
+"Po odtworzeniu fragmentu nagrania, zostanie ono dodane do historii.\n"
+"Można użyć tej listy, aby zobaczyć wszystkie nagrania, które odtworzono "
+"podczas bieżącej sesji."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
@@ -967,16 +967,16 @@ msgstr "Wszystkie nagrania z tego urządzenia znajdują się już w kolekcji."
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] "%u albumów"
-msgstr[1] "%u album"
+msgstr[0] "%u album"
+msgstr[1] "%u albumy"
 msgstr[2] "%u albumów"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] "%u utworów"
-msgstr[1] "%u utwór"
+msgstr[0] "%u utwór"
+msgstr[1] "%u utwory"
 msgstr[2] "%u utworów"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:590
@@ -985,7 +985,7 @@ msgstr "Brak nośnika"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
-msgstr "Wybacz, nie znaleziono muzyki odpowiadającej kryteriom wyszukiwania"
+msgstr "Nie nagrań odpowiadających kryteriom wyszukiwania"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -997,8 +997,9 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"Aby dodać utwory do listy odtwarzania, należy <b> kliknąć prawym przyciskiem "
-"</ b> na elemencie i wybrać <b> Dodaj do listy odtwarzania </ b>."
+"Aby dodać nagrania do listy odtwarzania, należy kliknąć <b>prawym "
+"przyciskiem </b> myszy na elemencie i wybrać polecenie <b>Dodaj do listy "
+"odtwarzania</b>."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
@@ -1011,10 +1012,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"Lista odtwarzania zostanie automatycznie wypełniona utworami odpowiadającymi "
-"regułom. Aby je zmodyfikować, kliknij <b> prawym przyciskiem </ b> na niej w "
-"pasku bocznym i wybierz <b> Edytuj </ b>. Opcjonalnie można kliknąć na "
-"przycisk poniżej."
+"Lista odtwarzania zostanie automatycznie wypełniona nagraniami "
+"odpowiadającymi regułom. Aby je zmodyfikować, proszę kliknąć <b>prawym "
+"przyciskiem</b> na etykiecie listy w pasku bocznym i wybrać polecenie "
+"<b>Edytuj</b>. Opcjonalnie można kliknąć na poniższy przycisk."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1023,7 +1024,7 @@ msgstr "Nieprawidłowa płyta Audio CD"
 #: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr "%s nie może odczytać zawartość płyty Audio CD"
+msgstr "%s nie może odczytać zawartości płyty CD"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 #, c-format
@@ -1151,23 +1152,23 @@ msgstr "Wyświetl grafikę albumu"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:233
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kb/s"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:299
 msgid "Sample Title"
-msgstr ""
+msgstr "Przykładowy tytuł"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:304
 msgid "Sample Artist"
-msgstr ""
+msgstr "Przykładowy wykonawca"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:307
 msgid "Sample Album"
-msgstr ""
+msgstr "Przykładowy album"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:320
 msgid "Sample Genre"
-msgstr ""
+msgstr "Przykładowy gatunek"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
@@ -1318,8 +1319,8 @@ msgstr "Synchronizacja nieudana"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Lista odtwarzania %s używana do synchronizacji urządzenia %s nie została "
-"znaleziona."
+"Nie można odnaleźć listy odtwarzania %s, używanej do synchronizowania "
+"urządzenia %s."
 
 #: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:606
@@ -1330,8 +1331,8 @@ msgstr "Synchronizacja niemożliwa"
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Synchronizacja z wybranymi ustawieniami jest niemożliwa. Brak miejsca na "
-"dysku."
+"Synchronizacja z wybranymi ustawieniami jest niemożliwa. Brak wystarczającej "
+"przestrzeni na dysku."
 
 #: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
@@ -1339,7 +1340,7 @@ msgstr "Urządzenie jest już w trakcie synchronizacji."
 
 #: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:403
 msgid "Favorite Songs"
-msgstr "Ulubione utwory"
+msgstr "Ulubione"
 
 #: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:413
 msgid "Recently Added"
@@ -1359,7 +1360,7 @@ msgstr "Najczęściej odtwarzane"
 
 #: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
-msgstr "Nie odtwarzane ostatnio"
+msgstr "Dawno nie odtwarzane"
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:178
 msgid "Rescan Music Folder"
@@ -1367,7 +1368,7 @@ msgstr "Przeszukaj katalog z muzyką"
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:201
 msgid "Search Music"
-msgstr "Wyszukiwanie"
+msgstr "Wyszukiwanie..."
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:474
 msgid "History"
@@ -1410,7 +1411,7 @@ msgstr "Zakończono importowanie"
 #: /home/victored/noise/po/../src//LibraryWindow.vala:949
 #, c-format
 msgid "%s has imported your library."
-msgstr "%s zaimportował kolekcję"
+msgstr "Program %s zaimportował kolekcję."
 
 #: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
@@ -1488,8 +1489,8 @@ msgstr "Techno"
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d sekund"
-msgstr[1] "%d sekunda"
+msgstr[0] "%d sekunda"
+msgstr[1] "%d sekundy"
 msgstr[2] "%d sekund"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
@@ -1497,16 +1498,16 @@ msgstr[2] "%d sekund"
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] "%u minut"
-msgstr[1] "%u minuta"
+msgstr[0] "%u minuta"
+msgstr[1] "%u minuty"
 msgstr[2] "%u minut"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] "%u sekund"
-msgstr[1] "%u sekunda"
+msgstr[0] "%u sekunda"
+msgstr[1] "%u sekundy"
 msgstr[2] "%u sekund"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
@@ -1521,16 +1522,16 @@ msgstr "%s i %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] "%u dni"
-msgstr[1] "%u dzień"
+msgstr[0] "%u dzień"
+msgstr[1] "%u dni"
 msgstr[2] "%u dni"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] "%u godzin"
-msgstr[1] "%u godzina"
+msgstr[0] "%u godzina"
+msgstr[1] "%u godziny"
 msgstr[2] "%u godzin"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
@@ -1556,12 +1557,12 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
-"Upewnij się, czy folder z muzyką jest dostępny i zamontowany przed importem "
-"CD."
+"Przed zaimportowaniem płyty CD, proszę upewnić się, że katalog z muzyką jest "
+"dostępny i zamontowany."
 
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "No songs on CD"
-msgstr "Nośnik CD nie zawiera muzyki"
+msgstr "Płyta CD nie zawiera muzyki"
 
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 #, c-format
@@ -1594,7 +1595,7 @@ msgstr "Importowanie ścieżki %i"
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
 msgid "CD Import Complete"
-msgstr "Import z nośnika CD udany"
+msgstr "Zaimportowano płytę CD"
 
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
 #, c-format
@@ -1609,7 +1610,8 @@ msgstr "%s zakończył importowanie utworu z nośnika CD."
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:368
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
-"Importowanie nośnika CD będzie <b>anulowane</b> po aktualnym imporcie."
+"Importowanie płyty CD zostanie <b>anulowane</b> zaimportowaniu bieżącego "
+"nagrania."
 
 #: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:301
 #: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:511
@@ -1625,7 +1627,7 @@ msgstr "Usuwanie z <b>%s</b>..."
 #: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:881
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr "Importowanie <b>%s</b> do biblioteki..."
+msgstr "Importowanie <b>%s</b> do kolekcji..."
 
 #: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
@@ -1641,23 +1643,23 @@ msgstr "Podobne"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr "Daj Noise pozwolenie"
+msgstr "Włącz wysyłanie informacji o utworach"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr "Nie udało się. Kliknij żeby spróbować ponownie."
+msgstr "Niepowodzenie. Proszę kliknąć, aby spróbować ponownie."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr "Scrobblowanie zostało już włączone"
+msgstr "Wysyłanie informacji o utworach aktywne"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
-msgstr "Zakończono pomyślnie!"
+msgstr "Zalogowano"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr "Kompletne logowanie"
+msgstr "Zakończ logowanie"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
 msgid "Last.fm"
@@ -1665,15 +1667,15 @@ msgstr "Last.fm"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
-msgstr "Kliknij żeby ponowić proces logowania Last.fm"
+msgstr "Proszę kliknąć, aby ponownie zalogować do Last.fm"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
-"Aby umożliwić integrację Last.fm, musisz nadać aplikacji Noise odpowiednie "
-"uprawnienia. Wystarczy tylko zrobić ten jeden raz."
+"Aby umożliwić integrację z usługą Last.fm, należy zezwolić programowi na "
+"dostęp do niej. Wykonanie tej czynności wymagane jest tylko jeden raz."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:67
 msgid "Last.fm Integration"

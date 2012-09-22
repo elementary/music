@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-19 13:31-0600\n"
-"PO-Revision-Date: 2012-08-06 21:26+0000\n"
+"PO-Revision-Date: 2012-09-21 15:03+0000\n"
 "Last-Translator: Kristjan Vool <Unknown>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-20 05:00+0000\n"
+"X-Launchpad-Export-Date: 2012-09-22 05:25+0000\n"
 "X-Generator: Launchpad (build 15985)\n"
 "Language: et\n"
 
@@ -86,13 +86,13 @@ msgstr "Väljas"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:60
 msgid "Enable Repeat"
-msgstr "Luba kordusesitus"
+msgstr "Kordusesitus väljas"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:61
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:535
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
 msgid "Song"
-msgstr "Laulud"
+msgstr "Laul"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:61
 msgid "Repeat Song"
@@ -133,11 +133,11 @@ msgstr "Kordusesita kõike"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:93
 msgid "Enable Shuffle"
-msgstr "Luba juhuesitus"
+msgstr "Juhuesitus väljas"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:94
 msgid "Disable Shuffle"
-msgstr "Keela juhuesitus"
+msgstr "Juhuesitus sees"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:127
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:138
@@ -146,7 +146,7 @@ msgstr "Loo esitusloend"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:139
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Loo tark esitusloend"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:183
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:216
@@ -191,7 +191,7 @@ msgstr ""
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
 #: /home/victored/noise/po/../src//LibraryWindow.vala:177
 msgid "Import to Library"
-msgstr "Impordi kogumikku"
+msgstr "Impordi laule"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:77
 msgid "Eject"
@@ -208,7 +208,7 @@ msgstr "Uus nutikas esitusloend"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:90
 msgid "Edit"
-msgstr "Redigeeri"
+msgstr "Muuda"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:91
 msgid "Remove"
@@ -272,7 +272,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
-msgstr ""
+msgstr "Ekspordi esitusloend"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
@@ -355,7 +355,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "Faili asukoht"
 
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
@@ -363,15 +363,15 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
-msgstr ""
+msgstr "Ekspordi esitusloendid"
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr ""
+msgstr "Määra muusika kaustaks"
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "Määrata muusika kaustaks?"
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
@@ -379,6 +379,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Oled sa kindel, et soovid %s määrata vaikimisi muusika kaustaks? Sel juhul "
+"nullitakse kogumik lauludest ja esitusloendit kustutatakse."
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
@@ -408,12 +410,12 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:75
 msgid "Metadata"
-msgstr ""
+msgstr "Andmed"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:77
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:373
 msgid "Lyrics"
-msgstr ""
+msgstr "Laulusõnad"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:86
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:152
@@ -425,13 +427,13 @@ msgstr "Valmis"
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:344
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "%s - %s"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:175
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:346
 #, c-format
 msgid "Editing %s"
-msgstr "%s redigreerimine"
+msgstr "%s"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:178
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:349
@@ -448,14 +450,14 @@ msgstr "Pealkiri"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:186
 msgid "Album Artist"
-msgstr ""
+msgstr "Albumi esitaja"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:476
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
 msgid "Genre"
-msgstr "Muusikastiil"
+msgstr "Stiil"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:189
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
@@ -481,7 +483,7 @@ msgstr "Lugu"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:193
 msgid "Disc"
-msgstr ""
+msgstr "Ketas"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:194
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
@@ -502,7 +504,7 @@ msgstr "Meedia tüüp"
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "%s laulusõnu ei leitud"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:537
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
@@ -542,11 +544,11 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:145
 #: /home/victored/noise/po/../src//LibraryWindow.vala:181
 msgid "Preferences"
-msgstr ""
+msgstr "Eelistused"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:201
 msgid "General"
-msgstr ""
+msgstr "Üldine"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:215
 msgid "Select Music Folder"
@@ -554,7 +556,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:222
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Muusika kausta asukoht"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:228
 msgid ""
@@ -564,19 +566,19 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:240
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Muusika kausta organiseerimine"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:241
 msgid "Copy files to Music folder when adding to Library"
-msgstr ""
+msgstr "Kogumikku lisamisel failide kopeerimine muusika kausta"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:243
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Faili andmete kirjutamine"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:258
 msgid "Library Management"
-msgstr ""
+msgstr "Kogumiku eelistused:"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:265
 msgid "Use Noise as the default Music application"
@@ -652,7 +654,7 @@ msgstr "Väljaandmise kuupäev"
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Last Played"
-msgstr "Viimati esitatud"
+msgstr "Hiljuti esitatud"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
@@ -807,7 +809,7 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "Eemalda asukohast %s"
 
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
@@ -896,7 +898,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid "No songs in Queue"
-msgstr "Järjekorras pole ühtegi laulu"
+msgstr "Järjekorras pole laule"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid ""
@@ -910,7 +912,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
-msgstr ""
+msgstr "Ajaloos pole laule"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid ""
@@ -918,23 +920,26 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Pärast laulu kuulamist lisatakse see ajaloo nimekirja.\n"
+"Sa võid kasutada seda nimekirja, et vaadata, milliseid laule oled sa selle "
+"sessiooni ajal kuulanud."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "Muusika hankimine"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "%s ei leia muusikat üles."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
-msgstr ""
+msgstr "Leia"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
-msgstr ""
+msgstr "Muuda oma muusikat sialdavat kausta."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 msgid "All the songs in this device are already in your library."
@@ -965,17 +970,19 @@ msgstr ""
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "No Songs"
-msgstr ""
+msgstr "Laulud puuduvad"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Laulude lisamiseks esitusloendisse kasuta <b>parempoolset klõpsu</b> laulul "
+"ja vali <b>\"Lisa esitusloendisse</b>."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "Muuda esitusloendi reegleid"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid ""
@@ -984,6 +991,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"See esitusloend uuendab end uue muusika leidmisel automaatselt, vastavalt "
+"valitud reeglitele. Reeglite muutmiseks vali külgpaneelist muudetav "
+"esitusloend, parem klõpsa sellele ning seejärel vajuta <b>Muuda</b>. Samuti "
+"on sul võimalik lihtsalt vajutada allolevale nupule."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1061,7 +1072,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgid "Remove from Library"
-msgstr ""
+msgstr "Eemalda kogumikust"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:105
 msgid "Remove from Queue"
@@ -1069,15 +1080,15 @@ msgstr "Eemalda järjekorrast"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:122
 msgid "Remove from Device"
-msgstr ""
+msgstr "Eemalda seadmest"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:146
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Keri nimekirja käimasoleva lauluni"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:147
 msgid "Edit Song Info"
-msgstr "Redigeeri laulu teavet"
+msgstr "Muuda laulu teavet"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Show in File Browser"
@@ -1112,7 +1123,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:110
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Veergude suurus sobivaks"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:117
 msgid "Display Album Art"
@@ -1140,19 +1151,19 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
-msgstr ""
+msgstr "Stiilid"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
 msgid "Artists"
-msgstr ""
+msgstr "Esitajad"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
 msgid "Albums"
-msgstr ""
+msgstr "Albumid"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
 msgid "Years"
-msgstr ""
+msgstr "Ilmumisaastad"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
 msgid "Ratings"
@@ -1160,7 +1171,7 @@ msgstr "Hinnangud"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:192
 msgid "Unrated"
-msgstr ""
+msgstr "Hinnanguta"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:194
 msgid "1 Star"
@@ -1173,71 +1184,71 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
 msgid "All Genres"
-msgstr ""
+msgstr "Kõik stiilid"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "Kõik %i stiili"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Genres"
-msgstr ""
+msgstr "Stiilid puuduvad"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:252
 msgid "All Artists"
-msgstr ""
+msgstr "Kõik esitajad"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "Kõik %i esitajat"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
 msgid "No Artists"
-msgstr ""
+msgstr "Esitajad puuduvad"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
 msgid "All Albums"
-msgstr ""
+msgstr "Kõik albumid"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "Kõik %i albumit"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "No Albums"
-msgstr ""
+msgstr "Albumid puuduvad"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:268
 msgid "All Years"
-msgstr ""
+msgstr "Kõik ilmumisaastad"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "Kõik %i ilmumisaastat"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
 msgid "No Years"
-msgstr ""
+msgstr "Ilmumisaastad puuduvad"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:276
 msgid "All Ratings"
-msgstr ""
+msgstr "Kõik hinnangud"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:278
 msgid "No Ratings"
-msgstr ""
+msgstr "Hinnangud puuduvad"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
 msgid "On Left"
-msgstr ""
+msgstr "Paigutus vasakul"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
 msgid "On Top"
-msgstr ""
+msgstr "Paigutus üleval"
 
 #: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
@@ -1304,7 +1315,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:403
 msgid "Favorite Songs"
-msgstr "Lemmiklaulud"
+msgstr "Lemmikud"
 
 #: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:413
 msgid "Recently Added"
@@ -1320,15 +1331,15 @@ msgstr "Esitamata"
 
 #: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:455
 msgid "Over Played"
-msgstr "Üleesitatud"
+msgstr "Tihedalt esitatud"
 
 #: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
-msgstr "Pole hiljuti esitatud"
+msgstr "Ammu esitatud"
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:178
 msgid "Rescan Music Folder"
-msgstr ""
+msgstr "Taasskänni muusika kausta"
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:201
 msgid "Search Music"
@@ -1399,11 +1410,11 @@ msgstr "Täielik bass"
 
 #: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "Kõrgheliline"
 
 #: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr "Täielik bass + kõrge"
+msgstr "Täielik bass + kõrgheliline"
 
 #: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
@@ -1509,7 +1520,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../core//Media.vala:38
 msgid "Various Artists"
-msgstr ""
+msgstr "Erinevad esitajad"
 
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
 msgid ""
@@ -1519,12 +1530,12 @@ msgstr ""
 
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "No songs on CD"
-msgstr ""
+msgstr "CD-l pole laule"
 
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr ""
+msgstr "Laule pole võimalik importida, sest %s ei leia CD-lt ühtegi laulu."
 
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
 #, c-format
@@ -1584,7 +1595,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
-msgstr ""
+msgstr "Sarnased"
 
 #: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
@@ -1596,11 +1607,11 @@ msgstr ""
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr ""
+msgstr "Anna Noise'ile vajalikud õigused"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "Sisselogimine ebaõnnestus, proovi uuesti."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
@@ -1612,11 +1623,11 @@ msgstr ""
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Lõpeta sisselogimine"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.FM"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
@@ -1627,10 +1638,12 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Last.FM-iga ühendamiseks peavad Noise'il olema vajalikud õigused. Selle "
+"tegemiseks vajuta allolevat nuppu (seda on vaja teha ainult üks kord)."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:67
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Last.FM-iga ühendamine:"
 
 #: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
