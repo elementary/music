@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-19 13:31-0600\n"
-"PO-Revision-Date: 2012-08-29 05:03+0000\n"
+"PO-Revision-Date: 2012-09-23 04:48+0000\n"
 "Last-Translator: leo  <shing80333@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-09-20 05:01+0000\n"
+"X-Launchpad-Export-Date: 2012-09-23 04:59+0000\n"
 "X-Generator: Launchpad (build 15985)\n"
 "Language: \n"
 
@@ -504,7 +504,7 @@ msgstr "媒體類型"
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "並未尋找到%s的歌詞"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:537
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
@@ -1027,7 +1027,7 @@ msgstr "%i kb/秒"
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:251
 msgid "Never"
-msgstr ""
+msgstr "永不"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
@@ -1114,31 +1114,31 @@ msgstr "匯入 %i 首歌曲"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:110
 msgid "Autosize Columns"
-msgstr ""
+msgstr "自動調整欄位大小"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:117
 msgid "Display Album Art"
-msgstr ""
+msgstr "顯示專輯封面"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:233
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:299
 msgid "Sample Title"
-msgstr ""
+msgstr "範例標題"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:304
 msgid "Sample Artist"
-msgstr ""
+msgstr "範例演出者"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:307
 msgid "Sample Album"
-msgstr ""
+msgstr "範例專輯"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:320
 msgid "Sample Genre"
-msgstr ""
+msgstr "範例曲風"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
@@ -1601,7 +1601,7 @@ msgstr "未成功，點擊按鈕再試一次"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "Scrobbling 已經啟動"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1609,7 +1609,7 @@ msgstr "成功！"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "完整登入"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
 msgid "Last.fm"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-19 13:31-0600\n"
-"PO-Revision-Date: 2012-09-17 20:06+0000\n"
-"Last-Translator: Eduard Gotwig <eduardgotwig@gmail.com>\n"
+"PO-Revision-Date: 2012-09-22 10:54+0000\n"
+"Last-Translator: Thomas Pitlik <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-20 05:00+0000\n"
+"X-Launchpad-Export-Date: 2012-09-23 04:58+0000\n"
 "X-Generator: Launchpad (build 15985)\n"
 "Language: de\n"
 
@@ -1164,23 +1164,23 @@ msgstr "Albumbild anzeigen"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:233
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:299
 msgid "Sample Title"
-msgstr ""
+msgstr "Beispieltitel"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:304
 msgid "Sample Artist"
-msgstr ""
+msgstr "Beispielinterpret"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:307
 msgid "Sample Album"
-msgstr ""
+msgstr "Beispielalbum"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:320
 msgid "Sample Genre"
-msgstr ""
+msgstr "Beispielgenre"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
