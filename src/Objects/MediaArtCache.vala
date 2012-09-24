@@ -39,7 +39,6 @@ public abstract class Noise.MediaArtCache {
 
     private PixbufCache pixbuf_cache;
 
-
     public MediaArtCache (string folder_name) {
         var image_dir = FileUtils.get_cache_directory ().get_child (folder_name);
         pixbuf_cache = new PixbufCache (image_dir);
@@ -52,12 +51,10 @@ public abstract class Noise.MediaArtCache {
         };
     }
 
-
     /**
      * Key used for storing images.
      */
     protected abstract string get_key (Media m);
-
 
     /**
      * This function is called before storing a pixbuf in the cache, allowing
@@ -66,7 +63,6 @@ public abstract class Noise.MediaArtCache {
      * @see Noise.PixbufCache.filter_func
      */
     protected abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix);
-
 
     /**
      * Verifies whether the media object m has a corresponding image in the cache.
@@ -77,21 +73,14 @@ public abstract class Noise.MediaArtCache {
         return pixbuf_cache.has_image (get_key (m));
     }
 
-
     /**
      * Returns the location of the media's image on disk. This call does no blocking I/O.
-     * A path is returned even if there's no associated image in the cache (i.e. the file
-     * pointed by the path doesn't exist).
-     * Since there is no guarantee that the returned path will be valid, don't write code
-     * that crashes if it isn't. You can call has_image() to verify the existance of the
-     * image, and it will reliably help to avoid errors most of the time (under normal
-     * conditions, where every cached image has an associated file and there is no race
-     * between threads).
+     * If there's no associated image in the cache, an empty string is returned.
      */
     public string get_cached_image_path_for_media (Media m) {
-        return get_cached_image_path (get_key (m));
+        var key = get_key (m);
+        return pixbuf_cache.has_image (key) ? get_cached_image_path (key) : "";
     }
-
 
     /**
      * Returns the location of the image on disk. This call does no blocking I/O.
@@ -101,7 +90,6 @@ public abstract class Noise.MediaArtCache {
     protected string get_cached_image_path (string key) {
         return pixbuf_cache.get_cached_image_path (key);
     }
-
 
     /**
      * Assign an image to media and all other media objects for which get_key()
@@ -120,7 +108,6 @@ public abstract class Noise.MediaArtCache {
         queue_notify ();
     }
 
-
     /**
      * This method does the same as cache_image(), with the only difference that it
      * first fetches the image from the given file.
@@ -129,7 +116,6 @@ public abstract class Noise.MediaArtCache {
         pixbuf_cache.cache_image_from_file (get_key (m), image_file, c);
         queue_notify ();
     }
-
 
     /**
      * Removes the image corresponding to the media from the table. It also deletes
@@ -141,7 +127,6 @@ public abstract class Noise.MediaArtCache {
         return pix;
     }
 
-
     /**
      * @return null if the media's corresponding image was not found; otherwise
      *         a valid {@link Gdk.Pixbuf}
@@ -149,7 +134,6 @@ public abstract class Noise.MediaArtCache {
     protected Gdk.Pixbuf? get_image (Media m, bool lookup_file) {
         return pixbuf_cache.get_image (get_key (m), lookup_file);
     }
-
 
     protected void queue_notify () {
         Idle.add ( () => {
