@@ -33,10 +33,17 @@ int main (string[] args) {
 
     try {
         Gst.init_check (ref args);
-    }
-    catch (Error err) {
+    } catch (Error err) {
         error ("Could not init GStreamer: %s", err.message);
     }
+
+    // Init internationalization support before anything else
+    string package_name = Build.GETTEXT_PACKAGE;
+    string langpack_dir = Path.build_filename (Build.DATADIR, "locale");
+    Intl.setlocale (LocaleCategory.ALL, "");
+    Intl.bindtextdomain (package_name, langpack_dir);
+    Intl.bind_textdomain_codeset (package_name, "UTF-8");
+    Intl.textdomain (package_name);
 
     return Noise.App.instance.run (args);
 }
