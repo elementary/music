@@ -63,7 +63,6 @@ public class Noise.PixbufCache {
     private File image_dir;
     private Gee.HashMap<string, Gdk.Pixbuf> image_map;
 
-
     /**
      * Creates a new {@link Noise.PixbufCache} object.
      * It also creates the cache directory if it doesn't exist (i.e. expect blocking I/O).
@@ -89,7 +88,6 @@ public class Noise.PixbufCache {
         }
     }
 
-
     /**
      * This method is called right before storing a pixbuf in the in-memory
      * table. Its purpose is to allow client code to make modifications to the passed image
@@ -103,14 +101,12 @@ public class Noise.PixbufCache {
     public delegate Gdk.Pixbuf? FilterFunction (string key, Gdk.Pixbuf orig_pixbuf);
     public unowned FilterFunction? filter_func;
 
-
     /**
      * Verifies whether the key has a corresponding image in the cache.
      */
     public bool has_image (string key) {
         return image_map.has_key (key);
     }
-
 
     /**
      * Returns the location of an image on disk. This call does no blocking I/O.
@@ -124,7 +120,6 @@ public class Noise.PixbufCache {
         string filename = Checksum.compute_for_string (ChecksumType.MD5, key + image_format);
         return image_dir.get_child (filename).get_path ();
     }
-
 
     /**
      * Removes the image corresponding to the key from the table. It also deletes
@@ -141,7 +136,6 @@ public class Noise.PixbufCache {
         return val;
     }
 
-
     /**
      * Associates an image to a key.
      *
@@ -155,7 +149,6 @@ public class Noise.PixbufCache {
         cache_image_internal (key, image, true);
     }
 
-
     /**
      * This method does the same as cache_image(), with the only difference that it
      * first fetches the image from the given file.
@@ -165,7 +158,6 @@ public class Noise.PixbufCache {
         if (image != null)
             cache_image (key, image);
     }
-
 
     /**
      * Retrieves the image for the given key from the cache. If lookup_file
@@ -188,7 +180,6 @@ public class Noise.PixbufCache {
         return image_map.get (key);
     }
 
-
     /**
      * Adds an image to the hash map and also writes the image to disk if save_to_disk is true.
      */
@@ -198,15 +189,14 @@ public class Noise.PixbufCache {
         if (modified_image != null) {
             lock (image_map) {
                 image_map.set (key, modified_image);
-            }
 
-            // We store the unmodified image. Otherwise modifications would be applied over and
-            // over again every time the images are retrieved from disk.
-            if (save_to_disk)
-                save_image_to_file (key, image);
+                // We store the unmodified image. Otherwise modifications would be applied over and
+                // over again every time the images are retrieved from disk.
+                if (save_to_disk)
+                    save_image_to_file (key, image);
+            }
         }
     }
-
 
     /**
      * Central place for retrieving images from permanent-storage locations. This is not
@@ -225,7 +215,7 @@ public class Noise.PixbufCache {
     }
 
     /**
-     * Stores a pixbuf in the cache directory
+     * Stores a pixbuf in the cache directory. Not thread-safe
      */
     private void save_image_to_file (string key, Gdk.Pixbuf to_save) {
         debug ("Saving cached image for: %s", key);
@@ -239,10 +229,9 @@ public class Noise.PixbufCache {
         }
     }
 
-
     /**
      * Deletes the file pointed by path. It silently fails in case the file
-     * doesn't exist.
+     * doesn't exist. Not thread-safe.
      *
      * @return true in case the image was deleted or doesn't exist; false otherwise.
      */
