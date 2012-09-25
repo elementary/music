@@ -133,7 +133,7 @@ namespace Noise.Widgets {
             above_child = true;
 #endif
 
-            add (Icons.render_image ("list-add-symbolic", Gtk.IconSize.MENU));
+            add (Icons.LIST_ADD_SYMBOLIC.render_image (Gtk.IconSize.MENU));
 
             var add_pl_menuitem = new Gtk.MenuItem.with_label (_("Add Playlist"));
             var add_spl_menuitem = new Gtk.MenuItem.with_label (_("Add Smart Playlist"));
@@ -142,6 +142,8 @@ namespace Noise.Widgets {
             menu.append (add_pl_menuitem);
             menu.append (add_spl_menuitem);
             menu.show_all ();
+
+            menu.attach_widget = this;
 
             add_pl_menuitem.activate.connect ( () => {
                 App.main_window.sideTree.playlistMenuNewClicked ();

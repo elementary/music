@@ -76,6 +76,7 @@ public class Noise.Icons {
     public static Icon VIEW_DETAILS { get; private set; default = new Icon ("view-list-symbolic"); }
     public static Icon VIEW_ICONS { get; private set; default = new Icon ("view-grid-symbolic"); }
     public static Icon VIEW_VIDEO { get; private set; default = new Icon ("view-video-symbolic"); }
+    public static Icon LIST_ADD_SYMBOLIC { get; private set; default = new Icon ("list-add-symbolic"); }
 
     static construct {
         var default_shadow = new Icon ("albumart-shadow");
@@ -83,13 +84,11 @@ public class Noise.Icons {
     }
 
     /**
-     * XXX Inits the class.
      * This is needed until vala really supports initialization of static members.
-     * Please refer to https://bugzilla.gnome.org/show_bug.cgi?id=543189 for more information.
+     * See https://bugzilla.gnome.org/show_bug.cgi?id=543189
      */
     public static void init () {
-        // dummy instantiation to init static members
-        new Icons ();
+        new Icons (); // dummy instantiation to init static members
     }
 
     public static Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
