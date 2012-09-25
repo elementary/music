@@ -209,10 +209,22 @@ public abstract class Noise.GenericList : FastView {
 	**/
 	protected abstract void updateTreeViewSetup();
 
-    public void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column,
+    private void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column,
                                         Gtk.CellRendererText renderer, string[] strings, int padding)
     {
         UI.set_tree_view_column_fixed_width (treeview, column, renderer, strings, padding);
+    }
+
+    private void reset_column_widths () {
+        foreach (var column in get_columns ()) {
+            if (column.min_width > 0)
+                column.fixed_width = column.min_width;
+        }
+    }
+
+    public new void columns_autosize () {
+        reset_column_widths ();
+        base.columns_autosize ();
     }
 
 	protected void add_columns () {
@@ -648,15 +660,14 @@ public abstract class Noise.GenericList : FastView {
 		}
 	}
 	
-	void on_drag_data_get(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+	void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
 		string[] uris = null;
 
-		foreach (Media m in get_selected_medias()) {
-			uris += (m.uri);
-		}
+		foreach (Media m in get_selected_medias())
+			uris += m.uri;
 
 		if (uris != null)
-			selection_data.set_uris(uris);
+			selection_data.set_uris (uris);
 	}
 	
 	void on_drag_end(Gtk.Widget sender, Gdk.DragContext context) {
