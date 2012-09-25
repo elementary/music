@@ -325,10 +325,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     /**
      * Show notification asynchronously
      */
-
+#if HAVE_LIBNOTIFY
     private Notify.Notification? notification = null;
-
+#endif
     public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null) {
+#if HAVE_LIBNOTIFY
         // Don't show notifications if the window is active
         if (this.is_active)
             return;
@@ -342,8 +343,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         if (notification == null) {
             notification = new Notify.Notification (primary_text, secondary_text, "");
-        }
-        else {
+        } else {
             notification.clear_hints ();
             notification.clear_actions ();
             notification.update (primary_text, secondary_text, "");
@@ -356,10 +356,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         try {
             notification.show ();
-        }
-        catch (GLib.Error err) {
+        } catch (GLib.Error err) {
             warning ("Could not show notification: %s", err.message);
         }
+#endif
     }
 
     public void show_notification_from_media (Media media) {
@@ -1094,19 +1094,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             library_manager.update_media_item (App.player.media_info.media, false, false);
         }
         App.player.player.pause();
-
-        // Terminate Libnotify
-        if (Notify.is_initted ()) {
-            if (notification != null) {
-                try {
-                    notification.close ();
-                }
-                catch (Error err) {
-                    warning (err.message);
-                }
-            }
-            Notify.uninit ();
-        }
 
         // Now set the selected view
         Settings.SavedState.instance.view_mode = viewSelector.selected;
