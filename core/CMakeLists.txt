@@ -1,4 +1,7 @@
-vala_precompile(VALA_C
+set(CORE_LIB_VERSION 0.1)
+set(CORE_LIB_SOVERSION 0)
+
+set(CORE_SOURCE
     PluginManager.vala
     Settings.vala
     EqualizerPreset.vala
@@ -13,24 +16,32 @@ vala_precompile(VALA_C
     Utils/CompareFunctionHolder.vala
     Utils/Utils.vala
     Utils/Threads.vala
-PACKAGES
-    gtk+-3.0
-    libpeas-1.0
-    peas-gtk
-    gee-1.0
-    granite
-OPTIONS
-    --thread
-    --vapidir=${CMAKE_SOURCE_DIR}/vapi
-GENERATE_VAPI
-    noise-core
-GENERATE_HEADER
-    noise-core
 )
 
-add_definitions(${NORMAL_CFLAGS})
-#link_directories(${LIB_PATHS})
-link_directories(${NORMAL_LINK_DIRS})
-add_library(noise-core SHARED ${VALA_C})
-target_link_libraries(noise-core ${NORMAL_LIBRARIES})
-install (TARGETS noise-core DESTINATION lib)
+set(CORE_VALAC_OPTIONS ${GLOBAL_VALAC_OPTIONS})
+
+vala_precompile(
+    CORE_VALA_C
+        ${CORE_SOURCE}
+    PACKAGES
+        ${CORE_PACKAGES}
+    OPTIONS
+        ${CORE_VALAC_OPTIONS}
+    GENERATE_VAPI
+        ${CORE_LIBRARY_NAME}
+    GENERATE_HEADER
+        ${CORE_LIBRARY_NAME}
+)
+
+add_definitions(${DEPS_CFLAGS})
+link_directories(${DEPS_LIBRARY_DIRS})
+add_library(${CORE_LIBRARY_NAME} SHARED ${CORE_VALA_C})
+
+set_target_properties(${CORE_LIBRARY_NAME} PROPERTIES
+    VERSION ${CORE_LIB_VERSION}
+    SOVERSION ${CORE_LIB_SOVERSION}
+)
+
+target_link_libraries(${CORE_LIBRARY_NAME} ${DEPS_LIBRARIES})
+
+install (TARGETS ${CORE_LIBRARY_NAME} DESTINATION lib)

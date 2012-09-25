@@ -1,7 +1,8 @@
-configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_SOURCE_DIR}/src/config.vala)
+set(CONFIG_FILE ${CMAKE_SOURCE_DIR}/src/config.vala)
+configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CONFIG_FILE})
 
-vala_precompile(VALA_C
-    ${CMAKE_SOURCE_DIR}/src/config.vala
+set(CLIENT_SOURCE
+    ${CONFIG_FILE}
 
     Icons.vala
     LibraryWindow.vala
@@ -79,12 +80,10 @@ vala_precompile(VALA_C
 
     Views/ContentView.vala
 
-    # ALBUM VIEW
     Views/GridView/GridLayout.vala
     Views/GridView/GridView.vala
     Views/GridView/PopupListView.vala
 
-    # LIST VIEW
     Views/ListView/ListView.vala
     Views/ListView/ColumnBrowser/BrowserColumnModel.vala
     Views/ListView/ColumnBrowser/BrowserColumn.vala
@@ -108,48 +107,45 @@ vala_precompile(VALA_C
     Dialogs/SetMusicFolderConfirmation.vala
     Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala
+)
 
-PACKAGES
-    glib-2.0
-    gtk+-3.0
-    gdk-x11-3.0
-    gee-1.0
-    gstreamer-0.10
-    gstreamer-interfaces-0.10
-    gstreamer-pbutils-0.10
-    gstreamer-cdda-0.10
-    taglib_c
-    gio-2.0
-    libxml-2.0
-    libnotify
-    libsoup-2.4
-    json-glib-1.0
-    gio-unix-2.0
-    granite
-    libpeas-1.0
-    noise-core
-    ${ADD_PKG}
-OPTIONS
-    --vapidir=${CMAKE_SOURCE_DIR}/vapi
-    --vapidir=${CMAKE_BINARY_DIR}/core/
-    --target-glib=2.32
+set(CLIENT_VALAC_OPTIONS
+    ${GLOBAL_VALAC_OPTIONS}
     --define=USE_GRANITE_DECORATED_WINDOW
     #--define=HAVE_ADD_PLAYLIST_AS_BUTTON
     #--define=HAVE_SMART_ALBUM_COLUMN
-    #--define=GTK_ICON_VIEW_BUG_IS_FIXED  ## TODO: define this automatically when gtk+.3.0 >= 3.4.3
     #--define=ENABLE_EXPERIMENTAL
-    ${ADD_OPTIONS}
-GENERATE_VAPI
-    noise
-GENERATE_HEADER
-    noise
 )
 
-set(EXEC_NAME ${CMAKE_PROJECT_NAME})
+# Find GTK+ version. A bug with the icon view is supposed to be fixed in version 3.4.3 or later.
+pkg_check_modules(GTK_ICON_VIEW_BUG_IS_FIXED QUIET gtk+-3.0>=3.4.3)
+if (GTK_ICON_VIEW_BUG_IS_FIXED)
+    message("-- Icon view workaround disabled")
+    set(CLIENT_VALAC_OPTIONS ${CLIENT_VALAC_OPTIONS} --define=GTK_ICON_VIEW_BUG_IS_FIXED)
+else ()
+    message("-- Icon view workaround enabled")
+endif ()
 
-add_definitions(${NORMAL_CFLAGS})
+set(CLIENT_VAPI ${SRC_TARGET})
+
+vala_precompile(
+    CLIENT_VALA_C
+        ${CLIENT_SOURCE}
+    PACKAGES
+        ${DEPS_PACKAGES}
+    OPTIONS
+        ${CLIENT_VALAC_OPTIONS}
+    GENERATE_VAPI
+        ${CLIENT_VAPI}
+    GENERATE_HEADER
+        ${CLIENT_VAPI}
+)
+
+set(EXEC_NAME ${SRC_TARGET})
+
 include_directories(${CMAKE_BINARY_DIR}/core)
-link_directories(${NORMAL_LINK_DIRS})
-add_executable(${EXEC_NAME} ${VALA_C})
-target_link_libraries (${EXEC_NAME} ${NORMAL_LIBRARIES} noise-core)
-install (TARGETS ${EXEC_NAME} RUNTIME DESTINATION bin)
+add_definitions(${DEPS_CFLAGS})
+link_directories(${DEPS_LIBRARY_DIRS})
+add_executable(${EXEC_NAME} ${CLIENT_VALA_C})
+
+target_link_libraries(${EXEC_NAME} ${DEPS_LIBRARIES})

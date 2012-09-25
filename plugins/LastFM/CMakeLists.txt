@@ -1,4 +1,17 @@
-vala_precompile(VALA_C
+pkg_check_modules(LASTFM_DEPS libxml-2.0 json-glib-1.0 libsoup-2.4)
+
+if (LASTFM_DEPS_FOUND)
+
+set(DEPS_CFLAGS ${DEPS_CFLAGS} ${LASTFM_DEPS_CFLAGS})
+set(DEPS_LIBRARIES ${DEPS_LIBRARIES} ${LASTFM_DEPS_LIBRARIES})
+set(DEPS_LIBRARY_DIRS ${DEPS_LIBRARY_DIRS} ${LASTFM_DEPS_LIBRARY_DIRS})
+
+add_definitions(${DEPS_CFLAGS})
+include_directories(${CMAKE_BINARY_DIR}/core ${CMAKE_BINARY_DIR}/src)
+link_directories(${DEPS_LIBRARY_DIRS})
+
+vala_precompile(
+    LAST_FM_VALA_C
         LastFM.vala
         Core.vala
         Settings.vala
@@ -12,40 +25,25 @@ vala_precompile(VALA_C
         SimilarViewWrapper.vala
         PreferencesSection.vala
     PACKAGES
-        glib-2.0
-        gtk+-3.0
-        granite
-        noise
-        noise-core
+        ${DEPS_PACKAGES}
         libxml-2.0
         json-glib-1.0
-        gee-1.0
-        gio-unix-2.0
-        gstreamer-0.10
-        libnotify
-        libgpod-1.0
-        gstreamer-interfaces-0.10
-        gstreamer-pbutils-0.10
-        gstreamer-cdda-0.10
-        peas-gtk
-        libpeas-1.0
         libsoup-2.4
     OPTIONS
-        --target-glib=2.32
-        --vapidir=${CMAKE_SOURCE_DIR}/vapi
-        --vapidir=${CMAKE_BINARY_DIR}/core/
-        --vapidir=${CMAKE_BINARY_DIR}/src/
-    )
+        ${GLOBAL_VALAC_OPTIONS}
+)
 
-add_library(lastfm MODULE ${VALA_C})
+add_library(lastfm MODULE ${LAST_FM_VALA_C})
 
-add_definitions(${NORMAL_CFLAGS})
-include_directories(${CMAKE_BINARY_DIR}/core ${CMAKE_BINARY_DIR}/src)
-link_directories(${NORMAL_LINK_DIRS})
-
-target_link_libraries (lastfm ${NORMAL_LIBRARIES})
+target_link_libraries(lastfm ${DEPS_LIBRARIES})
 install(TARGETS lastfm DESTINATION ${PLUGIN_DIR}/LastFM/)
 install(FILES lastfm.plugin DESTINATION ${PLUGIN_DIR}/LastFM/)
-add_dependencies(lastfm noise)
+add_dependencies(lastfm ${SRC_TARGET})
 
 add_subdirectory(schemas)
+
+else ()
+
+message("-- Last.fm plugin disabled")
+
+endif ()

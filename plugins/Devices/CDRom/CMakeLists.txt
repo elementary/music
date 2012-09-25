@@ -1,39 +1,37 @@
-add_definitions(${NORMAL_CFLAGS})
+pkg_check_modules(CD_DEPS gstreamer-cdda-0.10)
+
+if (CD_DEPS_FOUND)
+
+set(DEPS_CFLAGS ${DEPS_CFLAGS} ${CD_DEPS_CFLAGS})
+set(DEPS_LIBRARIES ${DEPS_LIBRARIES} ${CD_DEPS_LIBRARIES})
+set(DEPS_LIBRARY_DIRS ${DEPS_LIBRARY_DIRS} ${CD_DEPS_LIBRARY_DIRS})
+
+add_definitions(${DEPS_CFLAGS})
 include_directories(${CMAKE_BINARY_DIR}/core ${CMAKE_BINARY_DIR}/src)
-link_directories(${NORMAL_LINK_DIRS})
-vala_precompile(VALA_C
+link_directories(${DEPS_LIBRARY_DIRS})
+
+vala_precompile(
+    CDROM_VALA_C
         CDRom.vala
         CDRomDevice.vala
         CDRomDeviceManager.vala
         CDDA.vala
         CDRipper.vala
     PACKAGES
-        glib-2.0
-        gtk+-3.0
-        granite
-        noise
-        noise-core
-        libxml-2.0
-        gee-1.0
-        gio-unix-2.0
-        gstreamer-0.10
-        libnotify
-        libgpod-1.0
-        gstreamer-interfaces-0.10
-        gstreamer-pbutils-0.10
+        ${DEPS_PACKAGES}
         gstreamer-cdda-0.10
-        peas-gtk
-        libpeas-1.0
-        libsoup-2.4
     OPTIONS
-        --target-glib=2.32
-        --vapidir=${CMAKE_SOURCE_DIR}/vapi
-        --vapidir=${CMAKE_BINARY_DIR}/core/
-        --vapidir=${CMAKE_BINARY_DIR}/src/
-    )
-add_library(cdrom-device MODULE ${VALA_C})
+        ${GLOBAL_VALAC_OPTIONS}
+)
 
-target_link_libraries (cdrom-device ${NORMAL_LIBRARIES})
+add_library(cdrom-device MODULE ${CDROM_VALA_C})
+target_link_libraries (cdrom-device ${DEPS_LIBRARIES})
 install(TARGETS cdrom-device DESTINATION ${PLUGIN_DIR}/CDRom-Device/)
 install(FILES cdrom-device.plugin DESTINATION ${PLUGIN_DIR}/CDRom-Device/)
-add_dependencies(cdrom-device noise)
+add_dependencies(cdrom-device ${SRC_TARGET})
+
+else ()
+
+message("-- CD-Rom device plugin disabled")
+
+endif ()
