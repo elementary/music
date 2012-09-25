@@ -18,6 +18,12 @@ set(CORE_SOURCE
     Utils/Threads.vala
 )
 
+if (BUILD_SHARED_LIBS)
+    set(LINK_MODE SHARED)
+else ()
+    set(LINK_MODE STATIC)
+endif ()
+
 set(CORE_VALAC_OPTIONS ${GLOBAL_VALAC_OPTIONS})
 
 vala_precompile(
@@ -33,15 +39,20 @@ vala_precompile(
         ${CORE_LIBRARY_NAME}
 )
 
-add_definitions(${DEPS_CFLAGS})
-link_directories(${DEPS_LIBRARY_DIRS})
-add_library(${CORE_LIBRARY_NAME} SHARED ${CORE_VALA_C})
+add_definitions(${CORE_DEPS_CFLAGS})
+link_directories(${CORE_DEPS_LIBRARY_DIRS})
+
+add_library(${CORE_LIBRARY_NAME} ${LINK_MODE} ${CORE_VALA_C})
 
 set_target_properties(${CORE_LIBRARY_NAME} PROPERTIES
+    OUTPUT_NAME ${CORE_LIBRARY_NAME}
     VERSION ${CORE_LIB_VERSION}
     SOVERSION ${CORE_LIB_SOVERSION}
 )
 
-target_link_libraries(${CORE_LIBRARY_NAME} ${DEPS_LIBRARIES})
+target_link_libraries(${CORE_LIBRARY_NAME} ${CORE_DEPS_LIBRARIES})
 
-install (TARGETS ${CORE_LIBRARY_NAME} DESTINATION lib)
+if (BUILD_SHARED_LIBS)
+    install(TARGETS ${CORE_LIBRARY_NAME} DESTINATION lib)
+endif ()
+
