@@ -2,7 +2,7 @@
 # App icons. These are installed to the system's default theme
 #
 
-set(SYSTEM_DEFAULT_THEME share/icons/hicolor)
+set(SYSTEM_DEFAULT_THEME ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor)
 
 install(FILES icons/16x16/apps/noise.svg DESTINATION ${SYSTEM_DEFAULT_THEME}/16x16/apps)
 install(FILES icons/22x22/apps/noise.svg DESTINATION ${SYSTEM_DEFAULT_THEME}/22x22/apps)
@@ -60,8 +60,9 @@ install(FILES ${ACTIONS_16} DESTINATION ${FALLBACK_THEME_DIR}/16x16/actions)
 install(FILES ${MIMETYPES_16} DESTINATION ${FALLBACK_THEME_DIR}/16x16/mimetypes)
 
 # Update icon cache
-option (ICON_UPDATE "Run gtk-update-icon-cache after the install." ON)
+option(ICON_UPDATE "Run gtk-update-icon-cache after the install." ON)
 if (ICON_UPDATE)
-  install(CODE "message(\"-- Updating icon cache...\")")
-  install(CODE "execute_process(COMMAND gtk-update-icon-cache -f -t ${CMAKE_INSTALL_PREFIX}/${SYSTEM_DEFAULT_THEME})")
+    message("-- Icon cache will be updated")
+    install(CODE "message(\"-- Updating icon cache...\")")
+    install(CODE "execute_process(COMMAND gtk-update-icon-cache -f -t ${SYSTEM_DEFAULT_THEME})")
 endif ()

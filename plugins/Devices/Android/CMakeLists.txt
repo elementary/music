@@ -1,5 +1,4 @@
 add_definitions(${DEPS_CFLAGS})
-include_directories(${CMAKE_BINARY_DIR}/core ${CMAKE_BINARY_DIR}/src)
 link_directories(${DEPS_LIBRARY_DIRS})
 
 vala_precompile(

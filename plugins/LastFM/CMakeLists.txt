@@ -7,7 +7,6 @@ set(DEPS_LIBRARIES ${DEPS_LIBRARIES} ${LASTFM_DEPS_LIBRARIES})
 set(DEPS_LIBRARY_DIRS ${DEPS_LIBRARY_DIRS} ${LASTFM_DEPS_LIBRARY_DIRS})
 
 add_definitions(${DEPS_CFLAGS})
-include_directories(${CMAKE_BINARY_DIR}/core ${CMAKE_BINARY_DIR}/src)
 link_directories(${DEPS_LIBRARY_DIRS})
 
 vala_precompile(
@@ -36,9 +35,10 @@ vala_precompile(
 add_library(lastfm MODULE ${LAST_FM_VALA_C})
 
 target_link_libraries(lastfm ${DEPS_LIBRARIES})
+add_dependencies(lastfm ${SRC_TARGET})
+
 install(TARGETS lastfm DESTINATION ${PLUGIN_DIR}/LastFM/)
 install(FILES lastfm.plugin DESTINATION ${PLUGIN_DIR}/LastFM/)
-add_dependencies(lastfm ${SRC_TARGET})
 
 add_subdirectory(schemas)
 
