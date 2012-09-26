@@ -17,7 +17,7 @@ set(PLUGIN_DIR ${CMAKE_INSTALL_PREFIX}/lib/${CMAKE_PROJECT_NAME}/plugins)
 
 add_definitions("-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\"")
 
-option(BUILD_SHARED_LIBS "Switch between shared and static libraries" OFF)
+option(BUILD_SHARED_LIBS "Switch between shared and static libraries" ON)
 
 if (BUILD_SHARED_LIBS)
     message("-- Shared libraries enabled")
