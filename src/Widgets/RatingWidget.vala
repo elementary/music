@@ -26,7 +26,7 @@
 
 namespace Granite.Widgets {
 
-    public class Rating : Gtk.EventBox {
+    public class Rating : Gtk.DrawingArea {
 
         public class Renderer : Object {
             public Gdk.Pixbuf canvas { get; private set; }
@@ -241,10 +241,6 @@ namespace Granite.Widgets {
             this.centered = centered;
             this.renderer = new Renderer (size, symbolic, get_style_context ());
 
-            // Transparency
-            above_child = true;
-            visible_window = false;
-
             add_events (Gdk.EventMask.BUTTON_PRESS_MASK
                         | Gdk.EventMask.BUTTON_RELEASE_MASK
                         | Gdk.EventMask.POINTER_MOTION_MASK
@@ -295,8 +291,6 @@ namespace Granite.Widgets {
         }
 
         public override bool draw (Cairo.Context context) {
-            base.draw (context);
-
             Gtk.Allocation al;
             get_allocation (out al);
 
