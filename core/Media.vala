@@ -30,12 +30,12 @@ public enum Noise.MediaType {
 }
 
 public class Noise.Media : Object {
-    public static const string UNKNOWN_TITLE = N_("Unknown Title");
-    public static const string UNKNOWN_ALBUM = N_("Unknown Album");
-    public static const string UNKNOWN_ARTIST = N_("Unknown Artist");
-    public static const string UNKNOWN_GENRE = N_("Unknown Genre");
+    public const string UNKNOWN_TITLE = N_("Unknown Title");
+    public const string UNKNOWN_ALBUM = N_("Unknown Album");
+    public const string UNKNOWN_ARTIST = N_("Unknown Artist");
+    public const string UNKNOWN_GENRE = N_("Unknown Genre");
 
-    public static const string VARIOUS_ARTISTS = N_("Various Artists");
+    public const string VARIOUS_ARTISTS = N_("Various Artists");
 
     /**
      * Core info
