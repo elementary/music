@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-19 13:31-0600\n"
+"POT-Creation-Date: 2012-09-25 14:31-0600\n"
 "PO-Revision-Date: 2012-09-23 04:48+0000\n"
 "Last-Translator: leo  <shing80333@gmail.com>\n"
 "Language-Team: \n"
@@ -15,9 +15,83 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-09-24 04:58+0000\n"
-"X-Generator: Launchpad (build 15985)\n"
+"X-Launchpad-Export-Date: 2012-09-26 05:10+0000\n"
+"X-Generator: Launchpad (build 16022)\n"
 "Language: \n"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d 秒"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
+#, c-format
+msgid "%u minute"
+msgid_plural "%u minutes"
+msgstr[0] "%u 分鐘"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
+#, c-format
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] "%u 秒"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:82
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
+#, c-format
+msgid "%s and %s"
+msgstr "%s 和 %s"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
+#, c-format
+msgid "%u day"
+msgid_plural "%u days"
+msgstr[0] "%u 天"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
+#, c-format
+msgid "%u hour"
+msgid_plural "%u hours"
+msgstr[0] "%u 小時"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
+#, c-format
+msgid "%s, %s and %s"
+msgstr "%s、%s 和 %s"
+
+#: /home/victored/noise/po/../core//Media.vala:33
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "未知的標題"
+
+#: /home/victored/noise/po/../core//Media.vala:34
+#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
+#: /home/victored/noise/po/../src//LibraryWindow.vala:621
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
+msgid "Unknown Album"
+msgstr "未知的專輯"
+
+#: /home/victored/noise/po/../core//Media.vala:35
+#: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victored/noise/po/../src//LibraryWindow.vala:620
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
+msgid "Unknown Artist"
+msgstr "未知的演出者"
+
+#: /home/victored/noise/po/../core//Media.vala:36
+msgid "Unknown Genre"
+msgstr "未知的曲風"
+
+#: /home/victored/noise/po/../core//Media.vala:38
+msgid "Various Artists"
+msgstr "各類演出者"
 
 #: /home/victored/noise/po/../src//config.vala:16
 msgid "Listen to music"
@@ -45,16 +119,6 @@ msgstr "正從 %s 將音樂加入珍藏館..."
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "正重新掃描音樂的變動。這可能需要一段時間..."
 
-#: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victored/noise/po/../src//LibraryWindow.vala:620
-#: /home/victored/noise/po/../core//Media.vala:35
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
-msgid "Unknown Artist"
-msgstr "未知的演出者"
-
 #: /home/victored/noise/po/../src//Objects/Playlist.vala:203
 msgid "Radio Station"
 msgstr "無線電臺"
@@ -62,13 +126,6 @@ msgstr "無線電臺"
 #: /home/victored/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
 msgstr "未知的音軌"
-
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victored/noise/po/../src//LibraryWindow.vala:621
-#: /home/victored/noise/po/../core//Media.vala:34
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
-msgid "Unknown Album"
-msgstr "未知的專輯"
 
 #: /home/victored/noise/po/../src//Widgets/PresetList.vala:49
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
@@ -148,29 +205,29 @@ msgstr "加入播放清單"
 msgid "Add Smart Playlist"
 msgstr "新增智慧播放清單"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:183
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:216
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
 msgid "Hide"
 msgstr "隱藏"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:183
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
 msgid "Show Equalizer"
 msgstr "顯示等化器"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:184
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:217
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:219
 msgid "Show"
 msgstr "顯示"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:184
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
 msgid "Hide Equalizer"
 msgstr "隱藏等化器"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:216
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
 msgid "Show Info Panel"
 msgstr "顯示資訊面板"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:217
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:219
 msgid "Hide Info Panel"
 msgstr "隱藏資訊面板"
 
@@ -1024,8 +1081,8 @@ msgid "%i kbps"
 msgstr "%i kb/秒"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:251
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:257
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:263
 msgid "Never"
 msgstr "永不"
 
@@ -1120,23 +1177,23 @@ msgstr "自動調整欄位大小"
 msgid "Display Album Art"
 msgstr "顯示專輯封面"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:233
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:299
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:311
 msgid "Sample Title"
 msgstr "範例標題"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:304
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:316
 msgid "Sample Artist"
 msgstr "範例演出者"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:307
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:319
 msgid "Sample Album"
 msgstr "範例專輯"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:320
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:332
 msgid "Sample Genre"
 msgstr "範例曲風"
 
@@ -1362,7 +1419,7 @@ msgid "Rescanning music folder for changes"
 msgstr "正重新掃描音樂資料夾以瞭解變動狀態"
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:883
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid "Could not find Music Folder"
 msgstr "找不到「音樂」資料夾"
 
@@ -1451,115 +1508,58 @@ msgstr "柔和搖滾"
 msgid "Techno"
 msgstr "電音"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d 秒"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
-#, c-format
-msgid "%u minute"
-msgid_plural "%u minutes"
-msgstr[0] "%u 分鐘"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
-#, c-format
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u 秒"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:82
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
-#, c-format
-msgid "%s and %s"
-msgstr "%s 和 %s"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
-#, c-format
-msgid "%u day"
-msgid_plural "%u days"
-msgstr[0] "%u 天"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
-#, c-format
-msgid "%u hour"
-msgid_plural "%u hours"
-msgstr[0] "%u 小時"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
-#, c-format
-msgid "%s, %s and %s"
-msgstr "%s、%s 和 %s"
-
-#: /home/victored/noise/po/../core//Media.vala:33
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "未知的標題"
-
-#: /home/victored/noise/po/../core//Media.vala:36
-msgid "Unknown Genre"
-msgstr "未知的曲風"
-
-#: /home/victored/noise/po/../core//Media.vala:38
-msgid "Various Artists"
-msgstr "各類演出者"
-
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr "請確認您的音樂資料夾是否可以存取，並在匯入 CD 前先掛載起來。"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
 msgid "No songs on CD"
 msgstr "CD 上並沒有歌曲"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "%s 在 CD 上找不到任何歌曲。沒有歌曲被匯入"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s 已正在匯入"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr "在匯入 CD 前請先耐心等候，直到 %s 完成目前的匯入動作"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:245
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
 msgid "Ripping track 1"
 msgstr "正在擷錄軌道 1"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:322
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
 #, c-format
 msgid "Importing track %i"
 msgstr "正在匯入軌道 %i"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
 msgid "CD Import Complete"
 msgstr "CD 匯入完成"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s 已完成音訊 CD %i 首歌曲的匯入工作。"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s 已完成音訊 CD 歌曲的匯入工作。"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:368
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "CD 的匯入將在目前的匯入工作完成後 <b>取消</b>。"
 

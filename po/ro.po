@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-19 13:31-0600\n"
+"POT-Creation-Date: 2012-09-25 14:31-0600\n"
 "PO-Revision-Date: 2012-09-13 19:31+0000\n"
 "Last-Translator: Rus F Adrian <adirusf@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -16,9 +16,93 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2012-09-20 05:00+0000\n"
-"X-Generator: Launchpad (build 15985)\n"
+"X-Launchpad-Export-Date: 2012-09-26 05:10+0000\n"
+"X-Generator: Launchpad (build 16022)\n"
 "Language: ro\n"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d secundă"
+msgstr[1] "%d secunde"
+msgstr[2] "%d secunde"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
+#, c-format
+msgid "%u minute"
+msgid_plural "%u minutes"
+msgstr[0] "%u minut"
+msgstr[1] "%u minute"
+msgstr[2] "%u minute"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
+#, c-format
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] "%u secundă"
+msgstr[1] "%u secunde"
+msgstr[2] "%u secunde"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:82
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
+#, c-format
+msgid "%s and %s"
+msgstr "%s și %s"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
+#, c-format
+msgid "%u day"
+msgid_plural "%u days"
+msgstr[0] "%u ziuă"
+msgstr[1] "%u zile"
+msgstr[2] "%u zile"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
+#, c-format
+msgid "%u hour"
+msgid_plural "%u hours"
+msgstr[0] "%u oră"
+msgstr[1] "%u ore"
+msgstr[2] "%u ore"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
+#, c-format
+msgid "%s, %s and %s"
+msgstr "%s, %s și %s"
+
+#: /home/victored/noise/po/../core//Media.vala:33
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "Titlu Necunoscut"
+
+#: /home/victored/noise/po/../core//Media.vala:34
+#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
+#: /home/victored/noise/po/../src//LibraryWindow.vala:621
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
+msgid "Unknown Album"
+msgstr "Album necunoscut"
+
+#: /home/victored/noise/po/../core//Media.vala:35
+#: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victored/noise/po/../src//LibraryWindow.vala:620
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
+msgid "Unknown Artist"
+msgstr "Artist necunoscut"
+
+#: /home/victored/noise/po/../core//Media.vala:36
+msgid "Unknown Genre"
+msgstr "Gen Necunoscut"
+
+#: /home/victored/noise/po/../core//Media.vala:38
+msgid "Various Artists"
+msgstr "Artiști Diverși"
 
 #: /home/victored/noise/po/../src//config.vala:16
 msgid "Listen to music"
@@ -47,16 +131,6 @@ msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 "Repetarea scanării pentru schimbări. Acest proces poate să dureze un timp..."
 
-#: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victored/noise/po/../src//LibraryWindow.vala:620
-#: /home/victored/noise/po/../core//Media.vala:35
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
-msgid "Unknown Artist"
-msgstr "Artist necunoscut"
-
 #: /home/victored/noise/po/../src//Objects/Playlist.vala:203
 msgid "Radio Station"
 msgstr "Stație Radio"
@@ -64,13 +138,6 @@ msgstr "Stație Radio"
 #: /home/victored/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
 msgstr "Piesă Necunoscută"
-
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victored/noise/po/../src//LibraryWindow.vala:621
-#: /home/victored/noise/po/../core//Media.vala:34
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
-msgid "Unknown Album"
-msgstr "Album necunoscut"
 
 #: /home/victored/noise/po/../src//Widgets/PresetList.vala:49
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
@@ -150,29 +217,29 @@ msgstr "Adaugă listă de redare"
 msgid "Add Smart Playlist"
 msgstr "Adaugă listă de redare inteligentă"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:183
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:216
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
 msgid "Hide"
 msgstr "Ascunde"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:183
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
 msgid "Show Equalizer"
 msgstr "Arată \"Egalizatorul\""
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:184
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:217
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:219
 msgid "Show"
 msgstr "Arată"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:184
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
 msgid "Hide Equalizer"
 msgstr "Ascunde \"Egalizatorul\""
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:216
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
 msgid "Show Info Panel"
 msgstr "Arată Panoul cu Informații"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:217
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:219
 msgid "Hide Info Panel"
 msgstr "Ascunde Panoul cu Informații"
 
@@ -1058,8 +1125,8 @@ msgid "%i kbps"
 msgstr "%i kb/s"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:251
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:257
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:263
 msgid "Never"
 msgstr "Niciodată"
 
@@ -1154,23 +1221,23 @@ msgstr ""
 msgid "Display Album Art"
 msgstr "Afișați Coperta Albumului"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:233
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
 msgid "1234 kbps"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:299
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:311
 msgid "Sample Title"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:304
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:316
 msgid "Sample Artist"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:307
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:319
 msgid "Sample Album"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:320
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:332
 msgid "Sample Genre"
 msgstr ""
 
@@ -1400,7 +1467,7 @@ msgid "Rescanning music folder for changes"
 msgstr "Se verifică dosarul cu muzică pentru schimbari"
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:883
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid "Could not find Music Folder"
 msgstr "Nu s-a găsit Dosarul cu Muzică"
 
@@ -1490,74 +1557,7 @@ msgstr "Rock liniștit"
 msgid "Techno"
 msgstr "Techno"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d secundă"
-msgstr[1] "%d secunde"
-msgstr[2] "%d secunde"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
-#, c-format
-msgid "%u minute"
-msgid_plural "%u minutes"
-msgstr[0] "%u minut"
-msgstr[1] "%u minute"
-msgstr[2] "%u minute"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
-#, c-format
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u secundă"
-msgstr[1] "%u secunde"
-msgstr[2] "%u secunde"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:82
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
-#, c-format
-msgid "%s and %s"
-msgstr "%s și %s"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
-#, c-format
-msgid "%u day"
-msgid_plural "%u days"
-msgstr[0] "%u ziuă"
-msgstr[1] "%u zile"
-msgstr[2] "%u zile"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
-#, c-format
-msgid "%u hour"
-msgid_plural "%u hours"
-msgstr[0] "%u oră"
-msgstr[1] "%u ore"
-msgstr[2] "%u ore"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
-#, c-format
-msgid "%s, %s and %s"
-msgstr "%s, %s și %s"
-
-#: /home/victored/noise/po/../core//Media.vala:33
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "Titlu Necunoscut"
-
-#: /home/victored/noise/po/../core//Media.vala:36
-msgid "Unknown Genre"
-msgstr "Gen Necunoscut"
-
-#: /home/victored/noise/po/../core//Media.vala:38
-msgid "Various Artists"
-msgstr "Artiști Diverși"
-
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1565,21 +1565,21 @@ msgstr ""
 "Asigură-te că folderul tău cu muzică este accesibil și montat înainte de-a "
 "importa acest CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
 msgid "No songs on CD"
 msgstr "Nicio piesă pe CD"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "%s nu a găsit nici o piesă pe CD. Nici o piesă nu a fost importată"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s importă deja."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1588,31 +1588,31 @@ msgstr ""
 "Te rog așteaptă până %s este finalizat cu importarea curentă înainte de a "
 "importa acest CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:245
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
 msgid "Ripping track 1"
 msgstr "Extrage piesa 1"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:322
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
 #, c-format
 msgid "Importing track %i"
 msgstr "Importă piesa %i"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
 msgid "CD Import Complete"
 msgstr "Importare CD Finalizat"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s a finalizat de importat %i piese de pe CD Audio."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s a finalizat de importat  o piesă de pe CD Audio."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:368
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Importare CD va fi <b>anulat</b> după importarea curentă."
 
