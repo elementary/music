@@ -7,17 +7,96 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-19 13:31-0600\n"
-"PO-Revision-Date: 2012-09-14 05:09+0000\n"
-"Last-Translator: Franco Villar <franco_227@msn.com>\n"
+"POT-Creation-Date: 2012-09-25 14:31-0600\n"
+"PO-Revision-Date: 2012-09-25 15:31+0000\n"
+"Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-20 05:01+0000\n"
-"X-Generator: Launchpad (build 15985)\n"
+"X-Launchpad-Export-Date: 2012-09-26 05:10+0000\n"
+"X-Generator: Launchpad (build 16022)\n"
 "Language: es\n"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d segundo"
+msgstr[1] "%d segundos"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
+#, c-format
+msgid "%u minute"
+msgid_plural "%u minutes"
+msgstr[0] "%u minuto"
+msgstr[1] "%u minutos"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
+#, c-format
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] "%u segundo"
+msgstr[1] "%u segundos"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:82
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
+#, c-format
+msgid "%s and %s"
+msgstr "%s y %s"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
+#, c-format
+msgid "%u day"
+msgid_plural "%u days"
+msgstr[0] "%u día"
+msgstr[1] "%u días"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
+#, c-format
+msgid "%u hour"
+msgid_plural "%u hours"
+msgstr[0] "%u hora"
+msgstr[1] "%u horas"
+
+#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
+#, c-format
+msgid "%s, %s and %s"
+msgstr "%s, %s y %s"
+
+#: /home/victored/noise/po/../core//Media.vala:33
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "Título Desconocido"
+
+#: /home/victored/noise/po/../core//Media.vala:34
+#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
+#: /home/victored/noise/po/../src//LibraryWindow.vala:621
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
+msgid "Unknown Album"
+msgstr "Álbum desconocido"
+
+#: /home/victored/noise/po/../core//Media.vala:35
+#: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victored/noise/po/../src//LibraryWindow.vala:620
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
+msgid "Unknown Artist"
+msgstr "Artista desconocido"
+
+#: /home/victored/noise/po/../core//Media.vala:36
+msgid "Unknown Genre"
+msgstr "Género Desconocido"
+
+#: /home/victored/noise/po/../core//Media.vala:38
+msgid "Various Artists"
+msgstr "Artistas varios"
 
 #: /home/victored/noise/po/../src//config.vala:16
 msgid "Listen to music"
@@ -45,16 +124,6 @@ msgstr "Agregando música desde %s a la biblioteca..."
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Revisando cambios en la música. Esto puede demorar..."
 
-#: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victored/noise/po/../src//LibraryWindow.vala:620
-#: /home/victored/noise/po/../core//Media.vala:35
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
-msgid "Unknown Artist"
-msgstr "Artista desconocido"
-
 #: /home/victored/noise/po/../src//Objects/Playlist.vala:203
 msgid "Radio Station"
 msgstr "Estación de radio"
@@ -62,13 +131,6 @@ msgstr "Estación de radio"
 #: /home/victored/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
 msgstr "Pista desconocida"
-
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victored/noise/po/../src//LibraryWindow.vala:621
-#: /home/victored/noise/po/../core//Media.vala:34
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
-msgid "Unknown Album"
-msgstr "Álbum desconocido"
 
 #: /home/victored/noise/po/../src//Widgets/PresetList.vala:49
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
@@ -148,29 +210,29 @@ msgstr "Añadir lista de reproducción"
 msgid "Add Smart Playlist"
 msgstr "Crear lista de reproducción inteligente"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:183
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:216
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
 msgid "Hide"
 msgstr "Ocultar"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:183
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
 msgid "Show Equalizer"
 msgstr "Mostrar ecualizador"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:184
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:217
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:219
 msgid "Show"
 msgstr "Mostrar"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:184
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
 msgid "Hide Equalizer"
 msgstr "Ocultar ecualizador"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:216
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
 msgid "Show Info Panel"
 msgstr "Mostrar el panel de información"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:217
+#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:219
 msgid "Hide Info Panel"
 msgstr "Ocultar el panel de información"
 
@@ -1056,8 +1118,8 @@ msgid "%i kbps"
 msgstr "%i kbps"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:251
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:257
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:263
 msgid "Never"
 msgstr "Nunca"
 
@@ -1152,25 +1214,25 @@ msgstr "Tamaño de columnas automático"
 msgid "Display Album Art"
 msgstr "Mostrar portada del álbum"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:233
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:299
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:311
 msgid "Sample Title"
-msgstr ""
+msgstr "Título de muestra"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:304
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:316
 msgid "Sample Artist"
-msgstr ""
+msgstr "Artista de muestra"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:307
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:319
 msgid "Sample Album"
-msgstr ""
+msgstr "Álbum de muestra"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:320
+#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:332
 msgid "Sample Genre"
-msgstr ""
+msgstr "Género de muestra"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
@@ -1398,7 +1460,7 @@ msgid "Rescanning music folder for changes"
 msgstr "Examinando cambios en la carpeta de música."
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:883
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid "Could not find Music Folder"
 msgstr "No se encontró la carpeta de música"
 
@@ -1487,69 +1549,7 @@ msgstr "Rock suave"
 msgid "Techno"
 msgstr "Técno"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d segundo"
-msgstr[1] "%d segundos"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
-#, c-format
-msgid "%u minute"
-msgid_plural "%u minutes"
-msgstr[0] "%u minuto"
-msgstr[1] "%u minutos"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
-#, c-format
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u segundo"
-msgstr[1] "%u segundos"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:82
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
-#, c-format
-msgid "%s and %s"
-msgstr "%s y %s"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
-#, c-format
-msgid "%u day"
-msgid_plural "%u days"
-msgstr[0] "%u día"
-msgstr[1] "%u días"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
-#, c-format
-msgid "%u hour"
-msgid_plural "%u hours"
-msgstr[0] "%u hora"
-msgstr[1] "%u horas"
-
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
-#, c-format
-msgid "%s, %s and %s"
-msgstr "%s, %s y %s"
-
-#: /home/victored/noise/po/../core//Media.vala:33
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "Título Desconocido"
-
-#: /home/victored/noise/po/../core//Media.vala:36
-msgid "Unknown Genre"
-msgstr "Género Desconocido"
-
-#: /home/victored/noise/po/../core//Media.vala:38
-msgid "Various Artists"
-msgstr "Artistas varios"
-
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:215
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1557,23 +1557,23 @@ msgstr ""
 "Por favor, verifique que su carpeta de música sea accesible y se encuentre "
 "montada antes de importar el CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
 msgid "No songs on CD"
 msgstr "No hay canciones en el CD."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "%s no encontró canciones en el CD, y por tanto éstas no pueden ser "
 "importadas."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s ya está realizando una importación"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:227
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1582,31 +1582,31 @@ msgstr ""
 "Espere hasta que %s haya finalizado la importación en curso antes de "
 "importar el disco."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:245
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
 msgid "Ripping track 1"
 msgstr "Extrayendo pista 1"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:322
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
 #, c-format
 msgid "Importing track %i"
 msgstr "Importando pista %i"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
 msgid "CD Import Complete"
 msgstr "Importación de CD finalizada"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:332
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s ha terminado de importar %i canciones desde el CD de audio."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:335
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s ha terminado de importar una canción desde el CD de audio."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:368
+#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "La importación del CD será <b>cancelada</b> cuando la operación actual "
@@ -1650,7 +1650,7 @@ msgstr "No ha habido éxito. Haga click para volver a intentarlo."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "El Scrobbling ya está habilitado"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1658,7 +1658,7 @@ msgstr "La operación se ha realizado correctamente."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Completar el inicio de sesión"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
 msgid "Last.fm"
