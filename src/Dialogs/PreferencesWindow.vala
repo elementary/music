@@ -94,6 +94,7 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
 
     private Gee.Map<int, Section> sections = new Gee.HashMap<int, Section> ();
+    private Gtk.Button cancel_button;
     private Gtk.Button save_button;
     private Granite.Widgets.StaticNotebook main_static_notebook;
 
@@ -149,10 +150,19 @@ public class Noise.PreferencesWindow : Gtk.Window {
         transient_for = parent_window;
         modal = true;
 
+        cancel_button = new Gtk.Button.with_label (_("Cancel"));
+        cancel_button.set_size_request (90, -1);
+        cancel_button.clicked.connect(on_cancel_button_clicked);
+
         save_button = new Gtk.Button.with_label (_("Done"));
-        save_button.halign = Gtk.Align.END;
         save_button.set_size_request (90, -1);
         save_button.clicked.connect (on_save_button_clicked);
+
+        Gtk.HButtonBox buttons = new Gtk.HButtonBox();
+        buttons.set_layout (Gtk.ButtonBoxStyle.END);
+        buttons.pack_start (cancel_button, false, false, 0);
+        buttons.pack_end (save_button, false, false, 0);
+        buttons.set_spacing (10);
 
         main_static_notebook = new Granite.Widgets.StaticNotebook (false);
         main_static_notebook.hexpand = true;
@@ -161,7 +171,7 @@ public class Noise.PreferencesWindow : Gtk.Window {
         var main_grid = new Gtk.Grid ();
         main_grid.margin = 12;
         main_grid.attach (main_static_notebook, 0, 0, 1, 1);
-        main_grid.attach (save_button, 0, 1, 1, 1);
+        main_grid.attach (buttons, 0, 1, 1, 1);
 
         add (main_grid);
     }
@@ -173,6 +183,10 @@ public class Noise.PreferencesWindow : Gtk.Window {
                 return;
         }
 
+        destroy ();
+    }
+
+    private void on_cancel_button_clicked () {
         destroy ();
     }
 }
