@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-09-25 14:31-0600\n"
-"PO-Revision-Date: 2012-09-18 06:43+0000\n"
+"PO-Revision-Date: 2012-09-26 08:03+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-26 05:10+0000\n"
-"X-Generator: Launchpad (build 16022)\n"
+"X-Launchpad-Export-Date: 2012-09-27 05:03+0000\n"
+"X-Generator: Launchpad (build 16033)\n"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -1206,23 +1206,23 @@ msgstr "Papar Seni Kulit Album"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:311
 msgid "Sample Title"
-msgstr ""
+msgstr "Tajuk Sampel"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:316
 msgid "Sample Artist"
-msgstr ""
+msgstr "Artis Sampel"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:319
 msgid "Sample Album"
-msgstr ""
+msgstr "Album Sampel"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:332
 msgid "Sample Genre"
-msgstr ""
+msgstr "Genre Sampel"
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"

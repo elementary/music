@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-25 14:31-0600\n"
-"PO-Revision-Date: 2012-09-25 15:31+0000\n"
-"Last-Translator: Alfredo Hernández <Unknown>\n"
+"PO-Revision-Date: 2012-09-26 21:44+0000\n"
+"Last-Translator: Victor Eduardo <victor@elementaryos.org>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-26 05:10+0000\n"
-"X-Generator: Launchpad (build 16022)\n"
+"X-Launchpad-Export-Date: 2012-09-27 05:03+0000\n"
+"X-Generator: Launchpad (build 16033)\n"
 "Language: es\n"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
@@ -109,7 +109,7 @@ msgstr "Reproductor de Música"
 #: /home/victored/noise/po/../src//LibraryManager.vala:203
 #, c-format
 msgid "Importing music from %s..."
-msgstr "Importando música desde %s..."
+msgstr "Importando música desde %s…"
 
 #: /home/victored/noise/po/../src//LibraryManager.vala:251
 msgid "Adding files to library..."
@@ -738,11 +738,11 @@ msgstr "Duración"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Playcount"
-msgstr "Contador de reproducciones"
+msgstr "Cuenta de reproducciones"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
-msgstr "Saltar cuenta"
+msgstr "Cuenta de saltos"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
@@ -1503,7 +1503,7 @@ msgstr "Agudos completos"
 
 #: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr "Bajos y Agudos completos"
+msgstr "Bajos y agudos completos"
 
 #: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
