@@ -152,17 +152,18 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
         cancel_button = new Gtk.Button.with_label (_("Cancel"));
         cancel_button.set_size_request (90, -1);
-        cancel_button.clicked.connect(on_cancel_button_clicked);
+        cancel_button.clicked.connect (on_cancel_button_clicked);
 
         save_button = new Gtk.Button.with_label (_("Done"));
         save_button.set_size_request (90, -1);
         save_button.clicked.connect (on_save_button_clicked);
 
-        Gtk.HButtonBox buttons = new Gtk.HButtonBox();
+        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        buttons.hexpand = true;
         buttons.set_layout (Gtk.ButtonBoxStyle.END);
         buttons.pack_start (cancel_button, false, false, 0);
         buttons.pack_end (save_button, false, false, 0);
-        buttons.set_spacing (10);
+        buttons.set_child_secondary (cancel_button, true);
 
         main_static_notebook = new Granite.Widgets.StaticNotebook (false);
         main_static_notebook.hexpand = true;
