@@ -53,7 +53,9 @@ public class Noise.Threads {
         private static uint count = 0;
 
         public TaskFuncWrapper (TaskFunc func) {
-            id = count++;
+            lock (count)
+                id = count++;
+
             debug ("Creating task [%u]", id);
             this.func = func;
         }
@@ -82,14 +84,19 @@ public class Noise.Threads {
 
         lock (thread_pool) {
             try {
-                thread_pool = new ThreadPool<TaskFuncWrapper> (task_func,
+#if VALA_0_18
+                thread_pool = new ThreadPool<TaskFuncWrapper>.with_owned_data (
+#else
+                thread_pool = new ThreadPool<TaskFuncWrapper> (
+#endif
+                                                               task_func,
                                                                MAX_THREADS,
                                                                MAX_THREADS > 0);
             } catch (Error err) {
                 error ("Couldn't create default thread pool: %s", err.message);
             }
 
-            thread_pool.set_max_unused_threads (MAX_UNUSED_THREADS);
+            ThreadPool.set_max_unused_threads (MAX_UNUSED_THREADS);
         }
     }
 
@@ -98,32 +105,39 @@ public class Noise.Threads {
      * owned by the method and should be kept alive by the owner until it is actually
      * called from a different thread.
      */
-    public static void add (TaskFunc task) {
+    public static bool add (TaskFunc task) {
         lock (instance) {
             if (instance == null)
                 instance = new Threads ();
         }
 
-        instance.push_task (task);
+        try {
+            instance.push_task (task);
+        } catch (Error err) {
+            critical ("Could not add task: %s", err.message);
+            return false;
+        }
+
+        return true;
     }
 
     /**
      * Pushes //task// into the thread pool.
-     * @see add
+     * @see Noise.Threads.add
      */
-    private void push_task (TaskFunc task) {
+    private void push_task (TaskFunc task) throws Error {
         lock (thread_pool) {
-            try {
-                var wrapper = new TaskFuncWrapper (task);
-                // We cannot trust the internal references held by the thread pool. It is
-                // often the case that the wrapper is destroyed before it is passed to
-                // task_func, resulting in an invalid pointer dereferencing. We add our own
-                // reference in order to avoid that, and release it in task_func().
-                wrapper.ref ();
-                thread_pool.push (wrapper);
-            } catch (Error err) {
-                critical ("Could not add task: %s", err.message);
-            }
+            var wrapper = new TaskFuncWrapper (task);
+#if VALA_0_18
+            thread_pool.add ((owned) wrapper);
+#else
+            // We cannot trust the internal references held by the thread pool. It is
+            // often the case that the wrapper is destroyed before it is passed to
+            // task_func, resulting in an invalid pointer dereferencing. We add our own
+            // reference in order to avoid that, and release it in task_func().
+            wrapper.ref ();
+            thread_pool.push (wrapper);
+#endif
         }
     }
 
@@ -131,7 +145,11 @@ public class Noise.Threads {
      * Called by the thread pool right after preparing a thread. The method is
      * responsible for executing the actual task function.
      */
+#if VALA_0_18
+    private void task_func (owned TaskFuncWrapper wrapper) {
+#else
     private void task_func (TaskFuncWrapper wrapper) {
+#endif
         var id = wrapper.id;
         debug ("-- Dispatching task [%u]", id);
 
@@ -141,7 +159,9 @@ public class Noise.Threads {
             debug ("-- finished [%u]", id);
         }
 
+#if !VALA_0_18
         // Let's drop our reference. See the complete explanation in push_task()
         wrapper.unref ();
+#endif
     }
 }

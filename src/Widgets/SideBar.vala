@@ -265,8 +265,11 @@ namespace Granite.Widgets {
 				}
 				while(tree.iter_next(ref current));
 			}
-			
+#if VALA_0_18
+            return tree.remove (ref iter);
+#else
 			return tree.remove(iter);
+#endif
 		}
 		
 		// input MUST be a child iter
