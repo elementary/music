@@ -171,7 +171,12 @@ public class Noise.Icon : Object {
      * @see Noise.Icon.render_image_at_size
      */
     public Gtk.Image render_image (Gtk.IconSize size) {
-        return new Gtk.Image.from_gicon (gicon, size);
+        Gtk.Image image;
+        if (name != null)
+            image = new Gtk.Image.from_icon_name (name, size);
+        else
+            image = new Gtk.Image.from_gicon (gicon, size);
+        return image;
     }
 
 

@@ -38,12 +38,17 @@ set(STATUS_16
     icons/16x16/status/non-starred.svg
     icons/16x16/status/process-completed-symbolic.svg
     icons/16x16/status/process-error-symbolic.svg
+    icons/16x16/status/audio-volume-high-symbolic.svg
+    icons/16x16/status/media-playlist-repeat-one-symbolic.svg
+    icons/16x16/status/media-playlist-repeat-symbolic.svg
+    icons/16x16/status/media-playlist-shuffle-symbolic.svg
 )
 
 set(ACTIONS_16
     icons/16x16/actions/pane-show-symbolic.svg
     icons/16x16/actions/pane-hide-symbolic.svg
     icons/16x16/actions/media-eq-symbolic.svg
+    icons/16x16/actions/list-add-symbolic.svg
     icons/16x16/actions/love.svg
     icons/16x16/actions/ban.svg
 )

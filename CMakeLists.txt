@@ -22,7 +22,7 @@ option(BUILD_SHARED_LIBS "Switch between shared and static libraries" ON)
 if (BUILD_SHARED_LIBS)
     message("-- Shared libraries enabled")
 else ()
-    message("-- Shared libraries disabled (this doesn't affect plugins)")
+    message("-- Shared libraries disabled")
 endif ()
 
 set(SRC_TARGET ${CMAKE_PROJECT_NAME})
@@ -34,8 +34,7 @@ endif ()
 
 #
 # *_PACKAGES are used with the vala compiler (not versioned.)
-# *_PKG are used with PKG-Config, and are used for linking, etc.
-#       (They can contain versions, e.g. foo-1.0>=1.3.2)
+# *_PKG are used with PKG-Config and for linking, etc. (They can contain versions.)
 #
 # Both should contain *the same packages*, except for those whose VAPI file has
 # a different name. In such case, *_PACKAGES would use the name of the VAPI while
@@ -64,7 +63,7 @@ set(CORE_PKG
 
 set(DEPS_PACKAGES
     ${CORE_LIBRARY_NAME}
-    ${CORE_PACKAGES}
+    ${CORE_PACKAGES} # this is needed until we provide a core-vapi-name.deps file
     gstreamer-0.10
     gstreamer-interfaces-0.10
     gstreamer-pbutils-0.10
