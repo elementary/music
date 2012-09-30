@@ -31,20 +31,13 @@
 namespace Noise.Search {
 
     /**
-     * Receives a string and returns a valid search string.
-     * This method can be used as a parser as well [TODO].
-     */
-    public inline string get_valid_search_string (string s, Cancellable? cancellable = null) {
-        return canonicalize_for_search (s, cancellable);
-    }
-
-    /**
      * Non-strict search.
      */
     public void smart_search (Gee.Collection<Media> to_search,
                               out Gee.LinkedList<Media> results,
                               string search_str,
-                              Cancellable? cancellable = null) {
+                              Cancellable? cancellable = null)
+    {
         results = new Gee.LinkedList<Media> ();
         string search = "";
         int parsed_rating = get_rating_from_string (search_str.strip ());
@@ -67,56 +60,37 @@ namespace Noise.Search {
 
         search = get_valid_search_string (search_str, cancellable);
 
-        if (search.strip () == "") {
+        if (String.is_white_space (search)) {
             foreach (var m in to_search) {
                 if (Utils.is_cancelled (cancellable))
                     break;
 
                 results.add (m);
             }
+        } else {
+            foreach (var m in to_search) {
+                if (Utils.is_cancelled (cancellable))
+                    break;
 
-            return;
-        }
-
-        foreach (var m in to_search) {
-            if (Utils.is_cancelled (cancellable))
-                break;
-
-            if (search == m.year.to_string ()) {
-                results.add (m);
-            } else if (search in get_valid_search_string (m.title, cancellable)) {
-                results.add (m);
-            } else if (search in get_valid_search_string (m.album, cancellable)) {
-                results.add (m);
-            } else if (search in get_valid_search_string (m.artist, cancellable)) {
-                results.add (m);
-            } else if (search in get_valid_search_string (m.album_artist, cancellable)) {
-                results.add (m);
-            } else if (search in get_valid_search_string (m.genre, cancellable)) {
-                results.add (m);
-            } else if (search in get_valid_search_string (m.composer, cancellable)) {
-                results.add (m);
-            } else if (search in get_valid_search_string (m.grouping, cancellable)) {
-                results.add (m);
-            } else if (search in get_valid_search_string (m.comment, cancellable)) {
-                results.add (m);
-            } else if (search in get_valid_search_string (m.lyrics, cancellable)) {
-                results.add (m);
+                if (match_string_to_media (m, search_str, cancellable))
+                    results.add (m);
             }
         }
     }
 
-
     /**
-     * Linear exact-string-matching search method
+     * Linear exact-string-matching search method.
+     *
+     * To mean "ALL", pass an empty string (i.e.: "") for string parameters; and
+     * -1 for integer parameters.
      */
     public void search_in_media_list (Gee.Collection<Media> to_search,
                                        out Gee.LinkedList<Media> results,
                                        string album_artist = "",
                                        string album = "",
                                        string genre = "",
-                                       int year = -1, // All years
-                                       int rating = -1, // All ratings
+                                       int year = -1,
+                                       int rating = -1,
                                        Cancellable? cancellable = null)
     {
         results = new Gee.LinkedList<Media> ();
@@ -125,72 +99,20 @@ namespace Noise.Search {
             if (Utils.is_cancelled (cancellable))
                 break;
 
-            if (rating == -1 || media.rating == rating)
-            {
-                if (year == -1 || media.year == year)
-                {
-                    if (genre == "" || media.genre == genre)
-                    {
-                        if (album_artist == "" || media.album_artist == album_artist)
-                        {
-                            if (album == "" || media.album == album)
-                            {
-                                 results.add (media);
-                            }
-                        }
-                    }
-                }
-            }
+            bool match = (rating == -1 || media.rating == rating)
+                      && (year == -1 || media.year == year)
+                      && (genre == "" || media.genre == genre)
+                      && (album_artist == "" || media.album_artist == album_artist)
+                      && (album == "" || media.album == album);
+
+            if (match)
+                results.add (media);
         }
     }
 
-
-    // Taken from gnome-contacts' contacts-utils.vala
-    private inline string canonicalize_for_search (string str, Cancellable? cancellable = null) {
-        var buf = new unichar[unichar.MAX_DECOMPOSITION_LENGTH];
-        var res = new StringBuilder ();
-
-        unichar c;
-
-        for (int i = 0; str.get_next_char (ref i, out c);) {
-            if (Utils.is_cancelled (cancellable))
-                break;
-
-            var sc = strip_char (c);
-
-            if (sc != 0) {
-                var size = sc.fully_decompose (false, buf);
-
-                if (size > 0)
-                    res.append_unichar (buf[0]);
-            }
-        }
-
-        return res.str;
+    private inline string get_valid_search_string (string s, Cancellable? cancellable = null) {
+        return String.canonicalize_for_search (s, cancellable);
     }
-
-
-    // Taken from gnome-contacts' contacts-utils.vala
-    private inline unichar strip_char (unichar ch) {
-        switch (ch.type ()) {
-            case UnicodeType.CONTROL:
-            case UnicodeType.FORMAT:
-            case UnicodeType.UNASSIGNED:
-            case UnicodeType.NON_SPACING_MARK:
-            case UnicodeType.COMBINING_MARK:
-            case UnicodeType.ENCLOSING_MARK:
-            case UnicodeType.LINE_SEPARATOR:
-            case UnicodeType.SPACE_SEPARATOR:
-            case UnicodeType.PARAGRAPH_SEPARATOR:
-            case UnicodeType.OPEN_PUNCTUATION:
-            case UnicodeType.OTHER_PUNCTUATION:
-                /* Ignore those */
-                return 0;
-            default:
-                return ch.tolower ();
-        }
-    }
-
 
     /**
      * Parses a rating from stars. e.g. "***" => 3
@@ -220,5 +142,34 @@ namespace Noise.Search {
 
 
         return i > 0 ? i : -1;
+    }
+
+    private inline bool match_string_to_media (Media m, string search,
+                                               Cancellable? cancellable)
+    {
+        bool match = false;
+
+        if (search == m.year.to_string ())
+            match = true;
+        else if (search in get_valid_search_string (m.title, cancellable))
+            match = true;
+        else if (search in get_valid_search_string (m.album, cancellable))
+            match = true;
+        else if (search in get_valid_search_string (m.artist, cancellable))
+            match = true;
+        else if (search in get_valid_search_string (m.album_artist, cancellable))
+            match = true;
+        else if (search in get_valid_search_string (m.genre, cancellable))
+            match = true;
+        else if (search in get_valid_search_string (m.composer, cancellable))
+            match = true;
+        else if (search in get_valid_search_string (m.grouping, cancellable))
+            match = true;
+        else if (search in get_valid_search_string (m.comment, cancellable))
+            match = true;
+        else if (search in get_valid_search_string (m.lyrics, cancellable))
+            match = true;
+
+        return match;
     }
 }
