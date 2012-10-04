@@ -8,38 +8,40 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-25 14:31-0600\n"
-"PO-Revision-Date: 2012-07-11 17:41+0000\n"
-"Last-Translator: Martin Bárta <martin.bartama@gmail.com>\n"
+"PO-Revision-Date: 2012-10-03 15:35+0000\n"
+"Last-Translator: johnny_el <hlafek99@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-09-27 05:02+0000\n"
-"X-Generator: Launchpad (build 16033)\n"
+"X-Launchpad-Export-Date: 2012-10-04 05:51+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 "Language: cs\n"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d vteřin"
+msgstr[1] "%d vteřina"
+msgstr[2] "%d vteřiny"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u minuta"
+msgstr[1] "%u minut"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u sekunda"
+msgstr[1] "%u sekundy"
+msgstr[2] "%u sekund"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
@@ -47,31 +49,31 @@ msgstr[1] ""
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s a %s"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u den"
+msgstr[1] "%u dnů"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u hodina"
+msgstr[1] "%u hodin"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s a %s"
 
 #: /home/victored/noise/po/../core//Media.vala:33
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
 msgid "Unknown Title"
-msgstr "Neznámý název"
+msgstr "Neznámý titul"
 
 #: /home/victored/noise/po/../core//Media.vala:34
 #: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
@@ -88,7 +90,7 @@ msgstr "Neznámé album"
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
 msgid "Unknown Artist"
-msgstr "Neznámý interpret"
+msgstr "Neznámý iterpret"
 
 #: /home/victored/noise/po/../core//Media.vala:36
 msgid "Unknown Genre"
