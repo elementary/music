@@ -1,6 +1,6 @@
 option(BUILD_PLUGINS "Whether to build plugins or not." ON)
 
-if (BUILD_PLUGINS)
+if (BUILD_PLUGINS AND BUILD_SHARED_LIBS)
     message("-- Plugins enabled")
 
     # Currently, plugins also depend on the code located at src. This will change in the
