@@ -126,7 +126,7 @@ public class Noise.CoverartCache : MediaArtCache {
         Threads.add ( () => {
             fetch_folder_images (media);
 
-            Idle.add ((owned)callback);
+            Idle.add ((owned) callback);
         });
 
         yield;

@@ -29,7 +29,7 @@
  */
 
 /**
- * A place to store cached pixbufs
+ * A thread-safe place to store cached pixbufs
  *
  * Pixbuf images are permanently stored at the directory passed to the constructor,
  * and use JPEG buffers by default, since they are much lighter in terms of
@@ -42,15 +42,12 @@
  * format used, since it's encoded along with the image name.
  *
  * Keep in mind that both cache_image_*() and decache_image() do blocking I/O,
- * and therefore it's recommended to make extensive use of has_image() to avoid
- * unnecessary disk access when possible.
+ * and therefore it's recommended to make extensive use of has_image() prior to
+ * calling these in order to avoid unnecessary disk access.
  *
- * Other notes:
- * 1. This class offers basic thread safety. It should be okay to call any of the
- * public API methods from different threads.
- * 1. This class should be kept as generic as possible. It currently does not
- * depend on Noise's internal API (except for PixbufUtils). It should be easy
- * to port it to another application.
+ * This class is meant to be kept as generic as possible. It currently does not
+ * depend on Noise's internal API (except for PixbufUtils, which is also considered
+ * to be generic). It should be easy to re-use it on another application.
  */
 public class Noise.PixbufCache {
 
@@ -65,12 +62,11 @@ public class Noise.PixbufCache {
 
     /**
      * Creates a new {@link Noise.PixbufCache} object.
-     * It also creates the cache directory if it doesn't exist (i.e. expect blocking I/O).
+     * It also creates the cache directory if it doesn't exist, and thus expect blocking I/O.
      *
      * @param image_dir a {@link GLib.File} representing the cache directory.
-     * @param image_format a string specifying the image format, or null to use
-     *        the default format (JPEG). Valid image formats are those supported
-     *        by {@link Gdk.Pixbuf.save}.
+     * @param image_format a string specifying the image format, or null to use the default
+     * format (JPEG). Valid image formats are those supported by {@link Gdk.Pixbuf.save}.
      */
     public PixbufCache (File image_dir, string? image_format = null) {
         image_map = new Gee.HashMap<string, Gdk.Pixbuf> ();
@@ -89,14 +85,14 @@ public class Noise.PixbufCache {
     }
 
     /**
-     * This method is called right before storing a pixbuf in the in-memory
-     * table. Its purpose is to allow client code to make modifications to the passed image
+     * This method is called right before storing a pixbuf in the internal hashmap.
+     * Its purpose is to allow client code to make modifications to the passed image
      * (e.g. adding a drop shadow, etc.) Changes are *not* reflected on disk.
      *
      * You can also use this method to prevent the storage of certain images in
      * the cache. To do so it just needs to set the new pixbuf to null. In such case,
-     * the call to cache_image() will have no effect, since null pixbufs are not added
-     * to the internal table, nor saved to disk.
+     * the call to {@link Noise.PixbufCache.cache_image} will have no effect, since
+     * null pixbufs are not added to the internal map, nor saved to disk.
      */
     public delegate Gdk.Pixbuf? FilterFunction (string key, Gdk.Pixbuf orig_pixbuf);
     public unowned FilterFunction? filter_func;
@@ -112,9 +108,9 @@ public class Noise.PixbufCache {
      * Returns the location of an image on disk. This call does no blocking I/O.
      * Use it to consistently read cached image files.
      *
-     * This method only computes a path based on the passed key, and thus it
-     * doesn't know whether the returned path exists or not. You can always use
-     * {@link Noise.PixbufCache.has_image} to check for that.
+     * This method only computes a path based on the passed key, and thus it doesn't
+     * know whether the file pointed by the returned path exists or not. It is
+     * recommended to use {@link Noise.PixbufCache.has_image} to check for that.
      */
     public string get_cached_image_path (string key) {
         string filename = Checksum.compute_for_string (ChecksumType.MD5, key + image_format);
@@ -140,18 +136,18 @@ public class Noise.PixbufCache {
      * Associates an image to a key.
      *
      * The image is stored on an internal table and on disk, and can be later
-     * retrieved through get_image().
+     * retrieved through {@link Noise.PixbufCache.get_image}.
      *
      * This method can also be used to update image buffers when they have changed,
-     * since the old pixbuf and cached image are overwritten.
+     * since the old image is overwritten (in both primary memory and disk.)
      */
     public void cache_image (string key, Gdk.Pixbuf image) {
         cache_image_internal (key, image, true);
     }
 
     /**
-     * This method does the same as cache_image(), with the only difference that it
-     * first fetches the image from the given file.
+     * This method does the same as {@link Noise.PixbufCache.cache_image}, with the only
+     * difference that it first fetches the image from the given file.
      */
     public void cache_image_from_file (string key, File image_file, Cancellable? c = null) {
         var image = load_image_from_file (image_file, c);
