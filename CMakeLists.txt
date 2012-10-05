@@ -63,7 +63,7 @@ set(CORE_PKG
 
 set(DEPS_PACKAGES
     ${CORE_LIBRARY_NAME}
-    ${CORE_PACKAGES} # this is needed until we provide a core-vapi-name.deps file
+    ${CORE_PACKAGES} # this is needed until we provide a ${CORE_LIBRARY_NAME}.deps file
     gstreamer-0.10
     gstreamer-interfaces-0.10
     gstreamer-pbutils-0.10
@@ -83,6 +83,14 @@ find_package(PkgConfig)
 
 pkg_check_modules(CORE_DEPS REQUIRED ${CORE_PKG})
 pkg_check_modules(DEPS REQUIRED ${DEPS_PKG} ${CORE_PKG})
+
+set(GLOBAL_VALAC_OPTIONS
+    --vapidir=${CMAKE_SOURCE_DIR}/vapi
+    --vapidir=${CMAKE_BINARY_DIR}/core
+    --vapidir=${CMAKE_BINARY_DIR}/src
+    --target-glib=2.32
+    --thread
+)
 
 #
 # SQLHeavy: Use version 0.2 if it is available; otherwise, fall back to 0.1
@@ -126,14 +134,6 @@ find_package(Vala REQUIRED)
 include(ValaVersion)
 ensure_vala_version("0.16.0" MINIMUM)
 include(ValaPrecompile)
-
-set(GLOBAL_VALAC_OPTIONS
-    --vapidir=${CMAKE_SOURCE_DIR}/vapi
-    --vapidir=${CMAKE_BINARY_DIR}/core
-    --vapidir=${CMAKE_BINARY_DIR}/src
-    --target-glib=2.32
-    --thread
-)
 
 add_subdirectory(schemas)
 add_subdirectory(core)
