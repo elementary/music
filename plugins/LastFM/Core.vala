@@ -322,13 +322,13 @@ namespace LastFM {
         Mutex fetch_info_guard;
 
         public void fetchCurrentTrackInfo() {
-            Noise.Threads.add (track_thread_function);
+            Idle.add (track_thread_function);
         }
         
-        void track_thread_function () {
+        private bool track_thread_function () {
             var current_media = Noise.App.player.media_info.media;
             if (current_media == null)
-                return;
+                return false;
 
             string album_artist_s = current_media.album_artist;
             string track_s = current_media.title;
@@ -350,17 +350,19 @@ namespace LastFM {
                     Noise.App.player.media_info.track = track;
                 fetch_info_guard.unlock ();
             }
+
+            return false;
         }
         
         public void fetchCurrentAlbumInfo() {
-            Noise.Threads.add (album_thread_function);
+            Idle.add (album_thread_function);
         }
 
-        void album_thread_function () {
+        private bool album_thread_function () {
 
             var current_media = Noise.App.player.media_info.media;
             if (current_media == null)
-                return;
+                return false;
 
             string album_artist_s = current_media.album_artist;
             string album_s = current_media.album;
@@ -376,7 +378,7 @@ namespace LastFM {
                 if (album != null) 
                     save_album (album);
                 else
-                    return;
+                    return false;
 
                 /* If on same song, update Noise.App.player.media_info.album */
                 fetch_info_guard.lock ();
@@ -391,33 +393,33 @@ namespace LastFM {
                 var coverart_cache = Noise.CoverartCache.instance;
 
                 if (coverart_cache.has_image (current_media))
-                    return;
+                    return false;
 
                 if (album.image_uri != "") {
                     message ("Caching last.fm image from URL: %s", album.image_uri);
 
-                    fetch_info_guard.lock ();
                     var image_file = File.new_for_uri (album.image_uri);
-                    coverart_cache.cache_image_from_file (current_media, image_file);
-                    fetch_info_guard.unlock ();
+                    coverart_cache.cache_image_from_file_async.begin (current_media, image_file);
                 }
 
             }
             else {
                 message ("Not fetching album info or art");
             }
+
+            return false;
         }
         
         /** Fetches artist info for currently playing song's artist
          */
         public void fetchCurrentArtistInfo() {
-            Noise.Threads.add (artist_thread_function);
+            Idle.add (artist_thread_function);
         }
         
-        void artist_thread_function () {
+        private bool artist_thread_function () {
             var current_media = Noise.App.player.media_info.media;
             if (current_media == null)
-                return;
+                return false;
 
             string album_artist_s = current_media.album_artist;
             if (album_artist_s == "")
@@ -442,22 +444,24 @@ namespace LastFM {
 
                 fetch_info_guard.unlock ();
             }
+
+            return false;
         }
         
         /** Update's the user's currently playing track on last.fm
          * 
          */
         public void postNowPlaying() {
-            Noise.Threads.add (update_nowplaying_thread_function);
+            Idle.add (update_nowplaying_thread_function);
         }
         
-        void update_nowplaying_thread_function() {
+        private bool update_nowplaying_thread_function() {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
                 message ("Last.FM user not logged in\n");
-                return;
+                return false;
             }
             if(!Noise.App.player.media_active)
-                return;
+                return false;
             
             var artist = Noise.App.player.media_info.media.artist;
             var title = Noise.App.player.media_info.media.title;
@@ -478,22 +482,24 @@ namespace LastFM {
             
             /* send the HTTP request */
             session.send_message(message);
+
+            return false;
         }
         
         /**
          * Scrobbles the currently playing track to last.fm
          */
         public void postScrobbleTrack() {
-            Noise.Threads.add (scrobble_thread_function);
+            Idle.add (scrobble_thread_function);
         }
         
-        void scrobble_thread_function () {
+        private bool scrobble_thread_function () {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
                 message ("Last.FM user not logged in\n");
-                return;
+                return false;
             }
             if(!Noise.App.player.media_active)
-                return;
+                return false;
 
             var current_media = Noise.App.player.media_info.media;
             
@@ -518,6 +524,8 @@ namespace LastFM {
             
             /* send the HTTP request */
             session.send_message(message);
+
+            return false;
         }
         
         public void fetchCurrentSimilarSongs() {
