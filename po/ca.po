@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-27 05:02+0000\n"
-"X-Generator: Launchpad (build 16033)\n"
+"X-Launchpad-Export-Date: 2012-10-05 05:07+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 "Language: ca\n"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
