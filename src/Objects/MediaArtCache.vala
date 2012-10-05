@@ -103,8 +103,8 @@ public abstract class Noise.MediaArtCache {
      * (e.g. due to metadata changes, etc.), since the old pixbuf and cached image
      * are overwritten.
      */
-    public void cache_image (Media m, Gdk.Pixbuf image) {
-        pixbuf_cache.cache_image (get_key (m), image);
+    public async void cache_image_async (Media m, Gdk.Pixbuf image) {
+        yield pixbuf_cache.cache_image_async (get_key (m), image);
         queue_notify ();
     }
 
@@ -112,8 +112,8 @@ public abstract class Noise.MediaArtCache {
      * This method does the same as cache_image(), with the only difference that it
      * first fetches the image from the given file.
      */
-    public void cache_image_from_file (Media m, File image_file, Cancellable? c = null) {
-        pixbuf_cache.cache_image_from_file (get_key (m), image_file, c);
+    public async void cache_image_from_file_async (Media m, File image_file, Cancellable? c = null) {
+        yield pixbuf_cache.cache_image_from_file_async (get_key (m), image_file, c);
         queue_notify ();
     }
 
@@ -131,8 +131,16 @@ public abstract class Noise.MediaArtCache {
      * @return null if the media's corresponding image was not found; otherwise
      *         a valid {@link Gdk.Pixbuf}
      */
-    protected Gdk.Pixbuf? get_image (Media m, bool lookup_file) {
-        return pixbuf_cache.get_image (get_key (m), lookup_file);
+    protected Gdk.Pixbuf? get_image (Media m) {
+        return pixbuf_cache.get_image (get_key (m));
+    }
+
+    /**
+     * @return null if the media's corresponding image was not found; otherwise
+     *         a valid {@link Gdk.Pixbuf}
+     */
+    protected async Gdk.Pixbuf? get_image_async (Media m, bool lookup_file) {
+        return yield pixbuf_cache.get_image_async (get_key (m), lookup_file);
     }
 
     protected void queue_notify () {

@@ -44,7 +44,6 @@ public class Noise.CoverartCache : MediaArtCache {
 
     private Gdk.Pixbuf default_image;
 
-
     public CoverartCache () {
         assert (_instance == null);
 
@@ -54,12 +53,10 @@ public class Noise.CoverartCache : MediaArtCache {
         default_image = filter_func (default_pix);
     }
 
-
     // add a shadow to every image
     protected override Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix) {
         return PixbufUtils.get_pixbuf_shadow (pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
     }
-
 
     protected override string get_key (Media m) {
         string album_name = m.album;
@@ -71,12 +68,9 @@ public class Noise.CoverartCache : MediaArtCache {
         return @"$artist_name-$album_name";
     }
 
-
     public Gdk.Pixbuf get_cover (Media m) {
-        var image = get_image (m, false);
-        return image ?? default_image;
+        return get_image (m) ?? default_image;
     }
-
 
     public async void fetch_all_cover_art_async (Gee.Collection<Media> media) {
         yield fetch_folder_images_async (media);
@@ -85,68 +79,42 @@ public class Noise.CoverartCache : MediaArtCache {
 
 
     public async void load_for_media_async (Gee.Collection<Media> media) {
-        SourceFunc callback = load_for_media_async.callback;
-
-        Threads.add ( () => {
-            load_for_media (media);
-            Idle.add ((owned)callback);
-        });
-
-        yield;
-    }
-
-
-    public void load_for_media (Gee.Collection<Media> media) {
         debug ("READING CACHED COVERART");
 
+        // As different media files can yield the same key, we keep track of all
+        // the keys we've explored to query only once for every equivalent media.
         var used_keys_set = new Gee.HashSet<string> ();
 
         foreach (var m in media) {
             string key = get_key (m);
-
             if (!used_keys_set.contains (key) && !has_image (m)) {
-                debug ("Getting [%s]", key);
-
-                // Pass true to lookup_file in order to fetch the images for the first time
-                get_image (m, true);
-
+                yield get_image_async (m, true);
                 used_keys_set.add (key);
             }
         }
 
         debug ("FINISHED LOADING CACHED COVERART");
-
-        queue_notify ();
     }
-
-
-    public async void fetch_folder_images_async (Gee.Collection<Media> media) {
-        SourceFunc callback = fetch_folder_images_async.callback;
-
-        Threads.add ( () => {
-            fetch_folder_images (media);
-
-            Idle.add ((owned) callback);
-        });
-
-        yield;
-    }
-
 
     /**
      * Looks up for image types in the media's directory. We look for image files
      * that follow certain name patterns, like "album.png", "folder.jpg", etc.
      */
-    public void fetch_folder_images (Gee.Collection<Media> media) {
+    public async void fetch_folder_images_async (Gee.Collection<Media> media) {
+        // As different media files can yield the same key, we keep track of all
+        // the keys we've explored to query only once for every equivalent media.
+        var used_keys_set = new Gee.HashSet<string> ();
+
         foreach (var m in media) {
-            if (!has_image (m)) {
+            string key = get_key (m);
+            if (!used_keys_set.contains (key) && !has_image (m)) {
                 var art_file = lookup_folder_image_file (m);
                 if (art_file != null)
-                    cache_image_from_file (m, art_file);
+                    yield cache_image_from_file_async (m, art_file);
+
+                used_keys_set.add (key);
             }
         }
-
-        queue_notify ();
     }
 
 
@@ -167,7 +135,7 @@ public class Noise.CoverartCache : MediaArtCache {
         // from folders that contain multiple unrelated tracks.
         bool generic_folder = !album_folder.get_path ().contains (m.album);
 
-        string[] image_types = { "jpg", "jpeg", "png" };
+        string[] image_types = { "jpg", "jpeg", "png", "tiff" };
         Gee.Collection<File> image_files;
         FileUtils.enumerate_files (album_folder, image_types, false, out image_files);
 
@@ -199,6 +167,8 @@ public class Noise.CoverartCache : MediaArtCache {
                     rv = file;
                 else if (!("front" in rv.get_path ()) && m.album in file_path)
                     rv = file;
+            } else {
+                rv = file;
             }
         }
 
