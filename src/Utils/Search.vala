@@ -39,7 +39,6 @@ namespace Noise.Search {
                               Cancellable? cancellable = null)
     {
         results = new Gee.LinkedList<Media> ();
-        string search = "";
         int parsed_rating = get_rating_from_string (search_str.strip ());
 
         if (parsed_rating > 0) {
@@ -57,14 +56,12 @@ namespace Noise.Search {
         }
 
         // If we failed at parsing a rating above, use normal search
-
-        search = get_valid_search_string (search_str, cancellable);
+        string search = get_valid_search_string (search_str, cancellable);
 
         if (String.is_white_space (search)) {
             foreach (var m in to_search) {
                 if (Utils.is_cancelled (cancellable))
                     break;
-
                 results.add (m);
             }
         } else {
@@ -72,7 +69,7 @@ namespace Noise.Search {
                 if (Utils.is_cancelled (cancellable))
                     break;
 
-                if (match_string_to_media (m, search_str, cancellable))
+                if (match_string_to_media (m, search, cancellable))
                     results.add (m);
             }
         }
