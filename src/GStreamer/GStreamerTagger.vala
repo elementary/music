@@ -188,7 +188,7 @@ public class Noise.GStreamerTagger : GLib.Object {
             }
 
             // Get cover art
-			import_art (s, info);
+			import_art_async.begin (s, info);
 		}
 		else {
 			s = taglib_import_media(info.get_uri());
@@ -244,7 +244,7 @@ public class Noise.GStreamerTagger : GLib.Object {
 		return s;
 	}
 	
-	void import_art (Media m, DiscovererInfo info) {
+	private async void import_art_async (Media m, DiscovererInfo info) {
         var cache = CoverartCache.instance;
 
         if (cache.has_image (m))
@@ -253,7 +253,7 @@ public class Noise.GStreamerTagger : GLib.Object {
         var pix = get_image (info.get_tags ());
 
         if (pix != null)
-            cache.cache_image (m, pix);
+            yield cache.cache_image_async (m, pix);
         else
             warning ("import_art: null pixbuf");
 	}
