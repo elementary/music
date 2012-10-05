@@ -53,7 +53,9 @@ public class Noise.CoverartCache : MediaArtCache {
         default_image = filter_func (default_pix);
     }
 
-    // add a shadow to every image
+    /**
+     * Adds a shadow to every image.
+     */
     protected override Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix) {
         return PixbufUtils.get_pixbuf_shadow (pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
     }
@@ -77,12 +79,13 @@ public class Noise.CoverartCache : MediaArtCache {
         yield load_for_media_async (media);
     }
 
-
+    /**
+     * Retrieves images from the cache for the specified media.
+     */
     public async void load_for_media_async (Gee.Collection<Media> media) {
-        debug ("READING CACHED COVERART");
-
-        // As different media files can yield the same key, we keep track of all
-        // the keys we've explored to query only once for every equivalent media.
+        // get_key() can yield a similar key for different media files, so we keep
+        // track of all the keys we've explored in order to lookup images only once
+        // for every equivalent media.
         var used_keys_set = new Gee.HashSet<string> ();
 
         foreach (var m in media) {
@@ -93,22 +96,22 @@ public class Noise.CoverartCache : MediaArtCache {
             }
         }
 
-        debug ("FINISHED LOADING CACHED COVERART");
+        queue_notify ();
     }
 
     /**
-     * Looks up for image types in the media's directory. We look for image files
-     * that follow certain name patterns, like "album.png", "folder.jpg", etc.
+     * Looks up for image types in the media's directory.
      */
     public async void fetch_folder_images_async (Gee.Collection<Media> media) {
-        // As different media files can yield the same key, we keep track of all
-        // the keys we've explored to query only once for every equivalent media.
+        // get_key() can yield a similar key for different media files, so we keep
+        // track of all the keys we've explored in order to lookup images only once
+        // for every equivalent media.
         var used_keys_set = new Gee.HashSet<string> ();
 
         foreach (var m in media) {
             string key = get_key (m);
             if (!used_keys_set.contains (key) && !has_image (m)) {
-                var art_file = lookup_folder_image_file (m);
+                var art_file = yield lookup_folder_image_file_async (m);
                 if (art_file != null)
                     yield cache_image_from_file_async (m, art_file);
 
@@ -118,17 +121,22 @@ public class Noise.CoverartCache : MediaArtCache {
     }
 
 
-    // Awesome method taken from BeatBox's FileOperator.vala (adapted to use Noise's internal API)
-    private static File? lookup_folder_image_file (Media m) {
-        File? rv = null, media_file = m.file;
+    /**
+     * Looks up a valid album image in a media's directory.
+     *
+     * It tries to find image files that follow certain name patterns, like "album.png",
+     * "folder.jpg", the album name, etc. If no image matching the pattern is found, null
+     * is returned.
+     */
+    private static async File? lookup_folder_image_file_async (Media m) {
+        File? media_file = m.file;
+        return_val_if_fail (media_file != null, null);
 
-        if (!media_file.query_exists ())
-            return rv;
+        // Check file existence
+        return_val_if_fail (yield FileUtils.query_exists_async (media_file), null);
 
         var album_folder = media_file.get_parent ();
-
-        if (album_folder == null)
-            return rv;
+        return_val_if_fail (album_folder != null, null);
 
         // Don't consider generic image names if the album folder doesn't contain the name of
         // the media's album. This is probably the simpler way to prevent considering images
@@ -137,14 +145,19 @@ public class Noise.CoverartCache : MediaArtCache {
 
         string[] image_types = { "jpg", "jpeg", "png", "tiff" };
         Gee.Collection<File> image_files;
-        FileUtils.enumerate_files (album_folder, image_types, false, out image_files);
+        yield FileUtils.enumerate_files_async (album_folder, image_types, false, out image_files);
 
+        File? rv = null;
+
+        bool good_image_found = false;
         // Choose an image based on priorities.
         foreach (var file in image_files) {
-            string file_path = file.get_path ().down ();
+            // We don't want to be fooled by strange characters or whitespace
+            string file_path = String.canonicalize_for_search (file.get_path ().down ());
+            string album_name = String.canonicalize_for_search ((m.album ?? "").down ());
 
             if (generic_folder) {
-                if (m.album in file_path) {
+                if (!String.is_white_space (album_name) && album_name in file_path) {
                     rv = file;
                     break;
                 }
@@ -152,26 +165,31 @@ public class Noise.CoverartCache : MediaArtCache {
                 continue;
             }
 
-
             if ("folder" in file_path) {
                 rv = file;
+                good_image_found = true;
                 break;
             }
 
             if ("cover" in file_path) {
+                good_image_found = true;
                 rv = file;
-            } else if (rv != null) {
-                if (!("cover" in rv.get_path ()) && "album" in file_path)
-                    rv = file;
-                else if (!("album" in rv.get_path ()) && "front" in file_path)
-                    rv = file;
-                else if (!("front" in rv.get_path ()) && m.album in file_path)
-                    rv = file;
-            } else {
+                continue;
+            }
+
+            // Let's use whatever we found
+            if (rv == null)
+                rv = file;
+
+            if (!("cover" in rv.get_path ()) && "album" in file_path) {
+                good_image_found = true;
+                rv = file;
+            } else if (!("album" in rv.get_path ()) && "front" in file_path) {
+                good_image_found = true;
                 rv = file;
             }
         }
 
-        return rv;
+        return good_image_found ? rv : null;
     }
 }
