@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-09-25 14:31-0600\n"
-"PO-Revision-Date: 2012-09-26 15:39+0000\n"
+"PO-Revision-Date: 2012-10-01 16:44+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-27 05:02+0000\n"
-"X-Generator: Launchpad (build 16033)\n"
+"X-Launchpad-Export-Date: 2012-10-02 05:53+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -170,7 +170,7 @@ msgstr "Albumi"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:62
 msgid "Repeat Album"
-msgstr "Toista levyä"
+msgstr "Toista albumi"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:63
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:185
@@ -350,7 +350,7 @@ msgstr "Tuo %s"
 #: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
 msgid "Cancel"
-msgstr "Peruuta"
+msgstr "Peru"
 
 #: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:83
 msgid "Equalizer"
@@ -442,6 +442,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Haluatko varmasti asettaa kansion %s musiikkikansioksi? Tämän toimenpiteen "
+"seurauksena kirjastosi tyhjenee ja soittolistat poistuvat."
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
@@ -490,7 +492,7 @@ msgstr "Valmis"
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:344
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "Muokataan - %s, esittäjä %s"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:175
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:346
@@ -513,7 +515,7 @@ msgstr "Nimi"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:186
 msgid "Album Artist"
-msgstr ""
+msgstr "Albumin esittäjä"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:476
@@ -562,7 +564,7 @@ msgstr "Arvostelu"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:197
 msgid "Media Type"
-msgstr ""
+msgstr "Median tyyppi"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
@@ -629,11 +631,11 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:240
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Pidä musiikkikansio organisoituna"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:241
 msgid "Copy files to Music folder when adding to Library"
-msgstr ""
+msgstr "Kopioi kirjastoon lisättävät tiedostot musiikkikansioon"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:243
 msgid "Write metadata to file"
@@ -649,11 +651,11 @@ msgstr "Käytä Noisea musiikin oletussoittimena"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:270
 msgid "System Integration"
-msgstr ""
+msgstr "Järjestelmäintegraatio"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Älykkään soittolistan muokkain"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
@@ -678,15 +680,15 @@ msgstr "Soittolistan nimi"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "Match"
-msgstr "Osuma"
+msgstr "Täsmää"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
 msgid "any"
-msgstr ""
+msgstr "mihin tahansa"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "all"
-msgstr "kaikki"
+msgstr "kaikkiin"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
 msgid "of the following:"
@@ -698,7 +700,7 @@ msgstr "Rajoita"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
 msgid "items"
-msgstr "kohdetta"
+msgstr "kohteeseen"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:31
@@ -731,7 +733,7 @@ msgstr "Soittokerrat"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
-msgstr ""
+msgstr "Ohituskerrat"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
@@ -760,7 +762,7 @@ msgstr "on vähintään"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is within"
-msgstr ""
+msgstr "ajankohta on"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is before"
@@ -831,7 +833,7 @@ msgstr "Valitse kohde"
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr "Valitse Albumi"
+msgstr "Valitse albumi"
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
@@ -839,11 +841,11 @@ msgstr "Valitse Artisti"
 
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
-msgstr ""
+msgstr "Poista media"
 
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
-msgstr ""
+msgstr "Paikallista media"
 
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
@@ -857,7 +859,7 @@ msgstr "Mediatiedostoa ei löytynyt"
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
-msgstr ""
+msgstr "Kappaleen %s - %s musiikkitiedostoa ei löytynyt. Mitä haluat tehdä?"
 
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
@@ -937,7 +939,7 @@ msgstr ""
 #: /home/victored/noise/po/../src//Views/GridView/PopupListView.vala:166
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s, esittäjä %s"
 
 #: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
@@ -969,6 +971,10 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Lisää kappaleita jonoon napsauttamalla kohdetta hiiren <b>oikealla "
+"painikkeella</b> ja valitsemalla <b>Lisää jonoon</b>. Kun kappale loppuu, "
+"jonoon asetetut kappaleet toistetaan ennen soittolistalla seuraavana olevaa "
+"kappaletta."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
@@ -980,6 +986,10 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Kun kappaleesta on soitettu tietty osa, kyseinen kappale lisätään "
+"historialuetteloon.\n"
+"Näet kaikki tällä kuuntelukerralla kuuntelemasi kappaleet tämän luettelon "
+"avulla."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
@@ -1006,8 +1016,8 @@ msgstr "Kaikki tällä laitteella olevat kappaleet ovat jo kirjastossa."
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u albumi"
+msgstr[1] "%u albumia"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
@@ -1022,7 +1032,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
-msgstr ""
+msgstr "Valitettavasti mikään musiikki ei vastaa hakuasi"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -1034,6 +1044,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Lisää kappaleita soittolistaan napsauttamalla kohdetta hiiren <b>oikealla "
+"painikkeella</b> ja valitsemalla <b>Lisää soittolistaan</b>."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
@@ -1046,6 +1058,11 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Tämä soittolista muodostetaan automaattisesti kappaleista, jotka vastaavat "
+"soittolistan sääntöihin. Muokkaa soittolistan sääntöjä napsauttamalla "
+"sivupaneelissa soittolistan nimeä <b>hiiren oikealla painikkeella</b> ja "
+"valitsemalla <b>Muokkaa</b>. Vaihtoehtoisesti voit napsauttaa alla olevaa "
+"painiketta."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1067,12 +1084,12 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
-msgstr ""
+msgstr "Laite ei ole tavoitettavissa"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s ei pystynyt käyttämään tätä verkkolaitetta"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
@@ -1135,7 +1152,7 @@ msgstr "Poista laitteelta"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:146
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Vieritä nykyiseen kappaleeseen"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:147
 msgid "Edit Song Info"
@@ -1148,7 +1165,7 @@ msgstr "Näytä tiedostonhallinnassa"
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
 #: /home/victored/noise/po/../src//LibraryWindow.vala:470
 msgid "Queue"
-msgstr "Laita jonoon"
+msgstr "Lisää jonoon"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
 msgid "Add to Playlist"
@@ -1174,7 +1191,7 @@ msgstr "Tuo %i kappaletta"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:110
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Aseta sarakkeiden koko automaattisesti"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:117
 msgid "Display Album Art"
@@ -1386,11 +1403,11 @@ msgstr "Soittamattomat kappaleet"
 
 #: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:455
 msgid "Over Played"
-msgstr ""
+msgstr "Liikaa soitetut"
 
 #: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Ei äskettäin soitettu"
 
 #: /home/victored/noise/po/../src//LibraryWindow.vala:178
 msgid "Rescan Music Folder"
@@ -1586,11 +1603,11 @@ msgstr ""
 #: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:881
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Tuodaan <b>%s</b> kirjastoon..."
 
 #: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
-msgstr "Samankaltainen"
+msgstr "Samankaltaiset"
 
 #: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
@@ -1606,11 +1623,11 @@ msgstr "Myönnä Noiselle lupa"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "Virhetilanne. Yritä uudelleen."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "Kuuntelutietojen lähetys on jo käytössä"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1618,7 +1635,7 @@ msgstr "Onnistui!"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Viimeistele kirjautuminen"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
 msgid "Last.fm"
@@ -1633,6 +1650,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Myönnä Noiselle lupa Last.fm:n käyttöön. Tämä toimenpide tulee tehdä vain "
+"kerran."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:67
 msgid "Last.fm Integration"

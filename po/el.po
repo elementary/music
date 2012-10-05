@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-09-25 14:31-0600\n"
-"PO-Revision-Date: 2012-08-25 19:41+0000\n"
-"Last-Translator: Chris Triantafillis <Unknown>\n"
+"PO-Revision-Date: 2012-09-29 20:08+0000\n"
+"Last-Translator: Basilis Thomopoulos <kolxoz83@gmail.com>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-09-27 05:02+0000\n"
-"X-Generator: Launchpad (build 16033)\n"
+"X-Launchpad-Export-Date: 2012-09-30 05:09+0000\n"
+"X-Generator: Launchpad (build 16049)\n"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d δευτερόλεπτo"
+msgstr[1] "%d δευτερόλεπτα"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
@@ -37,8 +37,8 @@ msgstr[1] ""
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u δευτερόλεπτο"
+msgstr[1] "%u δευτερόλεπτα"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
@@ -46,7 +46,7 @@ msgstr[1] ""
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s και %s"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
 #, c-format
@@ -65,12 +65,12 @@ msgstr[1] ""
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s και %s"
 
 #: /home/victored/noise/po/../core//Media.vala:33
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
 msgid "Unknown Title"
-msgstr ""
+msgstr "Άγνωστος Τίτλος"
 
 #: /home/victored/noise/po/../core//Media.vala:34
 #: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
@@ -91,11 +91,11 @@ msgstr "Άγνωστος καλλιτέχνης"
 
 #: /home/victored/noise/po/../core//Media.vala:36
 msgid "Unknown Genre"
-msgstr ""
+msgstr "Άγνωστο Είδος"
 
 #: /home/victored/noise/po/../core//Media.vala:38
 msgid "Various Artists"
-msgstr ""
+msgstr "Διάφοροι Καλλιτέχνες"
 
 #: /home/victored/noise/po/../src//config.vala:16
 msgid "Listen to music"
@@ -311,6 +311,8 @@ msgstr "Αυτή η συσκευή συγχρονίζεται"
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:610
 msgid "Please wait until the current sync is finished to do this action."
 msgstr ""
+"Παρακαλώ περιμένετε να τελειώσει ο συγχρονισμός για να εκτελέσετε αυτήν την "
+"ενέργεια."
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:612
 msgid "This device is in transfer"
@@ -378,7 +380,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:420
 msgid "Custom Preset"
-msgstr ""
+msgstr "Προσαρμοσμένη προεπιλογή"
 
 #: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 #, c-format
@@ -407,11 +409,11 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "Μετακίνηση στον Κάδο Απορριμμάτων"
 
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr ""
+msgstr "Αγνόηση"
 
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
@@ -419,7 +421,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "Τοποθεσία Αρχείου"
 
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
@@ -427,15 +429,15 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
-msgstr ""
+msgstr "Εξαγωγή Λιστών Αναπαραγωγής"
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr ""
+msgstr "Ορισμός Φακέλου Μουσικής"
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "Ορισμός Φάκελου Μουσικής;"
 
 #: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
@@ -452,12 +454,12 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr ""
+msgstr "Εγκατάσταση Πρόσθετου"
 
 #: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
 msgid "Do Nothing"
-msgstr ""
+msgstr "Kαμία Ενέργεια"
 
 #: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
@@ -472,18 +474,18 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:75
 msgid "Metadata"
-msgstr ""
+msgstr "Μεταδεδομένα"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:77
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:373
 msgid "Lyrics"
-msgstr ""
+msgstr "Στίχοι"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:86
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 #: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:65
 msgid "Done"
-msgstr ""
+msgstr "Ολοκληρώθηκε"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:173
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:344
@@ -495,7 +497,7 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:346
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "Επεξεργασία %s"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:178
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:349
@@ -508,60 +510,60 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
 msgid "Title"
-msgstr ""
+msgstr "Τίτλος"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:186
 msgid "Album Artist"
-msgstr ""
+msgstr "Καλλιτέχνης Δίσκου"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:476
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
 msgid "Genre"
-msgstr ""
+msgstr "Είδος"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:189
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 msgid "Composer"
-msgstr ""
+msgstr "Συνθέτης"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:190
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:476
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
 msgid "Grouping"
-msgstr ""
+msgstr "Ομαδοποίηση"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Comment"
-msgstr ""
+msgstr "Σχόλιο"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:192
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "Track"
-msgstr ""
+msgstr "Κομμάτι"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:193
 msgid "Disc"
-msgstr ""
+msgstr "Δίσκος"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:194
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
 msgid "Year"
-msgstr ""
+msgstr "Έτος"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:195
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
 msgid "Rating"
-msgstr ""
+msgstr "Βαθμολογία"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:197
 msgid "Media Type"
-msgstr ""
+msgstr "Τύπος Αρχείου Πολυμέσων"
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
@@ -572,7 +574,7 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Podcast"
-msgstr ""
+msgstr "Φορητή εκπομπή (Podcast)"
 
 #: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
@@ -580,11 +582,11 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Συνέχεια Συγχρονισμού"
 
 #: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Σταμάτημα Συγχρονισμού"
 
 #: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
@@ -606,11 +608,11 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:145
 #: /home/victored/noise/po/../src//LibraryWindow.vala:181
 msgid "Preferences"
-msgstr ""
+msgstr "Προτιμήσεις"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:201
 msgid "General"
-msgstr ""
+msgstr "Γενικά"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:215
 msgid "Select Music Folder"
@@ -636,11 +638,11 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:243
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Εγγραφή μεταδεδομένων σε αρχείο"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:258
 msgid "Library Management"
-msgstr ""
+msgstr "Διαχείριση Βιβλιοθήκης"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:265
 msgid "Use Noise as the default Music application"
@@ -648,7 +650,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:270
 msgid "System Integration"
-msgstr ""
+msgstr "Ενσωμάτωση συστήματος"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
@@ -659,55 +661,55 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
 #: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
 msgid "Name of Playlist"
-msgstr ""
+msgstr "Όνομα Λίστας Αναπαραγωγής"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
 msgid "Rules"
-msgstr ""
+msgstr "Κανόνες"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
 msgid "Options"
-msgstr ""
+msgstr "Επιλογές"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Playlist Title"
-msgstr ""
+msgstr "Τίτλος Λίστας Αναπαραγωγής"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "Match"
-msgstr ""
+msgstr "Ταίριασμα"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
 msgid "any"
-msgstr ""
+msgstr "οποιοδήποτε"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "all"
-msgstr ""
+msgstr "όλα"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
 msgid "of the following:"
-msgstr ""
+msgstr "από τα παρακάτω:"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
 msgid "Limit to"
-msgstr ""
+msgstr "Όριο μέχρι"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
 msgid "items"
-msgstr ""
+msgstr "αντικείμενα"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:31
 msgid "Bitrate"
-msgstr ""
+msgstr "Ρυθμός Bit"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 msgid "Date Added"
-msgstr ""
+msgstr "Ημερομηνία Προσθήκης"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Date Released"
@@ -716,17 +718,17 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Last Played"
-msgstr ""
+msgstr "Τελευταία Αναπαραγωγή"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Length"
-msgstr ""
+msgstr "Μήκος"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Playcount"
-msgstr ""
+msgstr "Μετρητής εκτελέσεων"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
@@ -734,28 +736,28 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
-msgstr ""
+msgstr "είναι"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
 msgid "contains"
-msgstr ""
+msgstr "περιέχει"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
 msgid "does not contain"
-msgstr ""
+msgstr "δεν περιέχει"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 msgid "is exactly"
-msgstr ""
+msgstr "είναι ακριβώς"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is at most"
-msgstr ""
+msgstr "είναι το πολύ"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "is at least"
-msgstr ""
+msgstr "είναι τουλάχιστον"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is within"
@@ -763,23 +765,23 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is before"
-msgstr ""
+msgstr "είναι πριν"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
 msgid "seconds"
-msgstr ""
+msgstr "δευτερόλεπα"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:410
 msgid "days ago"
-msgstr ""
+msgstr "ημέρες πριν"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:414
 msgid "kbps"
-msgstr ""
+msgstr "kbps"
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr ""
+msgstr "Εισαγωγή από Συσκευή"
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
@@ -799,11 +801,11 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
-msgstr ""
+msgstr "Εισαγωγή"
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr ""
+msgstr "Μην Εισάγεις"
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
@@ -818,7 +820,7 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
 msgid "ID"
-msgstr ""
+msgstr "Ταυτότητα (ID)"
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
@@ -826,23 +828,23 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr ""
+msgstr "Έλεγχος Αντικειμένου"
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr ""
+msgstr "Έλεγχος Δίσκου"
 
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr ""
+msgstr "Έλεγχος Καλλιτέχνη"
 
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
-msgstr ""
+msgstr "Αφαίρεση Μέσου"
 
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
-msgstr ""
+msgstr "Εντοπισμού Μέσου"
 
 #: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
@@ -880,7 +882,7 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 msgid "Station"
-msgstr ""
+msgstr "Σταθμός"
 
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
@@ -936,22 +938,22 @@ msgstr ""
 #: /home/victored/noise/po/../src//Views/GridView/PopupListView.vala:166
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s από %s"
 
 #: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d λεπτά"
 
 #: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d ώρες"
 
 #: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "%d ημέρες"
 
 #: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
@@ -991,11 +993,11 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
-msgstr ""
+msgstr "Εντοπισμός"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
-msgstr ""
+msgstr "Αλλαγή του φάκελου μουσικής."
 
 #: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 msgid "All the songs in this device are already in your library."
@@ -1017,7 +1019,7 @@ msgstr[1] ""
 
 #: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:590
 msgid "No media"
-msgstr ""
+msgstr "Χωρίς μέσο"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
@@ -1036,7 +1038,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "Επεξεργασία Έξυπνης Λίστας Αναπαραγωγής"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid ""
@@ -1048,7 +1050,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "Άκυρο Μουσικό CD"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 #, c-format
@@ -1062,7 +1064,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 msgid "1 track"
-msgstr ""
+msgstr "1 κομμάτι"
 
 #: /home/victored/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
@@ -1075,7 +1077,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
-msgstr ""
+msgstr "Μη Διαθέσιμο"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
 #, c-format
@@ -1086,35 +1088,35 @@ msgstr ""
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:257
 #: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:263
 msgid "Never"
-msgstr ""
+msgstr "Ποτέ"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
-msgstr ""
+msgstr "Επεισόδιο"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
 msgid "Name"
-msgstr ""
+msgstr "Όνομα"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
 msgid "Date"
-msgstr ""
+msgstr "Ημερομηνία"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
 msgid "Category"
-msgstr ""
+msgstr "Κατηγορία"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Plays"
-msgstr ""
+msgstr "Αναπαραγωγές"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Skips"
-msgstr ""
+msgstr "Παραβλέψεις"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "#"
