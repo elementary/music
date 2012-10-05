@@ -97,7 +97,7 @@ public class Noise.GStreamerTagger : GLib.Object {
 		}
 	}
 	
-	void import_media(DiscovererInfo info, Error err) {
+	private async void import_media(DiscovererInfo info, Error err) {
 		path_queue.remove(info.get_uri().replace("file://",""));
 
         Media? s = null;
@@ -200,7 +200,7 @@ public class Noise.GStreamerTagger : GLib.Object {
 		}
 
 		// get the size
-		s.file_size = FileUtils.get_size (s.file);
+		s.file_size = yield FileUtils.get_size_async (s.file);
 		s.date_added = (int)time_t();
 
    		media_imported(s);
