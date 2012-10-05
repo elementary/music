@@ -1,4 +1,4 @@
-set(CONFIG_FILE ${CMAKE_SOURCE_DIR}/src/config.vala)
+set(CONFIG_FILE ${CMAKE_BINARY_DIR}/src/config.vala)
 configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CONFIG_FILE})
 
 set(CLIENT_SOURCE
