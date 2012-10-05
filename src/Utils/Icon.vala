@@ -109,7 +109,7 @@ public class Noise.Icon : Object {
 
 
     public Gtk.IconInfo? get_icon_info (int size) {
-        return theme.lookup_by_gicon (gicon, size, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+        return theme.lookup_by_gicon (gicon, size, Gtk.IconLookupFlags.USE_BUILTIN);
     }
 
 
