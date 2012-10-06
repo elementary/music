@@ -31,14 +31,14 @@ public class Noise.GStreamerTagger : GLib.Object {
     HashMap<string, int> uri_to_id;
     LinkedList<string> path_queue;
 
-    public signal void media_imported(Media m);
-    public signal void import_error(string file);
+    public signal void media_imported (Media m);
+    public signal void import_error (string file);
     public signal void queue_finished();
 
     bool cancelled;
 
-    public GStreamerTagger (LibraryManager lm) {
-        this.lm = lm;
+    public GStreamerTagger (LibraryManager library_manager) {
+        this.lm = library_manager;
 
         d = create_discoverer ();
 
