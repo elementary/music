@@ -147,10 +147,10 @@ public class Noise.CoverartCache : MediaArtCache {
         Gee.Collection<File> image_files;
         yield FileUtils.enumerate_files_async (album_folder, image_types, false, out image_files);
 
-        File? rv = null;
-
+        File? image_file = null;
         bool good_image_found = false;
         // Choose an image based on priorities.
+
         foreach (var file in image_files) {
             // We don't want to be fooled by strange characters or whitespace
             string file_path = String.canonicalize_for_search (file.get_path ().down ());
@@ -158,7 +158,7 @@ public class Noise.CoverartCache : MediaArtCache {
 
             if (generic_folder) {
                 if (!String.is_white_space (album_name) && album_name in file_path) {
-                    rv = file;
+                    image_file = file;
                     break;
                 }
 
@@ -166,30 +166,30 @@ public class Noise.CoverartCache : MediaArtCache {
             }
 
             if ("folder" in file_path) {
-                rv = file;
+                image_file = file;
                 good_image_found = true;
                 break;
             }
 
             if ("cover" in file_path) {
                 good_image_found = true;
-                rv = file;
+                image_file = file;
                 continue;
             }
 
             // Let's use whatever we found
-            if (rv == null)
-                rv = file;
+            if (image_file == null)
+                image_file = file;
 
-            if (!("cover" in rv.get_path ()) && "album" in file_path) {
+            if (!("cover" in image_file.get_path ()) && "album" in file_path) {
                 good_image_found = true;
-                rv = file;
-            } else if (!("album" in rv.get_path ()) && "front" in file_path) {
+                image_file = file;
+            } else if (!("album" in image_file.get_path ()) && "front" in file_path) {
                 good_image_found = true;
-                rv = file;
+                image_file = file;
             }
         }
 
-        return good_image_found ? rv : null;
+        return good_image_found ? image_file : null;
     }
 }
