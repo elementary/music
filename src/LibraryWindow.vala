@@ -362,7 +362,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 #endif
     }
 
-    public void show_notification_from_media (Media media) {
+    public async void show_notification_from_media_async (Media media) {
         if (media == null)
             return;
 
@@ -372,8 +372,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         Gdk.Pixbuf? pixbuf = null;
 
         try {
-            string path = CoverartCache.instance.get_cached_image_path_for_media (media);
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (path, 64, 64);
+            var file = File.new_for_path (CoverartCache.instance.get_cached_image_path_for_media (media));
+            pixbuf = yield PixbufUtils.get_pixbuf_from_file_at_scale_async (file, 64, 64, false);
         } catch (Error err) {
             // Media often doesn't have an associated album art,
             // so we shouldn't treat this as an unexpected error.
@@ -383,9 +383,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         show_notification (primary_text, secondary_text, pixbuf);
     }
 
-    private void notify_current_media () {
+    private async void notify_current_media_async () {
         if (App.player.media_info != null && App.player.media_info.media != null)
-            show_notification_from_media (App.player.media_info.media);
+            yield show_notification_from_media_async (App.player.media_info.media);
     }
 
     /**
@@ -539,11 +539,17 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
 
+    private bool update_sensitivities_pending = false;
 
     /**
      * This is handled more carefully inside each ViewWrapper object.
      */
     public async void update_sensitivities () {
+        if (update_sensitivities_pending)
+            return;
+
+        update_sensitivities_pending = true;
+
         Idle.add_full (Priority.HIGH_IDLE, update_sensitivities.callback);
         yield;
 
@@ -590,7 +596,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         if(!App.player.media_active || have_media && !App.player.playing) {
             playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+
         }
+
+        update_sensitivities_pending = false;
     }
 
     public virtual void progressNotification(string? message, double progress) {
@@ -742,7 +751,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.player.play();
 
             if (!inhibit_notifications)
-                notify_current_media ();
+                notify_current_media_async.begin ();
         }
         else {
             if(App.player.playing) {
@@ -788,7 +797,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         if (!inhibit_notifications)
-            notify_current_media ();
+            notify_current_media_async.begin ();
     }
 
     public virtual void play_previous_media (bool inhibit_notifications = false) {
@@ -804,7 +813,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 return;
             }
             else if (play && !inhibit_notifications) {
-                notify_current_media ();
+                notify_current_media_async.begin ();
             }
         }
         else

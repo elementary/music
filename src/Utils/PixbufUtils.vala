@@ -93,15 +93,16 @@ namespace Noise.PixbufUtils {
         return buffer_surface.load_to_pixbuf();
     }
 
-    public Gdk.Pixbuf? get_pixbuf_from_file (File file, Cancellable? c) throws Error {
-        return get_pixbuf_from_file_at_scale (file, -1, -1, false, c);
+    public async Gdk.Pixbuf? get_pixbuf_from_file_async (File file, Cancellable? c = null) throws Error {
+        return yield get_pixbuf_from_file_at_scale_async (file, -1, -1, false, c);
     }
 
-    public Gdk.Pixbuf? get_pixbuf_from_file_at_scale (File file, int width, int height,
-                                                      bool preserve_aspect_ratio,
-                                                      Cancellable? c) throws Error {
+    public async Gdk.Pixbuf? get_pixbuf_from_file_at_scale_async (File file, int width, int height,
+                                                            bool preserve_aspect_ratio,
+                                                            Cancellable? c = null) throws Error
+    {
         Gdk.Pixbuf? image = null;
-        var filestream = file.read (c);
+        var filestream = yield file.read_async (Priority.DEFAULT, c);
 
         if (filestream != null);
             image = new Gdk.Pixbuf.from_stream_at_scale (filestream, width, height,
