@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-09-25 14:31-0600\n"
-"PO-Revision-Date: 2012-09-29 20:08+0000\n"
-"Last-Translator: Basilis Thomopoulos <kolxoz83@gmail.com>\n"
+"PO-Revision-Date: 2012-10-06 01:34+0000\n"
+"Last-Translator: adem <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-05 05:07+0000\n"
+"X-Launchpad-Export-Date: 2012-10-06 05:20+0000\n"
 "X-Generator: Launchpad (build 16061)\n"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
@@ -30,8 +30,8 @@ msgstr[1] "%d δευτερόλεπτα"
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u λεπτό"
+msgstr[1] "%u λεπτά"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
 #, c-format
@@ -52,15 +52,15 @@ msgstr "%s και %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u μέρα"
+msgstr[1] "%u μέρες"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u ώρα"
+msgstr[1] "%u ώρες"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
 #, c-format
@@ -376,16 +376,16 @@ msgstr "%s (Προσαρμοσμένο)"
 #: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (Προσαρμοσμένο %i)"
 
 #: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:420
 msgid "Custom Preset"
-msgstr "Προσαρμοσμένη προεπιλογή"
+msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Προσαρμοσμένη προεπιλογή %i"
 
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -395,12 +395,13 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "Δεν ήταν δυνατή η φόρτωση %d στοιχείων από %s"
 
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
+"%s Αδύνατη η φόρτωση %d στοιχείων. Τα αρχεία μπορεί να είναι φθαρμένα."
 
 #: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"

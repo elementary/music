@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-25 14:31-0600\n"
-"PO-Revision-Date: 2012-07-19 23:25+0000\n"
-"Last-Translator: Ignacio Prada <naccio.prada@facebook.com>\n"
+"PO-Revision-Date: 2012-10-05 10:17+0000\n"
+"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-05 05:07+0000\n"
+"X-Launchpad-Export-Date: 2012-10-06 05:20+0000\n"
 "X-Generator: Launchpad (build 16061)\n"
 "Language: gl\n"
 
@@ -23,23 +23,23 @@ msgstr ""
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d segundo"
+msgstr[1] "%d segundos"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u minuto"
+msgstr[1] "%u minutos"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u segundo"
+msgstr[1] "%u segundos"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
@@ -47,26 +47,26 @@ msgstr[1] ""
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s e %s"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u día"
+msgstr[1] "%u días"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u hora"
+msgstr[1] "%u horas"
 
 #: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s e %s"
 
 #: /home/victored/noise/po/../core//Media.vala:33
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
@@ -88,19 +88,19 @@ msgstr "Álbum descoñecido"
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
 msgid "Unknown Artist"
-msgstr "Artista descoñecido"
+msgstr "Interprete descoñecido"
 
 #: /home/victored/noise/po/../core//Media.vala:36
 msgid "Unknown Genre"
-msgstr ""
+msgstr "Xénero descoñecido"
 
 #: /home/victored/noise/po/../core//Media.vala:38
 msgid "Various Artists"
-msgstr ""
+msgstr "Varios interpretes"
 
 #: /home/victored/noise/po/../src//config.vala:16
 msgid "Listen to music"
-msgstr "Escoitar música"
+msgstr "Escoite música"
 
 #: /home/victored/noise/po/../src//config.vala:17
 msgid "Music Player"
@@ -109,24 +109,24 @@ msgstr "Reprodutor de música"
 #: /home/victored/noise/po/../src//LibraryManager.vala:203
 #, c-format
 msgid "Importing music from %s..."
-msgstr "Importar música dende %s..."
+msgstr "Importando música desde %s..."
 
 #: /home/victored/noise/po/../src//LibraryManager.vala:251
 msgid "Adding files to library..."
-msgstr "Engadir arquivos á libraría"
+msgstr "Engadindo ficheiros á fonoteca..."
 
 #: /home/victored/noise/po/../src//LibraryManager.vala:299
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr "Engadir música dende %s á libraría"
+msgstr "Engadindo música desde %s á fonoteca"
 
 #: /home/victored/noise/po/../src//LibraryManager.vala:327
 msgid "Rescanning music for changes. This may take a while..."
-msgstr ""
+msgstr "Examinando os cambios na música. Isto pode demorar..."
 
 #: /home/victored/noise/po/../src//Objects/Playlist.vala:203
 msgid "Radio Station"
-msgstr ""
+msgstr "Emisora de radio"
 
 #: /home/victored/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
@@ -139,26 +139,26 @@ msgstr "Automático"
 
 #: /home/victored/noise/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
-msgstr ""
+msgstr "Eliminar o elemento actual"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:60
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:93
 msgid "Off"
-msgstr ""
+msgstr "Apagar"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:60
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Activar a repetición"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:61
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:535
 #: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
 msgid "Song"
-msgstr ""
+msgstr "Canción"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:61
 msgid "Repeat Song"
-msgstr ""
+msgstr "Repetir a canción"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:62
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:187
@@ -166,11 +166,11 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 msgid "Album"
-msgstr ""
+msgstr "Álbum"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:62
 msgid "Repeat Album"
-msgstr ""
+msgstr "Repetir o álbum"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:63
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:185
@@ -178,55 +178,55 @@ msgstr ""
 #: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
 #: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
 msgid "Artist"
-msgstr ""
+msgstr "Intérprete"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:63
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Repetir o interprete"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:64
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:94
 msgid "All"
-msgstr ""
+msgstr "Todo"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:64
 msgid "Repeat All"
-msgstr ""
+msgstr "Repetir todo"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:93
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Activar a reproducción ao chou"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:94
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Desactivar a reproducción ao chou"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:127
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:138
 msgid "Add Playlist"
-msgstr ""
+msgstr "Engadir unha lista de reprodución"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:139
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Engadir unha lista de reprodución intelixente"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
 msgid "Hide"
-msgstr ""
+msgstr "Agochar"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
 msgid "Show Equalizer"
-msgstr ""
+msgstr "Amosar o equalizador"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:219
 msgid "Show"
-msgstr ""
+msgstr "Amosar"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
 msgid "Hide Equalizer"
-msgstr ""
+msgstr "Agochar o ecualizador"
 
 #: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
 msgid "Show Info Panel"
