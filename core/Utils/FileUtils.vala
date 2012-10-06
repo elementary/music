@@ -46,6 +46,26 @@ namespace Noise.FileUtils {
     }
 
     /**
+     * Asynchronously checks whether a file exists or not.
+     * It follows symbolic links.
+     */
+    public async bool query_exists_async (File file_or_dir, Cancellable? cancellable = null) {
+        FileInfo? info = null;
+
+        try {
+            info = yield file_or_dir.query_info_async (FileAttribute.STANDARD_NAME,
+                                                       FileQueryInfoFlags.NONE,
+                                                       Priority.DEFAULT,
+                                                       cancellable);
+        } catch (Error err) {
+            if (err is IOError.NOT_FOUND)
+                return false;
+        }
+
+        return info != null;
+    }
+
+    /**
      * Convenience method to get the size of a file or directory (recursively)
      *
      * @param file a {@link GLib.File} representing the file or directory to be queried
@@ -53,12 +73,12 @@ namespace Noise.FileUtils {
      * @return size in bytes of file. It is recommended to use GLib.format_size() in case
      *         you want to convert it to a string representation.
      */
-    public uint64 get_size (File file_or_dir, Cancellable? cancellable = null) {
+    public async uint64 get_size_async (File file_or_dir, Cancellable? cancellable = null) {
         uint64 size = 0;
         Gee.Collection<File> files;
 
-        if (is_directory (file_or_dir, cancellable)) {
-            enumerate_files (file_or_dir, null, true, out files, cancellable);
+        if (yield is_directory_async (file_or_dir, cancellable)) {
+            yield enumerate_files_async (file_or_dir, null, true, out files, cancellable);
         } else {
             files = new Gee.LinkedList<File> ();
             files.add (file_or_dir);
@@ -69,8 +89,10 @@ namespace Noise.FileUtils {
                 break;
 
             try {
-                var info = file.query_info (FileAttribute.STANDARD_SIZE,
-                                            FileQueryInfoFlags.NOFOLLOW_SYMLINKS, cancellable);
+                var info = yield file.query_info_async (FileAttribute.STANDARD_SIZE,
+                                                        FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
+                                                        Priority.DEFAULT,
+                                                        cancellable);
                 size += info.get_attribute_uint64 (FileAttribute.STANDARD_SIZE);
             } catch (Error err) {
                 warning ("Could not get size of '%s': %s", file.get_uri (), err.message);
@@ -80,9 +102,23 @@ namespace Noise.FileUtils {
         return size;
     }
 
-    public bool is_directory (File file, Cancellable? cancellable = null) {
-        var type = file.query_file_type (FileQueryInfoFlags.NOFOLLOW_SYMLINKS, cancellable);
-        return type == FileType.DIRECTORY;
+    /**
+     * Checks whether //dir// is a directory.
+     * Does not follow symbolic links.
+     */
+    public async bool is_directory_async (File dir, Cancellable? cancellable = null) {
+        FileInfo? info = null;
+
+        try {
+            info = yield dir.query_info_async (FileAttribute.STANDARD_TYPE,
+                                               FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
+                                               Priority.DEFAULT,
+                                               cancellable);
+        } catch (Error err) {
+            warning (err.message);
+        }
+
+        return info != null && info.get_file_type () == FileType.DIRECTORY;
     }
 
     /**
@@ -90,24 +126,25 @@ namespace Noise.FileUtils {
      *
      * @param folder a {@link GLib.File} representing the folder you wish to query
      * @param types a string array containing the formats you want to limit the search to, or null
-     *              to allow any file type. e.g. [[[string[] types = {"mp3", "jpg"}]]] [allow-none]
+     *              to allow any file type. e.g. string[] types = {"mp3", "jpg"} [allow-none]
      * @param recursive whether to query the whole directory tree or only immediate children. [allow-none]
      * @param files the data container for the files found. This only includes files, not directories [allow-none]
-     * @param cancellable a cancellable object for cancelling the operation. [allow-none]
+     * @param cancellable a cancellable object for canceling the operation. [allow-none]
      *
      * @return total number of files found (should be the same as files.size)
      */
-    public uint enumerate_files (File folder, string[]? types = null,
-                                 bool recursive = true,
-                                 out Gee.Collection<File>? files = null,
-                                 Cancellable? cancellable = null) {
-        return_val_if_fail (is_directory (folder), 0);
+    public async uint enumerate_files_async (File folder, string[]? types = null,
+                                             bool recursive = true,
+                                             out Gee.Collection<File>? files = null,
+                                             Cancellable? cancellable = null)
+    {
+        return_val_if_fail (yield is_directory_async (folder), 0);
         var counter = new FileEnumerator ();
-        return counter.enumerate_files (folder, types, out files, recursive, cancellable);
+        return yield counter.enumerate_files_async (folder, types, out files, recursive, cancellable);
     }
 
     /**
-     * Comprobates whether a filename matches a given extension.
+     * Queries whether a filename matches a given extension.
      *
      * @param name path, URI or name of the file to verify
      * @param types a string array containing the expected file extensions (without dot).
@@ -143,17 +180,18 @@ namespace Noise.FileUtils {
          * the directories descendant from folder. In case you only want the first-level
          * descendants, set recursive to false.
          */
-        public uint enumerate_files (File folder, string[]? types,
-                                     out Gee.Collection<File>? files,
-                                     bool recursive = true,
-                                     Cancellable? cancellable = null) {
+        public async uint enumerate_files_async (File folder, string[]? types,
+                                                 out Gee.Collection<File>? files,
+                                                 bool recursive = true,
+                                                 Cancellable? cancellable = null)
+        {
             assert (file_count == 0);
 
             this.types = types;
             this.cancellable = cancellable;
 
             files = new Gee.LinkedList<File> ();
-            enumerate_files_internal (folder, ref files, recursive);
+            yield enumerate_files_internal_async (folder, files, recursive);
             return file_count;
         }
 
@@ -161,19 +199,25 @@ namespace Noise.FileUtils {
             return Utils.is_cancelled (cancellable);
         }
 
-        private void enumerate_files_internal (File folder, ref Gee.Collection<File>? files,
-            bool recursive) {
-
+        private async void enumerate_files_internal_async (File folder, Gee.Collection<File>? files,
+                                                           bool recursive)
+        {
             if (is_cancelled ())
                 return;
 
             try {
-                var enumerator = folder.enumerate_children (ATTRIBUTES,
-                    FileQueryInfoFlags.NOFOLLOW_SYMLINKS, cancellable);
+                var enumerator = yield folder.enumerate_children_async (ATTRIBUTES,
+                                                                        FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
+                                                                        Priority.DEFAULT,
+                                                                        cancellable);
 
-                FileInfo? file_info = null;
+                while (!is_cancelled ()) {
+                    var enum_files = yield enumerator.next_files_async (1, Priority.DEFAULT, cancellable);
+                    FileInfo? file_info = enum_files.nth_data (0);
 
-                while ((file_info = enumerator.next_file ()) != null && !is_cancelled ()) {
+                    if (file_info == null)
+                        break;
+
                     var file_name = file_info.get_name ();
                     var file_type = file_info.get_file_type ();
                     var file = folder.get_child (file_name);
@@ -183,15 +227,14 @@ namespace Noise.FileUtils {
                             continue;
 
 	                    file_count++;
+
                         if (files != null)
     	                    files.add (file);
-                    }
-                    else if (recursive && file_type == FileType.DIRECTORY) {
-	                    enumerate_files_internal (file, ref files, true);
+                    } else if (recursive && file_type == FileType.DIRECTORY) {
+	                    yield enumerate_files_internal_async (file, files, true);
                     }
                 }
-            }
-            catch (Error err) {
+            } catch (Error err) {
                 warning ("Could not scan folder: %s", err.message);
             }
         }

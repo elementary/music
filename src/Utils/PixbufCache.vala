@@ -50,12 +50,13 @@
  * to be generic). It should be easy to re-use it on another application.
  */
 public class Noise.PixbufCache {
+    private const string DEFAULT_FORMAT_NAME = "jpeg";
 
     public Gee.Map<string, Gdk.Pixbuf> images {
         owned get { return image_map.read_only_view; }
     }
 
-    public string image_format { get; private set; default = "jpeg"; }
+    public Gdk.PixbufFormat image_format { get; private set; }
 
     private File image_dir;
     private Gee.HashMap<string, Gdk.Pixbuf> image_map;
@@ -68,11 +69,20 @@ public class Noise.PixbufCache {
      * @param image_format a string specifying the image format, or null to use the default
      * format (JPEG). Valid image formats are those supported by {@link Gdk.Pixbuf.save}.
      */
-    public PixbufCache (File image_dir, string? image_format = null) {
-        image_map = new Gee.HashMap<string, Gdk.Pixbuf> ();
-
-        if (image_format != null)
+    public PixbufCache (File image_dir, Gdk.PixbufFormat? image_format = null) {
+        if (image_format == null) {
+            foreach (var format in Gdk.Pixbuf.get_formats ()) {
+                if (format.get_name () == DEFAULT_FORMAT_NAME) {
+                    this.image_format = format;
+                    break;
+                }
+            }
+        } else {
             this.image_format = image_format;
+        }
+
+        // We need to be able to write images to disk for permanent storage
+        assert (this.image_format != null && this.image_format.is_writable ());
 
         this.image_dir = image_dir;
 
@@ -82,6 +92,8 @@ public class Noise.PixbufCache {
             if (!(err is IOError.EXISTS))
                 warning ("Could not create image cache directory: %s", err.message);
         }
+
+        image_map = new Gee.HashMap<string, Gdk.Pixbuf> ();
     }
 
     /**
@@ -113,7 +125,7 @@ public class Noise.PixbufCache {
      * recommended to use {@link Noise.PixbufCache.has_image} to check for that.
      */
     public string get_cached_image_path (string key) {
-        string filename = Checksum.compute_for_string (ChecksumType.MD5, key + image_format);
+        string filename = Checksum.compute_for_string (ChecksumType.MD5, key + image_format.get_name ());
         return image_dir.get_child (filename).get_path ();
     }
 
@@ -141,19 +153,30 @@ public class Noise.PixbufCache {
      * This method can also be used to update image buffers when they have changed,
      * since the old image is overwritten (in both primary memory and disk.)
      */
-    public void cache_image (string key, Gdk.Pixbuf image) {
-        cache_image_internal (key, image, true);
+    public async void cache_image_async (string key, Gdk.Pixbuf image) {
+        yield cache_image_internal_async (key, image, true);
     }
 
     /**
      * This method does the same as {@link Noise.PixbufCache.cache_image}, with the only
      * difference that it first fetches the image from the given file.
      */
-    public void cache_image_from_file (string key, File image_file, Cancellable? c = null) {
-        var image = load_image_from_file (image_file, c);
+    public async void cache_image_from_file_async (string key, File image_file, Cancellable? c = null) {
+        var image = yield load_image_from_file_async (image_file, c);
         if (image != null)
-            cache_image (key, image);
+            yield cache_image_async (key, image);
     }
+
+
+    /**
+     * Retrieves the image for the given key from the cache.
+     *
+     * @return A valid {@link Gdk.Pixbuf}, or null if the image is not found.
+     */
+    public Gdk.Pixbuf? get_image (string key) {
+        return image_map.get (key);
+    }
+
 
     /**
      * Retrieves the image for the given key from the cache. If lookup_file
@@ -165,12 +188,12 @@ public class Noise.PixbufCache {
      * @return null if the key's corresponding image was not found; Otherwise
      *         a valid {@link Gdk.Pixbuf}
      */
-    public Gdk.Pixbuf? get_image (string key, bool lookup_file = true) {
-        if (lookup_file && !image_map.has_key (key)) {
+    public async Gdk.Pixbuf? get_image_async (string key, bool lookup_file = true) {
+        if (lookup_file && !has_image (key)) {
             var image_file = File.new_for_path (get_cached_image_path (key));
-            var image = load_image_from_file (image_file, null);
+            var image = yield load_image_from_file_async (image_file, null);
             if (image != null)
-                cache_image_internal (key, image, false);
+                yield cache_image_internal_async (key, image, false);
         }
 
         return image_map.get (key);
@@ -179,7 +202,7 @@ public class Noise.PixbufCache {
     /**
      * Adds an image to the hash map and also writes the image to disk if save_to_disk is true.
      */
-    private void cache_image_internal (string key, Gdk.Pixbuf image, bool save_to_disk) {
+    private async void cache_image_internal_async (string key, Gdk.Pixbuf image, bool save_to_disk) {
         Gdk.Pixbuf? modified_image = (filter_func != null) ? filter_func (key, image) : image;
 
         if (modified_image != null) {
@@ -198,11 +221,11 @@ public class Noise.PixbufCache {
      * Central place for retrieving images from permanent-storage locations. This is not
      * limited to this cache's local directory.
      */
-    private Gdk.Pixbuf? load_image_from_file (File image_file, Cancellable? cancellable) {
+    private async Gdk.Pixbuf? load_image_from_file_async (File image_file, Cancellable? cancellable) {
         Gdk.Pixbuf? image = null;
 
         try {
-            image = PixbufUtils.get_pixbuf_from_file (image_file, cancellable);
+            image = yield PixbufUtils.get_pixbuf_from_file_async (image_file, cancellable);
         } catch (Error err) {
             warning ("Could not get image from file [%s]: %s", image_file.get_uri (), err.message);
         }
@@ -219,7 +242,7 @@ public class Noise.PixbufCache {
         try {
             string path = get_cached_image_path (key);
             if (delete_file (path))
-                to_save.save (path, image_format);
+                to_save.save (path, image_format.get_name ());
         } catch (Error err) {
             warning ("Could not save pixbuf: %s", err.message);
         }
