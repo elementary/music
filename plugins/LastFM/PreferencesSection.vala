@@ -34,6 +34,7 @@ private class LastFM.PreferencesSection : Noise.PreferencesWindow.Section {
     static string COMPLETE_LOGIN = _("Complete Login");
 
     private Core core;
+    private string lastfm_token = "";
 
     public PreferencesSection (Core core) {
         base (_("Last.fm"));
@@ -68,10 +69,8 @@ private class LastFM.PreferencesSection : Noise.PreferencesWindow.Section {
     }
 
     public void lastfmLoginClick (Gtk.Button login_button) {
-        return_if_fail (core != null);
-        var lastfm_token = core.getToken ();
-
         if (login_button.label == ENABLE_SCROBBLING || login_button.label == LOGIN_UNSUCCESSFUL) {
+            lastfm_token = core.getToken ();
 
             if (lastfm_token == null) {
                 login_button.set_label (LOGIN_UNSUCCESSFUL);

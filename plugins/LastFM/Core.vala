@@ -39,8 +39,6 @@ namespace LastFM {
 
         public Settings lastfm_settings { get; private set; }
 
-        public string token;
-
         public signal void logged_in();
         public signal void similar_retrieved(LinkedList<int> similarIDs, LinkedList<Noise.Media> similarDont);
 
