@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-06 00:10-0600\n"
-"PO-Revision-Date: 2012-10-06 15:45+0000\n"
+"PO-Revision-Date: 2012-10-07 08:23+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-07 04:53+0000\n"
+"X-Launchpad-Export-Date: 2012-10-08 05:34+0000\n"
 "X-Generator: Launchpad (build 16061)\n"
 "Language: gl\n"
 
@@ -274,7 +274,7 @@ msgstr "Gardar como lista de reprodución"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:93
 msgid "Export..."
-msgstr "Exportar..."
+msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:94
 msgid "Import Playlists"
@@ -298,44 +298,47 @@ msgstr "Listas de reprodución"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:610
 msgid "This device is syncing"
-msgstr ""
+msgstr "Este dispositivo está a sincronizarse"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:610
 msgid "Please wait until the current sync is finished to do this action."
 msgstr ""
+"Agarde a que remate a sincronización actual antes de proceder con esta "
+"acción."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:612
 msgid "This device is in transfer"
-msgstr ""
+msgstr "Este dispositivo está a facer transferencias"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:612
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
+"Agarde a que remate a transferencial antes de proceder con esta acción."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Cola de reprodución (%e-%b-%Y ás %H:%M)"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Historial de reprodución (%e-%b-%Y ás %H:%M)"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
-msgstr ""
+msgstr "Lista de reproducción descoñecida"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
-msgstr ""
+msgstr "Exportar a lista de reprodución"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
-msgstr ""
+msgstr "Lista de reprodución"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:842
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "Importar %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/TopDisplay.vala:69
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -343,90 +346,92 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:66
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:58
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:83
 msgid "Equalizer"
-msgstr ""
+msgstr "Ecualizador"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:150
 msgid "Save preset"
-msgstr ""
+msgstr "Gardar os axustes"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:158
 msgid "Close"
-msgstr ""
+msgstr "Pechar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:414
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (Personalizado)"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (Personalizado %i)"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:420
 msgid "Custom Preset"
-msgstr ""
+msgstr "Configuración personalizada"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:422
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Configuración personalizada %i"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
-msgstr ""
+msgstr "Non hai ficheiros importados"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:64
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "Non é posíbel importar %d elementos desde %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
+"%s non pode importar %d elementos. É probábel que os ficheiros estean "
+"estragados."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Mover todo os ficheiros estragados ao lixo"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "Mover ao lixo"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr ""
+msgstr "Ingnorar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
-msgstr ""
+msgstr "eliminar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "Localización do ficheiro"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "Seleccione os ficheiros para mover ao lixo:"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
-msgstr ""
+msgstr "Exportar listas de reprodución"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr ""
+msgstr "Estabelecer o cartafol da música"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "Estabelecer o cartafol da música?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
@@ -434,21 +439,24 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Confirma que quere estabelecer %s como o seu novo cartafol da música? Isto "
+"reiniciará a súa fonoteca actual e retirará as listas de reprodución "
+"personalizadas."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:135
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "Escolla o cartafol da música"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr ""
+msgstr "Instalar engadido"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:64
 msgid "Do Nothing"
-msgstr ""
+msgstr "Non facer nada"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
