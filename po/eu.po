@@ -8,38 +8,38 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-06 00:10-0600\n"
-"PO-Revision-Date: 2012-08-04 08:58+0000\n"
-"Last-Translator: KombuchaMushroom <enekosar@gmail.com>\n"
+"PO-Revision-Date: 2012-10-11 20:09+0000\n"
+"Last-Translator: Asier Iturralde Sarasola <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-07 04:53+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-13 05:01+0000\n"
+"X-Generator: Launchpad (build 16137)\n"
 "Language: eu\n"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "segundo %d"
+msgstr[1] "%d segundo"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "minutu %u"
+msgstr[1] "%u minutu"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "segundo %u"
+msgstr[1] "%u segundo"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:47
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:78
@@ -53,15 +53,15 @@ msgstr "%s eta %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "egun %u"
+msgstr[1] "%u egun"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ordu %u"
+msgstr[1] "%u ordu"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:76
 #, c-format
@@ -92,16 +92,16 @@ msgstr "Artista ezezaguna"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:36
 msgid "Unknown Genre"
-msgstr ""
+msgstr "Genero ezezaguna"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:38
 msgid "Various Artists"
-msgstr ""
+msgstr "Hainbat artista"
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:203
 #, c-format
 msgid "Importing music from %s..."
-msgstr "Musika inportatzen %s-(e)tik..."
+msgstr "Musika inportatzen %s(e)tik..."
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:251
 msgid "Adding files to library..."
@@ -110,7 +110,7 @@ msgstr "Fitxategiak gehitzen liburutegira..."
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:299
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr "Musika gehitzen %s-(e)tik liburutegira..."
+msgstr "Musika gehitzen %s(e)tik liburutegira..."
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:327
 msgid "Rescanning music for changes. This may take a while..."
@@ -124,7 +124,7 @@ msgstr "Irrati-katea"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
-msgstr "Pista Ezezaguna"
+msgstr "Pista ezezaguna"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:49
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
@@ -152,7 +152,7 @@ msgstr "Kanta"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:61
 msgid "Repeat Song"
-msgstr "Errepikatu Abestia"
+msgstr "Errepikatu kanta"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:62
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:187
@@ -164,7 +164,7 @@ msgstr "Albuma"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:62
 msgid "Repeat Album"
-msgstr "Errepikatu Albuma"
+msgstr "Errepikatu albuma"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:63
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:185
@@ -176,7 +176,7 @@ msgstr "Artista"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:63
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Errepikatu artista"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:64
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:94
@@ -185,15 +185,15 @@ msgstr "Guztia"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:64
 msgid "Repeat All"
-msgstr "Errepikatu Denak"
+msgstr "Errepikatu denak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:93
 msgid "Enable Shuffle"
-msgstr "Gaitu Nahasketa"
+msgstr "Gaitu nahasketa"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:94
 msgid "Disable Shuffle"
-msgstr "Desgaitu Nahasketa"
+msgstr "Desgaitu nahasketa"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:127
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:138
@@ -202,7 +202,7 @@ msgstr "Gehitu erreprodukzio-zerrenda"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:139
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Gehitu erreprodukzio-zerrenda azkarra"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:185
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:218
@@ -241,7 +241,7 @@ msgstr "Libre"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr "%s-(e)tik %s erabiltzen (%.2f%)"
+msgstr "%s(e)tik %s erabiltzen (%.2f%)"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:71
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:153
@@ -326,11 +326,11 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
-msgstr ""
+msgstr "Erreprodukzio-zerrenda ezezaguna"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
-msgstr ""
+msgstr "Esportatu erreprodukzio-zerrenda"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
@@ -388,13 +388,13 @@ msgstr "Inportatu gabeko fitxategiak"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr "Ezin izan dira %d elementuak inportatu %s(e)tik"
+msgstr "Ezin izan dira %d elementu inportatu %s(e)tik"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
-"%s ezin izan ditu %d elementu inportatu. Baliteke fitxategiak kaltetuta "
+"%s(e)k ezin izan ditu %d elementu inportatu. Baliteke fitxategiak kaltetuta "
 "egotea."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:66
@@ -440,8 +440,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Ziur al zaude zure musika karpeta %s(e)n ezarri nahi duzula? Ekintza honek "
-"zure liburutegia eta erreprodukzio-zerrendak berretsiko ditu."
+"Ziur zaude zure musikaren karpeta %s(e)n ezarri nahi duzula? Ekintza honek "
+"zure liburutegia berrezarri eta erreprodukzio-zerrendak ezabatuko ditu."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:135
@@ -567,7 +567,7 @@ msgstr "Eduki mota"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Ez dira %s(r)en hitzak aurkitu"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:537
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:67
@@ -593,18 +593,18 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Sinkronizatzen jarraitzen baduzu, media ezabatuko da %s(e)tik ez baitago "
-"sinkronizazio zerrendan. Inportatu nahi al dituzu liburutegira lehenago?"
+"Sinkronizatzen jarraitzen baduzu, edukia kenduko da %s(e)tik, ez baitago "
+"sinkronizazio zerrendan. Aurretik zure liburutegira inportatu nahi dituzu?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr "Sinkronizazioak %i elementu ezabatuko ditu %s(e)tik"
+msgstr "Sinkronizazioak %i elementu kenduko ditu %s(e)tik"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr "Sinkronizazioak elementu 1 ezabatuko du %s(e)tik"
+msgstr "Sinkronizazioak elementu 1 kenduko du %s(e)tik"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:181
@@ -613,11 +613,11 @@ msgstr "Hobespenak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:216
 msgid "General"
-msgstr ""
+msgstr "Orokorra"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:230
 msgid "Select Music Folder"
-msgstr ""
+msgstr "Hautatu musikaren karpeta"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:237
 msgid "Music Folder Location"
@@ -633,31 +633,31 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:255
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Mantendu musikaren karpeta antolatuta"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:256
 msgid "Copy files to Music folder when adding to Library"
-msgstr ""
+msgstr "Kopiatu fitxategiak musikaren karpetara liburutegira gehitzean"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:258
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Idatzi metadatuak fitxategian"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:273
 msgid "Library Management"
-msgstr "Liburutegi kudeaketa"
+msgstr "Liburutegi-kudeaketa"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:280
 msgid "Use Noise as the default Music application"
-msgstr ""
+msgstr "Erabili Noise musikarentzako aplikazio lehenetsi bezala"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:285
 msgid "System Integration"
-msgstr ""
+msgstr "Sistemaren integrazioa"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
-msgstr "Erreprodukzio-zerrenda editore azkarra"
+msgstr "Erreprodukzio-zerrenden editore azkarra"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:82
@@ -735,7 +735,7 @@ msgstr "Erreprodukzio kopurua"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
-msgstr ""
+msgstr "Saltatze kopurua"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
@@ -756,19 +756,19 @@ msgstr "zehazki da:"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is at most"
-msgstr ""
+msgstr "gehienez hau dena:"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "is at least"
-msgstr "gutxienez da"
+msgstr "gutxienez hau dena:"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is within"
-msgstr ""
+msgstr "tarte honetan dagoena:"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is before"
-msgstr ""
+msgstr "honen aurretik dagoena:"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:406
 msgid "seconds"
@@ -789,7 +789,7 @@ msgstr "Inportatu gailutik"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr "Inportatu edukiak %s-(e)tik"
+msgstr "Inportatu edukiak %s(e)tik"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
@@ -797,6 +797,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Hurrengo fitxategiak %s(e)n daude, baina ez zure liburutegian. Egiaztatu "
+"inportatu nahi dituzun fitxategi guztiak."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -813,12 +815,12 @@ msgstr "Ez inportatu"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr "Inportatu %i elementu %s-(e)tik"
+msgstr "Inportatu %i elementu %s(e)tik"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr "Inportatu %s %s-(e)tik"
+msgstr "Inportatu %s %s(e)tik"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
@@ -827,19 +829,19 @@ msgstr "IDa"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Hautatu banako edukia inportatzeko:"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr "Hautatu elementua"
+msgstr "Egiaztatu elementua"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr "Hautatu albuma"
+msgstr "Egiaztatu albuma"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr "Hautatu artista"
+msgstr "Egiaztatu artista"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
@@ -847,7 +849,7 @@ msgstr "Kendu edukia"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
-msgstr ""
+msgstr "Kokatu edukia"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
@@ -855,28 +857,29 @@ msgstr "Berreskaneatu liburutegia"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:70
 msgid "Could not find media file"
-msgstr "Ezin izan da eduki fitxategia aurkitu"
+msgstr "Ezin izan da eduki-fitxategia aurkitu"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:79
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
 msgstr ""
+"Ezin izan da aurkitu %s musika fitxategia, %s(r)ena. Zer egin nahi duzu?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "Ezin izan dira %i eduki-fitxategi aurkitu. Zer egin nahi duzu?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:145
 #, c-format
 msgid "The name %s is already in use"
-msgstr ""
+msgstr "%s izena dagoeneko erabilita dago"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr "Kendu %s-(e)tik"
+msgstr "Kendu %s(e)tik"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
@@ -890,13 +893,13 @@ msgstr "Katea"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
-msgstr "%d %s kendu %s-(e)tik?"
+msgstr "%d %s kendu %s(e)tik?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:89
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr "\"%s\" kendu %s-(e)tik?"
+msgstr "\"%s\" kendu %s(e)tik?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
@@ -904,44 +907,50 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"Honek %s kenduko du zure liburutegitik eta %s(r)ekin automatikoki "
+"sinkronizatzen den edozein gailutatik."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
-msgstr ""
+msgstr "Sinkronizazioa bertan behera uzten"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
+"Gailuarekin sinkronizatzea bertan behera gelditu da. Eragiketa eduki honen "
+"ondoren geldituko da."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
-msgstr ""
+msgstr "Inportazioa bertan behera uzten"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
+"Gailutik inportatzea bertan behera gelditu da. Eragiketa eduki honen ondoren "
+"geldituko da."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
 msgid "No External Songs"
-msgstr ""
+msgstr "Kanpoko kantarik ez"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr ""
+msgstr "Ez da zure liburutegian ez dagoen kantarik aurkitu gailu honetan."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/PopupListView.vala:166
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s, %s(r)ena"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
@@ -973,6 +982,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Ilarara kantak gehitzeko, egin <b>eskuin klik</b> elementu batean eta "
+"aukeratu <b>Ilara</b>. Kanta bat amaitzean, ilarako kantak erreproduzituko "
+"dira lehenik, uneko erreprodukzio-zerrendako hurrengo kantaren aurretik."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
@@ -984,6 +996,9 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Kanta baten zati bat erreproduzitu ondoren historia-zerrendara gehitzen da.\n"
+"Uneko saioan erreproduzitu dituzun kanta guztiak ikusteko erabil dezakezu "
+"zerrenda hau."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
@@ -992,11 +1007,11 @@ msgstr "Eskuratu doinu batzuk"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "Dirudienez %s(e)k ezin du zure musika aurkitu."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
-msgstr ""
+msgstr "Aurkitu"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
@@ -1004,29 +1019,29 @@ msgstr "Aldatu zure musikaren karpeta"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "Gailu honetako kanta guztiak dagoeneko zure liburutegian daude."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:381
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "album %u"
+msgstr[1] "%u album"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "kanta %u"
+msgstr[1] "%u kanta"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:590
 msgid "No media"
-msgstr ""
+msgstr "Edukirik ez"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
-msgstr ""
+msgstr "Sentitzen dugu, ez dago zure bilaketarekin bat datorren musikarik"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -1038,6 +1053,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Erreprodukzio-zerrendara kantak gehitzeko, egin <b>eskuin klik</b> elementu "
+"batean eta aukeratu <b>Gehitu erreprodukzio-zerrendara</b>."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
@@ -1050,6 +1067,9 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Erreprodukzio-zerrenda hau automatikoki beteko da bere arauekin bat datozen "
+"kantekin. Arauak aldatzeko, egin <b>eskuin klik</b> bertan albo-barran eta "
+"klikatu <b>Editatu</b>. Aukeran, beheko botoian klika dezakezu."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1058,7 +1078,7 @@ msgstr "Audio CD baliogabea"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr "%s-(e)k ezin izan ditu Audio CD honen edukiak irakurri"
+msgstr "%s(e)k ezin izan ditu Audio CD honen edukiak irakurri"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 #, c-format
@@ -1071,16 +1091,16 @@ msgstr "Pista 1"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
-msgstr ""
+msgstr "Gailu eskuraezina"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s(e)k ezin izan du sareko gailu hau atzitu"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
-msgstr ""
+msgstr "E/E"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
 #, c-format
@@ -1091,7 +1111,7 @@ msgstr "%i kb/s"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:257
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:263
 msgid "Never"
-msgstr ""
+msgstr "Inoiz ez"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
@@ -1111,15 +1131,15 @@ msgstr "Kategoria"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Plays"
-msgstr ""
+msgstr "Erreprodukzioak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Skips"
-msgstr ""
+msgstr "Saltoak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "#"
@@ -1139,7 +1159,7 @@ msgstr "Kendu gailutik"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:146
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Korritu uneko kantara"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:147
 msgid "Edit Song Info"
@@ -1165,7 +1185,7 @@ msgstr "Kendu kanta"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:253
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "Hautatutako kantetatik %i/%i inportatzen"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:255
 msgid "Import this song"
@@ -1178,31 +1198,31 @@ msgstr "Inportatu %i kanta"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:110
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Egokitu zutabeen tamaina automatikoki"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:117
 msgid "Display Album Art"
-msgstr ""
+msgstr "Bistaratu albumaren azala"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:245
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:311
 msgid "Sample Title"
-msgstr ""
+msgstr "Adibidetarako izenburua"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:316
 msgid "Sample Artist"
-msgstr ""
+msgstr "Adibidetarako artista"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:319
 msgid "Sample Album"
-msgstr ""
+msgstr "Adibidetarako albuma"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:332
 msgid "Sample Genre"
-msgstr ""
+msgstr "Adibidetarako generoa"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
@@ -1410,7 +1430,7 @@ msgstr "Historia"
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:629
 msgid " by "
-msgstr ""
+msgstr " honena: "
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:630
 msgid " on "
@@ -1423,7 +1443,7 @@ msgstr "Inportatu musika"
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:870
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "Musika <b>inportatzen</b> <b>%s</b>-(e)tik liburutegira."
+msgstr "Musika <b>inportatzen</b> <b>%s</b>(e)tik liburutegira."
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:885
 msgid "Rescanning music folder for changes"
@@ -1446,7 +1466,7 @@ msgstr "Inportazioa osatuta"
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:958
 #, c-format
 msgid "%s has imported your library."
-msgstr "%s-(e)k zure liburutegia inportatu du."
+msgstr "%s(e)k zure liburutegia inportatu du."
 
 #: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
@@ -1536,7 +1556,7 @@ msgstr "Kantarik ez CDan"
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"%s-(e)k ezin izan du kantarik aurkitu CDan. Ezin da kantarik inportatu"
+"%s(e)k ezin izan du kantarik aurkitu CDan. Ezin da kantarik inportatu"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
 #, c-format
@@ -1549,7 +1569,7 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
-"Mesedez itxaron %s-(e)k uneko inportazioa amaitu arte CDa inportatu aurretik."
+"Mesedez itxaron %s(e)k uneko inportazioa amaitu arte CDa inportatu aurretik."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
 msgid "Ripping track 1"
@@ -1568,12 +1588,12 @@ msgstr "CD inportazioa osaturik"
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s-(e)k amaitu du %i kanta inportatzen Audio CDtik."
+msgstr "%s(e)k amaitu du %i kanta inportatzen Audio CDtik."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr "%s-(e)k amaitu du kanta bat inportatzen Audio CDtik."
+msgstr "%s(e)k amaitu du kanta bat inportatzen Audio CDtik."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1585,17 +1605,17 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "<b>%s</b> sinkronizatzen..."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:658
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "<b>%s</b>(e)tik kentzen..."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:881
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "<b>%s</b> liburutegira inportatzen..."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
@@ -1611,11 +1631,11 @@ msgstr "Antzeko edukiak"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr ""
+msgstr "Eman Noiseri baimena"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "Arrakastarik ez. Klikatu berriz saiatzeko."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
@@ -1623,33 +1643,35 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
-msgstr ""
+msgstr "Arrakasta!"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Osatu saio-hasiera"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:40
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Klikatu Last.fm-ko saio-hasiera prozesua berregiteko"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Last.fm-rekin integratu ahal izateko baimena eman behar diozu Noiseri. Behin "
+"bakarrik egin behar duzu."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:68
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Last.fm integrazioa"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Antzeko kantak eskuratzen"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
@@ -1659,7 +1681,7 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
 msgid "Similar to %s"
-msgstr "%s-(r)en antzekoa"
+msgstr "%s(r)en antzekoa"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 msgid "No similar songs found"
@@ -1675,7 +1697,7 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
-msgstr ""
+msgstr "Antzeko kantak ikuspegia"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
@@ -1684,6 +1706,9 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"Ikuspegi honetan, %s(e)k automatikoki aurkituko ditu erreproduzitzen ari "
+"zaren kantaren antzekoak. Kanta horiek erreproduzi ditzakezu edo "
+"erreprodukzio-zerrenda bezala gorde gerorako."
 
 #~ msgid "Import Stations"
 #~ msgstr "Inportatu kateak"

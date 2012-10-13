@@ -8,38 +8,38 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-06 00:10-0600\n"
-"PO-Revision-Date: 2012-09-19 20:28+0000\n"
-"Last-Translator: Rolf C <rolf@metadata.be>\n"
+"PO-Revision-Date: 2012-10-12 17:35+0000\n"
+"Last-Translator: dinkyt <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-07 04:53+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-13 05:01+0000\n"
+"X-Generator: Launchpad (build 16137)\n"
 "Language: nl\n"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d seconde"
+msgstr[1] "%d seconden"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u minuut"
+msgstr[1] "%u minuten"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u seconde"
+msgstr[1] "%u seconden"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:47
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:78
@@ -47,26 +47,26 @@ msgstr[1] ""
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s en %s"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:63
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u dag"
+msgstr[1] "%u dagen"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u uur"
+msgstr[1] "%u uren"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s en %s"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:33
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:74
@@ -92,11 +92,11 @@ msgstr "Onbekende artiest"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:36
 msgid "Unknown Genre"
-msgstr ""
+msgstr "Onbekend genre"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:38
 msgid "Various Artists"
-msgstr ""
+msgstr "Diverse artiesten"
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:203
 #, c-format

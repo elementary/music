@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-06 00:10-0600\n"
-"PO-Revision-Date: 2012-10-07 08:23+0000\n"
+"PO-Revision-Date: 2012-10-11 08:43+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-08 05:34+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-13 05:01+0000\n"
+"X-Generator: Launchpad (build 16137)\n"
 "Language: gl\n"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
@@ -471,24 +471,24 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:75
 msgid "Metadata"
-msgstr ""
+msgstr "Metadados"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:77
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:373
 msgid "Lyrics"
-msgstr ""
+msgstr "Letras de cancións"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:86
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:157
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:65
 msgid "Done"
-msgstr ""
+msgstr "Feito"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:173
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:344
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "Editando %s por %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:175
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:346
@@ -507,60 +507,60 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
 msgid "Title"
-msgstr ""
+msgstr "Titulo"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:186
 msgid "Album Artist"
-msgstr ""
+msgstr "Intérprete do álbum"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:264
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
 msgid "Genre"
-msgstr ""
+msgstr "Xénero"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:189
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 msgid "Composer"
-msgstr ""
+msgstr "Compositor"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:190
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:265
 msgid "Grouping"
-msgstr ""
+msgstr "Agrupamento"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:260
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Comment"
-msgstr ""
+msgstr "Comentario"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:192
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "Track"
-msgstr ""
+msgstr "Pista"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:193
 msgid "Disc"
-msgstr ""
+msgstr "Disco"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:194
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:272
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
 msgid "Year"
-msgstr ""
+msgstr "Ano"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:195
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
 msgid "Rating"
-msgstr ""
+msgstr "Cualificación"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:197
 msgid "Media Type"
-msgstr ""
+msgstr "Tipo de medio"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
@@ -571,7 +571,7 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:67
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Podcast"
-msgstr ""
+msgstr "Podcast"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
@@ -579,11 +579,11 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Continuar a sincronización"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Deter a sincronización"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
@@ -595,21 +595,21 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "A sincronización eliminará %i elementos de %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "A sincronización eliminará 1 elemento de %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:181
 msgid "Preferences"
-msgstr ""
+msgstr "Preferéncias"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:216
 msgid "General"
-msgstr ""
+msgstr "Xeral"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:230
 msgid "Select Music Folder"
@@ -635,7 +635,7 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:258
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Escribir metadatos en ficheiro"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:273
 msgid "Library Management"
@@ -643,11 +643,11 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:280
 msgid "Use Noise as the default Music application"
-msgstr ""
+msgstr "Usar Noise como reproductor predeterminado de son"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:285
 msgid "System Integration"
-msgstr ""
+msgstr "Integración co sistema"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
@@ -663,50 +663,50 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:75
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:83
 msgid "Rules"
-msgstr ""
+msgstr "Regras"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:84
 msgid "Options"
-msgstr ""
+msgstr "Opcións"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Playlist Title"
-msgstr ""
+msgstr "Título da lista de reprodución"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "Match"
-msgstr ""
+msgstr "Coincidencia"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:95
 msgid "any"
-msgstr ""
+msgstr "calquera"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "all"
-msgstr ""
+msgstr "todo"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:97
 msgid "of the following:"
-msgstr ""
+msgstr "dos seguintes:"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:124
 msgid "Limit to"
-msgstr ""
+msgstr "Limitar a"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:126
 msgid "items"
-msgstr ""
+msgstr "elementos"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:259
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:31
 msgid "Bitrate"
-msgstr ""
+msgstr "Taxa de bits"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:262
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 msgid "Date Added"
-msgstr ""
+msgstr "Data de adición"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Date Released"
@@ -715,17 +715,17 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Last Played"
-msgstr ""
+msgstr "Última reprodución"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:267
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:405
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Length"
-msgstr ""
+msgstr "Duración"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Playcount"
-msgstr ""
+msgstr "Contaxe de reproducións"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
@@ -733,20 +733,20 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
-msgstr ""
+msgstr "é"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:333
 msgid "contains"
-msgstr ""
+msgstr "contén"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:334
 msgid "does not contain"
-msgstr ""
+msgstr "non contén"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 msgid "is exactly"
-msgstr ""
+msgstr "é exactamente"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is at most"
@@ -762,28 +762,28 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is before"
-msgstr ""
+msgstr "é anterior a"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:406
 msgid "seconds"
-msgstr ""
+msgstr "segundos"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:410
 msgid "days ago"
-msgstr ""
+msgstr "dias atras"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:414
 msgid "kbps"
-msgstr ""
+msgstr "kbps"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr ""
+msgstr "Importar desde un dispositivo"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr ""
+msgstr "Importar ficheiros multimedia de %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
@@ -798,26 +798,26 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
-msgstr ""
+msgstr "Importar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr ""
+msgstr "Non importar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "Importar %i elementos desde %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Importar %s desde %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
@@ -825,15 +825,15 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr ""
+msgstr "Seleccionar elemento"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr ""
+msgstr "Seleccionar álbum"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr ""
+msgstr "Seleccionar interprete"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
@@ -870,27 +870,27 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "Retirar de %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
-msgstr ""
+msgstr "Audiolibro"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:73
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 msgid "Station"
-msgstr ""
+msgstr "Emisora"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
-msgstr ""
+msgstr "Retirar %d %s de %s?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:89
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "Retirar «%s» de %s?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
@@ -902,7 +902,7 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
-msgstr ""
+msgstr "Cancelando a sincronización"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
@@ -912,7 +912,7 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
-msgstr ""
+msgstr "Cancelando a importación"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
@@ -935,27 +935,27 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/PopupListView.vala:166
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s por %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d minutos"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d horas"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "%d días"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
-msgstr ""
+msgstr "%u elementos, %s, %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid "No songs in Queue"
@@ -990,7 +990,7 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
-msgstr ""
+msgstr "Localizar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
@@ -1004,19 +1004,19 @@ msgstr ""
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u álbum"
+msgstr[1] "%u álbumes"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u canción"
+msgstr[1] "%u cancións"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:590
 msgid "No media"
-msgstr ""
+msgstr "Sen medio"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
@@ -1035,7 +1035,7 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "Editar a lista de reprodución intelixente"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid ""
@@ -1057,11 +1057,11 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 #, c-format
 msgid "%i tracks"
-msgstr ""
+msgstr "%i pistas"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 msgid "1 track"
-msgstr ""
+msgstr "1 pista"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
@@ -1074,54 +1074,54 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
-msgstr ""
+msgstr "N/D"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
 #, c-format
 msgid "%i kbps"
-msgstr ""
+msgstr "%i kbps"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:257
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:263
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
-msgstr ""
+msgstr "Capítulo"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Plays"
-msgstr ""
+msgstr "Reproducións"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Skips"
-msgstr ""
+msgstr "Omisións"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "#"
-msgstr ""
+msgstr "Núm."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgid "Remove from Library"
-msgstr ""
+msgstr "Eliminar da fonoteca"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:105
 msgid "Remove from Queue"
