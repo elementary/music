@@ -126,7 +126,13 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
     public override bool key_press_event (Gdk.EventKey event) {
         if(event.keyval == Gdk.Key.space) {
-            Noise.App.main_window.play_media();
+            GLib.message ("test");
+            if(Noise.App.player.playing) {
+                Noise.App.player.player.pause();
+            }
+            else {
+                Noise.App.player.player.play();
+            }
         }
         return base.key_press_event (event);
     }
