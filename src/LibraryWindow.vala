@@ -117,9 +117,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public override bool key_press_event (Gdk.EventKey event)
     {
-        if(event.keyval.to_string() == "32") {
-		        play_media();
-	      }
         var typed_unichar = event.str.get_char ();
 
        // Redirect valid key presses to the search entry
