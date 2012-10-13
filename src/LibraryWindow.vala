@@ -117,7 +117,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public override bool key_press_event (Gdk.EventKey event) {
         var typed_unichar = event.str.get_char ();
-
+        if(event.keyval == Gdk.Key.space && !searchField.has_focus) {
+            if(App.player.playing) {
+                App.player.playing = false;
+                App.player.player.pause();
+                Noise.App.main_window.playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+            }
+            else {
+                App.player.playing = true;
+                App.player.player.play();
+                Noise.App.main_window.playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
+            }
+        }        
        // Redirect valid key presses to the search entry
        if (typed_unichar.validate () && searchField.sensitive && !searchField.has_focus) {
             unichar[] special_chars = {'&', '.', '-', '\'', '%', '(', ')', '=', '@', '!',
@@ -130,7 +141,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         return base.key_press_event (event);
     }
-
+ 
     private inline void setup_window () {
         debug ("setting up main window");
 
