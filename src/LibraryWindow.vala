@@ -115,8 +115,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }*/
     }
 
-    public override bool key_press_event (Gdk.EventKey event)
-    {
+    public override bool key_press_event (Gdk.EventKey event) {
         var typed_unichar = event.str.get_char ();
 
        // Redirect valid key presses to the search entry
