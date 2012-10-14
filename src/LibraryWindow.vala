@@ -130,7 +130,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 searchField.grab_focus ();
         }
 
-        return base.key_press_event (event);
+        return true;
     }
  
     private inline void setup_window () {
