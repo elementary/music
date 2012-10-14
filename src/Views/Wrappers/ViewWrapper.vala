@@ -75,20 +75,6 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
     public bool has_welcome_screen  { get { return welcome_screen != null; } }
 
     protected bool widgets_ready = false;
-    public override bool key_press_event (Gdk.EventKey event) {
-        var typed_unichar = event.str.get_char ();
-        if(event.keyval == Gdk.Key.space) {
-            if(App.player.playing) {    
-                App.player.playing = false;
-                App.player.player.pause();
-            }
-            else {
-                App.player.playing = true;
-                App.player.player.play();
-            }
-        }       
-        return base.key_press_event (event);
-    }
  
     // Contruction must always happen before population
     protected const int VIEW_CONSTRUCT_PRIORITY = Priority.DEFAULT_IDLE - 10;
