@@ -8,38 +8,35 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-06 00:10-0600\n"
-"PO-Revision-Date: 2012-09-22 12:59+0000\n"
-"Last-Translator: Ebubekir KARUL <Unknown>\n"
+"PO-Revision-Date: 2012-10-13 23:22+0000\n"
+"Last-Translator: Ferhat TUNÇTAN <ferhattnctn66@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-07 04:54+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-14 04:50+0000\n"
+"X-Generator: Launchpad (build 16137)\n"
 "Language: tr\n"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d saniye"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u dakika"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u saniye"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:47
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:78
@@ -53,15 +50,13 @@ msgstr "%s ve %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u gün"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u saat"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:76
 #, c-format
@@ -92,11 +87,11 @@ msgstr "Bilinmeyen Sanatçı"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:36
 msgid "Unknown Genre"
-msgstr ""
+msgstr "Bilinmeyen Tür"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:38
 msgid "Various Artists"
-msgstr ""
+msgstr "Çeşitli Sanatçılar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:203
 #, c-format
@@ -231,7 +226,7 @@ msgstr "Bilgi Panelini Gizle"
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:237
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:74
 msgid "Sync"
-msgstr "Senkronize"
+msgstr "Eşitle"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
@@ -590,16 +585,18 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Eşitlemeye devam ederseniz, ortam eşitleme listesinde olmadığı için %s'den "
+"çıkarılacak. Öncelikle onları kütüphaneye almak ister misiniz?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "Eşitleme %i öğelerini %s'den çıkaracak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "Eşitleme 1 öğeyi %s'den çıkaracak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:181
@@ -628,15 +625,15 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:255
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Müzik klasörünü düzenli tut"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:256
 msgid "Copy files to Music folder when adding to Library"
-msgstr ""
+msgstr "Kütüphaneye ekleme yapılırken Müzik klasörüne dosyaları kopyala"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:258
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Dosyaya medadata yaz"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:273
 msgid "Library Management"
@@ -644,11 +641,11 @@ msgstr "Kütüphane Yönetimi"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:280
 msgid "Use Noise as the default Music application"
-msgstr ""
+msgstr "Noise'u varsayılan Müzik uygulaması olarak kullan"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:285
 msgid "System Integration"
-msgstr ""
+msgstr "Sistem Bütünleşmesi"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
@@ -730,11 +727,11 @@ msgstr "Çalma Sayısı"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
-msgstr ""
+msgstr "Skipcount"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
-msgstr ""
+msgstr "olan"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:333
 msgid "contains"
@@ -747,23 +744,23 @@ msgstr "içermez"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 msgid "is exactly"
-msgstr ""
+msgstr "tam olarak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is at most"
-msgstr ""
+msgstr "en çok olarak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "is at least"
-msgstr ""
+msgstr "en az olarak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is within"
-msgstr ""
+msgstr "içinden olarak"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is before"
-msgstr ""
+msgstr "öncedir"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:406
 msgid "seconds"
@@ -792,6 +789,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Aşağıdaki dosyalar %s üzerinde bulundu ama şu anda kütüphanenizde değiller. "
+"İçe aktarmak istediğiniz tüm dosyaları kontrol edin."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -808,12 +807,12 @@ msgstr "Aktarma"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "%i öğeyi %s den içe aktar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr ""
+msgstr "%s i %s den içe aktar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
@@ -822,7 +821,7 @@ msgstr "ID"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "İçe aktarmak tek bir ortam seçin:"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
@@ -857,11 +856,12 @@ msgstr "Medya dosyası bulunamadı"
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
 msgstr ""
+"%s tarafından %s için müzik dosyası bulunamadı. Ne yapmak istersiniz?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "%i ortam dosyaları bulunamadı. Ne yapmak istersiniz?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:145
 #, c-format
@@ -885,7 +885,7 @@ msgstr "İstasyon"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
-msgstr ""
+msgstr "%d %s tarafından %s kaldırılsın mı?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:89
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:91
@@ -899,6 +899,8 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"Bu işlem %s i kütüphanenizden ve %s ile otomatik olarak eşitlenen "
+"herhangibir cihazdan kaldıracak."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
@@ -926,7 +928,7 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
 msgid "No External Songs"
-msgstr ""
+msgstr "Harici Şarkı Yok"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
@@ -957,7 +959,7 @@ msgstr "%d gün"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
-msgstr ""
+msgstr "%u öğe, %s, %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid "No songs in Queue"
@@ -969,6 +971,10 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Kuyruğa şarkı eklemek için,  bir öğe üzerinde <b>ikincil tıklama</b>yı "
+"kullanın ve <b>Kuyruk</b> u seçin. Bir şarkı biterken,  halen çalan "
+"listedeki sonraki şarkıdan önce ilk olarak kuyruğa alınmış şarkılar çalınmış "
+"olacak."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
@@ -1009,23 +1015,21 @@ msgstr "Bu cihazdaki bütün müzikler zaten kitaplığınızda mevcut"
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u albüm"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u şarkı"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:590
 msgid "No media"
-msgstr ""
+msgstr "Ortam bulunamadı"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
-msgstr ""
+msgstr "Üzgünüz, aramanıza uyan bir müzik yok"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -1037,6 +1041,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Bu çalma listesine şarkılar eklemek için, bir öğe üzerinde <b>ikincil "
+"tıklama</b>yı kullanın ve <b>Çalma Listesine Ekle</b>yi seçin."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
@@ -1049,6 +1055,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Bu çalma listesi otomatik olarak kurallara uyan şarkılar ile doldurulur. Bu "
+"kuralları değiştirmek için, kenar çubuğu üzerinde <b>ikincil tıklama</b>yı "
+"kullanın ve <b>Düzenle</b>yi tıklayın. İsteğe bağlı olarak, aşağıdaki "
+"düğmeyi tıklayabilirsiniz."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -1057,7 +1067,7 @@ msgstr "Bilinmeyen ses CD'si"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s bu Ses CD'sinin içeriğini okuyamadı"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 #, c-format
@@ -1070,16 +1080,16 @@ msgstr "1 parça"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
-msgstr ""
+msgstr "Cihaza erişilemiyor"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s bu ağ aygıtına erişemedi"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
 #, c-format
@@ -1090,7 +1100,7 @@ msgstr "%i kb/s"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:257
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:263
 msgid "Never"
-msgstr ""
+msgstr "Asla"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
@@ -1118,7 +1128,7 @@ msgstr "Çalanlar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Skips"
-msgstr ""
+msgstr "Atlar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "#"
@@ -1164,7 +1174,7 @@ msgstr "Şarkıyı Sil"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:253
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "Seçili şarkılardan %i in %i i içe aktar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:255
 msgid "Import this song"
@@ -1173,35 +1183,35 @@ msgstr "Bu şarkıyı içe aktar"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:257
 #, c-format
 msgid "Import %i songs"
-msgstr ""
+msgstr "%i şarkıyı içe aktar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:110
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Sütunları otomatik ölçülendir"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:117
 msgid "Display Album Art"
-msgstr ""
+msgstr "Albüm Kapağını göster"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:245
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:311
 msgid "Sample Title"
-msgstr ""
+msgstr "Örnek Başlık"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:316
 msgid "Sample Artist"
-msgstr ""
+msgstr "Örnek Sanatçı"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:319
 msgid "Sample Album"
-msgstr ""
+msgstr "Örnek Albüm"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:332
 msgid "Sample Genre"
-msgstr ""
+msgstr "Örnek Tür"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
@@ -1243,7 +1253,7 @@ msgstr "Tüm Türler"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "Tüm %i Türleri"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Genres"
@@ -1256,7 +1266,7 @@ msgstr "Tüm Sanatçılar"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "Tüm %i Sanatçıları"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
 msgid "No Artists"
@@ -1269,7 +1279,7 @@ msgstr "Bütün Albümler"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "Tüm %i Albümleri"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "No Albums"
@@ -1282,7 +1292,7 @@ msgstr "Tüm Yıllar"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "Tüm %i Yılları"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
 msgid "No Years"
@@ -1447,7 +1457,7 @@ msgstr "%s kütüphanenize eklendi."
 
 #: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "Düz"
 
 #: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
@@ -1582,17 +1592,17 @@ msgstr ""
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "<b>%s</b> eşzamanlanıyor..."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:658
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "<b>%s</b>den çıkarılıyor..."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:881
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "<b>%s</b> kütüphaneye aktarılıyor..."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
@@ -1600,7 +1610,7 @@ msgstr "Benzer"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
-msgstr "medya"
+msgstr "ortam"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:52
 msgid "Similar Media"
@@ -1608,15 +1618,15 @@ msgstr "Benzer Medya"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr ""
+msgstr "Nosie'a İzin Ver"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "Başarısız. Tekrar denemek için tıklayın."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "Scrobbling Zaten Etkin"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1624,25 +1634,27 @@ msgstr "Başarılı!"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Oturum açmayı tamamlayın"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:40
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Last.fm oturum açma işlemini geri almak için tıklayın"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Last.fm bütünleşmesine izin vermek için, Noise'a izin vermeniz gerekiyor. "
+"Bunu yalnızca bir kez yapmanız gerekiyor."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:68
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Last.fm bütünleşmesi"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
@@ -1651,7 +1663,7 @@ msgstr "Benzer şarkılar bulunuyor"
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
-msgstr ""
+msgstr "%s den %s e benzer şarkılar bulunuyor"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
@@ -1669,6 +1681,9 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s kütüphanenizde %s den %s e benzer şarkılar bulamadı. Tüm şarkı bilgisinin "
+"doğru olduğundan ve internete bağlı olduğunuzdan emin olun. Bazı şarkıların "
+"benzerleri olmayabilir."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
@@ -1681,6 +1696,9 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"Bu görünümde, %s çalmakta olduğunuz şarkının benzerlerini otomatik olarak "
+"bulacak. Ardından bu şarkıları çalmaya başlayabilirsiniz ya da bunları daha "
+"sonrası için çalma listesi olarak kaydedebilirsiniz."
 
 #~ msgid "Add Podcast"
 #~ msgstr "Podcast Ekle"
