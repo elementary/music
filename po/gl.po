@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-06 00:10-0600\n"
-"PO-Revision-Date: 2012-10-16 18:38+0000\n"
+"PO-Revision-Date: 2012-10-17 09:13+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-17 04:50+0000\n"
-"X-Generator: Launchpad (build 16152)\n"
+"X-Launchpad-Export-Date: 2012-10-18 04:58+0000\n"
+"X-Generator: Launchpad (build 16160)\n"
 "Language: gl\n"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
@@ -593,6 +593,9 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Se continua coa sincronización, os ficheiros multimedia van seren retirados "
+"de %s xa que non están na lista de sincronización. Quere importalos primeiro "
+"á fonoteca?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
@@ -626,6 +629,8 @@ msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Debe agardar que rematen as operacións de ficheiros para configurar o seu "
+"cartafol da música"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:255
 msgid "Keep Music folder organized"
@@ -732,7 +737,7 @@ msgstr "Contaxe de reproducións"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
-msgstr ""
+msgstr "Contador de saltos"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
@@ -753,15 +758,15 @@ msgstr "é exactamente"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is at most"
-msgstr ""
+msgstr "é como máximo"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "is at least"
-msgstr ""
+msgstr "é polo menos"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is within"
-msgstr ""
+msgstr "está comprendido"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is before"
@@ -794,6 +799,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Atopáronse os seguintes ficheiros en %s, mais non están na súa fonoteca. "
+"Marque os ficheiros que quere importar."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -863,7 +870,7 @@ msgstr "Non foi posíbel atopar o ficheiro de %s por %s. Que quere facer?"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "Non se atoparon %i ficheiros multimedia. Que quere facer?"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:145
 #, c-format
@@ -901,6 +908,8 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"Isto eliminará %s da súa fonoteca e de calquera dispositivo que se "
+"sincronice automaticamente con %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
@@ -911,6 +920,8 @@ msgstr "Cancelando a sincronización"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
+"Foi cancelada a sincronización de dispositivos. A operación deterase despois "
+"deste medio."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
@@ -922,18 +933,21 @@ msgstr "Cancelando a importación"
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
+"Foi cancelada a importación desde o dispositivo. A operación deterase "
+"despois deste medio."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
 msgid "No External Songs"
-msgstr ""
+msgstr "Non hai cancións externas"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
+"Non se atoparon neste dispositivo cancións que non estiveran na súa fonoteca."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/PopupListView.vala:166
 #, c-format
@@ -984,12 +998,12 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "Obter algunhas cancións"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "%s non puido atopar a súa música."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
@@ -997,7 +1011,7 @@ msgstr "Localizar"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
-msgstr ""
+msgstr "Cambiar o seu cartafol da música."
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 msgid "All the songs in this device are already in your library."
@@ -1068,7 +1082,7 @@ msgstr "1 pista"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
-msgstr ""
+msgstr "O dispositivo non é accesíbel"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
@@ -1615,7 +1629,7 @@ msgstr "Non foi posíbel. Prema para tentalo outra vez."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "O «scrobbling» xa está activado"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1631,13 +1645,15 @@ msgstr "Last.fm"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Prema para repetir o acceso a Last.fm"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Para activar a integración con Last.fm, debe concederlle permiso a Noise. Só "
+"é preciso facelo desta vez."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:68
 msgid "Last.fm Integration"
