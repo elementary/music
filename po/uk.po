@@ -8,39 +8,41 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-06 00:10-0600\n"
-"PO-Revision-Date: 2012-09-22 12:13+0000\n"
-"Last-Translator: Voytsykh <voytsykh@gmail.com>\n"
+"PO-Revision-Date: 2012-10-18 23:13+0000\n"
+"Last-Translator: Sho0ter <Sho0ter@mail.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-10-07 04:54+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-19 06:11+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 "Language: uk\n"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунди"
+msgstr[2] "%d секунд"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u хвилина"
+msgstr[1] "%u хвилин"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
+msgstr[0] "%u секунда"
 msgstr[1] ""
+msgstr[2] "%u секунд"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:47
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:78
@@ -54,15 +56,15 @@ msgstr "%s та %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u день"
+msgstr[1] "%u днів"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u година"
+msgstr[1] "%u годин"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:76
 #, c-format
@@ -321,7 +323,7 @@ msgstr "Програти чергу (%Y-%b-%e %l:%M %p)"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Історія відтворення (%e-%b-%Y %l:%M %p)"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
@@ -610,7 +612,7 @@ msgstr "Налаштування"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:216
 msgid "General"
-msgstr ""
+msgstr "Загальні"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:230
 msgid "Select Music Folder"
@@ -630,15 +632,15 @@ msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:255
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Тримати папку з музикою оранізованою"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:256
 msgid "Copy files to Music folder when adding to Library"
-msgstr ""
+msgstr "При додаванні до бібліотеки копіювати файли в папку з музикою"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:258
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Записувати метадані до файла"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:273
 msgid "Library Management"
@@ -650,7 +652,7 @@ msgstr "Використовувати Noise як типовий програв�
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:285
 msgid "System Integration"
-msgstr ""
+msgstr "Інтеграція в систему"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
@@ -1022,23 +1024,23 @@ msgstr "Всі пісні, які є на пристрої вже у вашій 
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u альбом"
+msgstr[1] "%u альбомів"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u пісня"
+msgstr[1] "%u пісень"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:590
 msgid "No media"
-msgstr ""
+msgstr "Немає носія"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
-msgstr ""
+msgstr "Вибачте, за вашим запитом нічого не знайдено"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -1094,11 +1096,11 @@ msgstr "Пристрій недоступний"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s не має доступу до цього інтернет-пристрою"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
-msgstr ""
+msgstr "Н/Д"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
 #, c-format
@@ -1109,7 +1111,7 @@ msgstr "%i кбіт/сек"
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:257
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:263
 msgid "Never"
-msgstr ""
+msgstr "Ніколи"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
@@ -1196,7 +1198,7 @@ msgstr "Імпорт %i пісень"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:110
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Авторозмір стовбців"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:117
 msgid "Display Album Art"
@@ -1204,23 +1206,23 @@ msgstr "Відобразити обкладинку альбому"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:245
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 Кбіт/сек"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:311
 msgid "Sample Title"
-msgstr ""
+msgstr "Зразок заголовку"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:316
 msgid "Sample Artist"
-msgstr ""
+msgstr "Зразок виконавця"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:319
 msgid "Sample Album"
-msgstr ""
+msgstr "Зразок альбому"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:332
 msgid "Sample Genre"
-msgstr ""
+msgstr "Зразок жанру"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
@@ -1600,17 +1602,17 @@ msgstr "Імпорт з CD буде <b>скасований</b> після по�
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Синхронізую <b>%s</b>..."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:658
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Видаляю з <b>%s</b>..."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:881
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Імпортую <b>%s</b> в бібліотеку..."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
@@ -1626,11 +1628,11 @@ msgstr "Подібні файли"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr ""
+msgstr "Надати Noise права доступу"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "Невдало. Натисніть на \"Спробувати знову\"."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
@@ -1638,11 +1640,11 @@ msgstr "Скроблінг уже активовано"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
-msgstr ""
+msgstr "Успішно!"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Пройти авторизацію"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:40
 msgid "Last.fm"
@@ -1657,14 +1659,16 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Для інтеграції з Last.fm потрібно надати Noise права доступу. Це потрібно "
+"зробити лише один раз."
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:68
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Інтеграція з Last.fm"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Отримую схожі пісні"
 
 #: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
