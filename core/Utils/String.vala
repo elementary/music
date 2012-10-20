@@ -22,19 +22,26 @@
 
 namespace Noise.String {
 
+    public inline bool is_empty (string? text, bool check_white_space) {
+        return text == null || check_white_space ? is_white_space (text) : text == "";
+    }
+
     /**
-     * Compares two strings. Used extensively in the views for sorting.
+     * Compares two strings encoded in UTF-8. Used extensively in the views for sorting.
      *
-     * @return 1 if a > b. -1 if b > a
+     * It takes into account the current locale's sorting rules and is faster
+     * than normal string comparison.
+     *
+     * /!\ DON'T USE THIS METHOD WITH STRINGS NOT ENCODED IN UTF-8.
+     *
+     * @param a first string.
+     * @param b second string.
+     * @return 0 if a == b, a positive number if a > b, or a negative number if a < b.
      */
-    public inline int compare (string a, string b) {
-        if (a == "" && b != "")
-            return 1;
-
-        if (a != "" && b == "")
-            return -1;
-
-        return (a > b) ? 1 : -1;
+    public inline int compare (string? a, string? b) {
+        // g_strcmp0 is known to handle NULL strings gracefully
+        return strcmp (a != null ? a.collate_key () : (string) null,
+                       b != null ? b.collate_key () : (string) null);
     }
 
     /**
@@ -93,6 +100,7 @@ namespace Noise.String {
             case UnicodeType.LINE_SEPARATOR:
             case UnicodeType.SPACE_SEPARATOR:
             case UnicodeType.PARAGRAPH_SEPARATOR:
+            case UnicodeType.DASH_PUNCTUATION:
             case UnicodeType.OPEN_PUNCTUATION:
             case UnicodeType.OTHER_PUNCTUATION:
                 return 0; // Ignore those
