@@ -50,7 +50,15 @@
  * to be generic). It should be easy to re-use it on another application.
  */
 public class Noise.PixbufCache {
-    private const string DEFAULT_FORMAT_NAME = "jpeg";
+
+    /**
+     * Supported image's content types.
+     */
+    public const string[] IMAGE_TYPES = {
+        "image/jpeg",
+        "image/png",
+        "image/tiff"
+    };
 
     public Gee.Map<string, Gdk.Pixbuf> images {
         owned get { return image_map.read_only_view; }
@@ -58,6 +66,7 @@ public class Noise.PixbufCache {
 
     public Gdk.PixbufFormat image_format { get; private set; }
 
+    private const string DEFAULT_FORMAT_NAME = "jpeg";
     private File image_dir;
     private Gee.HashMap<string, Gdk.Pixbuf> image_map;
 
@@ -138,7 +147,7 @@ public class Noise.PixbufCache {
 
         lock (image_map) {
             image_map.unset (key, out val);
-            delete_file (get_cached_image_path (key));
+            delete_file (File.new_for_path (get_cached_image_path (key)));
         }
 
         return val;
@@ -236,27 +245,28 @@ public class Noise.PixbufCache {
     /**
      * Stores a pixbuf in the cache directory. Not thread-safe
      */
-    private void save_image_to_file (string key, Gdk.Pixbuf to_save) {
+    private async void save_image_to_file (string key, Gdk.Pixbuf to_save) {
         debug ("Saving cached image for: %s", key);
 
         try {
-            string path = get_cached_image_path (key);
-            if (delete_file (path))
-                to_save.save (path, image_format.get_name ());
+            var dest_file = File.new_for_path (get_cached_image_path (key));
+            if (delete_file (dest_file))
+                yield PixbufUtils.save_pixbuf_async (to_save, dest_file ,image_format.get_name ());
         } catch (Error err) {
             warning ("Could not save pixbuf: %s", err.message);
         }
     }
 
     /**
-     * Deletes the file pointed by path. It silently fails in case the file
-     * doesn't exist. Not thread-safe.
+     * Deletes a file.
+     
+     * It silently fails in case the file doesn't exist. Not thread-safe.
      *
      * @return true in case the image was deleted or doesn't exist; false otherwise.
      */
-    private bool delete_file (string path) {
+    private bool delete_file (File file) {
         try {
-            File.new_for_path (path).delete ();
+            file.delete ();
         } catch (Error err) {
             if (err is IOError.NOT_FOUND) {
                 debug (err.message);
