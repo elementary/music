@@ -37,7 +37,7 @@ public class Noise.RemoveFilesDialog : Window {
 	
 	public RemoveFilesDialog (LibraryWindow lw, LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
 		this.lw = lw;
-		
+
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -58,46 +58,30 @@ public class Noise.RemoveFilesDialog : Window {
 		cancel_button = new Button.with_label (_("Cancel"));
 		
 		bool multiple_media = to_remove.size > 1;
-		var media_text = new StringBuilder();
-		switch (media_type) {
-			case ViewWrapper.Hint.MUSIC:
-				media_text.append(_("Song"));
-				break;
-			case ViewWrapper.Hint.PODCAST:
-				media_text.append(_("Podcast"));
-				break;
-			case ViewWrapper.Hint.AUDIOBOOK:
-				media_text.append(_("Audiobook"));
-				break;
-			case ViewWrapper.Hint.STATION:
-				media_text.append(_("Station"));
-				break;
-		}
 		
+		var app_name = App.instance.get_name ();
+
 		// set title text
 		title.xalign = 0.0f;
 		string title_text = "";
 		if (multiple_media) {
-			media_text.append_unichar('s'); // Plural form
-			title_text = _("Remove %d %s from %s?").printf(to_remove.size, media_text.str, App.instance.get_name ());
+            title_text = _("Remove %d Songs From %s?").printf (to_remove.size, app_name);
 		}
 		else {
   			Media m = to_remove.get(0);
-  			
-  			var app_name = App.instance.get_name ();
-  			if(m.mediatype != 3)
-				title_text = _("Remove \"%s\" From %s?").printf (String.escape (m.title), app_name);
-			else
-				title_text = _("Remove \"%s\" From %s?").printf (String.escape (m.album_artist), app_name);
+			title_text = _("Remove \"%s\" From %s?").printf (m.get_display_title (), app_name);
 		}
+
 		title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (title_text) + "</span>");
 		
 		// set info text
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
-		string info_text = _("This will remove the %s from your library and from any device that automatically syncs with %s.").printf(String.escape (media_text.str.down()), String.escape (App.instance.get_name ()));
-		info.set_markup(info_text);
-		
+		int n = to_remove.size;
+		string info_text = ngettext ("This will remove the song from your library and from any device that automatically syncs with %s.", "This will remove the songs from your library and from any device that automatically syncs with %s.", n).printf (app_name);
+
+		info.set_text (info_text);
+
 		// decide if we need the trash button
 		bool need_trash = false;
 		foreach(var m in to_remove) {
