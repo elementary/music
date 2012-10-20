@@ -25,10 +25,10 @@ using Gtk;
  * users here.
 **/
 public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
-	int stamp; // all iters must match this
+	private int stamp; // all iters must match this
 	
 	/* data storage variables */
-	HashTable<int, Object> rows; // internal id -> user specified object
+	Gee.HashMap<int, Object> rows; // internal id -> user specified object
 	List<Type> columns;
 	
 	private int sort_column_id;
@@ -43,16 +43,16 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	/** Initialize data storage, columns, etc. **/
 	public FastModel (List<Type> column_types) {
 		columns = column_types.copy();
-		rows = new HashTable<int, Object>(null, null);
+		rows = new Gee.HashMap<int, Object> (null, null);
 		
 		sort_column_id = -2;
 		sort_direction = SortType.ASCENDING;
 		
-		stamp = (int)GLib.Random.next_int();
+		stamp = (int) GLib.Random.next_int();
 	}
 
 	public Type get_column_type (int col) {
-		return columns.nth_data(col);
+		return columns.nth_data (col);
 	}
 
 	public TreeModelFlags get_flags () {
@@ -61,18 +61,20 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 
 	public bool get_iter (out TreeIter iter, TreePath path) {
 		iter = TreeIter();
-		int path_index = path.get_indices()[0];
-		if(rows.size() == 0 || path_index < 0 || path_index >= rows.size() || rows.get(path_index) == null)
+		int path_index = path.get_indices ()[0];
+        uint size = rows.size;
+
+		if (size == 0 || path_index < 0 || path_index >= size || rows.get (path_index) == null)
 			return false;
 
 		iter.stamp = this.stamp;
-		iter.user_data = (void*)path_index;
+		iter.user_data = (void*) path_index;
 
 		return true;
 	}
 
 	public int get_n_columns () {
-		return (int)columns.length();
+		return (int) columns.length ();
 	}
 
 	public TreePath? get_path (TreeIter iter) {
@@ -80,28 +82,24 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	public void get_value (TreeIter iter, int column, out Value val) {
-		val = Value(get_column_type(column));
+		val = Value (get_column_type (column));
 
-		if (iter.stamp != this.stamp || column < 0 || column >= get_n_columns())
+		if (iter.stamp != this.stamp || column < 0 || column >= get_n_columns ())
 			return;
 
-		int row = (int)iter.user_data;
-		if(!(row >= rows.size())) {
-			var object = rows.get(row);
-			var val_tmp = value_func(row, column, object);
-			if (val_tmp != null)
-			    val = val_tmp;
-		}
+        int row = (int) iter.user_data;
+        var object = rows.get (row);
+        Value? val_tmp = null;
+
+        if (object != null)
+    		val_tmp = value_func (row, column, object);
+
+		if (val_tmp != null)
+		    val = val_tmp;
 	}
 
 	public Object get_object (TreeIter iter) {
-        Object? object = null;
-
-		int row = (int)iter.user_data;
-		if (row < rows.size ())
-			object = rows.get (row);
-
-        return object;
+        return rows.get ((int) iter.user_data);
 	}
 
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
@@ -115,32 +113,27 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	}
 
 	public int iter_n_children (TreeIter? iter) {
-		if(iter == null)
-			return (int)rows.size();
-
-		return 0;
+		return (iter == null) ? (int) rows.size : 0;
 	}
 
 	public bool iter_next (ref TreeIter iter) {
 		if(iter.stamp != this.stamp)
 			return false;
 
-		iter.user_data = (void*)(((int)iter.user_data) + 1);
+        int index = (int) iter.user_data;
+		iter.user_data = (void*) (++index);
 
-		if(((int)iter.user_data) >= rows.size())
-			return false;
-
-		return true;
+		return index < rows.size;
 	}
 
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
 		iter = TreeIter();
 
-		if(n < 0 || n >= rows.size() || parent != null)
+		if (n < 0 || n >= rows.size || parent != null)
 			return false;
 
-		iter.stamp = this.stamp;
-		iter.user_data = (void*)n;
+		iter.stamp = stamp;
+		iter.user_data = (void*) n;
 
 		return true;
 	}
@@ -153,12 +146,15 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	
 	public void append (out TreeIter iter) {
 		iter = TreeIter();
-		
-		TreePath path = new TreePath.from_string(((int)rows.size()).to_string());
-		rows.set((int)rows.size(), new Object());
-		iter.stamp = this.stamp;
-		iter.user_data = (void*)rows.size;
-		
+
+        int index = (int) rows.size;
+
+		TreePath path = new TreePath.from_indices (index, -1);
+		rows.set (index, new Object());
+
+		iter.stamp = stamp;
+		iter.user_data = (void*) rows.size;
+
 		row_inserted(path, iter);
 	}
 	
@@ -166,8 +162,11 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 		if(iter.stamp != this.stamp)
 			return;
 
-		var path = new TreePath.from_string(((int)iter.user_data).to_string());
-		rows.remove((int)iter.user_data);
+        int index = (int) iter.user_data;
+
+		var path = new TreePath.from_indices (index, -1);
+		rows.unset (index);
+
 		row_deleted(path);
 		
 		// TODO: swap all indices > this iter's index down to maintain that
@@ -193,14 +192,16 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	 * 0-n where n is size of the hashtable (no gaps).
 	**/
 	public void set_table (HashTable<int, Object> table, Cancellable? cancellable) {
-        if (!Utils.is_cancelled (cancellable))
-    		rows.remove_all();
+        if (Utils.is_cancelled (cancellable))
+            return;
+
+		rows.clear ();
 
 		for(int i = 0; i < table.size(); ++i) {
             if (Utils.is_cancelled (cancellable))
                 return;
 
-			rows.set(i, table.get(i));
+			rows.set (i, table.get (i));
 		}
 	}
 	
@@ -233,9 +234,11 @@ public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	public void set_sort_column_id (int column, SortType order) {
 		sort_column_id = column;
 		sort_direction = order;
-		
-		reorder_requested(column, order);
-		sort_column_changed();
+
+        if (column != -1) {
+		    reorder_requested(column, order);
+		    sort_column_changed();
+        }
 	}
 	
 	/** The following functions are only here to implement TreeSortable **/
