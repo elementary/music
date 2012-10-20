@@ -28,7 +28,6 @@ public class Noise.Streamer : GLib.Object {
 
 	InstallGstreamerPluginsDialog dialog;
 	
-	public bool checked_video;
 	public bool set_resume_pos;
 	
 	/** signals **/
@@ -42,7 +41,7 @@ public class Noise.Streamer : GLib.Object {
 		pipe.bus.add_watch(busCallback);
 		//pipe.playbin.about_to_finish.connect(about_to_finish);
 
-		Timeout.add (70, doPositionUpdate);
+		Timeout.add (200, doPositionUpdate);
 	}
 	
 	public bool doPositionUpdate() {
@@ -75,13 +74,6 @@ public class Noise.Streamer : GLib.Object {
 		debug("set uri to %s\n", uri);
 		pipe.playbin.uri = uri.replace("#", "%23");
 
-#if HAVE_PODCASTS
-		if(App.main_window.initialization_finished && pipe.video.element != null) {
-			var xoverlay = pipe.video.element as XOverlay;
-			xoverlay.set_xwindow_id(Gdk.X11Window.get_xid(App.main_window.videoArea.get_window ()));
-		}
-#endif
-		
 		setState(State.PLAYING);
 		
 		debug("setURI seeking to %d\n", App.player.media_info.media.resume_pos);
@@ -163,20 +155,6 @@ public class Noise.Streamer : GLib.Object {
 
             if(newstate != Gst.State.PLAYING)
 				break;
-			
-			if(!checked_video) {
-				Idle.add( () => {
-					checked_video = true;
-					if(pipe.videoStreamCount() > 0) {
-						GLib.message ("Video stream found in media\n");
-					}
-					else if(getPosition() > 0) {
-						// TODO: Hide video graphics if necessary
-					}
-					
-					return false;
-				});
-			}
 			
 			
 			break;

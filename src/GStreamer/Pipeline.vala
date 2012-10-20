@@ -26,7 +26,6 @@ public class Noise.Pipeline : GLib.Object {
 	public Gst.Pipeline pipe;
 	public Equalizer eq;
 	public ReplayGain gapless;
-	public Video video;
 	
 	public dynamic Gst.Bus bus;
 	//Pad teepad;
@@ -85,31 +84,20 @@ public class Noise.Pipeline : GLib.Object {
 		audiotee.set("alloc-pad", pad);
 		pad.link(sinkpad);
 		
-		// now add Video
-		video = new Video();
-		if(video.element != null) {
-			audiosinkqueue.link_many(video.element);
-			//((Gst.Bin)audiobin).add_many(video.element);
-			playbin.set("video-sink", video.element);
-		}
-		
 		//bus.add_watch(busCallback);
 		/*play.audio_tags_changed.connect(audioTagsChanged);
-		play.text_tags_changed.connect(textTagsChanged);
-		play.video_tags_changed.connect(videoTagsChanged);*/
-	}
-	
-	/*private void videoTagsChanged(Gst.Element sender, int stream_number) {
-		
+		play.text_tags_changed.connect(textTagsChanged);*/
 	}
 
+/*
 	private void audioTagsChanged(Gst.Element sender, int stream_number) {
 		
 	}
 
 	/*private void textTagsChanged(Gst.Element sender, int stream_number) {
 		
-	}*/
+	}
+*/
 	
 	public void enableEqualizer() {
 		if (eq.element != null) {
@@ -123,9 +111,5 @@ public class Noise.Pipeline : GLib.Object {
 			audiosinkqueue.unlink_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
 			audiosinkqueue.link_many(audiosink); // link the queue with the real audio sink
 		}
-	}
-	
-	public int videoStreamCount() {
-		return playbin.n_video;
 	}
 }

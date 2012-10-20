@@ -50,7 +50,6 @@ set(CLIENT_SOURCE
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
     DataBase/Tables.vala
-    GStreamer/Video.vala
     GStreamer/Equalizer.vala
     GStreamer/Pipeline.vala
     GStreamer/GStreamerTagger.vala
