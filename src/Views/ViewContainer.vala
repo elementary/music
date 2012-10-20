@@ -20,26 +20,12 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.ViewContainer : Gtk.EventBox {
-
-    private Gtk.Notebook? notebook = null;
+public class Noise.ViewContainer : Gtk.Notebook {
 
     public ViewContainer () {
-        this.visible_window = false;
-
-        this.push_composite_child ();
-        this.notebook = new Gtk.Notebook ();
-        this.notebook.set_composite_name ("notebook");
-        this.pop_composite_child ();
-
-        this.notebook.show_tabs = false;
-        this.notebook.show_border = false;
-
-        base.add (this.notebook);
+        show_tabs = false;
+        show_border = false;
     }
-
-    public override void remove (Gtk.Widget widget) { }
-    public override void add (Gtk.Widget widget) { }
 
     /**
      * Appends a widget to the main views.
@@ -48,7 +34,7 @@ public class Noise.ViewContainer : Gtk.EventBox {
     public int add_view (Gtk.Widget view) {
         return_val_if_fail (!has_view (view), -1);
         view.expand = true;
-        return this.notebook.append_page (view);
+        return append_page (view);
     }
 
     /**
@@ -56,15 +42,15 @@ public class Noise.ViewContainer : Gtk.EventBox {
      * @return the index of the view in the view container
      */
     public void remove_view (Gtk.Widget view) {
-        this.notebook.remove_page (get_view_index (view));
+        remove_page (get_view_index (view));
     }
 
     public Gtk.Widget? get_view (int index) {
-        return this.notebook.get_nth_page (index);
+        return get_nth_page (index);
     }
 
     public int get_view_index (Gtk.Widget view) {
-        return this.notebook.page_num (view);
+        return page_num (view);
     }
 
     public bool has_view (Gtk.Widget view) {
@@ -76,7 +62,7 @@ public class Noise.ViewContainer : Gtk.EventBox {
     }
 
     public int get_current_index () {
-        return this.notebook.get_current_page ();
+        return get_current_page ();
     }
 
     public Gtk.Widget? get_current_view () {
@@ -107,7 +93,7 @@ public class Noise.ViewContainer : Gtk.EventBox {
             return false;
         }
 
-        this.notebook.set_current_page (index);
+        set_current_page (index);
 
         return true;
     }
