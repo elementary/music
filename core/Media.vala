@@ -21,6 +21,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
+// TODO: DEPRECATE
 public enum Noise.MediaType {
     UNSPECIFIED,
     SONG,
@@ -30,25 +31,18 @@ public enum Noise.MediaType {
 }
 
 public class Noise.Media : Object {
-    public const string UNKNOWN_TITLE = N_("Unknown Title");
-    public const string UNKNOWN_ALBUM = N_("Unknown Album");
-    public const string UNKNOWN_ARTIST = N_("Unknown Artist");
-    public const string UNKNOWN_GENRE = N_("Unknown Genre");
+    /// Used for unknown titles, artists, or album names.
+    private static string UNKNOWN = _("Unknown");
 
-    public const string VARIOUS_ARTISTS = N_("Various Artists");
-
-    /**
-     * Core info
-     */
     public int rowid { get; set; }
-
     public MediaType mediatype { get; set; default = MediaType.SONG; }
     public string uri { get; set; default = ""; }
     public uint64 file_size { get; set; default = 0; }
     public bool file_exists { get { return this.file.query_exists (); } }
+
     public File file {
-        owned get { return File.new_for_uri (this.uri); }
-        set { this.uri = value.get_uri (); }
+        owned get { return File.new_for_uri (uri); }
+        set { uri = value.get_uri (); }
     }
 
     public bool isPreview { get; set; default = false; }
@@ -64,7 +58,6 @@ public class Noise.Media : Object {
     public bool showIndicator { get; set; default = false; }
     public int pulseProgress { get; set; default = 0; }
 
-
     /**
      * Metadata Fields
      */
@@ -75,8 +68,8 @@ public class Noise.Media : Object {
     public string artist { get; set; default = ""; }
     public string album_artist { get; set; default = ""; }
     public string album { get; set; default = ""; }
-    public uint album_number { get; set; default = 0; }
-    public uint album_count { get; set; default = 0; }
+    public uint album_number { get; set; default = 1; }
+    public uint album_count { get; set; default = 1; }
     public string grouping { get; set; default = ""; }
     public string genre { get; set; default = ""; }
     public string comment { get; set; default = ""; }
@@ -104,13 +97,55 @@ public class Noise.Media : Object {
 
     public int resume_pos { get; set; default = 0; }
 
+    public inline string get_display_filename () {
+        return UNKNOWN; // TODO: get a cached version of a UTF-8-encoded filename
+    }
+
+    public inline string get_display_title () {
+        string title = this.title;
+        return is_valid_string_field (title) ? title : get_display_filename ();
+    }
+
+    public inline string get_display_composer () {
+        return get_simple_display_text (composer);
+    }
+
+    public inline string get_display_artist () {
+        return get_simple_display_text (artist);
+    }
+
+    public inline string get_display_album_artist () {
+        string album_artist = this.album_artist;
+        return is_valid_string_field (album_artist) ? album_artist : get_display_artist ();
+    }
+
+    public inline string get_display_album () {
+        return get_simple_display_text (album);
+    }
+
+    public inline string get_display_genre () {
+        return get_simple_display_text (genre);
+    }
+
+    public static inline bool is_valid_string_field (string text) {
+        return !String.is_empty (text, true);
+    }
+
+    /**
+     * It's called simple because it simply checks if the string is empty,
+     * and returns UNKNOWN if it is.
+     */
+    private static inline string get_simple_display_text (string text) {
+        return is_valid_string_field (text) ? text : UNKNOWN;
+    }
+
+
     public Media (string uri) {
         this.uri = uri;
     }
 
-    public Media.from_file (File? file = null) {
-        if (file != null)
-            this.file = file;
+    public Media.from_file (File file) {
+        this.file = file;
     }
 
     public Media copy () {
