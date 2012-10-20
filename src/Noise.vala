@@ -29,6 +29,15 @@
  */
 
 public class Noise.App : Granite.Application {
+
+    /**
+     * Translatable launcher (.desktop) strings to be added to template (.pot) file.
+     * These strings should reflect any changes in these launcher keys in .desktop file
+     */
+    public const string COMMENT = N_("Listen to music");
+    public const string GENERIC = N_("Music Player");
+
+
     private static App _instance;
     public static App instance {
         get {
@@ -44,22 +53,26 @@ public class Noise.App : Granite.Application {
     public static LibraryWindow main_window { get; private set; }
     public static Noise.Plugins.Manager plugins { get; private set; }
 
-
-    // Should always match those used in the .desktop file 
-    public const string[] CONTENT_TYPES = {
-        "x-content/audio-player",
-        "x-content/audio-cdda",
-        "application/x-ogg",
-        "application/ogg",
-        "audio/x-vorbis+ogg",
-        "audio/x-scpls",
-        "audio/x-mp3",
-        "audio/x-mpeg",
+    /**
+     * Supported audio types.
+     *
+     * We only support these even though gstreamer
+     */
+    private const string[] MEDIA_CONTENT_TYPES = {
+        "audio/mp2",
         "audio/mpeg",
-        "audio/x-mpegurl",
-        "audio/x-flac"
+        "audio/mp4",
+        "audio/x-aac",
+        "audio/ogg",
+        "audio/vorbis",
+        "audio/flac",
+        "audio/x-wav",
+        "audio/x-wavpack"
     };
 
+    /**
+     *
+     */
 
 #if ENABLE_EXPERIMENTAL
     /**
@@ -135,37 +148,41 @@ public class Noise.App : Granite.Application {
 
 
     protected override void activate () {
-        // Setup debugger
         if (DEBUG)
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
         else
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
+        if (main_window == null) {
+            plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
+            plugins.hook_app (this);
 
-        // present window if app is already open
-        if (main_window != null) {
-            main_window.present ();
-            return;
+            // Load icon information. Needed until vala supports initialization of static
+            // members. See https://bugzilla.gnome.org/show_bug.cgi?id=543189
+            Icons.init ();
+
+            player = new PlaybackManager ();
+            library_manager = new LibraryManager ();
+            main_window = new LibraryWindow ();
+            main_window.build_ui ();
+            main_window.set_application (this);
+
+            MediaKeyListener.instance.init ();
+
+            plugins.hook_new_window (main_window);
         }
 
-        plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
-        plugins.hook_app (this);
-
-        // Load icon information. Needed until vala supports initialization of static
-        // members. See https://bugzilla.gnome.org/show_bug.cgi?id=543189
-        Icons.init ();
-
-        player = new PlaybackManager ();
-        library_manager = new LibraryManager ();
-        main_window = new LibraryWindow ();
-        main_window.build_ui ();
-        main_window.set_application (this);
-
-        MediaKeyListener.instance.init ();
-
-        plugins.hook_new_window (main_window);
+        main_window.present ();
     }
 
+    /**
+     * Returns all the supported media types. This only considers media application.
+     * Playlist content types and other kinds of files are obtained through
+     * {@link Noise.App.get_extra_content_types}
+     */
+    public static string[] get_media_content_types () {
+        return MEDIA_CONTENT_TYPES;
+    }
 
     /**
      * We use this identifier to init everything inside the application.

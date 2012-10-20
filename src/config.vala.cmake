@@ -8,11 +8,4 @@ namespace Build {
     public const string VERSION_INFO = "@VERSION_INFO@";
     public const string CMAKE_INSTALL_PREFIX = "@CMAKE_INSTALL_PREFIX@";
     public const string ICON_DIR = "@ICON_DIR@";
-
-    /**
-     * Translatable launcher (.desktop) strings to be added to template (.pot) file.
-     * These strings should reflect any changes in these launcher keys in .desktop file
-     */
-    public const string COMMENT = N_("Listen to music");
-    public const string GENERIC = N_("Music Player");
 }
