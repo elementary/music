@@ -103,7 +103,7 @@ public class Noise.Icon : Object {
             gicon = new FileIcon (File.new_for_path (this.file_name));
         } else {
             this.name = file_name;
-            gicon = new ThemedIcon.with_default_fallbacks (this.name);
+            gicon = new ThemedIcon (this.name); // no need for ugly generic fallbacks
         }
     }
 
