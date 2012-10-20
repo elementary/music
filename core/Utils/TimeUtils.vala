@@ -146,7 +146,9 @@ namespace Noise.TimeUtils {
      * TODO: Use locale settings to decide format
      */
     public inline string pretty_timestamp_from_time (Time dt) {
-        return dt.format ("%m/%e/%Y %l:%M %p");
+        /// Format of date strings. See reference documentation of g_date_time_format()
+        /// for more details.
+        return dt.format (_("%m/%e/%Y %l:%M %p"));
     }
 
     public inline string pretty_timestamp_from_uint (uint time) {
