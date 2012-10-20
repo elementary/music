@@ -29,9 +29,26 @@ namespace Granite.Widgets {
     public class Rating : Gtk.DrawingArea {
 
         public class Renderer : Object {
+            /**
+             * Whether to delay the rendering of the rating until the next call
+             * to render() after a property change. This is recommended in cases
+             * where there's an extensive amount of drawing and the renderer's
+             * properties are constantly changing; for example, when used by
+             * a Gtk.CellRenderer in a Gtk.TreeView; in such case, it's desirable
+             * to have the renderer re-draw its pixbuf only on the next call to
+             * Gtk.CellRenderer.render.
+             */
+            public bool delayed_render_mode { get; set; default = false; }
+
+            /**
+             * The canvas containing the stars.
+             *
+             * To listen for changes on this property, connect to the render() signal,
+             * because the object doesn't emit a notify() signal for it.
+             */
             public Gdk.Pixbuf canvas { get; private set; }
 
-            public int rating { get; set; default = 0; }
+            public uint rating { get; set; default = 0; }
             public int n_stars { get; set; default = 5; }
             public int star_spacing { get; set; default = 3; }
             public int width { get; private set; default = 0; }
@@ -62,32 +79,47 @@ namespace Granite.Widgets {
                 }
             }
 
-            // Icon cache. It stores the pixbufs rendered for every state until the style information changes.
-            private Gee.HashMap<Gtk.StateFlags, Gdk.Pixbuf> starred_pixbufs;
-            private Gee.HashMap<Gtk.StateFlags, Gdk.Pixbuf> not_starred_pixbufs;
+            // Icon cache. It stores the pixbufs rendered for every state until the
+            // style information changes.
+            private Gee.HashMap<int, Gdk.Pixbuf> starred_pixbufs;
+            private Gee.HashMap<int, Gdk.Pixbuf> not_starred_pixbufs;
+
+            // Whether a property has changed or not. Used to avoid unnecessary work in render()
+            private bool property_changed = true;
 
             public Renderer (Gtk.IconSize icon_size, bool symbolic, Gtk.StyleContext? context) {
+                starred_pixbufs = new Gee.HashMap<int, Gdk.Pixbuf> ();
+                not_starred_pixbufs = new Gee.HashMap<int, Gdk.Pixbuf> ();
+
                 this.symbolic = symbolic;
                 this.icon_size = icon_size;
                 this.style_context = context;
 
-                on_style_changed ();
+                // Initial rendering. This is important; it will connect a handler
+                // to the notify() signal, and will also init some properties, such
+                // as item_width, item_height, width, height, etc.
+                assert (property_changed);
+                render ();
+                assert (!property_changed);
             }
 
             public virtual signal void render () {
-                this.notify.disconnect (on_property_changed);
+                if (!property_changed)
+                    return;
 
-                // Render stars
+                disable_property_notify ();
+
                 Gtk.StateFlags state = Gtk.StateFlags.NORMAL;
 
-                // Only consider actual state if the stars should be symbolic. Otherwise we consider
-                // the single state (NORMAL) set above.
+                // Only consider actual state if the stars should be symbolic.
+                // Otherwise we consider the single state (NORMAL) set above.
                 if (symbolic && style_context != null)
                     state = style_context.get_state ();
 
                 var starred_pix = starred_pixbufs.get (state);
                 var not_starred_pix = not_starred_pixbufs.get (state);
 
+                // if no cached star pixbufs were found, render them.
                 if (starred_pix == null || not_starred_pix == null) {
                     var starred = symbolic ? Noise.Icons.STARRED_SYMBOLIC : Noise.Icons.STARRED;
                     var not_starred = symbolic ? Noise.Icons.NOT_STARRED_SYMBOLIC : Noise.Icons.NOT_STARRED;
@@ -115,7 +147,7 @@ namespace Granite.Widgets {
                     }
 
                     if (canvas != null) {
-                        canvas.fill ((uint)0xffffff00);
+                        canvas.fill ((uint) 0xffffff00);
 
                         // Render
                         for (int i = 0; i < n_stars; i++) {
@@ -128,7 +160,18 @@ namespace Granite.Widgets {
                     }
                 }
 
-                this.notify.connect (on_property_changed);
+                // No more work to do until the next property change
+                property_changed = false;
+
+                enable_property_notify ();
+            }
+
+            private inline void disable_property_notify () {
+                notify.disconnect (on_property_changed);
+            }
+
+            private inline void enable_property_notify () {
+                notify.connect (on_property_changed);
             }
 
             /**
@@ -156,9 +199,9 @@ namespace Granite.Widgets {
             public int get_new_rating (double x) {
                 int x_offset = 0;
 
-                x_offset -= (int)rating_offset;
+                x_offset -= (int) rating_offset;
 
-                int cursor_x_pos = (int)x;
+                int cursor_x_pos = (int) x;
                 int new_rating = 0;
 
                 for (int i = 0; i < n_stars; i++) {
@@ -170,14 +213,16 @@ namespace Granite.Widgets {
             }
 
             private void on_style_changed () {
-                // Invalidate old icons
-                starred_pixbufs = new Gee.HashMap<Gtk.StateFlags, Gdk.Pixbuf> ();
-                not_starred_pixbufs = new Gee.HashMap<Gtk.StateFlags, Gdk.Pixbuf> ();
-                on_property_changed ();
+                // Invalidate old cached pixbufs
+                starred_pixbufs.clear ();
+                not_starred_pixbufs.clear ();
             }
 
             private void on_property_changed () {
-                render ();
+                property_changed = true;
+
+                if (!delayed_render_mode)
+                    render ();
             }
         }
 
@@ -242,9 +287,9 @@ namespace Granite.Widgets {
             this.renderer = new Renderer (size, symbolic, get_style_context ());
 
             add_events (Gdk.EventMask.BUTTON_PRESS_MASK
-                        | Gdk.EventMask.BUTTON_RELEASE_MASK
-                        | Gdk.EventMask.POINTER_MOTION_MASK
-                        | Gdk.EventMask.LEAVE_NOTIFY_MASK);
+                      | Gdk.EventMask.BUTTON_RELEASE_MASK
+                      | Gdk.EventMask.POINTER_MOTION_MASK
+                      | Gdk.EventMask.LEAVE_NOTIFY_MASK);
 
             state_flags_changed.connect_after ( () => {
                 renderer.render ();
@@ -318,7 +363,7 @@ namespace Granite.Widgets {
             add (rating);
 
             // Workaround. Move the offset one star to the left for menuitems.
-            rating.rating_offset = -(double)rating.item_width - (double)rating.star_spacing;
+            rating.rating_offset = - (double) rating.item_width - (double) rating.star_spacing;
 
             this.state_flags_changed.connect ( () => {
                 // Suppress SELECTED and PRELIGHT states, since these are usually obtrusive
@@ -364,34 +409,34 @@ namespace Granite.Widgets {
         public signal void rating_changed (int new_rating, Gtk.Widget widget, string path);
 
         private Rating.Renderer renderer;
-        private Gtk.CellRendererState last_state = 0;
 
         public CellRendererRating (Gtk.IconSize icon_size = Gtk.IconSize.MENU) {
             this.xalign = 0.0f;
             this.mode = Gtk.CellRendererMode.ACTIVATABLE;
 
             renderer = new Rating.Renderer (icon_size, true, null);
-            update_pixbuf ();
+
+            // We'll only redraw from render() for performance reasons
+            renderer.delayed_render_mode = true;
         }
 
         public int star_spacing {
             get { return renderer.star_spacing; }
-            set { renderer.star_spacing = value; update_pixbuf (); }
+            set { renderer.star_spacing = value; }
         }
 
-        private int _rating = 0;
-        public int rating {
+        private uint _rating = 0;
+        public uint rating {
             get { return _rating; }
             set {
                 _rating = value;
                 renderer.rating = _rating;
-                update_pixbuf ();
             }
         }
 
         public int n_stars {
             get { return renderer.n_stars; }
-            set { renderer.n_stars = value; update_pixbuf (); }
+            set { renderer.n_stars = value; }
         }
 
         private void update_pixbuf () {
@@ -403,33 +448,17 @@ namespace Granite.Widgets {
                                      Gdk.Rectangle background_area, Gdk.Rectangle cell_area,
                                      Gtk.CellRendererState flags)
         {
-            var style = widget.get_style_context ();
-            var state = style.get_state ();
+            var style_context = widget.get_style_context ();
+            var state = style_context.get_state ();
 
-            style.save ();
-
-            last_state = flags;
-
-            var flag = Gtk.StateFlags.SELECTED;
-            style.set_state ((flags & Gtk.CellRendererState.SELECTED) != 0 ? state | flag : state & ~flag);
-
-            flag = Gtk.StateFlags.FOCUSED;
-            style.set_state ((flags & Gtk.CellRendererState.FOCUSED) != 0 ? state | flag : state & ~flag);
-
-            flag = Gtk.StateFlags.INSENSITIVE;
-            style.set_state ((flags & Gtk.CellRendererState.INSENSITIVE) != 0 ? state | flag : state & ~flag);
-
-            bool hover = (flags & Gtk.CellRendererState.PRELIT) != 0;
-            flag = Gtk.StateFlags.PRELIGHT;
-            style.set_state (hover ? state | flag : state & ~flag);
-
-            if (renderer.style_context != style)
-                renderer.style_context = style;
-
-            renderer.render ();
+            // Only draw stars of 0-rating if the cursor is over the cell
+            if (_rating == 0 && !Noise.Utils.flags_set (state, Gtk.StateFlags.SELECTED))
+                return;
 
             /*
-            if (hover) {
+            Hover rating support
+
+            if ((Utils.flags_set (flags, Gtk.CellRendererState.PRELIT)) {
                 var device = Gtk.get_current_event_device ();
                 if (device != null) {
                     var window = widget.get_window ();
@@ -442,10 +471,9 @@ namespace Granite.Widgets {
             }
             */
 
-            style.restore ();
-
+            renderer.style_context = style_context;
+            renderer.render ();
             update_pixbuf ();
-
             base.render (ctx, widget, background_area, cell_area, flags);
         }
 
@@ -453,11 +481,11 @@ namespace Granite.Widgets {
                                        Gdk.Rectangle background_area, Gdk.Rectangle cell_area,
                                        Gtk.CellRendererState flags)
         {
-            int old_rating = rating;
+            int old_rating = (int) rating;
             int new_rating = renderer.get_new_rating (event.button.x - cell_area.x);
 
             // If the user clicks again over the same star, decrease the rating (i.e. "unset" the star)
-            if (new_rating == old_rating)
+            if (new_rating == old_rating && new_rating > 0)
                 new_rating--;
 
             // emit signal
