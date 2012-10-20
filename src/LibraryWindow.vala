@@ -71,6 +71,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private int window_width = 0;
     private int window_height = 0;
 
+    private Cancellable notification_cancellable;
+
     public signal void media_half_played (); // send after the half of the song
     public signal void update_media_info (); // send after 3 seconds
 
@@ -82,8 +84,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         this.library_manager.music_rescanned.connect (musicRescanned);
 
         this.library_manager.media_updated.connect (medias_updated);
-        this.library_manager.media_added.connect (update_sensitivities);
-        this.library_manager.media_removed.connect (update_sensitivities);
+        this.library_manager.media_added.connect (update_sensitivities_async);
+        this.library_manager.media_removed.connect (update_sensitivities_async);
 
         this.library_manager.progress_notification.connect (progressNotification);
 
@@ -322,9 +324,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
 
-    /**
-     * Show notification asynchronously
-     */
 #if HAVE_LIBNOTIFY
     private Notify.Notification? notification = null;
 #endif
@@ -366,24 +365,33 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (media == null)
             return;
 
-        string primary_text = media.title;
-        string secondary_text = media.artist + "\n" + media.album;
+        if (notification_cancellable != null)
+            notification_cancellable.cancel ();
+
+        notification_cancellable = new Cancellable ();
+
+        string primary_text = media.get_display_title ();
+        string secondary_text = media.get_display_artist () + "\n" + media.get_display_album ();
 
         Gdk.Pixbuf? pixbuf = null;
 
         try {
             var file = File.new_for_path (CoverartCache.instance.get_cached_image_path_for_media (media));
-            pixbuf = yield PixbufUtils.get_pixbuf_from_file_at_scale_async (file, 64, 64, false);
+            pixbuf = yield PixbufUtils.get_pixbuf_from_file_at_scale_async (file, 64, 64, false, notification_cancellable);
         } catch (Error err) {
             // Media often doesn't have an associated album art,
             // so we shouldn't treat this as an unexpected error.
             message (err.message);
         }
 
-        show_notification (primary_text, secondary_text, pixbuf);
+        if (!notification_cancellable.is_cancelled ())
+            show_notification (primary_text, secondary_text, pixbuf);
     }
 
     private async void notify_current_media_async () {
+        Idle.add (notify_current_media_async.callback);
+        yield;
+
         if (App.player.media_info != null && App.player.media_info.media != null)
             yield show_notification_from_media_async (App.player.media_info.media);
     }
@@ -512,7 +520,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                  *        breaking stuff.
                  */
                  // TODO: Convert the current DeviceViewWrapper into CDViewWrapper
-                 var cd_setup = new TreeViewSetup (MusicListView.MusicColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
+                 var cd_setup = new TreeViewSetup (ListColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
                  var vw = new DeviceViewWrapper (this, cd_setup, d);
 
                  iter = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
@@ -528,7 +536,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
         else if(o is NetworkDevice) {
 
-            var nd_setup = new TreeViewSetup (MusicListView.MusicColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.NETWORK_DEVICE);
+            var nd_setup = new TreeViewSetup (ListColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.NETWORK_DEVICE);
             var view = new NetworkDeviceViewWrapper (this, nd_setup, (Noise.NetworkDevice)o);
             add_view (((Noise.NetworkDevice)o).getDisplayName(), view, out iter);
 
@@ -541,18 +549,22 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private bool update_sensitivities_pending = false;
 
-    /**
-     * This is handled more carefully inside each ViewWrapper object.
-     */
-    public async void update_sensitivities () {
+    public async void update_sensitivities_async () {
         if (update_sensitivities_pending)
             return;
 
         update_sensitivities_pending = true;
-
-        Idle.add_full (Priority.HIGH_IDLE, update_sensitivities.callback);
+        Idle.add_full (Priority.HIGH_IDLE + 30, update_sensitivities_async.callback);
         yield;
 
+        update_sensitivities ();
+        update_sensitivities_pending = true;
+    }
+
+    /**
+     * This is handled more carefully inside each ViewWrapper object.
+     */
+    public void update_sensitivities () {
         debug ("UPDATE SENSITIVITIES");
 
         bool folder_set = (Settings.Main.instance.music_folder != "");
@@ -594,12 +606,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // hide playlists when media list is empty
         sideTree.setVisibility (sideTree.playlists_iter, have_media);
 
-        if(!App.player.media_active || have_media && !App.player.playing) {
+        if(!App.player.media_active || have_media && !App.player.playing)
             playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
-
-        }
-
-        update_sensitivities_pending = false;
     }
 
     public virtual void progressNotification(string? message, double progress) {
@@ -611,7 +619,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public void updateInfoLabel () {
         if(library_manager.doing_file_operations()) {
-            debug ("doing file operations, returning null in updateInfoLabel");
+            debug ("doing file operations, returning in updateInfoLabel");
             return;
         }
 
@@ -621,16 +629,25 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
         }
 
-        string beg = "";
+        // Set the title
+        var m = App.player.media_info.media;
 
-        //set the title
-        Media s = App.player.media_info.media;
-        var title = "<b>" + String.escape (s.title) + "</b>";
-        var artist = ((s.artist != "" && s.artist != _("Unknown Artist")) ? (_(" by ") + "<b>" + String.escape (s.artist) + "</b>") : "");
-        var album = ((s.album != "" && s.album != _("Unknown Album")) ? (_(" on ") + "<b>" + String.escape (s.album) + "</b>") : "");
+        string markup = "<b>%s</b>".printf (String.escape (m.get_display_title ()));
 
-        var media_label = beg + title + artist + album;
-        topDisplay.set_label_markup(media_label);
+        // We don't use the Media.get_display_* for the artist and albums because
+        // there's no point in showing "unknown" there. If the info is not available,
+        // just skip it.
+        string artist = m.artist;
+        if (Media.is_valid_string_field (artist))
+            /// String template used to show "SongName by ArtistName"
+            markup += _(" by %s").printf ("<b>" + String.escape (artist) + "</b>");
+
+        string album = m.album;
+        if (Media.is_valid_string_field (album))
+            /// String template used to show "SongName ... on AlbumName"
+            markup += _(" on %s").printf ("<b>" + String.escape (album) + "</b>");
+
+        topDisplay.set_label_markup (markup);
     }
 
 
@@ -639,7 +656,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * XXX: this doesn't belong here, but to the playback manager or Last.fm plugin
      * @param s The media that is now playing
      */
-    public virtual void media_played(Media m) {
+    public void media_played(Media m) {
         /*if(old == -2 && i != -2) { // -2 is id reserved for previews
             Media s = settings.getLastMediaPlaying();
             s = library_manager.media_from_name(s.title, s.artist);
