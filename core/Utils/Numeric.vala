@@ -20,19 +20,30 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-// XXX: Currently all the methods of this class are deprecated, since
-//      better native replacements are available under the GLib.Math namespace
-//      (which only happens to be a wrapper for math.h)
-
 namespace Noise.Numeric {
 
-    // Inverted values of prefix multipliers
+    /**
+     * Inverted values of prefix multipliers.
+     */
     public const uint64 NANO_INV = 1000000000;
     public const uint64 MILI_INV = 1000;
 
     /**
-     * @Deprecated. Use Math.trunc() instead.
+     * Convert from nanoseconds (10E-9) to miliseconds (10E-3);
      *
+     * This is used extensively because {@link Noise.Media} stores
+     * miliseconds, while GStreamer uses nanoseconds.
+     */
+    public inline uint nanoseconds_to_miliseconds (uint64 nanoseconds) {
+        return (uint) ((nanoseconds * Numeric.MILI_INV) / Numeric.NANO_INV);
+    }
+
+    public inline int compare (int64 a, int64 b) {
+        int64 diff = a - b;
+        return (int) diff.clamp (int.MIN, int.MAX);
+    }
+
+    /**
      * Returns the lowest uint given a double.
      * For instance:
      * INPUT => OUTPUT
@@ -40,21 +51,14 @@ namespace Noise.Numeric {
      *  7.51 => 7
      *  7.99 => 7
      */
-    public inline uint lowest_uint_from_double (double number) {
-        // sign check
-        if (number <= 0.0)
-            return 0;
-        
-        uint rv = (uint)number;
-
-        if ((double)rv > number)
-            rv --;
-
-        return rv;
+    [Deprecated (replacement = "GLib.Math.trunc")]
+    public inline uint lowest_uint_from_double (double number)
+        requires (number >= 0)
+    {
+        return (uint) Math.trunc (number);
     }
 
     /**
-     * @Deprecated. Use Math.truncf() instead.
      * Returns the lowest int given a float.
      * For instance:
      * INPUT => OUTPUT
@@ -62,81 +66,27 @@ namespace Noise.Numeric {
      *  7.51 => 7
      *  7.99 => 7
      */
+    [Deprecated (replacement = "GLib.Math.truncf")]
     public inline int lowest_int_from_float (float number) {
-        // sign check
-        if (number <= 0.0)
-            return 0;
-
-        int rv = (int)number;
-
-        if ((float)rv > number)
-            rv --;
-
-        return rv;
+        return (int) Math.truncf (number);
     }
 
     /**
-     * @Deprecated. Use Math.round () instead.
      * Approximates a double to the best uint.
      */
-    public inline uint uint_from_double (double number) {
-        // Check limits
-        if (number > (double)uint.MAX)
-            return uint.MAX;
-        else if (number < (double)uint.MIN)
-            return uint.MIN; // obviously '0'
-
-        uint rv = (uint)number;
-
-		// fix approximation
-		if ((double)rv < number) {
-			// check if the number is lower than what's expected
-			if (number - (double)rv >= 0.5) {
-				// the approximation was wrong. Increase to the next integer
-				rv ++;
-			}
-		}
-		else {
-			// check if the number is greater than expected
-			if (number - (double)rv < -0.5) {
-				// the approximation was wrong. Decrease to the previous integer
-				rv --;
-			}
-		}
-
-        return rv;
+    [Deprecated (replacement = "GLib.Math.round")]
+    public inline uint uint_from_double (double number)
+        requires (number >= 0)
+    {
+        return (uint) Math.round (number);
     }
 
     /**
-     * @Deprecated. Use Math.roundf () instead.
-     * Approximates a float to the best int.
+     * Approximates a float to the best integer.
      */
+    [Deprecated (replacement = "GLib.Math.roundf")]
     public inline int int_from_float (float number) {
-        // Check limits
-        if (number > (float)int.MAX)
-            return int.MAX;
-        else if (number < (float)int.MIN)
-            return int.MIN;
-
-        int rv = (int)number;
-
-		// fix approximation
-		if ((float)rv < number) {
-			// check if the number is lower than expected
-			if (number - (float)rv >= 0.5f) {
-				// the approximation was wrong. Increase to the next integer
-				rv ++;
-			}
-		}
-		else {
-			// check if the number is higher than what's expected
-			if (number - (float)rv < -0.5f) {
-				// the approximation was wrong. Decrease to the previous integer
-				rv --;
-			}
-		}
-
-        return rv;
+        return (int) Math.roundf (number);
     }
 }
 
