@@ -61,13 +61,16 @@ public class Noise.CoverartCache : MediaArtCache {
     }
 
     protected override string get_key (Media m) {
-        string album_name = m.album;
-        string artist_name = m.album_artist;
+        var builder = new StringBuilder ();
 
-        if (artist_name == "")
-            artist_name = m.artist;
+        string album_artist = m.album_artist;
+        if (album_artist == "")
+            album_artist = m.artist;
 
-        return @"$artist_name-$album_name";
+        builder.append (album_artist);
+        builder.append (m.album);
+
+        return builder.str;
     }
 
     public Gdk.Pixbuf get_cover (Media m) {
@@ -87,8 +90,9 @@ public class Noise.CoverartCache : MediaArtCache {
         // track of all the keys we've explored in order to lookup images only once
         // for every equivalent media.
         var used_keys_set = new Gee.HashSet<string> ();
+        var copy = Utils.copy_collection<Media> (media);
 
-        foreach (var m in media) {
+        foreach (var m in copy) {
             string key = get_key (m);
             if (!used_keys_set.contains (key) && !has_image (m)) {
                 yield get_image_async (m, true);
@@ -107,8 +111,9 @@ public class Noise.CoverartCache : MediaArtCache {
         // track of all the keys we've explored in order to lookup images only once
         // for every equivalent media.
         var used_keys_set = new Gee.HashSet<string> ();
+        var copy = Utils.copy_collection<Media> (media);
 
-        foreach (var m in media) {
+        foreach (var m in copy) {
             string key = get_key (m);
             if (!used_keys_set.contains (key) && !has_image (m)) {
                 var art_file = yield lookup_folder_image_file_async (m);
@@ -120,7 +125,6 @@ public class Noise.CoverartCache : MediaArtCache {
         }
     }
 
-
     /**
      * Looks up a valid album image in a media's directory.
      *
@@ -128,7 +132,7 @@ public class Noise.CoverartCache : MediaArtCache {
      * "folder.jpg", the album name, etc. If no image matching the pattern is found, null
      * is returned.
      */
-    private static async File? lookup_folder_image_file_async (Media m) {
+    private async File? lookup_folder_image_file_async (Media m) {
         File? media_file = m.file;
         return_val_if_fail (media_file != null, null);
 
@@ -138,23 +142,23 @@ public class Noise.CoverartCache : MediaArtCache {
         var album_folder = media_file.get_parent ();
         return_val_if_fail (album_folder != null, null);
 
+        string album_name = String.canonicalize_for_search (m.album ?? "");
+
         // Don't consider generic image names if the album folder doesn't contain the name of
         // the media's album. This is probably the simpler way to prevent considering images
         // from folders that contain multiple unrelated tracks.
-        bool generic_folder = !album_folder.get_path ().contains (m.album);
+        bool generic_folder = !(album_name in String.canonicalize_for_search (album_folder.get_path ().down ()));
 
-        string[] image_types = { "jpg", "jpeg", "png", "tiff" };
         Gee.Collection<File> image_files;
-        yield FileUtils.enumerate_files_async (album_folder, image_types, false, out image_files);
+        yield FileUtils.enumerate_files_async (album_folder, PixbufCache.IMAGE_TYPES, false, out image_files);
 
         File? image_file = null;
         bool good_image_found = false;
-        // Choose an image based on priorities.
 
+        // Choose an image based on priorities.
         foreach (var file in image_files) {
             // We don't want to be fooled by strange characters or whitespace
             string file_path = String.canonicalize_for_search (file.get_path ().down ());
-            string album_name = String.canonicalize_for_search ((m.album ?? "").down ());
 
             if (generic_folder) {
                 if (!String.is_white_space (album_name) && album_name in file_path) {
