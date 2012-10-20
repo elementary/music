@@ -111,7 +111,7 @@ public class MprisRoot : GLib.Object {
     // TODO: use App.CONTENT_TYPES
     public string[] SupportedMimeTypes {
         owned get {
-            return App.CONTENT_TYPES;
+            return App.get_media_content_types ();
         }
     }
 
@@ -135,7 +135,7 @@ public class MprisPlayer : GLib.Object {
     private uint update_metadata_source = 0;
     private HashTable<string,Variant> changed_properties = null;
     private HashTable<string,Variant> _metadata;
-    
+
     private enum Direction {
         NEXT = 0,
         PREVIOUS,
@@ -185,23 +185,34 @@ public class MprisPlayer : GLib.Object {
     private void on_media_played (Noise.Media s) {
         if(s != App.player.media_info.media)
             return;
-        
-        string[] artistArray = {};
-        artistArray += s.artist;
-        string[] genreArray = {};
-        genreArray += s.genre;
-        
-        _metadata.insert("xesam:artist", artistArray);
-        _metadata.insert("xesam:album", s.album);
-        _metadata.insert("xesam:title", s.title);
-        _metadata.insert("sesam:genre", genreArray);
 
         var url = "file://" + CoverartCache.instance.get_cached_image_path_for_media (s);
         _metadata.insert("mpris:artUrl", url);
         _metadata.insert("mpris:length", App.player.player.getDuration()/1000);
-        _metadata.insert("xesam:userRating", s.rating);
-        
+
+        _metadata.insert("xesam:trackNumber", (int) s.track);
+        _metadata.insert("xesam:title", s.get_display_title ());
+        _metadata.insert("xesam:album", s.get_display_album ());
+        _metadata.insert("xesam:artist", get_simple_string_array (s.get_display_artist ()));
+        _metadata.insert("xesam:albumArtist", get_simple_string_array (s.get_display_album_artist ()));
+        _metadata.insert("xesam:genre", get_simple_string_array (s.get_display_genre ()));
+        _metadata.insert("xesam:asText", s.lyrics);
+        _metadata.insert("xesam:comment", get_simple_string_array (s.comment));
+        _metadata.insert("xesam:composer", get_simple_string_array (s.get_display_composer ()));
+        _metadata.insert("xesam:discNumber", (int) s.album_number);
+
+        _metadata.insert("xesam:url", s.uri);
+
+        _metadata.insert("xesam:userRating", (int) s.rating);
+        _metadata.insert("xesam:useCount", (int) s.play_count);
+
         trigger_metadata_update();
+    }
+
+    private static string[] get_simple_string_array (string text) {
+        string[] array = new string[0];
+        array += text;
+        return array;
     }
 
     private bool send_property_change() {
@@ -225,7 +236,7 @@ public class MprisPlayer : GLib.Object {
                              "org.freedesktop.DBus.Properties", 
                              "PropertiesChanged", 
                              new Variant("(sa{sv}as)", 
-                                         this.INTERFACE_NAME, 
+                                         INTERFACE_NAME, 
                                          builder, 
                                          invalidated_builder)
                              );
