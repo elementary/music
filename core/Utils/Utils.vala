@@ -31,11 +31,40 @@
 namespace Noise.Utils {
 
     /**
-     * Checks whether //cancellable// is cancelled or not. If //cancellable// is //null//,
-     * false is returned.
+     * Checks whether //cancellable// is canceled.
+     *
+     * @param cancellable The GLib.Cancellable object to query.
+     * @return whether the cancellable is canceled; or //false// in case //cancellable// was null.
      */
     public inline bool is_cancelled (Cancellable? cancellable) {
         return (cancellable != null) ? cancellable.is_cancelled () : false;
     }
 
+    /**
+     * Creates a copy of a collection.
+     *
+     * Unlike the copies returned by Gee collection's read_only_view accesors,
+     * the returned collection can be safely iterated even if the original collection
+     * changes.
+     *
+     * @param orig Collection to copy.
+     * @return a fresh copy of //orig// that can be safely iterated.
+     */
+    public inline Gee.Collection<T> copy_collection<T> (Gee.Collection<T> orig) {
+        var copy = new Gee.LinkedList<T> ();
+        foreach (var item in orig)
+            copy.add (item);
+        return copy;
+    }
+
+    /**
+     * Checks whether the set of flags specified by //to_check// are set in //flags//.
+     *
+     * @param flags Set of flags to check.
+     * @param to_check Set of flags to look for in //flags//.
+     * @return Whether all the flags in //to_check// were set in //flags//.
+     */
+    public inline bool flags_set (int flags, int to_check) {
+        return (flags & to_check) == to_check;
+    }
 }
