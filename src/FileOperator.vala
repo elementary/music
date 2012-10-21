@@ -85,28 +85,24 @@ public class Noise.FileOperator : Object {
 		cancelSent = false;
 	}
 
-    private const string[] AUDIO_TYPES = {
-        "mp3", "wma", "flac", "oga", "aac", "m4a", "ogg", "m4p", "alac"
-    };
-	
-	private static bool is_valid_file_type(string filename) {
-        return FileUtils.is_valid_file_type (filename, AUDIO_TYPES);
+	private static bool is_valid_content_type (string content_type) {
+        return FileUtils.is_valid_content_type (content_type, App.get_media_content_types ());
 	}
 	
 	public int count_music_files(GLib.File music_folder, ref LinkedList<string> files) {
 		GLib.FileInfo file_info = null;
 		
 		try {
-			var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
+			var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
-				var file_path = music_folder.get_path() + "/" + file_info.get_name();
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
+				var file = music_folder.get_child (file_info.get_name ());
+
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_content_type(file_info.get_content_type ())) {
 					index++;
-					files.add(file_path);
+					files.add (file.get_uri ());
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY) {
-					count_music_files(GLib.File.new_for_path(file_path), ref files);
+					count_music_files (file, ref files);
 				}
 			}
 		}
@@ -182,7 +178,7 @@ public class Noise.FileOperator : Object {
 			else
 				ext = get_extension(s.uri);
 			
-			dest = GLib.File.new_for_path(Path.build_path("/", Settings.Main.instance.music_folder, s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + ext));
+			dest = GLib.File.new_for_path(Path.build_path("/", Settings.Main.instance.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " " + s.get_display_title ().replace("/", "_") + ext));
 			
 			if(original.get_path() == dest.get_path()) {
 				debug("File is already in correct location\n");
@@ -190,7 +186,7 @@ public class Noise.FileOperator : Object {
 			}
 			
 			string extra = "";
-			while((dest = GLib.File.new_for_path(Path.build_path("/", Settings.Main.instance.music_folder, s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + extra + ext))).query_exists()) {
+			while((dest = GLib.File.new_for_path(Path.build_path("/", Settings.Main.instance.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " " + s.get_display_title ().replace("/", "_") + extra + ext))).query_exists()) {
 				extra += "_";
 			}
 			
