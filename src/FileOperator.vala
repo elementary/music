@@ -76,6 +76,8 @@ public class Noise.FileOperator : Object {
 			tagger.cancel_operations();
 		} );
 
+        // Use right encoding
+        ID3v2.set_default_text_encoding (ID3v2.Encoding.UTF8);
 	}
 
 	public void resetProgress(int items) {
