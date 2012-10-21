@@ -511,35 +511,14 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         lw.searchField.set_text ("");
     }
 
-
-
-    private Cancellable? search_cancellable;
-
-    private async void cancel_search () {
-        var old_cancellable = search_cancellable;
-        search_cancellable = new Cancellable ();
-        SourceFunc cb = cancel_search.callback;
-
-        Threads.add ( () => {
-            debug ("Cancelling last search");
-            old_cancellable.cancel ();
-            Idle.add_full (0, (owned)cb);
-        });
-
-        yield;
-    }
-
     /**
      * Description:
      * Updates the data in visible_media and re-populates all the views.
      * Primarily used for searches
      */
-    protected virtual async void update_visible_media () {
-        cancel_search ();
-
+    protected virtual void update_visible_media () {
         // LOCK
         updating_media_data.lock ();
-        var cancellable = search_cancellable;
 
         debug ("%s : UPDATING VISIBLE MEDIA", hint.to_string ());
         visible_media_table = new Gee.HashSet<Media> ();
@@ -551,7 +530,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
         if (to_search != "") {
             // Perform search
-            Search.smart_search (get_media_list (), out search_results, to_search, cancellable);
+            Search.smart_search (get_media_list (), out search_results, to_search, null);
 
             foreach (var m in search_results) {
                 visible_media_table.add (m);
@@ -568,9 +547,9 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         // UNLOCK
         updating_media_data.unlock ();
 
-        set_content_views_media (search_results, cancellable);
+        set_content_views_media (search_results, null);
 
-        if (is_current_wrapper && !cancellable.is_cancelled ()) {
+        if (is_current_wrapper) {
             update_library_window_widgets ();
             // Check whether we should show the embedded alert in case there's no media
             if (check_have_media ()) {
@@ -869,6 +848,9 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
     /* Content view stuff */
 
     private void add_media_to_content_views (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
+        if (to_add.size < 1)
+            return;
+
         // The order matters here. Make sure we apply the action to the current view first
         if (current_view == ViewType.LIST) {
             if (has_list_view)
@@ -885,6 +867,9 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
     }
 
     private void remove_media_from_content_views (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
+        if (to_remove.size < 1)
+            return;
+
         if (has_list_view)
             list_view.remove_media (to_remove, cancellable);
         if (has_grid_view)
