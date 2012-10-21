@@ -35,7 +35,11 @@ namespace Noise.Numeric {
      * miliseconds, while GStreamer uses nanoseconds.
      */
     public inline uint nanoseconds_to_miliseconds (uint64 nanoseconds) {
-        return (uint) ((nanoseconds * Numeric.MILI_INV) / Numeric.NANO_INV);
+        return (uint) (nanoseconds_to_seconds (nanoseconds) * MILI_INV);
+    }
+
+    public inline uint nanoseconds_to_seconds (uint64 nanoseconds) {
+        return (uint) (nanoseconds / NANO_INV);
     }
 
     public inline int compare (int64 a, int64 b) {
