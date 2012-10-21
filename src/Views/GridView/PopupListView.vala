@@ -102,7 +102,7 @@ public class Noise.PopupListView : Window {
 		artist_label.margin_bottom = 12;
 
 		// Music List
-		var tvs = new TreeViewSetup (MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
+		var tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
 		list_view = new MusicListView (view_wrapper, tvs);
 		
 		var list_view_scrolled = new ScrolledWindow (null, null);

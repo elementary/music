@@ -37,56 +37,16 @@ public class Noise.MusicListView : GenericList {
 	Gtk.MenuItem importToLibrary;
 	Gtk.MenuItem mediaScrollToCurrent;
 	
-	public enum MusicColumn {
-		ROWID,
-		ICON,
-		NUMBER,
-		TRACK,
-		TITLE,
-		LENGTH,
-		ARTIST,
-		ALBUM,
-		GENRE,
-		YEAR,
-		BITRATE,
-		RATING,
-		PLAY_COUNT,
-		SKIP_COUNT,
-		DATE_ADDED,
-		LAST_PLAYED,
-		BPM,
-	}
-
 	/**
 	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
 	 */
 	public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-		// FIXME: re-do. Associate a type to each column directly in TreeViewSetup
-		var types = new GLib.List<Type>();
-		types.append(typeof(int)); // id
-		types.append(typeof(GLib.Icon)); // icon
-		types.append(typeof(int)); // #
-		types.append(typeof(int)); // track
-		types.append(typeof(string)); // title
-		types.append(typeof(int)); // length
-		types.append(typeof(string)); // artist
-		types.append(typeof(string)); // album
-		types.append(typeof(string)); // genre
-		types.append(typeof(int)); // year
-		types.append(typeof(int)); // bitrate
-		types.append(typeof(int)); // rating
-		types.append(typeof(int)); // plays
-		types.append(typeof(int)); // skips
-		types.append(typeof(int)); // date added
-		types.append(typeof(int)); // last played
-		types.append(typeof(int)); // bpm
-		
-		base(view_wrapper, types, tvs);
+		base (view_wrapper, tvs);
 
 		// This is vital
 		set_value_func (view_value_func);
 		set_compare_func (view_compare_func);
-		
+
 		build_ui();
 	}
 
@@ -138,9 +98,6 @@ public class Noise.MusicListView : GenericList {
 	}
 
 	public void build_ui () {
-		add_columns ();
-
-		button_press_event.connect(viewClick);
 		button_release_event.connect(viewClickRelease);
 
 		mediaScrollToCurrent = new Gtk.MenuItem.with_label(_("Scroll to Current Song"));
@@ -154,6 +111,7 @@ public class Noise.MusicListView : GenericList {
 		mediaRateMedia = new Granite.Widgets.RatingMenuItem ();
 
 		mediaActionMenu = new Gtk.Menu ();
+        mediaActionMenu.attach_to_widget (this, null);
 
 		var hint = tvs.get_hint ();
 
@@ -207,9 +165,13 @@ public class Noise.MusicListView : GenericList {
 #endif
 
 
-	/* button_press_event */
-	bool viewClick(Gdk.EventButton event) {
-		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
+	public override bool button_press_event (Gdk.EventButton event) {
+        base.button_press_event (event);
+
+        if (event.window != get_bin_window ())
+            return false;
+
+		if(event.button == 3) { //right click
 			/* create add to playlist menu */
 			Gtk.Menu addToPlaylistMenu = new Gtk.Menu();
 			foreach(Playlist p in lm.playlists()) {
@@ -274,10 +236,11 @@ public class Noise.MusicListView : GenericList {
 			selected.set_mode(SelectionMode.MULTIPLE);
 			if(selected.count_selected_rows() > 1)
 				return true;
-			else
-				return false;
+
+			return false;
 		}
-		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
+
+		if(event.button == 1) {
 			//TreeIter iter;
 			TreePath path;
 			TreeViewColumn column;
@@ -337,17 +300,17 @@ public class Noise.MusicListView : GenericList {
 	}
 
 	protected override void updateTreeViewSetup() {
-		if(tvs == null || get_hint() == ViewWrapper.Hint.ALBUM_LIST || get_columns().length() != TreeViewSetup.MUSIC_COLUMN_COUNT)
+		if (tvs == null || get_hint () == ViewWrapper.Hint.ALBUM_LIST)
 			return;
 
-		int sort_id = MusicColumn.ARTIST;
-		SortType sort_dir = Gtk.SortType.ASCENDING;
+		int sort_id;
+		SortType sort_dir;
 		get_sort_column_id(out sort_id, out sort_dir);
 
-		if(sort_id < 0)
-			sort_id = MusicColumn.ARTIST;
-		
-		tvs.set_columns(get_columns());
+		if (sort_id < 0)
+			sort_id = ListColumn.ARTIST;
+
+		tvs.set_columns (get_columns ());
 		tvs.sort_column_id = sort_id;
 		tvs.sort_direction = sort_dir;
 	}
@@ -368,7 +331,7 @@ public class Noise.MusicListView : GenericList {
 		
 		int id = to_edit.get(0);
 		string music_folder_uri = File.new_for_path(Settings.Main.instance.music_folder).get_uri();
-		if(to_edit.size == 1 && !GLib.File.new_for_uri(lm.media_from_id(id).uri).query_exists() && lm.media_from_id(id).uri.has_prefix(music_folder_uri)) {
+		if(to_edit.size == 1 && !File.new_for_uri(lm.media_from_id(id).uri).query_exists() && lm.media_from_id(id).uri.has_prefix(music_folder_uri)) {
 			lm.media_from_id(id).unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			FileNotFoundDialog fnfd = new FileNotFoundDialog(lm, lm.lw, to_edit_med);
 			fnfd.present();
@@ -402,7 +365,7 @@ public class Noise.MusicListView : GenericList {
 				var file = File.new_for_uri(m.uri);
 				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
 			}
-			catch(GLib.Error err) {
+			catch(Error err) {
 				debug("Could not browse media %s: %s\n", m.uri, err.message);
 			}
 
@@ -496,151 +459,449 @@ public class Noise.MusicListView : GenericList {
 			selection_data.set_uris(uris);
 	}
 
-	protected void apply_style_to_view(CssProvider style) {
-		get_style_context().add_provider(style, STYLE_PROVIDER_PRIORITY_APPLICATION);
-	}
-	
-	protected int view_compare_func (int col, Gtk.SortType dir, Object a, Object b) {
-		int rv = 0;
-		
-		var a_media = a as Media;
-		var b_media = b as Media;
-		
-		if(col == MusicColumn.NUMBER) {
-			rv = 1;//a.get_position() - b.get_position();
-		}
-		else if(col == MusicColumn.TRACK) {
-			rv = (int)(a_media.track - b_media.track);
-		}
-		else if(col == MusicColumn.TITLE) {
-			rv = String.compare (a_media.title.down(), b_media.title.down());
-		}
-		else if(col == MusicColumn.LENGTH) {
-			rv = (int)(a_media.length - b_media.length);
-		}
-		else if(col == MusicColumn.ARTIST) {
-			if(a_media.album_artist.down() == b_media.album_artist.down()) {
-				if(a_media.album.down() == b_media.album.down()) {
-					if(a_media.album_number == b_media.album_number) {
-						//if(a_media.track == b_media.track)
-						//	rv = advanced_string_compare(a_media.uri, b_media.uri);
-						//else
-							rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_media.track - b_media.track) : (int)(b_media.track - a_media.track));
-					}
-					else
-						rv = (int)((int)a_media.album_number - (int)b_media.album_number);
-				}
-				else
-					rv = String.compare (a_media.album.down(), b_media.album.down());
-			}
-			else
-				rv = String.compare (a_media.album_artist.down(), b_media.album_artist.down());
-		}
-		else if(col == MusicColumn.ALBUM) {
-			if(a_media.album.down() == b_media.album.down()) {
-				if(a_media.album_number == b_media.album_number)
-					rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_media.track - b_media.track) : (int)(b_media.track - a_media.track));
-				else
-					rv = (int)((int)a_media.album_number - (int)b_media.album_number);
+    /**
+     * Compares the two given objects based on the sort column.
+     *
+     * Objects are assumed to represent Media.
+     */
+	protected int view_compare_func (int column, Gtk.SortType dir, Object a, Object b, int a_pos, int b_pos) {
+        int order = 0;
 
-			}
-			else {
-				if(a_media.album == "")
-					rv = 1;
-				else
-					rv = String.compare (a_media.album.down(), b_media.album.down());
-			}
-		}
-		else if(col == MusicColumn.GENRE) {
-			rv = String.compare (a_media.genre.down(), b_media.genre.down());
-		}
-		else if(col == MusicColumn.YEAR) {
-			rv = (int)(a_media.year - b_media.year);
-		}
-		else if(col == MusicColumn.BITRATE) {
-			rv = (int)(a_media.bitrate - b_media.bitrate);
-		}
-		else if(col == MusicColumn.RATING) {
-			rv = (int)(a_media.rating - b_media.rating);
-		}
-		else if(col == MusicColumn.LAST_PLAYED) {
-			rv = (int)(a_media.last_played - b_media.last_played);
-		}
-		else if(col == MusicColumn.DATE_ADDED) {
-			rv = (int)(a_media.date_added - b_media.date_added);
-		}
-		else if(col == MusicColumn.PLAY_COUNT) {
-			rv = (int)(a_media.play_count - b_media.play_count);
-		}
-		else if(col == MusicColumn.SKIP_COUNT) {
-			rv = (int)(a_media.skip_count - b_media.skip_count);
-		}
-		else if(col == MusicColumn.BPM) {
-			rv = (int)(a_media.bpm - b_media.bpm);
-		}
-		else {
-			rv = 0;
-		}
-		
-		if(rv == 0 && col != MusicColumn.ARTIST && col != MusicColumn.ALBUM)
-			rv = String.compare (a_media.uri, b_media.uri);
+        return_val_if_fail (column >= 0 && column < ListColumn.N_COLUMNS, order);
 
-		if(sort_direction == SortType.DESCENDING)
-			rv = (rv > 0) ? -1 : 1;
+		var media_a = a as Media;
+		var media_b = b as Media;
 
-		return rv;
-	}
-	
-	protected Value? view_value_func (int row, int column, Object o) {
-		Value? val = null;
-		var s = o as Media;
+        return_val_if_fail (media_a != null && media_b != null, order);
 
-        if (s != null) {
-		    if(column == MusicColumn.ROWID)
-			    val = s.rowid;
-		    else if(column == MusicColumn.ICON) {
-			    if(App.player.media_info.media != null && App.player.media_info.media == s)
-				    val = playing_icon;
-			    else if(tvs.get_hint() == ViewWrapper.Hint.CDROM && !s.isTemporary)
-				    val = completed_icon;
-			    else if(s.unique_status_image != null)
-				    val = s.unique_status_image;
-		    }
-		    else if(column == MusicColumn.NUMBER)
-			    val = (int)(row + 1);
-		    else if(column == MusicColumn.TRACK)
-			    val = (int)s.track;
-		    else if(column == MusicColumn.TITLE)
-			    val = s.title;
-		    else if(column == MusicColumn.LENGTH)
-			    val = (int)s.length;
-		    else if(column == MusicColumn.ARTIST)
-			    val = s.artist;
-		    else if(column == MusicColumn.ALBUM)
-			    val = s.album;
-		    else if(column == MusicColumn.GENRE)
-			    val = s.genre;
-		    else if(column == MusicColumn.YEAR)
-			    val = (int)s.year;
-		    else if(column == MusicColumn.BITRATE)
-			    val = (int)s.bitrate;
-		    else if(column == MusicColumn.RATING)
-			    val = (int)s.rating;
-		    else if(column == MusicColumn.PLAY_COUNT)
-			    val = (int)s.play_count;
-		    else if(column == MusicColumn.SKIP_COUNT)
-			    val = (int)s.skip_count;
-		    else if(column == MusicColumn.DATE_ADDED)
-			    val = (int)s.date_added;
-		    else if(column == MusicColumn.LAST_PLAYED)
-			    val = (int)s.last_played;
-		    else if(column == MusicColumn.BPM)
-			    val = (int)s.bpm;
-		    else
-		        assert_not_reached ();
+        switch (column) {
+            case ListColumn.NUMBER: // We assume there are no two indentical numbers for this case
+                order = a_pos - b_pos;
+            break;
+
+            case ListColumn.TITLE:
+                order = compare_titles (media_a, media_b);
+            break;
+
+            case ListColumn.LENGTH:
+                order = Numeric.compare (media_a.length, media_b.length);
+                if (order == 0)
+                    compare_titles (media_a, media_b);
+            break;
+
+            case ListColumn.ARTIST:
+                order = compare_artists (media_a, media_b);
+            break;
+
+            case ListColumn.ALBUM:
+                order = compare_albums (media_a, media_b);
+            break;
+
+            // Typically, when users choose to sort their media collection by track numbers,
+            // what they actually want is ordering their albums, which means that this is
+            // equivalent to sorting by genre.
+            case ListColumn.TRACK:
+            case ListColumn.GENRE:
+                order = compare_genres (media_a, media_b);
+            break;
+
+            case ListColumn.YEAR:
+                order = Numeric.compare (media_a.year, media_b.year);
+            break;
+
+            case ListColumn.BITRATE:
+                order = Numeric.compare (media_a.bitrate, media_b.bitrate);
+            break;
+
+            case ListColumn.RATING:
+                order = Numeric.compare (media_a.rating, media_b.rating);
+            break;
+
+		    case ListColumn.PLAY_COUNT:
+                order = Numeric.compare (media_a.play_count, media_b.play_count);
+            break;
+
+		    case ListColumn.SKIP_COUNT:
+                order = Numeric.compare (media_a.skip_count, media_b.skip_count);
+            break;
+
+		    case ListColumn.DATE_ADDED:
+                order = Numeric.compare (media_a.date_added, media_b.date_added);
+            break;
+
+		    case ListColumn.LAST_PLAYED:
+                order = Numeric.compare (media_a.last_played, media_b.last_played);
+            break;
+
+		    case ListColumn.BPM:
+                order = Numeric.compare (media_a.bpm, media_b.bpm);
+            break;
         }
 
-		return val;
+        // When order is zero, we'd like to jump into sorting by genre, but that'd
+        // be a performance killer. Let's compare titles and that's it.
+        if (order == 0 && column != ListColumn.GENRE && column != ListColumn.ARTIST)
+            order = compare_titles (media_a, media_b);
+
+        // If still 0, fall back to comparing URIS
+		if (order == 0)
+			order = String.compare (media_a.uri, media_b.uri);
+
+        // Invert order if ordering is descending
+		if (dir == SortType.DESCENDING && order != 0)
+			order = (order > 0) ? -1 : 1;
+
+		return order;
+
 	}
+
+    private inline int compare_titles (Media a, Media b) {
+        return String.compare (a.get_display_title (), b.get_display_title ());
+    }
+
+    private inline int compare_genres (Media a, Media b) {
+        int order = String.compare (a.get_display_genre (), b.get_display_genre ());
+        if (order == 0)
+            order = compare_artists (a, b);
+        return order;
+    }
+
+    private inline int compare_artists (Media a, Media b) {
+        int order = String.compare (a.get_display_artist (), b.get_display_artist ());
+        if (order == 0)
+            order = compare_albums (a, b);
+        return order;
+    }
+
+    private inline int compare_albums (Media a, Media b) {
+        int order = String.compare (a.get_display_album (), b.get_display_album ());
+        if (order == 0)
+            order = Numeric.compare (a.album_number, b.album_number);
+        if (order == 0)
+            order = compare_track_numbers (a, b);
+        return order;
+    }
+
+    private inline int compare_track_numbers (Media a, Media b) {
+        return Numeric.compare (a.track, b.track);
+    }
+
+	protected Value? view_value_func (int row, int column, Object o) {
+		var s = o as Media;
+        return_val_if_fail (s != null, null);
+
+        switch (column) {
+		    case ListColumn.ICON:
+                GLib.Icon? icon;
+                var currently_playing = App.player.media_info.media;
+
+			    if (s == currently_playing && currently_playing != null)
+				    icon = Icons.NOW_PLAYING_SYMBOLIC.gicon;
+			    else if (tvs.get_hint () == ViewWrapper.Hint.CDROM && !s.isTemporary)
+				    icon = Icons.PROCESS_COMPLETED.gicon;
+                else
+				    icon = s.unique_status_image;
+
+                return icon;
+
+		    case ListColumn.NUMBER:
+			    return (uint) row + 1;
+
+		    case ListColumn.TRACK:
+			    return s.track;
+
+		    case ListColumn.TITLE:
+			    return s.get_display_title ();
+
+		    case ListColumn.LENGTH:
+			    return s.length;
+
+		    case ListColumn.ARTIST:
+			    return s.get_display_artist ();
+
+		    case ListColumn.ALBUM:
+			    return s.get_display_album ();
+
+		    case ListColumn.GENRE:
+			    return s.get_display_genre ();
+
+		    case ListColumn.YEAR:
+			    return s.year;
+
+		    case ListColumn.BITRATE:
+			    return s.bitrate;
+
+		    case ListColumn.RATING:
+			    return s.rating;
+
+		    case ListColumn.PLAY_COUNT:
+			    return s.play_count;
+
+		    case ListColumn.SKIP_COUNT:
+			    return s.skip_count;
+
+		    case ListColumn.DATE_ADDED:
+			    return s.date_added;
+
+		    case ListColumn.LAST_PLAYED:
+			    return s.last_played;
+
+		    case ListColumn.BPM:
+			    return s.bpm;
+        }
+
+		assert_not_reached ();
+	}
+
+    protected override void add_column (Gtk.TreeViewColumn tvc, ListColumn type) {
+        tvc.sizing = Gtk.TreeViewColumnSizing.FIXED;
+
+        bool column_resizable = true;
+        bool column_reorderable = true;
+        int column_width = -1;
+        int insert_index = -1; // leave at -1 for appending
+        var test_strings = new string[0];
+
+        Gtk.CellRenderer? renderer = null;
+
+        switch (type) {
+            case ListColumn.ICON:
+                // Force the column to stay at initial position instead of simply appending it
+                insert_index = type;
+
+                column_reorderable = false;
+                column_resizable = false;
+
+                var icon_renderer = new Gtk.CellRendererPixbuf ();
+                icon_renderer.follow_state = true;
+
+                var spinner_renderer = new Gtk.CellRendererSpinner ();
+
+                icon_renderer.stock_size = spinner_renderer.size = Gtk.IconSize.MENU;
+
+                int width, height;
+                Gtk.icon_size_lookup ((Gtk.IconSize) icon_renderer.stock_size, out width, out height);
+                column_width = int.max (width, height) + 7;
+
+                tvc.set_cell_data_func (icon_renderer, cell_data_helper.icon_func);
+                tvc.set_cell_data_func (spinner_renderer, cell_data_helper.icon_func);
+
+                // Pack spinner cell because only @renderer will be packed automatically
+                tvc.pack_start (spinner_renderer, true);
+
+                // We only consider icon renderer for sizing purposes
+                renderer = icon_renderer;
+            break;
+
+            case ListColumn.BITRATE:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.bitrate_func);
+                column_resizable = false;
+                test_strings += _ ("1234 kbps");
+            break;
+
+            case ListColumn.LENGTH:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.length_func);
+                column_resizable = false;
+                test_strings += "0000:00";
+            break;
+
+            case ListColumn.DATE_ADDED:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.date_func);
+                test_strings += CellDataFunctionHelper.get_date_func_sample_string ();
+                test_strings += _ ("Never");
+            break;
+
+            case ListColumn.LAST_PLAYED:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.date_func);
+                test_strings += CellDataFunctionHelper.get_date_func_sample_string ();
+                test_strings += _ ("Never");
+            break;
+
+            case ListColumn.RATING:
+                var rating_renderer = new Granite.Widgets.CellRendererRating ();
+                rating_renderer.rating_changed.connect (on_rating_cell_changed);
+
+                renderer = rating_renderer;
+                tvc.set_cell_data_func (rating_renderer, CellDataFunctionHelper.rating_func);
+
+                column_resizable = false;
+                column_width = rating_renderer.width + 5;
+            break;
+
+            case ListColumn.YEAR:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
+                column_resizable = false;
+                test_strings += "0000";
+            break;
+
+            case ListColumn.NUMBER:
+                var text_renderer = new Gtk.CellRendererText ();
+                text_renderer.style = Pango.Style.ITALIC;
+                renderer = text_renderer;
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.number_func);
+                column_resizable = false;
+                test_strings += "00000";
+            break;
+
+            case ListColumn.TRACK:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
+                column_resizable = false;
+                test_strings += "000";
+            break;
+
+            case ListColumn.PLAY_COUNT:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
+                column_resizable = false;
+                test_strings += "9999";
+            break;
+
+            case ListColumn.SKIP_COUNT:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
+                column_resizable = false;
+                test_strings += "9999";
+            break;
+
+            case ListColumn.TITLE:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.string_func);
+
+                /// Sample string used to measure the desired size of the Title column in the list view.
+                /// Should be as long as a common song title in your language.
+                test_strings += _ ("Sample Title");
+            break;
+
+            case ListColumn.ARTIST:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.string_func);
+
+                /// Sample string used to measure the desired size of the Artist column in the list view.
+                /// Should be as long as a common artist name in your language.
+                test_strings += _ ("Sample Artist");
+            break;
+
+            case ListColumn.ALBUM:
+                /// Sample string used to measure the desired size of the Album column in the list view.
+                /// Should be as long as a common album name in your language.
+                test_strings += _ ("Sample Album");
+#if HAVE_SMART_ALBUM_COLUMN
+                renderer = new SmartAlbumRenderer ();
+                tvc.set_cell_data_func (renderer, cell_data_helper.album_art_func);
+                // XXX set_row_separator_func (cell_data_helper.row_separator_func);
+#else
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.string_func);
+#endif
+            break;
+
+            case ListColumn.GENRE:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.string_func);
+
+                /// Sample string used to measure the desired size of the Genre column in the list view.
+                /// Should be as long as a common genre name in your language.
+                test_strings += _ ("Sample Genre");
+            break;
+
+            case ListColumn.BPM:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
+                column_resizable = false;
+                test_strings += "9999";
+            break;
+
+            default:
+                assert_not_reached ();
+        }
+
+        tvc.pack_start (renderer, true);
+
+        // Now insert the column
+        insert_column (tvc, insert_index);
+
+        if (column_width > 0) {
+            tvc.fixed_width = column_width;
+        } else if (renderer != null) {
+            var text_renderer = renderer as Gtk.CellRendererText;
+            if (text_renderer != null)
+                set_fixed_column_width (this, tvc, text_renderer, test_strings, 5);
+        }
+
+        tvc.reorderable = false;
+        tvc.clickable = true;
+
+        tvc.resizable = column_resizable;
+        tvc.expand = column_resizable;
+
+        bool sortable = type != ListColumn.NUMBER && type != ListColumn.ICON;
+
+        // This is vital. All the methods in CellDataFunctionHelper rely
+        // on this for retrieving the right column values from the cell-data
+        // functions. For that reason, it **must** use the same index as
+        // the column it corresponds to, unless it's not sortable.
+        tvc.sort_column_id = sortable ? (int) type : -1;
+        tvc.sort_indicator = sortable;
+
+        var header_button = tvc.get_button ();
+
+        // Make sure the title text is always fully displayed when the headers are visible
+        if (headers_visible) {
+            Gtk.Requisition natural_size;
+            header_button.get_preferred_size (null, out natural_size);
+
+            if (natural_size.width > tvc.fixed_width)
+                tvc.fixed_width = natural_size.width;
+
+            // Add extra width for the order indicator arrows
+            if (tvc.sort_indicator)
+                tvc.fixed_width += 5; // roughly estimated arrow width
+        }
+
+        tvc.min_width = tvc.fixed_width;
+
+        // This is probably the best place to disable the columns we don't want
+        // for especific views, like the CD view. FIXME: we need to properly abstract this
+        // and keep this class GENERIC rather than SHARED. This should be done in a subclass,
+        // like CDRomList
+        if (get_hint () == ViewWrapper.Hint.CDROM) {
+            if (type != ListColumn.ICON &&
+                type != ListColumn.NUMBER &&
+                type != ListColumn.TRACK &&
+                type != ListColumn.TITLE &&
+                type != ListColumn.LENGTH &&
+                type != ListColumn.ALBUM &&
+                type != ListColumn.ARTIST)
+            {
+                // hide the column and don't add a menuitem
+                tvc.visible = false;
+            }
+            else {
+                tvc.visible = type != ListColumn.NUMBER;
+                // Add menuitem
+                add_column_chooser_menu_item (tvc, type);
+            }
+        }
+        else {
+            // Add menuitem
+            add_column_chooser_menu_item (tvc, type);
+        }
+
+        if (type == ListColumn.ICON) {
+            header_button.button_press_event.connect ((e) => {
+                return view_header_click (e, true);
+            });
+        } else {
+            header_button.button_press_event.connect ((e) => {
+                return view_header_click (e, false);
+            });
+        }
+    }
 }
 

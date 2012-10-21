@@ -214,7 +214,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
 
             rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, this.get_style_context ()));
 
-            //var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
+            //var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
             //dvw.set_media_async (d.get_medias ());
             //lw.view_container.add_view (dvw);
             //addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
@@ -238,7 +238,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
 
             rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, null));
 
-            //var ndvw = new NetworkDeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
+            //var ndvw = new NetworkDeviceViewWrapper(lw, new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
             //ndvw.set_media_async (d.get_medias ());
             //addItem(rv, o, ndvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
             //lw.view_container.add_view (ndvw);

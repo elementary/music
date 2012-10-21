@@ -74,6 +74,7 @@ set(CLIENT_SOURCE
     Views/ListView/ColumnBrowser/BrowserColumn.vala
     Views/ListView/ColumnBrowser/ColumnBrowser.vala
     Views/ListView/ColumnBrowser/MusicColumnBrowser.vala
+    Views/ListView/Lists/ListColumn.vala
     Views/ListView/Lists/TreeViewSetup.vala
     Views/ListView/Lists/CellDataFunctionHelper.vala
     Views/ListView/Lists/GenericList.vala

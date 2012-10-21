@@ -49,7 +49,7 @@ public class Noise.SmartPlaylist : Object {
     LinkedList<Media> media;
     
     public SmartPlaylist() {
-        tvs = new TreeViewSetup (MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
+        tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
         _queries = new Gee.ArrayList<SmartQuery>();
     }
 

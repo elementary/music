@@ -1,8 +1,6 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,13 +16,25 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>,
+ *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
 using Gtk;
 using Gdk;
 
 public class Noise.CellDataFunctionHelper {
-    public GenericList view;
+
+    private GenericList view;
     private static string NOT_AVAILABLE = _("N/A");
 
 #if HAVE_SMART_ALBUM_COLUMN
@@ -99,7 +109,11 @@ public class Noise.CellDataFunctionHelper {
     private bool can_display_art (int range) {
         // We need 8 rows for the image, but also 2 extra rows for Album name and year.
         // Since displaying the year is not vital (there's a dedicated column for that),
-        // we can be okay with 9 rows
+        // we can be okay with 9 rows.
+        // TODO: Measure average column height and decide a number based on that. If
+        // Gtk.TreeView.fixed_height_mode is enabled, then this is trivial (we can get
+        // the background area of a row in the the tree). Then compute how many rows we
+        // need to display the entire image and cache the result.
         return range >= 9;
     }
 
@@ -132,12 +146,8 @@ public class Noise.CellDataFunctionHelper {
 
     /** For spinner/unique icon on each row **/
     public void icon_func (CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
-        var tvc = layout as Gtk.TreeViewColumn;
-
-        return_if_fail (tvc != null);
-
         bool showIndicator = false;
-        var s = view.get_object_from_index(view.get_index_from_iter (iter)) as Media;
+        var s = view.get_object_from_index (view.get_index_from_iter (iter)) as Media;
 
         if (s == null)
             return;
@@ -145,105 +155,101 @@ public class Noise.CellDataFunctionHelper {
         showIndicator = s.showIndicator;
 
         if (renderer is CellRendererPixbuf) {
-            Value? icon;
-            model.get_value (iter, MusicListView.MusicColumn.ICON, out icon); // ICON column is same for all
+            Value icon;
+            model.get_value (iter, ListColumn.ICON, out icon); // ICON column is same for all
 
             var pix_renderer = renderer as CellRendererPixbuf;
-            pix_renderer.follow_state = true;
-            pix_renderer.gicon = (icon as GLib.Icon);
+            pix_renderer.gicon = icon.get_object () as GLib.Icon;
 
             renderer.visible = !showIndicator;
-            renderer.width = showIndicator ? 0 : 16;
-        }
-        if (renderer is CellRendererSpinner) {
+        } else if (renderer is CellRendererSpinner) {
             if (showIndicator)
                 (renderer as Gtk.CellRendererSpinner).active = true;
-
             renderer.visible = showIndicator;
-            renderer.width = showIndicator ? 16 : 0;
         }
     }
 
-    // for Track, Year, #, Plays, Skips. Simply shows nothing if less than 1.
-    public void intelligent_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
-        Value val;
-        tree_model.get_value(iter, tvc.sort_column_id, out val);
-        (cell as CellRendererText).text = val.get_int() <= 0 ? "": val.get_int().to_string();
+    public void info_icon_func (Gtk.CellLayout layout, Gtk.CellRenderer renderer, Gtk.TreeModel model, Gtk.TreeIter iter) {
+    
     }
 
-    public void string_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
-        Value val;
-        tree_model.get_value(iter, tvc.sort_column_id, out val);
+    // For numbers. Needed because the column is not sortable and intelligent_func
+    // requires the column to be sortable to work properly.
+    public static inline void number_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+        set_renderer_number (cell as Gtk.CellRendererText, iter, tree_model, ListColumn.NUMBER);
+    }
 
-        var str = val.get_string ();
+    // for Track, Year, Plays, Skips. Simply shows nothing if less than 1.
+    public static inline void intelligent_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+        var tvc = layout as Gtk.TreeViewColumn;
+        return_if_fail (tvc != null);
 
-        if (str == null)
+        int column = tvc.sort_column_id;
+        if (column < 0)
             return;
 
-        (cell as CellRendererText).text = str;
+        set_renderer_number (cell as Gtk.CellRendererText, iter, tree_model, column);
+    }
+
+    private static inline void set_renderer_number (Gtk.CellRendererText renderer, Gtk.TreeIter iter, Gtk.TreeModel model, int column) {
+        Value val;
+        model.get_value (iter, column, out val);
+        uint n = val.get_uint ();
+        renderer.text = n > 0 ? n.to_string () : "";
+    }
+
+    public static inline void string_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+        var tvc = layout as Gtk.TreeViewColumn;
+        return_if_fail (tvc != null);
+
+        int column = tvc.sort_column_id;
+        if (column < 0)
+            return;
+
+        Value val;
+        tree_model.get_value (iter, column, out val);
+        (cell as CellRendererText).text = val.get_string ();
     }
 
     // for Bitrate. Append 'kbps'
-    public void bitrate_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public static inline void bitrate_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
-        tree_model.get_value(iter, tvc.sort_column_id, out val);
-
-        var n = val.get_int ();
+        tree_model.get_value(iter, ListColumn.BITRATE, out val);
         var text_cell = cell as CellRendererText;
-
+        uint n = val.get_uint ();
         text_cell.text = n <= 0 ? NOT_AVAILABLE : _("%i kbps").printf (n);
     }
 
     // turns int of seconds into pretty length mm:ss format
-    public void length_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public static inline void length_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
-        tree_model.get_value(iter, tvc.sort_column_id, out val);
-
+        tree_model.get_value(iter, ListColumn.LENGTH, out val);
+        uint ms = val.get_uint ();
         var text_cell = cell as CellRendererText;
-
-        uint ms = (uint)val.get_int ();
-
         text_cell.text = (ms <= 0) ? NOT_AVAILABLE : TimeUtils.pretty_length_from_ms (ms);
     }
 
-    public string get_date_func_sample_string () {
+    public static inline string get_date_func_sample_string () {
         return get_date_string (1324512000);
     }
 
     // turns seconds since Jan 1, 1970 into date format
-    public void date_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public static inline void date_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
-        tree_model.get_value(iter, tvc.sort_column_id, out val);
-
-        int n = val.get_int ();
-
+        tree_model.get_value(iter, ListColumn.DATE_ADDED, out val);
         var text_cell = cell as CellRendererText;
-        assert (text_cell != null);
-
-        text_cell.text = get_date_string (n);
+        text_cell.text = get_date_string (val.get_uint ());
     }
 
-    private inline string get_date_string (int n) {
-        string text = "";
-
-        if (n <= 0) {
-            text = _("Never");
-        } else {
-            var t = Time.local (n);
-            text = TimeUtils.pretty_timestamp_from_time (t);
-        }
-
-        return text;
+    private static inline string get_date_string (uint n) {
+        return n == 0 ? _("Never") : TimeUtils.pretty_timestamp_from_time (Time.local (n));
     }
 
-    public void rating_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+    public static inline void rating_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
-        tree_model.get_value(iter, tvc.sort_column_id, out val);
-
-        // now let's set the rating!
+        tree_model.get_value(iter, ListColumn.RATING, out val);
         var rating_cell = cell as Granite.Widgets.CellRendererRating;
-        return_if_fail (rating_cell != null);
-        rating_cell.rating = val.get_int ();
+        rating_cell.rating = val.get_uint ();
     }
 }
 

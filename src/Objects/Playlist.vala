@@ -35,13 +35,13 @@ public class Noise.Playlist : Object {
 	
 	public Playlist() {
 		name = "";
-		tvs = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+		tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_media = new Gee.HashMap<Media, int>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
 		_media = new Gee.HashMap<Media, int>();
-		tvs = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+		tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		this.rowid = rowid;
 		this.name = name;
 	}

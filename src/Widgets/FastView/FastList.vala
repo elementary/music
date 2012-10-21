@@ -90,9 +90,12 @@ public class Noise.FastView : TreeView {
 	protected HashTable<int, Object> table; // is not the same object as showing.
 	protected HashTable<int, Object> showing; // should never point to table.
 
-
 	/* sortable stuff */
-	public delegate int SortCompareFunc (int sort_column_id, Gtk.SortType sort_direction, Object a, Object b);
+	public delegate int SortCompareFunc (int sort_column_id,
+	                                     Gtk.SortType sort_direction,
+	                                     Object a, Object b,
+	                                     int index_a, int index_b); // position of items in the view's @table
+
 	protected int sort_column_id;
 	protected SortType sort_direction;
 	private unowned SortCompareFunc compare_func;
@@ -289,7 +292,8 @@ public class Noise.FastView : TreeView {
         if (Utils.is_cancelled (cancellable))
             return;
 
-		var pivot = table.get((start+end)/2);
+        int pivot_index = (start + end) / 2;
+		var pivot = table.get (pivot_index);
 		int i = start;
 		int j = end;
 		
@@ -297,8 +301,8 @@ public class Noise.FastView : TreeView {
             if (Utils.is_cancelled (cancellable))
                 return;
 
-			while(i < end && compare_func (sort_column_id, sort_direction, table.get(i), pivot) < 0) ++i;
-			while(j > start && compare_func (sort_column_id, sort_direction, table.get(j), pivot) > 0) --j;
+			while(i < end && compare_func (sort_column_id, sort_direction, table.get(i), pivot, i, pivot_index) < 0) ++i;
+			while(j > start && compare_func (sort_column_id, sort_direction, table.get(j), pivot, j, pivot_index) > 0) --j;
 			if(i <= j) {
 				swap(i, j);
 				++i; --j;
