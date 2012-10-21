@@ -28,6 +28,8 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
         OBJECT  = 3
     }
 
+	public ViewWrapper parent_view_wrapper { get; protected set; }
+
     private FastGrid icon_view;
 
     // Spacing Workarounds
@@ -36,11 +38,13 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
     private Gtk.EventBox hpadding_box;
 #endif
 
-    private static const int ITEM_PADDING = 0;
-    private static const int MIN_SPACING = 12;
-    private static const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
+    private const string STYLESHEET = "*:selected{background-color:@transparent;}";
+    private const int ITEM_PADDING = 0;
+    private const int MIN_SPACING = 12;
+    private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
 
-    public GridLayout () {
+    public GridLayout (ViewWrapper view_wrapper) {
+		parent_view_wrapper = view_wrapper;
         build_ui ();
         clear_objects ();
     }
@@ -156,7 +160,6 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
 
     private void set_theming () {
         // Change background color
-        const string STYLESHEET = "*:selected{background-color:@transparent;}";
         Granite.Widgets.Utils.set_theming (icon_view, STYLESHEET, null, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
 
@@ -215,30 +218,32 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
     /**
      * Smart spacing
      */
-
-    int resize_priority_offset = 0;
-    const int DEFAULT_RESIZE_PRIORITY = (Priority.DEFAULT_IDLE + Priority.HIGH_IDLE) / 2;
+    private bool waiting_resize = false;
 
     private void on_resize () {
-        resize_priority_offset ++;
+        if (waiting_resize)
+            return;
 
-        Idle.add_full (DEFAULT_RESIZE_PRIORITY - resize_priority_offset, () => {
-            compute_spacing (get_current_width ());
-            resize_priority_offset = 0;
+        waiting_resize = true;
+
+        int priority = parent_view_wrapper.is_current_wrapper ? Priority.HIGH_IDLE : Priority.LOW;
+
+        Idle.add_full (priority , () => {
+            update_spacing ();
+            waiting_resize = false;
             return false;
         });
     }
 
     private int get_current_width () {
-        return (int)get_hadjustment ().page_size;
+        return (int) get_hadjustment ().page_size;
     }
 
-    private void compute_spacing (int new_width) {
-        if (new_width != get_current_width ())
-            return;
-
+    private void update_spacing () {
         if (!visible)
             return;
+
+        int new_width = get_current_width ();
 
         int TOTAL_WIDTH = new_width; // width of view wrapper, not scrolled window!
         int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;

@@ -22,6 +22,9 @@
 
 public class Noise.GridView : ContentView, GridLayout {
 
+    private string TEXT_MARKUP = @"%s\n<span foreground=\"#999\">%s</span>";
+    private string TOOLTIP_MARKUP = @"<span size=\"large\"><b>%s</b></span>\n%s";
+
 	// The window used to present album contents
     private static PopupListView? _popup = null;
 	public PopupListView popup_list_view {
@@ -41,8 +44,6 @@ public class Noise.GridView : ContentView, GridLayout {
 		}
 	}
 
-	public ViewWrapper parent_view_wrapper { get; private set; }
-
 	// album-key / album-media
 	Gee.HashMap<string, Gee.HashMap<Media, int>> album_info;
 
@@ -50,9 +51,10 @@ public class Noise.GridView : ContentView, GridLayout {
 	private LibraryWindow lw;
 
 	public GridView (ViewWrapper view_wrapper) {
+        base (view_wrapper);
+
 		lm = view_wrapper.lm;
 		lw = view_wrapper.lw;
-		parent_view_wrapper = view_wrapper;
 
 		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
 
@@ -62,7 +64,6 @@ public class Noise.GridView : ContentView, GridLayout {
 	}
 
 	public void build_ui () {
-
 		var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
 		focus_blacklist.add (lw.viewSelector);
 		focus_blacklist.add (lw.searchField);
@@ -274,61 +275,47 @@ public class Noise.GridView : ContentView, GridLayout {
 		popup_list_view.present ();
 	}
 
-
 	protected override Value? val_func (int row, int column, Object o) {
-		Value? val = null;
 		var s = o as Media;
 
-        if (s != null) {
-		    if (column == Column.PIXBUF) {
-        		val = CoverartCache.instance.get_cover (s);
-		    } else if (column == Column.MARKUP) {
-			    string TEXT_MARKUP = @"%s\n<span foreground=\"#999\">%s</span>";
-			
-			    string album, album_artist;
-			    if (s.album.length > 25)
+        return_val_if_fail (s != null, null);
+
+        switch (column) {
+            case Column.PIXBUF:
+                return CoverartCache.instance.get_cover (s);
+
+            case Column.MARKUP:
+			    string album = s.get_display_album ();
+			    string artist = s.get_display_album_artist ();
+
+			    if (album.length > 25)
 				    album = s.album.substring (0, 21) + "...";
-			    else
-				    album = s.album;
+			    if (artist.length > 25)
+				    artist = artist.substring (0, 21) + "...";
 
-			    if (s.album_artist.length > 25)
-				    album_artist = s.album_artist.substring (0, 21) + "...";
-			    else
-				    album_artist = s.album_artist;
+			    return Markup.printf_escaped (TEXT_MARKUP, album, artist);
 
-			    val = Markup.printf_escaped (TEXT_MARKUP, album, album_artist);
-		    } else if (column == Column.TOOLTIP) {
-			    string TOOLTIP_MARKUP = @"<span size=\"large\"><b>%s</b></span>\n%s";
-			    val = Markup.printf_escaped (TOOLTIP_MARKUP, s.album, s.album_artist);
-		    } else {
-			    val = s;
-		    }
+		    case Column.TOOLTIP:
+			    return Markup.printf_escaped (TOOLTIP_MARKUP, s.get_display_album (), s.get_display_album_artist ());
         }
 
-		return val;
+		assert_not_reached ();
 	}
 
 	protected override int compare_func (Object o_a, Object o_b) {
-		var a_media = o_a as Media;
-		var b_media = o_b as Media;
+		var media_a = o_a as Media;
+		var media_b = o_b as Media;
 
-        return_val_if_fail (a_media != null && b_media != null, 0);
+        return_val_if_fail (media_a != null && media_b != null, 0);
 
-		int rv = 0;
+        string album_a = media_a.get_display_album ();
+        string album_b = media_b.get_display_album ();
 
-		if (a_media.album.down() == b_media.album.down()) {
-			if (a_media.album_number == b_media.album_number)
-				rv = (int)(a_media.track - b_media.track);
-			else
-				rv = (int)((int)a_media.album_number - (int)b_media.album_number);
-		}
-		else {
-			if (a_media.album == "")
-				rv = 1;
-			else
-				rv = String.compare (a_media.album.down(), b_media.album.down());
-		}
+        int order = String.compare (album_a, album_b);
 
-		return rv;
+		if (order == 0)
+			order = String.compare (media_a.get_display_album_artist (), media_b.get_display_album_artist ());
+
+        return order;
 	}
 }
