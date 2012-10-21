@@ -36,7 +36,17 @@ public class Noise.Media : Object {
 
     public int rowid { get; set; }
     public MediaType mediatype { get; set; default = MediaType.SONG; }
-    public string uri { get; set; default = ""; }
+
+    private string _uri = "";
+    public string uri {
+        get { return _uri; }
+        set {
+            display_filename_updated = false;
+            _uri = value;
+        }
+    }
+
+
     public uint64 file_size { get; set; default = 0; }
     public bool file_exists { get { return this.file.query_exists (); } }
 
@@ -97,8 +107,32 @@ public class Noise.Media : Object {
 
     public int resume_pos { get; set; default = 0; }
 
+    private bool display_filename_updated = false;
+    private string? cached_display_filename;
+    private Cancellable query_filename_cancellable;
+
+    /**
+     * This call is still not fully synchronous because it's only used to get the display
+     * filename without blocking from the list's cell-data functions. As their nature is
+     * to check for that before every redraw, the value is updated as needed.
+     */
     public inline string get_display_filename () {
-        return UNKNOWN; // TODO: get a cached version of a UTF-8-encoded filename
+        if (display_filename_updated && cached_display_filename != null)
+            return cached_display_filename;
+
+        if (query_filename_cancellable != null)
+            query_filename_cancellable.cancel ();
+
+        var cancellable = new Cancellable ();
+        query_filename_cancellable = cancellable;
+
+        FileUtils.query_name_async.begin (file, cancellable, (obj, res) => {
+            if (!cancellable.is_cancelled ())
+                cached_display_filename = FileUtils.query_name_async.end (res);
+            display_filename_updated = true;
+        });
+
+        return UNKNOWN;
     }
 
     public inline string get_display_title () {
