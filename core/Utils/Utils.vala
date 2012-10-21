@@ -67,4 +67,15 @@ namespace Noise.Utils {
     public inline bool flags_set (int flags, int to_check) {
         return (flags & to_check) == to_check;
     }
+
+    /**
+     * Returns the name of the current desktop shell.
+     *
+     * Encoding is the same of unix filenames.
+     *
+     * @return name of the desktop shell, or null if it's not found.
+     */
+    public string? get_desktop_shell () {
+        return Environment.get_variable ("XDG_CURRENT_DESKTOP");
+    }
 }
