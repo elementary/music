@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-10-06 00:10-0600\n"
+"POT-Creation-Date: 2012-10-20 21:37-0600\n"
 "PO-Revision-Date: 2012-09-26 08:03+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-07 04:53+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-21 05:11+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -67,35 +67,24 @@ msgstr[1] "%u jam"
 msgid "%s, %s and %s"
 msgstr "%s, %s dan %s"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:33
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "Tajuk Tidak Diketahui"
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:151
+msgid "%m/%e/%Y %l:%M %p"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:34
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:630
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:94
-msgid "Unknown Album"
-msgstr "Album Tidak Diketahui"
-
+#. / Used for unknown titles, artists, or album names.
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:35
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/ArtistInfo.vala:27
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:629
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:109
-msgid "Unknown Artist"
-msgstr "Penyanyi/Artis tidak diketahui"
+msgid "Unknown"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:36
-msgid "Unknown Genre"
-msgstr "Genre Tidak Diketahui"
+#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:37
+msgid "Listen to music"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:38
-msgid "Various Artists"
-msgstr "Artis Campuran"
+#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:38
+msgid "Music Player"
+msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:203
 #, c-format
@@ -106,14 +95,22 @@ msgstr "Mengimport muzik dari %s..."
 msgid "Adding files to library..."
 msgstr "Menambah fail ke pustaka..."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:299
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:300
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Menambah muzik dari %s ke pustaka..."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:327
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:328
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Mengimbas semula muzik untuk perubahan. Ia mengambil masa..."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:109
+msgid "Unknown Artist"
+msgstr "Penyanyi/Artis tidak diketahui"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Objects/Playlist.vala:203
 msgid "Radio Station"
@@ -122,6 +119,11 @@ msgstr "Stesen Radio"
 #: /home/victor/noise-luna-beta-1/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
 msgstr "Trek Tidak Diketahui"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:94
+msgid "Unknown Album"
+msgstr "Album Tidak Diketahui"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:49
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
@@ -143,7 +145,6 @@ msgstr "Benarkan Ulang"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:61
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:535
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:64
 msgid "Song"
 msgstr "Lagu"
 
@@ -155,7 +156,7 @@ msgstr "Ulang Lagu"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:187
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:257
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:80
 msgid "Album"
 msgstr "Album"
 
@@ -167,7 +168,7 @@ msgstr "Ulang Album"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:185
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:258
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:77
 msgid "Artist"
 msgstr "Artis"
 
@@ -241,8 +242,8 @@ msgid "Using %s of %s (%.2f%)"
 msgstr "Menggunakan %s dari %s (%.2f%)"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:71
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:153
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:177
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:110
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:179
 msgid "Import to Library"
 msgstr "Import ke Pustaka"
 
@@ -251,7 +252,7 @@ msgid "Eject"
 msgstr "Lenting"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:88
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:150
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "New Playlist"
 msgstr "Senarai Main Baru"
 
@@ -500,7 +501,7 @@ msgstr "Menyunting %i lagu"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:184
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:271
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:71
 msgid "Title"
 msgstr "Tajuk"
 
@@ -511,7 +512,7 @@ msgstr "Artis Album"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:83
 msgid "Genre"
 msgstr "Genre"
 
@@ -528,12 +529,11 @@ msgstr "Pengumpulan"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Comment"
 msgstr "Ulasan"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:68
 msgid "Track"
 msgstr "Trek"
 
@@ -543,13 +543,13 @@ msgstr "Cakera"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:194
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:86
 msgid "Year"
 msgstr "Tahun"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:195
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:92
 msgid "Rating"
 msgstr "Penarafan"
 
@@ -563,8 +563,6 @@ msgid "Lyrics not found for %s"
 msgstr "Lirik untuk %s tidak ditemui"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:537
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:67
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Podcast"
 msgstr "Podcast"
 
@@ -600,23 +598,23 @@ msgid "Sync will remove 1 item from %s"
 msgstr "Segerak akan buang 1 item dari %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:181
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:183
 msgid "Preferences"
 msgstr "Keutamaan"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:216
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:221
 msgid "General"
 msgstr "Am"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:230
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:240
 msgid "Select Music Folder"
 msgstr "Pilih Folder Muzik"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:237
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:247
 msgid "Music Folder Location"
 msgstr "Lokasi Folder Muzik"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:243
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:253
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
@@ -624,29 +622,41 @@ msgstr ""
 "Anda mesti tunggu sehingga operasi fail terdahulu selesai sebelum menetapkan "
 "folder muzik anda"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:255
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:264
 msgid "Keep Music folder organized"
 msgstr "Pastikan folder Muzik terurus"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:256
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:265
 msgid "Copy files to Music folder when adding to Library"
 msgstr "Salin fail ke folder Muzik bila menambah ke Pustaka"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:258
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:267
 msgid "Write metadata to file"
 msgstr "Tulis data meta ke fail"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:273
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:279
 msgid "Library Management"
 msgstr "Pengurusan Pustaka"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:280
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:286
 msgid "Use Noise as the default Music application"
 msgstr "Guna Noise sebagai apliaksi Muzik lalai"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:285
-msgid "System Integration"
-msgstr "Penyepaduan Sistem"
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:292
+msgid "Show notifications"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:299
+msgid "Minimize window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:301
+msgid "Hide window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:307
+msgid "Desktop Integration"
+msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
@@ -698,12 +708,12 @@ msgid "items"
 msgstr "item"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:31
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:89
 msgid "Bitrate"
 msgstr "Kadar Bit"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:101
 msgid "Date Added"
 msgstr "Tarikh Ditambah"
 
@@ -712,13 +722,13 @@ msgid "Date Released"
 msgstr "Tarikh Dilepaskan"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:104
 msgid "Last Played"
 msgstr "Terakhir Dimain"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:267
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:74
 msgid "Length"
 msgstr "Jangka masa"
 
@@ -816,7 +826,6 @@ msgid "Import %s from %s"
 msgstr "Import %s dari %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
 msgid "ID"
 msgstr "ID"
 
@@ -873,34 +882,26 @@ msgstr "Nama %s sudah digunakan"
 msgid "Remove from %s"
 msgstr "Buang dari %s"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:70
-msgid "Audiobook"
-msgstr "Buku Audio"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:73
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
-msgid "Station"
-msgstr "Stesen"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
-msgid "Remove %d %s from %s?"
-msgstr "Buang %d %s dari %s?"
+msgid "Remove %d Songs From %s?"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:89
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:91
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "buang \"%s\" Dari %s?"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:98
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:81
 #, c-format
 msgid ""
-"This will remove the %s from your library and from any device that "
+"This will remove the song from your library and from any device that "
 "automatically syncs with %s."
-msgstr ""
-"Ia akan buang %s dari pustaka anda dan mana-mana peranti yang segerak secara "
-"automatik dengan %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
@@ -1027,11 +1028,11 @@ msgid_plural "%u songs"
 msgstr[0] "%u lagu"
 msgstr[1] "%u lagu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:590
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:569
 msgid "No media"
 msgstr "Tiada Media"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:594
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:573
 msgid "Sorry, there is no music that matches your search"
 msgstr "Maaf, tiada muzik yang sepadan dengan gelintar anda"
 
@@ -1091,131 +1092,123 @@ msgstr "Peranti tidak boleh dicapai"
 msgid "%s could not access to this network device"
 msgstr "%s tidak dapat capai ke peranti rangkaian ini"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:38
 msgid "N/A"
 msgstr "T/B"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:220
 #, c-format
 msgid "%i kbps"
 msgstr "%i kbps"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:257
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:263
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:245
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:714
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:721
 msgid "Never"
 msgstr "Tidak Sesekali"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
-msgid "Episode"
-msgstr "Episod"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
-msgid "Name"
-msgstr "Nama"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
-msgid "Date"
-msgstr "Tarikh"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
-msgid "Category"
-msgstr "Kategori"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
-msgid "BPM"
-msgstr "BPM"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
-msgid "Plays"
-msgstr "Dimainkan"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
-msgid "Skips"
-msgstr "Langkau"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:65
 msgid "#"
 msgstr "#"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:97
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:95
+msgid "Plays"
+msgstr "Dimainkan"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:98
+msgid "Skips"
+msgstr "Langkau"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:107
+msgid "BPM"
+msgstr "BPM"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:57
 msgid "Remove from Library"
 msgstr "Buang dari Pustaka"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:105
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:65
 msgid "Remove from Queue"
 msgstr "Buang dari Baris Gilir"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:122
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:82
 msgid "Remove from Device"
 msgstr "Buang dari Peranti"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:146
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:103
 msgid "Scroll to Current Song"
 msgstr "Tatal ke Lagu Semasa"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:147
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:104
 msgid "Edit Song Info"
 msgstr "Sunting Maklumat Lagu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:148
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:105
 msgid "Show in File Browser"
 msgstr "Papar dalam Pelayar Fail"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:149
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:470
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:106
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:486
 msgid "Queue"
 msgstr "Baris Gilir"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:151
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:108
 msgid "Add to Playlist"
 msgstr "Tambah ke Senarai main"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:152
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:109
 msgid "Remove Song"
 msgstr "Buang Lagu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:253
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:215
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Import %i dari %i lagu terpilih"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:255
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:217
 msgid "Import this song"
 msgstr "Import lagu ini"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:257
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:219
 #, c-format
 msgid "Import %i songs"
 msgstr "Import %i lagu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:110
-msgid "Autosize Columns"
-msgstr "Lajur Saiz Sendiri"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:117
-msgid "Display Album Art"
-msgstr "Papar Seni Kulit Album"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:245
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:700
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:311
+#. / Sample string used to measure the desired size of the Title column in the list view.
+#. / Should be as long as a common song title in your language.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:778
 msgid "Sample Title"
 msgstr "Tajuk Sampel"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:316
+#. / Sample string used to measure the desired size of the Artist column in the list view.
+#. / Should be as long as a common artist name in your language.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:787
 msgid "Sample Artist"
 msgstr "Artis Sampel"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:319
+#. / Sample string used to measure the desired size of the Album column in the list view.
+#. / Should be as long as a common album name in your language.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:793
 msgid "Sample Album"
 msgstr "Album Sampel"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:332
+#. / Sample string used to measure the desired size of the Genre column in the list view.
+#. / Should be as long as a common genre name in your language.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:810
 msgid "Sample Genre"
 msgstr "Genre Sampel"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:138
+msgid "Autosize Columns"
+msgstr "Lajur Saiz Sendiri"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:145
+msgid "Display Album Art"
+msgstr "Papar Seni Kulit Album"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
@@ -1237,76 +1230,74 @@ msgstr "Tahun"
 msgid "Ratings"
 msgstr "Penarafan"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:192
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
 msgid "Unrated"
 msgstr "Tidak ditarafkan"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:194
-msgid "1 Star"
-msgstr "1 Bintang"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:196
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
 #, c-format
-msgid "%s Stars"
-msgstr "%s Bintang"
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Genres"
 msgstr "Semu Genre"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Genres"
 msgstr "Semua %i Genre"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Genres"
 msgstr "Tanpa Genre"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:252
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
 msgid "All Artists"
 msgstr "Semua Artis"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
 #, c-format
 msgid "All %i Artists"
 msgstr "Semua %i Artis"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
 msgid "No Artists"
 msgstr "Tanpa Artis"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Albums"
 msgstr "Semua Album"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 #, c-format
 msgid "All %i Albums"
 msgstr "Semua %i Album"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Albums"
 msgstr "Tanpa Album"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:268
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
 msgid "All Years"
 msgstr "Semua Tahun"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
 #, c-format
 msgid "All %i Years"
 msgstr "Semua %i Tahun"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
 msgid "No Years"
 msgstr "Tanpa Tahun"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:276
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
 msgid "All Ratings"
 msgstr "Semua Penarafan"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:278
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
 msgid "No Ratings"
 msgstr "Tanpa Penarapan"
 
@@ -1339,7 +1330,7 @@ msgid "Other Files"
 msgstr "Fail Lain"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:460
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:476
 msgid "Music"
 msgstr "Muzik"
 
@@ -1409,53 +1400,57 @@ msgstr "Terlebih Main"
 msgid "Not Recently Played"
 msgstr "Tiada Dimain Baru-baru Ini"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:178
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:180
 msgid "Rescan Music Folder"
 msgstr "Imbas Semula Folder Muzik"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:201
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:203
 msgid "Search Music"
 msgstr "Gelintar Muzik"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:474
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:490
 msgid "History"
 msgstr "Sejarah"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:629
-msgid " by "
-msgstr " oleh "
+#. / String template used to show "SongName by ArtistName"
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:651
+#, c-format
+msgid " by %s"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:630
-msgid " on "
-msgstr " pada "
+#. / String template used to show "SongName ... on AlbumName"
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:656
+#, c-format
+msgid " on %s"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:838
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:863
 msgid "Import Music"
 msgstr "Import Muzik"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:870
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:895
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Mengimport</b> muzik dari pustaka <b>%s</b>."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:885
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:910
 msgid "Rescanning music folder for changes"
 msgstr "Mengimbas semula folder muzik untuk perubahan"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:892
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:917
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid "Could not find Music Folder"
 msgstr "Tidak dapat cari Folder Muzik"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:892
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:917
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Sila pastikan folder muzik anda boleh dicapai dan dilekap."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:958
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:983
 msgid "Import Complete"
 msgstr "Proses Mengimport Selesai"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:958
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:983
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s telah mengimport pustaka anda."
@@ -1591,6 +1586,10 @@ msgstr "%s telag selesai mengimport satu lagu dari CD Audio."
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Import CD akan <b>dibatalkan</b> selepas import semasa."
 
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "Tajuk Tidak Diketahui"
+
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:301
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
 #, c-format
@@ -1706,6 +1705,24 @@ msgstr ""
 #~ msgid "Recently Played"
 #~ msgstr "Baru Dimainkan"
 
+#~ msgid " by "
+#~ msgstr " oleh "
+
+#~ msgid "1 Star"
+#~ msgstr "1 Bintang"
+
+#~ msgid "Name"
+#~ msgstr "Nama"
+
+#~ msgid "Station"
+#~ msgstr "Stesen"
+
+#~ msgid "Date"
+#~ msgstr "Tarikh"
+
+#~ msgid "Category"
+#~ msgstr "Kategori"
+
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
@@ -1751,12 +1768,22 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Podcast Belum Didengari"
 
+#~ msgid " on "
+#~ msgstr " pada "
+
 #~ msgid "Disable Repeat"
 #~ msgstr "Lumpuhkan Ulang"
 
 #, c-format
+#~ msgid "%s Stars"
+#~ msgstr "%s Bintang"
+
+#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Semua %i Penarafan"
+
+#~ msgid "Episode"
+#~ msgstr "Episod"
 
 #~ msgid "Pulser"
 #~ msgstr "Pendenyut"
@@ -1785,6 +1812,21 @@ msgstr ""
 #, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Lirik tidak ditemui bagi \"%s\" oleh \"%s\""
+
+#, c-format
+#~ msgid ""
+#~ "This will remove the %s from your library and from any device that "
+#~ "automatically syncs with %s."
+#~ msgstr ""
+#~ "Ia akan buang %s dari pustaka anda dan mana-mana peranti yang segerak secara "
+#~ "automatik dengan %s."
+
+#, c-format
+#~ msgid "Remove %d %s from %s?"
+#~ msgstr "Buang %d %s dari %s?"
+
+#~ msgid "Audiobook"
+#~ msgstr "Buku Audio"
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Muat turun Episod baru"
@@ -1833,3 +1875,12 @@ msgstr ""
 
 #~ msgid "Keep music folder organized"
 #~ msgstr "Kekalkan folder muzik diurus"
+
+#~ msgid "System Integration"
+#~ msgstr "Penyepaduan Sistem"
+
+#~ msgid "Unknown Genre"
+#~ msgstr "Genre Tidak Diketahui"
+
+#~ msgid "Various Artists"
+#~ msgstr "Artis Campuran"

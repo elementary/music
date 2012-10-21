@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-10-06 00:10-0600\n"
+"POT-Creation-Date: 2012-10-20 21:37-0600\n"
 "PO-Revision-Date: 2012-10-17 09:54+0000\n"
 "Last-Translator: Erkka Juhaninmäki <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-18 04:58+0000\n"
-"X-Generator: Launchpad (build 16160)\n"
+"X-Launchpad-Export-Date: 2012-10-21 05:11+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -67,35 +67,24 @@ msgstr[1] "%u tuntia"
 msgid "%s, %s and %s"
 msgstr "%s, %s ja %s"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:33
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "Tuntematon nimi"
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:151
+msgid "%m/%e/%Y %l:%M %p"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:34
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:630
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:94
-msgid "Unknown Album"
-msgstr "Tuntematon albumi"
-
+#. / Used for unknown titles, artists, or album names.
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:35
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/ArtistInfo.vala:27
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:629
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:109
-msgid "Unknown Artist"
-msgstr "Tuntematon artisti"
+msgid "Unknown"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:36
-msgid "Unknown Genre"
-msgstr "Tuntematon tyylilaji"
+#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:37
+msgid "Listen to music"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:38
-msgid "Various Artists"
-msgstr "Useita esittäjiä"
+#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:38
+msgid "Music Player"
+msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:203
 #, c-format
@@ -106,15 +95,23 @@ msgstr "Tuodaan musiikkia kohteesta %s..."
 msgid "Adding files to library..."
 msgstr "Lisätään tiedostoja kirjastoon..."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:299
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:300
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Lisätään musiikkia kirjastoon kohteesta %s..."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:327
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:328
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 "Selataan musiikkitiedostoja muutosten varalta. Tämä saattaa kestää hetken..."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:109
+msgid "Unknown Artist"
+msgstr "Tuntematon artisti"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Objects/Playlist.vala:203
 msgid "Radio Station"
@@ -123,6 +120,11 @@ msgstr "Radioasema"
 #: /home/victor/noise-luna-beta-1/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
 msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:94
+msgid "Unknown Album"
+msgstr "Tuntematon albumi"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:49
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
@@ -144,7 +146,6 @@ msgstr "Ota toisto käyttöön"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:61
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:535
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:64
 msgid "Song"
 msgstr "Kappale"
 
@@ -156,7 +157,7 @@ msgstr "Toista kappaletta"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:187
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:257
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:80
 msgid "Album"
 msgstr "Albumi"
 
@@ -168,7 +169,7 @@ msgstr "Toista albumi"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:185
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:258
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:77
 msgid "Artist"
 msgstr "Artisti"
 
@@ -242,8 +243,8 @@ msgid "Using %s of %s (%.2f%)"
 msgstr "Käytössä %s/%s (%.2f%)"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:71
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:153
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:177
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:110
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:179
 msgid "Import to Library"
 msgstr "Tuo kirjastoon"
 
@@ -252,7 +253,7 @@ msgid "Eject"
 msgstr "Irrota"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:88
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:150
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "New Playlist"
 msgstr "Uusi soittolista"
 
@@ -502,7 +503,7 @@ msgstr "Muokataan %i kappaletta"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:184
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:271
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:71
 msgid "Title"
 msgstr "Nimi"
 
@@ -513,7 +514,7 @@ msgstr "Albumin esittäjä"
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:83
 msgid "Genre"
 msgstr "Tyylilaji"
 
@@ -530,12 +531,11 @@ msgstr "Ryhmittely"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Comment"
 msgstr "Kommentti"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:68
 msgid "Track"
 msgstr "Raita"
 
@@ -545,13 +545,13 @@ msgstr "Levy"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:194
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:86
 msgid "Year"
 msgstr "Vuosi"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:195
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:92
 msgid "Rating"
 msgstr "Arvostelu"
 
@@ -565,8 +565,6 @@ msgid "Lyrics not found for %s"
 msgstr "Kappaleelle %s ei löytynyt sanoituksia"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:537
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:67
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Podcast"
 msgstr "Podcast"
 
@@ -600,23 +598,23 @@ msgid "Sync will remove 1 item from %s"
 msgstr "Synkronointi poistaa yhden kohteen kohteesta %s"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:181
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:183
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:216
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:221
 msgid "General"
 msgstr "Yleiset"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:230
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:240
 msgid "Select Music Folder"
 msgstr "Valitse musiikkikansio"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:237
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:247
 msgid "Music Folder Location"
 msgstr "Musiikkikansion sijainti"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:243
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:253
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
@@ -624,29 +622,41 @@ msgstr ""
 "Sinun täytyy odottaa kunnes aiemmat tiedostotoiminnot valmistuvat ennen "
 "musiikkikansiosi asettamista"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:255
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:264
 msgid "Keep Music folder organized"
 msgstr "Pidä musiikkikansio organisoituna"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:256
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:265
 msgid "Copy files to Music folder when adding to Library"
 msgstr "Kopioi kirjastoon lisättävät tiedostot musiikkikansioon"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:258
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:267
 msgid "Write metadata to file"
 msgstr "Kirjoita metatieto tiedostoon"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:273
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:279
 msgid "Library Management"
 msgstr "Kirjaston hallinta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:280
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:286
 msgid "Use Noise as the default Music application"
 msgstr "Käytä Noisea musiikin oletussoittimena"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:285
-msgid "System Integration"
-msgstr "Järjestelmäintegraatio"
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:292
+msgid "Show notifications"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:299
+msgid "Minimize window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:301
+msgid "Hide window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:307
+msgid "Desktop Integration"
+msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
@@ -698,12 +708,12 @@ msgid "items"
 msgstr "kohteeseen"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:31
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:89
 msgid "Bitrate"
 msgstr "Laatu"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:101
 msgid "Date Added"
 msgstr "Lisäyspäivä"
 
@@ -712,13 +722,13 @@ msgid "Date Released"
 msgstr "Julkaisupäivä"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:104
 msgid "Last Played"
 msgstr "Viimeksi soitettu"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:267
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:74
 msgid "Length"
 msgstr "Kesto"
 
@@ -814,7 +824,6 @@ msgid "Import %s from %s"
 msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
 msgid "ID"
 msgstr ""
 
@@ -871,32 +880,26 @@ msgstr "Nimi %s on jo käytössä"
 msgid "Remove from %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:70
-msgid "Audiobook"
-msgstr "Äänikirja"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:73
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
-msgid "Station"
-msgstr "Asema"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
-msgid "Remove %d %s from %s?"
+msgid "Remove %d Songs From %s?"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:89
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:91
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:98
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:81
 #, c-format
 msgid ""
-"This will remove the %s from your library and from any device that "
+"This will remove the song from your library and from any device that "
 "automatically syncs with %s."
-msgstr ""
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
@@ -1021,11 +1024,11 @@ msgid_plural "%u songs"
 msgstr[0] "%u kappale"
 msgstr[1] "%u kappaletta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:590
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:569
 msgid "No media"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:594
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:573
 msgid "Sorry, there is no music that matches your search"
 msgstr "Valitettavasti mikään musiikki ei vastaa hakuasi"
 
@@ -1086,130 +1089,122 @@ msgstr "Laite ei ole tavoitettavissa"
 msgid "%s could not access to this network device"
 msgstr "%s ei pystynyt käyttämään tätä verkkolaitetta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:38
 msgid "N/A"
 msgstr "–"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:220
 #, c-format
 msgid "%i kbps"
 msgstr "%i kbps"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:257
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:263
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:245
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:714
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:721
 msgid "Never"
 msgstr "Ei koskaan"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
-msgid "Episode"
-msgstr "Jakso"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
-msgid "Name"
-msgstr "Nimi"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
-msgid "Date"
-msgstr "Päivä"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
-msgid "Category"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
-msgid "BPM"
-msgstr "BPM"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
-msgid "Plays"
-msgstr "Soittokerrat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
-msgid "Skips"
-msgstr "Ohituskerrat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:65
 msgid "#"
 msgstr "#"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:97
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:95
+msgid "Plays"
+msgstr "Soittokerrat"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:98
+msgid "Skips"
+msgstr "Ohituskerrat"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:107
+msgid "BPM"
+msgstr "BPM"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:57
 msgid "Remove from Library"
 msgstr "Poista kirjastosta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:105
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:65
 msgid "Remove from Queue"
 msgstr "Poista jonosta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:122
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:82
 msgid "Remove from Device"
 msgstr "Poista laitteelta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:146
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:103
 msgid "Scroll to Current Song"
 msgstr "Vieritä nykyiseen kappaleeseen"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:147
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:104
 msgid "Edit Song Info"
 msgstr "Muokkaa kappaleen tietoja"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:148
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:105
 msgid "Show in File Browser"
 msgstr "Näytä tiedostonhallinnassa"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:149
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:470
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:106
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:486
 msgid "Queue"
 msgstr "Lisää jonoon"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:151
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:108
 msgid "Add to Playlist"
 msgstr "Lisää soittolistaan"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:152
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:109
 msgid "Remove Song"
 msgstr "Poista kappale"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:253
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:215
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Tuo %i/%i valittua kappaletta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:255
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:217
 msgid "Import this song"
 msgstr "Tuo tämä kappale"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:257
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:219
 #, c-format
 msgid "Import %i songs"
 msgstr "Tuo %i kappaletta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:110
-msgid "Autosize Columns"
-msgstr "Aseta sarakkeiden koko automaattisesti"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:117
-msgid "Display Album Art"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:245
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:700
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:311
+#. / Sample string used to measure the desired size of the Title column in the list view.
+#. / Should be as long as a common song title in your language.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:778
 msgid "Sample Title"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:316
+#. / Sample string used to measure the desired size of the Artist column in the list view.
+#. / Should be as long as a common artist name in your language.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:787
 msgid "Sample Artist"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:319
+#. / Sample string used to measure the desired size of the Album column in the list view.
+#. / Should be as long as a common album name in your language.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:793
 msgid "Sample Album"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:332
+#. / Sample string used to measure the desired size of the Genre column in the list view.
+#. / Should be as long as a common genre name in your language.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:810
 msgid "Sample Genre"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:138
+msgid "Autosize Columns"
+msgstr "Aseta sarakkeiden koko automaattisesti"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:145
+msgid "Display Album Art"
 msgstr ""
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
@@ -1232,76 +1227,74 @@ msgstr "Vuodet"
 msgid "Ratings"
 msgstr "Arvostelut"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:192
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
 msgid "Unrated"
 msgstr "Ei arvosteltu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:194
-msgid "1 Star"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:196
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
 #, c-format
-msgid "%s Stars"
-msgstr "%s tähteä"
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Genres"
 msgstr "Kaikki tyylilajit"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Genres"
 msgstr "Kaikki %i tyylilajia"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Genres"
 msgstr "Ei tyylilajeja"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:252
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
 msgid "All Artists"
 msgstr "Kaikki artistit"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
 #, c-format
 msgid "All %i Artists"
 msgstr "Kaikki %i artistia"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
 msgid "No Artists"
 msgstr "Ei artisteja"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Albums"
 msgstr "Kaikki albumit"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 #, c-format
 msgid "All %i Albums"
 msgstr "Kaikki %i albumia"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Albums"
 msgstr "Ei albumeita"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:268
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
 msgid "All Years"
 msgstr "Kaikki vuodet"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
 #, c-format
 msgid "All %i Years"
 msgstr "Kaikki %i vuotta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
 msgid "No Years"
 msgstr "Ei vuosia"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:276
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
 msgid "All Ratings"
 msgstr "Kaikki arvostelut"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:278
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
 msgid "No Ratings"
 msgstr "Ei arvosteluja"
 
@@ -1334,7 +1327,7 @@ msgid "Other Files"
 msgstr "Muut tiedostot"
 
 #: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:460
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:476
 msgid "Music"
 msgstr "Musiikki"
 
@@ -1404,53 +1397,57 @@ msgstr "Liikaa soitetut"
 msgid "Not Recently Played"
 msgstr "Ei äskettäin soitettu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:178
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:180
 msgid "Rescan Music Folder"
 msgstr "Selaa musiikkikansio uudelleen"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:201
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:203
 msgid "Search Music"
 msgstr "Etsi musiikkia"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:474
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:490
 msgid "History"
 msgstr "Historia"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:629
-msgid " by "
-msgstr " artistilta "
+#. / String template used to show "SongName by ArtistName"
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:651
+#, c-format
+msgid " by %s"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:630
-msgid " on "
-msgstr " levyltä "
+#. / String template used to show "SongName ... on AlbumName"
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:656
+#, c-format
+msgid " on %s"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:838
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:863
 msgid "Import Music"
 msgstr "Tuo musiikkia"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:870
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:895
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Tuodaan</b> musiikkia kirjastoon kohteesta <b>%s</b>."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:885
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:910
 msgid "Rescanning music folder for changes"
 msgstr "Selataan uudelleen musiikkikansiota muutosten varalta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:892
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:917
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid "Could not find Music Folder"
 msgstr "Musiikkikansiota ei löydetty"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:892
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:917
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Varmastathan, että musiikkikansiosi on saatavilla ja liitettynä."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:958
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:983
 msgid "Import Complete"
 msgstr "Tuonti on valmis"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:958
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:983
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s on tuonut kirjastosi."
@@ -1584,6 +1581,10 @@ msgstr "%s on tuonut kappaleen ääni-CD:ltä."
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "Tuntematon nimi"
+
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:301
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
 #, c-format
@@ -1705,6 +1706,12 @@ msgstr ""
 #~ msgid "is not"
 #~ msgstr "ei ole"
 
+#~ msgid " by "
+#~ msgstr " artistilta "
+
+#~ msgid " on "
+#~ msgstr " levyltä "
+
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Tuo kappaleet audio-CD:ltä"
 
@@ -1714,11 +1721,18 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "Tuo asemia"
 
+#, c-format
+#~ msgid "%s Stars"
+#~ msgstr "%s tähteä"
+
 #~ msgid "Music Folder"
 #~ msgstr "Musiikkikansio"
 
 #~ msgid "Try again"
 #~ msgstr "Yritä uudelleen"
+
+#~ msgid "Audiobook"
+#~ msgstr "Äänikirja"
 
 #, c-format
 #~ msgid "%i albums"
@@ -1740,6 +1754,15 @@ msgstr ""
 #, c-format
 #~ msgid "%i items"
 #~ msgstr "%i kohdetta"
+
+#~ msgid "Date"
+#~ msgstr "Päivä"
+
+#~ msgid "Name"
+#~ msgstr "Nimi"
+
+#~ msgid "Episode"
+#~ msgstr "Jakso"
 
 #~ msgid "Recently Played"
 #~ msgstr "Viimeksi soitetut"
@@ -1785,5 +1808,17 @@ msgstr ""
 #~ msgid "Keep music folder organized"
 #~ msgstr "Pidä musiikkikansio organisoituna"
 
+#~ msgid "Station"
+#~ msgstr "Asema"
+
+#~ msgid "Unknown Genre"
+#~ msgstr "Tuntematon tyylilaji"
+
+#~ msgid "Various Artists"
+#~ msgstr "Useita esittäjiä"
+
 #~ msgid "Scrobbling already Enabled"
 #~ msgstr "Kuuntelutietojen lähetys on jo käytössä"
+
+#~ msgid "System Integration"
+#~ msgstr "Järjestelmäintegraatio"
