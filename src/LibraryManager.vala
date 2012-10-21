@@ -143,21 +143,21 @@ public class Noise.LibraryManager : Object {
         _playlists_lock.unlock();
 
         if (music_setup == null)
-            music_setup = new TreeViewSetup (MusicListView.MusicColumn.ARTIST,
+            music_setup = new TreeViewSetup (ListColumn.ARTIST,
                                              Gtk.SortType.ASCENDING,
                                              ViewWrapper.Hint.MUSIC);
         if (similar_setup == null)
-            similar_setup = new TreeViewSetup (MusicListView.MusicColumn.NUMBER,
+            similar_setup = new TreeViewSetup (ListColumn.NUMBER,
                                                Gtk.SortType.ASCENDING,
                                                ViewWrapper.Hint.SIMILAR);
 
         if (queue_setup == null)
-            queue_setup = new TreeViewSetup (MusicListView.MusicColumn.NUMBER,
+            queue_setup = new TreeViewSetup (ListColumn.NUMBER,
                                              Gtk.SortType.ASCENDING,
                                              ViewWrapper.Hint.QUEUE);
 
         if (history_setup == null)
-            history_setup = new TreeViewSetup (MusicListView.MusicColumn.NUMBER,
+            history_setup = new TreeViewSetup (ListColumn.NUMBER,
                                                Gtk.SortType.ASCENDING,
                                                ViewWrapper.Hint.HISTORY);
 
@@ -270,23 +270,24 @@ public class Noise.LibraryManager : Object {
         yield;
     }
 
+    /**
+     * Used to avoid importing already-imported files.
+     */
     private Gee.LinkedList<string> remove_duplicate_files (Gee.LinkedList<string> files) {
-        // Don't import already-imported files
-        var path_set = new Gee.HashSet<string> ();
-
-        foreach (var m in media ()) {
-            path_set.add (m.file.get_path ());
-        }
-
-        // Remove already-imported files
         var to_import = new Gee.LinkedList<string> ();
 
-        foreach (string file_path in files) {
-            if (!path_set.contains (file_path)) {
-                to_import.add (file_path);
-            } else {
-                debug ("DUPLICATE FOUND: %s", file_path);
-            }
+        EqualFunc<File> equal_func = FileUtils.equal_func;
+        var existing_file_set = new Gee.HashSet<File> (null, equal_func);
+
+        foreach (var m in media ())
+            existing_file_set.add (m.file);
+
+        foreach (string uri in files) {
+            var to_test = File.new_for_uri (uri);
+            if (!existing_file_set.contains (to_test))
+                to_import.add (uri);
+            else
+                debug ("-- DUPLICATE FOUND for: %s", uri);
         }
 
         return to_import;
@@ -358,9 +359,11 @@ public class Noise.LibraryManager : Object {
             foreach(string s in files) {
                 // XXX: libraries are not necessarily local. This will fail
                 // for remote libraries FIXME
-                if(paths.get("file://" + s) == null)
-                    to_import.add(s);
+                if(paths.get(s) == null)
+                    to_import.add (s);
             }
+
+            to_import = remove_duplicate_files (to_import);
 
             debug ("Importing %d new songs\n", to_import.size);
             if(to_import.size > 0) {
@@ -803,17 +806,19 @@ public class Noise.LibraryManager : Object {
     }
 
 
-    public Media? media_from_file(string uri) {
-        Media? rv = null;
+    public Media? media_from_file (string uri) {
+        var to_test = File.new_for_uri (uri);
 
         _media_lock.lock ();
-        foreach(Media s in _media.values) {
-            if(s.uri == uri)
-                rv = s;
-        }
+        var array = _media.values.to_array ();
         _media_lock.unlock ();
 
-        return rv;
+        foreach (var m in array) {
+            if (m != null && m.file.equal (to_test))
+                return m;
+        }
+
+        return null;
     }
 
     public Gee.Collection<Media> media_from_playlist (int id) {
@@ -948,21 +953,11 @@ public class Noise.LibraryManager : Object {
         _doing_file_operations = false;
         debug("file operations finished or cancelled\n");
 
-        CoverartCache.instance.fetch_all_cover_art_async (media ());
-
         // FIXME: THESE ARE Library Window's internals!
         lw.update_sensitivities();
         lw.updateInfoLabel();
 
-
         file_operations_done();
-    }
-
-    public static int mediaCompareFunc(Media a, Media b) {
-        if(a.album_artist != b.album_artist)
-            return (a.album > b.album) ? 1 : -1;
-        else
-            return (a.album_artist > b.album_artist) ? 1 : -1;
     }
 }
 
