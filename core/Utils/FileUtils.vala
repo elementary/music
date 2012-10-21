@@ -49,24 +49,38 @@ namespace Noise.FileUtils {
         return filename.slice (filename.last_index_of (".", 0), filename.length);
     }
 
+    public bool equal_func (File a, File b) {
+        return a.equal (b);
+    }
+
     /**
      * Asynchronously checks whether a file exists or not.
      * It follows symbolic links.
      */
     public async bool query_exists_async (File file_or_dir, Cancellable? cancellable = null) {
-        FileInfo? info = null;
+        var name = yield query_name_async (file_or_dir, cancellable);
+        return name != null;
+    }
+
+    /**
+     * Asynchronously queries a file's name.
+     * It follows symbolic links.
+     */
+    public async string? query_name_async (File file_or_dir, Cancellable? cancellable = null) {
+        string ? name = null;
 
         try {
-            info = yield file_or_dir.query_info_async (FileAttribute.STANDARD_NAME,
-                                                       FileQueryInfoFlags.NONE,
-                                                       Priority.DEFAULT,
-                                                       cancellable);
+            var info = yield file_or_dir.query_info_async (FileAttribute.STANDARD_NAME,
+                                                           FileQueryInfoFlags.NONE,
+                                                           Priority.DEFAULT,
+                                                           cancellable);
+            name = info.get_name ();
         } catch (Error err) {
-            if (err is IOError.NOT_FOUND)
-                return false;
+            warning ("Could not query file name for %s: %s", file_or_dir.get_uri (), err.message);
+            name = null;
         }
 
-        return info != null;
+        return name;
     }
 
     /**
