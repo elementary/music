@@ -239,13 +239,8 @@ public class Noise.TopDisplay : Box {
 	}
 	
 	public virtual void player_position_update(int64 position) {
-		if(App.player.media_info.media != null) {
-    	    double sec = 0.0;
-
-            // convert nanoseconds ot miliseconds
-			sec = (double)position / (double)Numeric.NANO_INV * (double)Numeric.MILI_INV;
-			set_scale_value(sec);
-		}
+		if (App.player.media_info.media != null)
+			set_scale_value ((double) Numeric.nanoseconds_to_miliseconds (position));
 	}
 
 	public void cancel_clicked() {
