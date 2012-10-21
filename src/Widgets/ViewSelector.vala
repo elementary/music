@@ -63,16 +63,16 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         mode_button.halign = Gtk.Align.START;
 
         var image = Icons.VIEW_ICONS.render_image (Gtk.IconSize.MENU);
-        image.tooltip_text = _("View in Albums");
+        image.tooltip_text = _("View as Albums");
         mode_button.append (image);
 
-        image = Icons.VIEW_DETAILS.render_image (Gtk.IconSize.MENU);
-        image.tooltip_text = _("View as List");
-        mode_button.append (image);
+        var list = Icons.VIEW_DETAILS.render_image (Gtk.IconSize.MENU);
+        list.tooltip_text = _("View as List");
+        mode_button.append (list);
         
-        image = Icons.VIEW_COLUMN.render_image (Gtk.IconSize.MENU);
-        image.tooltip_text = _("View in Columns");
-        mode_button.append (image);
+        var column = Icons.VIEW_COLUMN.render_image (Gtk.IconSize.MENU);
+        column.tooltip_text = _("View in Columns");
+        mode_button.append (column);
 
         // extra invisible mode to allow apparent de-selection
         mode_button.append_text ("");
