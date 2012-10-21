@@ -119,11 +119,13 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 
 		view.set_headers_clickable (true);
 
-		view.get_column (0).set_alignment (0.5f);
-
 		menu_item.toggled.connect (on_menu_item_toggled);
-		view.get_column (0).get_button ().button_press_event.connect (on_header_clicked);
 		view.row_activated.connect (view_double_click);
+
+        var column = view.get_column (0);
+		column.set_alignment (0.5f);
+		column.get_button ().button_press_event.connect (on_header_clicked);
+        view.get_selection ().mode = Gtk.SelectionMode.BROWSE;
 	}
 
 	private void on_menu_item_toggled () {
@@ -190,19 +192,17 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 		return _selected;
 	}
 
-	public async void populate (HashMap<string, int> items, Cancellable? cancellable) {
+	public void populate (Gee.HashSet<string> items, Cancellable? cancellable) {
         if (Utils.is_cancelled (cancellable))
             return;
 
+		items.remove ("");
+
 		view.get_selection ().freeze_notify ();
-
-		items.unset ("");
-
+		model = new BrowserColumnModel (category);
 		view.set_model (null);
 
-		model = new BrowserColumnModel (category);
-
-		model.append_items (items.keys, false, cancellable);
+		model.append_items (items, false, cancellable);
 		model.set_sort_column_id (0, Gtk.SortType.ASCENDING);
 
 		view.set_model (model);
@@ -210,7 +210,7 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 		// set selected item
 
 		// This checks whether we can keep the current selected item selected in the column.
-		//if (!items.has_key (this.get_selected ())) {
+		//if (!items.contains (this.get_selected ())) {
 			select_first_item ();
 		//}
 
@@ -284,19 +284,18 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 
 		if (first_item_selected) {
 			view.get_selection ().select_iter (item);
-			view.scroll_to_cell (new TreePath.first(), null, false, 0.0f, 0.0f);
-
+			view.scroll_to_cell (new TreePath.first(), null, true, 0.0f, 0.0f);
 			return true;
 		}
-		else if (s == get_selected ()) {
+
+		if (s == get_selected ()) {
 			view.get_selection ().select_iter (item);
 			view.scroll_to_cell (path, null, false, 0.0f, 0.0f);
 
 			return true;
 		}
-		else {
-			view.get_selection ().unselect_iter (item);
-		}
+
+		view.get_selection ().unselect_iter (item);
 
 		return false;
 	}

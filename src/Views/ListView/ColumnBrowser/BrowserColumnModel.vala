@@ -21,7 +21,6 @@
  */
 
 using Gtk;
-using Gee;
 
 public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 	/* all iters must match this */
@@ -32,14 +31,13 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 	/* data storage variables */
 	private Sequence<string> rows;
 
-	/* first iter. This helps us track the "All" row */
+	/* first iter. This helps us to track the "All" row */
 	TreeIter first_iter;
 
 	/* treesortable stuff */
 	private int sort_column_id;
 	private SortType sort_direction;
 	private unowned TreeIterCompareFunc default_sort_func;
-	private HashMap<int, CompareFuncHolder> column_sorts;
 
 	private BrowserColumn.Category category;
 
@@ -51,7 +49,6 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 
 		sort_column_id = -2;
 		sort_direction = SortType.ASCENDING;
-		column_sorts = new HashMap <int, CompareFuncHolder> ();
 	}
 
 	/** Returns a set of flags supported by this interface **/
@@ -169,7 +166,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 	}
 
 	/** convenience method to insert medias into the model. No iters returned. **/
-	public void append_items (Collection<string> medias, bool emit, Cancellable? cancellable) {
+	public void append_items (Gee.Collection<string> medias, bool emit, Cancellable? cancellable) {
 		add_first_element ();
 
 		// We do some data validation for numeric values later
@@ -190,10 +187,8 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 				int rating = int.parse (s);
 				if (rating < 1)
 					s = _("Unrated");
-				else if (rating == 1)
-					s = _("1 Star");
 				else
-					s = _("%s Stars").printf(s);
+					s = ngettext ("%i Star", "%i Stars", rating).printf (rating);
 			}
 			else if (is_year && int.parse(s) < 1) {
 				// Don't add '0'
@@ -236,8 +231,6 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 	private string get_first_item_text (int n_items) {
 		string rv = "";
 
-		// Exposing that %i could lead to many potential errors, but there's no other
-		// way to allow correct grammar in other languages without doing it.
 		switch (category) {
 			case BrowserColumn.Category.GENRE:
 				if (n_items == 1)
@@ -342,9 +335,8 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 		}
 	}
 
-	/** Sets the comparison function used when sorting to be sort_func. **/
 	public void set_sort_func (int sort_column_id, owned TreeIterCompareFunc sort_func) {
-		column_sorts.set (sort_column_id, new CompareFuncHolder (sort_func));
+
 	}
 
 
@@ -366,7 +358,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 				rv = 1;
 			}
 			else {
-				rv = ((rows.get (a).down () > rows.get (b).down ()) ? 1 : -1);
+				rv = String.compare (rows.get (a), rows.get (b));
 			}
 		}
 

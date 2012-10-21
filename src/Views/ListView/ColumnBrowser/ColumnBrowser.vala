@@ -296,54 +296,77 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
             if (Utils.is_cancelled (cancellable))
                 break;
 
-			// Child columns
-			if ((inclusive) ? column.category >= category : column.category > category) {
-				var column_set = new Gee.HashMap<string, int> ();
+            // Don't consider parent columns
+			if (column.category < category)
+			    continue;
 
-				if (column.category == BrowserColumn.Category.GENRE) {
-					foreach (var m in _media_results) {
+            if (column.category == category && !inclusive)
+                continue;
+
+			var column_set = new Gee.HashSet<string> ();
+
+            switch (column.category) {
+                case BrowserColumn.Category.GENRE:
+				    foreach (var m in _media_results) {
                         if (Utils.is_cancelled (cancellable))
                             break;
 
-					    column_set.set (m.genre, 1);
-					}
-				}
-				if (column.category == BrowserColumn.Category.ARTIST) {
-					foreach (var m in _media_results) {
+                        string genre = m.get_display_genre ();
+                        if (!column_set.contains (genre))
+					        column_set.add (genre);
+				    }
+			    break;
+
+			    case BrowserColumn.Category.ARTIST:
+				    foreach (var m in _media_results) {
                         if (Utils.is_cancelled (cancellable))
                             break;
 
-					    column_set.set (m.album_artist, 1);
-					}
-				}
-				if (column.category == BrowserColumn.Category.ALBUM) {
-					foreach (var m in _media_results) {
+                        string artist = m.get_display_album_artist ();
+                        if (!column_set.contains (artist))
+					        column_set.add (artist);
+				    }
+                break;
+
+			    case BrowserColumn.Category.ALBUM:
+				    foreach (var m in _media_results) {
                         if (Utils.is_cancelled (cancellable))
                             break;
 
-					    column_set.set (m.album, 1);
-					}
-				}
-				if (column.category == BrowserColumn.Category.YEAR) {
-					foreach (var m in _media_results) {
+                        string album = m.get_display_album ();
+                        if (!column_set.contains (album))
+					        column_set.add (album);
+				    }
+			    break;
+
+			    case BrowserColumn.Category.YEAR:
+				    foreach (var m in _media_results) {
                         if (Utils.is_cancelled (cancellable))
                             break;
 
-					    column_set.set (m.year.to_string (), 1);
-					}
-				}
-				if (column.category == BrowserColumn.Category.RATING) {
-					foreach (var m in _media_results) {
+                        string year = m.year.to_string ();
+                        if (!column_set.contains (year))
+					        column_set.add (year);
+				    }
+			    break;
+
+			    case BrowserColumn.Category.RATING:
+				    foreach (var m in _media_results) {
                         if (Utils.is_cancelled (cancellable))
                             break;
 
-					    column_set.set (m.rating.to_string (), 1);
-					}
-				}
+                        string rating = m.rating.to_string ();
+                        if (!column_set.contains (rating))
+					        column_set.add (rating);
+				    }
+			    break;
 
-                if (!Utils.is_cancelled (cancellable))
-    				column.populate (column_set, cancellable);
-			}
+                default:
+                    assert_not_reached ();
+            }
+
+            if (!Utils.is_cancelled (cancellable))
+				column.populate (column_set, cancellable);
 		}
     }
 
