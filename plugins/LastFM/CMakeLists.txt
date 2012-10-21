@@ -23,6 +23,7 @@ vala_precompile(
         SimilarMediaWidget.vala
         SimilarViewWrapper.vala
         PreferencesSection.vala
+        LoveBanButtons.vala
     PACKAGES
         ${DEPS_PACKAGES}
         libxml-2.0

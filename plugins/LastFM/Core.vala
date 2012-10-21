@@ -452,7 +452,6 @@ namespace LastFM {
                 message ("Last.FM user not logged in\n");
                 return;
             }
-
             if(!Noise.App.player.media_active)
                 return;
 

@@ -26,8 +26,7 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
     
     private Gtk.ScrolledWindow scroll;
     
-    private Gtk.Button love_button;
-    private Gtk.Button ban_button;
+    private LoveBanButtons love_ban_buttons;
     private Noise.MediaInfo media_info;
     
     private SimilarMediasView ssv;
@@ -59,18 +58,7 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
             lfm.postNowPlaying();
         });
         
-        love_button = new Gtk.Button ();
-        love_button.set_image (Noise.Icons.LOVE.render_image (Gtk.IconSize.MENU));
-        love_button.halign = Gtk.Align.CENTER;
-        ban_button = new Gtk.Button ();
-        ban_button.set_image (Noise.Icons.BAN.render_image (Gtk.IconSize.MENU));
-        ban_button.halign = Gtk.Align.CENTER;
-        
-        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        buttons.pack_start (love_button, false, false, 0);
-        buttons.pack_end (ban_button, false, false, 0);
-        buttons.halign = Gtk.Align.CENTER;
-        
+        love_ban_buttons = new LoveBanButtons ();
         // put treeview inside scrolled window
         scroll = new Gtk.ScrolledWindow (null, null);
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
@@ -82,28 +70,25 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         media_info.track = new TrackInfo();
         media_info.artist = new ArtistInfo();
         media_info.album = new AlbumInfo();
-        
-        this.attach (buttons, 0, 0, 1, 1);
+
+        this.attach (love_ban_buttons, 0, 0, 1, 1);
         this.attach (scroll, 0, 1, 1, 1);
         
         lw.info_panel.add_view (this);
         show_all ();
         
         lw.info_panel.to_update.connect (update_visibilities);
-        love_button.clicked.connect (love_button_clicked);
-        ban_button.clicked.connect (ban_button_clicked);
         lm.dbu.periodical_save.connect (do_periodical_save);
+
+        love_ban_buttons.changed.connect (love_ban_buttons_changed);
     }
     
     private void update_visibilities() {
         var lastfm_settings = new LastFM.Settings ();
-        var lastfm_elements_visible = lastfm_settings.session_key != "";
+        var lastfm_elements_visible = lastfm_settings.session_key != ""; // XXX also check for conectivity state!
 
-        love_button.set_no_show_all (!lastfm_elements_visible);
-        ban_button.set_no_show_all (!lastfm_elements_visible);
-
-        love_button.set_visible (lastfm_elements_visible);
-        ban_button.set_visible (lastfm_elements_visible);
+        love_ban_buttons.set_no_show_all (!lastfm_elements_visible);
+        love_ban_buttons.set_visible (lastfm_elements_visible);
 
         scroll.set_no_show_all (!similars_fetched);
         if (similars_fetched)
@@ -135,23 +120,26 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         update_visibilities();
     }
     
-    
-    private void love_button_clicked() {
+    private void love_ban_buttons_changed () {
         if (App.player.media_info == null || App.player.media_info.media == null)
             return;
 
-        lfm.loveTrack(App.player.media_info.media.title, App.player.media_info.media.artist);
+        var title = App.player.media_info.media.title;
+        var artist = App.player.media_info.media.artist;
+
+        if (love_ban_buttons.mode == LoveBanButtons.Mode.LOVE)
+            lfm.loveTrack (title, artist);
+        else if (love_ban_buttons.mode == LoveBanButtons.Mode.BAN)
+            lfm.banTrack (title, artist);
+//        else
+//            lfm.removeLoveBan (title, artist); // XXX TODO need to implement this method 
     }
 
-    private void ban_button_clicked() {
-        if (App.player.media_info == null || App.player.media_info.media == null)
-            return;
-
-        lfm.banTrack(App.player.media_info.media.title, App.player.media_info.media.artist);
-    }
-    
+/* TODO: update love_ban_button's mode according to the state of the current song. Remember
+        to disconnect the love_ban_buttons_changed() handler or we'll be sending that information
+        over again.
     public virtual void media_played(Media m) {
         
     }
-
+*/
 }
