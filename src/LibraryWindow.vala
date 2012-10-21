@@ -329,8 +329,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 #if HAVE_LIBNOTIFY
     private Notify.Notification? notification = null;
+    private const int DEFAULT_NOTIFICATION_URGENCY = Notify.Urgency.NORMAL;
+#else
+    private const int DEFAULT_NOTIFICATION_URGENCY = 0;
 #endif
-    public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null) {
+
+
+    public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, int urgency = DEFAULT_NOTIFICATION_URGENCY) {
 #if HAVE_LIBNOTIFY
         // Don't show notifications if the window is active
         if (!Settings.Main.instance.show_notifications || this.is_active)
@@ -350,11 +355,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             notification.clear_actions ();
             notification.update (primary_text, secondary_text, "");
         }
-
         if (pixbuf != null)
             notification.set_image_from_pixbuf (pixbuf);
         else
             notification.icon_name = Icons.NOISE.name;
+
+        notification.set_urgency ((Notify.Urgency) urgency);
 
         try {
             notification.show ();
@@ -395,8 +401,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             message (err.message);
         }
 
-        if (!notification_cancellable.is_cancelled ())
+        if (!notification_cancellable.is_cancelled ()) {
+#if HAVE_LIBNOTIFY
+            show_notification (primary_text, secondary_text.str, pixbuf, Notify.Urgency.LOW);
+#else
             show_notification (primary_text, secondary_text.str, pixbuf);
+#endif
+        }
     }
 
     private async void notify_current_media_async () {
