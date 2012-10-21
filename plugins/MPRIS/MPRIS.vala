@@ -130,7 +130,6 @@ public class MprisPlayer : GLib.Object {
     private unowned DBusConnection conn;
 
     private const string INTERFACE_NAME = "org.mpris.MediaPlayer2.Player";
-    
     private uint send_property_source = 0;
     private uint update_metadata_source = 0;
     private HashTable<string,Variant> changed_properties = null;
@@ -145,26 +144,24 @@ public class MprisPlayer : GLib.Object {
     public MprisPlayer(DBusConnection conn) {
         this.conn = conn;
         _metadata = new HashTable<string,Variant>(str_hash, str_equal);
-        
-        App.player.media_played.connect(on_media_played);
-        App.library_manager.media_updated.connect(media_data_updated);
-        App.main_window.playPauseChanged.connect(playing_changed);
+
+        App.player.media_played.connect_after (on_media_played);
+        App.library_manager.media_updated.connect_after (refresh_current_media);
+        CoverartCache.instance.changed.connect_after (refresh_current_media);
+        App.main_window.playPauseChanged.connect_after (playing_changed);
+
+        // initial update
+        refresh_current_media ();
     }
-    
-    void media_data_updated(Gee.LinkedList<int> ids) {
-        if(App.player.media_info.media == null)
-            return;
-        
-        foreach(int i in ids) {
-            if(i == App.player.media_info.media.rowid) {
-                trigger_metadata_update();
-                return;
-            }
-        }
+
+    private void refresh_current_media () {
+        var current_media = App.player.media_info.media;
+        if (current_media != null)
+            on_media_played (current_media);
     }
-    
+
     private void playing_changed() {
-        trigger_metadata_update();
+        trigger_metadata_update ();
     }
     
     private void trigger_metadata_update() {
@@ -183,12 +180,21 @@ public class MprisPlayer : GLib.Object {
     }
 
     private void on_media_played (Noise.Media s) {
-        if(s != App.player.media_info.media)
+        if (s != App.player.media_info.media)
             return;
 
-        var url = "file://" + CoverartCache.instance.get_cached_image_path_for_media (s);
-        _metadata.insert("mpris:artUrl", url);
-        _metadata.insert("mpris:length", App.player.player.getDuration()/1000);
+        update_metadata (s);
+    }
+
+    private void update_metadata (Media? s) {
+        if (s == null)
+            return;
+
+        _metadata.insert("mpris:trackid", get_track_id (s));
+        _metadata.insert("mpris:length", App.player.player.getDuration () / 1000);
+
+        var art_file = CoverartCache.instance.get_cached_image_file (s);
+        _metadata.insert("mpris:artUrl", art_file != null ? art_file.get_uri () : "");
 
         _metadata.insert("xesam:trackNumber", (int) s.track);
         _metadata.insert("xesam:title", s.get_display_title ());
@@ -199,14 +205,12 @@ public class MprisPlayer : GLib.Object {
         _metadata.insert("xesam:asText", s.lyrics);
         _metadata.insert("xesam:comment", get_simple_string_array (s.comment));
         _metadata.insert("xesam:composer", get_simple_string_array (s.get_display_composer ()));
-        _metadata.insert("xesam:discNumber", (int) s.album_number);
-
         _metadata.insert("xesam:url", s.uri);
-
+        _metadata.insert("xesam:discNumber", (int) s.album_number);
         _metadata.insert("xesam:userRating", (int) s.rating);
         _metadata.insert("xesam:useCount", (int) s.play_count);
 
-        trigger_metadata_update();
+        trigger_metadata_update ();
     }
 
     private static string[] get_simple_string_array (string text) {
@@ -214,6 +218,10 @@ public class MprisPlayer : GLib.Object {
         array += text;
         return array;
     }
+
+    private ObjectPath get_track_id (Media m) {
+    	return new ObjectPath ("/org/pantheon/%s/Track/%d".printf (App.instance.exec_name, m.rowid));
+	}
 
     private bool send_property_change() {
         
@@ -339,8 +347,7 @@ public class MprisPlayer : GLib.Object {
     
     public HashTable<string,Variant>? Metadata { //a{sv}
         owned get {
-            Variant variant = "1";
-            _metadata.insert("mpris:trackid", variant);
+            update_metadata (App.player.media_info.media);
             return _metadata;
         }
     }
@@ -440,10 +447,18 @@ public class MprisPlayer : GLib.Object {
         if(!App.player.playing)
             App.main_window.play_media(true);
     }
-    
+
     public void Seek(int64 Offset) {
-        //App.player.player.setPosition(Position/ 1000);
-        debug("Must seek!\n");
+		int64 Position = this.Position + Offset;
+		if (Position < 0)
+			Position = 0;
+
+		if (Position < App.player.player.getDuration () / 1000) {
+			SetPosition ("", Position);
+			Seeked (Position);
+		} else if (CanGoNext) {
+			Next ();
+        }
     }
     
     public void SetPosition(string dobj, int64 Position) {
