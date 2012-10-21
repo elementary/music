@@ -23,5 +23,5 @@
 public interface Noise.LibraryWindowInterface : Object {
     public abstract void updateInfoLabel ();
     public abstract void progressNotification(string? message, double progress);
-    public abstract void update_sensitivities ();
+    public abstract async void update_sensitivities ();
 }

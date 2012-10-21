@@ -69,14 +69,16 @@ namespace Noise.Settings {
         public bool update_folder_hierarchy { get; set; }
         public bool write_metadata_to_file { get; set; }
         public bool copy_imported_music { get; set; }
-        public bool download_new_podcasts { get; set; }
+        public bool close_while_playing { get; set; }
+        public bool show_notifications { get; set; }
         public int last_media_playing { get; set; }
         public int last_media_position { get; set; }
         public int shuffle_mode { get; set; }
         public int repeat_mode { get; set; }
         public string search_string { get; set; }
         public string[] plugins_enabled { get; set;}
-        
+        public string[] minimize_while_playing_shells { get; set; }
+
         public Main ()  {
             if (_instance != null)
                 error ("Use Settings.Main.instance");

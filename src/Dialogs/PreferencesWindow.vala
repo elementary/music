@@ -205,6 +205,11 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
     private Gtk.CheckButton organize_folders_toggle;
     private Gtk.CheckButton write_file_metadata_toggle;
     private Gtk.CheckButton copy_imported_music_toggle;
+    private Gtk.CheckButton hide_on_close_toggle;
+
+#if HAVE_LIBNOTIFY
+    private Gtk.CheckButton show_notifications_toggle;
+#endif
 
 #if ENABLE_EXPERIMENTAL
     private Gtk.CheckButton is_default_application_toggle;
@@ -220,18 +225,23 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
 
         add_library_folder_section ();
         add_library_management_section ();
-#if ENABLE_EXPERIMENTAL
-        add_default_application_section ();
-#endif
+        add_desktop_integration_section ();
     }
 
+    private static Gtk.Grid get_contents_grid () {
+        var contents_grid = new Gtk.Grid ();
+        contents_grid.row_spacing = 6;
+        contents_grid.column_spacing = 6;
+        contents_grid.orientation = Gtk.Orientation.VERTICAL;
+        return contents_grid;
+    }
 
     private void add_library_folder_section () {
         library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder"),
                                                          Gtk.FileChooserAction.SELECT_FOLDER);
         library_filechooser.hexpand = true;
 
-        var folder_contents = new Gtk.Grid ();
+        var folder_contents = get_contents_grid ();
         folder_contents.add (library_filechooser);
 
         add_subsection (_("Music Folder Location"), folder_contents);
@@ -250,7 +260,6 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
         }
     }
 
-
     private void add_library_management_section () {
         organize_folders_toggle = new Gtk.CheckButton.with_label (_("Keep Music folder organized"));
         copy_imported_music_toggle = new Gtk.CheckButton.with_label (_("Copy files to Music folder when adding to Library"));
@@ -262,29 +271,41 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
         write_file_metadata_toggle.set_active(Settings.Main.instance.write_metadata_to_file);
         copy_imported_music_toggle.set_active(Settings.Main.instance.copy_imported_music);
 
-        var contents_grid = new Gtk.Grid ();
-        contents_grid.row_spacing = 6;
-        contents_grid.column_spacing = 6;
-
-        contents_grid.attach (organize_folders_toggle,    0, 0, 1, 1);
-        contents_grid.attach (copy_imported_music_toggle, 0, 1, 1, 1);
-        contents_grid.attach (write_file_metadata_toggle, 0, 2, 1, 1);
+        var contents_grid = get_contents_grid ();
+        contents_grid.add (organize_folders_toggle);
+        contents_grid.add (copy_imported_music_toggle);
+        contents_grid.add (write_file_metadata_toggle);
 
         add_subsection (_("Library Management"), contents_grid);
     }
 
-#if ENABLE_EXPERIMENTAL
-    private void add_default_application_section () {
-        var contents_grid = new Gtk.Grid ();
+    private void add_desktop_integration_section () {
+        var contents_grid = get_contents_grid ();
 
+#if ENABLE_EXPERIMENTAL
         is_default_application_toggle = new Gtk.CheckButton.with_label (_("Use Noise as the default Music application"));
         is_default_application_toggle.set_active (Noise.App.instance.is_default_application);
-
         contents_grid.add (is_default_application_toggle);
-
-        add_subsection (_("System Integration"), contents_grid);
-    }
 #endif
+
+#if HAVE_LIBNOTIFY
+        show_notifications_toggle = new Gtk.CheckButton.with_label (_("Show notifications"));
+        show_notifications_toggle.set_active (Settings.Main.instance.show_notifications);
+        contents_grid.add (show_notifications_toggle);
+#endif
+
+        string hide_on_close_desc;
+        if (LibraryWindow.minimize_on_close ())
+            hide_on_close_desc = _("Minimize window instead of closing it when a song is being played");
+        else
+            hide_on_close_desc = _("Hide window instead of closing it when a song is being played");
+
+        hide_on_close_toggle = new Gtk.CheckButton.with_label (hide_on_close_desc);
+        hide_on_close_toggle.set_active (!Settings.Main.instance.close_while_playing);
+        contents_grid.add (hide_on_close_toggle);
+
+        add_subsection (_("Desktop Integration"), contents_grid);
+    }
 
     public override bool save_changes () {
         if (library_filechooser.get_current_folder() != Settings.Main.instance.music_folder
@@ -293,14 +314,18 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
             changed (library_filechooser.get_current_folder ());
         }
 
-        Settings.Main.instance.update_folder_hierarchy = organize_folders_toggle.get_active();
-        Settings.Main.instance.write_metadata_to_file = write_file_metadata_toggle.get_active();
-        Settings.Main.instance.copy_imported_music = copy_imported_music_toggle.get_active();
+        Settings.Main.instance.update_folder_hierarchy = organize_folders_toggle.active;
+        Settings.Main.instance.write_metadata_to_file = write_file_metadata_toggle.active;
+        Settings.Main.instance.copy_imported_music = copy_imported_music_toggle.active;
+        Settings.Main.instance.close_while_playing = !hide_on_close_toggle.active;
 
-#if ENABLE_EXPERIMENTAL
-        Noise.App.instance.is_default_application = is_default_application_toggle.get_active ();
+#if HAVE_LIBNOTIFY
+        Settings.Main.instance.show_notifications = show_notifications_toggle.active;
 #endif
 
+#if ENABLE_EXPERIMENTAL
+        Noise.App.instance.is_default_application = is_default_application_toggle.active;
+#endif
         return true;
     }
 }
