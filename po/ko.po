@@ -8,37 +8,34 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-10-06 00:10-0600\n"
-"PO-Revision-Date: 2012-08-23 00:11+0000\n"
+"PO-Revision-Date: 2012-10-16 03:33+0000\n"
 "Last-Translator: MinSik CHO <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-07 04:53+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-17 04:50+0000\n"
+"X-Generator: Launchpad (build 16152)\n"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 초"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u 분"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u 초"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:47
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:78
@@ -46,31 +43,29 @@ msgstr[1] ""
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s와 %s"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:63
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u일"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u시간"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:33
 #: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:74
 msgid "Unknown Title"
-msgstr ""
+msgstr "알 수 없는 제목"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:34
 #: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
@@ -91,11 +86,11 @@ msgstr "알 수 없는 음악가"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:36
 msgid "Unknown Genre"
-msgstr ""
+msgstr "알 수 없는 장르"
 
 #: /home/victor/noise-luna-beta-1/po/../core//Media.vala:38
 msgid "Various Artists"
-msgstr ""
+msgstr "여러 음악가"
 
 #: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:203
 #, c-format
