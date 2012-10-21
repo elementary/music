@@ -147,18 +147,20 @@ public class Noise.CoverartCache : MediaArtCache {
         // Don't consider generic image names if the album folder doesn't contain the name of
         // the media's album. This is probably the simpler way to prevent considering images
         // from folders that contain multiple unrelated tracks.
-        bool generic_folder = !(album_name in String.canonicalize_for_search (album_folder.get_path ().down ()));
+        bool generic_folder = !(album_name in String.canonicalize_for_search (album_folder.get_path ()));
+
+        if (generic_folder)
+            debug ("Found generic folder: %s. Won't import image files from it.", album_folder.get_path ());
 
         Gee.Collection<File> image_files;
         yield FileUtils.enumerate_files_async (album_folder, PixbufCache.IMAGE_TYPES, false, out image_files);
 
         File? image_file = null;
-        bool good_image_found = false;
 
         // Choose an image based on priorities.
         foreach (var file in image_files) {
             // We don't want to be fooled by strange characters or whitespace
-            string file_path = String.canonicalize_for_search (file.get_path ().down ());
+            string file_path = String.canonicalize_for_search (file.get_path ());
 
             if (generic_folder) {
                 if (!String.is_white_space (album_name) && album_name in file_path) {
@@ -171,12 +173,10 @@ public class Noise.CoverartCache : MediaArtCache {
 
             if ("folder" in file_path) {
                 image_file = file;
-                good_image_found = true;
                 break;
             }
 
             if ("cover" in file_path) {
-                good_image_found = true;
                 image_file = file;
                 continue;
             }
@@ -185,15 +185,12 @@ public class Noise.CoverartCache : MediaArtCache {
             if (image_file == null)
                 image_file = file;
 
-            if (!("cover" in image_file.get_path ()) && "album" in file_path) {
-                good_image_found = true;
+            if (!("cover" in image_file.get_path ()) && "album" in file_path)
                 image_file = file;
-            } else if (!("album" in image_file.get_path ()) && "front" in file_path) {
-                good_image_found = true;
+            else if (!("album" in image_file.get_path ()) && "front" in file_path)
                 image_file = file;
-            }
         }
 
-        return good_image_found ? image_file : null;
+        return image_file;
     }
 }

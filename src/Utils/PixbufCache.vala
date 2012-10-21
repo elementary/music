@@ -126,16 +126,20 @@ public class Noise.PixbufCache {
     }
 
     /**
-     * Returns the location of an image on disk. This call does no blocking I/O.
-     * Use it to consistently read cached image files.
+     * Returns a file representing the key's image on disk. This call does no blocking I/O.
+     * Use it to consistently read cached image files. Pixbuf cache uses it internally
+     * to save the images.
      *
-     * This method only computes a path based on the passed key, and thus it doesn't
-     * know whether the file pointed by the returned path exists or not. It is
-     * recommended to use {@link Noise.PixbufCache.has_image} to check for that.
+     * This method only creates a file based on the passed key, and thus it doesn't
+     * know whether the file it points to exists or not. It is recommended to pair
+     * calls to {@link Noise.PixbufCache.has_image} to check for that.
      */
-    public string get_cached_image_path (string key) {
-        string filename = Checksum.compute_for_string (ChecksumType.MD5, key + image_format.get_name ());
-        return image_dir.get_child (filename).get_path ();
+    public File get_cached_image_file (string key) {
+        var builder = new StringBuilder ();
+        builder.append (key);
+        builder.append (image_format.get_name ());
+        string filename = Checksum.compute_for_string (ChecksumType.MD5, builder.str);
+        return image_dir.get_child (filename);
     }
 
     /**
@@ -147,7 +151,7 @@ public class Noise.PixbufCache {
 
         lock (image_map) {
             image_map.unset (key, out val);
-            delete_file (File.new_for_path (get_cached_image_path (key)));
+            delete_file (get_cached_image_file (key));
         }
 
         return val;
@@ -176,7 +180,6 @@ public class Noise.PixbufCache {
             yield cache_image_async (key, image);
     }
 
-
     /**
      * Retrieves the image for the given key from the cache.
      *
@@ -185,7 +188,6 @@ public class Noise.PixbufCache {
     public Gdk.Pixbuf? get_image (string key) {
         return image_map.get (key);
     }
-
 
     /**
      * Retrieves the image for the given key from the cache. If lookup_file
@@ -199,7 +201,7 @@ public class Noise.PixbufCache {
      */
     public async Gdk.Pixbuf? get_image_async (string key, bool lookup_file = true) {
         if (lookup_file && !has_image (key)) {
-            var image_file = File.new_for_path (get_cached_image_path (key));
+            var image_file = get_cached_image_file (key);
             var image = yield load_image_from_file_async (image_file, null);
             if (image != null)
                 yield cache_image_internal_async (key, image, false);
@@ -249,7 +251,7 @@ public class Noise.PixbufCache {
         debug ("Saving cached image for: %s", key);
 
         try {
-            var dest_file = File.new_for_path (get_cached_image_path (key));
+            var dest_file = get_cached_image_file (key);
             if (delete_file (dest_file))
                 yield PixbufUtils.save_pixbuf_async (to_save, dest_file ,image_format.get_name ());
         } catch (Error err) {

@@ -38,6 +38,7 @@ public abstract class Noise.MediaArtCache {
     public signal void changed ();
 
     private PixbufCache pixbuf_cache;
+    private bool notify_queued = false; // whether an update notification is waiting or not
 
     public MediaArtCache (string folder_name) {
         var image_dir = FileUtils.get_cache_directory ().get_child (folder_name);
@@ -74,21 +75,13 @@ public abstract class Noise.MediaArtCache {
     }
 
     /**
-     * Returns the location of the media's image on disk. This call does no blocking I/O.
-     * If there's no associated image in the cache, an empty string is returned.
+     * Returns a file representing the media's image on disk. This call does no blocking I/O.
+     * If there's no associated image in the cache, //null// is returned.
      */
-    public string get_cached_image_path_for_media (Media m) {
+    public File? get_cached_image_file (Media m) {
         var key = get_key (m);
-        return pixbuf_cache.has_image (key) ? get_cached_image_path (key) : "";
-    }
-
-    /**
-     * Returns the location of the image on disk. This call does no blocking I/O.
-     *
-     * @see Noise.PixbufCache.get_cached_image_path
-     */
-    protected string get_cached_image_path (string key) {
-        return pixbuf_cache.get_cached_image_path (key);
+        bool has_image = pixbuf_cache.has_image (key);
+        return has_image ? pixbuf_cache.get_cached_image_file (key) : null;
     }
 
     /**
@@ -143,9 +136,19 @@ public abstract class Noise.MediaArtCache {
         return yield pixbuf_cache.get_image_async (get_key (m), lookup_file);
     }
 
+    /**
+     * Notifies about changes in the cache.
+     *
+     * We use a low priority to avoid emitting the changed() signal many times.
+     * Instead, we want to notify in a batch.
+     */
     protected void queue_notify () {
-        Idle.add ( () => {
+        if (notify_queued)
+            return;
+
+        Idle.add_full (Priority.LOW, () => {
             changed ();
+            notify_queued = false;
             return false;
         });
     }
