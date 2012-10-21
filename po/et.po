@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-25 14:31-0600\n"
+"POT-Creation-Date: 2012-10-06 00:10-0600\n"
 "PO-Revision-Date: 2012-09-22 13:30+0000\n"
 "Last-Translator: Kristjan Vool <Unknown>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -15,427 +15,420 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-06 05:20+0000\n"
+"X-Launchpad-Export-Date: 2012-10-07 04:53+0000\n"
 "X-Generator: Launchpad (build 16061)\n"
 "Language: et\n"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:36
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d sekund"
 msgstr[1] "%d sekundit"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:69
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u minut"
 msgstr[1] "%u minutit"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:46
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
 msgstr[0] "%u sekund"
 msgstr[1] "%u sekundit"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:47
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:78
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:82
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:90
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:47
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:78
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:82
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
 msgstr "%s ja %s"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:63
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:63
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:66
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u tund"
 msgstr[1] "%u tundi"
 
-#: /home/victored/noise/po/../core//Utils/TimeUtils.vala:76
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s ja %s"
 
-#: /home/victored/noise/po/../core//Media.vala:33
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
+#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:33
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:74
 msgid "Unknown Title"
 msgstr "Tundmatu pealkiri"
 
-#: /home/victored/noise/po/../core//Media.vala:34
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victored/noise/po/../src//LibraryWindow.vala:621
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
+#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:34
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:630
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:94
 msgid "Unknown Album"
 msgstr "Tundmatu album"
 
-#: /home/victored/noise/po/../core//Media.vala:35
-#: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victored/noise/po/../src//LibraryWindow.vala:620
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
+#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:35
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:629
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:109
 msgid "Unknown Artist"
 msgstr "Tundmatu esitaja"
 
-#: /home/victored/noise/po/../core//Media.vala:36
+#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:36
 msgid "Unknown Genre"
 msgstr ""
 
-#: /home/victored/noise/po/../core//Media.vala:38
+#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:38
 msgid "Various Artists"
 msgstr "Erinevad esitajad"
 
-#: /home/victored/noise/po/../src//config.vala:16
-msgid "Listen to music"
-msgstr "Muusika kuulamine"
-
-#: /home/victored/noise/po/../src//config.vala:17
-msgid "Music Player"
-msgstr "Muusika mängija"
-
-#: /home/victored/noise/po/../src//LibraryManager.vala:203
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:203
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Muusika importimine asukohast %s..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:251
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:251
 msgid "Adding files to library..."
 msgstr "Failid lisamine kogumikku..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:299
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:299
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Muusika lisamine asukohast %s kogumikku..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:327
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:327
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Muusika muudaduste taasavastamine. See võib võtta natuke aega..."
 
-#: /home/victored/noise/po/../src//Objects/Playlist.vala:203
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/Playlist.vala:203
 msgid "Radio Station"
 msgstr "Raadiojaam"
 
-#: /home/victored/noise/po/../src//Objects/TrackInfo.vala:26
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
 msgstr "Tundmatu lugu"
 
-#: /home/victored/noise/po/../src//Widgets/PresetList.vala:49
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:49
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Automaatne"
 
-#: /home/victored/noise/po/../src//Widgets/PresetList.vala:50
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:60
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:93
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:60
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:93
 msgid "Off"
 msgstr "Väljas"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:60
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:60
 msgid "Enable Repeat"
 msgstr "Kordusesitus väljas"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:61
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:535
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:61
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:535
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:64
 msgid "Song"
 msgstr "Laul"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:61
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:61
 msgid "Repeat Song"
 msgstr "Kordusesita laule"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:62
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:187
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:62
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:187
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 msgid "Album"
 msgstr "Albumid"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:62
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:62
 msgid "Repeat Album"
 msgstr "Korda albumit"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:63
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:185
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:63
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:185
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
 msgid "Artist"
 msgstr "Esitaja"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:63
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:63
 msgid "Repeat Artist"
 msgstr "Korda esitajat"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:64
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:94
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:64
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:94
 msgid "All"
 msgstr "Sees"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:64
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:64
 msgid "Repeat All"
 msgstr "Kordusesita kõike"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:93
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:93
 msgid "Enable Shuffle"
 msgstr "Juhuesitus väljas"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:94
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:94
 msgid "Disable Shuffle"
 msgstr "Juhuesitus sees"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:127
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:138
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:127
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:138
 msgid "Add Playlist"
 msgstr "Loo esitusloend"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:139
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:139
 msgid "Add Smart Playlist"
 msgstr "Loo tark esitusloend"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:185
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:218
 msgid "Hide"
 msgstr "Peida"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:185
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:185
 msgid "Show Equalizer"
 msgstr "Näita ekvalaiserit"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:219
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:186
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:219
 msgid "Show"
 msgstr "Näita"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:186
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:186
 msgid "Hide Equalizer"
 msgstr "Peida ekvalaiser"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:218
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:218
 msgid "Show Info Panel"
 msgstr "Näita teabe paneeli"
 
-#: /home/victored/noise/po/../src//Widgets/StatusBar.vala:219
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:219
 msgid "Hide Info Panel"
 msgstr "Peida teabe paneeli"
 
-#: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:74
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:237
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:74
 msgid "Sync"
 msgstr "Sünkroniseeri"
 
-#: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:267
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SpaceWidget.vala:380
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:71
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
-#: /home/victored/noise/po/../src//LibraryWindow.vala:177
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:71
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:153
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:177
 msgid "Import to Library"
 msgstr "Impordi laule"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:77
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:77
 msgid "Eject"
 msgstr "Väljasta"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:88
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:88
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "New Playlist"
 msgstr "Uus esitusloend"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:89
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:89
 msgid "New Smart Playlist"
 msgstr "Uus nutikas esitusloend"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:90
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:90
 msgid "Edit"
 msgstr "Muuda"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:91
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:91
 msgid "Remove"
 msgstr "Kustuta"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:92
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:92
 msgid "Save as Playlist"
 msgstr "Salvesta esitusloendina"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:93
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:93
 msgid "Export..."
 msgstr "Ekspordi..."
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:94
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:94
 msgid "Import Playlists"
 msgstr "Impordi esitusloendeid"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:132
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:132
 msgid "Library"
 msgstr "Kogumik"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:133
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:133
 msgid "Devices"
 msgstr "Seadmed"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:134
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:134
 msgid "Network"
 msgstr "Võrk"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:135
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:135
 msgid "Playlists"
 msgstr "Esitusloendid"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:610
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:610
 msgid "This device is syncing"
 msgstr "Seadet sünkroniseeritakse"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:610
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:610
 msgid "Please wait until the current sync is finished to do this action."
 msgstr "Selle toimgu tegemiseks oota kuni sünkroniseerimine on valmis"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:612
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:612
 msgid "This device is in transfer"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:612
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:612
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:731
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:733
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:735
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:745
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
 msgstr "Ekspordi esitusloend"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:829
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
 msgstr "Esitusloend"
 
-#: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:842
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:842
 #, c-format
 msgid "Import %s"
 msgstr "Impordi %s"
 
-#: /home/victored/noise/po/../src//Widgets/TopDisplay.vala:69
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/TopDisplay.vala:69
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:153
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:66
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:58
 msgid "Cancel"
 msgstr "Loobu"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:83
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:83
 msgid "Equalizer"
 msgstr "Ekvalaiser"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:150
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:150
 msgid "Save preset"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:158
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:158
 msgid "Close"
 msgstr "Sulge"
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:414
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:414
 #, c-format
 msgid "%s (Custom)"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom %i)"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:420
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:420
 msgid "Custom Preset"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:422
 #, c-format
 msgid "Custom Preset %i"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
 msgstr "Viska kõik vigased failid prügikasti"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:71
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
 msgstr "Viska prügikasti"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
 msgstr "Eira"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
 msgstr "Faili asukoht"
 
-#: /home/victored/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
 msgstr "Ekspordi esitusloendid"
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
 msgstr "Määra muusika kaustaks"
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Määrata muusika kaustaks?"
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -444,525 +437,525 @@ msgstr ""
 "Oled sa kindel, et soovid %s määrata vaikimisi muusika kaustaks? Sel juhul "
 "nullitakse kogumik lauludest ja esitusloendit kustutatakse."
 
-#: /home/victored/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:135
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
 msgid "Choose Music Folder"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:64
 msgid "Do Nothing"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
 msgstr "Vajaminev GStreamer'i plugin pole paigaldatud."
 
-#: /home/victored/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:75
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:75
 msgid "Metadata"
 msgstr "Andmed"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:77
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:373
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:77
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:373
 msgid "Lyrics"
 msgstr "Laulusõnad"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:86
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:152
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:65
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:86
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:65
 msgid "Done"
 msgstr "Valmis"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:173
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:344
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:173
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:344
 #, c-format
 msgid "Editing %s by %s"
 msgstr "%s - %s"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:175
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:346
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:175
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:346
 #, c-format
 msgid "Editing %s"
 msgstr "%s"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:178
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:349
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:178
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:349
 #, c-format
 msgid "Editing %i songs"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:184
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:184
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
 msgid "Title"
 msgstr "Pealkiri"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:186
 msgid "Album Artist"
 msgstr "Albumi esitaja"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:476
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
 msgid "Genre"
 msgstr "Stiil"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:189
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:189
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 msgid "Composer"
 msgstr "Autor"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:476
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:265
 msgid "Grouping"
 msgstr "Grupeerimine"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Comment"
 msgstr "Märge"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:192
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "Track"
 msgstr "Lugu"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:193
 msgid "Disc"
 msgstr "Ketas"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:194
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:194
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
 msgid "Year"
 msgstr "Aasta"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:195
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
 msgid "Rating"
 msgstr "Hinnang"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:197
 msgid "Media Type"
 msgstr "Meedia tüüp"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:292
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
 msgstr "%s laulusõnu ei leitud"
 
-#: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:537
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:537
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:67
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Podcast"
 msgstr "Podcast"
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:145
-#: /home/victored/noise/po/../src//LibraryWindow.vala:181
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:181
 msgid "Preferences"
 msgstr "Eelistused"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:201
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:216
 msgid "General"
 msgstr "Üldine"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:215
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:230
 msgid "Select Music Folder"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:222
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:237
 msgid "Music Folder Location"
 msgstr "Muusika kausta asukoht"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:228
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:243
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:240
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:255
 msgid "Keep Music folder organized"
 msgstr "Muusika kausta organiseerimine"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:241
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:256
 msgid "Copy files to Music folder when adding to Library"
 msgstr "Kogumikku lisamisel failide kopeerimine muusika kausta"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:243
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:258
 msgid "Write metadata to file"
 msgstr "Faili andmete kirjutamine"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:258
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:273
 msgid "Library Management"
 msgstr "Kogumiku eelistused:"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:265
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:280
 msgid "Use Noise as the default Music application"
 msgstr "Kasuta Noise'i vaikimisi muusika esitajana"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:270
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:285
 msgid "System Integration"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:63
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:71
 msgid "Name of Playlist"
 msgstr "Esitusloendi nimi"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:83
 msgid "Rules"
 msgstr "Reeglid"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:84
 msgid "Options"
 msgstr "Eelistused"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Playlist Title"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "Match"
 msgstr "Vasta"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:95
 msgid "any"
 msgstr "vähemalt ühele"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "all"
 msgstr "kõigele"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:97
 msgid "of the following:"
 msgstr "järgnevale:"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:124
 msgid "Limit to"
 msgstr "Piiranguks on"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:126
 msgid "items"
 msgstr "kirjet"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:31
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:31
 msgid "Bitrate"
 msgstr "Bitikiirus"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 msgid "Date Added"
 msgstr "Lisamise kuupäev"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Date Released"
 msgstr "Väljaandmise kuupäev"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Last Played"
 msgstr "Hiljuti esitatud"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:405
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Length"
 msgstr "Kestvus"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Playcount"
 msgstr "Esitamiste arv"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
 msgstr "Vahelejätmisi"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:332
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:332
 msgid "is"
 msgstr "on"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:333
 msgid "contains"
 msgstr "sisaldab"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:334
 msgid "does not contain"
 msgstr "ei sisalda"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:366
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 msgid "is exactly"
 msgstr "on täpselt"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is at most"
 msgstr "on kõige rohkem"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "is at least"
 msgstr "on vähemalt"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is within"
 msgstr "on vahemikus"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is before"
 msgstr "on enne"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:406
 msgid "seconds"
 msgstr "sekundit"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:410
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:410
 msgid "days ago"
 msgstr "päeva tagasi"
 
-#: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:414
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:414
 msgid "kbps"
 msgstr "kb/s"
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:32
 msgid "ID"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:70
 msgid "Could not find media file"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:79
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:145
 #, c-format
 msgid "The name %s is already in use"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
 msgstr "Eemalda asukohast %s"
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
 msgstr "Heliraamat"
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:73
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 msgid "Station"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:89
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
 msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:43
+#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:43
+#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:47
+#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:47
+#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:86
+#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
 msgid "No External Songs"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victored/noise/po/../src//Views/DeviceView.vala:86
+#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/GridView/PopupListView.vala:166
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/PopupListView.vala:166
 #, c-format
 msgid "%s by %s"
 msgstr "%s - %s"
 
-#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:550
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
 msgstr "%d minutit"
 
-#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:553
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
 msgstr "%d tundi"
 
-#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:556
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid "No songs in Queue"
 msgstr "Järjekorras pole laule"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -972,11 +965,11 @@ msgstr ""
 "vali <b>\"Järjekord\"</b>. Käimasoleva laulu lõppedes mängitakse järjekorras "
 "olevad laulud enne esitusloendite laule."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
 msgstr "Ajaloos pole laule"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -986,55 +979,55 @@ msgstr ""
 "Sa võid kasutada seda nimekirja, et vaadata, milliseid laule oled sa selle "
 "sessiooni ajal kuulanud."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
 msgstr "Ühtegi laulu pole saadaval"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr "%s ei leia muusikat"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
 msgstr "Leia muusikat"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
 msgstr "Muusikat sisaldava kausta muutmine"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 msgid "All the songs in this device are already in your library."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:381
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:381
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albumit"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:383
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:383
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
 msgstr[0] "%u laul"
 msgstr[1] "%u laulu"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:590
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:590
 msgid "No media"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:594
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:594
 msgid "Sorry, there is no music that matches your search"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "No Songs"
 msgstr "Laulud puuduvad"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1042,11 +1035,11 @@ msgstr ""
 "Laulude lisamiseks esitusloendisse kasuta <b>parempoolset klõpsu</b> laulul "
 "ja vali <b>\"Lisa esitusloendisse</b>."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
 msgstr "Muuda esitusloendi reegleid"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1058,582 +1051,582 @@ msgstr ""
 "esitusloend, parem klõpsa sellele ning seejärel vajuta <b>Muuda</b>. Samuti "
 "on sul võimalik lihtsalt vajutada allolevale nupule."
 
-#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 #, c-format
 msgid "%i tracks"
 msgstr "%i lugu"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
 msgid "1 track"
 msgstr "1 lugu"
 
-#: /home/victored/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:28
 msgid "N/A"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:194
 #, c-format
 msgid "%i kbps"
 msgstr "%i kb/s"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:257
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:263
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:230
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:257
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:263
 msgid "Never"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Episode"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
 msgid "Name"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
 msgid "Date"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
 msgid "Category"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 msgid "BPM"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Plays"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Skips"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "#"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgid "Remove from Library"
 msgstr "Eemalda kogumikust"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:105
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:105
 msgid "Remove from Queue"
 msgstr "Eemalda järjekorrast"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:122
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:122
 msgid "Remove from Device"
 msgstr "Eemalda seadmest"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:146
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:146
 msgid "Scroll to Current Song"
 msgstr "Keri nimekirja käimasoleva lauluni"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:147
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:147
 msgid "Edit Song Info"
 msgstr "Muuda laulu teavet"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Show in File Browser"
 msgstr "Ava faili asukoht"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
-#: /home/victored/noise/po/../src//LibraryWindow.vala:470
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:149
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:470
 msgid "Queue"
 msgstr "Järjekord"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:151
 msgid "Add to Playlist"
 msgstr "Lisa esitusloendisse"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:152
 msgid "Remove Song"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:253
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:253
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:255
 msgid "Import this song"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:257
 #, c-format
 msgid "Import %i songs"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:110
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:110
 msgid "Autosize Columns"
 msgstr "Veergude suurus sobivaks"
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:117
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:117
 msgid "Display Album Art"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:245
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:245
 msgid "1234 kbps"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:311
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:311
 msgid "Sample Title"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:316
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:316
 msgid "Sample Artist"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:319
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:319
 msgid "Sample Album"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/Lists/GenericList.vala:332
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:332
 msgid "Sample Genre"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
 msgstr "Stiilid"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
 msgid "Artists"
 msgstr "Esitajad"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
 msgid "Albums"
 msgstr "Albumid"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
 msgid "Years"
 msgstr "Ilmumisaastad"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
 msgid "Ratings"
 msgstr "Hinnangud"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:192
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:192
 msgid "Unrated"
 msgstr "Hinnanguta"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:194
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:194
 msgid "1 Star"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:196
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:196
 #, c-format
 msgid "%s Stars"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
 msgid "All Genres"
 msgstr "Kõik stiilid"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 #, c-format
 msgid "All %i Genres"
 msgstr "Kõik %i stiili"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Genres"
 msgstr "Stiilid puuduvad"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:252
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:252
 msgid "All Artists"
 msgstr "Kõik esitajad"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
 #, c-format
 msgid "All %i Artists"
 msgstr "Kõik %i esitajat"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
 msgid "No Artists"
 msgstr "Esitajad puuduvad"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
 msgid "All Albums"
 msgstr "Kõik albumid"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 #, c-format
 msgid "All %i Albums"
 msgstr "Kõik %i albumit"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "No Albums"
 msgstr "Albumid puuduvad"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:268
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:268
 msgid "All Years"
 msgstr "Kõik ilmumisaastad"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
 #, c-format
 msgid "All %i Years"
 msgstr "Kõik %i ilmumisaastat"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
 msgid "No Years"
 msgstr "Ilmumisaastad puuduvad"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:276
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:276
 msgid "All Ratings"
 msgstr "Kõik hinnangud"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:278
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:278
 msgid "No Ratings"
 msgstr "Hinnangud puuduvad"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
 msgid "On Left"
 msgstr "Paigutus vasakul"
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
 msgid "On Top"
 msgstr "Paigutus üleval"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:77
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:80
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:80
 msgid "Device Name"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:82
 msgid "Automatically sync when plugged in:"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Sync:"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:111
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:111
 msgid "Other Files"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victored/noise/po/../src//LibraryWindow.vala:460
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:112
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:460
 msgid "Music"
 msgstr "Muusika"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:113
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Podcasts"
 msgstr "Podcastid"
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:384
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:384
 msgid "All Music"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:387
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:387
 msgid "All Podcasts"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
 msgid "Sync Failed"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Cannot Sync"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
 msgstr ""
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:403
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:403
 msgid "Favorite Songs"
 msgstr "Lemmikud"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:413
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:413
 msgid "Recently Added"
 msgstr "Hiljuti lisatud"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:435
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:435
 msgid "Recent Favorites"
 msgstr "Hiljutised lemmikud"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:445
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:445
 msgid "Never Played"
 msgstr "Esitamata"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:455
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:455
 msgid "Over Played"
 msgstr "Tihedalt esitatud"
 
-#: /home/victored/noise/po/../src//DataBase/DataBaseManager.vala:465
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
 msgstr "Ammu esitatud"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:178
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:178
 msgid "Rescan Music Folder"
 msgstr "Taasskänni muusika kausta"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:201
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:201
 msgid "Search Music"
 msgstr "Otsi muusikat..."
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:474
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:474
 msgid "History"
 msgstr "Ajalugu"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:620
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:629
 msgid " by "
 msgstr " - "
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:621
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:630
 msgid " on "
 msgstr " - "
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:829
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:838
 msgid "Import Music"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:861
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:870
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:876
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:885
 msgid "Rescanning music folder for changes"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:883
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:892
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid "Could not find Music Folder"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:883
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:892
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:949
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:958
 msgid "Import Complete"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:949
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:958
 #, c-format
 msgid "%s has imported your library."
 msgstr ""
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:70
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
 msgstr "Ühtlane"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:71
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
 msgstr "Klassikaline"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:72
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
 msgstr "Klubi"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:73
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
 msgstr "Tantsumuusika"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:74
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
 msgstr "Täielik bass"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:75
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
 msgstr "Kõrgheliline"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:76
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
 msgstr "Täielik bass + kõrgheliline"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:77
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
 msgstr "Kõrvaklapid"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:78
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
 msgstr "Suur saal"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:79
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
 msgstr "Live"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:80
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
 msgstr "Pidu"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:81
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
 msgstr "Pop"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
 msgstr "Reggae"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:83
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
 msgstr "Rokk"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:84
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
 msgstr "Pehme"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:85
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
 msgstr "Ska"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:86
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
 msgstr "Pehme rokk"
 
-#: /home/victored/noise/po/../src//GStreamer/Equalizer.vala:87
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
 msgstr "Tehno"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
 msgid "No songs on CD"
 msgstr "CD-l pole laule"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "Laule pole võimalik importida, sest %s ei leia CD-lt ühtegi laulu."
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
 #, c-format
 msgid "%s is already doing an import"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
 msgid "Ripping track 1"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
 #, c-format
 msgid "Importing track %i"
 msgstr "Loo %i importimine"
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
 msgid "CD Import Complete"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:301
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:511
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:301
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
 #, c-format
 msgid "Syncing <b>%s</b>..."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:658
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:658
 #, c-format
 msgid "Removing from <b>%s</b>..."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//Devices/iPod/iPodDevice.vala:881
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:881
 #, c-format
 msgid "Importing <b>%s</b> to library..."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:63
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
 msgstr "Sarnased"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:52
 msgid "Similar Media"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
 msgstr "Anna Noise'ile vajalikud õigused"
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
 msgstr "Sisselogimine ebaõnnestus, proovi uuesti."
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
 msgstr "Lõpeta sisselogimine"
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:40
 msgid "Last.fm"
 msgstr "Last.FM"
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:53
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:56
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
@@ -1641,29 +1634,29 @@ msgstr ""
 "Last.FM-iga ühendamiseks peavad Noise'il olema vajalikud õigused. Selle "
 "tegemiseks vajuta allolevat nuppu (seda on vaja teha ainult üks kord)."
 
-#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:67
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:68
 msgid "Last.fm Integration"
 msgstr "Last.FM-iga ühendamine:"
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:100
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
 msgid "Similar to %s"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 msgid "No similar songs found"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -1671,11 +1664,11 @@ msgid ""
 "not have matches."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "

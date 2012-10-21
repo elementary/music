@@ -75,7 +75,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
     public bool has_welcome_screen  { get { return welcome_screen != null; } }
 
     protected bool widgets_ready = false;
-
+ 
     // Contruction must always happen before population
     protected const int VIEW_CONSTRUCT_PRIORITY = Priority.DEFAULT_IDLE - 10;
 
