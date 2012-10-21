@@ -418,6 +418,11 @@ namespace Granite.Widgets {
 
             // We'll only redraw from render() for performance reasons
             renderer.delayed_render_mode = true;
+
+            // Set rating to 1 star and render to init the 'width' property
+            rating = 1;
+            renderer.render ();
+            update_pixbuf ();
         }
 
         public int star_spacing {
