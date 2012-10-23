@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-21 14:57-0500\n"
-"PO-Revision-Date: 2012-10-21 13:31+0000\n"
+"PO-Revision-Date: 2012-10-22 22:19+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-22 04:57+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-10-23 05:18+0000\n"
+"X-Generator: Launchpad (build 16179)\n"
 "Language: gl\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -98,15 +98,15 @@ msgstr "Eliminar o elemento actual"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "Ver como álbumes"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "Ver como lista"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "Ver en columnas"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
@@ -464,6 +464,10 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Para engadir cancións á cola de reprodución, use o <b>botón secundario</b> "
+"do rato sobre unha e escolla <b>Cola</b>. Cando unha canción remate de "
+"reproducirse, a  canción engadida reproducirase antes da seguinte canción na "
+"lista actual."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
 msgid "Audio CD Invalid"
@@ -542,6 +546,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Esta lista de reprodución encherase automaticamente con cancións que cumpran "
+"os criterios estabelecidos. Para modificar estes criterios, utilice o "
+"<b>botón secundario</b> do rato sobre ela no panel lateral e prema en "
+"<b>Editar</b>. Opcionalmente, pode premer no botón que aparece a seguir."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
@@ -1626,6 +1634,9 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s non foi quen de atopar cancións semellantes a %s por %s na súa fonoteca. "
+"Asegúrese de que toda a información sexa correcta e de que o computador "
+"estea conectado á Internet. Algunhas cancións poderían non ter semellantes."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
@@ -1638,6 +1649,8 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"Nesta vista, %s amosará cancións semellantes á que esta a reproducirse. Pode "
+"reproducir esas cancións ou gardalas como unha lista de reprodución."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:74
 msgid "Unknown Title"
