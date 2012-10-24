@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-21 14:57-0500\n"
-"PO-Revision-Date: 2012-10-22 22:19+0000\n"
+"PO-Revision-Date: 2012-10-23 07:48+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-23 05:18+0000\n"
+"X-Launchpad-Export-Date: 2012-10-24 05:52+0000\n"
 "X-Generator: Launchpad (build 16179)\n"
 "Language: gl\n"
 
@@ -861,7 +861,7 @@ msgstr "Volver examinar o cartafol da música"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:186
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Preferences"
-msgstr "Preferéncias"
+msgstr "Preferencias"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:206
 msgid "Search Music"
