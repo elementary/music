@@ -304,7 +304,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         build_main_views ();
         load_playlists ();
         sideTree.resetView ();
-        update_sensitivities ();
+        update_sensitivities_internal (); // we need to do this synchronously to avoid weird initial states
 
         // Now set the selected view
         viewSelector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.instance.view_mode;
@@ -329,17 +329,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 #if HAVE_LIBNOTIFY
     private Notify.Notification? notification = null;
-    private const int DEFAULT_NOTIFICATION_URGENCY = Notify.Urgency.NORMAL;
-#else
-    private const int DEFAULT_NOTIFICATION_URGENCY = 0;
 #endif
 
-
-    public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, int urgency = DEFAULT_NOTIFICATION_URGENCY) {
+    public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, int urgency = -1) {
 #if HAVE_LIBNOTIFY
         // Don't show notifications if the window is active
         if (!Settings.Main.instance.show_notifications || this.is_active)
             return;
+
+        if (urgency == -1)
+            urgency = Notify.Urgency.NORMAL;
 
         if (!Notify.is_initted ()) {
             if (!Notify.init (App.instance.get_id ())) {
@@ -497,7 +496,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Add Queue view
         var queue_view = new QueueViewWrapper (this);
-        add_view (_("Queue"), queue_view);
+        add_view (C_("Name of the playlist", "Queue"), queue_view);
 
         // Add History view
         var history_view = new HistoryViewWrapper (this);
@@ -1170,17 +1169,24 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     /**
      * Called when the user tries to quit the application using a mechanism provided
-     * by desktop shell (close button, quicklists, etc.)
+     * by the desktop shell (close button, quicklists, etc.)
      *
      * This doesn't apply to calls to App.instance.quit ()
      */
     public override bool delete_event (Gdk.EventAny event) {
         // if playing a song, don't allow closing
         if (!Settings.Main.instance.close_while_playing && App.player.playing) {
-            if (minimize_on_close ())
+            if (minimize_on_close ()) {
+                // If the behavior is to minimize on close, and the window is already
+                // minimized, we quit the application, because we assume the event didn't
+                // come from the window's close button.
+                if (Utils.flags_set (get_window ().get_state (), Gdk.WindowState.ICONIFIED))
+                    return false;
+
                 iconify (); // i.e. minimize
-            else
+            } else {
                 hide ();
+            }
 
             return true;
         }
@@ -1190,9 +1196,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     /**
      * Checks whether the window should be hidden or minimized when closing the
-     * application. The caller is responsible to check whether there's an active
-     * song and whether the close_while_playing option is active. This method
-     * assumes both are true and returns a value based on that.
+     * application. The caller is responsible for checking whether there's an active
+     * song and whether the close_while_playing option is enabled on settings. This
+     * method assumes that both are true and returns a value based on that.
      *
      * @return true if the window should be minimized; false if it should be hidden.
      */
@@ -1205,7 +1211,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
             foreach (string shell in Settings.Main.instance.minimize_while_playing_shells) {
                 if (current_shell == shell) {
-                    message ("Using supported minimize_on_close shell: %s", shell);
+                    message ("Using supported minimize_on_close shell");
                     minimize_on_close = true;
                     break;
                 }
