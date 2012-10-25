@@ -332,9 +332,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null,
 #if HAVE_LIBNOTIFY
-                                   int urgency = Notify.Urgency.NORMAL
+        int urgency = Notify.Urgency.NORMAL
 #else
-                                   int urgency = 0
+        int urgency = 0
 #endif
         ) {
 #if HAVE_LIBNOTIFY
