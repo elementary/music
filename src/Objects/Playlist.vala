@@ -24,8 +24,8 @@ using Gee;
 
 public class Noise.Playlist : Object {
 	public TreeViewSetup tvs;
-	private Gee.HashMap<Media, int> _media; // Media, 1
-	
+	private Gee.HashSet<Media> _media;
+
 	public int rowid { get; set; }
 	public string name { get; set; }
 
@@ -36,25 +36,25 @@ public class Noise.Playlist : Object {
 	public Playlist() {
 		name = "";
 		tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
-		_media = new Gee.HashMap<Media, int>();
+		_media = new Gee.HashSet<Media>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
-		_media = new Gee.HashMap<Media, int>();
-		tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+	    this ();
 		this.rowid = rowid;
 		this.name = name;
 	}
 		
 	public Gee.Collection<Media> media () {
-		return _media.keys;
+		return _media.read_only_view;
 	}
 	
-	public void add_media (Collection<Media> to_add) {
+	public void add_media (Gee.Collection<Media> to_add) {
 		var added_media = new Gee.LinkedList<Media> ();
+
 		foreach (var m in to_add) {
-			if (m != null) {
-				_media.set (m, 1);
+			if (m != null && !_media.contains (m)) {
+				_media.add (m);
 				added_media.add (m);
 			}
 		}
@@ -62,20 +62,21 @@ public class Noise.Playlist : Object {
 		media_added (added_media);
 	}
 
-	public void remove_media (Collection<Media> to_remove) {
+	public void remove_media (Gee.Collection<Media> to_remove) {
 		var removed_media = new Gee.LinkedList<Media> ();
+
 		foreach (var m in to_remove) {
-			if (m != null && _media.has_key (m)) {
-				_media.unset (m);
+			if (m != null && _media.contains (m)) {
 				removed_media.add (m);
+				_media.remove (m);
 			}
 		}
 
 		media_removed (removed_media);
 	}
-	
+
 	public void clear() {
-		_media = new HashMap<Media, int>();
+		_media = new Gee.HashSet<Media> ();
 		cleared ();
 	}
 	
@@ -88,7 +89,7 @@ public class Noise.Playlist : Object {
 			int id = int.parse (media_strings[index]);
 			var m = lm.media_from_id (id);
 			if (m != null) {
-				_media.set (m, 1);
+				_media.add (m);
 				new_media.add (m);
 			}
 		}
@@ -98,7 +99,7 @@ public class Noise.Playlist : Object {
 	public string media_to_string (LibraryManager lm) {
 		string rv = "";
 		
-		foreach (var m in _media.keys) {
+		foreach (var m in _media) {
 			if (m != null)
 				rv += m.rowid.to_string() + ",";
 		}
@@ -106,17 +107,17 @@ public class Noise.Playlist : Object {
 		return rv;
 	}
 
+    // TODO: rename to contains()
 	public bool contains_media (Media m) {
-		return _media.has_key (m);
+		return _media.contains (m);
 	}
-
 
 	// how to specify a file?
 	public bool save_playlist_m3u (LibraryManager lm, string folder) {
 		bool rv = false;
 		string to_save = "#EXTM3U";
 		
-		foreach(var s in _media.keys) {
+		foreach(var s in _media) {
 			if (s == null)
 				continue;
 
@@ -150,7 +151,7 @@ public class Noise.Playlist : Object {
 		string to_save = "[playlist]\n\nNumberOfEntries=" + _media.size.to_string() + "\nVersion=2";
 		
 		int index = 1;
-		foreach(var s in _media.keys) {
+		foreach(var s in _media) {
 			if (s == null)
 				continue;
 			
