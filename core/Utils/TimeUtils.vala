@@ -43,8 +43,13 @@ namespace Noise.TimeUtils {
             minutes = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_MINUTE);
             minutes_string = ngettext ("%u minute", "%u minutes", minutes).printf (minutes);
             seconds -= minutes * SECONDS_PER_MINUTE;
-            seconds_string = ngettext ("%u second", "%u seconds", seconds).printf (seconds);
-            return _("%s and %s").printf (minutes_string, seconds_string);
+
+            if (seconds > 0) {
+                seconds_string = ngettext ("%u second", "%u seconds", seconds).printf (seconds);
+                return C_("minutes and seconds", "%s and %s").printf (minutes_string, seconds_string);
+            }
+
+            return minutes_string;
         }
 
         // calculate days
@@ -73,13 +78,13 @@ namespace Noise.TimeUtils {
         if (days > 0) {
             if (hours > 0) {
                 if (minutes > 0)
-                    rv = _("%s, %s and %s").printf (days_string, hours_string, minutes_string);
+                    rv = C_("days, hours and minutes", "%s, %s and %s").printf (days_string, hours_string, minutes_string);
                 else
-                    rv = _("%s and %s").printf (days_string, hours_string);
+                    rv = C_("days and hours", "%s and %s").printf (days_string, hours_string);
             }
             else {
                 if (minutes > 0)
-                    rv = _("%s and %s").printf (days_string, minutes_string);
+                    rv = C_("days and minutes", "%s and %s").printf (days_string, minutes_string);
                 else
                     rv = days_string;
             }
@@ -87,13 +92,14 @@ namespace Noise.TimeUtils {
         else {
             if (hours > 0) {
                 if (minutes > 0)
-                    rv = _("%s and %s").printf (hours_string, minutes_string);
+                    rv = C_("hours and minutes", "%s and %s").printf (hours_string, minutes_string);
                 else
                     rv = hours_string;
             }
             else {
-                // In theory, this will never be reached, since we handle this case above.
+                // In theory, this will never be reached, since we handle it at the beginning.
                 rv = minutes_string;
+                warning ("Minutes string '%s'. Should not be reached", rv);
             }
         }
 
@@ -117,14 +123,12 @@ namespace Noise.TimeUtils {
             seconds -= minutes * SECONDS_PER_MINUTE;
             return "%u:%02u".printf (minutes, seconds);
         }
-        else {
-            uint hours = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_HOUR);
-            seconds -= hours * SECONDS_PER_HOUR;
-            uint minutes = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_MINUTE);
-            seconds -= minutes * SECONDS_PER_MINUTE;
 
-            return "%u:%02u:%02u".printf (hours, minutes, seconds);
-        }
+        uint hours = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_HOUR);
+        seconds -= hours * SECONDS_PER_HOUR;
+        uint minutes = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_MINUTE);
+        seconds -= minutes * SECONDS_PER_MINUTE;
+        return "%u:%02u:%02u".printf (hours, minutes, seconds);
     }
 
     /**
@@ -143,7 +147,6 @@ namespace Noise.TimeUtils {
 
     /**
      * Returns a formatted date and time string.
-     * TODO: Use locale settings to decide format
      */
     public inline string pretty_timestamp_from_time (Time dt) {
         /// Format of date strings. See reference documentation of g_date_time_format()
@@ -154,5 +157,21 @@ namespace Noise.TimeUtils {
     public inline string pretty_timestamp_from_uint (uint time) {
         var dt = Time.local (time);
         return pretty_timestamp_from_time (dt);
+    }
+
+    /**
+     * Convert from nanoseconds (10E-9) to miliseconds (10E-3);
+     *
+     * This is used extensively because {@link Noise.Media} stores
+     * miliseconds, while GStreamer uses nanoseconds.
+     *
+     * The method does its best to avoid losing precision.
+     */
+    public inline uint nanoseconds_to_miliseconds (uint64 nanoseconds) {
+        return (uint) (nanoseconds * Numeric.MILI_INV  / Numeric.NANO_INV);
+    }
+
+    public inline uint64 miliseconds_to_nanoseconds (uint miliseconds) {
+        return (uint64) miliseconds * Numeric.NANO_INV / Numeric.MILI_INV;
     }
 }

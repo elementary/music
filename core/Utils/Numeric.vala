@@ -28,20 +28,6 @@ namespace Noise.Numeric {
     public const uint64 NANO_INV = 1000000000;
     public const uint64 MILI_INV = 1000;
 
-    /**
-     * Convert from nanoseconds (10E-9) to miliseconds (10E-3);
-     *
-     * This is used extensively because {@link Noise.Media} stores
-     * miliseconds, while GStreamer uses nanoseconds.
-     */
-    public inline uint nanoseconds_to_miliseconds (uint64 nanoseconds) {
-        return (uint) (nanoseconds_to_seconds (nanoseconds) * MILI_INV);
-    }
-
-    public inline uint nanoseconds_to_seconds (uint64 nanoseconds) {
-        return (uint) (nanoseconds / NANO_INV);
-    }
-
     public inline int compare (int64 a, int64 b) {
         int64 diff = a - b;
         return (int) diff.clamp (int.MIN, int.MAX);
