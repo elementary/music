@@ -635,7 +635,7 @@ public class Noise.LibraryManager : Object {
 
         _playlists_lock.lock ();
         foreach (var p in playlists ()) {
-            p.remove_media (unset_ids);
+            p.remove_media (unset);
         }
         _playlists_lock.unlock ();
 
