@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-10-21 14:57-0500\n"
-"PO-Revision-Date: 2012-10-17 09:54+0000\n"
-"Last-Translator: Erkka Juhaninmäki <Unknown>\n"
+"PO-Revision-Date: 2012-10-24 17:49+0000\n"
+"Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-22 04:57+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-10-25 06:13+0000\n"
+"X-Generator: Launchpad (build 16179)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Media.vala:35
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -97,15 +97,15 @@ msgstr "Poista nykyinen"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "Näytä albumeina"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "Näytä luettelona"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "Näytä sarakkeina"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
@@ -312,11 +312,11 @@ msgstr "Piilota tietopaneeli"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr ""
+msgstr "Kuuntele musiikkia"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr ""
+msgstr "Musiikkisoitin"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
@@ -1234,19 +1234,19 @@ msgstr "Käytä Noisea musiikin oletussoittimena"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:292
 msgid "Show notifications"
-msgstr ""
+msgstr "Näytä ilmoitukset"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:299
 msgid "Minimize window instead of closing it when a song is being played"
-msgstr ""
+msgstr "Pienennä ikkuna sulkemisen sijaan, kun kappaletta toistetaan"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:301
 msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
+msgstr "Piilota ikkuna sulkemisen sijaan, kun kappaletta toistetaan"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:307
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Työpöytäintegraatio"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"

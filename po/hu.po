@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-21 14:57-0500\n"
-"PO-Revision-Date: 2012-10-14 12:05+0000\n"
-"Last-Translator: Mark Lutring <marcus@elitemail.hu>\n"
+"PO-Revision-Date: 2012-10-24 12:37+0000\n"
+"Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-22 04:57+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-10-25 06:13+0000\n"
+"X-Generator: Launchpad (build 16179)\n"
 "Language: hu\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Media.vala:35
 msgid "Unknown"
-msgstr ""
+msgstr "Ismeretlen"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -77,7 +77,7 @@ msgstr "%s %s és %s"
 #. / for more details.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:151
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%Y.%m.%e. %H:%M"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/TopDisplay.vala:69
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -98,15 +98,15 @@ msgstr "Jelenlegi törlése"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "Album nézet"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "Listanézet"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "Oszlop nézet"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
@@ -186,11 +186,11 @@ msgstr "Kérem várjon a művelettel amíg az átvitel befejeződik."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Sor lejátszása (%Y. %b %e. %H:%M)"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Előzmények lejátszása (%Y. %b %e. %H:%M)"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
@@ -215,7 +215,7 @@ msgstr "Ingyenes"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "%s használva ennyiből: %s (%.2f%)"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:60
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:93
@@ -313,11 +313,11 @@ msgstr "Információs panel elrejtése"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr ""
+msgstr "Zene hallgatása"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr ""
+msgstr "Zenelejátszó"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
@@ -499,11 +499,11 @@ msgstr[1] "%u dal"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:569
 msgid "No media"
-msgstr ""
+msgstr "Nincs adathordozó"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:573
 msgid "Sorry, there is no music that matches your search"
-msgstr ""
+msgstr "Elnézést, nem található zene ami illeszkedik a keresésére"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
@@ -594,8 +594,8 @@ msgstr "Értékeletlen"
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i csillag"
+msgstr[1] "%i csillag"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Genres"
@@ -722,29 +722,29 @@ msgstr "Soha"
 #. / Should be as long as a common song title in your language.
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:778
 msgid "Sample Title"
-msgstr ""
+msgstr "Minta cím"
 
 #. / Sample string used to measure the desired size of the Artist column in the list view.
 #. / Should be as long as a common artist name in your language.
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:787
 msgid "Sample Artist"
-msgstr ""
+msgstr "Minta előadó"
 
 #. / Sample string used to measure the desired size of the Album column in the list view.
 #. / Should be as long as a common album name in your language.
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:793
 msgid "Sample Album"
-msgstr ""
+msgstr "Minta album"
 
 #. / Sample string used to measure the desired size of the Genre column in the list view.
 #. / Should be as long as a common genre name in your language.
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:810
 msgid "Sample Genre"
-msgstr ""
+msgstr "Minta műfaj"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:38
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:220
 #, c-format
@@ -757,7 +757,7 @@ msgstr "Oszlopok automatikus méretezése"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/GenericList.vala:145
 msgid "Display Album Art"
-msgstr ""
+msgstr "Albumborító megjelenítése"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:65
 msgid "#"
@@ -873,13 +873,13 @@ msgstr "Előzmény"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:654
 #, c-format
 msgid " by %s"
-msgstr ""
+msgstr " , %s előadó"
 
 #. / String template used to show "SongName ... on AlbumName"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:659
 #, c-format
 msgid " on %s"
-msgstr ""
+msgstr " %s albumáról"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:866
 msgid "Import Music"
@@ -977,7 +977,7 @@ msgstr "Eltávolítás innen: %s"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr ""
+msgstr "Eltávolítja %d dalokat innen: %s?"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
@@ -993,7 +993,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"Ez el fogja távolítani a zeneszámot a gyűjteményéből és minden olyan "
+"eszközről ami automatikusan szinkronizál ezzel: %s."
 msgstr[1] ""
+"Ez el fogja távolítani a zeneszámokat a gyűjteményéből és minden olyan "
+"eszközről ami automatikusan szinkronizál ezzel: %s."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -1202,7 +1206,7 @@ msgstr "Általános"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:240
 msgid "Select Music Folder"
-msgstr ""
+msgstr "Zenemappa kiválasztása"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:247
 msgid "Music Folder Location"
@@ -1218,11 +1222,12 @@ msgstr ""
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:264
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Zenemappa rendezetten hagyása"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:265
 msgid "Copy files to Music folder when adding to Library"
 msgstr ""
+"Fájlok másolása a zenemappába, amikor hozzáadja őket a gyűjteményéhez"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:267
 msgid "Write metadata to file"
@@ -1234,23 +1239,23 @@ msgstr "Gyűjtemény kezelés"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:286
 msgid "Use Noise as the default Music application"
-msgstr ""
+msgstr "Noise beállítása alapértelmezett zenelejátszóként"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:292
 msgid "Show notifications"
-msgstr ""
+msgstr "Értesítések megjelenítése"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:299
 msgid "Minimize window instead of closing it when a song is being played"
-msgstr ""
+msgstr "Ablak lekicsinyítése bezárás helyett, ha zenelejátszás folyik"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:301
 msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
+msgstr "Ablak elrejtése bezárás helyett, ha zenelejátszás folyik"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:307
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Integráció az asztali környezetbe"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
@@ -1403,7 +1408,7 @@ msgstr "Médiatípus"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Nem található zeneszöveg ehhez: %s"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:537
 msgid "Podcast"
@@ -1566,7 +1571,7 @@ msgstr "Sikertelen. Kattintson az újrapróbáláshoz."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "A továbbítás már engedélyezve van"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1603,7 +1608,7 @@ msgstr "Hasonló dalok lekérése"
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
-msgstr ""
+msgstr "%s előadó %s számához hasonló dalok keresése"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
@@ -1621,6 +1626,9 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s nem talált ehhez hasonló dalokat a gyűjteményében: %s - %s. Győződjön meg "
+"róla, hogy az összes dalinformáció helyes, és hogy csatlakozik-e az "
+"internetre. Néhány dalra lehet, hogy nincs találat."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
@@ -1633,6 +1641,9 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"Ebben a nézetben %s automatikusan meg fogja keresni az éppen lejátszotthoz "
+"hasonló dalokat. Ezek után elindíthatja őket, vagy elmentheti "
+"lejátszólistába, hogy lejátssza őket később."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:74
 msgid "Unknown Title"

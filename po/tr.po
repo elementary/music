@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-21 14:57-0500\n"
-"PO-Revision-Date: 2012-10-21 11:31+0000\n"
-"Last-Translator: Emre Ayca <Unknown>\n"
+"PO-Revision-Date: 2012-10-24 15:31+0000\n"
+"Last-Translator: Ferhat TUNÇTAN <ferhattnctn66@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-22 04:57+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-10-25 06:13+0000\n"
+"X-Generator: Launchpad (build 16179)\n"
 "Language: tr\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -72,7 +72,7 @@ msgstr "%s, %s ve %s"
 #. / for more details.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:151
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%m/%e/%Y %l:%M %p"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/TopDisplay.vala:69
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -93,15 +93,15 @@ msgstr "şimdikini Sil"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "Albüm Görünümü"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "Liste Görünümü"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "Sütun Görünümü"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
@@ -862,13 +862,13 @@ msgstr "Geçmiş"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:654
 #, c-format
 msgid " by %s"
-msgstr ""
+msgstr " %s tarafından"
 
 #. / String template used to show "SongName ... on AlbumName"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:659
 #, c-format
 msgid " on %s"
-msgstr ""
+msgstr " %s üzerinde"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:866
 msgid "Import Music"
