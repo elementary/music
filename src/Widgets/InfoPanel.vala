@@ -132,15 +132,15 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
     private void update_metadata () {
         bool none = current_media == null;
-        title.set_markup (none ? "" : Markup.printf_escaped (TITLE_MARKUP, current_media.title));
-        artist.set_text (none ? "" : current_media.artist);
-        album.set_text (none ? "" : current_media.album);
+        title.set_markup (none ? "" : Markup.printf_escaped (TITLE_MARKUP, current_media.get_display_title ()));
+        artist.set_text (none ? "" : current_media.get_display_artist ());
+        album.set_text (none ? "" : current_media.get_display_album ());
 
         // do rating stuff
         rating.rating = none ? 0 : (int)current_media.rating;
 
         var year = none ? 0 : current_media.year;
-        var year_str = year > 1900 ? "<span size=\"x-small\">" + year.to_string () + "</span>" : "";
+        var year_str = year > 0 ? "<span size=\"x-small\">" + year.to_string () + "</span>" : "";
         year_label.set_markup (year_str);
     }
     
