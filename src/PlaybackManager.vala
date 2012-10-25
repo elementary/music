@@ -70,7 +70,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     // Whether or not a media is being played. Returns true even if the media is paused
     public bool media_active { get { return media_info.media != null; } }
 
-    public bool playing; // TODO { get; private set; }
+    public bool playing { get; set; default = false; } // TODO private set
+
     bool _playing_queued_song;
 
     private Player.Repeat? _repeat = null;
