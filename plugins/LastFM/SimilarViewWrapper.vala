@@ -34,7 +34,7 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
         App.player.media_played.connect (on_media_played);
         core.similar_retrieved.connect (similar_retrieved);
 
-        build_async ();
+        build_async.begin ();
     }
 
     public async void build_async () {
@@ -135,8 +135,8 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
     }
 
     protected override void set_no_media_alert () {
-            embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (App.instance.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Gtk.MessageType.INFO);
-            embedded_alert.working = false;
+        embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (App.instance.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Gtk.MessageType.INFO);
+        embedded_alert.working = false;
     }
 
     private void set_default_alert () {
