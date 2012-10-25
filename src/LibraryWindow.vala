@@ -24,7 +24,6 @@
 using Gtk;
 using Gee;
 
-
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void playPauseChanged ();
 
