@@ -611,7 +611,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
             } else if (((Device)o).is_transferring()) {
                 lw.doAlert(_("This device is in transfer"), _("Please wait until the current transfer is finished to do this action."));
             } else {
-                ((Device)o).unmount();
+                (o as Device).eject ();
             }
         }
     }

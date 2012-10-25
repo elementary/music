@@ -71,7 +71,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 	}
 	
 	void finish_initialization_thread() {
-		medias = CDDA.getMediaList(mount.get_default_location().get_path());
+		medias = CDDA.getMediaList (mount.get_default_location ());
 		if(medias.size > 0) {
 			setDisplayName(medias.get(0).album);
 		}
@@ -138,14 +138,47 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 	public uint64 get_free_space() {
 		return (uint64)0;
 	}
-	
+
+    private bool ejecting = false;
+    private bool unmounting = false;
+
 	public void unmount() {
-		mount.unmount_with_operation (GLib.MountUnmountFlags.NONE, null);
+		unmount_async.begin ();
 	}
-	
+
+    private async void unmount_async () {
+        if (unmounting)
+            return;
+
+        unmounting = true;
+
+        try {
+            yield mount.unmount_with_operation (MountUnmountFlags.FORCE, null);
+        } catch (Error err) {
+            warning ("Could not unmmount CD: %s", err.message);
+        }
+
+        unmounting = false;
+    }
+
 	public void eject() {
-		mount.eject_with_operation (GLib.MountUnmountFlags.NONE, null);
+        eject_async.begin ();
 	}
+
+    private async void eject_async () {
+        if (ejecting)
+            return;
+
+        ejecting = true;
+
+        try {
+            yield mount.eject_with_operation (MountUnmountFlags.FORCE, null);
+        } catch (Error err) {
+            warning ("Could not eject CD: %s", err.message);
+        }
+
+        ejecting = false;
+    }
 	
 	public void get_device_type() {
 		
