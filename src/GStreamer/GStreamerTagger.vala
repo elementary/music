@@ -74,18 +74,18 @@ public class Noise.GStreamerTagger : Object {
         cancelled = true;
     }
 
-    public void discoverer_import_media (Gee.LinkedList<string> files) {
+    public void discoverer_import_media (Gee.LinkedList<string> uris) {
         int size = 0;
         cancelled = false;
         uri_queue.clear ();
 
-        foreach (string s in files) {
-            uri_queue.add (s);
+        foreach (string uri in uris) {
+            uri_queue.add (uri);
 
             d.start ();
             if (size < DISCOVER_SET_SIZE) {
                 ++size;
-                d.discover_uri_async (s);
+                d.discover_uri_async (uri);
             }
         }
     }
@@ -221,7 +221,7 @@ public class Noise.GStreamerTagger : Object {
                         duration = 0;
             }
 
-            m.length = Numeric.nanoseconds_to_miliseconds (duration);
+            m.length = TimeUtils.nanoseconds_to_miliseconds (duration);
 
             foreach (var audio_stream in info.get_audio_streams ()) {
                 if (audio_stream == null)

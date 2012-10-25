@@ -195,9 +195,8 @@ public class Noise.TopDisplay : Box {
 		scale.set_value(val);
 		scale_value_changed(scroll, val);
 
-        if( !is_seeking )
-        {
-            App.player.player.setPosition((int64)(val / Numeric.MILI_INV * Numeric.NANO_INV));
+        if( !is_seeking ) {
+            App.player.player.setPosition((int64) TimeUtils.miliseconds_to_nanoseconds ((uint) val));
             App.player.player.current_position_update.connect(player_position_update);
         }
 		
@@ -240,7 +239,7 @@ public class Noise.TopDisplay : Box {
 	
 	public virtual void player_position_update(int64 position) {
 		if (App.player.media_info.media != null)
-			set_scale_value ((double) Numeric.nanoseconds_to_miliseconds (position));
+			set_scale_value ((double) TimeUtils.nanoseconds_to_miliseconds (position));
 	}
 
 	public void cancel_clicked() {
