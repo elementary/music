@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-10-21 14:57-0500\n"
-"PO-Revision-Date: 2012-09-26 08:03+0000\n"
+"PO-Revision-Date: 2012-10-26 01:51+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-22 04:57+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-10-26 05:27+0000\n"
+"X-Generator: Launchpad (build 16194)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Media.vala:35
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -76,7 +76,7 @@ msgstr "%s, %s dan %s"
 #. / for more details.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:151
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%m/%e/%Y %l:%M %p"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/TopDisplay.vala:69
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -97,15 +97,15 @@ msgstr "Padam Semasa"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "Lihat sebagai Album"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "Lihat sebagai Senarai"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "Lihat dalam Lajur"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
@@ -312,11 +312,11 @@ msgstr "Sembunyi Panel Maklumat"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr ""
+msgstr "Dengari muzik"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr ""
+msgstr "Pemain Muzik"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
@@ -591,8 +591,8 @@ msgstr "Tidak ditarafkan"
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i Bintang"
+msgstr[1] "%i Bintang"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Genres"
@@ -870,13 +870,13 @@ msgstr "Sejarah"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:654
 #, c-format
 msgid " by %s"
-msgstr ""
+msgstr " oleh %s"
 
 #. / String template used to show "SongName ... on AlbumName"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:659
 #, c-format
 msgid " on %s"
-msgstr ""
+msgstr " pada %s"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:866
 msgid "Import Music"
@@ -974,7 +974,7 @@ msgstr "Buang dari %s"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr ""
+msgstr "Buang %d Lagu Dari %s?"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
@@ -990,7 +990,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"Ia akan buang lagu dari pustaka anda dan dari sebarang peranti yang "
+"disegerak secara automatik dengan %s."
 msgstr[1] ""
+"Ia akan buang lagu dari pustaka anda dan dari sebarang peranti yang "
+"disegerak secara automatik dengan %s."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -1234,19 +1238,20 @@ msgstr "Guna Noise sebagai apliaksi Muzik lalai"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:292
 msgid "Show notifications"
-msgstr ""
+msgstr "Papar pemberitahuan"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:299
 msgid "Minimize window instead of closing it when a song is being played"
 msgstr ""
+"Minimumkan tetingkap selain dari menutupnya bila lagu sedang dimainkan"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:301
 msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
+msgstr "Sembunyi tetingkap selain dari menutupnya bila lagu sedang dimainkan"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:307
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Penyepaduan Desktop"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
