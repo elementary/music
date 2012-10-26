@@ -216,7 +216,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplayBin.set_widget (topDisplay, true, false);
 
         // Set search timeout in ms
-        searchField.pause_delay = 100;
+        searchField.pause_delay = 80;
 
         var top_display_item   = new Gtk.ToolItem ();
         var search_field_item  = new Gtk.ToolItem ();
@@ -310,7 +310,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         build_main_views ();
         load_playlists ();
         sideTree.resetView ();
-        update_sensitivities_internal (); // we need to do this synchronously to avoid weird initial states
+        update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
 
         // Now set the selected view
         viewSelector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.instance.view_mode;
@@ -584,18 +584,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         Idle.add_full (Priority.HIGH_IDLE + 30, update_sensitivities.callback);
         yield;
 
-        update_sensitivities_internal ();
+        update_sensitivities_sync ();
         update_sensitivities_pending = false;
     }
 
     /**
      * This is handled more carefully inside each ViewWrapper object.
      */
-    private void update_sensitivities_internal () {
+    private void update_sensitivities_sync () {
         debug ("UPDATE SENSITIVITIES");
 
-        bool folder_set = (Settings.Main.instance.music_folder != "");
-        bool have_media = library_manager.media_count () > 0;
+        bool folder_set = library_manager.main_directory_set;
+        bool have_media = library_manager.have_media;
         bool doing_ops = library_manager.doing_file_operations ();
         bool media_active = App.player.media_active;
 
@@ -618,6 +618,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         playButton.set_sensitive (media_active || media_available);
         nextButton.set_sensitive (media_active || media_available);
 
+        // hide playlists when media list is empty
+        sideTree.setVisibility (sideTree.playlists_iter, have_media);
+
+        if(!App.player.media_active || have_media && !App.player.playing)
+            playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+
         bool show_top_display = media_active || doing_ops;
         topDisplay.set_visible (show_top_display);
 
@@ -626,15 +632,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool show_info_panel = Settings.SavedState.instance.more_visible && info_panel.can_show_up;
         info_panel.set_visible (show_info_panel);
 
-        statusbar.info_panel_item.set_sensitive (info_panel.can_show_up);
-
-        statusbar.set_sensitive (folder_set && have_media);
-
-        // hide playlists when media list is empty
-        sideTree.setVisibility (sideTree.playlists_iter, have_media);
-
-        if(!App.player.media_active || have_media && !App.player.playing)
-            playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+        statusbar.update_sensitivities ();
     }
 
     public virtual void progressNotification(string? message, double progress) {

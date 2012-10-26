@@ -41,13 +41,19 @@ public class Noise.LibraryManager : Object {
     public signal void media_updated (Gee.LinkedList<int> ids);
     public signal void media_removed (Gee.LinkedList<int> ids);
 
-
     public Noise.LibraryWindow lw { get { return App.main_window; } }
     public Noise.DataBaseManager dbm;
     public Noise.DataBaseUpdater dbu;
     public Noise.FileOperator fo;
     public Noise.DeviceManager device_manager;
 
+    public bool main_directory_set {
+        get { return !String.is_empty (Settings.Main.instance.music_folder, true); }
+    }
+
+    public bool have_media {
+        get { return media_count () > 0; }
+    }
 
     private Gee.HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
     private Gee.HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
@@ -57,12 +63,10 @@ public class Noise.LibraryManager : Object {
     private Mutex _playlists_lock; // lock for _playlists
     private Mutex _smart_playlists_lock; // lock for _smart_playlists
 
-
     public TreeViewSetup music_setup   { get; private set; default = null; }
     public TreeViewSetup similar_setup { get; private set; default = null; }
     public TreeViewSetup queue_setup   { get; private set; default = null; }
     public TreeViewSetup history_setup { get; private set; default = null; }
-
 
     private string temp_add_folder;
     private string[] temp_add_other_folders;
@@ -70,7 +74,7 @@ public class Noise.LibraryManager : Object {
     private LinkedList<string> temp_add_files;
 
     // FIXME use mutex
-    bool _doing_file_operations;
+    private bool _doing_file_operations;
 
     public LibraryManager () {
         this.dbm = new DataBaseManager(this);
