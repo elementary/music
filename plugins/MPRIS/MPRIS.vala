@@ -108,7 +108,6 @@ public class MprisRoot : GLib.Object {
         }
     }
     
-    // TODO: use App.CONTENT_TYPES
     public string[] SupportedMimeTypes {
         owned get {
             return App.get_media_content_types ();
@@ -116,14 +115,13 @@ public class MprisRoot : GLib.Object {
     }
 
     public void Quit () {
-        App.main_window.destroy ();
+        App.instance.quit ();
     }
     
     public void Raise () {
-        App.main_window.present();
+        App.main_window.present ();
     }
 }
-
 
 [DBus(name = "org.mpris.MediaPlayer2.Player")]
 public class MprisPlayer : GLib.Object {
@@ -146,6 +144,8 @@ public class MprisPlayer : GLib.Object {
         _metadata = new HashTable<string,Variant>(str_hash, str_equal);
 
         App.player.media_played.connect_after (on_media_played);
+        App.player.playback_stopped.connect_after ( () => update_metadata (null) );
+
         App.library_manager.media_updated.connect_after (refresh_current_media);
         CoverartCache.instance.changed.connect_after (refresh_current_media);
         App.main_window.playPauseChanged.connect_after (playing_changed);
@@ -179,7 +179,7 @@ public class MprisPlayer : GLib.Object {
         });
     }
 
-    private void on_media_played (Noise.Media s) {
+    private void on_media_played (Noise.Media? s) {
         if (s != App.player.media_info.media)
             return;
 
@@ -188,7 +188,15 @@ public class MprisPlayer : GLib.Object {
 
     private void update_metadata (Media? s) {
         if (s == null)
-            return;
+            _metadata.remove_all ();
+        else
+            set_media_metadata (s);
+
+        trigger_metadata_update ();
+    }
+
+    private void set_media_metadata (Media s) {
+        _metadata = new HashTable<string, Variant> (null, null);
 
         _metadata.insert("mpris:trackid", get_track_id (s));
         _metadata.insert("mpris:length", App.player.player.getDuration () / 1000);
@@ -209,8 +217,6 @@ public class MprisPlayer : GLib.Object {
         _metadata.insert("xesam:discNumber", (int) s.album_number);
         _metadata.insert("xesam:userRating", (int) s.rating);
         _metadata.insert("xesam:useCount", (int) s.play_count);
-
-        trigger_metadata_update ();
     }
 
     private static string[] get_simple_string_array (string text) {
