@@ -24,23 +24,20 @@ public class Noise.HistoryViewWrapper : ViewWrapper {
 
     public HistoryViewWrapper (LibraryWindow lw) {
         base (lw, Hint.HISTORY);
+        build_async.begin ();
+    }
 
+    private async void build_async () {
         var tvs = lw.library_manager.history_setup;
 
-        if (tvs != null) {
-            // Add list view
-            list_view = new ListView (this, tvs);
+        list_view = new ListView (this, tvs);
+        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
-            // Alert box
-            embedded_alert = new Granite.Widgets.EmbeddedAlert ();
+        // Refresh view layout
+        pack_views ();
 
-    		// Refresh view layout
-    		pack_views ();
-
-            connect_data_signals ();
-        }
-
-        set_media_async (App.player.already_played ());
+        yield set_media_async (App.player.already_played ());
+        connect_data_signals ();
     }
 
     protected override void set_no_media_alert () {
@@ -49,24 +46,22 @@ public class Noise.HistoryViewWrapper : ViewWrapper {
     }
 
     private void connect_data_signals () {
-         // Listen for queues and unqueues
          App.player.history_changed.connect (on_history_changed);
 
-         // Connect to lm.media_updated and lm.media_removed
          lm.media_updated.connect (on_library_media_updated);
          lm.media_removed.connect (on_library_media_removed);
     }
 
-    private void on_history_changed () {
-        set_media_async (App.player.already_played ());
+    private async void on_history_changed () {
+        yield set_media_async (App.player.already_played ());
     }
 
-    private void on_library_media_updated (Gee.Collection<int> ids) {
-        update_media_async (lm.media_from_ids (ids));
+    private async void on_library_media_updated (Gee.Collection<int> ids) {
+        yield update_media_async (lm.media_from_ids (ids));
     }
 
-    private void on_library_media_removed (Gee.Collection<int> ids) {
-        remove_media_async (lm.media_from_ids (ids));
+    private async void on_library_media_removed (Gee.Collection<int> ids) {
+        yield remove_media_async (lm.media_from_ids (ids));
     }
 }
 

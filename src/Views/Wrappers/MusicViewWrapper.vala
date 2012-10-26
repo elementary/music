@@ -26,7 +26,10 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
     public MusicViewWrapper (LibraryWindow lw) {
         base (lw, Hint.MUSIC);
+        build_async.begin ();
+    }
 
+    private async void build_async () {
         // Add grid view
         grid_view = new GridView (this);
 
@@ -34,8 +37,8 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         list_view = new ListView (this, lw.library_manager.music_setup, true);
 
         // Welcome screen
-        welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"),
-                             _("%s can't seem to find your music.").printf (App.instance.get_name ()));
+        welcome_screen = new Granite.Widgets.Welcome (_("Get Some Tunes"),
+            _("%s can't seem to find your music.").printf (App.instance.get_name ()));
 
         var music_folder_icon = Icons.MUSIC_FOLDER.render (Gtk.IconSize.DIALOG, null);
         welcome_screen.append_with_pixbuf (music_folder_icon, _("Locate"), _("Change your music folder."));
@@ -47,9 +50,8 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         // Refresh view layout
         pack_views ();
 
+        yield set_media_async (lm.media ());
         connect_data_signals ();
-
-        set_media_async (lm.media ());
     }
 
     private void connect_data_signals () {

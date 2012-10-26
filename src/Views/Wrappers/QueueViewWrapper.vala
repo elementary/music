@@ -24,47 +24,42 @@ public class Noise.QueueViewWrapper : ViewWrapper {
 
     public QueueViewWrapper (LibraryWindow lw) {
         base (lw, Hint.QUEUE);
-        connect_data_signals ();
-        build_async ();
+        build_async.begin ();
     }
 
     private async void build_async () {
-        Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
-        yield;
-
         list_view = new ListView (this, lw.library_manager.queue_setup);
-        embedded_alert = new Granite.Widgets.EmbeddedAlert ();            
+        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
         // Refresh view layout
         pack_views ();
 
-        set_media_async (App.player.queue ());
+        yield set_media_async (App.player.queue ());
+        connect_data_signals ();
     }
 
     private void connect_data_signals () {
-         // Listen for queues and unqueues
          App.player.queue_cleared.connect (on_queue_cleared);
          App.player.media_queued.connect (on_media_queued);
          App.player.media_unqueued.connect (on_media_unqueued);
 
-         // Connect to lm.media_updated and lm.media_removed
          lm.media_removed.connect (on_library_media_removed);
     }
 
-    private void on_queue_cleared () {
-        set_media_async (new Gee.LinkedList<Media> ());
+    private async void on_queue_cleared () {
+        yield set_media_async (new Gee.LinkedList<Media> ());
     }
 
-    private void on_media_queued (Gee.Collection<Media> queued) {
-        add_media_async (queued);
+    private async void on_media_queued (Gee.Collection<Media> queued) {
+        yield add_media_async (queued);
     }
 
-    private void on_media_unqueued (Gee.Collection<Media> unqueued) {
-        remove_media_async (unqueued);
+    private async void on_media_unqueued (Gee.Collection<Media> unqueued) {
+        yield remove_media_async (unqueued);
     }
 
-    private void on_library_media_removed (Gee.Collection<int> ids) {
-        remove_media_async (lm.media_from_ids (ids));
+    private async void on_library_media_removed (Gee.Collection<int> ids) {
+        yield remove_media_async (lm.media_from_ids (ids));
     }
 
     protected override void set_no_media_alert () {
