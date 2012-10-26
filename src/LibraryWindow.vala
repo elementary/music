@@ -27,6 +27,12 @@ using Gee;
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void playPauseChanged ();
 
+    public enum WindowState {
+        NORMAL,
+        MAXIMIZED,
+        FULLSCREEN
+    }
+
     public Noise.LibraryManager library_manager { get { return App.library_manager; } }
 
     /* Info related to the media being played */
@@ -148,10 +154,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Maximize window if necessary
         switch (Settings.SavedState.instance.window_state) {
-            case Noise.WindowState.MAXIMIZED:
+            case WindowState.MAXIMIZED:
                 this.maximize ();
                 break;
-            case Noise.WindowState.FULLSCREEN:
+            case WindowState.FULLSCREEN:
                 this.fullscreen ();
                 break;
             default:
@@ -210,7 +216,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplayBin.set_widget (topDisplay, true, false);
 
         // Set search timeout in ms
-        searchField.pause_delay = 80;
+        searchField.pause_delay = 100;
 
         var top_display_item   = new Gtk.ToolItem ();
         var search_field_item  = new Gtk.ToolItem ();
@@ -1157,11 +1163,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Save window state
         if (window_maximized)
-                Settings.SavedState.instance.window_state = Noise.WindowState.MAXIMIZED;
+                Settings.SavedState.instance.window_state = WindowState.MAXIMIZED;
         else if (window_fullscreen)
-                Settings.SavedState.instance.window_state = Noise.WindowState.FULLSCREEN;
+                Settings.SavedState.instance.window_state = WindowState.FULLSCREEN;
         else
-                Settings.SavedState.instance.window_state = Noise.WindowState.NORMAL;
+                Settings.SavedState.instance.window_state = WindowState.NORMAL;
 
         Settings.SavedState.instance.window_width = window_width;
         Settings.SavedState.instance.window_height = window_height;
@@ -1174,11 +1180,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * This doesn't apply to calls to App.instance.quit ()
      */
     public override bool delete_event (Gdk.EventAny event) {
+        bool playing = App.player.media_active && App.player.playing;
+
         // if playing a song, don't allow closing
-        if (!Settings.Main.instance.close_while_playing && App.player.playing) {
+        if (!Settings.Main.instance.close_while_playing && playing) {
             if (minimize_on_close ()) {
                 // If the behavior is to minimize on close, and the window is already
-                // minimized, we quit the application, because we assume the event didn't
+                // minimized, we quit the application because we assume the event didn't
                 // come from the window's close button.
                 if (Utils.flags_set (get_window ().get_state (), Gdk.WindowState.ICONIFIED))
                     return false;
