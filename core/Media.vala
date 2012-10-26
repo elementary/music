@@ -106,6 +106,9 @@ public class Noise.Media : Object {
     }
 
     public inline string get_display_location () {
+        if (isTemporary)
+            return "";
+
         string? filename = String.locale_to_utf8 (file.get_path ());
 
         if (is_valid_string_field (filename))
