@@ -139,7 +139,7 @@ namespace Noise.String {
     }
 
     /**
-     * Converts a string encoded in the native operating system encoding to UTF-8
+     * Converts a string encoded in the native operating system encoding to UTF-8.
      *
      * @param string_locale String in locale encoding.
      * @return String encoded in UTF-8, or //null// if the string could not be converted.
@@ -148,9 +148,9 @@ namespace Noise.String {
         Error error;
         size_t bytes_read, bytes_written;
         string? string_utf8 = string_locale.locale_to_utf8 (string_locale.length,
-                                                           out bytes_read,
-                                                           out bytes_written,
-                                                           out error);
+                                                            out bytes_read,
+                                                            out bytes_written,
+                                                            out error);
         if (error != null)
             string_utf8 = null;
 
