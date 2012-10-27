@@ -501,11 +501,11 @@ public class Noise.MusicListView : GenericList {
             break;
 
             case ListColumn.ALBUM_ARTIST:
-                order = String.compare (media_a.album_artist, media_b.album_artist);
+                order = String.compare (media_a.get_display_album_artist (false), media_b.get_display_album_artist (false));
             break;
 
             case ListColumn.COMPOSER:
-                order = String.compare (media_a.composer, media_b.album_artist);
+                order = String.compare (media_a.get_display_composer (), media_b.get_display_composer ());
             break;
 
             case ListColumn.GROUPING:
@@ -583,21 +583,21 @@ public class Noise.MusicListView : GenericList {
     }
 
     private inline int compare_genres (Media a, Media b) {
-        int order = String.compare (a.genre, b.genre);
+        int order = String.compare (a.get_display_genre (), b.get_display_genre ());
         if (order == 0)
             order = compare_artists (a, b);
         return order;
     }
 
     private inline int compare_artists (Media a, Media b) {
-        int order = String.compare (a.artist, b.artist);
+        int order = String.compare (a.get_display_artist (), b.get_display_artist ());
         if (order == 0)
             order = compare_albums (a, b);
         return order;
     }
 
     private inline int compare_albums (Media a, Media b) {
-        int order = String.compare (a.album, b.album);
+        int order = String.compare (a.get_display_album (), b.get_display_album ());
         if (order == 0)
             order = Numeric.compare (a.album_number, b.album_number);
         if (order == 0)
@@ -640,19 +640,19 @@ public class Noise.MusicListView : GenericList {
                 return s.length;
 
             case ListColumn.ARTIST:
-                return s.artist;
+                return s.get_display_artist ();
 
             case ListColumn.ALBUM:
-                return s.album;
+                return s.get_display_album ();
 
             case ListColumn.ALBUM_ARTIST:
-                return s.album_artist;
+                return s.get_display_album_artist (false);
 
             case ListColumn.COMPOSER:
-                return s.composer;
+                return s.get_display_composer ();
 
             case ListColumn.GENRE:
-                return s.genre;
+                return s.get_display_genre ();
 
             case ListColumn.YEAR:
                 return s.year;
@@ -806,6 +806,13 @@ public class Noise.MusicListView : GenericList {
             case ListColumn.FILE_LOCATION:
                 renderer = new Gtk.CellRendererText ();
                 tvc.set_cell_data_func (renderer, CellDataFunctionHelper.string_func);
+                /// Sample string used to measure the ideal size of the Title, Artist,
+                /// Album, Album Artist, Composer, Genre, and Grouping columns in the
+                /// list view. It's *never* displayed in the user interface. The translated
+                /// string should have a reasonable length, similar to the average length
+                /// of a song title or artist name in your language. The automatic column
+                /// width will depend on the length of this string and the space needed
+                /// by the column's title header.
                 test_strings += _ ("Sample List String");
             break;
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-27 13:42-0600\n"
+"POT-Creation-Date: 2012-10-27 14:10-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1240,7 +1240,14 @@ msgstr ""
 msgid "1234 kbps"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:809
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:816
 msgid "Sample List String"
 msgstr ""
 
