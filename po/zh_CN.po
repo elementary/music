@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-10-21 14:57-0500\n"
-"PO-Revision-Date: 2012-09-23 08:22+0000\n"
+"PO-Revision-Date: 2012-10-26 13:41+0000\n"
 "Last-Translator: Wang Dianjin <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-22 04:58+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-10-27 05:24+0000\n"
+"X-Generator: Launchpad (build 16194)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Media.vala:35
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -71,7 +71,7 @@ msgstr "%s，%s 和 %s"
 #. / for more details.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:151
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%Y年%m月%e，%p %l:%M"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/TopDisplay.vala:69
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -92,15 +92,15 @@ msgstr "删除当前列表"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "专辑视图"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "列表视图"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "直栏显示"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
@@ -307,11 +307,11 @@ msgstr "隐藏信息面板"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr ""
+msgstr "聆听音乐"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr ""
+msgstr "音乐播放器"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
@@ -567,8 +567,7 @@ msgstr "未评分"
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i 星"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Genres"
@@ -846,13 +845,13 @@ msgstr "历史"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:654
 #, c-format
 msgid " by %s"
-msgstr ""
+msgstr " 艺术家-%s"
 
 #. / String template used to show "SongName ... on AlbumName"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:659
 #, c-format
 msgid " on %s"
-msgstr ""
+msgstr " 专辑-%s"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:866
 msgid "Import Music"
@@ -948,7 +947,7 @@ msgstr "从 %s 中移除"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr ""
+msgstr "要从 %2$s 移除 %1$d 首歌曲吗？"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
@@ -963,8 +962,7 @@ msgid ""
 msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "这将从库和自动同步 %s 的设备中移除歌曲。"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -1206,19 +1204,19 @@ msgstr "将 Noise 作为默认音乐程序"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:292
 msgid "Show notifications"
-msgstr ""
+msgstr "显示通知"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:299
 msgid "Minimize window instead of closing it when a song is being played"
-msgstr ""
+msgstr "播放歌曲时最小化窗口而非关闭"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:301
 msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
+msgstr "播放歌曲时隐藏窗口而非关闭"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:307
 msgid "Desktop Integration"
-msgstr ""
+msgstr "桌面集成"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
