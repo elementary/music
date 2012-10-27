@@ -27,8 +27,10 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
     public MusicColumnBrowser (ViewWrapper view_wrapper) {
         var columns = new BrowserColumn.Category [0];
         columns += BrowserColumn.Category.RATING;
+        columns += BrowserColumn.Category.GROUPING;
         columns += BrowserColumn.Category.YEAR;
         columns += BrowserColumn.Category.GENRE;
+        columns += BrowserColumn.Category.COMPOSER;
         columns += BrowserColumn.Category.ARTIST;
         columns += BrowserColumn.Category.ALBUM;
 

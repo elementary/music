@@ -216,6 +216,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 				else
 					rv = _ ("No Genres");
 			break;
+
 			case BrowserColumn.Category.ARTIST:
 				if (n_items == 1)
 					rv = _ ("All Artists");
@@ -224,6 +225,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 				else
 					rv = _ ("No Artists");
 			break;
+
 			case BrowserColumn.Category.ALBUM:
 				if (n_items == 1)
 					rv = _ ("All Albums");
@@ -232,6 +234,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 				else
 					rv = _ ("No Albums");
 			break;
+
 			case BrowserColumn.Category.YEAR:
 				if (n_items == 1)
 					rv = _ ("All Years");
@@ -240,11 +243,30 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 				else
 					rv = _ ("No Years");
 			break;
+
 			case BrowserColumn.Category.RATING:
 				if (n_items >= 1)
 					rv = _ ("All Ratings");
 				else
 					rv = _ ("No Ratings");
+			break;
+
+			case BrowserColumn.Category.GROUPING:
+				if (n_items == 1)
+					rv = _ ("All Groupings");
+				else if (n_items > 1)
+					rv = _ ("All %i Groupings").printf (n_items);
+				else
+					rv = _ ("No Groupings");
+			break;
+
+			case BrowserColumn.Category.COMPOSER:
+				if (n_items == 1)
+					rv = _ ("All Composers");
+				else if (n_items > 1)
+					rv = _ ("All %i Composers").printf (n_items);
+				else
+					rv = _ ("No Composers");
 			break;
 		}
 

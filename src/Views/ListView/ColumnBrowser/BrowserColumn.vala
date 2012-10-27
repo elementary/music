@@ -35,8 +35,10 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 
 	public enum Category {
         RATING,
+        GROUPING,
         YEAR,
         GENRE,
+        COMPOSER,
         ARTIST,
         ALBUM,
         N_CATEGORIES;
@@ -61,6 +63,10 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 				    return _("Years");
 			    case Category.RATING:
 				    return _("Ratings");
+			    case Category.COMPOSER:
+				    return _("Composers");
+			    case Category.GROUPING:
+				    return _("Groupings");
                 default:
                     assert_not_reached ();
 		    }

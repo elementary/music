@@ -39,12 +39,19 @@ namespace Noise.Search {
      * Please note that this method compares against the values returned by
      * Media.get_display_*(), and not the real fields. This means that a value
      * like 'Unknown' will have a matching media even if the actual field is empty.
+     *
+     *
+     * Used by the column browser. Fields compared must match those *displayed* by the browser.
+     *
+     * /!\ Modify carefully.
      */
     public void search_in_media_list (Gee.Collection<Media> to_search,
                                       out Gee.Collection<Media> results,
                                       string album_artist = "",
                                       string album = "",
                                       string genre = "",
+                                      string grouping = "",
+                                      string composer = "",
                                       int year = -1,
                                       int rating = -1,
                                       Cancellable? cancellable = null)
@@ -55,23 +62,32 @@ namespace Noise.Search {
             if (Utils.is_cancelled (cancellable))
                 break;
 
-            if (match_fields_to_media (media, album_artist, album, genre, year, rating))
+            if (match_fields_to_media (media, album_artist, album, genre, grouping, composer, year, rating))
                 results.add (media);
         }
     }
 
+    /**
+     * Used by the column browser. Fields compared must match those *displayed* by the browser.
+     *
+     * /!\ Modify carefully.
+     */
     public inline bool match_fields_to_media (Media media,
                                               string album_artist = "",
                                               string album = "",
                                               string genre = "",
+                                              string grouping = "",
+                                              string composer = "",
                                               int year = -1,
                                               int rating = -1)
     {
         return (rating == -1 || media.rating == rating)
             && (year == -1 || media.year == year)
-            && (genre == "" || media.get_display_genre () == genre)
-            && (album_artist == "" || media.get_display_album_artist () == album_artist)
-            && (album == "" || media.get_display_album () == album);
+            && (String.is_empty (genre, false) || media.get_display_genre () == genre)
+            && (String.is_empty (album_artist, false) || media.get_display_album_artist () == album_artist)
+            && (String.is_empty (album, false) || media.get_display_album () == album)
+            && (String.is_empty (grouping, false) || media.grouping == grouping)
+            && (String.is_empty (composer, false) || media.get_display_composer () == composer);
     }
 
     public inline string get_valid_search_string (string s) {

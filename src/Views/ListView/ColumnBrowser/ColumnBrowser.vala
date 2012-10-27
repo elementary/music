@@ -242,12 +242,13 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
     private void update_search_results (BrowserColumn.Category parent_category) {
 		int rating, year;
-		string genre, album_artist, album;
-        get_filters (parent_category, out rating, out year, out genre, out album_artist, out album);
+		string genre, album_artist, album, grouping, composer;
+        get_filters (parent_category, out rating, out year, out genre, out album_artist, out album,
+                     out grouping, out composer);
 
 		// Perform search
 		Search.search_in_media_list (media, out search_results, album_artist, album,
-		                             genre, year, rating, null);
+		                             genre, grouping, composer, year, rating, null);
     }
 
     private void get_filters (BrowserColumn.Category parent_category,
@@ -255,13 +256,17 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                               out int year,
                               out string genre,
                               out string album_artist,
-                              out string album)
+                              out string album,
+                              out string grouping,
+                              out string composer)
     {
 		rating = -1; // ~ All
 		year   = -1; // ~ All
 		genre  = ""; // ~ All
 		album_artist  = ""; // ~ All
 		album = ""; // ~ All
+		grouping = ""; // ~ All
+		composer = ""; // ~ All
 
 		foreach (var col in columns) {
 			// Higher hierarchical levels (parent columns)
@@ -279,6 +284,14 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
                     case BrowserColumn.Category.ALBUM:
                         album = selected;
+                    break;
+
+                    case BrowserColumn.Category.GROUPING:
+                        grouping = selected;
+                    break;
+
+                    case BrowserColumn.Category.COMPOSER:
+                        composer = selected;
                     break;
 
                     case BrowserColumn.Category.YEAR:
@@ -345,6 +358,24 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 			    }
             break;
 
+		    case BrowserColumn.Category.GROUPING:
+			    foreach (var m in search_results) {
+                    string grouping = m.grouping;
+                    
+                    // TODO XXX If grouping is an empty string, append "Ungrouped" instead
+                    if (!String.is_empty (grouping, false) && !column_set.contains (grouping))
+				        column_set.add (grouping);
+			    }
+            break;
+
+		    case BrowserColumn.Category.COMPOSER:
+			    foreach (var m in search_results) {
+                    string composer = m.get_display_composer ();
+                    if (!column_set.contains (composer))
+				        column_set.add (composer);
+			    }
+            break;
+
 		    case BrowserColumn.Category.ALBUM:
 			    foreach (var m in search_results) {
                     string album = m.get_display_album ();
@@ -405,12 +436,12 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 #else
         // Slightly slower than the code above, but more reliable.
 		int rating, year;
-		string genre, album_artist, album;
-        get_filters (BrowserColumn.Category.last (), out rating, out year,
-                     out genre, out album_artist, out album);
+		string genre, album_artist, album, grouping, composer;
+        get_filters (BrowserColumn.Category.last (), out rating, out year, out genre,
+                     out album_artist, out album, out grouping, out composer);
 
 		// Perform search
-		return Search.match_fields_to_media (m, album_artist, album, genre, year, rating);
+		return Search.match_fields_to_media (m, album_artist, album, genre, grouping, composer, year, rating);
 #endif
     }
 
