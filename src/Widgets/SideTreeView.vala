@@ -160,15 +160,12 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                 sidebar_category_iter = playlists_iter;
                 break;
             case ViewWrapper.Hint.MUSIC:
-            case ViewWrapper.Hint.PODCAST:
                 sidebar_category_iter = library_iter;
                 break;
-            case ViewWrapper.Hint.STATION:
             case ViewWrapper.Hint.NONE:
                 sidebar_category_iter = network_iter;
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
-            case ViewWrapper.Hint.DEVICE_PODCAST:
             case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
             case ViewWrapper.Hint.NETWORK_DEVICE:
                 sidebar_category_iter = network_iter;
@@ -219,12 +216,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
             //lw.view_container.add_view (dvw);
             //addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
 
-            if(d.supports_audiobooks() && false) {
-                //dvw = new DeviceViewWrapper(lm, lm.lw, d.get_podcasts(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIOBOOK, -1, d);
-                //addItem(rv, o, dvw, audiobook_icon, "Audiobooks", null);
-                //lw.mainViews.pack_start(dvw, true, true, 0);
-            }
-            
             return rv;
         }
         else if(o is NetworkDevice && parent == network_devices_iter) {
@@ -242,12 +233,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
             //ndvw.set_media_async (d.get_medias ());
             //addItem(rv, o, ndvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
             //lw.view_container.add_view (ndvw);
-
-            if(d.supports_audiobooks() && false) {
-                //dvw = new DeviceViewWrapper(lm, lm.lw, d.get_podcasts(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIOBOOK, -1, d);
-                //addItem(rv, o, dvw, audiobook_icon, "Audiobooks", null);
-                //lw.mainViews.pack_start(dvw, true, true, 0);
-            }
             
             return rv;
         }
@@ -433,18 +418,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
         lw.set_active_view (w);
     }
 
-#if HAVE_PODCASTS
-    // podcast context menu
-    void podcastAddClicked() {
-        AddPodcastWindow apw = new AddPodcastWindow(lw);
-        apw.lw = lw; // avoid warnings
-    }
-    
-    void podcastRefreshClicked() {
-        lm.pm.find_new_podcasts();
-    }
-#endif
-    
     //smart playlist context menu
     public void smartPlaylistMenuNewClicked() {
         SmartPlaylistEditor spe = new SmartPlaylistEditor(lw, new SmartPlaylist());
@@ -452,8 +425,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
     }
     
     void smartPlaylistEditorSaved(SmartPlaylist sp) {
-        sp.is_up_to_date = false;
-        
         if(sp.rowid > 0) {
             TreeIter pivot = playlists_history_iter;
                 

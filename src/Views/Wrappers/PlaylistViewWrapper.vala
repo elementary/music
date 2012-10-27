@@ -25,43 +25,11 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
     public PlaylistViewWrapper (LibraryWindow lw, TreeViewSetup tvs, int playlist_id) {
         base (lw, tvs.get_hint ());
+
         this.playlist_id = playlist_id;
         relative_id = playlist_id;
 
-        if (hint == Hint.PLAYLIST) {
-            var p = lm.playlist_from_id (playlist_id);
-
-            // Connect to playlist signals
-            if (p != null) {
-                p.media_added.connect (on_playlist_media_added);
-                p.media_removed.connect (on_playlist_media_removed);
-                p.cleared.connect (on_playlist_cleared);
-            }
-        }
-        else if (hint == Hint.SMART_PLAYLIST) {
-            var p = lm.smart_playlist_from_id (playlist_id);
-
-            // Connect to playlist signals
-            if (p != null) {
-                p.changed.connect (on_smart_playlist_changed);
-            }
-        }
-        else {
-            return_if_reached ();
-        }
-
-        build_async (tvs);
-
-        if (hint == Hint.SMART_PLAYLIST) {
-            // this sets the media indirectly through the signal handlers connected above
-            lm.media_from_smart_playlist (playlist_id);
-        }
-        else if (hint == Hint.PLAYLIST) {
-            set_media_async (lm.media_from_playlist (playlist_id));
-        }
-        else {
-            assert_not_reached ();
-        }
+        build_async.begin (tvs);
     }
 
     private async void build_async (TreeViewSetup tvs) {
@@ -72,8 +40,49 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         list_view = new ListView (this, tvs);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();            
 
-		// Refresh view layout
-		pack_views ();
+        // Refresh view layout
+        pack_views ();
+
+        // Do initial population. Further additions and removals will be handled
+        // by the handlers connected below through connect_data_signals()
+        if (hint == Hint.SMART_PLAYLIST) {
+            // this sets the media indirectly through the signal handlers connected above
+            yield set_media_async (lm.media_from_smart_playlist (playlist_id));
+        } else if (hint == Hint.PLAYLIST) {
+            yield set_media_async (lm.media_from_playlist (playlist_id));
+        } else {
+            assert_not_reached ();
+        }
+
+        connect_data_signals ();
+    }
+
+    private void connect_data_signals () {
+        switch (hint) {
+            case Hint.PLAYLIST:
+                var p = lm.playlist_from_id (playlist_id);
+
+                // Connect to playlist signals
+                if (p != null) {
+                    p.media_added.connect (on_playlist_media_added);
+                    p.media_removed.connect (on_playlist_media_removed);
+                    p.cleared.connect (on_playlist_cleared);
+                }
+            break;
+            
+            case Hint.SMART_PLAYLIST:
+                var p = lm.smart_playlist_from_id (playlist_id);
+
+                // Connect to smart playlist signals
+                if (p != null) {
+                    p.media_added.connect (on_playlist_media_added);
+                    p.media_removed.connect (on_playlist_media_removed);
+                }
+            break;
+            
+            default:
+                assert_not_reached ();
+        }
     }
 
     protected override void set_no_media_alert () {
@@ -100,53 +109,16 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         }
     }
 
-
-    /**
-     * DATA STUFF
-     */
-
-    /* SMART PLAYLISTS */
-
-    private async void on_smart_playlist_changed (Gee.Collection<Media> new_media) {
-        return_if_fail (hint == Hint.SMART_PLAYLIST);
-
-  	    var to_add = new Gee.LinkedList<Media> ();
-        var to_remove = new Gee.LinkedList<Media> ();
-        var new_media_table = new Gee.HashSet<Media> ();
-
-       	foreach (var m in new_media) {
-   	    	// if not already in the table, add
-   	    	if (!media_table.contains (m))
-                to_add.add (m);
-            // Make a copy of the list
-            new_media_table.add (m);
-         }
-
-         // if something is in the table but not in new_media, remove
-         foreach (var m in get_media_list ()) {
-             if (!new_media_table.contains (m))
-                 to_remove.add (m);
-         }
-
-       	 remove_media_async (to_remove);
-       	 add_media_async (to_add);
+    private async void on_playlist_media_added (Gee.Collection<Media> to_add) {
+        yield add_media_async (to_add);
     }
 
-    /* NORMAL PLAYLISTS */
-
-    private void on_playlist_media_added (Gee.Collection<Media> to_add) {
-        return_if_fail (hint == Hint.PLAYLIST);
-        add_media_async (to_add);
+    private async void on_playlist_media_removed (Gee.Collection<Media> to_remove) {
+        yield remove_media_async (to_remove);
     }
 
-    private void on_playlist_media_removed (Gee.Collection<Media> to_remove) {
-        return_if_fail (hint == Hint.PLAYLIST);
-        remove_media_async (to_remove);
-    }
-
-    private void on_playlist_cleared () {
-        return_if_fail (hint != Hint.PLAYLIST);
-        set_media_async (new Gee.LinkedList<Media> ());
+    private async void on_playlist_cleared () {
+        yield set_media_async (new Gee.LinkedList<Media> ());
     }
 }
 

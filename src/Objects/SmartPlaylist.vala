@@ -33,7 +33,9 @@ public class Noise.SmartPlaylist : Object {
         ALL = false
     }
 
-    public signal void changed (Gee.Collection<Media> media);
+    public signal void media_added (Gee.Collection<Media> added);
+
+    public signal void media_removed (Gee.Collection<Media> removed);
 
     public int rowid { get; set; default = 0; }
     public TreeViewSetup tvs;
@@ -45,8 +47,7 @@ public class Noise.SmartPlaylist : Object {
     public bool limit { get; set; default = false; }
     public int limit_amount { get; set; default = 50; }
     
-    public bool is_up_to_date { get; set; default = false; }
-    LinkedList<Media> media;
+    private Gee.HashSet<Media> media = new Gee.HashSet<Media> ();
     
     public SmartPlaylist() {
         tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
@@ -95,7 +96,7 @@ public class Noise.SmartPlaylist : Object {
         return rv;
     }
 
-    public Gee.LinkedList<Media> analyze_ids (LibraryManager lm, Gee.Collection<int> ids) {
+    public Gee.Collection<Media> analyze_ids (LibraryManager lm, Gee.Collection<int> ids) {
         var to_analyze = new Gee.LinkedList<Media> ();
         foreach (var id in ids) {
             var m = lm.media_from_id (id);
@@ -105,37 +106,42 @@ public class Noise.SmartPlaylist : Object {
         return analyze (lm, to_analyze);
     }
 
-    public Gee.LinkedList<Media> analyze (LibraryManager lm, Collection<Media> to_test) {
-        //if(is_up_to_date) {
-        //    return media;
-        //}
-        
-        var rv = new LinkedList<Media>();
+    public Gee.Collection<Media> analyze (LibraryManager lm, Collection<Media> to_test) {
+        var added = new Gee.LinkedList<Media> ();
+        var removed = new Gee.LinkedList<Media> ();
+
         foreach (var m in to_test) {
             if (m == null)
                 continue;
 
             int match_count = 0; //if OR must be greater than 0. if AND must = queries.size.
-            
-            foreach(SmartQuery q in _queries) {
-                if(media_matches_query(q, m))
+
+            foreach (var q in _queries) {
+                if (media_matches_query (q, m))
                     match_count++;
             }
             
-            if(((conditional == ConditionalType.ALL && match_count == _queries.size) || (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary)
-                rv.add (m);
-                
-            if(_limit && _limit_amount <= rv.size)
-                return rv;
+            if(((conditional == ConditionalType.ALL && match_count == _queries.size) || (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
+                if (!media.contains (m)) {
+                    added.add (m);
+                    media.add (m);
+                }
+            } else if (media.contains (m)) {
+                // a media which was part of the previous set no longer matches
+                // the query, and it must be removed
+                media.remove (m);
+                removed.add (m);
+            }
+
+            if (_limit && _limit_amount <= media.size)
+                break;
         }
-        
-        is_up_to_date = true;
-        media = rv;
-        
+
         // Emit signal to let views know about the change
-        changed (media);
-        
-        return rv;
+        media_added (added);
+        media_removed (removed);
+
+        return media.read_only_view;
     }
     
     public bool media_matches_query(SmartQuery q, Media s) {
