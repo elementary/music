@@ -24,6 +24,12 @@ using Gtk;
 using Gee;
 using Granite;
 
+/**
+ * TODO: make this dialog edit and handle Media objects and not media rowids.
+ *       We need this in order to allow editing temporary tracks (such as Audio
+ *       CDs before importing their media to the library).
+ */
+
 #if USE_GRANITE_DECORATED_WINDOW
 public class Noise.MediaEditor : Granite.Widgets.LightWindow {
 #else

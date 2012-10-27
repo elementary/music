@@ -85,7 +85,8 @@ public class Noise.MusicListView : GenericList {
             mediaMenuNewPlaylist.set_visible(false);
         }
         else if(get_hint() == ViewWrapper.Hint.CDROM) {
-            mediaEditMedia.set_visible(false);
+            //mediaEditMedia.set_visible(true); // See TODO in MediaEditor.vala
+            mediaFileBrowse.set_visible (false);
             mediaRateMedia.set_visible(false);
             mediaRemove.set_visible(false);
             mediaMenuAddToPlaylist.set_visible(false);
