@@ -228,6 +228,10 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
         add_desktop_integration_section ();
     }
 
+    ~GeneralSection () {
+        lm.file_operations_done.disconnect (on_file_operations_done);
+    }
+
     private static Gtk.Grid get_contents_grid () {
         var contents_grid = new Gtk.Grid ();
         contents_grid.row_spacing = 6;
@@ -253,10 +257,14 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
             library_filechooser.set_tooltip_text (_("You must wait until previous file operations finish before setting your music folder"));
 
             // Keep checking until the current file operations finish
-            lm.file_operations_done.connect ( () =>  {
-                library_filechooser.set_tooltip_text ("");
-                library_filechooser.set_sensitive (true);
-            });
+            lm.file_operations_done.connect (on_file_operations_done);
+        }
+    }
+
+    private void on_file_operations_done () {
+        if (library_filechooser != null) {
+            library_filechooser.set_tooltip_text ("");
+            library_filechooser.set_sensitive (true);
         }
     }
 
