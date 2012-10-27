@@ -500,6 +500,18 @@ public class Noise.MusicListView : GenericList {
                 order = compare_albums (media_a, media_b);
             break;
 
+            case ListColumn.ALBUM_ARTIST:
+                order = String.compare (media_a.album_artist, media_b.album_artist);
+            break;
+
+            case ListColumn.COMPOSER:
+                order = String.compare (media_a.composer, media_b.album_artist);
+            break;
+
+            case ListColumn.GROUPING:
+                order = String.compare (media_a.grouping, media_b.grouping);
+            break;
+
             // Typically, when users choose to sort their media collection by track numbers,
             // what they actually want is ordering their albums, which means that this is
             // equivalent to sorting by genre.
@@ -539,6 +551,14 @@ public class Noise.MusicListView : GenericList {
             case ListColumn.BPM:
                 order = Numeric.compare (media_a.bpm, media_b.bpm);
             break;
+
+            case ListColumn.FILE_SIZE:
+                order = Numeric.compare ((int64) media_a.file_size, (int64) media_b.file_size);
+            break;
+
+            case ListColumn.FILE_LOCATION:
+                order = String.compare (media_a.get_display_location (), media_b.get_display_location ());
+            break;
         }
 
         // When order is zero, we'd like to jump into sorting by genre, but that'd
@@ -563,21 +583,21 @@ public class Noise.MusicListView : GenericList {
     }
 
     private inline int compare_genres (Media a, Media b) {
-        int order = String.compare (a.get_display_genre (), b.get_display_genre ());
+        int order = String.compare (a.genre, b.genre);
         if (order == 0)
             order = compare_artists (a, b);
         return order;
     }
 
     private inline int compare_artists (Media a, Media b) {
-        int order = String.compare (a.get_display_artist (), b.get_display_artist ());
+        int order = String.compare (a.artist, b.artist);
         if (order == 0)
             order = compare_albums (a, b);
         return order;
     }
 
     private inline int compare_albums (Media a, Media b) {
-        int order = String.compare (a.get_display_album (), b.get_display_album ());
+        int order = String.compare (a.album, b.album);
         if (order == 0)
             order = Numeric.compare (a.album_number, b.album_number);
         if (order == 0)
@@ -620,16 +640,25 @@ public class Noise.MusicListView : GenericList {
                 return s.length;
 
             case ListColumn.ARTIST:
-                return s.get_display_artist ();
+                return s.artist;
 
             case ListColumn.ALBUM:
-                return s.get_display_album ();
+                return s.album;
+
+            case ListColumn.ALBUM_ARTIST:
+                return s.album_artist;
+
+            case ListColumn.COMPOSER:
+                return s.composer;
 
             case ListColumn.GENRE:
-                return s.get_display_genre ();
+                return s.genre;
 
             case ListColumn.YEAR:
                 return s.year;
+
+            case ListColumn.GROUPING:
+                return s.grouping;
 
             case ListColumn.BITRATE:
                 return s.bitrate;
@@ -651,6 +680,12 @@ public class Noise.MusicListView : GenericList {
 
             case ListColumn.BPM:
                 return s.bpm;
+
+            case ListColumn.FILE_LOCATION:
+                return s.get_display_location ();
+
+            case ListColumn.FILE_SIZE:
+                return s.file_size;
         }
 
         assert_not_reached ();
@@ -711,12 +746,6 @@ public class Noise.MusicListView : GenericList {
             break;
 
             case ListColumn.DATE_ADDED:
-                renderer = new Gtk.CellRendererText ();
-                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.date_func);
-                test_strings += CellDataFunctionHelper.get_date_func_sample_string ();
-                test_strings += _ ("Never");
-            break;
-
             case ListColumn.LAST_PLAYED:
                 renderer = new Gtk.CellRendererText ();
                 tvc.set_cell_data_func (renderer, CellDataFunctionHelper.date_func);
@@ -735,13 +764,6 @@ public class Noise.MusicListView : GenericList {
                 column_width = rating_renderer.width + 5;
             break;
 
-            case ListColumn.YEAR:
-                renderer = new Gtk.CellRendererText ();
-                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
-                column_resizable = false;
-                test_strings += "0000";
-            break;
-
             case ListColumn.NUMBER:
                 var text_renderer = new Gtk.CellRendererText ();
                 text_renderer.style = Pango.Style.ITALIC;
@@ -751,20 +773,15 @@ public class Noise.MusicListView : GenericList {
                 test_strings += "00000";
             break;
 
+            case ListColumn.YEAR:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
+                column_resizable = false;
+                test_strings += "0000";
+            break;
+
             case ListColumn.TRACK:
-                renderer = new Gtk.CellRendererText ();
-                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
-                column_resizable = false;
-                test_strings += "000";
-            break;
-
             case ListColumn.PLAY_COUNT:
-                renderer = new Gtk.CellRendererText ();
-                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
-                column_resizable = false;
-                test_strings += "9999";
-            break;
-
             case ListColumn.SKIP_COUNT:
                 renderer = new Gtk.CellRendererText ();
                 tvc.set_cell_data_func (renderer, CellDataFunctionHelper.intelligent_func);
@@ -772,45 +789,24 @@ public class Noise.MusicListView : GenericList {
                 test_strings += "9999";
             break;
 
-            case ListColumn.TITLE:
-                renderer = new Gtk.CellRendererText ();
-                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.string_func);
-
-                /// Sample string used to measure the desired size of the Title column in the list view.
-                /// Should be as long as a common song title in your language.
-                test_strings += _ ("Sample Title");
-            break;
-
-            case ListColumn.ARTIST:
-                renderer = new Gtk.CellRendererText ();
-                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.string_func);
-
-                /// Sample string used to measure the desired size of the Artist column in the list view.
-                /// Should be as long as a common artist name in your language.
-                test_strings += _ ("Sample Artist");
-            break;
-
-            case ListColumn.ALBUM:
-                /// Sample string used to measure the desired size of the Album column in the list view.
-                /// Should be as long as a common album name in your language.
-                test_strings += _ ("Sample Album");
 #if HAVE_SMART_ALBUM_COLUMN
+            case ListColumn.ALBUM:
                 renderer = new SmartAlbumRenderer ();
                 tvc.set_cell_data_func (renderer, cell_data_helper.album_art_func);
                 // XXX set_row_separator_func (cell_data_helper.row_separator_func);
-#else
-                renderer = new Gtk.CellRendererText ();
-                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.string_func);
 #endif
-            break;
 
+            case ListColumn.TITLE:
+            case ListColumn.ARTIST:
+            case ListColumn.ALBUM:
+            case ListColumn.ALBUM_ARTIST:
+            case ListColumn.COMPOSER:
             case ListColumn.GENRE:
+            case ListColumn.GROUPING:
+            case ListColumn.FILE_LOCATION:
                 renderer = new Gtk.CellRendererText ();
                 tvc.set_cell_data_func (renderer, CellDataFunctionHelper.string_func);
-
-                /// Sample string used to measure the desired size of the Genre column in the list view.
-                /// Should be as long as a common genre name in your language.
-                test_strings += _ ("Sample Genre");
+                test_strings += _ ("Sample List String");
             break;
 
             case ListColumn.BPM:
@@ -820,8 +816,15 @@ public class Noise.MusicListView : GenericList {
                 test_strings += "9999";
             break;
 
+            case ListColumn.FILE_SIZE:
+                renderer = new Gtk.CellRendererText ();
+                tvc.set_cell_data_func (renderer, CellDataFunctionHelper.file_size_func);
+                test_strings += CellDataFunctionHelper.get_file_size_sample ();
+            break;
+
             default:
-                assert_not_reached ();
+                // TreeViewSetup might come from a corrupted database, so use relaxed assertion
+                return_if_reached ();
         }
 
         tvc.pack_start (renderer, true);

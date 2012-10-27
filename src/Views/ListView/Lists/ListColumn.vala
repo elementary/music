@@ -33,13 +33,6 @@
  *
  * New column types must be appended at the end in order to ensure backwards
  * compatibility with older TreeViewSetup representations.
- *
- * TODO: Add columns:
- * + FILE LOCATION
- * + ALBUM ARTIST (It won't display Artist as fallback)
- * + COMPOSER
- * + GROUPING
- * + FILE SIZE
  */
 public enum Noise.ListColumn {
     ICON,
@@ -49,8 +42,11 @@ public enum Noise.ListColumn {
     LENGTH,
     ARTIST,
     ALBUM,
+    ALBUM_ARTIST,
+    COMPOSER,
     GENRE,
     YEAR,
+    GROUPING,
     BITRATE,
     RATING,
     PLAY_COUNT,
@@ -58,6 +54,8 @@ public enum Noise.ListColumn {
     DATE_ADDED,
     LAST_PLAYED,
     BPM,
+    FILE_LOCATION,
+    FILE_SIZE,
     N_COLUMNS;
 
     /**
@@ -69,49 +67,64 @@ public enum Noise.ListColumn {
                 return " ";
 
             case NUMBER:
-                return C_("Column title (list view)", "#");
+                return C_("List column title", "#");
 
             case TRACK:
-                return C_("Column title (list view)", "Track");
+                return C_("List column title", "Track");
 
             case TITLE:
-                return C_("Column title (list view)", "Title");
+                return C_("List column title", "Title");
 
             case LENGTH:
-                return C_("Column title (list view)", "Length");
+                return C_("List column title", "Length");
 
             case ARTIST:
-                return C_("Column title (list view)", "Artist");
+                return C_("List column title", "Artist");
 
             case ALBUM:
-                return C_("Column title (list view)", "Album");
+                return C_("List column title", "Album");
+
+            case ALBUM_ARTIST:
+                return C_("List column title", "Album Artist");
+
+            case COMPOSER:
+                return C_("List column title", "Composer");
 
             case GENRE:
-                return C_("Column title (list view)", "Genre");
+                return C_("List column title", "Genre");
 
             case YEAR:
-                return C_("Column title (list view)", "Year");
+                return C_("List column title", "Year");
+
+            case GROUPING:
+                return C_("List column title", "Grouping");
 
             case BITRATE:
-                return C_("Column title (list view)", "Bitrate");
+                return C_("List column title", "Bitrate");
 
             case RATING:
-                return C_("Column title (list view)", "Rating");
+                return C_("List column title", "Rating");
 
             case PLAY_COUNT:
-                return C_("Column title (list view)", "Plays");
+                return C_("List column title", "Plays");
 
             case SKIP_COUNT:
-                return C_("Column title (list view)", "Skips");
+                return C_("List column title", "Skips");
 
             case DATE_ADDED:
-                return C_("Column title (list view)", "Date Added");
+                return C_("List column title", "Date Added");
 
             case LAST_PLAYED:
-                return C_("Column title (list view)", "Last Played");
+                return C_("List column title", "Last Played");
 
             case BPM:
-                return C_("Column title (list view)", "BPM");
+                return C_("List column title (beats per minute)", "BPM");
+
+            case FILE_LOCATION:
+                return C_("List column title (file location)", "Location");
+
+            case FILE_SIZE:
+                return C_("List column title", "File Size");
 
             default:
                 assert_not_reached ();
@@ -129,7 +142,11 @@ public enum Noise.ListColumn {
             case TITLE:
             case ARTIST:
             case ALBUM:
+            case ALBUM_ARTIST:
+            case COMPOSER:
             case GENRE:
+            case GROUPING:
+            case FILE_LOCATION:
                 return typeof (string);
 
             case NUMBER:
@@ -144,6 +161,9 @@ public enum Noise.ListColumn {
             case LAST_PLAYED:
             case BPM:
                 return typeof (uint);
+
+            case FILE_SIZE:
+                return typeof (uint64);
 
             default:
                 assert_not_reached ();

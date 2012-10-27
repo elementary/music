@@ -66,7 +66,7 @@ public class Noise.TreeViewSetup : Object {
     }
 
     public List<Gtk.TreeViewColumn> get_columns () {
-        if (columns.size < 1 || columns.size > ListColumn.N_COLUMNS) {
+        if (columns.size < 1 || columns.size != ListColumn.N_COLUMNS) {
             message ("Creating a new TreeViewSetup for %s", get_hint ().to_string ());
             create_default_columns ();
         }
@@ -210,8 +210,11 @@ public class Noise.TreeViewSetup : Object {
                 columns.add (create_column (ListColumn.LENGTH));
                 columns.add (create_column (ListColumn.ARTIST));
                 columns.add (create_column (ListColumn.ALBUM));
+                columns.add (create_column (ListColumn.ALBUM_ARTIST, false));
+                columns.add (create_column (ListColumn.COMPOSER, false));
                 columns.add (create_column (ListColumn.GENRE));
                 columns.add (create_column (ListColumn.YEAR, false));
+                columns.add (create_column (ListColumn.GROUPING, false));
                 columns.add (create_column (ListColumn.BITRATE, false));
                 columns.add (create_column (ListColumn.RATING, false));
                 columns.add (create_column (ListColumn.PLAY_COUNT, false));
@@ -219,6 +222,8 @@ public class Noise.TreeViewSetup : Object {
                 columns.add (create_column (ListColumn.DATE_ADDED, false));
                 columns.add (create_column (ListColumn.LAST_PLAYED, false));
                 columns.add (create_column (ListColumn.BPM, false));
+                columns.add (create_column (ListColumn.FILE_LOCATION, false));
+                columns.add (create_column (ListColumn.FILE_SIZE, false));
             break;
         }
     }

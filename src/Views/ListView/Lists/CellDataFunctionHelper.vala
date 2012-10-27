@@ -169,8 +169,15 @@ public class Noise.CellDataFunctionHelper {
         }
     }
 
-    public void info_icon_func (Gtk.CellLayout layout, Gtk.CellRenderer renderer, Gtk.TreeModel model, Gtk.TreeIter iter) {
-    
+    public static inline void file_size_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+        Value val;
+        tree_model.get_value (iter, ListColumn.FILE_SIZE, out val);
+        uint64 n = val.get_uint64 ();
+        (cell as Gtk.CellRendererText).text = n > 0 ? format_size (n) : NOT_AVAILABLE;
+    }
+
+    public static inline string get_file_size_sample () {
+        return format_size (1024 * 1024 * 932); // 932 MB. We want a long string
     }
 
     // For numbers. Needed because the column is not sortable and intelligent_func
@@ -184,6 +191,8 @@ public class Noise.CellDataFunctionHelper {
         var tvc = layout as Gtk.TreeViewColumn;
         return_if_fail (tvc != null);
 
+        // All the other columns have a fixed row number, but we need to check in the case
+        // of this method because it is used by many different columns.
         int column = tvc.sort_column_id;
         if (column < 0)
             return;
@@ -202,6 +211,8 @@ public class Noise.CellDataFunctionHelper {
         var tvc = layout as Gtk.TreeViewColumn;
         return_if_fail (tvc != null);
 
+        // All the other columns have a fixed row number, but we need to check in the case
+        // of this method because it is used by many different columns.
         int column = tvc.sort_column_id;
         if (column < 0)
             return;
