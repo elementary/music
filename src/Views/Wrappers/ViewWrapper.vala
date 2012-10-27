@@ -21,14 +21,22 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public abstract class Noise.ViewWrapper : Gtk.Box {
+/**
+ * Container and controller of the list and grid views, and info widgets
+ * (welcome screen and embedded alert).
+ *
+ * A ViewWrapper triggers searches, status info updates, and also handles
+ * view switching. It also works as a proxy for setting the media contained
+ * by all the views. Please see set_media(), update_media(), remove_media()
+ * and add_media().
+ *
+ * The views it contains implement the {@link Noise.ContentView} interface.
+ */
+public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public enum Hint {
         NONE,
         MUSIC,
-        PODCAST,
-        AUDIOBOOK,
-        STATION,
         SIMILAR,
         QUEUE,
         HISTORY,
@@ -48,39 +56,27 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
      * Values *must* match the index of the respective view in the view selector.
      */
     public enum ViewType {
-        GRID    = 0, // Matches index 0 of the view in lw.viewSelector
-        LIST    = 1, // Matches index 1 of the view in lw.viewSelector
-        ALERT   = 2, // For embedded alerts
-        WELCOME = 3, // For welcome screens
-        NONE    = 4  // Nothing showing
+        GRID    = 0,   // Matches index 0 of the view in lw.viewSelector
+        LIST    = 1,   // Matches index 1 of the view in lw.viewSelector
+        ALERT   = 2,   // For embedded alerts
+        WELCOME = 3,   // For welcome screens
+        NONE    = 4    // Nothing showing
     }
 
     public LibraryManager lm { get; protected set; }
     public LibraryWindow  lw { get; protected set; }
 
-    private Gtk.Box layout_box;
-    private ViewContainer view_container;
-
-    // FIXME: should be protected instead of public
-    public ContentView list_view { get; protected set; }
-    public ContentView grid_view { get; protected set; }
-
-    protected Granite.Widgets.EmbeddedAlert embedded_alert { get; protected set; }
-    protected Granite.Widgets.Welcome welcome_screen { get; protected set; }
-
-    /* UI PROPERTIES */
+    public ListView list_view { get; protected set; }
+    public GridView grid_view { get; protected set; }
+    protected Granite.Widgets.EmbeddedAlert embedded_alert { get; set; }
+    protected Granite.Widgets.Welcome welcome_screen { get; set; }
+ 
     public bool has_grid_view { get { return grid_view != null; } }
     public bool has_list_view { get { return list_view != null;  } }
     public bool has_embedded_alert  { get { return embedded_alert != null; } }
     public bool has_welcome_screen  { get { return welcome_screen != null; } }
 
-    protected bool widgets_ready = false;
- 
-    // Contruction must always happen before population
-    protected const int VIEW_CONSTRUCT_PRIORITY = Priority.DEFAULT_IDLE - 10;
-
-
-    public ViewType current_view {
+    protected ViewType current_view {
         get {
             var view = view_container.get_current_view ();
 
@@ -100,7 +96,6 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         }
     }
 
-    protected ViewType last_used_view = ViewType.NONE;
 
     /**
      * This is by far the most important property of this object.
@@ -108,21 +103,34 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
      */
     public Hint hint { get; protected set; }
 
-    public int index { get { return lw.view_container.get_view_index (this); } }
-
     public bool is_current_wrapper {
         get {
-            return (lw.initialization_finished ? (index == lw.view_container.get_current_index ()) : false);
+            return (lw.initialization_finished && index == lw.view_container.get_current_index ());
         }
     }
+
+    public int index { get { return lw.view_container.get_view_index (this); } }
 
     /**
      * TODO: deprecate. it's only useful for PlaylistViewWrapper
      */
     public int relative_id { get; protected set; default = -1; }
 
+    public int media_count {
+        get { return (int) list_view.n_media; }
+    }
 
-    public int media_count { get { return (media_table != null) ? media_table.size : 0; } }
+    // Contruction must always happen before population
+    protected const int VIEW_CONSTRUCT_PRIORITY = Priority.DEFAULT_IDLE - 10;
+
+    private bool widgets_ready = false;
+    private string last_search = "";
+    private ViewContainer view_container;
+    private ViewType last_used_view = ViewType.NONE;
+
+    // Whether a call to set_media() has been issues on this view. This is important.
+    // No widget is set as active until this is true!
+    private bool data_initialized = false;
 
     public ViewWrapper (LibraryWindow lw, Hint hint)
     {
@@ -130,51 +138,32 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         this.lw = lw;
         this.hint = hint;
 
-        // Allows inserting widgets on top of the view
-        layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        view_container = new ViewContainer ();
+        orientation = Gtk.Orientation.VERTICAL;
 
-        layout_box.pack_end (view_container, true, true, 0);
-        this.pack_start (layout_box, true, true, 0);
+        view_container = new ViewContainer ();
+        add (view_container);
 
         lw.viewSelector.mode_changed.connect (view_selector_changed);
         lw.searchField.text_changed_pause.connect (search_field_changed);
     }
 
-    protected void insert_widget (Gtk.Widget widget, bool on_top = true) {
-        if (view_container == null) {
-            critical ("insert_widget() failed. Param 'widget' is NULL");
-            return;
-        }
-
-        if (on_top)
-            layout_box.pack_start (widget, false, false, 0);
-        else
-            layout_box.pack_end (widget, false, false, 0);
-    }
-
-    /* Checks which views are available and packs them in (if they are not yet packed) */
+    /**
+     * Checks which views are available and packs them in (if they are not packed yet)
+     */
     protected void pack_views () {
-        if (view_container == null) {
-            critical ("pack_views() failed. Container is NULL");
-            return;
-        }
+        assert (view_container != null);
 
-        if (has_grid_view && !view_container.has_view (grid_view)) {
+        if (has_grid_view && !view_container.has_view (grid_view))
             view_container.add_view (grid_view);
-        }
 
-        if (has_list_view && !view_container.has_view (list_view)) {
+        if (has_list_view && !view_container.has_view (list_view))
             view_container.add_view (list_view);
-        }
 
-        if (has_welcome_screen && !view_container.has_view (welcome_screen)) {
+        if (has_welcome_screen && !view_container.has_view (welcome_screen))
             view_container.add_view (welcome_screen);
-        }
 
-        if (has_embedded_alert && !view_container.has_view (embedded_alert)) {
+        if (has_embedded_alert && !view_container.has_view (embedded_alert))
             view_container.add_view (embedded_alert);
-        }
 
         widgets_ready = true;
         show_all ();
@@ -205,7 +194,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
                 break;
         }
 
-        // We're not switching (officially) to that view if it's not available
+        // We're not switching (officially) to the new view if it's not available
         if (!successful) {
             debug ("%s : VIEW %s was not available", hint.to_string(), type.to_string ());
             return;
@@ -217,7 +206,6 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         update_library_window_widgets ();
     }
 
-
     /**
      * This method ensures that the view switcher and search box are sensitive/insensitive
      * when they have to. It also selects the proper view switcher item based on the
@@ -227,18 +215,18 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         if (!is_current_wrapper)
             return;
 
-        debug ("%s : update_library_window_widgets", hint.to_string());
+        debug ("update_library_window_widgets [%s]", hint.to_string());
 
         // Restore this view wrapper's search string
         lw.searchField.set_text (get_search_string ());
 
         // Insensitive if there's no media to search
-        bool has_media = media_table.size > 0;
+        bool has_media = media_count > 0;
         lw.searchField.set_sensitive (has_media);
 
         // Make the view switcher and search box insensitive if the current item
-        // is the welcome screen the view selector will only be sensitive if both
-        // views are available
+        // is the welcome screen. The view selector will only be sensitive if both
+        // views are available.
         lw.viewSelector.set_sensitive (has_grid_view && has_list_view
                                        && current_view != ViewType.ALERT
                                        && current_view != ViewType.WELCOME);
@@ -270,14 +258,14 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         update_statusbar_info ();
     }
 
-    public virtual void view_selector_changed () {
+    public void view_selector_changed () {
         if (!lw.initialization_finished || !lw.viewSelector.sensitive)
             return;
 
         if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
             return;
 
-        debug ("%s : view_selector_changed : applying actions", hint.to_string());
+        debug ("view_selector_changed [%s]", hint.to_string());
 
         var selected_view = (ViewType) lw.viewSelector.selected;
 
@@ -287,12 +275,11 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             last_used_view = selected_view;
     }
 
-    // FIXME: this shouldn't depend on the list view
     public void play_first_media () {
         if (!has_list_view)
             return;
 
-        debug ("%s : play_first_media", hint.to_string());
+        debug ("play_first_media [%s]", hint.to_string());
 
         (list_view as ListView).set_as_current_list(1, true);
         var m = App.player.mediaFromCurrentIndex (0);
@@ -307,7 +294,6 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             lw.playClicked();
     }
 
-
     /**
      * This handles updating all the shared stuff outside the view area.
      *
@@ -320,93 +306,38 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
     public void set_as_current_view () {
         if (!lw.initialization_finished)
             return;
-        debug ("%s : SETTING AS CURRENT VIEW -> set_as_current_view", hint.to_string());
+        debug ("SETTING AS CURRENT VIEW [%s]", hint.to_string ());
 
         check_have_media ();
         update_library_window_widgets ();
     }
 
-    /**
-     * XXX, FIXME: Although this is working perfectly, it's embarrassing. This should
-     *             be implemented by client code, and while it's overridable, we shouldn't
-     *             have any kind of specific implementation-code hanging around here, since it simply
-     *             breaks the entire abstraction.
-     */
-    protected virtual string get_statusbar_text () {
-        if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
-            return "";
-
-        bool is_album = false;
-
-        Gee.Collection<Media>? media_set = null;
+    protected string get_statusbar_text () {
+        string status_text = "";
 
         // Get data based on the current view
         if (current_view == ViewType.GRID) {
-            is_album = true;
-
-            // Let's use the local data since it has no internal filter
-            media_set = new Gee.LinkedList<Media> ();
-            foreach (var m in get_visible_media_list ()) {
-                if (m != null)
-                    media_set.add (m);
-            }
-        }
-        else if (current_view == ViewType.LIST) {
-            media_set = list_view.get_visible_media ();
+            if (has_grid_view)
+                status_text = grid_view.get_statusbar_text ();
+        } else if (current_view == ViewType.LIST) {
+            if (has_list_view)
+                status_text = list_view.get_statusbar_text ();
         }
 
-        uint total_items = 0;
-        uint64 total_size = 0, total_time = 0;
-
-        foreach (var media in media_set) {
-            if (media != null) {
-                total_items ++;
-                total_time += media.length;
-                total_size += media.file_size;
-            }
-        }
-
-        if (total_items < 1) {
-            return "";
-        }
-
-        // FIXME: bad workaround
-        if (current_view == ViewType.GRID && has_grid_view) {
-            total_items = grid_view.get_visible_media ().size;
-        }
-
-        string media_description = "";
-
-        if (is_album)
-            media_description = ngettext ("%u album", "%u albums", total_items).printf (total_items);
-        else
-            media_description = ngettext ("%u song", "%u songs", total_items).printf (total_items);
- 
-        string media_text = media_description.printf (total_items);
-        string time_text = TimeUtils.time_string_from_miliseconds (total_time);
-        string size_text = format_size (total_size);
-
-        return "%s, %s, %s".printf (media_text, time_text, size_text);
+        return status_text;
     }
 
     public void update_statusbar_info () {
         if (!is_current_wrapper)
             return;
 
-        debug ("%s : updating statusbar info", hint.to_string ());
-
+        debug ("updating statusbar info [%s]", hint.to_string ());
         lw.statusbar.set_info (get_statusbar_text ());
     }
-
-
-    // Current search filter
-    protected string last_search = "";
     
     private void search_field_changed (string search) {
-        if (!is_current_wrapper)
+        if (!is_current_wrapper || search == last_search)
             return;
-
-        debug ("Search changed : searchbox has '%s'", search);
 
         last_search = search;
 
@@ -415,12 +346,11 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
     }
 
     /**
-     * It tells the parent class whether the search field, media control buttons, and
-     * other external widgets should be sensitive or not (among other things), so that
+     * Thhis method tells the parent class whether the search field, media control buttons,
+     * and other external widgets should be sensitive or not (among other things), so that
      * the abstract parent class can take care of all these automated/repetitive tasks.
-     *
-     * /!\ THE DEFAULT IMPLEMENTATION IS VERY LIMITED, SO IT'S RECOMMENDED TO OVERRIDE
-     *     THIS METHOD FROM THE SUBCLASS.
+     * The default implementation is very limited, so it's recommended to override this
+     * method from the subclass.
      *
      * OVERRIDING THE METHOD:
      *
@@ -436,12 +366,16 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
      *
      * WARNING: Don't ever attempt calling the set_media(), update_media(), add_media() or
      *          remove_media() methods (including async variations) from your implementation,
-     *          unless you want the method to fall into an infinite loop, potentially
+     *          unless you want the method to fall into an infinite chain of recursive calls,
      *          freezing the entire application.
      *
      * @return true if the ViewWrapper has media. false otherwise.
      */
     protected virtual bool check_have_media () {
+        // we don't want to display any widget until the initial media is set.
+        if (!data_initialized)
+            return false;
+
         bool have_media = media_count > 0;
 
         // show alert or welcome screen if there's no media
@@ -461,7 +395,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         debug ("Selecting proper content view automatically");
 
         var new_view = (ViewType) lw.viewSelector.selected;
-        debug ("%s : showing %s", hint.to_string(), new_view.to_string ());
+        debug ("[%s] Showing view: %s", hint.to_string(), new_view.to_string ());
 
         const int N_VIEWS = 2; // list and grid views
         if (new_view < 0 || new_view > N_VIEWS - 1)
@@ -475,110 +409,68 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
 
     /**
-     *  DATA METHODS
+     * Each view wrapper has its own search string. It is cleared when the user moves
+     * away from the view, and restored when the user selects the view again. One of
+     * the main reasons behind this behavior is fast view-wrapper switching. If all
+     * the wrappers used the same search string, switching would be slow because a new
+     * search would have to be applied to the view the user is switching to (unless
+     * all the searches were triggered at the same time, which would be uber-slow).
+     *
+     * @return What the user has typed in the search field while this view was active.
      */
-
-    // MEDIA DATA: These hashmaps hold information about the media shown in the views.
-    protected Gee.HashSet<Media> media_table = new Gee.HashSet<Media> ();
-    protected Gee.HashSet<Media> visible_media_table = new Gee.HashSet<Media> ();
-
     public string get_search_string () {
         return last_search;
     }
 
     /**
-     * @return a collection containing ALL the media
+     * @return A collection containing ALL the media associated to this view.
      */
     public Gee.Collection<Media> get_media_list () {
-        return media_table.read_only_view;
+        return list_view.get_media ();
     }
 
     /**
-     * @return a collection containing all the media that should be shown
+     * Resets all the filters (external and internal) applied to a view inside
+     * the view wrapper. It should only be called if the view is the current active
+     * wrapper.
      */
-    public Gee.Collection<Media> get_visible_media_list () {
-        return visible_media_table.read_only_view;
-    }
-
-
-    private Mutex updating_media_data;
-
-    public void clear_filters () {
-        /**
-         * /!\ Currently setting the search to "" is enough. Remember to update it
-         *     if the internal views try to restore their previous state after changes.
-         */
+    public void clear_filters () requires (is_current_wrapper) {
+        // Currently setting the search to "" is enough. Remember to update it
+        // if the internal views try to restore their previous state after changes.
         lw.searchField.set_text ("");
+        update_visible_media (); // force a refresh ;)
     }
 
     /**
-     * Description:
      * Updates the data in visible_media and re-populates all the views.
      * Primarily used for searches
      */
-    protected virtual void update_visible_media () {
-        // LOCK
-        updating_media_data.lock ();
+    protected void update_visible_media () {
+        debug ("UPDATING VISIBLE MEDIA [%s]", hint.to_string ());
 
-        debug ("%s : UPDATING VISIBLE MEDIA", hint.to_string ());
-        visible_media_table = new Gee.HashSet<Media> ();
-        var to_search = get_search_string ();
+        string to_search = get_search_string ();
 
-        debug ("-- Updating view wrapper for search string '%s'", to_search);
-
-        var search_results = new Gee.LinkedList<Media> ();
-
-        if (to_search != "") {
-            // Perform search
-            Search.smart_search (get_media_list (), out search_results, to_search, null);
-
-            foreach (var m in search_results) {
-                visible_media_table.add (m);
-            }
-        }
-        else {
-            // No need to search. Same data as media
-            foreach (var m in get_media_list ()) {
-                search_results.add (m);
-                visible_media_table.add (m);
-            }
+        lock (list_view) {
+            if (has_list_view)
+                list_view.refilter (to_search);
         }
 
-        // UNLOCK
-        updating_media_data.unlock ();
-
-        set_content_views_media (search_results, null);
-
-        if (is_current_wrapper) {
-            update_library_window_widgets ();
-            // Check whether we should show the embedded alert in case there's no media
-            if (check_have_media ()) {
-                if (has_embedded_alert && visible_media_table.size == 0) {
-                    set_no_results_alert ();
-                    set_active_view (ViewType.ALERT);
-                } else if (last_used_view != ViewType.NONE) {
-                    set_active_view (last_used_view);
-                } else {
-                    select_proper_content_view ();
-                }
-            }
+        lock (grid_view) {
+            if (has_grid_view)
+                grid_view.refilter (to_search);
         }
+
+        update_statusbar_info ();
     }
 
     protected virtual void set_no_media_alert () {
         embedded_alert.set_alert (_("No media"), "", null, true, Gtk.MessageType.INFO);
     }
 
-    protected virtual void set_no_results_alert () {
-        embedded_alert.set_alert (_("Sorry, there is no music that matches your search"),
-                                  "", null, false, Gtk.MessageType.INFO);
-    }
-
-
     private int compute_populate_priority () {
         int priority = 0;
 
-        priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
+        priority = (is_current_wrapper) ? Priority.HIGH_IDLE + 30 : Priority.DEFAULT_IDLE;
 
         // Populate playlists in order
         priority += relative_id;
@@ -588,17 +480,17 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             priority += 10;
 
         if (priority > VIEW_CONSTRUCT_PRIORITY)
-            priority = VIEW_CONSTRUCT_PRIORITY + 1;    
+            priority = VIEW_CONSTRUCT_PRIORITY + 1;
 
         return priority;
     }
-
 
     public async void set_media_async (Gee.Collection<Media> new_media) {
         Idle.add_full (compute_populate_priority (), () => {
             if (!widgets_ready)
                 return true;
             set_media (new_media);
+            Idle.add (set_media_async.callback);
             return false;
         });
         yield;
@@ -609,6 +501,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             if (!widgets_ready)
                 return true;
             add_media (to_add);
+            Idle.add (add_media_async.callback);
             return false;
         });
         yield;
@@ -619,6 +512,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             if (!widgets_ready)
                 return true;
             remove_media (to_remove);
+            Idle.add (remove_media_async.callback);
             return false;
         });
         yield;
@@ -629,266 +523,92 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             if (!widgets_ready)
                 return true;
             update_media (to_update);
+            Idle.add (update_media_async.callback);
             return false;
         });
         yield;
     }
 
-
     private void set_media (Gee.Collection<Media> new_media) {
-        // LOCK
-        updating_media_data.lock ();
+        debug ("SETTING MEDIA [%s]", hint.to_string());
 
-        if (new_media == null) {
-            warning ("set_media: attempt to set NULL media failed");
-            updating_media_data.unlock ();
-            return;
+        lock (list_view) {
+            if (has_list_view)
+                list_view.set_media (new_media);
         }
 
-        debug ("%s : SETTING MEDIA -> set_media", hint.to_string());
-
-        media_table = new Gee.HashSet<Media> ();
-
-        foreach (var m in new_media) {
-            if (m != null) {
-                media_table.add (m);
-            }
+        lock (grid_view) {
+            if (has_grid_view)
+                grid_view.set_media (new_media);
         }
 
-        if (!check_have_media ()) {
-            media_table = new Gee.HashSet<Media> ();
-            visible_media_table = new Gee.HashSet<Media> ();
-        }
+        data_initialized = true;
 
-        // UNLOCK
-        updating_media_data.unlock ();
-
-        update_visible_media ();
+        update_widget_state ();
     }
 
-
-    /**
-     * Do search to find which ones should be added, removed from this particular view
-     *
-     * This is needed when the user adds/removes songs while a search filter is active.
-     */
-    private void update_media (Gee.Collection<Media> media) {
+    private void update_media (Gee.Collection<Media> media) requires (data_initialized) {
         if (media.size < 1)
             return;
 
-        // LOCK
-        updating_media_data.lock ();
+        debug ("UPDATING MEDIA [%s]", hint.to_string ());
 
-        debug ("%s : UPDATING media", hint.to_string ());
-
-        // find which media belong here. We currently "skip" this check since
-        // it's not needed. It will be needed in the future once Noise starts
-        // handling more media types. For now, the search function doesn't care
-        // about it.
-        var should_be = new Gee.HashSet<Media> ();
-        foreach (var m in media)
-            should_be.add (m);
-
-        Gee.LinkedList<Media> should_show;
-
-        Search.smart_search (media, out should_show, get_search_string ());
-
-        var to_add_show = new Gee.LinkedList<Media> ();
-        var to_remove_show = new Gee.LinkedList<Media> ();
-
-        // add elements that should be here
-        foreach (var m in should_be) {
-            if (!media_table.contains (m))
-                media_table.add (m);
+        lock (list_view) {
+            if (has_list_view)
+                list_view.update_media (media);
         }
 
-        // add elements that should show
-        foreach (var m in should_show) {
-            if (!visible_media_table.contains (m)) {
-                to_add_show.add (m);
-                visible_media_table.add (m);
-            }
+        lock (grid_view) {
+            if (has_grid_view)
+                grid_view.update_media (media);
         }
 
-        // Remove elements
-        var media_to_remove = new Gee.LinkedList<Media> ();
-
-        // We make a copy of the should_show list, since querying for the existence
-        // of an item in the list inside the loop (see below) is extremely inefficient,
-        // so the time we spend creating the copy really pays off.
-        var should_show_set = new Gee.HashSet<Media> ();
-        foreach (var m in should_show)
-            should_show_set.add (m);
-
-        foreach (var m in media) { // We query the updated media, not media_table
-            if (!should_be.contains (m))
-                media_to_remove.add (m);
-
-            if (!should_show_set.contains (m)) {
-                to_remove_show.add (m);
-                visible_media_table.remove (m);
-            }
-        }
-
-        foreach (var m in media_to_remove)
-            media_table.remove (m);
-
-        add_media_to_content_views (to_add_show);
-        remove_media_from_content_views (to_remove_show);
-
-        if (!check_have_media ()) {
-            media_table = new Gee.HashSet<Media> ();
-            visible_media_table = new Gee.HashSet<Media> ();
-            // UNLOCK
-            updating_media_data.unlock ();
-            update_visible_media ();
-        }
-
-        // UNLOCK
-        updating_media_data.unlock ();
-
-        if (is_current_wrapper) {
-            // Update view wrapper state
-            update_library_window_widgets ();
-        }
+        update_widget_state ();
     }
 
-
-    private void add_media (Gee.Collection<Media> new_media) {
+    private void add_media (Gee.Collection<Media> new_media) requires (data_initialized) {
         if (new_media.size < 1)
             return;
 
-        // LOCK
-        updating_media_data.lock ();
+        debug ("ADDING MEDIA [%s]", hint.to_string());
 
-        debug ("%s : ADDING media", hint.to_string());
-
-        // find which media to add and update Media
-        var to_add = new Gee.LinkedList<Media> ();
-
-        foreach (var m in new_media) {
-            if (!media_table.contains (m)) {
-                media_table.add (m);
-                to_add.add (m);
-            }
+        lock (list_view) {
+            if (has_list_view)
+                list_view.add_media (new_media);
         }
 
-        // Do search since Showing Media depends on the search string
-        Gee.LinkedList<Media> media_to_show;
-        Search.smart_search (to_add, out media_to_show, get_search_string ());
-
-        // Update showing media
-        foreach (var m in media_to_show) {
-            if (!visible_media_table.contains (m))
-                visible_media_table.add (m);
+        lock (grid_view) {
+            if (has_grid_view)
+                grid_view.add_media (new_media);
         }
 
-        add_media_to_content_views (media_to_show);
-
-        if (!check_have_media ()) {
-            media_table = new Gee.HashSet<Media> ();
-            visible_media_table = new Gee.HashSet<Media> ();
-            // UNLOCK
-            updating_media_data.unlock ();
-            update_visible_media ();
-        }
-
-        // UNLOCK
-        updating_media_data.unlock ();
-
-        if (is_current_wrapper) {
-            // Update view wrapper state
-            update_library_window_widgets ();
-        }
-
+        update_widget_state ();
     }
 
-
-    private void remove_media (Gee.Collection<Media> media) {
+    private void remove_media (Gee.Collection<Media> media) requires (data_initialized) {
         if (media.size < 1)
             return;
 
-        // LOCK
-        updating_media_data.lock ();
+        debug ("REMOVING MEDIA [%s]", hint.to_string ());
 
-        debug ("%s : REMOVING media", hint.to_string ());
-
-        // find which media to remove and remove it from Media and Showing Media
-        var to_remove = new Gee.LinkedList<Media>();
-        foreach (var m in media) {
-            media_table.remove (m);
-
-            if (visible_media_table.contains (m)) {
-                to_remove.add (m);
-                visible_media_table.remove (m);
-            }
+        lock (list_view) {
+            if (has_list_view)
+                list_view.remove_media (media);
         }
 
-        // Now update the views to reflect the changes
-        remove_media_from_content_views (to_remove);
-
-        if (!check_have_media ()) {
-            media_table = new Gee.HashSet<Media> ();
-            visible_media_table = new Gee.HashSet<Media> ();
-            // UNLOCK
-            updating_media_data.unlock ();
-            update_visible_media ();
+        lock (grid_view) {
+            if (has_grid_view)
+                grid_view.remove_media (media);
         }
 
-        // UNLOCK
-        updating_media_data.unlock ();
+        update_widget_state ();
+    }
 
-        if (is_current_wrapper) {
-            // Update view wrapper state
+    private void update_widget_state () {
+        check_have_media ();
+
+        // Update view wrapper state
+        if (is_current_wrapper)
             update_library_window_widgets ();
-        }
-    }
-
-
-    /* Content view stuff */
-
-    private void add_media_to_content_views (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
-        if (to_add.size < 1)
-            return;
-
-        // The order matters here. Make sure we apply the action to the current view first
-        if (current_view == ViewType.LIST) {
-            if (has_list_view)
-                list_view.add_media (to_add, cancellable);
-            if (has_grid_view)
-                    grid_view.add_media (to_add, cancellable);
-        }
-        else {
-            if (has_grid_view)
-                grid_view.add_media (to_add, cancellable);
-            if (has_list_view)
-                list_view.add_media (to_add, cancellable);
-        }
-    }
-
-    private void remove_media_from_content_views (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
-        if (to_remove.size < 1)
-            return;
-
-        if (has_list_view)
-            list_view.remove_media (to_remove, cancellable);
-        if (has_grid_view)
-            grid_view.remove_media (to_remove, cancellable);
-    }
-
-    private void set_content_views_media (Gee.Collection<Media> new_media, Cancellable? cancellable) {
-        // The order matters here. Make sure we apply the action to the current view first
-        if (current_view == ViewType.LIST) {
-            if (has_list_view)
-                list_view.set_media (new_media, cancellable);
-            if (has_grid_view)
-                grid_view.set_media (new_media, cancellable);
-        }
-        else {
-            if (has_grid_view)
-                grid_view.set_media (new_media, cancellable);
-            if (has_list_view)
-                list_view.set_media (new_media, cancellable);
-        }
     }
 }

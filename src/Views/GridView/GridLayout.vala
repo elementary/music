@@ -19,18 +19,12 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
-
-    protected enum Column {
-        PIXBUF  = 0,
-        MARKUP  = 1,
-        TOOLTIP = 2,
-        OBJECT  = 3
-    }
+public abstract class Noise.GridLayout : ViewTextOverlay {
 
 	public ViewWrapper parent_view_wrapper { get; protected set; }
 
     private FastGrid icon_view;
+    private Gtk.ScrolledWindow scroll;
 
     // Spacing Workarounds
 #if !GTK_ICON_VIEW_BUG_IS_FIXED
@@ -40,29 +34,36 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
 
     private const string STYLESHEET = "*:selected{background-color:@transparent;}";
     private const int ITEM_PADDING = 0;
-    private const int MIN_SPACING = 12;
+    private const int MIN_SPACING = 6;
     private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
 
     public GridLayout (ViewWrapper view_wrapper) {
 		parent_view_wrapper = view_wrapper;
         build_ui ();
         clear_objects ();
+
+        icon_view.set_search_func (search_func);
     }
 
     protected abstract void item_activated (Object? object);
     protected abstract Value? val_func (int row, int column, Object o);
     protected abstract int compare_func (Object a, Object b);
+	protected abstract void search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing);
 
-    protected void add_objects (Gee.Collection<Object> objects, Cancellable? cancellable) {
-        icon_view.add_objects (objects, cancellable);
+    protected void add_objects (Gee.Collection<Object> objects) {
+        icon_view.add_objects (objects);
     }
 
-    protected void remove_objects (Gee.HashMap<Object, int> objects, Cancellable? cancellable) {
-        icon_view.remove_objects (objects, cancellable);
+    protected void do_search (string? search) {
+        icon_view.do_search (search);
+    }
+
+    protected void remove_objects (Gee.HashSet<Object> objects) {
+        icon_view.remove_objects (objects);
     }
 
     protected void clear_objects () {
-        icon_view.set_table (new HashTable<int, Object> (null, null), true, null);
+        icon_view.set_table (new HashTable<int, Album> (null, null), true);
     }
 
     protected List<unowned Object> get_objects () {
@@ -75,7 +76,9 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
 
 
     private void build_ui () {
-        set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+        scroll = new Gtk.ScrolledWindow (null, null);
+        scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+        add (scroll);
 
         icon_view = new FastGrid ();
         icon_view.set_compare_func (compare_func);
@@ -119,13 +122,13 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
         wrapper_hbox.pack_start (hpadding_box, false, false, 0);
         wrapper_hbox.pack_start (icon_view, true, true, 0);
 
-        add_with_viewport (wrapper_vbox);
+        scroll.add_with_viewport (wrapper_vbox);
 
         icon_view.margin = 0;
 
 #else
 
-        add (icon_view);
+        scroll.add (icon_view);
         icon_view.margin = MIN_SPACING;
 
 #endif
@@ -150,10 +153,10 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
         int TOTAL_MARGIN = MIN_N_ITEMS * (MIN_SPACING + ITEM_PADDING);
         int MIDDLE_SPACE = MIN_N_ITEMS * MIN_SPACING;
 
-        min_content_width = MIN_N_ITEMS * TOTAL_ITEM_WIDTH + TOTAL_MARGIN + MIDDLE_SPACE;
+        scroll.min_content_width = MIN_N_ITEMS * TOTAL_ITEM_WIDTH + TOTAL_MARGIN + MIDDLE_SPACE;
 
         set_theming ();
-        get_hadjustment ().changed.connect (on_resize);
+        scroll.get_hadjustment ().changed.connect (on_resize);
 
         show_all ();
     }
@@ -236,7 +239,7 @@ public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
     }
 
     private int get_current_width () {
-        return (int) get_hadjustment ().page_size;
+        return (int) scroll.get_hadjustment ().page_size;
     }
 
     private void update_spacing () {

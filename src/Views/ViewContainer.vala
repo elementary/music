@@ -23,6 +23,9 @@
 public class Noise.ViewContainer : Gtk.Notebook {
 
     public ViewContainer () {
+        expand = true;
+        halign = valign = Gtk.Align.FILL;
+
         show_tabs = false;
         show_border = false;
     }

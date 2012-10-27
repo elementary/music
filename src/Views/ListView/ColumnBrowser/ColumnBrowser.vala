@@ -22,31 +22,19 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace Noise {
-    public enum BrowserPosition {
+public abstract class Noise.ColumnBrowser : Gtk.Grid {
+
+	public signal void changed ();
+	public signal void position_changed (Position p);
+
+    public enum Position {
         AUTOMATIC,
         LEFT,
         TOP
     }
 
-    public enum WindowState {
-        NORMAL,
-        MAXIMIZED,
-        FULLSCREEN
-    }
-}
-
-public abstract class Noise.ColumnBrowser : Gtk.Grid {
-
-	public signal void changed ();
-	public signal void position_changed (Noise.BrowserPosition p);
-
-    Gtk.RadioMenuItem top_menu_item;
-    Gtk.RadioMenuItem left_menu_item;
-    Gtk.RadioMenuItem automatic_menu_item;
-
-    Noise.BrowserPosition _position = Noise.BrowserPosition.AUTOMATIC;
-	public Noise.BrowserPosition position {
+    private Position _position = Position.AUTOMATIC;
+	public Position position {
 	    get {
             return _position;
 	    }
@@ -56,20 +44,22 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
             position_changed (_position);
 
 		    switch (_position) {
-			    case Noise.BrowserPosition.AUTOMATIC:
+			    case Position.AUTOMATIC:
 				    automatic_menu_item.set_active (true);
 				    break;
-			    case Noise.BrowserPosition.LEFT:
+			    case Position.LEFT:
 				    left_menu_item.set_active (true);
 				    break;
-			    case Noise.BrowserPosition.TOP:
+			    case Position.TOP:
 				    top_menu_item.set_active (true);
 				    break;
+			    default:
+			        assert_not_reached ();
 		    }
         }
 	}
 
-	public Noise.BrowserPosition actual_position { get; set; default = Noise.BrowserPosition.LEFT; }
+	public Position actual_position { get; set; default = Position.LEFT; }
 
 	public LibraryManager lm { get; private set; }
 	public LibraryWindow  lw { get; private set; }
@@ -77,7 +67,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
 	/**
 	 * Whether the columns are filtered or not based on the current selection.
-	 * Although 'media.size == _media_results.size' would produce a similar result,
+	 * Although 'media.size == search_results.size' would produce a similar result,
 	 * here we want to know if the "All ..." filter is selected in every column.
 	 */
 	public bool filtered {
@@ -129,16 +119,21 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         }
     }
 
+    public bool initialized { get { return media == null || search_results == null; } }
 
-	// All the media
-	protected Gee.Collection<Media> media = new Gee.LinkedList<Media> ();
+	public Gee.LinkedList<unowned BrowserColumn> columns { get; private set; }
 
-	// Filtered media results. We provide the data. No need to search again outside
-	protected Gee.Collection<Media> _media_results;
-	public Gee.Collection<Media> media_results { get { return _media_results; } }
+	// All the media. We search within this media collection
+	private Gee.Collection<Media> media = new Gee.LinkedList<Media> ();
 
-	public Gee.LinkedList<unowned BrowserColumn> columns { get; construct set; }
-	protected Gtk.Menu column_chooser_menu;
+	// Filtered media results (media that matches the current set of filters).
+	// We provide the data. No need to search again outside
+	private Gee.Collection<Media> search_results;
+
+	private Gtk.Menu column_chooser_menu;
+    private Gtk.RadioMenuItem top_menu_item;
+    private Gtk.RadioMenuItem left_menu_item;
+    private Gtk.RadioMenuItem automatic_menu_item;
 
 	public ColumnBrowser (ViewWrapper view_wrapper, BrowserColumn.Category[] categories) {
 		this.orientation = Gtk.Orientation.HORIZONTAL;
@@ -169,17 +164,17 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
 		automatic_menu_item.toggled.connect ( () => {
 			if (automatic_menu_item.active)
-    			position = Noise.BrowserPosition.AUTOMATIC;
+    			position = Position.AUTOMATIC;
 		});
 
 	    left_menu_item.toggled.connect ( () => {
 			if (left_menu_item.active)
-    			position = Noise.BrowserPosition.LEFT;
+    			position = Position.LEFT;
 		});
 
 		top_menu_item.toggled.connect ( () => {
 			if (top_menu_item.active)
-    			position = Noise.BrowserPosition.TOP;
+    			position = Position.TOP;
 		});
 
 		column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
@@ -188,7 +183,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 		column_chooser_menu.append (left_menu_item);
 		column_chooser_menu.show_all ();
 
-        position = Noise.BrowserPosition.AUTOMATIC;
+        position = Position.AUTOMATIC;
 	}
 
     public void reset_filters () {
@@ -223,14 +218,16 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 		return column;
 	}
 
-	public void set_media (Gee.Collection<Media> media, Cancellable? cancellable) {
-        if (Utils.is_cancelled (cancellable))
-            return;
-
+	public void set_media (Gee.Collection<Media> media) {
 		this.media = media;
-        reset_filters ();
-        update_search_results (BrowserColumn.Category.RATING, cancellable);
-        populate_columns (BrowserColumn.Category.RATING, true, cancellable);
+        //reset_filters ();
+        search_results = media; // equivalent to resetting filters without losing column selections
+        
+        var highest_category = BrowserColumn.Category.first ();
+        //update_search_results (highest_category);
+        populate_columns (highest_category, true);
+        
+        changed ();
 	}
 
 	private void column_row_activated () {
@@ -238,64 +235,85 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 	}
 
 	private void column_selection_changed (BrowserColumn.Category category, string val) {
-        update_search_results (category, null);
-		populate_columns (category, false, null);
+        update_search_results (category);
+		populate_columns (category, false);
 		changed ();
 	}
 
-    private void update_search_results (BrowserColumn.Category parent_category, Cancellable? cancellable) {
-        if (Utils.is_cancelled (cancellable))
-            return;
+    private void update_search_results (BrowserColumn.Category parent_category) {
+		int rating, year;
+		string genre, album_artist, album;
+        get_filters (parent_category, out rating, out year, out genre, out album_artist, out album);
 
-		if (filtered) {
-			var search_rating = -1; // ~ All
-			var search_year   = -1; // ~ All
-			var search_genre  = ""; // ~ All
-			var search_artist = ""; // ~ All
-			var search_album  = ""; // ~ All
+		// Perform search
+		Search.search_in_media_list (media, out search_results, album_artist, album,
+		                             genre, year, rating, null);
+    }
 
-			foreach (var col in columns) {
-                if (Utils.is_cancelled (cancellable))
+    private void get_filters (BrowserColumn.Category parent_category,
+                              out int rating,
+                              out int year,
+                              out string genre,
+                              out string album_artist,
+                              out string album)
+    {
+		rating = -1; // ~ All
+		year   = -1; // ~ All
+		genre  = ""; // ~ All
+		album_artist  = ""; // ~ All
+		album = ""; // ~ All
+
+		foreach (var col in columns) {
+			// Higher hierarchical levels (parent columns)
+			if (col.category <= parent_category) {
+                var selected = col.get_selected ();
+
+                switch (col.category) {
+                    case BrowserColumn.Category.GENRE:
+                        genre = selected;
                     break;
 
-				// Higher hierarchical levels (parent columns)
-				if (col.category <= parent_category) {
-					if (col.category == BrowserColumn.Category.GENRE) {
-						search_genre = col.get_selected ();
-					}
-					else if (col.category == BrowserColumn.Category.ARTIST) {
-						search_artist = col.get_selected ();
-					}
-					else if (col.category == BrowserColumn.Category.ALBUM) {
-						search_album = col.get_selected ();
-					}
-					else if (col.category == BrowserColumn.Category.YEAR) {
-						search_year = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
-					}
-					else if (col.category == BrowserColumn.Category.RATING) {
-						search_rating = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
-					}
-				}
-			}
+                    case BrowserColumn.Category.ARTIST:
+                        album_artist = selected;
+                    break;
 
-			// Perform search
-			Search.search_in_media_list (media, out _media_results, search_artist, search_album,
-			                             search_genre, search_year, search_rating, cancellable);
-		}
-		else {
-			_media_results = media;
+                    case BrowserColumn.Category.ALBUM:
+                        album = selected;
+                    break;
+
+                    case BrowserColumn.Category.YEAR:
+                        // the year column contains only numbers, or "" in case the first
+                        // item is selected, so its parsing will be OK all the time.
+    					year = String.is_empty (selected, false) ? -1 : (int) Numeric.uint_from_string (selected);
+                    break;
+
+                    case BrowserColumn.Category.RATING:
+                        // We have to be careful here. selected can contain values such as:
+                        // ""  (i.e. ALL)
+                        // "1 star"
+                        // "2 stars"
+                        // ...
+                        // "Unrated"
+                        //
+                        // For "1 star" and "2 stars", uint_from_string() has absolutely no problem extracting
+                        // their values. This is also true for unrated, because uint_from_string() returns 0
+                        // (i.e. unrated) when no digit is found in a string.
+                        //
+                        // Please note that these strings are usually localized.
+                        // Avoid changing uint_from_string()'s behavior at all cost.
+    					rating = String.is_empty (selected, false) ? -1 : (int) Numeric.uint_from_string (selected);
+                    break;
+                    
+                    default:
+                        assert_not_reached ();
+                }
+			}
 		}
     }
 
-    private void populate_columns (BrowserColumn.Category category, bool inclusive, Cancellable? cancellable) {
-        if (Utils.is_cancelled (cancellable))
-            return;
-
+    private void populate_columns (BrowserColumn.Category category, bool inclusive) {
 		// Now re-populate the child columns
 		foreach (var column in columns) {
-            if (Utils.is_cancelled (cancellable))
-                break;
-
             // Don't consider parent columns
 			if (column.category < category)
 			    continue;
@@ -303,81 +321,107 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
             if (column.category == category && !inclusive)
                 continue;
 
-			var column_set = new Gee.HashSet<string> ();
-
-            switch (column.category) {
-                case BrowserColumn.Category.GENRE:
-				    foreach (var m in _media_results) {
-                        if (Utils.is_cancelled (cancellable))
-                            break;
-
-                        string genre = m.get_display_genre ();
-                        if (!column_set.contains (genre))
-					        column_set.add (genre);
-				    }
-			    break;
-
-			    case BrowserColumn.Category.ARTIST:
-				    foreach (var m in _media_results) {
-                        if (Utils.is_cancelled (cancellable))
-                            break;
-
-                        string artist = m.get_display_album_artist ();
-                        if (!column_set.contains (artist))
-					        column_set.add (artist);
-				    }
-                break;
-
-			    case BrowserColumn.Category.ALBUM:
-				    foreach (var m in _media_results) {
-                        if (Utils.is_cancelled (cancellable))
-                            break;
-
-                        string album = m.get_display_album ();
-                        if (!column_set.contains (album))
-					        column_set.add (album);
-				    }
-			    break;
-
-			    case BrowserColumn.Category.YEAR:
-				    foreach (var m in _media_results) {
-                        if (Utils.is_cancelled (cancellable))
-                            break;
-
-                        string year = m.year.to_string ();
-                        if (!column_set.contains (year))
-					        column_set.add (year);
-				    }
-			    break;
-
-			    case BrowserColumn.Category.RATING:
-				    foreach (var m in _media_results) {
-                        if (Utils.is_cancelled (cancellable))
-                            break;
-
-                        string rating = m.rating.to_string ();
-                        if (!column_set.contains (rating))
-					        column_set.add (rating);
-				    }
-			    break;
-
-                default:
-                    assert_not_reached ();
-            }
-
-            if (!Utils.is_cancelled (cancellable))
-				column.populate (column_set, cancellable);
+            fill_column (column);
 		}
+    }
+
+    public void fill_column (BrowserColumn column) {
+		var column_set = new Gee.HashSet<string> ();
+
+        switch (column.category) {
+            case BrowserColumn.Category.GENRE:
+			    foreach (var m in search_results) {
+                    string genre = m.get_display_genre ();
+                    if (!column_set.contains (genre))
+				        column_set.add (genre);
+			    }
+		    break;
+
+		    case BrowserColumn.Category.ARTIST:
+			    foreach (var m in search_results) {
+                    string artist = m.get_display_album_artist ();
+                    if (!column_set.contains (artist))
+				        column_set.add (artist);
+			    }
+            break;
+
+		    case BrowserColumn.Category.ALBUM:
+			    foreach (var m in search_results) {
+                    string album = m.get_display_album ();
+                    if (!column_set.contains (album))
+				        column_set.add (album);
+			    }
+		    break;
+
+		    case BrowserColumn.Category.YEAR:
+                // filter duplicate years
+                var numeric_set = new Gee.HashSet<uint> ();
+                foreach (var m in search_results) {
+                    uint year = m.year;
+                    if (year > 0 && !numeric_set.contains (year)) { // Don't add 0
+                        numeric_set.add (year);
+                        column_set.add (year.to_string ());
+                    }
+                }
+		    break;
+
+		    case BrowserColumn.Category.RATING:
+                // filter duplicate years
+                var numeric_set = new Gee.HashSet<uint> ();
+                foreach (var m in search_results) {
+                    uint rating = m.rating;
+                    if (!numeric_set.contains (rating)) { // Don't add 0
+                        numeric_set.add (rating);
+
+                        string rating_str;
+				        if (rating < 1)
+					        rating_str = _("Unrated");
+				        else
+					        rating_str = ngettext ("%i Star", "%i Stars", rating).printf (rating);
+
+                        column_set.add (rating_str);
+                    }
+                }
+		    break;
+
+            default:
+                assert_not_reached ();
+        }
+
+		column.populate (column_set);
+
+        // Update search results so that the next column is populated taking this column's
+        // (new) selected item into account (new value of column.get_selected)
+        //
+        // Be careful though, as this only works if columns are being populated hierarchically;
+        // that is, starting at the higher-level column (0 : RATING).
+	    update_search_results (column.category);
+    }
+
+    public bool match_media (Media m) {
+#if 0
+        // No need to search again. Querying the hash set is efficient too
+        return search_results.contains (m);
+#else
+        // Slightly slower than the code above, but more reliable.
+		int rating, year;
+		string genre, album_artist, album;
+        get_filters (BrowserColumn.Category.last (), out rating, out year,
+                     out genre, out album_artist, out album);
+
+		// Perform search
+		return Search.match_fields_to_media (m, album_artist, album, genre, year, rating);
+#endif
     }
 
 	private void update_column_separators () {
         uint n_visible_columns = this.visible_columns.length ();
 
         // Get the last (i.e. right-most) visible column
-        BrowserColumn.Category last_col = BrowserColumn.Category.RATING;
+        var first_col = BrowserColumn.Category.first ();
         foreach (var col in visible_columns) {
-            if (col > last_col)
-                last_col = col;
+            if (col > first_col)
+                first_col = col;
         }
 
 		foreach (var col in columns) {
@@ -385,7 +429,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 			col.margin_left = 0;
 
 			// adding right space (separator line)
-			col.margin_right = (col.category == last_col || n_visible_columns == 1) ? 0 : 1;
+			col.margin_right = (col.category == first_col || n_visible_columns == 1) ? 0 : 1;
 		}
 	}
 

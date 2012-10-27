@@ -22,197 +22,193 @@
 using Gtk;
 
 public class Noise.FastGrid : IconView {
-	public static const int PIXBUF_COLUMN = 0;
-	public static const int MARKUP_COLUMN = 1;
-	public static const int TOOLTIP_COLUMN = 2;
-	public static const int OBJECT_COLUMN = 3;
 
-	FastGridModel fm;
-	HashTable<int, GLib.Object> table; // is not the same object as showing.
-	HashTable<int, GLib.Object> showing; // should never point to table.
+    public enum Column {
+        PIXBUF,
+        MARKUP,
+        TOOLTIP,
+        N_COLUMNS
+    }
 
-	/* sortable stuff */
-	public delegate int SortCompareFunc (GLib.Object a, GLib.Object b);
-	private unowned SortCompareFunc compare_func;
+    FastGridModel fm;
+    HashTable<int, GLib.Object> table; // is not the same object as showing.
+    HashTable<int, GLib.Object> showing; // should never point to table.
 
-	public FastGrid () {
-		table = new HashTable<int, GLib.Object>(null, null);
-		showing = new HashTable<int, GLib.Object>(null, null);
-		fm = new FastGridModel();
+    /* sortable stuff */
+    public delegate int SortCompareFunc (GLib.Object a, GLib.Object b);
+    private unowned SortCompareFunc compare_func;
 
-		set_table(table, true, null);
-		set_model(fm);
+    public delegate void ViewSearchFunc (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing);
+    private unowned ViewSearchFunc search_func;
+    private string? last_search;
 
-		set_pixbuf_column(PIXBUF_COLUMN);
-		set_markup_column(MARKUP_COLUMN);
-		set_tooltip_column(TOOLTIP_COLUMN);
-	}
+    public FastGrid () {
+        table = new HashTable<int, GLib.Object> (null, null);
+        showing = new HashTable<int, GLib.Object> (null, null);
+        fm = new FastGridModel ();
 
-	/** Should not be manipulated by client */
-	public HashTable<int, GLib.Object> get_table() {
-		return table;
-	}
+        set_table (table, true);
+        set_model (fm);
 
-	/** Should not be manipulated by client */
-	public HashTable<int, GLib.Object> get_visible_table() {
-		return showing;
-	}
+        set_pixbuf_column (Column.PIXBUF);
+        set_markup_column (Column.MARKUP);
+        set_tooltip_column (Column.TOOLTIP);
+    }
 
-	public int get_index_from_iter(TreeIter iter) {
-		return (int)iter.user_data;
-	}
+    public void set_search_func (ViewSearchFunc func) {
+        search_func = func;
+    }
 
-	public GLib.Object get_object_from_index(int index) {
-		return showing.get(index);
-	}
+    /** Should not be manipulated by client */
+    public HashTable<int, GLib.Object> get_table () {
+        return table;
+    }
 
-	public void set_value_func(FastGridModel.ValueReturnFunc func) {
-		fm.set_value_func(func);
-	}
+    /** Should not be manipulated by client */
+    public HashTable<int, GLib.Object> get_visible_table () {
+        return showing;
+    }
 
-	public void set_table (HashTable<int, GLib.Object> table, bool do_resort, Cancellable? cancellable) {
-		this.table = table;
+    public int get_index_from_iter (TreeIter iter) {
+        return (int)iter.user_data;
+    }
 
-		if(do_resort)
-			resort(cancellable); // this also calls search
-		else
-			do_search(null, cancellable);
-	}
+    public GLib.Object get_object_from_index (int index) {
+        return showing.get (index);
+    }
 
-	// If a GLib.Object is in objects but not in table, will just ignore
-	public void remove_objects (Gee.HashMap<GLib.Object, int> objects, Cancellable? cancellable) {
-		int index = 0;
-		var new_table = new HashTable<int, GLib.Object>(null, null);
-		for(int i = 0; i < table.size(); ++i) {
-            if (Utils.is_cancelled (cancellable))
-                return;
+    public void set_value_func (FastGridModel.ValueReturnFunc func) {
+        fm.set_value_func (func);
+    }
 
-			GLib.Object o = table.get(i);
+    public void set_table (HashTable<int, GLib.Object> table, bool do_resort) {
+        this.table = table;
 
-			// create a new table. if not in objects, and is in table, add it.
-			if (o != null && !objects.has_key (o)/* && objects.get(o.get_album_artist() + o.get_album()) != 1*/) {
-				new_table.set (index++, o);
-			}
-		}
+        if (do_resort)
+            resort (); // this also calls search
+        else
+            do_search (null);
+    }
 
-		// no need to resort, just removing
-        if (!Utils.is_cancelled (cancellable))
-		    set_table(new_table, false, cancellable);
-		//get_selection().unselect_all();
-	}
+    // If a GLib.Object is in objects but not in table, will just ignore
+    public void remove_objects (Gee.HashSet<Object> objects) {
+        int index = 0;
+        var new_table = new HashTable<int, Object> (null, null);
 
-	// Does NOT check for duplicates
-	public void add_objects (Gee.Collection<GLib.Object> objects, Cancellable? cancellable) {
-		// skip calling set_table and just do it ourselves (faster)
-		foreach(var o in objects) {
-            if (Utils.is_cancelled (cancellable))
-                return;
+        for (int i = 0; i < table.size (); ++i) {
+            Object? o = table.get (i);
 
-			table.set((int)table.size(), o);
-		}
-		
-		// resort the new songs in. this will also call do_search
-        if (!Utils.is_cancelled (cancellable))
-    		resort (cancellable);
-	}
-	
-	public void do_search (string? search, Cancellable? cancellable) {
-        if (Utils.is_cancelled (cancellable))
+            // create a new table. if not in objects, and is in table, add it.
+            if (o != null && !objects.contains (o)/* && objects.get (o.get_album_artist () + o.get_album ()) != 1*/)
+                new_table.set (index++, o);
+        }
+
+        // no need to resort, just removing
+        set_table (new_table, false);
+        //get_selection ().unselect_all ();
+    }
+
+    // Does NOT check for duplicates
+    public void add_objects (Gee.Collection<Object> objects) {
+        // skip calling set_table and just do it ourselves (faster)
+        foreach (var o in objects)
+            table.set ( (int)table.size (), o);
+
+        // resort the new songs in. this will also call do_search
+        resort ();
+    }
+    
+    public void do_search (string? search) {
+        if (search_func == null)
             return;
+        
+        var old_size = showing.size ();
+        
+        showing.remove_all ();
+        if (search != null)
+            last_search = search;
+        
+        //if (last_search == "") {
+        //    for (int i = 0; i < table.size (); ++i) {
+        //        showing.set (i, table.get (i));
+        //    }
+        //}
+        //else {
+            search_func (last_search ?? "", table, ref showing);
+        //}
+        
+        if (showing.size () == old_size) {
+            fm.set_table (showing);
+            queue_draw ();
+        }
+        else if (old_size == 0) { // if first population, just do normal
+            set_model (null);
+            fm.set_table (showing);
+            set_model (fm);
+        }
+        else if (old_size > showing.size ()) { // removing
+            while (fm.iter_n_children (null) > showing.size ()) {
+                TreeIter iter;
+                fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
+                fm.remove (iter);
+            }
+            
+            fm.set_table (showing);
+            queue_draw ();
+        }
+        else if (showing.size () > old_size) { // adding
+            TreeIter iter;
+            
+            while (fm.iter_n_children (null) < showing.size ()) {
+                fm.append (out iter);
+            }
+            
+            fm.set_table (showing);
+            queue_draw ();
+        }
+    }
+    
+    public void redraw_row (int row_index) {
+        fm.update_row (row_index);
+    }
+    
+    /** Sorting is done in the treeview, not the model. That way the whole
+     * table is sorted and ready to go and we do not need to resort every
+     * time we repopulate/search the model
+    **/
+    public void set_compare_func (SortCompareFunc func) {
+        compare_func = func;
+    }
+    
+    public void resort () {
+        quicksort (0, (int) (table.size () - 1));
+        do_search (null);
+    }
+    
+    void swap (int a, int b) {
+        GLib.Object temp = table.get (a);
+        table.set (a, table.get (b));
+        table.set (b, temp);
+    }
+    
+    public void quicksort (int start, int end) {
+        GLib.Object pivot = table.get ( (start+end)/2);
+        int i = start;
+        int j = end;
+        
+        while (i <= j) {
+            while (i < end && compare_func (table.get (i), pivot) < 0) ++i;
+            while (j > start && compare_func (table.get (j), pivot) > 0) --j;
 
-		var old_size = showing.size();
-		showing.remove_all();
-		
-		for (int i = 0; i < table.size(); ++i)
-			showing.set(i, table.get(i));
-		
-		if(showing.size() == old_size) {
-			fm.set_table(showing, cancellable);
-			queue_draw();
-		}
-		else if(old_size == 0) { // if first population, just do normal
-			set_model(null);
-			fm.set_table(showing, cancellable);
-			set_model(fm);
-		}
-		else if(old_size > showing.size()) { // removing
-			while(fm.iter_n_children(null) > showing.size()) {
-                if (Utils.is_cancelled (cancellable))
-                    return;
-
-				TreeIter iter;
-				fm.iter_nth_child(out iter, null, fm.iter_n_children(null) - 1);
-				fm.remove(iter);
-			}
-			
-			fm.set_table(showing, cancellable);
-			queue_draw();
-		}
-		else if(showing.size() > old_size) { // adding
-			TreeIter iter;
-			
-			while(fm.iter_n_children(null) < showing.size()) {
-                if (Utils.is_cancelled (cancellable))
-                    return;
-
-				fm.append(out iter);
-			}
-			
-			fm.set_table(showing, cancellable);
-			queue_draw();
-		}
-	}
-	
-	public void redraw_row (int row_index) {
-		fm.update_row (row_index);
-	}
-	
-	/** Sorting is done in the treeview, not the model. That way the whole
-	 * table is sorted and ready to go and we do not need to resort every
-	 * time we repopulate/search the model
-	**/
-	public void set_compare_func (SortCompareFunc func) {
-		compare_func = func;
-	}
-	
-	public void resort (Cancellable? cancellable) {
-        if (Utils.is_cancelled (cancellable))
-            return;
-
-		quicksort(0, (int)(table.size() - 1), cancellable);
-		do_search (null, cancellable);
-	}
-	
-	void swap (int a, int b) {
-		GLib.Object temp = table.get(a);
-		table.set(a, table.get(b));
-		table.set(b, temp);
-	}
-	
-	public void quicksort (int start, int end, Cancellable? cancellable) {
-        if (Utils.is_cancelled (cancellable))
-            return;
-
-		GLib.Object pivot = table.get((start+end)/2);
-		int i = start;
-		int j = end;
-		
-		while(i <= j) {
-            if (Utils.is_cancelled (cancellable))
-                return;
-
-			while(i < end && compare_func (table.get(i), pivot) < 0) ++i;
-			while(j > start && compare_func (table.get(j), pivot) > 0) --j;
-
-			if(i <= j) {
-				swap(i, j);
-				++i; --j;
-			}
-		}
-		
-		if(start < j)	quicksort (start, j, cancellable);
-		if(i < end)		quicksort (i, end, cancellable);
-	}
+            if (i <= j) {
+                swap (i, j);
+                ++i; --j;
+            }
+        }
+        
+        if (start < j)    quicksort (start, j);
+        if (i < end)        quicksort (i, end);
+    }
 }
 
 

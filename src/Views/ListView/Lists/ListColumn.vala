@@ -29,10 +29,17 @@
  */
 
 /**
- * Represents every possible column field that can go in a media list.
+ * Represents every possible column that can go in a media list.
  *
- * New fields must be appended at the end in order to ensure backwards
- * compatibility with older TreeViewSetup database representations.
+ * New column types must be appended at the end in order to ensure backwards
+ * compatibility with older TreeViewSetup representations.
+ *
+ * TODO: Add columns:
+ * + FILE LOCATION
+ * + ALBUM ARTIST (It won't display Artist as fallback)
+ * + COMPOSER
+ * + GROUPING
+ * + FILE SIZE
  */
 public enum Noise.ListColumn {
     ICON,
@@ -62,59 +69,59 @@ public enum Noise.ListColumn {
                 return " ";
 
             case NUMBER:
-                return _("#");
+                return C_("Column title (list view)", "#");
 
             case TRACK:
-                return _("Track");
+                return C_("Column title (list view)", "Track");
 
             case TITLE:
-                return _("Title");
+                return C_("Column title (list view)", "Title");
 
             case LENGTH:
-                return _("Length");
+                return C_("Column title (list view)", "Length");
 
             case ARTIST:
-                return _("Artist");
+                return C_("Column title (list view)", "Artist");
 
             case ALBUM:
-                return _("Album");
+                return C_("Column title (list view)", "Album");
 
             case GENRE:
-                return _("Genre");
+                return C_("Column title (list view)", "Genre");
 
             case YEAR:
-                return _("Year");
+                return C_("Column title (list view)", "Year");
 
             case BITRATE:
-                return _("Bitrate");
+                return C_("Column title (list view)", "Bitrate");
 
             case RATING:
-                return _("Rating");
+                return C_("Column title (list view)", "Rating");
 
             case PLAY_COUNT:
-                return _("Plays");
+                return C_("Column title (list view)", "Plays");
 
             case SKIP_COUNT:
-                return _("Skips");
+                return C_("Column title (list view)", "Skips");
 
             case DATE_ADDED:
-                return _("Date Added");
+                return C_("Column title (list view)", "Date Added");
 
             case LAST_PLAYED:
-                return _("Last Played");
+                return C_("Column title (list view)", "Last Played");
 
             case BPM:
-                return _("BPM");
+                return C_("Column title (list view)", "BPM");
 
             default:
                 assert_not_reached ();
         }
     }
 
-    public Type query_type () {
+    public Type get_data_type () {
         // Order is broken here to organize columns by common type. Types should
         // match the type of the media field, so that conversions are not needed
-        // in the value function or cell-data functions..
+        // in the value function or cell-data functions.
         switch (this) {
             case ICON:
                 return typeof (GLib.Icon);

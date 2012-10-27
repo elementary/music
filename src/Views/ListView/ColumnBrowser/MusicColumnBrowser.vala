@@ -48,7 +48,7 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
         }
 
         Settings.SavedState.instance.column_browser_visible_columns = visible_categories;
-   	    Settings.SavedState.instance.column_browser_position = (int)position;
+   	    Settings.SavedState.instance.column_browser_position = (int) position;
     }
 
     private void restore_saved_state () {
@@ -60,6 +60,6 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
 		}
 
         visible_columns = visible_categories;
-		position = (Noise.BrowserPosition)Settings.SavedState.instance.column_browser_position;
+		position = (ColumnBrowser.Position) Settings.SavedState.instance.column_browser_position;
 	}
 }

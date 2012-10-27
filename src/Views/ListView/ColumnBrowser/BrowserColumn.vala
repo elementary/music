@@ -38,7 +38,16 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
         YEAR,
         GENRE,
         ARTIST,
-        ALBUM;
+        ALBUM,
+        N_CATEGORIES;
+
+        public static Category first () {
+            return (Category) 0;
+        }
+
+        public static Category last () {
+            return (Category) (N_CATEGORIES - 1);
+        }
 
         public string to_string () {
 		    switch (this) {
@@ -192,27 +201,26 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 		return _selected;
 	}
 
-	public void populate (Gee.HashSet<string> items, Cancellable? cancellable) {
-        if (Utils.is_cancelled (cancellable))
-            return;
-
+	public void populate (Gee.HashSet<string> items) {
 		items.remove ("");
 
 		view.get_selection ().freeze_notify ();
 		model = new BrowserColumnModel (category);
 		view.set_model (null);
 
-		model.append_items (items, false, cancellable);
+		model.append_items (items, false);
 		model.set_sort_column_id (0, Gtk.SortType.ASCENDING);
 
 		view.set_model (model);
 
-		// set selected item
-
+		// Set selected item
+        //
 		// This checks whether we can keep the current selected item selected in the column.
-		//if (!items.contains (this.get_selected ())) {
-			select_first_item ();
-		//}
+		// If we cannot, we select "All ..." (first item). Please notice that we don't
+		// select_first_item() because model.foreach() will be called next. It will handle
+		// the selection update.
+		if (!items.contains (this.get_selected ()))
+            _selected = null; // i.e. first_item_selected
 
 		model.foreach (select_proper_string);
 
@@ -279,18 +287,34 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 	}
 
 	private bool select_proper_string (TreeModel tmodel, TreePath path, TreeIter item) {
-		string s;
-		tmodel.get (item, 0, out s);
-
 		if (first_item_selected) {
-			view.get_selection ().select_iter (item);
-			view.scroll_to_cell (new TreePath.first(), null, true, 0.0f, 0.0f);
+		    var first_path = new TreePath.first ();
+			view.get_selection ().select_path (first_path);
+			view.scroll_to_cell (first_path, null, true, 0.0f, 0.0f);
 			return true;
 		}
 
+		string s;
+		tmodel.get (item, 0, out s);
+
 		if (s == get_selected ()) {
 			view.get_selection ().select_iter (item);
-			view.scroll_to_cell (path, null, false, 0.0f, 0.0f);
+
+            // If the cell is not within the visible range, scroll to center
+            // rather than top (improves usability)
+            bool scroll_to_center = false;
+            Gtk.TreePath start, end;
+
+            if (view.get_visible_range (out start, out end)) {
+                int start_index = start.get_indices ()[0];
+                int end_index = end.get_indices ()[0];
+                int current_index = path.get_indices ()[0];
+
+                if (current_index < start_index || current_index > end_index)
+                    scroll_to_center = true;
+            }
+
+			view.scroll_to_cell (path, null, scroll_to_center, 0.5f, 0.0f);
 
 			return true;
 		}

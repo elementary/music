@@ -34,6 +34,47 @@ namespace Noise.Numeric {
     }
 
     /**
+     * A method for extracting integers from strings.
+     *
+     * The method does its best to extract a number from a string by cleaning up
+     * non-numeric characters before parsing the string using uint64.parse(). The
+     * purpose of this method is to provide a safe way of extracting numbers
+     * from strings without making everything crash when passing a weird localized
+     * string that would normally lead uint64.parse, int64.parse or int.parse
+     * to a segmentation fault. This happens due to encoding incompatibilities:
+     * Remember that the standard C library doesn't know how to deal with variable-
+     * length UTF-8 characters!
+     *
+     * If no number is found in the string, zero is returned.
+     *
+     * Examples:
+     * "a23oe ew2" => 232
+     " "32 text"   => 32
+     * "ins1 32"   => 132
+     * "a word"    => 0
+     *
+     * @param str string known to contain a valid integer
+     * @return Result of parsing the string.
+     */
+    public inline uint64 uint_from_string (string str) {
+        // Used to prevent overflow
+        const ushort MAX_DIGITS = 18;
+        ushort ndigits = 0;
+
+        var result = new StringBuilder ();
+        unichar c;
+
+        for (int i = 0; str.get_next_char (ref i, out c) && ndigits < MAX_DIGITS;) {
+            if (c.isdigit ()) {
+                result.append_unichar (c);
+                ndigits++;
+            }
+        }
+
+        return ndigits == 0 ? 0 : uint64.parse (result.str);
+    }
+
+    /**
      * Returns the lowest uint given a double.
      * For instance:
      * INPUT => OUTPUT

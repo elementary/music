@@ -60,37 +60,6 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
     void sync_finished(bool success) {
         if(hint == ViewWrapper.Hint.DEVICE_AUDIO)
             set_media_async (d.get_songs());
-#if HAVE_PODCASTS
-        else if(hint == ViewWrapper.Hint.DEVICE_PODCAST)
-            set_media_async (d.get_podcasts());
-#endif
-    }
-
-
-    // FIXME: Only valid for CDROMs
-    protected override string get_statusbar_text () {
-        if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME || !has_list_view)
-            return "";
-
-        uint total_items = 0;
-        uint64 total_time = 0;
-
-        foreach (var media in list_view.get_media ()) {
-            if (media != null) {
-                total_items ++;
-                total_time += media.length;
-            }
-        }
-
-        if (total_items == 0)
-            return "";
-
-        string media_description = total_items > 1 ? _("%i tracks") : _("1 track");
-
-        string media_text = media_description.printf ((int)total_items);
-        string time_text = TimeUtils.time_string_from_miliseconds (total_time);
-
-        return "%s, %s".printf (media_text, time_text);
     }
 }
 

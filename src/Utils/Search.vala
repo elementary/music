@@ -31,64 +31,23 @@
 namespace Noise.Search {
 
     /**
-     * Non-strict search.
-     */
-    public void smart_search (Gee.Collection<Media> to_search,
-                              out Gee.LinkedList<Media> results,
-                              string search_str,
-                              Cancellable? cancellable = null)
-    {
-        results = new Gee.LinkedList<Media> ();
-        int parsed_rating = get_rating_from_string (search_str.strip ());
-
-        if (parsed_rating > 0) {
-            parsed_rating = parsed_rating.clamp (0, 5);
-
-            foreach (var m in to_search) {
-                if (Utils.is_cancelled (cancellable))
-                    break;
-
-                if (m.rating == parsed_rating)
-                    results.add (m);
-            }
-
-            return;
-        }
-
-        // If we failed at parsing a rating above, use normal search
-        string search = get_valid_search_string (search_str, cancellable);
-
-        if (String.is_white_space (search)) {
-            foreach (var m in to_search) {
-                if (Utils.is_cancelled (cancellable))
-                    break;
-                results.add (m);
-            }
-        } else {
-            foreach (var m in to_search) {
-                if (Utils.is_cancelled (cancellable))
-                    break;
-
-                if (match_string_to_media (m, search, cancellable))
-                    results.add (m);
-            }
-        }
-    }
-
-    /**
      * Linear exact-string-matching search method.
      *
      * To mean "ALL", pass an empty string (i.e.: "") for string parameters; and
      * -1 for integer parameters.
+     *
+     * Please note that this method compares against the values returned by
+     * Media.get_display_*(), and not the real fields. This means that a value
+     * like 'Unknown' will have a matching media even if the actual field is empty.
      */
     public void search_in_media_list (Gee.Collection<Media> to_search,
-                                       out Gee.LinkedList<Media> results,
-                                       string album_artist = "",
-                                       string album = "",
-                                       string genre = "",
-                                       int year = -1,
-                                       int rating = -1,
-                                       Cancellable? cancellable = null)
+                                      out Gee.Collection<Media> results,
+                                      string album_artist = "",
+                                      string album = "",
+                                      string genre = "",
+                                      int year = -1,
+                                      int rating = -1,
+                                      Cancellable? cancellable = null)
     {
         results = new Gee.LinkedList<Media> ();
 
@@ -96,19 +55,27 @@ namespace Noise.Search {
             if (Utils.is_cancelled (cancellable))
                 break;
 
-            bool match = (rating == -1 || media.rating == rating)
-                      && (year == -1 || media.year == year)
-                      && (genre == "" || media.genre == genre)
-                      && (album_artist == "" || media.album_artist == album_artist)
-                      && (album == "" || media.album == album);
-
-            if (match)
+            if (match_fields_to_media (media, album_artist, album, genre, year, rating))
                 results.add (media);
         }
     }
 
-    private inline string get_valid_search_string (string s, Cancellable? cancellable = null) {
-        return String.canonicalize_for_search (s, cancellable);
+    public inline bool match_fields_to_media (Media media,
+                                              string album_artist = "",
+                                              string album = "",
+                                              string genre = "",
+                                              int year = -1,
+                                              int rating = -1)
+    {
+        return (rating == -1 || media.rating == rating)
+            && (year == -1 || media.year == year)
+            && (genre == "" || media.get_display_genre () == genre)
+            && (album_artist == "" || media.get_display_album_artist () == album_artist)
+            && (album == "" || media.get_display_album () == album);
+    }
+
+    public inline string get_valid_search_string (string s) {
+        return String.canonicalize_for_search (s);
     }
 
     /**
@@ -126,7 +93,7 @@ namespace Noise.Search {
      *   "  "
      *   "**a"
      */
-    private inline int get_rating_from_string (string rating_string)
+    public inline int get_rating_from_string (string rating_string)
         ensures (result != 0 || result == -1)
     {
         int i;
@@ -137,36 +104,19 @@ namespace Noise.Search {
                 return -1;
         }
 
-
         return i > 0 ? i : -1;
     }
 
-    private inline bool match_string_to_media (Media m, string search,
-                                               Cancellable? cancellable)
-    {
-        bool match = false;
-
-        if (search == m.year.to_string ())
-            match = true;
-        else if (search in get_valid_search_string (m.title, cancellable))
-            match = true;
-        else if (search in get_valid_search_string (m.album, cancellable))
-            match = true;
-        else if (search in get_valid_search_string (m.artist, cancellable))
-            match = true;
-        else if (search in get_valid_search_string (m.album_artist, cancellable))
-            match = true;
-        else if (search in get_valid_search_string (m.genre, cancellable))
-            match = true;
-        else if (search in get_valid_search_string (m.composer, cancellable))
-            match = true;
-        else if (search in get_valid_search_string (m.grouping, cancellable))
-            match = true;
-        else if (search in get_valid_search_string (m.comment, cancellable))
-            match = true;
-        else if (search in get_valid_search_string (m.lyrics, cancellable))
-            match = true;
-
-        return match;
+    public inline bool match_string_to_media (Media m, string search) {
+        return search == m.year.to_string ()
+            || search in get_valid_search_string (m.get_display_title ())
+            || search in get_valid_search_string (m.album)
+            || search in get_valid_search_string (m.artist)
+            || search in get_valid_search_string (m.album_artist)
+            || search in get_valid_search_string (m.genre)
+            || search in get_valid_search_string (m.composer)
+            || search in get_valid_search_string (m.grouping)
+            || search in get_valid_search_string (m.comment)
+            || search in get_valid_search_string (m.lyrics);
     }
 }

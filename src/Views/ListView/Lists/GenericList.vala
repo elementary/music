@@ -53,13 +53,12 @@ public abstract class Noise.GenericList : FastView {
 
     protected bool dragging;
 
-    private bool scrolling_to_current = false;
     protected CellDataFunctionHelper cell_data_helper;
 
     public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
 		var types = new GLib.List<Type> ();
         foreach (var type in ListColumn.get_all ())
-            types.append (type.query_type ());
+            types.append (type.get_data_type ());
 
         base (types);
 
@@ -135,14 +134,14 @@ public abstract class Noise.GenericList : FastView {
         if (column_chooser_menu == null) {
             column_chooser_menu = new Gtk.Menu ();
 
-            autosize_menu_item = new Gtk.MenuItem.with_label (_ ("Autosize Columns"));
+            autosize_menu_item = new Gtk.MenuItem.with_label (_("Autosize Columns"));
             autosize_menu_item.activate.connect (columns_autosize);
 
             column_chooser_menu.append (autosize_menu_item);
             column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
 
 #if HAVE_SMART_ALBUM_COLUMN
-            smart_album_art_menu_item = new Gtk.CheckMenuItem.with_label (_ ("Display Album Art"));
+            smart_album_art_menu_item = new Gtk.CheckMenuItem.with_label (_("Display Album Art"));
             column_chooser_menu.append (smart_album_art_menu_item);
             column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
 
@@ -172,36 +171,26 @@ public abstract class Noise.GenericList : FastView {
         });
     }
 
-    public void set_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
+    public void set_media (Gee.Collection<Media> to_add) {
         var new_table = new HashTable<int, Object> (null, null);
 
-        foreach (var m in to_add) {
-            if (Utils.is_cancelled (cancellable))
-                return;
-            new_table.set ((int)new_table.size (), m);
-        }
+        foreach (var m in to_add)
+            new_table.set ((int) new_table.size (), m);
 
         // set table and resort
-        if (!Utils.is_cancelled (cancellable))
-            set_table (new_table, true, cancellable);
+        set_table (new_table, true);
 
         scroll_to_current_media (false);
     }
 
     /* If a Media is in to_remove but not in table, will just ignore */
-    public void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
+    public void remove_media (Gee.Collection<Media> to_remove) {
         var to_remove_set = new Gee.HashSet<Media> (null, null);
-        foreach (var m in to_remove) {
-            if (Utils.is_cancelled (cancellable))
-                return;
+        foreach (var m in to_remove)
             to_remove_set.add (m);
-        }
 
         var new_table = new HashTable<int, Object> (null, null);
         for (int i = 0; i < table.size (); ++i) {
-            if (Utils.is_cancelled (cancellable))
-                return;
-
             var m = table.get (i) as Media;
             // create a new table. if not in to_remove, and is in table, add it.
             if (m != null && !to_remove_set.contains (m))
@@ -209,25 +198,28 @@ public abstract class Noise.GenericList : FastView {
         }
 
         // no need to resort, just removing
-        if (!Utils.is_cancelled (cancellable))
-            set_table (new_table, false, cancellable);
+        set_table (new_table, false);
     }
 
-    /** Does NOT check for duplicates */
-    public void add_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
-        // skip calling set_table and just do it ourselves (faster)
+    public void add_media (Gee.Collection<Object> to_add) {
+        // Check for duplicates
+        var existing = new Gee.HashSet<Object> ();
+        foreach (var m in table.get_values ())
+            existing.add (m);
+
+        var new_media = new Gee.LinkedList<Object> ();
         foreach (var m in to_add) {
-            if (Utils.is_cancelled (cancellable))
-                return;
-            table.set ((int)table.size (), m);
+            if (!existing.contains (m))
+                new_media.add (m);
         }
 
+        // skip calling set_table and just do it ourselves (faster)
+        foreach (var m in new_media)
+            table.set ((int) table.size (), m);
+
         // resort the new songs in. this will also call do_search
-        if (!Utils.is_cancelled (cancellable))
-            resort (cancellable);
+        resort ();
     }
-
-
 
     public abstract void update_sensitivities ();
 
@@ -238,7 +230,7 @@ public abstract class Noise.GenericList : FastView {
     protected abstract void updateTreeViewSetup ();
 
     protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column,
-                                        Gtk.CellRendererText renderer, string[] strings, int padding)
+                                          Gtk.CellRendererText renderer, string[] strings, int padding)
     {
         UI.set_tree_view_column_fixed_width (treeview, column, renderer, strings, padding);
     }
@@ -296,7 +288,7 @@ public abstract class Noise.GenericList : FastView {
 
     public override void row_activated (TreePath path, TreeViewColumn column) {
         if (tvs.get_hint () == ViewWrapper.Hint.DEVICE_AUDIO || tvs.get_hint () == ViewWrapper.Hint.DEVICE_PODCAST) {
-            lw.doAlert ("Playing not Supported", "Due to issues with playing songs on certain iOS devices, playing songs off devices is currently not supported.");
+            lw.doAlert (_("Playing not Supported"), _("Due to issues with playing songs on certain iOS devices, playing songs off devices is currently not supported."));
             return;
         }
 
@@ -382,7 +374,7 @@ public abstract class Noise.GenericList : FastView {
         for (int i = 0; i < get_visible_table ().size (); ++i) {
             var m = get_media_from_index (i);
 
-            if (m.rowid == App.player.media_info.media.rowid) {
+            if (m == App.player.media_info.media) {
                 var path = new TreePath.from_indices (i, -1);
 
                 // Only scroll to the middle (true) if the cell *is not within the visible range*;
@@ -396,7 +388,12 @@ public abstract class Noise.GenericList : FastView {
                     int start_index = start_path.get_indices ()[0];
                     int end_index = end_path.get_indices ()[0];
 
-                    if (i < start_index || i > end_index)
+                    // If the cell is only one position away from being visible (+1 or -1),
+                    // then avoid scrolling to the center because it would result confusing
+                    // for new users (if, for example, they were constantly clicking the
+                    // *next* button to play the next song without shuffle enabled, it's always
+                    // better if we only do a minimum amount of scrolling).
+                    if (i < start_index - 1 || i > end_index + 1)
                         center_cell = true;
                 }
 
@@ -430,7 +427,6 @@ public abstract class Noise.GenericList : FastView {
             }
         }
 */
-        scrolling_to_current = false;
     }
 
     /***************************************

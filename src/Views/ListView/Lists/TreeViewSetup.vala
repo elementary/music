@@ -186,6 +186,17 @@ public class Noise.TreeViewSetup : Object {
                 columns.add (create_column (ListColumn.LENGTH));
             break;
 
+            case ViewWrapper.Hint.CDROM:
+                columns.add (create_column (ListColumn.ICON));
+                columns.add (create_column (ListColumn.NUMBER, false));
+                columns.add (create_column (ListColumn.TRACK));
+                columns.add (create_column (ListColumn.TITLE));
+                columns.add (create_column (ListColumn.LENGTH));
+                columns.add (create_column (ListColumn.ARTIST));
+                columns.add (create_column (ListColumn.ALBUM));
+                columns.add (create_column (ListColumn.GENRE));
+            break;
+
             default:
                 columns.add (create_column (ListColumn.ICON));
 

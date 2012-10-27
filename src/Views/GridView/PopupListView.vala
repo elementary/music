@@ -81,7 +81,6 @@ public class Noise.PopupListView : Window {
 		destroy_with_parent = true;
 		skip_taskbar_hint = true;
 
-
 		// album artist/album labels
 		album_label = new Label ("");
 		artist_label = new Label ("");
@@ -104,6 +103,9 @@ public class Noise.PopupListView : Window {
 		// Music List
 		var tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
 		list_view = new MusicListView (view_wrapper, tvs);
+        list_view.set_search_func (view_search_func);
+
+        list_view.expand = true;
 		
 		var list_view_scrolled = new ScrolledWindow (null, null);
 		list_view_scrolled.add (list_view);
@@ -154,30 +156,28 @@ public class Noise.PopupListView : Window {
 
 	Mutex setting_media;
 
-	public void set_media (Gee.Collection<Media> media) {
+	public void set_album (Album album) {
 		reset ();
 
 		setting_media.lock ();
 
-        foreach (var m in media) {
-            if (m != null) {
-                var album = m.album;
-                var artist = m.album_artist;
-        		set_title (_("%s by %s").printf (album, artist));
-        		album_label.set_label (album);
-        		artist_label.set_label (artist);
-        		break;
-            }
-        }
+        string name = album.get_display_name ();
+        string artist = album.get_display_artist ();
 
+        string title_format = C_("Title format used on Album View Popup: $ALBUM by $ARTIST", "%s by %s");
+        set_title (title_format.printf (name, artist));
+        
+        album_label.set_label (name);
+        artist_label.set_label (artist);
+        
         // Make a copy. Otherwise the list won't work if some elements are
         // removed from the parent wrapper while the window is showing
-        foreach (var m in media) {
-            if (m != null)
-                media_list.add (m);
-        }
+        media_list = Utils.copy_collection<Media> (album.get_media ());
 
 		list_view.set_media (media_list);
+
+        // Search again to match the view wrapper's search
+        list_view.do_search (view_wrapper.get_search_string ());
 
 		setting_media.unlock ();
 
@@ -229,6 +229,30 @@ public class Noise.PopupListView : Window {
 		lm.update_media (updated, false, true);
 	}
 
+    private void view_search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
+        int parsed_rating;
+        string parsed_search_string;
+
+        ContentView.base_search_method (search, out parsed_rating, out parsed_search_string);
+
+        bool rating_search = parsed_rating > 0;
+
+        // If an external refiltering is going on, we cannot obey the column browser filter
+        // because it wil be refreshed after this search based on the new 'showing' table
+        // (populated by this method).
+        int show_index = 0;
+        for (int i = 0; i < table.size (); ++i) {
+            var m = table.get (i) as Media;
+            if (m != null) {
+                if (rating_search) {
+                    if (m.rating == (uint) parsed_rating)
+                        showing.set (show_index++, m);
+                } else if (Search.match_string_to_media (m, parsed_search_string)) {
+                    showing.set (show_index++, m);
+                }
+            }
+        }
+    }
 
     /**
      * Force squared layout

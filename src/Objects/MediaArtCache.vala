@@ -33,7 +33,7 @@
  *
  * Media art images are permanently stored at ${XDG_CACHE_HOME}/noise/...
  */
-public abstract class Noise.MediaArtCache {
+public abstract class Noise.MediaArtCache<T> {
 
     public signal void changed ();
 
@@ -55,7 +55,7 @@ public abstract class Noise.MediaArtCache {
     /**
      * Key used for storing images.
      */
-    protected abstract string get_key (Media m);
+    protected abstract string get_key (T object);
 
     /**
      * This function is called before storing a pixbuf in the cache, allowing
@@ -66,27 +66,27 @@ public abstract class Noise.MediaArtCache {
     protected abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix);
 
     /**
-     * Verifies whether the media object m has a corresponding image in the cache.
+     * Verifies whether the object has a corresponding image in the cache.
      *
      * @see Noise.PixbufCache.has_image
      */
-    public bool has_image (Media m) {
-        return pixbuf_cache.has_image (get_key (m));
+    public bool has_image (T object) {
+        return pixbuf_cache.has_image (get_key (object));
     }
 
     /**
-     * Returns a file representing the media's image on disk. This call does no blocking I/O.
+     * Returns a file representing the objects's image on disk. This call does no blocking I/O.
      * If there's no associated image in the cache, //null// is returned.
      */
-    public File? get_cached_image_file (Media m) {
-        var key = get_key (m);
+    public File? get_cached_image_file (T object) {
+        var key = get_key (object);
         bool has_image = pixbuf_cache.has_image (key);
         return has_image ? pixbuf_cache.get_cached_image_file (key) : null;
     }
 
     /**
-     * Assign an image to media and all other media objects for which get_key()
-     * would return an identical value. The image is not assigned to the media
+     * Assign an image to media and all other objects for which get_key()
+     * would return an identical value. The image is not assigned to the
      * object itself, but stored on an internal table. Changes are written to
      * disk as well.
      *
@@ -96,8 +96,8 @@ public abstract class Noise.MediaArtCache {
      * (e.g. due to metadata changes, etc.), since the old pixbuf and cached image
      * are overwritten.
      */
-    public async void cache_image_async (Media m, Gdk.Pixbuf image) {
-        yield pixbuf_cache.cache_image_async (get_key (m), image);
+    public async void cache_image_async (T object, Gdk.Pixbuf image) {
+        yield pixbuf_cache.cache_image_async (get_key (object), image);
         queue_notify ();
     }
 
@@ -105,35 +105,45 @@ public abstract class Noise.MediaArtCache {
      * This method does the same as cache_image(), with the only difference that it
      * first fetches the image from the given file.
      */
-    public async void cache_image_from_file_async (Media m, File image_file, Cancellable? c = null) {
-        yield pixbuf_cache.cache_image_from_file_async (get_key (m), image_file, c);
+    public async void cache_image_from_file_async (T object, File image_file, Cancellable? c = null) {
+        yield pixbuf_cache.cache_image_from_file_async (get_key (object), image_file, c);
         queue_notify ();
     }
 
     /**
-     * Removes the image corresponding to the media from the table. It also deletes
+     * Removes the image corresponding to the object from the table. It also deletes
      * the associated file from the cache directory.
      */
-    public Gdk.Pixbuf? decache_image (Media m) {
-        var pix = pixbuf_cache.decache_image (get_key (m));
+    public Gdk.Pixbuf? decache_image (T object) {
+        var pix = pixbuf_cache.decache_image (get_key (object));
         queue_notify ();
         return pix;
     }
 
     /**
-     * @return null if the media's corresponding image was not found; otherwise
-     *         a valid {@link Gdk.Pixbuf}
+     * @return null if the object's corresponding image was not found; otherwise
+     * a valid {@link Gdk.Pixbuf}.
      */
-    protected Gdk.Pixbuf? get_image (Media m) {
-        return pixbuf_cache.get_image (get_key (m));
+    protected Gdk.Pixbuf? get_image (T object) {
+        return pixbuf_cache.get_image (get_key (object));
     }
 
     /**
-     * @return null if the media's corresponding image was not found; otherwise
-     *         a valid {@link Gdk.Pixbuf}
+     * FIXME this is a temporary workaround. In the future, this will be removed and
+     * get_image() will be the only way to access the cache. See CoverartCache for more
+     * information.
      */
-    protected async Gdk.Pixbuf? get_image_async (Media m, bool lookup_file) {
-        return yield pixbuf_cache.get_image_async (get_key (m), lookup_file);
+    [Deprecated (since = "1.1", replacement = "get_image")]
+    protected Gdk.Pixbuf? get_image_from_key (string key) {
+        return pixbuf_cache.get_image (key);
+    }
+
+    /**
+     * @return null if the object's corresponding image was not found; otherwise
+     * a valid {@link Gdk.Pixbuf}
+     */
+    protected async Gdk.Pixbuf? get_image_async (T object, bool lookup_file) {
+        return yield pixbuf_cache.get_image_async (get_key (object), lookup_file);
     }
 
     /**

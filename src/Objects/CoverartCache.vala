@@ -29,9 +29,11 @@
  */
 
 /**
- * Stores and fetches album-art images
+ * Stores and fetches album-art images.
+ *
+ * TODO base upon Album instead of Media
  */
-public class Noise.CoverartCache : MediaArtCache {
+public class Noise.CoverartCache : MediaArtCache<Media> {
 
     private static CoverartCache? _instance = null;
     public static CoverartCache instance {
@@ -71,6 +73,24 @@ public class Noise.CoverartCache : MediaArtCache {
         builder.append (m.album);
 
         return builder.str;
+    }
+
+    /**
+     * FIXME This is a temporary workaround. In the future (once Media's 'album' field is
+     * an Album object), this entire class will be based upon Album and not Media.
+     */
+    [Deprecated (since = "1.1", replacement = "get_key")]
+    private string get_album_key (Album album) {
+        // This *must* be identical to the key returned for normal Media objects
+        var builder = new StringBuilder ();
+        builder.append (album.artist);
+        builder.append (album.name);
+        return builder.str;
+    }
+
+    [Deprecated (since = "1.1", replacement = "get_image")]
+    public Gdk.Pixbuf get_album_cover (Album album) {
+        return get_image_from_key (get_album_key (album)) ?? default_image;
     }
 
     public Gdk.Pixbuf get_cover (Media m) {

@@ -8,6 +8,7 @@ set(CORE_SOURCE
     Player.vala
     LibraryWindowInterface.vala
     Media.vala
+    Album.vala
     Utils/FileUtils.vala
     Utils/TimeUtils.vala
     Utils/String.vala

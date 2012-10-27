@@ -22,8 +22,8 @@
 
 public class Noise.GridView : ContentView, GridLayout {
 
-    private string TEXT_MARKUP = @"%s\n<span foreground=\"#999\">%s</span>";
-    private string TOOLTIP_MARKUP = @"<span size=\"large\"><b>%s</b></span>\n%s";
+    private string TEXT_MARKUP = "%s\n<span foreground=\"#999\">%s</span>";
+    private string TOOLTIP_MARKUP = "<span size=\"large\"><b>%s</b></span>\n%s";
 
 	// The window used to present album contents
     private static PopupListView? _popup = null;
@@ -44,8 +44,10 @@ public class Noise.GridView : ContentView, GridLayout {
 		}
 	}
 
-	// album-key / album-media
-	Gee.HashMap<string, Gee.HashMap<Media, int>> album_info;
+	/**
+	 * Hash map containing a set of albums identified by their album key.
+	 */
+	private Gee.HashMap<string, Album> album_info;
 
 	private LibraryManager lm;
 	private LibraryWindow lw;
@@ -56,14 +58,16 @@ public class Noise.GridView : ContentView, GridLayout {
 		lm = view_wrapper.lm;
 		lw = view_wrapper.lw;
 
-		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
+		album_info = new Gee.HashMap<string, Album> ();
 
-		build_ui ();
+		setup_focus ();
 
         CoverartCache.instance.changed.connect (queue_draw);
+
+        message = String.escape (_("No Albums Found."));
 	}
 
-	public void build_ui () {
+	public void setup_focus () {
 		var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
 		focus_blacklist.add (lw.viewSelector);
 		focus_blacklist.add (lw.searchField);
@@ -81,7 +85,6 @@ public class Noise.GridView : ContentView, GridLayout {
 				return false;
 			});
 		}
-
 	}
 
 	public ViewWrapper.Hint get_hint() {
@@ -89,124 +92,177 @@ public class Noise.GridView : ContentView, GridLayout {
 	}
 
 	public Gee.Collection<Media> get_visible_media () {
-		var media_list = new Gee.LinkedList<Media> ();
-		foreach (var o in get_visible_objects ()) {
-            var m = o as Media;
-            if (m != null)
-    			media_list.add (m);
+        var all_visible_media = new Gee.LinkedList<Media> ();
+
+        foreach (var album in get_visible_albums ()) {
+            var album_media = album.get_media ();
+            all_visible_media.add_all (album_media);
         }
 
-		return media_list;
-	}
+        return all_visible_media;
+    }
 
 	public Gee.Collection<Media> get_media () {
-		var media_list = new Gee.LinkedList<Media> ();
-		foreach (var o in get_objects ()) {
-            var m = o as Media;
-            if (m != null)
-    			media_list.add (m);
+        var all_media = new Gee.LinkedList<Media> ();
+
+        foreach (var album in get_albums ()) {
+            var album_media = album.get_media ();
+            all_media.add_all (album_media);
         }
 
-		return media_list;
+        return all_media;
+    }
+
+	public Gee.Collection<Album> get_visible_albums () {
+		var album_list = new Gee.LinkedList<Album> ();
+		foreach (var o in get_visible_objects ()) {
+            var album = o as Album;
+            if (album != null)
+    			album_list.add (album);
+        }
+
+		return album_list;
 	}
 
-	private string get_key (Media? m) {
-		return (m != null) ? m.album_artist + m.album : "";
+	public Gee.Collection<Album> get_albums () {
+		var album_list = new Gee.LinkedList<Album> ();
+		foreach (var o in get_objects ()) {
+            var album = o as Album;
+            if (album != null)
+    			album_list.add (album);
+        }
+
+		return album_list;
 	}
 
-	public void set_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
-		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
+	private string get_key (Album? album) {
+        return album != null ? album.to_string () : "";
+	}
+
+    public void refilter (string? search) {
+        message_visible = false;
+        do_search (search);
+
+        if (get_visible_objects ().length () < 1)
+            message_visible = true;
+    }
+
+    public string get_statusbar_text () {
+        uint total_items = get_visible_objects ().length ();
+
+        if (total_items < 1)
+            return "";
+
+        var all_visible_media = get_visible_media ();
+
+        uint64 total_size = 0, total_time = 0;
+
+        foreach (var media in all_visible_media) {
+            if (media != null) {
+                total_time += media.length;
+                total_size += media.file_size;
+            }
+        }
+
+        string media_description = ngettext ("%u album", "%u albums", total_items).printf (total_items);
+        string time_text = TimeUtils.time_string_from_miliseconds (total_time);
+        string size_text = format_size (total_size);
+
+        var statusbar_format = _(FULL_STATUSBAR_FORMAT);
+        return statusbar_format.printf (media_description, time_text, size_text);
+    }
+
+    public void update_media (Gee.Collection<Media> media) {
+        refilter (null);
+    }
+
+	public void set_media (Gee.Collection<Media> to_add) {
+		album_info = new Gee.HashMap<string, Album> ();
         clear_objects ();
-		add_media (to_add, cancellable);
+		add_media (to_add);
 	}
 
 	// checks for duplicates
-	public void add_media (Gee.Collection<Media> media, Cancellable? cancellable = null) {
-		var to_append = new Gee.HashMap<string, Media> ();
-		foreach (var m in media) {
-            if (Utils.is_cancelled (cancellable))
-                return;
+	public void add_media (Gee.Collection<Media> media) {
+        // Albums to append. We use this to check for duplicates. In the end,
+        // the map is supposed to only contain new albums.
+        var albums_to_append = new Gee.HashMap<string, Album> ();
 
+		foreach (var m in media) {
 			if (m == null)
 				continue;
-			
-			string key = get_key (m);
 
-			if (!to_append.has_key (key)) {
-				if (!album_info.has_key (key)) {
-					// Create a new media. We don't want to depend on a song
-					// that could be removed for this.
-					var album = new Media ("");
-					album.album = m.album;
-					album.album_artist = m.album_artist;
-					to_append.set (key, album);
-					
-					// set info
-					album_info.set (key, new Gee.HashMap<Media, int> ());
-				}
+            var album = new Album.from_media (m);
+			string key = get_key (album);
+
+			if (!albums_to_append.has_key (key) && !album_info.has_key (key)) {
+				albums_to_append.set (key, album);
+
+				// Add album to internal media info
+				album_info.set (key, album);
 			}
 
-			var album_media = album_info.get (key);
-			if (!album_media.has_key (m))
-				album_media.set (m, 1);
+            // Now let's get the album again. We don't use the reference above because
+            // we don't know if that is the actual instance which was added.
+            var actual_album = album_info.get (key);
+			if (!actual_album.contains (m))
+				actual_album.add_media (m);
 		}
 
-        if (!Utils.is_cancelled (cancellable))
-    		add_objects (to_append.values, cancellable);
+        // Add new albums
+		add_objects (albums_to_append.values);
 	}
 
-	public void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
+	public void remove_media (Gee.Collection<Media> to_remove) {
 		/* There is a special case. Let's say that we're removing
 		 * song1, song2 and song5 from Album X, and the album currently
 		 * contains song1, song2, song5, and song3. Then we shouldn't remove
 		 * the album because it still contains a song (song3).
 		 */
 
-		// classify media by album
-		var to_remove_album_info = new Gee.HashMap <string, Gee.LinkedList<Media>> ();
-		foreach (var m in to_remove) {
-            if (Utils.is_cancelled (cancellable))
-                return;
+		// classify media by album.
+		var to_remove_album_info = new Gee.HashMap <string, Album> ();
 
+		foreach (var m in to_remove) {
 			if (m == null)
 				continue;
-			
-			string key = get_key (m);
 
-			if (!to_remove_album_info.has_key (key)) {
-				// set info
-				to_remove_album_info.set (key, new Gee.LinkedList<Media> ());
-			}
+            var album = new Album.from_media (m);			
+			string key = get_key (album);
 
-			to_remove_album_info.get (key).add (m);
+			if (!to_remove_album_info.has_key (key))
+				to_remove_album_info.set (key, album);
+
+			to_remove_album_info.get (key).add_media (m);
 		}
 
 		// table of albums that will be removed
-		var albums_to_remove = new Gee.HashMap<string, int> ();
+		var albums_to_remove = new Gee.HashSet<string> ();
 
-		// Then use the list to verify which albums are in the album view
-		foreach (var album_key in to_remove_album_info.keys) {
-            if (Utils.is_cancelled (cancellable))
-                return;
+		// Then use the list to verify which albums are in the album view and try to remove
+		// the songs which are part of to_remove_album_info from them. Eventually, if it
+		// is found that the album is left empty, it is completely removed.
+		foreach (var album_entry in to_remove_album_info.entries) {
+			if (album_info.has_key (album_entry.key)) {
+				// get current album. It contains all the media
+				var current_album = album_info.get (album_entry.key);
 
-			if (album_info.has_key (album_key)) {
-				// get current media list
-				var current_media = album_info.get (album_key);
+				// Album containing the media that should be removed
+				var to_remove_album = album_entry.value;
+                var to_remove_album_media = to_remove_album.get_media ();
 
-				// get list of media that should be removed
-				var to_remove_media = to_remove_album_info.get (album_key);
+                // Now we will remove the media in to_remove_album from the actual album
+                // contained by album_info.
+				foreach (var m in to_remove_album_media)
+					current_album.remove_media (m);
 
-				foreach (var m in to_remove_media) {
-                    if (Utils.is_cancelled (cancellable))
-                        return;
-					current_media.unset (m);
-				}
-				
-				// if the album is left with no songs, it should be removed
-				if (current_media.size <= 0) {
-					albums_to_remove.set (album_key, 1);
+				// if the album is left with no songs, it should be removed (we don't remove albums
+				// that still contain media!)
+				if (current_album.is_empty) {
+					albums_to_remove.add (album_entry.key);
+
 					// unset from album info
-					album_info.unset (album_key);
+					album_info.unset (album_entry.key);
 				}
 			}
 		}
@@ -215,19 +271,15 @@ public class Noise.GridView : ContentView, GridLayout {
 			return;		
 
 		// Find media representations in table
-		var objects_to_remove = new Gee.HashMap<GLib.Object, int> ();
+		var objects_to_remove = new Gee.HashSet<Object> ();
 
-		foreach (var album_representation in get_visible_media ()) {
-            if (Utils.is_cancelled (cancellable))
-                return;
-
-			var key = get_key (album_representation);
-			if (albums_to_remove.has_key (key))
-				objects_to_remove.set (album_representation, 1);
+		foreach (var album in get_visible_albums ()) {
+			var key = get_key (album);
+			if (albums_to_remove.contains (key))
+				objects_to_remove.add (album);
 		}
 
-        if (!Utils.is_cancelled (cancellable))
-    		remove_objects (objects_to_remove, cancellable);
+		remove_objects (objects_to_remove);
 	}
 
 	public int get_relative_id () {
@@ -243,11 +295,11 @@ public class Noise.GridView : ContentView, GridLayout {
 			return;
 		}
 
-		var s = object as Media;
-        return_if_fail (s != null);
+		var album = object as Album;
+        return_if_fail (album != null);
 
 		popup_list_view.set_parent_wrapper (this.parent_view_wrapper);
-		popup_list_view.set_media (album_info.get (get_key (s)).keys);
+		popup_list_view.set_album (album);
 
 		// find window's location
 		int x, y;
@@ -276,46 +328,87 @@ public class Noise.GridView : ContentView, GridLayout {
 	}
 
 	protected override Value? val_func (int row, int column, Object o) {
-		var s = o as Media;
+		var album = o as Album;
 
-        return_val_if_fail (s != null, null);
+        return_val_if_fail (album != null, null);
 
         switch (column) {
-            case Column.PIXBUF:
-                return CoverartCache.instance.get_cover (s);
+            case FastGrid.Column.PIXBUF:
+                // XXX: this is dangerous. Remember to update CoverartCache.get_album_key
+                // to always match the key for the respective media. As explained in
+                // Noise.Album and Noise.CoveartCache, these classes are supposed to
+                // replace the current album-related media fields.
+                return CoverartCache.instance.get_album_cover (album);
 
-            case Column.MARKUP:
-			    string album = s.get_display_album ();
-			    string artist = s.get_display_album_artist ();
+            case FastGrid.Column.MARKUP:
+			    string name = album.get_display_name ();
+			    string artist = album.get_display_artist ();
 
-			    if (album.length > 25)
-				    album = s.album.substring (0, 21) + "...";
+			    if (name.length > 25)
+				    name = name.substring (0, 21) + "...";
 			    if (artist.length > 25)
 				    artist = artist.substring (0, 21) + "...";
 
-			    return Markup.printf_escaped (TEXT_MARKUP, album, artist);
+			    return Markup.printf_escaped (TEXT_MARKUP, name, artist);
 
-		    case Column.TOOLTIP:
-			    return Markup.printf_escaped (TOOLTIP_MARKUP, s.get_display_album (), s.get_display_album_artist ());
+		    case FastGrid.Column.TOOLTIP:
+			    string name = album.get_display_name ();
+			    string artist = album.get_display_artist ();
+
+			    return Markup.printf_escaped (TOOLTIP_MARKUP, name, artist);
         }
 
 		assert_not_reached ();
 	}
 
 	protected override int compare_func (Object o_a, Object o_b) {
-		var media_a = o_a as Media;
-		var media_b = o_b as Media;
+		var album_a = o_a as Album;
+		var album_b = o_b as Album;
 
-        return_val_if_fail (media_a != null && media_b != null, 0);
+        // Check for null and keep being reflexive
+        if (album_a == null)
+            return album_b != null ? -1 : 0;
 
-        string album_a = media_a.get_display_album ();
-        string album_b = media_b.get_display_album ();
+        if (album_b == null)
+            return 1;
 
-        int order = String.compare (album_a, album_b);
+        int order = String.compare (album_a.get_display_name (), album_b.get_display_name ());
 
 		if (order == 0)
-			order = String.compare (media_a.get_display_album_artist (), media_b.get_display_album_artist ());
+			order = String.compare (album_a.get_display_artist (), album_b.get_display_artist ());
 
         return order;
 	}
+
+    protected override void search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
+        int parsed_rating;
+        string parsed_search_string;
+
+        base_search_method (search, out parsed_rating, out parsed_search_string);
+
+        bool rating_search = parsed_rating > 0;
+
+        int show_index = 0;
+        for (int i = 0; i < table.size (); i++) {
+            var album = table.get (i) as Album;
+            if (album == null)
+                continue;
+
+            // Search in the album's media. After the first match found, we break
+            // the loop because we know the album has (at least) one of the items
+            // we want. Real search is done later by the popup list after an album
+            // is selected.
+            foreach (var m in album.get_media ()) {
+                if (rating_search) {
+                    if (m.rating == (uint) parsed_rating) {
+                        showing.set (show_index++, album);
+                        break; // we only need to add the album once.
+                    }
+                } else if (Search.match_string_to_media (m, parsed_search_string)) {
+                    showing.set (show_index++, album);
+                    break; // we only need to add the album once.
+                }
+            }
+        }
+    }
 }

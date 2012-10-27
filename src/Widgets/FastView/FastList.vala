@@ -22,65 +22,6 @@
 using Gtk;
 
 public class Noise.FastView : TreeView {
-/*
-    public class SeparatorMedia : Media {
-        public SeparatorMedia () {
-            base ("");
-        }
-    }
-
-    private class DataModel : Gtk.TreeModelFilter {
-
-        public bool have_separators { get; set; default = false; }
-        private FastModel fm;
-
-        // ALBUM+ALBUM_ARTIST KEY / Separator Media
-        private Gee.HashMap<string, SeparatorMedia> separators;
-
-        public DataModel (List<Type> types) {
-            Object (child_model: new FastModel (types));
-            fm = child_model as FastModel;
-            separators = new Gee.HashMap<string, SeparatorMedia> ();
-
-            set_filter_visible_func (filter_visible_func);
-            notify.connect (refilter);
-        }
-
-        public set_table (HashTable<int, Object> table) {
-            // Analyze items and create separators based on them
-            foreach (var key in table.get_keys ()) {
-                var m = table.get (key) as Media;
-                if (m != null) {
-                    if (!separators.has_key (get_separator_key (m)) {
-                    
-                    }
-                }
-            }
-
-            fm.set_table (table);
-        }
-
-        protected string get_separator_key (Media m) {
-            string album_name = m.album;
-            string artist_name = m.album_artist;
-
-            if (artist_name == "")
-                artist_name = m.artist;
-
-            return @"$artist_name-$album_name";
-        }
-
-        private bool filter_visible_func (Gtk.TreeModel child_model, Gtk.TreeIter iter) {
-            bool item_visible = true;
-
-            var object = fm.get_object (iter);
-            if (object != null && object is SeparatorMedia)
-                item_visible = have_separators;
-
-            return item_visible;
-        }
-    }
-*/
 #if HAVE_BUILTIN_SHUFFLE
 	public static const int SHUFFLE_COLUMN_ID = -3;
 #endif
@@ -100,12 +41,10 @@ public class Noise.FastView : TreeView {
 	protected SortType sort_direction;
 	private unowned SortCompareFunc compare_func;
 	
-#if HAVE_BUILTIN_SEARCH
 	// search stuff
 	string last_search;
 	public delegate void ViewSearchFunc (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing);
 	private unowned ViewSearchFunc search_func;
-#endif
 	
 	public signal void rows_reordered();
 	
@@ -117,13 +56,11 @@ public class Noise.FastView : TreeView {
 		
 		sort_column_id = OPTIMAL_COLUMN;
 		sort_direction = SortType.ASCENDING;
-#if HAVE_BUILTIN_SEARCH
 		last_search = "";
-#endif
 		
 		fm.reorder_requested.connect(reorder_requested);
 		
-		set_table(table, true, null);
+		set_table(table, true);
 		set_model(fm);
 	}
 	
@@ -149,82 +86,72 @@ public class Noise.FastView : TreeView {
 		fm.set_value_func(func);
 	}
 
-	public void set_table (HashTable<int, GLib.Object> table, bool do_resort, Cancellable? cancellable) {
-        if (!Utils.is_cancelled (cancellable))
-    		this.table = table;
+	public void set_table (HashTable<int, GLib.Object> table, bool do_resort) {
+		this.table = table;
 		
 		if (do_resort)
-			resort (cancellable); // this also calls search
+			resort (); // this also calls search
 		else
-			do_search (null, cancellable);
+			do_search (null);
 	}
 
-#if HAVE_BUILTIN_SEARCH
 	public void set_search_func (ViewSearchFunc func) {
 		search_func = func;
 	}
-#endif
-	
-	public void do_search (string? search = null, Cancellable? cancellable) {
-        if (Utils.is_cancelled (cancellable))
+
+	public void do_search (string? search = null) {
+        if (search_func == null)
             return;
 
 		var old_size = showing.size();
 		
 		showing.remove_all();
 
-#if HAVE_BUILTIN_SEARCH
 		if(search != null)
 			last_search = search;
-		
-		if(last_search == "") {
-#endif
-			for(int i = 0; i < table.size(); ++i) {
-                if (Utils.is_cancelled (cancellable))
-                    return;
 
+		search_func (last_search ?? "", table, ref showing);
+        /* Commented out this code because empty search strings should still trigger
+        a search if the view contains an external filter applied through search_func
+        (E.g. a column browser)
+
+		if(last_search == "") {
+			for(int i = 0; i < table.size(); ++i) {
 				showing.set(i, table.get(i));
 			}
-#if HAVE_BUILTIN_SEARCH
 		}
 		else {
-			search_func(last_search, table, ref showing);
+			search_func(last_search ?? "", table, ref showing);
 		}
-#endif
+		*/
 		
 		if(showing.size() == old_size) {
-			fm.set_table(showing, cancellable);
+			fm.set_table(showing);
 			queue_draw();
 		}
 		else if(old_size == 0) { // if first population, just do normal
 			set_model(null);
-			fm.set_table(showing, cancellable);
+			fm.set_table(showing);
 			set_model(fm);
 		}
 		else if(old_size > showing.size()) { // removing
 			while(fm.iter_n_children(null) > showing.size()) {
-                if (Utils.is_cancelled (cancellable))
-                    return;
-
 				TreeIter iter;
 				fm.iter_nth_child(out iter, null, fm.iter_n_children(null) - 1);
 				fm.remove(iter);
 			}
 			
-			fm.set_table(showing, cancellable);
+			fm.set_table(showing);
 			queue_draw();
 		}
 		else if(showing.size() > old_size) { // adding
 			TreeIter iter;
 			
 			while(fm.iter_n_children(null) < showing.size()) {
-                if (Utils.is_cancelled (cancellable))
-                    return;
-
 				fm.append(out iter);
 			}
 			
-			fm.set_table(showing, cancellable);
+			fm.set_table(showing);
 			queue_draw();
 		}
 	}
@@ -260,22 +187,22 @@ public class Noise.FastView : TreeView {
 		else
 			shuffle ();
 #else
-		quicksort (0, (int)table.size() - 1, null);
+		quicksort (0, (int)table.size() - 1);
 #endif
 		
-		do_search (null, null);
+		do_search (null);
 		
 		// Let it be known the row order changed
 		rows_reordered();
 	}
 	
-	public void resort (Cancellable? cancellable = null) {
+	public void resort () {
 #if HAVE_BUILTIN_SHUFFLE
 		if(sort_column_id != SHUFFLE_COLUMN_ID)
 #endif
-			quicksort(0, (int)(table.size() - 1), cancellable);
+			quicksort(0, (int)(table.size() - 1));
 		
-		do_search (null, cancellable);
+		do_search (null);
 	}
 	
 	public void set_compare_func (SortCompareFunc func) {
@@ -288,19 +215,13 @@ public class Noise.FastView : TreeView {
 		table.set (b, temp);
 	}
 	
-	public void quicksort (int start, int end, Cancellable? cancellable) {
-        if (Utils.is_cancelled (cancellable))
-            return;
-
+	public void quicksort (int start, int end) {
         int pivot_index = (start + end) / 2;
 		var pivot = table.get (pivot_index);
 		int i = start;
 		int j = end;
 		
 		while(i <= j) {
-            if (Utils.is_cancelled (cancellable))
-                return;
-
 			while(i < end && compare_func (sort_column_id, sort_direction, table.get(i), pivot, i, pivot_index) < 0) ++i;
 			while(j > start && compare_func (sort_column_id, sort_direction, table.get(j), pivot, j, pivot_index) > 0) --j;
 			if(i <= j) {
@@ -310,9 +231,9 @@ public class Noise.FastView : TreeView {
 		}
 		
 		if(start < j)
-			quicksort (start, j, cancellable);
+			quicksort (start, j);
 		if(i < end)
-			quicksort (i, end, cancellable);
+			quicksort (i, end);
 	}
 
 #if HAVE_BUILTIN_SHUFFLE

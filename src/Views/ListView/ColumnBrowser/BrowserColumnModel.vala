@@ -32,7 +32,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 	private Sequence<string> rows;
 
 	/* first iter. This helps us to track the "All" row */
-	TreeIter first_iter;
+	TreeIter? first_iter;
 
 	/* treesortable stuff */
 	private int sort_column_id;
@@ -85,7 +85,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
 	public TreePath? get_path (TreeIter iter) {
-		return new TreePath.from_string (((SequenceIter)iter.user_data).get_position ().to_string ());
+		return new TreePath.from_string ( ( (SequenceIter)iter.user_data).get_position ().to_string ());
 	}
 
 	/** Initializes and sets value to that at column. **/
@@ -94,8 +94,8 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 		if (iter.stamp != this.stamp || column < 0 || column >= 1)
 			return;
 
-		if(!((SequenceIter<string>) iter.user_data).is_end ())
-			val = rows.get (((SequenceIter<string>) iter.user_data));
+		if (! ( (SequenceIter<string>) iter.user_data).is_end ())
+			val = rows.get ( ( (SequenceIter<string>) iter.user_data));
 	}
 
 	/** Sets iter to point to the first child of parent. **/
@@ -124,9 +124,9 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 		if (iter.stamp != this.stamp)
 			return false;
 
-		iter.user_data = ((SequenceIter)iter.user_data).next ();
+		iter.user_data = ( (SequenceIter)iter.user_data).next ();
 
-		if (((SequenceIter)iter.user_data).is_end ())
+		if ( ( (SequenceIter)iter.user_data).is_end ())
 			return false;
 
 		return true;
@@ -135,7 +135,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
 		iter = TreeIter ();
-		if (n < 0 || n >= rows.get_length() || parent != null)
+		if (n < 0 || n >= rows.get_length () || parent != null)
 			return false;
 
 		iter.stamp = this.stamp;
@@ -165,40 +165,16 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 		iter.user_data = added;
 	}
 
-	/** convenience method to insert medias into the model. No iters returned. **/
-	public void append_items (Gee.Collection<string> medias, bool emit, Cancellable? cancellable) {
-		add_first_element ();
+	/** convenience method to insert strings into the model. No iters returned. **/
+	public void append_items (Gee.Collection<string> strings, bool emit) {
+        if (first_iter == null)
+    		add_first_element ();
 
-		// We do some data validation for numeric values later
-		bool is_rating = false, is_year = false;
-
-		if (category == BrowserColumn.Category.RATING)
-			is_rating = true;
-		else if (category == BrowserColumn.Category.YEAR)
-			is_year = true;
-
-
-		foreach (string s in medias) {
-            if (Utils.is_cancelled (cancellable))
-                break;
-
-			// if it is rating column, add "Stars" after the number
-			if (is_rating) {
-				int rating = int.parse (s);
-				if (rating < 1)
-					s = _("Unrated");
-				else
-					s = ngettext ("%i Star", "%i Stars", rating).printf (rating);
-			}
-			else if (is_year && int.parse(s) < 1) {
-				// Don't add '0'
-				continue;
-			}
-
+		foreach (string s in strings) {
 			SequenceIter<string> added = rows.append (s);
 
 			if (emit) {
-				var path = new TreePath.from_string (added.get_position().to_string());
+				var path = new TreePath.from_string (added.get_position ().to_string ());
 				var iter = TreeIter ();
 
 				iter.stamp = this.stamp;
@@ -223,7 +199,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 
 	/* Updates the "All" item */
 	private void update_first_item () {
-		rows.set ((SequenceIter<string>)first_iter.user_data, get_first_item_text (n_items));
+		rows.set ( (SequenceIter<string>)first_iter.user_data, get_first_item_text (n_items));
 	}
 
 
@@ -234,41 +210,41 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 		switch (category) {
 			case BrowserColumn.Category.GENRE:
 				if (n_items == 1)
-					rv = _("All Genres");
+					rv = _ ("All Genres");
 				else if (n_items > 1)
-					rv = _("All %i Genres").printf (n_items);
+					rv = _ ("All %i Genres").printf (n_items);
 				else
-					rv = _("No Genres");
+					rv = _ ("No Genres");
 			break;
 			case BrowserColumn.Category.ARTIST:
 				if (n_items == 1)
-					rv = _("All Artists");
+					rv = _ ("All Artists");
 				else if (n_items > 1)
-					rv = _("All %i Artists").printf (n_items);
+					rv = _ ("All %i Artists").printf (n_items);
 				else
-					rv = _("No Artists");
+					rv = _ ("No Artists");
 			break;
 			case BrowserColumn.Category.ALBUM:
 				if (n_items == 1)
-					rv = _("All Albums");
+					rv = _ ("All Albums");
 				else if (n_items > 1)
-					rv = _("All %i Albums").printf (n_items);
+					rv = _ ("All %i Albums").printf (n_items);
 				else
-					rv = _("No Albums");
+					rv = _ ("No Albums");
 			break;
 			case BrowserColumn.Category.YEAR:
 				if (n_items == 1)
-					rv = _("All Years");
+					rv = _ ("All Years");
 				else if (n_items > 1)
-					rv = _("All %i Years").printf (n_items);
+					rv = _ ("All %i Years").printf (n_items);
 				else
-					rv = _("No Years");
+					rv = _ ("No Years");
 			break;
 			case BrowserColumn.Category.RATING:
 				if (n_items >= 1)
-					rv = _("All Ratings");
+					rv = _ ("All Ratings");
 				else
-					rv = _("No Ratings");
+					rv = _ ("No Ratings");
 			break;
 		}
 
@@ -280,7 +256,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 		if (iter.stamp != this.stamp)
 			return;
 
-		var args = va_list (); // now call args.arg() to poll
+		var args = va_list (); // now call args.arg () to poll
 
 		while (true) {
 			int col = args.arg ();
@@ -288,7 +264,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 				return;
 			else if (col == 0) {
 				string val = args.arg ();
-				rows.set ((SequenceIter<string>)iter.user_data, val);
+				rows.set ( (SequenceIter<string>)iter.user_data, val);
 			}
 		}
 	}
@@ -297,8 +273,8 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 		if (iter.stamp != this.stamp)
 			return;
 
-		var path = new TreePath.from_string (((SequenceIter)iter.user_data).get_position().to_string());
-		rows.remove ((SequenceIter<string>)iter.user_data);
+		var path = new TreePath.from_string ( ( (SequenceIter)iter.user_data).get_position ().to_string ());
+		rows.remove ( (SequenceIter<string>)iter.user_data);
 		row_deleted (path);
 	}
 
@@ -362,7 +338,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 			}
 		}
 
-		if(sort_direction == SortType.DESCENDING)
+		if (sort_direction == SortType.DESCENDING)
 			rv = (rv > 0) ? -1 : 1;
 
 		return rv;
