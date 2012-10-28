@@ -20,8 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using TagLib;
-using GLib;
 using Gee;
 
 public class Noise.FileOperator : Object {
@@ -77,7 +75,7 @@ public class Noise.FileOperator : Object {
 		} );
 
         // Use right encoding
-        ID3v2.set_default_text_encoding (ID3v2.Encoding.UTF8);
+        TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
 	}
 
 	public void resetProgress(int items) {
@@ -91,24 +89,24 @@ public class Noise.FileOperator : Object {
         return FileUtils.is_valid_content_type (content_type, App.get_media_content_types ());
 	}
 	
-	public int count_music_files(GLib.File music_folder, ref LinkedList<string> files) {
-		GLib.FileInfo file_info = null;
+	public int count_music_files(File music_folder, ref LinkedList<string> files) {
+		FileInfo file_info = null;
 		
 		try {
 			var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file = music_folder.get_child (file_info.get_name ());
 
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_content_type(file_info.get_content_type ())) {
+				if(file_info.get_file_type() == FileType.REGULAR && is_valid_content_type(file_info.get_content_type ())) {
 					index++;
 					files.add (file.get_uri ());
 				}
-				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY) {
+				else if(file_info.get_file_type() == FileType.DIRECTORY) {
 					count_music_files (file, ref files);
 				}
 			}
 		}
-		catch(GLib.Error err) {
+		catch(Error err) {
 			warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
 		}
 
@@ -118,7 +116,7 @@ public class Noise.FileOperator : Object {
 	
 	public void save_media (Collection<Media> to_save) {
 		foreach(Media s in to_save) {
-			if(!s.isTemporary && !s.isPreview && GLib.File.new_for_uri(s.uri).get_path().has_prefix(Settings.Main.instance.music_folder))
+			if(!s.isTemporary && !s.isPreview && File.new_for_uri(s.uri).get_path().has_prefix(Settings.Main.instance.music_folder))
 				toSave.offer(s);
 		}
 		
@@ -139,7 +137,7 @@ public class Noise.FileOperator : Object {
 			
 			if(Settings.Main.instance.write_metadata_to_file) {
 				TagLib.File tag_file;
-				tag_file = new TagLib.File(GLib.File.new_for_uri(s.uri).get_path());
+				tag_file = new TagLib.File(File.new_for_uri(s.uri).get_path());
 				
 				if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
 					try {
@@ -167,12 +165,12 @@ public class Noise.FileOperator : Object {
 		}
 	}
 	
-	public GLib.File? get_new_destination(Media s) {
-		GLib.File dest;
+	public File? get_new_destination(Media s) {
+		File dest;
 		
 		try {
 			/* initialize file objects */
-			GLib.File original = GLib.File.new_for_uri(s.uri);
+			File original = File.new_for_uri(s.uri);
 			
 			var ext = "";
 			if(s.uri.has_prefix("cdda://"))
@@ -180,7 +178,7 @@ public class Noise.FileOperator : Object {
 			else
 				ext = get_extension(s.uri);
 			
-			dest = GLib.File.new_for_path(Path.build_path("/", Settings.Main.instance.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " " + s.get_display_title ().replace("/", "_") + ext));
+			dest = File.new_for_path(Path.build_path("/", Settings.Main.instance.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " " + s.get_display_title ().replace("/", "_") + ext));
 			
 			if(original.get_path() == dest.get_path()) {
 				debug("File is already in correct location\n");
@@ -188,7 +186,7 @@ public class Noise.FileOperator : Object {
 			}
 			
 			string extra = "";
-			while((dest = GLib.File.new_for_path(Path.build_path("/", Settings.Main.instance.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " " + s.get_display_title ().replace("/", "_") + extra + ext))).query_exists()) {
+			while((dest = File.new_for_path(Path.build_path("/", Settings.Main.instance.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " " + s.get_display_title ().replace("/", "_") + extra + ext))).query_exists()) {
 				extra += "_";
 			}
 			
@@ -196,7 +194,7 @@ public class Noise.FileOperator : Object {
 			if(!dest.get_parent().query_exists())
 				dest.get_parent().make_directory_with_parents(null);
 		}
-		catch(GLib.Error err) {
+		catch(Error err) {
 			debug("Could not find new destination!: %s\n", err.message);
 		}
 		
@@ -205,11 +203,11 @@ public class Noise.FileOperator : Object {
 	
 	public void update_file_hierarchy(Media s, bool delete_old, bool emit_update) {
 		try {
-			GLib.File dest = get_new_destination(s);
+			File dest = get_new_destination(s);
 			if(dest == null)
 				return;
 			
-			GLib.File original = GLib.File.new_for_uri(s.uri);
+			File original = File.new_for_uri(s.uri);
 			
 			/* copy the file over */
 			bool success = false;
@@ -248,7 +246,7 @@ public class Noise.FileOperator : Object {
 				}
 			}
 		}
-		catch(GLib.Error err) {
+		catch(Error err) {
 			warning("Could not copy imported media %s to media folder: %s\n", s.uri, err.message);
 		}
 	}
@@ -257,7 +255,7 @@ public class Noise.FileOperator : Object {
 		var dummy_list = new LinkedList<string>();
 		foreach(string s in toRemove) {
 			try {
-				var file = GLib.File.new_for_uri(s);
+				var file = File.new_for_uri(s);
 				file.trash();
 				
 				var old_folder_items = count_music_files(file.get_parent(), ref dummy_list);
@@ -274,7 +272,7 @@ public class Noise.FileOperator : Object {
 					}
 				}
 			}
-			catch(GLib.Error err) {
+			catch(Error err) {
 				warning("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s, err.message);
 				
 				//tell the user the file could not be moved and ask if they'd like to delete permanently instead.
@@ -322,11 +320,12 @@ public class Noise.FileOperator : Object {
 		var internals = new LinkedList<int>();
 		var externals = new LinkedList<string>();
 		
+		// FIXME: only the first name? how about the rest?!
 		lm.start_file_operations("Importing <b>" + names[0] + "</b> to Library...");
 		
 		foreach(string path in paths[0]) {
 			Media s;
-			if( (s = lm.media_from_file(path)) != null)
+			if( (s = lm.media_from_file(File.new_for_path (path))) != null)
 				internals.add(s.rowid);
 
 				externals.add(path);
@@ -371,12 +370,7 @@ public class Noise.FileOperator : Object {
 		all_new_imports.add(m);
 		++index;
 
-#if HAVE_PODCASTS		
-		// check if we should guess as a podcast
-		if(m.genre.down().contains("podcast") || m.length > 9000) // OVER 9000!!!!! aka 15 minutes
-			m.mediatype = 1;
-#endif
-		if(new_imports.size >= 200) {
+		if (new_imports.size >= 200) {
 			lm.add_media (new_imports); // give user some feedback
 			new_imports.clear();
 		}

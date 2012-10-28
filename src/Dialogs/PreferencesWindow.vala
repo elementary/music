@@ -251,6 +251,8 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
         add_subsection (_("Music Folder Location"), folder_contents);
 
         library_filechooser.set_current_folder (Settings.Main.instance.music_folder);
+        library_filechooser.set_local_only (true);
+        library_filechooser.set_select_multiple (false);
 
         if (lm.doing_file_operations ()) {
             library_filechooser.set_sensitive (false);

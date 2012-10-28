@@ -21,8 +21,6 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gee;
-
 // TODO: REWRITE TO SUPPORT ANY DEVICE
 
 public class Noise.DeviceViewWrapper : ViewWrapper {
@@ -51,15 +49,14 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
         set_media_async (d.get_medias ());
     }
 
-    void import_request (Gee.LinkedList<Media> to_import) {
-        if (!lm.doing_file_operations()) {
+    private void import_request (Gee.LinkedList<Media> to_import) {
+        if (!lm.doing_file_operations())
             d.transfer_to_library (to_import);
-        }
     }
-    
-    void sync_finished(bool success) {
-        if(hint == ViewWrapper.Hint.DEVICE_AUDIO)
-            set_media_async (d.get_songs());
+
+    private void sync_finished(bool success) {
+        if (hint == ViewWrapper.Hint.DEVICE_AUDIO)
+            set_media_async (d.get_songs ());
     }
 }
 

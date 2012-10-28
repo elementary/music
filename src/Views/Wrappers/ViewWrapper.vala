@@ -467,7 +467,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         embedded_alert.set_alert (_("No media"), "", null, true, Gtk.MessageType.INFO);
     }
 
-    private int compute_populate_priority () {
+    private int compute_update_priority () {
         int priority = 0;
 
         priority = (is_current_wrapper) ? Priority.HIGH_IDLE + 30 : Priority.DEFAULT_IDLE;
@@ -486,7 +486,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     public async void set_media_async (Gee.Collection<Media> new_media) {
-        Idle.add_full (compute_populate_priority (), () => {
+        Idle.add_full (compute_update_priority (), () => {
             if (!widgets_ready)
                 return true;
             set_media (new_media);
@@ -497,7 +497,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     public async void add_media_async (Gee.Collection<Media> to_add) {
-        Idle.add_full (compute_populate_priority (), () => {
+        Idle.add_full (compute_update_priority (), () => {
             if (!widgets_ready)
                 return true;
             add_media (to_add);
@@ -508,7 +508,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     public async void remove_media_async (Gee.Collection<Media> to_remove) {
-        Idle.add_full (compute_populate_priority (), () => {
+        Idle.add_full (compute_update_priority (), () => {
             if (!widgets_ready)
                 return true;
             remove_media (to_remove);
@@ -519,7 +519,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     public async void update_media_async (Gee.Collection<Media> to_update) {
-        Idle.add_full (compute_populate_priority (), () => {
+        Idle.add_full (compute_update_priority (), () => {
             if (!widgets_ready)
                 return true;
             update_media (to_update);

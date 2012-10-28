@@ -61,7 +61,6 @@ set(CLIENT_SOURCE
     Views/Wrappers/HistoryViewWrapper.vala
     Views/Wrappers/QueueViewWrapper.vala
     Views/Wrappers/DeviceViewWrapper.vala
-    Views/Wrappers/NetworkDeviceViewWrapper.vala
     Views/Wrappers/PlaylistViewWrapper.vala
     Views/DeviceView.vala
     Views/DeviceSummaryWidget.vala

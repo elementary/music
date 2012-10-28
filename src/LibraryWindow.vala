@@ -42,7 +42,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool media_considered_previewed { get; set; default = false; }
     private bool media_half_played_sended   { get; set; default = false; }
 
-    public bool dragging_from_music         { get; set; default = false; } // TODO: make private
+    public bool dragging_from_music         { get; set; default = false; }
     public bool initialization_finished     { get; private set; default = false; }
 
 
@@ -56,14 +56,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.ToolButton playButton;
     private Gtk.ToolButton nextButton;
 
-    public Granite.Widgets.SidebarPaned main_hpaned         { get; private set; } // TODO: make private
-    public SideTreeView               sideTree              { get; private set; }
-    public ViewContainer              view_container        { get; private set; } // TODO: make private
-    public TopDisplay                 topDisplay            { get; private set; } // TODO: make private
-    private FixedBin                  topDisplayBin         { get; private set; }
-    public Widgets.ViewSelector       viewSelector          { get; private set; } // TODO: make private
-    public Granite.Widgets.SearchBar  searchField           { get; private set; } // TODO: make private
-    public Widgets.StatusBar          statusbar             { get; private set; } // TODO: make private
+    public Granite.Widgets.ThinPaned main_hpaned       { get; private set; }
+    public SideTreeView               sideTree         { get; private set; }
+    public ViewContainer              view_container   { get; private set; }
+    public TopDisplay                 topDisplay       { get; private set; }
+    private FixedBin                  topDisplayBin    { get; private set; }
+    public Widgets.ViewSelector       viewSelector     { get; private set; }
+    public Granite.Widgets.SearchBar  searchField      { get; private set; }
+    public Widgets.StatusBar          statusbar        { get; private set; }
 
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
@@ -258,7 +258,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         /** Main layout **/
 
         verticalBox           = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        main_hpaned           = new Granite.Widgets.SidebarPaned ();
+        main_hpaned           = new Granite.Widgets.ThinPaned ();
         view_container_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         view_container        = new ViewContainer ();
         sideTree              = new SideTreeView (library_manager, this);
@@ -302,11 +302,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // add mounts to side tree view
         library_manager.device_manager.loadPreExistingMounts();
 
-        int i = Settings.Main.instance.last_media_playing;
-        if(i != 0 && library_manager.media_from_id (i) != null && File.new_for_uri (library_manager.media_from_id(i).uri).query_exists()) {
-            App.player.playMedia (library_manager.media_from_id (i), true);
-        }
-
         build_main_views ();
         load_playlists ();
         sideTree.resetView ();
@@ -317,9 +312,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         initialization_finished = true;
 
-        if (library_manager.media_ids ().size == 0)
+        if (library_manager.media_count () < 1)
             setMusicFolder (Environment.get_user_special_dir(UserDirectory.MUSIC));
-
 
         /* Connect events to functions */
         previousButton.clicked.connect(previousClicked);
@@ -330,6 +324,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         searchField.set_text (Settings.Main.instance.search_string);
 
         debug ("DONE WITH USER INTERFACE");
+
+        int last_playing_id = Settings.Main.instance.last_media_playing;
+
+        if (last_playing_id > 0) {
+            var last_playing_media = library_manager.media_from_id (last_playing_id);
+            if (last_playing_media != null && last_playing_media.file.query_exists ())
+                App.player.playMedia (last_playing_media, true);
+        }
     }
 
 
@@ -459,30 +461,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             (view as ViewWrapper).set_as_current_view ();
     }
 
-
-    /**
-     * Description:
-     * Builds the views (view wrapper) and adds the respective element to the sidebar TreeView.
-     *
-     * @param name The name of the item in the sidebar
-     * @param widget Widget containing the custom view
-     * @param tree The sidebar tree to build it on [if NULL is passed it uses the default tree]
-     *
-     * IMPORTANT: Currently every item added through this method will be put under the Network category
-     */
-#if 0
-    public ViewWrapper add_custom_view (string name, Gtk.Widget widget) {
-        var view_wrapper = new ViewWrapper.with_view (widget);
-        sideTree.add_item (view_wrapper, name);
-
-        /* Pack view wrapper into the main views */
-        if (view_container.add_view (view_wrapper) < 0)
-            critical ("Failed to append view '%s' to %s's main views", name, App.instance.get_name ());
-
-        return view_wrapper;
-    }
-#endif
-
     /**
      * Builds and sets up the default views. That includes main sidebar elements
      * and categories, which at the same time wrap treeviews, icon views, welcome screens, etc.
@@ -561,14 +539,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 view_container.add_view (dv);
             }
         }
-        else if(o is NetworkDevice) {
+        /*else if(o is NetworkDevice) {
 
             var nd_setup = new TreeViewSetup (ListColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.NETWORK_DEVICE);
             var view = new NetworkDeviceViewWrapper (this, nd_setup, (Noise.NetworkDevice)o);
             add_view (((Noise.NetworkDevice)o).getDisplayName(), view, out iter);
 
             view.set_media_async (((Noise.NetworkDevice)o).get_medias ());
-        }
+        }*/
 
         return iter;
     }
@@ -656,23 +634,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Set the title
         var m = App.player.media_info.media;
-
-        string markup = "<b>%s</b>".printf (String.escape (m.get_display_title ()));
-
-        // We don't use the Media.get_display_* for the artist and albums because
-        // there's no point in showing "unknown" there. If the info is not available,
-        // just skip it.
-        string artist = m.artist;
-        if (Media.is_valid_string_field (artist))
-            /// String template used to show "SongName by ArtistName"
-            markup += _(" by %s").printf ("<b>" + String.escape (artist) + "</b>");
-
-        string album = m.album;
-        if (Media.is_valid_string_field (album))
-            /// String template used to show "SongName ... on AlbumName"
-            markup += _(" on %s").printf ("<b>" + String.escape (album) + "</b>");
-
-        topDisplay.set_label_markup (markup);
+        topDisplay.set_label_markup (m != null ? m.get_title_markup () : "");
     }
 
 
@@ -939,28 +901,29 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    public void resetSideTree(bool clear_views) {
-        sideTree.resetView();
+    public void resetSideTree (bool clear_views) {
+        sideTree.resetView ();
 
         // clear all other playlists, reset to Music, populate music
-        if(clear_views) {
-            message("clearing all views...\n");
-            view_container.get_children().foreach( (w) => {
-                if(w is ViewWrapper && !(w is DeviceViewWrapper)) {
-                    ViewWrapper vw = (ViewWrapper)w;
+        if (clear_views) {
+            message ("clearing all views...\n");
+
+            view_container.get_children ().foreach( (w) => {
+                if (w is ViewWrapper && !(w is DeviceViewWrapper)) {
+                    ViewWrapper vw = w as ViewWrapper;
                     debug("doing clear\n");
                     //vw.do_update(vw.current_view, new LinkedList<int>(), true, true, false);
-                    vw.set_media_async (new LinkedList<Media>());
+                    vw.set_media_async (new Gee.LinkedList<Media> ());
                     debug("cleared\n");
                 }
             });
+
             message("all cleared\n");
         }
         else {
-            ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-            //vw.do_update(vw.current_view, library_manager.media_ids(), true, true, false);
-            //vw.column_browser.populate (library_manager.media_ids());
-            vw.set_media_async (library_manager.media_from_ids (library_manager.media_ids()));
+            var vw = sideTree.getWidget (sideTree.library_music_iter) as ViewWrapper;
+            if (vw != null)
+                vw.set_media_async.begin (library_manager.media ());
         }
     }
 
@@ -1027,7 +990,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (folder == "" || (folder == Settings.Main.instance.music_folder && library_manager.media_count () > 0))
             return;
 
-        if (library_manager.media_ids().size > 0 || library_manager.playlist_count() > 0) {
+        if (library_manager.media_count () > 0 || library_manager.playlist_count() > 0) {
             var smfc = new SetMusicFolderConfirmation(library_manager, this, folder);
             smfc.finished.connect( (cont) => {
                 if(cont) {

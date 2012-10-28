@@ -22,8 +22,6 @@
  */
 
 public class Noise.MusicViewWrapper : ViewWrapper {
-    Gee.HashMap<int, Device> welcome_screen_keys = new Gee.HashMap<int, Device> ();
-
     public MusicViewWrapper (LibraryWindow lw) {
         base (lw, Hint.MUSIC);
         build_async.begin ();
@@ -83,60 +81,29 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         update_media_async (to_update);    
     }
     
-    private void welcome_screen_activated(int index) {
-        if(index == 0) {
-            if(!lm.doing_file_operations()) {
-                string folder = "";
-                var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), lw,
-                                       Gtk.FileChooserAction.SELECT_FOLDER,
-                                       Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                                       Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
-                file_chooser.set_local_only(true);
+    private void welcome_screen_activated (int index) {
+        if (index == 0) {
+            if (!lm.doing_file_operations ()) {
+                var file_chooser = new Gtk.FileChooserDialog (_("Select Music Folder"), lw,
+                                                              Gtk.FileChooserAction.SELECT_FOLDER,
+                                                              Gtk.Stock.CANCEL,
+                                                              Gtk.ResponseType.CANCEL,
+                                                              Gtk.Stock.OPEN,
+                                                              Gtk.ResponseType.ACCEPT);
 
-                if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-                    folder = file_chooser.get_filename();
-                }
+                file_chooser.set_local_only (true);
+                file_chooser.set_select_multiple (false);
+                file_chooser.set_current_folder (Settings.Main.instance.music_folder);
+
+                string? folder = null;
+
+                if (file_chooser.run () == Gtk.ResponseType.ACCEPT)
+                    folder = file_chooser.get_filename ();
 
                 file_chooser.destroy ();
 
-                if (folder != "")
+                if (!String.is_empty (folder, true))
                     lw.setMusicFolder (folder);
-            }
-        }
-        else {
-            if(lm.doing_file_operations())
-                return;
-
-            Device d = welcome_screen_keys.get(index);
-
-            if(d.getContentType() == "cdrom") {
-                // TODO: Move or add Sidebar API method. This is sidebar's internal stuff!
-                lw.sideTree.expandItem(lw.sideTree.convertToFilter(lw.sideTree.devices_iter), true);
-                lw.sideTree.setSelectedIter(lw.sideTree.convertToFilter(lw.sideTree.devices_cdrom_iter));
-                lw.sideTree.sideListSelectionChange();
-
-                var to_transfer = new Gee.LinkedList<Media>();
-                foreach(var m in d.get_medias())
-                    to_transfer.add(m);
-
-                d.transfer_to_library(to_transfer);
-            }
-            else {
-                // ask the user if they want to import media from device that they don't have in their library (if any)
-                // this should be same as DeviceView
-                if(!lm.doing_file_operations() && Settings.Main.instance.music_folder != "") {
-                    var found = new Gee.LinkedList<int>();
-                    var not_found = new Gee.LinkedList<Media>();
-                    lm.media_from_name (d.get_medias(), ref found, ref not_found);
-                    
-                    if(not_found.size > 0) {
-                        TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog (lw, d, not_found);
-                        tfdd.show ();
-                    }
-                    else {
-                        lw.doAlert (_("No External Songs"), _("All the songs in this device are already in your library."));
-                    }
-                }
             }
         }
     }

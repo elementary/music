@@ -74,8 +74,8 @@ public class Noise.FastView : TreeView {
 		return showing;
 	}
 	
-	public int get_index_from_iter(TreeIter iter) {
-		return (int)iter.user_data;
+	public static int get_index_from_iter(TreeIter iter) {
+		return (int) iter.user_data;
 	}
 	
 	public Object? get_object_from_index(int index) {
