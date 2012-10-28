@@ -76,6 +76,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void media_half_played (); // send after the half of the song
     public signal void update_media_info (); // send after 3 seconds
 
+#if HAVE_LIBNOTIFY
+    private Notify.Notification? notification = null;
+#endif
+
     public LibraryWindow () {
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
         this.library_manager.music_counted.connect (musicCounted);
@@ -326,16 +330,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         debug ("DONE WITH USER INTERFACE");
     }
 
-
+    public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null,
 #if HAVE_LIBNOTIFY
-    private Notify.Notification? notification = null;
-    private const int DEFAULT_NOTIFICATION_URGENCY = Notify.Urgency.NORMAL;
+        int urgency = Notify.Urgency.NORMAL
 #else
-    private const int DEFAULT_NOTIFICATION_URGENCY = 0;
+        int urgency = 0
 #endif
-
-
-    public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, int urgency = DEFAULT_NOTIFICATION_URGENCY) {
+        ) {
 #if HAVE_LIBNOTIFY
         // Don't show notifications if the window is active
         if (!Settings.Main.instance.show_notifications || this.is_active)
