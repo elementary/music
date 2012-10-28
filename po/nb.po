@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-21 14:57-0500\n"
-"PO-Revision-Date: 2012-08-02 23:24+0000\n"
-"Last-Translator: Skandee <Unknown>\n"
+"PO-Revision-Date: 2012-10-27 23:26+0000\n"
+"Last-Translator: kingu <comradekingu@gmail.com>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-22 04:57+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-10-28 05:00+0000\n"
+"X-Generator: Launchpad (build 16194)\n"
 "Language: nb\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Media.vala:35
 msgid "Unknown"
-msgstr ""
+msgstr "Ukjente"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -77,7 +77,7 @@ msgstr "%s, %s og %s"
 #. / for more details.
 #: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:151
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%m/%e/%Y %l:%M %p"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/TopDisplay.vala:69
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -98,15 +98,15 @@ msgstr "Slett Gjeldende"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "Sorter etter album"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "Sorter etter liste"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "Kolonneoversikt"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
@@ -188,19 +188,19 @@ msgstr ""
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Spill kø (%Y-%b-%e %l:%M %p)"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Avspill historikk (%Y-%b-%e %l:%M %p)"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
-msgstr ""
+msgstr "Ukjent spilleliste"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
-msgstr ""
+msgstr "Eksportér spilleliste"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
@@ -285,7 +285,7 @@ msgstr "Legg til spilleliste"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:139
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Ny smart spilleliste"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:185
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:218
@@ -315,11 +315,11 @@ msgstr "Skjul infopanel"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr ""
+msgstr "Lytt til musikk"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr ""
+msgstr "Musikkavspiller"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
@@ -496,11 +496,11 @@ msgstr[1] "%u sanger"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:569
 msgid "No media"
-msgstr ""
+msgstr "Inget medium"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:573
 msgid "Sorry, there is no music that matches your search"
-msgstr ""
+msgstr "Beklager, fant ikke noe musikk som samsvarer med ditt søk."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
@@ -552,7 +552,7 @@ msgstr "Enhet er utilgjengelig"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s fikk ikke tilgang til nettverksenhet"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
@@ -590,8 +590,8 @@ msgstr "Ikke vurdert"
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i Stjerne"
+msgstr[1] "%i Stjerner"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Genres"
@@ -706,41 +706,41 @@ msgstr "Importer %i sang"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:700
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:714
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:721
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:245
 msgid "Never"
-msgstr ""
+msgstr "Aldri"
 
 #. / Sample string used to measure the desired size of the Title column in the list view.
 #. / Should be as long as a common song title in your language.
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:778
 msgid "Sample Title"
-msgstr ""
+msgstr "Eksempeltittel"
 
 #. / Sample string used to measure the desired size of the Artist column in the list view.
 #. / Should be as long as a common artist name in your language.
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:787
 msgid "Sample Artist"
-msgstr ""
+msgstr "Eksempelartist"
 
 #. / Sample string used to measure the desired size of the Album column in the list view.
 #. / Should be as long as a common album name in your language.
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:793
 msgid "Sample Album"
-msgstr ""
+msgstr "Eksempelalbum"
 
 #. / Sample string used to measure the desired size of the Genre column in the list view.
 #. / Should be as long as a common genre name in your language.
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:810
 msgid "Sample Genre"
-msgstr ""
+msgstr "Eksempelsjanger"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:38
 msgid "N/A"
-msgstr ""
+msgstr "Ikke tilgjengelig"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:220
 #, c-format
@@ -749,11 +749,11 @@ msgstr "%i kbps"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/GenericList.vala:138
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Automatisk kolonnejustering"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/GenericList.vala:145
 msgid "Display Album Art"
-msgstr ""
+msgstr "Vis albumcover"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:65
 msgid "#"
@@ -850,7 +850,7 @@ msgstr "%s av %s"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:183
 msgid "Rescan Music Folder"
-msgstr "Resan musikkmappen."
+msgstr "Skann musikkmappen på nytt."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:186
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:146
@@ -869,13 +869,13 @@ msgstr "Historikk"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:654
 #, c-format
 msgid " by %s"
-msgstr ""
+msgstr " av %s"
 
 #. / String template used to show "SongName ... on AlbumName"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:659
 #, c-format
 msgid " on %s"
-msgstr ""
+msgstr " på %s"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:866
 msgid "Import Music"
@@ -973,7 +973,7 @@ msgstr "Fjern fra %s"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr ""
+msgstr "Fjern %d sanger fra %s?"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
@@ -989,7 +989,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"Dette vil fjerne sangen fra ditt bibliotek samt enhver enhet som automatisk "
+"synkroniseres med %s."
 msgstr[1] ""
+"Dette vil fjerne sangene fra ditt bibliotek samt enhver enhet som automatisk "
+"synkroniseres med %s."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -1198,7 +1202,7 @@ msgstr ""
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:240
 msgid "Select Music Folder"
-msgstr ""
+msgstr "Velg musikkmappe"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:247
 msgid "Music Folder Location"
@@ -1214,15 +1218,15 @@ msgstr ""
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:264
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Hold musikkfolder organisert"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:265
 msgid "Copy files to Music folder when adding to Library"
-msgstr ""
+msgstr "Kopier filer til musikkfolder ved import til bibliotek"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:267
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Skriv metadata til fil"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:279
 msgid "Library Management"
@@ -1230,23 +1234,23 @@ msgstr "Organisering av bibliotek"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:286
 msgid "Use Noise as the default Music application"
-msgstr ""
+msgstr "Bruk Noise som forvalgt musikkavspiller"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:292
 msgid "Show notifications"
-msgstr ""
+msgstr "Vis varslingsmeldinger"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:299
 msgid "Minimize window instead of closing it when a song is being played"
-msgstr ""
+msgstr "Minimer vinduet istedenfor å lukke det når en sang blir avspilt."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:301
 msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
+msgstr "Gjem vinduet istedenfor å lukke det når en sang blir avspilt."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:307
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Skrivebordsintegrering"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
@@ -1398,7 +1402,7 @@ msgstr "Mediatype"
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:292
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Tekster ikke funnet for %s"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:537
 msgid "Podcast"
@@ -1549,23 +1553,23 @@ msgstr "Liknende Media"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
-msgstr ""
+msgstr "Lignende"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr ""
+msgstr "Gi Noise tilgang"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "Mislykket. Klikk for å gjøre et nytt forsøk."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "Skråbbling allerede påslått"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
-msgstr ""
+msgstr "Fullført!"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
@@ -1573,39 +1577,41 @@ msgstr ""
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:40
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Klikk for å gjenta Last.fm innlogging"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"For å tillate Last.fm integrasjon må du gi rettigheter til Noise. Du trenger "
+"bare å gjøre dette en gang."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:68
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Last.fm integrasjon"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Henter lignende sanger"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
-msgstr ""
+msgstr "Finner sanger lignende %s av %s"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
 msgid "Similar to %s"
-msgstr ""
+msgstr "Lignende %s"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 msgid "No similar songs found"
-msgstr ""
+msgstr "Ingen sanger funnet"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 #, c-format
@@ -1614,10 +1620,13 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s kunne ikke finne sanger lignende %s av %s i ditt bibliotek. Besørg at "
+"sanginfo er korrekt og at du har internettilknytning. For noen sanger vil "
+"det ikke finnes lignende treff."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
-msgstr ""
+msgstr "Oversikt lignende sanger"
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
@@ -1626,6 +1635,9 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"I denne framtoningen vil %s automatisk finne sanger lignende den du spiller "
+"for øyeblikket. Du kan starte avspillingen av disse sangene med en gang "
+"eller legge dem til i spillelisten."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:74
 msgid "Unknown Title"
@@ -1695,17 +1707,17 @@ msgstr ""
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:511
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Synkroniserer <b>%s</b>..."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:658
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Fjerner fra <b>%s</b>..."
 
 #: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:881
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Importerer <b>%s</b> til bibliotek..."
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Last ned nye episoder"
