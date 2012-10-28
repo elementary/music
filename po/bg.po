@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-20 21:37-0600\n"
+"POT-Creation-Date: 2012-10-21 14:57-0500\n"
 "PO-Revision-Date: 2012-09-06 12:21+0000\n"
 "Last-Translator: Veselin Trakiyski <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -15,972 +15,450 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-21 05:11+0000\n"
+"X-Launchpad-Export-Date: 2012-10-22 04:57+0000\n"
 "X-Generator: Launchpad (build 16165)\n"
 "Language: bg\n"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
+#. / Used for unknown titles, artists, or album names.
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Media.vala:35
+msgid "Unknown"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d секунда"
 msgstr[1] "%d секунди"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:69
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:44
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u минута"
 msgstr[1] "%u минути"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:46
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
 msgstr[0] "%u секунда"
 msgstr[1] "%u секунди"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:47
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:78
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:82
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:90
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:78
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:82
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
 msgstr "%s и %s"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:63
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:63
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u ден"
 msgstr[1] "%u дена"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:66
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u час"
 msgstr[1] "%u часа"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:76
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s и %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:151
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:151
 msgid "%m/%e/%Y %l:%M %p"
 msgstr ""
 
-#. / Used for unknown titles, artists, or album names.
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:35
-msgid "Unknown"
-msgstr ""
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/TopDisplay.vala:69
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:58
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:66
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:153
+msgid "Cancel"
+msgstr "Отказ"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:37
-msgid "Listen to music"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:38
-msgid "Music Player"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:203
-#, c-format
-msgid "Importing music from %s..."
-msgstr "Импортиране на музика от %s..."
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:251
-msgid "Adding files to library..."
-msgstr "Добавяне на файлове в библиотеката..."
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:300
-#, c-format
-msgid "Adding music from %s to library..."
-msgstr "Добавяне на музика от %s в библиотеката..."
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:328
-msgid "Rescanning music for changes. This may take a while..."
-msgstr ""
-"Пресканиране на музиката за промени. Това може да отнеме известно време..."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/ArtistInfo.vala:27
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:109
-msgid "Unknown Artist"
-msgstr "Неизвестен изпълнител"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/Playlist.vala:203
-msgid "Radio Station"
-msgstr "Радио станция"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Неизвестна песен"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:94
-msgid "Unknown Album"
-msgstr "Неизвестен албум"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:49
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/PresetList.vala:49
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Автоматично"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:50
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
 msgstr "Изтриване на текущи"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:60
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:93
-msgid "Off"
-msgstr "Изключено"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:60
-msgid "Enable Repeat"
-msgstr "Включване на повтаряне"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:61
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:535
-msgid "Song"
-msgstr "Песен"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:61
-msgid "Repeat Song"
-msgstr "Повтаряне на песен"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:62
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:187
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:80
-msgid "Album"
-msgstr "Албум"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:62
-msgid "Repeat Album"
-msgstr "Повтаряне на албум"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:63
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:185
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:77
-msgid "Artist"
-msgstr "Изпълнител"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:63
-msgid "Repeat Artist"
-msgstr "Повтаряне на изпълнител"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:64
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:94
-msgid "All"
-msgstr "Всички"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:64
-msgid "Repeat All"
-msgstr "Повтаряне на всички"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:93
-msgid "Enable Shuffle"
-msgstr "Включване на разбъркване"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:94
-msgid "Disable Shuffle"
-msgstr "Изключване на разбъркване"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:127
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:138
-msgid "Add Playlist"
-msgstr "Добавяне на плейлист"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:139
-msgid "Add Smart Playlist"
-msgstr "Добавяне на умен плейлист"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:185
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:218
-msgid "Hide"
-msgstr "Скриване"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:185
-msgid "Show Equalizer"
-msgstr "Показване на еквалайзер"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:186
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:219
-msgid "Show"
-msgstr "Показване"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:186
-msgid "Hide Equalizer"
-msgstr "Скриване на еквалайзер"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:218
-msgid "Show Info Panel"
-msgstr "Показване на панела с информация"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:219
-msgid "Hide Info Panel"
-msgstr "Скриване на панела с информация"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:74
-msgid "Sync"
-msgstr "Синхронизиране"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "Безплатно"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:380
-msgid "Using %s of %s (%.2f%)"
-msgstr "Използват се %s от %s (%.2f%)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:71
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:110
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:179
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:182
 msgid "Import to Library"
 msgstr "Импортиране в библиотеката"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:77
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:74
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:237
+msgid "Sync"
+msgstr "Синхронизиране"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:77
 msgid "Eject"
 msgstr "Изваждане"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:88
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:107
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:88
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "New Playlist"
 msgstr "Нов плейлист"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:89
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:89
 msgid "New Smart Playlist"
 msgstr "Нов умен плейлист"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:90
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:90
 msgid "Edit"
 msgstr "Редактиране"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:91
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:91
 msgid "Remove"
 msgstr "Премахване"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:92
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:92
 msgid "Save as Playlist"
 msgstr "Запазване като плейлист"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:93
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:93
 msgid "Export..."
 msgstr "Експортиране..."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:94
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:94
 msgid "Import Playlists"
 msgstr "Импортиране на плейлисти"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:132
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:132
 msgid "Library"
 msgstr "Библиотека"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:133
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:133
 msgid "Devices"
 msgstr "Устройства"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:134
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:134
 msgid "Network"
 msgstr "Мрежа"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:135
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:135
 msgid "Playlists"
 msgstr "Плейлисти"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:610
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:610
 msgid "This device is syncing"
 msgstr "Устройството се синхронизира"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:610
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:610
 msgid "Please wait until the current sync is finished to do this action."
 msgstr ""
 "Моля,, изчакайте текущата синхронизация да приключи преди да направите това."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:612
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:612
 msgid "This device is in transfer"
 msgstr "Устройството е в процес на прехвърляне"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:612
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:612
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
 "Моля, изчакайте текущото прехвърляне да приключи преди да направите това."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:731
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:733
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:735
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
 msgstr "Неизвестен плейлист"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:745
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
 msgstr "Експортиране на плейлиста"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:829
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
 msgstr "Плейлист"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:842
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:842
 #, c-format
 msgid "Import %s"
 msgstr "Импортиране на %s"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/TopDisplay.vala:69
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:153
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:66
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:58
-msgid "Cancel"
-msgstr "Отказ"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "Безплатно"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:83
-msgid "Equalizer"
-msgstr "Еквалайзер"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:380
+msgid "Using %s of %s (%.2f%)"
+msgstr "Използват се %s от %s (%.2f%)"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:150
-msgid "Save preset"
-msgstr "Запазване на фиксирана настройка"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:60
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:93
+msgid "Off"
+msgstr "Изключено"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:158
-msgid "Close"
-msgstr "Затваряне"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:60
+msgid "Enable Repeat"
+msgstr "Включване на повтаряне"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:414
-#, c-format
-msgid "%s (Custom)"
-msgstr "%s (По избор)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:416
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (%i по избор)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:420
-msgid "Custom Preset"
-msgstr "Фиксирана настройка по избор"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:422
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Фиксирана настройка по избор %i"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:47
-msgid "Not Imported Files"
-msgstr "Неимпортирани файлове"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:76
-#, c-format
-msgid "Unable to import %d items from %s"
-msgstr "Не могат да бъдат импортирани %d предмета от %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:65
-#, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s не можа да импортира %d предмета. Файловетe може да са повредени."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:66
-msgid "Move all corrupted files to trash"
-msgstr "Преместване на всички повредени файлове в кошчето"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:71
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Move to Trash"
-msgstr "Преместване в кошчето"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:72
-msgid "Ignore"
-msgstr "Игнориране"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:93
-msgid "del"
-msgstr "del"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:98
-msgid "File Location"
-msgstr "Местоположение на файла"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:125
-msgid "Select individual files to move to trash:"
-msgstr "Изберете индивидуални файлове за преместване в кошчето:"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "Експортиране на плейлисти"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "Задаване на папка за музика"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
-msgid "Set Music Folder?"
-msgstr "Задаване за папка за музика?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Сигурни ли сте, че искате да зададете %s като папката за музика? Това ще "
-"нулира библиотеката ви и ще премахне плейлистите ви."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:135
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
-msgid "Choose Music Folder"
-msgstr "Избиране на папка за музика"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
-msgid "Install Plugin"
-msgstr "Инсталиране на плъгин"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:64
-msgid "Do Nothing"
-msgstr "Да не се прави нищо"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
-msgid "Required GStreamer plugin not installed"
-msgstr "Нужният плъгин GStreamer не е инсталиран"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
-#, c-format
-msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
-msgstr ""
-"Плъгинът за медия тип %s не е инсталиран.\n"
-"Какво желаете да направите?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:75
-msgid "Metadata"
-msgstr "Метаданни"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:77
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:373
-msgid "Lyrics"
-msgstr "Текст"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:86
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:157
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:65
-msgid "Done"
-msgstr "Готово"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:173
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:344
-#, c-format
-msgid "Editing %s by %s"
-msgstr "Променя се %s на %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:175
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:346
-#, c-format
-msgid "Editing %s"
-msgstr "Променя се %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:178
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:349
-#, c-format
-msgid "Editing %i songs"
-msgstr "Променят се %i песни"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:184
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:71
-msgid "Title"
-msgstr "Заглавие"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:186
-msgid "Album Artist"
-msgstr "Изпълнител на албума"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:83
-msgid "Genre"
-msgstr "Жанр"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:189
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-msgid "Composer"
-msgstr "Композитор"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-msgid "Grouping"
-msgstr "Групиране"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-msgid "Comment"
-msgstr "Коментар"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:68
-msgid "Track"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:61
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:535
+msgid "Song"
 msgstr "Песен"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:193
-msgid "Disc"
-msgstr "Диск"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:61
+msgid "Repeat Song"
+msgstr "Повтаряне на песен"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:194
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:86
-msgid "Year"
-msgstr "Година"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:62
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:80
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:187
+msgid "Album"
+msgstr "Албум"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:92
-msgid "Rating"
-msgstr "Рейтинг"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:62
+msgid "Repeat Album"
+msgstr "Повтаряне на албум"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:197
-msgid "Media Type"
-msgstr "Тип медия"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:63
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:77
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:185
+msgid "Artist"
+msgstr "Изпълнител"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:292
-#, c-format
-msgid "Lyrics not found for %s"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:63
+msgid "Repeat Artist"
+msgstr "Повтаряне на изпълнител"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:64
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:94
+msgid "All"
+msgstr "Всички"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:64
+msgid "Repeat All"
+msgstr "Повтаряне на всички"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:93
+msgid "Enable Shuffle"
+msgstr "Включване на разбъркване"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:94
+msgid "Disable Shuffle"
+msgstr "Изключване на разбъркване"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:127
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:138
+msgid "Add Playlist"
+msgstr "Добавяне на плейлист"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:139
+msgid "Add Smart Playlist"
+msgstr "Добавяне на умен плейлист"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:185
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:218
+msgid "Hide"
+msgstr "Скриване"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:185
+msgid "Show Equalizer"
+msgstr "Показване на еквалайзер"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:186
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:219
+msgid "Show"
+msgstr "Показване"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:186
+msgid "Hide Equalizer"
+msgstr "Скриване на еквалайзер"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:218
+msgid "Show Info Panel"
+msgstr "Показване на панела с информация"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:219
+msgid "Hide Info Panel"
+msgstr "Скриване на панела с информация"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:37
+msgid "Listen to music"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:537
-msgid "Podcast"
-msgstr "Подкаст"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:64
-msgid "Import media to Library"
-msgstr "Импортиране на медия в библиотеката"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:65
-msgid "Continue Syncing"
-msgstr "Продължаване на синхронизацията"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:66
-msgid "Stop Syncing"
-msgstr "Спиране на синхронизацита"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:73
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Ако продължите синхронизацията, медия ще бъде премахната от %s, тъй като не "
-"са на списъка за синхронизация. Желаете ли първо да ги импортирате в "
-"библиотеката си?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:79
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr "Синхронизацията ще премахне %i предмета от %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:82
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr "Синхронизацията ще премахне 1 предмет от %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:183
-msgid "Preferences"
-msgstr "Предпочитания"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:221
-msgid "General"
-msgstr "Общи"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:240
-msgid "Select Music Folder"
-msgstr "Избиране на папка с музика"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:247
-msgid "Music Folder Location"
-msgstr "Местоположение на папката за музика"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:253
-msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
-msgstr ""
-"Необходимо е да изчакате предишни операции с файлове да приключат, преди да "
-"зададете вашата папката за музика"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:264
-msgid "Keep Music folder organized"
-msgstr "Автоматично организиране на папката с музика"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:265
-msgid "Copy files to Music folder when adding to Library"
-msgstr ""
-"Копиране на файлове в папката с музика когато са добавени в библиотеката"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:267
-msgid "Write metadata to file"
-msgstr "Записване на метаданни върху файл"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:279
-msgid "Library Management"
-msgstr "Управление на библиотеката"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:286
-msgid "Use Noise as the default Music application"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:38
+msgid "Music Player"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:292
-msgid "Show notifications"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:299
-msgid "Minimize window instead of closing it when a song is being played"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:301
-msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:307
-msgid "Desktop Integration"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
-msgid "Smart Playlist Editor"
-msgstr "Редактор на умен плейлист"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:71
-msgid "Name of Playlist"
-msgstr "Име на плейлиста"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:75
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:83
-msgid "Rules"
-msgstr "Правила"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:84
-msgid "Options"
-msgstr "Опции"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Playlist Title"
-msgstr "Име на плейлиста"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:93
-msgid "Match"
-msgstr "Съвпадение при"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:95
-msgid "any"
-msgstr "всяко"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "all"
-msgstr "всички"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:97
-msgid "of the following:"
-msgstr "от следните:"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:124
-msgid "Limit to"
-msgstr "Ограничаване до"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:126
-msgid "items"
-msgstr "предмета"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:89
-msgid "Bitrate"
-msgstr "Битрейт"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:101
-msgid "Date Added"
-msgstr "Дата на добавяне"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Released"
-msgstr "Дата на издаване"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:104
-msgid "Last Played"
-msgstr "Последно слушане"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:74
-msgid "Length"
-msgstr "Дължина"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-msgid "Playcount"
-msgstr "Брой на слушания"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-msgid "Skipcount"
-msgstr "Брой на пропускания"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:332
-msgid "is"
-msgstr "е"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:333
-msgid "contains"
-msgstr "съдържа"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:334
-msgid "does not contain"
-msgstr "не съдържа"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:366
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:380
-msgid "is exactly"
-msgstr "е точно"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:367
-msgid "is at most"
-msgstr "е най-много"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:368
-msgid "is at least"
-msgstr "е най-малко"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:381
-msgid "is within"
-msgstr "е в обсега на"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:382
-msgid "is before"
-msgstr "е преди"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "seconds"
-msgstr "секунди"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "дни назад"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:414
-msgid "kbps"
-msgstr "кб/сек."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-msgid "Import from Device"
-msgstr "Импортиране от устройство"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-#, c-format
-msgid "Import media from %s"
-msgstr "Импортиране на медия от %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
-#, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Следните файлове бяха намерени на %s, но не са в библиотекета ви. Изберете "
-"всички файлове, които желаете да импортирате."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
-msgid "Import all media"
-msgstr "Импортиране на всичката медия"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-msgid "Import"
-msgstr "Импортиране"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
-msgid "Don't Import"
-msgstr "Да не се импортира"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
-#, c-format
-msgid "Import %i items from %s"
-msgstr "Импортиране на %i предмета от %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
-#, c-format
-msgid "Import %s from %s"
-msgstr "Импортиране на %s от %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-msgid "ID"
-msgstr "ID"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
-msgid "Select individual media to import:"
-msgstr "Избиране на индивидуална медия за импортиране:"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Item"
-msgstr "Проверка на предмет"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
-msgid "Check Album"
-msgstr "Проверка на албум"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
-msgid "Check Artist"
-msgstr "Проверка на изпълнител"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:61
-msgid "Remove Media"
-msgstr "Премахване на медия"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:62
-msgid "Locate Media"
-msgstr "Намиране на медия"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:63
-msgid "Rescan Library"
-msgstr "Пресканиране на библиотеката"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:70
-msgid "Could not find media file"
-msgstr "Не може да се намери медиен файл"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:79
-#, c-format
-msgid ""
-"The music file for %s by %s could not be found. What would you like to do?"
-msgstr ""
-"Музикалният файл за %s на %s не можа да бъде намерен. Какво желаете да "
-"направите?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:82
-#, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
-"%i медийни файлове не можаха да бъдат намерени. Какво желаете да направите?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:145
-#, c-format
-msgid "The name %s is already in use"
-msgstr "Името %s вече се използва"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:57
-#, c-format
-msgid "Remove from %s"
-msgstr "Премахване от %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:68
-#, c-format
-msgid "Remove %d Songs From %s?"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:72
-#, c-format
-msgid "Remove \"%s\" From %s?"
-msgstr "Премахване на \"%s\" от %s?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:81
-#, c-format
-msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
-msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
-msgstr[0] ""
-msgstr[1] ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
 msgid "Cancelling Sync"
 msgstr "Прекъсване на синхронизацията"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
 "Синхронизацията с устройството е прекъсната. Операцията ще спре след тази "
 "медия."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:46
 msgid "Cancelling Import"
 msgstr "Прекъсване на импортирането"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:46
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
 "Импортирането от устройството е прекъснато. Операцията ще спре след тази "
 "медия."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 msgid "No External Songs"
 msgstr "Няма външни песни"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:83
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
 "Не бяха намерени песни на това устройство, които вече не са в библиотеката "
 "ви."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/PopupListView.vala:166
-#, c-format
-msgid "%s by %s"
-msgstr "%s на %s"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:77
+msgid "Device Name:"
+msgstr "Име на устройство:"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d минути"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:80
+msgid "Device Name"
+msgstr "Име на устройство"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d часа"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:82
+msgid "Automatically sync when plugged in:"
+msgstr "Автоматично синхронизиране при свързване"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d дни"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Sync:"
+msgstr "Синхронизиране:"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u предмета, %s, %s"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:111
+msgid "Other Files"
+msgstr "Други файлове"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:112
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:479
+msgid "Music"
+msgstr "Музика"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:113
+msgid "Podcasts"
+msgstr "Подкасти"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:384
+msgid "All Music"
+msgstr "Всичка музика"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:387
+msgid "All Podcasts"
+msgstr "Всички подкасти"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:555
+msgid "Sync Failed"
+msgstr "Синхронизация неуспешна"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:555
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"Плейлиста на име %s се използва за синхронизация на устройство %s, но не "
+"можа да бъде намерен."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Cannot Sync"
+msgstr "Синхронизация невъзможна"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:603
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Устройството не може да се синхронизира с избраните настройки на "
+"синхронизация. Няма достатъчно място на диска."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Device is already being synced."
+msgstr "Устройството вече се синхронизира."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
+msgid "Get Some Tunes"
+msgstr "Сдобийте се с няколко песни"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
+#, c-format
+msgid "%s can't seem to find your music."
+msgstr "Изглежда, че %s не може да намери вашата музика."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+msgid "Locate"
+msgstr "Намиране"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+msgid "Change your music folder."
+msgstr "Промяна на папката с музика."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:135
+msgid "Choose Music Folder"
+msgstr "Избиране на папка за музика"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
+msgid "All the songs in this device are already in your library."
+msgstr "Всички песни от това устройство са вече в библиотеката ви."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid "No songs in Queue"
 msgstr "Няма песни в опашката"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -991,11 +469,51 @@ msgstr ""
 "опашката ще бъдат възпроизведени първо, преди следващата песен в настоящо "
 "възпроизвеждащият се списък от песни."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
+msgid "Audio CD Invalid"
+msgstr "Аудио CD невалидно"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
+#, c-format
+msgid "%s could not read the contents of this Audio CD"
+msgstr "%s не успя да прочете съдържанието на това Аудио CD"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
+#, c-format
+msgid "%i tracks"
+msgstr "%i песни"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
+msgid "1 track"
+msgstr "1 песен"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:381
+#, c-format
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u албум"
+msgstr[1] "%u албума"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:383
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u песен"
+msgstr[1] "%u песни"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:569
+msgid "No media"
+msgstr "Няма медия"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:573
+msgid "Sorry, there is no music that matches your search"
+msgstr "Съжалявам, няма музика, която да съвпада с вашето търсене"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
 msgstr "Няма песни в История"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -1006,55 +524,12 @@ msgstr ""
 "Може да използвате този списък, за да видите всички песни, които сте слушали "
 "по време на настоящата сесия."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
-msgid "Get Some Tunes"
-msgstr "Сдобийте се с няколко песни"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
-#, c-format
-msgid "%s can't seem to find your music."
-msgstr "Изглежда, че %s не може да намери вашата музика."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
-msgid "Locate"
-msgstr "Намиране"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
-msgid "Change your music folder."
-msgstr "Промяна на папката с музика."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
-msgid "All the songs in this device are already in your library."
-msgstr "Всички песни от това устройство са вече в библиотеката ви."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:381
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u албум"
-msgstr[1] "%u албума"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:383
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u песен"
-msgstr[1] "%u песни"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:569
-msgid "No media"
-msgstr "Няма медия"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:573
-msgid "Sorry, there is no music that matches your search"
-msgstr "Съжалявам, няма музика, която да съвпада с вашето търсене"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "No Songs"
 msgstr "Няма песни"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1062,11 +537,11 @@ msgstr ""
 "За да добавите песни към този плейлист, използвайте <b>вторично щракване</b> "
 "върху предмет и изберете <b>Добавяне към плейлист</b>."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
 msgstr "Редактиране на умен плейлист"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1078,590 +553,1046 @@ msgstr ""
 "щракване</b> върху него в страничното поле и щракнете  <b>Редактиране</b>. "
 "По избор, можете да щракнете бутона долу."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
-msgid "Audio CD Invalid"
-msgstr "Аудио CD невалидно"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr "%s не успя да прочете съдържанието на това Аудио CD"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
-#, c-format
-msgid "%i tracks"
-msgstr "%i песни"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
-msgid "1 track"
-msgstr "1 песен"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:38
-msgid "N/A"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:220
-#, c-format
-msgid "%i kbps"
-msgstr "%i kbps"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:245
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:714
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:721
-msgid "Never"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:65
-msgid "#"
-msgstr "#"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:95
-msgid "Plays"
-msgstr "Брой слушания"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:98
-msgid "Skips"
-msgstr "Брой пропускания"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:107
-msgid "BPM"
-msgstr "Уд/мин (BPM)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:57
-msgid "Remove from Library"
-msgstr "Премахване от библиотеката"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:65
-msgid "Remove from Queue"
-msgstr "Премахване от опашката"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:82
-msgid "Remove from Device"
-msgstr "Премахване от устройство"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:103
-msgid "Scroll to Current Song"
-msgstr "Преминаване на сегашна песен"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:104
-msgid "Edit Song Info"
-msgstr "Редактиране на информация за песента"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:105
-msgid "Show in File Browser"
-msgstr "Показване във файлов браузър"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:106
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:486
-msgid "Queue"
-msgstr "Опашка"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:108
-msgid "Add to Playlist"
-msgstr "Добавяне към плейлист"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:109
-msgid "Remove Song"
-msgstr "Премахване на песен"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:215
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Импортиране на %i от %i избрани песни"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:217
-msgid "Import this song"
-msgstr "Импортиране на тази песен"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:219
-#, c-format
-msgid "Import %i songs"
-msgstr "Импортиране на %i песни"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:700
-msgid "1234 kbps"
-msgstr ""
-
-#. / Sample string used to measure the desired size of the Title column in the list view.
-#. / Should be as long as a common song title in your language.
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:778
-msgid "Sample Title"
-msgstr ""
-
-#. / Sample string used to measure the desired size of the Artist column in the list view.
-#. / Should be as long as a common artist name in your language.
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:787
-msgid "Sample Artist"
-msgstr ""
-
-#. / Sample string used to measure the desired size of the Album column in the list view.
-#. / Should be as long as a common album name in your language.
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:793
-msgid "Sample Album"
-msgstr ""
-
-#. / Sample string used to measure the desired size of the Genre column in the list view.
-#. / Should be as long as a common genre name in your language.
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:810
-msgid "Sample Genre"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:138
-msgid "Autosize Columns"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:145
-msgid "Display Album Art"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
 msgstr "Жанрове"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
 msgid "Artists"
 msgstr "Изпълнители"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
 msgid "Albums"
 msgstr "Албуми"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
 msgid "Years"
 msgstr "Години"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
 msgid "Ratings"
 msgstr "Рейтинги"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
+msgid "On Left"
+msgstr "Вляво"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
+msgid "On Top"
+msgstr "Отгоре"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
 msgid "Unrated"
 msgstr "Без рейтинг"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Genres"
 msgstr "Всички жанрове"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Genres"
 msgstr "Всички %i жанра"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Genres"
 msgstr "Няма жанрове"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
 msgid "All Artists"
 msgstr "Всички изпълнители"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
 #, c-format
 msgid "All %i Artists"
 msgstr "Всички %i изпълнителя"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
 msgid "No Artists"
 msgstr "Няма изпълнители"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Albums"
 msgstr "Всички албуми"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 #, c-format
 msgid "All %i Albums"
 msgstr "Всички %i албума"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Albums"
 msgstr "Няма албуми"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
 msgid "All Years"
 msgstr "Всички години"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
 #, c-format
 msgid "All %i Years"
 msgstr "Всички %i години"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
 msgid "No Years"
 msgstr "Няма години"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
 msgid "All Ratings"
 msgstr "Всички рейтинги"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
 msgid "No Ratings"
 msgstr "Няма рейтинги"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
-msgid "On Left"
-msgstr "Вляво"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:57
+msgid "Remove from Library"
+msgstr "Премахване от библиотеката"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
-msgid "On Top"
-msgstr "Отгоре"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:65
+msgid "Remove from Queue"
+msgstr "Премахване от опашката"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:77
-msgid "Device Name:"
-msgstr "Име на устройство:"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:82
+msgid "Remove from Device"
+msgstr "Премахване от устройство"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:80
-msgid "Device Name"
-msgstr "Име на устройство"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:103
+msgid "Scroll to Current Song"
+msgstr "Преминаване на сегашна песен"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:82
-msgid "Automatically sync when plugged in:"
-msgstr "Автоматично синхронизиране при свързване"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:104
+msgid "Edit Song Info"
+msgstr "Редактиране на информация за песента"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:89
-msgid "Sync:"
-msgstr "Синхронизиране:"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:105
+msgid "Show in File Browser"
+msgstr "Показване във файлов браузър"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:111
-msgid "Other Files"
-msgstr "Други файлове"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:106
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:489
+msgid "Queue"
+msgstr "Опашка"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:476
-msgid "Music"
-msgstr "Музика"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:108
+msgid "Add to Playlist"
+msgstr "Добавяне към плейлист"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:113
-msgid "Podcasts"
-msgstr "Подкасти"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:109
+msgid "Remove Song"
+msgstr "Премахване на песен"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:384
-msgid "All Music"
-msgstr "Всичка музика"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:387
-msgid "All Podcasts"
-msgstr "Всички подкасти"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
-msgid "Sync Failed"
-msgstr "Синхронизация неуспешна"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:215
 #, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
+msgid "Import %i of %i selected songs"
+msgstr "Импортиране на %i от %i избрани песни"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:217
+msgid "Import this song"
+msgstr "Импортиране на тази песен"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:219
+#, c-format
+msgid "Import %i songs"
+msgstr "Импортиране на %i песни"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:700
+msgid "1234 kbps"
 msgstr ""
-"Плейлиста на име %s се използва за синхронизация на устройство %s, но не "
-"можа да бъде намерен."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Cannot Sync"
-msgstr "Синхронизация невъзможна"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:714
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:721
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:245
+msgid "Never"
 msgstr ""
-"Устройството не може да се синхронизира с избраните настройки на "
-"синхронизация. Няма достатъчно място на диска."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Device is already being synced."
-msgstr "Устройството вече се синхронизира."
+#. / Sample string used to measure the desired size of the Title column in the list view.
+#. / Should be as long as a common song title in your language.
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:778
+msgid "Sample Title"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:403
-msgid "Favorite Songs"
-msgstr "Любими песни"
+#. / Sample string used to measure the desired size of the Artist column in the list view.
+#. / Should be as long as a common artist name in your language.
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:787
+msgid "Sample Artist"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:413
-msgid "Recently Added"
-msgstr "Наскоро добавени"
+#. / Sample string used to measure the desired size of the Album column in the list view.
+#. / Should be as long as a common album name in your language.
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:793
+msgid "Sample Album"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:435
-msgid "Recent Favorites"
-msgstr "Скорошни любими"
+#. / Sample string used to measure the desired size of the Genre column in the list view.
+#. / Should be as long as a common genre name in your language.
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:810
+msgid "Sample Genre"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:445
-msgid "Never Played"
-msgstr "Неизпълнявани"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:38
+msgid "N/A"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:455
-msgid "Over Played"
-msgstr "Прекомерно слушани"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:220
+#, c-format
+msgid "%i kbps"
+msgstr "%i kbps"
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:465
-msgid "Not Recently Played"
-msgstr "Неслушани скоро"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/GenericList.vala:138
+msgid "Autosize Columns"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:180
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/GenericList.vala:145
+msgid "Display Album Art"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:65
+msgid "#"
+msgstr "#"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:68
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:192
+msgid "Track"
+msgstr "Песен"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:184
+msgid "Title"
+msgstr "Заглавие"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:74
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:405
+msgid "Length"
+msgstr "Дължина"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:83
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:476
+msgid "Genre"
+msgstr "Жанр"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:194
+msgid "Year"
+msgstr "Година"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:89
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Bitrate"
+msgstr "Битрейт"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:92
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:195
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:95
+msgid "Plays"
+msgstr "Брой слушания"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:98
+msgid "Skips"
+msgstr "Брой пропускания"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:101
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Date Added"
+msgstr "Дата на добавяне"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:104
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Last Played"
+msgstr "Последно слушане"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:107
+msgid "BPM"
+msgstr "Уд/мин (BPM)"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr "%d минути"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr "%d часа"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d дни"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u предмета, %s, %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/PopupListView.vala:166
+#, c-format
+msgid "%s by %s"
+msgstr "%s на %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:183
 msgid "Rescan Music Folder"
 msgstr "Пресканиране на папката за музика"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:203
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:186
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:146
+msgid "Preferences"
+msgstr "Предпочитания"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:206
 msgid "Search Music"
 msgstr "Търсене в музика"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:490
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:493
 msgid "History"
 msgstr "История"
 
 #. / String template used to show "SongName by ArtistName"
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:651
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:654
 #, c-format
 msgid " by %s"
 msgstr ""
 
 #. / String template used to show "SongName ... on AlbumName"
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:656
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:659
 #, c-format
 msgid " on %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:863
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:866
 msgid "Import Music"
 msgstr "Импортиране на музика"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:895
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:898
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Импортиране</b> на музика от <b>%s</b> в библиотеката."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:910
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:913
 msgid "Rescanning music folder for changes"
 msgstr "Пресканиране на папката за музика за промени"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:917
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:920
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid "Could not find Music Folder"
 msgstr "Папката на музика не можа да бъде открита"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:917
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:920
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Моля, уверете се, че папката за музика е достъпна и монтирана."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:983
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:986
 msgid "Import Complete"
 msgstr "Импортирането завърши"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:983
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:986
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s импортира библиотеката ви."
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:70
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Export Playlists"
+msgstr "Експортиране на плейлисти"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+msgid "Set Music Folder"
+msgstr "Задаване на папка за музика"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+msgid "Set Music Folder?"
+msgstr "Задаване за папка за музика?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Сигурни ли сте, че искате да зададете %s като папката за музика? Това ще "
+"нулира библиотеката ви и ще премахне плейлистите ви."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:83
+msgid "Equalizer"
+msgstr "Еквалайзер"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:150
+msgid "Save preset"
+msgstr "Запазване на фиксирана настройка"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:158
+msgid "Close"
+msgstr "Затваряне"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:414
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (По избор)"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:416
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (%i по избор)"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:420
+msgid "Custom Preset"
+msgstr "Фиксирана настройка по избор"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:422
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Фиксирана настройка по избор %i"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:56
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:71
+msgid "Move to Trash"
+msgstr "Преместване в кошчето"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#, c-format
+msgid "Remove from %s"
+msgstr "Премахване от %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:68
+#, c-format
+msgid "Remove %d Songs From %s?"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:72
+#, c-format
+msgid "Remove \"%s\" From %s?"
+msgstr "Премахване на \"%s\" от %s?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:81
+#, c-format
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr "Неимпортирани файлове"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:76
+#, c-format
+msgid "Unable to import %d items from %s"
+msgstr "Не могат да бъдат импортирани %d предмета от %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:65
+#, c-format
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s не можа да импортира %d предмета. Файловетe може да са повредени."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr "Преместване на всички повредени файлове в кошчето"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "Игнориране"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "del"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "Местоположение на файла"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr "Изберете индивидуални файлове за преместване в кошчето:"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:60
+msgid "Smart Playlist Editor"
+msgstr "Редактор на умен плейлист"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:63
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:71
+msgid "Name of Playlist"
+msgstr "Име на плейлиста"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+msgid "Rules"
+msgstr "Правила"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:84
+msgid "Options"
+msgstr "Опции"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Playlist Title"
+msgstr "Име на плейлиста"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+msgid "Match"
+msgstr "Съвпадение при"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:95
+msgid "any"
+msgstr "всяко"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "all"
+msgstr "всички"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:97
+msgid "of the following:"
+msgstr "от следните:"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:124
+msgid "Limit to"
+msgstr "Ограничаване до"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:126
+msgid "items"
+msgstr "предмета"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:191
+msgid "Comment"
+msgstr "Коментар"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:189
+msgid "Composer"
+msgstr "Композитор"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Released"
+msgstr "Дата на издаване"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:476
+msgid "Grouping"
+msgstr "Групиране"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+msgid "Playcount"
+msgstr "Брой на слушания"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Skipcount"
+msgstr "Брой на пропускания"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:332
+msgid "is"
+msgstr "е"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:333
+msgid "contains"
+msgstr "съдържа"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:334
+msgid "does not contain"
+msgstr "не съдържа"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:366
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:380
+msgid "is exactly"
+msgstr "е точно"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+msgid "is at most"
+msgstr "е най-много"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+msgid "is at least"
+msgstr "е най-малко"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:381
+msgid "is within"
+msgstr "е в обсега на"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+msgid "is before"
+msgstr "е преди"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "seconds"
+msgstr "секунди"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:410
+msgid "days ago"
+msgstr "дни назад"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:414
+msgid "kbps"
+msgstr "кб/сек."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:65
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:86
+msgid "Done"
+msgstr "Готово"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#, c-format
+msgid "The name %s is already in use"
+msgstr "Името %s вече се използва"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:61
+msgid "Remove Media"
+msgstr "Премахване на медия"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:62
+msgid "Locate Media"
+msgstr "Намиране на медия"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:63
+msgid "Rescan Library"
+msgstr "Пресканиране на библиотеката"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:64
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+msgid "Do Nothing"
+msgstr "Да не се прави нищо"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:70
+msgid "Could not find media file"
+msgstr "Не може да се намери медиен файл"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:79
+#, c-format
+msgid ""
+"The music file for %s by %s could not be found. What would you like to do?"
+msgstr ""
+"Музикалният файл за %s на %s не можа да бъде намерен. Какво желаете да "
+"направите?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:82
+#, c-format
+msgid "%i media files could not be found. What would you like to do?"
+msgstr ""
+"%i медийни файлове не можаха да бъдат намерени. Какво желаете да направите?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:221
+msgid "General"
+msgstr "Общи"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:240
+msgid "Select Music Folder"
+msgstr "Избиране на папка с музика"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:247
+msgid "Music Folder Location"
+msgstr "Местоположение на папката за музика"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:253
+msgid ""
+"You must wait until previous file operations finish before setting your "
+"music folder"
+msgstr ""
+"Необходимо е да изчакате предишни операции с файлове да приключат, преди да "
+"зададете вашата папката за музика"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:264
+msgid "Keep Music folder organized"
+msgstr "Автоматично организиране на папката с музика"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:265
+msgid "Copy files to Music folder when adding to Library"
+msgstr ""
+"Копиране на файлове в папката с музика когато са добавени в библиотеката"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:267
+msgid "Write metadata to file"
+msgstr "Записване на метаданни върху файл"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:279
+msgid "Library Management"
+msgstr "Управление на библиотеката"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:286
+msgid "Use Noise as the default Music application"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:292
+msgid "Show notifications"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:299
+msgid "Minimize window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:301
+msgid "Hide window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:307
+msgid "Desktop Integration"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:64
+msgid "Import media to Library"
+msgstr "Импортиране на медия в библиотеката"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:65
+msgid "Continue Syncing"
+msgstr "Продължаване на синхронизацията"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:66
+msgid "Stop Syncing"
+msgstr "Спиране на синхронизацита"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:73
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Ако продължите синхронизацията, медия ще бъде премахната от %s, тъй като не "
+"са на списъка за синхронизация. Желаете ли първо да ги импортирате в "
+"библиотеката си?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:79
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr "Синхронизацията ще премахне %i предмета от %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:82
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr "Синхронизацията ще премахне 1 предмет от %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+msgid "Install Plugin"
+msgstr "Инсталиране на плъгин"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+msgid "Required GStreamer plugin not installed"
+msgstr "Нужният плъгин GStreamer не е инсталиран"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#, c-format
+msgid ""
+"The plugin for media type %s is not installed.\n"
+"What would you like to do?"
+msgstr ""
+"Плъгинът за медия тип %s не е инсталиран.\n"
+"Какво желаете да направите?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr "Импортиране от устройство"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#, c-format
+msgid "Import media from %s"
+msgstr "Импортиране на медия от %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"Следните файлове бяха намерени на %s, но не са в библиотекета ви. Изберете "
+"всички файлове, които желаете да импортирате."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all media"
+msgstr "Импортиране на всичката медия"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+msgid "Import"
+msgstr "Импортиране"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "Да не се импортира"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#, c-format
+msgid "Import %i items from %s"
+msgstr "Импортиране на %i предмета от %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#, c-format
+msgid "Import %s from %s"
+msgstr "Импортиране на %s от %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+msgid "ID"
+msgstr "ID"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+msgid "Select individual media to import:"
+msgstr "Избиране на индивидуална медия за импортиране:"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Item"
+msgstr "Проверка на предмет"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+msgid "Check Album"
+msgstr "Проверка на албум"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+msgid "Check Artist"
+msgstr "Проверка на изпълнител"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:75
+msgid "Metadata"
+msgstr "Метаданни"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:77
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:373
+msgid "Lyrics"
+msgstr "Текст"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:173
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:344
+#, c-format
+msgid "Editing %s by %s"
+msgstr "Променя се %s на %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:175
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:346
+#, c-format
+msgid "Editing %s"
+msgstr "Променя се %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:178
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:349
+#, c-format
+msgid "Editing %i songs"
+msgstr "Променят се %i песни"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:186
+msgid "Album Artist"
+msgstr "Изпълнител на албума"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:193
+msgid "Disc"
+msgstr "Диск"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:197
+msgid "Media Type"
+msgstr "Тип медия"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:292
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:537
+msgid "Podcast"
+msgstr "Подкаст"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:203
+#, c-format
+msgid "Importing music from %s..."
+msgstr "Импортиране на музика от %s..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:251
+msgid "Adding files to library..."
+msgstr "Добавяне на файлове в библиотеката..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:300
+#, c-format
+msgid "Adding music from %s to library..."
+msgstr "Добавяне на музика от %s в библиотеката..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:328
+msgid "Rescanning music for changes. This may take a while..."
+msgstr ""
+"Пресканиране на музиката за промени. Това може да отнеме известно време..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/AlbumInfo.vala:25
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:94
+msgid "Unknown Album"
+msgstr "Неизвестен албум"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/AlbumInfo.vala:26
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/ArtistInfo.vala:27
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:109
+msgid "Unknown Artist"
+msgstr "Неизвестен изпълнител"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Неизвестна песен"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/Playlist.vala:203
+msgid "Radio Station"
+msgstr "Радио станция"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
 msgstr "Плосък"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
 msgstr "Класика"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:72
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
 msgstr "Клуб"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:73
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
 msgstr "Денс"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:74
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
 msgstr "Пълен бас"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:75
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
 msgstr "Пълни високи"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:76
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
 msgstr "Пълен бас + високи"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:77
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
 msgstr "Слушалки"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:78
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
 msgstr "Голяма зала"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:79
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
 msgstr "На живо"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:80
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
 msgstr "Парти"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:81
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
 msgstr "Поп"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:82
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
 msgstr "Реге"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:83
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
 msgstr "Рок"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:84
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
 msgstr "Меко"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:85
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
 msgstr "Ска"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
 msgstr "Лек рок"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:87
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
 msgstr "Техно"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Моля, уверете се, че папката на музика е достъпна и монтирана преди да "
-"импортирате CD-то."
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:403
+msgid "Favorite Songs"
+msgstr "Любими песни"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
-msgid "No songs on CD"
-msgstr "Няма песни на CD-то"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:413
+msgid "Recently Added"
+msgstr "Наскоро добавени"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
-#, c-format
-msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"%s не можа да намери песни на CD-то. Песни не могат да бъдат импортирани."
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:435
+msgid "Recent Favorites"
+msgstr "Скорошни любими"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
-#, c-format
-msgid "%s is already doing an import"
-msgstr "%s вече импортира в момента"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:445
+msgid "Never Played"
+msgstr "Неизпълнявани"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
-#, c-format
-msgid ""
-"Please wait until %s is finished with the current import before importing "
-"the CD."
-msgstr ""
-"Моля, изчакайте докато %s свърши с настоящото импортиране преди импортиране "
-"на CD-то."
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:455
+msgid "Over Played"
+msgstr "Прекомерно слушани"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
-msgid "Ripping track 1"
-msgstr "Извличане на песен 1"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:465
+msgid "Not Recently Played"
+msgstr "Неслушани скоро"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
-#, c-format
-msgid "Importing track %i"
-msgstr "Импортиране на песен %i"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
-msgid "CD Import Complete"
-msgstr "Импортирането на CD завърши"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
-#, c-format
-msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s завърши импортирането на %i песни от Audio CD."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
-#, c-format
-msgid "%s has finished importing a song from Audio CD."
-msgstr "%s завърши импортирането на песен от Audio CD."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"CD импортирането ще бъде <b>прекъснато</b> след настоящото импортиране."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "Неизвестно заглавие"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:301
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
-#, c-format
-msgid "Syncing <b>%s</b>..."
-msgstr "Синхронизиране на <b>%s</b>..."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:658
-#, c-format
-msgid "Removing from <b>%s</b>..."
-msgstr "Премахване от <b>%s</b>..."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:881
-#, c-format
-msgid "Importing <b>%s</b> to library..."
-msgstr "Импортиране на <b>%s</b> в библиотеката..."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/LastFM.vala:63
-msgid "Similar"
-msgstr "Подобни"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:48
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
 msgstr "медия"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:52
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarMediaView.vala:52
 msgid "Similar Media"
 msgstr "Подобна медия"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/LastFM.vala:63
+msgid "Similar"
+msgstr "Подобни"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
 msgstr "Даване на разрешение на Noise"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:31
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
 msgstr "Неуспешно. Натиснете за да опитате отново"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:32
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:33
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
 msgstr "Успешно!"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:34
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:40
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:40
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:54
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
 msgstr "Натиснете за повтаряне на последния процес на влизане в Last.fm"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:57
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
@@ -1669,29 +1600,29 @@ msgstr ""
 "За да е възможна интеграция с Last.fm, трябва да дадете разрешение на Noise. "
 "Нужно е да направите това само веднъж."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:68
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:68
 msgid "Last.fm Integration"
 msgstr "Интеграция с Last.fm"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
 msgstr "Търсене на подобни песни"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
 msgstr "Намиране на песни, подобни на %s на %s"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:100
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
 msgid "Similar to %s"
 msgstr "Подобни на %s"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 msgid "No similar songs found"
 msgstr "Не бяха открити подобни песни"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -1702,11 +1633,11 @@ msgstr ""
 "Уверете се, че цялата информация за песента е вярна, и че сте свързани с "
 "интернет. Някои песни може да нямат подобни."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
 msgstr "Изглед на подобни песни"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1716,6 +1647,87 @@ msgstr ""
 "В този изглед, %s автоматично ще търси песни, подобни на тази, която "
 "слушате. Тогава вие можете да слушате тези песни, или да ги запазите в "
 "плейлист за по-късно."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "Неизвестно заглавие"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"Моля, уверете се, че папката на музика е достъпна и монтирана преди да "
+"импортирате CD-то."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
+msgid "No songs on CD"
+msgstr "Няма песни на CD-то"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
+#, c-format
+msgid "%s could not find any songs on the CD. No songs can be imported"
+msgstr ""
+"%s не можа да намери песни на CD-то. Песни не могат да бъдат импортирани."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
+#, c-format
+msgid "%s is already doing an import"
+msgstr "%s вече импортира в момента"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
+#, c-format
+msgid ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
+msgstr ""
+"Моля, изчакайте докато %s свърши с настоящото импортиране преди импортиране "
+"на CD-то."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
+msgid "Ripping track 1"
+msgstr "Извличане на песен 1"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
+#, c-format
+msgid "Importing track %i"
+msgstr "Импортиране на песен %i"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
+msgid "CD Import Complete"
+msgstr "Импортирането на CD завърши"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
+#, c-format
+msgid "%s has finished importing %i songs from Audio CD."
+msgstr "%s завърши импортирането на %i песни от Audio CD."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
+#, c-format
+msgid "%s has finished importing a song from Audio CD."
+msgstr "%s завърши импортирането на песен от Audio CD."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr ""
+"CD импортирането ще бъде <b>прекъснато</b> след настоящото импортиране."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:301
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:511
+#, c-format
+msgid "Syncing <b>%s</b>..."
+msgstr "Синхронизиране на <b>%s</b>..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:658
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr "Премахване от <b>%s</b>..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:881
+#, c-format
+msgid "Importing <b>%s</b> to library..."
+msgstr "Импортиране на <b>%s</b> в библиотеката..."
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Сваляне на нови епизоди"
@@ -1888,12 +1900,3 @@ msgstr ""
 
 #~ msgid "Audiobook"
 #~ msgstr "Аудио книга"
-
-#~ msgid "System Integration"
-#~ msgstr "Системна интеграция"
-
-#~ msgid "Unknown Genre"
-#~ msgstr "Неизвестен жанр"
-
-#~ msgid "Various Artists"
-#~ msgstr "Различни изпълнители"

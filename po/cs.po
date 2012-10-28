@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-20 21:37-0600\n"
+"POT-Creation-Date: 2012-10-21 14:57-0500\n"
 "PO-Revision-Date: 2012-10-20 17:54+0000\n"
 "Last-Translator: Hlobil Vaclav <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -15,11 +15,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-10-21 05:11+0000\n"
+"X-Launchpad-Export-Date: 2012-10-22 04:57+0000\n"
 "X-Generator: Launchpad (build 16165)\n"
 "Language: cs\n"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
+#. / Used for unknown titles, artists, or album names.
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Media.vala:35
+msgid "Unknown"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -27,8 +32,8 @@ msgstr[0] "%d vteřin"
 msgstr[1] "%d vteřina"
 msgstr[2] "%d vteřiny"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:69
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:44
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -36,7 +41,7 @@ msgstr[0] "%u minuta"
 msgstr[1] "%u minut"
 msgstr[2] "%u minut"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:46
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:46
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
@@ -44,15 +49,15 @@ msgstr[0] "%u sekunda"
 msgstr[1] "%u sekundy"
 msgstr[2] "%u sekund"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:47
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:78
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:82
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:90
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:78
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:82
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:90
 #, c-format
 msgid "%s and %s"
 msgstr "%s a %s"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:63
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:63
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
@@ -60,7 +65,7 @@ msgstr[0] "%u den"
 msgstr[1] "%u dny"
 msgstr[2] "%u dnů"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:66
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
@@ -68,913 +73,391 @@ msgstr[0] "%u hodina"
 msgstr[1] "%u hodiny"
 msgstr[2] "%u hodin"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:76
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:76
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s a %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:151
+#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:151
 msgid "%m/%e/%Y %l:%M %p"
 msgstr ""
 
-#. / Used for unknown titles, artists, or album names.
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:35
-msgid "Unknown"
-msgstr ""
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/TopDisplay.vala:69
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:58
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:66
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:153
+msgid "Cancel"
+msgstr "Zrusit"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:37
-msgid "Listen to music"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:38
-msgid "Music Player"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:203
-#, c-format
-msgid "Importing music from %s..."
-msgstr "Importovat hudbu z %s..."
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:251
-msgid "Adding files to library..."
-msgstr "Přidat soubory do knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:300
-#, c-format
-msgid "Adding music from %s to library..."
-msgstr "Přidání hudby z %s do databáze..."
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:328
-msgid "Rescanning music for changes. This may take a while..."
-msgstr "Prohledat změny v hudbě. Může to chvíli trvat..."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/ArtistInfo.vala:27
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:109
-msgid "Unknown Artist"
-msgstr "Neznámý iterpret"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/Playlist.vala:203
-msgid "Radio Station"
-msgstr "Rádiová stanice"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Neznámá stopa"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:94
-msgid "Unknown Album"
-msgstr "Neznámé album"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:49
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/PresetList.vala:49
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Automaticky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:50
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
 msgstr "Odstranit aktuální"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:60
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:93
-msgid "Off"
-msgstr "Vypnuto"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:60
-msgid "Enable Repeat"
-msgstr "Povolit opakování"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:61
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:535
-msgid "Song"
-msgstr "Skladba"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:61
-msgid "Repeat Song"
-msgstr "Opakovat skladbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:62
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:187
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:80
-msgid "Album"
-msgstr "Album"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:62
-msgid "Repeat Album"
-msgstr "Opakovat album"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:63
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:185
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:77
-msgid "Artist"
-msgstr "Interpret"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:63
-msgid "Repeat Artist"
-msgstr "Opakovat interpreta"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:64
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:94
-msgid "All"
-msgstr "Vše"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:64
-msgid "Repeat All"
-msgstr "Opakovat vše"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:93
-msgid "Enable Shuffle"
-msgstr "Zapnout náhodný výběr"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:94
-msgid "Disable Shuffle"
-msgstr "Vypnout náhodný výběr"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:127
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:138
-msgid "Add Playlist"
-msgstr "Přidat seznam skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:139
-msgid "Add Smart Playlist"
-msgstr "Přidat chytrý seznam skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:185
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:218
-msgid "Hide"
-msgstr "Skrýt"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:185
-msgid "Show Equalizer"
-msgstr "Zobrazit ekvalizér"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:186
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:219
-msgid "Show"
-msgstr "Zobrazit"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:186
-msgid "Hide Equalizer"
-msgstr "Skrýt ekvalizér"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:218
-msgid "Show Info Panel"
-msgstr "Zobrazit informační panel"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:219
-msgid "Hide Info Panel"
-msgstr "Skrýt informační panel"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:74
-msgid "Sync"
-msgstr "Synchronizovat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "zdarma"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:380
-msgid "Using %s of %s (%.2f%)"
-msgstr "Používá se %s z %s (%.2f%)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:71
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:110
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:179
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:182
 msgid "Import to Library"
 msgstr "Importovat do knihovny"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:77
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:74
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:237
+msgid "Sync"
+msgstr "Synchronizovat"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:77
 msgid "Eject"
 msgstr "Vyjmout"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:88
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:107
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:88
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "New Playlist"
 msgstr "Nový seznam skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:89
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:89
 msgid "New Smart Playlist"
 msgstr "Nový chytrý seznam skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:90
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:90
 msgid "Edit"
 msgstr "Upravit"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:91
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:91
 msgid "Remove"
 msgstr "Odebrat"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:92
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:92
 msgid "Save as Playlist"
 msgstr "Uložit jako seznam Skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:93
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:93
 msgid "Export..."
 msgstr "Exportovat..."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:94
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:94
 msgid "Import Playlists"
 msgstr "Importovat seznamy skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:132
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:132
 msgid "Library"
 msgstr "Knihovna"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:133
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:133
 msgid "Devices"
 msgstr "Zařízení"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:134
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:134
 msgid "Network"
 msgstr "Síť"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:135
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:135
 msgid "Playlists"
 msgstr "Seznamy skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:610
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:610
 msgid "This device is syncing"
 msgstr "Zařízení se synchronizuje"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:610
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:610
 msgid "Please wait until the current sync is finished to do this action."
 msgstr "Prosím počkejte, než bude dokončena synchronizace"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:612
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:612
 msgid "This device is in transfer"
 msgstr "Na tomto zařízení probíhá přenos"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:612
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:612
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
 "Pro vykonání této akce prosím počkejte, až se dokončí stávající přenos."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:731
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:731
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:733
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:733
 msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "Přehrát historii (%Y-%b-%e %l:%M %p)"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:735
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:735
 msgid "Unknown playlist"
 msgstr "Neznámý playlist"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:745
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:745
 msgid "Export Playlist"
 msgstr "Exportovat playlist"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:829
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:829
 msgid "Playlist"
 msgstr "Seznam skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:842
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:842
 #, c-format
 msgid "Import %s"
 msgstr "Importovat %s"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/TopDisplay.vala:69
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:153
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:66
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:58
-msgid "Cancel"
-msgstr "Zrusit"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "zdarma"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:83
-msgid "Equalizer"
-msgstr "Ekvalizér"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:380
+msgid "Using %s of %s (%.2f%)"
+msgstr "Používá se %s z %s (%.2f%)"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:150
-msgid "Save preset"
-msgstr "Uložit předvolbu"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:60
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:93
+msgid "Off"
+msgstr "Vypnuto"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:158
-msgid "Close"
-msgstr "Zavřít"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:60
+msgid "Enable Repeat"
+msgstr "Povolit opakování"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:414
-#, c-format
-msgid "%s (Custom)"
-msgstr "%s (vlastní)"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:61
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:535
+msgid "Song"
+msgstr "Skladba"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:416
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (vlastní %i)"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:61
+msgid "Repeat Song"
+msgstr "Opakovat skladbu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:420
-msgid "Custom Preset"
-msgstr "Vlastní předvolba"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:62
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:80
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:187
+msgid "Album"
+msgstr "Album"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:422
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Vlatní předvolba %i"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:62
+msgid "Repeat Album"
+msgstr "Opakovat album"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:47
-msgid "Not Imported Files"
-msgstr "Nejsou importovány žádné soubory"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:63
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:77
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:185
+msgid "Artist"
+msgstr "Interpret"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:76
-#, c-format
-msgid "Unable to import %d items from %s"
-msgstr "Nemohu importovat %d soubory z %s"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:63
+msgid "Repeat Artist"
+msgstr "Opakovat interpreta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:65
-#, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s nelze importovat %d soubory. Soubory jsou možná poškozeny."
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:64
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:94
+msgid "All"
+msgstr "Vše"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:66
-msgid "Move all corrupted files to trash"
-msgstr "Přesunout všechny poškozené soubory do koše"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:64
+msgid "Repeat All"
+msgstr "Opakovat vše"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:71
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Move to Trash"
-msgstr "Přesunout soubory do koše"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:93
+msgid "Enable Shuffle"
+msgstr "Zapnout náhodný výběr"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:72
-msgid "Ignore"
-msgstr "Ignorovat"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:94
+msgid "Disable Shuffle"
+msgstr "Vypnout náhodný výběr"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:93
-msgid "del"
-msgstr "smazat"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:127
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:138
+msgid "Add Playlist"
+msgstr "Přidat seznam skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:98
-msgid "File Location"
-msgstr "Umístění souboru"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:139
+msgid "Add Smart Playlist"
+msgstr "Přidat chytrý seznam skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:125
-msgid "Select individual files to move to trash:"
-msgstr "Vybrat jednotlivé soubory k přesunutí do koše"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:185
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:218
+msgid "Hide"
+msgstr "Skrýt"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "Exportovat seznamy skladeb"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:185
+msgid "Show Equalizer"
+msgstr "Zobrazit ekvalizér"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "Vybrat složku s hudbou"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:186
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:219
+msgid "Show"
+msgstr "Zobrazit"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
-msgid "Set Music Folder?"
-msgstr "Nastavit složku s hudbou?"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:186
+msgid "Hide Equalizer"
+msgstr "Skrýt ekvalizér"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Opravdu chcete nastavit jako hudební složku %s? Pokud tak učiníte, smaže se "
-"importovaná knihovna a playlisty."
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:218
+msgid "Show Info Panel"
+msgstr "Zobrazit informační panel"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:135
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
-msgid "Choose Music Folder"
-msgstr "Vybrat složku s hudbou"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:219
+msgid "Hide Info Panel"
+msgstr "Skrýt informační panel"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
-msgid "Install Plugin"
-msgstr "Nainstalovat plugin"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:64
-msgid "Do Nothing"
-msgstr "Neprovádět žádnou akci"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
-msgid "Required GStreamer plugin not installed"
-msgstr "Požadovaný plugin GStreameru není nainstalován"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
-#, c-format
-msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
-msgstr ""
-"Plugin pro tento typ souboru %s není nainstalován. Co chcete udělat ?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:75
-msgid "Metadata"
-msgstr "Metadata"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:77
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:373
-msgid "Lyrics"
-msgstr "Text písně"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:86
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:157
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:65
-msgid "Done"
-msgstr "Hotovo"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:173
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:344
-#, c-format
-msgid "Editing %s by %s"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:37
+msgid "Listen to music"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:175
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:346
-#, c-format
-msgid "Editing %s"
-msgstr "Úprava %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:178
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:349
-#, c-format
-msgid "Editing %i songs"
-msgstr "Úprava %i písní"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:184
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:71
-msgid "Title"
-msgstr "Název"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:186
-msgid "Album Artist"
-msgstr "Interpret alba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:83
-msgid "Genre"
-msgstr "Žánr"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:189
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-msgid "Composer"
-msgstr "Skladatel"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:476
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-msgid "Grouping"
-msgstr "Seskupení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-msgid "Comment"
-msgstr "Kometář"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:68
-msgid "Track"
-msgstr "Stopa"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:193
-msgid "Disc"
-msgstr "Disk"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:194
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:86
-msgid "Year"
-msgstr "Rok"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:92
-msgid "Rating"
-msgstr "Hodnocení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:197
-msgid "Media Type"
-msgstr "Typ média"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:292
-#, c-format
-msgid "Lyrics not found for %s"
-msgstr "Nebyl nalezen žádný text pro skladbu %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:537
-msgid "Podcast"
-msgstr "Podcast"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:64
-msgid "Import media to Library"
-msgstr "Importovat média do knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:65
-msgid "Continue Syncing"
-msgstr "Pokračovat v synchronizaci"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:66
-msgid "Stop Syncing"
-msgstr "Zastavit synchronizaci"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:73
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Pokud budete pokračovat v synchronizaci, média budou smazána ze %s, protože "
-"nejsou na seznamu synchronizace. Chcete je nejprve importovat do knihovny ?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:79
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr "Při synchronizaci budou smazány %i sobury ze %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:82
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr "Synchronizace smaže jeden soubor ze %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:183
-msgid "Preferences"
-msgstr "Předvolby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:221
-msgid "General"
-msgstr "Hlavní"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:240
-msgid "Select Music Folder"
-msgstr "Vyberte složku s hudbou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:247
-msgid "Music Folder Location"
-msgstr "Umístění složky s hudbou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:253
-msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
-msgstr ""
-"Musíte počkat s nastavením složky s hudbou, dokud se nedokončí předchozí "
-"operace se soubory"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:264
-msgid "Keep Music folder organized"
-msgstr "Nechat složku s hudbou organizovanou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:265
-msgid "Copy files to Music folder when adding to Library"
-msgstr ""
-"Zkopírovat soubory do složky s hudbou, když budou přidány do knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:267
-msgid "Write metadata to file"
-msgstr "Zapsat metadata do souboru"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:279
-msgid "Library Management"
-msgstr "Řízení knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:286
-msgid "Use Noise as the default Music application"
-msgstr "Natavit Noise jako výchozí přehrávač hudby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:292
-msgid "Show notifications"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:38
+msgid "Music Player"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:299
-msgid "Minimize window instead of closing it when a song is being played"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:301
-msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:307
-msgid "Desktop Integration"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
-msgid "Smart Playlist Editor"
-msgstr "Editor inteligentního playlistu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:71
-msgid "Name of Playlist"
-msgstr "Název playlistu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:75
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:83
-msgid "Rules"
-msgstr "Pravidla"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:84
-msgid "Options"
-msgstr "Možnosti"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Playlist Title"
-msgstr "Název playlistu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:93
-msgid "Match"
-msgstr "Shoda"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:95
-msgid "any"
-msgstr "nějaký"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "all"
-msgstr "vše"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:97
-msgid "of the following:"
-msgstr "z následujících:"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:124
-msgid "Limit to"
-msgstr "Omezit na"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:126
-msgid "items"
-msgstr "položek"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:89
-msgid "Bitrate"
-msgstr "Datový tok"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:101
-msgid "Date Added"
-msgstr "Datum přidání"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Released"
-msgstr "Datum vydání"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:104
-msgid "Last Played"
-msgstr "Naposledy přehráno"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:74
-msgid "Length"
-msgstr "Délka"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-msgid "Playcount"
-msgstr "Počet přehrání"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-msgid "Skipcount"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:332
-msgid "is"
-msgstr "je"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:333
-msgid "contains"
-msgstr "obsahuje"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:334
-msgid "does not contain"
-msgstr "neobsahuje"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:366
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:380
-msgid "is exactly"
-msgstr "je přesně"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:367
-msgid "is at most"
-msgstr "je nejvíce"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:368
-msgid "is at least"
-msgstr "je nejméně"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:381
-msgid "is within"
-msgstr "je v"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:382
-msgid "is before"
-msgstr "je před"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "seconds"
-msgstr "vteřin"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "dnů zpět"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:414
-msgid "kbps"
-msgstr "kb/s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-msgid "Import from Device"
-msgstr "Importovat ze zařízení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-#, c-format
-msgid "Import media from %s"
-msgstr "Importovat média z %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
-#, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Tyto soubory byly nalezeny v %s, ale nejsou v knihovně. Označte soubory, "
-"které chcete importovat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
-msgid "Import all media"
-msgstr "importovat všechny média"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-msgid "Import"
-msgstr "Importovat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
-msgid "Don't Import"
-msgstr "Neimportovat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
-#, c-format
-msgid "Import %i items from %s"
-msgstr "IImportovat %i soubory z %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
-#, c-format
-msgid "Import %s from %s"
-msgstr "Importovat %s z %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-msgid "ID"
-msgstr "ID"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
-msgid "Select individual media to import:"
-msgstr "vybrat individuální média pro import"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Item"
-msgstr "Zkontrolovat položku"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
-msgid "Check Album"
-msgstr "Zkontrolovat album"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
-msgid "Check Artist"
-msgstr "Zkontrolovat umělce"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:61
-msgid "Remove Media"
-msgstr "Vyjměte médium"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:62
-msgid "Locate Media"
-msgstr "Najít média"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:63
-msgid "Rescan Library"
-msgstr "Zaktualizovat knihovnu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:70
-msgid "Could not find media file"
-msgstr "nelze najít složku s médii"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:79
-#, c-format
-msgid ""
-"The music file for %s by %s could not be found. What would you like to do?"
-msgstr "Hudební soubor %s od %s nebyl nalezen. Co chcete dělat?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:82
-#, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i soubory médií nebyly nalezeny. Co chcete dělat?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:145
-#, c-format
-msgid "The name %s is already in use"
-msgstr "jméno %s se momentálně používá pro jiný soubor"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:57
-#, c-format
-msgid "Remove from %s"
-msgstr "Odstranit ze %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:68
-#, c-format
-msgid "Remove %d Songs From %s?"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:72
-#, c-format
-msgid "Remove \"%s\" From %s?"
-msgstr "Odstranit ''%s'' z %s?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:81
-#, c-format
-msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
-msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
-msgstr[0] ""
-msgstr[1] ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
 msgid "Cancelling Sync"
 msgstr "Ukončuji synchronizaci"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:42
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
 "Synchronizace zařízení byla ukončena. Operace skončí po těchto médiích."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:46
 msgid "Cancelling Import"
 msgstr "Ukončuji import"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:46
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:46
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
 "Synchronizace ze zařízení byla ukončena. Operace skončí po těchto médiích."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
 msgid "No External Songs"
 msgstr "Žádné externí skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:83
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr "Na zařízení nebyly nalezeny skladby, které nejsou v knihovně."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/PopupListView.vala:166
-#, c-format
-msgid "%s by %s"
-msgstr "%s od %s"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:77
+msgid "Device Name:"
+msgstr "Název zařízení:"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d minut"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:80
+msgid "Device Name"
+msgstr "Název zařízení"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d hodin"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:82
+msgid "Automatically sync when plugged in:"
+msgstr "Automaticky synchronizovat, když zapojeno:"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d dnů"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Sync:"
+msgstr "Synchronizovat:"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u soubory, %s, %s"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:111
+msgid "Other Files"
+msgstr "Ostatní soubory"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:112
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:479
+msgid "Music"
+msgstr "Hudba:"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:113
+msgid "Podcasts"
+msgstr "Podcasty"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:384
+msgid "All Music"
+msgstr "Všechna hudba"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:387
+msgid "All Podcasts"
+msgstr "Všechny podcasty"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:555
+msgid "Sync Failed"
+msgstr "Synchronizace selhala"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:555
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"Playlist %s se používá k synchronizaci se zařízením %s, ale nebyl nalezen."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Cannot Sync"
+msgstr "Nelze synchronizovat"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:603
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Nelze synchronizovat zařízení s vybraným nastavením synchronizace. Na disku "
+"není dostatek místa."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Device is already being synced."
+msgstr "Zařízení se už synchronizuje."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
+msgid "Get Some Tunes"
+msgstr "Pořiďte si nějakou Hudbu"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
+#, c-format
+msgid "%s can't seem to find your music."
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+msgid "Locate"
+msgstr "Najít"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+msgid "Change your music folder."
+msgstr "Změnit svou složku s hudbou"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:135
+msgid "Choose Music Folder"
+msgstr "Vybrat složku s hudbou"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
+msgid "All the songs in this device are already in your library."
+msgstr "Všechny skladby na tomto zařízení jsou momentálně ve vaší knihovně."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid "No songs in Queue"
 msgstr "Ve frontě nejsou skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -984,11 +467,53 @@ msgstr ""
 "vyberte <b>Fronta</b>. Až píseň skončí, budou nejprve přehrány písně ve "
 "frontě, před další písní v právě přehrávaném seznamu."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
+msgid "Audio CD Invalid"
+msgstr "Neplatné CD"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
+#, c-format
+msgid "%s could not read the contents of this Audio CD"
+msgstr "%s nemohl načíst obsah tohoto zvukového CD."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
+#, c-format
+msgid "%i tracks"
+msgstr "%i stopy"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
+msgid "1 track"
+msgstr "1 stopa"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:381
+#, c-format
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+msgstr[1] "%u alba"
+msgstr[2] "%u alb"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:383
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u skladba"
+msgstr[1] "%u skladby"
+msgstr[2] "%u skladeb"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:569
+msgid "No media"
+msgstr "Žádné médium"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:573
+msgid "Sorry, there is no music that matches your search"
+msgstr "Nebyla nalezena hudba podle vašich vyhledávacích parametrů"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid "No songs in History"
 msgstr "V historii nejsou žádné skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -998,57 +523,12 @@ msgstr ""
 "Tento seznam můžete použít jako přehled všech písní, které jste přehráli "
 "během aktuálního spuštění."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
-msgid "Get Some Tunes"
-msgstr "Pořiďte si nějakou Hudbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
-#, c-format
-msgid "%s can't seem to find your music."
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
-msgid "Locate"
-msgstr "Najít"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
-msgid "Change your music folder."
-msgstr "Změnit svou složku s hudbou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
-msgid "All the songs in this device are already in your library."
-msgstr "Všechny skladby na tomto zařízení jsou momentálně ve vaší knihovně."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:381
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-msgstr[1] "%u alba"
-msgstr[2] "%u alb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:383
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u skladba"
-msgstr[1] "%u skladby"
-msgstr[2] "%u skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:569
-msgid "No media"
-msgstr "Žádné médium"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:573
-msgid "Sorry, there is no music that matches your search"
-msgstr "Nebyla nalezena hudba podle vašich vyhledávacích parametrů"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "No Songs"
 msgstr "Žádné skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1056,11 +536,11 @@ msgstr ""
 "Pro přidání skladeb do playlistu, klikněte <b>pravým tlačítkrm</b> na soubor "
 "a stiskněte <b>Přidat do Playlistu</b>"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "Edit Smart Playlist"
 msgstr "Upravit chytrý seznam skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1072,585 +552,1040 @@ msgstr ""
 "tlačítkem</b> a pak na <b>Upravit</b>. Případně můžete kliknout na tlačítko "
 "níže."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
-msgid "Audio CD Invalid"
-msgstr "Neplatné CD"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr "%s nemohl načíst obsah tohoto zvukového CD."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
-#, c-format
-msgid "%i tracks"
-msgstr "%i stopy"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
-msgid "1 track"
-msgstr "1 stopa"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 msgid "Device unreachable"
 msgstr "Nelze najít zařízení"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
 #, c-format
 msgid "%s could not access to this network device"
 msgstr "%s nemohl získat přístup k tomuto síťovému zařízení"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:38
-msgid "N/A"
-msgstr "N/A"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:220
-#, c-format
-msgid "%i kbps"
-msgstr "%i kbps"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:245
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:714
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:721
-msgid "Never"
-msgstr "Nikdy"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:65
-msgid "#"
-msgstr "#"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:95
-msgid "Plays"
-msgstr "Hraje"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:98
-msgid "Skips"
-msgstr "Přeskočení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:107
-msgid "BPM"
-msgstr "BPM"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:57
-msgid "Remove from Library"
-msgstr "Odstranit z knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:65
-msgid "Remove from Queue"
-msgstr "Odstranit z fronty"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:82
-msgid "Remove from Device"
-msgstr "Odstranit ze zařízení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:103
-msgid "Scroll to Current Song"
-msgstr "Přejít na aktuální skladby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:104
-msgid "Edit Song Info"
-msgstr "Upravit informace o skladbě"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:105
-msgid "Show in File Browser"
-msgstr "Zobrazit ve správci souborů"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:106
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:486
-msgid "Queue"
-msgstr "Fronta"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:108
-msgid "Add to Playlist"
-msgstr "Přidat do seznamu skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:109
-msgid "Remove Song"
-msgstr "Odstranit skladbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:215
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Importovat %i z %i vybraných skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:217
-msgid "Import this song"
-msgstr "Importovat tuto skladbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:219
-#, c-format
-msgid "Import %i songs"
-msgstr "Importovat %i skladby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:700
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the desired size of the Title column in the list view.
-#. / Should be as long as a common song title in your language.
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:778
-msgid "Sample Title"
-msgstr "Název nahrávky"
-
-#. / Sample string used to measure the desired size of the Artist column in the list view.
-#. / Should be as long as a common artist name in your language.
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:787
-msgid "Sample Artist"
-msgstr "Umělec nahrávky"
-
-#. / Sample string used to measure the desired size of the Album column in the list view.
-#. / Should be as long as a common album name in your language.
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:793
-msgid "Sample Album"
-msgstr "Album nahrávky"
-
-#. / Sample string used to measure the desired size of the Genre column in the list view.
-#. / Should be as long as a common genre name in your language.
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:810
-msgid "Sample Genre"
-msgstr "Žánr nahrávky"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:138
-msgid "Autosize Columns"
-msgstr "Automaticky přizpůsobit sloupce"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:145
-msgid "Display Album Art"
-msgstr "Zobrazit umělce alba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
 msgstr "Žánry"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
 msgid "Artists"
 msgstr "Interpreti"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
 msgid "Albums"
 msgstr "Alba"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
 msgid "Years"
 msgstr "Let"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
 msgid "Ratings"
 msgstr "Hodnocení"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
+msgid "On Left"
+msgstr "Nalevo"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
+msgid "On Top"
+msgstr "Nahoře"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
 msgid "Unrated"
 msgstr "Nehodnoceno"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Genres"
 msgstr "Všechny žánry"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Genres"
 msgstr "Všechny %i žánry"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Genres"
 msgstr "Žádné žánry"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
 msgid "All Artists"
 msgstr "Všichni umělci"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
 #, c-format
 msgid "All %i Artists"
 msgstr "Všichni %i umělci"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
 msgid "No Artists"
 msgstr "Žádní umělci"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Albums"
 msgstr "Všechna alba"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 #, c-format
 msgid "All %i Albums"
 msgstr "Všechna %i alba"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Albums"
 msgstr "Žádná alba"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
 msgid "All Years"
 msgstr "Všechny roky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
 #, c-format
 msgid "All %i Years"
 msgstr "Všechny %i roky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
 msgid "No Years"
 msgstr "Žádné roky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
 msgid "All Ratings"
 msgstr "Všechna hodnocení"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
 msgid "No Ratings"
 msgstr "Žádná hodnocení"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
-msgid "On Left"
-msgstr "Nalevo"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:57
+msgid "Remove from Library"
+msgstr "Odstranit z knihovny"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
-msgid "On Top"
-msgstr "Nahoře"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:65
+msgid "Remove from Queue"
+msgstr "Odstranit z fronty"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:77
-msgid "Device Name:"
-msgstr "Název zařízení:"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:82
+msgid "Remove from Device"
+msgstr "Odstranit ze zařízení"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:80
-msgid "Device Name"
-msgstr "Název zařízení"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:103
+msgid "Scroll to Current Song"
+msgstr "Přejít na aktuální skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:82
-msgid "Automatically sync when plugged in:"
-msgstr "Automaticky synchronizovat, když zapojeno:"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:104
+msgid "Edit Song Info"
+msgstr "Upravit informace o skladbě"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:89
-msgid "Sync:"
-msgstr "Synchronizovat:"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:105
+msgid "Show in File Browser"
+msgstr "Zobrazit ve správci souborů"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:111
-msgid "Other Files"
-msgstr "Ostatní soubory"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:106
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:489
+msgid "Queue"
+msgstr "Fronta"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:476
-msgid "Music"
-msgstr "Hudba:"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:108
+msgid "Add to Playlist"
+msgstr "Přidat do seznamu skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:113
-msgid "Podcasts"
-msgstr "Podcasty"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:109
+msgid "Remove Song"
+msgstr "Odstranit skladbu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:384
-msgid "All Music"
-msgstr "Všechna hudba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:387
-msgid "All Podcasts"
-msgstr "Všechny podcasty"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
-msgid "Sync Failed"
-msgstr "Synchronizace selhala"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:215
 #, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Playlist %s se používá k synchronizaci se zařízením %s, ale nebyl nalezen."
+msgid "Import %i of %i selected songs"
+msgstr "Importovat %i z %i vybraných skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Cannot Sync"
-msgstr "Nelze synchronizovat"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:217
+msgid "Import this song"
+msgstr "Importovat tuto skladbu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Nelze synchronizovat zařízení s vybraným nastavením synchronizace. Na disku "
-"není dostatek místa."
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:219
+#, c-format
+msgid "Import %i songs"
+msgstr "Importovat %i skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Device is already being synced."
-msgstr "Zařízení se už synchronizuje."
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:700
+msgid "1234 kbps"
+msgstr "1234 kbps"
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:403
-msgid "Favorite Songs"
-msgstr "Oblíbené skladby"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:714
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:721
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:245
+msgid "Never"
+msgstr "Nikdy"
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:413
-msgid "Recently Added"
-msgstr "Naposledy přidané"
+#. / Sample string used to measure the desired size of the Title column in the list view.
+#. / Should be as long as a common song title in your language.
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:778
+msgid "Sample Title"
+msgstr "Název nahrávky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:435
-msgid "Recent Favorites"
-msgstr "Nedávno oblíbené"
+#. / Sample string used to measure the desired size of the Artist column in the list view.
+#. / Should be as long as a common artist name in your language.
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:787
+msgid "Sample Artist"
+msgstr "Umělec nahrávky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:445
-msgid "Never Played"
-msgstr "Nikdy nehrané"
+#. / Sample string used to measure the desired size of the Album column in the list view.
+#. / Should be as long as a common album name in your language.
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:793
+msgid "Sample Album"
+msgstr "Album nahrávky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:455
-msgid "Over Played"
-msgstr "Přehrané"
+#. / Sample string used to measure the desired size of the Genre column in the list view.
+#. / Should be as long as a common genre name in your language.
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:810
+msgid "Sample Genre"
+msgstr "Žánr nahrávky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:465
-msgid "Not Recently Played"
-msgstr "V poslední době nebylo hráno"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:38
+msgid "N/A"
+msgstr "N/A"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:180
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:220
+#, c-format
+msgid "%i kbps"
+msgstr "%i kbps"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/GenericList.vala:138
+msgid "Autosize Columns"
+msgstr "Automaticky přizpůsobit sloupce"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/GenericList.vala:145
+msgid "Display Album Art"
+msgstr "Zobrazit umělce alba"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:65
+msgid "#"
+msgstr "#"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:68
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:192
+msgid "Track"
+msgstr "Stopa"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:184
+msgid "Title"
+msgstr "Název"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:74
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:405
+msgid "Length"
+msgstr "Délka"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:83
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:476
+msgid "Genre"
+msgstr "Žánr"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:194
+msgid "Year"
+msgstr "Rok"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:89
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Bitrate"
+msgstr "Datový tok"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:92
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:195
+msgid "Rating"
+msgstr "Hodnocení"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:95
+msgid "Plays"
+msgstr "Hraje"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:98
+msgid "Skips"
+msgstr "Přeskočení"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:101
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Date Added"
+msgstr "Datum přidání"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:104
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Last Played"
+msgstr "Naposledy přehráno"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:107
+msgid "BPM"
+msgstr "BPM"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr "%d minut"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr "%d hodin"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d dnů"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u soubory, %s, %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/PopupListView.vala:166
+#, c-format
+msgid "%s by %s"
+msgstr "%s od %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:183
 msgid "Rescan Music Folder"
 msgstr "Znovu prohledat složku s hudbou"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:203
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:186
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:146
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:206
 msgid "Search Music"
 msgstr "Najít hudbu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:490
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:493
 msgid "History"
 msgstr "Historie"
 
 #. / String template used to show "SongName by ArtistName"
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:651
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:654
 #, c-format
 msgid " by %s"
 msgstr ""
 
 #. / String template used to show "SongName ... on AlbumName"
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:656
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:659
 #, c-format
 msgid " on %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:863
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:866
 msgid "Import Music"
 msgstr "Importovat hudbu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:895
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:898
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importuje se</b> hudba z <b>%s</b> do knihovny."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:910
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:913
 msgid "Rescanning music folder for changes"
 msgstr "Prohledávám složku s hudbou"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:917
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:920
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
 msgid "Could not find Music Folder"
 msgstr "Složka s hudbou nenalezena"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:917
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:920
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Ujistěte se, že vaše složka s hudbou je přístupná a připojená."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:983
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:986
 msgid "Import Complete"
 msgstr "Importace dokončena"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:983
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:986
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s bylo importováno do vaší knihovny"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:70
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Export Playlists"
+msgstr "Exportovat seznamy skladeb"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+msgid "Set Music Folder"
+msgstr "Vybrat složku s hudbou"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+msgid "Set Music Folder?"
+msgstr "Nastavit složku s hudbou?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Opravdu chcete nastavit jako hudební složku %s? Pokud tak učiníte, smaže se "
+"importovaná knihovna a playlisty."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:83
+msgid "Equalizer"
+msgstr "Ekvalizér"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:150
+msgid "Save preset"
+msgstr "Uložit předvolbu"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:158
+msgid "Close"
+msgstr "Zavřít"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:414
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (vlastní)"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:416
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (vlastní %i)"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:420
+msgid "Custom Preset"
+msgstr "Vlastní předvolba"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:422
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Vlatní předvolba %i"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:56
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:71
+msgid "Move to Trash"
+msgstr "Přesunout soubory do koše"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#, c-format
+msgid "Remove from %s"
+msgstr "Odstranit ze %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:68
+#, c-format
+msgid "Remove %d Songs From %s?"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:72
+#, c-format
+msgid "Remove \"%s\" From %s?"
+msgstr "Odstranit ''%s'' z %s?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:81
+#, c-format
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr "Nejsou importovány žádné soubory"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:76
+#, c-format
+msgid "Unable to import %d items from %s"
+msgstr "Nemohu importovat %d soubory z %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:65
+#, c-format
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s nelze importovat %d soubory. Soubory jsou možná poškozeny."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr "Přesunout všechny poškozené soubory do koše"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "Ignorovat"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "smazat"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "Umístění souboru"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr "Vybrat jednotlivé soubory k přesunutí do koše"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:60
+msgid "Smart Playlist Editor"
+msgstr "Editor inteligentního playlistu"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:63
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:71
+msgid "Name of Playlist"
+msgstr "Název playlistu"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+msgid "Rules"
+msgstr "Pravidla"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:84
+msgid "Options"
+msgstr "Možnosti"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Playlist Title"
+msgstr "Název playlistu"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+msgid "Match"
+msgstr "Shoda"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:95
+msgid "any"
+msgstr "nějaký"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "all"
+msgstr "vše"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:97
+msgid "of the following:"
+msgstr "z následujících:"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:124
+msgid "Limit to"
+msgstr "Omezit na"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:126
+msgid "items"
+msgstr "položek"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:191
+msgid "Comment"
+msgstr "Kometář"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:189
+msgid "Composer"
+msgstr "Skladatel"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Released"
+msgstr "Datum vydání"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:476
+msgid "Grouping"
+msgstr "Seskupení"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+msgid "Playcount"
+msgstr "Počet přehrání"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Skipcount"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:332
+msgid "is"
+msgstr "je"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:333
+msgid "contains"
+msgstr "obsahuje"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:334
+msgid "does not contain"
+msgstr "neobsahuje"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:366
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:380
+msgid "is exactly"
+msgstr "je přesně"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+msgid "is at most"
+msgstr "je nejvíce"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+msgid "is at least"
+msgstr "je nejméně"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:381
+msgid "is within"
+msgstr "je v"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+msgid "is before"
+msgstr "je před"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "seconds"
+msgstr "vteřin"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:410
+msgid "days ago"
+msgstr "dnů zpět"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:414
+msgid "kbps"
+msgstr "kb/s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:65
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:86
+msgid "Done"
+msgstr "Hotovo"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#, c-format
+msgid "The name %s is already in use"
+msgstr "jméno %s se momentálně používá pro jiný soubor"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:61
+msgid "Remove Media"
+msgstr "Vyjměte médium"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:62
+msgid "Locate Media"
+msgstr "Najít média"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:63
+msgid "Rescan Library"
+msgstr "Zaktualizovat knihovnu"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:64
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+msgid "Do Nothing"
+msgstr "Neprovádět žádnou akci"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:70
+msgid "Could not find media file"
+msgstr "nelze najít složku s médii"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:79
+#, c-format
+msgid ""
+"The music file for %s by %s could not be found. What would you like to do?"
+msgstr "Hudební soubor %s od %s nebyl nalezen. Co chcete dělat?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:82
+#, c-format
+msgid "%i media files could not be found. What would you like to do?"
+msgstr "%i soubory médií nebyly nalezeny. Co chcete dělat?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:221
+msgid "General"
+msgstr "Hlavní"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:240
+msgid "Select Music Folder"
+msgstr "Vyberte složku s hudbou"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:247
+msgid "Music Folder Location"
+msgstr "Umístění složky s hudbou"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:253
+msgid ""
+"You must wait until previous file operations finish before setting your "
+"music folder"
+msgstr ""
+"Musíte počkat s nastavením složky s hudbou, dokud se nedokončí předchozí "
+"operace se soubory"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:264
+msgid "Keep Music folder organized"
+msgstr "Nechat složku s hudbou organizovanou"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:265
+msgid "Copy files to Music folder when adding to Library"
+msgstr ""
+"Zkopírovat soubory do složky s hudbou, když budou přidány do knihovny"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:267
+msgid "Write metadata to file"
+msgstr "Zapsat metadata do souboru"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:279
+msgid "Library Management"
+msgstr "Řízení knihovny"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:286
+msgid "Use Noise as the default Music application"
+msgstr "Natavit Noise jako výchozí přehrávač hudby"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:292
+msgid "Show notifications"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:299
+msgid "Minimize window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:301
+msgid "Hide window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:307
+msgid "Desktop Integration"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:64
+msgid "Import media to Library"
+msgstr "Importovat média do knihovny"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:65
+msgid "Continue Syncing"
+msgstr "Pokračovat v synchronizaci"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:66
+msgid "Stop Syncing"
+msgstr "Zastavit synchronizaci"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:73
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Pokud budete pokračovat v synchronizaci, média budou smazána ze %s, protože "
+"nejsou na seznamu synchronizace. Chcete je nejprve importovat do knihovny ?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:79
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr "Při synchronizaci budou smazány %i sobury ze %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:82
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr "Synchronizace smaže jeden soubor ze %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+msgid "Install Plugin"
+msgstr "Nainstalovat plugin"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+msgid "Required GStreamer plugin not installed"
+msgstr "Požadovaný plugin GStreameru není nainstalován"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#, c-format
+msgid ""
+"The plugin for media type %s is not installed.\n"
+"What would you like to do?"
+msgstr ""
+"Plugin pro tento typ souboru %s není nainstalován. Co chcete udělat ?"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr "Importovat ze zařízení"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#, c-format
+msgid "Import media from %s"
+msgstr "Importovat média z %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"Tyto soubory byly nalezeny v %s, ale nejsou v knihovně. Označte soubory, "
+"které chcete importovat"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all media"
+msgstr "importovat všechny média"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+msgid "Import"
+msgstr "Importovat"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "Neimportovat"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#, c-format
+msgid "Import %i items from %s"
+msgstr "IImportovat %i soubory z %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#, c-format
+msgid "Import %s from %s"
+msgstr "Importovat %s z %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+msgid "ID"
+msgstr "ID"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+msgid "Select individual media to import:"
+msgstr "vybrat individuální média pro import"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Item"
+msgstr "Zkontrolovat položku"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+msgid "Check Album"
+msgstr "Zkontrolovat album"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+msgid "Check Artist"
+msgstr "Zkontrolovat umělce"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:75
+msgid "Metadata"
+msgstr "Metadata"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:77
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:373
+msgid "Lyrics"
+msgstr "Text písně"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:173
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:344
+#, c-format
+msgid "Editing %s by %s"
+msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:175
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:346
+#, c-format
+msgid "Editing %s"
+msgstr "Úprava %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:178
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:349
+#, c-format
+msgid "Editing %i songs"
+msgstr "Úprava %i písní"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:186
+msgid "Album Artist"
+msgstr "Interpret alba"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:193
+msgid "Disc"
+msgstr "Disk"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:197
+msgid "Media Type"
+msgstr "Typ média"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:292
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr "Nebyl nalezen žádný text pro skladbu %s"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:537
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:203
+#, c-format
+msgid "Importing music from %s..."
+msgstr "Importovat hudbu z %s..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:251
+msgid "Adding files to library..."
+msgstr "Přidat soubory do knihovny"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:300
+#, c-format
+msgid "Adding music from %s to library..."
+msgstr "Přidání hudby z %s do databáze..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:328
+msgid "Rescanning music for changes. This may take a while..."
+msgstr "Prohledat změny v hudbě. Může to chvíli trvat..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/AlbumInfo.vala:25
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:94
+msgid "Unknown Album"
+msgstr "Neznámé album"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/AlbumInfo.vala:26
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/ArtistInfo.vala:27
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:109
+msgid "Unknown Artist"
+msgstr "Neznámý iterpret"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Neznámá stopa"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/Playlist.vala:203
+msgid "Radio Station"
+msgstr "Rádiová stanice"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
 msgstr "Ploché"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:71
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
 msgstr "Klasická hudba"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:72
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
 msgstr "Klubová hudba"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:73
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
 msgstr "Taneční hudba"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:74
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
 msgstr "Plné basy"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:75
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
 msgstr "Plné výšky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:76
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
 msgstr "Plné basy + výšky"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:77
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
 msgstr "Sluchátka"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:78
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
 msgstr "Velká hala"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:79
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
 msgstr "Živě"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:80
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
 msgstr "Párty"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:81
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
 msgstr "Pop"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:82
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
 msgstr "Reggae"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:83
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
 msgstr "Rock"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:84
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
 msgstr "Měkký"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:85
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
 msgstr "Ska"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:86
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
 msgstr "Měkký Rock"
 
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:87
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
 msgstr "Techno"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Před importováním CD se prosím ujistěte, že je vaše složka s hudbou "
-"přístupná a připojená."
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:403
+msgid "Favorite Songs"
+msgstr "Oblíbené skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
-msgid "No songs on CD"
-msgstr "Žádné skladby na CD"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:413
+msgid "Recently Added"
+msgstr "Naposledy přidané"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
-#, c-format
-msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr "%s nelze najít žádné skladby na CD. Žádná skladba nebude importována"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:435
+msgid "Recent Favorites"
+msgstr "Nedávno oblíbené"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
-#, c-format
-msgid "%s is already doing an import"
-msgstr "%s momentálně probíhá importování"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:445
+msgid "Never Played"
+msgstr "Nikdy nehrané"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
-#, c-format
-msgid ""
-"Please wait until %s is finished with the current import before importing "
-"the CD."
-msgstr "Před importováním CD prosím počkejte, než se dokončí import %s."
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:455
+msgid "Over Played"
+msgstr "Přehrané"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
-msgid "Ripping track 1"
-msgstr "Kopírování stopy 1"
+#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:465
+msgid "Not Recently Played"
+msgstr "V poslední době nebylo hráno"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
-#, c-format
-msgid "Importing track %i"
-msgstr "Importuji stopu %i"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
-msgid "CD Import Complete"
-msgstr "Import CD dokončen"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
-#, c-format
-msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s dokončilo importování %i skladeb z Audio CD."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
-#, c-format
-msgid "%s has finished importing a song from Audio CD."
-msgstr "%s dokončilo importování skladby z Audio CD"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "CD importování bude <b>ukončen</b> po probíhajícím importování."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "Neznámý titul"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:301
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
-#, c-format
-msgid "Syncing <b>%s</b>..."
-msgstr "Synchronizuji <b>%s</b>..."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:658
-#, c-format
-msgid "Removing from <b>%s</b>..."
-msgstr "Odstraňuji <b>%s</b>..."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:881
-#, c-format
-msgid "Importing <b>%s</b> to library..."
-msgstr "Importuji <b>%s</b>... do knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/LastFM.vala:63
-msgid "Similar"
-msgstr "Podobné"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:48
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
 msgstr "média"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:52
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarMediaView.vala:52
 msgid "Similar Media"
 msgstr "Podobná média"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/LastFM.vala:63
+msgid "Similar"
+msgstr "Podobné"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
 msgstr "Povolit Noise práva"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:31
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
 msgstr "Nedokončeno. Klikněte pro opakování."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:32
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:33
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
 msgstr "Úspěch!"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:34
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
 msgstr "Přihlášení kompletní"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:40
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:40
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:54
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
 msgstr "Klikněte pro opakování přihlášení k Last.fm"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:57
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
@@ -1658,29 +1593,29 @@ msgstr ""
 "Pro povolení integrace Last.fm, musíte dát programu Noise práva. Je to "
 "potřebné pro dokončení"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:68
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:68
 msgid "Last.fm Integration"
 msgstr "Lastfm integrace"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
 msgstr "Získávání podobných skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
 msgstr "Hledám podobné skladby do %s od %s"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:100
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
 msgid "Similar to %s"
 msgstr "Podobné %s"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 msgid "No similar songs found"
 msgstr "Nebyly nalezeny podobné skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -1688,17 +1623,94 @@ msgid ""
 "not have matches."
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
 msgstr "Zobrazení podobných skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "Neznámý titul"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"Před importováním CD se prosím ujistěte, že je vaše složka s hudbou "
+"přístupná a připojená."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
+msgid "No songs on CD"
+msgstr "Žádné skladby na CD"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
+#, c-format
+msgid "%s could not find any songs on the CD. No songs can be imported"
+msgstr "%s nelze najít žádné skladby na CD. Žádná skladba nebude importována"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
+#, c-format
+msgid "%s is already doing an import"
+msgstr "%s momentálně probíhá importování"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
+#, c-format
+msgid ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
+msgstr "Před importováním CD prosím počkejte, než se dokončí import %s."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
+msgid "Ripping track 1"
+msgstr "Kopírování stopy 1"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
+#, c-format
+msgid "Importing track %i"
+msgstr "Importuji stopu %i"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
+msgid "CD Import Complete"
+msgstr "Import CD dokončen"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
+#, c-format
+msgid "%s has finished importing %i songs from Audio CD."
+msgstr "%s dokončilo importování %i skladeb z Audio CD."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
+#, c-format
+msgid "%s has finished importing a song from Audio CD."
+msgstr "%s dokončilo importování skladby z Audio CD"
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr "CD importování bude <b>ukončen</b> po probíhajícím importování."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:301
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:511
+#, c-format
+msgid "Syncing <b>%s</b>..."
+msgstr "Synchronizuji <b>%s</b>..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:658
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr "Odstraňuji <b>%s</b>..."
+
+#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:881
+#, c-format
+msgid "Importing <b>%s</b> to library..."
+msgstr "Importuji <b>%s</b>... do knihovny"
 
 #~ msgid "Episode"
 #~ msgstr "Epizoda"
@@ -1744,15 +1756,6 @@ msgstr ""
 
 #~ msgid "Try again"
 #~ msgstr "Zkusit znovu"
-
-#~ msgid "Unknown Genre"
-#~ msgstr "Neznámý žánr"
-
-#~ msgid "Various Artists"
-#~ msgstr "Různí interpreti"
-
-#~ msgid "System Integration"
-#~ msgstr "Integrace systému"
 
 #, c-format
 #~ msgid "Remove %d %s from %s?"
