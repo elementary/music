@@ -31,14 +31,14 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	public signal void reordered ();
 
 	// Wrapper for the list view and miller columns
-	private Granite.Widgets.SidebarPaned list_view_hpaned; // for left mode
-	private Gtk.Paned list_view_vpaned; // for top mode
+	private Granite.Widgets.ThinPaned browser_hpane; // for left mode
+	private Gtk.Paned browser_vpane; // for top mode
 
 	public ColumnBrowser column_browser { get; private set; }
 	public GenericList   list_view      { get; private set; }
 
-	private int list_view_hpaned_position = -1;
-	private int list_view_vpaned_position = -1;
+	private int browser_hpane_position = -1;
+	private int browser_vpane_position = -1;
 
 	private ViewWrapper view_wrapper;
 	private LibraryWindow lw;
@@ -96,11 +96,11 @@ public class Noise.ListView : ContentView, Gtk.Box {
         list_text_overlay.add (list_scrolled);
         list_text_overlay.message = String.escape (_("No Songs Found."));
 
-		list_view.rows_reordered.connect ( () => {
+		list_view.rows_reordered.connect (() => {
 			reordered ();
 		});
 
-		list_view.import_requested.connect ( (to_import) => {
+		list_view.import_requested.connect ((to_import) => {
 			import_requested (to_import);
 		});
 
@@ -110,21 +110,21 @@ public class Noise.ListView : ContentView, Gtk.Box {
         list_view.set_search_func (view_search_func);
 
 		if (has_column_browser) {
-			list_view_hpaned = new Granite.Widgets.SidebarPaned ();
-			list_view_vpaned = new Paned (Orientation.VERTICAL);
+			browser_hpane = new Granite.Widgets.ThinPaned ();
+			browser_vpane = new Paned (Orientation.VERTICAL);
 
 			// Fix theming
-			list_view_vpaned.get_style_context().add_class (Gtk.STYLE_CLASS_VERTICAL);
+			browser_vpane.get_style_context ().add_class (Gtk.STYLE_CLASS_VERTICAL);
 
-			list_view_hpaned.pack2(list_view_vpaned, true, false);
+			browser_hpane.pack2 (browser_vpane, true, false);
 
 			// Add hpaned (the most-external wrapper) to the view container
-			list_view_hpaned.expand = true;
-			this.add (list_view_hpaned);
+			browser_hpane.expand = true;
+			this.add (browser_hpane);
 
 			// Now pack the list view
-			list_view_vpaned.pack2(list_text_overlay, true, false);
-			list_view_hpaned.pack1(column_browser, true, false);
+			browser_vpane.pack2 (list_text_overlay, true, false);
+			browser_hpane.pack1 (column_browser, true, false);
 
 			set_column_browser_position (column_browser.position);
 
@@ -179,19 +179,19 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		column_browser.actual_position = actual_position;
 
 		if (actual_position == ColumnBrowser.Position.LEFT) {
-			if (list_view_hpaned.get_child1() == null && list_view_vpaned.get_child1() == column_browser) {
-				list_view_vpaned.remove (column_browser);
-				list_view_hpaned.pack1 (column_browser, true, false);
+			if (browser_hpane.get_child1 () == null && browser_vpane.get_child1 () == column_browser) {
+				browser_vpane.remove (column_browser);
+				browser_hpane.pack1 (column_browser, true, false);
 
-				list_view_hpaned.position = list_view_hpaned_position;
+				browser_hpane.position = browser_hpane_position;
 			}
 		}
 		else if (actual_position == ColumnBrowser.Position.TOP) {
-			if (list_view_vpaned.get_child1() == null && list_view_hpaned.get_child1() == column_browser) {
-				list_view_hpaned.remove (column_browser);
-				list_view_vpaned.pack1 (column_browser, true, false);
+			if (browser_vpane.get_child1 () == null && browser_hpane.get_child1 () == column_browser) {
+				browser_hpane.remove (column_browser);
+				browser_vpane.pack1 (column_browser, true, false);
 
-				list_view_vpaned.set_position (list_view_vpaned_position);
+				browser_vpane.set_position (browser_vpane_position);
 			}
 		}
 	}
@@ -201,7 +201,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 			return;
 
 		// For automatic position stuff
-		this.size_allocate.connect ( () => {
+		this.size_allocate.connect (() => {
 			if (!lw.initialization_finished)
 				return;
 
@@ -209,17 +209,17 @@ public class Noise.ListView : ContentView, Gtk.Box {
 				set_column_browser_position (ColumnBrowser.Position.AUTOMATIC);
 		});
 
-		column_browser.size_allocate.connect ( () => {
+		column_browser.size_allocate.connect (() => {
 			if (!lw.initialization_finished || !column_browser_enabled)
 				return;
 
 			if (column_browser.actual_position == ColumnBrowser.Position.LEFT) {
-				if (list_view_hpaned.position > 0)
-					list_view_hpaned_position = list_view_hpaned.position;
+				if (browser_hpane.position > 0)
+					browser_hpane_position = browser_hpane.position;
 			}
 			else if (column_browser.actual_position == ColumnBrowser.Position.TOP) {
-				if (list_view_vpaned.position > 0)
-					list_view_vpaned_position = list_view_vpaned.position;
+				if (browser_vpane.position > 0)
+					browser_vpane_position = browser_vpane.position;
 			}
 		});
 
@@ -231,11 +231,11 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		column_browser.position_changed.connect (set_column_browser_position);
 
 		// Read Paned position from settings
-		list_view_hpaned_position = Settings.SavedState.instance.column_browser_width;
-		list_view_vpaned_position = Settings.SavedState.instance.column_browser_height;
+		browser_hpane_position = Settings.SavedState.instance.column_browser_width;
+		browser_vpane_position = Settings.SavedState.instance.column_browser_height;
 
-		list_view_hpaned.position = list_view_hpaned_position;
-		list_view_vpaned.position = list_view_vpaned_position;
+		browser_hpane.position = browser_hpane_position;
+		browser_vpane.position = browser_vpane_position;
 
 		// We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
 		// disk access to write settings.
@@ -247,9 +247,9 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		if (has_column_browser) {
 			if (column_browser.visible) {
 				if (column_browser.actual_position == ColumnBrowser.Position.LEFT)
-					Settings.SavedState.instance.column_browser_width = list_view_hpaned_position;
+					Settings.SavedState.instance.column_browser_width = browser_hpane_position;
 				else if (column_browser.actual_position == ColumnBrowser.Position.TOP)
-					Settings.SavedState.instance.column_browser_height = list_view_vpaned_position;
+					Settings.SavedState.instance.column_browser_height = browser_vpane_position;
 			}
 
 			Settings.SavedState.instance.column_browser_enabled = column_browser_enabled;
@@ -307,21 +307,21 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
 	public void add_media (Gee.Collection<Media> to_add) {
     	list_view.add_media (to_add);
-		if (has_column_browser)
-            column_browser.set_media (get_visible_media ());
+    	refilter (null);
 	}
 
 	public void remove_media (Gee.Collection<Media> to_remove) {
     	list_view.remove_media (to_remove);
-		if (has_column_browser)
-            column_browser.set_media (get_visible_media ());
+        refilter (null);
 	}
 
 	public void set_media (Gee.Collection<Media> media) {
-		if (has_column_browser)
-			column_browser.set_media (media);
+        obey_column_browser = false;
 
 		list_view.set_media (media);
+
+		if (has_column_browser)
+			column_browser.set_media (media);
 
         obey_column_browser = true;
 	}
@@ -331,21 +331,22 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public void refilter (string? search) {
-        list_text_overlay.message_visible = false;
-
-        // We set 'obey_column_browser' to 'false' because otherwise refilter() would
+        // We set 'obey_column_browser' to 'false' because otherwise refilter () would
         // filter the visible media based on the browser's current filter, and then re-populate
         // the browser using that same media. We don't want that to happen, because it would
         // make the browser filter its own media!
+        // Basically, what 'obey_column_browser = false' does is forcing the view to traverse
+        // the entire item table again to decide what elements are visible without taking into
+        // account the column browser filter - just the search string.
+        //
+        // We can safely do this because the browser is smart enough to keep its current
+        // selection/filter as long as the new media contains properties matching the criteria.
         obey_column_browser = false;
         list_view.do_search (search);
         obey_column_browser = true;
 
         if (has_column_browser)
             column_browser.set_media (get_visible_media ());
-
-        if (list_view.get_visible_table ().size () < 1)
-            list_text_overlay.message_visible = true;
     }
 
     public string get_statusbar_text () {
@@ -391,6 +392,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     private void view_search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
+        list_text_overlay.message_visible = false;
+
         int parsed_rating;
         string parsed_search_string;
 
@@ -418,5 +421,9 @@ public class Noise.ListView : ContentView, Gtk.Box {
                 }
             }
         }
+
+        // If nothing will be shown, display the "no media found" message.
+        if (showing.size () < 1)
+            list_text_overlay.message_visible = true;
     }
 }

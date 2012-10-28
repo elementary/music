@@ -140,11 +140,7 @@ public class Noise.GridView : ContentView, GridLayout {
 	}
 
     public void refilter (string? search) {
-        message_visible = false;
         do_search (search);
-
-        if (get_visible_objects ().length () < 1)
-            message_visible = true;
     }
 
     public string get_statusbar_text () {
@@ -381,6 +377,8 @@ public class Noise.GridView : ContentView, GridLayout {
 	}
 
     protected override void search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
+        message_visible = false;
+
         int parsed_rating;
         string parsed_search_string;
 
@@ -410,5 +408,9 @@ public class Noise.GridView : ContentView, GridLayout {
                 }
             }
         }
+
+        // If nothing will be shown, display the "no albums found" message.
+        if (showing.size () < 1)
+            message_visible = true;
     }
 }
