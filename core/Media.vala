@@ -56,9 +56,8 @@ public class Noise.Media : Object {
 
     // XXX: these don't really belong here. It seems they only help to
     //      ease client-side stuff, and will be removed in the future
-    public Gdk.Pixbuf? unique_status_image;
+    public Icon unique_status_image { get; set; }
     public bool showIndicator { get; set; default = false; }
-    public int pulseProgress { get; set; default = 0; }
 
     /**
      * Metadata Fields
@@ -162,6 +161,22 @@ public class Noise.Media : Object {
         return is_valid_string_field (text) ? text : UNKNOWN;
     }
 
+    public string get_title_markup () {
+        string markup = "<b>%s</b>".printf (String.escape (get_display_title ()));
+
+        // We don't use the get_display_* for the artist and albums because
+        // there's no point in showing "unknown" there. If the info is not available,
+        // just skip it.
+        if (is_valid_string_field (artist))
+            /// String template used to show "SongName by ArtistName"
+            markup += _(" by %s").printf ("<b>" + String.escape (artist) + "</b>");
+
+        if (is_valid_string_field (album))
+            /// String template used to show "SongName ... on AlbumName"
+            markup += _(" on %s").printf ("<b>" + String.escape (album) + "</b>");
+
+        return markup;
+    }
 
     public Media (string uri) {
         this.uri = uri;
@@ -202,7 +217,6 @@ public class Noise.Media : Object {
         rv.isPreview = isPreview;
         rv.isTemporary = isTemporary;
         rv.last_modified = last_modified;
-        rv.pulseProgress = pulseProgress;
         rv.showIndicator = showIndicator;
         rv.unique_status_image = unique_status_image;
         rv.location_unknown = location_unknown;

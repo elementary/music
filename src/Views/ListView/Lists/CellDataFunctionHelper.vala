@@ -30,12 +30,11 @@
  */
 
 using Gtk;
-using Gdk;
 
 public class Noise.CellDataFunctionHelper {
+    private const string NOT_AVAILABLE = ""; //("N/A");
 
     private GenericList view;
-    private static string NOT_AVAILABLE = _("N/A");
 
 #if HAVE_SMART_ALBUM_COLUMN
     // We want ALL the views to follow this
@@ -62,7 +61,7 @@ public class Noise.CellDataFunctionHelper {
     // for Smart album column
     public void album_art_func (Gtk.TreeViewColumn tvc, Gtk.CellRenderer renderer,
                                 Gtk.TreeModel tree_model, Gtk.TreeIter iter) {
-        int index = view.get_index_from_iter (iter);
+        int index = FastView.get_index_from_iter (iter);
 
         var m = view.get_media_from_index (index);
         if (m == null)
@@ -97,7 +96,7 @@ public class Noise.CellDataFunctionHelper {
     }
 
     public bool row_separator_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
-        int range = 0, top = 0, bottom = 0, current = view.get_index_from_iter (iter);
+        int range = 0, top = 0, bottom = 0, current = FastView.get_index_from_iter (iter);
         var m = view.get_media_from_index (current);
 
         if (m != null)
@@ -144,29 +143,36 @@ public class Noise.CellDataFunctionHelper {
     }
 #endif
 
-    /** For spinner/unique icon on each row **/
-    public void icon_func (CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
-        bool showIndicator = false;
-        var s = view.get_object_from_index (view.get_index_from_iter (iter)) as Media;
+    /**
+     * For unique icon on each row
+     */
+    public void icon_func (Gtk.CellLayout layout, Gtk.CellRenderer renderer, Gtk.TreeModel model, Gtk.TreeIter iter) {
+        var m = view.get_object_from_index (FastView.get_index_from_iter (iter)) as Media;
+        return_if_fail (m != null);
 
-        if (s == null)
-            return;
+        renderer.visible = !m.showIndicator;
 
-        showIndicator = s.showIndicator;
+        var image_renderer = renderer as Gtk.CellRendererPixbuf;
+        return_if_fail (image_renderer != null);
 
-        if (renderer is CellRendererPixbuf) {
+        if (renderer.visible) {
             Value icon;
             model.get_value (iter, ListColumn.ICON, out icon); // ICON column is same for all
-
-            var pix_renderer = renderer as CellRendererPixbuf;
-            pix_renderer.gicon = icon.get_object () as GLib.Icon;
-
-            renderer.visible = !showIndicator;
-        } else if (renderer is CellRendererSpinner) {
-            if (showIndicator)
-                (renderer as Gtk.CellRendererSpinner).active = true;
-            renderer.visible = showIndicator;
+            image_renderer.gicon = icon as GLib.Icon;
         }
+    }
+
+    public void spinner_func (Gtk.CellLayout layout, Gtk.CellRenderer renderer, Gtk.TreeModel model, Gtk.TreeIter iter) {
+        var m = view.get_object_from_index (FastView.get_index_from_iter (iter)) as Media;
+        return_if_fail (m != null);
+
+        renderer.visible = m.showIndicator;
+
+        var spinner_renderer = renderer as Gtk.CellRendererSpinner;
+        return_if_fail (spinner_renderer != null);
+
+        spinner_renderer.active = true;
+        spinner_renderer.pulse++;
     }
 
     public static inline void file_size_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {

@@ -53,7 +53,6 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 		
 		list = new LinkedList<Noise.Media>();
 		medias = new LinkedList<Noise.Media>();
-		media_being_ripped = null;
 	}
 	
 	public Noise.DevicePreferences get_preferences() {
@@ -96,7 +95,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 	}
 	
 	public string get_fancy_description() {
-		return "No Description";
+		return "";
 	}
 	
 	public void set_mount(Mount mount) {
@@ -124,19 +123,19 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 	}
 	
 	public uint64 get_capacity() {
-		return (uint64)0;
+		return 0;
 	}
 	
 	public string get_fancy_capacity() {
-		return "Unknown capacity";
+		return "";
 	}
 	
 	public uint64 get_used_space() {
-		return (uint64)0;
+		return 0;
 	}
 	
 	public uint64 get_free_space() {
-		return (uint64)0;
+		return 0;
 	}
 
     private bool ejecting = false;
@@ -274,13 +273,16 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 		// initialize gui feedback
 		index = 0;
 		total = list.size;
-		current_operation = _("Ripping track 1");
+		current_operation = get_track_status (s);
 
 		_is_transferring = true;
 		lm.start_file_operations(current_operation);
 		lw.update_sensitivities();
+
 		Timeout.add(500, doProgressNotificationWithTimeout);
+
 		user_cancelled = false;
+
 		ripper.progress_notification.connect( (progress) => {
 			current_song_progress = progress;
 		});
@@ -291,18 +293,22 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 		
 		// start process
 		ripper.ripMedia(s.track, s);
-		
-		// this refreshes so that the spinner shows
-#if 0
-		ViewWrapper vw = ((ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
-		vw.list_view.get_column(MusicList.MusicColumn.ICON).visible = false; // this shows spinner for some reason
-		vw.list_view.get_column(MusicList.MusicColumn.ICON).visible = true; // this shows spinner for some reason
-		vw.list_view.resort();
-		vw.set_media (medias);
-#endif
-		
+
 		// this spins the spinner for the current media being imported
-		Timeout.add(100, pulser);
+		Timeout.add (100, () => {
+            if (media_being_ripped != s || media_being_ripped == null)
+                return false;
+
+		    var wrapper = App.main_window.view_container.get_current_view () as DeviceViewWrapper;
+
+            if (wrapper != null) {
+                if (wrapper.d == this)
+                    wrapper.list_view.queue_draw ();
+            }
+
+		    return true;
+		});
+
 		return false;
 	}
 	
@@ -315,9 +321,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 		lm.add_media_item (lib_copy);
 		
 		// update media in cdrom list to show as completed
-		Noise.ViewWrapper vw = ((Noise.ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
-		s.unique_status_image = Icons.PROCESS_COMPLETED.render(Gtk.IconSize.MENU, vw.list_view.get_style_context());
-		
+		s.unique_status_image = Icons.PROCESS_COMPLETED.gicon;
+
 		if(GLib.File.new_for_uri(lib_copy.uri).query_exists()) {
 			try {
 				lib_copy.file_size = (int)(GLib.File.new_for_uri(lib_copy.uri).query_info("*", FileQueryInfoFlags.NONE).get_size());
@@ -351,7 +356,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 /*
 			current_operation = "<b>Importing</b> track " + next.track.to_string() + ": <b>" + String.escape (next.title) + "</b>" + ((next.artist != "Unknown Artist") ? " by " : "") + "<b>" + String.escape (next.artist) + "</b>" + ((next.album != "Unknown Album") ? " on " : "") + "<b>" + String.escape (next.album) + "</b>";
 */
-			current_operation = _("Importing track %i").printf (next.track);
+			current_operation = get_track_status (next);
 		}
 		else {
 			lm.finish_file_operations();
@@ -368,20 +373,10 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 			}
 		}
 	}
-	
-	public bool pulser() {
-		if(media_being_ripped != null) {
-			media_being_ripped.pulseProgress++;
-			
-			Noise.ViewWrapper vw = ((Noise.ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
-			vw.queue_draw();
-			
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
+
+    private string get_track_status (Media m) {
+        return _("Importing track %i: %s").printf (m.track, m.get_title_markup ());
+    }
 	
 	public bool is_syncing() {
 		return false;
@@ -400,6 +395,9 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 		current_operation = _("CD import will be <b>cancelled</b> after current import.");
 	}
 	
+
+
+
 	public void ripperError(string err, Gst.Message message) {
 		if(err == "missing element") {
 			if(message.get_structure() != null && Gst.is_missing_plugin_message(message)) {
@@ -410,7 +408,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 	}
 	
 	public bool doProgressNotificationWithTimeout() {
-		lw.progressNotification(current_operation.replace("&", "&amp;"), (double)(((double)index + current_song_progress)/((double)total)));
+		lw.progressNotification(current_operation, (double)(((double)index + current_song_progress)/((double)total)));
 		
 		if(index < total && (is_transferring())) {
 			return true;

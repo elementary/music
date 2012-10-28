@@ -82,11 +82,11 @@ public class Noise.CDDA : Object {
 				string? artist = track_info.get_attribute_string (FILE_ATTRIBUTE_ARTIST);
 				uint64 length = track_info.get_attribute_uint64 (FILE_ATTRIBUTE_DURATION); // seconds
 
-                debug ("\nTRACK #%d\t------\n", index);
-                debug ("TRACK_URI:     %s", s.uri);
-                debug ("TRACK_TITLE:   %s", title);
-                debug ("TRACK_ARTIST:  %s", artist);
-                debug ("TRACK_DURATION:%s secs\n", length.to_string ());
+                debug ("\nTRACK #%d\t:\n", index);
+                debug ("  TRACK_URI:      %s", s.uri);
+                debug ("  TRACK_TITLE:    %s", title);
+                debug ("  TRACK_ARTIST:   %s", artist);
+                debug ("  TRACK_DURATION: %s secs\n", length.to_string ());
 
 				s.track = index;
 				s.length = (uint) (length * Numeric.MILI_INV); // no need to check, it's our best guess either way

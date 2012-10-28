@@ -29,6 +29,7 @@ public class Noise.MusicListView : GenericList {
     Gtk.Menu mediaActionMenu;
     Gtk.MenuItem mediaEditMedia;
     Gtk.MenuItem mediaFileBrowse;
+    Gtk.MenuItem mediaTopSeparator;
     Gtk.MenuItem mediaMenuQueue;
     Gtk.MenuItem mediaMenuNewPlaylist;
     Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
@@ -85,8 +86,9 @@ public class Noise.MusicListView : GenericList {
             mediaMenuNewPlaylist.set_visible(false);
         }
         else if(get_hint() == ViewWrapper.Hint.CDROM) {
-            //mediaEditMedia.set_visible(true); // See TODO in MediaEditor.vala
+            mediaEditMedia.set_visible(false); // Will be 'true'. See TODO in MediaEditor.vala
             mediaFileBrowse.set_visible (false);
+            mediaTopSeparator.set_visible (false); // no need for a separator
             mediaRateMedia.set_visible(false);
             mediaRemove.set_visible(false);
             mediaMenuAddToPlaylist.set_visible(false);
@@ -121,10 +123,12 @@ public class Noise.MusicListView : GenericList {
             mediaActionMenu.append(mediaScrollToCurrent);
         }
 
+        mediaTopSeparator = new SeparatorMenuItem ();
+
         mediaActionMenu.append(mediaEditMedia);
         mediaActionMenu.append(mediaFileBrowse);
         mediaActionMenu.append(mediaRateMedia);
-        mediaActionMenu.append(new SeparatorMenuItem());
+        mediaActionMenu.append(mediaTopSeparator);
         mediaActionMenu.append(mediaMenuQueue);
         mediaActionMenu.append(mediaMenuNewPlaylist);
         mediaActionMenu.append(mediaMenuAddToPlaylist);
@@ -723,7 +727,7 @@ public class Noise.MusicListView : GenericList {
                 column_width = int.max (width, height) + 7;
 
                 tvc.set_cell_data_func (icon_renderer, cell_data_helper.icon_func);
-                tvc.set_cell_data_func (spinner_renderer, cell_data_helper.icon_func);
+                tvc.set_cell_data_func (spinner_renderer, cell_data_helper.spinner_func);
 
                 // Pack spinner cell because only @renderer will be packed automatically
                 tvc.pack_start (spinner_renderer, true);
