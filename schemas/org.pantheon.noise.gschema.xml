@@ -135,7 +135,7 @@
       <description>column-browser columns position</description>
     </key>
     <key type="as" name="column-browser-visible-columns">
-      <default>['2', '3', '4']</default>
+      <default>['3', '5', '6']</default>
       <summary>Enabled column-browser columns for the music library view</summary>
       <description>Enabled column-browser columns for the music library view</description>
     </key>
