@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-21 14:57-0500\n"
+"POT-Creation-Date: 2012-10-28 16:28-0600\n"
 "PO-Revision-Date: 2012-10-24 12:37+0000\n"
 "Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -15,916 +15,457 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-25 06:13+0000\n"
-"X-Generator: Launchpad (build 16179)\n"
+"X-Launchpad-Export-Date: 2012-10-29 05:19+0000\n"
+"X-Generator: Launchpad (build 16194)\n"
 "Language: hu\n"
 
-#. / Used for unknown titles, artists, or album names.
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Media.vala:35
-msgid "Unknown"
-msgstr "Ismeretlen"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:36
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d másodperc"
 msgstr[1] "%d másodperc"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:44
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:69
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:74
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u perc"
 msgstr[1] "%u perc"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:46
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:48
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
 msgstr[0] "%u másodperc"
 msgstr[1] "%u másodperc"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:47
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:78
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:82
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:90
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:49
 #, c-format
+msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr "%s és %s"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:63
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:68
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u nap"
 msgstr[1] "%u nap"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:66
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:71
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u óra"
 msgstr[1] "%u óra"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:76
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:81
 #, c-format
+msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr "%s %s és %s"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:83
+#, c-format
+msgctxt "days and hours"
+msgid "%s and %s"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:87
+#, c-format
+msgctxt "days and minutes"
+msgid "%s and %s"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:95
+#, c-format
+msgctxt "hours and minutes"
+msgid "%s and %s"
+msgstr ""
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/adam/Projects/fixed/fix-1063333/po/../core//Utils/TimeUtils.vala:151
+#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:154
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y.%m.%e. %H:%M"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/TopDisplay.vala:69
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:58
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:66
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:153
-msgid "Cancel"
-msgstr "Mégsem"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/PresetList.vala:49
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
-msgid "Automatic"
-msgstr "Automatikus"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Jelenlegi törlése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr "Album nézet"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr "Listanézet"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr "Oszlop nézet"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:71
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:110
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:182
-msgid "Import to Library"
-msgstr "Importálás a gyűjteménybe"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:74
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:237
-msgid "Sync"
-msgstr "Szinkronizálás"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:77
-msgid "Eject"
-msgstr "Kiadás"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:88
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:107
-msgid "New Playlist"
-msgstr "Új lejátszólista"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:89
-msgid "New Smart Playlist"
-msgstr "Új okos lejátszólista"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:90
-msgid "Edit"
-msgstr "Szerkesztés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:91
-msgid "Remove"
-msgstr "Eltávolítás"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:92
-msgid "Save as Playlist"
-msgstr "Mentés lejátszólistaként"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:93
-msgid "Export..."
-msgstr "Exportálás…"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:94
-msgid "Import Playlists"
-msgstr "Lejátszólisták importálása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:132
-msgid "Library"
-msgstr "Gyűjtemény"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:133
-msgid "Devices"
-msgstr "Eszközök"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:134
-msgid "Network"
-msgstr "Hálózat"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:135
-msgid "Playlists"
-msgstr "Lejátszólisták"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:610
-msgid "This device is syncing"
-msgstr "Az eszköz szinkronizálás alatt áll"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:610
-msgid "Please wait until the current sync is finished to do this action."
-msgstr "Kérem várjon a művelettel amíg a szinkronizáció befejeződik."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:612
-msgid "This device is in transfer"
-msgstr "Az eszköz átvitel alatt áll"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:612
-msgid "Please wait until the current transfer is finished to do this action."
-msgstr "Kérem várjon a művelettel amíg az átvitel befejeződik."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:731
-msgid "Play Queue (%Y-%b-%e %l:%M %p)"
-msgstr "Sor lejátszása (%Y. %b %e. %H:%M)"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:733
-msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr "Előzmények lejátszása (%Y. %b %e. %H:%M)"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:735
-msgid "Unknown playlist"
-msgstr "Ismeretlen lejátszólista"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:745
-msgid "Export Playlist"
-msgstr "Lejátszólista exportálása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:829
-msgid "Playlist"
-msgstr "Lejátszólista"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SideTreeView.vala:842
-#, c-format
-msgid "Import %s"
-msgstr "%s importálása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "Ingyenes"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/SpaceWidget.vala:380
-msgid "Using %s of %s (%.2f%)"
-msgstr "%s használva ennyiből: %s (%.2f%)"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:60
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:93
-msgid "Off"
-msgstr "Ki"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:60
-msgid "Enable Repeat"
-msgstr "Ismétlés bekapcsolása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:61
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:535
-msgid "Song"
-msgstr "Dal"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:61
-msgid "Repeat Song"
-msgstr "Zeneszám ismétlése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:62
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:80
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:187
-msgid "Album"
-msgstr "Album"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:62
-msgid "Repeat Album"
-msgstr "Album ismétlése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:63
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:77
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:185
-msgid "Artist"
-msgstr "Előadó"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:63
-msgid "Repeat Artist"
-msgstr "Előadó ismétlése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:64
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:94
-msgid "All"
-msgstr "Mind"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:64
-msgid "Repeat All"
-msgstr "Minden ismétlése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:93
-msgid "Enable Shuffle"
-msgstr "Keverés bekapcsolása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:94
-msgid "Disable Shuffle"
-msgstr "Keverés kikapcsolása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:127
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:138
-msgid "Add Playlist"
-msgstr "Lejátszólista hozzáadása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:139
-msgid "Add Smart Playlist"
-msgstr "Intelligens lejátszólista hozzáadása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:185
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:218
-msgid "Hide"
-msgstr "Elrejtés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:185
-msgid "Show Equalizer"
-msgstr "Hangszínszabályzó megjelenítése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:186
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:219
-msgid "Show"
-msgstr "Megjelenítés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:186
-msgid "Hide Equalizer"
-msgstr "Hangszínszabályzó elrejtése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:218
-msgid "Show Info Panel"
-msgstr "Információs panel megjelenítése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Widgets/StatusBar.vala:219
-msgid "Hide Info Panel"
-msgstr "Információs panel elrejtése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:37
-msgid "Listen to music"
-msgstr "Zene hallgatása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Noise.vala:38
-msgid "Music Player"
-msgstr "Zenelejátszó"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
-msgid "Cancelling Sync"
-msgstr "Szinkronizálás visszavonása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:43
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:42
-msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
-"Eszköz szinkronizáció visszavonva. Művelet leáll a mostani média után."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:47
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:46
-msgid "Cancelling Import"
-msgstr "Importálás visszavonása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:47
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:46
-msgid ""
-"Import from device has been cancelled. Operation will stop after this media."
-msgstr ""
-"A beolvasás az eszközről meg lett szakítva. A művelet meg lesz szakítva "
-"ezután a zeneszám után."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:86
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
-msgid "No External Songs"
-msgstr "Nincs külső dal"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceView.vala:86
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/NetworkDeviceView.vala:83
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr ""
-"Nem található olyan zeneszám ezen az eszközön ami megtalálható lenne a "
-"gyűjteményében."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:77
-msgid "Device Name:"
-msgstr "Eszköznév:"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:80
-msgid "Device Name"
-msgstr "Eszköznév"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:82
-msgid "Automatically sync when plugged in:"
-msgstr "Automatikus szinkronizálás, ha be van dugva"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:89
-msgid "Sync:"
-msgstr "Szinkronizálás:"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:111
-msgid "Other Files"
-msgstr "Más fájlok"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:479
-msgid "Music"
-msgstr "Zene"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:113
-msgid "Podcasts"
-msgstr "Podcastek"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:384
-msgid "All Music"
-msgstr "Minden zene"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:387
-msgid "All Podcasts"
-msgstr "Minden Podcast"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:555
-msgid "Sync Failed"
-msgstr "Szinkronizáció meghiúsult"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:555
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"A(z) %s lejátszólistával szinkronizált a(z) %s eszköz, de nem található."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Cannot Sync"
-msgstr "Nem lehet szinkronizálni"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:603
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Nem lehet szinkronizálni az eszközzel a kiválasztott szinkronizálási "
-"beállításokkal. Nincs elég hely a lemezen."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Device is already being synced."
-msgstr "Az eszköz már szinkronizálva van."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
-msgid "Get Some Tunes"
-msgstr "Dalok beszerzése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
-#, c-format
-msgid "%s can't seem to find your music."
-msgstr "%s nem találta a zenéit"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
-msgid "Locate"
-msgstr "Kikeresés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
-msgid "Change your music folder."
-msgstr "Zenemappa megváltoztatása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:135
-msgid "Choose Music Folder"
-msgstr "Zenemappa kiválasztása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/MusicViewWrapper.vala:135
-msgid "All the songs in this device are already in your library."
-msgstr "Minden dal az eszközről már a gyújteményében van."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
-msgid "No songs in Queue"
-msgstr "Nincs dal a sorban"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/QueueViewWrapper.vala:71
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"Zeneszámok sorba állításához válassza a <b>jobbgombos menüből</b> a "
-"<b>Lejátszási sor</b> lehetőséget. Ha a zeneszám befejeződik, a sorba "
-"állított zeneszám fog elindulni, nem az éppen lejátszott lista következő "
-"eleme."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
-msgid "Audio CD Invalid"
-msgstr "Hang CD érvénytelen"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:44
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr "%s nem tudja a hang CD tartalmát beolvasni."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
-#, c-format
-msgid "%i tracks"
-msgstr "%i szám"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/DeviceViewWrapper.vala:88
-msgid "1 track"
-msgstr "1 szám"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:381
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-msgstr[1] "%u album"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:383
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u dal"
-msgstr[1] "%u dal"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:569
-msgid "No media"
-msgstr "Nincs adathordozó"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/ViewWrapper.vala:573
-msgid "Sorry, there is no music that matches your search"
-msgstr "Elnézést, nem található zene ami illeszkedik a keresésére"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
-msgid "No songs in History"
-msgstr "Nincs dal az előzmények között"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/HistoryViewWrapper.vala:47
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"Ha egy zeneszám egy része lejátszásra került, akkor hozzáadódik az "
-"előzmények listájához.\n"
-"Ebben a listában meg tudja nézni az összes aktuális munkamenetben lejátszott "
-"számot."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
-msgid "No Songs"
-msgstr "Nincs dal"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:84
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Zeneszámok lejátszási listához való hozzáadásához válassza a <b>jobbgombos "
-"menüből</b> a <b>Hozzáadás a lejátszólistához</b> lehetőséget."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
-msgid "Edit Smart Playlist"
-msgstr "Okos lejátszólista szerkesztése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"Ez a lejátszólista automatikusan fog felépülni azokból a zeneszámokból "
-"amelyek megfelelnek a szabályoknak. A szabályok megváltoztatásához "
-"kattintson <b>jobb gombbal</b> az oldalsávon, és válassza a "
-"<b>Szerkesztés</b> lehetőséget, vagy rá is kattinthat az alább lévő gombra."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
-msgid "Device unreachable"
-msgstr "Eszköz elérhetetlen"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:40
-#, c-format
-msgid "%s could not access to this network device"
-msgstr "%s nem fér hozzá ehhez a hálózati eszközhöz"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
-msgid "Genres"
-msgstr "Műfajok"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
-msgid "Artists"
-msgstr "Előadók"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:50
-msgid "Albums"
-msgstr "Albumok"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:52
-msgid "Years"
-msgstr "Évek"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
-msgid "Ratings"
-msgstr "Értékelések"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
-msgid "On Left"
-msgstr "Baloldalt"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
-msgid "On Top"
-msgstr "Felül"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
-msgid "Unrated"
-msgstr "Értékeletlen"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
-#, c-format
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i csillag"
-msgstr[1] "%i csillag"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Genres"
-msgstr "Minden műfaj"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Genres"
-msgstr "Mind a(z) %i műfaj"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Genres"
-msgstr "Nincs műfaj"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
-msgid "All Artists"
-msgstr "Minden előadó"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
-#, c-format
-msgid "All %i Artists"
-msgstr "Mind a(z) %i előadó"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
-msgid "No Artists"
-msgstr "Nincs előadó"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Albums"
-msgstr "Az összes album"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-#, c-format
-msgid "All %i Albums"
-msgstr "Mind a(z) %i album"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Albums"
-msgstr "Nincs album"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
-msgid "All Years"
-msgstr "Minden év"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
-#, c-format
-msgid "All %i Years"
-msgstr "Mind a(z) %i év"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
-msgid "No Years"
-msgstr "Nincs év"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
-msgid "All Ratings"
-msgstr "Minden értékelés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
-msgid "No Ratings"
-msgstr "Nincs értékelés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:57
-msgid "Remove from Library"
-msgstr "Eltávolítás a gyűjteményből"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:65
-msgid "Remove from Queue"
-msgstr "Eltávolítás a sorból"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:82
-msgid "Remove from Device"
-msgstr "Eltávolítás az eszközről"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:103
-msgid "Scroll to Current Song"
-msgstr "Görgetés a jelenlegi dalhoz"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:104
-msgid "Edit Song Info"
-msgstr "Dal információinak szerkesztése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:105
-msgid "Show in File Browser"
-msgstr "Megjelenítés a fájlböngészőben"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:106
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:489
-msgid "Queue"
-msgstr "Lejátszási sor"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:108
-msgid "Add to Playlist"
-msgstr "Hozzáadás a lejátszólistához"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:109
-msgid "Remove Song"
-msgstr "Dal eltávolítása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:215
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "%i dal importálása ennyiből: %i"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:217
-msgid "Import this song"
-msgstr "Dal importálása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:219
-#, c-format
-msgid "Import %i songs"
-msgstr "%i dal importálása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:700
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:714
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:721
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:245
-msgid "Never"
-msgstr "Soha"
-
-#. / Sample string used to measure the desired size of the Title column in the list view.
-#. / Should be as long as a common song title in your language.
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:778
-msgid "Sample Title"
-msgstr "Minta cím"
-
-#. / Sample string used to measure the desired size of the Artist column in the list view.
-#. / Should be as long as a common artist name in your language.
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:787
-msgid "Sample Artist"
-msgstr "Minta előadó"
-
-#. / Sample string used to measure the desired size of the Album column in the list view.
-#. / Should be as long as a common album name in your language.
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:793
-msgid "Sample Album"
-msgstr "Minta album"
-
-#. / Sample string used to measure the desired size of the Genre column in the list view.
-#. / Should be as long as a common genre name in your language.
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/MusicListView.vala:810
-msgid "Sample Genre"
-msgstr "Minta műfaj"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:38
-msgid "N/A"
-msgstr "N/A"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:220
-#, c-format
-msgid "%i kbps"
-msgstr "%i kbps"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/GenericList.vala:138
-msgid "Autosize Columns"
-msgstr "Oszlopok automatikus méretezése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/GenericList.vala:145
-msgid "Display Album Art"
-msgstr "Albumborító megjelenítése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:65
-msgid "#"
-msgstr "#"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:68
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:192
-msgid "Track"
-msgstr "Szám"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:71
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:184
-msgid "Title"
-msgstr "Cím"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:74
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-msgid "Length"
-msgstr "Hossz"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:83
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:476
-msgid "Genre"
-msgstr "Műfaj"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:86
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:194
-msgid "Year"
-msgstr "Év"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:89
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-msgid "Bitrate"
-msgstr "Bitráta"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:92
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:195
-msgid "Rating"
-msgstr "Értékelés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:95
-msgid "Plays"
-msgstr "Lejátszások"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:98
-msgid "Skips"
-msgstr "Kihagyások"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:101
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-msgid "Date Added"
-msgstr "Hozzáadás dátuma"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:104
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-msgid "Last Played"
-msgstr "Utoljára játszva"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/ListView/Lists/ListColumn.vala:107
-msgid "BPM"
-msgstr "BPM (ütem/perc)"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d perc"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d óra"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d nap"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u elem, %s, %s"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Views/GridView/PopupListView.vala:166
-#, c-format
-msgid "%s by %s"
-msgstr "%s, előadó: %s"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:183
-msgid "Rescan Music Folder"
-msgstr "Zenemappa újravizsgálása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:186
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:146
-msgid "Preferences"
-msgstr "Beállítások"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:206
-msgid "Search Music"
-msgstr "Zene keresése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:493
-msgid "History"
-msgstr "Előzmény"
+#. / Used for unknown titles, artists, or album names.
+#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:35
+msgid "Unknown"
+msgstr "Ismeretlen"
 
 #. / String template used to show "SongName by ArtistName"
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:654
+#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:172
 #, c-format
 msgid " by %s"
 msgstr " , %s előadó"
 
 #. / String template used to show "SongName ... on AlbumName"
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:659
+#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:176
 #, c-format
 msgid " on %s"
 msgstr " %s albumáról"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:866
-msgid "Import Music"
-msgstr "Zene importálása"
+#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:37
+msgid "Listen to music"
+msgstr "Zene hallgatása"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:898
+#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:38
+msgid "Music Player"
+msgstr "Zenelejátszó"
+
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:214
 #, c-format
-msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "Zene <b>importálása</b> a gyűjteménybe, innen: <b>%s</b>"
+msgid "Importing music from %s..."
+msgstr "Zenék importálása innen: %s"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:913
-msgid "Rescanning music folder for changes"
-msgstr "Zenemappa átvizsgálása a változásokért"
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:261
+msgid "Adding files to library..."
+msgstr "Fájlok hozzáadása a gyűjteményhez"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:920
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
-msgid "Could not find Music Folder"
-msgstr "Nem található zenemappa"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:920
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:986
-msgid "Import Complete"
-msgstr "Importálás kész"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryWindow.vala:986
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:310
 #, c-format
-msgid "%s has imported your library."
-msgstr "%s importálta a gyűjteményét"
+msgid "Adding music from %s to library..."
+msgstr "Zenék hozzáadása a gyűjteményhez innen: %s"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:338
+msgid "Rescanning music for changes. This may take a while..."
+msgstr "Zenék átvizsgálása változásokért. Ez eltarthat egy darabig..."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:26
+msgid "Unknown Artist"
+msgstr "Ismeretlen előadó"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/Playlist.vala:204
+msgid "Radio Station"
+msgstr "Rádió állomás"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Ismeretlen szám"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Ismeretlen album"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:49
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:159
+msgid "Automatic"
+msgstr "Automatikus"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Jelenlegi törlése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:66
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:99
+msgid "Off"
+msgstr "Ki"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:66
+msgid "Enable Repeat"
+msgstr "Ismétlés bekapcsolása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:67
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:541
+msgid "Song"
+msgstr "Dal"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Song"
+msgstr "Zeneszám ismétlése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:68
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+msgid "Album"
+msgstr "Album"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Album"
+msgstr "Album ismétlése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:69
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+msgid "Artist"
+msgstr "Előadó"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat Artist"
+msgstr "Előadó ismétlése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:70
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:100
+msgid "All"
+msgstr "Mind"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:70
+msgid "Repeat All"
+msgstr "Minden ismétlése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:99
+msgid "Enable Shuffle"
+msgstr "Keverés bekapcsolása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:100
+msgid "Disable Shuffle"
+msgstr "Keverés kikapcsolása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:133
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Playlist"
+msgstr "Lejátszólista hozzáadása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:145
+msgid "Add Smart Playlist"
+msgstr "Intelligens lejátszólista hozzáadása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:191
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:224
+msgid "Hide"
+msgstr "Elrejtés"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:191
+msgid "Show Equalizer"
+msgstr "Hangszínszabályzó megjelenítése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:192
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:225
+msgid "Show"
+msgstr "Megjelenítés"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:192
+msgid "Hide Equalizer"
+msgstr "Hangszínszabályzó elrejtése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:224
+msgid "Show Info Panel"
+msgstr "Információs panel megjelenítése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:225
+msgid "Hide Info Panel"
+msgstr "Információs panel elrejtése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:237
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:74
+msgid "Sync"
+msgstr "Szinkronizálás"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "Ingyenes"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:380
+msgid "Using %s of %s (%.2f%)"
+msgstr "%s használva ennyiből: %s (%.2f%)"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:71
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:113
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:188
+msgid "Import to Library"
+msgstr "Importálás a gyűjteménybe"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:77
+msgid "Eject"
+msgstr "Kiadás"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:88
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:110
+msgid "New Playlist"
+msgstr "Új lejátszólista"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:89
+msgid "New Smart Playlist"
+msgstr "Új okos lejátszólista"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:90
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:91
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:92
+msgid "Save as Playlist"
+msgstr "Mentés lejátszólistaként"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:93
+msgid "Export..."
+msgstr "Exportálás…"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:94
+msgid "Import Playlists"
+msgstr "Lejátszólisták importálása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:132
+msgid "Library"
+msgstr "Gyűjtemény"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:133
+msgid "Devices"
+msgstr "Eszközök"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:134
+msgid "Network"
+msgstr "Hálózat"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:135
+msgid "Playlists"
+msgstr "Lejátszólisták"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:581
+msgid "This device is syncing"
+msgstr "Az eszköz szinkronizálás alatt áll"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:581
+msgid "Please wait until the current sync is finished to do this action."
+msgstr "Kérem várjon a művelettel amíg a szinkronizáció befejeződik."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:583
+msgid "This device is in transfer"
+msgstr "Az eszköz átvitel alatt áll"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:583
+msgid "Please wait until the current transfer is finished to do this action."
+msgstr "Kérem várjon a művelettel amíg az átvitel befejeződik."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:702
+msgid "Play Queue (%Y-%b-%e %l:%M %p)"
+msgstr "Sor lejátszása (%Y. %b %e. %H:%M)"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:704
+msgid "Play History (%Y-%b-%e %l:%M %p)"
+msgstr "Előzmények lejátszása (%Y. %b %e. %H:%M)"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:706
+msgid "Unknown playlist"
+msgstr "Ismeretlen lejátszólista"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:716
+msgid "Export Playlist"
+msgstr "Lejátszólista exportálása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:800
+msgid "Playlist"
+msgstr "Lejátszólista"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:813
+#, c-format
+msgid "Import %s"
+msgstr "%s importálása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr "Album nézet"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr "Listanézet"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr "Oszlop nézet"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Widgets/TopDisplay.vala:69
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:153
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:66
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:58
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:83
+msgid "Equalizer"
+msgstr "Hangszínszabályzó"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:150
+msgid "Save preset"
+msgstr "Beállítás mentése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:158
+msgid "Close"
+msgstr "Bezárás"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:414
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (egyéni)"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:416
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (egyéni %i)"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:420
+msgid "Custom Preset"
+msgstr "Egyéni beállítás"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:422
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Egyéni beállítás %i"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr "Nincs importált fájl"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:76
+#, c-format
+msgid "Unable to import %d items from %s"
+msgstr "Nem lehet %d elemet importálni innen: %s"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:65
+#, c-format
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr ""
+"%s képtelen volt %d elemet importálni. Lehetséges, hogy a fájlok sérültek"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr "Az összes hibás fájl kukába helyezése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Move to Trash"
+msgstr "Áthelyezés a kukába"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "Mellőz"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "törlés"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "Fájl helye"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr "Egyedifájlok kiválasztása a kukába helyezéshez:"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
 msgstr "Lejátszólisták exportálása"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
 msgstr "Zenemappa"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Zenemappa beállítása?"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -933,58 +474,455 @@ msgstr ""
 "Biztos, hogy szeretné a(z) %s mappára állítani a zenemappát? Ez "
 "visszaállítja a gyűjteményét és eltávolítja a lejátszólistáit."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:83
-msgid "Equalizer"
-msgstr "Hangszínszabályzó"
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:135
+msgid "Choose Music Folder"
+msgstr "Zenemappa kiválasztása"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:150
-msgid "Save preset"
-msgstr "Beállítás mentése"
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+msgid "Install Plugin"
+msgstr "Beépülő telepítése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:158
-msgid "Close"
-msgstr "Bezárás"
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:64
+msgid "Do Nothing"
+msgstr "Ne tegyen semmit"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:414
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+msgid "Required GStreamer plugin not installed"
+msgstr "Szükséges GStreamer plugin nincs telepítve"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
-msgid "%s (Custom)"
-msgstr "%s (egyéni)"
+msgid ""
+"The plugin for media type %s is not installed.\n"
+"What would you like to do?"
+msgstr ""
+"A(z) %s médiatípushoz való bővítmény nincs telepítve.\n"
+"Mit szeretne tenni?"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:416
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:81
+msgid "Metadata"
+msgstr "Metaadat"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:83
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:379
+msgid "Lyrics"
+msgstr "Dalszövegek"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:92
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:65
+msgid "Done"
+msgstr "Kész"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:179
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:350
 #, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (egyéni %i)"
+msgid "Editing %s by %s"
+msgstr "%s, előadó %s szerkesztése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:420
-msgid "Custom Preset"
-msgstr "Egyéni beállítás"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/EqualizerWindow.vala:422
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:181
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:352
 #, c-format
-msgid "Custom Preset %i"
-msgstr "Egyéni beállítás %i"
+msgid "Editing %s"
+msgstr "%s szerkesztése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:56
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:71
-msgid "Move to Trash"
-msgstr "Áthelyezés a kukába"
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:184
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:355
+#, c-format
+msgid "Editing %i songs"
+msgstr "%i szám szerkesztése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+msgid "Title"
+msgstr "Cím"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:192
+msgid "Album Artist"
+msgstr "Album előadója"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:194
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+msgid "Genre"
+msgstr "Műfaj"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:195
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+msgid "Composer"
+msgstr "Zeneszerző"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:196
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+msgid "Grouping"
+msgstr "Csoportosítás"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+msgid "Comment"
+msgstr "Megjegyzés"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:198
+msgid "Track"
+msgstr "Szám"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Disc"
+msgstr "Lemez"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:200
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+msgid "Year"
+msgstr "Év"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:201
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+msgid "Rating"
+msgstr "Értékelés"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:203
+msgid "Media Type"
+msgstr "Médiatípus"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:298
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr "Nem található zeneszöveg ehhez: %s"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:543
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:64
+msgid "Import media to Library"
+msgstr "Média importálása a gyűjteménybe"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:65
+msgid "Continue Syncing"
+msgstr "Szinkronizálása folytatása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:66
+msgid "Stop Syncing"
+msgstr "Szinkronizálása leállítása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:73
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Ha folytatja a szinkronizálást, akkor az adatok le fognak törlődni %s "
+"eszközről, mivel nincsenek a szinkronizálási listán. Szeretné előbb "
+"beolvasni őket a gyűjteménybe?"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:79
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr "A szinkronizálás el fog távolítani %i elemet innen: %s"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:82
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr "A szinkronizálás el fog távolítani 1 elemet innen: %s"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:192
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:221
+msgid "General"
+msgstr "Általános"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:244
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
+msgid "Select Music Folder"
+msgstr "Zenemappa kiválasztása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:251
+msgid "Music Folder Location"
+msgstr "Zenemappa helye"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:259
+msgid ""
+"You must wait until previous file operations finish before setting your "
+"music folder"
+msgstr ""
+"Meg kell várnia amíg az előző fájl műveletek befejeződnek mielőtt beállítja "
+"a zenemappáját."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:274
+msgid "Keep Music folder organized"
+msgstr "Zenemappa rendezetten hagyása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:275
+msgid "Copy files to Music folder when adding to Library"
+msgstr ""
+"Fájlok másolása a zenemappába, amikor hozzáadja őket a gyűjteményéhez"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:277
+msgid "Write metadata to file"
+msgstr "Metaadatok fájlba írása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:289
+msgid "Library Management"
+msgstr "Gyűjtemény kezelés"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:296
+msgid "Use Noise as the default Music application"
+msgstr "Noise beállítása alapértelmezett zenelejátszóként"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:302
+msgid "Show notifications"
+msgstr "Értesítések megjelenítése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:309
+msgid "Minimize window instead of closing it when a song is being played"
+msgstr "Ablak lekicsinyítése bezárás helyett, ha zenelejátszás folyik"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:311
+msgid "Hide window instead of closing it when a song is being played"
+msgstr "Ablak elrejtése bezárás helyett, ha zenelejátszás folyik"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:317
+msgid "Desktop Integration"
+msgstr "Integráció az asztali környezetbe"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
+msgid "Smart Playlist Editor"
+msgstr "Okos lejátszólista szerkesztő"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:63
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:71
+msgid "Name of Playlist"
+msgstr "Lejátszólista neve"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+msgid "Rules"
+msgstr "Szabályok"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:84
+msgid "Options"
+msgstr "Beállítások"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Playlist Title"
+msgstr "Lejátszólista címe"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+msgid "Match"
+msgstr "Egyezés"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:95
+msgid "any"
+msgstr "bármely"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "all"
+msgstr "mind"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:97
+msgid "of the following:"
+msgstr "a következőkkel:"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:124
+msgid "Limit to"
+msgstr "Korlátozás:"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:126
+msgid "items"
+msgstr "elem"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Bitrate"
+msgstr "Bitráta"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Date Added"
+msgstr "Hozzáadás dátuma"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Released"
+msgstr "Kiadás dátuma"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Last Played"
+msgstr "Utoljára játszva"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:405
+msgid "Length"
+msgstr "Hossz"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+msgid "Playcount"
+msgstr "Lejátszások száma"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Skipcount"
+msgstr "Kihagyva"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:332
+msgid "is"
+msgstr "egyenlő"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:333
+msgid "contains"
+msgstr "tartalmazza"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:334
+msgid "does not contain"
+msgstr "nem tartalmazza"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:366
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:380
+msgid "is exactly"
+msgstr "pontosan"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+msgid "is at most"
+msgstr "több"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+msgid "is at least"
+msgstr "kevesebb"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:381
+msgid "is within"
+msgstr "között"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+msgid "is before"
+msgstr "előtt"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "seconds"
+msgstr "másodperc"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:410
+msgid "days ago"
+msgstr "napja"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:414
+msgid "kbps"
+msgstr "kb/s"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr "Importálása az eszközről"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#, c-format
+msgid "Import media from %s"
+msgstr "Média importálása innen: %s"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"A következő fájlok megtalálhatók %s eszközön, de nincsenek a gyűjteményében. "
+"Ellenőrizze azokat a fájlokat amiket be szeretne olvasni."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all media"
+msgstr "Minden média importálása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+msgid "Import"
+msgstr "Importálás"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "Ne importálja"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#, c-format
+msgid "Import %i items from %s"
+msgstr "%i elem importálása innen: %s"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#, c-format
+msgid "Import %s from %s"
+msgstr "%s importálása innen: %s"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+msgid "ID"
+msgstr "Azonosító"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+msgid "Select individual media to import:"
+msgstr "Egyéni média kiválasztása importálásra"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Item"
+msgstr "Elem ellenőrzése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+msgid "Check Album"
+msgstr "Album ellenőrzése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+msgid "Check Artist"
+msgstr "Előadó ellenőrzése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:61
+msgid "Remove Media"
+msgstr "Média eltávolítása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:62
+msgid "Locate Media"
+msgstr "Média helye"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:63
+msgid "Rescan Library"
+msgstr "Gyűjtemény átvizsgálása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:70
+msgid "Could not find media file"
+msgstr "Nem található médiafájl"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:79
+#, c-format
+msgid ""
+"The music file for %s by %s could not be found. What would you like to do?"
+msgstr "%s - %s zeneszám nem található. Mit szeretne tenni?"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:82
+#, c-format
+msgid "%i media files could not be found. What would you like to do?"
+msgstr "%i médiafájl nem található. Mit szeretne tenni?"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#, c-format
+msgid "The name %s is already in use"
+msgstr "%s név már használatban van"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
 msgstr "Eltávolítás innen: %s"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:68
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Eltávolítja %d dalokat innen: %s?"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:72
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "„%s” eltávolítása innen: %s?"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/RemoveFilesDialog.vala:81
+#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:81
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -999,597 +937,843 @@ msgstr[1] ""
 "Ez el fogja távolítani a zeneszámokat a gyűjteményéből és minden olyan "
 "eszközről ami automatikusan szinkronizál ezzel: %s."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:47
-msgid "Not Imported Files"
-msgstr "Nincs importált fájl"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:76
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/PopupListView.vala:167
 #, c-format
-msgid "Unable to import %d items from %s"
-msgstr "Nem lehet %d elemet importálni innen: %s"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:65
-#, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
 msgstr ""
-"%s képtelen volt %d elemet importálni. Lehetséges, hogy a fájlok sérültek"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:66
-msgid "Move all corrupted files to trash"
-msgstr "Az összes hibás fájl kukába helyezése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:72
-msgid "Ignore"
-msgstr "Mellőz"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:93
-msgid "del"
-msgstr "törlés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:98
-msgid "File Location"
-msgstr "Fájl helye"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/NotImportedWindow.vala:125
-msgid "Select individual files to move to trash:"
-msgstr "Egyedifájlok kiválasztása a kukába helyezéshez:"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:60
-msgid "Smart Playlist Editor"
-msgstr "Okos lejátszólista szerkesztő"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:71
-msgid "Name of Playlist"
-msgstr "Lejátszólista neve"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:75
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:83
-msgid "Rules"
-msgstr "Szabályok"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:84
-msgid "Options"
-msgstr "Beállítások"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Playlist Title"
-msgstr "Lejátszólista címe"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:93
-msgid "Match"
-msgstr "Egyezés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:95
-msgid "any"
-msgstr "bármely"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "all"
-msgstr "mind"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:97
-msgid "of the following:"
-msgstr "a következőkkel:"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:124
-msgid "Limit to"
-msgstr "Korlátozás:"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:126
-msgid "items"
-msgstr "elem"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:191
-msgid "Comment"
-msgstr "Megjegyzés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:189
-msgid "Composer"
-msgstr "Zeneszerző"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Released"
-msgstr "Kiadás dátuma"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:476
-msgid "Grouping"
-msgstr "Csoportosítás"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-msgid "Playcount"
-msgstr "Lejátszások száma"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-msgid "Skipcount"
-msgstr "Kihagyva"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:332
-msgid "is"
-msgstr "egyenlő"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:333
-msgid "contains"
-msgstr "tartalmazza"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:334
-msgid "does not contain"
-msgstr "nem tartalmazza"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:366
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:380
-msgid "is exactly"
-msgstr "pontosan"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:367
-msgid "is at most"
-msgstr "több"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:368
-msgid "is at least"
-msgstr "kevesebb"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:381
-msgid "is within"
-msgstr "között"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:382
-msgid "is before"
-msgstr "előtt"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "seconds"
-msgstr "másodperc"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "napja"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SmartPlaylistEditor.vala:414
-msgid "kbps"
-msgstr "kb/s"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:65
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:157
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:86
-msgid "Done"
-msgstr "Kész"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
-msgid "The name %s is already in use"
-msgstr "%s név már használatban van"
+msgid "%d minutes"
+msgstr "%d perc"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:61
-msgid "Remove Media"
-msgstr "Média eltávolítása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:62
-msgid "Locate Media"
-msgstr "Média helye"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:63
-msgid "Rescan Library"
-msgstr "Gyűjtemény átvizsgálása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:64
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
-msgid "Do Nothing"
-msgstr "Ne tegyen semmit"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:70
-msgid "Could not find media file"
-msgstr "Nem található médiafájl"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:79
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
+msgid "%d hours"
+msgstr "%d óra"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d nap"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u elem, %s, %s"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/GridView.vala:67
+msgid "No Albums Found."
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/GridView.vala:163
+#, c-format
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+msgstr[1] "%u album"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:66
+msgid "No songs in Queue"
+msgstr "Nincs dal a sorban"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:66
 msgid ""
-"The music file for %s by %s could not be found. What would you like to do?"
-msgstr "%s - %s zeneszám nem található. Mit szeretne tenni?"
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Zeneszámok sorba állításához válassza a <b>jobbgombos menüből</b> a "
+"<b>Lejátszási sor</b> lehetőséget. Ha a zeneszám befejeződik, a sorba "
+"állított zeneszám fog elindulni, nem az éppen lejátszott lista következő "
+"eleme."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/FileNotFoundDialog.vala:82
-#, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i médiafájl nem található. Mit szeretne tenni?"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
+msgid "No songs in History"
+msgstr "Nincs dal az előzmények között"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:221
-msgid "General"
-msgstr "Általános"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:240
-msgid "Select Music Folder"
-msgstr "Zenemappa kiválasztása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:247
-msgid "Music Folder Location"
-msgstr "Zenemappa helye"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:253
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
 msgstr ""
-"Meg kell várnia amíg az előző fájl műveletek befejeződnek mielőtt beállítja "
-"a zenemappáját."
+"Ha egy zeneszám egy része lejátszásra került, akkor hozzáadódik az "
+"előzmények listájához.\n"
+"Ebben a listában meg tudja nézni az összes aktuális munkamenetben lejátszott "
+"számot."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:264
-msgid "Keep Music folder organized"
-msgstr "Zenemappa rendezetten hagyása"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
+msgid "Get Some Tunes"
+msgstr "Dalok beszerzése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:265
-msgid "Copy files to Music folder when adding to Library"
-msgstr ""
-"Fájlok másolása a zenemappába, amikor hozzáadja őket a gyűjteményéhez"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:267
-msgid "Write metadata to file"
-msgstr "Metaadatok fájlba írása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:279
-msgid "Library Management"
-msgstr "Gyűjtemény kezelés"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:286
-msgid "Use Noise as the default Music application"
-msgstr "Noise beállítása alapértelmezett zenelejátszóként"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:292
-msgid "Show notifications"
-msgstr "Értesítések megjelenítése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:299
-msgid "Minimize window instead of closing it when a song is being played"
-msgstr "Ablak lekicsinyítése bezárás helyett, ha zenelejátszás folyik"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:301
-msgid "Hide window instead of closing it when a song is being played"
-msgstr "Ablak elrejtése bezárás helyett, ha zenelejátszás folyik"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/PreferencesWindow.vala:307
-msgid "Desktop Integration"
-msgstr "Integráció az asztali környezetbe"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:64
-msgid "Import media to Library"
-msgstr "Média importálása a gyűjteménybe"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:65
-msgid "Continue Syncing"
-msgstr "Szinkronizálása folytatása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:66
-msgid "Stop Syncing"
-msgstr "Szinkronizálása leállítása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:73
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:39
 #, c-format
+msgid "%s can't seem to find your music."
+msgstr "%s nem találta a zenéit"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+msgid "Locate"
+msgstr "Kikeresés"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+msgid "Change your music folder."
+msgstr "Zenemappa megváltoztatása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:467
+msgid "No media"
+msgstr "Nincs adathordozó"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
+msgid "No Songs"
+msgstr "Nincs dal"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
 msgstr ""
-"Ha folytatja a szinkronizálást, akkor az adatok le fognak törlődni %s "
-"eszközről, mivel nincsenek a szinkronizálási listán. Szeretné előbb "
-"beolvasni őket a gyűjteménybe?"
+"Zeneszámok lejátszási listához való hozzáadásához válassza a <b>jobbgombos "
+"menüből</b> a <b>Hozzáadás a lejátszólistához</b> lehetőséget."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:79
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr "A szinkronizálás el fog távolítani %i elemet innen: %s"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
+msgid "Edit Smart Playlist"
+msgstr "Okos lejátszólista szerkesztése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/SyncWarningDialog.vala:82
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr "A szinkronizálás el fog távolítani 1 elemet innen: %s"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
-msgid "Install Plugin"
-msgstr "Beépülő telepítése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
-msgid "Required GStreamer plugin not installed"
-msgstr "Szükséges GStreamer plugin nincs telepítve"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
-#, c-format
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
 msgstr ""
-"A(z) %s médiatípushoz való bővítmény nincs telepítve.\n"
-"Mit szeretne tenni?"
+"Ez a lejátszólista automatikusan fog felépülni azokból a zeneszámokból "
+"amelyek megfelelnek a szabályoknak. A szabályok megváltoztatásához "
+"kattintson <b>jobb gombbal</b> az oldalsávon, és válassza a "
+"<b>Szerkesztés</b> lehetőséget, vagy rá is kattinthat az alább lévő gombra."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-msgid "Import from Device"
-msgstr "Importálása az eszközről"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
+msgid "Audio CD Invalid"
+msgstr "Hang CD érvénytelen"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
 #, c-format
-msgid "Import media from %s"
-msgstr "Média importálása innen: %s"
+msgid "%s could not read the contents of this Audio CD"
+msgstr "%s nem tudja a hang CD tartalmát beolvasni."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ContentView.vala:24
 #, c-format
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
+msgid "Cancelling Sync"
+msgstr "Szinkronizálás visszavonása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
+msgid "Device Sync has been cancelled. Operation will stop after this media."
+msgstr ""
+"Eszköz szinkronizáció visszavonva. Művelet leáll a mostani média után."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
+msgid "Cancelling Import"
+msgstr "Importálás visszavonása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
 msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
+"Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
-"A következő fájlok megtalálhatók %s eszközön, de nincsenek a gyűjteményében. "
-"Ellenőrizze azokat a fájlokat amiket be szeretne olvasni."
+"A beolvasás az eszközről meg lett szakítva. A művelet meg lesz szakítva "
+"ezután a zeneszám után."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
-msgid "Import all media"
-msgstr "Minden média importálása"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
+msgid "No External Songs"
+msgstr "Nincs külső dal"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-msgid "Import"
-msgstr "Importálás"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr ""
+"Nem található olyan zeneszám ezen az eszközön ami megtalálható lenne a "
+"gyűjteményében."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
-msgid "Don't Import"
-msgstr "Ne importálja"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:237
 #, c-format
-msgid "Import %i items from %s"
-msgstr "%i elem importálása innen: %s"
+msgid "%i kbps"
+msgstr "%i kbps"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
-#, c-format
-msgid "Import %s from %s"
-msgstr "%s importálása innen: %s"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:262
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:758
+msgid "Never"
+msgstr "Soha"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-msgid "ID"
-msgstr "Azonosító"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "#"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
-msgid "Select individual media to import:"
-msgstr "Egyéni média kiválasztása importálásra"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Track"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Item"
-msgstr "Elem ellenőrzése"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Title"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
-msgid "Check Album"
-msgstr "Album ellenőrzése"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Length"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
-msgid "Check Artist"
-msgstr "Előadó ellenőrzése"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Artist"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:75
-msgid "Metadata"
-msgstr "Metaadat"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Album"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:77
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:373
-msgid "Lyrics"
-msgstr "Dalszövegek"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:173
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:344
-#, c-format
-msgid "Editing %s by %s"
-msgstr "%s, előadó %s szerkesztése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:175
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:346
-#, c-format
-msgid "Editing %s"
-msgstr "%s szerkesztése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:178
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:349
-#, c-format
-msgid "Editing %i songs"
-msgstr "%i szám szerkesztése"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
 msgid "Album Artist"
-msgstr "Album előadója"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:193
-msgid "Disc"
-msgstr "Lemez"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Composer"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:197
-msgid "Media Type"
-msgstr "Médiatípus"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Genre"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:292
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Year"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Grouping"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Rating"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title"
+msgid "Plays"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title"
+msgid "Skips"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "Date Added"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:118
+msgctxt "List column title"
+msgid "Last Played"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:121
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:124
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:127
+msgctxt "List column title"
+msgid "File Size"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:58
+msgid "Remove from Library"
+msgstr "Eltávolítás a gyűjteményből"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:66
+msgid "Remove from Queue"
+msgstr "Eltávolítás a sorból"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:83
+msgid "Remove from Device"
+msgstr "Eltávolítás az eszközről"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:106
+msgid "Scroll to Current Song"
+msgstr "Görgetés a jelenlegi dalhoz"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:107
+msgid "Edit Song Info"
+msgstr "Dal információinak szerkesztése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:108
+msgid "Show in File Browser"
+msgstr "Megjelenítés a fájlböngészőben"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:109
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:111
+msgid "Add to Playlist"
+msgstr "Hozzáadás a lejátszólistához"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:112
+msgid "Remove Song"
+msgstr "Dal eltávolítása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:221
 #, c-format
-msgid "Lyrics not found for %s"
-msgstr "Nem található zeneszöveg ehhez: %s"
+msgid "Import %i of %i selected songs"
+msgstr "%i dal importálása ennyiből: %i"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Dialogs/MediaEditor.vala:537
-msgid "Podcast"
-msgstr "Podcast"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:223
+msgid "Import this song"
+msgstr "Dal importálása"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:203
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:225
 #, c-format
-msgid "Importing music from %s..."
-msgstr "Zenék importálása innen: %s"
+msgid "Import %i songs"
+msgstr "%i dal importálása"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:251
-msgid "Adding files to library..."
-msgstr "Fájlok hozzáadása a gyűjteményhez"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:743
+msgid "1234 kbps"
+msgstr "1234 kbps"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:300
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:821
+msgid "Sample List String"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:137
+msgid "Autosize Columns"
+msgstr "Oszlopok automatikus méretezése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:144
+msgid "Display Album Art"
+msgstr "Albumborító megjelenítése"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:291
+msgid "Playing not Supported"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:291
+msgid ""
+"Due to issues with playing songs on certain iOS devices, playing songs off "
+"devices is currently not supported."
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr "Műfajok"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr "Előadók"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr "Albumok"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr "Évek"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr "Értékelések"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:213
+msgid "All Genres"
+msgstr "Minden műfaj"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:215
 #, c-format
-msgid "Adding music from %s to library..."
-msgstr "Zenék hozzáadása a gyűjteményhez innen: %s"
+msgid "All %i Genres"
+msgstr "Mind a(z) %i műfaj"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//LibraryManager.vala:328
-msgid "Rescanning music for changes. This may take a while..."
-msgstr "Zenék átvizsgálása változásokért. Ez eltarthat egy darabig..."
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:217
+msgid "No Genres"
+msgstr "Nincs műfaj"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/AlbumInfo.vala:25
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:94
-msgid "Unknown Album"
-msgstr "Ismeretlen album"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:222
+msgid "All Artists"
+msgstr "Minden előadó"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/AlbumInfo.vala:26
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/ArtistInfo.vala:27
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:79
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:108
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:109
-msgid "Unknown Artist"
-msgstr "Ismeretlen előadó"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:224
+#, c-format
+msgid "All %i Artists"
+msgstr "Mind a(z) %i előadó"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Ismeretlen szám"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:226
+msgid "No Artists"
+msgstr "Nincs előadó"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//Objects/Playlist.vala:203
-msgid "Radio Station"
-msgstr "Rádió állomás"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:231
+msgid "All Albums"
+msgstr "Az összes album"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Sima"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:233
+#, c-format
+msgid "All %i Albums"
+msgstr "Mind a(z) %i album"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klasszikus"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:235
+msgid "No Albums"
+msgstr "Nincs album"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Club"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:240
+msgid "All Years"
+msgstr "Minden év"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Dance"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:242
+#, c-format
+msgid "All %i Years"
+msgstr "Mind a(z) %i év"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Teljes mély"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
+msgid "No Years"
+msgstr "Nincs év"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Teljes magas"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+msgid "All Ratings"
+msgstr "Minden értékelés"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Teljes mély és magas"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
+msgid "No Ratings"
+msgstr "Nincs értékelés"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Fülhallgató"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
+msgid "All Groupings"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Nagy terem"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:258
+#, c-format
+msgid "All %i Groupings"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Élő"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
+msgid "No Groupings"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Party"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+msgid "All Composers"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
+#, c-format
+msgid "All %i Composers"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
+msgid "No Composers"
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:161
+msgid "On Left"
+msgstr "Baloldalt"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Soft"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:163
+msgid "On Top"
+msgstr "Felül"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:409
+msgid "Unrated"
+msgstr "Értékeletlen"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Soft Rock"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:411
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i csillag"
+msgstr[1] "%i csillag"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Techno"
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ListView.vala:97
+msgid "No Songs Found."
+msgstr ""
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:403
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ListView.vala:373
+#, c-format
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ListView.vala:375
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u dal"
+msgstr[1] "%u dal"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ListView.vala:383
+#, c-format
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:77
+msgid "Device Name:"
+msgstr "Eszköznév:"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:80
+msgid "Device Name"
+msgstr "Eszköznév"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:82
+msgid "Automatically sync when plugged in:"
+msgstr "Automatikus szinkronizálás, ha be van dugva"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Sync:"
+msgstr "Szinkronizálás:"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:111
+msgid "Other Files"
+msgstr "Más fájlok"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:112
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:473
+msgid "Music"
+msgstr "Zene"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:113
+msgid "Podcasts"
+msgstr "Podcastek"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:384
+msgid "All Music"
+msgstr "Minden zene"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:387
+msgid "All Podcasts"
+msgstr "Minden Podcast"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
+msgid "Sync Failed"
+msgstr "Szinkronizáció meghiúsult"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"A(z) %s lejátszólistával szinkronizált a(z) %s eszköz, de nem található."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Cannot Sync"
+msgstr "Nem lehet szinkronizálni"
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Nem lehet szinkronizálni az eszközzel a kiválasztott szinkronizálási "
+"beállításokkal. Nincs elég hely a lemezen."
+
+#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Device is already being synced."
+msgstr "Az eszköz már szinkronizálva van."
+
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:403
 msgid "Favorite Songs"
 msgstr "Kedvenc dalok"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:413
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:413
 msgid "Recently Added"
 msgstr "Legutóbb hozzáadott"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:435
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:435
 msgid "Recent Favorites"
 msgstr "Legutóbbi kedvencek"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:445
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:445
 msgid "Never Played"
 msgstr "Még le nem játszott"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:455
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:455
 msgid "Over Played"
 msgstr "Túljátszott"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../src//DataBase/DataBaseManager.vala:465
+#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
 msgstr "Mostanában nem játszott"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarMediaView.vala:48
-msgid "media"
-msgstr "média"
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:189
+msgid "Rescan Music Folder"
+msgstr "Zenemappa újravizsgálása"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarMediaView.vala:52
-msgid "Similar Media"
-msgstr "Hasonló média"
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:212
+msgid "Search Music"
+msgstr "Zene keresése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/LastFM.vala:63
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:483
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:487
+msgid "History"
+msgstr "Előzmény"
+
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:842
+msgid "Import Music"
+msgstr "Zene importálása"
+
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:874
+#, c-format
+msgid "<b>Importing</b> music from <b>%s</b> to library."
+msgstr "Zene <b>importálása</b> a gyűjteménybe, innen: <b>%s</b>"
+
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:889
+msgid "Rescanning music folder for changes"
+msgstr "Zenemappa átvizsgálása a változásokért"
+
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:896
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
+msgid "Could not find Music Folder"
+msgstr "Nem található zenemappa"
+
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:896
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van."
+
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:963
+msgid "Import Complete"
+msgstr "Importálás kész"
+
+#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:963
+#, c-format
+msgid "%s has imported your library."
+msgstr "%s importálta a gyűjteményét"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Sima"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Klasszikus"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Club"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Dance"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Teljes mély"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Teljes magas"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Teljes mély és magas"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Fülhallgató"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Nagy terem"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Élő"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Party"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Soft"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Techno"
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van, mielőtt "
+"a CD-t importálja."
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
+msgid "No songs on CD"
+msgstr "Nem található dal a CD-n"
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
+#, c-format
+msgid "%s could not find any songs on the CD. No songs can be imported"
+msgstr "%s nem talált dalt a CD-n. Nem lehet dalt importálni."
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#, c-format
+msgid "%s is already doing an import"
+msgstr "%s már importál"
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#, c-format
+msgid ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
+msgstr ""
+"Kérem várjon, amíg a %s befejezi a jelenlegi importálást, mielőtt importálja "
+"a CD-t."
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
+msgid "CD Import Complete"
+msgstr "CD importálása kész"
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+#, c-format
+msgid "%s has finished importing %i songs from Audio CD."
+msgstr "%s befejezte %i dal importálását a hanglemezről."
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
+#, c-format
+msgid "%s has finished importing a song from Audio CD."
+msgstr "%s befejezte egy dal importálását a hanglemezről."
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:378
+#, c-format
+msgid "Importing track %i: %s"
+msgstr ""
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:395
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr "CD importálás <b>megszakítva</b> a jelenlegi importálás után."
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:301
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
+#, c-format
+msgid "Syncing <b>%s</b>..."
+msgstr "Szinkronizálás <b>%s</b>..."
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:658
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr "Eltávolítás innen: <b>%s</b>..."
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:881
+#, c-format
+msgid "Importing <b>%s</b> to library..."
+msgstr "<b>%s</b> importálása a gyűjteménybe..."
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
 msgstr "Hasonló"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "média"
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr "Hasonló média"
+
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
 msgstr "Adjon jogot a Noise-nak"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:31
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
 msgstr "Sikertelen. Kattintson az újrapróbáláshoz."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:32
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
 msgstr "A továbbítás már engedélyezve van"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:33
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
 msgstr "Siker!"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:34
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
 msgstr "Bejelentkezés befejezése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:40
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:40
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:54
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
 msgstr "Kattintson a Last.fm bejelentkező folyamat megismétléséhez"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:57
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
@@ -1597,29 +1781,29 @@ msgstr ""
 "A Last.fm integráció engedélyezéséhez jogosultságot kell adnia a Noise-nak. "
 "Csak egyszer kell elvégezni."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/PreferencesSection.vala:68
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:68
 msgid "Last.fm Integration"
 msgstr "Last.fm integráció"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
 msgstr "Hasonló dalok lekérése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
 msgstr "%s előadó %s számához hasonló dalok keresése"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:100
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
 msgid "Similar to %s"
 msgstr "Hasonló ehhez: %s"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 msgid "No similar songs found"
 msgstr "Nem található hasonló dal"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -1630,11 +1814,11 @@ msgstr ""
 "róla, hogy az összes dalinformáció helyes, és hogy csatlakozik-e az "
 "internetre. Néhány dalra lehet, hogy nincs találat."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
 msgstr "Hasonló dal nézet"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1645,84 +1829,11 @@ msgstr ""
 "hasonló dalokat. Ezek után elindíthatja őket, vagy elmentheti "
 "lejátszólistába, hogy lejátssza őket később."
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "Ismeretlen cím"
+#~ msgid "Unknown Title"
+#~ msgstr "Ismeretlen cím"
 
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:214
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van, mielőtt "
-"a CD-t importálja."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
-msgid "No songs on CD"
-msgstr "Nem található dal a CD-n"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:221
-#, c-format
-msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr "%s nem talált dalt a CD-n. Nem lehet dalt importálni."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
-#, c-format
-msgid "%s is already doing an import"
-msgstr "%s már importál"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:226
-#, c-format
-msgid ""
-"Please wait until %s is finished with the current import before importing "
-"the CD."
-msgstr ""
-"Kérem várjon, amíg a %s befejezi a jelenlegi importálást, mielőtt importálja "
-"a CD-t."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:244
-msgid "Ripping track 1"
-msgstr "1. szám másolása"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:321
-#, c-format
-msgid "Importing track %i"
-msgstr "Szám importálása: %i"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
-msgid "CD Import Complete"
-msgstr "CD importálása kész"
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:331
-#, c-format
-msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s befejezte %i dal importálását a hanglemezről."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:334
-#, c-format
-msgid "%s has finished importing a song from Audio CD."
-msgstr "%s befejezte egy dal importálását a hanglemezről."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/CDRom/CDRomDevice.vala:367
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "CD importálás <b>megszakítva</b> a jelenlegi importálás után."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:301
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:511
-#, c-format
-msgid "Syncing <b>%s</b>..."
-msgstr "Szinkronizálás <b>%s</b>..."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:658
-#, c-format
-msgid "Removing from <b>%s</b>..."
-msgstr "Eltávolítás innen: <b>%s</b>..."
-
-#: /home/adam/Projects/fixed/fix-1063333/po/../plugins//Devices/iPod/iPodDevice.vala:881
-#, c-format
-msgid "Importing <b>%s</b> to library..."
-msgstr "<b>%s</b> importálása a gyűjteménybe..."
+#~ msgid "Ripping track 1"
+#~ msgstr "1. szám másolása"
 
 #~ msgid "Import Stations"
 #~ msgstr "Állomások importálása"
@@ -1774,6 +1885,10 @@ msgstr "<b>%s</b> importálása a gyűjteménybe..."
 #~ msgid "Station"
 #~ msgstr "Állomás"
 
+#, c-format
+#~ msgid "%s by %s"
+#~ msgstr "%s, előadó: %s"
+
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
@@ -1794,6 +1909,13 @@ msgstr "<b>%s</b> importálása a gyűjteménybe..."
 #~ msgid "%i items"
 #~ msgstr "%i elem"
 
+#~ msgid "1 track"
+#~ msgstr "1 szám"
+
+#, c-format
+#~ msgid "%i tracks"
+#~ msgstr "%i szám"
+
 #~ msgid "Name"
 #~ msgstr "Név"
 
@@ -1802,6 +1924,12 @@ msgstr "<b>%s</b> importálása a gyűjteménybe..."
 
 #~ msgid "Category"
 #~ msgstr "Kategória"
+
+#~ msgid "#"
+#~ msgstr "#"
+
+#~ msgid "BPM"
+#~ msgstr "BPM (ütem/perc)"
 
 #~ msgid "1 Star"
 #~ msgstr "1 csillag"
@@ -1845,11 +1973,32 @@ msgstr "<b>%s</b> importálása a gyűjteménybe..."
 #~ msgid "All %i Ratings"
 #~ msgstr "Mind a(z) %i értékelés"
 
+#~ msgid "Plays"
+#~ msgstr "Lejátszások"
+
 #~ msgid "Import media from device"
 #~ msgstr "Média importálása eszközről"
 
+#, c-format
+#~ msgid "%s and %s"
+#~ msgstr "%s és %s"
+
+#, c-format
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s %s és %s"
+
+#, c-format
+#~ msgid "Importing track %i"
+#~ msgstr "Szám importálása: %i"
+
 #~ msgid "Download new Episodes"
 #~ msgstr "Új epizódok letöltése"
+
+#~ msgid "All the songs in this device are already in your library."
+#~ msgstr "Minden dal az eszközről már a gyújteményében van."
+
+#~ msgid "Skips"
+#~ msgstr "Kihagyások"
 
 #~ msgid "Episode"
 #~ msgstr "Epizód"
@@ -1860,6 +2009,9 @@ msgstr "<b>%s</b> importálása a gyűjteménybe..."
 #, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Eltávolítja a %d %s innen: %s?"
+
+#~ msgid "Queue"
+#~ msgstr "Lejátszási sor"
 
 #, c-format
 #~ msgid ""
