@@ -105,23 +105,22 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
             // This callback was called before APT was done, so let's periodically check
             // whether the plugins have actually been installed. We won't update the
             // registry here.
-            Timeout.add_seconds(3, Checker);
-            this.hide();
+            Timeout.add_seconds (3, Checker);
+            this.hide ();
         }
 
         public void install_plugins_finished(Gst.InstallPluginsReturn result) {
             GLib.message ("Install of plugins finished.. updating registry");
-            Gst.update_registry();
         }
         private bool installation_done = false;
-        private bool Checker() {
-            if(installation_done)
+        private bool Checker () {
+            if (installation_done)
                 return false; // this ends the checking method
             var search = new Granite.Services.SimpleCommand ("/home", "/usr/bin/dpkg -l"); 
-            search.run(); // this is asynchronous. It will tell us when its done
+            search.run (); // this is asynchronous. It will tell us when its done
             search.done.connect ((exit) => {
-                if(search.output_str.contains("fluendo")) { // if plugins installed
-                    Gst.update_registry();
+                if(search.output_str.contains ("fluendo")) { // if plugins installed
+                    Gst.update_registry ();
                     installation_done = true;
                     }
             });
