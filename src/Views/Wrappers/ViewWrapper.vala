@@ -181,7 +181,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         switch (type) {
             case ViewType.LIST:
                 successful = view_container.set_current_view (list_view);
-                (list_view as ListView).list_view.scroll_to_current_media (true);
+                list_view.list_view.scroll_to_current_media (true);
                 break;
             case ViewType.GRID:
                 successful = view_container.set_current_view (grid_view);
@@ -236,12 +236,10 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         // Sensitive only if the column browser is available
         if (has_list_view) {
-            var lv = list_view as ListView;
-
-            column_browser_available = lv.has_column_browser;
+            column_browser_available = list_view.has_column_browser;
 
             if (column_browser_available)
-                column_browser_visible = lv.column_browser.visible;
+                column_browser_visible = list_view.column_browser.visible;
         }
 
         lw.viewSelector.set_column_browser_toggle_visible (column_browser_available);
@@ -281,17 +279,19 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("play_first_media [%s]", hint.to_string());
 
-        (list_view as ListView).set_as_current_list(1, true);
-        var m = App.player.mediaFromCurrentIndex (0);
+        if (has_list_view) {
+            list_view.set_as_current_list (1, true);
+            var m = App.player.mediaFromCurrentIndex (0);
 
-        if (m == null)
-           return;
+            if (m == null)
+               return;
 
-        App.player.playMedia (m, false);
-        App.player.player.play ();
+            App.player.playMedia (m, false);
+            App.player.player.play ();
 
-        if(!App.player.playing)
-            lw.playClicked();
+            if (!App.player.playing)
+                lw.play_media ();
+        }
     }
 
     /**

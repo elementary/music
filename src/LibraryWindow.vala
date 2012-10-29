@@ -741,15 +741,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public virtual void play_media (bool inhibit_notifications = false) {
         if(!App.player.media_active) {
             debug("No media is currently playing. Starting from the top\n");
-            //set current medias by current view
-            Gtk.Widget w = view_container.get_current_view ();
-            
-            if(w is ViewWrapper) {
-                (w as ViewWrapper).play_first_media ();
-            }
 
-            App.player.getNext(true);
-
+            App.player.getNext (true);
             App.player.playing = true;
             playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
             App.player.player.play();
