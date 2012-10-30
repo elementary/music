@@ -93,23 +93,39 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 		doNothing.clicked.connect ( () => {
 		    this.destroy ();
 		});
-
 		add(padding);
 		show_all();
 	}
 	
-	public void installPluginClicked() {
-		var installer = Gst.missing_plugin_message_get_installer_detail(message);
-		var context = new Gst.InstallPluginsContext();
-			
-		Gst.install_plugins_async({installer}, context, (Gst.InstallPluginsResultFunc)install_plugins_finished);
-		
-		this.hide();
-	}
+        public void installPluginClicked() {
+            var installer = Gst.missing_plugin_message_get_installer_detail(message);
+            var context = new Gst.InstallPluginsContext();
+                
+            Gst.install_plugins_async({installer}, context, (Gst.InstallPluginsResultFunc)install_plugins_finished);
+            // This callback was called before APT was done, so let's periodically check
+            // whether the plugins have actually been installed. We won't update the
+            // registry here.
+            Timeout.add_seconds (3, Checker);
+            this.hide ();
+        }
 
-	public void install_plugins_finished(Gst.InstallPluginsReturn result) {
-		GLib.message ("Install of plugins finished.. updating registry");
-		Gst.update_registry();
-	}
+        public void install_plugins_finished(Gst.InstallPluginsReturn result) {
+            GLib.message ("Install of plugins finished.. updating registry");
+        }
+        private bool installation_done = false;
+        private bool Checker () {
+            if (installation_done)
+                return false; // this ends the checking method
+            var search = new Granite.Services.SimpleCommand ("/home", "/usr/bin/dpkg -l"); 
+            search.run (); // this is asynchronous. It will tell us when its done
+            search.done.connect ((exit) => {
+                if(search.output_str.contains ("fluendo")) { // if plugins installed
+                    Gst.update_registry ();
+                    installation_done = true;
+                    }
+            });
+            // this will mean that it will be checked again
+            return true;
+        }
 }
 
