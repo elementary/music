@@ -202,8 +202,7 @@ public class MprisPlayer : GLib.Object {
         _metadata.insert("mpris:length", App.player.player.getDuration () / 1000);
 
         var art_file = CoverartCache.instance.get_cached_image_file (s);
-        _metadata.insert("mpris:artUrl", art_file != null ? art_file.get_uri () : "");
-
+        _metadata.insert("mpris:artUrl", art_file != null ? art_file.get_uri () : "file://" + Build.ICON_DIR + "/albumart.svg");
         _metadata.insert("xesam:trackNumber", (int) s.track);
         _metadata.insert("xesam:title", s.get_display_title ());
         _metadata.insert("xesam:album", s.get_display_album ());

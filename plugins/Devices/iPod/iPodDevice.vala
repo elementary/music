@@ -107,6 +107,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             else if(t.mediatype == GPod.MediaType.AUDIOBOOK)
                 this.audiobooks.set(t, m);
         }
+        sync_finished (true);
         
         
         //lock(lm._medias) {
