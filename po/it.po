@@ -1576,8 +1576,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"Per aggiungere brani a questa scaletta, fare <b>clic con il tasto destro</ "
-"b> su un elemento e scegliere \"<b>Aggiungi alla scaletta</ b>\"."
+"Per aggiungere brani a questa scaletta, fare <b>clic con il tasto destro"
+"</b> su un elemento e scegliere \"<b>Aggiungi alla scaletta</b>\"."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
 msgid "Edit Smart Playlist"
@@ -1592,8 +1592,8 @@ msgid ""
 msgstr ""
 "Questa scaletta sarà automaticamente estesa con i brani che corrispondono "
 "alle sue regole. Per modificare queste regole ,fare <b>clic con il tasto "
-"destro</ b> sulla scaletta nella barra laterale e fare clic su "
-"\"<b>Modifica</ b>\". In alternativa è possibile fare clic sul pulsante qui "
+"destro</b> sulla scaletta nella barra laterale e fare clic su "
+"\"<b>Modifica</b>\". In alternativa è possibile fare clic sul pulsante qui "
 "sotto."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/ViewWrapper.vala:467
@@ -1610,8 +1610,8 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"Per aggiungere brani all'elenco, fare <b>clic con il tasto destro</ b> su un "
-"elemento e scegliere \"<b>Coda</ b>\". Quando una canzone finisce, i brani "
+"Per aggiungere brani all'elenco, fare <b>clic con il tasto destro</b> su un "
+"elemento e scegliere \"<b>Coda</b>\". Quando una canzone finisce, i brani "
 "nella coda verranno riprodotti prima del brano successivo nella lista di "
 "riproduzione corrente."
 
@@ -1714,7 +1714,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:395
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Import CD sarà <b> annullata </ b> dopo corrente importazione"
+msgstr "Import CD sarà <b> annullata </b> dopo corrente importazione"
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:303
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:526
