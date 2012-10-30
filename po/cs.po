@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-28 16:28-0600\n"
+"POT-Creation-Date: 2012-10-29 22:33+0100\n"
 "PO-Revision-Date: 2012-10-28 20:15+0000\n"
 "Last-Translator: Hlobil Vaclav <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-10-29 05:18+0000\n"
-"X-Generator: Launchpad (build 16194)\n"
+"X-Launchpad-Export-Date: 2012-10-30 05:52+0000\n"
+"X-Generator: Launchpad (build 16206)\n"
 "Language: cs\n"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:36
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -27,8 +27,8 @@ msgstr[0] "%d vteřin"
 msgstr[1] "%d vteřina"
 msgstr[2] "%d vteřiny"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:44
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:74
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:74
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -36,7 +36,7 @@ msgstr[0] "%u minuta"
 msgstr[1] "%u minut"
 msgstr[2] "%u minut"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:48
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:48
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
@@ -44,13 +44,13 @@ msgstr[0] "%u sekunda"
 msgstr[1] "%u sekundy"
 msgstr[2] "%u sekund"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:49
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:49
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:68
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:68
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
@@ -58,7 +58,7 @@ msgstr[0] "%u den"
 msgstr[1] "%u dny"
 msgstr[2] "%u dnů"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:71
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:71
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
@@ -66,25 +66,25 @@ msgstr[0] "%u hodina"
 msgstr[1] "%u hodiny"
 msgstr[2] "%u hodin"
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:81
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:81
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:83
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:87
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:87
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:95
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:95
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -92,742 +92,213 @@ msgstr ""
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/victor/noise-luna-beta-1/po/../core//Utils/TimeUtils.vala:154
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:154
 msgid "%m/%e/%Y %l:%M %p"
 msgstr ""
 
 #. / Used for unknown titles, artists, or album names.
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:35
+#: /home/noelco/noise/po/../core//Media.vala:35
 msgid "Unknown"
 msgstr ""
 
 #. / String template used to show "SongName by ArtistName"
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:172
+#: /home/noelco/noise/po/../core//Media.vala:172
 #, c-format
 msgid " by %s"
 msgstr ""
 
 #. / String template used to show "SongName ... on AlbumName"
-#: /home/victor/noise-luna-beta-1/po/../core//Media.vala:176
+#: /home/noelco/noise/po/../core//Media.vala:176
 #, c-format
 msgid " on %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:37
+#: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Noise.vala:38
+#: /home/noelco/noise/po/../src//Noise.vala:38
 msgid "Music Player"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:214
+#: /home/noelco/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Neznámá stopa"
+
+#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Neznámé album"
+
+#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/noelco/noise/po/../src//Objects/ArtistInfo.vala:27
+msgid "Unknown Artist"
+msgstr "Neznámý iterpret"
+
+#: /home/noelco/noise/po/../src//Objects/Playlist.vala:204
+msgid "Radio Station"
+msgstr "Rádiová stanice"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Ploché"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Klasická hudba"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Klubová hudba"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Taneční hudba"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Plné basy"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Plné výšky"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Plné basy + výšky"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Sluchátka"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Velká hala"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Živě"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Párty"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Měkký"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Měkký Rock"
+
+#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Techno"
+
+#: /home/noelco/noise/po/../src//LibraryManager.vala:214
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Importovat hudbu z %s..."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:261
+#: /home/noelco/noise/po/../src//LibraryManager.vala:261
 msgid "Adding files to library..."
 msgstr "Přidat soubory do knihovny"
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:310
+#: /home/noelco/noise/po/../src//LibraryManager.vala:310
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Přidání hudby z %s do databáze..."
 
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryManager.vala:338
+#: /home/noelco/noise/po/../src//LibraryManager.vala:338
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Prohledat změny v hudbě. Může to chvíli trvat..."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/ArtistInfo.vala:27
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:26
-msgid "Unknown Artist"
-msgstr "Neznámý iterpret"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/Playlist.vala:204
-msgid "Radio Station"
-msgstr "Rádiová stanice"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Neznámá stopa"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Neznámé album"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:49
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:159
-msgid "Automatic"
-msgstr "Automaticky"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Odstranit aktuální"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:66
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:99
-msgid "Off"
-msgstr "Vypnuto"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:66
-msgid "Enable Repeat"
-msgstr "Povolit opakování"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:67
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:541
-msgid "Song"
-msgstr "Skladba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:67
-msgid "Repeat Song"
-msgstr "Opakovat skladbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:68
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:193
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-msgid "Album"
-msgstr "Album"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:68
-msgid "Repeat Album"
-msgstr "Opakovat album"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:69
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-msgid "Artist"
-msgstr "Interpret"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:69
-msgid "Repeat Artist"
-msgstr "Opakovat interpreta"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:70
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:100
-msgid "All"
-msgstr "Vše"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:70
-msgid "Repeat All"
-msgstr "Opakovat vše"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:99
-msgid "Enable Shuffle"
-msgstr "Zapnout náhodný výběr"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:100
-msgid "Disable Shuffle"
-msgstr "Vypnout náhodný výběr"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:133
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:144
-msgid "Add Playlist"
-msgstr "Přidat seznam skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:145
-msgid "Add Smart Playlist"
-msgstr "Přidat chytrý seznam skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:191
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:224
-msgid "Hide"
-msgstr "Skrýt"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:191
-msgid "Show Equalizer"
-msgstr "Zobrazit ekvalizér"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:192
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:225
-msgid "Show"
-msgstr "Zobrazit"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:192
-msgid "Hide Equalizer"
-msgstr "Skrýt ekvalizér"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:224
-msgid "Show Info Panel"
-msgstr "Zobrazit informační panel"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/StatusBar.vala:225
-msgid "Hide Info Panel"
-msgstr "Skrýt informační panel"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:74
-msgid "Sync"
-msgstr "Synchronizovat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "zdarma"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SpaceWidget.vala:380
-msgid "Using %s of %s (%.2f%)"
-msgstr "Používá se %s z %s (%.2f%)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:71
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:113
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:188
-msgid "Import to Library"
-msgstr "Importovat do knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:77
-msgid "Eject"
-msgstr "Vyjmout"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:88
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:110
-msgid "New Playlist"
-msgstr "Nový seznam skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:89
-msgid "New Smart Playlist"
-msgstr "Nový chytrý seznam skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:90
-msgid "Edit"
-msgstr "Upravit"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:91
-msgid "Remove"
-msgstr "Odebrat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:92
-msgid "Save as Playlist"
-msgstr "Uložit jako seznam Skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:93
-msgid "Export..."
-msgstr "Exportovat..."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:94
-msgid "Import Playlists"
-msgstr "Importovat seznamy skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:132
-msgid "Library"
-msgstr "Knihovna"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:133
-msgid "Devices"
-msgstr "Zařízení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:134
-msgid "Network"
-msgstr "Síť"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:135
-msgid "Playlists"
-msgstr "Seznamy skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:581
-msgid "This device is syncing"
-msgstr "Zařízení se synchronizuje"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:581
-msgid "Please wait until the current sync is finished to do this action."
-msgstr "Prosím počkejte, než bude dokončena synchronizace"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:583
-msgid "This device is in transfer"
-msgstr "Na tomto zařízení probíhá přenos"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:583
-msgid "Please wait until the current transfer is finished to do this action."
-msgstr ""
-"Pro vykonání této akce prosím počkejte, až se dokončí stávající přenos."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:702
-msgid "Play Queue (%Y-%b-%e %l:%M %p)"
-msgstr "Přehrát frontu (%Y-%b-%e %l:%M %p)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:704
-msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr "Přehrát historii (%Y-%b-%e %l:%M %p)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:706
-msgid "Unknown playlist"
-msgstr "Neznámý playlist"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:716
-msgid "Export Playlist"
-msgstr "Exportovat playlist"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:800
-msgid "Playlist"
-msgstr "Seznam skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/SideTreeView.vala:813
-#, c-format
-msgid "Import %s"
-msgstr "Importovat %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Widgets/TopDisplay.vala:69
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:153
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:66
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:58
-msgid "Cancel"
-msgstr "Zrusit"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:83
-msgid "Equalizer"
-msgstr "Ekvalizér"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:150
-msgid "Save preset"
-msgstr "Uložit předvolbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:158
-msgid "Close"
-msgstr "Zavřít"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:414
-#, c-format
-msgid "%s (Custom)"
-msgstr "%s (vlastní)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:416
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (vlastní %i)"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:420
-msgid "Custom Preset"
-msgstr "Vlastní předvolba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/EqualizerWindow.vala:422
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Vlatní předvolba %i"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:47
-msgid "Not Imported Files"
-msgstr "Nejsou importovány žádné soubory"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:76
-#, c-format
-msgid "Unable to import %d items from %s"
-msgstr "Nemohu importovat %d soubory z %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:65
-#, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s nelze importovat %d soubory. Soubory jsou možná poškozeny."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:66
-msgid "Move all corrupted files to trash"
-msgstr "Přesunout všechny poškozené soubory do koše"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:71
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Move to Trash"
-msgstr "Přesunout soubory do koše"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:72
-msgid "Ignore"
-msgstr "Ignorovat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:93
-msgid "del"
-msgstr "smazat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:98
-msgid "File Location"
-msgstr "Umístění souboru"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/NotImportedWindow.vala:125
-msgid "Select individual files to move to trash:"
-msgstr "Vybrat jednotlivé soubory k přesunutí do koše"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "Exportovat seznamy skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "Vybrat složku s hudbou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
-msgid "Set Music Folder?"
-msgstr "Nastavit složku s hudbou?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Opravdu chcete nastavit jako hudební složku %s? Pokud tak učiníte, smaže se "
-"importovaná knihovna a playlisty."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:135
-msgid "Choose Music Folder"
-msgstr "Vybrat složku s hudbou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
-msgid "Install Plugin"
-msgstr "Nainstalovat plugin"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:64
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:403
+msgid "Favorite Songs"
+msgstr "Oblíbené skladby"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:413
+msgid "Recently Added"
+msgstr "Naposledy přidané"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
+msgid "Recent Favorites"
+msgstr "Nedávno oblíbené"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:445
+msgid "Never Played"
+msgstr "Nikdy nehrané"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:455
+msgid "Over Played"
+msgstr "Přehrané"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
+msgid "Not Recently Played"
+msgstr "V poslední době nebylo hráno"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
+msgid "Remove Media"
+msgstr "Vyjměte médium"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
+msgid "Locate Media"
+msgstr "Najít média"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
+msgid "Rescan Library"
+msgstr "Zaktualizovat knihovnu"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
+#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Do Nothing"
 msgstr "Neprovádět žádnou akci"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
-msgid "Required GStreamer plugin not installed"
-msgstr "Požadovaný plugin GStreameru není nainstalován"
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
+msgid "Could not find media file"
+msgstr "nelze najít složku s médii"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
 #, c-format
 msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
-msgstr ""
-"Plugin pro tento typ souboru %s není nainstalován. Co chcete udělat ?"
+"The music file for %s by %s could not be found. What would you like to do?"
+msgstr "Hudební soubor %s od %s nebyl nalezen. Co chcete dělat?"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:81
-msgid "Metadata"
-msgstr "Metadata"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:83
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:379
-msgid "Lyrics"
-msgstr "Text písně"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:92
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:157
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:65
-msgid "Done"
-msgstr "Hotovo"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:179
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:350
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
-msgid "Editing %s by %s"
-msgstr "Úprava %s od %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:181
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:352
-#, c-format
-msgid "Editing %s"
-msgstr "Úprava %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:184
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:355
-#, c-format
-msgid "Editing %i songs"
-msgstr "Úprava %i písní"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-msgid "Title"
-msgstr "Název"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:192
-msgid "Album Artist"
-msgstr "Interpret alba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:194
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:482
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-msgid "Genre"
-msgstr "Žánr"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-msgid "Composer"
-msgstr "Skladatel"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:482
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-msgid "Grouping"
-msgstr "Seskupení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:197
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-msgid "Comment"
-msgstr "Kometář"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:198
-msgid "Track"
-msgstr "Stopa"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:199
-msgid "Disc"
-msgstr "Disk"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:200
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-msgid "Year"
-msgstr "Rok"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:201
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-msgid "Rating"
-msgstr "Hodnocení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:203
-msgid "Media Type"
-msgstr "Typ média"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:298
-#, c-format
-msgid "Lyrics not found for %s"
-msgstr "Nebyl nalezen žádný text pro skladbu %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/MediaEditor.vala:543
-msgid "Podcast"
-msgstr "Podcast"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:64
-msgid "Import media to Library"
-msgstr "Importovat média do knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:65
-msgid "Continue Syncing"
-msgstr "Pokračovat v synchronizaci"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:66
-msgid "Stop Syncing"
-msgstr "Zastavit synchronizaci"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:73
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Pokud budete pokračovat v synchronizaci, média budou smazána ze %s, protože "
-"nejsou na seznamu synchronizace. Chcete je nejprve importovat do knihovny ?"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:79
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr "Při synchronizaci budou smazány %i sobury ze %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SyncWarningDialog.vala:82
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr "Synchronizace smaže jeden soubor ze %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:192
-msgid "Preferences"
-msgstr "Předvolby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:221
-msgid "General"
-msgstr "Hlavní"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:244
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
-msgid "Select Music Folder"
-msgstr "Vyberte složku s hudbou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:251
-msgid "Music Folder Location"
-msgstr "Umístění složky s hudbou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:259
-msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
-msgstr ""
-"Musíte počkat s nastavením složky s hudbou, dokud se nedokončí předchozí "
-"operace se soubory"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:274
-msgid "Keep Music folder organized"
-msgstr "Nechat složku s hudbou organizovanou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:275
-msgid "Copy files to Music folder when adding to Library"
-msgstr ""
-"Zkopírovat soubory do složky s hudbou, když budou přidány do knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:277
-msgid "Write metadata to file"
-msgstr "Zapsat metadata do souboru"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:289
-msgid "Library Management"
-msgstr "Řízení knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:296
-msgid "Use Noise as the default Music application"
-msgstr "Natavit Noise jako výchozí přehrávač hudby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:302
-msgid "Show notifications"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:309
-msgid "Minimize window instead of closing it when a song is being played"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:311
-msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PreferencesWindow.vala:317
-msgid "Desktop Integration"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:60
-msgid "Smart Playlist Editor"
-msgstr "Editor inteligentního playlistu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:71
-msgid "Name of Playlist"
-msgstr "Název playlistu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:75
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:83
-msgid "Rules"
-msgstr "Pravidla"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:84
-msgid "Options"
-msgstr "Možnosti"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Playlist Title"
-msgstr "Název playlistu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:93
-msgid "Match"
-msgstr "Shoda"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:95
-msgid "any"
-msgstr "nějaký"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "all"
-msgstr "vše"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:97
-msgid "of the following:"
-msgstr "z následujících:"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:124
-msgid "Limit to"
-msgstr "Omezit na"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:126
-msgid "items"
-msgstr "položek"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-msgid "Bitrate"
-msgstr "Datový tok"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-msgid "Date Added"
-msgstr "Datum přidání"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Released"
-msgstr "Datum vydání"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-msgid "Last Played"
-msgstr "Naposledy přehráno"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-msgid "Length"
-msgstr "Délka"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-msgid "Playcount"
-msgstr "Počet přehrání"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-msgid "Skipcount"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:332
-msgid "is"
-msgstr "je"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:333
-msgid "contains"
-msgstr "obsahuje"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:334
-msgid "does not contain"
-msgstr "neobsahuje"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:366
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:380
-msgid "is exactly"
-msgstr "je přesně"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:367
-msgid "is at most"
-msgstr "je nejvíce"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:368
-msgid "is at least"
-msgstr "je nejméně"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:381
-msgid "is within"
-msgstr "je v"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:382
-msgid "is before"
-msgstr "je před"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "seconds"
-msgstr "vteřin"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "dnů zpět"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/SmartPlaylistEditor.vala:414
-msgid "kbps"
-msgstr "kb/s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "%i media files could not be found. What would you like to do?"
+msgstr "%i soubory médií nebyly nalezeny. Co chcete dělat?"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+msgid "Choose Music Folder"
+msgstr "Vybrat složku s hudbou"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
 msgstr "Importovat ze zařízení"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
 msgstr "Importovat média z %s"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
@@ -836,96 +307,461 @@ msgstr ""
 "Tyto soubory byly nalezeny v %s, ale nejsou v knihovně. Označte soubory, "
 "které chcete importovat"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
 msgstr "importovat všechny média"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
 msgstr "Importovat"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
 msgstr "Neimportovat"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
 msgstr "IImportovat %i soubory z %s"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
 msgstr "Importovat %s z %s"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 msgid "ID"
 msgstr "ID"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:190
+msgid "Title"
+msgstr "Název"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Artist"
+msgstr "Interpret"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Album"
+msgstr "Album"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
 msgstr "vybrat individuální média pro import"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
 msgstr "Zkontrolovat položku"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
 msgstr "Zkontrolovat album"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
 msgstr "Zkontrolovat umělce"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:61
-msgid "Remove Media"
-msgstr "Vyjměte médium"
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Export Playlists"
+msgstr "Exportovat seznamy skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:62
-msgid "Locate Media"
-msgstr "Najít média"
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+msgid "Set Music Folder"
+msgstr "Vybrat složku s hudbou"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:63
-msgid "Rescan Library"
-msgstr "Zaktualizovat knihovnu"
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:153
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
+#: /home/noelco/noise/po/../src//Widgets/TopDisplay.vala:69
+msgid "Cancel"
+msgstr "Zrusit"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:70
-msgid "Could not find media file"
-msgstr "nelze najít složku s médii"
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+msgid "Set Music Folder?"
+msgstr "Nastavit složku s hudbou?"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:79
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
 msgid ""
-"The music file for %s by %s could not be found. What would you like to do?"
-msgstr "Hudební soubor %s od %s nebyl nalezen. Co chcete dělat?"
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Opravdu chcete nastavit jako hudební složku %s? Pokud tak učiníte, smaže se "
+"importovaná knihovna a playlisty."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/FileNotFoundDialog.vala:82
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
+msgid "Smart Playlist Editor"
+msgstr "Editor inteligentního playlistu"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
+msgid "Name of Playlist"
+msgstr "Název playlistu"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+msgid "Rules"
+msgstr "Pravidla"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
+msgid "Options"
+msgstr "Možnosti"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Playlist Title"
+msgstr "Název playlistu"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+msgid "Match"
+msgstr "Shoda"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
+msgid "any"
+msgstr "nějaký"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "all"
+msgstr "vše"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
+msgid "of the following:"
+msgstr "z následujících:"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
+msgid "Limit to"
+msgstr "Omezit na"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
+msgid "items"
+msgstr "položek"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Bitrate"
+msgstr "Datový tok"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:197
+msgid "Comment"
+msgstr "Kometář"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:195
+msgid "Composer"
+msgstr "Skladatel"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Date Added"
+msgstr "Datum přidání"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Released"
+msgstr "Datum vydání"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:194
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
+msgid "Genre"
+msgstr "Žánr"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:196
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
+msgid "Grouping"
+msgstr "Seskupení"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Last Played"
+msgstr "Naposledy přehráno"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
+msgid "Length"
+msgstr "Délka"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+msgid "Playcount"
+msgstr "Počet přehrání"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:201
+msgid "Rating"
+msgstr "Hodnocení"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Skipcount"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:200
+msgid "Year"
+msgstr "Rok"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:332
+msgid "is"
+msgstr "je"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
+msgid "contains"
+msgstr "obsahuje"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
+msgid "does not contain"
+msgstr "neobsahuje"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
+msgid "is exactly"
+msgstr "je přesně"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+msgid "is at most"
+msgstr "je nejvíce"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+msgid "is at least"
+msgstr "je nejméně"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
+msgid "is within"
+msgstr "je v"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+msgid "is before"
+msgstr "je před"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "seconds"
+msgstr "vteřin"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:410
+msgid "days ago"
+msgstr "dnů zpět"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:414
+msgid "kbps"
+msgstr "kb/s"
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:83
+msgid "Equalizer"
+msgstr "Ekvalizér"
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:150
+msgid "Save preset"
+msgstr "Uložit předvolbu"
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:158
+msgid "Close"
+msgstr "Zavřít"
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:414
 #, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i soubory médií nebyly nalezeny. Co chcete dělat?"
+msgid "%s (Custom)"
+msgstr "%s (vlastní)"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
-msgid "The name %s is already in use"
-msgstr "jméno %s se momentálně používá pro jiný soubor"
+msgid "%s (Custom %i)"
+msgstr "%s (vlastní %i)"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:420
+msgid "Custom Preset"
+msgstr "Vlastní předvolba"
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Vlatní předvolba %i"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
+msgid "Import media to Library"
+msgstr "Importovat média do knihovny"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
+msgid "Continue Syncing"
+msgstr "Pokračovat v synchronizaci"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
+msgid "Stop Syncing"
+msgstr "Zastavit synchronizaci"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Pokud budete pokračovat v synchronizaci, média budou smazána ze %s, protože "
+"nejsou na seznamu synchronizace. Chcete je nejprve importovat do knihovny ?"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr "Při synchronizaci budou smazány %i sobury ze %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr "Synchronizace smaže jeden soubor ze %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:192
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:92
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:65
+msgid "Done"
+msgstr "Hotovo"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
+msgid "General"
+msgstr "Hlavní"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:244
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
+msgid "Select Music Folder"
+msgstr "Vyberte složku s hudbou"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:251
+msgid "Music Folder Location"
+msgstr "Umístění složky s hudbou"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:259
+msgid ""
+"You must wait until previous file operations finish before setting your "
+"music folder"
+msgstr ""
+"Musíte počkat s nastavením složky s hudbou, dokud se nedokončí předchozí "
+"operace se soubory"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:274
+msgid "Keep Music folder organized"
+msgstr "Nechat složku s hudbou organizovanou"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:275
+msgid "Copy files to Music folder when adding to Library"
+msgstr ""
+"Zkopírovat soubory do složky s hudbou, když budou přidány do knihovny"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:277
+msgid "Write metadata to file"
+msgstr "Zapsat metadata do souboru"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:289
+msgid "Library Management"
+msgstr "Řízení knihovny"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:296
+msgid "Use Noise as the default Music application"
+msgstr "Natavit Noise jako výchozí přehrávač hudby"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:302
+msgid "Show notifications"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:309
+msgid "Minimize window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:311
+msgid "Hide window instead of closing it when a song is being played"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:317
+msgid "Desktop Integration"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
+msgid "Metadata"
+msgstr "Metadata"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:83
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:379
+msgid "Lyrics"
+msgstr "Text písně"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:179
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
+#, c-format
+msgid "Editing %s by %s"
+msgstr "Úprava %s od %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
+#, c-format
+msgid "Editing %s"
+msgstr "Úprava %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:184
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:355
+#, c-format
+msgid "Editing %i songs"
+msgstr "Úprava %i písní"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:192
+msgid "Album Artist"
+msgstr "Interpret alba"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:198
+msgid "Track"
+msgstr "Stopa"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Disc"
+msgstr "Disk"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:203
+msgid "Media Type"
+msgstr "Typ média"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:298
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr "Nebyl nalezen žádný text pro skladbu %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:541
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Song"
+msgstr "Skladba"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:543
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:71
+msgid "Move to Trash"
+msgstr "Přesunout soubory do koše"
+
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
 msgstr "Odstranit ze %s"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:68
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:72
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Odstranit ''%s'' z %s?"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Dialogs/RemoveFilesDialog.vala:81
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -936,63 +772,756 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/PopupListView.vala:167
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr "Nejsou importovány žádné soubory"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr ""
+msgid "Unable to import %d items from %s"
+msgstr "Nemohu importovat %d soubory z %s"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:550
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
-msgid "%d minutes"
-msgstr "%d minut"
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s nelze importovat %d soubory. Soubory jsou možná poškozeny."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:553
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr "Přesunout všechny poškozené soubory do koše"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "Ignorovat"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "smazat"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "Umístění souboru"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr "Vybrat jednotlivé soubory k přesunutí do koše"
+
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
 #, c-format
-msgid "%d hours"
-msgstr "%d hodin"
+msgid "The name %s is already in use"
+msgstr "jméno %s se momentálně používá pro jiný soubor"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:556
+#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+msgid "Install Plugin"
+msgstr "Nainstalovat plugin"
+
+#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+msgid "Required GStreamer plugin not installed"
+msgstr "Požadovaný plugin GStreameru není nainstalován"
+
+#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
-msgid "%d days"
-msgstr "%d dnů"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u soubory, %s, %s"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/GridView.vala:67
-msgid "No Albums Found."
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/GridView/GridView.vala:163
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-msgstr[1] "%u alba"
-msgstr[2] "%u alb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:66
-msgid "No songs in Queue"
-msgstr "Ve frontě nejsou skladby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/QueueViewWrapper.vala:66
 msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
+"The plugin for media type %s is not installed.\n"
+"What would you like to do?"
 msgstr ""
-"Pro přidání písní do fronty klikněte <b>pravým tlačítkem</b> na položku a "
-"vyberte <b>Fronta</b>. Až píseň skončí, budou nejprve přehrány písně ve "
-"frontě, před další písní v právě přehrávaném seznamu."
+"Plugin pro tento typ souboru %s není nainstalován. Co chcete udělat ?"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
+#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:49
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:159
+msgid "Automatic"
+msgstr "Automaticky"
+
+#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Odstranit aktuální"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:71
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:188
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:113
+msgid "Import to Library"
+msgstr "Importovat do knihovny"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:74
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:237
+msgid "Sync"
+msgstr "Synchronizovat"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:77
+msgid "Eject"
+msgstr "Vyjmout"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:88
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:110
+msgid "New Playlist"
+msgstr "Nový seznam skladeb"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:89
+msgid "New Smart Playlist"
+msgstr "Nový chytrý seznam skladeb"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:90
+msgid "Edit"
+msgstr "Upravit"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:91
+msgid "Remove"
+msgstr "Odebrat"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:92
+msgid "Save as Playlist"
+msgstr "Uložit jako seznam Skladeb"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:93
+msgid "Export..."
+msgstr "Exportovat..."
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:94
+msgid "Import Playlists"
+msgstr "Importovat seznamy skladeb"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:132
+msgid "Library"
+msgstr "Knihovna"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:133
+msgid "Devices"
+msgstr "Zařízení"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:134
+msgid "Network"
+msgstr "Síť"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:135
+msgid "Playlists"
+msgstr "Seznamy skladeb"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:217
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:473
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:112
+msgid "Music"
+msgstr "Hudba:"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:585
+msgid "This device is syncing"
+msgstr "Zařízení se synchronizuje"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:585
+msgid "Please wait until the current sync is finished to do this action."
+msgstr "Prosím počkejte, než bude dokončena synchronizace"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:587
+msgid "This device is in transfer"
+msgstr "Na tomto zařízení probíhá přenos"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:587
+msgid "Please wait until the current transfer is finished to do this action."
+msgstr ""
+"Pro vykonání této akce prosím počkejte, až se dokončí stávající přenos."
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:706
+msgid "Play Queue (%Y-%b-%e %l:%M %p)"
+msgstr "Přehrát frontu (%Y-%b-%e %l:%M %p)"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:708
+msgid "Play History (%Y-%b-%e %l:%M %p)"
+msgstr "Přehrát historii (%Y-%b-%e %l:%M %p)"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:710
+msgid "Unknown playlist"
+msgstr "Neznámý playlist"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:720
+msgid "Export Playlist"
+msgstr "Exportovat playlist"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:804
+msgid "Playlist"
+msgstr "Seznam skladeb"
+
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:817
+#, c-format
+msgid "Import %s"
+msgstr "Importovat %s"
+
+#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Off"
+msgstr "Vypnuto"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
+msgid "Enable Repeat"
+msgstr "Povolit opakování"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Song"
+msgstr "Opakovat skladbu"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Album"
+msgstr "Opakovat album"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat Artist"
+msgstr "Opakovat interpreta"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
+msgid "All"
+msgstr "Vše"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
+msgid "Repeat All"
+msgstr "Opakovat vše"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Enable Shuffle"
+msgstr "Zapnout náhodný výběr"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
+msgid "Disable Shuffle"
+msgstr "Vypnout náhodný výběr"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:133
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Playlist"
+msgstr "Přidat seznam skladeb"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:145
+msgid "Add Smart Playlist"
+msgstr "Přidat chytrý seznam skladeb"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:224
+msgid "Hide"
+msgstr "Skrýt"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
+msgid "Show Equalizer"
+msgstr "Zobrazit ekvalizér"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:225
+msgid "Show"
+msgstr "Zobrazit"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
+msgid "Hide Equalizer"
+msgstr "Skrýt ekvalizér"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:224
+msgid "Show Info Panel"
+msgstr "Zobrazit informační panel"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:225
+msgid "Hide Info Panel"
+msgstr "Skrýt informační panel"
+
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "zdarma"
+
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:380
+msgid "Using %s of %s (%.2f%)"
+msgstr "Používá se %s z %s (%.2f%)"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:189
+msgid "Rescan Music Folder"
+msgstr "Znovu prohledat složku s hudbou"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:212
+msgid "Search Music"
+msgstr "Najít hudbu"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:483
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:487
+msgid "History"
+msgstr "Historie"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:842
+msgid "Import Music"
+msgstr "Importovat hudbu"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
+#, c-format
+msgid "<b>Importing</b> music from <b>%s</b> to library."
+msgstr "<b>Importuje se</b> hudba z <b>%s</b> do knihovny."
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:889
+msgid "Rescanning music folder for changes"
+msgstr "Prohledávám složku s hudbou"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:896
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
+msgid "Could not find Music Folder"
+msgstr "Složka s hudbou nenalezena"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:896
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr "Ujistěte se, že vaše složka s hudbou je přístupná a připojená."
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:963
+msgid "Import Complete"
+msgstr "Importace dokončena"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:963
+#, c-format
+msgid "%s has imported your library."
+msgstr "%s bylo importováno do vaší knihovny"
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:43
+msgid "Cancelling Sync"
+msgstr "Ukončuji synchronizaci"
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:43
+msgid "Device Sync has been cancelled. Operation will stop after this media."
+msgstr ""
+"Synchronizace zařízení byla ukončena. Operace skončí po těchto médiích."
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:47
+msgid "Cancelling Import"
+msgstr "Ukončuji import"
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:47
+msgid ""
+"Import from device has been cancelled. Operation will stop after this media."
+msgstr ""
+"Synchronizace ze zařízení byla ukončena. Operace skončí po těchto médiích."
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:86
+msgid "No External Songs"
+msgstr "Žádné externí skladby"
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:86
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr "Na zařízení nebyly nalezeny skladby, které nejsou v knihovně."
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr "Žánry"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr "Interpreti"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr "Alba"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr "Let"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr "Hodnocení"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:161
+msgid "On Left"
+msgstr "Nalevo"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:163
+msgid "On Top"
+msgstr "Nahoře"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:409
+msgid "Unrated"
+msgstr "Nehodnoceno"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:411
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:213
+msgid "All Genres"
+msgstr "Všechny žánry"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:215
+#, c-format
+msgid "All %i Genres"
+msgstr "Všechny %i žánry"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:217
+msgid "No Genres"
+msgstr "Žádné žánry"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:222
+msgid "All Artists"
+msgstr "Všichni umělci"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:224
+#, c-format
+msgid "All %i Artists"
+msgstr "Všichni %i umělci"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:226
+msgid "No Artists"
+msgstr "Žádní umělci"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:231
+msgid "All Albums"
+msgstr "Všechna alba"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:233
+#, c-format
+msgid "All %i Albums"
+msgstr "Všechna %i alba"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:235
+msgid "No Albums"
+msgstr "Žádná alba"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:240
+msgid "All Years"
+msgstr "Všechny roky"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:242
+#, c-format
+msgid "All %i Years"
+msgstr "Všechny %i roky"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
+msgid "No Years"
+msgstr "Žádné roky"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+msgid "All Ratings"
+msgstr "Všechna hodnocení"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
+msgid "No Ratings"
+msgstr "Žádná hodnocení"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
+msgid "All Groupings"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:258
+#, c-format
+msgid "All %i Groupings"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
+msgid "No Groupings"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+msgid "All Composers"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
+#, c-format
+msgid "All %i Composers"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
+msgid "No Composers"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:58
+msgid "Remove from Library"
+msgstr "Odstranit z knihovny"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
+msgid "Remove from Queue"
+msgstr "Odstranit z fronty"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:83
+msgid "Remove from Device"
+msgstr "Odstranit ze zařízení"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:106
+msgid "Scroll to Current Song"
+msgstr "Přejít na aktuální skladby"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:107
+msgid "Edit Song Info"
+msgstr "Upravit informace o skladbě"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:108
+msgid "Show in File Browser"
+msgstr "Zobrazit ve správci souborů"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:109
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:111
+msgid "Add to Playlist"
+msgstr "Přidat do seznamu skladeb"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:112
+msgid "Remove Song"
+msgstr "Odstranit skladbu"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Importovat %i z %i vybraných skladeb"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
+msgid "Import this song"
+msgstr "Importovat tuto skladbu"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:225
+#, c-format
+msgid "Import %i songs"
+msgstr "Importovat %i skladby"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:743
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:758
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:262
+msgid "Never"
+msgstr "Nikdy"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:821
+msgid "Sample List String"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:137
+msgid "Autosize Columns"
+msgstr "Automaticky přizpůsobit sloupce"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:144
+msgid "Display Album Art"
+msgstr "Zobrazit umělce alba"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "#"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Track"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Title"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Length"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Artist"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Album"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Composer"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Genre"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Year"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Grouping"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Rating"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title"
+msgid "Plays"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title"
+msgid "Skips"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "Date Added"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:118
+msgctxt "List column title"
+msgid "Last Played"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:121
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:124
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:127
+msgctxt "List column title"
+msgid "File Size"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:237
+#, c-format
+msgid "%i kbps"
+msgstr "%i kbps"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:97
+msgid "No Songs Found."
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:373
+#, c-format
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:375
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u skladba"
+msgstr[1] "%u skladby"
+msgstr[2] "%u skladeb"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:383
+#, c-format
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:77
+msgid "Device Name:"
+msgstr "Název zařízení:"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:80
+msgid "Device Name"
+msgstr "Název zařízení"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:82
+msgid "Automatically sync when plugged in:"
+msgstr "Automaticky synchronizovat, když zapojeno:"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Sync:"
+msgstr "Synchronizovat:"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:111
+msgid "Other Files"
+msgstr "Ostatní soubory"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
+msgid "Podcasts"
+msgstr "Podcasty"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:384
+msgid "All Music"
+msgstr "Všechna hudba"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:387
+msgid "All Podcasts"
+msgstr "Všechny podcasty"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+msgid "Sync Failed"
+msgstr "Synchronizace selhala"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"Playlist %s se používá k synchronizaci se zařízením %s, ale nebyl nalezen."
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Cannot Sync"
+msgstr "Nelze synchronizovat"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Nelze synchronizovat zařízení s vybraným nastavením synchronizace. Na disku "
+"není dostatek místa."
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Device is already being synced."
+msgstr "Zařízení se už synchronizuje."
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
 msgstr "V historii nejsou žádné skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
+#: /home/noelco/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -1002,33 +1531,38 @@ msgstr ""
 "Tento seznam můžete použít jako přehled všech písní, které jste přehráli "
 "během aktuálního spuštění."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 msgid "Get Some Tunes"
 msgstr "Pořiďte si nějakou Hudbu"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:39
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:39
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 msgid "Locate"
 msgstr "Najít"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 msgid "Change your music folder."
 msgstr "Změnit svou složku s hudbou"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/ViewWrapper.vala:467
-msgid "No media"
-msgstr "Žádné médium"
+#: /home/noelco/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
+msgid "Audio CD Invalid"
+msgstr "Neplatné CD"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
+#: /home/noelco/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
+#, c-format
+msgid "%s could not read the contents of this Audio CD"
+msgstr "%s nemohl načíst obsah tohoto zvukového CD."
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid "No Songs"
 msgstr "Žádné skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1036,11 +1570,11 @@ msgstr ""
 "Pro přidání skladeb do playlistu, klikněte <b>pravým tlačítkrm</b> na soubor "
 "a stiskněte <b>Přidat do Playlistu</b>"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
 msgid "Edit Smart Playlist"
 msgstr "Upravit chytrý seznam skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1052,613 +1586,70 @@ msgstr ""
 "tlačítkem</b> a pak na <b>Upravit</b>. Případně můžete kliknout na tlačítko "
 "níže."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
-msgid "Audio CD Invalid"
-msgstr "Neplatné CD"
+#: /home/noelco/noise/po/../src//Views/Wrappers/ViewWrapper.vala:467
+msgid "No media"
+msgstr "Žádné médium"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr "%s nemohl načíst obsah tohoto zvukového CD."
+#: /home/noelco/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:66
+msgid "No songs in Queue"
+msgstr "Ve frontě nejsou skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ContentView.vala:24
+#: /home/noelco/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:66
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Pro přidání písní do fronty klikněte <b>pravým tlačítkem</b> na položku a "
+"vyberte <b>Fronta</b>. Až píseň skončí, budou nejprve přehrány písně ve "
+"frontě, před další písní v právě přehrávaném seznamu."
+
+#: /home/noelco/noise/po/../src//Views/ContentView.vala:24
 #, c-format
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
-msgid "Cancelling Sync"
-msgstr "Ukončuji synchronizaci"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:43
-msgid "Device Sync has been cancelled. Operation will stop after this media."
+#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:67
+msgid "No Albums Found."
 msgstr ""
-"Synchronizace zařízení byla ukončena. Operace skončí po těchto médiích."
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
-msgid "Cancelling Import"
-msgstr "Ukončuji import"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:47
-msgid ""
-"Import from device has been cancelled. Operation will stop after this media."
-msgstr ""
-"Synchronizace ze zařízení byla ukončena. Operace skončí po těchto médiích."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
-msgid "No External Songs"
-msgstr "Žádné externí skladby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr "Na zařízení nebyly nalezeny skladby, které nejsou v knihovně."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:237
+#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:163
 #, c-format
-msgid "%i kbps"
-msgstr "%i kbps"
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+msgstr[1] "%u alba"
+msgstr[2] "%u alb"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:262
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:758
-msgid "Never"
-msgstr "Nikdy"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:70
-msgctxt "List column title"
-msgid "#"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:73
-msgctxt "List column title"
-msgid "Track"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:76
-msgctxt "List column title"
-msgid "Title"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:79
-msgctxt "List column title"
-msgid "Length"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:82
-msgctxt "List column title"
-msgid "Artist"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:85
-msgctxt "List column title"
-msgid "Album"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:88
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:91
-msgctxt "List column title"
-msgid "Composer"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:94
-msgctxt "List column title"
-msgid "Genre"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:97
-msgctxt "List column title"
-msgid "Year"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:100
-msgctxt "List column title"
-msgid "Grouping"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:103
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:106
-msgctxt "List column title"
-msgid "Rating"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:109
-msgctxt "List column title"
-msgid "Plays"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:112
-msgctxt "List column title"
-msgid "Skips"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:115
-msgctxt "List column title"
-msgid "Date Added"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:118
-msgctxt "List column title"
-msgid "Last Played"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:121
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:124
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/ListColumn.vala:127
-msgctxt "List column title"
-msgid "File Size"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:58
-msgid "Remove from Library"
-msgstr "Odstranit z knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:66
-msgid "Remove from Queue"
-msgstr "Odstranit z fronty"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:83
-msgid "Remove from Device"
-msgstr "Odstranit ze zařízení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:106
-msgid "Scroll to Current Song"
-msgstr "Přejít na aktuální skladby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:107
-msgid "Edit Song Info"
-msgstr "Upravit informace o skladbě"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:108
-msgid "Show in File Browser"
-msgstr "Zobrazit ve správci souborů"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:109
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:111
-msgid "Add to Playlist"
-msgstr "Přidat do seznamu skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:112
-msgid "Remove Song"
-msgstr "Odstranit skladbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:221
+#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Importovat %i z %i vybraných skladeb"
+msgid "%d minutes"
+msgstr "%d minut"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:223
-msgid "Import this song"
-msgstr "Importovat tuto skladbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:225
+#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
-msgid "Import %i songs"
-msgstr "Importovat %i skladby"
+msgid "%d hours"
+msgstr "%d hodin"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:743
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/MusicListView.vala:821
-msgid "Sample List String"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:137
-msgid "Autosize Columns"
-msgstr "Automaticky přizpůsobit sloupce"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:144
-msgid "Display Album Art"
-msgstr "Zobrazit umělce alba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:291
-msgid "Playing not Supported"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/Lists/GenericList.vala:291
-msgid ""
-"Due to issues with playing songs on certain iOS devices, playing songs off "
-"devices is currently not supported."
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr "Žánry"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr "Interpreti"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr "Alba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr "Let"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr "Hodnocení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:213
-msgid "All Genres"
-msgstr "Všechny žánry"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:215
+#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
-msgid "All %i Genres"
-msgstr "Všechny %i žánry"
+msgid "%d days"
+msgstr "%d dnů"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:217
-msgid "No Genres"
-msgstr "Žádné žánry"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:222
-msgid "All Artists"
-msgstr "Všichni umělci"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:224
+#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
-msgid "All %i Artists"
-msgstr "Všichni %i umělci"
+msgid "%u items, %s, %s"
+msgstr "%u soubory, %s, %s"
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:226
-msgid "No Artists"
-msgstr "Žádní umělci"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:231
-msgid "All Albums"
-msgstr "Všechna alba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:233
+#: /home/noelco/noise/po/../src//Views/GridView/PopupListView.vala:167
 #, c-format
-msgid "All %i Albums"
-msgstr "Všechna %i alba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:235
-msgid "No Albums"
-msgstr "Žádná alba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:240
-msgid "All Years"
-msgstr "Všechny roky"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:242
-#, c-format
-msgid "All %i Years"
-msgstr "Všechny %i roky"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:244
-msgid "No Years"
-msgstr "Žádné roky"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
-msgid "All Ratings"
-msgstr "Všechna hodnocení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
-msgid "No Ratings"
-msgstr "Žádná hodnocení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
-msgid "All Groupings"
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:258
-#, c-format
-msgid "All %i Groupings"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
-msgid "No Groupings"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
-msgid "All Composers"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
-#, c-format
-msgid "All %i Composers"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
-msgid "No Composers"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:161
-msgid "On Left"
-msgstr "Nalevo"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:163
-msgid "On Top"
-msgstr "Nahoře"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:409
-msgid "Unrated"
-msgstr "Nehodnoceno"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:411
-#, c-format
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ListView.vala:97
-msgid "No Songs Found."
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ListView.vala:373
-#, c-format
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ListView.vala:375
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u skladba"
-msgstr[1] "%u skladby"
-msgstr[2] "%u skladeb"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/ListView/ListView.vala:383
-#, c-format
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:77
-msgid "Device Name:"
-msgstr "Název zařízení:"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:80
-msgid "Device Name"
-msgstr "Název zařízení"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:82
-msgid "Automatically sync when plugged in:"
-msgstr "Automaticky synchronizovat, když zapojeno:"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:89
-msgid "Sync:"
-msgstr "Synchronizovat:"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:111
-msgid "Other Files"
-msgstr "Ostatní soubory"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:473
-msgid "Music"
-msgstr "Hudba:"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:113
-msgid "Podcasts"
-msgstr "Podcasty"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:384
-msgid "All Music"
-msgstr "Všechna hudba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:387
-msgid "All Podcasts"
-msgstr "Všechny podcasty"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
-msgid "Sync Failed"
-msgstr "Synchronizace selhala"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:555
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Playlist %s se používá k synchronizaci se zařízením %s, ale nebyl nalezen."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Cannot Sync"
-msgstr "Nelze synchronizovat"
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:603
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Nelze synchronizovat zařízení s vybraným nastavením synchronizace. Na disku "
-"není dostatek místa."
-
-#: /home/victor/noise-luna-beta-1/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Device is already being synced."
-msgstr "Zařízení se už synchronizuje."
-
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:403
-msgid "Favorite Songs"
-msgstr "Oblíbené skladby"
-
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:413
-msgid "Recently Added"
-msgstr "Naposledy přidané"
-
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:435
-msgid "Recent Favorites"
-msgstr "Nedávno oblíbené"
-
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:445
-msgid "Never Played"
-msgstr "Nikdy nehrané"
-
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:455
-msgid "Over Played"
-msgstr "Přehrané"
-
-#: /home/victor/noise-luna-beta-1/po/../src//DataBase/DataBaseManager.vala:465
-msgid "Not Recently Played"
-msgstr "V poslední době nebylo hráno"
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:189
-msgid "Rescan Music Folder"
-msgstr "Znovu prohledat složku s hudbou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:212
-msgid "Search Music"
-msgstr "Najít hudbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:483
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:487
-msgid "History"
-msgstr "Historie"
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:842
-msgid "Import Music"
-msgstr "Importovat hudbu"
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:874
-#, c-format
-msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "<b>Importuje se</b> hudba z <b>%s</b> do knihovny."
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:889
-msgid "Rescanning music folder for changes"
-msgstr "Prohledávám složku s hudbou"
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:896
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
-msgid "Could not find Music Folder"
-msgstr "Složka s hudbou nenalezena"
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:896
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Ujistěte se, že vaše složka s hudbou je přístupná a připojená."
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:963
-msgid "Import Complete"
-msgstr "Importace dokončena"
-
-#: /home/victor/noise-luna-beta-1/po/../src//LibraryWindow.vala:963
-#, c-format
-msgid "%s has imported your library."
-msgstr "%s bylo importováno do vaší knihovny"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Ploché"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klasická hudba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Klubová hudba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Taneční hudba"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Plné basy"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Plné výšky"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Plné basy + výšky"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Sluchátka"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Velká hala"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Živě"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Párty"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Měkký"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Měkký Rock"
-
-#: /home/victor/noise-luna-beta-1/po/../src//GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Techno"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1666,138 +1657,86 @@ msgstr ""
 "Před importováním CD se prosím ujistěte, že je vaše složka s hudbou "
 "přístupná a připojená."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
 msgid "No songs on CD"
 msgstr "Žádné skladby na CD"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "%s nelze najít žádné skladby na CD. Žádná skladba nebude importována"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s momentálně probíhá importování"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr "Před importováním CD prosím počkejte, než se dokončí import %s."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
 msgid "CD Import Complete"
 msgstr "Import CD dokončen"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s dokončilo importování %i skladeb z Audio CD."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s dokončilo importování skladby z Audio CD"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:378
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:378
 #, c-format
 msgid "Importing track %i: %s"
 msgstr ""
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/CDRom/CDRomDevice.vala:395
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:395
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "CD importování bude <b>ukončen</b> po probíhajícím importování."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:301
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:511
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:303
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:526
 #, c-format
 msgid "Syncing <b>%s</b>..."
 msgstr "Synchronizuji <b>%s</b>..."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:658
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:673
 #, c-format
 msgid "Removing from <b>%s</b>..."
 msgstr "Odstraňuji <b>%s</b>..."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//Devices/iPod/iPodDevice.vala:881
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:896
 #, c-format
 msgid "Importing <b>%s</b> to library..."
 msgstr "Importuji <b>%s</b>... do knihovny"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/LastFM.vala:63
-msgid "Similar"
-msgstr "Podobné"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:48
-msgid "media"
-msgstr "média"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarMediaView.vala:52
-msgid "Similar Media"
-msgstr "Podobná média"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:30
-msgid "Give Noise Permission"
-msgstr "Povolit Noise práva"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:31
-msgid "Unsuccessful. Click To Try Again."
-msgstr "Nedokončeno. Klikněte pro opakování."
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:32
-msgid "Scrobbling Already Enabled"
-msgstr ""
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:33
-msgid "Success!"
-msgstr "Úspěch!"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:34
-msgid "Complete Login"
-msgstr "Přihlášení kompletní"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:40
-msgid "Last.fm"
-msgstr "Last.fm"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:54
-msgid "Click to redo the Last.fm login process"
-msgstr "Klikněte pro opakování přihlášení k Last.fm"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:57
-msgid ""
-"To allow for Last.fm integration, you must give permission to Noise. You "
-"only need to do this once."
-msgstr ""
-"Pro povolení integrace Last.fm, musíte dát programu Noise práva. Je to "
-"potřebné pro dokončení"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/PreferencesSection.vala:68
-msgid "Last.fm Integration"
-msgstr "Lastfm integrace"
-
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
 msgstr "Získávání podobných skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:73
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 #, c-format
 msgid "Finding songs similar to %s by %s"
 msgstr "Hledám podobné skladby do %s od %s"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:100
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
 msgid "Similar to %s"
 msgstr "Podobné %s"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 msgid "No similar songs found"
 msgstr "Nebyly nalezeny podobné skladby"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:138
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -1808,11 +1747,11 @@ msgstr ""
 "že jsou všechny informace o písních v pořádku a že jste připojeni k "
 "Internetu. Některé písně se nemusí shodovat."
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 msgid "Similar Song View"
 msgstr "Zobrazení podobných skladeb"
 
-#: /home/victor/noise-luna-beta-1/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1821,6 +1760,58 @@ msgid ""
 msgstr ""
 "U tohoto zobrazení, %s najde automaticky písně podobné té přehrávané. Pak "
 "můžete tyto písně přehrát, nebo je uložit do seznamu pro pozdější přehrání."
+
+#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:63
+msgid "Similar"
+msgstr "Podobné"
+
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "média"
+
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr "Podobná média"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+msgid "Give Noise Permission"
+msgstr "Povolit Noise práva"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+msgid "Unsuccessful. Click To Try Again."
+msgstr "Nedokončeno. Klikněte pro opakování."
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+msgid "Scrobbling Already Enabled"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+msgid "Success!"
+msgstr "Úspěch!"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+msgid "Complete Login"
+msgstr "Přihlášení kompletní"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:40
+msgid "Last.fm"
+msgstr "Last.fm"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+msgid "Click to redo the Last.fm login process"
+msgstr "Klikněte pro opakování přihlášení k Last.fm"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+msgid ""
+"To allow for Last.fm integration, you must give permission to Noise. You "
+"only need to do this once."
+msgstr ""
+"Pro povolení integrace Last.fm, musíte dát programu Noise práva. Je to "
+"potřebné pro dokončení"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:68
+msgid "Last.fm Integration"
+msgstr "Lastfm integrace"
 
 #~ msgid "Queue"
 #~ msgstr "Fronta"
