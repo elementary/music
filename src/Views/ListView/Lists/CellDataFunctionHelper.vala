@@ -148,7 +148,8 @@ public class Noise.CellDataFunctionHelper {
      */
     public void icon_func (Gtk.CellLayout layout, Gtk.CellRenderer renderer, Gtk.TreeModel model, Gtk.TreeIter iter) {
         var m = view.get_object_from_index (FastView.get_index_from_iter (iter)) as Media;
-        return_if_fail (m != null);
+        if (m == null)
+            return;
 
         renderer.visible = !m.showIndicator;
 
@@ -164,7 +165,8 @@ public class Noise.CellDataFunctionHelper {
 
     public void spinner_func (Gtk.CellLayout layout, Gtk.CellRenderer renderer, Gtk.TreeModel model, Gtk.TreeIter iter) {
         var m = view.get_object_from_index (FastView.get_index_from_iter (iter)) as Media;
-        return_if_fail (m != null);
+        if (m == null)
+            return;
 
         renderer.visible = m.showIndicator;
 
