@@ -157,7 +157,7 @@ public class Noise.Media : Object {
      * It's called simple because it simply checks if the string is empty,
      * and returns UNKNOWN if it is.
      */
-    internal static inline string get_simple_display_text (string text) {
+    internal static inline string get_simple_display_text (string? text) {
         return is_valid_string_field (text) ? text : UNKNOWN;
     }
 

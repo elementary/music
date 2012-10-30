@@ -211,10 +211,10 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
 
             rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, this.get_style_context ()));
 
-            //var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
-            //dvw.set_media_async (d.get_medias ());
-            //lw.view_container.add_view (dvw);
-            //addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
+            var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
+            dvw.set_media_async (d.get_medias ());
+            lw.view_container.add_view (dvw);
+            addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
 
             return rv;
         }
@@ -327,8 +327,12 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                     playlistMenu.popup (null, null, null, 3, get_current_event_time());
                 }
                 else if(o is Device) {
-                    deviceSync.visible = (o as Device).getContentType() == "cdrom";
-                    deviceMenu.popup (null, null, null, Gdk.BUTTON_SECONDARY, Gtk.get_current_event_time ());
+                    var iter_f = convertToChild(iter);
+                    Widget w = getWidget(iter_f);
+                    if(w is Noise.DeviceView) {
+                        deviceSync.visible = (o as Device).getContentType() == "cdrom";
+                        deviceMenu.popup (null, null, null, Gdk.BUTTON_SECONDARY, Gtk.get_current_event_time ());
+                    }
                 }
             }
             else {

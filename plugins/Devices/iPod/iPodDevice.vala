@@ -243,7 +243,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     public void eject() {
-        mount.get_volume ().eject_with_operation (GLib.MountUnmountFlags.NONE, null);
+        if (mount.can_eject ()) {
+            mount.get_volume ().get_drive ().eject_with_operation (GLib.MountUnmountFlags.NONE, null);
+        }
     }
     
     public void get_device_type() {
@@ -349,7 +351,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         var removed = new HashMap<unowned GPod.Track, Noise.Media>();
         foreach(var e in medias.entries) {
             if(!sync_cancelled) {
-                Noise.Media match = lm.match_media_to_list(e.value, list);
+                Noise.Media match = match_media_to_list(e.value, list);
                 
                 // If entry e is not on the list to be synced, it is to be removed
                 if(match == null) {
@@ -376,7 +378,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         // anything left will be synced. update medias that are already on list
         foreach(var entry in medias.entries) {
             if(!sync_cancelled) {
-                Noise.Media m = lm.match_media_to_list(entry.value, this.list);
+                Noise.Media m = match_media_to_list(entry.value, this.list);
                 if(m != null) {
                     unowned GPod.Track t = entry.key;
                     iPodMediaHelper.update_track (ref t, m);
@@ -481,6 +483,19 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         });
         
     }
+    
+	public Noise.Media? match_media_to_list(Noise.Media m, Collection<Noise.Media> to_match) {
+		Noise.Media? rv = null;
+		
+		foreach(var test in to_match) {
+			if(!test.isTemporary && test != m && test.title.down() == m.title.down() && test.artist.down() == m.artist.down()) {
+				rv = test;
+				break;
+			}
+		}
+		
+		return rv;
+	}
     
     /**********************************
      * Specifically only adding medias. This is different and not a part
@@ -840,7 +855,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             
             unowned GPod.Playlist added = db.playlists.nth_data(db.playlists.length() - 1);
             foreach(var entry in medias.entries) {
-                Noise.Media match = lm.match_media_to_list (entry.value, lm.media_from_playlist(playlist.rowid));
+                Noise.Media match = match_media_to_list (entry.value, lm.media_from_playlist(playlist.rowid));
                 if(match != null) {
                     added.add_track(entry.key, -1);
                     ++sub_index;

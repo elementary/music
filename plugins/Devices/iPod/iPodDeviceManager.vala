@@ -37,13 +37,6 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
         lm.device_manager.mount_removed.connect (mount_removed);
     }
     
-    void volume_added(Volume volume) {
-        if(Settings.Main.instance.music_mount_name == volume.get_name() && volume.get_mount() == null) {
-            stdout.printf("mounting %s because it is believed to be the music folder\n", volume.get_name());
-            volume.mount(MountMountFlags.NONE, null, null);
-        }
-    }
-    
     public void remove_all () {
         foreach(var dev in devices) {
             lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);

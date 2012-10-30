@@ -287,10 +287,10 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public override void row_activated (TreePath path, TreeViewColumn column) {
-        if (tvs.get_hint () == ViewWrapper.Hint.DEVICE_AUDIO || tvs.get_hint () == ViewWrapper.Hint.DEVICE_PODCAST) {
+        /*if (tvs.get_hint () == ViewWrapper.Hint.DEVICE_AUDIO || tvs.get_hint () == ViewWrapper.Hint.DEVICE_PODCAST) {
             lw.doAlert (_("Playing not Supported"), _("Due to issues with playing songs on certain iOS devices, playing songs off devices is currently not supported."));
             return;
-        }
+        }*/
 
         var m = get_media_from_index (int.parse (path.to_string ()));
 
