@@ -330,7 +330,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     public bool will_fit(LinkedList<Noise.Media> list) {
         uint64 list_size = 0;
         foreach(var m in list) {
-            list_size += m.file_size; // convert from MB to bytes
+            list_size += m.file_size;
         }
         
         return get_capacity() > list_size;

@@ -44,13 +44,6 @@ public class Noise.Plugins.AndroidDeviceManager : GLib.Object {
         devices = new ArrayList<AndroidDevice>();
     }
     
-    void volume_added(Volume volume) {
-        if(Settings.Main.instance.music_mount_name == volume.get_name() && volume.get_mount() == null) {
-            stdout.printf("mounting %s because it is believed to be the music folder\n", volume.get_name());
-            volume.mount(MountMountFlags.NONE, null, null);
-        }
-    }
-    
     public virtual void mount_added (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_path() == mount.get_default_location().get_path()) {
@@ -58,7 +51,7 @@ public class Noise.Plugins.AndroidDeviceManager : GLib.Object {
             }
         }
         if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists()) {
-            var added = new AndroidDevice(mount);
+            var added = new AndroidDevice(mount, lm);
             added.set_mount(mount);
             devices.add(added);
         
@@ -68,7 +61,6 @@ public class Noise.Plugins.AndroidDeviceManager : GLib.Object {
                 lm.lw.sideTree.deviceAdded ((Noise.Device)added);
             }
             else {
-                warning ("stop!");
                 mount_removed(added.get_mount());
             }
         }

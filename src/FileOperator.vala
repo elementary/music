@@ -64,7 +64,7 @@ public class Noise.FileOperator : Object {
 		cancelSent = false;
 		new_imports = new LinkedList<Media>();
 		import_errors = new LinkedList<string>();
-		tagger = new GStreamerTagger(lm);
+		tagger = new GStreamerTagger();
 		
 		tagger.media_imported.connect(media_imported);
 		tagger.import_error.connect(import_error);

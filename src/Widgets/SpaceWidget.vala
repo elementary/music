@@ -159,8 +159,8 @@ public class SpaceWidget : Gtk.ScrolledWindow {
 
     private HashMap<int, SpaceWidgetItem> items;
 
-    private double total_size;
-    private double free_space_size;
+    private uint64 total_size;
+    private uint64 free_space_size;
 
     private bool single_item_visible;
 
@@ -176,7 +176,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
 
     private Label status_label;
 
-    public SpaceWidget (double size) {
+    public SpaceWidget (uint64 size) {
         // Wrapper properties
         this.set_shadow_type(Gtk.ShadowType.NONE);
         this.min_content_width = MIN_WIDTH;
@@ -271,8 +271,8 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         sync_button.sensitive = val;
     }
 
-    public void set_size (double size) {
-        double used_space = total_size - free_space_size;
+    public void set_size (uint64 size) {
+        uint64 used_space = total_size - free_space_size;
         if (size < used_space) {
             warning("\nERROR: SpaceWidget: new total size is smaller than used size.\n");
             return;
@@ -284,11 +284,11 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         update_bar_item_sizes();
     }
 
-    public int add_item (string name, double size, ItemColor color) {
+    public int add_item (string name, uint64 size, ItemColor color) {
         return add_item_at_pos (name, size, color, ItemPosition.START);
     }
 
-    public void update_item_size (int index, double size) {
+    public void update_item_size (int index, uint64 size) {
         SpaceWidgetItem? item = items.get(index);
 
         // Checking if there's enough freespace for the change
@@ -300,7 +300,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         }
     }
 
-    private int add_item_at_pos (string name, double size, ItemColor color, ItemPosition pos) {
+    private int add_item_at_pos (string name, uint64 size, ItemColor color, ItemPosition pos) {
         if (size > free_space_size) {
             warning("\nERROR: SpaceWidget: Couldn't add '%s' item. Not enough free space.\n", name);
             return -1; // ERROR
@@ -362,7 +362,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         foreach (var item in items) {
             if (item.ID > 0) {
                 int width = (int) ((item.size/total_size) * bar_width);
-                free_space_size -= item.size;
+                free_space_size -= (uint64)item.size;
                 item.bar_item.set_size (width);
                 item.show ();
             }
@@ -375,9 +375,9 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         free_space_item.bar_item.set_size (width);
 
         // Setting bottom label text
-        double used = total_size - free_space_size;
-        double p = used / total_size * 100.0;
-        status_label.set_text(_("Using %s of %s (%.2f%)").printf(GLib.format_size ((uint64)used), GLib.format_size ((uint64)total_size), p));
+        uint64 used = total_size - free_space_size;
+        double p = (double)(used / total_size) * 100.0;
+        status_label.set_text(_("Using %s of %s (%.2f%)").printf(GLib.format_size (used), GLib.format_size (total_size), p));
     }
 
     private void show_full_bar_item (bool show_item, ItemColor? color) {

@@ -29,14 +29,12 @@ public class Noise.GStreamerTagger : Object {
     public signal void import_error (string file_uri);
     public signal void queue_finished ();
 
-    private LibraryManager lm;
     private Gst.Discoverer d;
     private Gee.LinkedList<string> uri_queue;
 
     private bool cancelled;
 
-    public GStreamerTagger (LibraryManager lm) {
-        this.lm = lm;
+    public GStreamerTagger () {
         uri_queue = new Gee.LinkedList<string> ();
 
         d = create_discoverer ();

@@ -23,25 +23,81 @@
 using Gee;
 
 public class Noise.Plugins.AndroidDevice : GLib.Object, Noise.Device {
+
     Mount mount;
     Gdk.Pixbuf icon;
+    int index = 0;
+    int total = 0;
+    LinkedList<Noise.Media> medias;
+    LinkedList<Noise.Media> songs;
+    LinkedList<Noise.Media> list;
+    Noise.LibraryManager lm;
+    bool currently_syncing = false;
+    bool currently_transferring = false;
+    bool sync_cancelled = false;
+    bool transfer_cancelled = false;
+    bool queue_is_finished = false;
+    string current_operation = "";
     
-    public AndroidDevice(Mount mount) {
+    public GStreamerTagger tagger;
+    
+    public AndroidDevice(Mount mount, Noise.LibraryManager lm) {
+        this.lm = lm;
         this.mount = mount;
         icon = Icons.render_icon("phone", Gtk.IconSize.MENU);
+        medias = new LinkedList<Noise.Media> ();
+        songs = new LinkedList<Noise.Media> ();
+        tagger = new GStreamerTagger();
+        
+        tagger.media_imported.connect(media_imported);
+        tagger.import_error.connect(import_error);
+        tagger.queue_finished.connect(queue_finished);
+    }
+    
+    void media_imported(Media m) {
+        m.isTemporary = true;
+        this.medias.add(m);
+        this.songs.add(m);
+        if (queue_is_finished)
+            sync_finished (true);
+    }
+    
+    void import_error(string file) {
+    
+    }
+    
+    void queue_finished() {
+        lm.finish_file_operations();
+
+        lm.lw.update_sensitivities ();
+        Idle.add( () => {
+            initialized(this);
+            
+            return false;
+        });
+        queue_is_finished = true;
     }
     
     public Noise.DevicePreferences get_preferences() {
         return new Noise.DevicePreferences(get_unique_identifier());
     }
-    
-    public bool start_initialization() {
-        return false;
-    }
-    
     public void finish_initialization() {
+        device_unmounted.connect( () => {
+            
+        });
         
-        //initialized(this);
+        Threads.add (finish_initialization_thread);
+    }
+    public bool start_initialization() {
+        return true;
+    }
+    void finish_initialization_thread() {
+        var music_folder_file = GLib.File.new_for_uri (mount.get_root ().get_uri () + "/Music");
+        LinkedList<string> files = new LinkedList<string> ();
+
+        var items = lm.fo.count_music_files (music_folder_file, ref files);
+        debug ("found %d items to import\n", items);
+        tagger.discoverer_import_media (files);
     }
     
     public string getContentType() {
@@ -79,20 +135,41 @@ public class Noise.Plugins.AndroidDevice : GLib.Object, Noise.Device {
         return icon;
     }
     
+
     public uint64 get_capacity() {
-        return (uint64)0;
+        uint64 rv = 0;
+        
+        try {
+            var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+            rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_SIZE);
+        }
+        catch(Error err) {
+            stdout.printf("Error calculating capacity of iPod: %s\n", err.message);
+        }
+        
+        return rv;
     }
     
     public string get_fancy_capacity() {
-        return "Unknown capacity";
+        return GLib.format_size (get_capacity());
     }
     
     public uint64 get_used_space() {
-        return (uint64)0;
+        return get_capacity() - get_free_space();
     }
     
     public uint64 get_free_space() {
-        return (uint64)0;
+        uint64 rv = 0;
+        
+        try {
+            var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+            rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_FREE);
+        }
+        catch(Error err) {
+            stdout.printf("Error calculating free space on iPod: %s\n", err.message);
+        }
+        
+        return rv;
     }
     
     public void unmount() {
@@ -100,8 +177,11 @@ public class Noise.Plugins.AndroidDevice : GLib.Object, Noise.Device {
     }
     
     public void eject() {
-        mount.eject_with_operation (GLib.MountUnmountFlags.NONE, null);
+        if (mount.can_eject ()) {
+            mount.get_volume ().get_drive ().eject_with_operation (GLib.MountUnmountFlags.NONE, null);
+        }
     }
+    
     
     public void get_device_type() {
         
@@ -115,28 +195,28 @@ public class Noise.Plugins.AndroidDevice : GLib.Object, Noise.Device {
         return false;
     }
     
-    public Collection<int> get_medias() {
-        return new LinkedList<int>();
+    public Collection<Noise.Media> get_medias() {
+        return medias;
     }
     
-    public Collection<int> get_songs() {
-        return new LinkedList<int>();
+    public Collection<Noise.Media> get_songs() {
+        return songs;
     }
     
-    public Collection<int> get_podcasts() {
-        return new LinkedList<int>();
+    public Collection<Noise.Media> get_podcasts() {
+        return new LinkedList<Noise.Media>();
     }
     
-    public Collection<int> get_audiobooks() {
-        return new LinkedList<int>();
+    public Collection<Noise.Media> get_audiobooks() {
+        return new LinkedList<Noise.Media>();
     }
     
-    public Collection<int> get_playlists() {
-        return new LinkedList<int>();
+    public Collection<Noise.Media> get_playlists() {
+        return new LinkedList<Noise.Media>();
     }
     
-    public Collection<int> get_smart_playlists() {
-        return new LinkedList<int>();
+    public Collection<Noise.Media> get_smart_playlists() {
+        return new LinkedList<Noise.Media>();
     }
     
     public bool sync_medias(LinkedList<Noise.Media> list) {
@@ -155,27 +235,102 @@ public class Noise.Plugins.AndroidDevice : GLib.Object, Noise.Device {
         return false;
     }
     
-    public bool will_fit(LinkedList<Noise.Media> list) {
-        return false;
+    public bool transfer_to_library(LinkedList<Noise.Media> tr_list) {
+        if(currently_transferring) {
+            warning("Tried to sync when already syncing\n");
+            return false;
+        }
+        else if(lm.doing_file_operations()) {
+            warning("Can't sync. Already doing file operations\n");
+            return false;
+        }
+        else if(tr_list == null || tr_list.size == 0) {
+            warning("No songs in transfer list\n");
+            return false;
+        }
+        
+        this.list = tr_list;
+        lm.start_file_operations(_("Importing <b>%s</b> to library...").printf((list.size > 1) ? list.size.to_string() : (list.get(0)).title));
+        current_operation = "Importing <b>" + ((list.size > 1) ? list.size.to_string() : (list.get(0)).title) + "</b> items to library...";
+        
+        Threads.add (transfer_medias_thread);
+        
+        return true;
     }
     
-    public bool transfer_to_library(LinkedList<Noise.Media> list) {
-        return false;
+    void transfer_medias_thread() {
+        if(this.list == null || this.list.size == 0)
+            return;
+        
+        currently_transferring = true;
+        transfer_cancelled = false;
+        index = 0;
+        total = list.size;
+        Timeout.add(500, doProgressNotificationWithTimeout);
+        
+        foreach(var m in list) {
+            if(transfer_cancelled)
+                break;
+            
+            Noise.Media copy = m.copy();
+            if(File.new_for_uri(copy.uri).query_exists()) {
+                copy.rowid = 0;
+                copy.isTemporary = false;
+                copy.date_added = (int)time_t();
+                lm.add_media_item (copy);
+                
+                current_operation = "Importing <b>" + copy.title + "</b> to library";
+                lm.fo.update_file_hierarchy (copy, false, false);
+            }
+            else {
+                stdout.printf("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
+            }
+            
+            ++index;
+        }
+        
+        index = total + 1;
+        
+        Idle.add( () => {
+            lm.finish_file_operations();
+            currently_transferring = false;
+            
+            return false;
+        });
     }
     
     public bool is_syncing() {
-        return false;
+        return currently_syncing;
     }
     
     public bool is_transferring() {
-        return false;
+        return currently_transferring;
     }
     
     public void cancel_sync() {
-        
+        sync_cancelled = true;
     }
     
     public void cancel_transfer() {
+        transfer_cancelled = true;
+    }
+    
+    public bool will_fit(LinkedList<Noise.Media> list) {
+        uint64 list_size = 0;
+        foreach(var m in list) {
+            list_size += m.file_size;
+        }
         
+        return get_capacity() > list_size;
+    }
+    
+    public bool doProgressNotificationWithTimeout() {
+        progress_notification(current_operation.replace("&", "&amp;"), (double)((double)index)/((double)total));
+        
+        if(index < total && (is_syncing() || is_transferring())) {
+            return true;
+        }
+        
+        return false;
     }
 }
