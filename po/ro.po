@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2012-10-30 05:53+0000\n"
-"X-Generator: Launchpad (build 16206)\n"
+"X-Launchpad-Export-Date: 2012-10-31 05:22+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
 "Language: ro\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36

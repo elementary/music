@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-29 22:33+0100\n"
-"PO-Revision-Date: 2012-10-22 20:54+0000\n"
-"Last-Translator: Alfredo Hernández <Unknown>\n"
+"PO-Revision-Date: 2012-10-31 02:31+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-30 05:53+0000\n"
-"X-Generator: Launchpad (build 16206)\n"
+"X-Launchpad-Export-Date: 2012-10-31 05:22+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
 "Language: es\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -45,7 +45,7 @@ msgstr[1] "%u segundos"
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s y %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:68
 #, c-format
@@ -65,25 +65,25 @@ msgstr[1] "%u horas"
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s y %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s y %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:87
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s y %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:95
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s y %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -1057,7 +1057,7 @@ msgstr "Buscar música"
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:483
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Cola"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:487
 msgid "History"
@@ -1152,7 +1152,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
 msgid "Groupings"
-msgstr ""
+msgstr "Agrupamientos"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:161
 msgid "On Left"
@@ -1235,12 +1235,12 @@ msgstr "Sin valoraciones"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
 msgid "All Groupings"
-msgstr ""
+msgstr "Todas las agrupaciones"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:258
 #, c-format
 msgid "All %i Groupings"
-msgstr ""
+msgstr "Todas las %i agrupaciones"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:260
 msgid "No Groupings"
@@ -1286,7 +1286,7 @@ msgstr "Mostrar en el explorador de archivos"
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:109
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "Cola"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:111
 msgid "Add to Playlist"
@@ -1341,22 +1341,22 @@ msgstr "Mostrar portada del álbum"
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "#"
-msgstr ""
+msgstr "N.º"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Track"
-msgstr ""
+msgstr "Pista"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "Duración"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
@@ -1371,7 +1371,7 @@ msgstr ""
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "Artista del álbum"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
@@ -1445,14 +1445,14 @@ msgstr "%i kbps"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:97
 msgid "No Songs Found."
-msgstr ""
+msgstr "No se encontraron canciones."
 
 #: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:373
 #, c-format
 msgid "%i track"
 msgid_plural "%i tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i pista"
+msgstr[1] "%i pistas"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:375
 #, c-format
@@ -1626,7 +1626,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:67
 msgid "No Albums Found."
-msgstr ""
+msgstr "No se encontraron álbumes."
 
 #: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:163
 #, c-format
