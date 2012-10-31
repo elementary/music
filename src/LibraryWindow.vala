@@ -234,8 +234,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplay.margin_left = 30;
         topDisplay.margin_right = 30;
 
-        search_field_item.margin_right = 12;
-
         main_toolbar.insert (previousButton, -1);
         main_toolbar.insert (playButton, -1);
         main_toolbar.insert (nextButton, -1);

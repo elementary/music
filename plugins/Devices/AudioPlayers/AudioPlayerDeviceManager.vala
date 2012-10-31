@@ -22,16 +22,16 @@
 
 using Gee;
 
-public class Noise.Plugins.AndroidDeviceManager : GLib.Object {
+public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
     Noise.LibraryManager lm;
-    ArrayList<AndroidDevice> devices;
+    ArrayList<AudioPlayerDevice> devices;
     
-    //public signal void device_added(AndroidDevice d);
-    //public signal void device_removed(AndroidDevice d);
+    //public signal void device_added(AudioPlayerDevice d);
+    //public signal void device_removed(AudioPlayerDevice d);
     
-    public AndroidDeviceManager(Noise.LibraryManager lm) {
+    public AudioPlayerDeviceManager(Noise.LibraryManager lm) {
         this.lm = lm;
-        devices = new ArrayList<AndroidDevice>();
+        devices = new ArrayList<AudioPlayerDevice>();
         
         lm.device_manager.mount_added.connect (mount_added);
         lm.device_manager.mount_removed.connect (mount_removed);
@@ -41,7 +41,7 @@ public class Noise.Plugins.AndroidDeviceManager : GLib.Object {
         foreach(var dev in devices) {
             lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
         }
-        devices = new ArrayList<AndroidDevice>();
+        devices = new ArrayList<AudioPlayerDevice>();
     }
     
     public virtual void mount_added (Mount mount) {
@@ -50,8 +50,8 @@ public class Noise.Plugins.AndroidDeviceManager : GLib.Object {
                 return;
             }
         }
-        if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists()) {
-            var added = new AndroidDevice(mount, lm);
+        if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists() | File.new_for_path(mount.get_default_location().get_path() + "/.is_audio_player").query_exists()) {
+            var added = new AudioPlayerDevice(mount, lm, File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists());
             added.set_mount(mount);
             devices.add(added);
         
@@ -65,7 +65,7 @@ public class Noise.Plugins.AndroidDeviceManager : GLib.Object {
             }
         }
         else {
-            warning ("Found device at %s is not an Android Phone. Not using it", mount.get_default_location().get_parse_name());
+            warning ("Found device at %s is not an Audio Player or Android Phone. Not using it", mount.get_default_location().get_parse_name());
             return;
         }
     }

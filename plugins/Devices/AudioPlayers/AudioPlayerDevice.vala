@@ -22,7 +22,7 @@
  
 using Gee;
 
-public class Noise.Plugins.AndroidDevice : GLib.Object, Noise.Device {
+public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
 
     Mount mount;
     Gdk.Pixbuf icon;
@@ -37,14 +37,20 @@ public class Noise.Plugins.AndroidDevice : GLib.Object, Noise.Device {
     bool sync_cancelled = false;
     bool transfer_cancelled = false;
     bool queue_is_finished = false;
+    bool is_androphone = false;
     string current_operation = "";
     
     public GStreamerTagger tagger;
     
-    public AndroidDevice(Mount mount, Noise.LibraryManager lm) {
+    public AudioPlayerDevice(Mount mount, Noise.LibraryManager lm, bool is_androphone) {
         this.lm = lm;
         this.mount = mount;
-        icon = Icons.render_icon("phone", Gtk.IconSize.MENU);
+        this.is_androphone = is_androphone;
+        if (is_androphone) {
+            icon = Icons.render_icon("phone", Gtk.IconSize.MENU);
+        } else {
+            icon = Icons.render_icon("music-player", Gtk.IconSize.MENU);
+        }
         medias = new LinkedList<Noise.Media> ();
         songs = new LinkedList<Noise.Media> ();
         tagger = new GStreamerTagger();
@@ -92,19 +98,76 @@ public class Noise.Plugins.AndroidDevice : GLib.Object, Noise.Device {
         return true;
     }
     void finish_initialization_thread() {
-        var music_folder_file = GLib.File.new_for_uri (mount.get_root ().get_uri () + "/Music");
         LinkedList<string> files = new LinkedList<string> ();
+        int items = 0;
+        if (is_androphone) {
+            var music_folder_file = GLib.File.new_for_uri (mount.get_root ().get_uri () + "/Music");
+            items = lm.fo.count_music_files (music_folder_file, ref files);
+        } else {
+            var file = GLib.File.new_for_path(mount.get_root ().get_path () + "/.is_audio_player");
+            LinkedList<string> folders = new LinkedList<string> ();
+            try {
+                if(file.query_exists() == true){
+                    var dis = new DataInputStream (file.read ());
+                    string line;
+                    // Read lines until end of file (null) is reached
+                    while ((line = dis.read_line (null)) != null) {
+                        if (line.contains ("audio_folders=")) {
+                            string folders_unparsed = line.split ("audio_folders=", 2)[1];
+                            foreach (var folder in folders_unparsed.split (",")) {
+                                folder = folder.replace (" ", "");
+                                warning (folder);
+                                folders.add (folder);
+                            }
+                        }
+                    }
+                }
+            } catch (Error e) {
+                stderr.printf ("Error: %s\n", e.message);
+            }
+            foreach (var folder in folders) {
+                var music_folder_file = GLib.File.new_for_uri (mount.get_root ().get_uri () + "/" + folder);
+                items += lm.fo.count_music_files (music_folder_file, ref files);
+            }
+        }
 
-        var items = lm.fo.count_music_files (music_folder_file, ref files);
         debug ("found %d items to import\n", items);
         tagger.discoverer_import_media (files);
     }
     
     public string getContentType() {
-        return "android";
+        if (is_androphone) {
+            return "android";
+        } else {
+            return "audioplayer";
+        }
     }
     public string getDisplayName() {
-        return mount.get_name();
+        if (is_androphone) {
+            return mount.get_name();
+        } else {
+            var file = GLib.File.new_for_path(mount.get_root ().get_path () + "/.is_audio_player");
+            string name = mount.get_name();
+            try {
+                if(file.query_exists() == true){
+                    var dis = new DataInputStream (file.read ());
+                    string line;
+                    // Read lines until end of file (null) is reached
+                    while ((line = dis.read_line (null)) != null) {
+                        if (line.contains ("name=")) {
+                            string names_unparsed = line.split ("name=", 2)[1];
+                            foreach (var names in names_unparsed.split ("\"")) {
+                                if (names != null && names != "")
+                                    name = names;
+                            }
+                        }
+                    }
+                }
+            } catch (Error e) {
+                stderr.printf ("Error: %s\n", e.message);
+            }
+            return name;
+        }
     }
     
     public void setDisplayName(string name) {

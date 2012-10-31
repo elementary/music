@@ -23,22 +23,22 @@ using Peas;
 using PeasGtk;
 
 namespace Noise.Plugins {
-    public class AndroidPlugin : Peas.ExtensionBase, Peas.Activatable {
+    public class AudioPlayerPlugin : Peas.ExtensionBase, Peas.Activatable {
 
         Interface plugins;
         public GLib.Object object { owned get; construct; }
         Noise.LibraryManager lm;
-        AndroidDeviceManager android_manager;
+        AudioPlayerDeviceManager android_manager;
 
         public void activate () {
-            message ("Activating Android Device plugin");
+            message ("Activating AudioPlayer Device plugin");
 
             Value value = Value(typeof(GLib.Object));
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();
             plugins.register_function(Interface.Hook.WINDOW, () => {
                 lm = ((Noise.App)plugins.noise_app).library_manager;
-                android_manager = new AndroidDeviceManager (lm);
+                android_manager = new AudioPlayerDeviceManager (lm);
                 lm.device_manager.loadPreExistingMounts();
             });
         }
@@ -53,7 +53,7 @@ namespace Noise.Plugins {
         }
     }
 
-    /*public class AndroidConfig : Peas.ExtensionBase, PeasGtk.Configurable {
+    /*public class AudioPlayerConfig : Peas.ExtensionBase, PeasGtk.Configurable {
         public Gtk.Widget create_configure_widget () {
             string text = "This is a configuration dialog for the ValaHello plugin.";
             return new Gtk.Label (text);
@@ -65,7 +65,7 @@ namespace Noise.Plugins {
 public void peas_register_types (GLib.TypeModule module) {
     var objmodule = module as Peas.ObjectModule;
     objmodule.register_extension_type (typeof (Peas.Activatable),
-                                     typeof (Noise.Plugins.AndroidPlugin));
+                                     typeof (Noise.Plugins.AudioPlayerPlugin));
     /*objmodule.register_extension_type (typeof (PeasGtk.Configurable),
-                                     typeof (Noise.Plugins.AndroidConfig));*/
+                                     typeof (Noise.Plugins.AudioPlayerConfig));*/
 }
