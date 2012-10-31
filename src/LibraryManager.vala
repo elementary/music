@@ -48,6 +48,7 @@ public class Noise.LibraryManager : Object {
     public DataBaseUpdater dbu;
     public FileOperator fo;
     public DeviceManager device_manager;
+	public GStreamerTagger tagger;
 
     public bool main_directory_set {
         get { return !String.is_empty (Settings.Main.instance.music_folder, true); }
@@ -60,6 +61,7 @@ public class Noise.LibraryManager : Object {
     private Gee.HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
     private Gee.HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
     private Gee.HashMap<int, Media> _media; // rowid, media of all media
+    private Gee.LinkedList<Media> open_media_list;
 
     public TreeViewSetup music_setup   { get; private set; default = null; }
     public TreeViewSetup similar_setup { get; private set; default = null; }
@@ -73,6 +75,7 @@ public class Noise.LibraryManager : Object {
     private Gee.LinkedList<string> temp_add_files;
 
     private bool _doing_file_operations = false;
+    private bool _opening_file = false;
 
     public LibraryManager () {
         this.dbm = new DataBaseManager (this);
@@ -398,42 +401,33 @@ public class Noise.LibraryManager : Object {
     }
 
     public void play_files (File[] files) {
-        /*
-        var to_discover = new Gee.LinkedList<string> ();
-        var to_play = new Gee.LinkedList<Media> ();
-
+        _opening_file = true;
+        tagger = new GStreamerTagger();
+        open_media_list = new Gee.LinkedList<Media> ();
+        tagger.media_imported.connect(media_opened_imported);
+        tagger.queue_finished.connect(() => {_opening_file = false;});
+        var files_list = new LinkedList<string>();
         foreach (var file in files) {
-            if (file == null)
-                continue;
-
-            var path = file.get_path ();
-
-            // Check if the file is already in the library
-            var m = media_from_file (path);
-
-            if (m != null) { // already in library
-                debug ("ALREADY IN LIBRARY: %s", path);
-                to_play.add (m);
-            }
-            else { // not in library
-                // TODO: see if the file belongs to the music folder and ask the user
-                // if they would like to add it to their collection.
-                debug ("NOT IN LIBRARY: %s", path);
-                to_discover.add (path);
-            }
+            files_list.add (file.get_uri ());
         }
-
-        // Play library media immediately
-        App.player.queue_media (to_play);
-        App.player.getNext (true);
-
-        Idle.add (() => {
-            fo.import_files (to_discover, FileOperator.ImportType.IMPORT);
-            return false;
-        });
-        */
+        tagger.discoverer_import_media (files_list);
     }
-
+    
+    private void media_opened_imported(Media m) {
+        m.isTemporary = true;
+        open_media_list.add (m);
+        if (!_opening_file)
+            media_opened_finished();
+    }
+    
+    private void media_opened_finished() {
+        App.player.queue_media (open_media_list);
+        if (!App.player.playing) {
+            App.player.getNext (true);
+            lw.playClicked ();
+        }
+    }
+    
     /************************ Playlist stuff ******************/
     public int playlist_count () {
         return _playlists.size;

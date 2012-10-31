@@ -206,7 +206,7 @@ public class Noise.PopupListView : Window {
 		float average_rating = (float)total_rating / (float)n_media;
 
 		// fix approximation and set new rating
-		rating.rating = Numeric.int_from_float (average_rating);
+		rating.rating = (int) GLib.Math.roundf (average_rating);
 
 		// connect again ...
 		rating.rating_changed.connect (rating_changed);

@@ -253,7 +253,7 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
 
         // Calculate the number of columns
         float n = (float)(TOTAL_WIDTH - MIN_SPACING) / (float)(TOTAL_ITEM_WIDTH + MIN_SPACING);
-        int n_columns = Numeric.lowest_int_from_float (n);
+        int n_columns = (int) GLib.Math.truncf (n);
 
         if (n_columns < 1)
             return;
@@ -266,7 +266,7 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
 
         // You're not supposed to understand this.
         float spacing = (float)(TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (float)(n_columns + 1);
-        int new_spacing = Numeric.int_from_float (spacing);
+        int new_spacing = (int) GLib.Math.roundf (spacing);
 
         if (new_spacing < 0)
             return;
