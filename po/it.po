@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-10-29 22:33+0100\n"
+"POT-Creation-Date: 2012-11-01 02:16+0100\n"
 "PO-Revision-Date: 2012-10-30 19:45+0000\n"
 "Last-Translator: Victor Eduardo <victor@elementaryos.org>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-31 05:22+0000\n"
+"X-Launchpad-Export-Date: 2012-11-01 05:17+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -204,21 +204,21 @@ msgstr "Rock leggero"
 msgid "Techno"
 msgstr "Techno"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:214
+#: /home/noelco/noise/po/../src//LibraryManager.vala:218
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Importazione musica da %s..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:261
+#: /home/noelco/noise/po/../src//LibraryManager.vala:265
 msgid "Adding files to library..."
 msgstr "Aggiunta dei file alla libreria..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:310
+#: /home/noelco/noise/po/../src//LibraryManager.vala:314
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Aggiunta di musica alla libreria da %s..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:338
+#: /home/noelco/noise/po/../src//LibraryManager.vala:342
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 "Nuova scansione della musica per le modifiche. Questa operazione potrebbe "
@@ -374,9 +374,7 @@ msgid "Set Music Folder"
 msgstr "Imposta cartella della musica"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:153
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
 #: /home/noelco/noise/po/../src//Widgets/TopDisplay.vala:69
 msgid "Cancel"
 msgstr "Annulla"
@@ -557,10 +555,6 @@ msgstr "Equalizzatore"
 msgid "Save preset"
 msgstr "Salva impostazioni predefinite"
 
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:158
-msgid "Close"
-msgstr "Chiudi"
-
 #: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:414
 #, c-format
 msgid "%s (Custom)"
@@ -616,12 +610,6 @@ msgstr "La sincronizzazione rimuoverà 1 elemento da %s"
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:192
 msgid "Preferences"
 msgstr "Preferenze"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:157
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:92
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:65
-msgid "Done"
-msgstr "Completato"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
 msgid "General"
@@ -898,7 +886,7 @@ msgid "Playlists"
 msgstr "Scalette"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:217
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:473
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:471
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:112
 msgid "Music"
 msgstr "Musica"
@@ -1037,7 +1025,7 @@ msgstr "Nascondi pannello informativo"
 msgid "Free"
 msgstr "Libero"
 
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:380
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:383
 msgid "Using %s of %s (%.2f%)"
 msgstr "Uso %s di %s (%.2f%)"
 
@@ -1049,43 +1037,43 @@ msgstr "Riscansiona cartella della musica"
 msgid "Search Music"
 msgstr "Cerca musica"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:483
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:481
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:487
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:485
 msgid "History"
 msgstr "Cronologia"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:842
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:833
 msgid "Import Music"
 msgstr "Importa musica"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:865
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importazione</b> musica da <b>%s</b> alla libreria."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:889
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:880
 msgid "Rescanning music folder for changes"
 msgstr "Riscansione della cartella della musica alla ricerca di modifiche"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:896
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:887
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:254
 msgid "Could not find Music Folder"
 msgstr "Cartella della musica non trovata"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:896
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:887
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Assicurarsi che la propria cartella della musica sia montata e accessibile."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:963
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:954
 msgid "Import Complete"
 msgstr "Importazione completa"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:963
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:954
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s ha importato la tua libreria."
@@ -1311,7 +1299,7 @@ msgid "1234 kbps"
 msgstr ""
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:758
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:262
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:264
 msgid "Never"
 msgstr "Mai"
 
@@ -1434,7 +1422,7 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:237
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:239
 #, c-format
 msgid "%i kbps"
 msgstr "%i kbps"
@@ -1557,15 +1545,6 @@ msgstr "Individua"
 msgid "Change your music folder."
 msgstr "Cambia cartella della musica."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
-msgid "Audio CD Invalid"
-msgstr "CD audio non valido"
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr "%s non è in grado di leggere il contenuto di questo CD audio"
-
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid "No Songs"
@@ -1659,7 +1638,36 @@ msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:139
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:151
+msgid "Empty device!"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:143
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:155
+msgid "This device does not contain any music."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:324
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:325
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:353
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:972
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:973
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1001
+#, c-format
+msgid "Importing <b>%s</b> by <b>%s</b> to library..."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:86
+msgid "Audio CD Invalid"
+msgstr "CD audio non valido"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:90
+#, c-format
+msgid "%s could not read the contents of this Audio CD"
+msgstr "%s non è in grado di leggere il contenuto di questo CD audio"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:254
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1667,23 +1675,23 @@ msgstr ""
 "Assicurarsi che la propria cartella della musica sia accessibile e montata "
 "prima di importare il CD."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:261
 msgid "No songs on CD"
 msgstr "Nessun brano sul CD"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:261
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "% s non è stato possibile trovare le canzoni del CD. Non ci sono canzoni che "
 "possono essere importate"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:266
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s sta già facendo una importazione"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:266
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1692,45 +1700,64 @@ msgstr ""
 "Prego attendere fino a quando % s ha terminato con l'importazione corrente "
 "prima di importare il CD."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:377
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:380
 msgid "CD Import Complete"
 msgstr "Importazione del CD Completata"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:377
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "% s ha terminato l'importazione % i brani dal CD Audio."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:380
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "% s ha terminato l'importazione di un brano dal CD Audio."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:378
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:386
 #, c-format
 msgid "Importing track %i: %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:395
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:403
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Import CD sarà <b> annullata </b> dopo corrente importazione"
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:303
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:526
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:312
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:313
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:602
 #, c-format
 msgid "Syncing <b>%s</b>..."
 msgstr "Sincronizzando <b>%s</b>..."
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:673
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:384
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:633
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
+msgid "Finishing sync process..."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:410
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:651
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:812
+msgid "Cancelling Sync..."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:686
+#, c-format
+msgid "Adding <b>%s</b> by <b>%s</b> to %s"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:749
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:750
 #, c-format
 msgid "Removing from <b>%s</b>..."
 msgstr "Rimuovendo da <b>%s</b>..."
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:896
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:839
 #, c-format
-msgid "Importing <b>%s</b> to library..."
-msgstr "Importando <b>%s</b> nella libreria..."
+msgid "Removing <b>%s</b> by <b>%s</b> from %s"
+msgstr ""
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
@@ -1866,6 +1893,9 @@ msgstr "Integrazione Last.fm"
 #~ msgid "Disable Repeat"
 #~ msgstr "Disabilita funzione Repeat"
 
+#~ msgid "Done"
+#~ msgstr "Completato"
+
 #~ msgid "is not"
 #~ msgstr "Non è"
 
@@ -1903,6 +1933,9 @@ msgstr "Integrazione Last.fm"
 
 #~ msgid "Category"
 #~ msgstr "Categoria"
+
+#~ msgid "Close"
+#~ msgstr "Chiudi"
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Abilita Scrobbling"
@@ -2028,6 +2061,10 @@ msgstr "Integrazione Last.fm"
 #, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s e %s"
+
+#, c-format
+#~ msgid "Importing <b>%s</b> to library..."
+#~ msgstr "Importando <b>%s</b> nella libreria..."
 
 #, c-format
 #~ msgid ""

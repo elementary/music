@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-29 22:33+0100\n"
+"POT-Creation-Date: 2012-11-01 02:16+0100\n"
 "PO-Revision-Date: 2012-05-23 21:53+0000\n"
 "Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
 "Language-Team: Hindi <hi@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-31 05:22+0000\n"
+"X-Launchpad-Export-Date: 2012-11-01 05:17+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 "Language: hi\n"
 
@@ -205,21 +205,21 @@ msgstr ""
 msgid "Techno"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:214
+#: /home/noelco/noise/po/../src//LibraryManager.vala:218
 #, c-format
 msgid "Importing music from %s..."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:261
+#: /home/noelco/noise/po/../src//LibraryManager.vala:265
 msgid "Adding files to library..."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:310
+#: /home/noelco/noise/po/../src//LibraryManager.vala:314
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:338
+#: /home/noelco/noise/po/../src//LibraryManager.vala:342
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 
@@ -371,9 +371,7 @@ msgid "Set Music Folder"
 msgstr "संगीत फोल्डर को सेट करे"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:153
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
 #: /home/noelco/noise/po/../src//Widgets/TopDisplay.vala:69
 msgid "Cancel"
 msgstr "रद्द करें"
@@ -552,10 +550,6 @@ msgstr ""
 msgid "Save preset"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:158
-msgid "Close"
-msgstr ""
-
 #: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:414
 #, c-format
 msgid "%s (Custom)"
@@ -608,12 +602,6 @@ msgstr ""
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:192
 msgid "Preferences"
 msgstr "पसंद"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:157
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:92
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:65
-msgid "Done"
-msgstr "हो गया"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
 msgid "General"
@@ -883,7 +871,7 @@ msgid "Playlists"
 msgstr "प्लेलिस्ट"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:217
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:473
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:471
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:112
 msgid "Music"
 msgstr "संगीत"
@@ -1018,7 +1006,7 @@ msgstr ""
 msgid "Free"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:380
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:383
 msgid "Using %s of %s (%.2f%)"
 msgstr ""
 
@@ -1030,42 +1018,42 @@ msgstr ""
 msgid "Search Music"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:483
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:481
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:487
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:485
 msgid "History"
 msgstr "इतिहास"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:842
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:833
 msgid "Import Music"
 msgstr "संगीत आयात करें"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:865
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>%s</b> से लाइब्ररी में संगीत <b>आयात</b> कर रहा है."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:889
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:880
 msgid "Rescanning music folder for changes"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:896
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:887
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:254
 msgid "Could not find Music Folder"
 msgstr "संगीत फोल्डर नहीं मिला"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:896
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:887
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:963
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:954
 msgid "Import Complete"
 msgstr "आयात पूर्ण"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:963
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:954
 #, c-format
 msgid "%s has imported your library."
 msgstr ""
@@ -1285,7 +1273,7 @@ msgid "1234 kbps"
 msgstr ""
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:758
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:262
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:264
 msgid "Never"
 msgstr ""
 
@@ -1408,7 +1396,7 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:237
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:239
 #, c-format
 msgid "%i kbps"
 msgstr ""
@@ -1523,15 +1511,6 @@ msgstr "ढूँडें"
 msgid "Change your music folder."
 msgstr "अपने संगीत फोल्डर को बदलिएँ"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
-msgid "Audio CD Invalid"
-msgstr ""
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:42
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr ""
-
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid "No Songs"
@@ -1614,7 +1593,36 @@ msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:246
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:139
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:151
+msgid "Empty device!"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:143
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:155
+msgid "This device does not contain any music."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:324
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:325
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:353
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:972
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:973
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1001
+#, c-format
+msgid "Importing <b>%s</b> by <b>%s</b> to library..."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:86
+msgid "Audio CD Invalid"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:90
+#, c-format
+msgid "%s could not read the contents of this Audio CD"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:254
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1622,65 +1630,84 @@ msgstr ""
 "कृपया सुनिश्चित करें कि अपने संगीत फ़ोल्डर सुलभ और सीडी आयात करने से पहले "
 "माउन्ट किया गया है."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:261
 msgid "No songs on CD"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:253
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:261
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:266
 #, c-format
 msgid "%s is already doing an import"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:266
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:377
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:380
 msgid "CD Import Complete"
 msgstr "सीडी आयात पूर्ण"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:377
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:372
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:380
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:378
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:386
 #, c-format
 msgid "Importing track %i: %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:395
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:403
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:303
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:526
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:312
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:313
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:602
 #, c-format
 msgid "Syncing <b>%s</b>..."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:673
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:384
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:633
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
+msgid "Finishing sync process..."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:410
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:651
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:812
+msgid "Cancelling Sync..."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:686
+#, c-format
+msgid "Adding <b>%s</b> by <b>%s</b> to %s"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:749
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:750
 #, c-format
 msgid "Removing from <b>%s</b>..."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:896
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:839
 #, c-format
-msgid "Importing <b>%s</b> to library..."
+msgid "Removing <b>%s</b> by <b>%s</b> from %s"
 msgstr ""
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
@@ -1776,6 +1803,9 @@ msgstr ""
 
 #~ msgid "#"
 #~ msgstr "#"
+
+#~ msgid "Done"
+#~ msgstr "हो गया"
 
 #~ msgid "is not"
 #~ msgstr "नहीं है"
