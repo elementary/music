@@ -200,7 +200,7 @@ public class Noise.MusicListView : GenericList {
 
             addToPlaylistMenu.show_all ();
             mediaMenuAddToPlaylist.submenu = addToPlaylistMenu;
-            mediaMenuAddToPlaylist.set_sensitive (lm.playlists().size == 0);
+            mediaMenuAddToPlaylist.set_sensitive (lm.playlists().size > 0);
 
             // if all medias are downloaded already, desensitize.
             // if half and half, change text to 'Download %external of %total'
