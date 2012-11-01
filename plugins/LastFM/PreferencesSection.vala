@@ -54,7 +54,7 @@ private class LastFM.PreferencesSection : Noise.PreferencesWindow.Section {
             login_button.set_tooltip_text(_("Click to redo the Last.fm login process"));
         }
  
-        var label = new Gtk.Label (_("To allow Last.fm integration, first you must give permission to Noise. You need only do this once."));
+        var label = new Gtk.Label (_("To allow for Last.fm integration, you must give permission to Noise. You only need to do this once."));
         label.xalign = 0.0f;
         label.halign = Gtk.Align.START;
         label.set_line_wrap (true);
