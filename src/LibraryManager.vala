@@ -61,6 +61,7 @@ public class Noise.LibraryManager : Object {
     private Gee.HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
     private Gee.HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
     private Gee.HashMap<int, Media> _media; // rowid, media of all media
+
     private Gee.LinkedList<Media> open_media_list;
 
     public TreeViewSetup music_setup   { get; private set; default = null; }

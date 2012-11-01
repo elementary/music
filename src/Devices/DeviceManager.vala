@@ -27,7 +27,7 @@ public class Noise.DeviceManager : GLib.Object {
 	VolumeMonitor vm;
 	
 	Mutex _pref_lock;
-	HashTable<string, DevicePreferences> _device_preferences;
+	GLib.List <DevicePreferences> _device_preferences;
 	
 	public signal void device_added(Device d);
 	public signal void device_removed(Device d);
@@ -37,16 +37,15 @@ public class Noise.DeviceManager : GLib.Object {
 	
 	public DeviceManager(LibraryManager lm) {
 		this.lm = lm;
-		vm = VolumeMonitor.get();
 		
-		_device_preferences = new HashTable<string, Noise.DevicePreferences>(null, null);
+		_device_preferences = new GLib.List <DevicePreferences> ();
 		
 		// pre-load devices and their preferences
 		_pref_lock.lock();
-		foreach(Noise.DevicePreferences dp in lm.dbm.load_devices()) {
-			_device_preferences.set(dp.id, dp);
-		}
+		_device_preferences = lm.dbm.load_devices();
 		_pref_lock.unlock();
+		
+		vm = VolumeMonitor.get();
 		
 		vm.mount_added.connect((mount) => {mount_added (mount);});
 		vm.mount_changed.connect(mount_changed);
@@ -113,7 +112,7 @@ public class Noise.DeviceManager : GLib.Object {
 		var rv = new GLib.List<Noise.DevicePreferences>();
 		
 		_pref_lock.lock();
-		foreach(var pref in _device_preferences.get_values()) {
+		foreach(var pref in _device_preferences) {
 			rv.append(pref);
 		}
 		_pref_lock.unlock();
@@ -122,12 +121,16 @@ public class Noise.DeviceManager : GLib.Object {
 	}
 	
 	public DevicePreferences? get_device_preferences(string id) {
-		return _device_preferences.get(id);
+	    foreach (var device in _device_preferences) {
+	        if (device.id == id)
+	            return device;
+        }
+		return null;
 	}
 	
 	public void add_device_preferences(DevicePreferences dp) {
 		_pref_lock.lock();
-		_device_preferences.set(dp.id, dp);
+		_device_preferences.append(dp);
 		_pref_lock.unlock();
 	}
 }

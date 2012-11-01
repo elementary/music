@@ -33,6 +33,8 @@ public interface Noise.Device : GLib.Object {
 	public abstract void finish_initialization();
 	public abstract string getContentType();
 	public abstract string getDisplayName();
+	public abstract string getEmptyDeviceTitle();
+	public abstract string getEmptyDeviceDescription();
 	public abstract void setDisplayName(string name);
 	public abstract string get_fancy_description();
 	public abstract void set_mount(Mount mount);

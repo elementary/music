@@ -135,6 +135,14 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         tagger.discoverer_import_media (files);
     }
     
+    public string getEmptyDeviceTitle() {
+        return _("Empty device!");
+    }
+    
+    public string getEmptyDeviceDescription() {
+        return _("This device does not contain any music.");
+    }
+    
     public string getContentType() {
         if (is_androphone) {
             return "android";
@@ -313,8 +321,8 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         }
         
         this.list = tr_list;
-        lm.start_file_operations(_("Importing <b>%s</b> to library...").printf((list.size > 1) ? list.size.to_string() : (list.get(0)).title));
-        current_operation = "Importing <b>" + ((list.size > 1) ? list.size.to_string() : (list.get(0)).title) + "</b> items to library...";
+        lm.start_file_operations(_("Importing <b>%s</b> by <b>%s</b> to library...").printf((list.size > 1) ? list.size.to_string() : (list.get(0)).title,(list.size > 1) ? list.size.to_string() : (list.get(0)).artist));
+        current_operation = _("Importing <b>%s</b> by <b>%s</b> to library...").printf((list.size > 1) ? list.size.to_string() : (list.get(0)).title,(list.size > 1) ? list.size.to_string() : (list.get(0)).artist);
         
         Threads.add (transfer_medias_thread);
         
@@ -342,7 +350,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                 copy.date_added = (int)time_t();
                 lm.add_media_item (copy);
                 
-                current_operation = "Importing <b>" + copy.title + "</b> to library";
+                current_operation = _("Importing <b>%s</b> by <b>%s</b> to library...").printf(copy.title, copy.artist);
                 lm.fo.update_file_hierarchy (copy, false, false);
             }
             else {

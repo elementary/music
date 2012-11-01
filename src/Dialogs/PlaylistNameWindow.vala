@@ -62,8 +62,8 @@ public class Noise.PlaylistNameWindow : Window {
 		/* start out by creating all category labels */
 		Label nameLabel = new Label(_("Name of Playlist"));
 		_name = new Entry();
-		_save = new Button.with_label(_("Done"));
-		_cancel = new Button.with_label (_("Cancel"));
+		_save = new Button.from_stock (Gtk.Stock.SAVE);
+		_cancel = new Button.from_stock (Gtk.Stock.CANCEL);
 
 
 		/* set up controls */

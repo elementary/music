@@ -21,8 +21,6 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-// TODO: REWRITE TO SUPPORT ANY DEVICE
-
 public class Noise.DeviceViewWrapper : ViewWrapper {
     public Device d { get; private set; }
     
@@ -39,7 +37,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
     }
 
     protected override void set_no_media_alert () {
-        embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (App.instance.get_name ()), null, true, Gtk.MessageType.ERROR);
+        embedded_alert.set_alert (d.getEmptyDeviceTitle(), d.getEmptyDeviceDescription(), null, true, Gtk.MessageType.ERROR);
     }
 
     public virtual void set_device (Device device) {

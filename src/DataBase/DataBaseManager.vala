@@ -750,13 +750,13 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				DevicePreferences dp = new DevicePreferences(results.fetch_string(1));
 
-				dp.sync_when_mounted = results.fetch_int(2) == 1;
-				dp.sync_music = results.fetch_int(3) == 1;
-				dp.sync_podcasts = results.fetch_int(4) == 1;
-				dp.sync_audiobooks = results.fetch_int(5) == 1;
-				dp.sync_all_music = results.fetch_int(6) == 1;
-				dp.sync_all_podcasts = results.fetch_int(7) == 1;
-				dp.sync_all_audiobooks = results.fetch_int(8) == 1;
+				dp.sync_when_mounted = (results.fetch_int(2) == 1);
+				dp.sync_music = (results.fetch_int(3) == 1);
+				dp.sync_podcasts = (results.fetch_int(4) == 1);
+				dp.sync_audiobooks = (results.fetch_int(5) == 1);
+				dp.sync_all_music = (results.fetch_int(6) == 1);
+				dp.sync_all_podcasts = (results.fetch_int(7) == 1);
+				dp.sync_all_audiobooks = (results.fetch_int(8) == 1);
 				dp.music_playlist = results.fetch_string(9);
 				dp.podcast_playlist = results.fetch_string(10);
 				dp.audiobook_playlist = results.fetch_string(11);

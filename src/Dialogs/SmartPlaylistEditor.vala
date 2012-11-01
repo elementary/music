@@ -137,7 +137,7 @@ public class Noise.SmartPlaylistEditor : Window {
         HButtonBox bottomButtons = new HButtonBox();
         bottomButtons.set_spacing (6);
         save = new Gtk.Button.from_stock(Gtk.Stock.SAVE);
-        var close_button = new Gtk.Button.from_stock(Gtk.Stock.CLOSE);
+        var close_button = new Gtk.Button.from_stock(Gtk.Stock.CANCEL);
         bottomButtons.set_layout(ButtonBoxStyle.END);
         bottomButtons.pack_end(close_button, false, false, 0);
         bottomButtons.pack_end(save, false, false, 0);

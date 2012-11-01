@@ -150,11 +150,11 @@ public class Noise.PreferencesWindow : Gtk.Window {
         transient_for = parent_window;
         modal = true;
 
-        cancel_button = new Gtk.Button.with_label (_("Cancel"));
+        cancel_button = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
         cancel_button.set_size_request (90, -1);
         cancel_button.clicked.connect (on_cancel_button_clicked);
 
-        save_button = new Gtk.Button.with_label (_("Done"));
+        save_button = new Gtk.Button.from_stock (Gtk.Stock.SAVE);
         save_button.set_size_request (90, -1);
         save_button.clicked.connect (on_save_button_clicked);
 

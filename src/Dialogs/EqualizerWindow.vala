@@ -155,7 +155,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		var space_item = new ToolItem();
 		space_item.set_expand(true);
 
-		close_button = new Button.with_label(_("Close"));
+		close_button = new Button.from_stock (Gtk.Stock.CLOSE);
 		var close_button_item = new ToolItem();
 		close_button.set_size_request(120, -1);
 		close_button_item.set_expand(false);

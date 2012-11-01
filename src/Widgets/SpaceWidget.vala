@@ -278,7 +278,10 @@ public class SpaceWidget : Gtk.ScrolledWindow {
             return;
         }
 
-        total_size = size;
+        if (size != 0)
+            total_size = size;
+        else
+            total_size = 1;
         free_space_size = size;
 
         update_bar_item_sizes();
@@ -361,7 +364,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
 
         foreach (var item in items) {
             if (item.ID > 0) {
-                int width = (int) ((item.size/total_size) * bar_width);
+                int width = (int)((item.size/total_size) * bar_width);
                 free_space_size -= (uint64)item.size;
                 item.bar_item.set_size (width);
                 item.show ();
@@ -371,7 +374,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         // Resizing free space item:
         var free_space_item = items.get(0);
         free_space_item.set_size (free_space_size);
-        int width = (int) ((free_space_item.size/total_size) * bar_width);
+        int width = (int)((free_space_item.size/total_size) * bar_width);
         free_space_item.bar_item.set_size (width);
 
         // Setting bottom label text
@@ -527,9 +530,9 @@ private class SpaceWidgetItem : GLib.Object {
     private Gtk.Label title_label;
     private Gtk.Label size_label;
 
-    public SpaceWidgetItem (int id, string name, double size, SpaceWidget.ItemColor color) {
+    public SpaceWidgetItem (int id, string name, uint64 size, SpaceWidget.ItemColor color) {
         this.name = name;
-        this.size = size;
+        this.size = GLib.Math.fabs((double)size);
         this.color = color;
         this.ID = id;
         this.legend = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -562,13 +565,13 @@ private class SpaceWidgetItem : GLib.Object {
         bar_item = new SpaceWidgetBarItem (color, 0);
     }
 
-    public void set_size (double s) {
-        size = s;
+    public void set_size (uint64 s) {
+        size = GLib.Math.fabs((double)s);
         
         if (size_label == null)
-            size_label = new Label (GLib.format_size ((uint64)size));
+            size_label = new Label (GLib.format_size (s));
         else
-            size_label.set_text (GLib.format_size ((uint64)size));
+            size_label.set_text (GLib.format_size (s));
     }
 
     public void show () {
