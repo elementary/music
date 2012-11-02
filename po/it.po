@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-01 05:17+0000\n"
+"X-Launchpad-Export-Date: 2012-11-02 05:33+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -2061,10 +2061,6 @@ msgstr "Integrazione Last.fm"
 #, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s e %s"
-
-#, c-format
-#~ msgid "Importing <b>%s</b> to library..."
-#~ msgstr "Importando <b>%s</b> nella libreria..."
 
 #, c-format
 #~ msgid ""

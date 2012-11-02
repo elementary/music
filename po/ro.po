@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2012-11-01 05:17+0000\n"
+"X-Launchpad-Export-Date: 2012-11-02 05:33+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 "Language: ro\n"
 
@@ -1945,10 +1945,6 @@ msgstr "Integrare Last.fm"
 #, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s și %s"
-
-#, c-format
-#~ msgid "Importing <b>%s</b> to library..."
-#~ msgstr "Importă <b>%s</b> în bibliotecă..."
 
 #~ msgid "Complete login"
 #~ msgstr "Logare Completă"

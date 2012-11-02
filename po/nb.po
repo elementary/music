@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-01 05:17+0000\n"
+"X-Launchpad-Export-Date: 2012-11-02 05:33+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 "Language: nb\n"
 
@@ -2020,7 +2020,3 @@ msgstr "Last.fm integrasjon"
 
 #~ msgid "Ripping track 1"
 #~ msgstr "Brenner spor 1"
-
-#, c-format
-#~ msgid "Importing <b>%s</b> to library..."
-#~ msgstr "Importerer <b>%s</b> til bibliotek..."

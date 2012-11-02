@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-11-01 05:18+0000\n"
+"X-Launchpad-Export-Date: 2012-11-02 05:34+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -2012,7 +2012,3 @@ msgstr "Last.fm 集成"
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
 #~ msgstr "这会从任何自动与 %2$s 同步的设备和您的音乐库中移除 %1$s。"
-
-#, c-format
-#~ msgid "Importing <b>%s</b> to library..."
-#~ msgstr "正在将 <b>%s</b> 导入到库中..."

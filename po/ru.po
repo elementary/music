@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-11-01 02:16+0100\n"
-"PO-Revision-Date: 2012-10-26 17:39+0000\n"
-"Last-Translator: Kirill Ivaha <kirill.ivaha@gmail.com>\n"
+"PO-Revision-Date: 2012-11-01 19:50+0000\n"
+"Last-Translator: Sergey \"Shnatsel\" Davidoff <Shnatsel@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-11-01 05:17+0000\n"
+"X-Launchpad-Export-Date: 2012-11-02 05:33+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -48,7 +48,7 @@ msgstr[2] "%u секунд"
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s и %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:68
 #, c-format
@@ -70,25 +70,25 @@ msgstr[2] "%u часов"
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s и %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s и %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:87
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s и %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:95
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s и %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -115,7 +115,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr ""
+msgstr "Слушайте музыку"
 
 #: /home/noelco/noise/po/../src//Noise.vala:38
 msgid "Music Player"
@@ -662,15 +662,15 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:302
 msgid "Show notifications"
-msgstr ""
+msgstr "Показывать уведомления"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:309
 msgid "Minimize window instead of closing it when a song is being played"
-msgstr "Свернуть окно вместо закрытия, когда  проигрывается песня"
+msgstr "Сворачивать окно вместо закрытия, когда проигрывается песня"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:311
 msgid "Hide window instead of closing it when a song is being played"
-msgstr "Скрыть окно вместо закрытия, когда  проигрывается песня"
+msgstr "Скрывать окно вместо закрытия, когда проигрывается песня"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:317
 msgid "Desktop Integration"
@@ -948,11 +948,11 @@ msgstr "Импортировать «%s»"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr "Режим просмотра: Альбом"
+msgstr "Режим просмотра: Альбомы"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "Режим просмотра: Список"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
@@ -1050,7 +1050,7 @@ msgstr "Поиск музыки"
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:481
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Поставить в очередь"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:485
 msgid "History"
@@ -1141,7 +1141,7 @@ msgstr "Оценки"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
 msgid "Composers"
-msgstr ""
+msgstr "Композиторы"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
 msgid "Groupings"
@@ -2082,10 +2082,6 @@ msgstr "Интеграция с Last.fm"
 
 #~ msgid "Unknown Title"
 #~ msgstr "Неизвестная композиция"
-
-#, c-format
-#~ msgid "Importing <b>%s</b> to library..."
-#~ msgstr "Импорт <b>«%s»</b> в библиотеку..."
 
 #, c-format
 #~ msgid "Remove %d %s from %s?"

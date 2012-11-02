@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-01 02:16+0100\n"
-"PO-Revision-Date: 2012-10-12 17:35+0000\n"
-"Last-Translator: dinkyt <Unknown>\n"
+"PO-Revision-Date: 2012-11-01 20:34+0000\n"
+"Last-Translator: Jaap Broekhuizen <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-01 05:17+0000\n"
+"X-Launchpad-Export-Date: 2012-11-02 05:33+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 "Language: nl\n"
 
@@ -45,7 +45,7 @@ msgstr[1] "%u seconden"
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s en %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:68
 #, c-format
@@ -65,25 +65,25 @@ msgstr[1] "%u uren"
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s en %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s en %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:87
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s en %s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:95
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s en %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -94,27 +94,27 @@ msgstr ""
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/noise/po/../core//Media.vala:35
 msgid "Unknown"
-msgstr ""
+msgstr "Onbekend"
 
 #. / String template used to show "SongName by ArtistName"
 #: /home/noelco/noise/po/../core//Media.vala:172
 #, c-format
 msgid " by %s"
-msgstr ""
+msgstr " door %s"
 
 #. / String template used to show "SongName ... on AlbumName"
 #: /home/noelco/noise/po/../core//Media.vala:176
 #, c-format
 msgid " on %s"
-msgstr ""
+msgstr " op %s"
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr ""
+msgstr "Luister naar muziek"
 
 #: /home/noelco/noise/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr ""
+msgstr "Muziekspeler"
 
 #: /home/noelco/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
@@ -135,75 +135,75 @@ msgstr "Radiostation"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "Plat"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr ""
+msgstr "Klassiek"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr ""
+msgstr "Club"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
-msgstr ""
+msgstr "Dance"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "Maximale bas"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "Maximale hoge tonen"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Maximale bas en hoge tonen"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
-msgstr ""
+msgstr "Koptelefoon"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "Grote hal"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
-msgstr ""
+msgstr "Live"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
-msgstr ""
+msgstr "Party"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
-msgstr ""
+msgstr "Pop"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
-msgstr ""
+msgstr "Reggae"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
-msgstr ""
+msgstr "Rock"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
-msgstr ""
+msgstr "Soft"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
-msgstr ""
+msgstr "Ska"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
-msgstr ""
+msgstr "Soft Rock"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
-msgstr ""
+msgstr "Techno"
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:218
 #, c-format
@@ -212,7 +212,7 @@ msgstr "Muziek aan het importeren uit %s..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:265
 msgid "Adding files to library..."
-msgstr "bestanden aan bibliotheek toevoegen"
+msgstr "Bestanden aan bibliotheek toevoegen..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:314
 #, c-format
@@ -221,7 +221,7 @@ msgstr "Muziek uit %s aan het toevoegen aan bibliotheek..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:342
 msgid "Rescanning music for changes. This may take a while..."
-msgstr "Scannen voor veranderingen, dit kan even duren..."
+msgstr "Muziek scannen op wijzigingen. Dit kan even duren..."
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:403
 msgid "Favorite Songs"
@@ -229,15 +229,15 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:413
 msgid "Recently Added"
-msgstr ""
+msgstr "Recentelijk toegevoegd"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Recente favorieten"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:445
 msgid "Never Played"
-msgstr ""
+msgstr "Nooit afgespeeld"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:455
 msgid "Over Played"
@@ -245,15 +245,15 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Niet recentelijk afgespeeld"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
-msgstr ""
+msgstr "Verwijder media"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
-msgstr ""
+msgstr "Vind media"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
@@ -262,22 +262,23 @@ msgstr ""
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
 #: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Do Nothing"
-msgstr ""
+msgstr "Niets doen"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
 msgid "Could not find media file"
-msgstr ""
+msgstr "Kon mediabestand niet vinden"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
 msgstr ""
+"Het muziekbestand voor %s door %s kon niet gevonden worden. Wat wil je doen?"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "%i mediabestanden konden niet gevonden worden. Wat wil je doen?"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
@@ -291,7 +292,7 @@ msgstr "van apparaat importeren"
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr ""
+msgstr "Importeer media van %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
@@ -299,6 +300,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"De volgende bestanden zijn gevonden op %s, maar staan niet in je "
+"bibliotheek. Selecteer alle bestanden die je wil importeren."
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -315,16 +318,16 @@ msgstr "Niet importeren"
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "Importeer %i items van %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Importeer %s van %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
@@ -418,11 +421,11 @@ msgstr "Overeenkomst"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
 msgid "any"
-msgstr ""
+msgstr "elk"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "all"
-msgstr ""
+msgstr "alle"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
 msgid "of the following:"
@@ -434,7 +437,7 @@ msgstr "Beperken tot"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
 msgid "items"
-msgstr ""
+msgstr "items"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
 msgid "Bitrate"
@@ -443,7 +446,7 @@ msgstr "Bitsnelheid"
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:197
 msgid "Comment"
-msgstr ""
+msgstr "Commentaar"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:195
@@ -456,7 +459,7 @@ msgstr "Datum toegevoegd"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Date Released"
-msgstr ""
+msgstr "Uitgebracht op"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:194
@@ -468,7 +471,7 @@ msgstr "Genre"
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:196
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
 msgid "Grouping"
-msgstr ""
+msgstr "Groepering"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Last Played"
@@ -481,7 +484,7 @@ msgstr "Duur"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Playcount"
-msgstr ""
+msgstr "Aantal keren afgespeeld"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:201
@@ -490,7 +493,7 @@ msgstr "Beoordeling"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
-msgstr ""
+msgstr "Aantal keren overgeslagen"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:200
@@ -516,11 +519,11 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is at most"
-msgstr ""
+msgstr "is maximaal"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "is at least"
-msgstr ""
+msgstr "is ten minste"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is within"
@@ -528,7 +531,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is before"
-msgstr ""
+msgstr "is voor"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
 msgid "seconds"
@@ -536,7 +539,7 @@ msgstr "seconden"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:410
 msgid "days ago"
-msgstr ""
+msgstr "dagen geleden"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:414
 msgid "kbps"
@@ -591,12 +594,12 @@ msgstr ""
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "Synchronisatie zal %i items van %s verwijderen"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "Sync zal 1 item van %s verwijderen"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:192
@@ -605,26 +608,28 @@ msgstr "Voorkeuren"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:244
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
 msgid "Select Music Folder"
-msgstr ""
+msgstr "Selecteer muziekmap"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:251
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Locatie muziekmap"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:259
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Je moet wachten tot de vorige bestandsbewerkingen klaar zijn voordat je je "
+"muziekmap in kan stellen"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:274
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Hou muziekmap georganiseerd"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:275
 msgid "Copy files to Music folder when adding to Library"
@@ -632,19 +637,19 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:277
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Metagegevens naar bestand schrijven"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:289
 msgid "Library Management"
-msgstr ""
+msgstr "Bibliotheekbeheer"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:296
 msgid "Use Noise as the default Music application"
-msgstr ""
+msgstr "Gebruik Noise als de standaard muziekapplicatie"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:302
 msgid "Show notifications"
-msgstr ""
+msgstr "Toon meldingen"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:309
 msgid "Minimize window instead of closing it when a song is being played"
@@ -656,11 +661,11 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:317
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Bureaubladintegratie"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:83
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:379
@@ -671,19 +676,19 @@ msgstr "Liedteksten"
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "%s door %s bewerken"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "%s bewerken"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:184
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "%i nummers aan het bewerken"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:192
 msgid "Album Artist"
@@ -699,12 +704,12 @@ msgstr "Schijf"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:203
 msgid "Media Type"
-msgstr ""
+msgstr "Mediatype"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:298
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Songtekst niet gevonden voor %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:541
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
@@ -723,17 +728,17 @@ msgstr "Naar prullenbak verplaatsen"
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "Verwijder van %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr ""
+msgstr "Verwijder %d nummers van %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "Verwijder \"%s\" van %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
 #, c-format
@@ -744,7 +749,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"Dit zal het nummer verwijderen uit je muziekbibliotheek en van elk apparaat "
+"dat autmatisch synchroniseert met %s."
 msgstr[1] ""
+"Dit zal de nummers verwijderen uit je muziekbibliotheek en van elk apparaat "
+"dat autmatisch synchroniseert met %s."
 
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -754,12 +763,13 @@ msgstr "Niet geïmporteerde bestanden"
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "Kon %d items niet importeren van %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
+"%s kon %d items niet importeren. De bestanden kunnen beschadigd zijn."
 
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
@@ -785,7 +795,7 @@ msgstr ""
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
 #, c-format
 msgid "The name %s is already in use"
-msgstr ""
+msgstr "De naam %s is al in gebruik"
 
 #: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
@@ -811,7 +821,7 @@ msgstr "Automatisch"
 
 #: /home/noelco/noise/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
-msgstr "verwijder het huidige"
+msgstr "Huidige verwijderen"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:71
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:188
@@ -899,19 +909,19 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:706
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Speel wachtrij (%Y-%b-%e %k:%M)"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:708
 msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Speel geschiedenis (%Y-%b-%e %k:%M)"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:710
 msgid "Unknown playlist"
-msgstr ""
+msgstr "Onbekende afspeellijst"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:720
 msgid "Export Playlist"
-msgstr ""
+msgstr "Afspeellijst exporteren"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:804
 msgid "Playlist"
@@ -924,15 +934,15 @@ msgstr "%s importeren"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "Albumweergave"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "Lijstweergave"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "Kolomweergave"
 
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
@@ -966,11 +976,11 @@ msgstr "Alles Herhalen"
 
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
 msgid "Enable Shuffle"
-msgstr "shuffle inschakelen"
+msgstr "Shuffle inschakelen"
 
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
 msgid "Disable Shuffle"
-msgstr "shuffle uitschakelen"
+msgstr "Shuffle uitschakelen"
 
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:133
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:144
@@ -1021,12 +1031,12 @@ msgstr "Scan de muziek-map opnieuw"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:212
 msgid "Search Music"
-msgstr ""
+msgstr "Zoek muziek"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:481
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Wachtrij"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:485
 msgid "History"
@@ -1061,7 +1071,7 @@ msgstr "Importeren voltooid"
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:954
 #, c-format
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s heeft je muziekbibliotheek geimporteerd."
 
 #: /home/noelco/noise/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"

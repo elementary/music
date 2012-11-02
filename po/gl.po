@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-01 02:16+0100\n"
-"PO-Revision-Date: 2012-10-29 11:16+0000\n"
+"PO-Revision-Date: 2012-11-01 10:07+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-01 05:17+0000\n"
+"X-Launchpad-Export-Date: 2012-11-02 05:33+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 "Language: gl\n"
 
@@ -1643,12 +1643,12 @@ msgstr "%s por %s"
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:139
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:151
 msgid "Empty device!"
-msgstr ""
+msgstr "Dispositivo baleiro!"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:143
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:155
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "Este dispositivo non conten música ningunha."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:324
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:325
@@ -1658,7 +1658,7 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1001
 #, c-format
 msgid "Importing <b>%s</b> by <b>%s</b> to library..."
-msgstr ""
+msgstr "Importando <b>%s</b> por <b>%s</b> á fonoteca..."
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:86
 msgid "Audio CD Invalid"
@@ -1736,18 +1736,18 @@ msgstr "Sincronizando <b>%s</b>..."
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:633
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
 msgid "Finishing sync process..."
-msgstr ""
+msgstr "Rematando p proceso de sincronización..."
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:410
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:651
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:812
 msgid "Cancelling Sync..."
-msgstr ""
+msgstr "Cancelando a sincronización..."
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:686
 #, c-format
 msgid "Adding <b>%s</b> by <b>%s</b> to %s"
-msgstr ""
+msgstr "Engadindo <b>%s</b> por <b>%s</b> a %s"
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:749
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:750
@@ -1758,7 +1758,7 @@ msgstr "Retirando de <b>%s</b>"
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:839
 #, c-format
 msgid "Removing <b>%s</b> by <b>%s</b> from %s"
-msgstr ""
+msgstr "Retirando <b>%s</b> por <b>%s</b> de %s"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
@@ -1948,10 +1948,6 @@ msgstr "Integración con Last.fm"
 
 #~ msgid "Ripping track 1"
 #~ msgstr "Extraendo a pista 1"
-
-#, c-format
-#~ msgid "Importing <b>%s</b> to library..."
-#~ msgstr "Importando <b>%s</b> á fonoteca..."
 
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Todas as cancións deste dispositivo xa están na súa fonoteca"
