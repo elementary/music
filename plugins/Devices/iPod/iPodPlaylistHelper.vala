@@ -22,12 +22,18 @@
 
 public class Noise.Plugins.iPodPlaylistHelper {
 
-	public static GPod.Playlist get_gpod_playlist_from_playlist (Noise.Playlist pl) {
-		var rv = new GPod.Playlist (pl.name, false);
-		rv.sortorder = get_gpod_sortorder_from_tvs (pl.tvs);
-		return rv;
-	}
-
+    public static GPod.Playlist get_gpod_playlist_from_playlist (Noise.Playlist pl) {
+        var rv = new GPod.Playlist (pl.name, false);
+        rv.sortorder = get_gpod_sortorder_from_tvs (pl.tvs);
+        return rv;
+    }
+    
+    /*public static Noise.Playlist get_playlist_from_gpod_playlist (GPod.Playlist pl) {
+        var rv = new GPod.Playlist (pl.name, false);
+        rv.sortorder = get_gpod_sortorder_from_tvs (pl.tvs);
+        return rv;
+    }*/
+    
     public static GPod.Playlist get_gpod_playlist_from_smart_playlist (Noise.SmartPlaylist pl) {
         var rv = new GPod.Playlist (pl.name, false);
 
@@ -39,165 +45,165 @@ public class Noise.Plugins.iPodPlaylistHelper {
 
 
 
-	// TODO: FIXME from sort_column to sort_column_id
-	private static GPod.PlaylistSortOrder get_gpod_sortorder_from_tvs (Noise.TreeViewSetup tvs) {
-		/*if(tvs.sort_column == "#")
-			return GPod.PlaylistSortOrder.MANUAL;
-		else if(tvs.sort_column == "Track" || tvs.sort_column == "Episode")
-			return GPod.PlaylistSortOrder.TRACK_NR;
-		else if(tvs.sort_column == "Title" || tvs.sort_column == "Name")
-			return GPod.PlaylistSortOrder.TITLE;
-		else if(tvs.sort_column == "Length")
-			return GPod.PlaylistSortOrder.TIME;
-		else if(tvs.sort_column == "Artist")
-			return GPod.PlaylistSortOrder.ARTIST;
-		else if(tvs.sort_column == "Album")
-			return GPod.PlaylistSortOrder.ALBUM;
-		else if(tvs.sort_column == "Genre")
-			return GPod.PlaylistSortOrder.GENRE;
-		else if(tvs.sort_column == "Bitrate")
-			return GPod.PlaylistSortOrder.BITRATE;
-		else if(tvs.sort_column == "Year")
-			return GPod.PlaylistSortOrder.YEAR;
-		else if(tvs.sort_column == "Date")
-			return GPod.PlaylistSortOrder.RELEASE_DATE;
-		else if(tvs.sort_column == "Date Added")
-			return GPod.PlaylistSortOrder.TIME_ADDED;
-		else if(tvs.sort_column == "Plays")
-			return GPod.PlaylistSortOrder.PLAYCOUNT;
-		else if(tvs.sort_column == "Last Played")
-			return GPod.PlaylistSortOrder.TIME_PLAYED;
-		else if(tvs.sort_column == "BPM")
-			return GPod.PlaylistSortOrder.BPM;
-		else if(tvs.sort_column == "Rating")
-			return GPod.PlaylistSortOrder.RATING;
-		else if(tvs.sort_column == "Comments")
-			return GPod.PlaylistSortOrder.DESCRIPTION;
-		else*/
-			return GPod.PlaylistSortOrder.MANUAL;
-	}
+    // TODO: FIXME from sort_column to sort_column_id
+    private static GPod.PlaylistSortOrder get_gpod_sortorder_from_tvs (Noise.TreeViewSetup tvs) {
+        /*if(tvs.sort_column == "#")
+            return GPod.PlaylistSortOrder.MANUAL;
+        else if(tvs.sort_column == "Track" || tvs.sort_column == "Episode")
+            return GPod.PlaylistSortOrder.TRACK_NR;
+        else if(tvs.sort_column == "Title" || tvs.sort_column == "Name")
+            return GPod.PlaylistSortOrder.TITLE;
+        else if(tvs.sort_column == "Length")
+            return GPod.PlaylistSortOrder.TIME;
+        else if(tvs.sort_column == "Artist")
+            return GPod.PlaylistSortOrder.ARTIST;
+        else if(tvs.sort_column == "Album")
+            return GPod.PlaylistSortOrder.ALBUM;
+        else if(tvs.sort_column == "Genre")
+            return GPod.PlaylistSortOrder.GENRE;
+        else if(tvs.sort_column == "Bitrate")
+            return GPod.PlaylistSortOrder.BITRATE;
+        else if(tvs.sort_column == "Year")
+            return GPod.PlaylistSortOrder.YEAR;
+        else if(tvs.sort_column == "Date")
+            return GPod.PlaylistSortOrder.RELEASE_DATE;
+        else if(tvs.sort_column == "Date Added")
+            return GPod.PlaylistSortOrder.TIME_ADDED;
+        else if(tvs.sort_column == "Plays")
+            return GPod.PlaylistSortOrder.PLAYCOUNT;
+        else if(tvs.sort_column == "Last Played")
+            return GPod.PlaylistSortOrder.TIME_PLAYED;
+        else if(tvs.sort_column == "BPM")
+            return GPod.PlaylistSortOrder.BPM;
+        else if(tvs.sort_column == "Rating")
+            return GPod.PlaylistSortOrder.RATING;
+        else if(tvs.sort_column == "Comments")
+            return GPod.PlaylistSortOrder.DESCRIPTION;
+        else*/
+            return GPod.PlaylistSortOrder.MANUAL;
+    }
 
-	public static void set_rule_from_smart_query (GPod.SPLRule rule, Noise.SmartQuery q) {
-		message("adding rule\n");
-		if (q.field == SmartQuery.FieldType.ALBUM) { // strings
-			rule.field = GPod.SPLField.ALBUM;
-			rule.@string = q.value;
-		}
-		else if(q.field == SmartQuery.FieldType.ARTIST) {
-			rule.field = GPod.SPLField.ARTIST;
-			rule.@string = q.value;
-		}
-		else if(q.field == SmartQuery.FieldType.COMPOSER) {
-			rule.field = GPod.SPLField.COMPOSER;
-			rule.@string = q.value;
-		}
-		else if(q.field == SmartQuery.FieldType.COMMENT) {
-			rule.field = GPod.SPLField.COMMENT;
-			rule.@string = q.value;
-		}
-		else if(q.field == SmartQuery.FieldType.GENRE) {
-			rule.field = GPod.SPLField.GENRE;
-			rule.@string = q.value;
-		}
-		else if(q.field == SmartQuery.FieldType.GROUPING) {
-			rule.field = GPod.SPLField.GROUPING;
-			rule.@string = q.value;
-		}
-		else if(q.field == SmartQuery.FieldType.TITLE) {
-			rule.field = GPod.SPLField.SONG_NAME;
-			rule.@string = q.value;
-		}
-		else if(q.field == SmartQuery.FieldType.BITRATE) { // ints
-			rule.field = GPod.SPLField.BITRATE;
-			rule.fromvalue = uint64.parse(q.value);
-			rule.tovalue = uint64.parse(q.value);
-		}
-		else if(q.field == SmartQuery.FieldType.PLAYCOUNT) {
-			rule.field = GPod.SPLField.PLAYCOUNT;
-			rule.fromvalue = uint64.parse(q.value);
-			rule.tovalue = uint64.parse(q.value);
-		}
-		else if(q.field == SmartQuery.FieldType.SKIPCOUNT) {
-			rule.field = GPod.SPLField.SKIPCOUNT;
-			rule.fromvalue = uint64.parse(q.value);
-			rule.tovalue = uint64.parse(q.value);
-		}
-		else if(q.field == SmartQuery.FieldType.YEAR) {
-			rule.field = GPod.SPLField.YEAR;
-			rule.fromvalue = uint64.parse(q.value);
-			rule.tovalue = uint64.parse(q.value);
-		}
-		else if(q.field == SmartQuery.FieldType.LENGTH) {
-			rule.field = GPod.SPLField.TIME;
-			rule.fromvalue = uint64.parse(q.value) * 1000;
-			rule.tovalue = uint64.parse(q.value) * 1000;
-		}
-		else if(q.field == SmartQuery.FieldType.RATING) {
-			rule.field = GPod.SPLField.RATING;
-			rule.fromvalue = uint64.parse(q.value) * 20;
-			rule.tovalue = uint64.parse(q.value) * 20;
-		}
-		else if(q.field == SmartQuery.FieldType.DATE_ADDED) {
-			rule.field = GPod.SPLField.DATE_ADDED;
-			rule.fromvalue = uint64.parse(q.value) * 1000;
-			rule.tovalue = uint64.parse(q.value) * 1000;
-		}
-		else if(q.field == SmartQuery.FieldType.LAST_PLAYED) {
-			rule.field = GPod.SPLField.LAST_PLAYED;
-			rule.fromvalue = uint64.parse(q.value) * 20;
-			rule.tovalue = uint64.parse(q.value) * 20;
-		}
-		else if(q.field == SmartQuery.FieldType.DATE_RELEASED) {
-			// no equivalant
-		}
+    public static void set_rule_from_smart_query (GPod.SPLRule rule, Noise.SmartQuery q) {
+        message("adding rule\n");
+        if (q.field == SmartQuery.FieldType.ALBUM) { // strings
+            rule.field = GPod.SPLField.ALBUM;
+            rule.@string = q.value;
+        }
+        else if(q.field == SmartQuery.FieldType.ARTIST) {
+            rule.field = GPod.SPLField.ARTIST;
+            rule.@string = q.value;
+        }
+        else if(q.field == SmartQuery.FieldType.COMPOSER) {
+            rule.field = GPod.SPLField.COMPOSER;
+            rule.@string = q.value;
+        }
+        else if(q.field == SmartQuery.FieldType.COMMENT) {
+            rule.field = GPod.SPLField.COMMENT;
+            rule.@string = q.value;
+        }
+        else if(q.field == SmartQuery.FieldType.GENRE) {
+            rule.field = GPod.SPLField.GENRE;
+            rule.@string = q.value;
+        }
+        else if(q.field == SmartQuery.FieldType.GROUPING) {
+            rule.field = GPod.SPLField.GROUPING;
+            rule.@string = q.value;
+        }
+        else if(q.field == SmartQuery.FieldType.TITLE) {
+            rule.field = GPod.SPLField.SONG_NAME;
+            rule.@string = q.value;
+        }
+        else if(q.field == SmartQuery.FieldType.BITRATE) { // ints
+            rule.field = GPod.SPLField.BITRATE;
+            rule.fromvalue = uint64.parse(q.value);
+            rule.tovalue = uint64.parse(q.value);
+        }
+        else if(q.field == SmartQuery.FieldType.PLAYCOUNT) {
+            rule.field = GPod.SPLField.PLAYCOUNT;
+            rule.fromvalue = uint64.parse(q.value);
+            rule.tovalue = uint64.parse(q.value);
+        }
+        else if(q.field == SmartQuery.FieldType.SKIPCOUNT) {
+            rule.field = GPod.SPLField.SKIPCOUNT;
+            rule.fromvalue = uint64.parse(q.value);
+            rule.tovalue = uint64.parse(q.value);
+        }
+        else if(q.field == SmartQuery.FieldType.YEAR) {
+            rule.field = GPod.SPLField.YEAR;
+            rule.fromvalue = uint64.parse(q.value);
+            rule.tovalue = uint64.parse(q.value);
+        }
+        else if(q.field == SmartQuery.FieldType.LENGTH) {
+            rule.field = GPod.SPLField.TIME;
+            rule.fromvalue = uint64.parse(q.value) * 1000;
+            rule.tovalue = uint64.parse(q.value) * 1000;
+        }
+        else if(q.field == SmartQuery.FieldType.RATING) {
+            rule.field = GPod.SPLField.RATING;
+            rule.fromvalue = uint64.parse(q.value) * 20;
+            rule.tovalue = uint64.parse(q.value) * 20;
+        }
+        else if(q.field == SmartQuery.FieldType.DATE_ADDED) {
+            rule.field = GPod.SPLField.DATE_ADDED;
+            rule.fromvalue = uint64.parse(q.value) * 1000;
+            rule.tovalue = uint64.parse(q.value) * 1000;
+        }
+        else if(q.field == SmartQuery.FieldType.LAST_PLAYED) {
+            rule.field = GPod.SPLField.LAST_PLAYED;
+            rule.fromvalue = uint64.parse(q.value) * 20;
+            rule.tovalue = uint64.parse(q.value) * 20;
+        }
+        else if(q.field == SmartQuery.FieldType.DATE_RELEASED) {
+            // no equivalant
+        }
 /*
-		else if(q.field == SmartQuery.FieldType.MEDIA_TYPE) {
-			rule.field = GPod.SPLField.VIDEO_KIND;
-			if(q.value == "0") {
-				rule.fromvalue = (uint64)GPod.MediaType.AUDIO;
-				rule.tovalue = (uint64)GPod.MediaType.AUDIO;
-			}
-			else if(q.value == "1") {
-				rule.fromvalue = (uint64)GPod.MediaType.PODCAST;
-				rule.tovalue = (uint64)GPod.MediaType.PODCAST;
-			}
-			else if(q.value == "2") {
-				rule.fromvalue = (uint64)GPod.MediaType.AUDIOBOOK;
-				rule.tovalue = (uint64)GPod.MediaType.AUDIOBOOK;
-			}
-		}
+        else if(q.field == SmartQuery.FieldType.MEDIA_TYPE) {
+            rule.field = GPod.SPLField.VIDEO_KIND;
+            if(q.value == "0") {
+                rule.fromvalue = (uint64)GPod.MediaType.AUDIO;
+                rule.tovalue = (uint64)GPod.MediaType.AUDIO;
+            }
+            else if(q.value == "1") {
+                rule.fromvalue = (uint64)GPod.MediaType.PODCAST;
+                rule.tovalue = (uint64)GPod.MediaType.PODCAST;
+            }
+            else if(q.value == "2") {
+                rule.fromvalue = (uint64)GPod.MediaType.AUDIOBOOK;
+                rule.tovalue = (uint64)GPod.MediaType.AUDIOBOOK;
+            }
+        }
 */
-		rule.tounits = 1;
-		
-		// set action type
-		if(q.comparator == SmartQuery.ComparatorType.IS) {
-			rule.action = GPod.SPLAction.IS_STRING;
-		}
-		else if(q.comparator == SmartQuery.ComparatorType.IS_NOT) {
-			rule.action = GPod.SPLAction.IS_NOT_INT;
-		}
-		else if(q.comparator == SmartQuery.ComparatorType.CONTAINS) {
-			rule.action = GPod.SPLAction.CONTAINS;
-		}
-		else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS) {
-			rule.action = GPod.SPLAction.DOES_NOT_CONTAIN;
-		}
-		else if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) {
-			rule.action = GPod.SPLAction.IS_INT;
-		}
-		else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST) {
-			rule.action = GPod.SPLAction.IS_NOT_GREATER_THAN;
-		}
-		else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST) {
-			rule.action = GPod.SPLAction.IS_NOT_LESS_THAN;
-		}
-		else if(q.comparator == SmartQuery.ComparatorType.IS_WITHIN) {
-			rule.action = GPod.SPLAction.IS_GREATER_THAN;
-		}
-		else if(q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
-			rule.action = GPod.SPLAction.IS_LESS_THAN;
-		}
-	}
+        rule.tounits = 1;
+        
+        // set action type
+        if(q.comparator == SmartQuery.ComparatorType.IS) {
+            rule.action = GPod.SPLAction.IS_STRING;
+        }
+        else if(q.comparator == SmartQuery.ComparatorType.IS_NOT) {
+            rule.action = GPod.SPLAction.IS_NOT_INT;
+        }
+        else if(q.comparator == SmartQuery.ComparatorType.CONTAINS) {
+            rule.action = GPod.SPLAction.CONTAINS;
+        }
+        else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS) {
+            rule.action = GPod.SPLAction.DOES_NOT_CONTAIN;
+        }
+        else if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) {
+            rule.action = GPod.SPLAction.IS_INT;
+        }
+        else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST) {
+            rule.action = GPod.SPLAction.IS_NOT_GREATER_THAN;
+        }
+        else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST) {
+            rule.action = GPod.SPLAction.IS_NOT_LESS_THAN;
+        }
+        else if(q.comparator == SmartQuery.ComparatorType.IS_WITHIN) {
+            rule.action = GPod.SPLAction.IS_GREATER_THAN;
+        }
+        else if(q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
+            rule.action = GPod.SPLAction.IS_LESS_THAN;
+        }
+    }
 
 
     public static void set_properties_from_smart_playlist (GPod.Playlist rv, Noise.SmartPlaylist sp) {

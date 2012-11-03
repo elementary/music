@@ -23,63 +23,64 @@
 using Gee;
 
 public interface Noise.Device : GLib.Object {
-	public signal void initialized(Device d);
-	public signal void device_unmounted();
-	public signal void progress_notification(string? message, double progress);
-	public signal void sync_finished(bool success);
-	
-	public abstract DevicePreferences get_preferences();
-	public abstract bool start_initialization();
-	public abstract void finish_initialization();
-	public abstract string getContentType();
-	public abstract string getDisplayName();
-	public abstract string getEmptyDeviceTitle();
-	public abstract string getEmptyDeviceDescription();
-	public abstract void setDisplayName(string name);
-	public abstract string get_fancy_description();
-	public abstract void set_mount(Mount mount);
-	public abstract Mount get_mount();
-	public abstract string get_path();
-	public abstract void set_icon(Gdk.Pixbuf icon);
-	public abstract Gdk.Pixbuf get_icon();
-	public abstract uint64 get_capacity();
-	public abstract string get_fancy_capacity();
-	public abstract uint64 get_used_space();
-	public abstract uint64 get_free_space();
-	public abstract void unmount();
-	public abstract void eject();
-	public abstract void get_device_type();
-	public abstract bool supports_podcasts();
-	public abstract bool supports_audiobooks();
-	public abstract Collection<Media> get_medias();
-	public abstract Collection<Media> get_songs();
-	public abstract Collection<Media> get_podcasts();
-	public abstract Collection<Media> get_audiobooks();
-	public abstract Collection<Playlist> get_playlists();
-	public abstract Collection<SmartPlaylist> get_smart_playlists();
-	public abstract bool sync_medias(LinkedList<Media> list);
-	public abstract bool add_medias(LinkedList<Media> list);
-	public abstract bool remove_medias(LinkedList<Media> list);
-	public abstract bool is_syncing();
-	public abstract void cancel_sync();
-	public abstract bool will_fit(LinkedList<Media> list);
-	public abstract bool is_transferring();
-	public abstract void cancel_transfer();
-	public abstract bool transfer_to_library(LinkedList<Media> list);
-	
-	public string get_unique_identifier() {
-		Mount m = get_mount();
-		string uuid = m.get_uuid();
-		File root = m.get_root();
-		string rv = "";
-		message ("uuid: %s\n", uuid);
-		if(root != null && root.get_uri() != null) {
-			rv += root.get_uri();
-		}
-		if(uuid != null && uuid != "") {
-			rv += ("/" + uuid);
-		}
-		
-		return rv;
-	}
+    public signal void initialized (Device d);
+    public signal void device_unmounted ();
+    public signal void progress_notification (string? message, double progress);
+    public signal void infobar_message (string message, Gtk.MessageType type);
+    public signal void sync_finished (bool success);
+    
+    public abstract DevicePreferences get_preferences();
+    public abstract bool start_initialization();
+    public abstract void finish_initialization();
+    public abstract string getContentType();
+    public abstract string getDisplayName();
+    public abstract string getEmptyDeviceTitle();
+    public abstract string getEmptyDeviceDescription();
+    public abstract void setDisplayName(string name);
+    public abstract string get_fancy_description();
+    public abstract void set_mount(Mount mount);
+    public abstract Mount get_mount();
+    public abstract string get_path();
+    public abstract void set_icon(Gdk.Pixbuf icon);
+    public abstract Gdk.Pixbuf get_icon();
+    public abstract uint64 get_capacity();
+    public abstract string get_fancy_capacity();
+    public abstract uint64 get_used_space();
+    public abstract uint64 get_free_space();
+    public abstract void unmount();
+    public abstract void eject();
+    public abstract void get_device_type();
+    public abstract bool supports_podcasts();
+    public abstract bool supports_audiobooks();
+    public abstract Collection<Media> get_medias();
+    public abstract Collection<Media> get_songs();
+    public abstract Collection<Media> get_podcasts();
+    public abstract Collection<Media> get_audiobooks();
+    public abstract Collection<Playlist> get_playlists();
+    public abstract Collection<SmartPlaylist> get_smart_playlists();
+    public abstract bool sync_medias(LinkedList<Media> list);
+    public abstract bool add_medias(LinkedList<Media> list);
+    public abstract bool remove_medias(LinkedList<Media> list);
+    public abstract bool is_syncing();
+    public abstract void cancel_sync();
+    public abstract bool will_fit(LinkedList<Media> list);
+    public abstract bool is_transferring();
+    public abstract void cancel_transfer();
+    public abstract bool transfer_to_library(LinkedList<Media> list);
+    
+    public string get_unique_identifier() {
+        Mount m = get_mount();
+        string uuid = m.get_uuid();
+        File root = m.get_root();
+        string rv = "";
+        message ("uuid: %s\n", uuid);
+        if(root != null && root.get_uri() != null) {
+            rv += root.get_uri();
+        }
+        if(uuid != null && uuid != "") {
+            rv += ("/" + uuid);
+        }
+        
+        return rv;
+    }
 }

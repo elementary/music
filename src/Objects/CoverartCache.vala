@@ -97,6 +97,18 @@ public class Noise.CoverartCache : MediaArtCache<Media> {
         return get_image (m) ?? default_image;
     }
 
+    public Gdk.Pixbuf? get_original_cover (Media m) {
+        var file = get_cached_image_file (m);
+        if (file == null)
+            return null;
+        try {
+            return new Gdk.Pixbuf.from_file (file.get_path ());
+        } catch (Error err) {
+            warning ("Could not get image from file [%s]: %s", file.get_uri (), err.message);
+        }
+        return null;
+    }
+
     public async void fetch_all_cover_art_async (Gee.Collection<Media> media) {
         yield fetch_folder_images_async (media);
         yield load_for_media_async (media);

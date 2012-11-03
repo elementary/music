@@ -83,7 +83,7 @@ public class Noise.Plugins.iPodMediaHelper {
 			return;
 
 		//if (m.title != null)
-		    t.title = m.title;
+		    t.title = m.get_display_title ();
 
 		//if (m.artist != null)
 		    t.artist = m.artist;

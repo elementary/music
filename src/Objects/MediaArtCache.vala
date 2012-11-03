@@ -145,6 +145,10 @@ public abstract class Noise.MediaArtCache<T> {
     protected async Gdk.Pixbuf? get_image_async (T object, bool lookup_file) {
         return yield pixbuf_cache.get_image_async (get_key (object), lookup_file);
     }
+    
+    protected async Gdk.Pixbuf? get_original_image_async (T object, bool lookup_file) {
+        return yield pixbuf_cache.get_original_image_async (get_key (object), lookup_file);
+    }
 
     /**
      * Notifies about changes in the cache.

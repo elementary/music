@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Corentin Noël <tintou@mailoo.org>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -113,9 +113,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         //lock(lm._medias) {
             //lm.add_medias(trToSo, false);
         //}
-        /*
-        for(int i = 0; i < db.playlists.length(); ++i) {
-            unowned GPod.Playlist p = db.playlists.nth_data(i);
+        
+        // TODO: create support for playlists
+        /*foreach (unowned GPod.Playlist p in db.playlists) {
             
             if(!p.is_spl) {
                 Playlist bbPlaylist = Playlist.from_ipod(p);
@@ -368,6 +368,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         message("Found %d medias to remove.", medias_to_remove.size);
         Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list_to_sync (), songs.values);
         message("Found %d medias to add.", medias_to_sync.size);
+        int total_medias = medias_to_remove.size + medias_to_sync.size;
         
         if (will_fit_without(medias_to_sync, medias_to_remove)) {
             db.start_sync();
@@ -381,22 +382,21 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                     }
                 }
                 ++sub_index;
-                index = (int)(15.0 * (double)((double)sub_index/(double)medias_to_remove.size));
+                index = (int)(85.0 * (double)((double)sub_index/(double)total_medias));
             }
             sub_index = 0;
             foreach(var m in medias_to_sync) {
-                warning (m.title);
                 if(!sync_cancelled) {
                     add_media(m);
                 }
                 ++sub_index;
-                index = (int)(15.0 + (double)(75.0 * ((double)sub_index/(double)medias_to_sync.size)));
+                index = (int)(85.0 * ((double)sub_index/(double)total_medias));
             }
                     
             if(!sync_cancelled) {
                 // sync playlists
                 index = 90;
-                /* TODO: add support for playlists and podcasts
+                /* TODO: add support for podcasts & playlists
                 if (pref.sync_all_music == true) {
                     sync_playlists();
                 }
@@ -443,6 +443,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 sync_cancelled = false;
             }
         } else {
+                infobar_message (_("There is not enough space on Device to complete the Sync..."), Gtk.MessageType.INFO);
                 current_operation = _("There is not enough space on Device to complete the Sync...");
         }
         
@@ -609,21 +610,20 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return;
         
         GPod.Track t = iPodMediaHelper.track_from_media (s);
-        var pix = Noise.CoverartCache.instance.get_cover (s);
+        var pix = Noise.CoverartCache.instance.get_original_cover (s);
         if (pix != null)
             t.set_thumbnails_from_pixbuf (pix);
 
-        current_operation = _("Adding <b>(title)</b> by <b>(artist)</b> to (device)");
-        current_operation = current_operation.replace ("(title)", t.title ?? "");
-        current_operation = current_operation.replace ("(artist)", t.artist ?? "");
-        current_operation = current_operation.replace ("(device)", getDisplayName() ?? "");
+        current_operation = _("Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
+        current_operation = current_operation.replace ("$NAME", t.title ?? "");
+        current_operation = current_operation.replace ("$ARTIST", t.artist ?? "");
+        current_operation = current_operation.replace ("$DEVICE", getDisplayName() ?? "");
         debug ("Adding media %s by %s\n", t.title, t.artist);
         db.track_add((owned)t, -1);
         
         unowned GPod.Track added = db.tracks.nth_data(db.tracks.length() - 1);
         
         if(added == null || added.title != s.title) {
-            warning ("%s/vs/%s".printf(added.title, s.title));
             warning("Track was not properly appended. Returning.\n");
             return;
         }
@@ -768,10 +768,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     void remove_media(GPod.Track t) {
-        current_operation = _("Removing <b>(title)</b> by <b>(artist)</b> to (device)");
-        current_operation = current_operation.replace ("(title)", t.title ?? "");
-        current_operation = current_operation.replace ("(artist)", t.artist ?? "");
-        current_operation = current_operation.replace ("(device)", getDisplayName() ?? "");
+        current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
+        current_operation = current_operation.replace ("$NAME", t.title ?? "");
+        current_operation = current_operation.replace ("$ARTIST", t.artist ?? "");
+        current_operation = current_operation.replace ("$DEVICE", getDisplayName() ?? "");
         /* first check if the file exists disk */
         if(t.ipod_path != null) {
             var path = Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path));
@@ -913,9 +913,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
         
         this.list = tr_list;
-        current_operation = _("Importing <b>(title)</b> by <b>(artist)</b> to library...");
-        current_operation = current_operation.replace ("(title)", (list.size > 1) ? list.size.to_string() : (list.get(0)).title ?? "");
-        current_operation = current_operation.replace ("(artist)", (list.size > 1) ? list.size.to_string() : (list.get(0)).artist ?? "");
+        current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
+        current_operation = current_operation.replace ("$NAME", (list.size > 1) ? list.size.to_string() : (list.get(0)).title ?? "");
+        current_operation = current_operation.replace ("$ARTIST", (list.size > 1) ? list.size.to_string() : (list.get(0)).artist ?? "");
         lm.start_file_operations(current_operation);
         
         Threads.add (transfer_medias_thread);
@@ -944,9 +944,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 copy.date_added = (int)time_t();
                 lm.add_media_item (copy);
                 
-                current_operation = _("Importing <b>(title)</b> by <b>(artist)</b> to library...");
-                current_operation = current_operation.replace ("(title)", copy.title ?? "");
-                current_operation = current_operation.replace ("(artist)", copy.artist ?? "");
+                current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
+                current_operation = current_operation.replace ("$NAME", copy.title ?? "");
+                current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
                 lm.fo.update_file_hierarchy (copy, false, false);
             }
             else {
