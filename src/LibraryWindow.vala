@@ -1136,17 +1136,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // if playing a song, don't allow closing
         if (!Settings.Main.instance.close_while_playing && playing) {
-            if (minimize_on_close ()) {
-                // If the behavior is to minimize on close, and the window is already
-                // minimized, we quit the application because we assume the event didn't
-                // come from the window's close button.
-                if (Utils.flags_set (get_window ().get_state (), Gdk.WindowState.ICONIFIED))
-                    return false;
-
+            if (minimize_on_close ()) 
                 iconify (); // i.e. minimize
-            } else {
+             else 
                 hide ();
-            }
+            
 
             return true;
         }
