@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-01 02:16+0100\n"
+"POT-Creation-Date: 2012-11-02 23:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1604,9 +1604,6 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:324
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:325
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:353
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:972
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:973
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1001
 #, c-format
 msgid "Importing <b>%s</b> by <b>%s</b> to library..."
 msgstr ""
@@ -1671,39 +1668,47 @@ msgstr ""
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:312
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:313
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:602
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:306
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:307
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:509
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:510
 #, c-format
 msgid "Syncing <b>%s</b>..."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:384
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:633
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:392
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:540
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:704
 msgid "Finishing sync process..."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:410
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:651
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:812
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:418
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:558
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:721
 msgid "Cancelling Sync..."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:686
-#, c-format
-msgid "Adding <b>%s</b> by <b>%s</b> to %s"
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:430
+msgid "There is not enough space on Device to complete the Sync..."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:749
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:750
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:592
+msgid "Adding <b>(title)</b> by <b>(artist)</b> to (device)"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:658
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:659
 #, c-format
 msgid "Removing from <b>%s</b>..."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:839
-#, c-format
-msgid "Removing <b>%s</b> by <b>%s</b> from %s"
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:748
+msgid "Removing <b>(title)</b> by <b>(artist)</b> to (device)"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:884
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:915
+msgid "Importing <b>(title)</b> by <b>(artist)</b> to library..."
 msgstr ""
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73

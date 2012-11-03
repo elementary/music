@@ -77,7 +77,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             db = iTunesDB.parse(get_path());
         }
         catch(Error err) {
-            stdout.printf("Error parsing db at %s: %s\n", get_path(), err.message);
+            critical("Error parsing db at %s: %s\n", get_path(), err.message);
             return false;
         }
         
@@ -96,7 +96,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         // get all songs first
         for(int i = 0; i < db.tracks.length(); ++i) {
             unowned GPod.Track t = db.tracks.nth_data(i);
-            //stdout.printf("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
+            //message("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
             var m = iPodMediaHelper.media_from_track (get_path(), t);
             
             this.medias.set(t, m);
@@ -173,19 +173,19 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             mount.get_default_location().set_display_name(name);
         }
         catch(GLib.Error err) {
-            stdout.printf("Could not set iPod Mount Display Name: %s\n", err.message);
+            critical("Could not set iPod Mount Display Name: %s\n", err.message);
         }
         lm.lw.sideTree.setNameFromObject(lm.lw.sideTree.convertToFilter(lm.lw.sideTree.devices_iter), this, name);
     }
     
     public string get_fancy_description() {
         /*unowned GPod.iPodInfo ipod_info = db.device.get_ipod_info();
-        stdout.printf("got here\n");
+        critical("got here\n");
         GPod.iPodModel enum_model = ipod_info.ipod_model;
         GPod.iPodGeneration enum_gen = ipod_info.ipod_generation;*/
-        stdout.printf("got here\n");
+        message("got here\n");
         string model = "model here";//GPod.iPodInfo.get_ipod_model_name_string(enum_model);
-        stdout.printf("got here\n");
+        message("got here\n");
         //var gen = GPod.iPodInfo.get_ipod_generation_string(enum_gen);
         string gen = "gen 1";
         return gen + " " + model;
@@ -219,7 +219,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_SIZE);
         }
         catch(Error err) {
-            stdout.printf("Error calculating capacity of iPod: %s\n", err.message);
+            critical("Error calculating capacity of iPod: %s\n", err.message);
         }
         
         return rv;
@@ -241,7 +241,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_FREE);
         }
         catch(Error err) {
-            stdout.printf("Error calculating free space on iPod: %s\n", err.message);
+            critical("Error calculating free space on iPod: %s\n", err.message);
         }
         
         return rv;
@@ -303,12 +303,6 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        bool fits = will_fit(list);
-        if(!fits) {
-            warning("Tried to sync medias that will not fit\n");
-            return false;
-        }
-        
         lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()));
         current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
         lm.lw.update_sensitivities();
@@ -345,6 +339,22 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         return get_capacity() > list_size;
     }
     
+    private bool will_fit_without(LinkedList<Noise.Media> list, LinkedList<Noise.Media> without) {
+        uint64 list_size = 0;
+        uint64 without_size = 0;
+        foreach(var m in list) {
+            list_size += m.file_size;
+        }
+        foreach(var m in without) {
+            without_size += m.file_size;
+        }
+        if (without_size > list_size) {
+            return true;
+        } else {
+            return get_capacity() > (list_size - without_size);
+        }
+    }
+    
     void sync_medias_thread() {
         currently_syncing = true;
         bool error_occurred = false;
@@ -353,180 +363,88 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         total = 100;
         Timeout.add(500, doProgressNotificationWithTimeout);
         
-        db.start_sync();
         message("Found %d medias to sync.", list_to_sync ().size);
         Gee.LinkedList<Noise.Media> medias_to_remove = delete_doubles (songs.values, list_to_sync ());
         message("Found %d medias to remove.", medias_to_remove.size);
-        foreach(var m in medias_to_remove) {
-            if(!sync_cancelled) {
-                remove_media(iPodMediaHelper.track_from_media(m));
-            }
-            ++sub_index;
-            index = (int)(15.0 * (double)((double)sub_index/(double)medias_to_remove.size));
-        }
-        sub_index = 0;
         Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list_to_sync (), songs.values);
         message("Found %d medias to add.", medias_to_sync.size);
-        foreach(var m in medias_to_sync) {
-            if(!sync_cancelled) {
-                add_media(m);
-            }
-            ++sub_index;
-            index = (int)(15.0 + (double)(75.0 * ((double)sub_index/(double)medias_to_sync.size)));
-        }
-                
-        if(!sync_cancelled) {
-            // sync playlists
-            index = 78;
-            sync_playlists();
-            sync_podcasts();
-            
-            current_operation = _("Finishing sync process...");
-            
-            try {
-                db.write();
-            }
-            catch(GLib.Error err) {
-                error_occurred = true;
-                sync_cancelled = true;
-            }
-            
-            index = 98;
-            
-            /// Clean up unused files
-            message ("Cleaning up iPod File System\n");
-            var music_folder = File.new_for_path(GPod.Device.get_music_dir(get_path()));
-            var used_paths = new LinkedList<string>();
-            foreach(unowned GPod.Track t in medias.keys) {
-                used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
-            }
-            cleanup_files(music_folder, used_paths);
-            
-            index = 101;
-            
-            db.stop_sync();
-        }
-        else {
-            current_operation = _("Cancelling Sync...");
-            try {
-                db.write();
-            }
-            catch(Error err) {
-                critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
-            }
-            db.stop_sync();
-            index = total + 1;
-            sync_cancelled = false;
-        }
-        /*
-        // for each song that is on device, but not in this.list, remove
-        current_operation = "Removing old medias from iPod and updating current ones";
-        var removed = new HashMap<unowned GPod.Track, Noise.Media>();
-
         
-        medias.unset_all(removed);
-        songs.unset_all(removed);
-        podcasts.unset_all(removed);
-        audiobooks.unset_all(removed);
-        
-        stdout.printf("Updating existing tracks...\n");
-        sub_index = 0;
-        // anything left will be synced. update medias that are already on list
-        foreach(var entry in medias.entries) {
-            if(!sync_cancelled) {
-                Noise.Media m = match_media_to_list(entry.value, this.list);
-                if(m != null) {
-                    unowned GPod.Track t = entry.key;
-                    iPodMediaHelper.update_track (ref t, m);
-                    stdout.printf("updated trac and its rating is %d\n", (int)t.rating);
-
-                    var pix = Noise.CoverartCache.instance.get_cover (m);
-                    if (pix != null)
-                        t.set_thumbnails_from_pixbuf (pix);
+        if (will_fit_without(medias_to_sync, medias_to_remove)) {
+            db.start_sync();
+            foreach(var m in medias_to_remove) {
+                if(!sync_cancelled) {
+                    foreach(var e in medias.entries) {
+                        if(e.value == m) {
+                            remove_media(e.key);
+                            break;
+                        }
+                    }
                 }
-                else {
-                    warning("Could not update %s, no match in sync list. Should have been removed\n", entry.key.title);
-                }
-            }
-            
-            index = (int)(15.0 + (double)(10.0 * (double)((double)sub_index /(double)medias.size)));
-        }
-        
-        message("Adding new medias...\n");
-        
-        // now add all in list that weren't in medias
-        current_operation = "Adding new media to iPod...";
-        sub_index = 0;
-        int new_media_size = 0;
-        var list_to_add = new LinkedList<Noise.Media>();
-        foreach(Noise.Media m in list) {
-            bool found_match = false;
-            foreach(var test in medias.values) {
-                if(test != m && test.title.down() == m.title.down() && test.artist.down() == m.artist.down()) {
-                    found_match = true;
-                    break;
-                }
-            }
-            
-            if(!found_match) {
-                list_to_add.add(m);
-                ++new_media_size;
-            }
-        }
-        
-        // Actually add new items
-        foreach(var m in list_to_add) {
-            if(!sync_cancelled) {
-                add_media(m);
                 ++sub_index;
+                index = (int)(15.0 * (double)((double)sub_index/(double)medias_to_remove.size));
             }
-            
-            index = (int)(25.0 + (double)(50.0 * (double)((double)sub_index/(double)new_media_size)));
+            sub_index = 0;
+            foreach(var m in medias_to_sync) {
+                warning (m.title);
+                if(!sync_cancelled) {
+                    add_media(m);
+                }
+                ++sub_index;
+                index = (int)(15.0 + (double)(75.0 * ((double)sub_index/(double)medias_to_sync.size)));
+            }
+                    
+            if(!sync_cancelled) {
+                // sync playlists
+                index = 90;
+                /* TODO: add support for playlists and podcasts
+                if (pref.sync_all_music == true) {
+                    sync_playlists();
+                }
+                if (pref.sync_all_podcasts == true) {
+                    sync_podcasts();
+                }*/
+                
+                current_operation = _("Finishing sync process...");
+                
+                try {
+                    db.write();
+                }
+                catch(GLib.Error err) {
+                    error_occurred = true;
+                    sync_cancelled = true;
+                }
+                
+                index = 98;
+                
+                /// Clean up unused files
+                message ("Cleaning up iPod File System\n");
+                var music_folder = File.new_for_path(GPod.Device.get_music_dir(get_path()));
+                var used_paths = new LinkedList<string>();
+                foreach(unowned GPod.Track t in medias.keys) {
+                    used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
+                }
+                index = 99;
+                cleanup_files(music_folder, used_paths);
+                
+                index = 101;
+                
+                db.stop_sync();
+            }
+            else {
+                current_operation = _("Cancelling Sync...");
+                try {
+                    db.write();
+                }
+                catch(Error err) {
+                    critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
+                }
+                db.stop_sync();
+                index = total + 1;
+                sync_cancelled = false;
+            }
+        } else {
+                current_operation = _("There is not enough space on Device to complete the Sync...");
         }
-        
-        if(!sync_cancelled) {
-            // sync playlists
-            index = 78;
-            sync_playlists();
-            sync_podcasts();
-            
-            current_operation = "Finishing sync process...";
-            
-            try {
-                db.write();
-            }
-            catch(GLib.Error err) {
-                error_occurred = true;
-                sync_cancelled = true;
-            }
-            
-            index = 98;
-            
-            /// Clean up unused files
-            stdout.printf("Cleaning up iPod File System\n");
-            var music_folder = File.new_for_path(GPod.Device.get_music_dir(get_path()));
-            var used_paths = new LinkedList<string>();
-            foreach(unowned GPod.Track t in medias.keys) {
-                used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
-            }
-            cleanup_files(music_folder, used_paths);
-            
-            index = 101;
-            
-            db.stop_sync();
-        }
-        else {
-            current_operation = "Cancelling Sync...";
-            try {
-                db.write();
-            }
-            catch(Error err) {
-                critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
-            }
-            db.stop_sync();
-            index = total + 1;
-            sync_cancelled = false;
-        }*/
         
         Idle.add( () => {
             pref.last_sync_time = (int)time_t();
@@ -545,11 +463,13 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         if (pref.sync_music == true) {
             if (pref.sync_all_music == true) {
                 foreach (Media m in lm.media ()) {
-                    medias_to_sync.add (m);
+                    if (m != null)
+                        medias_to_sync.add (m);
                 }
             } else {
                 foreach (Media m in lm.playlist_from_name (pref.music_playlist).media ()) {
-                    medias_to_sync.add (m);
+                    if (m != null)
+                        medias_to_sync.add (m);
                 }
             }
         }
@@ -559,15 +479,26 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     public Gee.LinkedList<Noise.Media> delete_doubles (Gee.Collection<Noise.Media> source_list, Gee.Collection<Noise.Media> to_remove) {
         var new_list = new Gee.LinkedList<Noise.Media> ();
         foreach(var m in source_list) {
-            bool needed = true;
-            foreach(var med in to_remove) {
-                if(med.title.down() == m.title.down() && med.artist.down() == m.artist.down() && med.album.down() == m.album.down()) {
-                    needed = false;
-                    break;
+            if (m != null) {
+                bool needed = true;
+                foreach(var med in to_remove) {
+                    if (med != null && med.title != null) {
+                        if (med.album != null && m.album != null) { // If you don't have the album name, don't care of it
+                            if(med.title.down() == m.title.down() && med.artist.down() == m.artist.down() && med.album.down() == m.album.down()) {
+                                needed = false;
+                                break;
+                            }
+                        } else {
+                            if(med.title.down() == m.title.down() && med.artist.down() == m.artist.down()) {
+                                needed = false;
+                                break;
+                            }
+                        }
+                    }
                 }
+                if (needed == true)
+                    new_list.add (m);
             }
-            if (needed == true)
-                new_list.add (m);
         }
         
         return new_list;
@@ -600,7 +531,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
         
         lm.start_file_operations(_("Syncing <b>%s</b>...").printf (getDisplayName ()));
-        current_operation = ("Syncing <b>%s</b>...").printf (getDisplayName ());
+        current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
         lm.lw.update_sensitivities();
         to_add = new HashMap<Noise.Media, unowned GPod.Track>();
         this.list = list;
@@ -678,18 +609,21 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return;
         
         GPod.Track t = iPodMediaHelper.track_from_media (s);
-
         var pix = Noise.CoverartCache.instance.get_cover (s);
         if (pix != null)
             t.set_thumbnails_from_pixbuf (pix);
 
-        current_operation = _("Adding <b>%s</b> by <b>%s</b> to %s").printf(t.title, t.artist, getDisplayName());
-        message("Adding media %s by %s\n", t.title, t.artist);
+        current_operation = _("Adding <b>(title)</b> by <b>(artist)</b> to (device)");
+        current_operation = current_operation.replace ("(title)", t.title ?? "");
+        current_operation = current_operation.replace ("(artist)", t.artist ?? "");
+        current_operation = current_operation.replace ("(device)", getDisplayName() ?? "");
+        debug ("Adding media %s by %s\n", t.title, t.artist);
         db.track_add((owned)t, -1);
         
         unowned GPod.Track added = db.tracks.nth_data(db.tracks.length() - 1);
         
         if(added == null || added.title != s.title) {
+            warning ("%s/vs/%s".printf(added.title, s.title));
             warning("Track was not properly appended. Returning.\n");
             return;
         }
@@ -834,38 +768,46 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     void remove_media(GPod.Track t) {
-        string title = t.title;
-        
-        current_operation = _("Removing <b>%s</b> by <b>%s</b> from %s").printf(t.title, t.artist, getDisplayName());
-        /* first delete it off disk */
+        current_operation = _("Removing <b>(title)</b> by <b>(artist)</b> to (device)");
+        current_operation = current_operation.replace ("(title)", t.title ?? "");
+        current_operation = current_operation.replace ("(artist)", t.artist ?? "");
+        current_operation = current_operation.replace ("(device)", getDisplayName() ?? "");
+        /* first check if the file exists disk */
         if(t.ipod_path != null) {
             var path = Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path));
             var file = File.new_for_path(path);
             
             if(file.query_exists()) {
                 try {
+                    /* check each playlist for the song to remove */
+                    if (db.playlists_number() != 0) {
+                        db.playlist_mpl().remove_track(t);
+                        db.playlist_podcasts().remove_track(t);
+                    }
+                    foreach (unowned GPod.Playlist p in db.playlists) {
+                        if(p.contains_track(t));
+                            p.remove_track(t);
+                    }
+                    foreach (unowned GPod.Playlist p in db.playlists) {
+                        if(p.contains_track(t));
+                            p.remove_track(t);
+                    }
+                    /* Remove from all stored lists */
+                    medias.unset (t, null);
+                    songs.unset (t, null);
+                    t.remove();
                     file.delete();
-                    debug("Successfully removed music file %s from iPod Disk\n", path);
+                    warning ("Successfully removed music file %s from iPod Disk\n", path);
                 }
                 catch(Error err) {
                     warning("Could not delete iPod File at %s. Unused file will remain on iPod: %s\n", path, err.message);
                 }
             }
             else {
-                warning("File not found, could not delete iPod File at %s. File may already be deletedd\n", path);
+                warning("File not found, could not delete iPod File at %s. File may already be deleted\n", path);
             }
         }
         
-        t.remove();
-        
-        db.playlist_mpl().remove_track(t);
-        db.playlist_podcasts().remove_track(t);
-        foreach(unowned GPod.Playlist p in db.playlists) {
-            if(p.contains_track(t));
-                p.remove_track(t);
-        }
-        
-        message("Removed media %s\n", title);
     }
     
     void cleanup_files(GLib.File music_folder, LinkedList<string> used_paths) {
@@ -877,7 +819,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 var file_path = Path.build_path("/", music_folder.get_path(), file_info.get_name());
                 
                 if(file_info.get_file_type() == GLib.FileType.REGULAR && !used_paths.contains(file_path)) { /* delete it, it's unused */
-                    stdout.printf("Deleting unused file %s\n", file_path);
+                    message("Deleting unused file %s\n", file_path);
                     var file = File.new_for_path(file_path);
                     file.delete();
                 }
@@ -890,7 +832,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             }
         }
         catch(GLib.Error err) {
-            stdout.printf("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
+            critical("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
         }
     }
     
@@ -909,9 +851,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     /* should be called from thread */
-    // index = 75 at this point. will go to 95
+    // index = 90 at this point. will go to 95
     private void sync_playlists() {
-        /*current_operation = "Syncing playlists";
+        current_operation = _("Syncing playlists");
         // first remove all playlists from db
         var all_playlists = new LinkedList<unowned GPod.Playlist>();
         foreach(unowned GPod.Playlist p in db.playlists) {
@@ -922,7 +864,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         foreach(unowned GPod.Playlist p in all_playlists) {
             p.remove();
         }
-        index = 78;
+        index = 91;
         
         int sub_index = 0;
         foreach(var playlist in lm.playlists()) {
@@ -931,15 +873,17 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             
             unowned GPod.Playlist added = db.playlists.nth_data(db.playlists.length() - 1);
             foreach(var entry in medias.entries) {
-                Noise.Media match = match_media_to_list (entry.value, lm.media_from_playlist(playlist.rowid));
-                if(match != null) {
-                    added.add_track(entry.key, -1);
-                    ++sub_index;
-                    index = (int)(78.0 + (double)(7.0 * (double)((double)sub_index/(double)lm.playlists().size)));
-                }
+                    foreach(var e in lm.media_from_playlist(playlist.rowid)) {
+                        if(entry.value == e) {
+                            added.add_track(entry.key, -1);
+                            ++sub_index;
+                            index = (int)(78.0 + (double)(7.0 * (double)((double)sub_index/(double)lm.playlists().size)));
+                            break;
+                        }
+                    }
             }
         }
-        index = 85;
+        index = 93;
         sub_index = 0;
         foreach(var smart_playlist in lm.smart_playlists()) {
             GPod.Playlist p = iPodPlaylistHelper.get_gpod_playlist_from_smart_playlist (smart_playlist);
@@ -949,9 +893,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             ++sub_index;
             index = (int)(85.0 + (double)(5.0 * (double)((double)sub_index/(double)lm.smart_playlists().size)));
         }
-        index = 90;
+        index = 94;
         db.spl_update_live();
-        index = 95;*/
+        index = 95;
     }
     
     public bool transfer_to_library(LinkedList<Noise.Media> tr_list) {
@@ -969,8 +913,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
         
         this.list = tr_list;
-        lm.start_file_operations(_("Importing <b>%s</b> by <b>%s</b> to library...").printf((list.size > 1) ? list.size.to_string() : (list.get(0)).title,(list.size > 1) ? list.size.to_string() : (list.get(0)).artist));
-        current_operation = _("Importing <b>%s</b> by <b>%s</b> to library...").printf((list.size > 1) ? list.size.to_string() : (list.get(0)).title,(list.size > 1) ? list.size.to_string() : (list.get(0)).artist);
+        current_operation = _("Importing <b>(title)</b> by <b>(artist)</b> to library...");
+        current_operation = current_operation.replace ("(title)", (list.size > 1) ? list.size.to_string() : (list.get(0)).title ?? "");
+        current_operation = current_operation.replace ("(artist)", (list.size > 1) ? list.size.to_string() : (list.get(0)).artist ?? "");
+        lm.start_file_operations(current_operation);
         
         Threads.add (transfer_medias_thread);
         
@@ -998,7 +944,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 copy.date_added = (int)time_t();
                 lm.add_media_item (copy);
                 
-                current_operation = _("Importing <b>%s</b> by <b>%s</b> to library...").printf(copy.title, copy.artist);
+                current_operation = _("Importing <b>(title)</b> by <b>(artist)</b> to library...");
+                current_operation = current_operation.replace ("(title)", copy.title ?? "");
+                current_operation = current_operation.replace ("(artist)", copy.artist ?? "");
                 lm.fo.update_file_hierarchy (copy, false, false);
             }
             else {

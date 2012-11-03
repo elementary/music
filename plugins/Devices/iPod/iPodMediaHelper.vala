@@ -26,14 +26,14 @@ public class Noise.Plugins.iPodMediaHelper {
 		Media rv = new Media("file://" + Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
 		
 		rv.isTemporary = true;
-		if(track.title != "") {			rv.title = track.title; }
-		if(track.artist != "") {			rv.artist = track.artist; }
-		if(track.albumartist != "") {		rv.album_artist = track.albumartist; }
-		if(track.album != "") {			rv.album = track.album; }
-		if(track.genre != "") {			rv.genre = track.genre; }
-		if(track.comment != "") {			rv.comment = track.comment; }
-		if(track.composer != "") {		rv.composer = track.composer; }
-		if(track.grouping != "") {		rv.grouping = track.grouping; }
+		/*if(track.title != "") {			*/rv.title = track.title; //}
+		/*if(track.artist != "") {*/			rv.artist = track.artist; //}
+		/*if(track.albumartist != "") {*/		rv.album_artist = track.albumartist; //}
+		/*if(track.album != "") {*/			rv.album = track.album; //}
+		/*if(track.genre != "") {*/			rv.genre = track.genre; //}
+		/*if(track.comment != "") {*/			rv.comment = track.comment; //}
+		/*if(track.composer != "") {*/		rv.composer = track.composer; //}
+		/*if(track.grouping != "") {*/		rv.grouping = track.grouping; //}
 		rv.album_number = track.cd_nr;
 		rv.album_count = track.cds;
 		rv.track = track.track_nr;
@@ -82,28 +82,28 @@ public class Noise.Plugins.iPodMediaHelper {
 		if(t == null)
 			return;
 
-		if (m.title != null && m.title != "")
+		//if (m.title != null)
 		    t.title = m.title;
 
-		if (m.artist != null && m.artist != "")
+		//if (m.artist != null)
 		    t.artist = m.artist;
 
-		if (m.album_artist != null && m.album_artist != "")
+		//if (m.album_artist != null)
 		    t.albumartist = m.album_artist;
 
-		if (m.album != null && m.album != "")
+		//if (m.album != null)
 		    t.album = m.album;
 
-		if (m.genre != null && m.genre != "")
+		//if (m.genre != null)
 		    t.genre = m.genre;
 
-		if (m.comment != null && m.comment != "")
+		//if (m.comment != null)
 		    t.comment = m.comment;
 
-		if (m.composer != null && m.composer != "")
+		//if (m.composer != null)
 		    t.composer = m.composer;
 
-		if (m.grouping != null && m.grouping != "")
+		//if (m.grouping != null)
 		    t.grouping = m.grouping;
 
 		t.cd_nr = (int)m.album_number;
