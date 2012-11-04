@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-11-02 23:52+0100\n"
-"PO-Revision-Date: 2012-11-02 23:10+0000\n"
+"PO-Revision-Date: 2012-11-03 16:51+0000\n"
 "Last-Translator: Julien <dejulienassecamper@gmail.com>\n"
 "Language-Team: Luxembourgish <lb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-03 05:29+0000\n"
+"X-Launchpad-Export-Date: 2012-11-04 05:18+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -134,7 +134,7 @@ msgstr "Radiostatioun"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "Flaach"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
@@ -216,7 +216,7 @@ msgstr "Dateien ginn bäi d'Sammlung derbäigemaach ..."
 #: /home/noelco/noise/po/../src//LibraryManager.vala:314
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr ""
+msgstr "Musek vun %s bäi d'Sammlung derbäimaachen"
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:342
 msgid "Rescanning music for changes. This may take a while..."
@@ -241,7 +241,7 @@ msgstr "Nie Ofgespillt"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:455
 msgid "Over Played"
-msgstr ""
+msgstr "Oft Ofgespillt"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
 msgid "Not Recently Played"
@@ -283,7 +283,7 @@ msgstr "%i Dateie konnte net fonnt ginn. Wat géigt dir gäre maachen?"
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "Musekuerdner wielen"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
@@ -367,11 +367,11 @@ msgstr "Kënschtler iwwerpréiwen"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
-msgstr ""
+msgstr "Playlist exportéieren"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr ""
+msgstr "Musekuerdner festleeën"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
@@ -381,7 +381,7 @@ msgstr "Ofbriechen"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "Musekuerdner festleeën?"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
@@ -389,17 +389,19 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Sidd dir sëcher dass dir de Musekuerdner op %s festleeë wëllt? Dëst wäert är "
+"gesamt Sammlung zeréck setzen an all är Playliste läschen."
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Intelligente Playlist-Editor"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
 msgid "Name of Playlist"
-msgstr ""
+msgstr "Numm vun der Playlist"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
@@ -484,7 +486,7 @@ msgstr "Längt"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Playcount"
-msgstr ""
+msgstr "Ofspillzieler"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:201
@@ -493,7 +495,7 @@ msgstr "Bewäertung"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Skipcount"
-msgstr ""
+msgstr "Iwwersprongszieler"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:200
@@ -539,50 +541,50 @@ msgstr "Sekonnen"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:410
 msgid "days ago"
-msgstr ""
+msgstr "Deeg virdrun"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:414
 msgid "kbps"
-msgstr ""
+msgstr "kbps"
 
 #: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:83
 msgid "Equalizer"
-msgstr ""
+msgstr "Equalizer"
 
 #: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:150
 msgid "Save preset"
-msgstr ""
+msgstr "Virastellung speicheren"
 
 #: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:414
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (Benotzerdefinéiert)"
 
 #: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (Benotzerdefinéiert %i)"
 
 #: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:420
 msgid "Custom Preset"
-msgstr ""
+msgstr "Benotzerdefinéiert Virastellung"
 
 #: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Benotzerdefinéiert Virastellung %i"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
-msgstr ""
+msgstr "Medien an d'Sammlung importéieren"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Weider synchroniséieren"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Ophalen ze synchroniséieren"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
@@ -590,25 +592,28 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Wann dir weider synchroniséiert, ginn all medie vun %s ewechgemaach, well se "
+"net op der Synchronisatiounslëscht. Géingt dir se gären fir d'éischt an "
+"d'Sammlung importéieren."
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "D'Synchronisatioun wäert %i Elementer vun %s ewechmaachen."
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "D'Synchronisatioun wäert 1 Element vun %s ewechmaachen."
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:192
 msgid "Preferences"
-msgstr ""
+msgstr "Astellungen"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
 msgid "General"
-msgstr ""
+msgstr "Allgemeng"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:244
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
@@ -617,126 +622,130 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:251
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Uert vum Musekuerdner"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:259
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Dir musst op d'Enn vun Dateioperatiounen waarden, éier dir de Musekuerdner "
+"festleeë kënnt"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:274
 msgid "Keep Music folder organized"
-msgstr ""
+msgstr "Musekuerdner organiséiert halen"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:275
 msgid "Copy files to Music folder when adding to Library"
 msgstr ""
+"Dateie beim Derbäimaachen bäi d'Sammlung an de Musekuerdner kopéieren"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:277
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Metadaten an Datei schreiwen"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:289
 msgid "Library Management"
-msgstr ""
+msgstr "Sammlungsverwaltung"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:296
 msgid "Use Noise as the default Music application"
-msgstr ""
+msgstr "Noise als standard Musekspiller verwenden"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:302
 msgid "Show notifications"
-msgstr ""
+msgstr "Benorichtegungen uweisen"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:309
 msgid "Minimize window instead of closing it when a song is being played"
 msgstr ""
+"Fenster miniméieren amplaz ze schléissen, wann e Lidd ofgespillt gëtt"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:311
 msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
+msgstr "Fenster verstoppen amplaz ze schléissen, wann e Lidd ofgespillt gëtt"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:317
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Desktop Integratioun"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
 msgid "Metadata"
-msgstr ""
+msgstr "Metadaten"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:83
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:379
 msgid "Lyrics"
-msgstr ""
+msgstr "Liddtext"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:179
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "Beaarbechten %s vun %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "Beaarbechten %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:184
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "Beaarbechten %i Lidder"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:192
 msgid "Album Artist"
-msgstr ""
+msgstr "Album Kënschtler"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:198
 msgid "Track"
-msgstr ""
+msgstr "Nr."
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:199
 msgid "Disc"
-msgstr ""
+msgstr "Disque"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:203
 msgid "Media Type"
-msgstr ""
+msgstr "Medientyp"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:298
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Kee Liddtext fir %s fonnt"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:541
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
 msgid "Song"
-msgstr ""
+msgstr "Lidd"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:543
 msgid "Podcast"
-msgstr ""
+msgstr "Podcast"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 msgid "Move to Trash"
-msgstr ""
+msgstr "An d'Dreckskëscht geheien"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "Vun %s läschen"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr ""
+msgstr "%d Lidder vun %s läschen"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "\"%s\" vun %s läschen"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
 #, c-format
@@ -747,17 +756,21 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"Dëst wäert d'Lidd vun ärer Sammlung a vun all Geréit dat automatesch mat %s "
+"synchroniséiert läschen."
 msgstr[1] ""
+"Dëst wäert d'Lidder vun ärer Sammlung a vun all Geréit dat automatesch mat "
+"%s synchroniséiert läschen."
 
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
-msgstr ""
+msgstr "Net importéiert Dateien"
 
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:64
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "%d Elementer konnte net vun %s importéiert ginn"
 
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format

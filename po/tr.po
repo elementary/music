@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-02 23:52+0100\n"
-"PO-Revision-Date: 2012-11-01 23:34+0000\n"
+"PO-Revision-Date: 2012-11-03 15:28+0000\n"
 "Last-Translator: Ferhat TUNÇTAN <ferhattnctn66@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-11-03 05:29+0000\n"
+"X-Launchpad-Export-Date: 2012-11-04 05:18+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 "Language: tr\n"
 
@@ -579,7 +579,7 @@ msgstr "Senkronize etmeye devam et"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
-msgstr "Senkronizeyi durdur"
+msgstr "Senkronize etmeyi durdur"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
@@ -587,18 +587,18 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Eşitlemeye devam ederseniz, ortam eşitleme listesinde olmadığı için %s'den "
-"çıkarılacak. Öncelikle onları kütüphaneye almak ister misiniz?"
+"Senkronize etmeye devam ederseniz, ortam senkronize listesinde olmadığı için "
+"%s'den çıkarılacak. Öncelikle onları kütüphaneye almak ister misiniz?"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr "Eşitleme %i öğelerini %s'den çıkaracak"
+msgstr "Senkronize etme %i öğelerini %s'den çıkaracak"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr "Eşitleme 1 öğeyi %s'den çıkaracak"
+msgstr "Senkronize etme 1 öğeyi %s'den çıkaracak"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:192
@@ -826,7 +826,7 @@ msgstr "Kütüphaneye medya ekle"
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:74
 #: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:237
 msgid "Sync"
-msgstr "Eşitle"
+msgstr "Senkronize et"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:77
 msgid "Eject"
@@ -885,7 +885,7 @@ msgstr "Müzik"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:585
 msgid "This device is syncing"
-msgstr "Cihaz senkronize oluyor"
+msgstr "Bu cihaz senkronize ediliyor"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:585
 msgid "Please wait until the current sync is finished to do this action."
@@ -1071,11 +1071,12 @@ msgstr "%s kütüphanenize eklendi."
 
 #: /home/noelco/noise/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
-msgstr "Senkronizeyi durdur"
+msgstr "Senkronize etme durduruluyor"
 
 #: /home/noelco/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr "Cihaz eşleşmesi iptal edildi.Bu ortamdan sonra işlem durdurulacak."
+msgstr ""
+"Cihaz senkronizasyonu iptal edildi.Bu ortamdan sonra işlem durdurulacak."
 
 #: /home/noelco/noise/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
@@ -1477,8 +1478,8 @@ msgstr "Senkronizasyon Başarısız"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"%s adlı oynatma listesi %s cihazıyla eşleşmek için kullanılıyordu ama "
-"bulunamadı."
+"%s adlı oynatma listesi %s cihazıyla senkronize edilmek için kullanılıyordu "
+"ama bulunamadı."
 
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:606
@@ -1705,27 +1706,28 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:510
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr "<b>%s</b> eşzamanlanıyor..."
+msgstr "<b>%s</b> senkronize ediliyor..."
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:392
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:540
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:704
 msgid "Finishing sync process..."
-msgstr "Eşitleme işlemi tamamlanıyor..."
+msgstr "Senkronizasyon işlemi tamamlanıyor..."
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:418
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:558
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:721
 msgid "Cancelling Sync..."
-msgstr "Eşitleme iptal ediliyor..."
+msgstr "Senkronizasyon iptal ediliyor..."
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:430
 msgid "There is not enough space on Device to complete the Sync..."
 msgstr ""
+"Cihazda senkronizasyon işleminin tamamlanabilmesi için yeterli alan yok..."
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:592
 msgid "Adding <b>(title)</b> by <b>(artist)</b> to (device)"
-msgstr ""
+msgstr "Ekleniyor: (cihaz)'a <b>(sanatçı)</b> tarafından <b>(başlık)</b>"
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:658
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:659
@@ -1735,12 +1737,13 @@ msgstr "<b>%s</b>den çıkarılıyor..."
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:748
 msgid "Removing <b>(title)</b> by <b>(artist)</b> to (device)"
-msgstr ""
+msgstr "Kaldırılıyor (cihaz)'a <b>(sanatçı)</b> tarafından <b>(başlık)</b>"
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:884
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:915
 msgid "Importing <b>(title)</b> by <b>(artist)</b> to library..."
 msgstr ""
+"İçe aktarılıyor: (cihaz)'a <b>(sanatçı)</b> tarafından <b>(başlık)</b>"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
@@ -2017,11 +2020,3 @@ msgstr "Last.fm bütünleşmesi"
 
 #~ msgid "Skips"
 #~ msgstr "Atlamalar"
-
-#, c-format
-#~ msgid "Adding <b>%s</b> by <b>%s</b> to %s"
-#~ msgstr "%s'ye <b>%s</b> tarafından <b>%s</b> ekleniyor"
-
-#, c-format
-#~ msgid "Removing <b>%s</b> by <b>%s</b> from %s"
-#~ msgstr "%s'den <b>%s</b> tarafından <b>%s</b> kaldırılıyor"

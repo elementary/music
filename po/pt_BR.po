@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-11-03 05:30+0000\n"
+"X-Launchpad-Export-Date: 2012-11-04 05:18+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -2092,11 +2092,3 @@ msgstr "Integração com o Last.fm"
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Baixar novos episódios"
-
-#, c-format
-#~ msgid "Adding <b>%s</b> by <b>%s</b> to %s"
-#~ msgstr "Adicionando <b>%s</b> por <b>%s</b> para %s"
-
-#, c-format
-#~ msgid "Removing <b>%s</b> by <b>%s</b> from %s"
-#~ msgstr "Removendo <b>%s</b> por <b>%s</b> de %s"
