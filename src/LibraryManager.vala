@@ -581,18 +581,22 @@ public class Noise.LibraryManager : Object {
     }
 
     private async void update_smart_playlists_async () {
-        Idle.add (update_smart_playlists_async.callback);
-        yield;
+        SourceFunc callback = update_smart_playlists_async.callback;
 
-        // analyze () sets the matching media as the playlist's media,
-        // so we have to pass the entire media list.
-        lock (_smart_playlists) {
-            foreach (var p in smart_playlists ()) {
-                lock (_media) {
-                    p.analyze (this, media ());
+        Threads.add (() => {
+            lock (_smart_playlists) {
+                foreach (var p in smart_playlists ()) {
+                    lock (_media) {
+                        p.analyze (this, media ());
+                    }
                 }
             }
-        }
+            Idle.add ((owned) callback);
+        });
+
+        yield;
+
+
     }
 
     public int media_count () {
@@ -739,10 +743,10 @@ public class Noise.LibraryManager : Object {
 
                 _media.set (s.rowid, s);
             }
+            media_added (added);
         }
 
         dbm.add_media (new_media);
-
         update_smart_playlists_async.begin ();
     }
 
@@ -808,10 +812,6 @@ public class Noise.LibraryManager : Object {
     public void finish_file_operations () {
         _doing_file_operations = false;
         debug ("file operations finished or cancelled\n");
-
-        // FIXME: THESE ARE Library Window's internals!
-        lw.update_sensitivities ();
-        lw.updateInfoLabel ();
 
         file_operations_done ();
 

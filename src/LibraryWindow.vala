@@ -991,6 +991,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
         else {
             library_manager.set_music_folder (folder);
+            resetSideTree (true);
         }
     }
 

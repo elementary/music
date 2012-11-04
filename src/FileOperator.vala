@@ -402,7 +402,7 @@ public class Noise.FileOperator : Object {
 		
 		// if doing import and copy to music folder is enabled, do copy here
 		if((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && Settings.Main.instance.copy_imported_music) {
-			fo_progress("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
+			fo_progress(_("<b>Copying</b> files to <b>Music Folder</b>..."), 0.0);
 			
 		    Threads.add (copy_imports_thread);
 		}

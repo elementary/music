@@ -221,6 +221,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         lw.searchField.set_text (get_search_string ());
 
         // Insensitive if there's no media to search
+        
         bool has_media = media_count > 0;
         lw.searchField.set_sensitive (has_media);
 
@@ -377,7 +378,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             return false;
 
         bool have_media = media_count > 0;
-
+        warning ("%d", media_count);
         // show alert or welcome screen if there's no media
         if (have_media) {
             select_proper_content_view ();
