@@ -97,6 +97,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         App.player.player.end_of_stream.connect (end_of_stream);
         App.player.player.current_position_update.connect (current_position_update);
+        App.player.player.error_occured.connect (error_occured);
         App.player.media_played.connect_after (media_played);
         App.player.playback_stopped.connect (playback_stopped);
 
@@ -391,20 +392,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         secondary_text.append ("\n");
         secondary_text.append (media.get_display_album ());
 
-        Gdk.Pixbuf? pixbuf = null;
-
-        try {
-            var file = CoverartCache.instance.get_cached_image_file (media);
-            if (file != null)
-                pixbuf = yield PixbufUtils.get_pixbuf_from_file_at_scale_async (file,
-                                                                                64, 64,
-                                                                                true,
-                                                                                notification_cancellable);
-        } catch (Error err) {
-            // Media often doesn't have an associated album art,
-            // so we shouldn't treat this as an unexpected error.
-            message (err.message);
-        }
+        Gdk.Pixbuf? pixbuf = CoverartCache.instance.get_original_cover (media).scale_simple (128, 128, Gdk.InterpType.HYPER);
 
         if (!notification_cancellable.is_cancelled ()) {
 #if HAVE_LIBNOTIFY
@@ -997,6 +985,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public virtual void end_of_stream() {
         nextClicked();
+    }
+
+    public virtual void error_occured () {
+        if(App.player.media_active) {
+            play_media ();
+        }
     }
 
     public virtual void current_position_update (int64 position) {

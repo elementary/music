@@ -34,12 +34,14 @@ public class Noise.Streamer : GLib.Object {
 	public signal void end_of_stream();
 	public signal void current_position_update(int64 position);
 	public signal void media_not_found();
+	public signal void error_occured();
 	
 	public Streamer () {
 		pipe = new Noise.Pipeline();
 
 		pipe.bus.add_watch(busCallback);
 		//pipe.playbin.about_to_finish.connect(about_to_finish);
+		
 
 		Timeout.add (200, doPositionUpdate);
 	}
@@ -72,7 +74,8 @@ public class Noise.Streamer : GLib.Object {
 	public void setURI(string uri) {
 		setState(State.READY);
 		debug("set uri to %s\n", uri);
-		pipe.playbin.uri = uri.replace("#", "%23");
+		//pipe.playbin.uri = uri.replace("#", "%23");
+		pipe.playbin.set_property ("uri", uri.replace("#", "%23"));
 
 		setState(State.PLAYING);
 		
@@ -136,7 +139,7 @@ public class Noise.Streamer : GLib.Object {
 			string debug;
 			message.parse_error (out err, out debug);
 			warning ("Error: %s\n", err.message);
-			
+			error_occured();
 			break;
 		case Gst.MessageType.ELEMENT:
 			if(message.get_structure() != null && is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
@@ -173,7 +176,7 @@ public class Noise.Streamer : GLib.Object {
 						if (pieces.length >= 2) {
 							string old_title = App.player.media_info.media.title;
 							string old_artist = App.player.media_info.media.artist;
-							App.player.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
+							App.player.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : _("Unknown Artist");
 							App.player.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
 							
 							if ((old_title != App.player.media_info.media.title || old_artist != App.player.media_info.media.artist) && (App.player.media_info.media != null))

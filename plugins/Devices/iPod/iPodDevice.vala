@@ -45,8 +45,6 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     HashMap<unowned GPod.Playlist, Noise.Playlist> playlists;
     HashMap<unowned GPod.Playlist, Noise.SmartPlaylist> smart_playlists;
     
-    HashMap<Noise.Media, unowned GPod.Track> to_add; // used to add all new songs at the end when idle
-    
     public iPodDevice(Noise.LibraryManager lm, Mount mount) {
         this.lm = lm;
         this.mount = mount;
@@ -65,7 +63,6 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         audiobooks = new HashMap<unowned GPod.Track, Noise.Media>();
         playlists = new HashMap<unowned GPod.Playlist, Noise.Playlist>();
         smart_playlists = new HashMap<unowned GPod.Playlist, Noise.SmartPlaylist>();
-        to_add = new HashMap<Noise.Media, unowned GPod.Track>();
     }
     
     public Noise.DevicePreferences get_preferences() {
@@ -74,10 +71,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     
     public bool start_initialization() {
         try {
-            db = iTunesDB.parse(get_path());
+            db = iTunesDB.parse(mount.get_default_location().get_path());
         }
         catch(Error err) {
-            critical("Error parsing db at %s: %s\n", get_path(), err.message);
+            critical("Error parsing db at %s: %s\n", get_uri(), err.message);
             return false;
         }
         
@@ -89,58 +86,85 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             
         });
         
-        Threads.add (finish_initialization_thread);
+        finish_initialization_thread ();
     }
     
-    void finish_initialization_thread() {
-        // get all songs first
-        for(int i = 0; i < db.tracks.length(); ++i) {
-            unowned GPod.Track t = db.tracks.nth_data(i);
-            //message("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
-            var m = iPodMediaHelper.media_from_track (get_path(), t);
-            
-            this.medias.set(t, m);
-            if(t.mediatype == GPod.MediaType.AUDIO)
-                this.songs.set(t, m);
-            else if(t.mediatype == GPod.MediaType.PODCAST || t.mediatype == 0x00000006) // 0x00000006 = video podcast
-                this.podcasts.set(t, m);
-            else if(t.mediatype == GPod.MediaType.AUDIOBOOK)
-                this.audiobooks.set(t, m);
-        }
-        sync_finished (true);
-        
-        
-        //lock(lm._medias) {
-            //lm.add_medias(trToSo, false);
-        //}
-        
-        // TODO: create support for playlists
-        /*foreach (unowned GPod.Playlist p in db.playlists) {
-            
-            if(!p.is_spl) {
-                Playlist bbPlaylist = Playlist.from_ipod(p);
-                
-                foreach(unowned GPod.Track t in medias.keys) {
-                    if(p.contains_track(t)) {
-                        bbPlaylist.addMedia(medias.get(t));
+    async void finish_initialization_thread() {
+    
+        Threads.add (() => {
+            // get all songs first
+            for(int i = 0; i < db.tracks.length(); ++i) {
+                unowned GPod.Track t = db.tracks.nth_data(i);
+                //message("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
+                var m = iPodMediaHelper.media_from_track (get_uri(), t);
+                if (m.file_exists && !this.medias.has(t, m)) {
+                    if(t.mediatype == GPod.MediaType.AUDIO) {
+                        this.songs.set(t, m);
+                        this.medias.set(t, m);
+                    } else if(t.mediatype == GPod.MediaType.PODCAST || t.mediatype == 0x00000006) { // 0x00000006 = video podcast
+                        this.podcasts.set(t, m);
+                        this.medias.set(t, m);
+                    } else if(t.mediatype == GPod.MediaType.AUDIOBOOK || t.mediatype == 12) {
+                        this.audiobooks.set(t, m);
+                        this.medias.set(t, m);
+                    } else if(t.mediatype == GPod.MediaType.MUSICVIDEO) {
+                        warning("musicvideo");
+                    } else if(t.mediatype == GPod.MediaType.TVSHOW) {
+                        warning("tvshow");
+                    } else if(t.mediatype == GPod.MediaType.RINGTONE) {
+                        warning("ringtone");
+                    } else if(t.mediatype == GPod.MediaType.RENTAL) {
+                        warning("rental");
+                    } else if(t.mediatype == GPod.MediaType.ITUNES_EXTRA) {
+                        warning("itunes_extra");
+                    } else if(t.mediatype == GPod.MediaType.MEMO) {
+                        warning("memo");
+                    } else if(t.mediatype == GPod.MediaType.ITUNES_U) {
+                        warning("itunes_u");
+                    } else if(t.mediatype == GPod.MediaType.EPUB_BOOK) {
+                        warning("epub");
+                    } else {
+                        warning ("%u", t.mediatype);
                     }
                 }
-                
-                lm.add_playlist(bbPlaylist);
-                playlists.set(p, bbPlaylist.rowid);
             }
-            else {
-                Noise.SmartPlaylist sp = Noise.SmartPlaylist.from_ipod(p);
-                
-                
-            }
-        }*/
-        
-        Idle.add( () => {
-            initialized(this);
+            sync_finished (true);
             
-            return false;
+            
+            //lock(lm._medias) {
+                //lm.add_medias(trToSo, false);
+            //}
+            
+            // TODO: create support for playlists
+            /*foreach (unowned GPod.Playlist p in db.playlists) {
+                
+                if(!p.is_spl) {
+                    Playlist bbPlaylist = Playlist.from_ipod(p);
+                    
+                    foreach(unowned GPod.Track t in medias.keys) {
+                        if(p.contains_track(t)) {
+                            bbPlaylist.addMedia(medias.get(t));
+                        }
+                    }
+                    
+                    lm.add_playlist(bbPlaylist);
+                    playlists.set(p, bbPlaylist.rowid);
+                }
+                else {
+                    Noise.SmartPlaylist sp = Noise.SmartPlaylist.from_ipod(p);
+                    
+                    
+                }
+            }*/
+
+            Idle.add( () => {
+                initialized(this);
+                
+                return false;
+            });
         });
+
+        yield;
     }
     
     public bool isNew() {
@@ -199,8 +223,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         return mount;
     }
     
-    public string get_path() {
-        return mount.get_default_location().get_path();
+    public string get_uri() {
+        return mount.get_default_location().get_uri();
     }
     
     public void set_icon(Gdk.Pixbuf icon) {
@@ -215,7 +239,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         uint64 rv = 0;
         
         try {
-            var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+            var file_info = File.new_for_uri(get_uri()).query_filesystem_info("filesystem::*", null);
             rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_SIZE);
         }
         catch(Error err) {
@@ -237,7 +261,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         uint64 rv = 0;
         
         try {
-            var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+            var file_info = File.new_for_uri(get_uri()).query_filesystem_info("filesystem::*", null);
             rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_FREE);
         }
         catch(Error err) {
@@ -303,14 +327,18 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()));
-        current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
-        lm.lw.update_sensitivities();
-        to_add = new HashMap<Noise.Media, unowned GPod.Track>();
-        this.list = list;
-        
-        Threads.add (sync_medias_thread);
-        
+        if (lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()))) {
+            current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
+            lm.lw.update_sensitivities();
+            this.list = list;
+            
+            currently_syncing = true;
+            index = 0;
+            total = 100;
+            Timeout.add(500, doProgressNotificationWithTimeout);
+            
+            sync_medias_thread ();
+        }
         return true;
     }
     
@@ -355,108 +383,109 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
     }
     
-    void sync_medias_thread() {
-        currently_syncing = true;
-        bool error_occurred = false;
-        index = 0;
-        int sub_index = 0;
-        total = 100;
-        Timeout.add(500, doProgressNotificationWithTimeout);
+    private async void sync_medias_thread () {
         
-        message("Found %d medias to sync.", list_to_sync ().size);
-        Gee.LinkedList<Noise.Media> medias_to_remove = delete_doubles (songs.values, list_to_sync ());
-        message("Found %d medias to remove.", medias_to_remove.size);
-        Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list_to_sync (), songs.values);
-        message("Found %d medias to add.", medias_to_sync.size);
-        int total_medias = medias_to_remove.size + medias_to_sync.size;
-        
-        if (will_fit_without(medias_to_sync, medias_to_remove)) {
-            db.start_sync();
-            foreach(var m in medias_to_remove) {
-                if(!sync_cancelled) {
-                    foreach(var e in medias.entries) {
-                        if(e.value == m) {
-                            remove_media(e.key);
-                            break;
+        Threads.add (() => {
+            bool error_occurred = false;
+            int sub_index = 0;
+            
+            message("Found %d medias to sync.", list_to_sync ().size);
+            Gee.LinkedList<Noise.Media> medias_to_remove = delete_doubles (songs.values, list_to_sync ());
+            message("Found %d medias to remove.", medias_to_remove.size);
+            Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list_to_sync (), songs.values);
+            message("Found %d medias to add.", medias_to_sync.size);
+            int total_medias = medias_to_remove.size + medias_to_sync.size;
+            
+            if (total_medias > 0) {
+                if (will_fit_without(medias_to_sync, medias_to_remove)) {
+                    db.start_sync();
+                    foreach(var m in medias_to_remove) {
+                        if(!sync_cancelled) {
+                            foreach(var e in medias.entries) {
+                                if(e.value == m) {
+                                    remove_media(e.key);
+                                    break;
+                                }
+                            }
                         }
+                        ++sub_index;
+                        index = (int)(85.0 * (double)((double)sub_index/(double)total_medias));
                     }
+                    sub_index = 0;
+                    foreach(var m in medias_to_sync) {
+                        if(!sync_cancelled) {
+                            add_media(m);
+                        }
+                        ++sub_index;
+                        index = (int)(85.0 * ((double)sub_index/(double)total_medias));
+                    }
+                            
+                    if(!sync_cancelled) {
+                        // sync playlists
+                        index = 90;
+                        /* TODO: add support for podcasts & playlists
+                        if (pref.sync_all_music == true) {
+                            sync_playlists();
+                        }
+                        if (pref.sync_all_podcasts == true) {
+                            sync_podcasts();
+                        }*/
+                        
+                        current_operation = _("Finishing sync process...");
+                        
+                        try {
+                            db.write();
+                        }
+                        catch(GLib.Error err) {
+                            error_occurred = true;
+                            sync_cancelled = true;
+                        }
+                        
+                        index = 98;
+                        
+                        /// Clean up unused files
+                        message ("Cleaning up iPod File System\n");
+                        var music_folder = File.new_for_uri(get_uri () + GPod.Device.get_music_dir(mount.get_default_location().get_path()).replace (mount.get_default_location().get_path(), ""));
+                        var used_paths = new LinkedList<string>();
+                        foreach(unowned GPod.Track t in medias.keys) {
+                            used_paths.add(get_uri() + GPod.iTunesDB.filename_ipod2fs(t.ipod_path));
+                        }
+                        index = 99;
+                        cleanup_files(music_folder, used_paths);
+                        index = 101;
+                        
+                        db.stop_sync();
+                    } else {
+                        current_operation = _("Cancelling Sync...");
+                        try {
+                            db.write();
+                        } catch(Error err) {
+                            critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
+                        }
+                        db.stop_sync();
+                        index = total + 1;
+                    }
+                } else {
+                        infobar_message (_("There is not enough space on Device to complete the Sync..."), Gtk.MessageType.INFO);
+                        current_operation = _("There is not enough space on Device to complete the Sync...");
                 }
-                ++sub_index;
-                index = (int)(85.0 * (double)((double)sub_index/(double)total_medias));
             }
-            sub_index = 0;
-            foreach(var m in medias_to_sync) {
-                if(!sync_cancelled) {
-                    add_media(m);
-                }
-                ++sub_index;
-                index = (int)(85.0 * ((double)sub_index/(double)total_medias));
-            }
-                    
-            if(!sync_cancelled) {
-                // sync playlists
-                index = 90;
-                /* TODO: add support for podcasts & playlists
-                if (pref.sync_all_music == true) {
-                    sync_playlists();
-                }
-                if (pref.sync_all_podcasts == true) {
-                    sync_podcasts();
-                }*/
-                
-                current_operation = _("Finishing sync process...");
-                
-                try {
-                    db.write();
-                }
-                catch(GLib.Error err) {
-                    error_occurred = true;
-                    sync_cancelled = true;
-                }
-                
-                index = 98;
-                
-                /// Clean up unused files
-                message ("Cleaning up iPod File System\n");
-                var music_folder = File.new_for_path(GPod.Device.get_music_dir(get_path()));
-                var used_paths = new LinkedList<string>();
-                foreach(unowned GPod.Track t in medias.keys) {
-                    used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
-                }
-                index = 99;
-                cleanup_files(music_folder, used_paths);
-                
-                index = 101;
-                
-                db.stop_sync();
-            }
-            else {
-                current_operation = _("Cancelling Sync...");
-                try {
-                    db.write();
-                }
-                catch(Error err) {
-                    critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
-                }
-                db.stop_sync();
+
+            Idle.add( () => {
                 index = total + 1;
+                pref.last_sync_time = (int)time_t();
+                currently_syncing = false;
+                
+                sync_finished(!sync_cancelled);
+                lm.finish_file_operations();
+                lm.lw.update_sensitivities();
                 sync_cancelled = false;
-            }
-        } else {
-                infobar_message (_("There is not enough space on Device to complete the Sync..."), Gtk.MessageType.INFO);
-                current_operation = _("There is not enough space on Device to complete the Sync...");
-        }
-        
-        Idle.add( () => {
-            pref.last_sync_time = (int)time_t();
-            currently_syncing = false;
-            
-            sync_finished(!sync_cancelled);
-            lm.finish_file_operations();
-            
-            return false;
+                
+                return false;
+            });
         });
-        
+
+        yield;
     }
     
     public Gee.LinkedList<Noise.Media> list_to_sync () {
@@ -531,77 +560,82 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        lm.start_file_operations(_("Syncing <b>%s</b>...").printf (getDisplayName ()));
-        current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
-        lm.lw.update_sensitivities();
-        to_add = new HashMap<Noise.Media, unowned GPod.Track>();
-        this.list = list;
-        
-        Threads.add (add_medias_thread);
+        if (lm.start_file_operations(_("Syncing <b>%s</b>...").printf (getDisplayName ()))) {
+            current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
+            lm.lw.update_sensitivities();
+            this.list = list;
+            
+            currently_syncing = true;
+            index = 0;
+            total = list.size + 2;
+            Timeout.add(500, doProgressNotificationWithTimeout);
+            add_medias_thread ();
+        }
         
         return true;
     }
     
-    void add_medias_thread() {
-        currently_syncing = true;
-        bool error_occurred = false;
-        index = 0;
-        total = list.size + 2;
-        Timeout.add(500, doProgressNotificationWithTimeout);
+    async void add_medias_thread() {
         
-        db.start_sync();
-        
-        ++index;
-        
-        // Actually add new items
-        foreach(var m in list) {
-            if(!sync_cancelled) {
-                add_media(m);
-                ++index;
-            }
-        }
-        
-        if(!sync_cancelled) {
-            current_operation = _("Finishing sync process...");
+        Threads.add (() => {
+            bool error_occurred = false;
+            db.start_sync();
             
             ++index;
             
-            try {
-                db.write();
-            }
-            catch(GLib.Error err) {
-                critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
-                error_occurred = true;
-                sync_cancelled = true;
-            }
-            
-            index = total + 1;
-            
-            db.stop_sync();
-        }
-        else {
-            current_operation = _("Cancelling Sync...");
-            
-            try {
-                db.write();
-            }
-            catch(Error err) {
-                critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
+            // Actually add new items
+            foreach(var m in list) {
+                if(!sync_cancelled) {
+                    add_media(m);
+                    ++index;
+                }
             }
             
-            db.stop_sync();
-            index = total + 1;
-            sync_cancelled = false;
-        }
-        
-        Idle.add( () => {
-            currently_syncing = false;
-            
-            sync_finished(!sync_cancelled);
-            lm.finish_file_operations();
-            
-            return false;
+            if(!sync_cancelled) {
+                current_operation = _("Finishing sync process...");
+                
+                ++index;
+                
+                try {
+                    db.write();
+                }
+                catch(GLib.Error err) {
+                    critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
+                    error_occurred = true;
+                    sync_cancelled = true;
+                }
+                
+                index = total + 1;
+                
+                db.stop_sync();
+            }
+            else {
+                current_operation = _("Cancelling Sync...");
+                
+                try {
+                    db.write();
+                }
+                catch(Error err) {
+                    critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
+                }
+                
+                db.stop_sync();
+                index = total + 1;
+            }
+
+            Idle.add( () => {
+                currently_syncing = false;
+                
+                sync_finished(!sync_cancelled);
+                lm.finish_file_operations();
+                lm.lw.update_sensitivities();
+                sync_cancelled = false;
+                
+                return false;
+            });
         });
+
+        yield;
     }
     
     /* Adds to track list, mpl, and copies the file over */
@@ -644,13 +678,12 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         try {
             success = db.cp_track_to_ipod(added, File.new_for_uri(s.uri).get_path());
             debug("Copied media %s to ipod\n", added.title);
-        }
-        catch(Error err) {
+        } catch(Error err) {
             warning("Error adding/copying song %s to iPod: %s\n", s.title, err.message);
         }
         
         if(success) {
-            Noise.Media on_ipod = iPodMediaHelper.media_from_track (get_path(), added);
+            Noise.Media on_ipod = iPodMediaHelper.media_from_track (get_uri(), added);
             
             medias.set(added, on_ipod);
             if(added.mediatype == GPod.MediaType.AUDIO)
@@ -680,91 +713,99 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        lm.start_file_operations (_("Removing from <b>%s</b>...").printf (getDisplayName ()));
-        current_operation = _("Removing from <b>%s</b>...").printf (getDisplayName ());
-        lm.lw.update_sensitivities();
-        this.list = list;
-        
-        Threads.add (remove_medias_thread);
+        if (lm.start_file_operations (_("Removing from <b>%s</b>...").printf (getDisplayName ()))) {
+            current_operation = _("Removing from <b>%s</b>...").printf (getDisplayName ());
+            lm.lw.update_sensitivities();
+            this.list = list;
+            
+            currently_syncing = true;
+            index = 0;
+            total = medias.size + 2;
+            Timeout.add(500, doProgressNotificationWithTimeout);
+            
+            remove_medias_thread ();
+        }
         
         return true;
     }
     
-    void remove_medias_thread() {
-        currently_syncing = true;
-        bool error_occurred = false;
-        index = 0;
-        total = medias.size + 2;
-        Timeout.add(500, doProgressNotificationWithTimeout);
-        
-        db.start_sync();
-        
-        ++index; // add first of 2 extra
-        
-        var removed = new HashMap<unowned GPod.Track, Noise.Media>();
-        foreach(var e in medias.entries) {
-            foreach(var m in list) {
-                if(!sync_cancelled) {
-                    // If entry e is on the list to be removed, it is to be removed
-                    if(m == e.value) {
-                        unowned GPod.Track t = e.key;
-                        
-                        if(t != null) {
-                            remove_media(t);
-                            removed.set(t, e.value);
+    async void remove_medias_thread() {
+    
+        Threads.add (() => {
+            bool error_occurred = false;
+            
+            db.start_sync();
+            
+            ++index; // add first of 2 extra
+            
+            var removed = new HashMap<unowned GPod.Track, Noise.Media>();
+            foreach(var e in medias.entries) {
+                foreach(var m in list) {
+                    if(!sync_cancelled) {
+                        // If entry e is on the list to be removed, it is to be removed
+                        if(m == e.value) {
+                            unowned GPod.Track t = e.key;
+                            
+                            if(t != null) {
+                                remove_media(t);
+                                removed.set(t, e.value);
+                            }
                         }
                     }
                 }
+                
+                ++index;
             }
             
-            ++index;
-        }
-        
-        medias.unset_all(removed);
-        songs.unset_all(removed);
-        podcasts.unset_all(removed);
-        audiobooks.unset_all(removed);
-        
-        if(!sync_cancelled) {
-            current_operation = _("Finishing sync process...");
+            medias.unset_all(removed);
+            songs.unset_all(removed);
+            podcasts.unset_all(removed);
+            audiobooks.unset_all(removed);
             
-            ++index; // add second of 2 extra
-            try {
-                db.write();
+            if(!sync_cancelled) {
+                current_operation = _("Finishing sync process...");
+                
+                ++index; // add second of 2 extra
+                try {
+                    db.write();
+                }
+                catch(GLib.Error err) {
+                    critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
+                    error_occurred = true;
+                    sync_cancelled = true;
+                }
+                
+                index = total + 1;
+                
+                db.stop_sync();
             }
-            catch(GLib.Error err) {
-                critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
-                error_occurred = true;
-                sync_cancelled = true;
+            else {
+                current_operation = _("Cancelling Sync...");
+                
+                try {
+                    db.write();
+                }
+                catch(Error err) {
+                    critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
+                }
+                
+                db.stop_sync();
+                index = total + 1;
+                sync_cancelled = false;
             }
             
-            index = total + 1;
-            
-            db.stop_sync();
-        }
-        else {
-            current_operation = _("Cancelling Sync...");
-            
-            try {
-                db.write();
-            }
-            catch(Error err) {
-                critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
-            }
-            
-            db.stop_sync();
-            index = total + 1;
-            sync_cancelled = false;
-        }
-        
-        Idle.add( () => {
-            currently_syncing = false;
-            
-            sync_finished(!sync_cancelled);
-            lm.finish_file_operations();
-            
-            return false;
+            Idle.add( () => {
+                currently_syncing = false;
+                
+                sync_finished(!sync_cancelled);
+                lm.finish_file_operations();
+                lm.lw.update_sensitivities();
+                
+                return false;
+            });
         });
+        
+        yield;
     }
     
     void remove_media(GPod.Track t) {
@@ -774,8 +815,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         current_operation = current_operation.replace ("$DEVICE", getDisplayName() ?? "");
         /* first check if the file exists disk */
         if(t.ipod_path != null) {
-            var path = Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path));
-            var file = File.new_for_path(path);
+            var uri = get_uri() + GPod.iTunesDB.filename_ipod2fs(t.ipod_path);
+            var file = File.new_for_uri(uri);
             
             if(file.query_exists()) {
                 try {
@@ -797,37 +838,37 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                     songs.unset (t, null);
                     t.remove();
                     file.delete();
-                    warning ("Successfully removed music file %s from iPod Disk\n", path);
+                    warning ("Successfully removed music file %s from iPod Disk\n", uri);
                 }
                 catch(Error err) {
-                    warning("Could not delete iPod File at %s. Unused file will remain on iPod: %s\n", path, err.message);
+                    warning("Could not delete iPod File at %s. Unused file will remain on iPod: %s\n", uri, err.message);
                 }
             }
             else {
-                warning("File not found, could not delete iPod File at %s. File may already be deleted\n", path);
+                warning("File not found, could not delete iPod File at %s. File may already be deleted\n", uri);
             }
         }
         
     }
     
-    void cleanup_files(GLib.File music_folder, LinkedList<string> used_paths) {
+    void cleanup_files(GLib.File music_folder, LinkedList<string> used_uris) {
         GLib.FileInfo file_info = null;
         
         try {
             var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
             while ((file_info = enumerator.next_file ()) != null) {
-                var file_path = Path.build_path("/", music_folder.get_path(), file_info.get_name());
+                var file_uri = music_folder.get_uri() + "/" + file_info.get_name();
                 
-                if(file_info.get_file_type() == GLib.FileType.REGULAR && !used_paths.contains(file_path)) { /* delete it, it's unused */
-                    message("Deleting unused file %s\n", file_path);
-                    var file = File.new_for_path(file_path);
+                if(file_info.get_file_type() == GLib.FileType.REGULAR && !used_uris.contains(file_uri)) { /* delete it, it's unused */
+                    message("Deleting unused file %s\n", file_uri);
+                    var file = File.new_for_uri(file_uri);
                     file.delete();
                 }
                 else if(file_info.get_file_type() == GLib.FileType.REGULAR) {
-                    used_paths.remove(file_path);
+                    used_uris.remove(file_uri);
                 }
                 else if(file_info.get_file_type() == GLib.FileType.DIRECTORY) {
-                    cleanup_files(GLib.File.new_for_path(file_path), used_paths);
+                    cleanup_files(GLib.File.new_for_uri(file_uri), used_uris);
                 }
             }
         }
@@ -916,53 +957,56 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
         current_operation = current_operation.replace ("$NAME", (list.size > 1) ? list.size.to_string() : (list.get(0)).title ?? "");
         current_operation = current_operation.replace ("$ARTIST", (list.size > 1) ? list.size.to_string() : (list.get(0)).artist ?? "");
-        lm.start_file_operations(current_operation);
-        
-        Threads.add (transfer_medias_thread);
-        
+        if (lm.start_file_operations(current_operation)) {
+            
+            if(this.list == null || this.list.size == 0)
+                return true;
+            
+            currently_transferring = true;
+            transfer_cancelled = false;
+            index = 0;
+            total = list.size;
+            Timeout.add(500, doProgressNotificationWithTimeout);
+            transfer_medias_thread ();
+        }
         return true;
     }
     
-    void transfer_medias_thread() {
-        if(this.list == null || this.list.size == 0)
-            return;
+    async void transfer_medias_thread() {
+        Threads.add (() => {
         
-        currently_transferring = true;
-        transfer_cancelled = false;
-        index = 0;
-        total = list.size;
-        Timeout.add(500, doProgressNotificationWithTimeout);
-        
-        foreach(var m in list) {
-            if(transfer_cancelled)
-                break;
-            
-            Noise.Media copy = m.copy();
-            if(File.new_for_uri(copy.uri).query_exists()) {
-                copy.rowid = 0;
-                copy.isTemporary = false;
-                copy.date_added = (int)time_t();
-                lm.add_media_item (copy);
+            foreach(var m in list) {
+                if(transfer_cancelled)
+                    break;
                 
-                current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
-                current_operation = current_operation.replace ("$NAME", copy.title ?? "");
-                current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
-                lm.fo.update_file_hierarchy (copy, false, false);
-            }
-            else {
-                message ("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
+                Noise.Media copy = m.copy();
+                if(File.new_for_uri(copy.uri).query_exists()) {
+                    copy.rowid = 0;
+                    copy.isTemporary = false;
+                    copy.date_added = (int)time_t();
+                    lm.add_media_item (copy);
+                    
+                    current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
+                    current_operation = current_operation.replace ("$NAME", copy.title ?? "");
+                    current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
+                    lm.fo.update_file_hierarchy (copy, false, false);
+                }
+                else {
+                    message ("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
+                }
+                
+                ++index;
             }
             
-            ++index;
-        }
-        
-        index = total + 1;
-        
-        Idle.add( () => {
-            lm.finish_file_operations();
-            currently_transferring = false;
+            index = total + 1;
             
-            return false;
+            Idle.add( () => {
+                lm.finish_file_operations();
+                lm.lw.update_sensitivities();
+                currently_transferring = false;
+                
+                return false;
+            });
         });
     }
 }

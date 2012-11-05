@@ -46,13 +46,14 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     
     public virtual void mount_added (Mount mount) {
         foreach(var dev in devices) {
-            if(dev.get_path() == mount.get_default_location().get_path()) {
+            if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 return;
             }
         }
-        if(File.new_for_path(mount.get_default_location().get_path() + "/iTunes_Control").query_exists() ||
-                File.new_for_path(mount.get_default_location().get_path() + "/iPod_Control").query_exists() ||
-                File.new_for_path(mount.get_default_location().get_path() + "/iTunes/iTunes_Control").query_exists() ||
+        warning (mount.get_default_location().get_uri() + "/iTunes_Control");
+        if(File.new_for_uri(mount.get_default_location().get_uri() + "/iTunes_Control").query_exists() ||
+                File.new_for_uri(mount.get_default_location().get_uri() + "/iPod_Control").query_exists() ||
+                File.new_for_uri(mount.get_default_location().get_uri() + "/iTunes/iTunes_Control").query_exists() ||
                 mount.get_default_location().get_parse_name().has_prefix("afc://")) {
             var added = new iPodDevice(lm, mount);
             added.set_mount(mount);
@@ -68,7 +69,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
             }
         }
         else {
-            warning ("Found device at %s is not an iPod. Not using it", mount.get_default_location().get_parse_name());
+            warning ("Found device at %s is not an iPod. Not using it", mount.get_default_location().get_uri());
             return;
         }
     }
@@ -83,7 +84,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
-            if(dev.get_path() == mount.get_default_location().get_path()) {
+            if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
                 
                 // Actually remove it

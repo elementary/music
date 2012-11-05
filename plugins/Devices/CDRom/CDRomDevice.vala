@@ -114,11 +114,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return mount;
     }
     
-    public string get_path() {
-        return mount.get_default_location().get_path();
-    }
-    
-    string get_uri() {
+    public string get_uri() {
         return mount.get_default_location().get_uri();
     }
     
@@ -224,7 +220,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     }
     
     public bool sync_medias(LinkedList<Noise.Media> list) {
-        stdout.printf("Ripping not supported on CDRom's.\n");
+        message ("Ripping not supported on CDRom's.\n");
         return false;
     }
     

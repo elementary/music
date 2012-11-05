@@ -53,7 +53,7 @@ public class Noise.CDRipper : GLib.Object {
 		sink = ElementFactory.make("filesink", "filesink");
 		
 		if(src == null || queue == null || filter == null || sink == null) {
-			stdout.printf("Could not create GST Elements for ripping.\n");
+			critical("Could not create GST Elements for ripping.\n");
 			return false;
 		}
 		
@@ -63,7 +63,7 @@ public class Noise.CDRipper : GLib.Object {
 		
 		((Gst.Bin)pipeline).add_many(src, queue, filter, sink);
 		if(!src.link_many(queue, filter, sink)) {
-			stdout.printf("CD Ripper link_many failed\n");
+			critical("CD Ripper link_many failed\n");
 			return false;
 		}
 		
@@ -113,10 +113,10 @@ public class Noise.CDRipper : GLib.Object {
 					var mimetype = "FIX THIS";// probeMimeType();
 					
 					if(mimetype != null && mimetype != "") {
-						stdout.printf("Detected mimetype of %s\n", mimetype);
+						critical("Detected mimetype of %s\n", mimetype);
 					}
 					else {
-						stdout.printf("Could not detect mimetype\n");
+						critical("Could not detect mimetype\n");
 					}
 				}
 				
@@ -125,10 +125,10 @@ public class Noise.CDRipper : GLib.Object {
 				GLib.Error err;
 				string debug;
 				message.parse_error (out err, out debug);
-				stdout.printf ("Error: %s!:%s\n", err.message, debug);
+				critical ("Error: %s!:%s\n", err.message, debug);
 				break;
 			case Gst.MessageType.ELEMENT:
-				stdout.printf("missing element\n");
+				critical("missing element\n");
 				error("missing element", message);
 				
 				break;

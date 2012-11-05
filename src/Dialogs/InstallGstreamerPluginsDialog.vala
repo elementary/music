@@ -59,7 +59,7 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 		Label title = new Label("");
 		Label info = new Label("");
 		installPlugin = new Button.with_label(_("Install Plugin"));
-		doNothing = new Button.with_label(_("Do Nothing"));
+		doNothing = new Button.from_stock (Gtk.Stock.CANCEL);
 		
 		// pretty up labels
 		title.xalign = 0.0f;

@@ -176,7 +176,7 @@ public class Noise.MediaEditor : Window {
 		// be explicit to make translations better		
 		if(_medias.size == 1) {
 			if (sum.artist != "")
-				title = _("Editing %s by %s").printf (sum.title, sum.artist);
+				title = _("Editing $NAME by $ARTIST").replace ("$NAME", sum.title).replace("$ARTIST", sum.artist);
 			else
 				title = _("Editing %s").printf (sum.title);
 		}
@@ -347,7 +347,7 @@ public class Noise.MediaEditor : Window {
 		// be explicit to improve translations
 		if(_medias.size == 1) {
 			if (sum.artist != "")
-				title = _("Editing %s by %s").printf (sum.title, sum.artist);
+				title = _("Editing $NAME by $ARTIST").replace ("$NAME", sum.title).replace("$ARTIST", sum.artist);
 			else
 				title = _("Editing %s").printf (sum.title);
 		}

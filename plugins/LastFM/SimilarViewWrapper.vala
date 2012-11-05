@@ -70,7 +70,7 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
 
             if (base_media != null) {
                 // Say we're fetching media
-                embedded_alert.set_alert (_("Fetching similar songs"), _("Finding songs similar to %s by %s").printf ("<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, false, Gtk.MessageType.INFO);
+                embedded_alert.set_alert (_("Fetching similar songs"), (_("Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>").replace ("$NAME", String.escape (base_media.title))).replace ("$ARTIST", String.escape (base_media.artist)), null, false, Gtk.MessageType.INFO);
                 embedded_alert.working = true;
             }
             else {
@@ -135,7 +135,12 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
     }
 
     protected override void set_no_media_alert () {
-        embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (App.instance.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Gtk.MessageType.INFO);
+        embedded_alert.set_alert (_("No similar songs found"), _("$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.")
+            .replace ("$NAME", String.escape (base_media.title))
+            .replace ("$ARTIST", String.escape (base_media.artist))
+            .replace ("$APPNAME", String.escape (App.instance.get_name ()))
+        , null, true, Gtk.MessageType.INFO);
+        
         embedded_alert.working = false;
     }
 

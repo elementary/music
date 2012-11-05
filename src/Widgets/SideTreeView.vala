@@ -607,7 +607,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
         do {
             GLib.Object o;
             tree.get(pivot, 0, out o);
-            if(o is Device && ((Device)o).get_path() == d.get_path()) {
+            if(o is Device && ((Device)o).get_uri() == d.get_uri()) {
                 if(get_selection().iter_is_selected(convertToFilter(pivot)))
                     was_selected = true;
                 

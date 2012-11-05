@@ -378,7 +378,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             return false;
 
         bool have_media = media_count > 0;
-        warning ("%d", media_count);
         // show alert or welcome screen if there's no media
         if (have_media) {
             select_proper_content_view ();

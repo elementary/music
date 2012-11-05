@@ -810,6 +810,7 @@ public class Noise.LibraryManager : Object {
     }
 
     public void finish_file_operations () {
+        warning ("finished");
         _doing_file_operations = false;
         debug ("file operations finished or cancelled\n");
 

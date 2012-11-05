@@ -53,7 +53,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
     
     public virtual void mount_added (Mount mount) {
         foreach(var dev in devices) {
-            if(dev.get_path() == mount.get_default_location().get_path()) {
+            if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 return;
             }
         }
@@ -87,7 +87,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
     
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
-            if(dev.get_path() == mount.get_default_location().get_path()) {
+            if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
                 
                 // Actually remove it

@@ -76,7 +76,7 @@ public class Noise.FileNotFoundDialog : Window {
 
 		if (media_list.size == 1) {
 			var s = media_list.get (0);
-			info.set_markup (_("The music file for %s by %s could not be found. What would you like to do?").printf ("<b>" + s.title.escape ("") + "</b>", "<b>" + s.artist.escape ("") + "</b>"));
+			info.set_markup (_("The music file for $NAME by $ARTIST could not be found. What would you like to do?").replace ("$NAME", s.title.escape ("")).replace ("$ARTIST", s.artist.escape ("")));
 		}
 		else {
 			info.set_text (_("%i media files could not be found. What would you like to do?").printf (media_list.size));

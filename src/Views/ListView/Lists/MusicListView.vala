@@ -219,10 +219,8 @@ public class Noise.MusicListView : GenericList {
 
                 if (temporary_count != total_count)
                     importToLibrary.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
-                else if (temporary_count == 1)
-                    importToLibrary.label = _("Import this song");
                 else
-                    importToLibrary.label = _("Import %i songs").printf ((int)temporary_count);
+                    importToLibrary.label = ngettext ("Import this song", ("Import %i songs").printf ((int)temporary_count), temporary_count);
             }
 
             int set_rating = -1;

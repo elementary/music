@@ -100,7 +100,7 @@ public class Noise.Media : Object {
     public int resume_pos { get; set; default = 0; }
 
     public inline string get_display_filename () {
-        string? filename = String.locale_to_utf8 (file.get_basename ());
+        string? filename = String.locale_to_utf8 (file.get_basename () ?? UNKNOWN);
         return is_valid_string_field (filename) ? filename : UNKNOWN;
     }
 

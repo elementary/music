@@ -64,7 +64,7 @@ public class Noise.SetMusicFolderConfirmation : Window {
 		Label info = new Label("");
 		savePlaylists = new Button.with_label(_("Export Playlists"));
 		ok = new Button.with_label(_("Set Music Folder"));
-		cancel = new Button.with_label(_("Cancel"));
+		cancel = new Button.from_stock(Gtk.Stock.CANCEL);
 		is_finished = new Gtk.Image();
 		is_working = new Gtk.Spinner();
 		

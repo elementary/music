@@ -46,12 +46,12 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
     
     public virtual void mount_added (Mount mount) {
         foreach(var dev in devices) {
-            if(dev.get_path() == mount.get_default_location().get_path()) {
+            if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 return;
             }
         }
-        if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists() | File.new_for_path(mount.get_default_location().get_path() + "/.is_audio_player").query_exists()) {
-            var added = new AudioPlayerDevice(mount, lm, File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists());
+        if(File.new_for_uri(mount.get_default_location().get_uri() + "/Android").query_exists() | File.new_for_uri(mount.get_default_location().get_uri() + "/.is_audio_player").query_exists()) {
+            var added = new AudioPlayerDevice(mount, lm, File.new_for_uri(mount.get_default_location().get_uri() + "/Android").query_exists());
             added.set_mount(mount);
             devices.add(added);
         
@@ -80,7 +80,7 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
     
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
-            if(dev.get_path() == mount.get_default_location().get_path()) {
+            if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
                 
                 // Actually remove it

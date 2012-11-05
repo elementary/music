@@ -44,18 +44,18 @@ public class SpaceWidget : Gtk.ScrolledWindow {
                                              from (shade (#e6e6e6, 0.96)),
                                              color-stop (0.5, alpha (shade (#e6e6e6, 1.1) , 0.7)),
                                              to (shade (#f7f7f7, 1.04)));
-            border-width: 0;
+            border-width: 0px;
             border-style: none;
-            border-radius: 0;
-            padding: 0;
+            border-radius: 0px;
+            padding: 0px;
         }
 
         .SpaceBarItem,
         .SpaceBarFullItem,
         .SpaceBarItem:nth-child(first),
         .SpaceBarItem:nth-child(last) {
-            -unico-inner-stroke-width: 0;
-            -unico-outer-stroke-width: 0;
+            -unico-inner-stroke-width: 0px;
+            -unico-outer-stroke-width: 0px;
 
             -unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
                                                    from (alpha (#fff, 0.5)),
@@ -67,7 +67,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         }
 
         .SpaceBarItem {
-            border-radius: 0 0 0 0;
+            border-radius: 0px 0px 0px 0px;
         }
 
         .SpaceBarFullItem {
@@ -75,22 +75,22 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         }
 
         .SpaceBarItem:nth-child(first) {
-            border-radius: 300px 0 0 300px;
+            border-radius: 300px 0px 0px 300px;
         }
 
         .SpaceBarItem:nth-child(last) {
-            border-radius: 0 300px 300px 0;
+            border-radius: 0px 300px 300px 0px;
         }
 
         .LegendItem {
-            border-radius: 100 100 100 100;
+            border-radius: 100px 100px 100px 100px;
 
-            -unico-inner-stroke-width: 0;
+            -unico-inner-stroke-width: 0px;
             -unico-outer-stroke-width: 1px;
 
-            -GtkButton-default-border           : 0;
-            -GtkButton-image-spacing            : 0;
-            -GtkButton-inner-border             : 0;
+            -GtkButton-default-border           : 0px;
+            -GtkButton-image-spacing            : 0px;
+            -GtkButton-inner-border             : 0px;
             -GtkButton-interior-focus           : false;
 
 
@@ -183,6 +183,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         this.min_content_height = MIN_HEIGHT;
         this.set_border_width(0);
 
+        items = new HashMap<int, SpaceWidgetItem>();
         widget = new Gtk.EventBox();
 
         this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -260,7 +261,6 @@ public class SpaceWidget : Gtk.ScrolledWindow {
 
         widget.add (padding);
 
-        items = new HashMap<int, SpaceWidgetItem>();
         set_size (size);
 
         /** Adding free-space element **/
@@ -304,7 +304,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
     }
 
     private int add_item_at_pos (string name, uint64 size, ItemColor color, ItemPosition pos) {
-        if (size > free_space_size) {
+        if (GLib.Math.fabs((double)size) > GLib.Math.fabs((double)free_space_size)) {
             warning("\nERROR: SpaceWidget: Couldn't add '%s' item. Not enough free space.\n", name);
             return -1; // ERROR
         }
@@ -312,7 +312,8 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         int index = items.size;
 
         var item = new SpaceWidgetItem (index, name, size, color);
-        items.set(index, item);
+        if (item != null)
+            items.set(index, item);
 
         if (pos == ItemPosition.END) {
             bar_wrapper.pack_end (item.bar_item, false, false, 0);

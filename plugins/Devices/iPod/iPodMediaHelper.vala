@@ -22,8 +22,13 @@
 
 public class Noise.Plugins.iPodMediaHelper {
 
-	public static Media media_from_track (string root, GPod.Track track) {
-		Media rv = new Media("file://" + Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
+	public static Media media_from_track (string uri, GPod.Track track) {
+	    Media rv = null;
+	    if (uri.has_suffix ("/")) {
+		    rv = new Media(uri.slice (0, uri.char_count()-1) + GPod.iTunesDB.filename_ipod2fs(track.ipod_path));
+		}
+		if (rv == null)
+		    rv = new Media(uri + GPod.iTunesDB.filename_ipod2fs(track.ipod_path));
 		
 		rv.isTemporary = true;
 		/*if(track.title != "") {			*/rv.title = track.title; //}
