@@ -26,7 +26,7 @@
  * statement from your version.
  */
 
-private class LastFM.PreferencesSection : Noise.PreferencesWindow.Section {
+private class LastFM.PreferencesSection {
     static string ENABLE_SCROBBLING = _("Give Noise Permission");
     static string LOGIN_UNSUCCESSFUL = _("Unsuccessful. Click To Try Again.");
     static string SCROBBLING_ENABLED = _("Scrobbling Already Enabled");
@@ -35,16 +35,15 @@ private class LastFM.PreferencesSection : Noise.PreferencesWindow.Section {
 
     private Core core;
     private string lastfm_token = "";
+    public Noise.PreferencesWindow.NoteBook_Page page;
 
     public PreferencesSection (Core core) {
-        base (_("Last.fm"));
+        page = new Noise.PreferencesWindow.NoteBook_Page(_("Last.fm"));
 
         this.core = core;
 
-        var container = new Gtk.Grid ();
-        container.row_spacing = 12;
-        container.column_spacing = 12;
-
+        int row = 0;
+        page.add_section (new Gtk.Label(_("Last.fm Integration")), ref row);
         var login_button = new Gtk.Button ();
 
         if (core.lastfm_settings.session_key == null || core.lastfm_settings.session_key == "") {
@@ -58,14 +57,12 @@ private class LastFM.PreferencesSection : Noise.PreferencesWindow.Section {
         label.xalign = 0.0f;
         label.halign = Gtk.Align.START;
         label.set_line_wrap (true);
-
-        container.attach (label, 0, 0, 1, 1);
-        container.attach (login_button, 0, 1, 1, 1);
-        container.show_all ();
+        
+        page.add_full_option (label, ref row);
+        page.add_full_option (login_button, ref row);
 
         login_button.clicked.connect (lastfmLoginClick);
 
-        add_subsection (_("Last.fm Integration"), container);
     }
 
     public void lastfmLoginClick (Gtk.Button login_button) {

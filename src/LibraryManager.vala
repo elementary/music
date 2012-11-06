@@ -51,7 +51,7 @@ public class Noise.LibraryManager : Object {
 	public GStreamerTagger tagger;
 
     public bool main_directory_set {
-        get { return !String.is_empty (Settings.Main.instance.music_folder, true); }
+        get { return !String.is_empty (main_settings.music_folder, true); }
     }
 
     public bool have_media {
@@ -231,9 +231,9 @@ public class Noise.LibraryManager : Object {
             lw.update_sensitivities ();
             App.player.stopPlayback ();
 
-            Settings.Main.instance.music_folder = folder;
+            main_settings.music_folder = folder;
 
-            Settings.Main.instance.music_mount_name = "";
+            main_settings.music_mount_name = "";
 
             yield set_music_folder_thread ();
         }
@@ -243,7 +243,7 @@ public class Noise.LibraryManager : Object {
         SourceFunc callback = set_music_folder_thread.callback;
 
         Threads.add (() => {
-            var music_folder_file = File.new_for_path (Settings.Main.instance.music_folder);
+            var music_folder_file = File.new_for_path (main_settings.music_folder);
             LinkedList<string> files = new LinkedList<string> ();
 
             var items = fo.count_music_files (music_folder_file, ref files);
@@ -355,7 +355,7 @@ public class Noise.LibraryManager : Object {
             fo.resetProgress (100);
             Timeout.add (100, doProgressNotificationWithTimeout);
 
-            var music_folder_dir = Settings.Main.instance.music_folder;
+            var music_folder_dir = main_settings.music_folder;
             foreach (Media s in _media.values) {
                 if (!s.isTemporary && !s.isPreview && s.uri.contains (music_folder_dir))
                     paths.set (s.uri, s);
@@ -782,7 +782,7 @@ public class Noise.LibraryManager : Object {
         }
 
         if (_media.size == 0)
-            Settings.Main.instance.music_folder = Environment.get_user_special_dir (UserDirectory.MUSIC);
+            main_settings.music_folder = Environment.get_user_special_dir (UserDirectory.MUSIC);
 
         // TODO: move away. It's called twice due to LW's internal handlers
         lw.update_sensitivities ();

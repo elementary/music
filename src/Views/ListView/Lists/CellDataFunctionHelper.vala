@@ -42,13 +42,13 @@ public class Noise.CellDataFunctionHelper {
     public static bool smart_album_art_enabled {
         get {
             if (_smart_album_art_enabled == null)
-                _smart_album_art_enabled = Settings.SavedState.instance.show_album_art_in_list_view;
+                _smart_album_art_enabled = saved_state.show_album_art_in_list_view;
 
             return _smart_album_art_enabled;
         }
         set {
             _smart_album_art_enabled = value;
-            Settings.SavedState.instance.show_album_art_in_list_view = value;
+            saved_state.show_album_art_in_list_view = value;
         }
     }
 #endif

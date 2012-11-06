@@ -26,7 +26,7 @@
  * statement from your version.
  */
 
-public class Noise.PreferencesWindow : Gtk.Window {
+public class Noise.PreferencesWindow : Gtk.Dialog {
 
     public const int MIN_WIDTH = 420;
     public const int MIN_HEIGHT = 300;
@@ -39,20 +39,20 @@ public class Noise.PreferencesWindow : Gtk.Window {
      * When the preferences' window save button is clicked, save_changes() is called for
      * every section.
      */
-    public class Section {
+    public class NoteBook_Page {
         public string name { get; private set; }
-        public Gtk.Grid container { get; private set; }
+        public Gtk.Grid grid { get; private set; }
 
         private static const int IDENTATION_MARGIN = 12;
 
-        public Section (string name) {
+        public NoteBook_Page (string name) {
             this.name = name;
 
-            container = new Gtk.Grid ();
-            container.margin_bottom = 12;
-            container.orientation = Gtk.Orientation.VERTICAL;
-            container.row_homogeneous = false;
-            container.hexpand = true;
+            grid = new Gtk.Grid ();
+            grid.margin = 12;
+            grid.set_hexpand (true);
+            grid.set_column_spacing (12);
+            grid.set_row_spacing (6);
         }
 
         /**
@@ -61,73 +61,76 @@ public class Noise.PreferencesWindow : Gtk.Window {
          * consistent look through all the different preferences sections
          * (even those added by plugins, etc.)
          */
-        public void add_subsection (string title, Gtk.Container contents) {
-            var subsection_title_label = new Gtk.Label (null);
-            subsection_title_label.set_markup (Markup.printf_escaped ("<b>%s</b>", title));
-            subsection_title_label.set_alignment (0.0f, 0.5f);
-            subsection_title_label.margin_top = 12;
-            subsection_title_label.margin_bottom = 6;
-
-            container.add (subsection_title_label);
-
-            if (contents != null) {
-                contents.hexpand = true;
-                contents.margin_left = IDENTATION_MARGIN;
-                container.add (contents);
-            }
+        
+        public void add_section (Gtk.Label name, ref int row) {
+            name.use_markup = true;
+            name.set_markup ("<b>%s</b>".printf (name.get_text ()));
+            name.halign = Gtk.Align.START;
+            grid.attach (name, 0, row, 1, 1);
+            row ++;
         }
-
-        /**
-         * Write changes to settings. It is not abstract since some sections may save their
-         * preferences in real-time. Return false to prevent the window from being closed.
-         *
-         * @return whether the preferences window can be closed
-         */
-        public virtual bool save_changes () {
-            return true;
+        
+        public void add_option (Gtk.Widget label, Gtk.Widget switcher, ref int row) {
+            label.set_hexpand (true);
+            label.set_halign (Gtk.Align.END);
+            label.set_margin_left (20);
+            switcher.set_halign (Gtk.Align.FILL);
+            switcher.set_hexpand (true);
+            
+            if (switcher is Gtk.Switch || switcher is Gtk.CheckButton
+                || switcher is Gtk.Entry) { /* then we don't want it to be expanded */
+                switcher.halign = Gtk.Align.START;
+            }
+            
+            grid.attach (label, 0, row, 1, 1);
+            grid.attach (switcher, 1, row, 3, 1);
+            row ++;
+        }
+        
+        public void add_full_option (Gtk.Widget big_widget, ref int row) {
+            big_widget.set_halign (Gtk.Align.FILL);
+            big_widget.set_hexpand (true);
+            big_widget.set_margin_left (20);
+            big_widget.set_margin_right (20);
+            
+            grid.attach (big_widget, 0, row, 4, 1);
+            row ++;
         }
     }
 
-
-    // XXX: deprecate. This should be part of Noise.Preferences.GeneralSection
-    public signal void changed (string folder);
-
-
-    private Gee.Map<int, Section> sections = new Gee.HashMap<int, Section> ();
-    private Gtk.Button cancel_button;
-    private Gtk.Button save_button;
+    private Gee.Map<int, NoteBook_Page> sections = new Gee.HashMap<int, NoteBook_Page> ();
     private Granite.Widgets.StaticNotebook main_static_notebook;
+    public Gtk.FileChooserButton library_filechooser;
 
-
-    // TODO: don't receive the library manager parameter. Each library manager should register
-    //       its own section and pass the parameters directly to that section.
-    public PreferencesWindow (LibraryManager lm, LibraryWindow lw) {
+    public PreferencesWindow (LibraryWindow lw) {
         build_ui (lw);
 
         // Add general section
-        var general_section = new Preferences.GeneralSection (lm, lw);
-        add_section (general_section);
+        library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder..."), Gtk.FileChooserAction.SELECT_FOLDER);
+        library_filechooser.hexpand = true;
 
-        general_section.changed.connect ( (folder) => changed (folder) );
+        library_filechooser.set_current_folder (main_settings.music_folder);
+        //library_filechooser.set_local_only (true);
+        var general_section = new Preferences.GeneralPage (library_filechooser);
+        library_filechooser.file_set.connect (() => {lw.setMusicFolder(library_filechooser.get_current_folder ());});
+        add_page (general_section.page);
 
-        Noise.App.plugins.hook_preferences_window (this);
+        plugins.hook_preferences_window (this);
 
-        // TODO: this should be called by the window's creator
-        show_all ();
     }
 
 
-    public int add_section (Section section) {
-        return_val_if_fail (section.container != null, -1);
+    public int add_page (NoteBook_Page section) {
+        return_val_if_fail (section.grid != null, -1);
 
         // Pack the section
         // TODO: file a bug against granite's static notebook: append_page()
         // should return the index of the new page.
-        main_static_notebook.append_page (section.container, new Gtk.Label (section.name));
+        main_static_notebook.append_page (section.grid, new Gtk.Label (section.name));
         int index = sections.size;
         sections.set (index, section);
 
-        section.container.show_all ();
+        section.grid.show_all ();
 
         return index;
     }
@@ -148,47 +151,13 @@ public class Noise.PreferencesWindow : Gtk.Window {
         window_position = Gtk.WindowPosition.CENTER;
         type_hint = Gdk.WindowTypeHint.DIALOG;
         transient_for = parent_window;
-        modal = true;
-
-        cancel_button = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
-        cancel_button.set_size_request (90, -1);
-        cancel_button.clicked.connect (on_cancel_button_clicked);
-
-        save_button = new Gtk.Button.from_stock (Gtk.Stock.SAVE);
-        save_button.set_size_request (90, -1);
-        save_button.clicked.connect (on_save_button_clicked);
-
-        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        buttons.hexpand = true;
-        buttons.set_layout (Gtk.ButtonBoxStyle.END);
-        buttons.pack_start (cancel_button, false, false, 0);
-        buttons.pack_end (save_button, false, false, 0);
-        buttons.set_child_secondary (cancel_button, true);
 
         main_static_notebook = new Granite.Widgets.StaticNotebook (false);
         main_static_notebook.hexpand = true;
         main_static_notebook.margin_bottom = 24;
 
-        var main_grid = new Gtk.Grid ();
-        main_grid.margin = 12;
-        main_grid.attach (main_static_notebook, 0, 0, 1, 1);
-        main_grid.attach (buttons, 0, 1, 1, 1);
-
-        add (main_grid);
-    }
-
-
-    private void on_save_button_clicked () {
-        foreach (var section in sections.values) {
-            if (section != null && !section.save_changes ())
-                return;
-        }
-
-        destroy ();
-    }
-
-    private void on_cancel_button_clicked () {
-        destroy ();
+        ((Gtk.Box)get_content_area()).add (main_static_notebook);
+        add_button (Gtk.Stock.CLOSE, Gtk.ResponseType.ACCEPT);
     }
 }
 
@@ -196,146 +165,67 @@ public class Noise.PreferencesWindow : Gtk.Window {
 /**
  * General preferences section
  */
-private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section {
-    public signal void changed (string folder);
+private class Noise.Preferences.GeneralPage {
 
-    private LibraryWindow lw;
-    private LibraryManager lm;
-
-    private Gtk.CheckButton organize_folders_toggle;
-    private Gtk.CheckButton write_file_metadata_toggle;
-    private Gtk.CheckButton copy_imported_music_toggle;
-    private Gtk.CheckButton hide_on_close_toggle;
+    private Gtk.Switch organize_folders_switch;
+    private Gtk.Switch write_file_metadata_switch;
+    private Gtk.Switch copy_imported_music_switch;
+    private Gtk.Switch hide_on_close_switch;
+    public Noise.PreferencesWindow.NoteBook_Page page;
 
 #if HAVE_LIBNOTIFY
-    private Gtk.CheckButton show_notifications_toggle;
+    private Gtk.Switch show_notifications_switch;
 #endif
 
-#if ENABLE_EXPERIMENTAL
-    private Gtk.CheckButton is_default_application_toggle;
-#endif
-    private Gtk.FileChooserButton library_filechooser;
+    public GeneralPage (Gtk.FileChooserButton library_filechooser) {
 
+        page = new Noise.PreferencesWindow.NoteBook_Page (_("General"));
 
-    public GeneralSection (LibraryManager lm, LibraryWindow lw) {
-        base (_("General"));
+        int row = 0;
+        
+        // Music Folder Location
+        
+        var label = new Gtk.Label (_("Music Folder Location:"));
+        page.add_section (label, ref row);
+        
+        var spacer = new Gtk.Label ("");
+        spacer.set_hexpand (true);
 
-        this.lm = lm;
-        this.lw = lw;
-
-        add_library_folder_section ();
-        add_library_management_section ();
-        add_desktop_integration_section ();
-    }
-
-    ~GeneralSection () {
-        lm.file_operations_done.disconnect (on_file_operations_done);
-    }
-
-    private static Gtk.Grid get_contents_grid () {
-        var contents_grid = new Gtk.Grid ();
-        contents_grid.row_spacing = 6;
-        contents_grid.column_spacing = 6;
-        contents_grid.orientation = Gtk.Orientation.VERTICAL;
-        return contents_grid;
-    }
-
-    private void add_library_folder_section () {
-        library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder"),
-                                                         Gtk.FileChooserAction.SELECT_FOLDER);
-        library_filechooser.hexpand = true;
-
-        var folder_contents = get_contents_grid ();
-        folder_contents.add (library_filechooser);
-
-        add_subsection (_("Music Folder Location"), folder_contents);
-
-        library_filechooser.set_current_folder (Settings.Main.instance.music_folder);
-        library_filechooser.set_local_only (true);
-        library_filechooser.set_select_multiple (false);
-
-        if (lm.doing_file_operations ()) {
-            library_filechooser.set_sensitive (false);
-            library_filechooser.set_tooltip_text (_("You must wait until previous file operations finish before setting your music folder"));
-
-            // Keep checking until the current file operations finish
-            lm.file_operations_done.connect (on_file_operations_done);
-        }
-    }
-
-    private void on_file_operations_done () {
-        if (library_filechooser != null) {
-            library_filechooser.set_tooltip_text ("");
-            library_filechooser.set_sensitive (true);
-        }
-    }
-
-    private void add_library_management_section () {
-        organize_folders_toggle = new Gtk.CheckButton.with_label (_("Keep Music folder organized"));
-        copy_imported_music_toggle = new Gtk.CheckButton.with_label (_("Copy files to Music folder when adding to Library"));
-        // TODO: DEPRECATE
-        write_file_metadata_toggle = new Gtk.CheckButton.with_label (_("Write metadata to file"));
-
-        // initialize library management settings
-        organize_folders_toggle.set_active(Settings.Main.instance.update_folder_hierarchy);
-        write_file_metadata_toggle.set_active(Settings.Main.instance.write_metadata_to_file);
-        copy_imported_music_toggle.set_active(Settings.Main.instance.copy_imported_music);
-
-        var contents_grid = get_contents_grid ();
-        contents_grid.add (organize_folders_toggle);
-        contents_grid.add (copy_imported_music_toggle);
-        contents_grid.add (write_file_metadata_toggle);
-
-        add_subsection (_("Library Management"), contents_grid);
-    }
-
-    private void add_desktop_integration_section () {
-        var contents_grid = get_contents_grid ();
-
-#if ENABLE_EXPERIMENTAL
-        is_default_application_toggle = new Gtk.CheckButton.with_label (_("Use Noise as the default Music application"));
-        is_default_application_toggle.set_active (Noise.App.instance.is_default_application);
-        contents_grid.add (is_default_application_toggle);
-#endif
-
+        page.add_full_option (library_filechooser, ref row);
+        
+        label = new Gtk.Label (_("Library Management:"));
+        page.add_section (label, ref row);
+        
+        organize_folders_switch = new Gtk.Switch ();
+        main_settings.schema.bind("update-folder-hierarchy", organize_folders_switch, "active", SettingsBindFlags.DEFAULT);
+        page.add_option (new Gtk.Label (_("Keep Music folder organized:")), organize_folders_switch, ref row);
+        
+        write_file_metadata_switch = new Gtk.Switch ();
+        main_settings.schema.bind("write-metadata-to-file", write_file_metadata_switch, "active", SettingsBindFlags.DEFAULT);
+        page.add_option (new Gtk.Label (_("Write metadata to file:")), write_file_metadata_switch, ref row);
+        
+        copy_imported_music_switch = new Gtk.Switch ();
+        main_settings.schema.bind("copy-imported-music", copy_imported_music_switch, "active", SettingsBindFlags.DEFAULT);
+        page.add_option (new Gtk.Label (_("Copy imported files to Library:")), copy_imported_music_switch, ref row);
+        
+        label = new Gtk.Label (_("Desktop Integration:"));
+        page.add_section (label, ref row);
+        
 #if HAVE_LIBNOTIFY
-        show_notifications_toggle = new Gtk.CheckButton.with_label (_("Show notifications"));
-        show_notifications_toggle.set_active (Settings.Main.instance.show_notifications);
-        contents_grid.add (show_notifications_toggle);
+        show_notifications_switch = new Gtk.Switch ();
+        main_settings.schema.bind("show-notifications", show_notifications_switch, "active", SettingsBindFlags.DEFAULT);
+        page.add_option (new Gtk.Label (_("Show notifications:")), show_notifications_switch, ref row);
 #endif
 
         string hide_on_close_desc;
         if (LibraryWindow.minimize_on_close ())
-            hide_on_close_desc = _("Minimize window instead of closing it when a song is being played");
+            hide_on_close_desc = _("Minimize window when a song is being played:");
         else
-            hide_on_close_desc = _("Hide window instead of closing it when a song is being played");
+            hide_on_close_desc = _("Hide window when a song is being played:");
 
-        hide_on_close_toggle = new Gtk.CheckButton.with_label (hide_on_close_desc);
-        hide_on_close_toggle.set_active (!Settings.Main.instance.close_while_playing);
-        contents_grid.add (hide_on_close_toggle);
-
-        add_subsection (_("Desktop Integration"), contents_grid);
-    }
-
-    public override bool save_changes () {
-        if (library_filechooser.get_current_folder() != Settings.Main.instance.music_folder
-            || lm.media_count() == 0)
-        {
-            changed (library_filechooser.get_current_folder ());
-        }
-
-        Settings.Main.instance.update_folder_hierarchy = organize_folders_toggle.active;
-        Settings.Main.instance.write_metadata_to_file = write_file_metadata_toggle.active;
-        Settings.Main.instance.copy_imported_music = copy_imported_music_toggle.active;
-        Settings.Main.instance.close_while_playing = !hide_on_close_toggle.active;
-
-#if HAVE_LIBNOTIFY
-        Settings.Main.instance.show_notifications = show_notifications_toggle.active;
-#endif
-
-#if ENABLE_EXPERIMENTAL
-        Noise.App.instance.is_default_application = is_default_application_toggle.active;
-#endif
-        return true;
+        hide_on_close_switch = new Gtk.Switch ();
+        main_settings.schema.bind("close-while-playing", hide_on_close_switch, "active", SettingsBindFlags.INVERT_BOOLEAN);
+        page.add_option (new Gtk.Label (hide_on_close_desc), hide_on_close_switch, ref row);
+        
     }
 }

@@ -78,12 +78,12 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public Player.Repeat repeat {
         get {
             if (_repeat == null)
-                _repeat = (Player.Repeat)Settings.Main.instance.repeat_mode;
+                _repeat = (Player.Repeat)main_settings.repeat_mode;
             return _repeat;
         }
         set {
             _repeat = value;
-            Settings.Main.instance.repeat_mode = value;
+            main_settings.repeat_mode = value;
         }
     }
 
@@ -97,7 +97,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         player = new Streamer ();
         media_info = new Noise.MediaInfo ();
 
-        setShuffleMode ((Player.Shuffle)Settings.Main.instance.shuffle_mode, true);
+        setShuffleMode ((Player.Shuffle)main_settings.shuffle_mode, true);
     }
 
 
@@ -225,7 +225,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         /*if(mode == shuffle)
             return;
         */
-        Settings.Main.instance.shuffle_mode = mode;
+        main_settings.shuffle_mode = mode;
         shuffle = mode;
         
         if(!reshuffle)
@@ -511,8 +511,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         }
         
         // check that the file exists FIXME: Avoid reading settings everytime a song is played
-        var music_folder_uri = File.new_for_path(Settings.Main.instance.music_folder).get_uri();
-        if((Settings.Main.instance.music_folder != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
+        var music_folder_uri = File.new_for_path(main_settings.music_folder).get_uri();
+        if((main_settings.music_folder != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
             m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU, ((ViewWrapper)App.main_window.sideTree.getWidget(App.main_window.sideTree.library_music_iter)).list_view.get_style_context());
             m.location_unknown = true;
             //App.main_window.media_not_found(id);
@@ -547,7 +547,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         
         //update settings
         if (m.rowid >= 0)
-            Settings.Main.instance.last_media_playing = m.rowid;
+            main_settings.last_media_playing = m.rowid;
         
         if (m != null)
             media_played (m);
@@ -572,11 +572,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
     public void* change_gains_thread () {
-        if (Settings.Equalizer.instance.equalizer_enabled) {
-            bool automatic_enabled = Settings.Equalizer.instance.auto_switch_preset;
-            string selected_preset = Settings.Equalizer.instance.selected_preset;
+        if (equalizer_settings.equalizer_enabled) {
+            bool automatic_enabled = equalizer_settings.auto_switch_preset;
+            string selected_preset = equalizer_settings.selected_preset;
 
-            foreach(var p in Settings.Equalizer.instance.getPresets ()) {
+            foreach(var p in equalizer_settings.getPresets ()) {
                 if(p != null && media_active)  {
                     var preset_name = p.name.down ();
                     var media_genre = media_info.media.genre.down();
@@ -626,7 +626,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         if(media_active)
             was_playing = media_info.media.rowid;
         
-        Settings.Main.instance.last_media_playing = 0;
+        main_settings.last_media_playing = 0;
         media_info.update(null, null, null, null);
         
         playback_stopped(was_playing);

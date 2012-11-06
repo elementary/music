@@ -162,18 +162,23 @@ public class Noise.Media : Object {
     }
 
     public string get_title_markup () {
-        string markup = "<b>%s</b>".printf (String.escape (get_display_title ()));
 
         // We don't use the get_display_* for the artist and albums because
         // there's no point in showing "unknown" there. If the info is not available,
         // just skip it.
-        if (is_valid_string_field (artist))
-            /// String template used to show "SongName by ArtistName"
-            markup += _(" by %s").printf ("<b>" + String.escape (artist) + "</b>");
-
-        if (is_valid_string_field (album))
-            /// String template used to show "SongName ... on AlbumName"
-            markup += _(" on %s").printf ("<b>" + String.escape (album) + "</b>");
+         string markup;
+        if (!is_valid_string_field (artist) && is_valid_string_field (album))
+            /// Please keep $NAME and $ALBUM, they will be replaced by their values
+            markup = _("$NAME on $ALBUM").replace ("$ARTIST", "<b>" + String.escape (album) + "</b>").replace ("$NAME", "<b>" + String.escape (get_display_title ()) + "</b>");
+        else if (is_valid_string_field (artist) && !is_valid_string_field (album))
+            /// Please keep $NAME and $ARTIST, they will be replaced by their values
+            markup = _("$NAME by $ARTIST").replace ("$ARTIST", "<b>" + String.escape (artist) + "</b>").replace ("$NAME", "<b>" + String.escape (get_display_title ()) + "</b>");
+        else if (!is_valid_string_field (artist) && !is_valid_string_field (album))
+            /// Please keep $NAME and $ARTIST, they will be replaced by their values
+            markup = "<b>" + String.escape (get_display_title ()) + "</b>";
+        else
+            /// Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+            markup = _("$NAME by $ARTIST on $ALBUM").replace ("$ARTIST", "<b>" + String.escape (artist) + "</b>").replace ("$NAME", "<b>" + String.escape (get_display_title ()) + "</b>").replace ("$ALBUM", "<b>" + String.escape (album) + "</b>");
 
         return markup;
     }

@@ -46,6 +46,7 @@ namespace Noise.TimeUtils {
 
             if (seconds > 0) {
                 seconds_string = ngettext ("%u second", "%u seconds", seconds).printf (seconds);
+                /// Minutes and seconds
                 return C_("minutes and seconds", "%s and %s").printf (minutes_string, seconds_string);
             }
 
@@ -78,12 +79,15 @@ namespace Noise.TimeUtils {
         if (days > 0) {
             if (hours > 0) {
                 if (minutes > 0)
+                    /// days, hours and minutes
                     rv = C_("days, hours and minutes", "%s, %s and %s").printf (days_string, hours_string, minutes_string);
                 else
+                    /// days and hours
                     rv = C_("days and hours", "%s and %s").printf (days_string, hours_string);
             }
             else {
                 if (minutes > 0)
+                    /// days and minutes
                     rv = C_("days and minutes", "%s and %s").printf (days_string, minutes_string);
                 else
                     rv = days_string;
@@ -92,6 +96,7 @@ namespace Noise.TimeUtils {
         else {
             if (hours > 0) {
                 if (minutes > 0)
+                    /// hours and minutes
                     rv = C_("hours and minutes", "%s and %s").printf (hours_string, minutes_string);
                 else
                     rv = hours_string;

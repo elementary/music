@@ -67,7 +67,7 @@ namespace Noise.Plugins {
             plugins.register_function_arg(Interface.Hook.SETTINGS_WINDOW, (window) => {
                 preferences_window = window as Noise.PreferencesWindow;
                 var prefs_section = new LastFM.PreferencesSection (core);
-                prefs_page_index = preferences_window.add_section (prefs_section);
+                prefs_page_index = preferences_window.add_page (prefs_section.page);
             });
         }
 

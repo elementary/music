@@ -93,7 +93,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
                 file_chooser.set_local_only (true);
                 file_chooser.set_select_multiple (false);
-                file_chooser.set_current_folder (Settings.Main.instance.music_folder);
+                file_chooser.set_current_folder (main_settings.music_folder);
 
                 string? folder = null;
 

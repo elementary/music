@@ -28,128 +28,125 @@ public class Noise.PlaylistNameWindow : Granite.Widgets.LightWindow {
 public class Noise.PlaylistNameWindow : Window {
 #endif
 
-	public Playlist _original;
-	LibraryWindow lw;
-	
-	Gtk.Box content;
-	Gtk.InfoBar infobar;
-	Gtk.Label infobar_label;
+    public Playlist _original;
+    LibraryWindow lw;
+    
+    Gtk.Box content;
+    Gtk.Label infobar_label;
 
-	public Entry _name {get; private set;}
-	public Button _save {get; private set;}
-	public Button _cancel {get; private set;}
+    public Entry _name {get; private set;}
+    public Button _save {get; private set;}
+    public Button _cancel {get; private set;}
 
-	public signal void playlist_saved(Playlist p);
-	
-	public PlaylistNameWindow(LibraryWindow lw, Playlist original) {
-		this.lw = lw;
-		
-		title = "";
-		
-		this.window_position = WindowPosition.CENTER;
-		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.set_modal(true);
-		this.set_transient_for(lw);
-		this.destroy_with_parent = true;
+    public signal void playlist_saved(Playlist p);
+    
+    public PlaylistNameWindow(LibraryWindow lw, Playlist original) {
+        this.lw = lw;
+        
+        this.title = _("Playlist Editor");
+        
+        this.window_position = WindowPosition.CENTER;
+        this.type_hint = Gdk.WindowTypeHint.DIALOG;
+        this.set_modal(true);
+        this.set_transient_for(lw);
+        this.destroy_with_parent = true;
 
-		set_size_request (350, -1);
-		resizable = false;
-		
-		_original = original;
-		
-		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-		
-		/* start out by creating all category labels */
-		Label nameLabel = new Label(_("Name of Playlist"));
-		_name = new Entry();
-		_save = new Button.from_stock (Gtk.Stock.SAVE);
-		_cancel = new Button.from_stock (Gtk.Stock.CANCEL);
+        set_size_request (350, -1);
+        resizable = false;
+        
+        _original = original;
+        
+        content = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        
+        /* start out by creating all category labels */
+        Label nameLabel = new Label(_("Name of Playlist"));
+        _name = new Entry();
+        _save = new Button.from_stock (Gtk.Stock.SAVE);
+        _cancel = new Button.from_stock (Gtk.Stock.CANCEL);
 
 
-		/* set up controls */
-		nameLabel.xalign = 0.0f;
-		nameLabel.set_markup("<b>%s</b>".printf (String.escape (_("Name of Playlist"))));
-		
-		_name.text = original.name;
-		
-		/* Infobar stuff*/
-		infobar_label = new Label("");
-		
-		infobar_label.set_justify(Justification.LEFT);
-		infobar_label.set_single_line_mode(true);
-		infobar_label.ellipsize = Pango.EllipsizeMode.END;
-		
-		infobar = new InfoBar();
-		infobar.set_message_type (Gtk.MessageType.WARNING);
-		
-		(infobar.get_content_area() as Gtk.Container).add (infobar_label);
+        /* set up controls */
+        nameLabel.xalign = 0.0f;
+        nameLabel.set_markup("<b>%s</b>".printf (String.escape (_("Name of Playlist"))));
+        
+        _name.text = original.name;
+        
+        /* Infobar stuff*/
+        infobar_label = new Label("");
+        
+        infobar_label.set_justify(Justification.LEFT);
+        infobar_label.xalign = 0.0f;
+        infobar_label.set_single_line_mode(true);
+        infobar_label.ellipsize = Pango.EllipsizeMode.END;
 
-		/* add controls to form */
-		var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-		bottomButtons.set_spacing (6);
-		bottomButtons.set_layout (Gtk.ButtonBoxStyle.END);
-		bottomButtons.pack_end (_cancel, false, false, 0);
-		bottomButtons.pack_end (_save, false, false, 0);
+        /* add controls to form */
+        var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        bottomButtons.set_spacing (6);
+        bottomButtons.set_layout (Gtk.ButtonBoxStyle.END);
+        bottomButtons.pack_end (_cancel, false, false, 0);
+        bottomButtons.pack_end (_save, false, false, 0);
 
-		infobar.set_no_show_all (true);
-		
-		content.pack_start (nameLabel, false, false, 0);
+        infobar_label.set_no_show_all (true);
+        
+        content.pack_start (nameLabel, false, false, 0);
         _name.margin_top = 6;
-		content.pack_start (_name, false, false, 0);
-        infobar.margin_top = 6;
-		content.pack_start (infobar, false, false, 0);
+        content.pack_start (_name, false, false, 0);
+        infobar_label.margin_top = 6;
+        content.pack_start (infobar_label, false, false, 0);
         bottomButtons.margin_top = 12;
-		content.pack_start (bottomButtons, false, false, 0);
+        content.pack_start (bottomButtons, false, false, 0);
 
-		content.margin = 12;
+        content.margin = 12;
 
-		add(content);
+        add(content);
 
-		// Validate initial state
-		nameChanged ();
+        // Validate initial state
+        nameChanged ();
 
-		show_all();
+        show_all();
 
-		_save.clicked.connect(saveClicked);
-		_cancel.clicked.connect (cancel_clicked);
-		_name.activate.connect(nameActivate);
-		_name.changed.connect(nameChanged);
-	}
+        _save.clicked.connect(saveClicked);
+        _cancel.clicked.connect (cancel_clicked);
+        _name.activate.connect(nameActivate);
+        _name.changed.connect(nameChanged);
+    }
 
-	void cancel_clicked () {
-		destroy ();
-	}
+    void cancel_clicked () {
+        destroy ();
+    }
 
-	void saveClicked() {
-		_original.name = _name.text.strip ();
-		playlist_saved (_original);
-		this.destroy();
-	}
-	
-	void nameActivate() {
-		saveClicked();
-	}
-	
-	void nameChanged() {
-		if (String.is_white_space (_name.get_text())) {
-			_save.set_sensitive(false);
-			infobar.hide ();
-			return;
-		}
-		else {
-			foreach (var p in lw.library_manager.playlists ()) {
-				var fixed_name = _name.get_text ().strip ();
-				if((_original == null || _original.rowid != p.rowid) && fixed_name == p.name) {
-					_save.set_sensitive(false);
-					infobar.set_no_show_all (false);
-					infobar_label.set_markup (_("The name %s is already in use").printf ("<b>" + String.escape (fixed_name) + "</b>"));
-					infobar.show_all ();
-					return;
-				}
-			}
-		}
+    void saveClicked() {
+        if (_save.get_sensitive() == true) {
+            _original.name = _name.text.strip ();
+            playlist_saved (_original);
+            this.destroy();
+        }
+    }
+    
+    void nameActivate() {
+        saveClicked();
+    }
+    
+    void nameChanged() {
+        if (String.is_white_space (_name.get_text())) {
+            _save.set_sensitive(false);
+            infobar_label.hide ();
+            return;
+        }
+        else {
+            foreach (var p in lw.library_manager.playlists ()) {
+                var fixed_name = _name.get_text ().strip ();
+                if((_original == null || _original.rowid != p.rowid) && fixed_name == p.name) {
+                    _save.set_sensitive(false);
+                    infobar_label.set_no_show_all (false);
+                    infobar_label.set_markup (_("The name %s is already in use").printf ("<b>" + String.escape (fixed_name) + "</b>"));
+                    infobar_label.show_all ();
+                    return;
+                }
+            }
+        }
 
-		infobar.hide ();		
-		_save.set_sensitive(true);
-	}
+        infobar_label.hide ();        
+        _save.set_sensitive(true);
+    }
 }

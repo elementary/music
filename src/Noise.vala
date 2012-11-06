@@ -51,7 +51,6 @@ public class Noise.App : Granite.Application {
     public static PlaybackManager player { get; private set; }
     public static LibraryManager library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
-    public static Noise.Plugins.Manager plugins { get; private set; }
 
     /**
      * Supported audio types.
@@ -73,38 +72,6 @@ public class Noise.App : Granite.Application {
     /**
      *
      */
-
-#if ENABLE_EXPERIMENTAL
-    /**
-     * @return whether the application is the default for handling audio files
-     */
-    public bool is_default_application {
-        get {
-            foreach (string content_type in CONTENT_TYPES) {
-                var default_app = AppInfo.get_default_for_type (content_type, true).get_id ();
-                if (default_app != get_desktop_file_name ())
-                    return false;
-            }
-
-            return true;
-        }
-        set {
-            var info = new DesktopAppInfo (get_desktop_file_name ());
-
-            foreach (string content_type in CONTENT_TYPES) {
-                try {
-                    if (value)
-                        info.set_as_default_for_type (content_type);
-                    else
-                        info.reset_type_associations (content_type);
-                } catch (Error err) {
-                    warning ("Cannot set Noise as default audio player for %s: %s",
-                             content_type, err.message);
-                }
-            }
-        }
-    }
-#endif
 
 
     construct {
@@ -153,6 +120,10 @@ public class Noise.App : Granite.Application {
         else
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
+        saved_state = new Settings.SavedState ();
+        main_settings = new Settings.Main ();
+        equalizer_settings = new Settings.Equalizer ();
+        
         if (main_window == null) {
             plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
             plugins.hook_app (this);

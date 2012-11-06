@@ -81,6 +81,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public signal void media_half_played (); // send after the half of the song
     public signal void update_media_info (); // send after 3 seconds
+    
+    PreferencesWindow? preferences = null;
 
     public LibraryWindow () {
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
@@ -103,21 +105,25 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
         // init some booleans
-        if (Settings.Main.instance.music_folder == "") {
-            Settings.Main.instance.music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
+        if (main_settings.music_folder == "") {
+            main_settings.music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
             message("First run.\n");
         }
         else {
             App.player.clearCurrent();
 
             // make sure we don't re-count stats
-            if (Settings.Main.instance.last_media_position > 5)
+            if (main_settings.last_media_position > 5)
                 media_considered_previewed = true;
-            if(Settings.Main.instance.last_media_position > 30)
+            if(main_settings.last_media_position > 30)
                 media_considered_played = true;
-            if(App.player.media_active && (double)(Settings.Main.instance.last_media_position/(double)App.player.media_info.media.length) > 0.90)
+            if(App.player.media_active && (double)(main_settings.last_media_position/(double)App.player.media_info.media.length) > 0.90)
                 added_to_play_count = true;
         }
+        main_settings.schema.changed.connect( (key) =>{
+            if (key == "music-folder")
+                setMusicFolder(main_settings.music_folder);
+        });
 
         /*if(!File.new_for_path(settings.getMusicFolder()).query_exists() && settings.getMusicFolder() != "") {
             doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using Noise.");
@@ -151,10 +157,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         this.window_position = Gtk.WindowPosition.CENTER;
 
         // set the size based on saved settings
-        this.set_default_size (Settings.SavedState.instance.window_width, Settings.SavedState.instance.window_height);
+        this.set_default_size (saved_state.window_width, saved_state.window_height);
 
         // Maximize window if necessary
-        switch (Settings.SavedState.instance.window_state) {
+        switch (saved_state.window_state) {
             case WindowState.MAXIMIZED:
                 this.maximize ();
                 break;
@@ -190,7 +196,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         fileRescanMusicFolder   = new Gtk.MenuItem.with_label (_("Rescan Music Folder"));
         editPreferences         = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.PREFERENCES, null);
 
-        editPreferences.set_label (_("Preferences"));
+        editPreferences.set_label (_("Preferences..."));
 
         settingsMenu.append (fileImportMusic);
         settingsMenu.append (fileRescanMusicFolder);
@@ -263,8 +269,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         sideTree              = new SideTreeView (library_manager, this);
 
         // Set properties of various controls
-        main_hpaned.position = Settings.SavedState.instance.sidebar_width;
-        int view_container_pos = Settings.SavedState.instance.window_width - Settings.SavedState.instance.sidebar_width - Settings.SavedState.instance.more_width;
+        main_hpaned.position = saved_state.sidebar_width;
+        int view_container_pos = saved_state.window_width - saved_state.sidebar_width - saved_state.more_width;
         view_container_hpaned.set_position (view_container_pos);
 
         view_container_hpaned.pack1 (view_container, true, false);
@@ -307,7 +313,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
 
         // Now set the selected view
-        viewSelector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.instance.view_mode;
+        viewSelector.selected = (Widgets.ViewSelector.Mode) saved_state.view_mode;
 
         initialization_finished = true;
 
@@ -320,11 +326,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         nextButton.clicked.connect(nextClicked);
 
         searchField.activate.connect (searchFieldActivate);
-        searchField.set_text (Settings.Main.instance.search_string);
+        searchField.set_text (main_settings.search_string);
 
         debug ("DONE WITH USER INTERFACE");
 
-        int last_playing_id = Settings.Main.instance.last_media_playing;
+        int last_playing_id = main_settings.last_media_playing;
 
         if (last_playing_id > 0) {
             var last_playing_media = library_manager.media_from_id (last_playing_id);
@@ -341,7 +347,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, int urgency = -1) {
 #if HAVE_LIBNOTIFY
         // Don't show notifications if the window is active
-        if (!Settings.Main.instance.show_notifications || this.is_active)
+        if (!main_settings.show_notifications || this.is_active)
             return;
 
         if (urgency == -1)
@@ -586,7 +592,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         topDisplay.set_scale_sensitivity(media_active);
 
-        bool show_info_panel = Settings.SavedState.instance.more_visible && info_panel.can_show_up;
+        bool show_info_panel = saved_state.more_visible && info_panel.can_show_up;
         info_panel.set_visible (show_info_panel);
 
         statusbar.update_sensitivities ();
@@ -835,14 +841,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
 
             for (int i=0;i<folders.length;i++) {
-                if(folders[i] == "" || folders[i] != Settings.Main.instance.music_folder) {
+                if(folders[i] == "" || folders[i] != main_settings.music_folder) {
                     folders_list += folders[i];
                     if (i + 1 != folders.length)
                         folders_list += ", ";
                 }
             }
 
-            if(GLib.File.new_for_path (Settings.Main.instance.music_folder).query_exists()) {
+            if(GLib.File.new_for_path (main_settings.music_folder).query_exists()) {
                 topDisplay.set_label_markup(_("<b>Importing</b> music from <b>%s</b> to library.").printf(folders_list));
                 topDisplay.show_progressbar();
 
@@ -857,7 +863,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public void rescan_music_folder () {
         if (!library_manager.doing_file_operations ()) {
-            if (GLib.File.new_for_path (Settings.Main.instance.music_folder).query_exists()) {
+            if (GLib.File.new_for_path (main_settings.music_folder).query_exists()) {
                 topDisplay.set_label_markup("<b>" + _("Rescanning music folder for changes") + "</b>");
                 topDisplay.show_progressbar();
 
@@ -911,7 +917,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             topDisplay.set_label_text("");
 
         if(not_imported.size > 0) {
-            NotImportedWindow nim = new NotImportedWindow(this, not_imported, Settings.Main.instance.music_folder);
+            NotImportedWindow nim = new NotImportedWindow(this, not_imported, main_settings.music_folder);
             nim.show();
         }
 
@@ -947,11 +953,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public void editPreferencesClick() {
-        PreferencesWindow pw = new PreferencesWindow(library_manager, this);
-
-        pw.changed.connect( (folder) => {
-            setMusicFolder(folder);
-        });
+        if (preferences == null)
+            preferences = new PreferencesWindow(this);
+        preferences.show_all ();
+        preferences.run ();
+        preferences.hide ();
     }
 
     public void setMusicFolder(string folder) {
@@ -959,7 +965,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
 
         // If different folder chosen or we have no songs anyways, do set.
-        if (folder == "" || (folder == Settings.Main.instance.music_folder && library_manager.media_count () > 0))
+        if (folder == "" || (folder == main_settings.music_folder && library_manager.media_count () > 0))
             return;
 
         if (library_manager.media_count () > 0 || library_manager.playlist_count() > 0) {
@@ -1080,7 +1086,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void on_quit () {
         // Save media position and info
-        Settings.Main.instance.last_media_position = (int)((double)App.player.player.getPosition
+        main_settings.last_media_position = (int)((double)App.player.player.getPosition
         ()/Numeric.NANO_INV);
         if(App.player.media_active) {
             App.player.media_info.media.resume_pos = (int)((double)App.player.player.getPosition()/Numeric.NANO_INV);
@@ -1089,28 +1095,28 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         App.player.player.pause();
 
         // Now set the selected view
-        Settings.SavedState.instance.view_mode = viewSelector.selected;
+        saved_state.view_mode = viewSelector.selected;
 
         // Search FIXME: Temporarily disabled
-        //Settings.Main.instance.search_string = searchField.get_text ();
+        //main_settings.search_string = searchField.get_text ();
         
         // Save info pane (context pane) width
-        Settings.SavedState.instance.more_width = info_panel.get_allocated_width ();
+        saved_state.more_width = info_panel.get_allocated_width ();
 
         // Save sidebar width
-        Settings.SavedState.instance.sidebar_width = main_hpaned.position;
+        saved_state.sidebar_width = main_hpaned.position;
 
 
         // Save window state
         if (window_maximized)
-                Settings.SavedState.instance.window_state = WindowState.MAXIMIZED;
+                saved_state.window_state = WindowState.MAXIMIZED;
         else if (window_fullscreen)
-                Settings.SavedState.instance.window_state = WindowState.FULLSCREEN;
+                saved_state.window_state = WindowState.FULLSCREEN;
         else
-                Settings.SavedState.instance.window_state = WindowState.NORMAL;
+                saved_state.window_state = WindowState.NORMAL;
 
-        Settings.SavedState.instance.window_width = window_width;
-        Settings.SavedState.instance.window_height = window_height;
+        saved_state.window_width = window_width;
+        saved_state.window_height = window_height;
     }
 
     /**
@@ -1123,7 +1129,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool playing = App.player.media_active && App.player.playing;
 
         // if playing a song, don't allow closing
-        if (!Settings.Main.instance.close_while_playing && playing) {
+        if (!main_settings.close_while_playing && playing) {
             if (minimize_on_close ()) 
                 iconify (); // i.e. minimize
              else 
@@ -1151,7 +1157,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (current_shell != null) {
             debug ("Current shell: %s", current_shell);
 
-            foreach (string shell in Settings.Main.instance.minimize_while_playing_shells) {
+            foreach (string shell in main_settings.minimize_while_playing_shells) {
                 if (current_shell == shell) {
                     message ("Using supported minimize_on_close shell");
                     minimize_on_close = true;

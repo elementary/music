@@ -246,7 +246,7 @@ namespace Noise.Widgets {
             // for hiding and showing the context pane. Any other visibility change we do internally
             // or elsewhere should not be saved
             if (by_user)
-                Settings.SavedState.instance.more_visible = visible;
+                saved_state.more_visible = visible;
         }
     }
 
