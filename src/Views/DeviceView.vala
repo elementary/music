@@ -73,8 +73,13 @@ public class Noise.DeviceView : Gtk.Grid {
             infobar.hide ();
         });
         summary = new DeviceSummaryWidget(lm, lw, d);
+        
         attach (infobar, 0, 0, 1, 1);
-        attach (summary, 0, 1, 1, 1);
+        if (d.has_custom_view()) {
+            attach (d.get_custom_view(), 0, 1, 1, 1);
+        } else {
+            attach (summary, 0, 1, 1, 1);
+        }
         
         show_all();
         infobar.hide ();

@@ -16,6 +16,7 @@ vala_precompile(
         CDRomDeviceManager.vala
         CDDA.vala
         CDRipper.vala
+        CDView.vala
     PACKAGES
         ${DEPS_PACKAGES}
         gstreamer-cdda-0.10

@@ -281,8 +281,16 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
     }
     
-    public void get_device_type() {
-        
+    public bool has_custom_view() {
+        return false;
+    }
+    
+    public Gtk.Grid get_custom_view() {
+        return new Gtk.Grid();
+    }
+    
+    public bool read_only() {
+        return false;
     }
     
     public bool supports_podcasts() {

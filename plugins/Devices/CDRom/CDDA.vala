@@ -35,6 +35,8 @@ public class Noise.CDDA : Object {
             query_attributes += FILE_ATTRIBUTE_TITLE;
             query_attributes += FILE_ATTRIBUTE_ARTIST;
             query_attributes += FILE_ATTRIBUTE_GENRE;
+            query_attributes += FILE_ATTRIBUTE_DURATION;
+            query_attributes += FileAttribute.STANDARD_NAME;
 
     		var device_info = device_file.query_info (string.joinv (",", query_attributes),
     		                                          FileQueryInfoFlags.NONE);
@@ -48,9 +50,9 @@ public class Noise.CDDA : Object {
 			string? album_artist = device_info.get_attribute_string (FILE_ATTRIBUTE_ARTIST);
 			string? album_genre = device_info.get_attribute_string (FILE_ATTRIBUTE_GENRE);
 
-            message ("\n\nCD ALBUM_NAME: %s", album_name);
+            message ("CD ALBUM_NAME: %s", album_name);
             message ("CD ALBUM_ARTIST: %s", album_artist);
-            message ("CD ALBUM_GENRE: %s\n", album_genre);
+            message ("CD ALBUM_GENRE: %s", album_genre);
 
             bool valid_album_artist = Media.is_valid_string_field (album_artist);
 			bool valid_album_name = Media.is_valid_string_field (album_name);
@@ -65,7 +67,7 @@ public class Noise.CDDA : Object {
 
 			for (track_info = enumerator.next_file (); track_info != null; track_info = enumerator.next_file ()) {
                 // GStreamer's CDDA library handles tracks with URI format: cdda://$TRACK_NUMBER
-                var s = new Media ("cdda://%d".printf (index));
+                var s = new Media (enumerator.get_container ().get_uri() + track_info.get_name ());
 
 				s.isTemporary = true;
 
@@ -80,13 +82,15 @@ public class Noise.CDDA : Object {
 
 				string? title = track_info.get_attribute_string (FILE_ATTRIBUTE_TITLE);
 				string? artist = track_info.get_attribute_string (FILE_ATTRIBUTE_ARTIST);
+				string? genre = track_info.get_attribute_string (FILE_ATTRIBUTE_GENRE);
 				uint64 length = track_info.get_attribute_uint64 (FILE_ATTRIBUTE_DURATION); // seconds
 
-                debug ("\nTRACK #%d\t:\n", index);
-                debug ("  TRACK_URI:      %s", s.uri);
-                debug ("  TRACK_TITLE:    %s", title);
-                debug ("  TRACK_ARTIST:   %s", artist);
-                debug ("  TRACK_DURATION: %s secs\n", length.to_string ());
+                debug ("TRACK #%d\t:", index);
+                debug ("  - TRACK_URI:      %s", s.uri);
+                debug ("  - TRACK_TITLE:    %s", title);
+                debug ("  - TRACK_ARTIST:   %s", artist);
+                debug ("  - TRACK_GENRE:    %s", genre);
+                debug ("  - TRACK_DURATION: %s secs\n", length.to_string ());
 
 				s.track = index;
 				s.length = (uint) (length * Numeric.MILI_INV); // no need to check, it's our best guess either way
@@ -96,6 +100,9 @@ public class Noise.CDDA : Object {
 
 				if (Media.is_valid_string_field (artist))
 					s.artist = artist;
+
+				if (Media.is_valid_string_field (genre))
+					s.genre = genre;
 
 				// remove artist name from title
 				//s.title = remove_artist_from_title (s.title, s.artist);

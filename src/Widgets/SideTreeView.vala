@@ -33,7 +33,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
     public TreeIter library_audiobooks_iter {get; private set;}
 
     public TreeIter devices_iter {get; private set;}
-    public TreeIter devices_cdrom_iter {get; private set;}
     
     public TreeIter network_iter {get; private set;}
     public TreeIter network_devices_iter {get; private set;}
@@ -170,9 +169,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
             case ViewWrapper.Hint.NETWORK_DEVICE:
                 sidebar_category_iter = network_iter;
                 break;
-            case ViewWrapper.Hint.CDROM:
-                sidebar_category_iter = devices_iter;
-                break;
             default:
                 sidebar_category_iter = playlists_iter;
                 break;
@@ -211,10 +207,12 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
 
             rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, this.get_style_context ()));
 
+            if (!d.has_custom_view()) {
             var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
             dvw.set_media_async (d.get_medias ());
             lw.view_container.add_view (dvw);
-            addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
+                addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
+            }
 
             return rv;
         }
@@ -330,7 +328,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                     var iter_f = convertToChild(iter);
                     Widget w = getWidget(iter_f);
                     if(w is Noise.DeviceView) {
-                        deviceSync.visible = (o as Device).getContentType() == "cdrom";
+                        deviceSync.visible = !(o as Device).read_only();
                         deviceMenu.popup (null, null, null, Gdk.BUTTON_SECONDARY, Gtk.get_current_event_time ());
                     }
                 }

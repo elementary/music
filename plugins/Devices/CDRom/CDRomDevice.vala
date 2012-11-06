@@ -44,6 +44,10 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     LinkedList<Noise.Media> medias;
     LinkedList<Noise.Media> list;
     
+    CDView cdview;
+    
+    public signal void current_importation (int current_list_index);
+    
     public CDRomDevice(Noise.LibraryManager lm, Mount mount) {
         this.lm = lm;
         this.lw = lm.lw;
@@ -53,6 +57,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         
         list = new LinkedList<Noise.Media>();
         medias = new LinkedList<Noise.Media>();
+        
+        cdview = new CDView (lm, this);
     }
     
     public Noise.DevicePreferences get_preferences() {
@@ -66,20 +72,24 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     public void finish_initialization() {
         lm.progress_cancel_clicked.connect(cancel_transfer);
         
-        Threads.add (finish_initialization_thread);
+        finish_initialization_thread ();
     }
     
-    void finish_initialization_thread() {
-        medias = CDDA.getMediaList (mount.get_default_location ());
-        if(medias.size > 0) {
-            setDisplayName(medias.get(0).album);
-        }
-        
-        Idle.add( () => {
-            initialized(this);
+    async void finish_initialization_thread() {
+        Threads.add (() => {
+            medias = CDDA.getMediaList (mount.get_default_location ());
+            if(medias.size > 0) {
+                setDisplayName(medias.get(0).album);
+            }
             
-            return false;
+            Idle.add( () => {
+                initialized(this);
+                
+                return false;
+            });
         });
+        
+        yield;
     }
     
     public string getEmptyDeviceTitle() {
@@ -183,8 +193,16 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         ejecting = false;
     }
     
-    public void get_device_type() {
-        
+    public bool has_custom_view() {
+        return true;
+    }
+    
+    public Gtk.Grid get_custom_view() {
+        return cdview;
+    }
+    
+    public bool read_only() {
+        return true;
     }
     
     public bool supports_podcasts() {
@@ -347,6 +365,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         if(current_list_index < (list.size - 1) && !user_cancelled) {
             ++current_list_index;
             Noise.Media next = list.get(current_list_index);
+            current_importation (current_list_index);
             media_being_ripped = next;
             ripper.ripMedia(next.track, next);
 
@@ -408,6 +427,17 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
                     Noise.InstallGstreamerPluginsDialog dialog = new Noise.InstallGstreamerPluginsDialog(lm, lw, message);
                     dialog.show();
                 }
+        }
+        if(err == "error") {
+            GLib.Error error;
+            string debug;
+            message.parse_error (out error, out debug);
+            critical ("Error: %s!:%s\n", error.message, debug);
+            cancel_transfer();
+            lm.finish_file_operations();
+            media_being_ripped = null;
+            _is_transferring = false;
+            infobar_message (_("An error occured during the Import of this CD"), Gtk.MessageType.ERROR);
         }
     }
     

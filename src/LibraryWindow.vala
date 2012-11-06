@@ -503,22 +503,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         else if(o is Device) {
             Device d = (Device)o;
 
-            if(d.getContentType() == "cdrom") {
+            if(d.has_custom_view()) {
 
-                message("CD added with %d songs.\n", d.get_medias().size);
+                message("new custom device (probably a CD) added with %d songs.\n", d.get_medias().size);
 
-                /* FIXME: this can be easily migrated. Not doing it now to avoid
-                 *        breaking stuff.
-                 */
-                 // TODO: Convert the current DeviceViewWrapper into CDViewWrapper
-                 var cd_setup = new TreeViewSetup (ListColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
-                 var vw = new DeviceViewWrapper (this, cd_setup, d);
-
-                 iter = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
-                 view_container.add_view (vw);
-            }
-            else {
-                debug ("adding ipod device view with %d\n", d.get_medias().size);
+                Gtk.Grid dv = d.get_custom_view();
+                iter = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName(), ViewWrapper.Hint.NONE);
+                view_container.add_view (dv);
+            } else {
+                debug ("adding device view with %d\n", d.get_medias().size);
                 DeviceView dv = new DeviceView (library_manager, d);
                 //vw = new DeviceViewWrapper(this, d.get_medias(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE, -1, d);
                 iter = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName(), ViewWrapper.Hint.NONE);

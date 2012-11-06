@@ -47,9 +47,9 @@ public class Noise.Pipeline : GLib.Object {
 		gapless = new ReplayGain();
 		
 		pipe = new Gst.Pipeline("pipeline");
-		playbin = ElementFactory.make("playbin2", null);
+		playbin = ElementFactory.make("playbin2", "play");
 		
-		audiosink = ElementFactory.make("autoaudiosink", null);
+		audiosink = ElementFactory.make("autoaudiosink", "audio-sink");
 		//audiosink.set("profile", 1); // says we handle music and movies
 		
 		audiobin = new Gst.Bin("audiobin"); // this holds the real primary sink

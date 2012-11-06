@@ -268,9 +268,16 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         }
     }
     
+    public bool has_custom_view() {
+        return false;
+    }
     
-    public void get_device_type() {
-        
+    public Gtk.Grid get_custom_view() {
+        return new Gtk.Grid();
+    }
+    
+    public bool read_only() {
+        return false;
     }
     
     public bool supports_podcasts() {

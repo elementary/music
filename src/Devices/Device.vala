@@ -49,7 +49,9 @@ public interface Noise.Device : GLib.Object {
     public abstract uint64 get_free_space();
     public abstract void unmount();
     public abstract void eject();
-    public abstract void get_device_type();
+    public abstract bool has_custom_view();
+    public abstract Gtk.Grid get_custom_view();
+    public abstract bool read_only();
     public abstract bool supports_podcasts();
     public abstract bool supports_audiobooks();
     public abstract Collection<Media> get_medias();

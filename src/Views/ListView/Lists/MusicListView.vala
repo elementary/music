@@ -85,15 +85,6 @@ public class Noise.MusicListView : GenericList {
             mediaMenuAddToPlaylist.set_visible(false);
             mediaMenuNewPlaylist.set_visible(false);
         }
-        else if(get_hint() == ViewWrapper.Hint.CDROM) {
-            mediaEditMedia.set_visible(false); // Will be 'true'. See TODO in MediaEditor.vala
-            mediaFileBrowse.set_visible (false);
-            mediaTopSeparator.set_visible (false); // no need for a separator
-            mediaRateMedia.set_visible(false);
-            mediaRemove.set_visible(false);
-            mediaMenuAddToPlaylist.set_visible(false);
-            mediaMenuNewPlaylist.set_visible(false);
-        }
         else {
             mediaRemove.set_visible(false);
             importToLibrary.set_visible(false);
@@ -118,7 +109,7 @@ public class Noise.MusicListView : GenericList {
 
         var hint = tvs.get_hint ();
 
-        if(hint != ViewWrapper.Hint.CDROM && hint != ViewWrapper.Hint.ALBUM_LIST) {
+        if(hint != ViewWrapper.Hint.ALBUM_LIST) {
             //mediaActionMenu.append(browseSame);
             mediaActionMenu.append(mediaScrollToCurrent);
         }
@@ -623,8 +614,6 @@ public class Noise.MusicListView : GenericList {
 
                 if (s == currently_playing && currently_playing != null)
                     icon = Icons.NOW_PLAYING_SYMBOLIC.gicon;
-                else if (tvs.get_hint () == ViewWrapper.Hint.CDROM && !s.isTemporary)
-                    icon = Icons.PROCESS_COMPLETED.gicon;
                 else
                     icon = s.unique_status_image;
 

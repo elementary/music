@@ -122,10 +122,7 @@ public class Noise.CDRipper : GLib.Object {
 				
 				break;*/
 			case Gst.MessageType.ERROR:
-				GLib.Error err;
-				string debug;
-				message.parse_error (out err, out debug);
-				critical ("Error: %s!:%s\n", err.message, debug);
+				error("error", message);
 				break;
 			case Gst.MessageType.ELEMENT:
 				critical("missing element\n");
