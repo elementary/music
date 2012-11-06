@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-02 23:52+0100\n"
+"POT-Creation-Date: 2012-11-06 03:12+0100\n"
 "PO-Revision-Date: 2012-10-21 04:49+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: \n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-11-04 05:18+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2012-11-06 05:22+0000\n"
+"X-Generator: Launchpad (build 16232)\n"
 "Language: \n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -121,6 +121,7 @@ msgstr "未知的專輯"
 
 #: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/noelco/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:179
 msgid "Unknown Artist"
 msgstr "未知的演出者"
 
@@ -200,6 +201,10 @@ msgstr "柔和搖滾"
 msgid "Techno"
 msgstr "電音"
 
+#: /home/noelco/noise/po/../src//FileOperator.vala:405
+msgid "<b>Copying</b> files to <b>Music Folder</b>..."
+msgstr ""
+
 #: /home/noelco/noise/po/../src//LibraryManager.vala:218
 #, c-format
 msgid "Importing music from %s..."
@@ -255,7 +260,6 @@ msgid "Rescan Library"
 msgstr "重新掃描珍藏館"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Do Nothing"
 msgstr "什麼也不做"
 
@@ -264,10 +268,10 @@ msgid "Could not find media file"
 msgstr "找不到到媒體檔案"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
-#, c-format
 msgid ""
-"The music file for %s by %s could not be found. What would you like to do?"
-msgstr "找不到音樂檔案 %s (演出者%s)。您想要怎麼做？"
+"The music file for $NAME by $ARTIST could not be found. What would you like "
+"to do?"
+msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
@@ -300,6 +304,7 @@ msgid "Import all media"
 msgstr "匯入所有媒體"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:96
 msgid "Import"
 msgstr "匯入"
 
@@ -357,6 +362,17 @@ msgstr "勾選專輯"
 msgid "Check Artist"
 msgstr "勾選演出者"
 
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
+msgid "Cannot Import"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
+#, c-format
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
 msgstr "匯出播放清單"
@@ -364,12 +380,6 @@ msgstr "匯出播放清單"
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
 msgstr "設定音樂資料夾"
-
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
-#: /home/noelco/noise/po/../src//Widgets/TopDisplay.vala:69
-msgid "Cancel"
-msgstr "取消"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
@@ -594,7 +604,7 @@ msgid "Sync will remove 1 item from %s"
 msgstr "同步將從 %s 移除 1 個項目"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:192
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:193
 msgid "Preferences"
 msgstr "偏好設定"
 
@@ -664,9 +674,8 @@ msgstr "歌詞"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:179
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
-#, c-format
-msgid "Editing %s by %s"
-msgstr "正在編輯 %s (演出者%s)"
+msgid "Editing $NAME by $ARTIST"
+msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
@@ -719,6 +728,11 @@ msgstr "移至回收筒"
 #, c-format
 msgid "Remove from %s"
 msgstr "從 %s 移除"
+
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+#: /home/noelco/noise/po/../src//Widgets/TopDisplay.vala:69
+msgid "Cancel"
+msgstr "取消"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
@@ -806,109 +820,109 @@ msgstr "自動"
 msgid "Delete Current"
 msgstr "刪除目前的"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:71
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:188
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:113
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:70
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:189
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:104
 msgid "Import to Library"
 msgstr "匯入至珍藏館"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:74
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:237
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:73
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:238
 msgid "Sync"
 msgstr "同步"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:77
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:76
 msgid "Eject"
 msgstr "退出"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:88
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:110
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:87
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:101
 msgid "New Playlist"
 msgstr "新增播放清單"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:89
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:88
 msgid "New Smart Playlist"
 msgstr "新增智慧型播放清單"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:90
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:89
 msgid "Edit"
 msgstr "編輯"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:91
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:90
 msgid "Remove"
 msgstr "移除"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:92
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:91
 msgid "Save as Playlist"
 msgstr "儲存為播放清單"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:93
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:92
 msgid "Export..."
 msgstr "匯出..."
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:94
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:93
 msgid "Import Playlists"
 msgstr "匯入播放清單"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:132
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:131
 msgid "Library"
 msgstr "珍藏館"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:133
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:132
 msgid "Devices"
 msgstr "裝置"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:134
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:133
 msgid "Network"
 msgstr "網路"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:135
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:134
 msgid "Playlists"
 msgstr "播放清單"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:217
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:471
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:112
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:214
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:459
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "音樂"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:585
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:583
 msgid "This device is syncing"
 msgstr "這個裝置正在同步"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:585
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:583
 msgid "Please wait until the current sync is finished to do this action."
 msgstr "請等候目前的同步動作完成後再執行此動作。"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:587
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:585
 msgid "This device is in transfer"
 msgstr "這個裝置正在傳輸"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:587
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:585
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr "請等候目前的傳輸動作完成後再執行此動作。"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:706
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:704
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
 msgstr "播放佇列 (%Y-%b-%e %p %l:%M)"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:708
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:706
 msgid "Play History (%Y-%b-%e %l:%M %p)"
 msgstr "播放歷史 (%Y-%b-%e %p %l:%M)"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:710
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:708
 msgid "Unknown playlist"
 msgstr "未知的播放清單"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:720
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:718
 msgid "Export Playlist"
 msgstr "匯出播放清單"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:804
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:802
 msgid "Playlist"
 msgstr "播放清單"
 
-#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:817
+#: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:815
 #, c-format
 msgid "Import %s"
 msgstr "匯入 %s"
@@ -1002,80 +1016,80 @@ msgstr "隱藏資訊面板"
 msgid "Free"
 msgstr "未用空間"
 
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:383
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:384
 msgid "Using %s of %s (%.2f%)"
 msgstr "正使用 %s/%s (%.2f%)"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:189
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:190
 msgid "Rescan Music Folder"
 msgstr "重新掃描音樂資料夾"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:212
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:213
 msgid "Search Music"
 msgstr "搜尋音樂"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:481
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:469
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:485
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:473
 msgid "History"
 msgstr "歷史"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:833
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:814
 msgid "Import Music"
 msgstr "匯入音樂"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:865
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:846
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "正在從 <b>%s</b> <b>匯入</b> 音樂至珍藏館中。"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:880
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:861
 msgid "Rescanning music folder for changes"
 msgstr "正重新掃描音樂資料夾以瞭解變動狀態"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:887
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:254
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:268
 msgid "Could not find Music Folder"
 msgstr "找不到「音樂」資料夾"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:887
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "請確認您的音樂資料夾可以存取且已經掛載。"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:954
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
 msgid "Import Complete"
 msgstr "匯入完成"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:954
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s 已匯入至您的珍藏館中。"
 
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:43
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
 msgid "Cancelling Sync"
 msgstr "取消同步"
 
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:43
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr "已取消裝置同步。操作將在這個媒體同步完後取消。"
 
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:47
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
 msgid "Cancelling Import"
 msgstr "取消匯入"
 
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:47
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr "已取消從裝置的匯入。操作將在這個媒體同步完後取消。"
 
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:86
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
 msgid "No External Songs"
 msgstr "沒有外部的歌曲"
 
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:86
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr "這部裝置中沒有您珍藏館中沒有的歌曲。"
@@ -1224,50 +1238,41 @@ msgstr "從佇列中移除"
 msgid "Remove from Device"
 msgstr "從裝置中移除"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:106
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgid "Scroll to Current Song"
 msgstr "捲動至目前歌曲"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:107
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
 msgid "Edit Song Info"
 msgstr "編輯歌曲資訊"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:108
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Show in File Browser"
 msgstr "在檔案瀏覽器中顯示"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:109
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
 msgctxt "Action item (verb)"
 msgid "Queue"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:111
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:102
 msgid "Add to Playlist"
 msgstr "加入至播放清單"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:112
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:103
 msgid "Remove Song"
 msgstr "移除歌曲"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:212
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "匯入 %i/%i 首所選的歌曲"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
-msgid "Import this song"
-msgstr "匯入這首歌曲"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:225
-#, c-format
-msgid "Import %i songs"
-msgstr "匯入 %i 首歌曲"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:743
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:730
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:758
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:745
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:264
 msgid "Never"
 msgstr "永不"
@@ -1279,7 +1284,7 @@ msgstr "永不"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:821
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:808
 msgid "Sample List String"
 msgstr ""
 
@@ -1419,61 +1424,61 @@ msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:77
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:78
 msgid "Device Name:"
 msgstr "裝置名稱："
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:80
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:81
 msgid "Device Name"
 msgstr "裝置名稱"
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:82
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:83
 msgid "Automatically sync when plugged in:"
 msgstr "當裝置插入時自動同步："
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:90
 msgid "Sync:"
 msgstr "同步："
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:111
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:112
 msgid "Other Files"
 msgstr "其他檔案"
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:114
 msgid "Podcasts"
 msgstr "Podcast"
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:384
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:385
 msgid "All Music"
 msgstr "所有音樂"
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:387
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:388
 msgid "All Podcasts"
 msgstr "所有 Podcast"
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
 msgid "Sync Failed"
 msgstr "同步失敗"
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr "名為 %s 的播放清單用來同步 %s 裝置，但卻找不到。"
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 msgid "Cannot Sync"
 msgstr "無法同步"
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr "無法以選取的同步設定值同步裝置。磁碟空間不足"
 
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 msgid "Device is already being synced."
 msgstr "裝置已正在同步。"
 
@@ -1591,124 +1596,140 @@ msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:139
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:151
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:154
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:175
 msgid "Empty device!"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:143
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:155
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:158
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:179
 msgid "This device does not contain any music."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:324
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:325
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:353
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:326
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:470
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:471
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:338
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:339
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:571
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:572
 #, c-format
-msgid "Importing <b>%s</b> by <b>%s</b> to library..."
+msgid "Syncing <b>%s</b>..."
+msgstr "正在同步 <b>%s</b>..."
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:384
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:442
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:603
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:774
+msgid "Finishing sync process..."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:86
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:389
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:467
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:621
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:791
+msgid "Cancelling Sync..."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:393
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:394
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:477
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:478
+msgid "There is not enough space on Device to complete the Sync..."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:510
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:511
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:724
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:725
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr "正從 <b>%s</b> 中移除..."
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:551
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:582
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:965
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:997
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:659
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:659
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:678
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:820
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
 msgstr "音訊 CD 無效"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:90
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s 無法讀取音訊 CD 的內容"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:254
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:268
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr "請確認您的音樂資料夾是否可以存取，並在匯入 CD 前先掛載起來。"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:261
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:275
 msgid "No songs on CD"
 msgstr "CD 上並沒有歌曲"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:261
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:275
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "%s 在 CD 上找不到任何歌曲。沒有歌曲被匯入"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:266
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s 已正在匯入"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:266
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr "在匯入 CD 前請先耐心等候，直到 %s 完成目前的匯入動作"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:377
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:380
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:392
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:395
 msgid "CD Import Complete"
 msgstr "CD 匯入完成"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:377
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:392
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s 已完成音訊 CD %i 首歌曲的匯入工作。"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:380
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:395
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s 已完成音訊 CD 歌曲的匯入工作。"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:386
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:401
 #, c-format
 msgid "Importing track %i: %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:403
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:418
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "CD 的匯入將在目前的匯入工作完成後 <b>取消</b>。"
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:306
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:307
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:509
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:510
-#, c-format
-msgid "Syncing <b>%s</b>..."
-msgstr "正在同步 <b>%s</b>..."
-
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:392
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:540
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:704
-msgid "Finishing sync process..."
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:440
+msgid "An error occured during the Import of this CD"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:418
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:558
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:721
-msgid "Cancelling Sync..."
-msgstr ""
-
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:430
-msgid "There is not enough space on Device to complete the Sync..."
-msgstr ""
-
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:592
-msgid "Adding <b>(title)</b> by <b>(artist)</b> to (device)"
-msgstr ""
-
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:658
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:659
-#, c-format
-msgid "Removing from <b>%s</b>..."
-msgstr "正從 <b>%s</b> 中移除..."
-
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:748
-msgid "Removing <b>(title)</b> by <b>(artist)</b> to (device)"
-msgstr ""
-
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:884
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:915
-msgid "Importing <b>(title)</b> by <b>(artist)</b> to library..."
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:905
+msgid "Syncing playlists"
 msgstr ""
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
@@ -1716,9 +1737,8 @@ msgid "Fetching similar songs"
 msgstr "擷取類似的歌曲"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
-#, c-format
-msgid "Finding songs similar to %s by %s"
-msgstr "正在尋找類似於 %s (演出者 %s) 的歌曲"
+msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
+msgstr ""
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
@@ -1730,20 +1750,17 @@ msgid "No similar songs found"
 msgstr "找不到類似歌曲"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:138
-#, c-format
 msgid ""
-"%s could not find songs similar to %s by %s in your library. Make sure all "
-"song info is correct and you are connected to the Internet. Some songs may "
-"not have matches."
+"$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
+"your library. Make sure all song info is correct and you are connected to "
+"the Internet. Some songs may not have matches."
 msgstr ""
-"%s 無法在您的珍藏館中找到類似 %s (演出者 %s) "
-"的歌曲。請確定所有歌曲的資訊都正確，而且您也連接至網際網路。不過有些歌曲也可能找不到相符的類似歌曲。"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:148
 msgid "Similar Song View"
 msgstr "類似歌曲檢視"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:143
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:148
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1854,6 +1871,9 @@ msgstr "Last.fm 整合"
 #~ msgid "Queue"
 #~ msgstr "佇列"
 
+#~ msgid "Import this song"
+#~ msgstr "匯入這首歌曲"
+
 #, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s 星"
@@ -1905,11 +1925,20 @@ msgstr "Last.fm 整合"
 #~ msgstr "加入 Podcast"
 
 #, c-format
+#~ msgid "Editing %s by %s"
+#~ msgstr "正在編輯 %s (演出者%s)"
+
+#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "「%s」(演出者「%s」) 的歌詞沒有找到"
 
 #~ msgid "Add"
 #~ msgstr "加入"
+
+#, c-format
+#~ msgid ""
+#~ "The music file for %s by %s could not be found. What would you like to do?"
+#~ msgstr "找不到音樂檔案 %s (演出者%s)。您想要怎麼做？"
 
 #, c-format
 #~ msgid ""
@@ -1941,6 +1970,19 @@ msgstr "Last.fm 整合"
 #~ msgid "1 track"
 #~ msgstr "1 個軌道"
 
+#, c-format
+#~ msgid "Finding songs similar to %s by %s"
+#~ msgstr "正在尋找類似於 %s (演出者 %s) 的歌曲"
+
+#, c-format
+#~ msgid ""
+#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
+#~ "song info is correct and you are connected to the Internet. Some songs may "
+#~ "not have matches."
+#~ msgstr ""
+#~ "%s 無法在您的珍藏館中找到類似 %s (演出者 %s) "
+#~ "的歌曲。請確定所有歌曲的資訊都正確，而且您也連接至網際網路。不過有些歌曲也可能找不到相符的類似歌曲。"
+
 #~ msgid "Episode"
 #~ msgstr "節目"
 
@@ -1955,6 +1997,10 @@ msgstr "Last.fm 整合"
 
 #~ msgid "Skips"
 #~ msgstr "略過數"
+
+#, c-format
+#~ msgid "Import %i songs"
+#~ msgstr "匯入 %i 首歌曲"
 
 #~ msgid "1 Star"
 #~ msgstr "1 星"
