@@ -97,39 +97,39 @@ public class Noise.GStreamerTagger : Object {
         bool gstreamer_discovery_successful = false;
 
         switch (info.get_result ()) {
-	        case Gst.DiscovererResult.OK:
+            case Gst.DiscovererResult.OK:
                 gstreamer_discovery_successful = true;
             break;
 
-	        case Gst.DiscovererResult.URI_INVALID:
-	            warning ("GStreamer could not import '%s': invalid URI.", uri);
+            case Gst.DiscovererResult.URI_INVALID:
+                warning ("GStreamer could not import '%s': invalid URI.", uri);
             break;
 
-	        case Gst.DiscovererResult.ERROR:
-	            warning ("GStreamer could not import '%s': %s", uri, err.message);
+            case Gst.DiscovererResult.ERROR:
+                warning ("GStreamer could not import '%s': %s", uri, err.message);
             break;
 
-	        case Gst.DiscovererResult.TIMEOUT:
-	            warning ("GStreamer could not import '%s': Discovery timed out.", uri);
+            case Gst.DiscovererResult.TIMEOUT:
+                warning ("GStreamer could not import '%s': Discovery timed out.", uri);
             break;
 
-	        case Gst.DiscovererResult.BUSY:
-	            warning ("GStreamer could not import '%s': Already discovering a file.", uri);
+            case Gst.DiscovererResult.BUSY:
+                warning ("GStreamer could not import '%s': Already discovering a file.", uri);
             break;
 
-	        case Gst.DiscovererResult.MISSING_PLUGINS:
-	            warning ("GStreamer could not import '%s': Missing plugins.", uri);
+            case Gst.DiscovererResult.MISSING_PLUGINS:
+                warning ("GStreamer could not import '%s': Missing plugins.", uri);
 
-	            /**
-	             * TODO: handle this gracefully.
-	             * After the import finishes, show the plugin-not-found
-	             * dialog and rescan the music folder.
-	             */
+                /**
+                 * TODO: handle this gracefully.
+                 * After the import finishes, show the plugin-not-found
+                 * dialog and rescan the music folder.
+                 */
             break;
         }
 
         if (gstreamer_discovery_successful) {
-            message ("Importing with GStreamer: %s", uri);
+            debug ("Importing with GStreamer: %s", uri);
 
             m = new Media (uri);
 
@@ -269,7 +269,7 @@ public class Noise.GStreamerTagger : Object {
     }
 
     public Media? taglib_import_media (string uri) {
-        message ("Importing with TabLib: %s", uri);
+        debug ("Importing with TabLib: %s", uri);
 
         string? filename = null;
         try {

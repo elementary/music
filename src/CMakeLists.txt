@@ -18,10 +18,7 @@ set(CLIENT_SOURCE
     Devices/NetworkDevice.vala
     Devices/DeviceManager.vala
     Devices/DevicePreferences.vala
-    Objects/SmartQuery.vala
-    Objects/SmartPlaylist.vala
     Objects/LyricFetcher.vala
-    Objects/Playlist.vala
     Objects/MediaInfo.vala
     Objects/AlbumInfo.vala
     Objects/ArtistInfo.vala

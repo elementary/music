@@ -87,13 +87,13 @@ public class Noise.DeviceManager : GLib.Object {
 	
 	void volume_added(Volume volume) {
 		if(main_settings.music_mount_name == volume.get_name() && volume.get_mount() == null) {
-			message ("mounting %s because it is believed to be the music folder\n", volume.get_name());
+			debug ("mounting %s because it is believed to be the music folder\n", volume.get_name());
 			volume.mount(MountMountFlags.NONE, null, null);
 		}
 	}
 	
 	public void deviceInitialized(Device d) {
-		message ("adding device\n");
+		debug ("adding device\n");
 		device_added(d);
 		lm.lw.update_sensitivities();
 	}

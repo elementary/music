@@ -127,19 +127,19 @@ public class Noise.DataBaseUpdater : Object {
         Playlist p_queue = new Playlist ();
         p_queue.name = "autosaved_queue";
         p_queue.add_media (App.player.queue ());
-        p_queue.tvs = lm.queue_setup;
+        lm.lw.set_treeviewsetup_from_playlist (p_queue, lm.queue_setup);
 
         Playlist p_history = new Playlist ();
         p_history.name = "autosaved_history";
-        p_history.tvs = lm.history_setup;
+        lm.lw.set_treeviewsetup_from_playlist (p_history, lm.history_setup);
 
         Playlist p_similar = new Playlist ();
         p_similar.name = "autosaved_similar";
-        p_similar.tvs = lm.similar_setup;
+        lm.lw.set_treeviewsetup_from_playlist (p_similar, lm.similar_setup);
 
         Playlist p_music = new Playlist ();
         p_music.name = "autosaved_music";
-        p_music.tvs = lm.music_setup;
+        lm.lw.set_treeviewsetup_from_playlist (p_music, lm.music_setup);
 
         playlists_and_queue.add (p_queue);
         playlists_and_queue.add (p_history);

@@ -340,7 +340,6 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     private async void sync_medias_thread () {
         
         Threads.add (() => {
-            bool error_occurred = false;
             int sub_index = 0;
             
             message("Found %d medias to sync.", list_to_sync ().size);
@@ -475,7 +474,6 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             currently_syncing = true;
             index = 0;
             Timeout.add(500, doProgressNotificationWithTimeout);
-            bool error_occurred = false;
             int sub_index = 0;
             
             Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list, songs);
@@ -524,7 +522,6 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             }
         }
         
-        return true;
         return true;
     }
     

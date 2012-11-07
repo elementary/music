@@ -38,7 +38,6 @@ public class Noise.SmartPlaylist : Object {
     public signal void media_removed (Gee.Collection<Media> removed);
 
     public int rowid { get; set; default = 0; }
-    public TreeViewSetup tvs;
     public string name { get; set; default = ""; }
     public ConditionalType conditional { get; set; default = ConditionalType.ALL; }
     public Gee.ArrayList<SmartQuery> _queries;
@@ -47,11 +46,13 @@ public class Noise.SmartPlaylist : Object {
     public bool limit { get; set; default = false; }
     public int limit_amount { get; set; default = 50; }
     
-    private Gee.HashSet<Media> media = new Gee.HashSet<Media> ();
+    private Gee.LinkedList<Media> medias;
+    private Gee.Collection<Media> medias_library;
     
-    public SmartPlaylist() {
-        tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
+    public SmartPlaylist(Gee.Collection<Media> library) {
         _queries = new Gee.ArrayList<SmartQuery>();
+        medias = new Gee.LinkedList<Media> ();
+        medias_library = library;
     }
 
     public void clearQueries() {
@@ -66,6 +67,13 @@ public class Noise.SmartPlaylist : Object {
     public void addQuery(SmartQuery s) {
         query_count++;
         _queries.add(s);
+        reanalyze ();
+    }
+    
+    public Gee.Collection<Media> update_library (Gee.Collection<Media> library) {
+        
+        medias_library = library;
+        return reanalyze ();
     }
     
     /** temp_playlist should be in format of #,#,#,#,#, **/
@@ -96,7 +104,7 @@ public class Noise.SmartPlaylist : Object {
         return rv;
     }
 
-    public Gee.Collection<Media> analyze_ids (LibraryManager lm, Gee.Collection<int> ids) {
+    /*public Gee.Collection<Media> analyze_ids (LibraryManager lm, Gee.Collection<int> ids) {
         var to_analyze = new Gee.LinkedList<Media> ();
         foreach (var id in ids) {
             var m = lm.media_from_id (id);
@@ -104,13 +112,13 @@ public class Noise.SmartPlaylist : Object {
                 to_analyze.add (m);
         }
         return analyze (lm, to_analyze);
-    }
+    }*/
 
-    public Gee.Collection<Media> analyze (LibraryManager lm, Collection<Media> to_test) {
+    public Gee.Collection<Media> reanalyze () {
         var added = new Gee.LinkedList<Media> ();
         var removed = new Gee.LinkedList<Media> ();
 
-        foreach (var m in to_test) {
+        foreach (var m in medias_library) {
             if (m == null)
                 continue;
 
@@ -122,18 +130,18 @@ public class Noise.SmartPlaylist : Object {
             }
             
             if(((conditional == ConditionalType.ALL && match_count == _queries.size) || (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
-                if (!media.contains (m)) {
+                if (!medias.contains (m)) {
                     added.add (m);
-                    media.add (m);
+                    medias.add (m);
                 }
-            } else if (media.contains (m)) {
+            } else if (medias.contains (m)) {
                 // a media which was part of the previous set no longer matches
                 // the query, and it must be removed
-                media.remove (m);
+                medias.remove (m);
                 removed.add (m);
             }
 
-            if (_limit && _limit_amount <= media.size)
+            if (_limit && _limit_amount <= medias.size)
                 break;
         }
 
@@ -141,7 +149,7 @@ public class Noise.SmartPlaylist : Object {
         media_added (added);
         media_removed (removed);
 
-        return media.read_only_view;
+        return medias.read_only_view;
     }
     
     public bool media_matches_query(SmartQuery q, Media s) {

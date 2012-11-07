@@ -44,13 +44,6 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
         devices = new ArrayList<CDRomDevice>();
     }
     
-    void volume_added(Volume volume) {
-        if(main_settings.music_mount_name == volume.get_name() && volume.get_mount() == null) {
-            stdout.printf("mounting %s because it is believed to be the music folder\n", volume.get_name());
-            volume.mount(MountMountFlags.NONE, null, null);
-        }
-    }
-    
     public virtual void mount_added (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
@@ -72,7 +65,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
             }
         }
         else {
-            warning ("Found device at %s is not an Audio CD. Not using it", mount.get_default_location().get_parse_name());
+            debug ("Found device at %s is not an Audio CD. Not using it", mount.get_default_location().get_parse_name());
             return;
         }
     }

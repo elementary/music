@@ -134,7 +134,7 @@ public class Noise.SetMusicFolderConfirmation : Window {
 			// foreach playlist in lm.playlists(), save to (p.name).m3u
 			var success = true;
 			foreach(var p in lm.playlists()) {
-				if(!p.save_playlist_m3u(lm, folder))
+				if(!p.save_playlist_m3u(folder))
 					success = false;
 			}
 			

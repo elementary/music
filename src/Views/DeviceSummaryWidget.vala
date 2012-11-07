@@ -508,7 +508,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                         }
                     }
                     else {
-                        foreach (var m in ( (SmartPlaylist) p).analyze (lm, lm.media ())) {
+                        foreach (var m in ( (SmartPlaylist) p).update_library (lm.media ())) {
                             if(m != null && m.mediatype == 0)
                                 list.add (m);
                         }

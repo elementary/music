@@ -22,17 +22,19 @@
 
 public class Noise.PlaylistViewWrapper : ViewWrapper {
     public int playlist_id { get; construct set; default = -1; }
+    public TreeViewSetup tvs;
 
-    public PlaylistViewWrapper (LibraryWindow lw, TreeViewSetup tvs, int playlist_id) {
-        base (lw, tvs.get_hint ());
+    public PlaylistViewWrapper (LibraryWindow lw, int playlist_id, ViewWrapper.Hint hint) {
+        base (lw, hint);
+        tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, hint);
 
         this.playlist_id = playlist_id;
         relative_id = playlist_id;
 
-        build_async.begin (tvs);
+        build_async.begin ();
     }
 
-    private async void build_async (TreeViewSetup tvs) {
+    private async void build_async () {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
 

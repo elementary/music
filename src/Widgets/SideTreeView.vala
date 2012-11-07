@@ -422,7 +422,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
 
     //smart playlist context menu
     public void smartPlaylistMenuNewClicked() {
-        SmartPlaylistEditor spe = new SmartPlaylistEditor(lw, new SmartPlaylist());
+        SmartPlaylistEditor spe = new SmartPlaylistEditor(lw, new SmartPlaylist(lm.media ()));
         spe.playlist_saved.connect(smartPlaylistEditorSaved);
     }
     
@@ -687,7 +687,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
             
             if(o is ViewWrapper && (o as ViewWrapper).hint == ViewWrapper.Hint.SMART_PLAYLIST) {
                 var smart_playlist = lm.smart_playlist_from_id ((o as ViewWrapper).relative_id);
-                p.add_media (smart_playlist.analyze(lm, lm.media ()));
+                p.add_media (smart_playlist.reanalyze());
                     
                 p.name = smart_playlist.name;
             }
@@ -791,9 +791,9 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
             p.name = name; // temporary to save
             
             if(file.has_suffix(".m3u"))
-                p.save_playlist_m3u(lm, folder);
+                p.save_playlist_m3u(folder);
             else
-                p.save_playlist_pls(lm, folder);
+                p.save_playlist_pls(folder);
         }
         
         p.name = original_name;
@@ -842,11 +842,11 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
             if(file != "") {
                 path = new LinkedList<string> ();
                 if(file.has_suffix(".m3u")) {
-                    success = Playlist.parse_paths_from_m3u(lm, file, ref path, ref stations);
+                    success = Playlist.parse_paths_from_m3u(file, ref path, ref stations);
                     paths += path;
                 }
                 else if(file.has_suffix(".pls")) {
-                    success = Playlist.parse_paths_from_pls(lm, file, ref path, ref stations);
+                    success = Playlist.parse_paths_from_pls(file, ref path, ref stations);
                     paths += path;
                 }
                 else {

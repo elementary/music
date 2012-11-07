@@ -50,7 +50,6 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
                 return;
             }
         }
-        warning (mount.get_default_location().get_uri() + "/iTunes_Control");
         if(File.new_for_uri(mount.get_default_location().get_uri() + "/iTunes_Control").query_exists() ||
                 File.new_for_uri(mount.get_default_location().get_uri() + "/iPod_Control").query_exists() ||
                 File.new_for_uri(mount.get_default_location().get_uri() + "/iTunes/iTunes_Control").query_exists() ||
@@ -69,7 +68,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
             }
         }
         else {
-            warning ("Found device at %s is not an iPod. Not using it", mount.get_default_location().get_uri());
+            debug ("Found device at %s is not an iPod. Not using it", mount.get_default_location().get_uri());
             return;
         }
     }

@@ -9,6 +9,9 @@ set(CORE_SOURCE
     LibraryWindowInterface.vala
     Media.vala
     Album.vala
+    Playlist.vala
+    SmartPlaylist.vala
+    SmartQuery.vala
     main.vala
     Utils/FileUtils.vala
     Utils/TimeUtils.vala

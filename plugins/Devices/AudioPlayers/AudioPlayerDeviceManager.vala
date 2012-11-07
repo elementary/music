@@ -65,7 +65,7 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
             }
         }
         else {
-            warning ("Found device at %s is not an Audio Player or Android Phone. Not using it", mount.get_default_location().get_parse_name());
+            debug ("Found device at %s is not an Audio Player or Android Phone. Not using it", mount.get_default_location().get_parse_name());
             return;
         }
     }

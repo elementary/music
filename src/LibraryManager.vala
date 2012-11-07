@@ -110,18 +110,21 @@ public class Noise.LibraryManager : Object {
                 // TODO: these names should be constants defined in DatabaseManager
                 switch (p.name) {
                     case "autosaved_music":
-                        music_setup = p.tvs;
-                        music_setup.set_hint (ViewWrapper.Hint.MUSIC);
+                        music_setup = lw.get_treeviewsetup_from_playlist(p);
+                        if (music_setup != null)
+                            music_setup.set_hint (ViewWrapper.Hint.MUSIC);
                     break;
 
                     case "autosaved_similar":
-                        similar_setup = p.tvs;
-                        similar_setup.set_hint (ViewWrapper.Hint.SIMILAR);
+                        similar_setup = lw.get_treeviewsetup_from_playlist(p);
+                        if (similar_setup != null)
+                            similar_setup.set_hint (ViewWrapper.Hint.SIMILAR);
                     break;
 
                     case "autosaved_queue":
-                        queue_setup = p.tvs;
-                        queue_setup.set_hint (ViewWrapper.Hint.QUEUE);
+                        queue_setup = lw.get_treeviewsetup_from_playlist(p);
+                        if (queue_setup != null)
+                            queue_setup.set_hint (ViewWrapper.Hint.QUEUE);
 
                         var to_queue = new LinkedList<Media> ();
 
@@ -132,8 +135,9 @@ public class Noise.LibraryManager : Object {
                     break;
 
                     case "autosaved_history":
-                        history_setup = p.tvs;
-                        history_setup.set_hint (ViewWrapper.Hint.HISTORY);
+                        history_setup = lw.get_treeviewsetup_from_playlist(p);
+                        if (history_setup != null)
+                            history_setup.set_hint (ViewWrapper.Hint.HISTORY);
                     break;
 
                     default:
@@ -587,7 +591,7 @@ public class Noise.LibraryManager : Object {
             lock (_smart_playlists) {
                 foreach (var p in smart_playlists ()) {
                     lock (_media) {
-                        p.analyze (this, media ());
+                        p.update_library (media ());
                     }
                 }
             }
@@ -712,7 +716,7 @@ public class Noise.LibraryManager : Object {
     }
 
     public Collection<Media> media_from_smart_playlist (int id) {
-        return _smart_playlists.get (id).analyze (this, media ());
+        return _smart_playlists.get (id).update_library ( media ());
     }
 
     public void add_media_item (Media s) {
@@ -810,7 +814,6 @@ public class Noise.LibraryManager : Object {
     }
 
     public void finish_file_operations () {
-        warning ("finished");
         _doing_file_operations = false;
         debug ("file operations finished or cancelled\n");
 

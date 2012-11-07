@@ -24,7 +24,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
 
     public static GPod.Playlist get_gpod_playlist_from_playlist (Noise.Playlist pl) {
         var rv = new GPod.Playlist (pl.name, false);
-        rv.sortorder = get_gpod_sortorder_from_tvs (pl.tvs);
+        //rv.sortorder = get_gpod_sortorder_from_tvs (pl.tvs);
         return rv;
     }
     
@@ -46,8 +46,8 @@ public class Noise.Plugins.iPodPlaylistHelper {
 
 
     // TODO: FIXME from sort_column to sort_column_id
-    private static GPod.PlaylistSortOrder get_gpod_sortorder_from_tvs (Noise.TreeViewSetup tvs) {
-        /*if(tvs.sort_column == "#")
+    /*private static GPod.PlaylistSortOrder get_gpod_sortorder_from_tvs (Noise.TreeViewSetup tvs) {
+        if(tvs.sort_column == "#")
             return GPod.PlaylistSortOrder.MANUAL;
         else if(tvs.sort_column == "Track" || tvs.sort_column == "Episode")
             return GPod.PlaylistSortOrder.TRACK_NR;
@@ -79,9 +79,9 @@ public class Noise.Plugins.iPodPlaylistHelper {
             return GPod.PlaylistSortOrder.RATING;
         else if(tvs.sort_column == "Comments")
             return GPod.PlaylistSortOrder.DESCRIPTION;
-        else*/
+        else
             return GPod.PlaylistSortOrder.MANUAL;
-    }
+    }*/
 
     public static void set_rule_from_smart_query (GPod.SPLRule rule, Noise.SmartQuery q) {
         message("adding rule\n");

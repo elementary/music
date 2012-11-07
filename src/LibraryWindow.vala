@@ -56,7 +56,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.ToolButton playButton;
     private Gtk.ToolButton nextButton;
 
-    public Granite.Widgets.ThinPaned main_hpaned       { get; private set; }
+    public Granite.Widgets.ThinPaned  main_hpaned      { get; private set; }
     public SideTreeView               sideTree         { get; private set; }
     public ViewContainer              view_container   { get; private set; }
     public TopDisplay                 topDisplay       { get; private set; }
@@ -120,14 +120,36 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             if(App.player.media_active && (double)(main_settings.last_media_position/(double)App.player.media_info.media.length) > 0.90)
                 added_to_play_count = true;
         }
-        main_settings.schema.changed.connect( (key) =>{
-            if (key == "music-folder")
-                setMusicFolder(main_settings.music_folder);
-        });
 
         /*if(!File.new_for_path(settings.getMusicFolder()).query_exists() && settings.getMusicFolder() != "") {
             doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using Noise.");
         }*/
+    }
+    
+    public TreeViewSetup? get_treeviewsetup_from_playlist (Playlist sp) {
+        int index = 0;
+        while (view_container.get_view (index) != null) {
+            Gtk.Widget view = view_container.get_view (index);
+            if (view is PlaylistViewWrapper) {
+                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
+                    return ((PlaylistViewWrapper)view).tvs;
+                }
+            }
+            index++;
+        }
+        return null;
+    }
+    public void set_treeviewsetup_from_playlist (Playlist sp, TreeViewSetup tvs) {
+        int index = 0;
+        while (view_container.get_view (index) != null) {
+            Gtk.Widget view = view_container.get_view (index);
+            if (view is PlaylistViewWrapper) {
+                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
+                    ((PlaylistViewWrapper)view).tvs = tvs;
+                }
+            }
+            index++;
+        }
     }
 
     public override bool key_press_event (Gdk.EventKey event) {
@@ -496,13 +518,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if(o is Playlist) {
             Playlist p = o as Playlist;
 
-            var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
+            var view = new PlaylistViewWrapper (this, p.rowid, ViewWrapper.Hint.PLAYLIST);
             add_view (p.name, view, out iter);
         }
         else if(o is SmartPlaylist) {
             var p = o as SmartPlaylist;
             
-            var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
+            var view = new PlaylistViewWrapper (this, p.rowid, ViewWrapper.Hint.SMART_PLAYLIST);
             add_view (p.name, view, out iter);
         }
         /* XXX: Migrate this code to the new ViewWrapper API */

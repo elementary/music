@@ -23,7 +23,6 @@
 using Gee;
 
 public class Noise.Playlist : Object {
-	public TreeViewSetup tvs;
 	private Gee.HashSet<Media> _media;
 
 	public int rowid { get; set; }
@@ -35,7 +34,6 @@ public class Noise.Playlist : Object {
 	
 	public Playlist() {
 		name = "";
-		tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_media = new Gee.HashSet<Media>();
 	}
 	
@@ -79,7 +77,7 @@ public class Noise.Playlist : Object {
 		_media = new Gee.HashSet<Media> ();
 		cleared ();
 	}
-	
+	/*
 	public void media_from_string(string media, LibraryManager lm) {
 		string[] media_strings = media.split(",", 0);
 		
@@ -96,7 +94,7 @@ public class Noise.Playlist : Object {
 		media_added (new_media);
 	}
 	
-	public string media_to_string (LibraryManager lm) {
+	public string media_to_string () {
 		string rv = "";
 		
 		foreach (var m in _media) {
@@ -105,15 +103,14 @@ public class Noise.Playlist : Object {
 		}
 
 		return rv;
-	}
+	}*/
 
-    // TODO: rename to contains()
-	public bool contains_media (Media m) {
+	public bool contains (Media m) {
 		return _media.contains (m);
 	}
 
 	// how to specify a file?
-	public bool save_playlist_m3u (LibraryManager lm, string folder) {
+	public bool save_playlist_m3u (string folder) {
 		bool rv = false;
 		string to_save = "#EXTM3U";
 		
@@ -146,7 +143,7 @@ public class Noise.Playlist : Object {
 		return rv;
 	}
 	
-	public bool save_playlist_pls(LibraryManager lm, string folder) {
+	public bool save_playlist_pls(string folder) {
 		bool rv = false;
 		string to_save = "[playlist]\n\nNumberOfEntries=" + _media.size.to_string() + "\nVersion=2";
 		
@@ -181,7 +178,7 @@ public class Noise.Playlist : Object {
 		return rv;
 	}
 	
-	public static bool parse_paths_from_m3u(LibraryManager lm, string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Media> stations) {
+	public static bool parse_paths_from_m3u(string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Media> stations) {
 		// now try and load m3u file
 		// if some files are not found by media_from_file(), ask at end if user would like to import the file to library
 		// if so, just do import_individual_files
@@ -223,7 +220,7 @@ public class Noise.Playlist : Object {
 		return true;
 	}
 	
-	public static bool parse_paths_from_pls(LibraryManager lm, string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Media> stations) {
+	public static bool parse_paths_from_pls(string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Media> stations) {
 		var files = new HashMap<int, string>();
 		var titles = new HashMap<int, string>();
 		var lengths = new HashMap<int, string>();
