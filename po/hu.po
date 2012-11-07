@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-06 03:12+0100\n"
-"PO-Revision-Date: 2012-11-02 13:36+0000\n"
-"Last-Translator: Bence Lukács <Unknown>\n"
+"POT-Creation-Date: 2012-11-06 17:06+0100\n"
+"PO-Revision-Date: 2012-11-06 20:21+0000\n"
+"Last-Translator: Mark Lutring <marcus@elitemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-06 05:22+0000\n"
+"X-Launchpad-Export-Date: 2012-11-07 05:07+0000\n"
 "X-Generator: Launchpad (build 16232)\n"
 "Language: hu\n"
 
@@ -27,7 +27,7 @@ msgstr[0] "%d másodperc"
 msgstr[1] "%d másodperc"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:74
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:75
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -41,45 +41,50 @@ msgid_plural "%u seconds"
 msgstr[0] "%u másodperc"
 msgstr[1] "%u másodperc"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:49
+#. / Minutes and seconds
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:50
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s és %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:68
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u nap"
 msgstr[1] "%u nap"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:71
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u óra"
 msgstr[1] "%u óra"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:81
+#. / days, hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s és %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
+#. / days and hours
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s és %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:87
+#. / days and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s és %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:95
+#. / hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:100
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -87,7 +92,7 @@ msgstr "%s és %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:154
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y.%m.%e. %H:%M"
 
@@ -96,17 +101,20 @@ msgstr "%Y.%m.%e. %H:%M"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#. / String template used to show "SongName by ArtistName"
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:172
-#, c-format
-msgid " by %s"
-msgstr " , %s előadó"
+msgid "$NAME on $ALBUM"
+msgstr ""
 
-#. / String template used to show "SongName ... on AlbumName"
-#: /home/noelco/noise/po/../core//Media.vala:176
-#, c-format
-msgid " on %s"
-msgstr " %s albumáról"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:175
+msgid "$NAME by $ARTIST"
+msgstr ""
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:181
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr ""
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
@@ -371,7 +379,7 @@ msgstr "Előadó ellenőrzése"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 msgid "Cannot Import"
-msgstr ""
+msgstr "Nem importálható"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 #, c-format
@@ -407,8 +415,8 @@ msgstr "Okos lejátszólista szerkesztő"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
 msgid "Name of Playlist"
 msgstr "Lejátszólista neve"
 
@@ -615,68 +623,53 @@ msgstr "A szinkronizálás el fog távolítani %i elemet innen: %s"
 msgid "Sync will remove 1 item from %s"
 msgstr "A szinkronizálás el fog távolítani 1 elemet innen: %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:193
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:142
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:178
 msgid "General"
 msgstr "Általános"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:244
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
-msgid "Select Music Folder"
-msgstr "Zenemappa kiválasztása"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:251
-msgid "Music Folder Location"
-msgstr "Zenemappa helye"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:259
-msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:183
+msgid "Music Folder Location:"
 msgstr ""
-"Meg kell várnia amíg az előző fájl műveletek befejeződnek mielőtt beállítja "
-"a zenemappáját."
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:274
-msgid "Keep Music folder organized"
-msgstr "Zenemappa rendezetten hagyása"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:275
-msgid "Copy files to Music folder when adding to Library"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:189
+msgid "Select Music Folder..."
 msgstr ""
-"Fájlok másolása a zenemappába, amikor hozzáadja őket a gyűjteményéhez"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:277
-msgid "Write metadata to file"
-msgstr "Metaadatok fájlba írása"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:203
+msgid "Library Management:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:289
-msgid "Library Management"
-msgstr "Gyűjtemény kezelés"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:208
+msgid "Keep Music folder organized:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:296
-msgid "Use Noise as the default Music application"
-msgstr "Noise beállítása alapértelmezett zenelejátszóként"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:212
+msgid "Write metadata to file:"
+msgstr "Metaadatok fájlba írása:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:302
-msgid "Show notifications"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:216
+msgid "Copy imported files to Library:"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:218
+msgid "Desktop Integration:"
+msgstr "Asztali integráció:"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:224
+msgid "Show notifications:"
 msgstr "Értesítések megjelenítése"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:309
-msgid "Minimize window instead of closing it when a song is being played"
-msgstr "Ablak lekicsinyítése bezárás helyett, ha zenelejátszás folyik"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:229
+msgid "Minimize window when a song is being played:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:311
-msgid "Hide window instead of closing it when a song is being played"
-msgstr "Ablak elrejtése bezárás helyett, ha zenelejátszás folyik"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:317
-msgid "Desktop Integration"
-msgstr "Integráció az asztali környezetbe"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:231
+msgid "Hide window when a song is being played:"
+msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
 msgid "Metadata"
@@ -810,7 +803,11 @@ msgstr "Fájl helye"
 msgid "Select individual files to move to trash:"
 msgstr "Egyedifájlok kiválasztása a kukába helyezéshez:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
+msgid "Playlist Editor"
+msgstr "Lejátszólista szerkesztő"
+
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
 #, c-format
 msgid "The name %s is already in use"
 msgstr "%s név már használatban van"
@@ -842,7 +839,7 @@ msgid "Delete Current"
 msgstr "Jelenlegi törlése"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:70
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:189
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:195
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:104
 msgid "Import to Library"
 msgstr "Importálás a gyűjteménybe"
@@ -902,7 +899,7 @@ msgid "Playlists"
 msgstr "Lejátszólisták"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:214
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:459
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:465
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "Zene"
@@ -1041,50 +1038,54 @@ msgstr "Ingyenes"
 msgid "Using %s of %s (%.2f%)"
 msgstr "%s használva ennyiből: %s (%.2f%)"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:190
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:196
 msgid "Rescan Music Folder"
 msgstr "Zenemappa újravizsgálása"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:213
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:199
+msgid "Preferences..."
+msgstr "Beállítások..."
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:219
 msgid "Search Music"
 msgstr "Zene keresése"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:469
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:475
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Lejátszási sor"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:473
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:479
 msgid "History"
 msgstr "Előzmények"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:814
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:820
 msgid "Import Music"
 msgstr "Zene importálása"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:846
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:852
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "Zene <b>importálása</b> a gyűjteménybe, innen: <b>%s</b>"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:861
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:867
 msgid "Rescanning music folder for changes"
 msgstr "Zenemappa átvizsgálása a változásokért"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:268
 msgid "Could not find Music Folder"
 msgstr "Nem található zenemappa"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 msgid "Import Complete"
 msgstr "Importálás kész"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s importálta a gyűjteményét"
@@ -1545,6 +1546,10 @@ msgstr "Kikeresés"
 msgid "Change your music folder."
 msgstr "Zenemappa megváltoztatása"
 
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
+msgid "Select Music Folder"
+msgstr "Zenemappa kiválasztása"
+
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid "No Songs"
@@ -1664,21 +1669,21 @@ msgstr "Szinkronizálás <b>%s</b>..."
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:603
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:774
 msgid "Finishing sync process..."
-msgstr ""
+msgstr "Szinkronizálási művelet befejezése…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:389
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:467
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:621
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:791
 msgid "Cancelling Sync..."
-msgstr ""
+msgstr "Szinkronizálás megszakítása…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:393
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:394
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:477
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:478
 msgid "There is not enough space on Device to complete the Sync..."
-msgstr ""
+msgstr "Nincs elég hely az eszközön a szinkronizálás befejezéséhez..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:510
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:511
@@ -1775,7 +1780,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:905
 msgid "Syncing playlists"
-msgstr ""
+msgstr "Lejátszólisták szinkronizálása"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
@@ -1848,25 +1853,25 @@ msgstr "Siker!"
 msgid "Complete Login"
 msgstr "Bejelentkezés befejezése"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:40
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:41
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:46
+msgid "Last.fm Integration"
+msgstr "Last.fm integráció"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
 msgstr "Kattintson a Last.fm bejelentkező folyamat megismétléséhez"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
 "A Last.fm integráció engedélyezéséhez jogosultságot kell adnia a Noise-nak. "
 "Csak egyszer kell elvégezni."
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:68
-msgid "Last.fm Integration"
-msgstr "Last.fm integráció"
 
 #~ msgid "Done"
 #~ msgstr "Kész"
@@ -1905,6 +1910,12 @@ msgstr "Last.fm integráció"
 #~ msgid "Keep music folder organized"
 #~ msgstr "Hagyja meg a zenemappa rendezettségét"
 
+#~ msgid "Write metadata to file"
+#~ msgstr "Metaadatok fájlba írása"
+
+#~ msgid "Library Management"
+#~ msgstr "Gyűjtemény kezelés"
+
 #~ msgid "Add"
 #~ msgstr "Hozzáadás"
 
@@ -1926,6 +1937,9 @@ msgstr "Last.fm integráció"
 #, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i perc"
+
+#~ msgid "Music Folder Location"
+#~ msgstr "Zenemappa helye"
 
 #~ msgid "Station"
 #~ msgstr "Állomás"
@@ -2054,6 +2068,13 @@ msgstr "Last.fm integráció"
 
 #~ msgid "is not"
 #~ msgstr "nem"
+
+#~ msgid ""
+#~ "You must wait until previous file operations finish before setting your "
+#~ "music folder"
+#~ msgstr ""
+#~ "Meg kell várnia amíg az előző fájl műveletek befejeződnek mielőtt beállítja "
+#~ "a zenemappáját."
 
 #, c-format
 #~ msgid "Remove %d %s from %s?"

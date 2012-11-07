@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-06 03:12+0100\n"
-"PO-Revision-Date: 2012-11-05 23:31+0000\n"
-"Last-Translator: Ferhat TUNÇTAN <ferhattnctn66@gmail.com>\n"
+"POT-Creation-Date: 2012-11-06 17:06+0100\n"
+"PO-Revision-Date: 2012-11-06 15:23+0000\n"
+"Last-Translator: Ebubekir KARUL <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-11-06 05:22+0000\n"
+"X-Launchpad-Export-Date: 2012-11-07 05:08+0000\n"
 "X-Generator: Launchpad (build 16232)\n"
 "Language: tr\n"
 
@@ -26,7 +26,7 @@ msgid_plural "%d seconds"
 msgstr[0] "%d saniye"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:74
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:75
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -38,43 +38,48 @@ msgid "%u second"
 msgid_plural "%u seconds"
 msgstr[0] "%u saniye"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:49
+#. / Minutes and seconds
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:50
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s ve %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:68
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u gün"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:71
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u saat"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:81
+#. / days, hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s ve %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
+#. / days and hours
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s ve %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:87
+#. / days and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s ve %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:95
+#. / hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:100
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -82,7 +87,7 @@ msgstr "%s ve %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:154
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
 
@@ -91,17 +96,20 @@ msgstr "%m/%e/%Y %l:%M %p"
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
-#. / String template used to show "SongName by ArtistName"
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:172
-#, c-format
-msgid " by %s"
-msgstr " %s tarafından"
+msgid "$NAME on $ALBUM"
+msgstr ""
 
-#. / String template used to show "SongName ... on AlbumName"
-#: /home/noelco/noise/po/../core//Media.vala:176
-#, c-format
-msgid " on %s"
-msgstr " %s üzerinde"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:175
+msgid "$NAME by $ARTIST"
+msgstr ""
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:181
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr ""
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
@@ -203,7 +211,7 @@ msgstr "Tekno"
 
 #: /home/noelco/noise/po/../src//FileOperator.vala:405
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
-msgstr ""
+msgstr "<b>Dosyalar</b> müzik klasörüne <b>kopyalanıyor</b>..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:218
 #, c-format
@@ -366,7 +374,7 @@ msgstr "Sanatçıyı kontrol et"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 msgid "Cannot Import"
-msgstr ""
+msgstr "İçe aktarılamıyor"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 #, c-format
@@ -402,8 +410,8 @@ msgstr "Akıllı Çalma Listesi Düzenleyici"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
 msgid "Name of Playlist"
 msgstr "Çalma Listesi İsmi"
 
@@ -609,67 +617,53 @@ msgstr "Senkronize etme %i öğelerini %s'den çıkaracak"
 msgid "Sync will remove 1 item from %s"
 msgstr "Senkronize etme 1 öğeyi %s'den çıkaracak"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:193
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:142
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:178
 msgid "General"
 msgstr "Genel"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:244
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
-msgid "Select Music Folder"
-msgstr "Müzik Dizinini Seç"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:251
-msgid "Music Folder Location"
-msgstr "Müzik Dizini Konumu"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:259
-msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:183
+msgid "Music Folder Location:"
 msgstr ""
-"Müzik dizininizi ayarlamadan önce diğer dosya işlemlerinin bitmesini "
-"beklemelisiniz"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:274
-msgid "Keep Music folder organized"
-msgstr "Müzik klasörünü düzenli tut"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:189
+msgid "Select Music Folder..."
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:275
-msgid "Copy files to Music folder when adding to Library"
-msgstr "Kütüphaneye ekleme yapılırken Müzik klasörüne dosyaları kopyala"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:203
+msgid "Library Management:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:277
-msgid "Write metadata to file"
-msgstr "Dosyaya medadata yaz"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:208
+msgid "Keep Music folder organized:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:289
-msgid "Library Management"
-msgstr "Kütüphane Yönetimi"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:212
+msgid "Write metadata to file:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:296
-msgid "Use Noise as the default Music application"
-msgstr "Noise'u varsayılan Müzik uygulaması olarak kullan"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:216
+msgid "Copy imported files to Library:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:302
-msgid "Show notifications"
-msgstr "Bildirimleri göster"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:218
+msgid "Desktop Integration:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:309
-msgid "Minimize window instead of closing it when a song is being played"
-msgstr "Şarkı çalınırken pencereyi kapatmak yerine küçült"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:224
+msgid "Show notifications:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:311
-msgid "Hide window instead of closing it when a song is being played"
-msgstr "Şarkı çalınırken pencereyi kapatmak yerine gizle"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:229
+msgid "Minimize window when a song is being played:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:317
-msgid "Desktop Integration"
-msgstr "Masaüstü Bütünleşmesi"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:231
+msgid "Hide window when a song is being played:"
+msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
 msgid "Metadata"
@@ -799,7 +793,11 @@ msgstr "Dosya Konumu"
 msgid "Select individual files to move to trash:"
 msgstr "Silmek istediğiniz dosyaları seçin:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
+msgid "Playlist Editor"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
 #, c-format
 msgid "The name %s is already in use"
 msgstr "%s ismi zaten kullanımda"
@@ -831,7 +829,7 @@ msgid "Delete Current"
 msgstr "şimdikini Sil"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:70
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:189
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:195
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:104
 msgid "Import to Library"
 msgstr "Kütüphaneye medya ekle"
@@ -891,7 +889,7 @@ msgid "Playlists"
 msgstr "Çalma Listeleri"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:214
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:459
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:465
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "Müzik"
@@ -1033,51 +1031,55 @@ msgstr "Ücretsiz"
 msgid "Using %s of %s (%.2f%)"
 msgstr "%s 'nin %s 'i Kullanılıyor (%.2f%)"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:190
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:196
 msgid "Rescan Music Folder"
 msgstr "Müzik dizinini yeniden tara"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:213
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:199
+msgid "Preferences..."
+msgstr ""
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:219
 msgid "Search Music"
 msgstr "Müzik Ara"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:469
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:475
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Kuyruk"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:473
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:479
 msgid "History"
 msgstr "Geçmiş"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:814
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:820
 msgid "Import Music"
 msgstr "Müzik aktar"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:846
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:852
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Müzik  </b> şuradan<b>%s</b> kitaplığa aktarılıyor."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:861
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:867
 msgid "Rescanning music folder for changes"
 msgstr "Değişimler için müzik dizini yeniden taranıyor."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:268
 msgid "Could not find Music Folder"
 msgstr "Müzik dizini bulunamadı."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Lütfen müzik dizininizin bağlı ve ulaşılabilir olduğundan emin oldun."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 msgid "Import Complete"
 msgstr "İçe Aktarma Tamamlandı"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s kütüphanenize eklendi."
@@ -1530,6 +1532,10 @@ msgstr "Yer Belirle"
 msgid "Change your music folder."
 msgstr "Müzik dizinini değiştir."
 
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
+msgid "Select Music Folder"
+msgstr "Müzik Dizinini Seç"
+
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid "No Songs"
@@ -1835,25 +1841,25 @@ msgstr "Başarılı!"
 msgid "Complete Login"
 msgstr "Oturum açmayı tamamlayın"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:40
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:41
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:46
+msgid "Last.fm Integration"
+msgstr "Last.fm bütünleşmesi"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
 msgstr "Last.fm oturum açma işlemini geri almak için tıklayın"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
 "Last.fm bütünleşmesine izin vermek için, Noise'a izin vermeniz gerekiyor. "
 "Bunu yalnızca bir kez yapmanız gerekiyor."
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:68
-msgid "Last.fm Integration"
-msgstr "Last.fm bütünleşmesi"
 
 #~ msgid "Add Podcast"
 #~ msgstr "Podcast Ekle"
@@ -1915,6 +1921,9 @@ msgstr "Last.fm bütünleşmesi"
 
 #~ msgid "Copy files to music folder when added to library"
 #~ msgstr "Kütüphaneye eklendiğinde dosyaları müzik klasörüne kopyala"
+
+#~ msgid "Music Folder Location"
+#~ msgstr "Müzik Dizini Konumu"
 
 #~ msgid "Audiobook"
 #~ msgstr "Sesli Kitap"
@@ -2002,6 +2011,9 @@ msgstr "Last.fm bütünleşmesi"
 #~ msgid "%i albums"
 #~ msgstr "%i albüm"
 
+#~ msgid "Library Management"
+#~ msgstr "Kütüphane Yönetimi"
+
 #, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i şarkı"
@@ -2026,6 +2038,16 @@ msgstr "Last.fm bütünleşmesi"
 
 #~ msgid "Try again"
 #~ msgstr "Yeniden dene"
+
+#~ msgid ""
+#~ "You must wait until previous file operations finish before setting your "
+#~ "music folder"
+#~ msgstr ""
+#~ "Müzik dizininizi ayarlamadan önce diğer dosya işlemlerinin bitmesini "
+#~ "beklemelisiniz"
+
+#~ msgid "Write metadata to file"
+#~ msgstr "Dosyaya medadata yaz"
 
 #, c-format
 #~ msgid "Remove %d %s from %s?"
@@ -2065,17 +2087,3 @@ msgstr "Last.fm bütünleşmesi"
 
 #~ msgid "Skips"
 #~ msgstr "Atlamalar"
-
-#, c-format
-#~ msgid "Importing <b>%s</b> by <b>%s</b> to library..."
-#~ msgstr "<b>%s</b> tarafından <b>%s</b> kütüphaneye aktarılıyor..."
-
-#~ msgid "Adding <b>(title)</b> by <b>(artist)</b> to (device)"
-#~ msgstr "Ekleniyor: (cihaz)'a <b>(sanatçı)</b> tarafından <b>(başlık)</b>"
-
-#~ msgid "Removing <b>(title)</b> by <b>(artist)</b> to (device)"
-#~ msgstr "Kaldırılıyor (cihaz)'a <b>(sanatçı)</b> tarafından <b>(başlık)</b>"
-
-#~ msgid "Importing <b>(title)</b> by <b>(artist)</b> to library..."
-#~ msgstr ""
-#~ "İçe aktarılıyor: (cihaz)'a <b>(sanatçı)</b> tarafından <b>(başlık)</b>"

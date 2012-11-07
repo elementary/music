@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-06 03:12+0100\n"
+"POT-Creation-Date: 2012-11-06 17:06+0100\n"
 "PO-Revision-Date: 2012-04-16 21:57+0000\n"
 "Last-Translator: Victor Eduardo <victor@elementaryos.org>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-11-06 05:22+0000\n"
+"X-Launchpad-Export-Date: 2012-11-07 05:08+0000\n"
 "X-Generator: Launchpad (build 16232)\n"
 "Language: vi\n"
 
@@ -27,7 +27,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:74
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:75
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -41,45 +41,50 @@ msgid_plural "%u seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:49
+#. / Minutes and seconds
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:50
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:68
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:71
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:81
+#. / days, hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
+#. / days and hours
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:87
+#. / days and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:95
+#. / hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:100
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -87,7 +92,7 @@ msgstr ""
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:154
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr ""
 
@@ -96,16 +101,19 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#. / String template used to show "SongName by ArtistName"
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:172
-#, c-format
-msgid " by %s"
+msgid "$NAME on $ALBUM"
 msgstr ""
 
-#. / String template used to show "SongName ... on AlbumName"
-#: /home/noelco/noise/po/../core//Media.vala:176
-#, c-format
-msgid " on %s"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:175
+msgid "$NAME by $ARTIST"
+msgstr ""
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:181
+msgid "$NAME by $ARTIST on $ALBUM"
 msgstr ""
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
@@ -403,8 +411,8 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
 msgid "Name of Playlist"
 msgstr ""
 
@@ -608,64 +616,52 @@ msgstr ""
 msgid "Sync will remove 1 item from %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:193
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:142
 msgid "Preferences"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:178
 msgid "General"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:244
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
-msgid "Select Music Folder"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:183
+msgid "Music Folder Location:"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:251
-msgid "Music Folder Location"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:189
+msgid "Select Music Folder..."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:259
-msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:203
+msgid "Library Management:"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:274
-msgid "Keep Music folder organized"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:208
+msgid "Keep Music folder organized:"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:275
-msgid "Copy files to Music folder when adding to Library"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:212
+msgid "Write metadata to file:"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:277
-msgid "Write metadata to file"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:216
+msgid "Copy imported files to Library:"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:289
-msgid "Library Management"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:218
+msgid "Desktop Integration:"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:296
-msgid "Use Noise as the default Music application"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:224
+msgid "Show notifications:"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:302
-msgid "Show notifications"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:229
+msgid "Minimize window when a song is being played:"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:309
-msgid "Minimize window instead of closing it when a song is being played"
-msgstr ""
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:311
-msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:317
-msgid "Desktop Integration"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:231
+msgid "Hide window when a song is being played:"
 msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
@@ -795,7 +791,11 @@ msgstr ""
 msgid "Select individual files to move to trash:"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
+msgid "Playlist Editor"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
 #, c-format
 msgid "The name %s is already in use"
 msgstr ""
@@ -825,7 +825,7 @@ msgid "Delete Current"
 msgstr ""
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:70
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:189
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:195
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:104
 msgid "Import to Library"
 msgstr "Bổ sung vào thư viện"
@@ -885,7 +885,7 @@ msgid "Playlists"
 msgstr "Danh sách bài hát"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:214
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:459
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:465
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "Nhạc"
@@ -1024,50 +1024,54 @@ msgstr ""
 msgid "Using %s of %s (%.2f%)"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:190
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:196
 msgid "Rescan Music Folder"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:213
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:199
+msgid "Preferences..."
+msgstr ""
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:219
 msgid "Search Music"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:469
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:475
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:473
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:479
 msgid "History"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:814
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:820
 msgid "Import Music"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:846
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:852
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:861
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:867
 msgid "Rescanning music folder for changes"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:268
 msgid "Could not find Music Folder"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 msgid "Import Complete"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 #, c-format
 msgid "%s has imported your library."
 msgstr ""
@@ -1516,6 +1520,10 @@ msgstr ""
 msgid "Change your music folder."
 msgstr ""
 
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
+msgid "Select Music Folder"
+msgstr ""
+
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid "No Songs"
@@ -1802,22 +1810,22 @@ msgstr ""
 msgid "Complete Login"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:40
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:41
 msgid "Last.fm"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:46
+msgid "Last.fm Integration"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
-msgstr ""
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:68
-msgid "Last.fm Integration"
 msgstr ""
 
 #~ msgid "Add Podcast"

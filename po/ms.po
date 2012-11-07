@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-11-06 03:12+0100\n"
+"POT-Creation-Date: 2012-11-06 17:06+0100\n"
 "PO-Revision-Date: 2012-10-26 01:51+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-06 05:22+0000\n"
+"X-Launchpad-Export-Date: 2012-11-07 05:08+0000\n"
 "X-Generator: Launchpad (build 16232)\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -26,7 +26,7 @@ msgstr[0] "%d saat"
 msgstr[1] "%d saat"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:74
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:75
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -40,45 +40,50 @@ msgid_plural "%u seconds"
 msgstr[0] "%u saat"
 msgstr[1] "%u saat"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:49
+#. / Minutes and seconds
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:50
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:68
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u hari"
 msgstr[1] "%u hari"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:71
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u jam"
 msgstr[1] "%u jam"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:81
+#. / days, hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
+#. / days and hours
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:87
+#. / days and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:95
+#. / hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:100
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -86,7 +91,7 @@ msgstr ""
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:154
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
 
@@ -95,17 +100,20 @@ msgstr "%m/%e/%Y %l:%M %p"
 msgid "Unknown"
 msgstr "Tidak diketahui"
 
-#. / String template used to show "SongName by ArtistName"
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:172
-#, c-format
-msgid " by %s"
-msgstr " oleh %s"
+msgid "$NAME on $ALBUM"
+msgstr ""
 
-#. / String template used to show "SongName ... on AlbumName"
-#: /home/noelco/noise/po/../core//Media.vala:176
-#, c-format
-msgid " on %s"
-msgstr " pada %s"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:175
+msgid "$NAME by $ARTIST"
+msgstr ""
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:181
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr ""
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
@@ -406,8 +414,8 @@ msgstr "Penyunting Senarai Main Pintar"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
 msgid "Name of Playlist"
 msgstr "Nama Senarai Main"
 
@@ -613,68 +621,53 @@ msgstr "Segerak akan buang %i item dari %s"
 msgid "Sync will remove 1 item from %s"
 msgstr "Segerak akan buang 1 item dari %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:193
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:142
 msgid "Preferences"
 msgstr "Keutamaan"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:178
 msgid "General"
 msgstr "Am"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:244
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
-msgid "Select Music Folder"
-msgstr "Pilih Folder Muzik"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:251
-msgid "Music Folder Location"
-msgstr "Lokasi Folder Muzik"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:259
-msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:183
+msgid "Music Folder Location:"
 msgstr ""
-"Anda mesti tunggu sehingga operasi fail terdahulu selesai sebelum menetapkan "
-"folder muzik anda"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:274
-msgid "Keep Music folder organized"
-msgstr "Pastikan folder Muzik terurus"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:275
-msgid "Copy files to Music folder when adding to Library"
-msgstr "Salin fail ke folder Muzik bila menambah ke Pustaka"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:277
-msgid "Write metadata to file"
-msgstr "Tulis data meta ke fail"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:289
-msgid "Library Management"
-msgstr "Pengurusan Pustaka"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:296
-msgid "Use Noise as the default Music application"
-msgstr "Guna Noise sebagai apliaksi Muzik lalai"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:302
-msgid "Show notifications"
-msgstr "Papar pemberitahuan"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:309
-msgid "Minimize window instead of closing it when a song is being played"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:189
+msgid "Select Music Folder..."
 msgstr ""
-"Minimumkan tetingkap selain dari menutupnya bila lagu sedang dimainkan"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:311
-msgid "Hide window instead of closing it when a song is being played"
-msgstr "Sembunyi tetingkap selain dari menutupnya bila lagu sedang dimainkan"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:203
+msgid "Library Management:"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:317
-msgid "Desktop Integration"
-msgstr "Penyepaduan Desktop"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:208
+msgid "Keep Music folder organized:"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:212
+msgid "Write metadata to file:"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:216
+msgid "Copy imported files to Library:"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:218
+msgid "Desktop Integration:"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:224
+msgid "Show notifications:"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:229
+msgid "Minimize window when a song is being played:"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:231
+msgid "Hide window when a song is being played:"
+msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
 msgid "Metadata"
@@ -807,7 +800,11 @@ msgstr "Lokasi Fail"
 msgid "Select individual files to move to trash:"
 msgstr "Pilih fail individu untuk dialih ke tong sampah:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
+msgid "Playlist Editor"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
 #, c-format
 msgid "The name %s is already in use"
 msgstr "Nama %s sudah digunakan"
@@ -839,7 +836,7 @@ msgid "Delete Current"
 msgstr "Padam Semasa"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:70
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:189
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:195
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:104
 msgid "Import to Library"
 msgstr "Import ke Pustaka"
@@ -899,7 +896,7 @@ msgid "Playlists"
 msgstr "Senarai Main"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:214
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:459
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:465
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "Muzik"
@@ -1038,50 +1035,54 @@ msgstr "Bebas"
 msgid "Using %s of %s (%.2f%)"
 msgstr "Menggunakan %s dari %s (%.2f%)"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:190
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:196
 msgid "Rescan Music Folder"
 msgstr "Imbas Semula Folder Muzik"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:213
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:199
+msgid "Preferences..."
+msgstr ""
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:219
 msgid "Search Music"
 msgstr "Gelintar Muzik"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:469
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:475
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:473
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:479
 msgid "History"
 msgstr "Sejarah"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:814
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:820
 msgid "Import Music"
 msgstr "Import Muzik"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:846
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:852
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Mengimport</b> muzik dari pustaka <b>%s</b>."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:861
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:867
 msgid "Rescanning music folder for changes"
 msgstr "Mengimbas semula folder muzik untuk perubahan"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:268
 msgid "Could not find Music Folder"
 msgstr "Tidak dapat cari Folder Muzik"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Sila pastikan folder muzik anda boleh dicapai dan dilekap."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 msgid "Import Complete"
 msgstr "Proses Mengimport Selesai"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s telah mengimport pustaka anda."
@@ -1541,6 +1542,10 @@ msgstr "Cari"
 msgid "Change your music folder."
 msgstr "Ubah folder muzik anda."
 
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
+msgid "Select Music Folder"
+msgstr "Pilih Folder Muzik"
+
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid "No Songs"
@@ -1843,25 +1848,25 @@ msgstr "Berjaya!"
 msgid "Complete Login"
 msgstr "Lengkapkan Daftar Masuk"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:40
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:41
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:46
+msgid "Last.fm Integration"
+msgstr "Penyepaduan Last.fm"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
 msgstr "Klik untuk buat semula proses daftar masuk Last.fm"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
 "Untuk membenarkan penyepaduan Last.fm, anda mesti beri keizinan ke Noise. "
 "Anda perlu buat ini sekali sahaja."
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:68
-msgid "Last.fm Integration"
-msgstr "Penyepaduan Last.fm"
 
 #~ msgid "Recently Played"
 #~ msgstr "Baru Dimainkan"
@@ -2065,6 +2070,19 @@ msgstr "Penyepaduan Last.fm"
 #~ msgid "Audiobook"
 #~ msgstr "Buku Audio"
 
+#~ msgid "Library Management"
+#~ msgstr "Pengurusan Pustaka"
+
+#~ msgid "Music Folder Location"
+#~ msgstr "Lokasi Folder Muzik"
+
+#~ msgid ""
+#~ "You must wait until previous file operations finish before setting your "
+#~ "music folder"
+#~ msgstr ""
+#~ "Anda mesti tunggu sehingga operasi fail terdahulu selesai sebelum menetapkan "
+#~ "folder muzik anda"
+
 #~ msgid "Ripping track 1"
 #~ msgstr "Meretas trek 1"
 
@@ -2119,3 +2137,6 @@ msgstr "Penyepaduan Last.fm"
 
 #~ msgid "Keep music folder organized"
 #~ msgstr "Kekalkan folder muzik diurus"
+
+#~ msgid "Write metadata to file"
+#~ msgstr "Tulis data meta ke fail"

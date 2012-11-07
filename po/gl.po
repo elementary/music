@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-06 03:12+0100\n"
-"PO-Revision-Date: 2012-11-05 23:32+0000\n"
+"POT-Creation-Date: 2012-11-06 17:06+0100\n"
+"PO-Revision-Date: 2012-11-06 19:10+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-06 05:21+0000\n"
+"X-Launchpad-Export-Date: 2012-11-07 05:07+0000\n"
 "X-Generator: Launchpad (build 16232)\n"
 "Language: gl\n"
 
@@ -27,7 +27,7 @@ msgstr[0] "%d segundo"
 msgstr[1] "%d segundos"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:74
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:75
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -41,45 +41,50 @@ msgid_plural "%u seconds"
 msgstr[0] "%u segundo"
 msgstr[1] "%u segundos"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:49
+#. / Minutes and seconds
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:50
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s e %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:68
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u día"
 msgstr[1] "%u días"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:71
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u hora"
 msgstr[1] "%u horas"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:81
+#. / days, hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s e %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
+#. / days and hours
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s e %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:87
+#. / days and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s e %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:95
+#. / hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:100
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -87,7 +92,7 @@ msgstr "%s e %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:154
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e/%m/%Y %l:%M %p"
 
@@ -96,17 +101,20 @@ msgstr "%e/%m/%Y %l:%M %p"
 msgid "Unknown"
 msgstr "Descoñecido"
 
-#. / String template used to show "SongName by ArtistName"
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:172
-#, c-format
-msgid " by %s"
-msgstr " por %s"
+msgid "$NAME on $ALBUM"
+msgstr "$NAME en $ALBUM"
 
-#. / String template used to show "SongName ... on AlbumName"
-#: /home/noelco/noise/po/../core//Media.vala:176
-#, c-format
-msgid " on %s"
-msgstr " en %s"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:175
+msgid "$NAME by $ARTIST"
+msgstr "$NAME por $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:181
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME por $ARTIST en $ALBUM"
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
@@ -277,6 +285,8 @@ msgid ""
 "The music file for $NAME by $ARTIST could not be found. What would you like "
 "to do?"
 msgstr ""
+"Non é posíbel atopar o ficheiro de música $NAME por $ARTIST. Que lle "
+"gustaría facer?"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
@@ -371,7 +381,7 @@ msgstr "Seleccionar interprete"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 msgid "Cannot Import"
-msgstr ""
+msgstr "Non se pode importar"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 #, c-format
@@ -379,6 +389,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %d"
 msgstr ""
+"Noise está a facer operacións de ficheiro. Agarde ata que remate a "
+"importación de %d"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -408,8 +420,8 @@ msgstr "Editor da lista de reprodución intelixente"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:63
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:71
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
 msgid "Name of Playlist"
 msgstr "Nome da lista de reprodución"
 
@@ -616,71 +628,53 @@ msgstr "A sincronización eliminará %i elementos de %s"
 msgid "Sync will remove 1 item from %s"
 msgstr "A sincronización eliminará 1 elemento de %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:193
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:142
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:221
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:178
 msgid "General"
 msgstr "Xeral"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:244
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
-msgid "Select Music Folder"
-msgstr "Seleccione o cartafol da música"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:183
+msgid "Music Folder Location:"
+msgstr "Localización do cartafol da música:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:251
-msgid "Music Folder Location"
-msgstr "Localización do cartafol da música"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:189
+msgid "Select Music Folder..."
+msgstr "Seleccionar o cartafol da música..."
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:259
-msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
-msgstr ""
-"Debe agardar que rematen as operacións de ficheiros para configurar o seu "
-"cartafol da música"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:203
+msgid "Library Management:"
+msgstr "Administración da fonoteca:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:274
-msgid "Keep Music folder organized"
-msgstr "Manter o cartafol da música organizado"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:208
+msgid "Keep Music folder organized:"
+msgstr "Manter organizado o cartafol da música:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:275
-msgid "Copy files to Music folder when adding to Library"
-msgstr ""
-"Copiar os ficheiros ao cartafol da música cando sexan engadidos á fonoteca"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:212
+msgid "Write metadata to file:"
+msgstr "Escribir os metadatos no ficheiro:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:277
-msgid "Write metadata to file"
-msgstr "Escribir metadatos en ficheiro"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:216
+msgid "Copy imported files to Library:"
+msgstr "Copiar os ficheiros importados na fonoteca:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:289
-msgid "Library Management"
-msgstr "Xestión da fonoteca"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:218
+msgid "Desktop Integration:"
+msgstr "Integración co escritorio:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:296
-msgid "Use Noise as the default Music application"
-msgstr "Usar Noise como reproductor predeterminado de son"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:224
+msgid "Show notifications:"
+msgstr "Amosar as notificacións:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:302
-msgid "Show notifications"
-msgstr "Amosar notificacións"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:229
+msgid "Minimize window when a song is being played:"
+msgstr "Minimizar a xanela cando se estea a reproducir unha canción:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:309
-msgid "Minimize window instead of closing it when a song is being played"
-msgstr ""
-"Minimizar a xanela no canto de pechala, cando estase a reproducir unha "
-"canción"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:311
-msgid "Hide window instead of closing it when a song is being played"
-msgstr ""
-"Agochar a xanela no canto de pechala, cando estase a reproducir unha canción"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:317
-msgid "Desktop Integration"
-msgstr "Integración do escritorio"
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:231
+msgid "Hide window when a song is being played:"
+msgstr "Agochar a xanela cando se estea a reproducir unha canción:"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
 msgid "Metadata"
@@ -694,7 +688,7 @@ msgstr "Letras de cancións"
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:179
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
 msgid "Editing $NAME by $ARTIST"
-msgstr ""
+msgstr "Editando $NAME por $ARTIST"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
@@ -815,7 +809,11 @@ msgstr "Localización do ficheiro"
 msgid "Select individual files to move to trash:"
 msgstr "Seleccione os ficheiros para mover ao lixo:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:145
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
+msgid "Playlist Editor"
+msgstr "Editor de listas de reprodución"
+
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
 #, c-format
 msgid "The name %s is already in use"
 msgstr "O nome %s x está a ser usado"
@@ -847,7 +845,7 @@ msgid "Delete Current"
 msgstr "Eliminar o elemento actual"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:70
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:189
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:195
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:104
 msgid "Import to Library"
 msgstr "Importar á fonoteca"
@@ -907,7 +905,7 @@ msgid "Playlists"
 msgstr "Listas de reprodución"
 
 #: /home/noelco/noise/po/../src//Widgets/SideTreeView.vala:214
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:459
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:465
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "Música"
@@ -1049,51 +1047,55 @@ msgstr "Dispoñíbel"
 msgid "Using %s of %s (%.2f%)"
 msgstr "Usando %s de %s (%.2f%)"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:190
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:196
 msgid "Rescan Music Folder"
 msgstr "Volver examinar o cartafol da música"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:213
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:199
+msgid "Preferences..."
+msgstr "Preferencias…"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:219
 msgid "Search Music"
 msgstr "Buscar música"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:469
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:475
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Cola"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:473
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:479
 msgid "History"
 msgstr "Historial"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:814
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:820
 msgid "Import Music"
 msgstr "Importar música"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:846
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:852
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importando</b> música desde <b>%s</b> á fonoteca."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:861
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:867
 msgid "Rescanning music folder for changes"
 msgstr "Examinando cambios no cartafol da música."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:268
 msgid "Could not find Music Folder"
 msgstr "Non foi posíbel atopar o cartafol da música"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:868
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:874
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Asegúrese de que o cartafol da música sexa accesíbel e que estea montado."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 msgid "Import Complete"
 msgstr "Reamatada a importación"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:941
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s foi importado á súa fonoteca"
@@ -1553,6 +1555,10 @@ msgstr "Localizar"
 msgid "Change your music folder."
 msgstr "Cambiar o seu cartafol da música."
 
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:87
+msgid "Select Music Folder"
+msgstr "Seleccione o cartafol da música"
+
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:108
 msgid "No Songs"
@@ -1781,7 +1787,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:440
 msgid "An error occured during the Import of this CD"
-msgstr ""
+msgstr "Produciuse un erro durante a importación deste CD"
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:905
 msgid "Syncing playlists"
@@ -1793,7 +1799,7 @@ msgstr "Obtendo cancións semellantes"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-msgstr ""
+msgstr "Buscando cancións semellantes a <b>$NAME</b> por <b>$ARTIST</b>"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
@@ -1810,6 +1816,10 @@ msgid ""
 "your library. Make sure all song info is correct and you are connected to "
 "the Internet. Some songs may not have matches."
 msgstr ""
+"$APPNAME non foi quen de atpara cancións semellantes a <b>$NAME</b> por "
+"<b>$ARTIST</b> na súa fonoteca. Asegúrese de que a información da canción é "
+"correcta e de que estea conectado a Internet. Algunhas cancións non teñen "
+"coincidencias."
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:148
 msgid "Similar Song View"
@@ -1857,25 +1867,25 @@ msgstr "Reamatado!"
 msgid "Complete Login"
 msgstr "Completar o acceso"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:40
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:41
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:46
+msgid "Last.fm Integration"
+msgstr "Integración con Last.fm"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
 msgstr "Prema para repetir o acceso a Last.fm"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
 "Para activar a integración con Last.fm, debe concederlle permiso a Noise. Só "
 "é preciso facelo desta vez."
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:68
-msgid "Last.fm Integration"
-msgstr "Integración con Last.fm"
 
 #~ msgid "Unknown Title"
 #~ msgstr "Título descoñecido"
@@ -1906,6 +1916,9 @@ msgstr "Integración con Last.fm"
 #, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Editando %s por %s"
+
+#~ msgid "Write metadata to file"
+#~ msgstr "Escribir metadatos en ficheiro"
 
 #~ msgid "Station"
 #~ msgstr "Emisora"
@@ -1986,6 +1999,12 @@ msgstr "Integración con Last.fm"
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Buscando cancións semellantes a %s por %s"
 
+#~ msgid "Music Folder Location"
+#~ msgstr "Localización do cartafol da música"
+
+#~ msgid "Library Management"
+#~ msgstr "Xestión da fonoteca"
+
 #, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
@@ -1993,6 +2012,13 @@ msgstr "Integración con Last.fm"
 
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Todas as cancións deste dispositivo xa están na súa fonoteca"
+
+#~ msgid ""
+#~ "You must wait until previous file operations finish before setting your "
+#~ "music folder"
+#~ msgstr ""
+#~ "Debe agardar que rematen as operacións de ficheiros para configurar o seu "
+#~ "cartafol da música"
 
 #, c-format
 #~ msgid ""
@@ -2011,17 +2037,3 @@ msgstr "Integración con Last.fm"
 #~ "%s non foi quen de atopar cancións semellantes a %s por %s na súa fonoteca. "
 #~ "Asegúrese de que toda a información sexa correcta e de que o computador "
 #~ "estea conectado á Internet. Algunhas cancións poderían non ter semellantes."
-
-#, c-format
-#~ msgid "Importing <b>%s</b> by <b>%s</b> to library..."
-#~ msgstr "Importando <b>%s</b> por <b>%s</b> á fonoteca..."
-
-#~ msgid "Adding <b>(title)</b> by <b>(artist)</b> to (device)"
-#~ msgstr "Engadindo <b>(título)</b> por <b>(interprete)</b> en (dispositivo)"
-
-#~ msgid "Removing <b>(title)</b> by <b>(artist)</b> to (device)"
-#~ msgstr "Retirando <b>(título)</b> por <b>(interprete)</b> en (dispositivo)"
-
-#~ msgid "Importing <b>(title)</b> by <b>(artist)</b> to library..."
-#~ msgstr ""
-#~ "Importando <b>(título)</b> por <b>(interprete)</b> en (dispositivo)..."
