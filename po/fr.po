@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-11-07 05:07+0000\n"
+"X-Launchpad-Export-Date: 2012-11-08 05:18+0000\n"
 "X-Generator: Launchpad (build 16232)\n"
 "Language: \n"
 
@@ -2169,30 +2169,3 @@ msgstr ""
 #~ msgstr ""
 #~ "Veuillez patienter pendant que l'opération précédente se termine avant de "
 #~ "définir votre dossier musique"
-
-#~ msgid "Copy files to Music folder when adding to Library"
-#~ msgstr ""
-#~ "Copier les fichiers dans le dossier Musique lorsqu'ils sont ajoutés à la "
-#~ "bibliothèque"
-
-#~ msgid "Use Noise as the default Music application"
-#~ msgstr "Utiliser Noise par défaut pour la musique"
-
-#~ msgid " by %s"
-#~ msgstr " par %s"
-
-#~ msgid " on %s"
-#~ msgstr " sur %s"
-
-#~ msgid "Importing <b>%s</b> by <b>%s</b> to library..."
-#~ msgstr "Importation de <b>%s</b> par <b>%s</b> dans la bibliothèque..."
-
-#~ msgid "Adding <b>(title)</b> by <b>(artist)</b> to (device)"
-#~ msgstr "Ajout de <b>(title)</b> par <b>(artist)</b> sur (device)"
-
-#~ msgid "Removing <b>(title)</b> by <b>(artist)</b> to (device)"
-#~ msgstr "Suppression de <b>(title)</b> par <b>(artist)</b> de (device)"
-
-#~ msgid "Importing <b>(title)</b> by <b>(artist)</b> to library..."
-#~ msgstr ""
-#~ "Importation de <b>(title)</b> par <b>(artist)</b> dans la bibliothèque..."
