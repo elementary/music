@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-06 17:06+0100\n"
-"PO-Revision-Date: 2012-11-08 00:02+0000\n"
-"Last-Translator: Victor Eduardo <victor@elementaryos.org>\n"
+"PO-Revision-Date: 2012-11-13 17:53+0000\n"
+"Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-09 05:06+0000\n"
-"X-Generator: Launchpad (build 16250)\n"
+"X-Launchpad-Export-Date: 2012-11-14 05:00+0000\n"
+"X-Generator: Launchpad (build 16251)\n"
 "Language: es\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -1049,7 +1049,7 @@ msgstr "Volver a examinar la carpeta de música"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:199
 msgid "Preferences..."
-msgstr ""
+msgstr "Preferencias..."
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:219
 msgid "Search Music"
