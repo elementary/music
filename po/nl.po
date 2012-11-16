@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-06 17:06+0100\n"
-"PO-Revision-Date: 2012-11-01 20:34+0000\n"
+"PO-Revision-Date: 2012-11-15 19:25+0000\n"
 "Last-Translator: Jaap Broekhuizen <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-07 05:07+0000\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Launchpad-Export-Date: 2012-11-16 04:58+0000\n"
+"X-Generator: Launchpad (build 16272)\n"
 "Language: nl\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -270,7 +270,7 @@ msgstr "Vind media"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
-msgstr ""
+msgstr "Scan bibliotheek opnieuw"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
 msgid "Do Nothing"
@@ -1713,11 +1713,13 @@ msgstr "Geen nummers op de CD"
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"%s kan geen nummers vinden op de CD. Er kunnen geen nummers worden "
+"geïmporteerd"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
 #, c-format
 msgid "%s is already doing an import"
-msgstr ""
+msgstr "%s is al bezig met importeren"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
 #, c-format
@@ -1822,7 +1824,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
-msgstr ""
+msgstr "Gelukt!"
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
@@ -1834,7 +1836,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:46
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Last.fm integratie"
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
@@ -1902,9 +1904,6 @@ msgstr ""
 #~ msgid "Disable Repeat"
 #~ msgstr "Herhalen uitschakelen"
 
-#~ msgid "Unknown Title"
-#~ msgstr "Onbekende titel"
-
 #~ msgid "Close"
 #~ msgstr "Sluiten"
 
@@ -1920,6 +1919,9 @@ msgstr ""
 
 #~ msgid "Try again"
 #~ msgstr "Opnieuw proberen"
+
+#~ msgid "Unknown Title"
+#~ msgstr "Titel onbekend"
 
 #, c-format
 #~ msgid "%s and %s"
@@ -1954,3 +1956,47 @@ msgstr ""
 
 #~ msgid "Library Management"
 #~ msgstr "Bibliotheekbeheer"
+
+#, c-format
+#~ msgid ""
+#~ "To allow for Last.fm integration, you must give permission to %s. You only "
+#~ "need to do this once."
+#~ msgstr ""
+#~ "Om Last.fm integratie te activeren moet je toestemming geven aan %s. Dit "
+#~ "hoeft maar een keer."
+
+#~ msgid "Enable Scrobbling"
+#~ msgstr "Zet Scrobbling aan"
+
+#~ msgid "Unsuccessful. Click to try again."
+#~ msgstr "Onsuccesvol. Klik om het opnieuw te proberen."
+
+#, c-format
+#~ msgid "Lyrics not found for \"%s\" by \"%s\""
+#~ msgstr "Songtekst niet gevonden voor \"%s\" door \"%s\""
+
+#~ msgid "Copy files to music folder when added to library"
+#~ msgstr ""
+#~ "Kopieer bestanden naar muziekmap als deze toegevoegd worden aan de "
+#~ "bibliotheek"
+
+#~ msgid "Automatically download new podcast episodes"
+#~ msgstr "Haal automatisch nieuwe podcast episodes binnen"
+
+#~ msgid "Keep music folder organized"
+#~ msgstr "Hou muziekmap georganiseerd"
+
+#~ msgid "Complete login"
+#~ msgstr "Voltooi login"
+
+#~ msgid "Station"
+#~ msgstr "Station"
+
+#~ msgid "Audiobook"
+#~ msgstr "Audioboek"
+
+#~ msgid "Click to redo the Last.fm Login Process"
+#~ msgstr "Klik om opnieuw in te loggen via Last.fm"
+
+#~ msgid "Scrobbling already Enabled"
+#~ msgstr "Scrobbling is al geactiveerd"

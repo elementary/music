@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-06 17:06+0100\n"
-"PO-Revision-Date: 2012-11-05 17:50+0000\n"
-"Last-Translator: s_limak <Unknown>\n"
+"PO-Revision-Date: 2012-11-16 00:52+0000\n"
+"Last-Translator: Piotr Sokół <Unknown>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-11-07 05:08+0000\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Launchpad-Export-Date: 2012-11-16 04:58+0000\n"
+"X-Generator: Launchpad (build 16272)\n"
 "Language: \n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -110,21 +110,21 @@ msgstr "Nieznany"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:172
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$NAME z albumu $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:175
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$NAME w wykonaniu $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:181
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$NAME w wykonaniu $ARTIST z albumu $ALBUM"
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr "Słuchaj muzyki"
+msgstr "Umożliwia słuchanie muzyki"
 
 #: /home/noelco/noise/po/../src//Noise.vala:38
 msgid "Music Player"
@@ -240,7 +240,7 @@ msgstr "Dodawanie muzyki z %s do kolekcji..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:342
 msgid "Rescanning music for changes. This may take a while..."
-msgstr "Wyszukiwanie zmian w katalogu z muzyką. To może trochę potrwać ..."
+msgstr "Wyszukiwanie zmian w katalogu z muzyką. To może trochę potrwać..."
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:403
 msgid "Favorite Songs"
@@ -252,7 +252,7 @@ msgstr "Ostatnio dodane"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
 msgid "Recent Favorites"
-msgstr "Najnowsze ulubione"
+msgstr "Ostatnio polubione"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:445
 msgid "Never Played"
@@ -295,7 +295,7 @@ msgstr ""
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i plików multimedialnych nie można znaleźć. Co chcesz zrobić?"
+msgstr "Nie można odnaleźć %i plików nagrań. Co zrobić?"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
@@ -317,8 +317,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
-"Następujące pliki zostały znalezione %s, ale nie są w bibliotece. Sprawdź "
-"wszystkie pliki, które chcesz importować."
+"Odnaleziono następujące pliki na %s, które nie zajdują się w kolekcji. "
+"Proszę sprawdzić, które pliki zaimportować."
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -385,7 +385,7 @@ msgstr "Sprawdź wykonawcę"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 msgid "Cannot Import"
-msgstr ""
+msgstr "Nie można zaimportować"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 #, c-format
@@ -639,7 +639,7 @@ msgstr "Ogólne"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:183
 msgid "Music Folder Location:"
-msgstr ""
+msgstr "Położenie katalogu z muzyką:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:189
 msgid "Select Music Folder..."
@@ -647,7 +647,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:203
 msgid "Library Management:"
-msgstr ""
+msgstr "Zarządzanie kolekcją"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:208
 msgid "Keep Music folder organized:"
@@ -659,19 +659,19 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:216
 msgid "Copy imported files to Library:"
-msgstr ""
+msgstr "Kopiowanie zaimportowanych nagrań do kolekcji:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:218
 msgid "Desktop Integration:"
-msgstr ""
+msgstr "Integracja ze środowiskiem graficznym:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:224
 msgid "Show notifications:"
-msgstr ""
+msgstr "Wyświetlanie powiadomień:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:229
 msgid "Minimize window when a song is being played:"
-msgstr ""
+msgstr "Minimalizowanie okna podczas odtwarzania:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:231
 msgid "Hide window when a song is being played:"
@@ -811,7 +811,7 @@ msgstr "Wybierz pliki do usunięcia:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
 msgid "Playlist Editor"
-msgstr ""
+msgstr "Edytor list odtwarzania"
 
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
 #, c-format
@@ -1054,7 +1054,7 @@ msgstr "Przeszukaj katalog z muzyką"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:199
 msgid "Preferences..."
-msgstr ""
+msgstr "Preferencje..."
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:219
 msgid "Search Music"
@@ -1354,7 +1354,7 @@ msgstr "Czas trwania"
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
 msgid "Artist"
-msgstr "Artysta"
+msgstr "Wykonawca"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
