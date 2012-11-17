@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-06 17:06+0100\n"
-"PO-Revision-Date: 2012-11-15 14:12+0000\n"
+"PO-Revision-Date: 2012-11-16 08:57+0000\n"
 "Last-Translator: Hlobil Vaclav <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-11-16 04:58+0000\n"
-"X-Generator: Launchpad (build 16272)\n"
+"X-Launchpad-Export-Date: 2012-11-17 05:07+0000\n"
+"X-Generator: Launchpad (build 16278)\n"
 "Language: cs\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -767,7 +767,14 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"Tím odeberete skladbu z knihovny a ze všech zařízení, které se automaticky "
+"synchronizují s %s."
 msgstr[1] ""
+"Tím odeberete skladby z knihovny a ze všech zařízení, které se automaticky "
+"synchronizují s %s."
+msgstr[2] ""
+"Tím odeberete skladby z knihovny a ze všech zařízení, které se automaticky "
+"synchronizují s %s."
 
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -1536,7 +1543,7 @@ msgstr "Pořiďte si nějakou Hudbu"
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:39
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "%s se nepodařilo najít hudbu."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 msgid "Locate"
@@ -1778,7 +1785,7 @@ msgstr "Během importování na CD se vyskytla chyba"
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:905
 msgid "Syncing playlists"
-msgstr ""
+msgstr "Synchronizace seznamů skladeb"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Fetching similar songs"
@@ -1786,7 +1793,7 @@ msgstr "Získávání podobných skladeb"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:73
 msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-msgstr ""
+msgstr "Vyhledávání skladeb podobných <b>$NAME</b> od <b>$ARTIST</b>"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:100
 #, c-format
