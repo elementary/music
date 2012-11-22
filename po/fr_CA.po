@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-06 17:06+0100\n"
-"PO-Revision-Date: 2012-11-18 21:23+0000\n"
+"PO-Revision-Date: 2012-11-22 03:06+0000\n"
 "Last-Translator: Simon <Unknown>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-11-19 05:00+0000\n"
-"X-Generator: Launchpad (build 16278)\n"
+"X-Launchpad-Export-Date: 2012-11-22 05:28+0000\n"
+"X-Generator: Launchpad (build 16293)\n"
 "Language: \n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -118,7 +118,7 @@ msgstr "$NAME par $ARTIST dans $ALBUM"
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr ""
+msgstr "Écouter de la musique"
 
 #: /home/noelco/noise/po/../src//Noise.vala:38
 msgid "Music Player"
@@ -144,7 +144,7 @@ msgstr "Sation de radio"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "Plat"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
@@ -152,7 +152,7 @@ msgstr "Classique"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr ""
+msgstr "Club"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
@@ -160,15 +160,15 @@ msgstr ""
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "Amplification des basses"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "Amplification des aiguës"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Amplification des aiguës + basses"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
@@ -176,7 +176,7 @@ msgstr "Écouteurs"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "Grande salle"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
