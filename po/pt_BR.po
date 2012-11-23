@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-11-06 17:06+0100\n"
-"PO-Revision-Date: 2012-11-08 17:17+0000\n"
-"Last-Translator: Leonardo Lemos <leonardolemos@live.com>\n"
+"PO-Revision-Date: 2012-11-22 23:38+0000\n"
+"Last-Translator: Otto Robba <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-11-09 05:06+0000\n"
-"X-Generator: Launchpad (build 16250)\n"
+"X-Launchpad-Export-Date: 2012-11-23 05:26+0000\n"
+"X-Generator: Launchpad (build 16293)\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -957,15 +957,15 @@ msgstr "Importar %s"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr "Visualizar como álbuns"
+msgstr "Visualizar como Álbuns"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr "Visualizar como lista"
+msgstr "Visualizar em Lista"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr "Visualizar em colunas"
+msgstr "Visualizar em Colunas"
 
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
