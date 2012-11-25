@@ -158,7 +158,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 case Gdk.Key.space:
                     playClicked();
                     return true;
-                    break;
                 case Gdk.Key.q:
                 case Gdk.Key.w:
                     if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0)
