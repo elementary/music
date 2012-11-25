@@ -165,6 +165,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     break;
             }
        }
+
        var typed_unichar = event.str.get_char ();
        // Redirect valid key presses to the search entry
        if (typed_unichar.validate () && searchField.sensitive && !searchField.has_focus) {
