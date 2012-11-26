@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-11-06 17:06+0100\n"
-"PO-Revision-Date: 2012-11-23 10:50+0000\n"
+"PO-Revision-Date: 2012-11-25 14:45+0000\n"
 "Last-Translator: Benjamin Bultman <bultman.ben@gmail.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-24 07:39+0000\n"
+"X-Launchpad-Export-Date: 2012-11-26 05:03+0000\n"
 "X-Generator: Launchpad (build 16293)\n"
 "X-Poedit-Language: Swedish\n"
 
@@ -94,7 +94,7 @@ msgstr "%s och %s"
 #. / for more details.
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%Y/%m/%e %l:%M %p"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/noise/po/../core//Media.vala:35
@@ -1249,7 +1249,7 @@ msgstr "Alla tonsättare"
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
 #, c-format
 msgid "All %i Composers"
-msgstr ""
+msgstr "Alla %i tonsättare"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
 msgid "No Composers"
@@ -1315,7 +1315,7 @@ msgstr "Aldrig"
 #. / by the column's title header.
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:808
 msgid "Sample List String"
-msgstr ""
+msgstr "Ungefär så, kanske"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:137
 msgid "Autosize Columns"
@@ -1323,7 +1323,7 @@ msgstr "Automatisk storlek på kolumner"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:144
 msgid "Display Album Art"
-msgstr ""
+msgstr "Visa skivomslag"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
@@ -1363,7 +1363,7 @@ msgstr "Albumartist"
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "Tonsättare"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
@@ -1413,7 +1413,7 @@ msgstr "Senast spelad"
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:121
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr ""
+msgstr "Taktslag/min"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:124
 msgctxt "List column title (file location)"
@@ -1806,6 +1806,9 @@ msgid ""
 "your library. Make sure all song info is correct and you are connected to "
 "the Internet. Some songs may not have matches."
 msgstr ""
+"$APPNAME kunde inte hitta liknande låtar till <b>$NAME</b> av <b>$ARTIST</b> "
+"i ditt bibliotek. Se till att all information stämmer samt att du är "
+"ansluten till Internet. Vissa låtar kanske inte har träffar."
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:148
 msgid "Similar Song View"
@@ -1871,6 +1874,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"För att integrera med Last.fm måste du ge rättigheter till Noise. Du behöver "
+"enbart göra detta en gång."
 
 #~ msgid "Add Podcast"
 #~ msgstr "Lägg till poddsändning"

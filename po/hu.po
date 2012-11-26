@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-06 17:06+0100\n"
-"PO-Revision-Date: 2012-11-13 13:19+0000\n"
+"PO-Revision-Date: 2012-11-25 07:41+0000\n"
 "Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-14 05:00+0000\n"
-"X-Generator: Launchpad (build 16251)\n"
+"X-Launchpad-Export-Date: 2012-11-26 05:03+0000\n"
+"X-Generator: Launchpad (build 16293)\n"
 "Language: hu\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -1272,7 +1272,7 @@ msgstr "Eltávolítás az eszközről"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgid "Scroll to Current Song"
-msgstr "Görgetés a jelenlegi számhoz"
+msgstr "Görgetés az éppen lejátszott számhoz"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
 msgid "Edit Song Info"
