@@ -112,6 +112,21 @@ public class Noise.Icon : Object {
         return theme.lookup_by_gicon (gicon, size, Gtk.IconLookupFlags.USE_BUILTIN);
     }
 
+    /**
+     * Returns a file representing the icon in the filesystem. If this icon represents a
+     * file, it returns a file at a location equivalent to {@link Noise.Icon.file_name}.
+     * Otherwise, a file pointing to the image in the icon theme is returned.
+     *
+     * @param size Icon size to query.
+     * @return A {@link GLib.File} representing the icon, or //null// if none is found.
+     */
+    public File? get_file (int size = 16) {
+        if (gicon is FileIcon)
+            return (gicon as FileIcon).file;
+
+        var info = get_icon_info (size);
+        return info != null ? File.new_for_path (info.get_filename ()) : null;
+    }
 
     /**
      * Creates a new {@link Gdk.Pixbuf} from the icon at the specified icon size.

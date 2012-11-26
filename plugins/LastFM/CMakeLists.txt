@@ -21,7 +21,6 @@ vala_precompile(
         SimilarMedia.vala
         SimilarMediaView.vala
         SimilarMediaWidget.vala
-        SimilarViewWrapper.vala
         PreferencesSection.vala
         LoveBanButtons.vala
     PACKAGES

@@ -20,7 +20,9 @@ set(CORE_SOURCE
     Utils/UI.vala
     Utils/CompareFunctionHolder.vala
     Utils/Utils.vala
+    Utils/PlaylistsUtils.vala
     Utils/Threads.vala
+    Widgets/SettingsWidgets.vala
 )
 
 if (BUILD_SHARED_LIBS)

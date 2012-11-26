@@ -28,13 +28,13 @@ public class Noise.FastView : TreeView {
 	public static const int OPTIMAL_COLUMN = -2;
 	FastModel fm;
 	List<Type> columns;
-	protected HashTable<int, Object> table; // is not the same object as showing.
-	protected HashTable<int, Object> showing; // should never point to table.
+	protected HashTable<int, Media> table; // is not the same object as showing.
+	protected HashTable<int, Media> showing; // should never point to table.
 
 	/* sortable stuff */
 	public delegate int SortCompareFunc (int sort_column_id,
 	                                     Gtk.SortType sort_direction,
-	                                     Object a, Object b,
+	                                     Media a, Media b,
 	                                     int index_a, int index_b); // position of items in the view's @table
 
 	protected int sort_column_id;
@@ -43,15 +43,15 @@ public class Noise.FastView : TreeView {
 	
 	// search stuff
 	string last_search;
-	public delegate void ViewSearchFunc (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing);
+	public delegate void ViewSearchFunc (string search, HashTable<int, Media> table, ref HashTable<int, Media> showing);
 	private unowned ViewSearchFunc search_func;
 	
 	public signal void rows_reordered();
 	
 	public FastView (List<Type> types) {
 		columns = types.copy();
-		table = new HashTable<int, Object>(null, null);
-		showing = new HashTable<int, Object>(null, null);
+		table = new HashTable<int, Media>(null, null);
+		showing = new HashTable<int, Media>(null, null);
 		fm = new FastModel(types);
 		
 		sort_column_id = OPTIMAL_COLUMN;
@@ -65,12 +65,12 @@ public class Noise.FastView : TreeView {
 	}
 	
 	/** Should not be manipulated by client */
-	public unowned HashTable<int, Object> get_table() {
+	public unowned HashTable<int, Media> get_table() {
 		return table;
 	}
 	
 	/** Should not be manipulated by client */
-	public unowned HashTable<int, Object> get_visible_table() {
+	public unowned HashTable<int, Media> get_visible_table() {
 		return showing;
 	}
 	
@@ -78,7 +78,7 @@ public class Noise.FastView : TreeView {
 		return (int) iter.user_data;
 	}
 	
-	public Object? get_object_from_index(int index) {
+	public Media? get_object_from_index(int index) {
 		return showing.get(index);
 	}
 	
@@ -86,7 +86,7 @@ public class Noise.FastView : TreeView {
 		fm.set_value_func(func);
 	}
 
-	public void set_table (HashTable<int, GLib.Object> table, bool do_resort) {
+	public void set_table (HashTable<int, Media> table, bool do_resort) {
 		this.table = table;
 		
 		if (do_resort)

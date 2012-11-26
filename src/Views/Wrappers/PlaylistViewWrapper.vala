@@ -23,6 +23,7 @@
 public class Noise.PlaylistViewWrapper : ViewWrapper {
     public int playlist_id { get; construct set; default = -1; }
     public TreeViewSetup tvs;
+    public signal void button_clicked (int playlist_id);
 
     public PlaylistViewWrapper (LibraryWindow lw, int playlist_id, ViewWrapper.Hint hint) {
         base (lw, hint);
@@ -93,15 +94,15 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
         if (hint == Hint.PLAYLIST) {
             embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Gtk.MessageType.INFO);
-        }
-        else if (hint == Hint.SMART_PLAYLIST) {
+        } else if (hint == Hint.SMART_PLAYLIST) {
             var action = new Gtk.Action ("smart-playlist-rules-edit",
                                          _("Edit Smart Playlist"),
                                          null,
                                          Gtk.Stock.EDIT);
             // Connect to the 'activate' signal
             action.activate.connect ( () => {
-                lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
+                button_clicked (playlist_id);
+                //lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
             });
 
             var actions = new Gtk.Action[1];

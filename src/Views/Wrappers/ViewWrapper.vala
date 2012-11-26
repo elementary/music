@@ -37,12 +37,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     public enum Hint {
         NONE,
         MUSIC,
-        SIMILAR,
-        QUEUE,
-        HISTORY,
         PLAYLIST,
+        READ_ONLY_PLAYLIST,
         SMART_PLAYLIST,
         CDROM,
+        DEVICE,
         DEVICE_AUDIO,
         DEVICE_PODCAST,
         DEVICE_AUDIOBOOK,
@@ -180,11 +179,18 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         switch (type) {
             case ViewType.LIST:
-                successful = view_container.set_current_view (list_view);
-                list_view.list_view.scroll_to_current_media (true);
+                if (has_list_view) {
+                    successful = view_container.set_current_view (list_view);
+                    list_view.list_view.scroll_to_current_media (true);
+                } else {
+                    successful = false;
+                }
                 break;
             case ViewType.GRID:
-                successful = view_container.set_current_view (grid_view);
+                if (has_grid_view)
+                    successful = view_container.set_current_view (grid_view);
+                else
+                    successful = false;
                 break;
             case ViewType.ALERT:
                 successful = view_container.set_current_view (embedded_alert);

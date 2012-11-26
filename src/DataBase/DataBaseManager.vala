@@ -104,38 +104,37 @@ public class Noise.DataBaseManager : GLib.Object {
         var rv = new ArrayList<Media>();
 
         try {
-            Query query = new Query (database, "SELECT rowid,* FROM `media`");
+            Query query = new Query (database, "SELECT * FROM `media`");
 
             for (var results = query.execute (); !results.finished; results.next()) {
-                var s = new Media (results.fetch_string (1));
-                s.rowid = results.fetch_int (0);
-                s.file_size = (uint)results.fetch_int(2);
-                s.title = results.fetch_string(3);
-                s.artist = results.fetch_string(4);
-                s.composer = results.fetch_string(5);
-                s.album_artist = results.fetch_string(6);
-                s.album = results.fetch_string(7);
-                s.grouping = results.fetch_string(8);
-                s.genre = results.fetch_string(9);
-                s.comment = results.fetch_string(10);
-                s.lyrics = results.fetch_string(11);
-                s.has_embedded = (results.fetch_int(12) == 1);
-                s.year = (uint)results.fetch_int(13);
-                s.track = (uint)results.fetch_int(14);
-                s.track_count = (uint)results.fetch_int(15);
-                s.album_number = (uint)results.fetch_int(16);
-                s.album_count = (uint)results.fetch_int(17);
-                s.bitrate = (uint)results.fetch_int(18);
-                s.length = (uint)results.fetch_int(19);
-                s.samplerate = (uint)results.fetch_int(20);
-                s.rating = (uint)results.fetch_int(21);
-                s.play_count = (uint)results.fetch_int(22);
-                s.skip_count = (uint)results.fetch_int(23);
-                s.date_added = (uint)results.fetch_int(24);
-                s.last_played = (uint)results.fetch_int(25);
-                s.last_modified = (uint)results.fetch_int(26);
-                s.mediatype = (MediaType)results.fetch_int(27);
-                s.resume_pos = results.fetch_int(28);
+                var s = new Media (results.fetch_string (0));
+                s.file_size = (uint)results.fetch_int(1);
+                s.title = results.fetch_string(2);
+                s.artist = results.fetch_string(3);
+                s.composer = results.fetch_string(4);
+                s.album_artist = results.fetch_string(5);
+                s.album = results.fetch_string(6);
+                s.grouping = results.fetch_string(7);
+                s.genre = results.fetch_string(8);
+                s.comment = results.fetch_string(9);
+                s.lyrics = results.fetch_string(10);
+                s.has_embedded = (results.fetch_int(11) == 1);
+                s.year = (uint)results.fetch_int(12);
+                s.track = (uint)results.fetch_int(13);
+                s.track_count = (uint)results.fetch_int(14);
+                s.album_number = (uint)results.fetch_int(15);
+                s.album_count = (uint)results.fetch_int(16);
+                s.bitrate = (uint)results.fetch_int(17);
+                s.length = (uint)results.fetch_int(18);
+                s.samplerate = (uint)results.fetch_int(19);
+                s.rating = (uint)results.fetch_int(20);
+                s.play_count = (uint)results.fetch_int(21);
+                s.skip_count = (uint)results.fetch_int(22);
+                s.date_added = (uint)results.fetch_int(23);
+                s.last_played = (uint)results.fetch_int(24);
+                s.last_modified = (uint)results.fetch_int(25);
+                s.mediatype = (MediaType)results.fetch_int(26);
+                s.resume_pos = results.fetch_int(27);
 
                 rv.add(s);
             }
@@ -159,17 +158,16 @@ public class Noise.DataBaseManager : GLib.Object {
     public void add_media (Collection<Media> media) {
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO 'media' ('rowid', 'uri', 'file_size', 'title', 'artist', 'composer', 'album_artist',
+            Query query = transaction.prepare ("""INSERT INTO 'media' ('uri', 'file_size', 'title', 'artist', 'composer', 'album_artist',
 'album', 'grouping', 'genre', 'comment', 'lyrics', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
 'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified', 'mediatype', 'resume_pos')
-VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping,
+VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping,
 :genre, :comment, :lyrics, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate,
 :rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :mediatype,
 :resume_pos);""");
 
             foreach (var s in media) {
                 if (s.rowid > 0 && !s.isTemporary) {
-                    query.set_int(":rowid", (int)s.rowid);
                     query.set_string(":uri", s.uri);
                     query.set_int(":file_size", (int)s.file_size);
                     query.set_string(":title", s.title);
@@ -230,15 +228,14 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
     public void update_media (Gee.Collection<Media> media) {
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""UPDATE `media` SET uri=:uri, file_size=:file_size, title=:title, artist=:artist,
+            Query query = transaction.prepare("""UPDATE `media` SET file_size=:file_size, title=:title, artist=:artist,
 composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics,
  has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number,
 album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount,
-dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediatype=:mediatype, resume_pos=:resume_pos WHERE rowid=:rowid""");
+dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediatype=:mediatype, resume_pos=:resume_pos WHERE uri=:uri""");
 
             foreach(Media s in media) {
                 if(s.rowid != -2 && s.rowid > 0) {
-                    query.set_int(":rowid", (int)s.rowid);
                     query.set_string(":uri", s.uri);
                     query.set_int(":file_size", (int)s.file_size);
                     query.set_string(":title", s.title);
@@ -279,6 +276,129 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
+    /** COLUMNS STATE **
+     * load_columns_state() loads the state of each columns from db
+     *
+     */
+    public Gee.ArrayList<Playlist> load_columns_state() {
+        var rv = new ArrayList<Playlist>();
+
+        try {
+            string script = "SELECT * FROM `playlists`";
+            Query query = new Query(database, script);
+
+            for (var results = query.execute(); !results.finished; results.next() ) {
+                Playlist p = new Playlist.with_info(results.fetch_int(0), results.fetch_string(1));
+                string media = results.fetch_string(2);
+                
+                string[] media_strings = media.split("<sep>", 0);
+                int index;
+                var new_media = new Gee.LinkedList<Media> ();
+                for (index = 0; index < media_strings.length - 1; ++index) {
+                    string uri = media_strings[index];
+                    var m = lm.media_from_uri (uri);
+                    if (m != null) {
+                        new_media.add (m);
+                    }
+                }
+                p.add_media (new_media);
+                
+                /*p.tvs.sort_column_id = results.fetch_int(3);
+                p.tvs.set_sort_direction_from_string(results.fetch_string(4));
+
+                p.tvs.import_columns(results.fetch_string(5));*/
+
+                rv.add(p);
+            }
+        }
+        catch (SQLHeavy.Error err) {
+            warning ("Could not load playlists from db: %s\n", err.message);
+        }
+
+        return rv;
+    }
+
+    // TODO : Implement the column state save
+    public void save_columns_state (Collection<Playlist> playlists) {
+        try {
+            database.execute("DELETE FROM `columns`");
+            transaction = database.begin_transaction();
+            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
+            //, 'sort_column_id', 'sort_direction', 'columns'      , :sort_column_id, :sort_direction, :columns
+
+            foreach(Playlist p in playlists) {
+                if (p.read_only == false) {
+                    string rv = "";
+                    
+                    foreach (var m in p.media) {
+                        if (m != null)
+                            rv += m.uri + "<sep>";
+                    }
+                    query.set_string(":name", p.name);
+                    query.set_string(":media", rv);
+                    /*query.set_int(":sort_column_id", p.tvs.sort_column_id);
+                    query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
+                    query.set_string(":columns", p.tvs.columns_to_string());*/
+
+                    query.execute();
+                }
+            }
+
+            transaction.commit();
+        }
+        catch(SQLHeavy.Error err) {
+            warning ("Could not save playlists: %s \n", err.message);
+        }
+    }
+
+    public void add_columns_state (Playlist p) {
+        if (p.read_only == true)
+            return;
+        string rv = "";
+        
+        foreach (var m in p.media) {
+            if (m != null)
+                rv += m.uri + ",";
+        }
+
+        try {
+            transaction = database.begin_transaction();
+            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`)
+                                                VALUES (:name, :media);");
+                // , 'sort_column_id', 'sort_direction', 'columns'      , :sort_column_id, :sort_direction, :columns
+
+            query.set_string(":name", p.name);
+            query.set_string(":media", rv);
+            /*query.set_int(":sort_column_id", p.tvs.sort_column_id);
+            query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
+            query.set_string(":columns", p.tvs.columns_to_string());*/
+
+            query.execute();
+
+            transaction.commit();
+        }
+        catch(SQLHeavy.Error err) {
+            warning ("Could not add playlists: %s \n", err.message);
+        }
+    }
+
+    public void remove_columns_state (Playlist p) {
+        if (p.read_only == true)
+            return;
+        try {
+            transaction = database.begin_transaction();
+            Query query = transaction.prepare("DELETE FROM `playlists` WHERE name=:name");
+
+            query.set_string(":name", p.name);
+            query.execute();
+
+            transaction.commit();
+        }
+        catch (SQLHeavy.Error err) {
+            warning ("Could not remove playlist from db: %s\n", err.message);
+        }
+    }
+
     /** PLAYLISTS **
      * load_playlists() loads playlists from db
      *
@@ -290,19 +410,19 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         var rv = new ArrayList<Playlist>();
 
         try {
-            string script = "SELECT rowid,* FROM `playlists`";
+            string script = "SELECT * FROM `playlists`";
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
-                Playlist p = new Playlist.with_info(results.fetch_int(0), results.fetch_string(1));
-                string media = results.fetch_string(2);
+                Playlist p = new Playlist.with_info(0, results.fetch_string(0));
+                string media = results.fetch_string(1);
                 
-                string[] media_strings = media.split(",", 0);
+                string[] media_strings = media.split("<sep>", 0);
                 int index;
                 var new_media = new Gee.LinkedList<Media> ();
                 for (index = 0; index < media_strings.length - 1; ++index) {
-                    int id = int.parse (media_strings[index]);
-                    var m = lm.media_from_id (id);
+                    string uri = media_strings[index];
+                    var m = lm.media_from_uri (uri);
                     if (m != null) {
                         new_media.add (m);
                     }
@@ -333,19 +453,21 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             //, 'sort_column_id', 'sort_direction', 'columns'      , :sort_column_id, :sort_direction, :columns
 
             foreach(Playlist p in playlists) {
+                if (p.read_only == false) {
                     string rv = "";
-                
-                foreach (var m in p.media ()) {
-                    if (m != null)
-                        rv += m.rowid.to_string() + ",";
-                }
-                query.set_string(":name", p.name);
-                query.set_string(":media", rv);
-                /*query.set_int(":sort_column_id", p.tvs.sort_column_id);
-                query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
-                query.set_string(":columns", p.tvs.columns_to_string());*/
+                    
+                    foreach (var m in p.media) {
+                        if (m != null)
+                            rv += m.uri + "<sep>";
+                    }
+                    query.set_string(":name", p.name);
+                    query.set_string(":media", rv);
+                    /*query.set_int(":sort_column_id", p.tvs.sort_column_id);
+                    query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
+                    query.set_string(":columns", p.tvs.columns_to_string());*/
 
-                query.execute();
+                    query.execute();
+                }
             }
 
             transaction.commit();
@@ -356,11 +478,13 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void add_playlist(Playlist p) {
+        if (p.read_only == true)
+            return;
         string rv = "";
         
-        foreach (var m in p.media ()) {
+        foreach (var m in p.media) {
             if (m != null)
-                rv += m.rowid.to_string() + ",";
+                rv += m.uri + "<sep>";
         }
 
         try {
@@ -407,11 +531,13 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }*/
 
     public void remove_playlist(Playlist p) {
+        if (p.read_only == true)
+            return;
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("DELETE FROM `playlists` WHERE rowid=:rowid");
+            Query query = transaction.prepare("DELETE FROM `playlists` WHERE name=:name");
 
-            query.set_int(":rowid", p.rowid);
+            query.set_string(":name", p.name);
             query.execute();
 
             transaction.commit();
@@ -512,18 +638,17 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         var rv = new ArrayList<SmartPlaylist>();
 
         try {
-            string script = "SELECT rowid,* FROM `smart_playlists`";
+            string script = "SELECT * FROM `smart_playlists`";
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 SmartPlaylist p = new SmartPlaylist(lm.media ());
 
-                p.rowid = results.fetch_int(0);
-                p.name = results.fetch_string(1);
-                p.conditional = (SmartPlaylist.ConditionalType)results.fetch_int(2);
-                p.queries_from_string(results.fetch_string(3));
-                p.limit = ( results.fetch_string(4) == "1") ? true : false;
-                p.limit_amount = results.fetch_int(5);
+                p.name = results.fetch_string(0);
+                p.conditional = (SmartPlaylist.ConditionalType)results.fetch_int(1);
+                p.queries_from_string(results.fetch_string(2));
+                p.limit = ( results.fetch_string(3) == "1") ? true : false;
+                p.limit_amount = results.fetch_int(4);
                 /*p.tvs.sort_column_id = results.fetch_int(6);
                 p.tvs.set_sort_direction_from_string(results.fetch_string(7));
                 p.tvs.import_columns(results.fetch_string(8));*/
@@ -591,9 +716,9 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     public void remove_smart_playlist(SmartPlaylist p) {
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("DELETE FROM `smart_playlists` WHERE rowid=:rowid");
+            Query query = transaction.prepare("DELETE FROM `smart_playlists` WHERE name=:name");
 
-            query.set_int(":rowid", p.rowid);
+            query.set_string(":name", p.name);
             query.execute();
 
             transaction.commit();

@@ -39,7 +39,10 @@ public class Noise.Media : Object {
 
     public string uri {
         owned get { return file.get_uri (); }
-        set { file = File.new_for_uri (value); }
+        set { file = File.new_for_uri (value); 
+                if(value.has_prefix("http:/")) {
+                mediatype = MediaType.STATION;
+                album_artist = _("Radio Station");}}
     }
 
     public uint64 file_size { get; set; default = 0; }

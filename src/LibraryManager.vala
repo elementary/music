@@ -42,6 +42,16 @@ public class Noise.LibraryManager : Object {
     public signal void media_added (Gee.LinkedList<int> ids);
     public signal void media_updated (Gee.LinkedList<int> ids);
     public signal void media_removed (Gee.LinkedList<int> ids);
+    
+    public signal void playlist_added (Playlist playlist);
+    public signal void playlist_removed (Playlist playlist);
+    
+    public signal void smartplaylist_added (SmartPlaylist smartplaylist);
+    public signal void smartplaylist_removed (SmartPlaylist smartplaylist);
+
+    public signal void device_added (Device d);
+    public signal void device_removed (Device d);
+    public signal void device_name_changed (Device d);
 
     public LibraryWindow lw { get { return App.main_window; } }
     public DataBaseManager dbm;
@@ -58,14 +68,18 @@ public class Noise.LibraryManager : Object {
         get { return media_count () > 0; }
     }
 
-    private Gee.HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
+    private Gee.TreeMap<int, Playlist> _playlists; // rowid, playlist of all playlists
     private Gee.HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
-    private Gee.HashMap<int, Media> _media; // rowid, media of all media
+    private Gee.TreeMap<int, Media> _media; // rowid, media of all media
+
+    private int _playlist_rowid = 0;
+    private int _smart_playlist_rowid = 0;
+    private int _media_rowid = 0;
 
     private Gee.LinkedList<Media> open_media_list;
 
+    // TODO: remove this from librarymanager
     public TreeViewSetup music_setup   { get; private set; default = null; }
-    public TreeViewSetup similar_setup { get; private set; default = null; }
     public TreeViewSetup queue_setup   { get; private set; default = null; }
     public TreeViewSetup history_setup { get; private set; default = null; }
 
@@ -87,19 +101,25 @@ public class Noise.LibraryManager : Object {
         dbm.db_progress.connect (dbProgress);
 
         _smart_playlists = new Gee.HashMap<int, SmartPlaylist> ();
-        _playlists = new Gee.HashMap<int, Playlist> ();
-        _media = new Gee.HashMap<int, Media> ();
+        _playlists = new Gee.TreeMap<int, Playlist> ();
+        _media = new Gee.TreeMap<int, Media> ();
 
         // Load all media from database
         lock (_media) {
-            foreach (var m in dbm.load_media ())
+            foreach (var m in dbm.load_media ()) {
+                m.rowid = _media_rowid;
                 _media.set (m.rowid, m);
+                _media_rowid++;
+            }
         }
 
         // Load smart playlists from database
         lock (_smart_playlists) {
-            foreach (var p in dbm.load_smart_playlists ())
-                _smart_playlists.set (p.rowid, p);
+            foreach (var p in dbm.load_smart_playlists ()) {
+                p.rowid = _smart_playlist_rowid;
+                _smart_playlists.set (_smart_playlist_rowid, p);
+                _smart_playlist_rowid++;
+            }
         }
 
         // Load all static playlists from database
@@ -108,6 +128,7 @@ public class Noise.LibraryManager : Object {
         foreach (var p in dbm.load_playlists ()) {
             if (!playlists_added.contains (p.name)) { // Sometimes we get duplicates; ignore them.
                 // TODO: these names should be constants defined in DatabaseManager
+                // TODO: This souldn't be done like that, create a better function XXX
                 switch (p.name) {
                     case "autosaved_music":
                         music_setup = lw.get_treeviewsetup_from_playlist(p);
@@ -115,34 +136,38 @@ public class Noise.LibraryManager : Object {
                             music_setup.set_hint (ViewWrapper.Hint.MUSIC);
                     break;
 
-                    case "autosaved_similar":
-                        similar_setup = lw.get_treeviewsetup_from_playlist(p);
-                        if (similar_setup != null)
-                            similar_setup.set_hint (ViewWrapper.Hint.SIMILAR);
-                    break;
-
                     case "autosaved_queue":
                         queue_setup = lw.get_treeviewsetup_from_playlist(p);
                         if (queue_setup != null)
-                            queue_setup.set_hint (ViewWrapper.Hint.QUEUE);
+                            queue_setup.set_hint (ViewWrapper.Hint.READ_ONLY_PLAYLIST);
 
                         var to_queue = new LinkedList<Media> ();
 
-                        foreach (var m in p.media ())
+                        foreach (var m in p.media)
                             to_queue.add (m);
 
                         App.player.queue_media (to_queue);
                     break;
 
+                    // TODO: Use ZeitGeist to handle history !
                     case "autosaved_history":
                         history_setup = lw.get_treeviewsetup_from_playlist(p);
                         if (history_setup != null)
-                            history_setup.set_hint (ViewWrapper.Hint.HISTORY);
+                            history_setup.set_hint (ViewWrapper.Hint.READ_ONLY_PLAYLIST);
+                        
+                        var to_history = new LinkedList<Media> ();
+
+                        foreach (var m in p.media)
+                            to_history.add (m);
+
+                        App.player.history_playlist.add_media (to_history);
                     break;
 
                     default:
                         lock (_playlists) {
-                            _playlists.set (p.rowid, p);
+                            p.rowid = _playlist_rowid;
+                            _playlists.set (_playlist_rowid, p);
+                            _playlist_rowid++;
                         }
                     break;
                 }
@@ -155,22 +180,20 @@ public class Noise.LibraryManager : Object {
             music_setup = new TreeViewSetup (ListColumn.ARTIST,
                                              Gtk.SortType.ASCENDING,
                                              ViewWrapper.Hint.MUSIC);
-        if (similar_setup == null)
-            similar_setup = new TreeViewSetup (ListColumn.NUMBER,
-                                               Gtk.SortType.ASCENDING,
-                                               ViewWrapper.Hint.SIMILAR);
 
         if (queue_setup == null)
             queue_setup = new TreeViewSetup (ListColumn.NUMBER,
                                              Gtk.SortType.ASCENDING,
-                                             ViewWrapper.Hint.QUEUE);
+                                             ViewWrapper.Hint.READ_ONLY_PLAYLIST);
 
         if (history_setup == null)
             history_setup = new TreeViewSetup (ListColumn.NUMBER,
                                                Gtk.SortType.ASCENDING,
-                                               ViewWrapper.Hint.HISTORY);
+                                               ViewWrapper.Hint.READ_ONLY_PLAYLIST);
 
         device_manager = new DeviceManager (this);
+        device_manager.device_added.connect ((device) => {device_added (device);});
+        device_manager.device_removed.connect ((device) => {device_removed (device);});
 
         other_folders_added = 0;
 
@@ -195,9 +218,7 @@ public class Noise.LibraryManager : Object {
     }
 
     private async void update_media_art_cache () {
-        lock (_media) {
-            yield CoverartCache.instance.fetch_all_cover_art_async (media ());
-        }
+        yield CoverartCache.instance.fetch_all_cover_art_async (media ());
     }
 
     /************ Library/Collection management stuff ************/
@@ -217,21 +238,24 @@ public class Noise.LibraryManager : Object {
 
         return false;
     }
+    
+    public void remove_all_static_playlists () {
+        foreach (var id in _playlists.keys) {
+            if (playlist_from_id (id).read_only == false)
+                remove_playlist (id);
+        }
+    }
 
     public async void set_music_folder (string folder) {
         if (start_file_operations (_("Importing music from %s...").printf ("<b>" + String.escape (folder) + "</b>"))) {
-            // FIXME: these are library window's internals. Shouldn't be here
-            lw.resetSideTree (true);
-            lw.sideTree.removeAllStaticPlaylists ();
+            remove_all_static_playlists ();
 
             clear_media ();
 
-            // FIXME: DOESN'T MAKE SENSE ANYMORE SINCE WE'RE NOT LIMITED TO
-            // PLAYING LIBRARY MUSIC. Use unqueue_media ();
-            App.player.clear_queue ();
+            App.player.unqueue_media (media());
 
             App.player.reset_already_played ();
-            lw.resetSideTree (false);
+            // FIXME: these are library window's internals. Shouldn't be here
             lw.update_sensitivities ();
             App.player.stopPlayback ();
 
@@ -239,7 +263,7 @@ public class Noise.LibraryManager : Object {
 
             main_settings.music_mount_name = "";
 
-            yield set_music_folder_thread ();
+            set_music_folder_thread ();
         }
     }
 
@@ -292,20 +316,13 @@ public class Noise.LibraryManager : Object {
      * Used to avoid importing already-imported files.
      */
     private Gee.LinkedList<string> remove_duplicate_files (Gee.LinkedList<string> files) {
-        var to_import = new Gee.LinkedList<string> ();
-
-        EqualFunc<File> equal_func = FileUtils.equal_func;
-        var existing_file_set = new Gee.HashSet<File> (null, equal_func);
-
-        foreach (var m in media ())
-            existing_file_set.add (m.file);
-
-        foreach (string uri in files) {
-            var to_test = File.new_for_uri (uri);
-            if (!existing_file_set.contains (to_test))
-                to_import.add (uri);
-            else
-                debug ("-- DUPLICATE FOUND for: %s", uri);
+        
+        var to_import = files;
+        foreach (var m in media ()) {
+            if (files.contains (m.uri)) {
+                to_import.remove (m.uri);
+                debug ("-- DUPLICATE FOUND for: %s", m.uri);
+            }
         }
 
         return to_import;
@@ -438,11 +455,20 @@ public class Noise.LibraryManager : Object {
         return _playlists.size;
     }
 
+    public int playlist_count_without_read_only () {
+        int i = 0;
+        foreach (var p in _playlists.values) {
+            if (p.read_only == false)
+                i++;
+        }
+        return i;
+    }
+
     public Gee.Collection<Playlist> playlists () {
         return _playlists.values;
     }
 
-    public Gee.HashMap<int, Playlist> playlist_hash () {
+    public Gee.TreeMap<int, Playlist> playlist_hash () {
         return _playlists;
     }
 
@@ -467,11 +493,13 @@ public class Noise.LibraryManager : Object {
 
     public int add_playlist (Playlist p) {
         lock (_playlists) {
-            p.rowid = _playlists.size + 1;
+            p.rowid = _playlist_rowid;
+            _playlist_rowid++;
             _playlists.set (p.rowid, p);
         }
 
         dbm.add_playlist (p);
+        playlist_added (p);
 
         return p.rowid;
     }
@@ -484,6 +512,7 @@ public class Noise.LibraryManager : Object {
         }
 
         dbu.removeItem (removed);
+        playlist_removed (removed);
     }
 
     /**************** Smart playlists ****************/
@@ -533,12 +562,15 @@ public class Noise.LibraryManager : Object {
     }
 
     public int add_smart_playlist (SmartPlaylist p) {
+        
         lock (_smart_playlists) {
-            p.rowid = _smart_playlists.size + 1; // +1 for 1-based db
+            p.rowid = _smart_playlist_rowid;
+            _smart_playlist_rowid++;
             _smart_playlists.set (p.rowid, p);
         }
 
         save_smart_playlists ();
+        smartplaylist_added (p);
         return p.rowid;
     }
 
@@ -549,38 +581,27 @@ public class Noise.LibraryManager : Object {
             _smart_playlists.unset (id, out removed);
         }
 
+        smartplaylist_removed (removed);
         dbu.removeItem (removed);
     }
 
     /******************** Media stuff ******************/
-    public void clear_media () {
+    public  void clear_media () {
         message ("-- Clearing media");
 
         // We really only want to clear the songs that are permanent and on the file system
         // Dont clear podcasts that link to a url, device media, temporary media, previews, songs
         var unset = new Gee.LinkedList<Media> ();
 
-        lock (_media) {
-            foreach (int i in _media.keys) {
-                var s = _media.get (i);
+        foreach (int i in _media.keys) {
+            var s = _media.get (i);
 
-                if (!s.isTemporary && !s.isPreview)
-                    unset.add (s);
-            }
-
-            foreach (Media s in unset)
-                _media.unset (s.rowid);
+            if (!s.isTemporary && !s.isPreview)
+                unset.add (s);
         }
 
-        lock (_playlists) {
-            foreach (var p in playlists ())
-                p.remove_media (unset);
-        }
+        remove_media (unset, false);
 
-        dbm.clear_media ();
-        dbm.add_media (_media.values);
-
-        update_smart_playlists_async.begin ();
         debug ("--- MEDIA CLEARED ---");
     }
 
@@ -606,14 +627,14 @@ public class Noise.LibraryManager : Object {
     }
 
     public void update_media_item (Media s, bool updateMeta, bool record_time) {
-        LinkedList<Media> one = new LinkedList<Media> ();
+        var one = new LinkedList<Media> ();
         one.add (s);
 
         update_media (one, updateMeta, record_time);
     }
 
     public void update_media (Collection<Media> updates, bool updateMeta, bool record_time) {
-        LinkedList<int> rv = new LinkedList<int> ();
+        var rv = new LinkedList<int> ();
 
         foreach (Media s in updates) {
             /*_media.set (s.rowid, s);*/
@@ -696,7 +717,7 @@ public class Noise.LibraryManager : Object {
 
     public Media? media_from_file (File file) {
         lock (_media) {
-            foreach (var m in _media.values) {
+            foreach (var m in media ()) {
                 if (m != null && m.file.equal (file))
                     return m;
             }
@@ -705,8 +726,19 @@ public class Noise.LibraryManager : Object {
         return null;
     }
 
+    public Media? media_from_uri (string uri) {
+        lock (_media) {
+            foreach (var m in media ()) {
+                if (m != null && m.uri == uri)
+                    return m;
+            }
+        }
+
+        return null;
+    }
+
     public Gee.Collection<Media> media_from_playlist (int id) {
-        return _playlists.get (id).media ();
+        return _playlists.get (id).media ;
     }
 
     public Collection<Media> media_from_smart_playlist (int id) {
@@ -723,26 +755,19 @@ public class Noise.LibraryManager : Object {
         if (new_media.size < 1) // happens more often than you would think
             return;
 
-        int top_index = 0;
+        var added = new Gee.LinkedList<int> ();
 
-        lock (_media) {
-            foreach (int i in _media.keys) {
-                if (i > top_index)
-                    top_index = i;
+        foreach (var s in new_media) {
+            if (s.rowid == 0) {
+                s.rowid = _media_rowid;
+                _media_rowid++;
             }
 
-            var added = new Gee.LinkedList<int> ();
+            added.add (s.rowid);
 
-            foreach (var s in new_media) {
-                if (s.rowid == 0)
-                    s.rowid = ++top_index;
-
-                added.add (s.rowid);
-
-                _media.set (s.rowid, s);
-            }
-            media_added (added);
+            _media.set (s.rowid, s);
         }
+        media_added (added);
 
         dbm.add_media (new_media);
         update_smart_playlists_async.begin ();
@@ -776,14 +801,11 @@ public class Noise.LibraryManager : Object {
 
         lock (_playlists) {
             foreach (var p in playlists ())
-                p.remove_media (toRemove);
+                p.remove_medias (toRemove);
         }
 
-        if (_media.size == 0)
-            main_settings.music_folder = Environment.get_user_special_dir (UserDirectory.MUSIC);
-
         // TODO: move away. It's called twice due to LW's internal handlers
-        lw.update_sensitivities ();
+        //lw.update_sensitivities ();
 
         update_smart_playlists_async.begin ();
     }

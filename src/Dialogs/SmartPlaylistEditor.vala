@@ -52,7 +52,7 @@ public class Noise.SmartPlaylistEditor : Window {
     SpinButton mediaLimit;
     Button save;
     
-    public signal void playlist_saved(SmartPlaylist sp);
+    public signal void playlist_saved(SmartPlaylist sp, SmartPlaylist? old_sp = null);
     
     public SmartPlaylistEditor(LibraryWindow lw, SmartPlaylist sp) {
         this.lw = lw;
@@ -206,6 +206,7 @@ public class Noise.SmartPlaylistEditor : Window {
     }
     
     public virtual void saveClick() {
+        var old_sp = sp;
         sp.clearQueries();
         foreach(SmartPlaylistEditorQuery speq in spQueries) {
             if(speq._box.visible)
@@ -217,7 +218,7 @@ public class Noise.SmartPlaylistEditor : Window {
         sp.limit = limitMedias.get_active();
         sp.limit_amount = (int)mediaLimit.get_value();
         
-        playlist_saved(sp);
+        playlist_saved(sp, old_sp);
         
         this.destroy();
     }

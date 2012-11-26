@@ -2,20 +2,8 @@
 /*-
  * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * This software is licensed under the GNU General Public License
+ * (version 2 or later). See the COPYING file in this distribution.
  *
  * The Noise authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
@@ -172,14 +160,16 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void set_media (Gee.Collection<Media> to_add) {
-        var new_table = new HashTable<int, Object> (null, null);
+        var new_table = new HashTable<int, unowned Media> (null, null);
 
-        foreach (var m in to_add)
-            new_table.set ((int) new_table.size (), m);
+        foreach (Media m in to_add) {
+            if (m != null)
+                new_table.set ((int) new_table.size (), m);
+        }
 
         // set table and resort
         set_table (new_table, true);
-
+        
         scroll_to_current_media (false);
     }
 
@@ -189,7 +179,7 @@ public abstract class Noise.GenericList : FastView {
         foreach (var m in to_remove)
             to_remove_set.add (m);
 
-        var new_table = new HashTable<int, Object> (null, null);
+        var new_table = new HashTable<int, Media> (null, null);
         for (int i = 0; i < table.size (); ++i) {
             var m = table.get (i) as Media;
             // create a new table. if not in to_remove, and is in table, add it.
@@ -201,13 +191,13 @@ public abstract class Noise.GenericList : FastView {
         set_table (new_table, false);
     }
 
-    public void add_media (Gee.Collection<Object> to_add) {
+    public void add_media (Gee.Collection<Media> to_add) {
         // Check for duplicates
-        var existing = new Gee.HashSet<Object> ();
+        var existing = new Gee.LinkedList<Media> ();
         foreach (var m in table.get_values ())
             existing.add (m);
 
-        var new_media = new Gee.LinkedList<Object> ();
+        var new_media = new Gee.LinkedList<Media> ();
         foreach (var m in to_add) {
             if (!existing.contains (m))
                 new_media.add (m);
@@ -255,7 +245,7 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public Media? get_media_from_index (int index) {
-        return get_object_from_index (index) as Media;
+        return get_object_from_index (index);
     }
 
     // When the user clicks over a cell in the rating column, that cell renderer

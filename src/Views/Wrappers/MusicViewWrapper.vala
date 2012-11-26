@@ -27,7 +27,11 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         build_async.begin ();
     }
 
+    private Gee.HashMap<unowned Device, int> _devices;
+
     private async void build_async () {
+        Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
+        yield;
         // Add grid view
         grid_view = new GridView (this);
 
@@ -42,14 +46,15 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         welcome_screen.append_with_pixbuf (music_folder_icon, _("Locate"), _("Change your music folder."));
 
         welcome_screen.activated.connect (welcome_screen_activated);
+        _devices = new Gee.HashMap<Device, int> ();
 
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
         // Refresh view layout
         pack_views ();
 
-        yield set_media_async (lm.media ());
         connect_data_signals ();
+        yield set_media_async (lm.media ());
     }
 
     private void connect_data_signals () {
@@ -58,29 +63,51 @@ public class Noise.MusicViewWrapper : ViewWrapper {
          * possible with internal media. This view wrapper is not intended for use
          * with external (i.e. doesn't belong to library) media anyway.
          */
+         lm.device_added.connect (on_device_added);
+         lm.device_removed.connect (on_device_removed);
+         lm.device_name_changed.connect (on_device_name_changed);
          lm.media_added.connect (on_library_media_added);
          lm.media_removed.connect (on_library_media_removed);
          lm.media_updated.connect (on_library_media_updated);
     }
 
-    private void on_library_media_added (Gee.Collection<int> added_ids) {
-        // Convert ids to real media
+    private void on_device_added (Device d) {
+        int id = welcome_screen.append (d.get_icon().to_string (), _("Import your Music"), _("Import all your Music from %s into your library.").printf(d.getDisplayName()));
+        _devices.set (d, id);
+        welcome_screen.show_all ();
+    }
+
+    private void on_device_removed (Device d) {
+        int id = _devices.get (d);
+        if (id > 0) {
+            welcome_screen.remove_item (_devices.get (d));
+        }
+        _devices.unset (d, null);
+    }
+
+    private void on_device_name_changed (Device d) {
+        welcome_screen.remove_item (_devices.get (d));
+        _devices.unset (d, null);
+        int id = welcome_screen.append (d.get_icon().to_string (), _("Import your Music"), _("Import all your Music from %s into your library.").printf(d.getDisplayName()));
+        _devices.set (d, id);
+        welcome_screen.show_all ();
+    }
+
+    private async void on_library_media_added (Gee.Collection<int> added_ids) {
         var to_add = lm.media_from_ids (added_ids);
-        add_media_async (to_add);
+        yield add_media_async (to_add);
     }
 
-    private void on_library_media_removed (Gee.Collection<int> removed_ids) {
-        // Convert ids to real media
+    private async void on_library_media_removed (Gee.Collection<int> removed_ids) {
         var to_remove = lm.media_from_ids (removed_ids);
-        remove_media_async (to_remove);    
+        yield remove_media_async (to_remove);
     }
 
-    private void on_library_media_updated (Gee.Collection<int> updated_ids) {
-        // Convert ids to real media
+    private async void on_library_media_updated (Gee.Collection<int> updated_ids) {
         var to_update = lm.media_from_ids (updated_ids);
-        update_media_async (to_update);    
+        yield update_media_async (to_update);
     }
-    
+
     private void welcome_screen_activated (int index) {
         if (index == 0) {
             if (!lm.doing_file_operations ()) {
@@ -104,6 +131,12 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
                 if (!String.is_empty (folder, true))
                     lw.setMusicFolder (folder);
+            }
+        } else {
+            foreach (var device_entry in _devices.entries) {
+                if (device_entry.value == index) {
+                    ((Device)device_entry.key).transfer_all_to_library();
+                }
             }
         }
     }

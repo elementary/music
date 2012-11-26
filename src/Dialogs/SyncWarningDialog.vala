@@ -130,7 +130,7 @@ public class Noise.SyncWarningDialog : Window {
 	}
 	
 	public void syncClicked() {
-		d.sync_medias(to_sync);
+		d.sync_medias();
 		
 		this.destroy();
 	}

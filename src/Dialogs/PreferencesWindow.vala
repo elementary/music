@@ -31,80 +31,15 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
     public const int MIN_WIDTH = 420;
     public const int MIN_HEIGHT = 300;
 
-    /**
-     * A section in the preferences dialog. Each section has a page in the window's
-     * notebook containing @container. SubSections can be added to the page through
-     * the add_subsection() method.
-     *
-     * When the preferences' window save button is clicked, save_changes() is called for
-     * every section.
-     */
-    public class NoteBook_Page {
-        public string name { get; private set; }
-        public Gtk.Grid grid { get; private set; }
-
-        private static const int IDENTATION_MARGIN = 12;
-
-        public NoteBook_Page (string name) {
-            this.name = name;
-
-            grid = new Gtk.Grid ();
-            grid.margin = 12;
-            grid.set_hexpand (true);
-            grid.set_column_spacing (12);
-            grid.set_row_spacing (6);
-        }
-
-        /**
-         * Appends a subsection. Its main purpose is to allow easier addition of
-         * subsections to a normal Section. This makes it easy to maintain a
-         * consistent look through all the different preferences sections
-         * (even those added by plugins, etc.)
-         */
-        
-        public void add_section (Gtk.Label name, ref int row) {
-            name.use_markup = true;
-            name.set_markup ("<b>%s</b>".printf (name.get_text ()));
-            name.halign = Gtk.Align.START;
-            grid.attach (name, 0, row, 1, 1);
-            row ++;
-        }
-        
-        public void add_option (Gtk.Widget label, Gtk.Widget switcher, ref int row) {
-            label.set_hexpand (true);
-            label.set_halign (Gtk.Align.END);
-            label.set_margin_left (20);
-            switcher.set_halign (Gtk.Align.FILL);
-            switcher.set_hexpand (true);
-            
-            if (switcher is Gtk.Switch || switcher is Gtk.CheckButton
-                || switcher is Gtk.Entry) { /* then we don't want it to be expanded */
-                switcher.halign = Gtk.Align.START;
-            }
-            
-            grid.attach (label, 0, row, 1, 1);
-            grid.attach (switcher, 1, row, 3, 1);
-            row ++;
-        }
-        
-        public void add_full_option (Gtk.Widget big_widget, ref int row) {
-            big_widget.set_halign (Gtk.Align.FILL);
-            big_widget.set_hexpand (true);
-            big_widget.set_margin_left (20);
-            big_widget.set_margin_right (20);
-            
-            grid.attach (big_widget, 0, row, 4, 1);
-            row ++;
-        }
-    }
-
-    private Gee.Map<int, NoteBook_Page> sections = new Gee.HashMap<int, NoteBook_Page> ();
+    private Gee.Map<int, unowned Noise.SettingsWindow.NoteBook_Page> sections = new Gee.HashMap<int, unowned Noise.SettingsWindow.NoteBook_Page> ();
     private Granite.Widgets.StaticNotebook main_static_notebook;
     public Gtk.FileChooserButton library_filechooser;
 
     public PreferencesWindow (LibraryWindow lw) {
         build_ui (lw);
 
+        lw.add_preference_page.connect ((page) => {add_page (page);});
+        
         // Add general section
         library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder..."), Gtk.FileChooserAction.SELECT_FOLDER);
         library_filechooser.hexpand = true;
@@ -120,17 +55,17 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
     }
 
 
-    public int add_page (NoteBook_Page section) {
-        return_val_if_fail (section.grid != null, -1);
+    public int add_page (Noise.SettingsWindow.NoteBook_Page section) {
+        return_val_if_fail (section != null, -1);
 
         // Pack the section
         // TODO: file a bug against granite's static notebook: append_page()
         // should return the index of the new page.
-        main_static_notebook.append_page (section.grid, new Gtk.Label (section.name));
+        main_static_notebook.append_page (section, new Gtk.Label (section.name));
         int index = sections.size;
         sections.set (index, section);
 
-        section.grid.show_all ();
+        section.show_all ();
 
         return index;
     }
@@ -171,7 +106,7 @@ private class Noise.Preferences.GeneralPage {
     private Gtk.Switch write_file_metadata_switch;
     private Gtk.Switch copy_imported_music_switch;
     private Gtk.Switch hide_on_close_switch;
-    public Noise.PreferencesWindow.NoteBook_Page page;
+    public Noise.SettingsWindow.NoteBook_Page page;
 
 #if HAVE_LIBNOTIFY
     private Gtk.Switch show_notifications_switch;
@@ -179,7 +114,7 @@ private class Noise.Preferences.GeneralPage {
 
     public GeneralPage (Gtk.FileChooserButton library_filechooser) {
 
-        page = new Noise.PreferencesWindow.NoteBook_Page (_("General"));
+        page = new Noise.SettingsWindow.NoteBook_Page (_("General"));
 
         int row = 0;
         

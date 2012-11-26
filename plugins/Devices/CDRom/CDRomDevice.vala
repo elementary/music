@@ -26,7 +26,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     Noise.LibraryManager lm;
     Noise.LibraryWindow lw;
     Mount mount;
-    Gdk.Pixbuf icon;
+    GLib.Icon icon;
     string display_name;
     
     CDRipper ripper;
@@ -52,7 +52,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         this.lm = lm;
         this.lw = lm.lw;
         this.mount = mount;
-        this.icon = Icons.AUDIO_CD.render(Gtk.IconSize.MENU, null);
+        this.icon = new Icon ("media-cdrom-audio").gicon;
         this.display_name = mount.get_name();
         
         list = new LinkedList<Noise.Media>();
@@ -128,11 +128,11 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return mount.get_default_location().get_uri();
     }
     
-    public void set_icon(Gdk.Pixbuf icon) {
+    public void set_icon(GLib.Icon icon) {
         this.icon = icon;
     }
     
-    public Gdk.Pixbuf get_icon() {
+    public GLib.Icon get_icon() {
         return icon;
     }
     
@@ -237,7 +237,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return new LinkedList<int>();
     }
     
-    public bool sync_medias(LinkedList<Noise.Media> list) {
+    public bool sync_medias() {
         message ("Ripping not supported on CDRom's.\n");
         return false;
     }
@@ -256,6 +256,10 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     
     public bool will_fit(LinkedList<Noise.Media> list) {
         return false;
+    }
+    
+    public bool transfer_all_to_library() {
+        return transfer_to_library (medias);
     }
     
     public bool transfer_to_library(LinkedList<Noise.Media> trans_list) {

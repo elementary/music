@@ -25,7 +25,7 @@ using Gee;
 public class Noise.DeviceView : Gtk.Grid {
     LibraryManager lm;
     LibraryWindow lw;
-    Device d;
+    public Device d;
     DeviceSummaryWidget summary;
     
     Gtk.InfoBar infobar;

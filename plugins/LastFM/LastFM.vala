@@ -37,13 +37,14 @@ namespace Noise.Plugins {
 
         private Interface plugins;
         private Noise.SimilarMediasWidget similar_media_widget;
-        private Gtk.TreeIter similar_iter;
 
         private Noise.LibraryManager lm;
         private Noise.PreferencesWindow? preferences_window;
         private LastFM.Core core;
         private int prefs_page_index = -1;
         private bool added_view = false;
+        private bool desactivation = false;
+        private LastFM.PreferencesSection prefs_section;
 
         public void activate () {
             Value value = Value(typeof(GLib.Object));
@@ -57,25 +58,37 @@ namespace Noise.Plugins {
                 
                 // Add Similar playlist.
                 core = new LastFM.Core (lm);
-                var similar_view = new Noise.SimilarViewWrapper (lm.lw, core);
-                similar_media_widget = new Noise.SimilarMediasWidget (lm, core);
 
-                lm.lw.add_view (_("Similar"), similar_view, out similar_iter);
+                lm.lw.source_list_added.connect (source_list_added);
+                lm.add_playlist (core.get_similar_playlist ());
                 added_view = true;
+            });
+            
+            lm.playlist_removed.connect ((playlist) => {
+            if (playlist == core.get_similar_playlist () && desactivation == false) {
+                lm.add_playlist (core.get_similar_playlist ());
+            }
             });
 
             plugins.register_function_arg(Interface.Hook.SETTINGS_WINDOW, (window) => {
                 preferences_window = window as Noise.PreferencesWindow;
-                var prefs_section = new LastFM.PreferencesSection (core);
-                prefs_page_index = preferences_window.add_page (prefs_section.page);
+                prefs_section = new LastFM.PreferencesSection (core);
+                lm.lw.add_preference_page (prefs_section.page);
             });
+        }
+        
+        private void source_list_added (GLib.Object o, int view_number) {
+            if (o == core.get_similar_playlist ()) {
+                ((Noise.ReadOnlyPlaylistViewWrapper)lm.lw.view_container.get_view(view_number)).set_no_media_alert_message (_("No similar songs found"), _("There is no songs similar to the current song in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.") , Gtk.MessageType.INFO);
+            }
         }
 
         public void deactivate () {
+            desactivation = true;
             if (added_view) {
                 added_view = false;
-                lm.lw.sideTree.removeItem (similar_iter);
-                lm.lw.sideTree.resetView ();
+                
+                lm.remove_playlist (core.get_similar_playlist ().rowid);
                 similar_media_widget.destroy ();
             }
 

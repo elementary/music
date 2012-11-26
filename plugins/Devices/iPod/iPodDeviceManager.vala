@@ -39,7 +39,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     
     public void remove_all () {
         foreach(var dev in devices) {
-            lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
+            lm.device_removed ((Noise.Device)dev);
         }
         devices = new ArrayList<iPodDevice>();
     }
@@ -61,7 +61,6 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
             if(added.start_initialization()) {
                 added.finish_initialization();
                 added.initialized.connect((d) => {lm.device_manager.deviceInitialized ((Noise.Device)d);});
-                lm.lw.sideTree.deviceAdded ((Noise.Device)added);
             }
             else {
                 mount_removed(added.get_mount());
@@ -84,7 +83,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
-                lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
+                lm.device_removed ((Noise.Device)dev);
                 
                 // Actually remove it
                 devices.remove(dev);

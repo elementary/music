@@ -44,9 +44,6 @@ namespace LastFM {
 
         LastFM.SimilarMedias similarMedias;
 
-        Mutex _artists_lock;
-        Mutex _albums_lock;
-        Mutex _tracks_lock;
         HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
         HashMap<string, LastFM.AlbumInfo> _albums;//key:artist<sep>album
         HashMap<string, LastFM.TrackInfo> _tracks;//key:artist<sep>album<sep>track
@@ -62,23 +59,23 @@ namespace LastFM {
             _albums = new HashMap<string, LastFM.AlbumInfo>();
             _tracks = new HashMap<string, LastFM.TrackInfo>();
 
-           _artists_lock.lock();
-            foreach(Noise.ArtistInfo a in lm.dbm.load_artists()) {
-                _artists.set(a.name, (LastFM.ArtistInfo)a);
+            lock(_artists) {
+                foreach(Noise.ArtistInfo a in lm.dbm.load_artists()) {
+                    _artists.set(a.name, (LastFM.ArtistInfo)a);
+                }
             }
-            _artists_lock.unlock();
 
-            _albums_lock.lock();
-            foreach(Noise.AlbumInfo a in lm.dbm.load_albums()) {
-                _albums.set(a.name + " by " + a.artist, (LastFM.AlbumInfo)a);
+            lock(_albums) {
+                foreach(Noise.AlbumInfo a in lm.dbm.load_albums()) {
+                    _albums.set(a.name + " by " + a.artist, (LastFM.AlbumInfo)a);
+                }
             }
-            _albums_lock.unlock();
 
-            _tracks_lock.lock();
-            foreach(Noise.TrackInfo t in lm.dbm.load_tracks()) {
-                _tracks.set(t.name + " by " + t.artist, (LastFM.TrackInfo)t);
+            lock(_tracks) {
+                foreach(Noise.TrackInfo t in lm.dbm.load_tracks()) {
+                    _tracks.set(t.name + " by " + t.artist, (LastFM.TrackInfo)t);
+                }
             }
-            _tracks_lock.unlock();
 
             similarMedias.similar_retrieved.connect(similar_retrieved_signal);
         }
@@ -93,9 +90,9 @@ namespace LastFM {
         }
 
         public void save_artist(LastFM.ArtistInfo artist) {
-            _artists_lock.lock();
-            _artists.set(artist.name.down(), artist);
-            _artists_lock.unlock();
+            lock(_artists) {
+                _artists.set(artist.name.down(), artist);
+            }
         }
 
         public bool artist_info_exists(string artist_key) {
@@ -105,10 +102,10 @@ namespace LastFM {
         public LastFM.ArtistInfo? get_artist(string artist_key) {
             LastFM.ArtistInfo? rv = null;
 
-            _artists_lock.lock();
-            if(artist_info_exists(artist_key.down()))
-                rv = _artists.get(artist_key.down());
-            _artists_lock.unlock();
+            lock(_artists) {
+                if(artist_info_exists(artist_key.down()))
+                    rv = _artists.get(artist_key.down());
+            }
 
             return rv;
         }
@@ -123,9 +120,9 @@ namespace LastFM {
         }
 
         public void save_album(LastFM.AlbumInfo album) {
-            _albums_lock.lock();
-            _albums.set(album.name.down() + " by " + album.artist.down(), album);
-            _albums_lock.unlock();
+            lock(_albums) {
+                _albums.set(album.name.down() + " by " + album.artist.down(), album);
+            }
         }
 
         public bool album_info_exists(string album_key) {
@@ -135,10 +132,10 @@ namespace LastFM {
         public LastFM.AlbumInfo? get_album(string album_key) {
             LastFM.AlbumInfo? rv = null;
 
-            _albums_lock.lock();
-            if(album_info_exists(album_key.down()))
-                rv = _albums.get(album_key.down());
-            _albums_lock.unlock();
+            lock(_albums) {
+                if(album_info_exists(album_key.down()))
+                    rv = _albums.get(album_key.down());
+            }
 
             return rv;
         }
@@ -153,10 +150,10 @@ namespace LastFM {
         }
 
         public void save_track(LastFM.TrackInfo track) {
-            _tracks_lock.lock();
-            if (track != null && track.name != null && track.artist != null)
-            _tracks.set(track.name.down() + " by " + track.artist.down(), track);
-            _tracks_lock.unlock();
+            lock(_tracks) {
+                if (track != null && track.name != null && track.artist != null)
+                _tracks.set(track.name.down() + " by " + track.artist.down(), track);
+            }
         }
 
         public bool track_info_exists(string track_key) {
@@ -166,10 +163,10 @@ namespace LastFM {
         public LastFM.TrackInfo? get_track(string track_key) {
             LastFM.TrackInfo? rv = null;
 
-            _tracks_lock.lock();
-            if(track_info_exists(track_key.down()))
-                rv = _tracks.get(track_key.down());
-            _tracks_lock.unlock();
+            lock(_tracks) {
+                if(track_info_exists(track_key.down()))
+                    rv = _tracks.get(track_key.down());
+            }
 
             return rv;
         }
@@ -187,6 +184,10 @@ namespace LastFM {
             var fix9 = fix8.replace(")", "%29");
             var fix0 = fix9.replace("*", "%2A");
             return fix0;
+        }
+        
+        public Noise.Playlist get_similar_playlist () {
+            return similarMedias.similar_playlist;
         }
 
         public string generate_md5(string text) {

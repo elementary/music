@@ -34,7 +34,7 @@ set(CLIENT_SOURCE
     Widgets/SimpleOptionChooser.vala
     Widgets/PresetList.vala
     Widgets/SideBar.vala
-    Widgets/SideTreeView.vala
+    Widgets/SourceListView.vala
     Widgets/StatusBar.vala
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
@@ -55,10 +55,9 @@ set(CLIENT_SOURCE
     Views/ViewContainer.vala
     Views/Wrappers/ViewWrapper.vala
     Views/Wrappers/MusicViewWrapper.vala
-    Views/Wrappers/HistoryViewWrapper.vala
-    Views/Wrappers/QueueViewWrapper.vala
     Views/Wrappers/DeviceViewWrapper.vala
     Views/Wrappers/PlaylistViewWrapper.vala
+    Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala
     Views/DeviceView.vala
     Views/DeviceSummaryWidget.vala
     Views/ContentView.vala

@@ -1,23 +1,21 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * This software is licensed under the GNU General Public License
+ * (version 2 or later). See the COPYING file in this distribution.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>,
+ *              Victor Eduardo <victoreduardm@gmail.com>,
+ *              Corentin Noël <tintou@mailoo.org>
  */
 
 using Gee;
@@ -37,12 +35,14 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem mediaRemove;
     Gtk.MenuItem importToLibrary;
     Gtk.MenuItem mediaScrollToCurrent;
+    bool is_queue = false;
 
     /**
      * for sort_id use 0+ for normal, -1 for auto, -2 for none
      */
-    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
+    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool? is_queue = false) {
         base (view_wrapper, tvs);
+        this.is_queue = is_queue;
 
         // This is vital
         set_value_func (view_value_func);
@@ -58,21 +58,17 @@ public class Noise.MusicListView : GenericList {
             mediaRemove.set_label(_("Remove from Library"));
             importToLibrary.set_visible(false);
         }
-        else if(get_hint() == ViewWrapper.Hint.SIMILAR) {
-            mediaRemove.set_visible(false);
-            importToLibrary.set_visible(false);
-        }
-        else if(get_hint() == ViewWrapper.Hint.QUEUE) {
-            mediaRemove.set_label(_("Remove from Queue"));
-            mediaMenuQueue.set_visible(false);
-            importToLibrary.set_visible(false);
-        }
-        else if(get_hint() == ViewWrapper.Hint.HISTORY) {
-            mediaRemove.set_visible(false);
-            importToLibrary.set_visible(false);
-        }
         else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
             importToLibrary.set_visible(false);
+        }
+        else if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
+            importToLibrary.set_visible(false);
+            if (is_queue == true) {
+                mediaRemove.set_label(_("Remove from Queue"));
+                mediaMenuQueue.set_visible(false);
+            } else {
+                mediaRemove.set_visible(false);
+            }
         }
         else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
             mediaRemove.set_visible(false);
@@ -124,8 +120,14 @@ public class Noise.MusicListView : GenericList {
         mediaActionMenu.append(mediaMenuNewPlaylist);
         mediaActionMenu.append(mediaMenuAddToPlaylist);
 
-        if (hint != ViewWrapper.Hint.SMART_PLAYLIST && hint != ViewWrapper.Hint.ALBUM_LIST && hint != hint.HISTORY)
-            mediaActionMenu.append (new SeparatorMenuItem());
+        if (hint != ViewWrapper.Hint.SMART_PLAYLIST && hint != ViewWrapper.Hint.ALBUM_LIST) {
+            if (hint == hint.READ_ONLY_PLAYLIST) {
+                if (is_queue == true)
+                    mediaActionMenu.append (new SeparatorMenuItem());
+            } else {
+                mediaActionMenu.append (new SeparatorMenuItem());
+            }
+        }
 
         mediaActionMenu.append(mediaRemove);
         mediaActionMenu.append(importToLibrary);
@@ -177,6 +179,9 @@ public class Noise.MusicListView : GenericList {
                 // Don't include this playlist in the list of available options
                 if (playlist.rowid == this.get_relative_id ())
                     continue;
+                    
+                if (playlist.read_only == true)
+                    continue;
 
                 var playlist_item = new Gtk.MenuItem.with_label (playlist.name);
                 addToPlaylistMenu.append (playlist_item);
@@ -191,7 +196,7 @@ public class Noise.MusicListView : GenericList {
 
             addToPlaylistMenu.show_all ();
             mediaMenuAddToPlaylist.submenu = addToPlaylistMenu;
-            mediaMenuAddToPlaylist.set_sensitive (lm.playlists().size > 0);
+            mediaMenuAddToPlaylist.set_sensitive (lm.playlist_count_without_read_only () > 0);
 
             // if all medias are downloaded already, desensitize.
             // if half and half, change text to 'Download %external of %total'
@@ -324,14 +329,14 @@ public class Noise.MusicListView : GenericList {
         int id = to_edit.get(0);
         string music_folder_uri = File.new_for_path(main_settings.music_folder).get_uri();
         if(to_edit.size == 1 && !File.new_for_uri(lm.media_from_id(id).uri).query_exists() && lm.media_from_id(id).uri.has_prefix(music_folder_uri)) {
-            lm.media_from_id(id).unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
+            lm.media_from_id(id).unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU);
             FileNotFoundDialog fnfd = new FileNotFoundDialog(lm, lm.lw, to_edit_med);
             fnfd.present();
         }
         else {
             var list = new LinkedList<int>();
             for(int i = 0; i < get_visible_table().size(); ++i) {
-                list.add ((get_object_from_index(i) as Media).rowid);
+                list.add (get_object_from_index(i).rowid);
             }
             MediaEditor se = new MediaEditor(lm, list, to_edit);
             se.medias_saved.connect(mediaEditorSaved);
@@ -387,7 +392,7 @@ public class Noise.MusicListView : GenericList {
         PlaylistNameWindow pnw = new PlaylistNameWindow (lw, p);
         pnw.playlist_saved.connect( (newP) => {
             lm.add_playlist(p);
-            lw.addSideListItem(p);
+            lw.addSourceListItem(p);
         });
     }
 
@@ -409,10 +414,6 @@ public class Noise.MusicListView : GenericList {
             to_remove.add (m);
         }
 
-        if (get_hint() == ViewWrapper.Hint.QUEUE) {
-            App.player.unqueue_media (to_remove);
-        }
-
         if (get_hint() == ViewWrapper.Hint.MUSIC) {
             var dialog = new RemoveFilesDialog (lm.lw, to_remove, get_hint());
             dialog.remove_media.connect ( (delete_files) => {
@@ -425,7 +426,11 @@ public class Noise.MusicListView : GenericList {
         }
 
         if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-            lm.playlist_from_id(relative_id).remove_media (to_remove);
+            lm.playlist_from_id(relative_id).remove_medias (to_remove);
+        }
+
+        if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST && is_queue == true) {
+            lm.playlist_from_id(relative_id).remove_medias (to_remove);
         }
     }
 
@@ -454,22 +459,10 @@ public class Noise.MusicListView : GenericList {
     /**
      * Compares the two given objects based on the sort column.
      *
-     * Objects are assumed to represent Media.
      */
-    protected int view_compare_func (int column, Gtk.SortType dir, Object a, Object b, int a_pos, int b_pos) {
+    protected int view_compare_func (int column, Gtk.SortType dir, Media media_a, Media media_b, int a_pos, int b_pos) {
         int order = 0;
-
         return_val_if_fail (column >= 0 && column < ListColumn.N_COLUMNS, order);
-
-        var media_a = a as Media;
-        var media_b = b as Media;
-
-        // Check for null and keep being reflexive
-        if (media_a == null)
-            return media_b != null ? -1 : 0;
-
-        if (media_b == null)
-            return 1;
 
         switch (column) {
             case ListColumn.NUMBER: // We assume there are no two indentical numbers for this case
@@ -604,83 +597,11 @@ public class Noise.MusicListView : GenericList {
     }
 
     protected Value? view_value_func (int row, int column, Object o) {
-        var s = o as Media;
-        return_val_if_fail (s != null, null);
+        var m = o as Media;
+        return_val_if_fail (m != null, null);
 
-        switch (column) {
-            case ListColumn.ICON:
-                GLib.Icon? icon;
-                var currently_playing = App.player.media_info.media;
-
-                if (s == currently_playing && currently_playing != null)
-                    icon = Icons.NOW_PLAYING_SYMBOLIC.gicon;
-                else
-                    icon = s.unique_status_image;
-
-                return icon;
-
-            case ListColumn.NUMBER:
-                return (uint) row + 1;
-
-            case ListColumn.TRACK:
-                return s.track;
-
-            case ListColumn.TITLE:
-                return s.get_display_title ();
-
-            case ListColumn.LENGTH:
-                return s.length;
-
-            case ListColumn.ARTIST:
-                return s.get_display_artist ();
-
-            case ListColumn.ALBUM:
-                return s.get_display_album ();
-
-            case ListColumn.ALBUM_ARTIST:
-                return s.get_display_album_artist (false);
-
-            case ListColumn.COMPOSER:
-                return s.get_display_composer ();
-
-            case ListColumn.GENRE:
-                return s.get_display_genre ();
-
-            case ListColumn.YEAR:
-                return s.year;
-
-            case ListColumn.GROUPING:
-                return s.grouping;
-
-            case ListColumn.BITRATE:
-                return s.bitrate;
-
-            case ListColumn.RATING:
-                return s.rating;
-
-            case ListColumn.PLAY_COUNT:
-                return s.play_count;
-
-            case ListColumn.SKIP_COUNT:
-                return s.skip_count;
-
-            case ListColumn.DATE_ADDED:
-                return s.date_added;
-
-            case ListColumn.LAST_PLAYED:
-                return s.last_played;
-
-            case ListColumn.BPM:
-                return s.bpm;
-
-            case ListColumn.FILE_LOCATION:
-                return s.get_display_location ();
-
-            case ListColumn.FILE_SIZE:
-                return s.file_size;
-        }
-
-        assert_not_reached ();
+        var list_column = (ListColumn) column;
+        return list_column.get_value_for_media (m, row);
     }
 
     protected override void add_column (Gtk.TreeViewColumn tvc, ListColumn type) {

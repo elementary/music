@@ -23,114 +23,122 @@
 using Gee;
 
 public class Noise.DeviceManager : GLib.Object {
-	LibraryManager lm;
-	VolumeMonitor vm;
-	
-	Mutex _pref_lock;
-	GLib.List <DevicePreferences> _device_preferences;
-	
-	public signal void device_added(Device d);
-	public signal void device_removed(Device d);
-	
-	public signal void mount_added (Mount mount);
-	public signal void mount_removed (Mount mount);
-	
-	public DeviceManager(LibraryManager lm) {
-		this.lm = lm;
-		
-		_device_preferences = new GLib.List <DevicePreferences> ();
-		
-		// pre-load devices and their preferences
-		_pref_lock.lock();
-		_device_preferences = lm.dbm.load_devices();
-		_pref_lock.unlock();
-		
-		vm = VolumeMonitor.get();
-		
-		vm.mount_added.connect((mount) => {mount_added (mount);});
-		vm.mount_changed.connect(mount_changed);
-		vm.mount_pre_unmount.connect(mount_pre_unmount);
-		vm.mount_removed.connect((mount) => {mount_removed (mount);});
-		vm.volume_added.connect(volume_added);
-	}
-	
-	public void loadPreExistingMounts() {
-		// this can take time if we have to rev up the cd drive
-		Threads.add (get_pre_existing_mounts);
-	}
-	
-	public void get_pre_existing_mounts () {
-		var mounts = new LinkedList<Mount>();
-		var volumes = new LinkedList<Volume>();
-		
-		foreach(var m in vm.get_mounts()) {
-			mounts.add(m);
-		}
-		
-		foreach(var v in vm.get_volumes()) {
-			volumes.add(v);
-		}
-		
-		Idle.add( () => {
-			
-			foreach(var m in mounts) {
-				mount_added(m);
-			}
-			
-			foreach(var v in volumes) {
-				volume_added(v);
-			}
-			
-			return false;
-		});
-	}
-	
-	void volume_added(Volume volume) {
-		if(main_settings.music_mount_name == volume.get_name() && volume.get_mount() == null) {
-			debug ("mounting %s because it is believed to be the music folder\n", volume.get_name());
-			volume.mount(MountMountFlags.NONE, null, null);
-		}
-	}
-	
-	public void deviceInitialized(Device d) {
-		debug ("adding device\n");
-		device_added(d);
-		lm.lw.update_sensitivities();
-	}
-	
-	public virtual void mount_changed (Mount mount) {
-		//message ("mount_changed:%s\n", mount.get_uuid());
-	}
-	
-	public virtual void mount_pre_unmount (Mount mount) {
-		//message ("mount_preunmount:%s\n", mount.get_uuid());
-	}
-	
-		
-	/** Device Preferences **/
-	public GLib.List<DevicePreferences> device_preferences() {
-		var rv = new GLib.List<Noise.DevicePreferences>();
-		
-		_pref_lock.lock();
-		foreach(var pref in _device_preferences) {
-			rv.append(pref);
-		}
-		_pref_lock.unlock();
-		
-		return rv;
-	}
-	
-	public DevicePreferences? get_device_preferences(string id) {
-	    foreach (var device in _device_preferences) {
-	        if (device.id == id)
-	            return device;
+    LibraryManager lm;
+    VolumeMonitor vm;
+    
+    GLib.List <DevicePreferences> _device_preferences;
+    Gee.LinkedList <unowned Device> _devices;
+    
+    public signal void device_added(Device d);
+    public signal void device_removed(Device d);
+    
+    public signal void mount_added (Mount mount);
+    public signal void mount_removed (Mount mount);
+    
+    public DeviceManager(LibraryManager lm) {
+        this.lm = lm;
+        
+        _device_preferences = new GLib.List <DevicePreferences> ();
+        _devices = new Gee.LinkedList <unowned Device> ();
+        
+        // pre-load devices and their preferences
+        
+        lock(_device_preferences) {
+            _device_preferences = lm.dbm.load_devices();
         }
-		return null;
-	}
-	
-	public void add_device_preferences(DevicePreferences dp) {
-		_pref_lock.lock();
-		_device_preferences.append(dp);
-		_pref_lock.unlock();
-	}
+        
+        vm = VolumeMonitor.get();
+        
+        vm.mount_added.connect((mount) => {mount_added (mount);});
+        vm.mount_changed.connect(mount_changed);
+        vm.mount_pre_unmount.connect(mount_pre_unmount);
+        vm.mount_removed.connect((mount) => {mount_removed (mount);});
+        vm.volume_added.connect(volume_added);
+    }
+    
+    public void loadPreExistingMounts() {
+        // this can take time if we have to rev up the cd drive
+        Threads.add (get_pre_existing_mounts);
+    }
+    
+    public void get_pre_existing_mounts () {
+        var mounts = new LinkedList<Mount>();
+        var volumes = new LinkedList<Volume>();
+        
+        foreach(var m in vm.get_mounts()) {
+            mounts.add(m);
+        }
+        
+        foreach(var v in vm.get_volumes()) {
+            volumes.add(v);
+        }
+        
+        Idle.add( () => {
+            
+            foreach(var m in mounts) {
+                mount_added(m);
+            }
+            
+            foreach(var v in volumes) {
+                volume_added(v);
+            }
+            
+            return false;
+        });
+    }
+    
+    void volume_added(Volume volume) {
+        if(main_settings.music_mount_name == volume.get_name() && volume.get_mount() == null) {
+            debug ("mounting %s because it is believed to be the music folder\n", volume.get_name());
+            volume.mount(MountMountFlags.NONE, null, null);
+        }
+    }
+    
+    public void deviceInitialized(Device d) {
+        debug ("adding device\n");
+        device_added(d);
+        _devices.add (d);
+        lm.lw.update_sensitivities();
+    }
+    
+    public virtual void mount_changed (Mount mount) {
+        //message ("mount_changed:%s\n", mount.get_uuid());
+    }
+    
+    public virtual void mount_pre_unmount (Mount mount) {
+        //message ("mount_preunmount:%s\n", mount.get_uuid());
+    }
+    
+        
+    /** Device Preferences **/
+    public GLib.List<DevicePreferences> device_preferences() {
+        var rv = new GLib.List<Noise.DevicePreferences>();
+        
+        lock(_device_preferences) {
+            foreach(var pref in _device_preferences) {
+                rv.append(pref);
+            }
+        }
+        
+        return rv;
+    }
+    
+    public Gee.LinkedList<unowned Device> devices () {
+        return _devices;
+    }
+    
+    public DevicePreferences? get_device_preferences(string id) {
+        foreach (var device in _device_preferences) {
+            if (device.id == id)
+                return device;
+        }
+        return null;
+    }
+    
+    public void add_device_preferences(DevicePreferences dp) {
+        
+        lock(_device_preferences) {
+            _device_preferences.append(dp);
+        }
+    }
 }

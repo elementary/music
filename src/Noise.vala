@@ -104,6 +104,7 @@ public class Noise.App : Granite.Application {
                          "Corentin Noël <tintou@mailoo.org>", null};
 
         about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
+        _instance = this;
     }
 
 

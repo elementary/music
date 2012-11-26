@@ -2,20 +2,16 @@
 /*-
  * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * This software is licensed under the GNU General Public License
+ * (version 2 or later). See the COPYING file in this distribution.
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
  *
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>,
  *              Victor Eduardo <victoreduardm@gmail.com>
@@ -67,7 +63,7 @@ public class Noise.DataBaseUpdater : Object {
 
     private async void update_db_async () {
         // If many updates are being queued, we want to delay this as much as
-        // possible in order to use the same thread. For data safety reasosn,
+        // possible in order to use the same thread. For data safety reasons,
         // we also want the main loop to trigger the update instead of the same
         // thread which invoked the public method (remove_item, update_media, etc. )
         Idle.add (update_db_async.callback);
@@ -94,12 +90,16 @@ public class Noise.DataBaseUpdater : Object {
     }
 
     private void update_db_sync () {
-        while (true) {
+        bool operation_done = false;
+
+        do {
+            operation_done = false;
+
             lock (media_updates) {
                 if (media_updates.size > 0) {
                     dbm.update_media (media_updates);
                     media_updates.clear ();
-                    break;
+                    operation_done = true;
                 }
             }
 
@@ -113,37 +113,25 @@ public class Noise.DataBaseUpdater : Object {
                         dbm.remove_playlist (next as Playlist);
                     else if (next is SmartPlaylist)
                         dbm.remove_smart_playlist (next as SmartPlaylist);
-                } else {
-                    break;
+                    else
+                        assert_not_reached ();
+
+                    operation_done = true;
                 }
             }
-        }
+        } while (operation_done);
     }
 
     private bool periodic_ui_save () {
         var playlists_and_queue = new Gee.LinkedList<Playlist> ();
         playlists_and_queue.add_all (lm.playlists ());
 
-        Playlist p_queue = new Playlist ();
-        p_queue.name = "autosaved_queue";
-        p_queue.add_media (App.player.queue ());
-        lm.lw.set_treeviewsetup_from_playlist (p_queue, lm.queue_setup);
-
-        Playlist p_history = new Playlist ();
-        p_history.name = "autosaved_history";
-        lm.lw.set_treeviewsetup_from_playlist (p_history, lm.history_setup);
-
-        Playlist p_similar = new Playlist ();
-        p_similar.name = "autosaved_similar";
-        lm.lw.set_treeviewsetup_from_playlist (p_similar, lm.similar_setup);
-
         Playlist p_music = new Playlist ();
         p_music.name = "autosaved_music";
         lm.lw.set_treeviewsetup_from_playlist (p_music, lm.music_setup);
 
-        playlists_and_queue.add (p_queue);
-        playlists_and_queue.add (p_history);
-        playlists_and_queue.add (p_similar);
+        playlists_and_queue.add (App.player.queue_playlist);
+        playlists_and_queue.add (App.player.history_playlist);
         playlists_and_queue.add (p_music);
 
         message ("-- Saving playlists and device preferences DB.");

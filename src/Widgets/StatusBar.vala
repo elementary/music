@@ -152,11 +152,11 @@ namespace Noise.Widgets {
             menu.attach_widget = this;
 
             add_pl_menuitem.activate.connect ( () => {
-                App.main_window.sideTree.playlistMenuNewClicked ();
+                App.main_window.create_new_playlist ();
             });
 
             add_spl_menuitem.activate.connect ( () => {
-                App.main_window.sideTree.smartPlaylistMenuNewClicked ();
+                App.main_window.show_smart_playlist_dialog ();
             });
         }
 

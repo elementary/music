@@ -39,7 +39,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     */
 
     public signal void current_cleared ();
-    public signal void history_changed ();
 
     public signal void queue_cleared  ();
     public signal void media_queued   (Gee.Collection<Media> queued);
@@ -56,10 +55,10 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     private HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
 
     // rowid, Media of queue
-    private LinkedList<Media> _queue = new Gee.LinkedList<Media>();
+    public Playlist queue_playlist = new Playlist ();
 
     // Media of already played
-    private LinkedList<Media> _already_played = new Gee.LinkedList<Media>();
+    public Playlist history_playlist = new Playlist ();
 
 
     public int _played_index = 0;//if user press back, this goes back 1 until it hits 0. as new media play, this goes with it
@@ -96,27 +95,22 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public PlaybackManager () {
         player = new Streamer ();
         media_info = new Noise.MediaInfo ();
+        history_playlist.name = _("History");
+        history_playlist.read_only = true;
+        queue_playlist.name = C_("Name of the playlist", "Queue");
+        queue_playlist.read_only = true;
 
         setShuffleMode ((Player.Shuffle)main_settings.shuffle_mode, true);
     }
 
 
     /**************** Queue Stuff **************************/
-    public bool queue_empty() {
-        return (_queue.size == 0);
-    }
     
-    public void clear_queue() {
-        _queue.clear();
-        queue_cleared ();
-    }
-
     public void queue_media (Gee.Collection<Media> to_queue) {
         if (to_queue.size < 1)
             return;
         
-        foreach (var m in to_queue)
-            _queue.offer_tail (m);
+        queue_playlist.add_media (to_queue);
 
         media_queued (to_queue);
     }
@@ -127,8 +121,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
 
     public void unqueue_media (Gee.Collection<Media> to_unqueue) {
-        foreach (var m in to_unqueue)
-            _queue.remove (m);
+        queue_playlist.remove_medias (to_unqueue);
         media_unqueued (to_unqueue);
     }
 
@@ -137,36 +130,30 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
     public Media peek_queue() {
-        return _queue.peek_head();
+        return queue_playlist.media.peek_head();
     }
     
     public Media poll_queue() {
-        var m = _queue.poll_head ();
+        var m = queue_playlist.media.poll_head ();
         var unqueued = new Gee.LinkedList<Media> ();
         unqueued.add (m);
         media_unqueued (unqueued);
         return m;
     }
 
-    public Collection<Media> queue() {
-        return _queue;
-    }
-
     /************ Already Played Stuff **************/
     public void reset_already_played() {
-        _already_played.clear();
-        history_changed ();
+        history_playlist.clear();
     }
 
-    public void add_already_played (Media m) {
-        if(!_already_played.contains (m))
+    /*public void add_already_played (Media m) {
+        if(!_already_played.contains (m)) {
             _already_played.offer_tail (m);
-        history_changed ();
-    }
-    
-    public LinkedList<Media> already_played() {
-        return _already_played;
-    }
+            var media = new Gee.LinkedList<Media>();
+            media.add (m);
+            history_playlist.add_media (media);
+        }
+    }*/
 
     /************ Current medialist stuff ***************/
     public bool playing_queued_song() {
@@ -278,7 +265,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         Media? rv = null;
         
         // next check if user has queued media
-        if(!queue_empty()) {
+        if(!queue_playlist.is_empty()) {
             rv = poll_queue();
             _playing_queued_song = true;
         }
@@ -513,7 +500,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         // check that the file exists FIXME: Avoid reading settings everytime a song is played
         var music_folder_uri = File.new_for_path(main_settings.music_folder).get_uri();
         if((main_settings.music_folder != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
-            m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU, ((ViewWrapper)App.main_window.sideTree.getWidget(App.main_window.sideTree.library_music_iter)).list_view.get_style_context());
+            m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU);
             m.location_unknown = true;
             //App.main_window.media_not_found(id);
             getNext(true);

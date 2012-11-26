@@ -25,12 +25,11 @@ using Gee;
 public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
 
     Mount mount;
-    Gdk.Pixbuf icon;
+    GLib.Icon icon;
     int index = 0;
     int total = 0;
     LinkedList<Noise.Media> medias;
     LinkedList<Noise.Media> songs;
-    LinkedList<Noise.Media> list;
     Noise.LibraryManager lm;
     Noise.DevicePreferences pref;
     bool currently_syncing = false;
@@ -49,11 +48,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         this.lm = lm;
         this.mount = mount;
         this.is_androphone = is_androphone;
-        if (is_androphone) {
-            icon = Icons.render_icon("phone", Gtk.IconSize.MENU);
-        } else {
-            icon = Icons.render_icon("music-player", Gtk.IconSize.MENU);
-        }
+        icon = new Icon (is_androphone ? "phone" : "music-player").gicon;
         pref = lm.device_manager.get_device_preferences(get_unique_identifier());
         if(pref == null) {
             pref = new Noise.DevicePreferences(get_unique_identifier());
@@ -213,11 +208,11 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         return mount.get_default_location().get_uri();
     }
     
-    public void set_icon(Gdk.Pixbuf icon) {
+    public void set_icon(GLib.Icon icon) {
         this.icon = icon;
     }
     
-    public Gdk.Pixbuf get_icon() {
+    public GLib.Icon get_icon() {
         return icon;
     }
     
@@ -312,7 +307,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         return new LinkedList<Noise.Media>();
     }
     
-    public bool sync_medias(LinkedList<Noise.Media> list) { 
+    public bool sync_medias() { 
        if(currently_syncing) {
             warning("Tried to sync when already syncing\n");
             return false;
@@ -325,7 +320,6 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         if (lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()))) {
             current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
             lm.lw.update_sensitivities();
-            this.list = list;
             
             currently_syncing = true;
             index = 0;
@@ -420,7 +414,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                         medias_to_sync.add (m);
                 }
             } else {
-                foreach (Media m in lm.playlist_from_name (pref.music_playlist).media ()) {
+                foreach (Media m in lm.playlist_from_name (pref.music_playlist).media) {
                     if (m != null)
                         medias_to_sync.add (m);
                 }
@@ -469,7 +463,6 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         if (lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()))) {
             current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
             lm.lw.update_sensitivities();
-            this.list = list;
             
             currently_syncing = true;
             index = 0;
@@ -529,6 +522,10 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         return false;
     }
     
+    public bool transfer_all_to_library() {
+        return transfer_to_library(delete_doubles (songs, lm.media ()));
+    }
+    
     public bool transfer_to_library(LinkedList<Noise.Media> tr_list) {
         if(currently_transferring) {
             warning("Tried to sync when already syncing\n");
@@ -543,59 +540,67 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        this.list = tr_list;
+        message("Found %d medias to import.", tr_list.size);
+        int total_medias = tr_list.size;
         
         current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
-        current_operation = current_operation.replace ("$NAME", (list.size > 1) ? list.size.to_string() : (list.get(0)).title ?? "");
-        current_operation = current_operation.replace ("$ARTIST", (list.size > 1) ? list.size.to_string() : (list.get(0)).artist ?? "");
-        lm.start_file_operations(current_operation);
+        current_operation = current_operation.replace ("$NAME", (total_medias > 1) ? total_medias.to_string() : (tr_list.get(0)).title ?? "");
+        current_operation = current_operation.replace ("$ARTIST", (total_medias > 1) ? total_medias.to_string() : (tr_list.get(0)).artist ?? "");
+        if (lm.start_file_operations(current_operation)) {
+            
+            if(tr_list == null || tr_list.size == 0)
+                return true;
+            transfer_medias_thread (tr_list);
         
-        Threads.add (transfer_medias_thread);
-        
+        }
         return true;
     }
     
-    void transfer_medias_thread() {
-        if(this.list == null || this.list.size == 0)
-            return;
-        
-        currently_transferring = true;
-        transfer_cancelled = false;
-        index = 0;
-        total = list.size;
-        Timeout.add(500, doProgressNotificationWithTimeout);
-        
-        foreach(var m in list) {
-            if(transfer_cancelled)
-                break;
+    private async void transfer_medias_thread (LinkedList<Noise.Media> list) {
+        Threads.add (() => {
+            if(list == null || list.size == 0)
+                return;
             
-            Noise.Media copy = m.copy();
-            if(File.new_for_uri(copy.uri).query_exists()) {
-                copy.rowid = 0;
-                copy.isTemporary = false;
-                copy.date_added = (int)time_t();
-                lm.add_media_item (copy);
+            currently_transferring = true;
+            transfer_cancelled = false;
+            index = 0;
+            total = list.size;
+            Timeout.add(500, doProgressNotificationWithTimeout);
+            
+            foreach(var m in list) {
+                if(transfer_cancelled)
+                    break;
                 
-                current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
-                current_operation = current_operation.replace ("$NAME", copy.title ?? "");
-                current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
-                lm.fo.update_file_hierarchy (copy, false, false);
-            }
-            else {
-                stdout.printf("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
+                Noise.Media copy = m.copy();
+                if(File.new_for_uri(copy.uri).query_exists()) {
+                    copy.rowid = 0;
+                    copy.isTemporary = false;
+                    copy.date_added = (int)time_t();
+                    lm.add_media_item (copy);
+                    
+                    current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
+                    current_operation = current_operation.replace ("$NAME", copy.title ?? "");
+                    current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
+                    lm.fo.update_file_hierarchy (copy, false, false);
+                }
+                else {
+                    stdout.printf("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
+                }
+                
+                ++index;
             }
             
-            ++index;
-        }
-        
-        index = total + 1;
-        
-        Idle.add( () => {
-            lm.finish_file_operations();
-            currently_transferring = false;
+            index = total + 1;
             
-            return false;
+            Idle.add( () => {
+                lm.finish_file_operations();
+                currently_transferring = false;
+                
+                return false;
+            });
         });
+
+        yield;
     }
     
     public bool is_syncing() {

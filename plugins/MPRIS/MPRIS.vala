@@ -132,6 +132,7 @@ public class MprisPlayer : GLib.Object {
     private uint update_metadata_source = 0;
     private HashTable<string,Variant> changed_properties = null;
     private HashTable<string,Variant> _metadata;
+    private string default_image_url;
 
     private enum Direction {
         NEXT = 0,
@@ -149,6 +150,9 @@ public class MprisPlayer : GLib.Object {
         App.library_manager.media_updated.connect_after (refresh_current_media);
         CoverartCache.instance.changed.connect_after (refresh_current_media);
         App.main_window.playPauseChanged.connect_after (playing_changed);
+
+        var default_image = Icons.DEFAULT_ALBUM_ART_2.get_file ();
+        default_image_url = default_image != null ? default_image.get_uri () : "";
 
         // initial update
         refresh_current_media ();
@@ -202,7 +206,7 @@ public class MprisPlayer : GLib.Object {
         _metadata.insert("mpris:length", App.player.player.getDuration () / 1000);
 
         var art_file = CoverartCache.instance.get_cached_image_file (s);
-        _metadata.insert("mpris:artUrl", art_file != null ? art_file.get_uri () : "file://" + Build.ICON_DIR + "/albumart.svg");
+        _metadata.insert("mpris:artUrl", art_file != null ? art_file.get_uri () : default_image_url);
         _metadata.insert("xesam:trackNumber", (int) s.track);
         _metadata.insert("xesam:title", s.get_display_title ());
         _metadata.insert("xesam:album", s.get_display_album ());

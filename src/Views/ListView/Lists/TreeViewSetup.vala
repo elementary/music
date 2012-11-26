@@ -2,20 +2,8 @@
 /*-
  * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * This software is licensed under the GNU General Public License
+ * (version 2 or later). See the COPYING file in this distribution.
  *
  * The Noise authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
@@ -30,7 +18,6 @@
  */
 
 public class Noise.TreeViewSetup : Object {
-
     private const string ASCENDING_STRING = "ASCENDING";
     private const string DESCENDING_STRING = "DESCENDING";
     private const string COLUMN_SEP_STRING = "<c_sep>";
@@ -181,51 +168,53 @@ public class Noise.TreeViewSetup : Object {
         // Columns are ordered.
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST: // same as normal music list, but most are hidden
-                columns.add (create_column (ListColumn.ICON));
-                columns.add (create_column (ListColumn.TITLE));
-                columns.add (create_column (ListColumn.LENGTH));
+                append_new_column (ListColumn.ICON);
+                append_new_column (ListColumn.TITLE);
+                append_new_column (ListColumn.LENGTH);
             break;
 
             case ViewWrapper.Hint.CDROM:
-                columns.add (create_column (ListColumn.ICON));
-                columns.add (create_column (ListColumn.NUMBER, false));
-                columns.add (create_column (ListColumn.TRACK));
-                columns.add (create_column (ListColumn.TITLE));
-                columns.add (create_column (ListColumn.LENGTH));
-                columns.add (create_column (ListColumn.ARTIST));
-                columns.add (create_column (ListColumn.ALBUM));
-                columns.add (create_column (ListColumn.GENRE));
+                append_new_column (ListColumn.ICON);
+                append_new_column (ListColumn.NUMBER, false);
+                append_new_column (ListColumn.TRACK);
+                append_new_column (ListColumn.TITLE);
+                append_new_column (ListColumn.LENGTH);
+                append_new_column (ListColumn.ARTIST);
+                append_new_column (ListColumn.ALBUM);
+                append_new_column (ListColumn.GENRE);
             break;
 
             default:
-                columns.add (create_column (ListColumn.ICON));
+                append_new_column (ListColumn.ICON);
 
-                bool num_column_visible = hint == ViewWrapper.Hint.QUEUE
-                                       || hint == ViewWrapper.Hint.HISTORY
+                bool num_column_visible = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST
                                        || hint == ViewWrapper.Hint.PLAYLIST;
 
-                columns.add (create_column (ListColumn.NUMBER, num_column_visible));
-                columns.add (create_column (ListColumn.TRACK, false));
-                columns.add (create_column (ListColumn.TITLE));
-                columns.add (create_column (ListColumn.LENGTH));
-                columns.add (create_column (ListColumn.ARTIST));
-                columns.add (create_column (ListColumn.ALBUM));
-                columns.add (create_column (ListColumn.ALBUM_ARTIST, false));
-                columns.add (create_column (ListColumn.COMPOSER, false));
-                columns.add (create_column (ListColumn.GENRE));
-                columns.add (create_column (ListColumn.YEAR, false));
-                columns.add (create_column (ListColumn.GROUPING, false));
-                columns.add (create_column (ListColumn.BITRATE, false));
-                columns.add (create_column (ListColumn.RATING, false));
-                columns.add (create_column (ListColumn.PLAY_COUNT, false));
-                columns.add (create_column (ListColumn.SKIP_COUNT, false));
-                columns.add (create_column (ListColumn.DATE_ADDED, false));
-                columns.add (create_column (ListColumn.LAST_PLAYED, false));
-                columns.add (create_column (ListColumn.BPM, false));
-                columns.add (create_column (ListColumn.FILE_LOCATION, false));
-                columns.add (create_column (ListColumn.FILE_SIZE, false));
+                append_new_column (ListColumn.NUMBER, num_column_visible);
+                append_new_column (ListColumn.TRACK, false);
+                append_new_column (ListColumn.TITLE);
+                append_new_column (ListColumn.LENGTH);
+                append_new_column (ListColumn.ARTIST);
+                append_new_column (ListColumn.ALBUM);
+                append_new_column (ListColumn.ALBUM_ARTIST, false);
+                append_new_column (ListColumn.COMPOSER, false);
+                append_new_column (ListColumn.GENRE);
+                append_new_column (ListColumn.YEAR, false);
+                append_new_column (ListColumn.GROUPING, false);
+                append_new_column (ListColumn.BITRATE, false);
+                append_new_column (ListColumn.RATING, false);
+                append_new_column (ListColumn.PLAY_COUNT, false);
+                append_new_column (ListColumn.SKIP_COUNT, false);
+                append_new_column (ListColumn.DATE_ADDED, false);
+                append_new_column (ListColumn.LAST_PLAYED, false);
+                append_new_column (ListColumn.BPM, false);
+                append_new_column (ListColumn.FILE_LOCATION, false);
+                append_new_column (ListColumn.FILE_SIZE, false);
             break;
         }
     }
-}
 
+    private void append_new_column (ListColumn column, bool initially_visible = true) {
+        columns.add (create_column (column, initially_visible));
+    }
+}

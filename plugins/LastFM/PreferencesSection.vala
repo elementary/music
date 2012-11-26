@@ -35,16 +35,17 @@ private class LastFM.PreferencesSection {
 
     private Core core;
     private string lastfm_token = "";
-    public Noise.PreferencesWindow.NoteBook_Page page;
+    public Noise.SettingsWindow.NoteBook_Page page;
+    Gtk.Button login_button;
 
     public PreferencesSection (Core core) {
-        page = new Noise.PreferencesWindow.NoteBook_Page(_("Last.fm"));
+        page = new Noise.SettingsWindow.NoteBook_Page(_("Last.fm"));
 
         this.core = core;
 
         int row = 0;
         page.add_section (new Gtk.Label(_("Last.fm Integration")), ref row);
-        var login_button = new Gtk.Button ();
+        login_button = new Gtk.Button ();
 
         if (core.lastfm_settings.session_key == null || core.lastfm_settings.session_key == "") {
             login_button.label = ENABLE_SCROBBLING;
@@ -61,19 +62,18 @@ private class LastFM.PreferencesSection {
         page.add_full_option (label, ref row);
         page.add_full_option (login_button, ref row);
 
-        login_button.clicked.connect (lastfmLoginClick);
+        login_button.clicked.connect (() => {lastfmLoginClick ();});
 
     }
 
-    public void lastfmLoginClick (Gtk.Button login_button) {
+    public void lastfmLoginClick () {
         if (login_button.label == ENABLE_SCROBBLING || login_button.label == LOGIN_UNSUCCESSFUL) {
             lastfm_token = core.getToken ();
 
             if (lastfm_token == null) {
                 login_button.set_label (LOGIN_UNSUCCESSFUL);
                 warning ("Could not get a token. check internet connection");
-            }
-            else {
+            } else {
                 string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.API
                                   + "&token=" + lastfm_token;
                 try {
@@ -84,27 +84,24 @@ private class LastFM.PreferencesSection {
                 }
 
                 //set button text. we are done this time around. next time we get session key
-                login_button.set_label(COMPLETE_LOGIN);
+                login_button.set_label (COMPLETE_LOGIN);
             }
-        }
-        else {
-            if(lastfm_token == null) {
-                login_button.set_label(LOGIN_UNSUCCESSFUL);
+        } else {
+            if (lastfm_token == null) {
+                login_button.set_label (LOGIN_UNSUCCESSFUL);
                 message ("Invalid token. Cannot continue");
-            }
-            else {
-                var sk = core.getSessionKey(lastfm_token);
-                if(sk == null) {
-                    login_button.set_label(LOGIN_UNSUCCESSFUL);
+            } else {
+                var sk = core.getSessionKey (lastfm_token);
+                if (sk == null) {
+                    login_button.set_label (LOGIN_UNSUCCESSFUL);
                     message ("Could not get Last.fm session key");
-                }
-                else {
+                } else {
                     core.logged_in();
                     message ("Successfully obtained a sessionkey");
                     debug (sk);
                     core.lastfm_settings.session_key = sk;
-                    login_button.set_sensitive(false);
-                    login_button.set_label(LOGIN_SUCCESSFUL);
+                    login_button.set_sensitive (false);
+                    login_button.set_label (LOGIN_SUCCESSFUL);
                 }
             }
         }

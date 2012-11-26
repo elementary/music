@@ -2,20 +2,8 @@
 /*-
  * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * This software is licensed under the GNU General Public License
+ * (version 2 or later). See the COPYING file in this distribution.
  *
  * The Noise authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
@@ -35,7 +23,7 @@
  * compatibility with older TreeViewSetup representations.
  */
 public enum Noise.ListColumn {
-    ICON,
+    ICON = 0,
     NUMBER,
     TRACK,
     TITLE,
@@ -168,6 +156,89 @@ public enum Noise.ListColumn {
             default:
                 assert_not_reached ();
         }
+    }
+
+    /**
+     * Returns the value of the data that should be displayed by the column in the view.
+     *
+     * media_row_index is only necessary for {@link ListColumn.NUMBER}.
+     */
+    public Value? get_value_for_media (Media m, int media_row_index = -1) {
+        switch (this) {
+            case ICON:
+                GLib.Icon? icon;
+                var currently_playing = App.player.media_info.media;
+
+                if (m == currently_playing && currently_playing != null)
+                    icon = Icons.NOW_PLAYING_SYMBOLIC.gicon;
+                else
+                    icon = m.unique_status_image;
+
+                return icon;
+
+            case NUMBER:
+                assert (media_row_index >= 0);
+                return (uint) media_row_index + 1;
+
+            case TRACK:
+                return m.track;
+
+            case TITLE:
+                return m.get_display_title ();
+
+            case LENGTH:
+                return m.length;
+
+            case ARTIST:
+                return m.get_display_artist ();
+
+            case ALBUM:
+                return m.get_display_album ();
+
+            case ALBUM_ARTIST:
+                return m.get_display_album_artist (false);
+
+            case COMPOSER:
+                return m.get_display_composer ();
+
+            case GENRE:
+                return m.get_display_genre ();
+
+            case YEAR:
+                return m.year;
+
+            case GROUPING:
+                return m.grouping;
+
+            case BITRATE:
+                return m.bitrate;
+
+            case RATING:
+                return m.rating;
+
+            case PLAY_COUNT:
+                return m.play_count;
+
+            case SKIP_COUNT:
+                return m.skip_count;
+
+            case DATE_ADDED:
+                return m.date_added;
+
+            case LAST_PLAYED:
+                return m.last_played;
+
+            case BPM:
+                return m.bpm;
+
+            case FILE_LOCATION:
+                return m.get_display_location ();
+
+            case FILE_SIZE:
+                return m.file_size;
+        }
+
+        assert_not_reached ();
     }
 
     public static List<ListColumn> get_all () {

@@ -28,7 +28,7 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
     private Media base_media;
 
     public SimilarViewWrapper (LibraryWindow lw, LastFM.Core core) {
-        base (lw, Hint.SIMILAR);
+        base (lw, Hint.READ_ONLY_PLAYLIST);
 
         // Connect data signals
         App.player.media_played.connect (on_media_played);
@@ -41,7 +41,10 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
 
-        list_view = new ListView (this, lw.library_manager.similar_setup);
+        var similar_setup = new Noise.TreeViewSetup (ListColumn.NUMBER,
+                                               Gtk.SortType.ASCENDING,
+                                               ViewWrapper.Hint.READ_ONLY_PLAYLIST);
+        list_view = new ListView (this, similar_setup);
         embedded_alert = new Granite.Widgets.EmbeddedAlert();
 
         // Refresh view layout
@@ -108,8 +111,6 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
 
         p.add_media (to_add);
 
-        lm.add_playlist (p);
-        lw.addSideListItem (p);
     }
 
     protected override bool check_have_media () {

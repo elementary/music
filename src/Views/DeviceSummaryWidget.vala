@@ -502,7 +502,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 
                 if (p != null) {
                     if (p is Playlist) {
-                        foreach (var m in ( (Playlist) p).media ()) {
+                        foreach (var m in ( (Playlist) p).media) {
                             if (m != null && m.mediatype == 0)
                                 list.add (m);
                         }
@@ -617,7 +617,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             }
             else {
                 space_widget.set_sync_button_sensitive(false);
-                dev.sync_medias(list);
+                dev.sync_medias();
             }
         }
     }

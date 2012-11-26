@@ -32,7 +32,8 @@ public class LastFM.SimilarMedias : Object {
 	Noise.Media _base;
 	bool working;
 	
-	Gee.LinkedList<Noise.Media> similar;
+	
+	public Noise.Playlist similar_playlist;
 	
 	Noise.Media similarToAdd;
 	
@@ -41,6 +42,9 @@ public class LastFM.SimilarMedias : Object {
 	public class SimilarMedias(Noise.LibraryManager lm) {
 		_lm = lm;
 		working = false;
+		similar_playlist = new Noise.Playlist ();
+		similar_playlist.name = _("Similar");
+		similar_playlist.read_only = true;
 	}
 	
 	public virtual void queryForSimilar(Noise.Media s) {
@@ -59,12 +63,11 @@ public class LastFM.SimilarMedias : Object {
 	}
 	
 	public void* similar_thread_function () {	
-		similar = new Gee.LinkedList<Noise.Media>();
 		var similarIDs = new Gee.LinkedList<int>();
 		var similarDont = new Gee.LinkedList<Noise.Media>();
 		
 		getSimilarTracks(_base.title, _base.artist);
-		_lm.media_from_name(similar, ref similarIDs, ref similarDont);
+		_lm.media_from_name(similar_playlist.media, ref similarIDs, ref similarDont);
 		similarIDs.offer_head(_base.rowid);
 		
 		Idle.add( () => {
@@ -74,7 +77,7 @@ public class LastFM.SimilarMedias : Object {
 		
 		working = false;
 		
-		return null;	
+		return null;
     }
 	
 	/** Gets similar medias
@@ -113,6 +116,7 @@ public class LastFM.SimilarMedias : Object {
 	
 	public void parse_similar_nodes(Xml.Node* node, string parent) {
 		Xml.Node* iter;
+		var add_list = new Gee.LinkedList<Noise.Media>();
 		for (iter = node->children; iter != null; iter = iter->next) {
 			
             if (iter->type != ElementType.ELEMENT_NODE) {
@@ -125,7 +129,7 @@ public class LastFM.SimilarMedias : Object {
             if(parent == "similartrackstrack") {
 				if(node_name == "name") {
 					if(similarToAdd != null) {
-						similar.add(similarToAdd);
+						add_list.add(similarToAdd);
 					}
 					
 					similarToAdd = new Noise.Media("");
@@ -143,7 +147,8 @@ public class LastFM.SimilarMedias : Object {
 			
 			parse_similar_nodes(iter, parent+node_name);
 		}
-		
+		similar_playlist.add_media (add_list);
 		delete iter;
 	}
+	
 }

@@ -2,20 +2,8 @@
 /*-
  * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * This software is licensed under the GNU General Public License
+ * (version 2 or later). See the COPYING file in this distribution.
  *
  * The Noise authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
@@ -89,7 +77,6 @@ public class Noise.ViewTextOverlay : Gtk.Overlay {
         // Even though GtkLabels are no-window widgets, we can't forget that the overlay
         // will add its own background window to this label once we add it. Due to that
         // reason, we override its background color to force transparency.
-        message_label.override_background_color (0, {0, 0, 0, 0});
         override_background_color (0, {0, 0, 0, 0});
 
         add_overlay (message_label);

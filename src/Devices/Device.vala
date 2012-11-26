@@ -41,8 +41,8 @@ public interface Noise.Device : GLib.Object {
     public abstract void set_mount(Mount mount);
     public abstract Mount get_mount();
     public abstract string get_uri();
-    public abstract void set_icon(Gdk.Pixbuf icon);
-    public abstract Gdk.Pixbuf get_icon();
+    public abstract void set_icon(GLib.Icon icon);
+    public abstract GLib.Icon get_icon();
     public abstract uint64 get_capacity();
     public abstract string get_fancy_capacity();
     public abstract uint64 get_used_space();
@@ -60,7 +60,7 @@ public interface Noise.Device : GLib.Object {
     public abstract Collection<Media> get_audiobooks();
     public abstract Collection<Playlist> get_playlists();
     public abstract Collection<SmartPlaylist> get_smart_playlists();
-    public abstract bool sync_medias(LinkedList<Media> list);
+    public abstract bool sync_medias();
     public abstract bool add_medias(LinkedList<Media> list);
     public abstract bool remove_medias(LinkedList<Media> list);
     public abstract bool is_syncing();
@@ -69,13 +69,14 @@ public interface Noise.Device : GLib.Object {
     public abstract bool is_transferring();
     public abstract void cancel_transfer();
     public abstract bool transfer_to_library(LinkedList<Media> list);
+    public abstract bool transfer_all_to_library();
     
     public string get_unique_identifier() {
         Mount m = get_mount();
         string uuid = m.get_uuid();
         File root = m.get_root();
         string rv = "";
-        message ("uuid: %s\n", uuid);
+        debug ("uuid: %s\n", uuid);
         if(root != null && root.get_uri() != null) {
             rv += root.get_uri();
         }

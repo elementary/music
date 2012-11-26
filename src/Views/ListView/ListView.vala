@@ -1,31 +1,27 @@
-/*
- * Copyright (c) 2012 Noise Developers
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
+/*-
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
- * This is a free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation; either version 2 of the
- * License, or (at your option) any later version.
+ * This software is licensed under the GNU General Public License
+ * (version 2 or later). See the COPYING file in this distribution.
  *
- * This is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program; see the file COPYING.  If not,
- * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
  *
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
- */
-
-/**
- * Contains the column browser and list view.
  */
 
 using Gee;
 using Gtk;
 
+/**
+ * Contains the column browser and list view.
+ */
 public class Noise.ListView : ContentView, Gtk.Box {
 
 	public signal void reordered ();
@@ -80,12 +76,12 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		}
 	}
 
-	public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false) {
+	public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false, bool? is_queue = false) {
 		this.view_wrapper = view_wrapper;
 		this.lm = view_wrapper.lm;
 		this.lw = view_wrapper.lw;
 
-		list_view = new MusicListView (view_wrapper, tvs);
+		list_view = new MusicListView (view_wrapper, tvs, is_queue);
 
 		var list_scrolled = new Gtk.ScrolledWindow (null, null);
 		list_scrolled.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
@@ -111,7 +107,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
 		if (has_column_browser) {
 			browser_hpane = new Granite.Widgets.ThinPaned ();
-			browser_vpane = new Paned (Orientation.VERTICAL);
+			browser_vpane = new Gtk.Paned (Orientation.VERTICAL);
 
 			// Fix theming
 			browser_vpane.get_style_context ().add_class (Gtk.STYLE_CLASS_VERTICAL);
@@ -124,7 +120,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
 			// Now pack the list view
 			browser_vpane.pack2 (list_text_overlay, true, false);
-			browser_hpane.pack1 (column_browser, true, false);
+			browser_hpane.pack1 (column_browser, false, false);
 
 			set_column_browser_position (column_browser.position);
 
@@ -181,7 +177,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		if (actual_position == ColumnBrowser.Position.LEFT) {
 			if (browser_hpane.get_child1 () == null && browser_vpane.get_child1 () == column_browser) {
 				browser_vpane.remove (column_browser);
-				browser_hpane.pack1 (column_browser, true, false);
+				browser_hpane.pack1 (column_browser, false, false);
 
 				browser_hpane.position = browser_hpane_position;
 			}
@@ -189,7 +185,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		else if (actual_position == ColumnBrowser.Position.TOP) {
 			if (browser_vpane.get_child1 () == null && browser_hpane.get_child1 () == column_browser) {
 				browser_hpane.remove (column_browser);
-				browser_vpane.pack1 (column_browser, true, false);
+				browser_vpane.pack1 (column_browser, false, false);
 
 				browser_vpane.set_position (browser_vpane_position);
 			}
@@ -243,7 +239,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	}
 
 	private void save_column_browser_settings () {
-		// Need to add a proper fix later ...
+		// Need to add a proper fix later ... Something similar to TreeViewSetup
 		if (has_column_browser) {
 			if (column_browser.visible) {
 				if (column_browser.actual_position == ColumnBrowser.Position.LEFT)
@@ -391,7 +387,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         return status_text;
     }
 
-    private void view_search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
+    private void view_search_func (string search, HashTable<int, Media> table, ref HashTable<int, Media> showing) {
         list_text_overlay.message_visible = false;
 
         int parsed_rating;
@@ -408,7 +404,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         int show_index = 0;
 
         for (int i = 0; i < table.size (); ++i) {
-            var m = table.get (i) as Media;
+            var m = table.get (i);
             if (m != null) {
                 if (obey_column_browser && !column_browser.match_media (m))
                     continue;

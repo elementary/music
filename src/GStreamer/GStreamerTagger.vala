@@ -329,6 +329,7 @@ public class Noise.GStreamerTagger : Object {
             yield cache.cache_image_async (m, pix);
         else
             warning ("Could not find embedded image for '%s'", info.get_uri ());
+            
     }
 
     private static Gdk.Pixbuf? get_image (Gst.TagList tag) {
