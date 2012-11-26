@@ -585,22 +585,16 @@ public class Noise.LibraryManager : Object {
     }
 
     private async void update_smart_playlists_async () {
-        SourceFunc callback = update_smart_playlists_async.callback;
-
-        Threads.add (() => {
-            lock (_smart_playlists) {
-                foreach (var p in smart_playlists ()) {
-                    lock (_media) {
-                        p.update_library (media ());
-                    }
-                }
-            }
-            Idle.add ((owned) callback);
-        });
-
+        Idle.add (update_smart_playlists_async.callback);
         yield;
 
-
+        lock (_smart_playlists) {
+            foreach (var p in smart_playlists ()) {
+                lock (_media) {
+                    p.update_library (media ());
+                }
+            }
+        }
     }
 
     public int media_count () {
