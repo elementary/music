@@ -53,12 +53,7 @@ public class LastFM.SimilarMedias : Object {
 		if(!working) {
 			working = true;
 			
-			try {
-				new Thread<void*>.try (null, similar_thread_function);
-			}
-			catch (GLib.Error err) {
-				warning("ERROR: Could not create similar thread: %s \n", err.message);
-			}
+			Noise.Threads.add (() => {similar_thread_function();});
 		}
 	}
 	
@@ -68,6 +63,8 @@ public class LastFM.SimilarMedias : Object {
 		
 		getSimilarTracks(_base.title, _base.artist);
 		_lm.media_from_name(similar_playlist.media, ref similarIDs, ref similarDont);
+		similar_playlist.clear ();
+		similar_playlist.add_media (_lm.media_from_ids (similarIDs));
 		similarIDs.offer_head(_base.rowid);
 		
 		Idle.add( () => {
@@ -135,9 +132,9 @@ public class LastFM.SimilarMedias : Object {
 					similarToAdd = new Noise.Media("");
 					similarToAdd.title = node_content;
 				}
-				/*else if(node_name == "url") {
-					similarToAdd.lastfm_url = node_content;
-				}*/
+				else if(node_name == "url") {
+					similarToAdd.comment = node_content;
+				}
 			}
 			else if(parent == "similartrackstrackartist") {
 				if(node_name == "name") {

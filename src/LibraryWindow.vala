@@ -41,6 +41,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool tested_for_video           { get; set; default = false; } // whether or not we have tested if media is video and shown video
     private bool media_considered_previewed { get; set; default = false; }
     private bool media_half_played_sended   { get; set; default = false; }
+    private bool search_field_has_focus     { get; set; default = true; }
 
     public bool dragging_from_music         { get; set; default = false; }
     public bool initialization_finished     { get; private set; default = false; }
@@ -186,14 +187,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
        var typed_unichar = event.str.get_char ();
        // Redirect valid key presses to the search entry
-       if (typed_unichar.validate () && searchField.sensitive && !searchField.has_focus) {
+       /*if (typed_unichar.validate () && searchField.sensitive && !searchField.has_focus && search_field_has_focus) {
             unichar[] special_chars = {'&', '.', '-', '\'', '%', '(', ')', '=', '@', '!',
                                         '#', '+', '<', '>', ';', ':', '¿', '?', '¡', '~',
                                         '_', '¨', '*', '$', '"', '[', ']'};
 
             if (typed_unichar.isalnum () || typed_unichar in special_chars)
                 searchField.grab_focus ();
-        }
+        }*/
 
         return base.key_press_event (event);
     }
@@ -1299,6 +1300,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.media_info.media.last_played = (int)time_t();
 
             library_manager.update_media_item (App.player.media_info.media, false, false);
+            media_as_played (App.player.media_info.media);
 
             // add to the already played list
             if(!App.player.history_playlist.contains (App.player.media_info.media)) {

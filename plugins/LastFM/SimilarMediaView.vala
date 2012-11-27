@@ -99,14 +99,14 @@ public class Noise.SimilarMediasView : TreeView {
 		mo.get(iter, 0, out s);
 		
 		// fall back to just opening the last fm page
-		/*if(s != null && s.lastfm_url != null && s.lastfm_url != "") {
+		if(s != null && s.comment != null && s.comment != "") {
 			try {
-				GLib.AppInfo.launch_default_for_uri (s.lastfm_url, null);
+				GLib.AppInfo.launch_default_for_uri (s.comment, null);
 			}
 			catch(Error err) {
 				message ("Couldn't open the similar media's last fm page: %s\n", err.message);
 			}
-		}*/
+		}
 		
 		return null;
 	}

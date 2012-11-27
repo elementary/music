@@ -58,7 +58,7 @@ public class Noise.LibraryManager : Object {
     public DataBaseUpdater dbu;
     public FileOperator fo;
     public DeviceManager device_manager;
-	public GStreamerTagger tagger;
+    public GStreamerTagger tagger;
 
     public bool main_directory_set {
         get { return !String.is_empty (main_settings.music_folder, true); }
@@ -240,8 +240,14 @@ public class Noise.LibraryManager : Object {
     }
     
     public void remove_all_static_playlists () {
-        foreach (var id in _playlists.keys) {
-            if (playlist_from_id (id).read_only == false)
+        var list = new Gee.LinkedList<int> ();
+        lock (_playlists) {
+            foreach (var id in _playlists.keys) {
+                if (playlist_from_id (id).read_only == false)
+                    list.add (id);
+            }
+        }
+        foreach (var id in list) {
                 remove_playlist (id);
         }
     }

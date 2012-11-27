@@ -41,21 +41,15 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         lfm = core;
         
         similars_fetched = false;
-        scrobbled_track = false;
         
         // Last.fm
         lfm.logged_in.connect (logged_in_to_lastfm);
         lfm.similar_retrieved.connect (similar_retrieved);
-        lw.media_half_played.connect (() => {
-            scrobbled_track = true;
-            lfm.postScrobbleTrack ();
-        });
         lw.update_media_info.connect (() => {
             lfm.fetchCurrentSimilarSongs();
             lfm.fetchCurrentAlbumInfo();
             lfm.fetchCurrentArtistInfo();
             lfm.fetchCurrentTrackInfo();
-            lfm.postNowPlaying();
         });
         
         love_ban_buttons = new LoveBanButtons ();

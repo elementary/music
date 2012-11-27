@@ -61,13 +61,8 @@ namespace Noise.Plugins {
 
                 lm.lw.source_list_added.connect (source_list_added);
                 lm.add_playlist (core.get_similar_playlist ());
+                similar_media_widget = new Noise.SimilarMediasWidget (lm, core);
                 added_view = true;
-            });
-            
-            lm.playlist_removed.connect ((playlist) => {
-            if (playlist == core.get_similar_playlist () && desactivation == false) {
-                lm.add_playlist (core.get_similar_playlist ());
-            }
             });
 
             plugins.register_function_arg(Interface.Hook.SETTINGS_WINDOW, (window) => {

@@ -76,6 +76,9 @@ namespace LastFM {
                     _tracks.set(t.name + " by " + t.artist, (LastFM.TrackInfo)t);
                 }
             }
+            
+            Noise.App.player.media_played.connect (() => {postNowPlaying ();});
+            Noise.App.main_window.media_as_played.connect ((media) => {postScrobbleTrack (media);});
 
             similarMedias.similar_retrieved.connect(similar_retrieved_signal);
         }
@@ -450,11 +453,12 @@ namespace LastFM {
 
         private void update_nowplaying_thread_function() {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
-                message ("Last.FM user not logged in\n");
+                debug ("Last.FM user not logged in\n");
                 return;
             }
             if(!Noise.App.player.media_active)
                 return;
+            debug ("Sound send as now_playing");
 
             var artist = Noise.App.player.media_info.media.artist;
             var title = Noise.App.player.media_info.media.title;
@@ -480,19 +484,20 @@ namespace LastFM {
         /**
          * Scrobbles the currently playing track to last.fm
          */
-        public void postScrobbleTrack() {
-            Noise.Threads.add (scrobble_thread_function);
+        public void postScrobbleTrack(Noise.Media m) {
+            Noise.Threads.add (() => {scrobble_thread_function(m);});
         }
 
-        private void scrobble_thread_function () {
+        private void scrobble_thread_function (Noise.Media current_media) {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
-                message ("Last.FM user not logged in\n");
+                debug ("Last.FM user not logged in\n");
                 return;
             }
             if(!Noise.App.player.media_active)
                 return;
-
-            var current_media = Noise.App.player.media_info.media;
+            if(current_media == null)
+                return;
+            debug ("Sound Scrobbled");
 
             var timestamp = (int)time_t();
             var artist = current_media.artist;

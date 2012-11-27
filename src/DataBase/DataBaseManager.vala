@@ -167,7 +167,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
 :resume_pos);""");
 
             foreach (var s in media) {
-                if (s.rowid > 0 && !s.isTemporary) {
+                if (s.rowid >= 0 && !s.isTemporary) {
                     query.set_string(":uri", s.uri);
                     query.set_int(":file_size", (int)s.file_size);
                     query.set_string(":title", s.title);
