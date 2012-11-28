@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-26 19:32+0100\n"
-"PO-Revision-Date: 2012-11-25 07:41+0000\n"
+"PO-Revision-Date: 2012-11-27 14:55+0000\n"
 "Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-27 06:15+0000\n"
+"X-Launchpad-Export-Date: 2012-11-28 05:08+0000\n"
 "X-Generator: Launchpad (build 16309)\n"
 "Language: hu\n"
 
@@ -103,12 +103,12 @@ msgstr "Lejátszólista exportálása"
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "Kiterjesztett MPEG 3.0 (*.m3u)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Shoutcast lejátszási lista 2.0 (*.pls)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
@@ -121,7 +121,7 @@ msgstr "%s importálása"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Ismeretlen lejátszólista fájl. Az importálás sikertelen."
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/noise/po/../core//Media.vala:35
@@ -245,7 +245,7 @@ msgstr "Techno"
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library..."
-msgstr ""
+msgstr "<b>%s</b> importálása a gyűjteménybe"
 
 #: /home/noelco/noise/po/../src//FileOperator.vala:424
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
@@ -1092,13 +1092,13 @@ msgstr ""
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:900
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:902
 msgid "New playlist"
-msgstr ""
+msgstr "Új lejátszólista"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:903
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:906
 #, c-format
 msgid "New playlist (%i)"
-msgstr ""
+msgstr "Új lejátszólista (%i)"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1105
 msgid "Import Music"
@@ -1271,16 +1271,16 @@ msgstr "Nincs értékelés"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Groupings"
-msgstr ""
+msgstr "Minden csoportosítás"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 #, c-format
 msgid "All %i Groupings"
-msgstr ""
+msgstr "Mind a(z) %i csoportosítás"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Groupings"
-msgstr ""
+msgstr "Nincs csoportosítás"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Composers"
@@ -1356,6 +1356,7 @@ msgstr "Soha"
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:729
 msgid "Sample List String"
 msgstr ""
+"Zeneszám címe, előadója, előadó albuma, album előadója, szerző, műfaj"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:125
 msgid "Autosize Columns"
@@ -1575,13 +1576,13 @@ msgstr "Zenemappa megváltoztatása"
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import your Music"
-msgstr ""
+msgstr "Importálja zenéit"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "Importálja összes zenéjét %s eszközről a gyűjteményébe."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
 msgid "Select Music Folder"
@@ -1595,7 +1596,7 @@ msgstr "Nincs szám"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
 msgid "Please wait until that this playlist get updated."
-msgstr ""
+msgstr "Kérem várjon amíg a lejátszólista frissül."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
 msgid ""
@@ -1865,6 +1866,9 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"Nincsenek az éppen lejátszotthoz hasonló zenék a gyűjteményében. Győződjön "
+"meg róla, hogy az össze zeneinformáció helyes-e, és hogy csatlakozik-e az "
+"internetre. Néhány zeneszámra nincs találat."
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
