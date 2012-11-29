@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-26 19:32+0100\n"
-"PO-Revision-Date: 2012-11-13 17:53+0000\n"
+"PO-Revision-Date: 2012-11-28 13:30+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-27 06:16+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 05:31+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "Language: es\n"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
@@ -103,12 +103,12 @@ msgstr "Exportar la lista de reproducción"
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG versión 3.0 extendida (*.m3u)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Lista de reproducción Shoutcast versión 2.0 (*.pls)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
@@ -122,6 +122,7 @@ msgstr "Importar %s"
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
 msgid "Unrecognized playlist file. Import failed."
 msgstr ""
+"No se reconoció el archivo de lista de reproducción. Falló la importación."
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/noise/po/../core//Media.vala:35
@@ -245,7 +246,7 @@ msgstr "Técno"
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library..."
-msgstr ""
+msgstr "Importando <b>%s</b> a la biblioteca..."
 
 #: /home/noelco/noise/po/../src//FileOperator.vala:424
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
@@ -336,7 +337,7 @@ msgstr "Importar desde un dispositivo"
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr "Importar archivos multimedia de %s"
+msgstr "Importar archivos multimedia desde %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
@@ -506,7 +507,7 @@ msgstr "Comentario"
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:195
 msgid "Composer"
-msgstr "Editor"
+msgstr "Compositor"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Date Added"
@@ -896,11 +897,11 @@ msgstr "Extraer"
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:155
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgid "New Playlist"
-msgstr "Nueva lista de reproducción"
+msgstr "Lista de reproducción nueva"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:156
 msgid "New Smart Playlist"
-msgstr "Nueva lista de reproducción inteligente"
+msgstr "Lista de reproducción inteligente nueva"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:157
 msgid "Import Playlists"
@@ -1088,13 +1089,13 @@ msgstr ""
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:900
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:902
 msgid "New playlist"
-msgstr ""
+msgstr "Lista de reproducción nueva"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:903
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:906
 #, c-format
 msgid "New playlist (%i)"
-msgstr ""
+msgstr "Lista de reproducción nueva (%i)"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1105
 msgid "Import Music"
@@ -1573,13 +1574,13 @@ msgstr "Cambiar tu carpeta de música"
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import your Music"
-msgstr ""
+msgstr "Importe su musica"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "Importar toda la música desde %s a la biblioteca."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
 msgid "Select Music Folder"
@@ -1593,7 +1594,7 @@ msgstr "Sin canciones"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
 msgid "Please wait until that this playlist get updated."
-msgstr ""
+msgstr "Espere mientras la lista de reproducción se actualiza."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
 msgid ""
@@ -1718,7 +1719,7 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr "Eliminando de <b>%s</b>"
+msgstr "Eliminando de <b>%s</b>..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:546
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:581
@@ -1863,6 +1864,9 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"No hay canciones similares a la actual en su biblioteca. Asegúrese de que "
+"toda la información de la canción es correcta y de que está conectado a "
+"Internet. Algunas canciones pueden no tener similares."
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
