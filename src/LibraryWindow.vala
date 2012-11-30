@@ -172,29 +172,33 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public override bool key_press_event (Gdk.EventKey event) {
-       if (!searchField.has_focus) {
+        var modifiers = Gtk.accelerator_get_default_mod_mask ();
+        bool modifiers_active = (event.state & modifiers) != 0;
+
+        if (!modifiers_active) {
+            if (event.keyval == Gdk.Key.space && !searchField.has_focus && !source_list_view.editing) {
+                playClicked (); // toggle play/pause
+                return true;
+            }
+
+            var typed_unichar = event.str.get_char ();
+            // Redirect valid key presses to the search entry
+            if (typed_unichar.validate () && searchField.sensitive && !searchField.has_focus) {
+                unichar[] special_chars = {'&', '.', '-', '\\', '%', '(', ')', '=', '@',
+                                           '#', '+', '<', '>', ';', ':', '¿', '?', '¡',
+                                           '_', '¨', '*', '$', '"', '[', ']', '!', '~'};
+
+                if (typed_unichar.isalnum () || typed_unichar in special_chars)
+                    searchField.grab_focus ();
+            }
+        } else if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
             switch (event.keyval) {
-                case Gdk.Key.space:
-                    playClicked ();
-                    return true;
                 case Gdk.Key.q:
                 case Gdk.Key.w:
-                    if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0)
-                        this.destroy ();
-                    break;
+                    this.destroy ();
+                    return true;
             }
-       }
-
-       var typed_unichar = event.str.get_char ();
-       // Redirect valid key presses to the search entry
-       /*if (typed_unichar.validate () && searchField.sensitive && !searchField.has_focus && search_field_has_focus) {
-            unichar[] special_chars = {'&', '.', '-', '\'', '%', '(', ')', '=', '@', '!',
-                                        '#', '+', '<', '>', ';', ':', '¿', '?', '¡', '~',
-                                        '_', '¨', '*', '$', '"', '[', ']'};
-
-            if (typed_unichar.isalnum () || typed_unichar in special_chars)
-                searchField.grab_focus ();
-        }*/
+        }
 
         return base.key_press_event (event);
     }
@@ -650,9 +654,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public int addSourceListItem (GLib.Object o, GLib.Object? source_o = null, out SourceListEntry? entry = null) {
-    int view_number = -1;
-    
-        if(o is Playlist) {
+        int view_number = -1;
+        entry = null;
+
+        if (o is Playlist) {
             lock (match_playlist) {
                 Playlist p = o as Playlist;
 
