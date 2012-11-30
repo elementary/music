@@ -17,10 +17,15 @@
  * Boston, MA 02111-1307, USA.
  */
 
+// Add an interface so that SourceListItem and SourceListExpandableItem still share a common
+// ancestor that is compatible with the SourceList widget.
+public interface Noise.SourceListEntry : Granite.Widgets.SourceList.Item {
+}
+
 /**
  * SourceList item. It stores the number of the corresponding page in the notebook widget.
  */
-public class Noise.SourceListItem : Granite.Widgets.SourceList.Item {
+public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListEntry {
     
     public signal void playlist_edit_clicked (int page_number);
     public signal void playlist_remove_clicked (int page_number);
@@ -47,7 +52,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item {
         if (hint == ViewWrapper.Hint.PLAYLIST) {
             playlistMenu = new Gtk.Menu();
             playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
-            playlistExport = new Gtk.MenuItem.with_label(_("Export..."));
+            playlistExport = new Gtk.MenuItem.with_label(_("Export"));
             playlistMenu.append(playlistRemove);
             playlistMenu.append(playlistExport);
             playlistMenu.show_all ();
@@ -58,7 +63,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item {
             playlistMenu = new Gtk.Menu();
             playlistEdit = new Gtk.MenuItem.with_label(_("Edit"));
             playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
-            playlistExport = new Gtk.MenuItem.with_label(_("Export..."));
+            playlistExport = new Gtk.MenuItem.with_label(_("Export"));
             playlistMenu.append(playlistEdit);
             playlistMenu.append(playlistRemove);
             playlistMenu.append(playlistExport);
@@ -90,7 +95,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item {
     }
 }
 
-public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem {
+public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, SourceListEntry {
     public int page_number { get; set; default = -1; }
     public ViewWrapper.Hint hint;
     
@@ -128,14 +133,8 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
     }
     
     public override Gtk.Menu? get_context_menu () {
-        if (deviceMenu != null) {
-            if (deviceMenu.get_attach_widget () != null)
-                deviceMenu.detach ();
-            return deviceMenu;
-        }
-        return null;
+        return deviceMenu;
     }
-    
 }
 
 public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem {
@@ -165,14 +164,9 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem 
         smartPlaylistNew.activate.connect(() => {App.main_window.show_smart_playlist_dialog ();});
         playlistImport.activate.connect(() => {playlist_import_clicked ();});
     }
-    
+
     public override Gtk.Menu? get_context_menu () {
-        if (playlistMenu != null) {
-            if (playlistMenu.get_attach_widget () != null)
-                playlistMenu.detach ();
-            return playlistMenu;
-        }
-        return null;
+        return playlistMenu;
     }
 }
 
@@ -224,7 +218,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
      *
      * TODO: Change ViewWrapper.Hint to core values.
      */
-    public Granite.Widgets.SourceList.Item add_item (int page_number,
+    public SourceListEntry add_item (int page_number,
                         string name,
                         ViewWrapper.Hint hint,
                         GLib.Icon icon,

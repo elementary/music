@@ -489,7 +489,7 @@ namespace LastFM {
         }
 
         private void scrobble_thread_function (Noise.Media current_media) {
-            if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
+            if (Noise.String.is_empty (lastfm_settings.session_key, true)) {
                 debug ("Last.FM user not logged in\n");
                 return;
             }
