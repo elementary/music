@@ -9,35 +9,35 @@ set(DEPS_LIBRARY_DIRS ${DEPS_LIBRARY_DIRS} ${LASTFM_DEPS_LIBRARY_DIRS})
 add_definitions(${DEPS_CFLAGS})
 link_directories(${DEPS_LIBRARY_DIRS})
 
-vala_precompile(
-    LAST_FM_VALA_C
-        LastFM.vala
-        Core.vala
-        Settings.vala
-        AlbumInfo.vala
-        Tag.vala
-        TrackInfo.vala
-        ArtistInfo.vala
-        SimilarMedia.vala
-        SimilarMediaView.vala
-        SimilarMediaWidget.vala
-        PreferencesSection.vala
-        LoveBanButtons.vala
-    PACKAGES
-        ${DEPS_PACKAGES}
-        libxml-2.0
-        json-glib-1.0
-        libsoup-2.4
-    OPTIONS
-        ${GLOBAL_VALAC_OPTIONS}
+set(TARGET_NAME lastfm)
+vala_precompile(LAST_FM_VALA_C ${TARGET_NAME}
+    LastFM.vala
+    Core.vala
+    Settings.vala
+    AlbumInfo.vala
+    Tag.vala
+    TrackInfo.vala
+    ArtistInfo.vala
+    SimilarMedia.vala
+    SimilarMediaView.vala
+    SimilarMediaWidget.vala
+    PreferencesSection.vala
+    LoveBanButtons.vala
+PACKAGES
+    ${DEPS_PACKAGES}
+    libxml-2.0
+    json-glib-1.0
+    libsoup-2.4
+OPTIONS
+    ${GLOBAL_VALAC_OPTIONS}
 )
 
-add_library(lastfm MODULE ${LAST_FM_VALA_C})
+add_library(${TARGET_NAME} MODULE ${LAST_FM_VALA_C})
 
-target_link_libraries(lastfm ${DEPS_LIBRARIES})
-add_dependencies(lastfm ${SRC_TARGET})
+target_link_libraries(${TARGET_NAME} ${DEPS_LIBRARIES})
+add_dependencies(${TARGET_NAME} ${SRC_TARGET})
 
-install(TARGETS lastfm DESTINATION ${PLUGIN_DIR}/LastFM/)
+install(TARGETS ${TARGET_NAME} DESTINATION ${PLUGIN_DIR}/LastFM/)
 install(FILES lastfm.plugin DESTINATION ${PLUGIN_DIR}/LastFM/)
 
 add_subdirectory(schemas)

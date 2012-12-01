@@ -1,5 +1,7 @@
-set(CONFIG_FILE ${CMAKE_BINARY_DIR}/src/config.vala)
-configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CONFIG_FILE})
+set(CONFIG_FILE ${CMAKE_CURRENT_BINARY_DIR}/config.vala)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.vala.cmake ${CONFIG_FILE})
+
+message(${CONFIG_FILE})
 
 set(CLIENT_SOURCE
     ${CONFIG_FILE}
@@ -108,17 +110,16 @@ endif ()
 
 set(CLIENT_VAPI ${SRC_TARGET})
 
-vala_precompile(
-    CLIENT_VALA_C
-        ${CLIENT_SOURCE}
-    PACKAGES
-        ${DEPS_PACKAGES}
-    OPTIONS
-        ${CLIENT_VALAC_OPTIONS}
-    GENERATE_VAPI
-        ${CLIENT_VAPI}
-    GENERATE_HEADER
-        ${CLIENT_VAPI}
+vala_precompile(CLIENT_VALA_C ${SRC_TARGET}
+    ${CLIENT_SOURCE}
+PACKAGES
+    ${DEPS_PACKAGES}
+OPTIONS
+    ${CLIENT_VALAC_OPTIONS}
+GENERATE_VAPI
+    ${CLIENT_VAPI}
+GENERATE_HEADER
+    ${CLIENT_VAPI}
 )
 
 set(EXEC_NAME ${SRC_TARGET})
@@ -129,4 +130,4 @@ add_executable(${EXEC_NAME} ${CLIENT_VALA_C})
 
 target_link_libraries(${EXEC_NAME} ${DEPS_LIBRARIES})
 
-install (TARGETS ${EXEC_NAME} RUNTIME DESTINATION bin)
+install(TARGETS ${EXEC_NAME} RUNTIME DESTINATION bin)
