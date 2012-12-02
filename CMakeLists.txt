@@ -135,6 +135,7 @@ include(ValaVersion)
 ensure_vala_version("0.16.0" MINIMUM)
 include(ValaPrecompile)
 
+link_libraries (m)
 add_subdirectory(schemas)
 add_subdirectory(core)
 
