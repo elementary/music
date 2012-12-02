@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-26 19:32+0100\n"
+"POT-Creation-Date: 2012-12-01 13:06-0600\n"
 "PO-Revision-Date: 2012-11-27 14:55+0000\n"
 "Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -15,26 +15,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-11-28 05:08+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-12-02 04:54+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "Language: hu\n"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d másodperc"
 msgstr[1] "%d másodperc"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:75
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:75
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u perc"
 msgstr[1] "%u perc"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:48
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:48
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
@@ -42,20 +42,20 @@ msgstr[0] "%u másodperc"
 msgstr[1] "%u másodperc"
 
 #. / Minutes and seconds
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:50
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:50
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s és %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u nap"
 msgstr[1] "%u nap"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:72
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
@@ -63,28 +63,28 @@ msgstr[0] "%u óra"
 msgstr[1] "%u óra"
 
 #. / days, hours and minutes
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s és %s"
 
 #. / days and hours
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s és %s"
 
 #. / days and minutes
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s és %s"
 
 #. / hours and minutes
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:100
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:100
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -92,352 +92,383 @@ msgstr "%s és %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y.%m.%e. %H:%M"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:187
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:187
 msgid "Export Playlist"
 msgstr "Lejátszólista exportálása"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:195
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:289
 msgid "MPEG Version 3.0 Extended (*.m3u)"
 msgstr "Kiterjesztett MPEG 3.0 (*.m3u)"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:200
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:294
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
 msgstr "Shoutcast lejátszási lista 2.0 (*.pls)"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
 msgstr "Lejátszólista"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:280
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:280
 #, c-format
 msgid "Import %s"
 msgstr "%s importálása"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:314
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Ismeretlen lejátszólista fájl. Az importálás sikertelen."
 
 #. / Used for unknown titles, artists, or album names.
-#: /home/noelco/noise/po/../core//Media.vala:35
+#: /home/victor/noise/po/../core//Media.vala:35
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: /home/noelco/noise/po/../core//Media.vala:45
+#: /home/victor/noise/po/../core//Media.vala:45
 msgid "Radio Station"
 msgstr "Rádió állomás"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: /home/noelco/noise/po/../core//Media.vala:175
+#: /home/victor/noise/po/../core//Media.vala:175
 msgid "$NAME on $ALBUM"
 msgstr "$NAME, $ALBUM albumról"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: /home/noelco/noise/po/../core//Media.vala:178
+#: /home/victor/noise/po/../core//Media.vala:178
 msgid "$NAME by $ARTIST"
 msgstr "$NAME, $ARTIST előadótól"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: /home/noelco/noise/po/../core//Media.vala:184
+#: /home/victor/noise/po/../core//Media.vala:184
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME, $ARTIST előadó $ALBUM albumáról"
 
-#: /home/noelco/noise/po/../src//Noise.vala:37
+#: /home/victor/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
 msgstr "Zene hallgatása"
 
-#: /home/noelco/noise/po/../src//Noise.vala:38
+#: /home/victor/noise/po/../src//Noise.vala:38
 msgid "Music Player"
 msgstr "Zenelejátszó"
 
-#: /home/noelco/noise/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Ismeretlen szám"
+#: /home/victor/noise/po/../src//LibraryManager.vala:256
+#, c-format
+msgid "Importing music from %s..."
+msgstr "Zenék importálása innen: %s"
 
-#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Ismeretlen album"
+#: /home/victor/noise/po/../src//LibraryManager.vala:299
+msgid "Adding files to library..."
+msgstr "Fájlok hozzáadása a gyűjteményhez"
 
-#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/noelco/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:179
-msgid "Unknown Artist"
-msgstr "Ismeretlen előadó"
+#: /home/victor/noise/po/../src//LibraryManager.vala:341
+#, c-format
+msgid "Adding music from %s to library..."
+msgstr "Zenék hozzáadása a gyűjteményhez innen: %s"
 
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Sima"
+#: /home/victor/noise/po/../src//LibraryManager.vala:369
+msgid "Rescanning music for changes. This may take a while..."
+msgstr "Zenék átvizsgálása változásokért. Ez eltarthat egy darabig..."
 
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klasszikus"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Club"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Dance"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Teljes mély"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Teljes magas"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Teljes mély és magas"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Fülhallgató"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Nagy terem"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Élő"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Party"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Soft"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Soft Rock"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Techno"
-
-#: /home/noelco/noise/po/../src//FileOperator.vala:332
+#: /home/victor/noise/po/../src//FileOperator.vala:332
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library..."
 msgstr "<b>%s</b> importálása a gyűjteménybe"
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:424
+#: /home/victor/noise/po/../src//FileOperator.vala:424
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
 msgstr "Fájlok <b>másolása</b> a <b>zenemappába</b>..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:250
-#, c-format
-msgid "Importing music from %s..."
-msgstr "Zenék importálása innen: %s"
+#: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victor/noise/po/../src//GStreamer/Streamer.vala:179
+msgid "Unknown Artist"
+msgstr "Ismeretlen előadó"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:293
-msgid "Adding files to library..."
-msgstr "Fájlok hozzáadása a gyűjteményhez"
+#: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Ismeretlen szám"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:335
-#, c-format
-msgid "Adding music from %s to library..."
-msgstr "Zenék hozzáadása a gyűjteményhez innen: %s"
+#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Ismeretlen album"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:363
-msgid "Rescanning music for changes. This may take a while..."
-msgstr "Zenék átvizsgálása változásokért. Ez eltarthat egy darabig..."
+#: /home/victor/noise/po/../src//Widgets/PresetList.vala:49
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+msgid "Automatic"
+msgstr "Automatikus"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:559
-msgid "Favorite Songs"
-msgstr "Kedvenc számok"
+#: /home/victor/noise/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Jelenlegi törlése"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:569
-msgid "Recently Added"
-msgstr "Legutóbb hozzáadott"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:66
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Off"
+msgstr "Ki"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:591
-msgid "Recent Favorites"
-msgstr "Legutóbbi kedvencek"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:66
+msgid "Enable Repeat"
+msgstr "Ismétlés bekapcsolása"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:601
-msgid "Never Played"
-msgstr "Még le nem játszott"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:67
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:541
+msgid "Song"
+msgstr "Zeneszám"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:611
-msgid "Over Played"
-msgstr "Túljátszott"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Song"
+msgstr "Zeneszám ismétlése"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:621
-msgid "Not Recently Played"
-msgstr "Mostanában nem játszott"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
-msgid "Remove Media"
-msgstr "Média eltávolítása"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
-msgid "Locate Media"
-msgstr "Média helye"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
-msgid "Rescan Library"
-msgstr "Gyűjtemény átvizsgálása"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
-msgid "Do Nothing"
-msgstr "Ne tegyen semmit"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
-msgid "Could not find media file"
-msgstr "Nem található médiafájl"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
-msgid ""
-"The music file for $NAME by $ARTIST could not be found. What would you like "
-"to do?"
-msgstr ""
-"A(z) $ARTIST előadó $NAME című számához tartozó fájl nem található. Mit "
-"szeretne tenni?"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
-#, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i médiafájl nem található. Mit szeretne tenni?"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-msgid "Choose Music Folder"
-msgstr "Zenemappa kiválasztása"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-msgid "Import from Device"
-msgstr "Importálása az eszközről"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-#, c-format
-msgid "Import media from %s"
-msgstr "Média importálása innen: %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
-#, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"A következő fájlok megtalálhatók %s eszközön, de nincsenek a gyűjteményében. "
-"Ellenőrizze azokat a fájlokat amiket be szeretne olvasni."
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
-msgid "Import all media"
-msgstr "Minden média importálása"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:96
-msgid "Import"
-msgstr "Importálás"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
-msgid "Don't Import"
-msgstr "Ne importálja"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
-#, c-format
-msgid "Import %i items from %s"
-msgstr "%i elem importálása innen: %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
-#, c-format
-msgid "Import %s from %s"
-msgstr "%s importálása innen: %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-msgid "ID"
-msgstr "Azonosító"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:190
-msgid "Title"
-msgstr "Cím"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Artist"
-msgstr "Előadó"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:193
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
 msgid "Album"
 msgstr "Album"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
-msgid "Select individual media to import:"
-msgstr "Egyéni média kiválasztása importálásra"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Album"
+msgstr "Album ismétlése"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Item"
-msgstr "Elem ellenőrzése"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:69
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+msgid "Artist"
+msgstr "Előadó"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
-msgid "Check Album"
-msgstr "Album ellenőrzése"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat Artist"
+msgstr "Előadó ismétlése"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
-msgid "Check Artist"
-msgstr "Előadó ellenőrzése"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:70
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:100
+msgid "All"
+msgstr "Mind"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
-msgid "Cannot Import"
-msgstr "Nem importálható"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:70
+msgid "Repeat All"
+msgstr "Minden ismétlése"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
-#, c-format
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Enable Shuffle"
+msgstr "Keverés bekapcsolása"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:100
+msgid "Disable Shuffle"
+msgstr "Keverés kikapcsolása"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:133
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Playlist"
+msgstr "Lejátszólista hozzáadása"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:145
+msgid "Add Smart Playlist"
+msgstr "Intelligens lejátszólista hozzáadása"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:191
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:224
+msgid "Hide"
+msgstr "Elrejtés"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:191
+msgid "Show Equalizer"
+msgstr "Hangszínszabályzó megjelenítése"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:192
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:225
+msgid "Show"
+msgstr "Megjelenítés"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:192
+msgid "Hide Equalizer"
+msgstr "Hangszínszabályzó elrejtése"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:224
+msgid "Show Info Panel"
+msgstr "Információs panel megjelenítése"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:225
+msgid "Hide Info Panel"
+msgstr "Információs panel elrejtése"
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:238
+msgid "Sync"
+msgstr "Szinkronizálás"
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "Ingyenes"
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:384
+msgid "Using %s of %s (%.2f%)"
+msgstr "%s használva ennyiből: %s (%.2f%)"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:54
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:65
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:55
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:66
+msgid "Export"
 msgstr ""
-"A Noise már végez fájlműveleteket. Kérem várja meg míg befejeződik az "
-"importálás %d eszközről."
 
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:64
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:77
+msgid "Save as Playlist"
+msgstr "Mentés lejátszólistaként"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:79
+msgid "Export..."
+msgstr "Exportálás…"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:120
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
+#: /home/victor/noise/po/../src//LibraryWindow.vala:249
+msgid "Import to Library"
+msgstr "Importálás a gyűjteménybe"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:128
+msgid "Eject"
+msgstr "Kiadás"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:154
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
+msgid "New Playlist"
+msgstr "Új lejátszólista"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:155
+msgid "New Smart Playlist"
+msgstr "Új okos lejátszólista"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:156
+msgid "Import Playlists"
+msgstr "Lejátszólisták importálása"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:195
+msgid "Library"
+msgstr "Gyűjtemény"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:196
+msgid "Devices"
+msgstr "Eszközök"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:197
+msgid "Network"
+msgstr "Hálózat"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:198
+msgid "Playlists"
+msgstr "Lejátszólisták"
+
+#: /home/victor/noise/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr "Album nézet"
+
+#: /home/victor/noise/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr "Listanézet"
+
+#: /home/victor/noise/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr "Oszlop nézet"
+
+#: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:69
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:83
+msgid "Equalizer"
+msgstr "Hangszínszabályzó"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:150
+msgid "Save preset"
+msgstr "Beállítás mentése"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:414
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (egyéni)"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (egyéni %i)"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:420
+msgid "Custom Preset"
+msgstr "Egyéni beállítás"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Egyéni beállítás %i"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr "Nincs importált fájl"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#, c-format
+msgid "Unable to import %d items from %s"
+msgstr "Nem lehet %d elemet importálni innen: %s"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#, c-format
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr ""
+"%s képtelen volt %d elemet importálni. Lehetséges, hogy a fájlok sérültek"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr "Az összes hibás fájl kukába helyezése"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Move to Trash"
+msgstr "Áthelyezés a kukába"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "Mellőz"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "törlés"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "Fájl helye"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr "Egyedifájlok kiválasztása a kukába helyezéshez:"
+
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
 msgstr "Lejátszólisták exportálása"
 
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
 msgstr "Zenemappa"
 
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Zenemappa beállítása?"
 
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -446,201 +477,130 @@ msgstr ""
 "Biztos, hogy szeretné a(z) %s mappára állítani a zenemappát? Ez "
 "visszaállítja a gyűjteményét és eltávolítja a lejátszólistáit."
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
-msgid "Smart Playlist Editor"
-msgstr "Okos lejátszólista szerkesztő"
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
+msgid "Choose Music Folder"
+msgstr "Zenemappa kiválasztása"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
-msgid "Name of Playlist"
-msgstr "Lejátszólista neve"
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+msgid "Install Plugin"
+msgstr "Beépülő telepítése"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
-msgid "Rules"
-msgstr "Szabályok"
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+msgid "Required GStreamer plugin not installed"
+msgstr "Szükséges GStreamer plugin nincs telepítve"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
-msgid "Options"
-msgstr "Beállítások"
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#, c-format
+msgid ""
+"The plugin for media type %s is not installed.\n"
+"What would you like to do?"
+msgstr ""
+"A(z) %s médiatípushoz való bővítmény nincs telepítve.\n"
+"Mit szeretne tenni?"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Playlist Title"
-msgstr "Lejátszólista címe"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:81
+msgid "Metadata"
+msgstr "Metaadat"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
-msgid "Match"
-msgstr "Egyezés"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:83
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:379
+msgid "Lyrics"
+msgstr "Dalszövegek"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
-msgid "any"
-msgstr "bármely"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:179
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:350
+msgid "Editing $NAME by $ARTIST"
+msgstr "$ARTIST előadó $NAME című számának szerkesztése"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "all"
-msgstr "mind"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:181
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:352
+#, c-format
+msgid "Editing %s"
+msgstr "%s szerkesztése"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
-msgid "of the following:"
-msgstr "a következőkkel:"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:184
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:355
+#, c-format
+msgid "Editing %i songs"
+msgstr "%i szám szerkesztése"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
-msgid "Limit to"
-msgstr "Korlátozás:"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+msgid "Title"
+msgstr "Cím"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
-msgid "items"
-msgstr "elem"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:192
+msgid "Album Artist"
+msgstr "Album előadója"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-msgid "Bitrate"
-msgstr "Bitráta"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:197
-msgid "Comment"
-msgstr "Megjegyzés"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:195
-msgid "Composer"
-msgstr "Zeneszerző"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Added"
-msgstr "Hozzáadás dátuma"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-msgid "Date Released"
-msgstr "Kiadás dátuma"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:194
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:194
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
 msgid "Genre"
 msgstr "Műfaj"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:195
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Composer"
+msgstr "Zeneszerző"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:196
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Grouping"
 msgstr "Csoportosítás"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-msgid "Last Played"
-msgstr "Utoljára játszva"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+msgid "Comment"
+msgstr "Megjegyzés"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Hossz"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:198
+msgid "Track"
+msgstr "Szám"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-msgid "Playcount"
-msgstr "Lejátszások száma"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Disc"
+msgstr "Lemez"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:201
-msgid "Rating"
-msgstr "Értékelés"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-msgid "Skipcount"
-msgstr "Kihagyva"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:200
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:200
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
 msgid "Year"
 msgstr "Év"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
-msgid "is"
-msgstr "egyenlő"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:201
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Rating"
+msgstr "Értékelés"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
-msgid "contains"
-msgstr "tartalmazza"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:203
+msgid "Media Type"
+msgstr "Médiatípus"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
-msgid "does not contain"
-msgstr "nem tartalmazza"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
-msgid "is exactly"
-msgstr "pontosan"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
-msgid "is at most"
-msgstr "több"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:369
-msgid "is at least"
-msgstr "kevesebb"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
-msgid "is within"
-msgstr "között"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
-msgid "is before"
-msgstr "előtt"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "másodperc"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
-msgid "days ago"
-msgstr "napja"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
-msgid "kbps"
-msgstr "kb/s"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:83
-msgid "Equalizer"
-msgstr "Hangszínszabályzó"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:150
-msgid "Save preset"
-msgstr "Beállítás mentése"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:414
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:298
 #, c-format
-msgid "%s (Custom)"
-msgstr "%s (egyéni)"
+msgid "Lyrics not found for %s"
+msgstr "Nem található zeneszöveg ehhez: %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:416
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (egyéni %i)"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:543
+msgid "Podcast"
+msgstr "Podcast"
 
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:420
-msgid "Custom Preset"
-msgstr "Egyéni beállítás"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:422
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Egyéni beállítás %i"
-
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
 msgstr "Média importálása a gyűjteménybe"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
 msgstr "Szinkronizálása folytatása"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
 msgstr "Szinkronizálása leállítása"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
@@ -650,146 +610,320 @@ msgstr ""
 "eszközről, mivel nincsenek a szinkronizálási listán. Szeretné előbb "
 "beolvasni őket a gyűjteménybe?"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
 msgstr "A szinkronizálás el fog távolítani %i elemet innen: %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
 msgstr "A szinkronizálás el fog távolítani 1 elemet innen: %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:44
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder..."
 msgstr "Zenemappa kiválasztása..."
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+#: /home/victor/noise/po/../src//LibraryWindow.vala:253
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
 msgstr "Általános"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:123
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:123
 msgid "Music Folder Location:"
 msgstr "Zenemappa helye"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:131
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
 msgstr "Gyűjteménykezelés:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:136
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
 msgstr "Zenemappa rendezetten hagyása:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:140
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
 msgstr "Metaadatok fájlba írása:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:144
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
 msgstr "Importált fájlok másolása a gyűjteménybe:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
 msgstr "Asztali integráció:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
 msgstr "Értesítések megjelenítése"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
 msgstr "Az ablak minimalizálása zenelejátszása közben:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:159
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
 msgstr "Ablak elrejtése zenelejátszás közben:"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
-msgid "Metadata"
-msgstr "Metaadat"
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
+msgid "Smart Playlist Editor"
+msgstr "Okos lejátszólista szerkesztő"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:83
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:379
-msgid "Lyrics"
-msgstr "Dalszövegek"
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
+msgid "Name of Playlist"
+msgstr "Lejátszólista neve"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:179
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
-msgid "Editing $NAME by $ARTIST"
-msgstr "$ARTIST előadó $NAME című számának szerkesztése"
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+msgid "Rules"
+msgstr "Szabályok"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
+msgid "Options"
+msgstr "Beállítások"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Playlist Title"
+msgstr "Lejátszólista címe"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+msgid "Match"
+msgstr "Egyezés"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
+msgid "any"
+msgstr "bármely"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "all"
+msgstr "mind"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
+msgid "of the following:"
+msgstr "a következőkkel:"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
+msgid "Limit to"
+msgstr "Korlátozás:"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
+msgid "items"
+msgstr "elem"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+msgid "Bitrate"
+msgstr "Bitráta"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Added"
+msgstr "Hozzáadás dátuma"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+msgid "Date Released"
+msgstr "Kiadás dátuma"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+msgid "Last Played"
+msgstr "Utoljára játszva"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "Length"
+msgstr "Hossz"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+msgid "Playcount"
+msgstr "Lejátszások száma"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+msgid "Skipcount"
+msgstr "Kihagyva"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
+msgid "is"
+msgstr "egyenlő"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
+msgid "contains"
+msgstr "tartalmazza"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
+msgid "does not contain"
+msgstr "nem tartalmazza"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
+msgid "is exactly"
+msgstr "pontosan"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+msgid "is at most"
+msgstr "több"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:369
+msgid "is at least"
+msgstr "kevesebb"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+msgid "is within"
+msgstr "között"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
+msgid "is before"
+msgstr "előtt"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
+msgid "seconds"
+msgstr "másodperc"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
+msgid "days ago"
+msgstr "napja"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
+msgid "kbps"
+msgstr "kb/s"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr "Importálása az eszközről"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
-msgid "Editing %s"
-msgstr "%s szerkesztése"
+msgid "Import media from %s"
+msgstr "Média importálása innen: %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:184
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:355
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
-msgid "Editing %i songs"
-msgstr "%i szám szerkesztése"
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"A következő fájlok megtalálhatók %s eszközön, de nincsenek a gyűjteményében. "
+"Ellenőrizze azokat a fájlokat amiket be szeretne olvasni."
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:192
-msgid "Album Artist"
-msgstr "Album előadója"
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all media"
+msgstr "Minden média importálása"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:198
-msgid "Track"
-msgstr "Szám"
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDView.vala:96
+msgid "Import"
+msgstr "Importálás"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:199
-msgid "Disc"
-msgstr "Lemez"
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "Ne importálja"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:203
-msgid "Media Type"
-msgstr "Médiatípus"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:298
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
-msgid "Lyrics not found for %s"
-msgstr "Nem található zeneszöveg ehhez: %s"
+msgid "Import %i items from %s"
+msgstr "%i elem importálása innen: %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:541
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Song"
-msgstr "Zeneszám"
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#, c-format
+msgid "Import %s from %s"
+msgstr "%s importálása innen: %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:543
-msgid "Podcast"
-msgstr "Podcast"
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+msgid "ID"
+msgstr "Azonosító"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:71
-msgid "Move to Trash"
-msgstr "Áthelyezés a kukába"
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+msgid "Select individual media to import:"
+msgstr "Egyéni média kiválasztása importálásra"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Item"
+msgstr "Elem ellenőrzése"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+msgid "Check Album"
+msgstr "Album ellenőrzése"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+msgid "Check Artist"
+msgstr "Előadó ellenőrzése"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
+msgid "Cannot Import"
+msgstr "Nem importálható"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
+#, c-format
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"A Noise már végez fájlműveleteket. Kérem várja meg míg befejeződik az "
+"importálás %d eszközről."
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
+msgid "Remove Media"
+msgstr "Média eltávolítása"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
+msgid "Locate Media"
+msgstr "Média helye"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
+msgid "Rescan Library"
+msgstr "Gyűjtemény átvizsgálása"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
+msgid "Do Nothing"
+msgstr "Ne tegyen semmit"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
+msgid "Could not find media file"
+msgstr "Nem található médiafájl"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
+msgid ""
+"The music file for $NAME by $ARTIST could not be found. What would you like "
+"to do?"
+msgstr ""
+"A(z) $ARTIST előadó $NAME című számához tartozó fájl nem található. Mit "
+"szeretne tenni?"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
+#, c-format
+msgid "%i media files could not be found. What would you like to do?"
+msgstr "%i médiafájl nem található. Mit szeretne tenni?"
+
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
+msgid "Playlist Editor"
+msgstr "Lejátszólista szerkesztő"
+
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
+#, c-format
+msgid "The name %s is already in use"
+msgstr "%s név már használatban van"
+
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
 msgstr "Eltávolítás innen: %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
-#: /home/noelco/noise/po/../src//Widgets/TopDisplay.vala:69
-msgid "Cancel"
-msgstr "Mégsem"
-
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Eltávolítja %d zeneszámokat innen: %s?"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "„%s” eltávolítása innen: %s?"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -804,801 +938,90 @@ msgstr[1] ""
 "Ez el fogja távolítani a zeneszámokat a gyűjteményéből és minden olyan "
 "eszközről ami automatikusan szinkronizál ezzel: %s."
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:47
-msgid "Not Imported Files"
-msgstr "Nincs importált fájl"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:161
 #, c-format
-msgid "Unable to import %d items from %s"
-msgstr "Nem lehet %d elemet importálni innen: %s"
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s, előadó: %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-"%s képtelen volt %d elemet importálni. Lehetséges, hogy a fájlok sérültek"
+msgid "%d minutes"
+msgstr "%d perc"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:66
-msgid "Move all corrupted files to trash"
-msgstr "Az összes hibás fájl kukába helyezése"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:72
-msgid "Ignore"
-msgstr "Mellőz"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:93
-msgid "del"
-msgstr "törlés"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:98
-msgid "File Location"
-msgstr "Fájl helye"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:125
-msgid "Select individual files to move to trash:"
-msgstr "Egyedifájlok kiválasztása a kukába helyezéshez:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
-msgid "Playlist Editor"
-msgstr "Lejátszólista szerkesztő"
-
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
-msgid "The name %s is already in use"
-msgstr "%s név már használatban van"
+msgid "%d hours"
+msgstr "%d óra"
 
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
-msgid "Install Plugin"
-msgstr "Beépülő telepítése"
-
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
-msgid "Required GStreamer plugin not installed"
-msgstr "Szükséges GStreamer plugin nincs telepítve"
-
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
-msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
-msgstr ""
-"A(z) %s médiatípushoz való bővítmény nincs telepítve.\n"
-"Mit szeretne tenni?"
+msgid "%d days"
+msgstr "%d nap"
 
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:49
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:60
-msgid "Remove"
-msgstr "Eltávolítás"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:50
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:61
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:74
-msgid "Export..."
-msgstr "Exportálás…"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:59
-msgid "Edit"
-msgstr "Szerkesztés"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:72
-msgid "Save as Playlist"
-msgstr "Mentés lejátszólistaként"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:115
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:244
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
-msgid "Import to Library"
-msgstr "Importálás a gyűjteménybe"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:123
-msgid "Eject"
-msgstr "Kiadás"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:155
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
-msgid "New Playlist"
-msgstr "Új lejátszólista"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:156
-msgid "New Smart Playlist"
-msgstr "Új okos lejátszólista"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:157
-msgid "Import Playlists"
-msgstr "Lejátszólisták importálása"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:201
-msgid "Library"
-msgstr "Gyűjtemény"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:202
-msgid "Devices"
-msgstr "Eszközök"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:203
-msgid "Network"
-msgstr "Hálózat"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:204
-msgid "Playlists"
-msgstr "Lejátszólisták"
-
-#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:49
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
-msgid "Automatic"
-msgstr "Automatikus"
-
-#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Jelenlegi törlése"
-
-#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr "Album nézet"
-
-#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr "Listanézet"
-
-#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr "Oszlop nézet"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Off"
-msgstr "Ki"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
-msgid "Enable Repeat"
-msgstr "Ismétlés bekapcsolása"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Repeat Song"
-msgstr "Zeneszám ismétlése"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
-msgid "Repeat Album"
-msgstr "Album ismétlése"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Repeat Artist"
-msgstr "Előadó ismétlése"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
-msgid "All"
-msgstr "Mind"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
-msgid "Repeat All"
-msgstr "Minden ismétlése"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Enable Shuffle"
-msgstr "Keverés bekapcsolása"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
-msgid "Disable Shuffle"
-msgstr "Keverés kikapcsolása"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:133
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:144
-msgid "Add Playlist"
-msgstr "Lejátszólista hozzáadása"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:145
-msgid "Add Smart Playlist"
-msgstr "Intelligens lejátszólista hozzáadása"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:224
-msgid "Hide"
-msgstr "Elrejtés"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
-msgid "Show Equalizer"
-msgstr "Hangszínszabályzó megjelenítése"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:225
-msgid "Show"
-msgstr "Megjelenítés"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
-msgid "Hide Equalizer"
-msgstr "Hangszínszabályzó elrejtése"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:224
-msgid "Show Info Panel"
-msgstr "Információs panel megjelenítése"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:225
-msgid "Hide Info Panel"
-msgstr "Információs panel elrejtése"
-
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:238
-msgid "Sync"
-msgstr "Szinkronizálás"
-
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "Ingyenes"
-
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:384
-msgid "Using %s of %s (%.2f%)"
-msgstr "%s használva ennyiből: %s (%.2f%)"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:245
-msgid "Rescan Music Folder"
-msgstr "Zenemappa újravizsgálása"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:248
-msgid "Preferences..."
-msgstr "Beállítások..."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:268
-msgid "Search Music"
-msgstr "Zene keresése"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:619
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:714
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
-msgid "Music"
-msgstr "Zene"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:664
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:100
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Lejátszási sor"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:666
-msgid "No songs in Queue"
-msgstr "Nincs szám a lejátszási sorban"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:666
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"Zeneszámok sorba állításához válassza a <b>jobbgombos menüből</b> a "
-"<b>Hozzáadás a lejátszási sorhoz</b> lehetőséget. Ha a zeneszám befejeződik, "
-"a sorba állított zeneszám fog elindulni, nem az éppen lejátszott lista "
-"következő eleme."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:670
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:98
-msgid "History"
-msgstr "Előzmények"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:672
-msgid "No songs in History"
-msgstr "Nincs szám az előzmények között"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:672
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"Ha egy zeneszám egy része lejátszásra került, akkor hozzáadódik az "
-"előzmények listájához.\n"
-"Ebben a listában meg tudja nézni az összes aktuális munkamenetben lejátszott "
-"számot."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:900
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:902
-msgid "New playlist"
-msgstr "Új lejátszólista"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:903
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:906
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
-msgid "New playlist (%i)"
-msgstr "Új lejátszólista (%i)"
+msgid "%u items, %s, %s"
+msgstr "%u elem, %s, %s"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1105
-msgid "Import Music"
-msgstr "Zene importálása"
+#: /home/victor/noise/po/../src//Views/GridView/GridView.vala:64
+msgid "No Albums Found."
+msgstr "Nem található album."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1137
+#: /home/victor/noise/po/../src//Views/GridView/GridView.vala:160
 #, c-format
-msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "Zene <b>importálása</b> a gyűjteménybe, innen: <b>%s</b>"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1152
-msgid "Rescanning music folder for changes"
-msgstr "Zenemappa átvizsgálása a változásokért"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1159
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
-msgid "Could not find Music Folder"
-msgstr "Nem található zenemappa"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1159
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1226
-msgid "Import Complete"
-msgstr "Importálás kész"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1226
-#, c-format
-msgid "%s has imported your library."
-msgstr "%s importálta a gyűjteményét"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
-msgid "Cancelling Sync"
-msgstr "Szinkronizálás visszavonása"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
-msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
-"Eszköz szinkronizáció visszavonva. Művelet leáll a mostani média után."
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
-msgid "Cancelling Import"
-msgstr "Importálás visszavonása"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
-msgid ""
-"Import from device has been cancelled. Operation will stop after this media."
-msgstr ""
-"A beolvasás az eszközről meg lett szakítva. A művelet meg lesz szakítva "
-"ezután a zeneszám után."
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
-msgid "No External Songs"
-msgstr "Nincs külső szám"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr ""
-"Nem található olyan zeneszám ezen az eszközön, ami megtalálható lenne a "
-"gyűjteményében."
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr "Műfajok"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr "Előadók"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr "Albumok"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr "Évek"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr "Értékelések"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr "Szerzők"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr "Csoportosítások"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:156
-msgid "On Left"
-msgstr "Baloldalt"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:158
-msgid "On Top"
-msgstr "Felül"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:404
-msgid "Unrated"
-msgstr "Értékeletlen"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:406
-#, c-format
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i csillag"
-msgstr[1] "%i csillag"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Minden műfaj"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-#, c-format
-msgid "All %i Genres"
-msgstr "Mind a(z) %i műfaj"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Nincs műfaj"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Minden előadó"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Artists"
-msgstr "Mind a(z) %i előadó"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Nincs előadó"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Minden album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Albums"
-msgstr "Mind a(z) %i album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Nincs album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Minden év"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Years"
-msgstr "Mind a(z) %i év"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Nincs év"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Minden értékelés"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Nincs értékelés"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "Minden csoportosítás"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-#, c-format
-msgid "All %i Groupings"
-msgstr "Mind a(z) %i csoportosítás"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "Nincs csoportosítás"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Minden szerző"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Composers"
-msgstr "Mind a(z) %i szerző"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Nincs szerző"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:58
-msgid "Remove from Library"
-msgstr "Eltávolítás a gyűjteményből"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:67
-msgid "Remove from Queue"
-msgstr "Eltávolítás a sorból"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:79
-msgid "Remove from Device"
-msgstr "Eltávolítás az eszközről"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
-msgid "Scroll to Current Song"
-msgstr "Görgetés az éppen lejátszott számhoz"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
-msgid "Edit Song Info"
-msgstr "Száminformációk szerkesztése"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
-msgid "Show in File Browser"
-msgstr "Megjelenítés a fájlböngészőben"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:96
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Hozzáadás a lejátszási sorhoz"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
-msgid "Add to Playlist"
-msgstr "Hozzáadás a lejátszólistához"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
-msgid "Remove Song"
-msgstr "Szám eltávolítása"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:217
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "%i zeneszám importálása ennyiből: %i"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:651
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:666
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
-msgid "Never"
-msgstr "Soha"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:729
-msgid "Sample List String"
-msgstr ""
-"Zeneszám címe, előadója, előadó albuma, album előadója, szerző, műfaj"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:125
-msgid "Autosize Columns"
-msgstr "Oszlopok automatikus méretezése"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:132
-msgid "Display Album Art"
-msgstr "Albumborító megjelenítése"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
-msgctxt "List column title"
-msgid "Track"
-msgstr "Szám"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
-msgctxt "List column title"
-msgid "Title"
-msgstr "Cím"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
-msgctxt "List column title"
-msgid "Length"
-msgstr "Hossz"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Előadó"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
-msgctxt "List column title"
-msgid "Album"
-msgstr "Album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Album előadója"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Szerző"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Műfaj"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
-msgctxt "List column title"
-msgid "Year"
-msgstr "Év"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Csoportosítás"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Bitráta"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Értékelés"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Lejátszások"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Kihagyások"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Hozzáadás dátuma"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Utoljára játszva"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM (ütem/perc)"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Hely"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Fájlméret"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:227
-#, c-format
-msgid "%i kbps"
-msgstr "%i kbps"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:93
-msgid "No Songs Found."
-msgstr "Nem található zeneszám."
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:369
-#, c-format
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i szám"
-msgstr[1] "%i szám"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:371
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u szám"
-msgstr[1] "%u szám"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:379
-#, c-format
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:78
-msgid "Device Name:"
-msgstr "Eszköznév:"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:81
-msgid "Device Name"
-msgstr "Eszköznév"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:83
-msgid "Automatically sync when plugged in:"
-msgstr "Automatikus szinkronizálás, ha be van dugva"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:90
-msgid "Sync:"
-msgstr "Szinkronizálás:"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-msgid "Other Files"
-msgstr "Más fájlok"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:114
-msgid "Podcasts"
-msgstr "Podcastek"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:385
-msgid "All Music"
-msgstr "Minden zene"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:388
-msgid "All Podcasts"
-msgstr "Minden Podcast"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
-msgid "Sync Failed"
-msgstr "Szinkronizáció meghiúsult"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"A(z) %s lejátszólistával szinkronizált a(z) %s eszköz, de nem található."
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-msgid "Cannot Sync"
-msgstr "Nem lehet szinkronizálni"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Nem lehet szinkronizálni az eszközzel a kiválasztott szinkronizálási "
-"beállításokkal. Nincs elég hely a lemezen."
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-msgid "Device is already being synced."
-msgstr "Az eszköz már szinkronizálva van."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+msgstr[1] "%u album"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+msgid "No Songs"
+msgstr "Nincs szám"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
+msgid "Please wait until that this playlist get updated."
+msgstr "Kérem várjon amíg a lejátszólista frissül."
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 msgid "Get Some Tunes"
 msgstr "Dalok beszerzése"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:43
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:43
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr "%s nem találta a zenéit"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
 msgid "Locate"
 msgstr "Kikeresés"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
 msgid "Change your music folder."
 msgstr "Zenemappa megváltoztatása"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import your Music"
 msgstr "Importálja zenéit"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 #, c-format
 msgid "Import all your Music from %s into your library."
 msgstr "Importálja összes zenéjét %s eszközről a gyűjteményébe."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
 msgid "Select Music Folder"
 msgstr "Zenemappa kiválasztása"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
-msgid "No Songs"
-msgstr "Nincs szám"
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:473
+msgid "No media"
+msgstr "Nincs adathordozó"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
-msgid "Please wait until that this playlist get updated."
-msgstr "Kérem várjon amíg a lejátszólista frissül."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1606,11 +1029,11 @@ msgstr ""
 "Zeneszámok lejátszási listához való hozzáadásához válassza a <b>jobbgombos "
 "menüből</b> a <b>Hozzáadás a lejátszási sorhoz</b> lehetőséget."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "Edit Smart Playlist"
 msgstr "Okos lejátszólista szerkesztése"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1622,137 +1045,641 @@ msgstr ""
 "kattintson <b>jobb gombbal</b> az oldalsávon, és válassza a "
 "<b>Szerkesztés</b> lehetőséget, vagy rá is kattinthat az alább lévő gombra."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/ViewWrapper.vala:473
-msgid "No media"
-msgstr "Nincs adathordozó"
-
-#: /home/noelco/noise/po/../src//Views/ContentView.vala:21
+#: /home/victor/noise/po/../src//Views/ContentView.vala:21
 #, c-format
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
 msgstr "%s, %s, %s"
 
-#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:64
-msgid "No Albums Found."
-msgstr "Nem található album."
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:45
+msgid "Cancelling Sync"
+msgstr "Szinkronizálás visszavonása"
 
-#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:160
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-msgstr[1] "%u album"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d perc"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d óra"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d nap"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u elem, %s, %s"
-
-#: /home/noelco/noise/po/../src//Views/GridView/PopupListView.vala:161
-#, c-format
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s, előadó: %s"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:149
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:174
-msgid "Empty device!"
-msgstr "Üres eszköz!"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:153
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:178
-msgid "This device does not contain any music."
-msgstr "Ez az eszköz nem tartalmaz zenét."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:320
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:321
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:463
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:464
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:337
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:338
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:577
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
-#, c-format
-msgid "Syncing <b>%s</b>..."
-msgstr "Szinkronizálás <b>%s</b>..."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
-msgid "Finishing sync process..."
-msgstr "Szinkronizálási művelet befejezése…"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
-msgid "Cancelling Sync..."
-msgstr "Szinkronizálás megszakítása…"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:386
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:387
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:475
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
-msgid "There is not enough space on Device to complete the Sync..."
-msgstr "Nincs elég hely az eszközön a szinkronizálás befejezéséhez..."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:501
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:502
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:729
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
-#, c-format
-msgid "Removing from <b>%s</b>..."
-msgstr "Eltávolítás innen: <b>%s</b>..."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:546
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:581
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1016
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:45
+msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
-"<b>$ARTIST</b> előadó <b>$NAME</b> című számának importálása a "
-"gyűjteménybe..."
+"Eszköz szinkronizáció visszavonva. Művelet leáll a mostani média után."
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:661
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:49
+msgid "Cancelling Import"
+msgstr "Importálás visszavonása"
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:49
+msgid ""
+"Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
-"<b>$ARTIST</b> előadó <b>$NAME</b> című számának hozzáadása $DEVICE eszközhöz"
+"A beolvasás az eszközről meg lett szakítva. A művelet meg lesz szakítva "
+"ezután a zeneszám után."
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:680
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:114
+msgid "No External Songs"
+msgstr "Nincs külső szám"
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:114
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
-"<b>$ARTIST</b> előadó <b>$NAME</b> című számának eltávolítása $DEVICE "
-"eszközről"
+"Nem található olyan zeneszám ezen az eszközön, ami megtalálható lenne a "
+"gyűjteményében."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
+#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:227
+#, c-format
+msgid "%i kbps"
+msgstr "%i kbps"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:666
+msgid "Never"
+msgstr "Soha"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
+msgctxt "List column title"
+msgid "Track"
+msgstr "Szám"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
+msgctxt "List column title"
+msgid "Title"
+msgstr "Cím"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
+msgctxt "List column title"
+msgid "Length"
+msgstr "Hossz"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Előadó"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Album"
+msgstr "Album"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Album előadója"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Szerző"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Műfaj"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Year"
+msgstr "Év"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Csoportosítás"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Bitráta"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Értékelés"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Lejátszások"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Kihagyások"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Hozzáadás dátuma"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Utoljára játszva"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM (ütem/perc)"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Hely"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Fájlméret"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:58
+msgid "Remove from Library"
+msgstr "Eltávolítás a gyűjteményből"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:67
+msgid "Remove from Queue"
+msgstr "Eltávolítás a sorból"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:79
+msgid "Remove from Device"
+msgstr "Eltávolítás az eszközről"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
+msgid "Scroll to Current Song"
+msgstr "Görgetés az éppen lejátszott számhoz"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
+msgid "Edit Song Info"
+msgstr "Száminformációk szerkesztése"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+msgid "Show in File Browser"
+msgstr "Megjelenítés a fájlböngészőben"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:96
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Hozzáadás a lejátszási sorhoz"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
+msgid "Add to Playlist"
+msgstr "Hozzáadás a lejátszólistához"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
+msgid "Remove Song"
+msgstr "Szám eltávolítása"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:217
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "%i zeneszám importálása ennyiből: %i"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:651
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:729
+msgid "Sample List String"
+msgstr ""
+"Zeneszám címe, előadója, előadó albuma, album előadója, szerző, műfaj"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:125
+msgid "Autosize Columns"
+msgstr "Oszlopok automatikus méretezése"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:132
+msgid "Display Album Art"
+msgstr "Albumborító megjelenítése"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr "Műfajok"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr "Előadók"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr "Albumok"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr "Évek"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr "Értékelések"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr "Szerzők"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr "Csoportosítások"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "Minden műfaj"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+#, c-format
+msgid "All %i Genres"
+msgstr "Mind a(z) %i műfaj"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "Nincs műfaj"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "Minden előadó"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Artists"
+msgstr "Mind a(z) %i előadó"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "Nincs előadó"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "Minden album"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Albums"
+msgstr "Mind a(z) %i album"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "Nincs album"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "Minden év"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Years"
+msgstr "Mind a(z) %i év"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "Nincs év"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "Minden értékelés"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "Nincs értékelés"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr "Minden csoportosítás"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#, c-format
+msgid "All %i Groupings"
+msgstr "Mind a(z) %i csoportosítás"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr "Nincs csoportosítás"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "Minden szerző"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Composers"
+msgstr "Mind a(z) %i szerző"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "Nincs szerző"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:156
+msgid "On Left"
+msgstr "Baloldalt"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:158
+msgid "On Top"
+msgstr "Felül"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:404
+msgid "Unrated"
+msgstr "Értékeletlen"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:406
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i csillag"
+msgstr[1] "%i csillag"
+
+#: /home/victor/noise/po/../src//Views/ListView/ListView.vala:93
+msgid "No Songs Found."
+msgstr "Nem található zeneszám."
+
+#: /home/victor/noise/po/../src//Views/ListView/ListView.vala:369
+#, c-format
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i szám"
+msgstr[1] "%i szám"
+
+#: /home/victor/noise/po/../src//Views/ListView/ListView.vala:371
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u szám"
+msgstr[1] "%u szám"
+
+#: /home/victor/noise/po/../src//Views/ListView/ListView.vala:379
+#, c-format
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:78
+msgid "Device Name:"
+msgstr "Eszköznév:"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:81
+msgid "Device Name"
+msgstr "Eszköznév"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:83
+msgid "Automatically sync when plugged in:"
+msgstr "Automatikus szinkronizálás, ha be van dugva"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:90
+msgid "Sync:"
+msgstr "Szinkronizálás:"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
+msgid "Other Files"
+msgstr "Más fájlok"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:113
+#: /home/victor/noise/po/../src//LibraryWindow.vala:624
+#: /home/victor/noise/po/../src//LibraryWindow.vala:719
+msgid "Music"
+msgstr "Zene"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:114
+msgid "Podcasts"
+msgstr "Podcastek"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:385
+msgid "All Music"
+msgstr "Minden zene"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:388
+msgid "All Podcasts"
+msgstr "Minden Podcast"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:518
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:556
+msgid "Sync Failed"
+msgstr "Szinkronizáció meghiúsult"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:518
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:556
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"A(z) %s lejátszólistával szinkronizált a(z) %s eszköz, de nem található."
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:604
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+msgid "Cannot Sync"
+msgstr "Nem lehet szinkronizálni"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:604
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Nem lehet szinkronizálni az eszközzel a kiválasztott szinkronizálási "
+"beállításokkal. Nincs elég hely a lemezen."
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+msgid "Device is already being synced."
+msgstr "Az eszköz már szinkronizálva van."
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:559
+msgid "Favorite Songs"
+msgstr "Kedvenc számok"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:569
+msgid "Recently Added"
+msgstr "Legutóbb hozzáadott"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:591
+msgid "Recent Favorites"
+msgstr "Legutóbbi kedvencek"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:601
+msgid "Never Played"
+msgstr "Még le nem játszott"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:611
+msgid "Over Played"
+msgstr "Túljátszott"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:621
+msgid "Not Recently Played"
+msgstr "Mostanában nem játszott"
+
+#: /home/victor/noise/po/../src//PlaybackManager.vala:98
+#: /home/victor/noise/po/../src//LibraryWindow.vala:676
+msgid "History"
+msgstr "Előzmények"
+
+#: /home/victor/noise/po/../src//PlaybackManager.vala:100
+#: /home/victor/noise/po/../src//LibraryWindow.vala:670
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Lejátszási sor"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:250
+msgid "Rescan Music Folder"
+msgstr "Zenemappa újravizsgálása"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:273
+msgid "Search Music"
+msgstr "Zene keresése"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:672
+msgid "No songs in Queue"
+msgstr "Nincs szám a lejátszási sorban"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:672
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Zeneszámok sorba állításához válassza a <b>jobbgombos menüből</b> a "
+"<b>Hozzáadás a lejátszási sorhoz</b> lehetőséget. Ha a zeneszám befejeződik, "
+"a sorba állított zeneszám fog elindulni, nem az éppen lejátszott lista "
+"következő eleme."
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:678
+msgid "No songs in History"
+msgstr "Nincs szám az előzmények között"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:678
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Ha egy zeneszám egy része lejátszásra került, akkor hozzáadódik az "
+"előzmények listájához.\n"
+"Ebben a listában meg tudja nézni az összes aktuális munkamenetben lejátszott "
+"számot."
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:907
+#: /home/victor/noise/po/../src//LibraryWindow.vala:909
+msgid "New playlist"
+msgstr "Új lejátszólista"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:910
+#: /home/victor/noise/po/../src//LibraryWindow.vala:913
+#, c-format
+msgid "New playlist (%i)"
+msgstr "Új lejátszólista (%i)"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1112
+msgid "Import Music"
+msgstr "Zene importálása"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1144
+#, c-format
+msgid "<b>Importing</b> music from <b>%s</b> to library."
+msgstr "Zene <b>importálása</b> a gyűjteménybe, innen: <b>%s</b>"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1159
+msgid "Rescanning music folder for changes"
+msgstr "Zenemappa átvizsgálása a változásokért"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1166
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
+msgid "Could not find Music Folder"
+msgstr "Nem található zenemappa"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1166
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van."
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1233
+msgid "Import Complete"
+msgstr "Importálás kész"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1233
+#, c-format
+msgid "%s has imported your library."
+msgstr "%s importálta a gyűjteményét"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Sima"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Klasszikus"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Club"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Dance"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Teljes mély"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Teljes magas"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Teljes mély és magas"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Fülhallgató"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Nagy terem"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Élő"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Party"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Soft"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Techno"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
 msgstr "Hang CD érvénytelen"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s nem tudja a hang CD tartalmát beolvasni."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1760,21 +1687,21 @@ msgstr ""
 "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van, mielőtt "
 "a CD-t importálja."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
 msgid "No songs on CD"
 msgstr "Nem található szám a CD-n"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "A(z) %s nem talált számokat a CD-n. Nem lehet számot importálni."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s már importál"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1783,58 +1710,193 @@ msgstr ""
 "Kérem várjon, amíg a %s befejezi a jelenlegi importálást, mielőtt importálja "
 "a CD-t."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
 msgid "CD Import Complete"
 msgstr "CD importálása kész"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "A(z) %s befejezte %i szám importálását a hanglemezről."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "A(z) %s befejezte egy szám importálását a hanglemezről."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "Sáv importálása: %i: %s"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:422
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:422
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "CD importálás <b>megszakítva</b> a jelenlegi importálás után."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:444
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:444
 msgid "An error occured during the Import of this CD"
 msgstr "Hiba történt a CD-ről való importálás közben"
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:174
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:149
+msgid "Empty device!"
+msgstr "Üres eszköz!"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:178
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:153
+msgid "This device does not contain any music."
+msgstr "Ez az eszköz nem tartalmaz zenét."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:337
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:338
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:577
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:320
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:321
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:463
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:464
+#, c-format
+msgid "Syncing <b>%s</b>..."
+msgstr "Szinkronizálás <b>%s</b>..."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
+msgid "Finishing sync process..."
+msgstr "Szinkronizálási művelet befejezése…"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
+msgid "Cancelling Sync..."
+msgstr "Szinkronizálás megszakítása…"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:475
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:386
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:387
+msgid "There is not enough space on Device to complete the Sync..."
+msgstr "Nincs elég hely az eszközön a szinkronizálás befejezéséhez..."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:661
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr ""
+"<b>$ARTIST</b> előadó <b>$NAME</b> című számának hozzáadása $DEVICE eszközhöz"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:729
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:501
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:502
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr "Eltávolítás innen: <b>%s</b>..."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:680
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr ""
+"<b>$ARTIST</b> előadó <b>$NAME</b> című számának eltávolítása $DEVICE "
+"eszközről"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
 msgid "Syncing playlists"
 msgstr "Lejátszólisták szinkronizálása"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1016
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:546
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:581
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
+msgstr ""
+"<b>$ARTIST</b> előadó <b>$NAME</b> című számának importálása a "
+"gyűjteménybe..."
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMedia.vala:46
+msgid "Similar"
+msgstr "Hasonló"
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:77
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
+msgid "No similar songs found"
+msgstr "Nem található hasonló szám"
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:77
+msgid ""
+"There is no songs similar to the current song in your library. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
+msgstr ""
+"Nincsenek az éppen lejátszotthoz hasonló zenék a gyűjteményében. Győződjön "
+"meg róla, hogy az össze zeneinformáció helyes-e, és hogy csatlakozik-e az "
+"internetre. Néhány zeneszámra nincs találat."
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "média"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr "Hasonló média"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+msgid "Give Noise Permission"
+msgstr "Adjon jogot a Noise-nak"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+msgid "Unsuccessful. Click To Try Again."
+msgstr "Sikertelen. Kattintson az újrapróbáláshoz."
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+msgid "Scrobbling Already Enabled"
+msgstr "A továbbítás már engedélyezve van"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+msgid "Success!"
+msgstr "Siker!"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+msgid "Complete Login"
+msgstr "Bejelentkezés befejezése"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:42
+msgid "Last.fm"
+msgstr "Last.fm"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:47
+msgid "Last.fm Integration"
+msgstr "Last.fm integráció"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+msgid "Click to redo the Last.fm login process"
+msgstr "Kattintson a Last.fm bejelentkező folyamat megismétléséhez"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+msgid ""
+"To allow for Last.fm integration, you must give permission to Noise. You "
+"only need to do this once."
+msgstr ""
+"A Last.fm integráció engedélyezéséhez jogosultságot kell adnia a Noise-nak. "
+"Csak egyszer kell elvégezni."
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
 msgid "Fetching similar songs"
 msgstr "Hasonló számok lekérése"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
 msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
 msgstr ""
 "<b>$ARTIST</b> előadó <b>$NAME</b> című számához hasonló számok keresése"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:103
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:103
 #, c-format
 msgid "Similar to %s"
 msgstr "Hasonló ehhez: %s"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
-#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:82
-msgid "No similar songs found"
-msgstr "Nem található hasonló szám"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
 msgid ""
 "$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
 "your library. Make sure all song info is correct and you are connected to "
@@ -1845,11 +1907,11 @@ msgstr ""
 "e, és hogy csatlakozik-e az internetre. Néhány zeneszámhoz nincsenek "
 "találatok."
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
 msgid "Similar Song View"
 msgstr "Hasonló szám nézet"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1859,68 +1921,6 @@ msgstr ""
 "Ebben a nézetben a(z) %s automatikusan meg fogja keresni az éppen "
 "lejátszotthoz hasonló számokat. Ezek után elindíthatja, vagy elmentheti "
 "lejátszólistába őket, a későbbi lejátszáshoz."
-
-#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:82
-msgid ""
-"There is no songs similar to the current song in your library. Make sure all "
-"song info is correct and you are connected to the Internet. Some songs may "
-"not have matches."
-msgstr ""
-"Nincsenek az éppen lejátszotthoz hasonló zenék a gyűjteményében. Győződjön "
-"meg róla, hogy az össze zeneinformáció helyes-e, és hogy csatlakozik-e az "
-"internetre. Néhány zeneszámra nincs találat."
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
-msgid "media"
-msgstr "média"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
-msgid "Similar Media"
-msgstr "Hasonló média"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:30
-msgid "Give Noise Permission"
-msgstr "Adjon jogot a Noise-nak"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:31
-msgid "Unsuccessful. Click To Try Again."
-msgstr "Sikertelen. Kattintson az újrapróbáláshoz."
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:32
-msgid "Scrobbling Already Enabled"
-msgstr "A továbbítás már engedélyezve van"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:33
-msgid "Success!"
-msgstr "Siker!"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:34
-msgid "Complete Login"
-msgstr "Bejelentkezés befejezése"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:42
-msgid "Last.fm"
-msgstr "Last.fm"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:47
-msgid "Last.fm Integration"
-msgstr "Last.fm integráció"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
-msgid "Click to redo the Last.fm login process"
-msgstr "Kattintson a Last.fm bejelentkező folyamat megismétléséhez"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
-msgid ""
-"To allow for Last.fm integration, you must give permission to Noise. You "
-"only need to do this once."
-msgstr ""
-"A Last.fm integráció engedélyezéséhez jogosultságot kell adnia a Noise-nak. "
-"Csak egyszer kell elvégezni."
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarMedia.vala:46
-msgid "Similar"
-msgstr "Hasonló"
 
 #~ msgid "Done"
 #~ msgstr "Kész"

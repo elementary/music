@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-26 19:32+0100\n"
+"POT-Creation-Date: 2012-12-01 13:06-0600\n"
 "PO-Revision-Date: 2012-11-25 17:15+0000\n"
 "Last-Translator: Sebastian Gołębiowski <gsebastian16@gmail.com>\n"
 "Language-Team: polski <>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-11-27 06:16+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-12-02 04:55+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "Language: \n"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -28,8 +28,8 @@ msgstr[0] "%d sekunda"
 msgstr[1] "%d sekundy"
 msgstr[2] "%d sekund"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:75
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:75
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -37,7 +37,7 @@ msgstr[0] "%u minuta"
 msgstr[1] "%u minuty"
 msgstr[2] "%u minut"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:48
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:48
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
@@ -46,13 +46,13 @@ msgstr[1] "%u sekundy"
 msgstr[2] "%u sekund"
 
 #. / Minutes and seconds
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:50
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:50
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s i %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
@@ -60,7 +60,7 @@ msgstr[0] "%u dzień"
 msgstr[1] "%u dni"
 msgstr[2] "%u dni"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:72
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
@@ -69,28 +69,28 @@ msgstr[1] "%u godziny"
 msgstr[2] "%u godzin"
 
 #. / days, hours and minutes
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s i %s"
 
 #. / days and hours
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s i %s"
 
 #. / days and minutes
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s i %s"
 
 #. / hours and minutes
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:100
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:100
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -98,350 +98,382 @@ msgstr "%s i %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:187
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:187
 msgid "Export Playlist"
 msgstr "Eksportuj listę odtwarzania"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:195
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:289
 msgid "MPEG Version 3.0 Extended (*.m3u)"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:200
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:294
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
 msgstr ""
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
 msgstr "Lista odtwarzania"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:280
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:280
 #, c-format
 msgid "Import %s"
 msgstr "Import %s"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
+#: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:314
 msgid "Unrecognized playlist file. Import failed."
 msgstr ""
 
 #. / Used for unknown titles, artists, or album names.
-#: /home/noelco/noise/po/../core//Media.vala:35
+#: /home/victor/noise/po/../core//Media.vala:35
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: /home/noelco/noise/po/../core//Media.vala:45
+#: /home/victor/noise/po/../core//Media.vala:45
 msgid "Radio Station"
 msgstr "Stacja radiowa"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: /home/noelco/noise/po/../core//Media.vala:175
+#: /home/victor/noise/po/../core//Media.vala:175
 msgid "$NAME on $ALBUM"
 msgstr "$NAME z albumu $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: /home/noelco/noise/po/../core//Media.vala:178
+#: /home/victor/noise/po/../core//Media.vala:178
 msgid "$NAME by $ARTIST"
 msgstr "$NAME w wykonaniu $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: /home/noelco/noise/po/../core//Media.vala:184
+#: /home/victor/noise/po/../core//Media.vala:184
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME w wykonaniu $ARTIST z albumu $ALBUM"
 
-#: /home/noelco/noise/po/../src//Noise.vala:37
+#: /home/victor/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
 msgstr "Umożliwia słuchanie muzyki"
 
-#: /home/noelco/noise/po/../src//Noise.vala:38
+#: /home/victor/noise/po/../src//Noise.vala:38
 msgid "Music Player"
 msgstr "Odtwarzacz muzyki"
 
-#: /home/noelco/noise/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Nieznana ścieżka"
+#: /home/victor/noise/po/../src//LibraryManager.vala:256
+#, c-format
+msgid "Importing music from %s..."
+msgstr "Importowanie muzyki z %s..."
 
-#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Nieznany album"
+#: /home/victor/noise/po/../src//LibraryManager.vala:299
+msgid "Adding files to library..."
+msgstr "Dodawanie plików do kolekcji..."
 
-#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/noelco/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:179
-msgid "Unknown Artist"
-msgstr "Nieznany wykonawca"
+#: /home/victor/noise/po/../src//LibraryManager.vala:341
+#, c-format
+msgid "Adding music from %s to library..."
+msgstr "Dodawanie muzyki z %s do kolekcji..."
 
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Płaskie"
+#: /home/victor/noise/po/../src//LibraryManager.vala:369
+msgid "Rescanning music for changes. This may take a while..."
+msgstr "Wyszukiwanie zmian w katalogu z muzyką. To może trochę potrwać..."
 
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klasyczna"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Klubowa"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Dance"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Pełen bass"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Pełen sopran"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Pełen bass + sopran"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Słuchawki"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Duża hala"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Na żywo"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Impreza"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Soft"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Soft Rock"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Techno"
-
-#: /home/noelco/noise/po/../src//FileOperator.vala:332
+#: /home/victor/noise/po/../src//FileOperator.vala:332
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library..."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:424
+#: /home/victor/noise/po/../src//FileOperator.vala:424
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
 msgstr "<b>Kopiowanie</b> plików do <b>katalogu z muzyką</b>."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:250
-#, c-format
-msgid "Importing music from %s..."
-msgstr "Importowanie muzyki z %s..."
+#: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/victor/noise/po/../src//GStreamer/Streamer.vala:179
+msgid "Unknown Artist"
+msgstr "Nieznany wykonawca"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:293
-msgid "Adding files to library..."
-msgstr "Dodawanie plików do kolekcji..."
+#: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Nieznana ścieżka"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:335
-#, c-format
-msgid "Adding music from %s to library..."
-msgstr "Dodawanie muzyki z %s do kolekcji..."
+#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Nieznany album"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:363
-msgid "Rescanning music for changes. This may take a while..."
-msgstr "Wyszukiwanie zmian w katalogu z muzyką. To może trochę potrwać..."
+#: /home/victor/noise/po/../src//Widgets/PresetList.vala:49
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+msgid "Automatic"
+msgstr "Automatycznie"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:559
-msgid "Favorite Songs"
-msgstr "Ulubione"
+#: /home/victor/noise/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Usuń bieżący"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:569
-msgid "Recently Added"
-msgstr "Ostatnio dodane"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:66
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Off"
+msgstr "Wyłącz"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:591
-msgid "Recent Favorites"
-msgstr "Ostatnio polubione"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:66
+msgid "Enable Repeat"
+msgstr "Włącza powtarzanie nagrania"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:601
-msgid "Never Played"
-msgstr "Nigdy nie odtwarzane"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:67
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:541
+msgid "Song"
+msgstr "Nagranie"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:611
-msgid "Over Played"
-msgstr "Najczęściej odtwarzane"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Song"
+msgstr "Powtórz nagranie"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:621
-msgid "Not Recently Played"
-msgstr "Dawno nie odtwarzane"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
-msgid "Remove Media"
-msgstr "Usuń nagrania"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
-msgid "Locate Media"
-msgstr "Odszukaj nagrania"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
-msgid "Rescan Library"
-msgstr "Przeszukaj kolekcję"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
-msgid "Do Nothing"
-msgstr "Nic nie rób"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
-msgid "Could not find media file"
-msgstr "Nie można odnaleźć plików nagrań"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
-msgid ""
-"The music file for $NAME by $ARTIST could not be found. What would you like "
-"to do?"
-msgstr ""
-"Nie znaleziono pliku z utworem $NAME wykonywanym przez $ARTIST. Co chcesz "
-"zrobić?"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
-#, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "Nie można odnaleźć %i plików nagrań. Co zrobić?"
-
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-msgid "Choose Music Folder"
-msgstr "Proszę wskazać katalog z muzyką"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-msgid "Import from Device"
-msgstr "Importuj z urządzenia"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-#, c-format
-msgid "Import media from %s"
-msgstr "Importuj media z %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
-#, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Odnaleziono następujące pliki na %s, które nie zajdują się w kolekcji. "
-"Proszę sprawdzić, które pliki zaimportować."
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
-msgid "Import all media"
-msgstr "Importuj wszystkie nagrania"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:96
-msgid "Import"
-msgstr "Zaimportuj"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
-msgid "Don't Import"
-msgstr "Nie importuj"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
-#, c-format
-msgid "Import %i items from %s"
-msgstr "Importuj %i elementów z %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
-#, c-format
-msgid "Import %s from %s"
-msgstr "Importuj %s z %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-msgid "ID"
-msgstr "ID"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:190
-msgid "Title"
-msgstr "Tytuł"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Artist"
-msgstr "Wykonawca"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:193
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
 msgid "Album"
 msgstr "Album"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
-msgid "Select individual media to import:"
-msgstr "Wybierz samodzielnie nagrania do zaimportowania:"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Album"
+msgstr "Przełącza powtarzanie odtwarzania albumu"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Item"
-msgstr "Sprawdź element"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:69
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+msgid "Artist"
+msgstr "Wykonawca"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
-msgid "Check Album"
-msgstr "Sprawdź album"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat Artist"
+msgstr "Przełącza powtarzanie utworów wykonawcy"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
-msgid "Check Artist"
-msgstr "Sprawdź wykonawcę"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:70
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:100
+msgid "All"
+msgstr "Wszystko"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
-msgid "Cannot Import"
-msgstr "Nie można zaimportować"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:70
+msgid "Repeat All"
+msgstr "Przełącza powtarzanie wszystkich nagrań"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
-#, c-format
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Enable Shuffle"
+msgstr "Włącza losowe wybieranie nagrania"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:100
+msgid "Disable Shuffle"
+msgstr "Wyłącza losowe wybieranie nagrania"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:133
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Playlist"
+msgstr "Dodaje listę odtwarzania"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:145
+msgid "Add Smart Playlist"
+msgstr "Dodaj automatyczną listę odtwarzania"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:191
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:224
+msgid "Hide"
+msgstr "Ukryj"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:191
+msgid "Show Equalizer"
+msgstr "Wyświetla korektor dźwięku"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:192
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:225
+msgid "Show"
+msgstr "Wyświetl"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:192
+msgid "Hide Equalizer"
+msgstr "Ukrywa korektor dźwięku"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:224
+msgid "Show Info Panel"
+msgstr "Wyświetla panel informacyjny"
+
+#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:225
+msgid "Hide Info Panel"
+msgstr "Ukrywa panel informacyjny"
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:238
+msgid "Sync"
+msgstr "Synchronizuj"
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "Darmowe"
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:384
+msgid "Using %s of %s (%.2f%)"
+msgstr "W użyciu %s z %s (%.2f%)"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:54
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:65
+msgid "Remove"
+msgstr "Usuń"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:55
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:66
+msgid "Export"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:64
+msgid "Edit"
+msgstr "Edytuj"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:77
+msgid "Save as Playlist"
+msgstr "Zapisz jako listę odtwarzania"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:79
+msgid "Export..."
+msgstr "Eksportuj..."
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:120
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
+#: /home/victor/noise/po/../src//LibraryWindow.vala:249
+msgid "Import to Library"
+msgstr "Zaimportuj"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:128
+msgid "Eject"
+msgstr "Wysuń"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:154
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
+msgid "New Playlist"
+msgstr "Nowa lista odtwarzania"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:155
+msgid "New Smart Playlist"
+msgstr "Nowa automatyczna lista odtwarzania"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:156
+msgid "Import Playlists"
+msgstr "Importuj listy odtwarzania"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:195
+msgid "Library"
+msgstr "Kolekcja"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:196
+msgid "Devices"
+msgstr "Urządzenia"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:197
+msgid "Network"
+msgstr "Sieć"
+
+#: /home/victor/noise/po/../src//Widgets/SourceListView.vala:198
+msgid "Playlists"
+msgstr "Listy odtwarzania"
+
+#: /home/victor/noise/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr "Wyświetl  jako Albumy"
+
+#: /home/victor/noise/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr "Wyświetl jako Listę"
+
+#: /home/victor/noise/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr "Wyświetl w Kolumnach"
+
+#: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:69
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:83
+msgid "Equalizer"
+msgstr "Korektor dźwięku"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:150
+msgid "Save preset"
+msgstr "Zapisz profil"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:414
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (własny)"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (własny %i)"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:420
+msgid "Custom Preset"
+msgstr "Własny profil"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Własny profil %i"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr "Nie zaimportowane pliki"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#, c-format
+msgid "Unable to import %d items from %s"
+msgstr "Nie można zaimportować %d elementów z %s"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#, c-format
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s nie może zaimportować %d elementów. Pliki mogą być uszkodzone."
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr "Przenieś wszystkie uszkodzone pliki do kosza"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Move to Trash"
+msgstr "Przenieś do kosza"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "Zignoruj"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "usuń"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "Położenie pliku"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr "Wybierz pliki do usunięcia:"
+
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
 msgstr "Eksportuj listy odtwarzania"
 
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
 msgstr "Wskaż katalog z muzyką"
 
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Ustalić katalog z muzyką?"
 
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -450,201 +482,130 @@ msgstr ""
 "Ustalić %s jako katalog z muzyką? Kolekcja i listy odtwarzania zostaną "
 "usunięte."
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
-msgid "Smart Playlist Editor"
-msgstr "Edytor automatycznych list odtwarzania"
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
+msgid "Choose Music Folder"
+msgstr "Proszę wskazać katalog z muzyką"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
-msgid "Name of Playlist"
-msgstr "Nazwa listy odtwarzania"
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+msgid "Install Plugin"
+msgstr "Zainstaluj wtyczkę"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
-msgid "Rules"
-msgstr "Reguły"
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+msgid "Required GStreamer plugin not installed"
+msgstr "Nie zainstalowano wymaganej wtyczki GStreamer"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
-msgid "Options"
-msgstr "Opcje"
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#, c-format
+msgid ""
+"The plugin for media type %s is not installed.\n"
+"What would you like to do?"
+msgstr ""
+"Wtyczka obsługująca nośnik typu %s nie jest zainstalowana.\n"
+"Co zrobić?"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Playlist Title"
-msgstr "Nazwa listy odtwarzania"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:81
+msgid "Metadata"
+msgstr "Etykiety"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
-msgid "Match"
-msgstr "Dopasowanie"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:83
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:379
+msgid "Lyrics"
+msgstr "Tekst utworu"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
-msgid "any"
-msgstr "dowolnych"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:179
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:350
+msgid "Editing $NAME by $ARTIST"
+msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "all"
-msgstr "wszystkich"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:181
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:352
+#, c-format
+msgid "Editing %s"
+msgstr "Modyfikowanie %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
-msgid "of the following:"
-msgstr "z następujących:"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:184
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:355
+#, c-format
+msgid "Editing %i songs"
+msgstr "Modyfikowanie %i utworów"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
-msgid "Limit to"
-msgstr "Ograniczenie do"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+msgid "Title"
+msgstr "Tytuł"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
-msgid "items"
-msgstr "elementów"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:192
+msgid "Album Artist"
+msgstr "Wykonawca albumu"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-msgid "Bitrate"
-msgstr "Tempo transmisji"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:197
-msgid "Comment"
-msgstr "Komentarz"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:195
-msgid "Composer"
-msgstr "Kompozytor"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Added"
-msgstr "Data dodania"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-msgid "Date Released"
-msgstr "Data wydania"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:194
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:194
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
 msgid "Genre"
 msgstr "Gatunek"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:195
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Composer"
+msgstr "Kompozytor"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:196
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Grouping"
 msgstr "Grupowanie"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-msgid "Last Played"
-msgstr "Ostatnio odtwarzane"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+msgid "Comment"
+msgstr "Komentarz"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Czas trwania"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:198
+msgid "Track"
+msgstr "Numer ścieżki"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-msgid "Playcount"
-msgstr "Ilość odtworzeń"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Disc"
+msgstr "Płyta"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:201
-msgid "Rating"
-msgstr "Ocena"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-msgid "Skipcount"
-msgstr "Ilość pominięć"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:200
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:200
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
 msgid "Year"
 msgstr "Rok wydania"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
-msgid "is"
-msgstr "brzmi"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:201
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Rating"
+msgstr "Ocena"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
-msgid "contains"
-msgstr "zawiera"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:203
+msgid "Media Type"
+msgstr "Typ nośnika"
 
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
-msgid "does not contain"
-msgstr "nie zawiera"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
-msgid "is exactly"
-msgstr "wynosi dokładnie"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
-msgid "is at most"
-msgstr "wynosi co najwyżej"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:369
-msgid "is at least"
-msgstr "wynosi co najmniej"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
-msgid "is within"
-msgstr "jest w"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
-msgid "is before"
-msgstr "jest przed"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "sekund"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
-msgid "days ago"
-msgstr "dni temu"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
-msgid "kbps"
-msgstr "kb/s"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:83
-msgid "Equalizer"
-msgstr "Korektor dźwięku"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:150
-msgid "Save preset"
-msgstr "Zapisz profil"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:414
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:298
 #, c-format
-msgid "%s (Custom)"
-msgstr "%s (własny)"
+msgid "Lyrics not found for %s"
+msgstr "Nie znaleziono tekstu utworu dla %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:416
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (własny %i)"
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:543
+msgid "Podcast"
+msgstr "Podcast"
 
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:420
-msgid "Custom Preset"
-msgstr "Własny profil"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:422
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Własny profil %i"
-
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
 msgstr "Importuj nagrania do kolekcji"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
 msgstr "Kontynuuj synchronizowanie"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
 msgstr "Zatrzymaj synchronizowanie"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
@@ -654,146 +615,318 @@ msgstr ""
 "znajdują się one na liście synchronizacji. Zaimportować je wcześniej do "
 "kolekcji?"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
 msgstr "Synchronizacja usunie %i elementów z %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
 msgstr "Synchronizacja usunie 1 element z %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:44
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder..."
 msgstr "Wybierz folder z muzyką..."
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+#: /home/victor/noise/po/../src//LibraryWindow.vala:253
 msgid "Preferences"
 msgstr "Preferencje"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
 msgstr "Ogólne"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:123
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:123
 msgid "Music Folder Location:"
 msgstr "Położenie katalogu z muzyką:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:131
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
 msgstr "Zarządzanie kolekcją"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:136
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
 msgstr "Zachowaj organizację folderu z muzyką:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:140
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
 msgstr "Zapisz metadane do pliku:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:144
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
 msgstr "Kopiowanie zaimportowanych nagrań do kolekcji:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
 msgstr "Integracja ze środowiskiem graficznym:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
 msgstr "Wyświetlanie powiadomień:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
 msgstr "Minimalizowanie okna podczas odtwarzania:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:159
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
 msgstr "Ukryj okno podczas odtwarzania utworu:"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
-msgid "Metadata"
-msgstr "Etykiety"
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
+msgid "Smart Playlist Editor"
+msgstr "Edytor automatycznych list odtwarzania"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:83
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:379
-msgid "Lyrics"
-msgstr "Tekst utworu"
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
+msgid "Name of Playlist"
+msgstr "Nazwa listy odtwarzania"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:179
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
-msgid "Editing $NAME by $ARTIST"
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+msgid "Rules"
+msgstr "Reguły"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
+msgid "Options"
+msgstr "Opcje"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Playlist Title"
+msgstr "Nazwa listy odtwarzania"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+msgid "Match"
+msgstr "Dopasowanie"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
+msgid "any"
+msgstr "dowolnych"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "all"
+msgstr "wszystkich"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
+msgid "of the following:"
+msgstr "z następujących:"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
+msgid "Limit to"
+msgstr "Ograniczenie do"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
+msgid "items"
+msgstr "elementów"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+msgid "Bitrate"
+msgstr "Tempo transmisji"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Added"
+msgstr "Data dodania"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+msgid "Date Released"
+msgstr "Data wydania"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+msgid "Last Played"
+msgstr "Ostatnio odtwarzane"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "Length"
+msgstr "Czas trwania"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+msgid "Playcount"
+msgstr "Ilość odtworzeń"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+msgid "Skipcount"
+msgstr "Ilość pominięć"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
+msgid "is"
+msgstr "brzmi"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
+msgid "contains"
+msgstr "zawiera"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
+msgid "does not contain"
+msgstr "nie zawiera"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
+msgid "is exactly"
+msgstr "wynosi dokładnie"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+msgid "is at most"
+msgstr "wynosi co najwyżej"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:369
+msgid "is at least"
+msgstr "wynosi co najmniej"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+msgid "is within"
+msgstr "jest w"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
+msgid "is before"
+msgstr "jest przed"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
+msgid "seconds"
+msgstr "sekund"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
+msgid "days ago"
+msgstr "dni temu"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
+msgid "kbps"
+msgstr "kb/s"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr "Importuj z urządzenia"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#, c-format
+msgid "Import media from %s"
+msgstr "Importuj media z %s"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"Odnaleziono następujące pliki na %s, które nie zajdują się w kolekcji. "
+"Proszę sprawdzić, które pliki zaimportować."
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all media"
+msgstr "Importuj wszystkie nagrania"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDView.vala:96
+msgid "Import"
+msgstr "Zaimportuj"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "Nie importuj"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#, c-format
+msgid "Import %i items from %s"
+msgstr "Importuj %i elementów z %s"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#, c-format
+msgid "Import %s from %s"
+msgstr "Importuj %s z %s"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+msgid "ID"
+msgstr "ID"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+msgid "Select individual media to import:"
+msgstr "Wybierz samodzielnie nagrania do zaimportowania:"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Item"
+msgstr "Sprawdź element"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+msgid "Check Album"
+msgstr "Sprawdź album"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+msgid "Check Artist"
+msgstr "Sprawdź wykonawcę"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
+msgid "Cannot Import"
+msgstr "Nie można zaimportować"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
+#, c-format
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
+msgid "Remove Media"
+msgstr "Usuń nagrania"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
+msgid "Locate Media"
+msgstr "Odszukaj nagrania"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
+msgid "Rescan Library"
+msgstr "Przeszukaj kolekcję"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
+msgid "Do Nothing"
+msgstr "Nic nie rób"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
+msgid "Could not find media file"
+msgstr "Nie można odnaleźć plików nagrań"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
+msgid ""
+"The music file for $NAME by $ARTIST could not be found. What would you like "
+"to do?"
+msgstr ""
+"Nie znaleziono pliku z utworem $NAME wykonywanym przez $ARTIST. Co chcesz "
+"zrobić?"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
-msgid "Editing %s"
-msgstr "Modyfikowanie %s"
+msgid "%i media files could not be found. What would you like to do?"
+msgstr "Nie można odnaleźć %i plików nagrań. Co zrobić?"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:184
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:355
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
+msgid "Playlist Editor"
+msgstr "Edytor list odtwarzania"
+
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
 #, c-format
-msgid "Editing %i songs"
-msgstr "Modyfikowanie %i utworów"
+msgid "The name %s is already in use"
+msgstr "Nazwa %s jest już wykorzystywana"
 
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:192
-msgid "Album Artist"
-msgstr "Wykonawca albumu"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:198
-msgid "Track"
-msgstr "Numer ścieżki"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:199
-msgid "Disc"
-msgstr "Płyta"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:203
-msgid "Media Type"
-msgstr "Typ nośnika"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:298
-#, c-format
-msgid "Lyrics not found for %s"
-msgstr "Nie znaleziono tekstu utworu dla %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:541
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Song"
-msgstr "Nagranie"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:543
-msgid "Podcast"
-msgstr "Podcast"
-
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:71
-msgid "Move to Trash"
-msgstr "Przenieś do kosza"
-
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
 msgstr "Usuń z %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
-#: /home/noelco/noise/po/../src//Widgets/TopDisplay.vala:69
-msgid "Cancel"
-msgstr "Anuluj"
-
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Usunąć %d piosenki z %s?"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Usunąć „%s” z %s?"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -809,797 +942,91 @@ msgstr[2] ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:47
-msgid "Not Imported Files"
-msgstr "Nie zaimportowane pliki"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:161
 #, c-format
-msgid "Unable to import %d items from %s"
-msgstr "Nie można zaimportować %d elementów z %s"
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s w wykonaniu %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s nie może zaimportować %d elementów. Pliki mogą być uszkodzone."
+msgid "%d minutes"
+msgstr "%d minut"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:66
-msgid "Move all corrupted files to trash"
-msgstr "Przenieś wszystkie uszkodzone pliki do kosza"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:72
-msgid "Ignore"
-msgstr "Zignoruj"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:93
-msgid "del"
-msgstr "usuń"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:98
-msgid "File Location"
-msgstr "Położenie pliku"
-
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:125
-msgid "Select individual files to move to trash:"
-msgstr "Wybierz pliki do usunięcia:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
-msgid "Playlist Editor"
-msgstr "Edytor list odtwarzania"
-
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
-msgid "The name %s is already in use"
-msgstr "Nazwa %s jest już wykorzystywana"
+msgid "%d hours"
+msgstr "%d godzin"
 
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
-msgid "Install Plugin"
-msgstr "Zainstaluj wtyczkę"
-
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
-msgid "Required GStreamer plugin not installed"
-msgstr "Nie zainstalowano wymaganej wtyczki GStreamer"
-
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
-msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
-msgstr ""
-"Wtyczka obsługująca nośnik typu %s nie jest zainstalowana.\n"
-"Co zrobić?"
+msgid "%d days"
+msgstr "%d dni"
 
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:49
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:60
-msgid "Remove"
-msgstr "Usuń"
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u elementów, %s, %s"
 
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:50
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:61
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:74
-msgid "Export..."
-msgstr "Eksportuj..."
+#: /home/victor/noise/po/../src//Views/GridView/GridView.vala:64
+msgid "No Albums Found."
+msgstr "Nie odnaleziono albumów."
 
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:59
-msgid "Edit"
-msgstr "Edytuj"
+#: /home/victor/noise/po/../src//Views/GridView/GridView.vala:160
+#, c-format
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+msgstr[1] "%u albumy"
+msgstr[2] "%u albumów"
 
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:72
-msgid "Save as Playlist"
-msgstr "Zapisz jako listę odtwarzania"
+#: /home/victor/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+msgid "No Songs"
+msgstr "Brak utworów"
 
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:115
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:244
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
-msgid "Import to Library"
-msgstr "Zaimportuj"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:123
-msgid "Eject"
-msgstr "Wysuń"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:155
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
-msgid "New Playlist"
-msgstr "Nowa lista odtwarzania"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:156
-msgid "New Smart Playlist"
-msgstr "Nowa automatyczna lista odtwarzania"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:157
-msgid "Import Playlists"
-msgstr "Importuj listy odtwarzania"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:201
-msgid "Library"
-msgstr "Kolekcja"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:202
-msgid "Devices"
-msgstr "Urządzenia"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:203
-msgid "Network"
-msgstr "Sieć"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:204
-msgid "Playlists"
-msgstr "Listy odtwarzania"
-
-#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:49
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
-msgid "Automatic"
-msgstr "Automatycznie"
-
-#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Usuń bieżący"
-
-#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr "Wyświetl  jako Albumy"
-
-#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr "Wyświetl jako Listę"
-
-#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr "Wyświetl w Kolumnach"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Off"
-msgstr "Wyłącz"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
-msgid "Enable Repeat"
-msgstr "Włącza powtarzanie nagrania"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Repeat Song"
-msgstr "Powtórz nagranie"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
-msgid "Repeat Album"
-msgstr "Przełącza powtarzanie odtwarzania albumu"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Repeat Artist"
-msgstr "Przełącza powtarzanie utworów wykonawcy"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
-msgid "All"
-msgstr "Wszystko"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
-msgid "Repeat All"
-msgstr "Przełącza powtarzanie wszystkich nagrań"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Enable Shuffle"
-msgstr "Włącza losowe wybieranie nagrania"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
-msgid "Disable Shuffle"
-msgstr "Wyłącza losowe wybieranie nagrania"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:133
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:144
-msgid "Add Playlist"
-msgstr "Dodaje listę odtwarzania"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:145
-msgid "Add Smart Playlist"
-msgstr "Dodaj automatyczną listę odtwarzania"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:224
-msgid "Hide"
-msgstr "Ukryj"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
-msgid "Show Equalizer"
-msgstr "Wyświetla korektor dźwięku"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:225
-msgid "Show"
-msgstr "Wyświetl"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
-msgid "Hide Equalizer"
-msgstr "Ukrywa korektor dźwięku"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:224
-msgid "Show Info Panel"
-msgstr "Wyświetla panel informacyjny"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:225
-msgid "Hide Info Panel"
-msgstr "Ukrywa panel informacyjny"
-
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:238
-msgid "Sync"
-msgstr "Synchronizuj"
-
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "Darmowe"
-
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:384
-msgid "Using %s of %s (%.2f%)"
-msgstr "W użyciu %s z %s (%.2f%)"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:245
-msgid "Rescan Music Folder"
-msgstr "Przeszukaj katalog z muzyką"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:248
-msgid "Preferences..."
-msgstr "Preferencje..."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:268
-msgid "Search Music"
-msgstr "Wyszukiwanie..."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:619
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:714
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
-msgid "Music"
-msgstr "Muzyka"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:664
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:100
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Kolejka"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:666
-msgid "No songs in Queue"
-msgstr "Brak nagrań w kolejce"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:666
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"Aby dodać utwory do kolejki, należy kliknąc <b>prawym przyciskiem</b> myszy "
-"na elemencie i wybrać polecenie <b>Kolejka</b>. Kiedy odtwarzanie bieżącego "
-"nagrania zostanie zakończone, nagrania znajdujące się w kolejce zostaną "
-"odtworzone przed nagraniami pochodzącymi z listy odtwarzania."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:670
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:98
-msgid "History"
-msgstr "Historia"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:672
-msgid "No songs in History"
-msgstr "Brak nagrań w historii"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:672
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"Po odtworzeniu fragmentu nagrania, zostanie ono dodane do historii.\n"
-"Można użyć tej listy, aby zobaczyć wszystkie nagrania, które odtworzono "
-"podczas bieżącej sesji."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:900
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:902
-msgid "New playlist"
+#: /home/victor/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
+msgid "Please wait until that this playlist get updated."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:903
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:906
-#, c-format
-msgid "New playlist (%i)"
-msgstr ""
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1105
-msgid "Import Music"
-msgstr "Zaimportuj muzykę"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1137
-#, c-format
-msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "<b>Importowanie</b> muzyki z <b>%s</b> do kolekcji."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1152
-msgid "Rescanning music folder for changes"
-msgstr "Wyszukiwanie zmian w katalogu z muzyką"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1159
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
-msgid "Could not find Music Folder"
-msgstr "Nie można odnaleźć katalogu z muzyką"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1159
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Proszę upewnić się, że katalog z muzyką jest dostępny i zamontowany"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1226
-msgid "Import Complete"
-msgstr "Zakończono importowanie"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1226
-#, c-format
-msgid "%s has imported your library."
-msgstr "Program %s zaimportował kolekcję."
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
-msgid "Cancelling Sync"
-msgstr "Anulowanie synchronizacji"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
-msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr "Anulowano synchronizowanie urządzenia. Operacja zostanie zakończona."
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
-msgid "Cancelling Import"
-msgstr "Anulowanie importowania"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
-msgid ""
-"Import from device has been cancelled. Operation will stop after this media."
-msgstr "Anulowano importowanie z urządzenia. Operacja zostanie zakończona."
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
-msgid "No External Songs"
-msgstr "Brak zewnętrznych nagrań"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr ""
-"Nie odnaleziono nagrań na urządzeniu, które nie znajdują się w kolekcji."
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr "Gatunki"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr "Wykonawcy"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr "Albumy"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr "Lata"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr "Oceny"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr "Kompozytorzy"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr "Grupowania"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:156
-msgid "On Left"
-msgstr "Po lewej"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:158
-msgid "On Top"
-msgstr "Na górze"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:404
-msgid "Unrated"
-msgstr "Nie ocenione"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:406
-#, c-format
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i Gwiazdka"
-msgstr[1] "%i Gwiazdki"
-msgstr[2] "%i Gwiazdki"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Wszystkie gatunki"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-#, c-format
-msgid "All %i Genres"
-msgstr "Wszystkie %i gatunków"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Brak gatunków"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Wszyscy wykonawcy"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Artists"
-msgstr "Wszyscy %i wykonawców"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Brak wykonawców"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Wszystkie albumy"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Albums"
-msgstr "Wszystkie %i albumów"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Brak albumów"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Wszystkie lata"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Years"
-msgstr "Wszystkie %i lat"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Brak lat"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Wszystkie ocenione"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Brak ocen"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr ""
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-#, c-format
-msgid "All %i Groupings"
-msgstr ""
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr ""
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Wszyscy kompozytorzy"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Composers"
-msgstr "Wszyscy %i kompozytorzy"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Brak kompozytorów"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:58
-msgid "Remove from Library"
-msgstr "Usuń z kolekcji"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:67
-msgid "Remove from Queue"
-msgstr "Usuń z kolejki"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:79
-msgid "Remove from Device"
-msgstr "Usuń z urządzenia"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
-msgid "Scroll to Current Song"
-msgstr "Przejdź do bieżącego nagrania"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
-msgid "Edit Song Info"
-msgstr "Zmodyfikuj informacje o utworze"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
-msgid "Show in File Browser"
-msgstr "Wyświetl w przeglądarce plików"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:96
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Kolejka"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
-msgid "Add to Playlist"
-msgstr "Dodaj do listy odtwarzania"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
-msgid "Remove Song"
-msgstr "Usuń utwór"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:217
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Importowanie %i z %i wybranych piosenek"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:651
-msgid "1234 kbps"
-msgstr "1234 kb/s"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:666
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
-msgid "Never"
-msgstr "Nigdy"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:729
-msgid "Sample List String"
-msgstr ""
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:125
-msgid "Autosize Columns"
-msgstr "Dopasuj rozmiar kolumn automatycznie"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:132
-msgid "Display Album Art"
-msgstr "Wyświetl grafikę albumu"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
-msgctxt "List column title"
-msgid "#"
-msgstr "Nr"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
-msgctxt "List column title"
-msgid "Track"
-msgstr "Ścieżka"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
-msgctxt "List column title"
-msgid "Title"
-msgstr "Tytuł"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
-msgctxt "List column title"
-msgid "Length"
-msgstr "Czas trwania"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Wykonawca"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
-msgctxt "List column title"
-msgid "Album"
-msgstr "Album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Wykonawca albumu"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Kompozytor"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Gatunek"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
-msgctxt "List column title"
-msgid "Year"
-msgstr "Rok"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Grupowanie"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Tempo transmisji"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Ocena"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Odtworzeń"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Pominięć"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Data dodania"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Ostatnio odtworzony"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Położenie"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Rozmiar pliku"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:227
-#, c-format
-msgid "%i kbps"
-msgstr "%i kb/s"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:93
-msgid "No Songs Found."
-msgstr "Nie odnaleziono utworów."
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:369
-#, c-format
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i utwór"
-msgstr[1] "%i utwory"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:371
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u utwór"
-msgstr[1] "%u utwory"
-msgstr[2] "%u utworów"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:379
-#, c-format
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr ""
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:78
-msgid "Device Name:"
-msgstr "Nazwa urządzenia:"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:81
-msgid "Device Name"
-msgstr "Nazwa urządzenia"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:83
-msgid "Automatically sync when plugged in:"
-msgstr "Synchronizuj automatycznie przy podłączeniu:"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:90
-msgid "Sync:"
-msgstr "Synchronizuj:"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-msgid "Other Files"
-msgstr "Inne pliki"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:114
-msgid "Podcasts"
-msgstr "Podcasty"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:385
-msgid "All Music"
-msgstr "Cała muzyka"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:388
-msgid "All Podcasts"
-msgstr "Wszystkie podcasty"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
-msgid "Sync Failed"
-msgstr "Synchronizacja nieudana"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Nie można odnaleźć listy odtwarzania %s, używanej do synchronizowania "
-"urządzenia %s."
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-msgid "Cannot Sync"
-msgstr "Synchronizacja niemożliwa"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Synchronizacja z wybranymi ustawieniami jest niemożliwa. Brak wystarczającej "
-"przestrzeni na dysku."
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-msgid "Device is already being synced."
-msgstr "Urządzenie jest już w trakcie synchronizacji."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 msgid "Get Some Tunes"
 msgstr "Zdobądź muzykę"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:43
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:43
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr "Program %s nie może odnaleźć muzyki."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
 msgid "Locate"
 msgstr "Wskaż katalog"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
 msgid "Change your music folder."
 msgstr "Ustala katalog z muzyką"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import your Music"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 #, c-format
 msgid "Import all your Music from %s into your library."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
 msgid "Select Music Folder"
 msgstr "Wybierz katalog z muzyką"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
-msgid "No Songs"
-msgstr "Brak utworów"
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:473
+msgid "No media"
+msgstr "Brak nośnika"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
-msgid "Please wait until that this playlist get updated."
-msgstr ""
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1608,11 +1035,11 @@ msgstr ""
 "przyciskiem </b> myszy na elemencie i wybrać polecenie <b>Dodaj do listy "
 "odtwarzania</b>."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "Edit Smart Playlist"
 msgstr "Zmodyfikuj automatyczną listę odtwarzania"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1624,135 +1051,638 @@ msgstr ""
 "przyciskiem</b> na etykiecie listy w pasku bocznym i wybrać polecenie "
 "<b>Edytuj</b>. Opcjonalnie można kliknąć na poniższy przycisk."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/ViewWrapper.vala:473
-msgid "No media"
-msgstr "Brak nośnika"
-
-#: /home/noelco/noise/po/../src//Views/ContentView.vala:21
+#: /home/victor/noise/po/../src//Views/ContentView.vala:21
 #, c-format
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:64
-msgid "No Albums Found."
-msgstr "Nie odnaleziono albumów."
-
-#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:160
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-msgstr[1] "%u albumy"
-msgstr[2] "%u albumów"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d minut"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d godzin"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d dni"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u elementów, %s, %s"
-
-#: /home/noelco/noise/po/../src//Views/GridView/PopupListView.vala:161
-#, c-format
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s w wykonaniu %s"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:149
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:174
-msgid "Empty device!"
-msgstr "Urządzenie puste!"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:153
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:178
-msgid "This device does not contain any music."
-msgstr "Urządzenie nie zawiera muzyki."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:320
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:321
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:463
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:464
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:337
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:338
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:577
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
-#, c-format
-msgid "Syncing <b>%s</b>..."
-msgstr "Synchronizacja <b>%s</b>..."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
-msgid "Finishing sync process..."
-msgstr "Kończenie synchronizacji..."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
-msgid "Cancelling Sync..."
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:45
+msgid "Cancelling Sync"
 msgstr "Anulowanie synchronizacji"
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:386
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:387
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:475
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
-msgid "There is not enough space on Device to complete the Sync..."
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:45
+msgid "Device Sync has been cancelled. Operation will stop after this media."
+msgstr "Anulowano synchronizowanie urządzenia. Operacja zostanie zakończona."
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:49
+msgid "Cancelling Import"
+msgstr "Anulowanie importowania"
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:49
+msgid ""
+"Import from device has been cancelled. Operation will stop after this media."
+msgstr "Anulowano importowanie z urządzenia. Operacja zostanie zakończona."
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:114
+msgid "No External Songs"
+msgstr "Brak zewnętrznych nagrań"
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:114
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
-"Brak wystarczającej wolnej przestrzeni na urządzeniu do zakończenia "
-"synchronizacji"
+"Nie odnaleziono nagrań na urządzeniu, które nie znajdują się w kolekcji."
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:501
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:502
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:729
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
+#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:227
 #, c-format
-msgid "Removing from <b>%s</b>..."
-msgstr "Usuwanie z <b>%s</b>..."
+msgid "%i kbps"
+msgstr "%i kb/s"
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:546
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:581
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1016
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
-msgstr "Importowanie <b>$NAME</b> od <b>$ARTIST</b> do biblioteki..."
+#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:666
+msgid "Never"
+msgstr "Nigdy"
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:661
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Dodawanie <b>$NAME</b> od <b>$ARTIST</b> do $DEVICE"
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
+msgctxt "List column title"
+msgid "#"
+msgstr "Nr"
 
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:680
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Usuwanie <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
+msgctxt "List column title"
+msgid "Track"
+msgstr "Ścieżka"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
+msgctxt "List column title"
+msgid "Title"
+msgstr "Tytuł"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
+msgctxt "List column title"
+msgid "Length"
+msgstr "Czas trwania"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Wykonawca"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Album"
+msgstr "Album"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Wykonawca albumu"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Kompozytor"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Gatunek"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Year"
+msgstr "Rok"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Grupowanie"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Tempo transmisji"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Ocena"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Odtworzeń"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Pominięć"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Data dodania"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Ostatnio odtworzony"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Położenie"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Rozmiar pliku"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:58
+msgid "Remove from Library"
+msgstr "Usuń z kolekcji"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:67
+msgid "Remove from Queue"
+msgstr "Usuń z kolejki"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:79
+msgid "Remove from Device"
+msgstr "Usuń z urządzenia"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
+msgid "Scroll to Current Song"
+msgstr "Przejdź do bieżącego nagrania"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
+msgid "Edit Song Info"
+msgstr "Zmodyfikuj informacje o utworze"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+msgid "Show in File Browser"
+msgstr "Wyświetl w przeglądarce plików"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:96
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Kolejka"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
+msgid "Add to Playlist"
+msgstr "Dodaj do listy odtwarzania"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
+msgid "Remove Song"
+msgstr "Usuń utwór"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:217
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Importowanie %i z %i wybranych piosenek"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:651
+msgid "1234 kbps"
+msgstr "1234 kb/s"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:729
+msgid "Sample List String"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:125
+msgid "Autosize Columns"
+msgstr "Dopasuj rozmiar kolumn automatycznie"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/GenericList.vala:132
+msgid "Display Album Art"
+msgstr "Wyświetl grafikę albumu"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr "Gatunki"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr "Wykonawcy"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr "Albumy"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr "Lata"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr "Oceny"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr "Kompozytorzy"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr "Grupowania"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "Wszystkie gatunki"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+#, c-format
+msgid "All %i Genres"
+msgstr "Wszystkie %i gatunków"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "Brak gatunków"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "Wszyscy wykonawcy"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Artists"
+msgstr "Wszyscy %i wykonawców"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "Brak wykonawców"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "Wszystkie albumy"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Albums"
+msgstr "Wszystkie %i albumów"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "Brak albumów"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "Wszystkie lata"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Years"
+msgstr "Wszystkie %i lat"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "Brak lat"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "Wszystkie ocenione"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "Brak ocen"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#, c-format
+msgid "All %i Groupings"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "Wszyscy kompozytorzy"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Composers"
+msgstr "Wszyscy %i kompozytorzy"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "Brak kompozytorów"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:156
+msgid "On Left"
+msgstr "Po lewej"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:158
+msgid "On Top"
+msgstr "Na górze"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:404
+msgid "Unrated"
+msgstr "Nie ocenione"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:406
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i Gwiazdka"
+msgstr[1] "%i Gwiazdki"
+msgstr[2] "%i Gwiazdki"
+
+#: /home/victor/noise/po/../src//Views/ListView/ListView.vala:93
+msgid "No Songs Found."
+msgstr "Nie odnaleziono utworów."
+
+#: /home/victor/noise/po/../src//Views/ListView/ListView.vala:369
+#, c-format
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i utwór"
+msgstr[1] "%i utwory"
+
+#: /home/victor/noise/po/../src//Views/ListView/ListView.vala:371
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u utwór"
+msgstr[1] "%u utwory"
+msgstr[2] "%u utworów"
+
+#: /home/victor/noise/po/../src//Views/ListView/ListView.vala:379
+#, c-format
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:78
+msgid "Device Name:"
+msgstr "Nazwa urządzenia:"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:81
+msgid "Device Name"
+msgstr "Nazwa urządzenia"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:83
+msgid "Automatically sync when plugged in:"
+msgstr "Synchronizuj automatycznie przy podłączeniu:"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:90
+msgid "Sync:"
+msgstr "Synchronizuj:"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
+msgid "Other Files"
+msgstr "Inne pliki"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:113
+#: /home/victor/noise/po/../src//LibraryWindow.vala:624
+#: /home/victor/noise/po/../src//LibraryWindow.vala:719
+msgid "Music"
+msgstr "Muzyka"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:114
+msgid "Podcasts"
+msgstr "Podcasty"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:385
+msgid "All Music"
+msgstr "Cała muzyka"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:388
+msgid "All Podcasts"
+msgstr "Wszystkie podcasty"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:518
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:556
+msgid "Sync Failed"
+msgstr "Synchronizacja nieudana"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:518
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:556
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"Nie można odnaleźć listy odtwarzania %s, używanej do synchronizowania "
+"urządzenia %s."
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:604
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+msgid "Cannot Sync"
+msgstr "Synchronizacja niemożliwa"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:604
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Synchronizacja z wybranymi ustawieniami jest niemożliwa. Brak wystarczającej "
+"przestrzeni na dysku."
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+msgid "Device is already being synced."
+msgstr "Urządzenie jest już w trakcie synchronizacji."
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:559
+msgid "Favorite Songs"
+msgstr "Ulubione"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:569
+msgid "Recently Added"
+msgstr "Ostatnio dodane"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:591
+msgid "Recent Favorites"
+msgstr "Ostatnio polubione"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:601
+msgid "Never Played"
+msgstr "Nigdy nie odtwarzane"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:611
+msgid "Over Played"
+msgstr "Najczęściej odtwarzane"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:621
+msgid "Not Recently Played"
+msgstr "Dawno nie odtwarzane"
+
+#: /home/victor/noise/po/../src//PlaybackManager.vala:98
+#: /home/victor/noise/po/../src//LibraryWindow.vala:676
+msgid "History"
+msgstr "Historia"
+
+#: /home/victor/noise/po/../src//PlaybackManager.vala:100
+#: /home/victor/noise/po/../src//LibraryWindow.vala:670
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Kolejka"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:250
+msgid "Rescan Music Folder"
+msgstr "Przeszukaj katalog z muzyką"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:273
+msgid "Search Music"
+msgstr "Wyszukiwanie..."
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:672
+msgid "No songs in Queue"
+msgstr "Brak nagrań w kolejce"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:672
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Aby dodać utwory do kolejki, należy kliknąc <b>prawym przyciskiem</b> myszy "
+"na elemencie i wybrać polecenie <b>Kolejka</b>. Kiedy odtwarzanie bieżącego "
+"nagrania zostanie zakończone, nagrania znajdujące się w kolejce zostaną "
+"odtworzone przed nagraniami pochodzącymi z listy odtwarzania."
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:678
+msgid "No songs in History"
+msgstr "Brak nagrań w historii"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:678
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Po odtworzeniu fragmentu nagrania, zostanie ono dodane do historii.\n"
+"Można użyć tej listy, aby zobaczyć wszystkie nagrania, które odtworzono "
+"podczas bieżącej sesji."
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:907
+#: /home/victor/noise/po/../src//LibraryWindow.vala:909
+msgid "New playlist"
+msgstr ""
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:910
+#: /home/victor/noise/po/../src//LibraryWindow.vala:913
+#, c-format
+msgid "New playlist (%i)"
+msgstr ""
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1112
+msgid "Import Music"
+msgstr "Zaimportuj muzykę"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1144
+#, c-format
+msgid "<b>Importing</b> music from <b>%s</b> to library."
+msgstr "<b>Importowanie</b> muzyki z <b>%s</b> do kolekcji."
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1159
+msgid "Rescanning music folder for changes"
+msgstr "Wyszukiwanie zmian w katalogu z muzyką"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1166
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
+msgid "Could not find Music Folder"
+msgstr "Nie można odnaleźć katalogu z muzyką"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1166
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr "Proszę upewnić się, że katalog z muzyką jest dostępny i zamontowany"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1233
+msgid "Import Complete"
+msgstr "Zakończono importowanie"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1233
+#, c-format
+msgid "%s has imported your library."
+msgstr "Program %s zaimportował kolekcję."
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Płaskie"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Klasyczna"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Klubowa"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Dance"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Pełen bass"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Pełen sopran"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Pełen bass + sopran"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Słuchawki"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Duża hala"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Na żywo"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Impreza"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Soft"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Techno"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
 msgstr "Nieprawidłowa płyta Audio CD"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s nie może odczytać zawartości płyty CD"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1760,83 +1690,212 @@ msgstr ""
 "Przed zaimportowaniem płyty CD, proszę upewnić się, że katalog z muzyką jest "
 "dostępny i zamontowany."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
 msgid "No songs on CD"
 msgstr "Płyta CD nie zawiera muzyki"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "%s nie odnaleziono żadnych utworów na płycie CD. Piosenki nie mogą być "
 "importowane"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s jest już importowany"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr "Proszę czekać, aż %s zakończy obecne importowanie przed importem CD."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
 msgid "CD Import Complete"
 msgstr "Zaimportowano płytę CD"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s zakończył importowanie %i utworów z nośnika CD."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s zakończył importowanie utworu z nośnika CD."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "Importowanie utworu %i: %s"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:422
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:422
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "Importowanie płyty CD zostanie <b>anulowane</b> zaimportowaniu bieżącego "
 "nagrania."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:444
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:444
 msgid "An error occured during the Import of this CD"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:174
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:149
+msgid "Empty device!"
+msgstr "Urządzenie puste!"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:178
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:153
+msgid "This device does not contain any music."
+msgstr "Urządzenie nie zawiera muzyki."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:337
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:338
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:577
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:320
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:321
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:463
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:464
+#, c-format
+msgid "Syncing <b>%s</b>..."
+msgstr "Synchronizacja <b>%s</b>..."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
+msgid "Finishing sync process..."
+msgstr "Kończenie synchronizacji..."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
+msgid "Cancelling Sync..."
+msgstr "Anulowanie synchronizacji"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:475
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:386
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:387
+msgid "There is not enough space on Device to complete the Sync..."
+msgstr ""
+"Brak wystarczającej wolnej przestrzeni na urządzeniu do zakończenia "
+"synchronizacji"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:661
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "Dodawanie <b>$NAME</b> od <b>$ARTIST</b> do $DEVICE"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:729
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:501
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:502
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr "Usuwanie z <b>%s</b>..."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:680
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "Usuwanie <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
 msgid "Syncing playlists"
 msgstr "Syncing playlists"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1016
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:546
+#: /home/victor/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:581
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
+msgstr "Importowanie <b>$NAME</b> od <b>$ARTIST</b> do biblioteki..."
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMedia.vala:46
+msgid "Similar"
+msgstr "Podobne"
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:77
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
+msgid "No similar songs found"
+msgstr "Nie odnaleziono podobnych utworów"
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:77
+msgid ""
+"There is no songs similar to the current song in your library. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "nagrań"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr "Podobne"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+msgid "Give Noise Permission"
+msgstr "Włącz wysyłanie informacji o utworach"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+msgid "Unsuccessful. Click To Try Again."
+msgstr "Niepowodzenie. Proszę kliknąć, aby spróbować ponownie."
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+msgid "Scrobbling Already Enabled"
+msgstr "Wysyłanie informacji o utworach aktywne"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+msgid "Success!"
+msgstr "Zalogowano"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+msgid "Complete Login"
+msgstr "Zakończ logowanie"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:42
+msgid "Last.fm"
+msgstr "Last.fm"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:47
+msgid "Last.fm Integration"
+msgstr "Integracja z Last.fm"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+msgid "Click to redo the Last.fm login process"
+msgstr "Proszę kliknąć, aby ponownie zalogować do Last.fm"
+
+#: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+msgid ""
+"To allow for Last.fm integration, you must give permission to Noise. You "
+"only need to do this once."
+msgstr ""
+"Aby umożliwić integrację z usługą Last.fm, należy zezwolić programowi na "
+"dostęp do niej. Wykonanie tej czynności wymagane jest tylko jeden raz."
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
 msgid "Fetching similar songs"
 msgstr "Pobieranie podobnych utworów"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
 msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
 msgstr ""
 "Szukanie utworów podobnych do <b>$NAME</b> wykonywanych przez <b>$ARTIST</b>"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:103
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:103
 #, c-format
 msgid "Similar to %s"
 msgstr "Podobne do %s"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
-#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:82
-msgid "No similar songs found"
-msgstr "Nie odnaleziono podobnych utworów"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
 msgid ""
 "$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
 "your library. Make sure all song info is correct and you are connected to "
@@ -1847,11 +1906,11 @@ msgstr ""
 "informacje o utworze są poprawne i że masz połączenie z Internetem. Nie dla "
 "wszystkich utworów możliwe jest znalezienie wyników."
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
 msgid "Similar Song View"
 msgstr "Podobne utwory"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1860,65 +1919,6 @@ msgid ""
 msgstr ""
 "Widok %s automatycznie znajdzie utwory podobne do aktualnie odtwarzanego. "
 "Następnie możesz odtworzyć te piosenki lub zapisać je jako listy odtwarzania."
-
-#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:82
-msgid ""
-"There is no songs similar to the current song in your library. Make sure all "
-"song info is correct and you are connected to the Internet. Some songs may "
-"not have matches."
-msgstr ""
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
-msgid "media"
-msgstr "nagrań"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
-msgid "Similar Media"
-msgstr "Podobne"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:30
-msgid "Give Noise Permission"
-msgstr "Włącz wysyłanie informacji o utworach"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:31
-msgid "Unsuccessful. Click To Try Again."
-msgstr "Niepowodzenie. Proszę kliknąć, aby spróbować ponownie."
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:32
-msgid "Scrobbling Already Enabled"
-msgstr "Wysyłanie informacji o utworach aktywne"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:33
-msgid "Success!"
-msgstr "Zalogowano"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:34
-msgid "Complete Login"
-msgstr "Zakończ logowanie"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:42
-msgid "Last.fm"
-msgstr "Last.fm"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:47
-msgid "Last.fm Integration"
-msgstr "Integracja z Last.fm"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
-msgid "Click to redo the Last.fm login process"
-msgstr "Proszę kliknąć, aby ponownie zalogować do Last.fm"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
-msgid ""
-"To allow for Last.fm integration, you must give permission to Noise. You "
-"only need to do this once."
-msgstr ""
-"Aby umożliwić integrację z usługą Last.fm, należy zezwolić programowi na "
-"dostęp do niej. Wykonanie tej czynności wymagane jest tylko jeden raz."
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarMedia.vala:46
-msgid "Similar"
-msgstr "Podobne"
 
 #~ msgid "Add Podcast"
 #~ msgstr "Dodaj podcast"
