@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-01 13:06-0600\n"
-"PO-Revision-Date: 2012-11-24 12:00+0000\n"
+"PO-Revision-Date: 2012-12-03 03:34+0000\n"
 "Last-Translator: Viko Adi Rahmawan <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-12-02 04:54+0000\n"
+"X-Launchpad-Export-Date: 2012-12-03 04:49+0000\n"
 "X-Generator: Launchpad (build 16319)\n"
 "Language: id\n"
 
@@ -103,7 +103,7 @@ msgstr ""
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:200
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:294
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "daftar putar Shoutcast versi 2.0 (*.pls)"
 
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
@@ -116,7 +116,7 @@ msgstr "Impor %s"
 
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:314
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Berkas daftar putar tidak dapat dikenali. Impor gagal."
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/victor/noise/po/../core//Media.vala:35
@@ -140,7 +140,7 @@ msgstr "$NAME oleh $ARTIST"
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/victor/noise/po/../core//Media.vala:184
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME oleh %ARTIST dalam $ALBUM"
+msgstr "$NAME oleh $ARTIST dalam $ALBUM"
 
 #: /home/victor/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
@@ -172,7 +172,7 @@ msgstr "Memindai ulang perubahan. Mungkin makan waktu..."
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library..."
-msgstr ""
+msgstr "Mengimpor <b>%s</b> ke Pustaka..."
 
 #: /home/victor/noise/po/../src//FileOperator.vala:424
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
@@ -313,7 +313,7 @@ msgstr "Singkirkan"
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:55
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:66
 msgid "Export"
-msgstr ""
+msgstr "Ekspor"
 
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:64
 msgid "Edit"
@@ -973,7 +973,7 @@ msgstr "Tidak ada lagu"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
 msgid "Please wait until that this playlist get updated."
-msgstr ""
+msgstr "Tunggu  hingga daftar putar ini diperbaharui"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 msgid "Get Some Tunes"
@@ -995,13 +995,13 @@ msgstr "Ubah Folder Musik Anda"
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import your Music"
-msgstr ""
+msgstr "Impor Musikmu"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "Impor semua Musikmu dari %s ke Pustaka."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
 msgid "Select Music Folder"
@@ -1544,13 +1544,13 @@ msgstr ""
 #: /home/victor/noise/po/../src//LibraryWindow.vala:907
 #: /home/victor/noise/po/../src//LibraryWindow.vala:909
 msgid "New playlist"
-msgstr ""
+msgstr "Daftar putar baru"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:910
 #: /home/victor/noise/po/../src//LibraryWindow.vala:913
 #, c-format
 msgid "New playlist (%i)"
-msgstr ""
+msgstr "Daftar putar baru (%i)"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
 msgid "Import Music"
@@ -1808,6 +1808,9 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"Tak ada lagu yang mirip dengan lagu yanga ada di Pustakamu. Pastikan semua "
+"informasi dalam lagu sudah benar dan anda terhubung ke internet. Beberapa "
+"lagu mungkin tidak mempunyai kesamaan dengan lagu lain."
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
@@ -1854,6 +1857,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Anda harus mengizinkan Noise untuk melakukan integrasi dengan Last.fm. Anda "
+"hanya perlu melakukannya sekali."
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
 msgid "Fetching similar songs"
