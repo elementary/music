@@ -80,6 +80,7 @@ public class Noise.MusicListView : GenericList {
             mediaMenuQueue.set_visible(false);
             mediaMenuAddToPlaylist.set_visible(false);
             mediaMenuNewPlaylist.set_visible(false);
+            mediaTopSeparator.set_visible(false);
         }
         else {
             mediaRemove.set_visible(false);
@@ -216,7 +217,7 @@ public class Noise.MusicListView : GenericList {
                 if (temporary_count != total_count)
                     importToLibrary.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
                 else
-                    importToLibrary.label = ngettext ("Import this song", ("Import %i songs").printf ((int)temporary_count), temporary_count);
+                    importToLibrary.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
             }
 
             int set_rating = -1;

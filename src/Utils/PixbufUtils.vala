@@ -98,11 +98,10 @@ namespace Noise.PixbufUtils {
     }
 
     public async Gdk.Pixbuf? get_pixbuf_from_file_at_scale_async (File file, int width, int height,
-                                                            bool preserve_aspect_ratio,
-                                                            Cancellable? c = null) throws Error
-    {
+                                                                bool preserve_aspect_ratio,
+                                                                Cancellable? c = null) throws Error {
         Gdk.Pixbuf? image = null;
-        var filestream = yield file.read_async (Priority.DEFAULT, c);
+        var filestream = yield file.read_async (Priority.HIGH, c);
 
         if (filestream != null);
             image = new Gdk.Pixbuf.from_stream_at_scale (filestream, width, height,
@@ -114,7 +113,7 @@ namespace Noise.PixbufUtils {
     public async void save_pixbuf_async (Gdk.Pixbuf pixbuf, File dest_file, string image_format,
                                          Cancellable? cancellable = null) throws Error
     {
-        var output_stream = yield dest_file.create_async (FileCreateFlags.NONE, Priority.DEFAULT,
+        var output_stream = yield dest_file.create_async (FileCreateFlags.NONE, Priority.HIGH,
                                                           cancellable);
 
         if (Utils.is_cancelled (cancellable))
@@ -123,7 +122,7 @@ namespace Noise.PixbufUtils {
         uint8[] buffer;
         pixbuf.save_to_buffer (out buffer, image_format);
 
-        yield output_stream.write_async (buffer, Priority.DEFAULT, cancellable);
+        yield output_stream.write_async (buffer, Priority.HIGH, cancellable);
         output_stream.close (null); // we don't want this to be cancellable
     }
 }

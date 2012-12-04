@@ -58,7 +58,6 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
             if(added.start_initialization()) {
                 added.finish_initialization();
                 added.initialized.connect((d) => {lm.device_manager.deviceInitialized ((Noise.Device)d);});
-                lm.device_added ((Noise.Device)added);
             }
             else {
                 mount_removed(added.get_mount());

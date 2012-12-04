@@ -94,9 +94,9 @@ public class Noise.DeviceManager : GLib.Object {
         }
     }
     
-    public void deviceInitialized(Device d) {
+    public void deviceInitialized (Device d) {
         debug ("adding device\n");
-        device_added(d);
+        device_added (d);
         _devices.add (d);
         lm.lw.update_sensitivities();
     }

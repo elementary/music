@@ -124,7 +124,7 @@ public abstract class Noise.MediaArtCache<T> {
      * @return null if the object's corresponding image was not found; otherwise
      * a valid {@link Gdk.Pixbuf}.
      */
-    protected Gdk.Pixbuf? get_image (T object) {
+    public virtual Gdk.Pixbuf? get_image (T object) {
         return pixbuf_cache.get_image (get_key (object));
     }
 
@@ -133,7 +133,7 @@ public abstract class Noise.MediaArtCache<T> {
      * get_image() will be the only way to access the cache. See CoverartCache for more
      * information.
      */
-    [Deprecated (since = "1.1", replacement = "get_image")]
+    [Deprecated (since = "1.1", replacement = "Noise.MediaArtCache.get_image")]
     protected Gdk.Pixbuf? get_image_from_key (string key) {
         return pixbuf_cache.get_image (key);
     }
@@ -145,9 +145,27 @@ public abstract class Noise.MediaArtCache<T> {
     protected async Gdk.Pixbuf? get_image_async (T object, bool lookup_file) {
         return yield pixbuf_cache.get_image_async (get_key (object), lookup_file);
     }
-    
-    protected async Gdk.Pixbuf? get_original_image_async (T object, bool lookup_file) {
-        return yield pixbuf_cache.get_original_image_async (get_key (object), lookup_file);
+
+    /**
+     * @return A {@link Gdk.Pixbuf} representing the image as it appears in the file cache.
+     *         That is a version of the image not affected by {@link Noise.MediaArtCache.filter_func}.
+     */
+
+    public virtual async Gdk.Pixbuf? get_original_image_async (T object, int width, int height,
+                                                               bool preserve_aspect_ratio,
+                                                               Cancellable? cancellable = null) {
+        var file = get_cached_image_file (object);
+        
+        if (file != null) {
+            try {
+                return yield PixbufUtils.get_pixbuf_from_file_at_scale_async (file, width, height,
+                                                                              preserve_aspect_ratio,
+                                                                              cancellable);
+            } catch (Error err) {
+                warning ("Could not get image from file [%s]: %s", file.get_uri (), err.message);
+            }
+        }
+        return null;
     }
 
     /**

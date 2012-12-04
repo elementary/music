@@ -79,11 +79,6 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     void queue_finished() {
 
         lm.lw.update_sensitivities ();
-        Idle.add( () => {
-            initialized(this);
-            
-            return false;
-        });
         queue_is_finished = true;
     }
     
@@ -103,7 +98,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     private async void finish_initialization_thread() {
         Threads.add (() => {
             if (is_androphone) {
-                music_folders.add (mount.get_root ().get_uri () + "/Music");
+                music_folders.add (mount.get_root ().get_uri () + "/Music/");
                 
             } else {
                 var file = GLib.File.new_for_uri(mount.get_root ().get_uri () + "/.is_audio_player");
@@ -523,7 +518,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     }
     
     public bool transfer_all_to_library() {
-        return transfer_to_library(delete_doubles (songs, lm.media ()));
+        return transfer_to_library (delete_doubles (songs, lm.media ()));
     }
     
     public bool transfer_to_library(LinkedList<Noise.Media> tr_list) {
@@ -547,11 +542,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         current_operation = current_operation.replace ("$NAME", (total_medias > 1) ? total_medias.to_string() : (tr_list.get(0)).title ?? "");
         current_operation = current_operation.replace ("$ARTIST", (total_medias > 1) ? total_medias.to_string() : (tr_list.get(0)).artist ?? "");
         if (lm.start_file_operations(current_operation)) {
-            
-            if(tr_list == null || tr_list.size == 0)
-                return true;
             transfer_medias_thread (tr_list);
-        
         }
         return true;
     }

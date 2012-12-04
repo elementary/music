@@ -209,15 +209,6 @@ public class Noise.PixbufCache {
 
         return image_map.get (key);
     }
-    public async Gdk.Pixbuf? get_original_image_async (string key, bool lookup_file = true) {
-        Gdk.Pixbuf? image = null;
-        if (lookup_file && !has_image (key)) {
-            var image_file = get_cached_image_file (key);
-            image = yield load_image_from_file_async (image_file, null);
-        }
-
-        return image;
-    }
 
     /**
      * Adds an image to the hash map and also writes the image to disk if save_to_disk is true.
