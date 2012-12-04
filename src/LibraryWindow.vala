@@ -79,9 +79,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private int window_height = 0;
 
     private Cancellable notification_cancellable;
-
-    public signal void media_half_played (); // send after the half of the song
-    public signal void update_media_info (); // send after 3 seconds
     
     PreferencesWindow? preferences = null;
     
@@ -965,7 +962,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         Timeout.add(3000, () => {
             if (App.player.media_info.media != null && App.player.media_info.media == m) {
-                update_media_info();
+                update_media_info(App.player.media_info.media);
             }
             
             return false;
@@ -1290,23 +1287,23 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
 
         double sec = ((double)position/1000000000);
+        double media_length = ((double)App.player.media_info.media.length/1000);
 
         if(App.player.player.set_resume_pos)
             App.player.media_info.media.resume_pos = (int)sec;
 
         // at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
-        if(position > 3000000000 && !media_considered_previewed) {
+        if(sec > 3 && !media_considered_previewed) {
             media_considered_previewed = true;
-            update_media_info ();
+            update_media_info (App.player.media_info.media);
         }
 
         //at 30 seconds in, we consider the media as played
-        if(position > 30000000000 && !media_considered_played) {
+        if(sec > 30 && !media_considered_played) {
             media_considered_played = true;
             App.player.media_info.media.last_played = (int)time_t();
 
             library_manager.update_media_item (App.player.media_info.media, false, false);
-            media_as_played (App.player.media_info.media);
 
             // add to the already played list
             if(!App.player.history_playlist.contains (App.player.media_info.media)) {
@@ -1327,13 +1324,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 #endif
         }
 
-        if(((double)(sec/(double)App.player.media_info.media.length) > 0.50) && (media_half_played_sended == false)) {
-            media_half_played ();
+        if((sec/media_length > 0.50) && (media_half_played_sended == false)) {
+            media_half_played (App.player.media_info.media);
             media_half_played_sended = true;
         }
 
         // at 80% done with media, add 1 to play count
-        if((double)(sec/(double)App.player.media_info.media.length) > 0.80 && !added_to_play_count) {
+        if(sec/media_length > 0.80 && !added_to_play_count) {
             added_to_play_count = true;
             App.player.media_info.media.play_count++;
             library_manager.update_media_item (App.player.media_info.media, false, false);
