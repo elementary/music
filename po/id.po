@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-01 13:06-0600\n"
-"PO-Revision-Date: 2012-12-03 03:34+0000\n"
+"PO-Revision-Date: 2012-12-03 08:51+0000\n"
 "Last-Translator: Viko Adi Rahmawan <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-12-03 04:49+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-04 06:10+0000\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: id\n"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:36
@@ -98,7 +98,7 @@ msgstr "Ekspor Daftar Putar"
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:195
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:289
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG Versi 3.0 Extended (*.m3u)"
 
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:200
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:294
@@ -107,7 +107,7 @@ msgstr "daftar putar Shoutcast versi 2.0 (*.pls)"
 
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
-msgstr "Daftarputar"
+msgstr "Daftar Putar"
 
 #: /home/victor/noise/po/../core//Utils/PlaylistsUtils.vala:280
 #, c-format
@@ -321,7 +321,7 @@ msgstr "Sunting"
 
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:77
 msgid "Save as Playlist"
-msgstr "Simpan sebagai Daftarputar"
+msgstr "Simpan sebagai Daftar Putar"
 
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:79
 msgid "Export..."
@@ -340,15 +340,15 @@ msgstr "Keluarkan Media"
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:154
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgid "New Playlist"
-msgstr "Daftarputar Baru"
+msgstr "Daftar Putar Baru"
 
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:155
 msgid "New Smart Playlist"
-msgstr "Daftarputar Pintar Baru"
+msgstr "Daftar Putar pintar baru"
 
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:156
 msgid "Import Playlists"
-msgstr "Mengimpor Daftarputar"
+msgstr "Mengimpor Daftar Putar"
 
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:195
 msgid "Library"
@@ -364,7 +364,7 @@ msgstr "Jaringan"
 
 #: /home/victor/noise/po/../src//Widgets/SourceListView.vala:198
 msgid "Playlists"
-msgstr "Daftarputar"
+msgstr "Daftar Putar"
 
 #: /home/victor/noise/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
@@ -649,7 +649,7 @@ msgstr "Salin berkas yang diimpor ke Pustaka:"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
-msgstr "Integrasi desktop"
+msgstr "Integrasi Desktop"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
@@ -672,7 +672,7 @@ msgstr "Pengubah Daftar Putar Pintar"
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
 msgid "Name of Playlist"
-msgstr "Nama Daftarputar"
+msgstr "Nama Daftar Putar"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
@@ -690,7 +690,7 @@ msgstr "Nama Daftar Putar"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "Match"
-msgstr "Cocok"
+msgstr "Cocokkan"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
 msgid "any"
@@ -702,7 +702,7 @@ msgstr "semua"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
 msgid "of the following:"
-msgstr "dari hal berikut:"
+msgstr "dari hal-hal berikut"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
 msgid "Limit to"
@@ -710,7 +710,7 @@ msgstr "Batasi sampai"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
 msgid "items"
-msgstr "item-item"
+msgstr "item"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
 msgid "Bitrate"
@@ -1031,9 +1031,9 @@ msgid ""
 "below."
 msgstr ""
 "Daftar putar ini akan dipopulasi secara otomatis dengan lagu-lagu yang "
-"sesuai dengan aturan. Untuk mengubah aturan-aturan ini, gunakan <b>klik "
-"kanan</b> dalam daring dan klik <b>Sunting</b>. Sebagai tambahan, Anda dapat "
-"menge-klik pada di bawah."
+"sesuai dengan aturan. Untuk mengubah aturan-aturan ini,  <b>klik kanan</b>  "
+"Daftar Putar di sisi kiri  dan klik <b>Sunting</b>. Selain itu anda juga "
+"dapat mengaksesnya dengan mengeklik tombol di bawah ini."
 
 #: /home/victor/noise/po/../src//Views/ContentView.vala:21
 #, c-format
@@ -1198,7 +1198,7 @@ msgstr "Hapus dari Perangkat"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
 msgid "Scroll to Current Song"
-msgstr "Gulung ke Lagu Ini"
+msgstr "Tunjukkan Lagu yang dimainkan"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
 msgid "Edit Song Info"
@@ -1215,7 +1215,7 @@ msgstr "Antrian"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
 msgid "Add to Playlist"
-msgstr "Tambahkan ke Playlist"
+msgstr "Tambah ke Daftar Putar"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Remove Song"
@@ -1452,7 +1452,7 @@ msgstr "Sinkronisasi Gagal"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Daftarputar dengan nama %s digunakan untuk singkronisasi perangkat %s, "
+"Daftar Putar dengan nama %s digunakan untuk singkronisasi perangkat %s, "
 "tetapi tidak dapat ditemukan."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:604
@@ -1493,7 +1493,7 @@ msgstr "Dimainkan berulang-ulang"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:621
 msgid "Not Recently Played"
-msgstr "Bukan yang baru saja dimainkan"
+msgstr "Selain yang baru dimainkan"
 
 #: /home/victor/noise/po/../src//PlaybackManager.vala:98
 #: /home/victor/noise/po/../src//LibraryWindow.vala:676
@@ -1818,7 +1818,7 @@ msgstr "media"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr "Media Serupa"
+msgstr "Lagu yang Mirip"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
@@ -1842,7 +1842,7 @@ msgstr "Selesaikan Login"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:42
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/PreferencesSection.vala:47
 msgid "Last.fm Integration"
