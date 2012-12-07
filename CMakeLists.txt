@@ -135,6 +135,7 @@ include(ValaVersion)
 ensure_vala_version("0.16.0" MINIMUM)
 include(ValaPrecompile)
 
+set (DEPS_LIBRARIES ${DEPS_LIBRARIES} -lm)
 add_subdirectory(schemas)
 add_subdirectory(core)
 
