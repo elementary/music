@@ -107,13 +107,15 @@ public class Noise.DataBaseUpdater : Object {
                 Object? next = to_remove.poll ();
 
                 if (next != null) {
-                    if (next is Gee.LinkedList)
-                        dbm.remove_media ( next as Gee.LinkedList<string>);
-                    else if (next is Playlist)
+                    if (next is Gee.LinkedList) {
+                        dbm.remove_media (next as Gee.LinkedList<string>);
+                    } else if (next is Playlist) {
                         dbm.remove_playlist (next as Playlist);
-                    else if (next is SmartPlaylist)
+                        dbm.remove_columns_state (next as Playlist, null);
+                    } else if (next is SmartPlaylist) {
                         dbm.remove_smart_playlist (next as SmartPlaylist);
-                    else
+                        dbm.remove_columns_state (null, next as SmartPlaylist);
+                    } else
                         assert_not_reached ();
 
                     operation_done = true;
@@ -128,16 +130,14 @@ public class Noise.DataBaseUpdater : Object {
 
         Playlist p_music = new Playlist ();
         p_music.name = "autosaved_music";
-        lm.lw.set_treeviewsetup_from_playlist (p_music, lm.music_setup);
 
-        playlists_and_queue.add (App.player.queue_playlist);
-        playlists_and_queue.add (App.player.history_playlist);
         playlists_and_queue.add (p_music);
 
         message ("-- Saving playlists and device preferences DB.");
 
         dbm.save_playlists (playlists_and_queue);
         dbm.save_smart_playlists (lm.smart_playlists ());
+        dbm.save_columns_state (playlists_and_queue, lm.smart_playlists ());
         dbm.save_devices (lm.device_manager.device_preferences ());
 
         message ("-- Finished saving playlists and device preferences DB.");

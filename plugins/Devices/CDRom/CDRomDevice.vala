@@ -47,6 +47,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     CDView cdview;
     
     public signal void current_importation (int current_list_index);
+    public signal void stop_importation ();
     
     public CDRomDevice(Noise.LibraryManager lm, Mount mount) {
         this.lm = lm;
@@ -285,11 +286,12 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        ripper = new CDRipper(lm, get_uri(), medias.size);
+        ripper = new CDRipper(lm, mount, medias.size);
         if(!ripper.initialize()) {
             warning ("Could not create CD Ripper\n");
             return false;
         }
+        current_importation (1);
         
         current_list_index = 0;
         Noise.Media s = list.get(current_list_index);
@@ -369,7 +371,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         if(current_list_index < (list.size - 1) && !user_cancelled) {
             ++current_list_index;
             Noise.Media next = list.get(current_list_index);
-            current_importation (current_list_index);
+            current_importation (current_list_index+1);
             media_being_ripped = next;
             ripper.ripMedia(next.track, next);
 
@@ -386,6 +388,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             current_operation = get_track_status (next);
         }
         else {
+            stop_importation ();
             lm.finish_file_operations();
             media_being_ripped = null;
             _is_transferring = false;
@@ -393,7 +396,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             var app_name = App.instance.get_name ();
             int n_songs = current_list_index + 1;
             if (n_songs > 1) {
-                lw.show_notification (_("CD Import Complete"), _("%s has finished importing %i songs from Audio CD.").printf (app_name));
+                lw.show_notification (_("CD Import Complete"), _("%s has finished importing %i songs from Audio CD.").printf (app_name, n_songs));
             }
             else if (n_songs > 0) {
                 lw.show_notification (_("CD Import Complete"), _("%s has finished importing a song from Audio CD.").printf (app_name));
@@ -426,6 +429,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 
 
     public void ripperError(string err, Gst.Message message) {
+        stop_importation ();
         if(err == "missing element") {
             if(message.get_structure() != null && Gst.is_missing_plugin_message(message)) {
                     Noise.InstallGstreamerPluginsDialog dialog = new Noise.InstallGstreamerPluginsDialog(lm, lw, message);

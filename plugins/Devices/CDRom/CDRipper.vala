@@ -39,15 +39,16 @@ public class Noise.CDRipper : GLib.Object {
 	public signal void progress_notification(double progress);
 	public signal void error(string err, Message message);
 	
-	public CDRipper(Noise.LibraryManager lm, string device, int count) {
+	public CDRipper(Noise.LibraryManager lm, Mount mount, int count) {
 		this.lm = lm;
-		_device = device;
+		_device = mount.get_volume ().get_identifier (GLib.VolumeIdentifier.UNIX_DEVICE);
 		track_count = count;
 	}
 	
 	public bool initialize() {
 		pipeline = new Gst.Pipeline("pipeline");
-		src = ElementFactory.make("cdparanoiasrc", "mycdparanoia");
+		src = Gst.Element.make_from_uri (Gst.URIType.SRC, "cdda://", null);
+        src.set_property ("device", _device);
 		queue = ElementFactory.make("queue", "queue");
 		filter = ElementFactory.make("lame", "encoder");
 		sink = ElementFactory.make("filesink", "filesink");
@@ -56,6 +57,16 @@ public class Noise.CDRipper : GLib.Object {
 			critical("Could not create GST Elements for ripping.\n");
 			return false;
 		}
+		
+		if (src.get_class ().find_property ("paranoia-mode") != null)
+			src.set_property ("paranoia-mode", 0xff);
+
+		/* trick cdparanoiasrc into resetting the device speed in case we've
+		 * previously set it to 1 for playback
+		 */
+		
+		if (src.get_class ().find_property ("read-speed") != null)
+			src.set_property ("read-speed", 0xffff);
 		
 		queue.set("max-size-time", 120 * Gst.SECOND);
 		

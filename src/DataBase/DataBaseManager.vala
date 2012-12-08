@@ -73,6 +73,7 @@ public class Noise.DataBaseManager : GLib.Object {
 
         load_table (Database.Tables.PLAYLISTS);
         load_table (Database.Tables.SMART_PLAYLISTS);
+        load_table (Database.Tables.COLUMNS);
         load_table (Database.Tables.MEDIA);
         load_table (Database.Tables.DEVICES);
         load_table (Database.Tables.ARTISTS);
@@ -158,9 +159,9 @@ public class Noise.DataBaseManager : GLib.Object {
     public void add_media (Collection<Media> media) {
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO 'media' ('uri', 'file_size', 'title', 'artist', 'composer', 'album_artist',
-'album', 'grouping', 'genre', 'comment', 'lyrics', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
-'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified', 'mediatype', 'resume_pos')
+            Query query = transaction.prepare ("""INSERT INTO `media` (`uri`, `file_size`, `title`, `artist`, `composer`, `album_artist`,
+`album`, `grouping`, `genre`, `comment`, `lyrics`, `has_embedded`, `year`, `track`, `track_count`, `album_number`, `album_count`,
+`bitrate`, `length`, `samplerate`, `rating`, `playcount`, `skipcount`, `dateadded`, `lastplayed`, `lastmodified`, `mediatype`, `resume_pos`)
 VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping,
 :genre, :comment, :lyrics, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate,
 :rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :mediatype,
@@ -280,65 +281,68 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
      * load_columns_state() loads the state of each columns from db
      *
      */
-    public Gee.ArrayList<Playlist> load_columns_state() {
-        var rv = new ArrayList<Playlist>();
+    public HashMap<Object, TreeViewSetup> load_columns_state () {
+        var rv = new HashMap<Object, TreeViewSetup>();
 
         try {
-            string script = "SELECT * FROM `playlists`";
+            string script = "SELECT * FROM `columns`";
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
-                Playlist p = new Playlist.with_info(results.fetch_int(0), results.fetch_string(1));
-                string media = results.fetch_string(2);
-                
-                string[] media_strings = media.split("<sep>", 0);
-                int index;
-                var new_media = new Gee.LinkedList<Media> ();
-                for (index = 0; index < media_strings.length - 1; ++index) {
-                    string uri = media_strings[index];
-                    var m = lm.media_from_uri (uri);
-                    if (m != null) {
-                        new_media.add (m);
-                    }
+                if (results.fetch_int(0) == 0) {
+                    Playlist p = lm.playlist_from_name (results.fetch_string(1));
+                    var tvs = new TreeViewSetup (results.fetch_int(2), Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+                    tvs.set_sort_direction_from_string(results.fetch_string(3));
+                    tvs.import_columns(results.fetch_string(4));
+                    rv.set (p, tvs);
+                } else {
+                    SmartPlaylist p = lm.smart_playlist_from_name (results.fetch_string(1));
+                    var tvs = new TreeViewSetup (results.fetch_int(2), Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
+                    tvs.set_sort_direction_from_string(results.fetch_string(3));
+                    tvs.import_columns(results.fetch_string(4));
+                    rv.set (p, tvs);
                 }
-                p.add_media (new_media);
-                
-                /*p.tvs.sort_column_id = results.fetch_int(3);
-                p.tvs.set_sort_direction_from_string(results.fetch_string(4));
-
-                p.tvs.import_columns(results.fetch_string(5));*/
-
-                rv.add(p);
             }
         }
         catch (SQLHeavy.Error err) {
-            warning ("Could not load playlists from db: %s\n", err.message);
+            warning ("Could not load columns from db: %s\n", err.message);
         }
 
         return rv;
     }
 
-    // TODO : Implement the column state save
-    public void save_columns_state (Collection<Playlist> playlists) {
+    public void save_columns_state (Collection<Playlist>? playlists = null, Collection<SmartPlaylist>? smart_playlists = null) {
         try {
             database.execute("DELETE FROM `columns`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
-            //, 'sort_column_id', 'sort_direction', 'columns'      , :sort_column_id, :sort_direction, :columns
+            Query query = transaction.prepare ("INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+                                                VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);");
 
-            foreach(Playlist p in playlists) {
-                if (p.read_only == false) {
-                    string rv = "";
-                    
-                    foreach (var m in p.media) {
-                        if (m != null)
-                            rv += m.uri + "<sep>";
+            if (playlists != null) {
+                foreach(Playlist p in playlists) {
+                    if (p.read_only == false) {
+                        var tvs = lm.lw.get_treeviewsetup_from_playlist (p);
+                        
+                        query.set_int    (":is_smart", 0);
+                        query.set_string (":name", p.name);
+                        query.set_int    (":sort_column_id", tvs.sort_column_id);
+                        query.set_string (":sort_direction", tvs.sort_direction_to_string());
+                        query.set_string (":columns", tvs.columns_to_string());
+
+                        query.execute();
                     }
-                    query.set_string(":name", p.name);
-                    query.set_string(":media", rv);
-                    /*query.set_int(":sort_column_id", p.tvs.sort_column_id);
-                    query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
-                    query.set_string(":columns", p.tvs.columns_to_string());*/
+                }
+            }
+            
+            if (smart_playlists != null) {
+                foreach(SmartPlaylist p in smart_playlists) {
+                    var tvs = lm.lw.get_treeviewsetup_from_smartplaylist (p);
+                    
+                    query.set_int    (":is_smart", 1);
+                    query.set_string (":name", p.name);
+                    query.set_int    (":sort_column_id", tvs.sort_column_id);
+                    query.set_string (":sort_direction", tvs.sort_direction_to_string());
+                    query.set_string (":columns", tvs.columns_to_string());
 
                     query.execute();
                 }
@@ -351,51 +355,137 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
-    public void add_columns_state (Playlist p) {
-        if (p.read_only == true)
-            return;
-        string rv = "";
+    public void add_columns_state (Playlist? p = null, SmartPlaylist? sp = null) {
         
-        foreach (var m in p.media) {
-            if (m != null)
-                rv += m.uri + ",";
+        string name = "";
+        int is_smart = 0;
+        TreeViewSetup tvs;
+        if (sp == null) {
+            if (p == null)
+                return;
+            if (p.read_only == true)
+                return;
+            name = p.name;
+            tvs = lm.lw.get_treeviewsetup_from_playlist (p);
+        } else {
+            if (sp == null)
+                return;
+            is_smart = 1;
+            name = sp.name;
+            tvs = lm.lw.get_treeviewsetup_from_smartplaylist (sp);
         }
 
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`)
-                                                VALUES (:name, :media);");
-                // , 'sort_column_id', 'sort_direction', 'columns'      , :sort_column_id, :sort_direction, :columns
-
-            query.set_string(":name", p.name);
-            query.set_string(":media", rv);
-            /*query.set_int(":sort_column_id", p.tvs.sort_column_id);
-            query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
-            query.set_string(":columns", p.tvs.columns_to_string());*/
-
+            Query query = transaction.prepare ("INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+                                                VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);");
+            
+            query.set_int    (":is_smart", is_smart);
+            query.set_string (":name", name);
+            query.set_int    (":sort_column_id", tvs.sort_column_id);
+            query.set_string (":sort_direction", tvs.sort_direction_to_string());
+            query.set_string (":columns", tvs.columns_to_string());
             query.execute();
-
+            
             transaction.commit();
         }
         catch(SQLHeavy.Error err) {
-            warning ("Could not add playlists: %s \n", err.message);
+            warning ("Could not add columns: %s \n", err.message);
         }
     }
 
-    public void remove_columns_state (Playlist p) {
-        if (p.read_only == true)
-            return;
+    public void remove_columns_state (Playlist? p = null, SmartPlaylist? sp = null) {
+        
+        string name = "";
+        if (sp == null) {
+            if (p == null)
+                return;
+            if (p.read_only == true)
+                return;
+            name = p.name;
+        } else {
+            if (sp == null)
+                return;
+            name = sp.name;
+        }
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("DELETE FROM `playlists` WHERE name=:name");
+            Query query = transaction.prepare("DELETE FROM `columns` WHERE name=:name");
 
-            query.set_string(":name", p.name);
+            query.set_string(":name", name);
             query.execute();
 
             transaction.commit();
         }
         catch (SQLHeavy.Error err) {
-            warning ("Could not remove playlist from db: %s\n", err.message);
+            warning ("Could not remove column from db: %s\n", err.message);
+        }
+    }
+
+    public void add_default_columns () {
+        try {
+            
+            TreeViewSetup tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
+            
+            transaction = database.begin_transaction();
+            Query query = transaction.prepare ("INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+                                                VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);");
+
+            query.set_int    (":is_smart", 1);
+            query.set_string (":name", _("Favorite Songs"));
+            query.set_int    (":sort_column_id", ListColumn.RATING);
+            query.set_string (":sort_direction", tvs.sort_direction_to_string ());
+            query.set_string (":columns", tvs.columns_to_string ());
+            query.execute ();
+
+            query.set_int    (":is_smart", 1);
+            query.set_string (":name", _("Recently Added"));
+            query.set_int    (":sort_column_id", ListColumn.ARTIST);
+            query.set_string (":sort_direction", tvs.sort_direction_to_string ());
+            query.set_string (":columns", tvs.columns_to_string ());
+            query.execute ();
+
+            /*
+            query.set_int    (":is_smart", 1);
+            query.set_string (":name", _("Recently Played"));
+            query.set_int    (":sort_column_id", ListColumn.LAST_PLAYED);
+            query.set_string (":sort_direction", tvs.sort_direction_to_string ());
+            query.set_string (":columns", tvs.columns_to_string ());
+            query.execute ();
+            */
+
+            query.set_int    (":is_smart", 1);
+            query.set_string (":name", _("Recent Favorites"));
+            query.set_int    (":sort_column_id", ListColumn.RATING);
+            query.set_string (":sort_direction", tvs.sort_direction_to_string ());
+            query.set_string (":columns", tvs.columns_to_string ());
+            query.execute ();
+
+            query.set_int    (":is_smart", 1);
+            query.set_string (":name", _("Never Played"));
+            query.set_int    (":sort_column_id", ListColumn.ARTIST);
+            query.set_string (":sort_direction", tvs.sort_direction_to_string ());
+            query.set_string (":columns", tvs.columns_to_string ());
+            query.execute ();
+
+            query.set_int    (":is_smart", 1);
+            query.set_string (":name", _("Over Played"));
+            query.set_int    (":sort_column_id", ListColumn.PLAY_COUNT);
+            query.set_string (":sort_direction", tvs.sort_direction_to_string ());
+            query.set_string (":columns", tvs.columns_to_string ());
+            query.execute ();
+
+            query.set_int    (":is_smart", 1);
+            query.set_string (":name", _("Not Recently Played"));
+            query.set_int    (":sort_column_id", ListColumn.NUMBER);
+            query.set_string (":sort_direction", tvs.sort_direction_to_string ());
+            query.set_string (":columns", tvs.columns_to_string ());
+            query.execute ();
+
+            transaction.commit();
+        }
+        catch (SQLHeavy.Error err) {
+            warning ("Could not initialize columns: %s\n", err.message);
         }
     }
 
@@ -444,13 +534,11 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    // TODO : Save each playlists view state
     public void save_playlists(Collection<Playlist> playlists) {
         try {
             database.execute("DELETE FROM `playlists`");
             transaction = database.begin_transaction();
             Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
-            //, 'sort_column_id', 'sort_direction', 'columns'      , :sort_column_id, :sort_direction, :columns
 
             foreach(Playlist p in playlists) {
                 if (p.read_only == false) {
@@ -462,9 +550,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                     }
                     query.set_string(":name", p.name);
                     query.set_string(":media", rv);
-                    /*query.set_int(":sort_column_id", p.tvs.sort_column_id);
-                    query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
-                    query.set_string(":columns", p.tvs.columns_to_string());*/
 
                     query.execute();
                 }
@@ -491,13 +576,9 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             transaction = database.begin_transaction();
             Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`)
                                                 VALUES (:name, :media);");
-                // , 'sort_column_id', 'sort_direction', 'columns'      , :sort_column_id, :sort_direction, :columns
 
             query.set_string(":name", p.name);
             query.set_string(":media", rv);
-            /*query.set_int(":sort_column_id", p.tvs.sort_column_id);
-            query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
-            query.set_string(":columns", p.tvs.columns_to_string());*/
 
             query.execute();
 
@@ -530,7 +611,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }*/
 
-    public void remove_playlist(Playlist p) {
+    public void remove_playlist (Playlist p) {
         if (p.read_only == true)
             return;
         try {
@@ -551,19 +632,14 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
     public void add_default_smart_playlists () {
         try {
-            //TreeViewSetup tvs = new TreeViewSetup(ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount') VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
-            //, 'sort_column_id', 'sort_direction', 'columns'   , :sort_column_id, :sort_direction, :columns
+            Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
 
             query.set_string(":name", _("Favorite Songs"));
             query.set_int(":and_or", 0);
             query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>13<val_sep>6<val_sep>4<query_sep>");
             query.set_int(":limit", 0);
             query.set_int(":limit_amount", 50);
-            /*query.set_int(":sort_column_id", ListColumn.RATING);
-            query.set_string(":sort_direction", tvs.sort_direction_to_string());
-            query.set_string(":columns", tvs.columns_to_string());*/
             query.execute();
 
             query.set_string(":name", _("Recently Added"));
@@ -571,9 +647,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.set_string(":queries", "5<val_sep>7<val_sep>7<query_sep>");
             query.set_int(":limit", 0);
             query.set_int(":limit_amount", 50);
-            /*query.set_int(":sort_column_id", ListColumn.ARTIST);
-            query.set_string(":sort_direction", tvs.sort_direction_to_string());
-            query.set_string(":columns", tvs.columns_to_string());*/
             query.execute();
 
             /*
@@ -582,9 +655,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.set_string(":queries", "9<val_sep>7<val_sep>7<query_sep>");
             query.set_int(":limit", 0);
             query.set_int(":limit_amount", 50);
-            query.set_int(":sort_column_id", ListColumn.LAST_PLAYED);
-            query.set_string(":sort_direction", tvs.sort_direction_to_string());
-            query.set_string(":columns", tvs.columns_to_string());
             query.execute();
             */
 
@@ -593,9 +663,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>9<val_sep>7<val_sep>7<query_sep>13<val_sep>6<val_sep>4<query_sep>");
             query.set_int(":limit", 0);
             query.set_int(":limit_amount", 50);
-            /*query.set_int(":sort_column_id", ListColumn.RATING);
-            query.set_string(":sort_direction", tvs.sort_direction_to_string());
-            query.set_string(":columns", tvs.columns_to_string());*/
             query.execute();
 
             query.set_string(":name", _("Never Played"));
@@ -603,9 +670,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>12<val_sep>4<val_sep>0<query_sep>");
             query.set_int(":limit", 0);
             query.set_int(":limit_amount", 50);
-            /*query.set_int(":sort_column_id", ListColumn.ARTIST);
-            query.set_string(":sort_direction", tvs.sort_direction_to_string());
-            query.set_string(":columns", tvs.columns_to_string());*/
             query.execute();
 
             query.set_string(":name", _("Over Played"));
@@ -613,9 +677,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>12<val_sep>6<val_sep>10<query_sep>");
             query.set_int(":limit", 0);
             query.set_int(":limit_amount", 50);
-            /*query.set_int(":sort_column_id", ListColumn.PLAY_COUNT);
-            query.set_string(":sort_direction", tvs.sort_direction_to_string());
-            query.set_string(":columns", tvs.columns_to_string());*/
             query.execute();
 
             query.set_string(":name", _("Not Recently Played"));
@@ -623,9 +684,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.set_string(":queries", "9<val_sep>8<val_sep>7<query_sep>");
             query.set_int(":limit", 0);
             query.set_int(":limit_amount", 50);
-            /*query.set_int(":sort_column_id", ListColumn.NUMBER);
-            query.set_string(":sort_direction", tvs.sort_direction_to_string());
-            query.set_string(":columns", tvs.columns_to_string());*/
             query.execute();
 
             transaction.commit();
@@ -634,6 +692,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             warning ("Could not initialize smart playlists: %s\n", err.message);
         }
     }
+
     public Gee.ArrayList<SmartPlaylist> load_smart_playlists() {
         var rv = new ArrayList<SmartPlaylist>();
 
@@ -649,9 +708,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                 p.queries_from_string(results.fetch_string(2));
                 p.limit = ( results.fetch_string(3) == "1") ? true : false;
                 p.limit_amount = results.fetch_int(4);
-                /*p.tvs.sort_column_id = results.fetch_int(6);
-                p.tvs.set_sort_direction_from_string(results.fetch_string(7));
-                p.tvs.import_columns(results.fetch_string(8));*/
 
                 rv.add(p);
             }
@@ -667,8 +723,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             database.execute("DELETE FROM `smart_playlists`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount') VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
-            //, 'sort_column_id', 'sort_direction', 'columns'          , :sort_column_id, :sort_direction, :columns
+            Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
 
             foreach(SmartPlaylist s in smarts) {
                 query.set_string(":name", s.name);
@@ -676,9 +731,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                 query.set_string(":queries", s.queries_to_string());
                 query.set_int(":limit", ( s.limit ) ? 1 : 0);
                 query.set_int(":limit_amount", s.limit_amount);
-                /*query.set_int(":sort_column_id", s.tvs.sort_column_id);
-                query.set_string(":sort_direction", s.tvs.sort_direction_to_string());
-                query.set_string(":columns", s.tvs.columns_to_string());*/
 
                 query.execute();
             }
@@ -694,16 +746,12 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare("UPDATE `smart_playlists` SET name=:name, and_or=:and_or, queries=:queries, limit=:limit, limit_amount=:limit_amounts WHERE name=:name");
-            //, sort_column_id=:sort_column_id, sort_direction=:sort_direction, columns=:column
 
             query.set_string(":name", p.name);
             query.set_int(":and_or", (int)p.conditional);
             query.set_string(":queries", p.queries_to_string());
             query.set_int(":limit", ( p.limit ) ? 1 : 0);
             query.set_int(":limit_amount", p.limit_amount);
-            /*query.set_int(":sort_column_id", p.tvs.sort_column_id);
-            query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
-            query.set_string(":columns", p.tvs.columns_to_string());*/
 
             query.execute();
             transaction.commit();
@@ -733,7 +781,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             database.execute("DELETE FROM `albums`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("INSERT INTO `albums` (`name`, 'artist', `mbid`, 'release_date', 'summary', 'listeners', 'playcount', 'image_uri') VALUES (:name, :artist, :mbid, :release_date, :summary, :listeners, :playcount, :image_uri);");
+            Query query = transaction.prepare("INSERT INTO `albums` (`name`, `artist`, `mbid`, `release_date`, `summary`, `listeners`, `playcount`, `image_uri`) VALUES (:name, :artist, :mbid, :release_date, :summary, :listeners, :playcount, :image_uri);");
 
             foreach(Noise.AlbumInfo a in albums) {
                 query.set_string(":name", a.name);
@@ -764,7 +812,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             for (var results = query.execute(); !results.finished; results.next() ) {
                 Noise.AlbumInfo a = new Noise.AlbumInfo();
 
-                //int rowid = results.fetch_int(0);
                 a.name = results.fetch_string (1);
                 a.artist = results.fetch_string (2);
                 a.mbid = results.fetch_string (3);
@@ -794,7 +841,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             for (var results = query.execute(); !results.finished; results.next() ) {
                 Noise.ArtistInfo a = new Noise.ArtistInfo();
 
-                //int rowid = results.fetch_int(0);
                 a.name = results.fetch_string(1);
                 a.mbid = results.fetch_string(2);
                 a.listeners = results.fetch_int(3);
@@ -818,7 +864,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             database.execute("DELETE FROM `artists`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("INSERT INTO `artists` (`name`, `mbid`, 'listeners', 'playcount', 'published', 'summary', 'content', 'image_uri') VALUES (:name, :mbid, :listeners, :playcount, :published, :summary, :content, :image_uri);");
+            Query query = transaction.prepare("INSERT INTO `artists` (`name`, `mbid`, `listeners`, `playcount`, `published`, `summary`, `content`, `image_uri`) VALUES (:name, :mbid, :listeners, :playcount, :published, :summary, :content, :image_uri);");
 
             foreach(Noise.ArtistInfo a in artists) {
                 query.set_string(":name", a.name);
@@ -849,7 +895,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             for (var results = query.execute(); !results.finished; results.next() ) {
                 Noise.TrackInfo t = new Noise.TrackInfo();
 
-                //int rowid = results.fetch_int(0);
                 t.id = results.fetch_int(1);
                 t.name = results.fetch_string(2);
                 t.artist = results.fetch_string(3);
@@ -874,7 +919,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             database.execute("DELETE FROM `tracks`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("INSERT INTO `tracks` ('id', `name`, `artist`, `album`, 'duration', 'listeners', 'playcount', 'summary', 'content') VALUES (:id, :name, :artist, :album, :duration, :listeners, :playcount, :summary, :content);");
+            Query query = transaction.prepare("INSERT INTO `tracks` (`id`, `name`, `artist`, `album`, `duration`, `listeners`, `playcount`, `summary`, `content`) VALUES (:id, :name, :artist, :album, :duration, :listeners, :playcount, :summary, :content);");
 
             foreach(Noise.TrackInfo t in tracks) {
                 query.set_int(":id", t.id);
@@ -933,9 +978,9 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             database.execute("DELETE FROM `devices`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""INSERT INTO `devices` ('unique_id', 'sync_when_mounted', 'sync_music',
-            'sync_podcasts', 'sync_audiobooks', 'sync_all_music', 'sync_all_podcasts', 'sync_all_audiobooks', 'music_playlist',
-            'podcast_playlist', 'audiobook_playlist', 'last_sync_time') VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
+            Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
+            `sync_podcasts`, `sync_audiobooks`, `sync_all_music`, `sync_all_podcasts`, `sync_all_audiobooks`, `music_playlist`,
+            `podcast_playlist`, `audiobook_playlist`, `last_sync_time`) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
             :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);""");
 
             foreach(DevicePreferences dp in devices) {

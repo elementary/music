@@ -43,6 +43,8 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         build_ui ();
         
         dev.initialized.connect (cd_initialised);
+        dev.current_importation.connect (current_importation);
+        dev.stop_importation.connect (stop_importation);
     }
     
     public void build_ui () {
@@ -50,7 +52,6 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         main_event_box = new Gtk.EventBox ();
         main_grid = new Gtk.Grid ();
         main_grid.set_column_homogeneous (true);
-        main_grid.set_row_homogeneous (true);
         
         /* Content view styling */
         main_event_box.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
@@ -60,6 +61,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         
         album_image = new Gtk.Image.from_pixbuf (default_pix);
         album_image.halign = Gtk.Align.CENTER;
+        album_image.valign = Gtk.Align.CENTER;
         album_image.set_alignment(0.5f, 1);
         
         title = new Gtk.Label ("");
@@ -98,13 +100,13 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         import_grid.attach (fake_label_3,  0, 0, 1, 1);
         import_grid.attach (import_button, 1, 0, 1, 1);
         
-        main_grid.attach (fake_label_1,  0, 0, 1, 5);
-        main_grid.attach (album_image,   1, 1, 1, 2);
-        main_grid.attach (title,         2, 1, 1, 1);
-        main_grid.attach (author,        3, 1, 1, 1);
-        main_grid.attach (scl_window,    2, 2, 2, 1);
-        main_grid.attach (import_grid,   3, 3, 1, 1);
-        main_grid.attach (fake_label_2,  4, 0, 1, 5);
+        main_grid.attach (fake_label_1,  0, 0, 1, 7);
+        main_grid.attach (album_image,   1, 3, 1, 1);
+        main_grid.attach (title,         2, 2, 1, 1);
+        main_grid.attach (author,        3, 2, 1, 1);
+        main_grid.attach (scl_window,    2, 3, 2, 1);
+        main_grid.attach (import_grid,   3, 4, 1, 1);
+        main_grid.attach (fake_label_2,  4, 0, 1, 7);
         
         main_event_box.add (main_grid);
         this.attach (main_event_box,0,0,1,1);
@@ -117,7 +119,6 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         main_grid.set_margin_top (12);
         
         import_button.clicked.connect ( () => {dev.transfer_to_library (media_list);});
-        dev.current_importation.connect (current_importation);
         
         show_all ();
     }
@@ -136,12 +137,19 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         show_all ();
     }
     
+    //XXX: This is not well working, so deactivating it for now !
     public void current_importation (int track) {
-        
+    /*    spinner.unparent ();
         spinner = new Gtk.Spinner ();
         list_view.attach(spinner, 0, track, 1, 1);
         spinner.start ();
-        show_all ();
+        show_all ();*/
+    }
+    
+    public void stop_importation () {
+    /*    spinner.hide ();
+        spinner.unparent ();
+        spinner = new Gtk.Spinner ();*/
     }
     
     public Granite.Widgets.WrapLabel create_title_label (string title) {

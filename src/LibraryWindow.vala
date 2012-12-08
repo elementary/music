@@ -141,7 +141,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using Noise.");
         }*/
     }
-    
+
     public TreeViewSetup? get_treeviewsetup_from_playlist (Playlist sp) {
         int index = 0;
         while (view_container.get_view (index) != null && sp != null) {
@@ -155,7 +155,35 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
         return null;
     }
+
+    public TreeViewSetup? get_treeviewsetup_from_smartplaylist (SmartPlaylist sp) {
+        int index = 0;
+        while (view_container.get_view (index) != null && sp != null) {
+            Gtk.Widget view = view_container.get_view (index);
+            if (view is PlaylistViewWrapper) {
+                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
+                    return ((PlaylistViewWrapper)view).tvs;
+                }
+            }
+            index++;
+        }
+        return null;
+    }
+
     public void set_treeviewsetup_from_playlist (Playlist sp, TreeViewSetup tvs) {
+        int index = 0;
+        while (view_container.get_view (index) != null) {
+            Gtk.Widget view = view_container.get_view (index);
+            if (view is PlaylistViewWrapper) {
+                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
+                    ((PlaylistViewWrapper)view).tvs = tvs;
+                }
+            }
+            index++;
+        }
+    }
+
+    public void set_treeviewsetup_from_smartplaylist (SmartPlaylist sp, TreeViewSetup tvs) {
         int index = 0;
         while (view_container.get_view (index) != null) {
             Gtk.Widget view = view_container.get_view (index);
