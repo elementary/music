@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-04 23:58+0100\n"
+"POT-Creation-Date: 2012-12-08 02:05+0100\n"
 "PO-Revision-Date: 2012-12-02 12:46+0000\n"
 "Last-Translator: Ebubekir KARUL <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-12-05 05:54+0000\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Launchpad-Export-Date: 2012-12-08 05:33+0000\n"
+"X-Generator: Launchpad (build 16341)\n"
 "Language: tr\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -142,42 +142,42 @@ msgstr "%s ve %s"
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:246
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:274
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:101
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:120
 msgid "Import to Library"
 msgstr "Kütüphaneye medya ekle"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:247
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:275
 msgid "Rescan Music Folder"
 msgstr "Müzik dizinini yeniden tara"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:250
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:278
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:270
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:298
 msgid "Search Music"
 msgstr "Müzik Ara"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:621
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:716
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:649
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:744
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "Müzik"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:667
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:695
 #: /home/noelco/noise/po/../src//PlaybackManager.vala:100
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Kuyruk"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:669
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:697
 msgid "No songs in Queue"
 msgstr "Kurukta Şarkı Yok"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:669
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:697
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -188,16 +188,16 @@ msgstr ""
 "listedeki sonraki şarkıdan önce ilk olarak kuyruğa alınmış şarkılar çalınmış "
 "olacak."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:673
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:701
 #: /home/noelco/noise/po/../src//PlaybackManager.vala:98
 msgid "History"
 msgstr "Geçmiş"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:675
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:703
 msgid "No songs in History"
 msgstr "Geçmişte şarkı yok"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:675
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:703
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -207,45 +207,45 @@ msgstr ""
 "Bu listeyi geçerli oturumunuzda oynattığınız bütün şarkıları görmek için "
 "kullanabilirsiniz."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:904
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:906
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:932
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:934
 msgid "New playlist"
 msgstr "Yeni çalma listesi"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:907
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:910
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:938
 #, c-format
 msgid "New playlist (%i)"
 msgstr "Yeni çalma listesi (%i)"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1109
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1137
 msgid "Import Music"
 msgstr "Müzik aktar"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1141
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1169
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Müzik  </b> şuradan<b>%s</b> kitaplığa aktarılıyor."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1156
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
 msgid "Rescanning music folder for changes"
 msgstr "Değişimler için müzik dizini yeniden taranıyor."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1163
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:273
 msgid "Could not find Music Folder"
 msgstr "Müzik dizini bulunamadı."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1163
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Lütfen müzik dizininizin bağlı ve ulaşılabilir olduğundan emin oldun."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1230
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
 msgid "Import Complete"
 msgstr "İçe Aktarma Tamamlandı"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1230
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s kütüphanenize eklendi."
@@ -535,53 +535,53 @@ msgstr "Kuruktan Sil"
 msgid "Remove from Device"
 msgstr "Aygıtdan Sil"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
 msgid "Scroll to Current Song"
 msgstr "Şuanki şarkıya atla"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
 msgid "Edit Song Info"
 msgstr "Şarkı bilgisini düzenle"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:96
 msgid "Show in File Browser"
 msgstr "Dosya gezgininde göster"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:96
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgctxt "Action item (verb)"
 msgid "Queue"
 msgstr "Kuyruğa ekle"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:154
 msgid "New Playlist"
 msgstr "Yeni Çalma Listesi"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Add to Playlist"
 msgstr "Çalma Listesine Ekle"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
 msgid "Remove Song"
 msgstr "Şarkıyı Sil"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:217
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Seçili şarkılardan %i in %i i içe aktar"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:219
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:220
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:651
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:652
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:666
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:667
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
 msgid "Never"
 msgstr "Asla"
@@ -593,7 +593,7 @@ msgstr "Asla"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:729
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:730
 msgid "Sample List String"
 msgstr "Örnek Liste Dizisi"
 
@@ -807,27 +807,33 @@ msgstr "Şu dosya <b>%s</b> kütüphaneye aktarılıyor..."
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
 msgstr "<b>Dosyalar</b> müzik klasörüne <b>kopyalanıyor</b>..."
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:559
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:638
 msgid "Favorite Songs"
 msgstr "Favori Şarkılar"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:569
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:442
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:645
 msgid "Recently Added"
 msgstr "Son Eklenenler"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:591
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:458
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:661
 msgid "Recent Favorites"
 msgstr "Son Beğenilenler"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:601
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:668
 msgid "Never Played"
 msgstr "Hiç Çalınmamış"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:611
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:472
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:675
 msgid "Over Played"
 msgstr "Üzerinde oynandı"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:621
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:682
 msgid "Not Recently Played"
 msgstr "Yakınlarda Çalınmayanlar"
 
@@ -1304,7 +1310,7 @@ msgid "Import all media"
 msgstr "Tüm medyayı aktar"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:96
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:98
 msgid "Import"
 msgstr "İçe Aktar"
 
@@ -1658,16 +1664,16 @@ msgstr "Bilinmeyen Parça"
 msgid "Unknown Album"
 msgstr "Bilinmeyen Albüm"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:97
 msgid "Audio CD Invalid"
 msgstr "Bilinmeyen ses CD'si"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:101
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s bu Ses CD'sinin içeriğini okuyamadı"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:272
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:273
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1675,21 +1681,21 @@ msgstr ""
 "Lütfen CD den içe aktarım yapmadan önce ,müzik dizininizin erişilebilir "
 "olduğundan emin olun."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
 msgid "No songs on CD"
 msgstr "CD de müzik bulunmuyor"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "%s CD de hiç müzik tespit edemedi.İçe aktaracak müzik bulunmuyor"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:285
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s zaten bir içe aktarım yapıyor"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:284
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:285
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1698,33 +1704,33 @@ msgstr ""
 "Lütfen CDyi içe aktarmadan önce devam eden %s içe aktarmasının bitmesini "
 "bekleyin."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
 msgid "CD Import Complete"
 msgstr "CD içe aktarımı tamamlandı"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:396
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s CD den %i parçayı içe aktarmayı tamamladı."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s CD deki bir parçayı içe aktarmayı tamamladı."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:408
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "İçe aktarılan parça %i: %s"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:422
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:425
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "CD den içe aktarma şu an sürmekte olan içe aktarım sona erdikten sonra "
 "<b>iptal edilecek</b>."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:444
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:448
 msgid "An error occured during the Import of this CD"
 msgstr "Bu CD'nin İçe Aktarımı sırasında bir hata oluştu"
 
