@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-08 02:05+0100\n"
-"PO-Revision-Date: 2012-12-03 08:51+0000\n"
-"Last-Translator: Viko Adi Rahmawan <Unknown>\n"
+"PO-Revision-Date: 2012-12-09 19:34+0000\n"
+"Last-Translator: Risman Rangga Pratama <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-12-09 05:00+0000\n"
+"X-Launchpad-Export-Date: 2012-12-10 04:53+0000\n"
 "X-Generator: Launchpad (build 16341)\n"
 "Language: id\n"
 
@@ -55,7 +55,7 @@ msgstr "MPEG Versi 3.0 Extended (*.m3u)"
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "daftar putar Shoutcast versi 2.0 (*.pls)"
+msgstr "Daftar Putar Shoutcast versi 2.0 (*.pls)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
@@ -425,7 +425,7 @@ msgstr "%u item, %s, %s"
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
@@ -573,8 +573,7 @@ msgstr "Impor %i dari %i berkas yang terpilih."
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "impor %i song"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:652
 msgid "1234 kbps"
@@ -595,6 +594,13 @@ msgstr "Tak pernah"
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:730
 msgid "Sample List String"
 msgstr ""
+"/ String sampel digunakan untuk memperkirakan ukuran yang ideal untuk kolom "
+"Judul, Artis, / Album, Artis Album, Pengarang, Genre, and Pengelompokan di / "
+"tampilan daftar, dan *tidak pernah* ditampilkan di antar muka. String / yang "
+"telah diterjemahkan harus punya panjang yang masuk akal, seperti rata-rata / "
+"panjangnya judul lagu atau nama artis di bahasamu. Lebar / kolom secara "
+"otomatis mengikuti panjang dari string ini dan ruang yang / dibutuhkan oleh "
+"header judul dari kolom tersebut."
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:125
 msgid "Autosize Columns"

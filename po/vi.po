@@ -8,25 +8,25 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-08 02:05+0100\n"
-"PO-Revision-Date: 2012-04-16 21:57+0000\n"
-"Last-Translator: Victor Eduardo <victor@elementaryos.org>\n"
+"PO-Revision-Date: 2012-12-09 12:14+0000\n"
+"Last-Translator: Minh Danh <r00t3rvn@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-12-09 05:01+0000\n"
+"X-Launchpad-Export-Date: 2012-12-10 04:53+0000\n"
 "X-Generator: Launchpad (build 16341)\n"
 "Language: vi\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/noise/po/../core//Media.vala:35
 msgid "Unknown"
-msgstr ""
+msgstr "Chưa rõ"
 
 #: /home/noelco/noise/po/../core//Media.vala:45
 msgid "Radio Station"
-msgstr ""
+msgstr "Đài phát thanh"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:175
@@ -45,12 +45,12 @@ msgstr ""
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:187
 msgid "Export Playlist"
-msgstr ""
+msgstr "Xuất danh sách"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG phiên bản 3.0 mở rộng (*.m3u)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
@@ -59,12 +59,12 @@ msgstr ""
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
-msgstr ""
+msgstr "Danh sách phát"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:280
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "Nhập %s"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
 msgid "Unrecognized playlist file. Import failed."
