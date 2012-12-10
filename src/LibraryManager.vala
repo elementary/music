@@ -43,8 +43,8 @@ public class Noise.LibraryManager : Object {
     public signal void media_updated (Gee.LinkedList<int> ids);
     public signal void media_removed (Gee.LinkedList<int> ids);
     
-    public signal void playlist_added (Playlist playlist);
-    public signal void playlist_removed (Playlist playlist);
+    public signal void playlist_added (StaticPlaylist playlist);
+    public signal void playlist_removed (StaticPlaylist playlist);
     
     public signal void smartplaylist_added (SmartPlaylist smartplaylist);
     public signal void smartplaylist_removed (SmartPlaylist smartplaylist);
@@ -68,7 +68,7 @@ public class Noise.LibraryManager : Object {
         get { return media_count () > 0; }
     }
 
-    private Gee.TreeMap<int, Playlist> _playlists; // rowid, playlist of all playlists
+    private Gee.TreeMap<int, StaticPlaylist> _playlists; // rowid, playlist of all playlists
     private Gee.HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
     private Gee.TreeMap<int, Media> _media; // rowid, media of all media
 
@@ -101,7 +101,7 @@ public class Noise.LibraryManager : Object {
         dbm.db_progress.connect (dbProgress);
 
         _smart_playlists = new Gee.HashMap<int, SmartPlaylist> ();
-        _playlists = new Gee.TreeMap<int, Playlist> ();
+        _playlists = new Gee.TreeMap<int, StaticPlaylist> ();
         _media = new Gee.TreeMap<int, Media> ();
 
         // Load all media from database
@@ -143,7 +143,7 @@ public class Noise.LibraryManager : Object {
 
                         var to_queue = new LinkedList<Media> ();
 
-                        foreach (var m in p.media)
+                        foreach (var m in p.medias)
                             to_queue.add (m);
 
                         App.player.queue_media (to_queue);
@@ -157,10 +157,10 @@ public class Noise.LibraryManager : Object {
                         
                         var to_history = new LinkedList<Media> ();
 
-                        foreach (var m in p.media)
+                        foreach (var m in p.medias)
                             to_history.add (m);
 
-                        App.player.history_playlist.add_media (to_history);
+                        App.player.history_playlist.add_medias (to_history);
                     break;
 
                     default:
@@ -456,7 +456,7 @@ public class Noise.LibraryManager : Object {
         }
     }
     
-    /************************ Playlist stuff ******************/
+    /************************ StaticPlaylist stuff ******************/
     public int playlist_count () {
         return _playlists.size;
     }
@@ -470,20 +470,20 @@ public class Noise.LibraryManager : Object {
         return i;
     }
 
-    public Gee.Collection<Playlist> playlists () {
+    public Gee.Collection<StaticPlaylist> playlists () {
         return _playlists.values;
     }
 
-    public Gee.TreeMap<int, Playlist> playlist_hash () {
+    public Gee.TreeMap<int, StaticPlaylist> playlist_hash () {
         return _playlists;
     }
 
-    public Playlist playlist_from_id (int id) {
+    public StaticPlaylist playlist_from_id (int id) {
         return _playlists.get (id);
     }
 
-    public Playlist? playlist_from_name (string name) {
-        Playlist? rv = null;
+    public StaticPlaylist? playlist_from_name (string name) {
+        StaticPlaylist? rv = null;
 
         lock (_playlists) {
             foreach (var p in playlists ()) {
@@ -497,7 +497,7 @@ public class Noise.LibraryManager : Object {
         return rv;
     }
 
-    public int add_playlist (Playlist p) {
+    public int add_playlist (StaticPlaylist p) {
         lock (_playlists) {
             p.rowid = _playlist_rowid;
             _playlist_rowid++;
@@ -511,7 +511,7 @@ public class Noise.LibraryManager : Object {
     }
 
     public void remove_playlist (int id) {
-        Playlist removed;
+        StaticPlaylist removed;
 
         lock (_playlists) {
             _playlists.unset (id, out removed);
@@ -744,7 +744,7 @@ public class Noise.LibraryManager : Object {
     }
 
     public Gee.Collection<Media> media_from_playlist (int id) {
-        return _playlists.get (id).media ;
+        return _playlists.get (id).medias ;
     }
 
     public Collection<Media> media_from_smart_playlist (int id) {

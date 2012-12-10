@@ -33,7 +33,7 @@ public class LastFM.SimilarMedias : Object {
 	bool working;
 	
 	
-	public Noise.Playlist similar_playlist;
+	public Noise.StaticPlaylist similar_playlist;
 	
 	Noise.Media similarToAdd;
 	
@@ -42,7 +42,7 @@ public class LastFM.SimilarMedias : Object {
 	public class SimilarMedias(Noise.LibraryManager lm) {
 		_lm = lm;
 		working = false;
-		similar_playlist = new Noise.Playlist ();
+		similar_playlist = new Noise.StaticPlaylist ();
 		similar_playlist.name = _("Similar");
 		similar_playlist.read_only = true;
 	}
@@ -62,9 +62,9 @@ public class LastFM.SimilarMedias : Object {
 		var similarDont = new Gee.LinkedList<Noise.Media>();
 		
 		getSimilarTracks(_base.title, _base.artist);
-		_lm.media_from_name(similar_playlist.media, ref similarIDs, ref similarDont);
+		_lm.media_from_name(similar_playlist.medias, ref similarIDs, ref similarDont);
 		similar_playlist.clear ();
-		similar_playlist.add_media (_lm.media_from_ids (similarIDs));
+		similar_playlist.add_medias (_lm.media_from_ids (similarIDs));
 		similarIDs.offer_head(_base.rowid);
 		
 		Idle.add( () => {
@@ -144,7 +144,7 @@ public class LastFM.SimilarMedias : Object {
 			
 			parse_similar_nodes(iter, parent+node_name);
 		}
-		similar_playlist.add_media (add_list);
+		similar_playlist.add_medias (add_list);
 		delete iter;
 	}
 	

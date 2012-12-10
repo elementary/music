@@ -26,7 +26,7 @@ namespace Noise.PlaylistsUtils {
         bool rv = false;
         string to_save = "#EXTM3U";
         
-        foreach(var s in p.media) {
+        foreach(var s in p.medias) {
             if (s == null)
                 continue;
 
@@ -57,10 +57,10 @@ namespace Noise.PlaylistsUtils {
 
     public bool save_playlist_pls(Playlist p, string folder) {
         bool rv = false;
-        string to_save = "[playlist]\n\nNumberOfEntries=" + p.media.size.to_string() + "\nVersion=2";
+        string to_save = "[playlist]\n\nNumberOfEntries=" + p.medias.size.to_string() + "\nVersion=2";
         
         int index = 1;
-        foreach(var s in p.media) {
+        foreach(var s in p.medias) {
             if (s == null)
                 continue;
             
@@ -170,9 +170,10 @@ namespace Noise.PlaylistsUtils {
         map.set(index, val);
     }
 
-    public Playlist extract_playlist_from_smartplaylist (SmartPlaylist sp) {
-        var p = new Playlist();
-        p.add_media (sp.reanalyze());
+    public StaticPlaylist static_playlist_from_smartplaylist (SmartPlaylist sp) {
+        var p = new StaticPlaylist();
+        sp.reanalyze ();
+        p.add_medias (sp.medias);
         p.name = sp.name;
         return p;
     }

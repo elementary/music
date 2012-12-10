@@ -191,7 +191,7 @@ public class Noise.MusicListView : GenericList {
                     var to_add = new Gee.LinkedList<Media> ();
                     foreach (var m in get_selected_medias ())
                         to_add.add (m);
-                    playlist.add_media (to_add);
+                    playlist.add_medias (to_add);
                 });
             }
 
@@ -382,13 +382,13 @@ public class Noise.MusicListView : GenericList {
     }
 
     protected virtual void mediaMenuNewPlaylistClicked() {
-        Playlist p = new Playlist();
+        var p = new StaticPlaylist();
 
         var to_add = new Gee.LinkedList<Media> ();
         foreach (Media m in get_selected_medias ()) {
             to_add.add (m);
         }
-        p.add_media (to_add);
+        p.add_medias (to_add);
 
         PlaylistNameWindow pnw = new PlaylistNameWindow (lw, p);
         pnw.playlist_saved.connect( (newP) => {

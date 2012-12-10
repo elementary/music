@@ -41,7 +41,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     HashMap<unowned GPod.Track, Noise.Media> songs;
     HashMap<unowned GPod.Track, Noise.Media> podcasts;
     HashMap<unowned GPod.Track, Noise.Media> audiobooks;
-    HashMap<unowned GPod.Playlist, Noise.Playlist> playlists;
+    HashMap<unowned GPod.Playlist, Noise.StaticPlaylist> playlists;
     HashMap<unowned GPod.Playlist, Noise.SmartPlaylist> smart_playlists;
     
     public iPodDevice(Noise.LibraryManager lm, Mount mount) {
@@ -60,7 +60,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         songs = new HashMap<unowned GPod.Track, Noise.Media>();
         podcasts = new HashMap<unowned GPod.Track, Noise.Media>();
         audiobooks = new HashMap<unowned GPod.Track, Noise.Media>();
-        playlists = new HashMap<unowned GPod.Playlist, Noise.Playlist>();
+        playlists = new HashMap<unowned GPod.Playlist, Noise.StaticPlaylist>();
         smart_playlists = new HashMap<unowned GPod.Playlist, Noise.SmartPlaylist>();
     }
     
@@ -316,7 +316,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         return audiobooks.values;
     }
     
-    public Collection<Noise.Playlist> get_playlists() {
+    public Collection<Noise.StaticPlaylist> get_playlists() {
         return playlists.values;
     }
     
@@ -409,7 +409,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                         if(!sync_cancelled) {
                             foreach(var e in medias.entries) {
                                 if(e.value == m) {
-                                    remove_media(e.key);
+                                    remove_media (e.key);
                                     break;
                                 }
                             }
@@ -503,7 +503,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                         medias_to_sync.add (m);
                 }
             } else {
-                foreach (Media m in lm.playlist_from_name (pref.music_playlist).media) {
+                foreach (Media m in lm.playlist_from_name (pref.music_playlist).medias) {
                     if (m != null)
                         medias_to_sync.add (m);
                 }

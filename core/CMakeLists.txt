@@ -9,10 +9,10 @@ set(CORE_SOURCE
     LibraryWindowInterface.vala
     Media.vala
     Album.vala
-    Playlist.vala
-    SmartPlaylist.vala
-    SmartQuery.vala
-    main.vala
+    Playlists/Playlist.vala
+    Playlists/StaticPlaylist.vala
+    Playlists/SmartPlaylist.vala
+    Playlists/SmartQuery.vala
     Utils/FileUtils.vala
     Utils/TimeUtils.vala
     Utils/String.vala
@@ -23,6 +23,7 @@ set(CORE_SOURCE
     Utils/PlaylistsUtils.vala
     Utils/Threads.vala
     Widgets/SettingsWidgets.vala
+    main.vala
 )
 
 if (BUILD_SHARED_LIBS)

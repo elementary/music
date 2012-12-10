@@ -501,8 +501,8 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                     p = lm.smart_playlist_from_name (pref.music_playlist);
                 
                 if (p != null) {
-                    if (p is Playlist) {
-                        foreach (var m in ( (Playlist) p).media) {
+                    if (p is StaticPlaylist) {
+                        foreach (var m in ( (StaticPlaylist) p).medias) {
                             if (m != null && m.mediatype == 0)
                                 list.add (m);
                         }

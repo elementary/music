@@ -40,7 +40,7 @@ public class Noise.FileOperator : Object {
     bool cancelSent; // needed to not send cancel signal twice (in recursive function)
     
     ImportType import_type;
-    Playlist new_playlist;
+    StaticPlaylist new_playlist;
     LinkedList<Media> new_imports;
     LinkedList<Media> all_new_imports;
     LinkedList<string> import_errors;
@@ -330,7 +330,7 @@ public class Noise.FileOperator : Object {
         
         foreach (var playlist in playlists.entries) {
             lm.start_file_operations(C_("Importing playlist", "Importing <b>%s</b> to Library...").printf (playlist.key));
-            var new_playlist = new Playlist();
+            var new_playlist = new StaticPlaylist();
             new_playlist.name = playlist.key;
             var medias_to_use = playlist.value;
             var to_add = new LinkedList<Media> ();
@@ -339,7 +339,7 @@ public class Noise.FileOperator : Object {
                     to_add.add (media);
                }
             }
-            new_playlist.add_media (to_add);
+            new_playlist.add_medias (to_add);
             lm.add_playlist (new_playlist);
             lm.finish_file_operations();
         }
@@ -406,17 +406,17 @@ public class Noise.FileOperator : Object {
         
         if(import_type == ImportType.PLAYLIST) {
             var to_add = new LinkedList<int>();
-            foreach(var s in all_new_imports)
-                to_add.add(s.rowid);
-            new_playlist.add_media(to_add);
+            foreach (var s in all_new_imports)
+                to_add.add (s.rowid);
+            new_playlist.add_medias (to_add);
             
             string extra = "";
-            while(lm.playlist_from_name(new_playlist.name + extra) != null)
+            while(lm.playlist_from_name (new_playlist.name + extra) != null)
                 extra += "_";
             
             new_playlist.name = new_playlist.name + extra;
-            lm.add_playlist(new_playlist);
-            lm.lw.addSourceListItem(new_playlist);
+            lm.add_playlist (new_playlist);
+            lm.lw.addSourceListItem (new_playlist);
         }
         
         // if doing import and copy to music folder is enabled, do copy here

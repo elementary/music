@@ -290,7 +290,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 if (results.fetch_int(0) == 0) {
-                    Playlist p = lm.playlist_from_name (results.fetch_string(1));
+                    StaticPlaylist p = lm.playlist_from_name (results.fetch_string(1));
                     var tvs = new TreeViewSetup (results.fetch_int(2), Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
                     tvs.set_sort_direction_from_string(results.fetch_string(3));
                     tvs.import_columns(results.fetch_string(4));
@@ -311,7 +311,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    public void save_columns_state (Collection<Playlist>? playlists = null, Collection<SmartPlaylist>? smart_playlists = null) {
+    public void save_columns_state (Collection<StaticPlaylist>? playlists = null, Collection<SmartPlaylist>? smart_playlists = null) {
         try {
             database.execute("DELETE FROM `columns`");
             transaction = database.begin_transaction();
@@ -319,7 +319,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                                                 VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);");
 
             if (playlists != null) {
-                foreach(Playlist p in playlists) {
+                foreach(StaticPlaylist p in playlists) {
                     if (p.read_only == false) {
                         var tvs = lm.lw.get_treeviewsetup_from_playlist (p);
                         
@@ -355,7 +355,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
-    public void add_columns_state (Playlist? p = null, SmartPlaylist? sp = null) {
+    public void add_columns_state (StaticPlaylist? p = null, SmartPlaylist? sp = null) {
         
         string name = "";
         int is_smart = 0;
@@ -394,7 +394,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
-    public void remove_columns_state (Playlist? p = null, SmartPlaylist? sp = null) {
+    public void remove_columns_state (StaticPlaylist? p = null, SmartPlaylist? sp = null) {
         
         string name = "";
         if (sp == null) {
@@ -496,15 +496,15 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
      *
      * playlist_from_name() loads playlsit given a name
      */
-    public Gee.ArrayList<Playlist> load_playlists() {
-        var rv = new ArrayList<Playlist>();
+    public Gee.ArrayList<StaticPlaylist> load_playlists () {
+        var rv = new ArrayList<StaticPlaylist>();
 
         try {
             string script = "SELECT * FROM `playlists`";
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
-                Playlist p = new Playlist.with_info(0, results.fetch_string(0));
+                StaticPlaylist p = new StaticPlaylist.with_info(0, results.fetch_string(0));
                 string media = results.fetch_string(1);
                 
                 string[] media_strings = media.split("<sep>", 0);
@@ -517,7 +517,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                         new_media.add (m);
                     }
                 }
-                p.add_media (new_media);
+                p.add_medias (new_media);
                 
                 /*p.tvs.sort_column_id = results.fetch_int(3);
                 p.tvs.set_sort_direction_from_string(results.fetch_string(4));
@@ -534,17 +534,17 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    public void save_playlists(Collection<Playlist> playlists) {
+    public void save_playlists (Collection<StaticPlaylist> playlists) {
         try {
             database.execute("DELETE FROM `playlists`");
             transaction = database.begin_transaction();
             Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
 
-            foreach(Playlist p in playlists) {
+            foreach (var p in playlists) {
                 if (p.read_only == false) {
                     string rv = "";
                     
-                    foreach (var m in p.media) {
+                    foreach (var m in p.medias) {
                         if (m != null)
                             rv += m.uri + "<sep>";
                     }
@@ -562,12 +562,12 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
-    public void add_playlist(Playlist p) {
+    public void add_playlist (StaticPlaylist p) {
         if (p.read_only == true)
             return;
         string rv = "";
         
-        foreach (var m in p.media) {
+        foreach (var m in p.medias) {
             if (m != null)
                 rv += m.uri + "<sep>";
         }
@@ -589,12 +589,12 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
-    /*public void update_playlists(LinkedList<Playlist> playlists) {
+    /*public void update_playlists(LinkedList<StaticPlaylist> playlists) {
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare("UPDATE `playlists` SET name=:name, media=:media, sort_column_id=:sort_column_id, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
 
-            foreach(Playlist p in playlists) {
+            foreach (var p in playlists) {
                 query.set_string(":name", p.name);
                 query.set_string(":media", p.media_to_string(lm));
                 query.set_int(":sort_column_id", p.tvs.sort_column_id);
@@ -611,7 +611,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }*/
 
-    public void remove_playlist (Playlist p) {
+    public void remove_playlist (StaticPlaylist p) {
         if (p.read_only == true)
             return;
         try {

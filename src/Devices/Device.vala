@@ -58,7 +58,7 @@ public interface Noise.Device : GLib.Object {
     public abstract Collection<Media> get_songs();
     public abstract Collection<Media> get_podcasts();
     public abstract Collection<Media> get_audiobooks();
-    public abstract Collection<Playlist> get_playlists();
+    public abstract Collection<StaticPlaylist> get_playlists();
     public abstract Collection<SmartPlaylist> get_smart_playlists();
     public abstract bool sync_medias();
     public abstract bool add_medias(LinkedList<Media> list);

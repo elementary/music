@@ -55,10 +55,10 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     private HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
 
     // rowid, Media of queue
-    public Playlist queue_playlist = new Playlist ();
+    public StaticPlaylist queue_playlist = new StaticPlaylist ();
 
     // Media of already played
-    public Playlist history_playlist = new Playlist ();
+    public StaticPlaylist history_playlist = new StaticPlaylist ();
 
 
     public int _played_index = 0;//if user press back, this goes back 1 until it hits 0. as new media play, this goes with it
@@ -110,7 +110,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         if (to_queue.size < 1)
             return;
         
-        queue_playlist.add_media (to_queue);
+        queue_playlist.add_medias (to_queue);
 
         media_queued (to_queue);
     }
@@ -130,11 +130,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
     public Media peek_queue() {
-        return queue_playlist.media.peek_head();
+        return queue_playlist.medias.peek_head();
     }
     
     public Media poll_queue() {
-        var m = queue_playlist.media.poll_head ();
+        var m = queue_playlist.medias.poll_head ();
         var unqueued = new Gee.LinkedList<Media> ();
         unqueued.add (m);
         media_unqueued (unqueued);
@@ -265,7 +265,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         Media? rv = null;
         
         // next check if user has queued media
-        if(!queue_playlist.is_empty()) {
+        if(queue_playlist.medias.size > 0) {
             rv = poll_queue();
             _playing_queued_song = true;
         }

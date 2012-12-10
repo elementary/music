@@ -23,22 +23,16 @@
 using Gee;
 
 
-public class Noise.SmartPlaylist : Object {
+public class Noise.SmartPlaylist : Playlist {
 
-    //public static const string QUERY_S_SEP = "<query_sep>";
-    //public static const string VALUE_S_SEP = "<val_sep>";
+    public static const string QUERY_SEPARATOR = "<query_sep>";
+    public static const string VALUE_SEPARATOR = "<val_sep>";
 
     public enum ConditionalType {
         ANY = true,
         ALL = false
     }
 
-    public signal void media_added (Gee.Collection<Media> added);
-
-    public signal void media_removed (Gee.Collection<Media> removed);
-
-    public int rowid { get; set; default = 0; }
-    public string name { get; set; default = ""; }
     public ConditionalType conditional { get; set; default = ConditionalType.ALL; }
     public Gee.ArrayList<SmartQuery> _queries;
     public int query_count { get; set; default = 0; }
@@ -46,7 +40,6 @@ public class Noise.SmartPlaylist : Object {
     public bool limit { get; set; default = false; }
     public int limit_amount { get; set; default = 50; }
     
-    private Gee.LinkedList<Media> medias;
     private Gee.Collection<Media> medias_library;
     
     public SmartPlaylist(Gee.Collection<Media> library) {
@@ -59,30 +52,78 @@ public class Noise.SmartPlaylist : Object {
         query_count = 0;
         _queries.clear();
     }
-    
+
     public Gee.ArrayList<SmartQuery> queries() {
         return _queries;
     }
-    
+
     public void addQuery(SmartQuery s) {
         query_count++;
         _queries.add(s);
         reanalyze ();
     }
-    
+
+    public override void add_media (Media m) {
+        var added_media = new Gee.LinkedList<Media> ();
+        
+        if (m != null && !medias_library.contains (m)) {
+            medias_library.add (m);
+            added_media.add (m);
+        }
+        media_added (added_media);
+    }
+
+    public override void add_medias (Gee.Collection<Media> to_add) {
+        var added_media = new Gee.LinkedList<Media> ();
+        
+        foreach (var m in to_add) {
+            if (m != null && !medias_library.contains (m)) {
+                medias_library.add (m);
+                added_media.add (m);
+            }
+        }
+        
+        media_added (added_media);
+    }
+
+    public override void remove_media (Media to_remove) {
+        if (to_remove != null && medias.contains (to_remove)) {
+            var removed_media = new Gee.LinkedList<Media> ();
+            removed_media.add (to_remove);
+            medias.remove (to_remove);
+            media_removed (removed_media);
+        }
+        if (medias_library.contains (to_remove))
+            medias_library.remove (to_remove);
+    }
+
+    public override void remove_medias (Gee.Collection<Media> to_remove) {
+        var removed_media = new Gee.LinkedList<Media> ();
+        foreach (var m in to_remove) {
+            if (m != null && medias.contains (m)) {
+                removed_media.add (m);
+                medias.remove (m);
+            }
+            if (medias_library.contains (m))
+                medias_library.remove (m);
+        }
+        media_removed (removed_media);
+    }
+
+    [Deprecated (replacement = "SmartPlaylist.add_medias")]
     public Gee.Collection<Media> update_library (Gee.Collection<Media> library) {
         
         medias_library = library;
-        return reanalyze ();
+        return medias.read_only_view;
     }
-    
+
     /** temp_playlist should be in format of #,#,#,#,#, **/
     public void queries_from_string(string q) {
-        string[] queries_in_string = q.split("<query_sep>", 0);
+        string[] queries_in_string = q.split(QUERY_SEPARATOR, 0);
         
         int index;
         for(index = 0; index < queries_in_string.length - 1; index++) {
-            string[] pieces_of_query = queries_in_string[index].split("<val_sep>", 3);
+            string[] pieces_of_query = queries_in_string[index].split(VALUE_SEPARATOR, 3);
             pieces_of_query.resize (3);
             
             SmartQuery sq = new SmartQuery();
@@ -93,12 +134,12 @@ public class Noise.SmartPlaylist : Object {
             addQuery(sq);
         }
     }
-    
+
     public string queries_to_string() {
         string rv = "";
         
         foreach(SmartQuery q in queries()) {
-            rv += ((int)q.field).to_string() + "<val_sep>" + ((int)q.comparator).to_string() + "<val_sep>" + q.value + "<query_sep>";
+            rv += ((int)q.field).to_string() + VALUE_SEPARATOR + ((int)q.comparator).to_string() + VALUE_SEPARATOR + q.value + QUERY_SEPARATOR;
         }
         
         return rv;
@@ -115,43 +156,57 @@ public class Noise.SmartPlaylist : Object {
     }*/
 
     public Gee.Collection<Media> reanalyze () {
-        var added = new Gee.LinkedList<Media> ();
-        var removed = new Gee.LinkedList<Media> ();
 
-        foreach (var m in medias_library) {
-            if (m == null)
-                continue;
-
-            int match_count = 0; //if OR must be greater than 0. if AND must = queries.size.
-
-            foreach (var q in _queries) {
-                if (media_matches_query (q, m))
-                    match_count++;
-            }
-            
-            if(((conditional == ConditionalType.ALL && match_count == _queries.size) || (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
-                if (!medias.contains (m)) {
-                    added.add (m);
-                    medias.add (m);
-                }
-            } else if (medias.contains (m)) {
-                // a media which was part of the previous set no longer matches
-                // the query, and it must be removed
-                medias.remove (m);
-                removed.add (m);
-            }
-
-            if (_limit && _limit_amount <= medias.size)
-                break;
-        }
-
-        // Emit signal to let views know about the change
-        media_added (added);
-        media_removed (removed);
-
+        reanalyze_thread();
         return medias.read_only_view;
     }
-    
+
+    async void reanalyze_thread() {
+        var added = new Gee.LinkedList<Media> ();
+        var removed = new Gee.LinkedList<Media> ();
+        
+        lock (medias_library) {
+            Threads.add (() => {
+                foreach (var m in medias_library) {
+                    if (m == null)
+                        continue;
+
+                    int match_count = 0; //if OR must be greater than 0. if AND must = queries.size.
+
+                    foreach (var q in _queries) {
+                        if (media_matches_query (q, m))
+                            match_count++;
+                    }
+                    
+                    if(((conditional == ConditionalType.ALL && match_count == _queries.size) || 
+                        (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
+                        if (!medias.contains (m)) {
+                            added.add (m);
+                            medias.add (m);
+                        }
+                    } else if (medias.contains (m)) {
+                        // a media which was part of the previous set no longer matches
+                        // the query, and it must be removed
+                        medias.remove (m);
+                        removed.add (m);
+                    }
+
+                    if (_limit && _limit_amount <= medias.size)
+                        break;
+                }
+
+                Idle.add( () => {
+                    // Emit signal to let views know about the change
+                    media_added (added);
+                    media_removed (removed);
+                    return false;
+                });
+            });
+        }
+
+        yield;
+    }
+
     public bool media_matches_query(SmartQuery q, Media s) {
         switch (q.field) {
             case Noise.SmartQuery.FieldType.ALBUM :
@@ -308,5 +363,11 @@ public class Noise.SmartPlaylist : Object {
         }
         
         return false;
+    }
+
+    public override void clear() {
+        medias.clear ();
+        medias_library.clear ();
+        cleared ();
     }
 }

@@ -192,7 +192,7 @@ namespace LastFM {
             return fix0;
         }
         
-        public Noise.Playlist get_similar_playlist () {
+        public Noise.StaticPlaylist get_similar_playlist () {
             return similarMedias.similar_playlist;
         }
 

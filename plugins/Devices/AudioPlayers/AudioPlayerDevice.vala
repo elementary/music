@@ -409,7 +409,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                         medias_to_sync.add (m);
                 }
             } else {
-                foreach (Media m in lm.playlist_from_name (pref.music_playlist).media) {
+                foreach (Media m in lm.playlist_from_name (pref.music_playlist).medias) {
                     if (m != null)
                         medias_to_sync.add (m);
                 }

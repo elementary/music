@@ -109,9 +109,9 @@ public class Noise.DataBaseUpdater : Object {
                 if (next != null) {
                     if (next is Gee.LinkedList) {
                         dbm.remove_media (next as Gee.LinkedList<string>);
-                    } else if (next is Playlist) {
-                        dbm.remove_playlist (next as Playlist);
-                        dbm.remove_columns_state (next as Playlist, null);
+                    } else if (next is StaticPlaylist) {
+                        dbm.remove_playlist (next as StaticPlaylist);
+                        dbm.remove_columns_state (next as StaticPlaylist, null);
                     } else if (next is SmartPlaylist) {
                         dbm.remove_smart_playlist (next as SmartPlaylist);
                         dbm.remove_columns_state (null, next as SmartPlaylist);
@@ -125,10 +125,10 @@ public class Noise.DataBaseUpdater : Object {
     }
 
     private bool periodic_ui_save () {
-        var playlists_and_queue = new Gee.LinkedList<Playlist> ();
+        var playlists_and_queue = new Gee.LinkedList<StaticPlaylist> ();
         playlists_and_queue.add_all (lm.playlists ());
 
-        Playlist p_music = new Playlist ();
+        var p_music = new StaticPlaylist ();
         p_music.name = "autosaved_music";
 
         playlists_and_queue.add (p_music);
