@@ -1,3 +1,9 @@
+noise (1.0-0) quantal; urgency=low
+
+  * New upstream release.
+
+ -- Devid Antonio Filoni <d.filoni@ubuntu.com>  Tue, 11 Dec 2012 15:36:41 +0100
+
 noise (0.4-0) precise; urgency=low
 
   * New upstream release
