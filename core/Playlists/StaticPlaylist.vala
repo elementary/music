@@ -50,7 +50,7 @@ public class Noise.StaticPlaylist : Playlist {
     public override void add_medias (Gee.Collection<Media> to_add) {
         var added_media = new Gee.LinkedList<Media> ();
         
-        foreach (var m in to_add) {
+        foreach (Media m in to_add) {
             if (m != null && (allow_duplicate == true || !medias.contains (m))) {
                 medias.add (m);
                 added_media.add (m);

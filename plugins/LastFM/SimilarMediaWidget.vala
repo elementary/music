@@ -32,7 +32,6 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
     private SimilarMediasView ssv;
     
     bool similars_fetched;
-    bool scrobbled_track;
     
     public SimilarMediasWidget (Noise.LibraryManager lm, LastFM.Core core) {
         this.lm = lm;
