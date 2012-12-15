@@ -197,7 +197,12 @@ public class Noise.MusicListView : GenericList {
 
             addToPlaylistMenu.show_all ();
             mediaMenuAddToPlaylist.submenu = addToPlaylistMenu;
-            mediaMenuAddToPlaylist.set_sensitive (lm.playlist_count_without_read_only () > 0);
+            // don't allow to add from a playlist to itself
+            if(get_hint() == ViewWrapper.Hint.PLAYLIST && is_queue == false) {
+                mediaMenuAddToPlaylist.set_sensitive (lm.playlist_count_without_read_only () > 1);
+            } else {
+                mediaMenuAddToPlaylist.set_sensitive (lm.playlist_count_without_read_only () > 0);
+            }
 
             // if all medias are downloaded already, desensitize.
             // if half and half, change text to 'Download %external of %total'
