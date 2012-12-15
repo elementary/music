@@ -650,7 +650,7 @@ public class Noise.LibraryManager : Object {
                 s.last_modified = (int)time_t ();
         }
 
-        debug ("%d media updated from lm.update_media 677\n", rv.size);
+        debug ("%d media updated", rv.size);
         media_updated (rv);
 
         /* now do background work. even if updateMeta is true, so must user preferences */

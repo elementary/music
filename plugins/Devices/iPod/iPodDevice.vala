@@ -966,7 +966,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
         
         Gee.LinkedList<Noise.Media> medias_to_import = delete_doubles (tr_list, lm.media ());
-        if(medias_to_import.is_empty) {
+        if(medias_to_import.is_empty || medias_to_import == null) {
             warning("No songs in transfer list\n");
             return false;
         }
@@ -999,9 +999,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         return transfer_to_library(songs_to_transfer);
     }
     
-    async void transfer_medias_thread (Gee.LinkedList<Noise.Media> source_library) {
+    public async void transfer_medias_thread (Gee.LinkedList<Noise.Media> source_library) {
         Threads.add (() => {
-        
+            
             foreach(var m in source_library) {
                 if(transfer_cancelled)
                     break;
@@ -1011,12 +1011,13 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                     copy.rowid = 0;
                     copy.isTemporary = false;
                     copy.date_added = (int)time_t();
-                    lm.add_media_item (copy);
                     
                     current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
                     current_operation = current_operation.replace ("$NAME", copy.title ?? "");
                     current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
-                    lm.fo.update_file_hierarchy (copy, false, false);
+                    if (lm.fo.update_file_hierarchy (copy, false, false)) {
+                        lm.add_media_item (copy);
+                    }
                 }
                 else {
                     message ("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
@@ -1035,5 +1036,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 return false;
             });
         });
+
+        yield;
     }
 }

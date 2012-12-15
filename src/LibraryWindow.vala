@@ -381,7 +381,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         source_list_view.item_action_activated.connect ( (page_number) => {
             var view = view_container.get_view (page_number);
-            warning (view.get_type().name ());
             if (view is DeviceView) {
                 ((DeviceView)view).d.eject();
             }

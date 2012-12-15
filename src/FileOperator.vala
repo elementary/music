@@ -174,7 +174,7 @@ public class Noise.FileOperator : Object {
             else
                 ext = get_extension(s.uri);
             
-            dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " " + s.get_display_title ().replace("/", "_") + ext));
+            dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " - " + s.get_display_title ().replace("/", "_") + ext));
             
             if(original.get_path() == dest.get_path()) {
                 debug("File is already in correct location\n");
@@ -182,7 +182,7 @@ public class Noise.FileOperator : Object {
             }
             
             string extra = "";
-            while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " " + s.get_display_title ().replace("/", "_") + extra + ext))).query_exists()) {
+            while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " - " + s.get_display_title ().replace("/", "_") + extra + ext))).query_exists()) {
                 extra += "_";
             }
             
@@ -197,11 +197,11 @@ public class Noise.FileOperator : Object {
         return dest;
     }
     
-    public void update_file_hierarchy(Media s, bool delete_old, bool emit_update) {
+    public bool update_file_hierarchy(Media s, bool delete_old, bool emit_update) {
         try {
             File dest = get_new_destination(s);
             if(dest == null)
-                return;
+                return true;
             
             File original = File.new_for_uri(s.uri);
             
@@ -227,8 +227,10 @@ public class Noise.FileOperator : Object {
                     });
                 }
             }
-            else
+            else {
                 warning("Failure: Could not copy imported media %s to media folder %s", s.uri, dest.get_path());
+                return false;
+            }
             
             /* if we are supposed to delete the old, make sure there are no items left in folder if we do */
             if(delete_old) {
@@ -244,7 +246,9 @@ public class Noise.FileOperator : Object {
         }
         catch(Error err) {
             warning("Could not copy imported media %s to media folder: %s\n", s.uri, err.message);
+            return false;
         }
+        return true;
     }
     
     public void remove_media (Collection<string> toRemove) {
