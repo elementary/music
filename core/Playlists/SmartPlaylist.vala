@@ -1,8 +1,6 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2012 Noise Developers
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,10 +16,10 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Corentin Noël <tintou@mailoo.org>
  */
-
-using Gee;
-
 
 public class Noise.SmartPlaylist : Playlist {
 
@@ -108,13 +106,6 @@ public class Noise.SmartPlaylist : Playlist {
                 medias_library.remove (m);
         }
         media_removed (removed_media);
-    }
-
-    [Deprecated (replacement = "SmartPlaylist.add_medias")]
-    public Gee.Collection<Media> update_library (Gee.Collection<Media> library) {
-        
-        medias_library = library;
-        return medias.read_only_view;
     }
 
     /** temp_playlist should be in format of #,#,#,#,#, **/

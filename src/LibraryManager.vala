@@ -29,7 +29,6 @@ using Gee;
  * the visual representation of this class
  */
 public class Noise.LibraryManager : Object {
-    public signal void progress_notification (string? message, double progress);
     public signal void file_operations_started ();
     public signal void file_operations_done ();
     public signal void progress_cancel_clicked ();
@@ -223,13 +222,13 @@ public class Noise.LibraryManager : Object {
 
     /************ Library/Collection management stuff ************/
     public virtual void dbProgress (string? message, double progress) {
-        progress_notification (message, progress);
+        notification_manager.doProgressNotification (message, progress);
     }
 
     public bool doProgressNotificationWithTimeout () {
         if (_doing_file_operations) {
             Gdk.threads_enter ();
-            progress_notification (null, (double) fo.index / (double) fo.item_count);
+            notification_manager.doProgressNotification (null, (double) fo.index / (double) fo.item_count);
             Gdk.threads_leave ();
         }
 
@@ -419,13 +418,14 @@ public class Noise.LibraryManager : Object {
             Idle.add ((owned) callback);
         });
 
-        yield;
-
-        if (!fo.cancelled)
+        if (!fo.cancelled) {
             remove_media (to_remove, false);
+        }
 
         if (to_import.size == 0)
             finish_file_operations ();
+
+        yield;
     }
 
     public void play_files (File[] files) {
@@ -618,7 +618,7 @@ public class Noise.LibraryManager : Object {
         lock (_smart_playlists) {
             foreach (var p in smart_playlists ()) {
                 lock (_media) {
-                    p.update_library (media ());
+                    p.add_medias (media ());
                 }
             }
         }
@@ -748,7 +748,7 @@ public class Noise.LibraryManager : Object {
     }
 
     public Collection<Media> media_from_smart_playlist (int id) {
-        return _smart_playlists.get (id).update_library ( media ());
+        return _smart_playlists.get (id).medias;
     }
 
     public void add_media_item (Media s) {
@@ -824,7 +824,7 @@ public class Noise.LibraryManager : Object {
         if (_doing_file_operations)
             return false;
 
-        progress_notification (message, 0.0);
+        notification_manager.doProgressNotification (message, 0.0);
         _doing_file_operations = true;
         lw.update_sensitivities ();
         file_operations_started ();
@@ -840,8 +840,11 @@ public class Noise.LibraryManager : Object {
         debug ("file operations finished or cancelled\n");
 
         file_operations_done ();
-
         update_media_art_cache.begin ();
+        Timeout.add(3000, () => {
+            notification_manager.showSongNotification ();
+            return false;
+        });
     }
 }
 

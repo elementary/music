@@ -45,10 +45,6 @@ public class Noise.FileOperator : Object {
     LinkedList<Media> all_new_imports;
     LinkedList<string> import_errors;
 
-    private string[] other_names_list = {};
-    private LinkedList<string>[] other_paths_list;
-    private int other_playlists_added = 0;
-
     public enum ImportType  {
         SET,
         RESCAN,
@@ -320,7 +316,6 @@ public class Noise.FileOperator : Object {
     public void import_from_playlist_file_info(Gee.HashMap<string, Gee.LinkedList<string>> playlists) {
         
         foreach (var playlist in playlists.entries) {
-            var medias_to_import = playlist.value;
             if (playlist.value.get (0).has_prefix ("/")) {
                 lm.add_files_to_library (convert_paths_to_uris (playlist.value));
             } else {

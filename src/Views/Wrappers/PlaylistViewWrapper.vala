@@ -41,7 +41,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
         grid_view = new GridView (this);
         list_view = new ListView (this, tvs);
-        embedded_alert = new Granite.Widgets.EmbeddedAlert ();            
+        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
         // Refresh view layout
         pack_views ();
@@ -80,6 +80,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                 if (p != null) {
                     p.media_added.connect (on_playlist_media_added);
                     p.media_removed.connect (on_playlist_media_removed);
+                    p.cleared.connect (on_playlist_cleared);
                 }
             break;
             

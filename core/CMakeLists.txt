@@ -7,6 +7,7 @@ set(CORE_SOURCE
     EqualizerPreset.vala
     Player.vala
     LibraryWindowInterface.vala
+    NotificationManager.vala
     Media.vala
     Album.vala
     Playlists/Playlist.vala

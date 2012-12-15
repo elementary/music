@@ -121,6 +121,7 @@ public class Noise.App : Granite.Application {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
         saved_state = new Settings.SavedState ();
+        notification_manager = new NotificationManager ();
         main_settings = new Settings.Main ();
         equalizer_settings = new Settings.Equalizer ();
         

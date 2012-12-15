@@ -42,7 +42,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
     public signal void queue_cleared  ();
     public signal void media_queued   (Gee.Collection<Media> queued);
-    public signal void media_unqueued (Gee.Collection<Media> unqueued);
 
     public signal void media_played (Media played_media);
     public signal void playback_stopped (int was_playing);
@@ -99,6 +98,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         history_playlist.read_only = true;
         queue_playlist.name = C_("Name of the playlist", "Queue");
         queue_playlist.read_only = true;
+        queue_playlist.allow_duplicate = true;
 
         setShuffleMode ((Player.Shuffle)main_settings.shuffle_mode, true);
     }
@@ -122,7 +122,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
     public void unqueue_media (Gee.Collection<Media> to_unqueue) {
         queue_playlist.remove_medias (to_unqueue);
-        media_unqueued (to_unqueue);
     }
 
     public void unqueue_media_by_id (Collection<int> ids) {
@@ -137,7 +136,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         var m = queue_playlist.medias.poll_head ();
         var unqueued = new Gee.LinkedList<Media> ();
         unqueued.add (m);
-        media_unqueued (unqueued);
+        queue_playlist.media_removed (unqueued);
         return m;
     }
 
@@ -466,8 +465,10 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             }
         }
         
-        if(play)
+        if(play) {
             playMedia(rv, false);
+            
+        }
         
         return rv;
     }
@@ -538,6 +539,10 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         
         if (m != null)
             media_played (m);
+        
+        //if it's the queue, beginn it !
+        if (m == peek_queue())
+            poll_queue();
         
         /* if same media 1 second later... */
         Timeout.add(1000, () => {

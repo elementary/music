@@ -5,5 +5,6 @@ namespace Noise {
     public Settings.Main main_settings;
     public Settings.Equalizer equalizer_settings;
     public Plugins.Manager plugins;
+    public static NotificationManager notification_manager;
 
 }

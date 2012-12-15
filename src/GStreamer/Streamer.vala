@@ -180,11 +180,11 @@ public class Noise.Streamer : GLib.Object {
 							App.player.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
 							
 							if ((old_title != App.player.media_info.media.title || old_artist != App.player.media_info.media.artist) && (App.player.media_info.media != null))
-								App.main_window.media_played(App.player.media_info.media); // pretend as if media changed
+								App.main_window.media_played (App.player.media_info.media); // pretend as if media changed
 						}
 						else {
 							// if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
-							App.main_window.topDisplay.set_label_markup(App.player.media_info.media.album_artist + "\n" + title);
+							notification_manager.doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
 						}
 						
 					}

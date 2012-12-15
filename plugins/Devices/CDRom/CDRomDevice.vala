@@ -450,7 +450,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     }
     
     public bool doProgressNotificationWithTimeout() {
-        lw.progressNotification(current_operation, (double)(((double)index + current_song_progress)/((double)total)));
+        notification_manager.doProgressNotification (current_operation, (double)(((double)index + current_song_progress)/((double)total)));
         
         if(index < total && (is_transferring())) {
             return true;

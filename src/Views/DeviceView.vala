@@ -121,7 +121,7 @@ public class Noise.DeviceView : Gtk.Grid {
     }
     
     void deviceProgress(string? message, double progress) {
-        lw.progressNotification(message, progress);
+        notification_manager.doProgressNotification (message, progress);
     }
 }
 

@@ -107,13 +107,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         this.library_manager.device_name_changed.connect (change_device_name);
         this.library_manager.device_removed.connect (remove_device);
 
-        this.library_manager.progress_notification.connect (progressNotification);
-
         App.player.player.end_of_stream.connect (end_of_stream);
         App.player.player.current_position_update.connect (current_position_update);
         App.player.player.error_occured.connect (error_occured);
         App.player.media_played.connect_after (media_played);
         App.player.playback_stopped.connect (playback_stopped);
+        
+        notification_manager.progressNotification.connect (showProgressNotification);
+        notification_manager.songNotification.connect (showSongNotification);
         
         match_playlist = new Gee.HashMap<int, int> ();
         match_smartplaylist = new Gee.HashMap<int, int> ();
@@ -862,11 +863,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         remove_view_and_update (page_number);
     }
 
-    public virtual void progressNotification(string? message, double progress) {
+    public virtual void showProgressNotification (string? message, double progress) {
         if(message != null && progress >= 0.0 && progress <= 1.0)
-            topDisplay.set_label_markup(message);
+            topDisplay.set_label_markup (message);
 
-        topDisplay.set_progress_value(progress);
+        topDisplay.set_progress_value (progress);
+    }
+
+    public virtual void showSongNotification (string? message) {
+        if(message != null)
+            topDisplay.set_label_markup (message);
     }
 
     private void playlist_name_edited (int page_number, string new_name) {
@@ -902,7 +908,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Set the title
         var m = App.player.media_info.media;
-        topDisplay.set_label_markup (m != null ? m.get_title_markup () : "");
+        notification_manager.doSongNotification (m != null ? m.get_title_markup () : "");
     }
 
     /**
@@ -1085,7 +1091,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.playMedia (m, false);
         }
         else
-            m = App.player.getNext(true);
+            m = App.player.getNext (true);
 
         /* test to stop playback/reached end */
         if(m == null) {
