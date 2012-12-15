@@ -32,9 +32,9 @@ public class Noise.StaticPlaylist : Playlist {
     }
 
     public StaticPlaylist.with_info(int rowid, string name) {
-        this;
         this.rowid = rowid;
         this.name = name;
+        medias = new Gee.LinkedList<Media>();
     }
 
     public override void add_media (Media m) {
@@ -43,8 +43,8 @@ public class Noise.StaticPlaylist : Playlist {
         if (m != null && (allow_duplicate == true || !medias.contains (m))) {
             medias.add (m);
             added_media.add (m);
+            media_added (added_media);
         }
-        media_added (added_media);
     }
 
     public override void add_medias (Gee.Collection<Media> to_add) {

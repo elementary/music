@@ -744,7 +744,7 @@ public class Noise.LibraryManager : Object {
     }
 
     public Gee.Collection<Media> media_from_playlist (int id) {
-        return _playlists.get (id).medias ;
+        return _playlists.get (id).medias;
     }
 
     public Collection<Media> media_from_smart_playlist (int id) {

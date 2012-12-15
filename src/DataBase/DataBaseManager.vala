@@ -518,11 +518,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                     }
                 }
                 p.add_medias (new_media);
-                
-                /*p.tvs.sort_column_id = results.fetch_int(3);
-                p.tvs.set_sort_direction_from_string(results.fetch_string(4));
-
-                p.tvs.import_columns(results.fetch_string(5));*/
 
                 rv.add(p);
             }
