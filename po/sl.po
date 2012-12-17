@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-08 02:05+0100\n"
-"PO-Revision-Date: 2012-12-15 17:25+0000\n"
+"PO-Revision-Date: 2012-12-16 11:37+0000\n"
 "Last-Translator: Damir Jerovsek <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2012-12-16 05:16+0000\n"
+"X-Launchpad-Export-Date: 2012-12-17 05:08+0000\n"
 "X-Generator: Launchpad (build 16372)\n"
 "Language: sl\n"
 
@@ -56,7 +56,7 @@ msgstr "MPEG razširjena različica 3.0 (*.m3u)"
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Seznam predvajanja Shoutcast različica 2.0 (*.pls)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
@@ -187,7 +187,7 @@ msgstr "Glasba"
 #: /home/noelco/noise/po/../src//PlaybackManager.vala:100
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Vrsta"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:697
 msgid "No songs in Queue"
@@ -199,6 +199,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Če želite dodati skladbe v vrsto, uporabite <b>drugotni klik</b> na predmetu "
+"in izberite <b>Vrsta</b>. Ko se skladba konča, bodo najprej predvajane "
+"skladbe v vrsti pred naslednjo skladbo na trenutno predvajanem seznamu."
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:701
 #: /home/noelco/noise/po/../src//PlaybackManager.vala:98
@@ -240,7 +243,7 @@ msgstr "<b>Uvažanje</b> glasbe iz <b>%s</b> v knjižnico."
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
 msgid "Rescanning music folder for changes"
-msgstr "Ponovno preiskovanje glasbene mape za spremembami"
+msgstr "Ponovno preiskovanje mape z glasbo za spremembami"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:273
@@ -249,7 +252,7 @@ msgstr "Ni mogoče najti mape z glasbo"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Prosim poskrbi, da je mapa z glasbo dostopna in priklopljena."
+msgstr "Prepričajte se, da je mapa z glasbo dostopna in priklopljena."
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
 msgid "Import Complete"
@@ -347,7 +350,7 @@ msgstr "Lociraj"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
 msgid "Change your music folder."
-msgstr "Spremeni svojo mapo z glasbo"
+msgstr "Spremenite svojo mapo z glasbo"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
@@ -565,7 +568,7 @@ msgstr "Pokaži v pregledovalniku datotek"
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "Vrsta"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:154
@@ -578,7 +581,7 @@ msgstr "Dodaj na seznam predvajanja"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
 msgid "Remove Song"
-msgstr "Odstrani pesem"
+msgstr "Odstrani skladbo"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -596,7 +599,7 @@ msgstr[3] "Uvoz %i skladb"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:652
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:667
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
@@ -612,7 +615,7 @@ msgstr "Nikoli"
 #. / by the column's title header.
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:730
 msgid "Sample List String"
-msgstr ""
+msgstr "Vzorec Seznam Niz"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:125
 msgid "Autosize Columns"
@@ -833,7 +836,7 @@ msgstr "Uvažanje<b>%s</b> v knjižnico ..."
 
 #: /home/noelco/noise/po/../src//FileOperator.vala:424
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
-msgstr "<b>Kopiranje</b> datotek v <b>Mapo glasbe</b> ..."
+msgstr "<b>Kopiranje</b> datotek v <b>mapo z glasbo</b> ..."
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:638
@@ -863,7 +866,7 @@ msgstr "Preveč predvajano"
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:682
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Dolgo nepredvajano"
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
@@ -901,11 +904,11 @@ msgstr "Omogoči ponavljanje"
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:541
 msgid "Song"
-msgstr "Pesem"
+msgstr "Skladba"
 
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
 msgid "Repeat Song"
-msgstr "Ponovi pesem"
+msgstr "Ponovi skladbo"
 
 #: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:193
@@ -994,7 +997,7 @@ msgstr "Odstrani"
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:55
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:66
 msgid "Export"
-msgstr ""
+msgstr "Izvozi"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:64
 msgid "Edit"
@@ -1038,63 +1041,63 @@ msgstr "Seznami predvajanja"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "Pogled albumov"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "Pogled seznama"
 
 #: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "Pogled v stolpcih"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder..."
-msgstr ""
+msgstr "Izberite mapo z glasbo ..."
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
-msgstr ""
+msgstr "Splošno"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:123
 msgid "Music Folder Location:"
-msgstr ""
+msgstr "Mesto mape z glasbo:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
-msgstr ""
+msgstr "Upravljanje knjižnice:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
-msgstr ""
+msgstr "Ohrani mapo z glasbo urejeno:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Zapiši metapodatke v datoteko:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
-msgstr ""
+msgstr "Kopiraj uvožene datoteke v knjižnico:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
-msgstr ""
+msgstr "Podpora namizju:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
-msgstr ""
+msgstr "Pokaži obvestila:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
-msgstr ""
+msgstr "Skrči okno, kadar se predvaja skladba:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
-msgstr ""
+msgstr "Skrij okno, kadar se predvaja skladba:"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
 msgid "Metadata"
-msgstr ""
+msgstr "Metapodatki"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:83
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:379
@@ -1104,7 +1107,7 @@ msgstr "Besedilo"
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:179
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
 msgid "Editing $NAME by $ARTIST"
-msgstr ""
+msgstr "Urejanje $NAME od $ARTIST"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
@@ -1116,7 +1119,7 @@ msgstr "Urejanje %s"
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "Urejanje %i pesmi"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:190
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
@@ -1175,7 +1178,7 @@ msgstr "Predstavnostni tip"
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:298
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Besedila niso najdena  za %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:543
 msgid "Podcast"
@@ -1206,16 +1209,18 @@ msgid ""
 "The music file for $NAME by $ARTIST could not be found. What would you like "
 "to do?"
 msgstr ""
+"Glasbene datoteke za $NAME od $ARTIST ni bilo mogoče najti. Kaj želite "
+"storiti?"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "%i predstavnih vsebin ni bilo mogoče najti. Kaj želite storiti?"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 msgid "Choose Music Folder"
-msgstr "Izberi mapo z glasbo"
+msgstr "Izberite mapo z glasbo"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 #: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:71
@@ -1225,17 +1230,17 @@ msgstr "Premakni v smeti"
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "Odstrani iz %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr ""
+msgstr "Odstranitev %d skladb iz %s?"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "Odstranitev \"%s\" iz %s?"
 
 #: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
 #, c-format
@@ -1246,11 +1251,21 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"To bo odstranilo skladbe iz vaše knjižnice in vsake naprave, ki se samodejno "
+"usklajuje z %s."
 msgstr[1] ""
+"To bo odstranilo skladbo iz vaše knjižnice in vsake naprave, ki se samodejno "
+"usklajuje z %s."
+msgstr[2] ""
+"To bo odstranilo skladbi iz vaše knjižnice in vsake naprave, ki se samodejno "
+"usklajuje z %s."
+msgstr[3] ""
+"To bo odstranilo skladbe iz vaše knjižnice in vsake naprave, ki se samodejno "
+"usklajuje z %s."
 
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
 msgid "Playlist Editor"
-msgstr ""
+msgstr "Urejevalnik seznama predvajanja"
 
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
@@ -1262,7 +1277,7 @@ msgstr "Ime seznama predvajanja"
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
 #, c-format
 msgid "The name %s is already in use"
-msgstr ""
+msgstr "Ime %s je že v uporabi"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -1270,11 +1285,11 @@ msgstr "Izvozi seznam predvajanja"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr "Nastavi mapo z glasbo"
+msgstr "Nastavite mapo z glasbo"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr "Nastavi mapo z glasbo?"
+msgstr "Nastavitev mape z glasbo?"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
@@ -1282,6 +1297,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Ali ste prepričani, da želite nastaviti mapo z glasbo k %s? To bo "
+"ponastavilo vašo knjižnico in odstranilo vaše sezname predvajanja."
 
 #: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:83
 msgid "Equalizer"
@@ -1325,6 +1342,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Naslednje datoteke so bile najdene na %s, toda niso v vaši knjižnici. "
+"Preverite vse datoteke, ki bi jih želeli uvoziti."
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -1342,12 +1361,12 @@ msgstr "Ne uvozi"
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "Uvozi %i predmetov iz %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Uvozi %s iz %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 msgid "ID"
@@ -1359,19 +1378,19 @@ msgstr "Izberi posamezno predstavnost za uvoz:"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr ""
+msgstr "Označi predmet"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr ""
+msgstr "Označi album"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr ""
+msgstr "Označi izvajalca"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 msgid "Cannot Import"
-msgstr ""
+msgstr "Ni mogoče uvoziti"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
 #, c-format
@@ -1379,6 +1398,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %d"
 msgstr ""
+"Noise že počne datotečna opravila. Počakajte, dokler ta ne končajo z "
+"uvažanjem iz %d"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
@@ -1398,16 +1419,18 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Če nadaljujete z usklajevanjem, bo predstavna vsebina odstranjena iz %s, saj "
+"ni na seznamu usklajevanja. Ali jo želite najprej uvoziti v svojo knjižnico?"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "Usklajevanje bo odstranilo %i predmetov iz %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "Usklajevanje bo odstranilo 1 predmet iz %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
@@ -1429,19 +1452,19 @@ msgstr "Naslov seznama predvajanja"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "Match"
-msgstr ""
+msgstr "Ujemanje"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
 msgid "any"
-msgstr ""
+msgstr "karkoli"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "all"
-msgstr ""
+msgstr "vse"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
 msgid "of the following:"
-msgstr ""
+msgstr "od naslednjih:"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
 msgid "Limit to"
@@ -1474,11 +1497,11 @@ msgstr "Dolžina"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 msgid "Playcount"
-msgstr ""
+msgstr "Število predvajanj"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
 msgid "Skipcount"
-msgstr ""
+msgstr "Število preskokov"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
 msgid "is"
@@ -1507,7 +1530,7 @@ msgstr "je najmanj"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is within"
-msgstr ""
+msgstr "je znotraj"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
 msgid "is before"
@@ -1519,7 +1542,7 @@ msgstr "sekund"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
 msgid "days ago"
-msgstr ""
+msgstr "dni nazaj"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
 msgid "kbps"
@@ -1562,7 +1585,7 @@ msgstr "Izberi pozamezne datoteke za premik v smeti."
 
 #: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr ""
+msgstr "Namesti vstavek"
 
 #: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
@@ -1574,6 +1597,8 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"Vstavek za predstavno vrsto %s ni nameščen.\n"
+"Kaj želite narediti?"
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:256
 #, c-format
@@ -1592,6 +1617,7 @@ msgstr "Dodajanje glasbe iz %s v knjižnico ..."
 #: /home/noelco/noise/po/../src//LibraryManager.vala:369
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
+"Ponovno preiskovanje glasbe za spremembami. To lahko traja nekaj časa ..."
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
@@ -1693,15 +1719,18 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"Preden začnete z uvozom CD-ja, se prepričajte, da je mapa z glasbo dostopna "
+"in priklopljena."
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
 msgid "No songs on CD"
-msgstr ""
+msgstr "Na CD-ju ni skladb"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"%s ni našel nobene skladbe na CD-ju. Nobene skladbe ni mogoče uvoziti"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:285
 #, c-format
@@ -1728,7 +1757,7 @@ msgstr "%s je zaključil uvoz pesmi %i iz avdio CDja."
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr ""
+msgstr "%s je končal z uvozom skladbe z Audio CD-ja."
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:408
 #, c-format
@@ -1737,21 +1766,21 @@ msgstr "Uvoz sledi %i: %s"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:425
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
+msgstr "Uvoz CD-ja bo <b>preklican</b> po trenutnem uvozu."
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:448
 msgid "An error occured during the Import of this CD"
-msgstr ""
+msgstr "Med uvažanjem tega CD-ja se je pojavila napaka"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:144
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:174
 msgid "Empty device!"
-msgstr ""
+msgstr "Prazna naprava!"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:148
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:178
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "Ta naprava ne vsebuje nobene glasbe."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:315
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:316
@@ -1763,21 +1792,21 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Usklajevanje <b>%s</b> ..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
 msgid "Finishing sync process..."
-msgstr ""
+msgstr "Zaključevanje opravila usklajevanja ..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
 msgid "Cancelling Sync..."
-msgstr ""
+msgstr "Preklic usklajevanja ..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
@@ -1785,6 +1814,7 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
 msgid "There is not enough space on Device to complete the Sync..."
 msgstr ""
+"Na napravi ni dovolj prostora, da bi se lahko usklajevanje dokončalo ..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
@@ -1792,28 +1822,28 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Odstranjevanje iz <b>%s</b> ..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1016
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
-msgstr ""
+msgstr "Uvažanje <b>$NAME</b> od <b>$ARTIST</b> v knjižnico ..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "Dodajanje <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "Odstranjevanje <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
 msgid "Syncing playlists"
-msgstr ""
+msgstr "Usklajevanje seznamov predvajanja"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
@@ -1829,7 +1859,7 @@ msgstr "Pridobivanje podobnih pesmi"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
 msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-msgstr ""
+msgstr "Iskanje skladb, podobnim <b>$NAME</b> od <b>$ARTIST</b>"
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:103
 #, c-format
@@ -1847,6 +1877,9 @@ msgid ""
 "your library. Make sure all song info is correct and you are connected to "
 "the Internet. Some songs may not have matches."
 msgstr ""
+"$APPNAME ni mogel najti skladb, podobnim <b>$NAME</b> od <b>$ARTIST</b> v "
+"vaši knjižnici. Prepričajte se, če so vse podrobnosti skladbe pravilne in da "
+"ste povezani z internetom. Nekatere skladbe morda nimajo ujemanj."
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
 msgid "Similar Song View"
@@ -1859,6 +1892,9 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"V tem pogledu bo %s samodejno našel skladbe, podobne trenutno predvajani. "
+"Nato lahko začnete predvajati te skladbe ali pa jih shranite kot seznam "
+"predvajanja za pozneje."
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarMedia.vala:46
 msgid "Similar"
@@ -1870,14 +1906,17 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"Nobena skladba ni podobna trenutni skladbi v vaši knjižnici. Prepričajte se, "
+"česo vse podrobnosti skladbe pravilne in da ste povezani z internetom. "
+"Nekatere skladbe morda nimajo ujemanj."
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr ""
+msgstr "Daj programu Noise dovoljenja"
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "Neuspešno. Kliknite za ponovni poizkus."
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
@@ -1885,29 +1924,31 @@ msgstr ""
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
-msgstr ""
+msgstr "Uspešno!"
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Celotna prijava"
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:42
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:47
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Podpora Last.fm"
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Kliknite za uveljavitev opravila prijave Last.fm"
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Da se dovoli podpora Last.fm, morate dati dovoljenja programu Noise. To "
+"morate storiti samo enkrat."
 
 #~ msgid "Done"
 #~ msgstr "Končano"
