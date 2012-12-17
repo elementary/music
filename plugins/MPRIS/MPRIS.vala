@@ -115,7 +115,7 @@ public class MprisRoot : GLib.Object {
     }
 
     public void Quit () {
-        App.instance.quit ();
+        App.main_window.destroy ();
     }
     
     public void Raise () {

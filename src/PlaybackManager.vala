@@ -613,6 +613,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
     public void stopPlayback() {
         player.pause();
+        playing = false;
         
         int was_playing = 0;
         if(media_active)
