@@ -172,7 +172,7 @@ public class Noise.Media : Object {
          string markup;
         if (!is_valid_string_field (artist) && is_valid_string_field (album))
             /// Please keep $NAME and $ALBUM, they will be replaced by their values
-            markup = _("$NAME on $ALBUM").replace ("$ARTIST", "<b>" + String.escape (album) + "</b>").replace ("$NAME", "<b>" + String.escape (get_display_title ()) + "</b>");
+            markup = _("$NAME on $ALBUM").replace ("$ALBUM", "<b>" + String.escape (album) + "</b>").replace ("$NAME", "<b>" + String.escape (get_display_title ()) + "</b>");
         else if (is_valid_string_field (artist) && !is_valid_string_field (album))
             /// Please keep $NAME and $ARTIST, they will be replaced by their values
             markup = _("$NAME by $ARTIST").replace ("$ARTIST", "<b>" + String.escape (artist) + "</b>").replace ("$NAME", "<b>" + String.escape (get_display_title ()) + "</b>");

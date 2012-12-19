@@ -59,7 +59,7 @@ public class Noise.SimilarMediasView : TreeView {
 		row_activated.connect(viewDoubleClick);
 	}
 	
-	public void populateView(Collection<Media> nMedias) {
+	public void populateView (Collection<Media> nMedias) {
 		medias.clear();
 		model.clear();
 		

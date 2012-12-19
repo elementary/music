@@ -39,8 +39,8 @@ namespace Noise.Widgets {
             insert_widget (playlist_item, true);
             insert_widget (shuffle_item, true);
             insert_widget (repeat_item, true);
-            insert_widget (equalizer_item);
-            insert_widget (info_panel_item);
+            insert_widget (equalizer_item, false);
+            insert_widget (info_panel_item, false);
         }
 
         public void set_info (string message) {

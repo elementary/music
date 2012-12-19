@@ -699,26 +699,28 @@ public class Noise.LibraryManager : Object {
     }
 
     public void media_from_name (Gee.Collection<Media> tests, ref Gee.LinkedList<int> found, ref Gee.LinkedList<Media> not_found) {
-        Media[] searchable;
-
-        lock (_media) {
-            searchable = _media.values.to_array ();
-        }
 
         foreach (Media test in tests) {
-            bool found_match = false;
-            for (int i = 0; i < searchable.length; ++i) {
-                var s = searchable[i];
-                if (test.title.down () == s.title.down () && test.artist.down () == s.artist.down ()) {
-                    found.add (s.rowid);
-                    found_match = true;
+            var media_found = find_media (test);
+            if (media_found != null) {
+                found.add (media_found.rowid);
+            } else {
+                not_found.add (test);
+            }
+        }
+    }
+
+    private Media? find_media (Media to_find) {
+        Media? found = null;
+        lock (_media) {
+            foreach (var m in media ()) {
+                if (to_find.title.down () == m.title.down () && to_find.artist.down () == m.artist.down ()) {
+                    found = m;
                     break;
                 }
             }
-
-            if (!found_match)
-                not_found.add (test);
         }
+        return found;
     }
 
     public Media? media_from_file (File file) {
