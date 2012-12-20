@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-12-08 02:05+0100\n"
-"PO-Revision-Date: 2012-12-11 16:39+0000\n"
-"Last-Translator: eric.void <eric.void@gmail.com>\n"
+"PO-Revision-Date: 2012-12-19 07:46+0000\n"
+"Last-Translator: Leonardo Lemos <leonardolemos@live.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-12-12 05:13+0000\n"
-"X-Generator: Launchpad (build 16361)\n"
+"X-Launchpad-Export-Date: 2012-12-20 05:10+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/noise/po/../core//Media.vala:35
@@ -366,8 +366,9 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"Para adicionar novas músicas à lista de reprodução, use o <b>clique "
-"secundário</b> em um item e escolha <b>Adicionar para Lista de Reprodução</b>"
+"Para adicionar novas músicas à lista de reprodução, clique com o <b>botão "
+"direito</b> do mouse em um item e escolha <b>\"Adicionar à Lista de "
+"Reprodução\"</b>"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "Edit Smart Playlist"
@@ -818,7 +819,7 @@ msgstr "Importando <b>%s</b> para a biblioteca."
 
 #: /home/noelco/noise/po/../src//FileOperator.vala:424
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
-msgstr "<b>Copiando</b> arquivos para a <b>pasta de música</b>..."
+msgstr "<b>Copiando</b> arquivos para a <b>Pasta de Música</b>..."
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:638
@@ -828,7 +829,7 @@ msgstr "Músicas Favoritas"
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:442
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:645
 msgid "Recently Added"
-msgstr "Adicionado Recentemente"
+msgstr "Adicionadas Recentemente"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:458
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:661
@@ -843,7 +844,7 @@ msgstr "Nunca Reproduzidas"
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:472
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:675
 msgid "Over Played"
-msgstr "Mais Reproduzido"
+msgstr "Mais Reproduzidas"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:682
@@ -856,7 +857,7 @@ msgstr "Ouvir música"
 
 #: /home/noelco/noise/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr "Reprodutor de música"
+msgstr "Reprodutor de Música"
 
 #: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:238
 msgid "Sync"
@@ -1665,7 +1666,7 @@ msgstr "Ska"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
-msgstr "Rock suave"
+msgstr "Rock Suave"
 
 #: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
@@ -1687,7 +1688,7 @@ msgstr "Álbum desconhecido"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:97
 msgid "Audio CD Invalid"
-msgstr "Audio CD inválido"
+msgstr "CD de Áudio Invalido"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:101
 #, c-format
