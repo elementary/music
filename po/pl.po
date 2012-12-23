@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-08 02:05+0100\n"
-"PO-Revision-Date: 2012-12-03 18:05+0000\n"
-"Last-Translator: Sebastian Gołębiowski <gsebastian16@gmail.com>\n"
+"PO-Revision-Date: 2012-12-22 12:13+0000\n"
+"Last-Translator: Łukasz Szeremeta <Unknown>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-12-09 05:01+0000\n"
-"X-Generator: Launchpad (build 16341)\n"
+"X-Launchpad-Export-Date: 2012-12-23 04:56+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 "Language: \n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -69,7 +69,7 @@ msgstr "Import %s"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Nierozpoznany plik listy odtwarzania. Importowanie nie powiodło się."
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -221,13 +221,13 @@ msgstr ""
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:932
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:934
 msgid "New playlist"
-msgstr ""
+msgstr "Nowa playlista"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:935
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:938
 #, c-format
 msgid "New playlist (%i)"
-msgstr ""
+msgstr "Nowa playlista (%i)"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1137
 msgid "Import Music"
@@ -330,7 +330,7 @@ msgstr "Brak utworów"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
 msgid "Please wait until that this playlist get updated."
-msgstr ""
+msgstr "Poczekaj na zaktualizowanie playlisty."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 msgid "Get Some Tunes"
@@ -359,6 +359,7 @@ msgstr "Importuj muzykę"
 #, c-format
 msgid "Import all your Music from %s into your library."
 msgstr ""
+"Importuj wszystkie pliki muzyczne z lokalizacji %s do swojej biblioteki."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
 msgid "Select Music Folder"
@@ -589,8 +590,8 @@ msgstr "Importowanie %i z %i wybranych piosenek"
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Importowanie %i utworu"
+msgstr[1] "Importowanie %i utworów"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:652
 msgid "1234 kbps"
@@ -633,8 +634,8 @@ msgstr "Nie odnaleziono utworów."
 #, c-format
 msgid "%i track"
 msgid_plural "%i tracks"
-msgstr[0] "%i utwór"
-msgstr[1] "%i utwory"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:371
 #, c-format
@@ -985,7 +986,7 @@ msgstr "Usuń"
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:55
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:66
 msgid "Export"
-msgstr ""
+msgstr "Eksport"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:64
 msgid "Edit"

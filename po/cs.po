@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-08 02:05+0100\n"
-"PO-Revision-Date: 2012-11-16 08:57+0000\n"
-"Last-Translator: Hlobil Vaclav <Unknown>\n"
+"PO-Revision-Date: 2012-12-22 22:40+0000\n"
+"Last-Translator: Marek Suchánek <suchm@seznam.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-12-09 05:00+0000\n"
-"X-Generator: Launchpad (build 16341)\n"
+"X-Launchpad-Export-Date: 2012-12-23 04:56+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 "Language: cs\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -31,12 +31,12 @@ msgstr "Rádiová stanice"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:175
 msgid "$NAME on $ALBUM"
-msgstr "$NAME z $ALBUM"
+msgstr "$NAME z alba $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:178
 msgid "$NAME by $ARTIST"
-msgstr "$NAME od $ARTIST"
+msgstr "$NAME od hudebníka $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:184
@@ -45,17 +45,17 @@ msgstr "$NAME od $ARTIST z $ALBUM"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:187
 msgid "Export Playlist"
-msgstr "Exportovat playlist"
+msgstr "Exportovat seznam skladeb"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG verze 3.0 rozšířený (*.m3u)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Seznam skladeb Shoutcast verze 2.0 (*.pls)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Playlist"
@@ -68,7 +68,7 @@ msgstr "Importovat %s"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Nerozpoznatelný seznam skladeb. Import se nezdařil."
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
@@ -175,7 +175,7 @@ msgstr "Najít hudbu"
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:744
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
-msgstr "Hudba:"
+msgstr "Hudba"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:695
 #: /home/noelco/noise/po/../src//PlaybackManager.vala:100
@@ -219,13 +219,13 @@ msgstr ""
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:932
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:934
 msgid "New playlist"
-msgstr ""
+msgstr "Nový seznam skladeb"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:935
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:938
 #, c-format
 msgid "New playlist (%i)"
-msgstr ""
+msgstr "Nový seznam skladeb (%i)"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1137
 msgid "Import Music"
@@ -251,7 +251,7 @@ msgstr "Ujistěte se, že vaše složka s hudbou je přístupná a připojená."
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
 msgid "Import Complete"
-msgstr "Importace dokončena"
+msgstr "Import dokončen"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
 #, c-format
@@ -280,7 +280,7 @@ msgstr "Ostatní soubory"
 
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:114
 msgid "Podcasts"
-msgstr "Podcasty"
+msgstr "Internetová vysílání"
 
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:385
 msgid "All Music"
@@ -288,7 +288,7 @@ msgstr "Všechna hudba"
 
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:388
 msgid "All Podcasts"
-msgstr "Všechny podcasty"
+msgstr "Všechna vysílání"
 
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
@@ -327,11 +327,11 @@ msgstr "Žádné skladby"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
 msgid "Please wait until that this playlist get updated."
-msgstr ""
+msgstr "Počkejte prosím, než se seznam skladeb aktualizuje."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 msgid "Get Some Tunes"
-msgstr "Pořiďte si nějakou Hudbu"
+msgstr "Zaplňte hudbou"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:43
 #, c-format
@@ -344,18 +344,18 @@ msgstr "Najít"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
 msgid "Change your music folder."
-msgstr "Změnit svou složku s hudbou"
+msgstr "Změňte si složku s hudbou."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import your Music"
-msgstr ""
+msgstr "Importujte si hudbu"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "Importujte si do knihovny všechnu hudbu z %s"
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
 msgid "Select Music Folder"
@@ -370,8 +370,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"Pro přidání skladeb do playlistu, klikněte <b>pravým tlačítkrm</b> na soubor "
-"a stiskněte <b>Přidat do Playlistu</b>"
+"K přidání do seznamu skladeb klikněte <b>pravým tlačítkem</b> na soubor a "
+"stiskněte <b>Přidat do seznamu skladeb</b>."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid "Edit Smart Playlist"
@@ -384,10 +384,9 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"Tento seznam přehrávání bude automaticky naplněn písněmi, které odpovídají "
-"jeho pravidlům. Pro změnu těchto pravidel na ně klikněte <b>pravým "
-"tlačítkem</b> a pak na <b>Upravit</b>. Případně můžete kliknout na tlačítko "
-"níže."
+"Tento seznam skladeb se automaticky naplní písněmi, které odpovídají jeho "
+"pravidlům. Pro změnu těchto pravidel na ně klikněte <b>pravým tlačítkem</b> "
+"a pak na <b>Upravit</b>. Případně můžete kliknout na tlačítko níže."
 
 #: /home/noelco/noise/po/../src//Views/ContentView.vala:21
 #, c-format
@@ -614,7 +613,7 @@ msgstr "Automaticky přizpůsobit sloupce"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:132
 msgid "Display Album Art"
-msgstr "Zobrazit umělce alba"
+msgstr "Zobrazit přebal alba"
 
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:227
 #, c-format
@@ -714,7 +713,7 @@ msgstr "Všechna seskupení"
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 #, c-format
 msgid "All %i Groupings"
-msgstr ""
+msgstr "Všech %i seskupení"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Groupings"
@@ -727,7 +726,7 @@ msgstr "Všichni skladatelé"
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 #, c-format
 msgid "All %i Composers"
-msgstr ""
+msgstr "Všech %i skladatelů"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Composers"
@@ -792,18 +791,16 @@ msgstr "Ukončuji synchronizaci"
 
 #: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
 msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
-"Synchronizace zařízení byla ukončena. Operace skončí po těchto médiích."
+msgstr "Synchronizace zařízení zrušena. Po těchto médiích operace skončí."
 
 #: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
 msgid "Cancelling Import"
-msgstr "Ukončuji import"
+msgstr "Ruším import"
 
 #: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
-msgstr ""
-"Synchronizace ze zařízení byla ukončena. Operace skončí po těchto médiích."
+msgstr "Import ze zařízení zrušen. Po těchto médiích operace skončí."
 
 #: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
 msgid "No External Songs"
@@ -812,17 +809,17 @@ msgstr "Žádné externí skladby"
 #: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr "Na zařízení nebyly nalezeny skladby, které nejsou v knihovně."
+msgstr "Na zařízení nenalezeny žádné skladby, které by nebyly v knihovně."
 
 #: /home/noelco/noise/po/../src//FileOperator.vala:332
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library..."
-msgstr ""
+msgstr "Importuji do Knihovny <b<%s</b>…"
 
 #: /home/noelco/noise/po/../src//FileOperator.vala:424
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
-msgstr "<b>Kopírování</b> souborů do <b>Složky s hudbou</b>..."
+msgstr "<b>Kopíruji</b> soubory do <b>složky s hudbou</b>…"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:638
@@ -842,7 +839,7 @@ msgstr "Nedávno oblíbené"
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:668
 msgid "Never Played"
-msgstr "Nikdy nehrané"
+msgstr "Ještě neposlechnuté"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:472
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:675
@@ -852,7 +849,7 @@ msgstr "Přehrané"
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:682
 msgid "Not Recently Played"
-msgstr "V poslední době nebylo hráno"
+msgstr "V poslední době neposlouchané"
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
@@ -868,7 +865,7 @@ msgstr "Synchronizovat"
 
 #: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr "zdarma"
+msgstr "Volno"
 
 #: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:384
 msgid "Using %s of %s (%.2f%)"
@@ -983,7 +980,7 @@ msgstr "Odebrat"
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:55
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:66
 msgid "Export"
-msgstr ""
+msgstr "Exportovat"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:64
 msgid "Edit"
@@ -991,15 +988,15 @@ msgstr "Upravit"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:77
 msgid "Save as Playlist"
-msgstr "Uložit jako seznam Skladeb"
+msgstr "Uložit jako seznam skladeb"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:79
 msgid "Export..."
-msgstr "Exportovat..."
+msgstr "Exportovat…"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:128
 msgid "Eject"
-msgstr "Vyjmout"
+msgstr "Odpojit"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:155
 msgid "New Smart Playlist"
@@ -1039,7 +1036,7 @@ msgstr "Zobrazit ve sloupcích"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder..."
-msgstr "Vyberte složku s hudbou..."
+msgstr "Vyberte složku s hudbou…"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
@@ -1055,11 +1052,11 @@ msgstr "Správa knihovny:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
-msgstr "Organizování složky s hudbou:"
+msgstr "Udržovat organizaci složky s hudbou:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
-msgstr "Zapsat metadata do souboru:"
+msgstr "Zapisovat do souborů metadata:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
@@ -1067,7 +1064,7 @@ msgstr "Kopírovat importované soubory do knihovny:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
-msgstr "Integrace s prostředím"
+msgstr "Integrace s prostředím:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
@@ -1075,11 +1072,11 @@ msgstr "Zobrazovat oznámení:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
-msgstr "Minimalizovat okno, když je přehrávána hudba:"
+msgstr "Minimalizovat okno, když hraje hudba:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
-msgstr "Skrýt okno, když je přehrávána hudba:"
+msgstr "Skrýt okno, když hraje hudba:"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
 msgid "Metadata"
@@ -1168,11 +1165,11 @@ msgstr "Nebyl nalezen žádný text pro skladbu %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:543
 msgid "Podcast"
-msgstr "Podcast"
+msgstr "Internetové vysílání"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Remove Media"
-msgstr "Vyjměte médium"
+msgstr "Odstranit média"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Locate Media"
@@ -1180,7 +1177,7 @@ msgstr "Najít média"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Rescan Library"
-msgstr "Zaktualizovat knihovnu"
+msgstr "Aktualizovat knihovnu"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
 msgid "Do Nothing"
@@ -1188,7 +1185,7 @@ msgstr "Neprovádět žádnou akci"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
 msgid "Could not find media file"
-msgstr "nelze najít složku s médii"
+msgstr "Soubor s médii nenalezen"
 
 #: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
 msgid ""
@@ -1253,12 +1250,12 @@ msgstr "Editor seznamu skladeb"
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
 msgid "Name of Playlist"
-msgstr "Název playlistu"
+msgstr "Název seznamu skladeb"
 
 #: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
 #, c-format
 msgid "The name %s is already in use"
-msgstr "jméno %s se momentálně používá pro jiný soubor"
+msgstr "Jméno %s už nese jiný soubor"
 
 #: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -1342,7 +1339,7 @@ msgstr "Neimportovat"
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr "IImportovat %i soubory z %s"
+msgstr "Importovat %i položek z %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
@@ -1355,7 +1352,7 @@ msgstr "ID"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr "vybrat individuální média pro import"
+msgstr "Vybrat jednotlivá média pro import:"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
@@ -1400,22 +1397,22 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Pokud budete pokračovat v synchronizaci, média budou smazána ze %s, protože "
-"nejsou na seznamu synchronizace. Chcete je nejprve importovat do knihovny ?"
+"Budete-li pokračovat v synchronizaci, smaže média z %s, jelikož chybí na "
+"seznamu synchronizace. Chcete si je nejprve importovat do knihovny?"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr "Při synchronizaci budou smazány %i sobury ze %s"
+msgstr "Synchronizace smaže %i položek z %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr "Synchronizace smaže jeden soubor ze %s"
+msgstr "Synchronizace smaže jednu položku z %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
 msgid "Smart Playlist Editor"
-msgstr "Editor inteligentního playlistu"
+msgstr "Editor chytrých seznamů skladeb"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
@@ -1482,7 +1479,7 @@ msgstr "Počet přehrání"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
 msgid "Skipcount"
-msgstr ""
+msgstr "Počet přeskočení"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
 msgid "is"
@@ -1511,7 +1508,7 @@ msgstr "je nejméně"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is within"
-msgstr "je v"
+msgstr "je v rozmezí"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
 msgid "is before"
@@ -1523,7 +1520,7 @@ msgstr "vteřin"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
 msgid "days ago"
-msgstr "dnů zpět"
+msgstr "dní zpátky"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
 msgid "kbps"
@@ -1854,6 +1851,9 @@ msgid ""
 "your library. Make sure all song info is correct and you are connected to "
 "the Internet. Some songs may not have matches."
 msgstr ""
+"$APPNAME nenachází v knihovně nic, co by se podobalo skladbě <b>$NAME</b> od "
+"<b>$ARTIST</b>. Ujistěte se, že jsou informace o skladbě správné a že jste "
+"připojeni k internetu. Některým skladbám se však nemusí podobat nic."
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
 msgid "Similar Song View"
@@ -1879,6 +1879,9 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"V knihovně se nenachází nic, co by se této skladbě podobalo. Ujistěte se, že "
+"jsou informace o skladbě správné a že jste připojeni k internetu. Některým "
+"skladbám se však nemusí podobat nic."
 
 #: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
