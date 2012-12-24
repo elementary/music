@@ -63,7 +63,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
     
     private void buildUI() {
         // add View class
-        this.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
+        this.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
         
         container = new Gtk.Grid ();
 
@@ -83,7 +83,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
         year_label.ellipsize = Pango.EllipsizeMode.END;
 
         var content = new Gtk.Grid ();
-        content.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
+        content.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
 
         // margins
         coverArt.halign = title.halign = artist.halign = album.halign = year_label.halign = Gtk.Align.CENTER;

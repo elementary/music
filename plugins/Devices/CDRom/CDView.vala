@@ -54,7 +54,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         main_grid.set_column_homogeneous (true);
         
         /* Content view styling */
-        main_event_box.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
+        main_event_box.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
         
         var default_pix = Icons.DEFAULT_ALBUM_ART.render_at_size (Icons.DEFAULT_ALBUM_ART_SIZE);
         default_pix = PixbufUtils.get_pixbuf_shadow (default_pix, Icons.ALBUM_VIEW_IMAGE_SIZE);

@@ -96,9 +96,9 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
         hpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
         this.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
 
-        vpadding_box.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-        hpadding_box.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-        this.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
+        vpadding_box.get_style_context().add_class (Granite.StyleClass.CONTENT_VIEW);
+        hpadding_box.get_style_context().add_class (Granite.StyleClass.CONTENT_VIEW);
+        this.get_style_context().add_class (Granite.StyleClass.CONTENT_VIEW);
 
         vpadding_box.set_size_request (-1, MIN_SPACING + ITEM_PADDING);
         hpadding_box.set_size_request (MIN_SPACING + ITEM_PADDING, -1);
