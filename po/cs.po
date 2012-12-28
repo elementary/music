@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-08 02:05+0100\n"
-"PO-Revision-Date: 2012-12-26 09:24+0000\n"
+"PO-Revision-Date: 2012-12-27 07:51+0000\n"
 "Last-Translator: Marek Suchánek <suchm@seznam.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-12-27 05:35+0000\n"
+"X-Launchpad-Export-Date: 2012-12-28 05:25+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "Language: cs\n"
 
@@ -849,7 +849,7 @@ msgstr "Přehrané"
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:682
 msgid "Not Recently Played"
-msgstr "Poslední dobou nehrané"
+msgstr "Poslední dobou nehráno"
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
