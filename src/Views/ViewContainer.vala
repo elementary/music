@@ -127,6 +127,11 @@ public class Noise.ViewContainer : Gtk.Notebook {
         set_current_page (page_num (match_views.get(index)));
         if (get_view (index) is ViewWrapper)
             (get_view (index) as ViewWrapper).set_as_current_view ();
+        else if (get_view (index) is Gtk.Grid) {
+            App.main_window.viewSelector.selected = Noise.Widgets.ViewSelector.Mode.LIST;
+            App.main_window.viewSelector.set_sensitive (false);
+            App.main_window.searchField.set_sensitive (false);
+        }
 
         return true;
     }

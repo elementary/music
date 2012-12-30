@@ -45,6 +45,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
     public signal void media_played (Media played_media);
     public signal void playback_stopped (int was_playing);
+    public signal void changing_player ();
+    public signal void player_changed ();
 
     private LinkedList<unowned Noise.Playback> playbacks = new LinkedList<unowned Noise.Playback> ();
 
@@ -508,8 +510,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         foreach (var playback in playbacks) {
             foreach (var supported_uri in playback.get_supported_uri ()) {
                 if (m.uri.has_prefix (supported_uri)) {
+                    changing_player ();
+                    player.set_state (Gst.State.NULL);
                     found = true;
                     player = playback;
+                    player_changed ();
                     break;
                 }
             }
@@ -539,14 +544,13 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
         change_gains_thread ();
         
-        // TODO: Adapt to more playbacks !
-        if(m.mediatype == MediaType.PODCAST || m.mediatype == MediaType.AUDIOBOOK || use_resume_pos)
+        if ((m.mediatype == MediaType.PODCAST || m.mediatype == MediaType.AUDIOBOOK || use_resume_pos) && (player == file_player))
             file_player.set_resume_pos = false;
 
         // actually play the media asap
         
         if (next_gapless_id == 0) {
-            player.set_uri (m.uri);
+            player.set_media (m);
         }
         else {
             next_gapless_id = 0;

@@ -40,7 +40,7 @@ public interface Noise.Playback : GLib.Object {
     public abstract void play ();
     public abstract void pause ();
     public abstract void set_state (Gst.State s);
-    public abstract void set_uri (string uri);
+    public abstract void set_media (Media media);
     public abstract bool check_existance (string uri);
     public abstract void set_position (int64 pos);
     public abstract int64 get_position ();

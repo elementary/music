@@ -112,6 +112,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         App.player.player.error_occured.connect (error_occured);
         App.player.media_played.connect_after (media_played);
         App.player.playback_stopped.connect (playback_stopped);
+        App.player.changing_player.connect (() => {
+            App.player.player.end_of_stream.disconnect (end_of_stream);
+            App.player.player.current_position_update.disconnect (current_position_update);
+            App.player.player.error_occured.disconnect (error_occured);
+        });
+        App.player.player_changed.connect (() => {
+            App.player.player.end_of_stream.connect (end_of_stream);
+            App.player.player.current_position_update.connect (current_position_update);
+            App.player.player.error_occured.connect (error_occured);
+        });
         
         notification_manager.progressNotification.connect (showProgressNotification);
         notification_manager.songNotification.connect (showSongNotification);

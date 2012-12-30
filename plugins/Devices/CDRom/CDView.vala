@@ -32,7 +32,6 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     Gtk.Label title;
     Gtk.Label author;
     
-    Gtk.Spinner spinner;
     Noise.StaticPlaylist cd_playlist;
     private CDViewWrapper cd_viewwrapper;
     
