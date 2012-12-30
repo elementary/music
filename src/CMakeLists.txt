@@ -1,13 +1,6 @@
-set(CONFIG_FILE ${CMAKE_CURRENT_BINARY_DIR}/config.vala)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.vala.cmake ${CONFIG_FILE})
-
-message(${CONFIG_FILE})
-
 set(CLIENT_SOURCE
-    ${CONFIG_FILE}
     main.vala
     Noise.vala
-    Icons.vala
     LibraryWindow.vala
     LibraryManager.vala
     PlaybackManager.vala
@@ -15,7 +8,6 @@ set(CLIENT_SOURCE
     Utils/PixbufUtils.vala
     Utils/PixbufCache.vala
     Utils/Search.vala
-    Utils/Icon.vala
     Devices/Device.vala
     Devices/NetworkDevice.vala
     Devices/DeviceManager.vala
@@ -49,10 +41,7 @@ set(CLIENT_SOURCE
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
     DataBase/Tables.vala
-    GStreamer/Equalizer.vala
-    GStreamer/Pipeline.vala
     GStreamer/GStreamerTagger.vala
-    GStreamer/ReplayGain.vala
     GStreamer/Streamer.vala
     Views/ViewContainer.vala
     Views/Wrappers/ViewWrapper.vala

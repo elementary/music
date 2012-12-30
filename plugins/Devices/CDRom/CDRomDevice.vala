@@ -43,6 +43,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     
     LinkedList<Noise.Media> medias;
     LinkedList<Noise.Media> list;
+    CDPlayer cdplayer;
     
     CDView cdview;
     
@@ -60,6 +61,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         medias = new LinkedList<Noise.Media>();
         
         cdview = new CDView (lm, this);
+        cdplayer = new CDPlayer (mount);
+        Noise.App.player.add_playback (cdplayer);
     }
     
     public Noise.DevicePreferences get_preferences() {

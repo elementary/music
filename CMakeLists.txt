@@ -49,6 +49,10 @@ set(CORE_PACKAGES
     libpeas-gtk-1.0
     gtk+-3.0
     granite
+    gstreamer-0.10
+    gstreamer-interfaces-0.10
+    gstreamer-pbutils-0.10
+    gstreamer-tag-0.10
 )
 
 set(CORE_PKG
@@ -59,23 +63,19 @@ set(CORE_PKG
     libpeas-gtk-1.0
     gtk+-3.0>=3.4.2
     granite
+    gstreamer-0.10
+    gstreamer-interfaces-0.10
+    gstreamer-tag-0.10
+    gstreamer-pbutils-0.10
 )
 
 set(DEPS_PACKAGES
     ${CORE_LIBRARY_NAME}
     ${CORE_PACKAGES} # this is needed until we provide a ${CORE_LIBRARY_NAME}.deps file
-    gstreamer-0.10
-    gstreamer-interfaces-0.10
-    gstreamer-pbutils-0.10
-    gstreamer-tag-0.10
     taglib_c
 )
 
 set(DEPS_PKG
-    gstreamer-0.10
-    gstreamer-interfaces-0.10
-    gstreamer-tag-0.10
-    gstreamer-pbutils-0.10
     taglib_c
 )
 

@@ -32,13 +32,15 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     Gtk.Label title;
     Gtk.Label author;
     
-    Gtk.Grid list_view;
     Gtk.Spinner spinner;
-    Gee.LinkedList<Media> media_list;
+    Noise.StaticPlaylist cd_playlist;
+    private CDViewWrapper cd_viewwrapper;
     
     public CDView (LibraryManager lm, CDRomDevice d) {
         this.lm = lm;
         this.dev = d;
+        cd_playlist = new Noise.StaticPlaylist ();
+        cd_viewwrapper = new CDViewWrapper (lm.lw, cd_playlist);
         
         build_ui ();
         
@@ -51,7 +53,6 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         
         main_event_box = new Gtk.EventBox ();
         main_grid = new Gtk.Grid ();
-        main_grid.set_column_homogeneous (true);
         
         /* Content view styling */
         main_event_box.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
@@ -75,14 +76,6 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         author.sensitive = false;
         Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, author);
         
-        list_view = new Gtk.Grid ();
-        list_view.set_hexpand (true);
-        list_view.set_row_spacing (6);
-        list_view.set_column_spacing (12);
-        list_view.set_margin_top (12);
-        var scl_window = new Gtk.ScrolledWindow (null, null);
-        scl_window.add_with_viewport (list_view);
-        
         var fake_label_1 = new Gtk.Label ("");
         fake_label_1.set_hexpand (true);
         fake_label_1.set_vexpand (true);
@@ -100,13 +93,13 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         import_grid.attach (fake_label_3,  0, 0, 1, 1);
         import_grid.attach (import_button, 1, 0, 1, 1);
         
-        main_grid.attach (fake_label_1,  0, 0, 1, 7);
-        main_grid.attach (album_image,   1, 3, 1, 1);
-        main_grid.attach (title,         2, 2, 1, 1);
-        main_grid.attach (author,        3, 2, 1, 1);
-        main_grid.attach (scl_window,    2, 3, 2, 1);
-        main_grid.attach (import_grid,   3, 4, 1, 1);
-        main_grid.attach (fake_label_2,  4, 0, 1, 7);
+        main_grid.attach (fake_label_1,   0, 0, 1, 7);
+        main_grid.attach (album_image,    1, 3, 1, 1);
+        main_grid.attach (title,          2, 2, 1, 1);
+        main_grid.attach (author,         3, 2, 1, 1);
+        main_grid.attach (cd_viewwrapper, 2, 3, 2, 1);
+        main_grid.attach (import_grid,    3, 4, 1, 1);
+        main_grid.attach (fake_label_2,   4, 0, 1, 7);
         
         main_event_box.add (main_grid);
         this.attach (main_event_box,0,0,1,1);
@@ -118,21 +111,16 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         main_grid.set_column_spacing (12);
         main_grid.set_margin_top (12);
         
-        import_button.clicked.connect ( () => {dev.transfer_to_library (media_list);});
+        import_button.clicked.connect ( () => {dev.transfer_to_library (cd_playlist.medias);});
         
         show_all ();
     }
     
     public void cd_initialised () {
-        media_list = (Gee.LinkedList<Noise.Media>) dev.get_medias ();
-        if ( media_list.size > 0) {
-            author.set_markup (media_list.get(0).album_artist);
-            title.set_markup (media_list.get(0).album);
-        }
-        foreach (var media in media_list) {
-            list_view.attach(new Gtk.Label (media.track.to_string ()), 1, (int)media.track, 1, 1);
-            list_view.attach(create_title_label (media.title), 2, (int)media.track, 1, 1);
-            list_view.attach(create_length_label (media.length), 3, (int)media.track, 1, 1);
+        cd_playlist.add_medias (dev.get_medias ());
+        if ( cd_playlist.is_empty () == false) {
+            author.set_markup (cd_playlist.medias.get(0).album_artist);
+            title.set_markup (cd_playlist.medias.get(0).album);
         }
         show_all ();
     }

@@ -122,7 +122,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 
 			v.value_changed.connect( () => {
 				if(apply_changes && initialized && !preset_combo.automatic_chosen) {
-					App.player.player.setEqualizerGain(scale_list.index(v), (int)scale_list.nth_data(scale_list.index(v)).get_value());
+					App.player.player.set_equalizer_gain(scale_list.index(v), (int)scale_list.nth_data(scale_list.index(v)).get_value());
 
 					if(!in_transition) {
 						if (!preset_combo.getSelectedPreset().is_default)
@@ -224,7 +224,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 
 				if (selected_preset != null) {
 					for(int i = 0; i < 10; ++i)
-						App.player.player.setEqualizerGain(i, selected_preset.getGain(i));
+						App.player.player.set_equalizer_gain(i, selected_preset.getGain(i));
 				}
 			}
 			else {
@@ -233,7 +233,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		}
 		else {
 			for (int i = 0; i < 10; ++i)
-				App.player.player.setEqualizerGain(i, 0);
+				App.player.player.set_equalizer_gain(i, 0);
 		}
 	}
 
@@ -303,7 +303,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 				scale_list.nth_data(index).set_value(targetLvl);
 				// if switching from the automatic mode, apply the changes correctly
 				if (!preset_combo.automatic_chosen && targetLvl == 0)
-					App.player.player.setEqualizerGain (index, 0);
+					App.player.player.set_equalizer_gain (index, 0);
 			}
 			else {
 				scale_list.nth_data(index).set_value(scale_list.nth_data(index).get_value() + (difference / 8.0));

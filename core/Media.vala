@@ -59,7 +59,7 @@ public class Noise.Media : Object {
 
     // XXX: these don't really belong here. It seems they only help to
     //      ease client-side stuff, and will be removed in the future
-    public Icon unique_status_image { get; set; }
+    public GLib.Icon unique_status_image { get; set; }
     public bool showIndicator { get; set; default = false; }
 
     /**

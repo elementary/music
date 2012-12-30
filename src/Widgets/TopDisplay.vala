@@ -196,7 +196,7 @@ public class Noise.TopDisplay : Box {
 		scale_value_changed(scroll, val);
 
         if( !is_seeking ) {
-            App.player.player.setPosition((int64) TimeUtils.miliseconds_to_nanoseconds ((uint) val));
+            App.player.player.set_position((int64) TimeUtils.miliseconds_to_nanoseconds ((uint) val));
             App.player.player.current_position_update.connect(player_position_update);
         }
 		

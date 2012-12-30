@@ -203,7 +203,7 @@ public class MprisPlayer : GLib.Object {
         _metadata = new HashTable<string, Variant> (null, null);
 
         _metadata.insert("mpris:trackid", get_track_id (s));
-        _metadata.insert("mpris:length", App.player.player.getDuration () / 1000);
+        _metadata.insert("mpris:length", App.player.player.get_duration () / Numeric.MILI_INV);
 
         var art_file = CoverartCache.instance.get_cached_image_file (s);
         _metadata.insert("mpris:artUrl", art_file != null ? art_file.get_uri () : default_image_url);
@@ -363,16 +363,16 @@ public class MprisPlayer : GLib.Object {
     
     public double Volume {
         get{
-            return App.player.player.getVolume();
+            return App.player.player.get_volume();
         }
         set {
-            App.player.player.setVolume(value);
+            App.player.player.set_volume(value);
         }
     }
     
     public int64 Position {
         get {
-            return (App.player.player.getPosition()/1000);
+            return (App.player.player.get_position()/(int64)Numeric.MILI_INV);
         }
     }
     
@@ -462,7 +462,7 @@ public class MprisPlayer : GLib.Object {
 		if (Position < 0)
 			Position = 0;
 
-		if (Position < App.player.player.getDuration () / 1000) {
+		if (Position < App.player.player.get_duration () / Numeric.MILI_INV) {
 			SetPosition ("", Position);
 			Seeked (Position);
 		} else if (CanGoNext) {
@@ -471,7 +471,7 @@ public class MprisPlayer : GLib.Object {
     }
     
     public void SetPosition(string dobj, int64 Position) {
-        App.player.player.setPosition(Position * 1000);
+        App.player.player.set_position(Position * (int64)Numeric.MILI_INV);
     }
     
     public void OpenUri(string Uri) {

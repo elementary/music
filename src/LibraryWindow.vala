@@ -1105,7 +1105,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void play_previous_media (bool inhibit_notifications = false) {
-        if(App.player.player.getPosition() < 5000000000 || (App.player.media_active && App.player.media_info.media.mediatype == 3)) {
+        if(App.player.player.get_position() < 5000000000 || (App.player.media_active && App.player.media_info.media.mediatype == 3)) {
             bool play = true;
             var prev = App.player.getPrevious(true);
 
@@ -1322,7 +1322,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         double sec = ((double)position/1000000000);
         double media_length = ((double)App.player.media_info.media.length/1000);
 
-        if(App.player.player.set_resume_pos)
+        if(App.player.file_player.set_resume_pos)
             App.player.media_info.media.resume_pos = (int)sec;
 
         // at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
@@ -1414,10 +1414,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void on_quit () {
         // Save media position and info
-        main_settings.last_media_position = (int)((double)App.player.player.getPosition
+        main_settings.last_media_position = (int)((double)App.player.player.get_position
         ()/Numeric.NANO_INV);
         if(App.player.media_active) {
-            App.player.media_info.media.resume_pos = (int)((double)App.player.player.getPosition()/Numeric.NANO_INV);
+            App.player.media_info.media.resume_pos = (int)((double)App.player.player.get_position()/Numeric.NANO_INV);
             library_manager.update_media_item (App.player.media_info.media, false, false);
         }
         App.player.player.pause();

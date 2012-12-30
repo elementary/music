@@ -20,8 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gst;
-
 public class Noise.Pipeline : GLib.Object {
 	public Gst.Pipeline pipe;
 	public Equalizer eq;
@@ -29,17 +27,17 @@ public class Noise.Pipeline : GLib.Object {
 	
 	public dynamic Gst.Bus bus;
 	//Pad teepad;
-	Pad pad;
+	public Gst.Pad pad;
 	
-	dynamic Element audiosink;
-	dynamic Element audiosinkqueue;
-	dynamic Element eq_audioconvert;
-	dynamic Element eq_audioconvert2; 
+	public dynamic Gst.Element audiosink;
+	public dynamic Gst.Element audiosinkqueue;
+	public dynamic Gst.Element eq_audioconvert;
+	public dynamic Gst.Element eq_audioconvert2; 
 	 
 	public dynamic Gst.Element playbin;
-	dynamic Gst.Element audiotee;
-	dynamic Gst.Element audiobin;
-	dynamic Gst.Element preamp;
+	public dynamic Gst.Element audiotee;
+	public dynamic Gst.Element audiobin;
+	public dynamic Gst.Element preamp;
 	//dynamic Gst.Element volume;
 	//dynamic Gst.Element rgvolume;
 	
@@ -47,28 +45,28 @@ public class Noise.Pipeline : GLib.Object {
 		gapless = new ReplayGain();
 		
 		pipe = new Gst.Pipeline("pipeline");
-		playbin = ElementFactory.make("playbin2", "play");
+		playbin = Gst.ElementFactory.make("playbin2", "play");
 		
-		audiosink = ElementFactory.make("autoaudiosink", "audio-sink");
+		audiosink = Gst.ElementFactory.make("autoaudiosink", "audio-sink");
 		//audiosink.set("profile", 1); // says we handle music and movies
 		
 		audiobin = new Gst.Bin("audiobin"); // this holds the real primary sink
 		
-		audiotee = ElementFactory.make("tee", null);
-		audiosinkqueue = ElementFactory.make("queue", null);
+		audiotee = Gst.ElementFactory.make("tee", null);
+		audiosinkqueue = Gst.ElementFactory.make("queue", null);
 		
 		eq = new Equalizer();
 		if(eq.element != null) {
-			eq_audioconvert = ElementFactory.make("audioconvert", null);
-			eq_audioconvert2 = ElementFactory.make("audioconvert", null);
-			preamp = ElementFactory.make("volume", "preamp");
+			eq_audioconvert = Gst.ElementFactory.make("audioconvert", null);
+			eq_audioconvert2 = Gst.ElementFactory.make("audioconvert", null);
+			preamp = Gst.ElementFactory.make("volume", "preamp");
 			
 			((Gst.Bin)audiobin).add_many(eq.element, eq_audioconvert, eq_audioconvert2, preamp);
 		}
 		
 		((Gst.Bin)audiobin).add_many(audiotee, audiosinkqueue, audiosink);
 		
-		audiobin.add_pad(new GhostPad("sink", audiotee.get_pad("sink")));
+		audiobin.add_pad(new Gst.GhostPad("sink", audiotee.get_pad("sink")));
 		
 		if (eq.element != null)
 			audiosinkqueue.link_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);

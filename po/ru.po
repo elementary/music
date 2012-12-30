@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-12-08 02:05+0100\n"
-"PO-Revision-Date: 2012-12-04 11:06+0000\n"
-"Last-Translator: Gigabye <Unknown>\n"
+"PO-Revision-Date: 2012-12-25 06:08+0000\n"
+"Last-Translator: Eugene Marshal <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-12-09 05:01+0000\n"
-"X-Generator: Launchpad (build 16341)\n"
+"X-Launchpad-Export-Date: 2012-12-26 04:57+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/noise/po/../core//Media.vala:35
@@ -50,7 +50,7 @@ msgstr "Экспорт списка воспроизведения"
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "Расширенная версия MPEG 3.0 (*.m3u)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
@@ -150,7 +150,7 @@ msgstr "%s и %s"
 #. / for more details.
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%m/%e/%Y %l:%M %p"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:274
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:101
@@ -1063,7 +1063,7 @@ msgstr "Управление медиатекой:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
-msgstr ""
+msgstr "Сохранять структуру папки с музыкой:"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"

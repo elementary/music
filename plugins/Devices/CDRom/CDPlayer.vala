@@ -1,59 +1,74 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Corentin Noël <tintou@mailoo.org>
  */
 
-using Gst;
-using Gtk;
+public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
 
-public class Noise.Streamer : Noise.Playback, GLib.Object {
-	Noise.Pipeline pipe;
+    InstallGstreamerPluginsDialog dialog;
+    
+    public bool set_resume_pos;
+    
+    private string device;
+    
+    public dynamic Gst.Element src;
+    public Noise.Pipeline pipe;
+	private Gst.Format _format;
+    
+    public CDPlayer (Mount mount) {
+        
+        device = mount.get_volume ().get_identifier (GLib.VolumeIdentifier.UNIX_DEVICE);
+        initialize ();
+    }
+    
+    public bool initialize () {
 
-	InstallGstreamerPluginsDialog dialog;
-	
-	public Gst.Element cdda;
-	
-	public bool set_resume_pos;
-	
-	/* Signals are now in the Playback interface !
-	public signal void end_of_stream ();
-	public signal void current_position_update (int64 position);
-	public signal void media_not_found ();
-	public signal void error_occured (); */
-	
-	public Streamer () {
-		pipe = new Noise.Pipeline();
+        pipe = new Noise.Pipeline ();
+        src = Gst.Element.make_from_uri (Gst.URIType.SRC, "cdda://", null);
+        src.set ("device", device);
+    
+        if (src.get_class ().find_property ("paranoia-mode") != null)
+            src.set ("paranoia-mode", 0);
+    
+        if (src.get_class ().find_property ("read-speed") != null)
+            src.set ("read-speed", 2);
 
-		pipe.bus.add_watch(bus_callback);
-		//pipe.playbin.about_to_finish.connect(about_to_finish);
-		
-
-		Timeout.add (200, update_position);
-	}
-	
-	public Gee.Collection<string> get_supported_uri () {
-	    var uris = new Gee.LinkedList<string> ();
-	    uris.add ("file://");
-	    return uris;
-	}
-	
+        ((Gst.Bin)pipe.audiobin).add_many (src);
+        
+        pipe.playbin.set ("uri", "cdda://1");
+		_format = Gst.format_get_by_nick ("track");
+        
+        src.set("track", 1);
+        
+        pipe.bus.add_watch(bus_callback);
+        
+        Timeout.add (200, update_position);
+        return true;
+    }
+    
+    public Gee.Collection<string> get_supported_uri () {
+        var uris = new Gee.LinkedList<string> ();
+        uris.add ("cdda://");
+        return uris;
+    }
+    
 	public bool check_existance (string uri) {
         if (!GLib.File.new_for_uri (uri).query_exists ()) {
             return false;
@@ -75,24 +90,24 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
 	
 	/* Basic playback functions */
 	public void play () {
-		set_state (State.PLAYING);
+		set_state (Gst.State.PLAYING);
 	}
 	
 	public void pause () {
-		set_state (State.PAUSED);
+		set_state (Gst.State.PAUSED);
 	}
 	
-	public void set_state (State s) {
+	public void set_state (Gst.State s) {
 		pipe.playbin.set_state (s);
 	}
 	
 	public void set_uri (string uri) {
-		set_state (State.READY);
+		set_state (Gst.State.READY);
 		debug ("set uri to %s\n", uri);
 		//pipe.playbin.uri = uri.replace("#", "%23");
-		pipe.playbin.set_property ("uri", uri.replace("#", "%23"));
+		pipe.playbin.set ("uri", uri.replace("#", "%23"));
 
-		set_state (State.PLAYING);
+		set_state (Gst.State.PLAYING);
 		
 		debug ("setURI seeking to %d\n", App.player.media_info.media.resume_pos);
 		pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.media_info.media.resume_pos * 1000000000);
@@ -109,7 +124,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
 	
 	public int64 get_position () {
 		int64 rv = (int64)0;
-		Format f = Format.TIME;
+		Gst.Format f = Gst.Format.TIME;
 		
 		pipe.playbin.query_position (ref f, out rv);
 		
@@ -118,7 +133,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
 	
 	public int64 get_duration () {
 		int64 rv = (int64)0;
-		Format f = Format.TIME;
+		Gst.Format f = Gst.Format.TIME;
 		
 		pipe.playbin.query_duration(ref f, out rv);
 		
@@ -126,12 +141,12 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
 	}
 	
 	public void set_volume (double val) {
-        pipe.playbin.set_property ("volume", val);
+        pipe.playbin.set ("volume", val);
 	}
 	
 	public double get_volume () {
 	    var val = GLib.Value (typeof(double));
-		pipe.playbin.get_property ("volume", ref val);
+		pipe.playbin.get ("volume", ref val);
 		return (double)val;
 	}
 	
@@ -159,7 +174,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
 			error_occured();
 			break;
 		case Gst.MessageType.ELEMENT:
-			if(message.get_structure() != null && is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
+			if(message.get_structure() != null && Gst.is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
 				dialog = new InstallGstreamerPluginsDialog(App.library_manager, App.main_window, message);
 			}
 			break;
@@ -183,9 +198,9 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
             
             message.parse_tag (out tag_list);
             if (tag_list != null) {
-				if (tag_list.get_tag_size(TAG_TITLE) > 0) {
+				if (tag_list.get_tag_size(Gst.TAG_TITLE) > 0) {
 					string title = "";
-					tag_list.get_string(TAG_TITLE, out title);
+					tag_list.get_string(Gst.TAG_TITLE, out title);
 					
 					if (App.player.media_info.media.mediatype == 3 && title != "") { // is radio
 						string[] pieces = title.split("-", 0);
@@ -215,23 +230,4 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
  
 		return true;
 	}
-	
-	// no longer used since it would cause bugs
-	/*void about_to_finish() {
-		int i = App.player.getNext(false);
-		Media s = App.library_manager.media_from_id(i);
-		if(s != null && s.mediatype != 3) { // don't do this with radio stations
-			pipe.playbin.uri = s.uri; // probably cdda
-		}
-		else {
-			message ("not doing gapless in streamer because no next song\n");
-		}
-		
-		App.library_manager.next_gapless_id = i;
-		Idle.add( () => {
-			end_of_stream();
-			
-			return false;
-		});
-	}*/
 }

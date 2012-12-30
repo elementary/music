@@ -1,7 +1,13 @@
 set(CORE_LIB_VERSION 0.1)
 set(CORE_LIB_SOVERSION 0)
+set(CONFIG_FILE ${CMAKE_CURRENT_BINARY_DIR}/config.vala)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.vala.cmake ${CONFIG_FILE})
+
+message(${CONFIG_FILE})
 
 set(CORE_SOURCE
+    ${CONFIG_FILE}
     PluginManager.vala
     Settings.vala
     EqualizerPreset.vala
@@ -23,6 +29,12 @@ set(CORE_SOURCE
     Utils/Utils.vala
     Utils/PlaylistsUtils.vala
     Utils/Threads.vala
+    Utils/Icon.vala
+    Utils/Icons.vala
+    GStreamer/Pipeline.vala
+    GStreamer/Equalizer.vala
+    GStreamer/Playback.vala
+    GStreamer/ReplayGain.vala
     Widgets/SettingsWidgets.vala
     main.vala
 )

@@ -179,9 +179,9 @@ public class Noise.TreeViewSetup : Object {
                 append_new_column (ListColumn.TRACK);
                 append_new_column (ListColumn.TITLE);
                 append_new_column (ListColumn.LENGTH);
-                append_new_column (ListColumn.ARTIST);
-                append_new_column (ListColumn.ALBUM);
-                append_new_column (ListColumn.GENRE);
+                append_new_column (ListColumn.ARTIST, false);
+                append_new_column (ListColumn.ALBUM, false);
+                append_new_column (ListColumn.GENRE, false);
             break;
 
             default:

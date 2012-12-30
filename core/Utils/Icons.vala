@@ -68,6 +68,7 @@ public class Noise.Icons {
     public static Icon VIEW_ICONS { get; private set; default = new Icon ("view-grid-symbolic"); }
     public static Icon VIEW_VIDEO { get; private set; default = new Icon ("view-video-symbolic"); }
     public static Icon LIST_ADD_SYMBOLIC { get; private set; default = new Icon ("list-add-symbolic"); }
+    public static Icon REFRESH_SYMBOLIC { get; private set; default = new Icon ("view-refresh-symbolic"); }
 
     static construct {
         var default_shadow = new Icon ("albumart-shadow");

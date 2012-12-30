@@ -46,6 +46,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public signal void media_played (Media played_media);
     public signal void playback_stopped (int was_playing);
 
+    private LinkedList<unowned Noise.Playback> playbacks = new LinkedList<unowned Noise.Playback> ();
 
     // id, media of current media.
     private HashMap<int, Media> _current = new Gee.HashMap<int, Media>();
@@ -88,11 +89,14 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public Player.Shuffle shuffle { get; private set; }
     public int next_gapless_id;
 
-    public Noise.Streamer player;
+    public Noise.Streamer file_player;
+    public Noise.Playback player;
 
 
     public PlaybackManager () {
-        player = new Streamer ();
+        file_player = new Streamer ();
+        playbacks.add (file_player);
+        player = file_player;
         media_info = new Noise.MediaInfo ();
         history_playlist.name = _("History");
         history_playlist.read_only = true;
@@ -103,6 +107,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         setShuffleMode ((Player.Shuffle)main_settings.shuffle_mode, true);
     }
 
+    public void add_playback (Noise.Playback playback) {
+        playbacks.add (playback);
+    }
 
     /**************** Queue Stuff **************************/
     
@@ -491,23 +498,39 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 m.location_unknown = false;
                 m.unique_status_image = null;
                 //App.main_window.media_found(m.rowid);
-            }
-            else { // to avoid infinite loop with repeat on, don't try to play next again
+            } else { // to avoid infinite loop with repeat on, don't try to play next again
                 stopPlayback();
                 return;
             }
         }
         
-        // check that the file exists FIXME: Avoid reading settings everytime a song is played
-        var music_folder_uri = File.new_for_path(main_settings.music_folder).get_uri();
-        if((main_settings.music_folder != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
+        var found = false;
+        foreach (var playback in playbacks) {
+            foreach (var supported_uri in playback.get_supported_uri ()) {
+                if (m.uri.has_prefix (supported_uri)) {
+                    found = true;
+                    player = playback;
+                    break;
+                }
+            }
+            if (found == true) {
+                break;
+            }
+        }
+        if (found == false) {
+            m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU);
+            getNext(true);
+            return;
+        }
+        
+        // check that the file exists
+        if (!player.check_existance (m.uri)) {
             m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU);
             m.location_unknown = true;
             //App.main_window.media_not_found(id);
             getNext(true);
             return;
-        }
-        else {
+        } else {
             if(m.location_unknown && m.unique_status_image != null) {
                 m.unique_status_image = null;
                 m.location_unknown = false;
@@ -516,22 +539,22 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
         change_gains_thread ();
         
+        // TODO: Adapt to more playbacks !
         if(m.mediatype == MediaType.PODCAST || m.mediatype == MediaType.AUDIOBOOK || use_resume_pos)
-            player.set_resume_pos = false;
+            file_player.set_resume_pos = false;
 
         // actually play the media asap
         
-
         if (next_gapless_id == 0) {
-            player.setURI (m.uri);
+            player.set_uri (m.uri);
         }
         else {
             next_gapless_id = 0;
         }
         
         //pause if paused
-        if(!playing)
-            player.pause();
+        if (!playing)
+            player.pause ();
         
         //update settings
         if (m.rowid >= 0)
@@ -548,7 +571,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         Timeout.add(1000, () => {
             if (m != null && media_info.media == m) {
                 // potentially fix media length
-                uint player_duration_s = (uint)(player.getDuration() / Numeric.NANO_INV);
+                uint player_duration_s = (uint)(player.get_duration() / Numeric.NANO_INV);
                 if (player_duration_s > 1) {
                     int delta_s = (int)player_duration_s - (int)(m.length / Numeric.MILI_INV);
                     if (Math.fabs ((double)delta_s) > 3) {
@@ -579,7 +602,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                          (!automatic_enabled && p.name == selected_preset))
                     {
                         for(int i = 0; i < 10; ++i)
-                            player.setEqualizerGain(i, p.getGain(i));
+                            player.set_equalizer_gain(i, p.getGain(i));
                     
                         return null;
                     }
@@ -597,7 +620,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                          (!automatic_enabled && p.name == selected_preset))
                     {
                         for(int i = 0; i < 10; ++i)
-                            player.setEqualizerGain(i, p.getGain(i));
+                            player.set_equalizer_gain(i, p.getGain(i));
                     
                         return null;
                     }
@@ -606,7 +629,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         }
 
         for (int i = 0; i < 10; ++i)
-            player.setEqualizerGain(i, 0);        
+            player.set_equalizer_gain(i, 0);
         
         return null;
     }
@@ -616,13 +639,13 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         playing = false;
         
         int was_playing = 0;
-        if(media_active)
+        if (media_active)
             was_playing = media_info.media.rowid;
         
         main_settings.last_media_playing = 0;
         media_info.update(null, null, null, null);
         
-        playback_stopped(was_playing);
+        playback_stopped (was_playing);
     }
 
 

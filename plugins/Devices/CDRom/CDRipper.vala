@@ -46,15 +46,15 @@ public class Noise.CDRipper : GLib.Object {
 	}
 	
 	public bool initialize() {
-		pipeline = new Gst.Pipeline("pipeline");
+		pipeline = new Gst.Pipeline ("pipeline");
 		src = Gst.Element.make_from_uri (Gst.URIType.SRC, "cdda://", null);
         src.set_property ("device", _device);
-		queue = ElementFactory.make("queue", "queue");
-		filter = ElementFactory.make("lame", "encoder");
-		sink = ElementFactory.make("filesink", "filesink");
+		queue = ElementFactory.make ("queue", "queue");
+		filter = ElementFactory.make ("lame", "encoder");
+		sink = ElementFactory.make ("filesink", "filesink");
 		
-		if(src == null || queue == null || filter == null || sink == null) {
-			critical("Could not create GST Elements for ripping.\n");
+		if (src == null || queue == null || filter == null || sink == null) {
+			critical ("Could not create GST Elements for ripping.\n");
 			return false;
 		}
 		
@@ -68,33 +68,33 @@ public class Noise.CDRipper : GLib.Object {
 		if (src.get_class ().find_property ("read-speed") != null)
 			src.set_property ("read-speed", 0xffff);
 		
-		queue.set("max-size-time", 120 * Gst.SECOND);
+		queue.set ("max-size-time", 120 * Gst.SECOND);
 		
-		_format = Gst.format_get_by_nick("track");
+		_format = Gst.format_get_by_nick ("track");
 		
-		((Gst.Bin)pipeline).add_many(src, queue, filter, sink);
-		if(!src.link_many(queue, filter, sink)) {
-			critical("CD Ripper link_many failed\n");
+		((Gst.Bin)pipeline).add_many (src, queue, filter, sink);
+		if(!src.link_many (queue, filter, sink)) {
+			critical ("CD Ripper link_many failed\n");
 			return false;
 		}
 		
-		pipeline.bus.add_watch(busCallback);
+		pipeline.bus.add_watch (busCallback);
 		
-		Timeout.add(500, doPositionUpdate);
+		Timeout.add (500, doPositionUpdate);
 		
 		return true;
 	}
 	
-	public bool doPositionUpdate() {
-		progress_notification((double)getPosition()/getDuration());
+	public bool doPositionUpdate () {
+		progress_notification ((double)getPosition()/getDuration());
 		
-		if(getDuration() <= 0)
+		if (getDuration() <= 0)
 			return false;
 		else
 			return true;
 	}
 	
-	public int64 getPosition() {
+	public int64 getPosition () {
 		int64 rv = (int64)0;
 		Format f = Format.TIME;
 		
@@ -103,7 +103,7 @@ public class Noise.CDRipper : GLib.Object {
 		return rv;
 	}
 	
-	public int64 getDuration() {
+	public int64 getDuration () {
 		int64 rv = (int64)0;
 		Format f = Format.TIME;
 		
@@ -112,7 +112,7 @@ public class Noise.CDRipper : GLib.Object {
 		return rv;
 	}
 	
-	private bool busCallback(Gst.Bus bus, Gst.Message message) {
+	private bool busCallback (Gst.Bus bus, Gst.Message message) {
 		switch (message.type) {
 			/*case Gst.MessageType.STATE_CHANGED:
 				Gst.State oldstate;
@@ -133,17 +133,17 @@ public class Noise.CDRipper : GLib.Object {
 				
 				break;*/
 			case Gst.MessageType.ERROR:
-				error("error", message);
+				error ("error", message);
 				break;
 			case Gst.MessageType.ELEMENT:
-				critical("missing element\n");
-				error("missing element", message);
+				critical ("missing element\n");
+				error ("missing element", message);
 				
 				break;
 			case Gst.MessageType.EOS:
-				pipeline.set_state(Gst.State.NULL);
-				current_media.uri = File.new_for_path(sink.location).get_uri();
-				media_ripped(current_media, true);
+				pipeline.set_state (Gst.State.NULL);
+				current_media.uri = File.new_for_path (sink.location).get_uri ();
+				media_ripped (current_media, true);
 				
 				break;
 			default:
@@ -153,13 +153,17 @@ public class Noise.CDRipper : GLib.Object {
         return true;
     }
     
-    public void ripMedia(uint track, Noise.Media s) {
+    public void ripMedia (uint track, Noise.Media s) {
 		var f = lm.fo.get_new_destination(s);
 		
 		sink.set_state(Gst.State.NULL);
 		sink.set("location", f.get_path());
 		src.set("track", track);
+		if (current_media != null)
+            current_media.unique_status_image = Icons.PROCESS_COMPLETED.render(Gtk.IconSize.MENU);
 		current_media = s;
+        current_media.unique_status_image = Icons.REFRESH_SYMBOLIC.render(Gtk.IconSize.MENU);
+		
 		
 		/*Iterator<Gst.Element> tagger = ((Gst.Bin)converter).iterate_all_by_interface(typeof(TagSetter));
 		tagger.foreach( (el) => {

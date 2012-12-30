@@ -30,18 +30,20 @@
 
 public interface Noise.Player : Object {
 
-	public enum Shuffle {
-		OFF,
-		ALL
-	}
+    public abstract void add_playback (Noise.Playback p);
 
-	public enum Repeat {
-		OFF,
-		MEDIA,
-		ALBUM,
-		ARTIST,
-		ALL
-	}
+    public enum Shuffle {
+        OFF,
+        ALL
+    }
+
+    public enum Repeat {
+        OFF,
+        MEDIA,
+        ALBUM,
+        ARTIST,
+        ALL
+    }
 
     // TODO: ...
 }
