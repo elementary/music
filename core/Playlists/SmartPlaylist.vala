@@ -27,8 +27,8 @@ public class Noise.SmartPlaylist : Playlist {
     public static const string VALUE_SEPARATOR = "<val_sep>";
 
     public enum ConditionalType {
-        ANY = true,
-        ALL = false
+        ALL = true,
+        ANY = false
     }
 
     public ConditionalType conditional { get; set; default = ConditionalType.ALL; }
