@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-08 02:05+0100\n"
+"POT-Creation-Date: 2012-12-31 00:14+0100\n"
 "PO-Revision-Date: 2012-12-27 07:51+0000\n"
 "Last-Translator: Marek Suchánek <suchm@seznam.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-12-28 05:25+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 04:57+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "Language: cs\n"
 
@@ -43,30 +43,30 @@ msgstr "$NAME od hudebníka $ARTIST"
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME od $ARTIST z $ALBUM"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:187
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:188
 msgid "Export Playlist"
 msgstr "Exportovat seznam skladeb"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:196
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:290
 msgid "MPEG Version 3.0 Extended (*.m3u)"
 msgstr "MPEG verze 3.0 rozšířený (*.m3u)"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:201
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:295
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
 msgstr "Seznam skladeb Shoutcast verze 2.0 (*.pls)"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:275
 msgid "Playlist"
 msgstr "Seznam skladeb"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:280
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:281
 #, c-format
 msgid "Import %s"
 msgstr "Importovat %s"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:315
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Nerozpoznatelný seznam skladeb. Import se nezdařil."
 
@@ -152,42 +152,114 @@ msgstr "%s a %s"
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e.%m.%Y %k:%M"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:274
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Ploché"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Klasická hudba"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Klubová hudba"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Taneční hudba"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Plné basy"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Plné výšky"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Plné basy + výšky"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Sluchátka"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Velká hala"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Živě"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Párty"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Měkký"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Měkký Rock"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Techno"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:285
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:101
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:120
 msgid "Import to Library"
 msgstr "Importovat do knihovny"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:275
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:286
 msgid "Rescan Music Folder"
 msgstr "Znovu prohledat složku s hudbou"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:278
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:289
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:298
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:309
 msgid "Search Music"
 msgstr "Najít hudbu"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:649
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:744
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:659
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:754
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "Hudba"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:695
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:100
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:705
+#: /home/noelco/noise/po/../src//PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Fronta"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:697
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
 msgid "No songs in Queue"
 msgstr "Ve frontě nejsou skladby"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:697
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -197,16 +269,16 @@ msgstr ""
 "vyberte <b>Fronta</b>. Až píseň skončí, budou nejprve přehrány písně ve "
 "frontě, před další písní v právě přehrávaném seznamu."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:701
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:98
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:711
+#: /home/noelco/noise/po/../src//PlaybackManager.vala:103
 msgid "History"
 msgstr "Historie"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:703
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
 msgid "No songs in History"
 msgstr "V historii nejsou žádné skladby"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:703
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -216,44 +288,44 @@ msgstr ""
 "Tento seznam můžete použít jako přehled všech písní, které jste přehráli "
 "během aktuálního spuštění."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:932
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:934
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:947
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:949
 msgid "New playlist"
 msgstr "Nový seznam skladeb"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:938
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:950
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:953
 #, c-format
 msgid "New playlist (%i)"
 msgstr "Nový seznam skladeb (%i)"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1137
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1152
 msgid "Import Music"
 msgstr "Importovat hudbu"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1169
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importuje se</b> hudba z <b>%s</b> do knihovny."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1199
 msgid "Rescanning music folder for changes"
 msgstr "Prohledávám složku s hudbou"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:273
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid "Could not find Music Folder"
 msgstr "Složka s hudbou nenalezena"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Ujistěte se, že vaše složka s hudbou je přístupná a připojená."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
 msgid "Import Complete"
 msgstr "Import dokončen"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s bylo importováno do vaší knihovny"
@@ -320,8 +392,8 @@ msgid "Device is already being synced."
 msgstr "Zařízení se už synchronizuje."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
 msgid "No Songs"
 msgstr "Žádné skladby"
 
@@ -365,7 +437,7 @@ msgstr "Vyberte složku s hudbou"
 msgid "No media"
 msgstr "Žádné médium"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -373,11 +445,11 @@ msgstr ""
 "K přidání do seznamu skladeb klikněte <b>pravým tlačítkem</b> na soubor a "
 "stiskněte <b>Přidat do seznamu skladeb</b>."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:100
 msgid "Edit Smart Playlist"
 msgstr "Upravit chytrý seznam skladeb"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -575,23 +647,23 @@ msgstr "Přidat do seznamu skladeb"
 msgid "Remove Song"
 msgstr "Odstranit skladbu"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:218
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Importovat %i z %i vybraných skladeb"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:220
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:225
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:652
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:657
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:667
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:672
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
 msgid "Never"
 msgstr "Nikdy"
@@ -603,7 +675,7 @@ msgstr "Nikdy"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:730
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:735
 msgid "Sample List String"
 msgstr ""
 
@@ -811,43 +883,43 @@ msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr "Na zařízení nenalezeny žádné skladby, které by nebyly v knihovně."
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:332
+#: /home/noelco/noise/po/../src//FileOperator.vala:331
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library..."
 msgstr "Importuji do Knihovny <b<%s</b>…"
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:424
+#: /home/noelco/noise/po/../src//FileOperator.vala:423
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
 msgstr "<b>Kopíruji</b> soubory do <b>složky s hudbou</b>…"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:638
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:633
 msgid "Favorite Songs"
 msgstr "Oblíbené skladby"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:442
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:645
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:640
 msgid "Recently Added"
 msgstr "Naposledy přidané"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:458
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:661
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:656
 msgid "Recent Favorites"
 msgstr "Nedávno oblíbené"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:668
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:663
 msgid "Never Played"
 msgstr "Ještě neposlechnuté"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:472
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:675
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:670
 msgid "Over Played"
 msgstr "Přehrané"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:682
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:677
 msgid "Not Recently Played"
 msgstr "Poslední dobou nehráno"
 
@@ -1328,7 +1400,7 @@ msgid "Import all media"
 msgstr "importovat všechny média"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:98
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:90
 msgid "Import"
 msgstr "Importovat"
 
@@ -1577,99 +1649,28 @@ msgid ""
 msgstr ""
 "Plugin pro tento typ souboru %s není nainstalován. Co chcete udělat ?"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:256
+#: /home/noelco/noise/po/../src//LibraryManager.vala:255
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Importovat hudbu z %s..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:299
+#: /home/noelco/noise/po/../src//LibraryManager.vala:298
 msgid "Adding files to library..."
 msgstr "Přidat soubory do knihovny"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:341
+#: /home/noelco/noise/po/../src//LibraryManager.vala:340
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Přidání hudby z %s do databáze..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:369
+#: /home/noelco/noise/po/../src//LibraryManager.vala:368
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Prohledat změny v hudbě. Může to chvíli trvat..."
 
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Ploché"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klasická hudba"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Klubová hudba"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Taneční hudba"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Plné basy"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Plné výšky"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Plné basy + výšky"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Sluchátka"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Velká hala"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Živě"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Párty"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Měkký"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Měkký Rock"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Techno"
-
-#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:179
+#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:195
 #: /home/noelco/noise/po/../src//Objects/ArtistInfo.vala:27
 #: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
 msgid "Unknown Artist"
 msgstr "Neznámý iterpret"
 
@@ -1681,16 +1682,24 @@ msgstr "Neznámá stopa"
 msgid "Unknown Album"
 msgstr "Neznámé album"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:97
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Audio CD Invalid"
 msgstr "Neplatné CD"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:101
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:104
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s nemohl načíst obsah tohoto zvukového CD."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:273
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1698,52 +1707,52 @@ msgstr ""
 "Před importováním CD se prosím ujistěte, že je vaše složka s hudbou "
 "přístupná a připojená."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
 msgid "No songs on CD"
 msgstr "Žádné skladby na CD"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr "%s nelze najít žádné skladby na CD. Žádná skladba nebude importována"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:285
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s momentálně probíhá importování"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:285
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr "Před importováním CD prosím počkejte, než se dokončí import %s."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 msgid "CD Import Complete"
 msgstr "Import CD dokončen"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s dokončilo importování %i skladeb z Audio CD."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s dokončilo importování skladby z Audio CD"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:408
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:411
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "Importování stopy %i: %s"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:425
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:428
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "CD importování bude <b>ukončen</b> po probíhajícím importování."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:448
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:451
 msgid "An error occured during the Import of this CD"
 msgstr "Během importování na CD se vyskytla chyba"
 
@@ -1801,7 +1810,7 @@ msgstr "Odstraňuji <b>%s</b>..."
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1016
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1015
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
 msgstr "Importování <b>$NAME</b> od <b>$ARTIST</b> do knihovny..."
 
@@ -1827,51 +1836,13 @@ msgstr "média"
 msgid "Similar Media"
 msgstr "Podobná média"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
-msgid "Fetching similar songs"
-msgstr "Získávání podobných skladeb"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
-msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-msgstr "Vyhledávání skladeb podobných <b>$NAME</b> od <b>$ARTIST</b>"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:103
-#, c-format
-msgid "Similar to %s"
-msgstr "Podobné %s"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
-#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
-msgid "No similar songs found"
-msgstr "Nebyly nalezeny podobné skladby"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
-msgid ""
-"$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
-"your library. Make sure all song info is correct and you are connected to "
-"the Internet. Some songs may not have matches."
-msgstr ""
-"$APPNAME nenachází v knihovně nic, co by se podobalo skladbě <b>$NAME</b> od "
-"<b>$ARTIST</b>. Ujistěte se, že jsou informace o skladbě správné a že jste "
-"připojeni k internetu. Některým skladbám se však nemusí podobat nic."
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
-msgid "Similar Song View"
-msgstr "Zobrazení podobných skladeb"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
-#, c-format
-msgid ""
-"In this view, %s will automatically find songs similar to the one you're "
-"playing. You can then start playing those songs, or save them as a playlist "
-"for later."
-msgstr ""
-"U tohoto zobrazení, %s najde automaticky písně podobné té přehrávané. Pak "
-"můžete tyto písně přehrát, nebo je uložit do seznamu pro pozdější přehrání."
-
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarMedia.vala:46
 msgid "Similar"
 msgstr "Podobné"
+
+#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
+msgid "No similar songs found"
+msgstr "Nebyly nalezeny podobné skladby"
 
 #: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
 msgid ""
@@ -2066,6 +2037,16 @@ msgstr ""
 #~ msgid " by "
 #~ msgstr " od "
 
+#~ msgid "Fetching similar songs"
+#~ msgstr "Získávání podobných skladeb"
+
+#, c-format
+#~ msgid "Similar to %s"
+#~ msgstr "Podobné %s"
+
+#~ msgid "Similar Song View"
+#~ msgstr "Zobrazení podobných skladeb"
+
 #, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Hledám podobné skladby do %s od %s"
@@ -2088,5 +2069,26 @@ msgstr ""
 #~ "Internetu. Některé písně se nemusí shodovat."
 
 #, c-format
+#~ msgid ""
+#~ "In this view, %s will automatically find songs similar to the one you're "
+#~ "playing. You can then start playing those songs, or save them as a playlist "
+#~ "for later."
+#~ msgstr ""
+#~ "U tohoto zobrazení, %s najde automaticky písně podobné té přehrávané. Pak "
+#~ "můžete tyto písně přehrát, nebo je uložit do seznamu pro pozdější přehrání."
+
+#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Importuji stopu %i"
+
+#~ msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
+#~ msgstr "Vyhledávání skladeb podobných <b>$NAME</b> od <b>$ARTIST</b>"
+
+#~ msgid ""
+#~ "$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
+#~ "your library. Make sure all song info is correct and you are connected to "
+#~ "the Internet. Some songs may not have matches."
+#~ msgstr ""
+#~ "$APPNAME nenachází v knihovně nic, co by se podobalo skladbě <b>$NAME</b> od "
+#~ "<b>$ARTIST</b>. Ujistěte se, že jsou informace o skladbě správné a že jste "
+#~ "připojeni k internetu. Některým skladbám se však nemusí podobat nic."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-08 02:05+0100\n"
+"POT-Creation-Date: 2012-12-31 00:14+0100\n"
 "PO-Revision-Date: 2012-12-08 12:39+0000\n"
 "Last-Translator: Ibai Oihanguren <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-12-09 05:00+0000\n"
-"X-Generator: Launchpad (build 16341)\n"
+"X-Launchpad-Export-Date: 2012-12-31 04:56+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 "Language: eu\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -43,30 +43,30 @@ msgstr "$NAME, $ARTIST artistarena"
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME, $ARTIST(r)ena, $ALBUM albumetik"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:187
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:188
 msgid "Export Playlist"
 msgstr "Esportatu erreprodukzio-zerrenda"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:196
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:290
 msgid "MPEG Version 3.0 Extended (*.m3u)"
 msgstr "MPEG 3.0 bertsio hedatua (*.m3u)"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:201
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:295
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
 msgstr "Shoutcast erreprodukzio-zerrenda, 2.0 bertsioa (*.pls)"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:275
 msgid "Playlist"
 msgstr "Erreprodukzio-zerrenda"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:280
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:281
 #, c-format
 msgid "Import %s"
 msgstr "Inportatu %s"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:315
 msgid "Unrecognized playlist file. Import failed."
 msgstr ""
 "Erreprodukzio-zerrenda fitxategi ezezaguna. Inportazioak huts egin du."
@@ -148,42 +148,114 @@ msgstr "%s eta %s"
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y-%m-%d  %H:%M"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:274
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Laua"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Klasikoa"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Kluba"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Dance-a"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Baxu osoa"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Altu osoa"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Altu eta baxu osoak"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Entzungailuak"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Areto handia"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Zuzenekoa"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Festa"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop-a"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae-a"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock-a"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Biguna"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Rock biguna"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Teknoa"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:285
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:101
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:120
 msgid "Import to Library"
 msgstr "Inportatu liburutegira"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:275
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:286
 msgid "Rescan Music Folder"
 msgstr "Berreskaneatu musikaren karpeta"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:278
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:289
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Preferences"
 msgstr "Hobespenak"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:298
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:309
 msgid "Search Music"
 msgstr "Bilatu musika"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:649
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:744
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:659
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:754
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "Musika"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:695
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:100
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:705
+#: /home/noelco/noise/po/../src//PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Ilara"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:697
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
 msgid "No songs in Queue"
 msgstr "Kantarik ez ilaran"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:697
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -193,16 +265,16 @@ msgstr ""
 "aukeratu <b>Ilara</b>. Kanta bat amaitzean, ilarako kantak erreproduzituko "
 "dira lehenik, uneko erreprodukzio-zerrendako hurrengo kantaren aurretik."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:701
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:98
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:711
+#: /home/noelco/noise/po/../src//PlaybackManager.vala:103
 msgid "History"
 msgstr "Historia"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:703
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
 msgid "No songs in History"
 msgstr "Kantarik ez Historian"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:703
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -212,45 +284,45 @@ msgstr ""
 "Uneko saioan erreproduzitu dituzun kanta guztiak ikusteko erabil dezakezu "
 "zerrenda hau."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:932
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:934
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:947
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:949
 msgid "New playlist"
 msgstr "Erreprodukzio-zerrenda berria"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:938
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:950
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:953
 #, c-format
 msgid "New playlist (%i)"
 msgstr "Erreprodukzio-zerrenda berria (%i)"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1137
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1152
 msgid "Import Music"
 msgstr "Inportatu musika"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1169
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "Musika <b>inportatzen</b> <b>%s</b>(e)tik liburutegira."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1199
 msgid "Rescanning music folder for changes"
 msgstr "Musikaren karpeta berreskaneatzen aldaketen bila"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:273
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid "Could not find Music Folder"
 msgstr "Ezin izan da musikaren karpeta aurkitu"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Mesedez, ziurtatu zure musikaren karpeta eskuragarri eta muntatuta dagoela."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
 msgid "Import Complete"
 msgstr "Inportazioa osatuta"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s(e)k zure liburutegia inportatu du."
@@ -318,8 +390,8 @@ msgid "Device is already being synced."
 msgstr "Gailua dagoeneko sinkronizatzen ari da."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
 msgid "No Songs"
 msgstr "Kantarik ez"
 
@@ -363,7 +435,7 @@ msgstr "Hautatu musikaren karpeta"
 msgid "No media"
 msgstr "Edukirik ez"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -371,11 +443,11 @@ msgstr ""
 "Erreprodukzio-zerrendara kantak gehitzeko, egin <b>eskuin klik</b> elementu "
 "batean eta aukeratu <b>Gehitu erreprodukzio-zerrendara</b>."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:100
 msgid "Edit Smart Playlist"
 msgstr "Editatu erreprodukzio-zerrenda azkarra"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -572,23 +644,23 @@ msgstr "Gehitu erreprodukzio-zerrendara"
 msgid "Remove Song"
 msgstr "Kendu kanta"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:218
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Hautatutako kantetatik %i/%i inportatzen"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:220
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:225
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] "Inportatu abesti %i"
 msgstr[1] "Inportatu %i abesti"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:652
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:657
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:667
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:672
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
 msgid "Never"
 msgstr "Inoiz ez"
@@ -600,7 +672,7 @@ msgstr "Inoiz ez"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:730
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:735
 msgid "Sample List String"
 msgstr "Euskarazko abesti baten titulua"
 
@@ -809,43 +881,43 @@ msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr "Ez da zure liburutegian ez dagoen kantarik aurkitu gailu honetan."
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:332
+#: /home/noelco/noise/po/../src//FileOperator.vala:331
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library..."
 msgstr "<b>%s</b> liburutegira inportatzen..."
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:424
+#: /home/noelco/noise/po/../src//FileOperator.vala:423
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
 msgstr "Fitxategiak <b>Musika</b> karpetara <b>kopiatzen</b>..."
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:638
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:633
 msgid "Favorite Songs"
 msgstr "Kantarik gogokoenak"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:442
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:645
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:640
 msgid "Recently Added"
 msgstr "Oraintsu gehituak"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:458
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:661
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:656
 msgid "Recent Favorites"
 msgstr "Oraintsuko gogokoenak"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:668
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:663
 msgid "Never Played"
 msgstr "Inoiz erreproduzitu gabeak"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:472
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:675
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:670
 msgid "Over Played"
 msgstr "Gehien erreproduzituak"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:682
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:677
 msgid "Not Recently Played"
 msgstr "Azkenaldian erreproduzitu gabea"
 
@@ -1325,7 +1397,7 @@ msgid "Import all media"
 msgstr "Inportatu eduki guztiak"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:98
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:90
 msgid "Import"
 msgstr "Inportatu"
 
@@ -1577,101 +1649,30 @@ msgstr ""
 "%s eduki motarentzako plugina ez dago instalatuta.\n"
 "Zer egin nahi duzu?"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:256
+#: /home/noelco/noise/po/../src//LibraryManager.vala:255
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Musika inportatzen %s(e)tik..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:299
+#: /home/noelco/noise/po/../src//LibraryManager.vala:298
 msgid "Adding files to library..."
 msgstr "Fitxategiak gehitzen liburutegira..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:341
+#: /home/noelco/noise/po/../src//LibraryManager.vala:340
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Musika gehitzen %s(e)tik liburutegira..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:369
+#: /home/noelco/noise/po/../src//LibraryManager.vala:368
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 "Musika berreskaneatzen aldaketen bila. Baliteke honek denbora pixka bat "
 "behar izatea..."
 
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Laua"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klasikoa"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Kluba"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Dance-a"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Baxu osoa"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Altu osoa"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Altu eta baxu osoak"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Entzungailuak"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Areto handia"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Zuzenekoa"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Festa"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop-a"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae-a"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock-a"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Biguna"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Rock biguna"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Teknoa"
-
-#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:179
+#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:195
 #: /home/noelco/noise/po/../src//Objects/ArtistInfo.vala:27
 #: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
 msgid "Unknown Artist"
 msgstr "Artista ezezaguna"
 
@@ -1683,16 +1684,24 @@ msgstr "Pista ezezaguna"
 msgid "Unknown Album"
 msgstr "Album ezezaguna"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:97
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Audio CD Invalid"
 msgstr "Audio CD baliogabea"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:101
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:104
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s(e)k ezin izan ditu Audio CD honen edukiak irakurri"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:273
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1700,22 +1709,22 @@ msgstr ""
 "Mesedez ziurtatu zure musika-karpeta eskuragarri eta muntatuta dagoela CDa "
 "inportatu aurretik."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
 msgid "No songs on CD"
 msgstr "Kantarik ez CDan"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "%s(e)k ezin izan du kantarik aurkitu CDan. Ezin da kantarik inportatu"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:285
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s dagoeneko inportazio bat gauzatzen ari da"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:285
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1723,33 +1732,33 @@ msgid ""
 msgstr ""
 "Mesedez itxaron %s(e)k uneko inportazioa amaitu arte CDa inportatu aurretik."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 msgid "CD Import Complete"
 msgstr "CD inportazioa osaturik"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s(e)k amaitu du %i kanta inportatzen Audio CDtik."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s(e)k amaitu du kanta bat inportatzen Audio CDtik."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:408
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:411
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "%i. pista inportatzen: %s"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:425
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:428
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "CDaren inportazioa <b>bertan behera geldituko da</b> uneko inportazioaren "
 "amaitzean."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:448
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:451
 msgid "An error occured during the Import of this CD"
 msgstr "Errore bat gertatu da CD hau inportatzean"
 
@@ -1807,7 +1816,7 @@ msgstr "<b>%s</b>(e)tik kentzen..."
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1016
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1015
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
 msgstr ""
 "Liburutegira <b>$NAME</b> (<b>$ARTIST</b> artistarena) inportatzen..."
@@ -1834,50 +1843,13 @@ msgstr "edukia"
 msgid "Similar Media"
 msgstr "Antzeko edukiak"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
-msgid "Fetching similar songs"
-msgstr "Antzeko kantak eskuratzen"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
-msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-msgstr ""
-"<b>$NAME</b> (<b>$ARTIST</b> artistarena) abestiaren antzekoak bilatzen"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:103
-#, c-format
-msgid "Similar to %s"
-msgstr "%s(r)en antzekoa"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
-#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
-msgid "No similar songs found"
-msgstr "Ez da antzeko kantarik aurkitu"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
-msgid ""
-"$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
-"your library. Make sure all song info is correct and you are connected to "
-"the Internet. Some songs may not have matches."
-msgstr ""
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
-msgid "Similar Song View"
-msgstr "Antzeko kantak ikuspegia"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
-#, c-format
-msgid ""
-"In this view, %s will automatically find songs similar to the one you're "
-"playing. You can then start playing those songs, or save them as a playlist "
-"for later."
-msgstr ""
-"Ikuspegi honetan, %s(e)k automatikoki aurkituko ditu erreproduzitzen ari "
-"zaren kantaren antzekoak. Kanta horiek erreproduzi ditzakezu edo "
-"erreprodukzio-zerrenda bezala gorde gerorako."
-
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarMedia.vala:46
 msgid "Similar"
 msgstr "Antzekoa"
+
+#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
+msgid "No similar songs found"
+msgstr "Ez da antzeko kantarik aurkitu"
 
 #: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
 msgid ""
@@ -2137,3 +2109,27 @@ msgstr ""
 
 #~ msgid " by "
 #~ msgstr " honena: "
+
+#, c-format
+#~ msgid "Similar to %s"
+#~ msgstr "%s(r)en antzekoa"
+
+#~ msgid "Fetching similar songs"
+#~ msgstr "Antzeko kantak eskuratzen"
+
+#, c-format
+#~ msgid ""
+#~ "In this view, %s will automatically find songs similar to the one you're "
+#~ "playing. You can then start playing those songs, or save them as a playlist "
+#~ "for later."
+#~ msgstr ""
+#~ "Ikuspegi honetan, %s(e)k automatikoki aurkituko ditu erreproduzitzen ari "
+#~ "zaren kantaren antzekoak. Kanta horiek erreproduzi ditzakezu edo "
+#~ "erreprodukzio-zerrenda bezala gorde gerorako."
+
+#~ msgid "Similar Song View"
+#~ msgstr "Antzeko kantak ikuspegia"
+
+#~ msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
+#~ msgstr ""
+#~ "<b>$NAME</b> (<b>$ARTIST</b> artistarena) abestiaren antzekoak bilatzen"

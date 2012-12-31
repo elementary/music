@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-12-08 02:05+0100\n"
+"POT-Creation-Date: 2012-12-31 00:14+0100\n"
 "PO-Revision-Date: 2012-12-12 11:58+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-12-13 05:12+0000\n"
-"X-Generator: Launchpad (build 16361)\n"
+"X-Launchpad-Export-Date: 2012-12-31 04:57+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/noise/po/../core//Media.vala:35
@@ -42,30 +42,30 @@ msgstr "$NAME, esittäjä $ARTIST"
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME, esittäjä $ARTIST albumilla $ALBUM"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:187
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:188
 msgid "Export Playlist"
 msgstr "Vie soittolista"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:195
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:289
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:196
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:290
 msgid "MPEG Version 3.0 Extended (*.m3u)"
 msgstr "MPEG-versio 3.0, laajennettu (*.m3u)"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:200
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:294
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:201
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:295
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
 msgstr "Shoutcast-soittolista, versio 2.0 (*.pls)"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:274
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:275
 msgid "Playlist"
 msgstr "Soittolista"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:280
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:281
 #, c-format
 msgid "Import %s"
 msgstr "Tuo %s"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:314
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:315
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Tunnistamaton soittolistatiedosto. Tuonti epäonnistui."
 
@@ -146,42 +146,114 @@ msgstr "%s ja %s"
 msgid "%m/%e/%Y %l:%M %p"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:274
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Tasainen"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Classical"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Club"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Dance"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Basso täysillä"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Diskantti täysillä"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Basso ja diskantti täysillä"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Kuulokkeet"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Suuri sali"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Live"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Party"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Soft"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Techno"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:285
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:101
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:120
 msgid "Import to Library"
 msgstr "Tuo kirjastoon"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:275
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:286
 msgid "Rescan Music Folder"
 msgstr "Selaa musiikkikansio uudelleen"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:278
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:289
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:298
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:309
 msgid "Search Music"
 msgstr "Etsi musiikkia"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:649
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:744
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:659
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:754
 #: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Music"
 msgstr "Musiikki"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:695
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:100
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:705
+#: /home/noelco/noise/po/../src//PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Jono"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:697
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
 msgid "No songs in Queue"
 msgstr "Jonossa ei ole kappaleita"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:697
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -192,16 +264,16 @@ msgstr ""
 "jonoon asetetut kappaleet toistetaan ennen soittolistalla seuraavana olevaa "
 "kappaletta."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:701
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:98
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:711
+#: /home/noelco/noise/po/../src//PlaybackManager.vala:103
 msgid "History"
 msgstr "Historia"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:703
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
 msgid "No songs in History"
 msgstr "Historiassa ei ole kappaleita"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:703
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -212,44 +284,44 @@ msgstr ""
 "Näet kaikki tällä kuuntelukerralla kuuntelemasi kappaleet tämän luettelon "
 "avulla."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:932
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:934
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:947
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:949
 msgid "New playlist"
 msgstr "Uusi soittolista"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:935
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:938
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:950
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:953
 #, c-format
 msgid "New playlist (%i)"
 msgstr "Uusi soittolista (%i)"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1137
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1152
 msgid "Import Music"
 msgstr "Tuo musiikkia"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1169
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Tuodaan</b> musiikkia kirjastoon kohteesta <b>%s</b>."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1199
 msgid "Rescanning music folder for changes"
 msgstr "Selataan uudelleen musiikkikansiota muutosten varalta"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:273
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid "Could not find Music Folder"
 msgstr "Musiikkikansiota ei löydetty"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1191
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Varmastathan, että musiikkikansiosi on saatavilla ja liitettynä."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
 msgid "Import Complete"
 msgstr "Tuonti on valmis"
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1258
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s on tuonut kirjastosi."
@@ -317,8 +389,8 @@ msgid "Device is already being synced."
 msgstr "Laitetta synkronoidaan jo."
 
 #: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
 msgid "No Songs"
 msgstr "Ei kappaleita"
 
@@ -362,7 +434,7 @@ msgstr "Valitse musiikkikansio"
 msgid "No media"
 msgstr ""
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -370,11 +442,11 @@ msgstr ""
 "Lisää kappaleita soittolistaan napsauttamalla kohdetta hiiren <b>oikealla "
 "painikkeella</b> ja valitsemalla <b>Lisää soittolistaan</b>."
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:100
 msgid "Edit Smart Playlist"
 msgstr "Muokkaa älykästä soittolistaa"
 
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -573,23 +645,23 @@ msgstr "Lisää soittolistaan"
 msgid "Remove Song"
 msgstr "Poista kappale"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:218
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Tuo %i/%i valittua kappaletta"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:220
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:225
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] "Tuo %i kappale"
 msgstr[1] "Tuo %i kappaletta"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:652
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:657
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:667
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:672
 #: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
 msgid "Never"
 msgstr "Ei koskaan"
@@ -601,7 +673,7 @@ msgstr "Ei koskaan"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:730
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:735
 msgid "Sample List String"
 msgstr ""
 
@@ -806,43 +878,43 @@ msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:332
+#: /home/noelco/noise/po/../src//FileOperator.vala:331
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library..."
 msgstr ""
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:424
+#: /home/noelco/noise/po/../src//FileOperator.vala:423
 msgid "<b>Copying</b> files to <b>Music Folder</b>..."
 msgstr "<b>Kopioidaan</b> tiedostoja <b>musiikkikansioon</b>..."
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:638
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:633
 msgid "Favorite Songs"
 msgstr "Suosikkikappaleet"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:442
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:645
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:640
 msgid "Recently Added"
 msgstr "Viimeksi lisätyt"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:458
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:661
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:656
 msgid "Recent Favorites"
 msgstr "Viimeisimmät suosikit"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:668
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:663
 msgid "Never Played"
 msgstr "Soittamattomat kappaleet"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:472
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:675
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:670
 msgid "Over Played"
 msgstr "Liikaa soitetut"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:682
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:677
 msgid "Not Recently Played"
 msgstr "Ei äskettäin soitettu"
 
@@ -1314,7 +1386,7 @@ msgid "Import all media"
 msgstr "Tuo kaikki"
 
 #: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:98
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:90
 msgid "Import"
 msgstr "Tuo"
 
@@ -1563,100 +1635,29 @@ msgstr ""
 "Mediatyyppiin vaadittavaa liitännäistä %s ei ole asennettu.\n"
 "Mitä haluat tehdä?"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:256
+#: /home/noelco/noise/po/../src//LibraryManager.vala:255
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Tuodaan musiikkia kohteesta %s..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:299
+#: /home/noelco/noise/po/../src//LibraryManager.vala:298
 msgid "Adding files to library..."
 msgstr "Lisätään tiedostoja kirjastoon..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:341
+#: /home/noelco/noise/po/../src//LibraryManager.vala:340
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Lisätään musiikkia kirjastoon kohteesta %s..."
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:369
+#: /home/noelco/noise/po/../src//LibraryManager.vala:368
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 "Selataan musiikkitiedostoja muutosten varalta. Tämä saattaa kestää hetken..."
 
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Tasainen"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Classical"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Club"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Dance"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Basso täysillä"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Diskantti täysillä"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Basso ja diskantti täysillä"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Kuulokkeet"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Suuri sali"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Live"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Party"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Soft"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Soft Rock"
-
-#: /home/noelco/noise/po/../src//GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Techno"
-
-#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:179
+#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:195
 #: /home/noelco/noise/po/../src//Objects/ArtistInfo.vala:27
 #: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
 msgid "Unknown Artist"
 msgstr "Tuntematon artisti"
 
@@ -1668,69 +1669,77 @@ msgstr ""
 msgid "Unknown Album"
 msgstr "Tuntematon albumi"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:97
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Audio CD Invalid"
 msgstr "Audio CD kelvoton"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:101
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:104
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s ei pystynyt lukemaan ääni-CD:n sisältöä."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:273
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
 msgid "No songs on CD"
 msgstr "CD-levyllä ei ole kappaleita"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:280
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "%s ei löytänyt kappaleita CD-levyltä, joten kappaleita ei ole mahdollista "
 "tuoda"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:285
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s suorittaa jo tuontia"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:285
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 msgid "CD Import Complete"
 msgstr "CD-tuonti valmistui"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:399
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s on tuonut kappaleen ääni-CD:ltä."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:408
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:411
 #, c-format
 msgid "Importing track %i: %s"
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:425
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:428
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:448
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:451
 msgid "An error occured during the Import of this CD"
 msgstr ""
 
@@ -1788,7 +1797,7 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1016
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1015
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
 msgstr ""
 
@@ -1814,49 +1823,13 @@ msgstr "media"
 msgid "Similar Media"
 msgstr "Samankaltainen media"
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
-msgid "Fetching similar songs"
-msgstr "Noudetaan vastaavanlaisia kappaleita"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:76
-msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-msgstr ""
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:103
-#, c-format
-msgid "Similar to %s"
-msgstr "Samanlainen kuin %s"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
-#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
-msgid "No similar songs found"
-msgstr "Samankaltaisia kappaleita ei löydetty"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:139
-msgid ""
-"$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
-"your library. Make sure all song info is correct and you are connected to "
-"the Internet. Some songs may not have matches."
-msgstr ""
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
-msgid "Similar Song View"
-msgstr "Vastaavanlaiset kappaleet -näkymä"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:149
-#, c-format
-msgid ""
-"In this view, %s will automatically find songs similar to the one you're "
-"playing. You can then start playing those songs, or save them as a playlist "
-"for later."
-msgstr ""
-"Tässä näkymässä %s etsii automaattisesti kappaleet, jotka vastaavat "
-"parhaillaan toistettavaa kappaletta. Voit kuunnella kyseisiä kappaleita tai "
-"tallentaa ne soittolistoille myöhempää toistoa varten."
-
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarMedia.vala:46
 msgid "Similar"
 msgstr "Samankaltaiset"
+
+#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
+msgid "No similar songs found"
+msgstr "Samankaltaisia kappaleita ei löydetty"
 
 #: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
 msgid ""
@@ -2052,8 +2025,24 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Kaikki tällä laitteella olevat kappaleet ovat jo kirjastossa."
 
+#~ msgid "Fetching similar songs"
+#~ msgstr "Noudetaan vastaavanlaisia kappaleita"
+
 #~ msgid "Library Management"
 #~ msgstr "Kirjaston hallinta"
+
+#~ msgid "Similar Song View"
+#~ msgstr "Vastaavanlaiset kappaleet -näkymä"
+
+#, c-format
+#~ msgid ""
+#~ "In this view, %s will automatically find songs similar to the one you're "
+#~ "playing. You can then start playing those songs, or save them as a playlist "
+#~ "for later."
+#~ msgstr ""
+#~ "Tässä näkymässä %s etsii automaattisesti kappaleet, jotka vastaavat "
+#~ "parhaillaan toistettavaa kappaletta. Voit kuunnella kyseisiä kappaleita tai "
+#~ "tallentaa ne soittolistoille myöhempää toistoa varten."
 
 #, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
@@ -2092,6 +2081,10 @@ msgstr ""
 
 #~ msgid "Unknown Title"
 #~ msgstr "Tuntematon nimi"
+
+#, c-format
+#~ msgid "Similar to %s"
+#~ msgstr "Samanlainen kuin %s"
 
 #~ msgid ""
 #~ "You must wait until previous file operations finish before setting your "
