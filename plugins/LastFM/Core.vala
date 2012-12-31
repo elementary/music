@@ -216,6 +216,10 @@ namespace LastFM {
             return generate_md5("api_key" + API + "artist" + artist + "methodtrack.scrobblesk" + lastfm_settings.session_key + "timestamp" + timestamp.to_string() + "track" + track + SECRET);
         }
 
+        public string generate_trackscrobble_signature2(string artist, string track, string album, int timestamp) {
+            return generate_md5("album" + album + "api_key" + API + "artist" + artist + "methodtrack.scrobblesk" + lastfm_settings.session_key + "timestamp" + timestamp.to_string() + "track" + track + SECRET);
+        }
+
         public string generate_trackupdatenowplaying_signature(string artist, string track) {
             return generate_md5("api_key" + API + "artist" + artist + "methodtrack.updateNowPlayingsk" + lastfm_settings.session_key + "track" + track + SECRET);
         }
@@ -542,7 +546,12 @@ namespace LastFM {
                 debug ("Sound Scrobbled");
 
                 var timestamp = (int)time_t();
-                var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + API + "&api_sig=" + generate_trackscrobble_signature(m.artist, m.title, timestamp) + "&artist=" + fix_for_url(m.artist) + "&method=track.scrobble&sk=" + lastfm_settings.session_key + "&timestamp=" + timestamp.to_string() + "&track=" + fix_for_url(m.title);
+                var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + API + "&artist=" + fix_for_url(m.artist) + "&method=track.scrobble&sk=" + lastfm_settings.session_key + "&timestamp=" + timestamp.to_string() + "&track=" + fix_for_url(m.title);
+                if (m.album != null && m.album != "")
+                    uri = uri + "&album=" + fix_for_url(m.album) + "&api_sig=" + generate_trackscrobble_signature2(m.artist, m.title, m.album, timestamp);
+                else
+                    uri = uri + "&api_sig=" + generate_trackscrobble_signature(m.artist, m.title, timestamp);
+                warning (uri);
 
                 Soup.SessionSync session = new Soup.SessionSync();
                 Soup.Message message = new Soup.Message ("POST", uri);
