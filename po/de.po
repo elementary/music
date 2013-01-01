@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-12-31 04:57+0000\n"
+"X-Launchpad-Export-Date: 2013-01-01 04:58+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "Language: de\n"
 
@@ -2200,19 +2200,6 @@ msgstr ""
 
 #~ msgid "Automatically download new podcast episodes"
 #~ msgstr "Automatisch neue Podcast Episoden herunterladen"
-
-#~ msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-#~ msgstr "Suche Titel, die <b>$NAME</b> von <b>$ARTIST</b> ähneln"
-
-#~ msgid ""
-#~ "$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
-#~ "your library. Make sure all song info is correct and you are connected to "
-#~ "the Internet. Some songs may not have matches."
-#~ msgstr ""
-#~ "$APPNAME konnte in Ihrer bibliothek keine Titel finden, die <b>$NAME</b> von "
-#~ "<b>$ARTIST</b> ähneln. Gehen Sie sicher, dass alle Informationen korrekt "
-#~ "sind und Sie mit dem Internet verbunden sind. Einige Titel liefern "
-#~ "möglicherweise keine Treffer."
 
 #~ msgid "Similar Song View"
 #~ msgstr "Ähnliche Musiktitel"

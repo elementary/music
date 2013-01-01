@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-12-31 04:58+0000\n"
+"X-Launchpad-Export-Date: 2013-01-01 04:59+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "Language: \n"
 
@@ -2102,14 +2102,3 @@ msgstr "您必須給予Noise權限使Last.fm與Noise作整合。此動作只需�
 
 #~ msgid "Write metadata to file"
 #~ msgstr "將中介資料寫入檔案"
-
-#~ msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-#~ msgstr "正在尋找類似來自 <b>$ARTIST</b> 的 <b>$NAME</b>"
-
-#~ msgid ""
-#~ "$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
-#~ "your library. Make sure all song info is correct and you are connected to "
-#~ "the Internet. Some songs may not have matches."
-#~ msgstr ""
-#~ "$APPNAME 在您的珍藏館中找不到類似來自 <b>$ARTIST</b> 的 "
-#~ "<b>$NAME</b>。請確認所有的歌曲資訊皆正確，並且已連上網際網路。有些歌曲可能沒有相符的曲目。"

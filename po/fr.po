@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-31 00:14+0100\n"
-"PO-Revision-Date: 2012-12-08 04:57+0000\n"
+"PO-Revision-Date: 2012-12-31 06:26+0000\n"
 "Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-12-31 04:57+0000\n"
+"X-Launchpad-Export-Date: 2013-01-01 04:58+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "Language: \n"
 
@@ -1689,11 +1689,11 @@ msgstr "Album inconnu"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Une erreur est survenue."
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Le chargement du CD audio a échoué."
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Audio CD Invalid"
@@ -2204,16 +2204,3 @@ msgstr ""
 #~ msgstr ""
 #~ "Veuillez patienter pendant que l'opération précédente se termine avant de "
 #~ "définir votre dossier musique"
-
-#~ msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-#~ msgstr "Recherche de musiques similaires à <b>$NAME</b> par <b>$ARTIST</b>"
-
-#~ msgid ""
-#~ "$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
-#~ "your library. Make sure all song info is correct and you are connected to "
-#~ "the Internet. Some songs may not have matches."
-#~ msgstr ""
-#~ "$APPNAME n'a pas pu trouver de musique similaire à <b>$NAME</b> par "
-#~ "<b>$ARTIST</b> dans votre bibliothèque. Vérifiez que les informations du "
-#~ "morceau en cours sont correctes et que vous êtes connectés à internet. "
-#~ "Certaines musiques n'ont pas de correspondances."

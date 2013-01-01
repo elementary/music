@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-31 00:14+0100\n"
-"PO-Revision-Date: 2012-12-06 10:25+0000\n"
+"PO-Revision-Date: 2012-12-31 08:16+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-12-31 04:57+0000\n"
+"X-Launchpad-Export-Date: 2013-01-01 04:58+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "Language: gl\n"
 
@@ -1688,11 +1688,11 @@ msgstr "Álbum descoñecido"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Produciuse un erro"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Produciuse un erro ao cargar o CD de son."
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Audio CD Invalid"
@@ -2071,16 +2071,3 @@ msgstr ""
 #~ msgstr ""
 #~ "Nesta vista, %s amosará cancións semellantes á que esta a reproducirse. Pode "
 #~ "reproducir esas cancións ou gardalas como unha lista de reprodución."
-
-#~ msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-#~ msgstr "Buscando cancións semellantes a <b>$NAME</b> por <b>$ARTIST</b>"
-
-#~ msgid ""
-#~ "$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
-#~ "your library. Make sure all song info is correct and you are connected to "
-#~ "the Internet. Some songs may not have matches."
-#~ msgstr ""
-#~ "$APPNAME non foi quen de atpara cancións semellantes a <b>$NAME</b> por "
-#~ "<b>$ARTIST</b> na súa fonoteca. Asegúrese de que a información da canción é "
-#~ "correcta e de que estea conectado a Internet. Algunhas cancións non teñen "
-#~ "coincidencias."

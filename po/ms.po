@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-12-31 04:57+0000\n"
+"X-Launchpad-Export-Date: 2013-01-01 04:59+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -2183,16 +2183,3 @@ msgstr ""
 
 #~ msgid "Write metadata to file"
 #~ msgstr "Tulis data meta ke fail"
-
-#~ msgid "Finding songs similar to <b>$NAME</b> by <b>$ARTIST</b>"
-#~ msgstr "Mencari lagu yang serupa dengan  <b>$NAME</b> oleh <b>$ARTIST</b>"
-
-#~ msgid ""
-#~ "$APPNAME could not find songs similar to <b>$NAME</b> by <b>$ARTIST</b> in "
-#~ "your library. Make sure all song info is correct and you are connected to "
-#~ "the Internet. Some songs may not have matches."
-#~ msgstr ""
-#~ "$APPNAME tidak dapat cari lagu yang serupa dengan <b>$NAME</b> oleh "
-#~ "<b>$ARTIST</b> di dalam pustaka anda. Pastikan semua maklumat lagu adalah "
-#~ "betul dan anda bersambung dengan Internet. Sesetengah lagu mungkin tidak "
-#~ "mempunyai padanan."
