@@ -1,0 +1,1897 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Mohammad Zali <mohamadzali@gmail.com>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-31 00:14+0100\n"
+"PO-Revision-Date: 2013-01-01 21:01+0000\n"
+"Last-Translator: Mohammad Zali <mohamadzali@gmail.com>\n"
+"Language-Team: Persian <fa@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Launchpad-Export-Date: 2013-01-02 04:52+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
+"Language: \n"
+
+#. / Used for unknown titles, artists, or album names.
+#: /home/noelco/noise/po/../core//Media.vala:35
+msgid "Unknown"
+msgstr "ناشناخته"
+
+#: /home/noelco/noise/po/../core//Media.vala:45
+msgid "Radio Station"
+msgstr "ایستگاه رادیویی"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:175
+msgid "$NAME on $ALBUM"
+msgstr "$NAME  از آلبوم $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:178
+msgid "$NAME by $ARTIST"
+msgstr "$NAME اثر $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/noelco/noise/po/../core//Media.vala:184
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME اثر $ARTIST از آلبوم $ALBUM"
+
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:188
+msgid "Export Playlist"
+msgstr "صادرات فهرست پخش"
+
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:196
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:290
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "نسخه ۳/۰ گسترش یافته MPEG (*.m3u)"
+
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:201
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:295
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "فهرست پخش شات‌کست نسخه ۲/۰ (*.pls)"
+
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:275
+msgid "Playlist"
+msgstr "فهرست پخش"
+
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:281
+#, c-format
+msgid "Import %s"
+msgstr "واردات %s"
+
+#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:315
+msgid "Unrecognized playlist file. Import failed."
+msgstr "پرونده فهرست پخش ناشناخته. واردات موفقیت‌آمیز نبود."
+
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d ثانیه"
+
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:75
+#, c-format
+msgid "%u minute"
+msgid_plural "%u minutes"
+msgstr[0] "%u دقیقه"
+
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:48
+#, c-format
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] "%u ثانیه"
+
+#. / Minutes and seconds
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:50
+#, c-format
+msgctxt "minutes and seconds"
+msgid "%s and %s"
+msgstr "%s و %s"
+
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
+#, c-format
+msgid "%u day"
+msgid_plural "%u days"
+msgstr[0] "%u روز"
+
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
+#, c-format
+msgid "%u hour"
+msgid_plural "%u hours"
+msgstr[0] "%u ساعت"
+
+#. / days, hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
+#, c-format
+msgctxt "days, hours and minutes"
+msgid "%s, %s and %s"
+msgstr "%s، %s و %s"
+
+#. / days and hours
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
+#, c-format
+msgctxt "days and hours"
+msgid "%s and %s"
+msgstr "%s و %s"
+
+#. / days and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
+#, c-format
+msgctxt "days and minutes"
+msgid "%s and %s"
+msgstr "%s و %s"
+
+#. / hours and minutes
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:100
+#, c-format
+msgctxt "hours and minutes"
+msgid "%s and %s"
+msgstr "%s و %s"
+
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
+#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
+msgid "%m/%e/%Y %l:%M %p"
+msgstr "%Y/%m/%e %l:%M %p"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "یک دست"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "کلاسیک"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "باشگاه"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "رقص"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "بم کامل"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "زیر کامل"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "بم + زیر کامل"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "هدفون‌ها"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "تالار بزرگ"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "زنده"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "مهمانی"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "پاپ"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "رگه"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "راک"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "ملایم"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "اسکا"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "راک ملایم"
+
+#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "تکنو"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:285
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:101
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:120
+msgid "Import to Library"
+msgstr "واردات به کتابخانه"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:286
+msgid "Rescan Music Folder"
+msgstr "پویش دوباره پوشه موسیقی"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:289
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+msgid "Preferences"
+msgstr "تنظیمات"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:309
+msgid "Search Music"
+msgstr "جستجوی موسیقی"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:659
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:754
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
+msgid "Music"
+msgstr "موسیقی"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:705
+#: /home/noelco/noise/po/../src//PlaybackManager.vala:105
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "صف"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
+msgid "No songs in Queue"
+msgstr "هیچ آهنگی در صف نیست"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"برای افزودن آهنگ به صف از <b>کلیک ثانوی</b> روی یک مورد و انتخاب <b>صف</b> "
+"استفاده شود. پس از پایان یک آهنگ، آهنگ‌های صف شده پیش از پخش آهنگ‌های فهرست "
+"پخش، پخش خواهند شد."
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:711
+#: /home/noelco/noise/po/../src//PlaybackManager.vala:103
+msgid "History"
+msgstr "تاریخچه"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
+msgid "No songs in History"
+msgstr "هیچ آهنگی در تاریخچه نیست"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"پس از پخش شدن تکه‌ای از یک موسیقی، آن موسیقی به فهرست تاریخچه افزوده خواهد "
+"شد.\n"
+"می‌توانید از آن فهرست برای مشاهده همه آهنگ‌هایی که در اجراء کنونی گوش "
+"داده‌اید، استفاده کنید."
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:947
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:949
+msgid "New playlist"
+msgstr "فهرست پخش جدید"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:950
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:953
+#, c-format
+msgid "New playlist (%i)"
+msgstr "فهرست پخش جدید (%i)"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1152
+msgid "Import Music"
+msgstr "وارد کردن موسیقی"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
+#, c-format
+msgid "<b>Importing</b> music from <b>%s</b> to library."
+msgstr "<b>واردات</b> موسیقی از <b>%s</b> به کتابخانه."
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1199
+msgid "Rescanning music folder for changes"
+msgstr "پویش دوباره پوشه موسیقی برای اعمال تغییرات"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
+msgid "Could not find Music Folder"
+msgstr "نمی‌توان پوشه موسیقی را پیدا کرد"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr "لطفاً از دردسترس بودن پوشه موسیقی خود اطمینان حاصل کنید."
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
+msgid "Import Complete"
+msgstr "واردات پایان یافت"
+
+#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
+#, c-format
+msgid "%s has imported your library."
+msgstr "%s کتابخانه شما را وارد کرد"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:78
+msgid "Device Name:"
+msgstr "نام دستگاه:"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:81
+msgid "Device Name"
+msgstr "نام دستگاه"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:83
+msgid "Automatically sync when plugged in:"
+msgstr "هماهنگ کردن خودکار در هنگام اتصال:"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:90
+msgid "Sync:"
+msgstr "هماهنگ:"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:112
+msgid "Other Files"
+msgstr "دیگر پرونده‌ها"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:114
+msgid "Podcasts"
+msgstr "پادکست‌ها"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:385
+msgid "All Music"
+msgstr "همه موسیقی‌ها"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:388
+msgid "All Podcasts"
+msgstr "همه پادکست‌ها"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
+msgid "Sync Failed"
+msgstr "هماهنگ‌سازی موفقیت‌آمیز نبود"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"فهرست پخشی با نام %s برای هماهنگ شدن با دستگاه %s استفاده شده است، اما "
+"نمی‌توان آن را پیدا کرد."
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+msgid "Cannot Sync"
+msgstr "نمی‌توان هماهنگ کرد"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"نمی‌توان دستگاه را با تنظیمات هماهنگی انتخاب شده، هماهنگ کرد. روی دیسک فضای "
+"کافی وجود ندارد"
+
+#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+msgid "Device is already being synced."
+msgstr "هم اکنون دستگاه هماهنگ شده است."
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
+msgid "No Songs"
+msgstr "بدون آهنگ"
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
+msgid "Please wait until that this playlist get updated."
+msgstr "لطفاً تا پایان به روزرسانی این فهرست پخش صبر کنید."
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+msgid "Get Some Tunes"
+msgstr "دریافت آهنگ"
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:43
+#, c-format
+msgid "%s can't seem to find your music."
+msgstr "%s نمی‌تواند موسیقی شما را پیدا کند."
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+msgid "Locate"
+msgstr "تعین محل"
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+msgid "Change your music folder."
+msgstr "تغییر پوشه موسیقی شما."
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+msgid "Import your Music"
+msgstr "واردات موسیقی"
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "وارد کردن همه موسیقی‌های شما از %s به کتابخانه شما."
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
+msgid "Select Music Folder"
+msgstr "انتخاب پوشه موسیقی"
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/ViewWrapper.vala:473
+msgid "No media"
+msgstr "بدون رسانه"
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+"برای افزودن آهنگ به این فهرست پخش از <b>کلیک ثانویه</b> روی یک مورد و انتخاب "
+"<b>افزودن به فهرست پخش</b> استفاده کنید."
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:100
+msgid "Edit Smart Playlist"
+msgstr "ویرایش فهرست پخش هوشمند"
+
+#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"این فهرست پخش به طور خودکار با آهنگ‌هایی که مطلبق قوانینش باشند پر می‌شود. "
+"برای تغییر دادن این قوانین از <b>کلیک ثانویه</b> روی هر قانون در نوار کناری "
+"و کلیک گزینه <b>ویرایش</b>، استفاده کنید. همچنین می‌توانید دکمه زیر را فشار "
+"دهید."
+
+#: /home/noelco/noise/po/../src//Views/ContentView.vala:21
+#, c-format
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s، %s، %s"
+
+#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:64
+msgid "No Albums Found."
+msgstr "هیچ آلبومی پیدا نشد."
+
+#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:160
+#, c-format
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u آلبوم"
+
+#: /home/noelco/noise/po/../src//Views/GridView/PopupListView.vala:161
+#, c-format
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "آلبوم %s اثر %s"
+
+#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr "%d دقیقه"
+
+#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr "%d ساعت"
+
+#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d روز"
+
+#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u مورد، %s، %s"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
+msgctxt "List column title"
+msgid "#"
+msgstr "شماره"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
+msgctxt "List column title"
+msgid "Track"
+msgstr "ترک"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
+msgctxt "List column title"
+msgid "Title"
+msgstr "عنوان"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
+msgctxt "List column title"
+msgid "Length"
+msgstr "طول"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "Artist"
+msgstr "هنرمند"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Album"
+msgstr "آلبوم"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "صاحب آلبوم"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Composer"
+msgstr "سراینده"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Genre"
+msgstr "موضوع"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Year"
+msgstr "سال"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "گروه"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "نرخ بیتی"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Rating"
+msgstr "امتیاز"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Plays"
+msgstr "پخش‌ها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Skips"
+msgstr "پرش‌ها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "تاریخ افزودن"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "آخرین پخش"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "مکان"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "File Size"
+msgstr "اندازه پرونده"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:58
+msgid "Remove from Library"
+msgstr "حذف کردن از کتابخانه"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:67
+msgid "Remove from Queue"
+msgstr "حذف کردن از صف"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:79
+msgid "Remove from Device"
+msgstr "حذف کردن از دستگاه"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
+msgid "Scroll to Current Song"
+msgstr "رفتن به آهنگ کنونی"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+msgid "Edit Song Info"
+msgstr "ویرایش اطلاعات آهنگ"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:96
+msgid "Show in File Browser"
+msgstr "نمایش در مدیر پرونده"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "صف"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:154
+msgid "New Playlist"
+msgstr "فهرست پخش جدید"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
+msgid "Add to Playlist"
+msgstr "افزودن به فهرست پخش"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
+msgid "Remove Song"
+msgstr "حذف آهنگ"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "وارد کردن %i از %i آهنگ انتخاب شده"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:225
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "وارد کردن %i آهنگ"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:657
+msgid "1234 kbps"
+msgstr "۱۲۳۴ کیلوبیت در ثانیه"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:672
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
+msgid "Never"
+msgstr "هرگز"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:735
+msgid "Sample List String"
+msgstr "رشته نمونه فهرست"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:125
+msgid "Autosize Columns"
+msgstr "تطبیق خودکار اندازه ستون‌ها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:132
+msgid "Display Album Art"
+msgstr "نمایش تصویر آلبوم"
+
+#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:227
+#, c-format
+msgid "%i kbps"
+msgstr "%i کیلوبیت در ثانیه"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:93
+msgid "No Songs Found."
+msgstr "هیچ آهنگی پیدا نشد."
+
+#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:369
+#, c-format
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i ترک"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:371
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u آهنگ"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:379
+#, c-format
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s، %s"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "همه موضوعات"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+#, c-format
+msgid "All %i Genres"
+msgstr "همه %i موضوع"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "بدون موضوع"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "همه هنرمندان"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Artists"
+msgstr "همه %i هنرمند"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "بدون هنرمند"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "همه آلبوم‌ها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Albums"
+msgstr "همه %i آلبوم"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "بدون آلبوم"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "همه سال‌ها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Years"
+msgstr "همه %i سال"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "بدون سال"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "همه امتیازها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "بدون امتیاز"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr "همه گروه‌ها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#, c-format
+msgid "All %i Groupings"
+msgstr "همه %i گروه"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr "بدون گروه"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "همه سرایندگان"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Composers"
+msgstr "همه %i سراینده"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "بدون سراینده"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:49
+msgid "Automatic"
+msgstr "خودکار"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:156
+msgid "On Left"
+msgstr "در سمت چپ"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:158
+msgid "On Top"
+msgstr "در بالا"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:404
+msgid "Unrated"
+msgstr "بی‌امتیاز"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:406
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i ستاره"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr "موضوعات"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr "هنرمندان"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr "آلبوم‌ها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr "سال‌ها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr "امتیازها"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr "سرایندگان"
+
+#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr "گروه‌ها"
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
+msgid "Cancelling Sync"
+msgstr "لغو هماهنگ‌سازی"
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
+msgid "Device Sync has been cancelled. Operation will stop after this media."
+msgstr "هماهنگ‌سازی دستگاه لغو شد. فرآیند پس از این رسانه متوقف خواهد شد."
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
+msgid "Cancelling Import"
+msgstr "لغو واردات"
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
+msgid ""
+"Import from device has been cancelled. Operation will stop after this media."
+msgstr "وارد کردن از دستگاه لغو شد. فرآیند پس از این رسانه متوقف خواهد شد."
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
+msgid "No External Songs"
+msgstr "بدون آهنگ بیرونی"
+
+#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr "هیچ آهنگی که در کتابخانه شما نباشد روی این دستگاه پیدا نشد."
+
+#: /home/noelco/noise/po/../src//FileOperator.vala:331
+#, c-format
+msgctxt "Importing playlist"
+msgid "Importing <b>%s</b> to Library..."
+msgstr "در حال وارد کردن <b>%s</b> به کتابخانه..."
+
+#: /home/noelco/noise/po/../src//FileOperator.vala:423
+msgid "<b>Copying</b> files to <b>Music Folder</b>..."
+msgstr "در حال <b>رونویسی</b> پرونده‌ها در <b>پوشه موسیقی</b>"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:633
+msgid "Favorite Songs"
+msgstr "آهنگ‌های مورد علاقه"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:442
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:640
+msgid "Recently Added"
+msgstr "به تازه‌گی افزوده شده"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:458
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:656
+msgid "Recent Favorites"
+msgstr "علائق جدید"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:663
+msgid "Never Played"
+msgstr "هیچ وقت پخش نشده"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:472
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:670
+msgid "Over Played"
+msgstr "معمولاً پخش شده"
+
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
+#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:677
+msgid "Not Recently Played"
+msgstr "به تازه‌گی پخش نشده"
+
+#: /home/noelco/noise/po/../src//Noise.vala:37
+msgid "Listen to music"
+msgstr "گوش دادن به موسیقی"
+
+#: /home/noelco/noise/po/../src//Noise.vala:38
+msgid "Music Player"
+msgstr "پخش کننده موسیقی"
+
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:238
+msgid "Sync"
+msgstr "هماهنگ‌سازی"
+
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "رایگان"
+
+#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:384
+msgid "Using %s of %s (%.2f%)"
+msgstr "استفاده %s از %s (%.2f%)"
+
+#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "حذف کنونی"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Off"
+msgstr "خاموش"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
+msgid "Enable Repeat"
+msgstr "فعال کردن بازپخش"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:541
+msgid "Song"
+msgstr "آهنگ"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Song"
+msgstr "بازپخش آهنگ"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+msgid "Album"
+msgstr "آلبوم"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Album"
+msgstr "بازپخش آلبوم"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Artist"
+msgstr "هنرمند"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat Artist"
+msgstr "بازپخش هنرمند"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
+msgid "All"
+msgstr "همه"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
+msgid "Repeat All"
+msgstr "بازپخش همه"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Enable Shuffle"
+msgstr "فعال کردن آمیختگی"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
+msgid "Disable Shuffle"
+msgstr "غیر فعال کردن آمیختگی"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:133
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Playlist"
+msgstr "افزودن فهرست پخش"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:145
+msgid "Add Smart Playlist"
+msgstr "افزودن فهرست پخش خودکار"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Hide"
+msgstr "پنهان کردن"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
+msgid "Show Equalizer"
+msgstr "نمایش نماهنگ"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:231
+msgid "Show"
+msgstr "نمایش"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
+msgid "Hide Equalizer"
+msgstr "پنهان کردن نماهنگ"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Show Info Panel"
+msgstr "نمایش اطلاعات"
+
+#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:231
+msgid "Hide Info Panel"
+msgstr "پنهان کردن اطلاعات"
+
+#: /home/noelco/noise/po/../src//Widgets/TopDisplay.vala:69
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+msgid "Cancel"
+msgstr "لغو"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:54
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:65
+msgid "Remove"
+msgstr "حذف"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:55
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:66
+msgid "Export"
+msgstr "صادرات"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:64
+msgid "Edit"
+msgstr "ویرایش"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:77
+msgid "Save as Playlist"
+msgstr "ذخیره به عنوان فهرست پخش"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:79
+msgid "Export..."
+msgstr "صادرات..."
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:128
+msgid "Eject"
+msgstr "بیرون دادن"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:155
+msgid "New Smart Playlist"
+msgstr "فهرست پخش هوشمند جدید"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:156
+msgid "Import Playlists"
+msgstr "وارد کردن فهرست‌های پخش"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:195
+msgid "Library"
+msgstr "کتابخانه"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:196
+msgid "Devices"
+msgstr "دستگاه‌ها"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:197
+msgid "Network"
+msgstr "شبکه"
+
+#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:198
+msgid "Playlists"
+msgstr "فهرست‌های پخش"
+
+#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr "نمایش آلبومی"
+
+#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr "نمایش فهرستی"
+
+#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr "نمایش ستونی"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:44
+msgid "Select Music Folder..."
+msgstr "انتخاب پوشه موسیقی"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+msgid "General"
+msgstr "عمومی"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:123
+msgid "Music Folder Location:"
+msgstr "مکان پوشه موسیقی:"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:131
+msgid "Library Management:"
+msgstr "مدیریت کتابخانه:"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:136
+msgid "Keep Music folder organized:"
+msgstr "مرتب نگهداشتن پوشه موسیقی:"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:140
+msgid "Write metadata to file:"
+msgstr "نوشتن متاداده‌ها در پرونده:"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:144
+msgid "Copy imported files to Library:"
+msgstr "رونویسی پرونده‌های وارد شده در کتابخانه:"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
+msgid "Desktop Integration:"
+msgstr "ادغام در پیشخوان:"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+msgid "Show notifications:"
+msgstr "نمایش اعلانات:"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:157
+msgid "Minimize window when a song is being played:"
+msgstr "کمینه کردن پنجره در زمان پخش یک آهنگ:"
+
+#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:159
+msgid "Hide window when a song is being played:"
+msgstr "پنهان کردن پنجره در زمان پخش یک آهنگ:"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
+msgid "Metadata"
+msgstr "متاداده‌ها"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:83
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:379
+msgid "Lyrics"
+msgstr "شعر"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:179
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
+msgid "Editing $NAME by $ARTIST"
+msgstr "ویرایش $NAME اثر $ARTIST"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
+#, c-format
+msgid "Editing %s"
+msgstr "ویرایش %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:184
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:355
+#, c-format
+msgid "Editing %i songs"
+msgstr "ویرایش %i آهنگ"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+msgid "Title"
+msgstr "عنوان"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:192
+msgid "Album Artist"
+msgstr "صاحب آلبوم"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:194
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+msgid "Genre"
+msgstr "موضوع"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:195
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Composer"
+msgstr "سراینده"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:196
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Grouping"
+msgstr "گروه"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+msgid "Comment"
+msgstr "توضیح"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:198
+msgid "Track"
+msgstr "ترک"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Disc"
+msgstr "دیسک"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:200
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
+msgid "Year"
+msgstr "سال"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:201
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Rating"
+msgstr "امتیاز"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:203
+msgid "Media Type"
+msgstr "نوع رسانه"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:298
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr "شعر %s پیدا نشد"
+
+#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:543
+msgid "Podcast"
+msgstr "پادکست"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
+msgid "Remove Media"
+msgstr "حذف رسانه"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
+msgid "Locate Media"
+msgstr "مکان‌یابی رسانه"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
+msgid "Rescan Library"
+msgstr "بازپویش کتابخانه"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
+msgid "Do Nothing"
+msgstr "هیچ کاری انجام نشود"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
+msgid "Could not find media file"
+msgstr "نمی‌توان پرونده رسانه را پیدا کرد"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
+msgid ""
+"The music file for $NAME by $ARTIST could not be found. What would you like "
+"to do?"
+msgstr ""
+"نمی‌توان پرونده موسیقی $NAME اثر $ARTIST را پیدا کرد. قصد انجام چه کاری را "
+"دارید؟"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
+#, c-format
+msgid "%i media files could not be found. What would you like to do?"
+msgstr "نمی‌توان %i پرونده موسیقی را پیدا کرد. قصد انجام چه کاری را دارید؟"
+
+#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+msgid "Choose Music Folder"
+msgstr "انتخاب پوشه موسیقی"
+
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:71
+msgid "Move to Trash"
+msgstr "انتقال به زباله‌دان"
+
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#, c-format
+msgid "Remove from %s"
+msgstr "حذف کردن از %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
+#, c-format
+msgid "Remove %d Songs From %s?"
+msgstr "آیا %d آهنگ باید از %s حذف شود؟"
+
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
+#, c-format
+msgid "Remove \"%s\" From %s?"
+msgstr "آیا «%s» باید از %s حذف شود؟"
+
+#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
+#, c-format
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+"این کار باعث حذف شدن آهنگ از کتابخانه شما و همچنین از هر دستگاهی که به طور "
+"خودکار با %s هماهنگ شده است، می‌شود."
+
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
+msgid "Playlist Editor"
+msgstr "ویرایشگر فهرست پخش"
+
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+msgid "Name of Playlist"
+msgstr "نام فهرست پخش"
+
+#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
+#, c-format
+msgid "The name %s is already in use"
+msgstr "پیش از این از نام %s استفاده شده است"
+
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Export Playlists"
+msgstr "صادرات فهرست پخش"
+
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+msgid "Set Music Folder"
+msgstr "تعیین پوشه موسیقی"
+
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+msgid "Set Music Folder?"
+msgstr "آیا باید پوشه موسیقی تعیین شود؟"
+
+#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"آیا واقعاً می‌خواهید پوشه موسیقی را برابر %s قرار دهید؟ این کار باعث "
+"بازنشانی کتابخانه و حذف همه فهرست‌های پخش شما می‌شود."
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:83
+msgid "Equalizer"
+msgstr "نماهنگ"
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:150
+msgid "Save preset"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:414
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (سفارشی)"
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (سفارشی %i)"
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:420
+msgid "Custom Preset"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#, c-format
+msgid "Custom Preset %i"
+msgstr ""
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr "وارد کردن از دستگاه"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#, c-format
+msgid "Import media from %s"
+msgstr "وارد کردن رسانه از %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"پرونده‌های زیر روی %s پیدا شده‌اند، اما در کتابخانه شما قرار ندارند. همه "
+"پرونده‌هایی که قصد دارید وارد کنید را بررسی کنید."
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all media"
+msgstr "وارد کردن همه رسانه"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:90
+msgid "Import"
+msgstr "واردات"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "وارد نشود"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#, c-format
+msgid "Import %i items from %s"
+msgstr "وارد کردن %i مورد از %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#, c-format
+msgid "Import %s from %s"
+msgstr "وارد کردن %s از %s"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+msgid "ID"
+msgstr "شناسه"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+msgid "Select individual media to import:"
+msgstr "انتخاب هرکدام از رسانه‌ها برای واردات:"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Item"
+msgstr "بررسی مورد"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+msgid "Check Album"
+msgstr "بررسی آلبوم"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+msgid "Check Artist"
+msgstr "بررسی هنرمند"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
+msgid "Cannot Import"
+msgstr "نمی‌توان وارد کرد"
+
+#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
+#, c-format
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"هم اکنون نویز در حال انجام فرآیندی روی پرونده‌هاست. لطفاً تا پایان واردات  "
+"از %d صبر کنید"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
+msgid "Import media to Library"
+msgstr "وارد کردن رسانه به کتابخانه"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
+msgid "Continue Syncing"
+msgstr "ادامه هماهنگ‌سازی"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
+msgid "Stop Syncing"
+msgstr "توقف هماهنگ‌سازی"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"اگر فرآیند هماهنگ‌سازی را ادامه دهید، رسانه از %s حذف خواهد شد چون در فهرست "
+"هماهنگ‌سازی وجود ندارند. آیا دوست دارید که در ابتدا آنها وارد کتابخانه شوند؟"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr "فرآیند هماهنگ‌سازی %i مورد را از %s حذف خواهد کرد"
+
+#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr "فرآیند هماهنگ‌سازی ۱ مورد را از %s حذف خواهد کرد"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
+msgid "Smart Playlist Editor"
+msgstr "ویرایشگر هوشمند فهرست پخش"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
+msgid "Rules"
+msgstr "قوانین"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
+msgid "Options"
+msgstr "تنظیمات"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Playlist Title"
+msgstr "عنوان فهرست پخش"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
+msgid "Match"
+msgstr "تطابق"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
+msgid "any"
+msgstr "هرکدام از"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "all"
+msgstr "همه"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
+msgid "of the following:"
+msgstr "موارد زیر:"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
+msgid "Limit to"
+msgstr "محدود به"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
+msgid "items"
+msgstr "موارد"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+msgid "Bitrate"
+msgstr "نرخ بیتی"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Added"
+msgstr "تاریخ افزودن"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+msgid "Date Released"
+msgstr "تاریخ انتشار"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+msgid "Last Played"
+msgstr "آخرین پخش"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "Length"
+msgstr "طول"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+msgid "Playcount"
+msgstr "تعداد پخش"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+msgid "Skipcount"
+msgstr "تعداد پرش"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
+msgid "is"
+msgstr "هست"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
+msgid "contains"
+msgstr "شامل"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
+msgid "does not contain"
+msgstr "شامل نیست"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
+msgid "is exactly"
+msgstr "دقیقاً"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+msgid "is at most"
+msgstr "حداکثر"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:369
+msgid "is at least"
+msgstr "حداقل"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+msgid "is within"
+msgstr "میان"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
+msgid "is before"
+msgstr "پیش از"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
+msgid "seconds"
+msgstr "ثانیه"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
+msgid "days ago"
+msgstr "روز پیش"
+
+#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
+msgid "kbps"
+msgstr "کیلوبیت در ثانیه"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr "پرونده‌های وارد نشده"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#, c-format
+msgid "Unable to import %d items from %s"
+msgstr "نمی‌توان %d مورد را از %s وارد کرد"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#, c-format
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s نمی‌تواند %d مورد را وارد کند. احتمالاً پرونده‌ها خراب شده‌اند."
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr "انتقال همه پرونده‌های خراب شده به زباله‌دان"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "چشم‌پوشی"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "حذف"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "مکان پرونده"
+
+#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr "انتخاب هر پرونده برای انتقال به زباله‌دان:"
+
+#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+msgid "Install Plugin"
+msgstr "نصب افزونه"
+
+#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+msgid "Required GStreamer plugin not installed"
+msgstr "افزونه جی‌استریمر لازم نصب نشده است"
+
+#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#, c-format
+msgid ""
+"The plugin for media type %s is not installed.\n"
+"What would you like to do?"
+msgstr ""
+"افزونه پرونده‌های نوع %s نصب نشده است.\n"
+"قصد انجام چه کاری را دارید؟"
+
+#: /home/noelco/noise/po/../src//LibraryManager.vala:255
+#, c-format
+msgid "Importing music from %s..."
+msgstr "واردات موسیقی از %s..."
+
+#: /home/noelco/noise/po/../src//LibraryManager.vala:298
+msgid "Adding files to library..."
+msgstr "افزودن پرونده‌ها به کتابخانه..."
+
+#: /home/noelco/noise/po/../src//LibraryManager.vala:340
+#, c-format
+msgid "Adding music from %s to library..."
+msgstr "افزودن موسیقی از %s به کتابخانه..."
+
+#: /home/noelco/noise/po/../src//LibraryManager.vala:368
+msgid "Rescanning music for changes. This may take a while..."
+msgstr ""
+"بازپویش موسیقی‌ها برای اعمال تغییرات. ممکن است این کار کمی طول بکشد..."
+
+#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:195
+#: /home/noelco/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
+msgid "Unknown Artist"
+msgstr "هنرمند ناشناس"
+
+#: /home/noelco/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "ترک ناشناخته"
+
+#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "آلبوم ناشناخته"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+msgid "Audio CD Invalid"
+msgstr "سی‌دی صوتی نامعتبر"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:104
+#, c-format
+msgid "%s could not read the contents of this Audio CD"
+msgstr "%s نمی‌تواند محتوای این سی‌دی صوتی را بخواند"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"لطفاً پیش از واردات سی‌دی از دردسترس بودن پوشه موسیقی خود اطمینان حاصل کنید."
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
+msgid "No songs on CD"
+msgstr "هیچ آهنگی روی سی‌دی وجود ندارد"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
+#, c-format
+msgid "%s could not find any songs on the CD. No songs can be imported"
+msgstr ""
+"%s نمی‌تواند هیچ آهنگی را روی سی‌دی پیدا کند. نمی‌توان هیچ آهنگی را وارد کرد"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
+#, c-format
+msgid "%s is already doing an import"
+msgstr "هم اکنون %s در حال انجام واردات است"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
+#, c-format
+msgid ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
+msgstr "لطفاً پیش از واردات سی‌دی تا پایان فرآیند واردات توسط %s، صبر کنید."
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
+msgid "CD Import Complete"
+msgstr "واردات سی‌دی تمام شد"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#, c-format
+msgid "%s has finished importing %i songs from Audio CD."
+msgstr "%s فرآیند واردات %i آهنگ را از سی‌دی صوتی، تمام کرد."
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
+#, c-format
+msgid "%s has finished importing a song from Audio CD."
+msgstr "%s فرآیند واردات یک آهنگ را از سی‌دی صوتی، تمام کرد."
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:411
+#, c-format
+msgid "Importing track %i: %s"
+msgstr "واردات ترک %i: %s"
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:428
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr "واردات سی‌دی پس از انجام واردات جاری، <b>لغو</b> خواهد شد."
+
+#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:451
+msgid "An error occured during the Import of this CD"
+msgstr "در هنگام واردات این سی‌دی خطایی رخداد"
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:144
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:174
+msgid "Empty device!"
+msgstr "دستگاه خالی!"
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:148
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:178
+msgid "This device does not contain any music."
+msgstr "هیچ سی‌دیی درون این دستگاه نیست."
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:315
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:316
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:458
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:459
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:337
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:338
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:577
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
+#, c-format
+msgid "Syncing <b>%s</b>..."
+msgstr "هماهنگ کردن <b>%s</b>..."
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
+msgid "Finishing sync process..."
+msgstr "پایان دادن به فرآیند هماهنگ‌سازی..."
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
+msgid "Cancelling Sync..."
+msgstr "در حال لغو هماهنگ‌سازی..."
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:475
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
+msgid "There is not enough space on Device to complete the Sync..."
+msgstr "برای کامل کردن هماهنگ‌سازی فضای کافی روی دیسک وجود ندارد..."
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:729
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr "در حال حذف از <b>%s</b>..."
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1015
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library..."
+msgstr "در حال واردات <b>$NAME</b> اثر <b>$ARTIST</b> به کتابخانه..."
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "در حال افزودن <b>$NAME</b> اثر <b>$ARTIST</b> به $DEVICE"
+
+#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "در حال حذف <b>$NAME</b> اثر <b>$ARTIST</b> از $DEVICE"
+
+#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
+msgid "Syncing playlists"
+msgstr "هماهنگ‌سازی فهرست‌های پخش"
+
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "رسانه"
+
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr "رسانه مشابه"
+
+#: /home/noelco/noise/po/../plugins//LastFM/SimilarMedia.vala:46
+msgid "Similar"
+msgstr "مشابه"
+
+#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
+msgid "No similar songs found"
+msgstr "هیچ آهنگ مشابهی پیدا نشد"
+
+#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
+msgid ""
+"There is no songs similar to the current song in your library. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
+msgstr ""
+"هیچ آهنگی مشابه آنچه در کتابخانه شما وجود دارد، موجو نیست. از درستی اطلاعات "
+"آهنگ و اتصال به اینترنت اطمینان حاصل کنید. ممکن است برخی آهنگ‌ها هیچ مشابهی "
+"نداشته باشند."
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+msgid "Give Noise Permission"
+msgstr "مجوز دادن به نویز"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+msgid "Unsuccessful. Click To Try Again."
+msgstr "موفقیت‌آمیز نبود. برای تلاش دوباره کلیک کنید."
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+msgid "Scrobbling Already Enabled"
+msgstr "هم اکنون اسکرابلینگ فعال شده است"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+msgid "Success!"
+msgstr "موفق!"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+msgid "Complete Login"
+msgstr "ورود کامل"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:42
+msgid "Last.fm"
+msgstr ""
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:47
+msgid "Last.fm Integration"
+msgstr "ادغام با Last.fm"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+msgid "Click to redo the Last.fm login process"
+msgstr "برای انجام دوباره فرآیند ورود به Last.fm کلیک کنید"
+
+#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+msgid ""
+"To allow for Last.fm integration, you must give permission to Noise. You "
+"only need to do this once."
+msgstr ""
+"برای داشتن امکان ادغام در Last.fm باید به نویز اجازه ورود بدهید. کافیست فقط "
+"یک بار این کار را انجام دهید."
+
+#~ msgid "Fetching similar songs"
+#~ msgstr "در حال دریافت آهنگ‌های مشابه"
+
+#, c-format
+#~ msgid "Similar to %s"
+#~ msgstr "مشابه با %s"
+
+#~ msgid "Similar Song View"
+#~ msgstr "نمای آهنگ مشابه"
+
+#, c-format
+#~ msgid ""
+#~ "In this view, %s will automatically find songs similar to the one you're "
+#~ "playing. You can then start playing those songs, or save them as a playlist "
+#~ "for later."
+#~ msgstr ""
+#~ "در این نما، %s آهنگ‌هایی مشابه آنچه در حال گوش دادنش هستید را به طور خودکار "
+#~ "پیدا خواهد کرد. سپس شما می‌توانید آن آهنگ‌ها را نیز گوش دهید و یا اینکه یک "
+#~ "فهرست پخش از آنها بسازید."
