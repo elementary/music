@@ -72,7 +72,6 @@ public class Noise.StaticPlaylist : Playlist {
     public override void remove_medias (Gee.Collection<Media> to_remove) {
         var removed_media = new Gee.LinkedList<Media> ();
         foreach (var m in to_remove) {
-            warning (m.title);
             if (m != null && medias.contains (m)) {
                 removed_media.add (m);
                 medias.remove (m);

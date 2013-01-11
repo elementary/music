@@ -35,6 +35,7 @@ public class Noise.FileOperator : Object {
     
     public int index;
     public int item_count;
+    int queue_size = 0;
     
     public bool cancelled; // set to true if user cancels
     bool cancelSent; // needed to not send cancel signal twice (in recursive function)
@@ -85,7 +86,7 @@ public class Noise.FileOperator : Object {
         return FileUtils.is_valid_content_type (content_type, App.get_media_content_types ());
     }
     
-    public int count_music_files(File music_folder, ref LinkedList<string> files) {
+    public int count_music_files (File music_folder, ref LinkedList<string> files) {
         FileInfo file_info = null;
         
         try {
@@ -328,7 +329,7 @@ public class Noise.FileOperator : Object {
         }
         
         foreach (var playlist in playlists.entries) {
-            lm.start_file_operations(C_("Importing playlist", "Importing <b>%s</b> to Library...").printf (playlist.key));
+            lm.start_file_operations(C_("Importing playlist", "Importing <b>%s</b> to Library…").printf (playlist.key));
             var new_playlist = new StaticPlaylist();
             new_playlist.name = playlist.key;
             var medias_to_use = playlist.value;
@@ -369,11 +370,12 @@ public class Noise.FileOperator : Object {
         }*/
     }
     
-    public void import_files(LinkedList<string> files, ImportType type) {
+    public void import_files (LinkedList<string> files, ImportType type) {
         all_new_imports = new LinkedList<Media>();
         new_imports.clear();
         import_errors.clear();
         import_type = type;
+        queue_size = files.size;
         
         if(files.size == 0) {
             queue_finished();
@@ -387,8 +389,11 @@ public class Noise.FileOperator : Object {
         new_imports.add(m);
         all_new_imports.add(m);
         ++index;
-
-        if (new_imports.size >= 200) {
+        
+        if (index == queue_size) {
+            lm.add_media (new_imports); // give user some feedback
+            new_imports.clear();
+        } else if (new_imports.size >= 200) {
             lm.add_media (new_imports); // give user some feedback
             new_imports.clear();
         }
@@ -420,7 +425,7 @@ public class Noise.FileOperator : Object {
         
         // if doing import and copy to music folder is enabled, do copy here
         if((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && main_settings.copy_imported_music) {
-            fo_progress(_("<b>Copying</b> files to <b>Music Folder</b>..."), 0.0);
+            fo_progress(_("<b>Copying</b> files to <b>Music Folder</b>…"), 0.0);
             
             Threads.add (copy_imports_thread);
         }

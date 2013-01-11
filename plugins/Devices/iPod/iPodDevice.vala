@@ -334,8 +334,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        if (lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()))) {
-            current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
+        if (lm.start_file_operations (_("Syncing <b>%s</b>…").printf (getDisplayName ()))) {
+            current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
             lm.lw.update_sensitivities();
             
             currently_syncing = true;
@@ -437,7 +437,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                             sync_podcasts();
                         }*/
                         
-                        current_operation = _("Finishing sync process...");
+                        current_operation = _("Finishing sync process…");
                         
                         try {
                             db.write();
@@ -462,7 +462,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                         
                         db.stop_sync();
                     } else {
-                        current_operation = _("Cancelling Sync...");
+                        current_operation = _("Cancelling Sync…");
                         try {
                             db.write();
                         } catch(Error err) {
@@ -472,8 +472,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                         index = total + 1;
                     }
                 } else {
-                        infobar_message (_("There is not enough space on Device to complete the Sync..."), Gtk.MessageType.INFO);
-                        current_operation = _("There is not enough space on Device to complete the Sync...");
+                        infobar_message (_("There is not enough space on Device to complete the Sync…"), Gtk.MessageType.INFO);
+                        current_operation = _("There is not enough space on Device to complete the Sync…");
                 }
             }
 
@@ -574,8 +574,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        if (lm.start_file_operations(_("Syncing <b>%s</b>...").printf (getDisplayName ()))) {
-            current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
+        if (lm.start_file_operations(_("Syncing <b>%s</b>…").printf (getDisplayName ()))) {
+            current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
             lm.lw.update_sensitivities();
             
             currently_syncing = true;
@@ -605,7 +605,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             }
             
             if(!sync_cancelled) {
-                current_operation = _("Finishing sync process...");
+                current_operation = _("Finishing sync process…");
                 
                 ++index;
                 
@@ -623,7 +623,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 db.stop_sync();
             }
             else {
-                current_operation = _("Cancelling Sync...");
+                current_operation = _("Cancelling Sync…");
                 
                 try {
                     db.write();
@@ -726,8 +726,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        if (lm.start_file_operations (_("Removing from <b>%s</b>...").printf (getDisplayName ()))) {
-            current_operation = _("Removing from <b>%s</b>...").printf (getDisplayName ());
+        if (lm.start_file_operations (_("Removing from <b>%s</b>…").printf (getDisplayName ()))) {
+            current_operation = _("Removing from <b>%s</b>…").printf (getDisplayName ());
             lm.lw.update_sensitivities();
             
             currently_syncing = true;
@@ -775,7 +775,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             audiobooks.unset_all(removed);
             
             if(!sync_cancelled) {
-                current_operation = _("Finishing sync process...");
+                current_operation = _("Finishing sync process…");
                 
                 ++index; // add second of 2 extra
                 try {
@@ -792,7 +792,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 db.stop_sync();
             }
             else {
-                current_operation = _("Cancelling Sync...");
+                current_operation = _("Cancelling Sync…");
                 
                 try {
                     db.write();
@@ -821,7 +821,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     void remove_media(GPod.Track t) {
-        current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
+        current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE");
         current_operation = current_operation.replace ("$NAME", t.title ?? "");
         current_operation = current_operation.replace ("$ARTIST", t.artist ?? "");
         current_operation = current_operation.replace ("$DEVICE", getDisplayName() ?? "");
@@ -973,7 +973,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         message("Found %d medias to import.", medias_to_import.size);
         int total_medias = medias_to_import.size;
         
-        current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
+        current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
         current_operation = current_operation.replace ("$NAME", (total_medias > 1) ? total_medias.to_string() : (medias_to_import.get(0)).title ?? "");
         current_operation = current_operation.replace ("$ARTIST", (total_medias > 1) ? total_medias.to_string() : (medias_to_import.get(0)).artist ?? "");
         if (lm.start_file_operations(current_operation)) {
@@ -1012,7 +1012,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                     copy.isTemporary = false;
                     copy.date_added = (int)time_t();
                     
-                    current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
+                    current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
                     current_operation = current_operation.replace ("$NAME", copy.title ?? "");
                     current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
                     if (lm.fo.update_file_hierarchy (copy, false, false)) {

@@ -68,7 +68,9 @@ public class Noise.SmartPlaylist : Playlist {
             medias_library.add (m);
             added_media.add (m);
         }
-        media_added (added_media);
+        if (!limit && limit_amount > medias.size) {
+            reanalyze ();
+        }
     }
 
     public override void add_medias (Gee.Collection<Media> to_add) {
@@ -80,8 +82,9 @@ public class Noise.SmartPlaylist : Playlist {
                 added_media.add (m);
             }
         }
-        
-        media_added (added_media);
+        if (!limit && limit_amount > medias.size) {
+            reanalyze ();
+        }
     }
 
     public override void remove_media (Media to_remove) {
@@ -182,7 +185,7 @@ public class Noise.SmartPlaylist : Playlist {
                         removed.add (m);
                     }
 
-                    if (_limit && _limit_amount <= medias.size)
+                    if (limit && limit_amount <= medias.size)
                         break;
                 }
 
@@ -360,5 +363,6 @@ public class Noise.SmartPlaylist : Playlist {
         medias.clear ();
         medias_library.clear ();
         cleared ();
+        reanalyze ();
     }
 }

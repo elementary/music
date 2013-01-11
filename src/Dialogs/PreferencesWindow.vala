@@ -41,7 +41,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         lw.add_preference_page.connect ((page) => {add_page (page);});
         
         // Add general section
-        library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder..."), Gtk.FileChooserAction.SELECT_FOLDER);
+        library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder…"), Gtk.FileChooserAction.SELECT_FOLDER);
         library_filechooser.hexpand = true;
 
         library_filechooser.set_current_folder (main_settings.music_folder);

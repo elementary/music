@@ -74,7 +74,7 @@ namespace Noise.Plugins {
         
         private void source_list_added (GLib.Object o, int view_number) {
             if (o == core.get_similar_playlist ()) {
-                ((Noise.ReadOnlyPlaylistViewWrapper)lm.lw.view_container.get_view(view_number)).set_no_media_alert_message (_("No similar songs found"), _("There is no songs similar to the current song in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.") , Gtk.MessageType.INFO);
+                ((Noise.ReadOnlyPlaylistViewWrapper)lm.lw.view_container.get_view(view_number)).set_no_media_alert_message (_("No similar songs found"), _("There are no songs similar to the current song in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.") , Gtk.MessageType.INFO);
             }
         }
 

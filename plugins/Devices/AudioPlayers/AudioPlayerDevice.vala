@@ -312,8 +312,8 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        if (lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()))) {
-            current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
+        if (lm.start_file_operations (_("Syncing <b>%s</b>…").printf (getDisplayName ()))) {
+            current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
             lm.lw.update_sensitivities();
             
             currently_syncing = true;
@@ -369,17 +369,17 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                             sync_podcasts();
                         }*/
                         
-                        current_operation = _("Finishing sync process...");
+                        current_operation = _("Finishing sync process…");
                         
                         index = 98;
                         
                     } else {
-                        current_operation = _("Cancelling Sync...");
+                        current_operation = _("Cancelling Sync…");
                         index = total + 1;
                     }
                 } else {
-                        infobar_message (_("There is not enough space on Device to complete the Sync..."), Gtk.MessageType.INFO);
-                        current_operation = _("There is not enough space on Device to complete the Sync...");
+                        infobar_message (_("There is not enough space on Device to complete the Sync…"), Gtk.MessageType.INFO);
+                        current_operation = _("There is not enough space on Device to complete the Sync…");
                 }
             }
 
@@ -455,8 +455,8 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        if (lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()))) {
-            current_operation = _("Syncing <b>%s</b>...").printf (getDisplayName ());
+        if (lm.start_file_operations (_("Syncing <b>%s</b>…").printf (getDisplayName ()))) {
+            current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
             lm.lw.update_sensitivities();
             
             currently_syncing = true;
@@ -493,8 +493,8 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        if (lm.start_file_operations (_("Removing from <b>%s</b>...").printf (getDisplayName ()))) {
-            current_operation = _("Removing from <b>%s</b>...").printf (getDisplayName ());
+        if (lm.start_file_operations (_("Removing from <b>%s</b>…").printf (getDisplayName ()))) {
+            current_operation = _("Removing from <b>%s</b>…").printf (getDisplayName ());
             lm.lw.update_sensitivities();
             
             currently_syncing = true;
@@ -535,10 +535,10 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             return false;
         }
         
-        message("Found %d medias to import.", tr_list.size);
+        debug ("Found %d medias to import.", tr_list.size);
         int total_medias = tr_list.size;
         
-        current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
+        current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
         current_operation = current_operation.replace ("$NAME", (total_medias > 1) ? total_medias.to_string() : (tr_list.get(0)).title ?? "");
         current_operation = current_operation.replace ("$ARTIST", (total_medias > 1) ? total_medias.to_string() : (tr_list.get(0)).artist ?? "");
         if (lm.start_file_operations(current_operation)) {
@@ -569,13 +569,13 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                     copy.date_added = (int)time_t();
                     lm.add_media_item (copy);
                     
-                    current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library...");
+                    current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
                     current_operation = current_operation.replace ("$NAME", copy.title ?? "");
                     current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
                     lm.fo.update_file_hierarchy (copy, false, false);
                 }
                 else {
-                    stdout.printf("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
+                    message ("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
                 }
                 
                 ++index;
@@ -668,7 +668,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     }
     
     void remove_media(Noise.Media m) {
-        current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
+        current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE");
         current_operation = current_operation.replace ("$NAME", m.title ?? "");
         current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
         current_operation = current_operation.replace ("$DEVICE", getDisplayName() ?? "");
@@ -685,7 +685,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                     warning("Could not delete File at %s: %s", m.uri, err.message);
                     return;
                 }
-                warning ("Successfully removed music file %s", m.uri);
+                debug ("Successfully removed music file %s", m.uri);
             }
             else {
                 warning("File not found, could not delete File at %s. File may already be deleted", m.uri);

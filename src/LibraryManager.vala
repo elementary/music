@@ -252,7 +252,7 @@ public class Noise.LibraryManager : Object {
     }
 
     public async void set_music_folder (string folder) {
-        if (start_file_operations (_("Importing music from %s...").printf ("<b>" + String.escape (folder) + "</b>"))) {
+        if (start_file_operations (_("Importing music from %s…").printf ("<b>" + String.escape (folder) + "</b>"))) {
             remove_all_static_playlists ();
 
             clear_media ();
@@ -295,7 +295,7 @@ public class Noise.LibraryManager : Object {
     }
 
     public void add_files_to_library (LinkedList<string> files) {
-        if (start_file_operations (_("Adding files to library..."))) {
+        if (start_file_operations (_("Adding files to library…"))) {
             temp_add_files = files;
             add_files_to_library_async ();
         }
@@ -337,7 +337,7 @@ public class Noise.LibraryManager : Object {
         if (other_folders != null)
             temp_add_other_folders = other_folders;
 
-        if (start_file_operations (_("Adding music from %s to library...").printf ("<b>" + String.escape (folder) + "</b>"))) {
+        if (start_file_operations (_("Adding music from %s to library…").printf ("<b>" + String.escape (folder) + "</b>"))) {
             temp_add_folder = folder;
             add_folder_to_library_async ();
         }
@@ -365,7 +365,7 @@ public class Noise.LibraryManager : Object {
     }
 
     public void rescan_music_folder () {
-        if (start_file_operations (_("Rescanning music for changes. This may take a while..."))) {
+        if (start_file_operations (_("Rescanning music for changes. This may take a while…"))) {
             rescan_music_folder_async ();
         }
     }

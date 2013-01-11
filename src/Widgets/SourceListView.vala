@@ -76,7 +76,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
             playlistMenu = new Gtk.Menu();
             playlistSave = new Gtk.MenuItem.with_label(_("Save as Playlist"));
             playlistMenu.append(playlistSave);
-            playlistExport = new Gtk.MenuItem.with_label(_("Export..."));
+            playlistExport = new Gtk.MenuItem.with_label(_("Export…"));
             playlistMenu.append(playlistExport);
             playlistMenu.show_all ();
             playlistSave.activate.connect(() => {playlist_save_clicked (page_number);});
