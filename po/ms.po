@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-11 16:38+0100\n"
-"PO-Revision-Date: 2013-01-02 15:29+0000\n"
+"PO-Revision-Date: 2013-01-12 14:07+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-12 05:13+0000\n"
+"X-Launchpad-Export-Date: 2013-01-13 04:52+0000\n"
 "X-Generator: Launchpad (build 16420)\n"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
@@ -245,29 +245,29 @@ msgstr "Penyanyi/Artis tidak diketahui"
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
-msgstr ""
+msgstr "Mengimport <b>%s</b> ke Pustaka..."
 
 #: /home/noelco/noise/po/../src//FileOperator.vala:428
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "<b>Menyalin</b> fail ke <b>Folder Muzik </b>…"
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:255
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Mengimport muzik dari %s..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:298
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Menambah fail ke pustaka..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:340
 #, c-format
 msgid "Adding music from %s to library…"
-msgstr ""
+msgstr "Menambah muzik dari %s ke pustaka..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:368
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "Mengimbas semula muzik untuk perubahan. Ia mengambil masa..."
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:633
@@ -666,7 +666,7 @@ msgstr "Segerak akan buang 1 item dari %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Pilih Folder Muzik..."
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:289
@@ -890,7 +890,7 @@ msgstr "Simpan sebagai Senarai Main"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:79
 msgid "Export…"
-msgstr ""
+msgstr "eksport..."
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:120
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:285
@@ -1211,7 +1211,7 @@ msgstr[1] "%i Bintang"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
-msgstr "Semu Genre"
+msgstr "Semua Genre"
 
 #: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 #, c-format
@@ -1697,28 +1697,28 @@ msgstr "Peranti ini tidak mengandungi sebarang muzik."
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Menyegerak <b>%s</b>…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Menyelesaikan proses segerak..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Membatalkan Segerak..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:475
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
 msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
+msgstr "Ruang tidak mencukupu dalam Peranti untuk selesaikan Segerak..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
@@ -1726,14 +1726,14 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "Membuang dari <b>%s</b>…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1015
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "Mengimport <b>$NAME</b> oleh <b>$ARTIST</b> ke pustaka…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
@@ -1743,7 +1743,7 @@ msgstr "Menambah <b>$NAME</b> oleh <b>$ARTIST</b> ke $DEVICE"
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "Membuang <b>$NAME</b> oleh <b>$ARTIST</b> daripada $DEVICE"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Audio CD Invalid"
@@ -1835,6 +1835,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Tiada lagu yang serupa dengan lagu semasa di dalam pustaka anda. Pastikan "
+"semua maklumat lagu adalah betul dan anda bersambung dengan Internet. "
+"Sesetengah lagu mungkin tidak mempunyai padanan."
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"

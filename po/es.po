@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-11 16:38+0100\n"
-"PO-Revision-Date: 2013-01-04 00:41+0000\n"
-"Last-Translator: Victor Eduardo <victoreduardm@gmail.com>\n"
+"PO-Revision-Date: 2013-01-12 09:20+0000\n"
+"Last-Translator: Antonio <ponny_@rock.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-12 05:14+0000\n"
+"X-Launchpad-Export-Date: 2013-01-13 04:52+0000\n"
 "X-Generator: Launchpad (build 16420)\n"
 "Language: es\n"
 
@@ -25,7 +25,7 @@ msgstr "Normal"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr "Clásico"
+msgstr "Clásica"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:72
 msgid "Club"
@@ -37,11 +37,11 @@ msgstr "Dance"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr "Bajos completos"
+msgstr "Bajos al máximo"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr "Agudos completos"
+msgstr "Agudos al máximo"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
@@ -89,7 +89,7 @@ msgstr "Rock suave"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:87
 msgid "Techno"
-msgstr "Técno"
+msgstr "Techno"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
 #, c-format
