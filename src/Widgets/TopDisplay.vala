@@ -154,7 +154,7 @@ public class Noise.TopDisplay : Box {
         is_seeking = true;
         change_value (ScrollType.NONE, get_current_time ());
         
-        return false;
+        return true;
     }
     
     public virtual bool scale_button_release(Gdk.EventButton event) {
