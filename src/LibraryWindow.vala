@@ -229,6 +229,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
         } else if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
             switch (event.keyval) {
+                case Gdk.Key.f:
+                    return false;
                 case Gdk.Key.q:
                 case Gdk.Key.w:
                     this.destroy ();
