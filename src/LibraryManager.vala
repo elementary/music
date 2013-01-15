@@ -118,6 +118,7 @@ public class Noise.LibraryManager : Object {
                 p.rowid = _smart_playlist_rowid;
                 _smart_playlists.set (_smart_playlist_rowid, p);
                 _smart_playlist_rowid++;
+                p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
             }
         }
 
@@ -166,6 +167,7 @@ public class Noise.LibraryManager : Object {
                         lock (_playlists) {
                             p.rowid = _playlist_rowid;
                             _playlists.set (_playlist_rowid, p);
+                            p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
                             _playlist_rowid++;
                         }
                     break;
@@ -504,6 +506,7 @@ public class Noise.LibraryManager : Object {
             _playlists.set (p.rowid, p);
         }
 
+        p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
         dbm.add_playlist (p);
         playlist_added (p);
 
@@ -519,6 +522,10 @@ public class Noise.LibraryManager : Object {
 
         dbu.removeItem (removed);
         playlist_removed (removed);
+    }
+
+    public void playlist_updated (StaticPlaylist p, string? old_name = null) {
+        dbu.save_playlist (p, old_name);
     }
 
     /**************** Smart playlists ****************/
@@ -575,7 +582,7 @@ public class Noise.LibraryManager : Object {
             _smart_playlists.set (p.rowid, p);
         }
 
-        save_smart_playlists ();
+        p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
         smartplaylist_added (p);
         return p.rowid;
     }
@@ -589,6 +596,10 @@ public class Noise.LibraryManager : Object {
 
         smartplaylist_removed (removed);
         dbu.removeItem (removed);
+    }
+
+    public void smart_playlist_updated (SmartPlaylist p, string? old_name = null) {
+        dbu.save_smart_playlist (p, old_name);
     }
 
     /******************** Media stuff ******************/

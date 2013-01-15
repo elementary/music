@@ -557,6 +557,38 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
+    public void save_playlist (StaticPlaylist p, string? old_name = null) {
+        try {
+            if (p.read_only == true)
+                return;
+            
+            if (old_name == null) {
+                remove_playlist (p);
+            } else {
+                var pl = new StaticPlaylist.with_info (0, old_name);
+                remove_playlist (pl);
+            }
+            transaction = database.begin_transaction();
+            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
+
+            string rv = "";
+            
+            foreach (var m in p.medias) {
+                if (m != null)
+                    rv += m.uri + "<sep>";
+            }
+            query.set_string(":name", p.name);
+            query.set_string(":media", rv);
+
+            query.execute();
+
+            transaction.commit();
+        }
+        catch(SQLHeavy.Error err) {
+            warning ("Could not save playlists: %s \n", err.message);
+        }
+    }
+
     public void add_playlist (StaticPlaylist p) {
         if (p.read_only == true)
             return;
@@ -640,8 +672,8 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.set_string(":name", _("Recently Added"));
             query.set_int(":and_or", 1);
             query.set_string(":queries", "5<val_sep>7<val_sep>7<query_sep>");
-            query.set_int(":limit", 0);
-            query.set_int(":limit_amount", 50);
+            query.set_int(":limit", 1);
+            query.set_int(":limit_amount", 20);
             query.execute();
 
             /*
@@ -737,10 +769,17 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
-    public void update_smart_playlist(SmartPlaylist p) {
+    public void save_smart_playlist (SmartPlaylist p, string? old_name = null) {
+        if (old_name == null) {
+            remove_smart_playlist (p);
+        } else {
+            var sp = new SmartPlaylist (new Gee.LinkedList<Media>());
+            sp.name = old_name;
+            remove_smart_playlist (sp);
+        }
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("UPDATE `smart_playlists` SET name=:name, and_or=:and_or, queries=:queries, limit=:limit, limit_amount=:limit_amounts WHERE name=:name");
+            Query query = transaction.prepare("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
 
             query.set_string(":name", p.name);
             query.set_int(":and_or", (int)p.conditional);
@@ -756,7 +795,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
-    public void remove_smart_playlist(SmartPlaylist p) {
+    public void remove_smart_playlist (SmartPlaylist p) {
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare("DELETE FROM `smart_playlists` WHERE name=:name");

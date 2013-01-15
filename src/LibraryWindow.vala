@@ -732,6 +732,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 view.button_clicked.connect ((playlist_id) => {show_smart_playlist_dialog(library_manager.smart_playlist_from_id(playlist_id));});
                 view_number = view_container.add_view (view);
                 entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.SMART_PLAYLIST, Icons.SMART_PLAYLIST.gicon);
+                p.updated.connect ((old_name) => {if (old_name != null) source_list_view.change_playlist_name (match_smartplaylist.get(p.rowid), p.name);});
                 match_smartplaylist.set (p.rowid, view_number);
             }
         }
@@ -887,15 +888,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void playlist_name_edited (int page_number, string new_name) {
-        var view = view_container.get_view (page_number);
-        if (view is PlaylistViewWrapper) {
-            if (library_manager.playlist_from_id (((PlaylistViewWrapper)view).playlist_id) != null) {
+        var unparsed_view = view_container.get_view (page_number);
+        if (unparsed_view is PlaylistViewWrapper) {
+            var view = unparsed_view as PlaylistViewWrapper;
+            if (view.hint == ViewWrapper.Hint.PLAYLIST || view.hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
                 var playlist = library_manager.playlist_from_id(((PlaylistViewWrapper)view).playlist_id);
                 if (playlist.name != new_name) {
                     if (library_manager.playlist_from_name (new_name) == null)
                         playlist.name = new_name;
                 }
-            } else if (library_manager.smart_playlist_from_id(((PlaylistViewWrapper)view).playlist_id) != null) {
+            } else if (view.hint == ViewWrapper.Hint.SMART_PLAYLIST) {
                 var smartplaylist = library_manager.smart_playlist_from_id(((PlaylistViewWrapper)view).playlist_id);
                 if (smartplaylist.name != new_name) {
                     if (library_manager.smart_playlist_from_name (new_name) == null)
@@ -930,18 +932,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public void show_smart_playlist_dialog (SmartPlaylist? smartplaylist = null) {
         SmartPlaylistEditor spe = null;
-        if (smartplaylist == null)
-            spe = new SmartPlaylistEditor(this, new SmartPlaylist(library_manager.media ()));
-        else
-            spe = new SmartPlaylistEditor(this, smartplaylist);
-        spe.playlist_saved.connect(smartPlaylistEditorSaved);
-    }
-    
-    void smartPlaylistEditorSaved(SmartPlaylist sp, SmartPlaylist? old_sp = null) {
-        if (old_sp != null) {
-            library_manager.remove_smart_playlist(old_sp.rowid);
-        }
-        library_manager.add_smart_playlist(sp); // this queues save_smart_playlists()
+        spe = new SmartPlaylistEditor (smartplaylist);
+        spe.window_position = WindowPosition.CENTER;
+        spe.type_hint = Gdk.WindowTypeHint.DIALOG;
+        spe.set_transient_for (this);
+        spe.set_modal(true);
+        spe.destroy_with_parent = true;
+        spe.show_all();
+        spe.load_smart_playlist ();
     }
 
     public void create_new_playlist () {

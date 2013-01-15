@@ -49,6 +49,7 @@ public class Noise.SmartPlaylist : Playlist {
     public void clearQueries() {
         query_count = 0;
         _queries.clear();
+        updated ();
     }
 
     public Gee.ArrayList<SmartQuery> queries() {
@@ -59,6 +60,7 @@ public class Noise.SmartPlaylist : Playlist {
         query_count++;
         _queries.add(s);
         reanalyze ();
+        updated ();
     }
 
     public override void add_media (Media m) {

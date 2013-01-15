@@ -133,14 +133,13 @@ public class Noise.DataBaseUpdater : Object {
 
         playlists_and_queue.add (p_music);
 
-        message ("-- Saving playlists and device preferences DB.");
+        message ("-- Saving device preferences DB.");
 
-        dbm.save_playlists (playlists_and_queue);
-        dbm.save_smart_playlists (lm.smart_playlists ());
+        dbm.save_playlist (p_music);
         dbm.save_columns_state (playlists_and_queue, lm.smart_playlists ());
         dbm.save_devices (lm.device_manager.device_preferences ());
 
-        message ("-- Finished saving playlists and device preferences DB.");
+        message ("-- Finished saving device preferences DB.");
 
         Idle.add (() => {
             periodical_save ();
@@ -148,5 +147,15 @@ public class Noise.DataBaseUpdater : Object {
         });
 
         return true;
+    }
+    
+    // If the name of the playlist changed, it provides the old name to remove it from database
+    public void save_playlist (StaticPlaylist p, string? old_name = null) {
+        dbm.save_playlist (p, old_name);
+    }
+    
+    // If the name of the playlist changed, it provides the old name to remove it from database
+    public void save_smart_playlist (SmartPlaylist p, string? old_name = null) {
+        dbm.save_smart_playlist (p, old_name);
     }
 }

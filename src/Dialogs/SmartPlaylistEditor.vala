@@ -22,6 +22,8 @@
 
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
+ 
+ // TODO: Complete Rewrite !!!!!!!!!!!!
 
 using Gtk;
 using Gee;
@@ -33,15 +35,16 @@ public class Noise.SmartPlaylistEditor : Granite.Widgets.LightWindow {
 public class Noise.SmartPlaylistEditor : Window {
 #endif
 
-    LibraryWindow lw;
     SmartPlaylist sp;
     
     VBox content;
     HBox padding;
     
-    private  Label nameLabel;
+    private Label nameLabel;
     private Label rulesLabel;
     private Label optionsLabel;
+    
+    private bool is_new = false;
     
     Granite.Widgets.HintedEntry _name;
     ComboBoxText comboMatch;
@@ -52,20 +55,16 @@ public class Noise.SmartPlaylistEditor : Window {
     SpinButton mediaLimit;
     Button save;
     
-    public signal void playlist_saved(SmartPlaylist sp, SmartPlaylist? old_sp = null);
-    
-    public SmartPlaylistEditor(LibraryWindow lw, SmartPlaylist sp) {
-        this.lw = lw;
+    public SmartPlaylistEditor(SmartPlaylist? sp = null) {
         
         this.title = _("Smart Playlist Editor");
         
-        this.window_position = WindowPosition.CENTER;
-        this.type_hint = Gdk.WindowTypeHint.DIALOG;
-        this.set_modal(true);
-        this.set_transient_for(lw);
-        this.destroy_with_parent = true;
-        
-        this.sp = sp;
+        if (sp == null) {
+            is_new = true;
+            this.sp = new SmartPlaylist(App.instance.library_manager.media ());
+        } else {
+            this.sp = sp;
+        }
         
         content = new VBox(false, 10);
         padding = new HBox(false, 10);
@@ -158,15 +157,17 @@ public class Noise.SmartPlaylistEditor : Window {
         nameChanged ();
         
         add(padding);
-        show_all();
-        
-        foreach(SmartPlaylistEditorQuery speq in spQueries) {
-            speq.fieldChanged();
-        }
         
         save.clicked.connect(saveClick);
         close_button.clicked.connect(closeClick);
         _name.changed.connect(nameChanged);
+    }
+    
+    public void load_smart_playlist () {
+        
+        foreach(SmartPlaylistEditorQuery speq in spQueries) {
+            speq.fieldChanged();
+        }
     }
     
     void nameChanged() {
@@ -175,7 +176,7 @@ public class Noise.SmartPlaylistEditor : Window {
             return;
         }
         else {
-            foreach (var p in lw.library_manager.smart_playlists ()) {
+            foreach (var p in App.instance.library_manager.smart_playlists ()) {
                 var fixed_name = _name.get_text ().strip ();
                 if((sp == null || sp.rowid != p.rowid) && fixed_name == p.name) {
                     save.set_sensitive(false);
@@ -206,7 +207,6 @@ public class Noise.SmartPlaylistEditor : Window {
     }
     
     public virtual void saveClick() {
-        var old_sp = sp;
         sp.clearQueries();
         foreach(SmartPlaylistEditorQuery speq in spQueries) {
             if(speq._box.visible)
@@ -217,9 +217,9 @@ public class Noise.SmartPlaylistEditor : Window {
         sp.conditional = (SmartPlaylist.ConditionalType) comboMatch.get_active ();
         sp.limit = limitMedias.get_active();
         sp.limit_amount = (int)mediaLimit.get_value();
-        
-        playlist_saved(sp, old_sp);
-        
+        if (is_new) {
+            App.instance.library_manager.add_smart_playlist (sp);
+        }
         this.destroy();
     }
 }

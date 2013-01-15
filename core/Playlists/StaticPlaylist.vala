@@ -45,6 +45,7 @@ public class Noise.StaticPlaylist : Playlist {
             added_media.add (m);
             media_added (added_media);
         }
+        updated ();
     }
 
     public override void add_medias (Gee.Collection<Media> to_add) {
@@ -57,6 +58,7 @@ public class Noise.StaticPlaylist : Playlist {
             }
         }
         
+        updated ();
         media_added (added_media);
     }
 
@@ -67,6 +69,7 @@ public class Noise.StaticPlaylist : Playlist {
             medias.remove (to_remove);
             media_removed (removed_media);
         }
+        updated ();
     }
 
     public override void remove_medias (Gee.Collection<Media> to_remove) {
@@ -77,11 +80,13 @@ public class Noise.StaticPlaylist : Playlist {
                 medias.remove (m);
             }
         }
+        updated ();
         media_removed (removed_media);
     }
 
     public override void clear() {
         medias.clear ();
         cleared ();
+        updated ();
     }
 }

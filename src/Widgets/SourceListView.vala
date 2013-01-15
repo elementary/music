@@ -373,6 +373,18 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
     
     // change the name shown
+    public void change_playlist_name (int page_number, string new_name) {
+        foreach (var playlist in playlists_category.children) {
+            if (playlist is SourceListItem) {
+                if (page_number == ((SourceListItem)playlist).page_number) {
+                    ((SourceListItem)playlist).name = new_name;
+                    return;
+                }
+            }
+        }
+    }
+    
+    // change the name shown
     public void change_device_name (int page_number, string new_name) {
         foreach (var device in devices_category.children) {
             if (device is SourceListItem) {

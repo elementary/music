@@ -34,10 +34,21 @@ public abstract class Noise.Playlist : Object {
     public Gee.LinkedList<Media> medias { get; set; }
 
     public int rowid { get; set; }
-    public string name { get; set; }
+    private string _name;
+    public string name {
+        get {
+            return _name;
+        } 
+        set {
+            string old_name = _name;
+            _name = value;
+            updated (old_name);
+        }
+    }
 
     public signal void media_added (Gee.Collection<Media> media);
     public signal void media_removed (Gee.Collection<Media> media);
+    public signal void updated (string? old_name = null);
     public signal void cleared ();
 
     public abstract void add_media (Media to_remove);
