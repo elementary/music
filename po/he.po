@@ -3,56 +3,56 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-11 16:38+0100\n"
-"PO-Revision-Date: 2012-09-15 22:32+0000\n"
-"Last-Translator: דוביקס <dovix2003@gmail.com>\n"
+"PO-Revision-Date: 2013-01-15 19:31+0000\n"
+"Last-Translator: Roy Elazary <Roy.Hagever@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-12 05:13+0000\n"
+"X-Launchpad-Export-Date: 2013-01-16 05:21+0000\n"
 "X-Generator: Launchpad (build 16420)\n"
 "Language: \n"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "Flat"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr ""
+msgstr "קלאסית"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr ""
+msgstr "קלאב"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:73
 msgid "Dance"
-msgstr ""
+msgstr "דאנס"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "בס מלא"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "טרבל מלא"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "בס מלא + טרבל"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:77
 msgid "Headphones"
-msgstr ""
+msgstr "אוזנית"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "אולם גדול"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:79
 msgid "Live"
-msgstr ""
+msgstr "לייב"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:80
 msgid "Party"
@@ -113,14 +113,14 @@ msgstr[1] ""
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "‏%s ו־%s"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "יום %u"
+msgstr[1] "%u ימים"
 
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
 #, c-format
@@ -134,14 +134,14 @@ msgstr[1] ""
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "‏%s, ‏%s ו־%s"
 
 #. / days and hours
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "‏%s ו־%s"
 
 #. / days and minutes
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
@@ -155,7 +155,7 @@ msgstr ""
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "‏%s ו־%s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -165,7 +165,7 @@ msgstr ""
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:188
 msgid "Export Playlist"
-msgstr ""
+msgstr "יצוא רשימת השמעה"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:196
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:290
