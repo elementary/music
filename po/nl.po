@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-11 16:38+0100\n"
-"PO-Revision-Date: 2012-11-15 19:25+0000\n"
-"Last-Translator: Jaap Broekhuizen <Unknown>\n"
+"PO-Revision-Date: 2013-01-17 21:31+0000\n"
+"Last-Translator: Thomas Berends <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-12 05:13+0000\n"
-"X-Generator: Launchpad (build 16420)\n"
+"X-Launchpad-Export-Date: 2013-01-18 05:55+0000\n"
+"X-Generator: Launchpad (build 16430)\n"
 "Language: nl\n"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
@@ -166,7 +166,7 @@ msgstr "%s en %s"
 #. / for more details.
 #: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%d-%m-%Y %k:%M"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:188
 msgid "Export Playlist"
@@ -180,7 +180,7 @@ msgstr ""
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:201
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:295
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Shoutcast Afspeellijst Versie 2.0 (*.pls)"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:275
 msgid "Playlist"
@@ -193,7 +193,7 @@ msgstr "%s importeren"
 
 #: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:315
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Onherkenbaar afspeellijst bestand. Importeren mislukt."
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/noise/po/../core//Media.vala:35
@@ -207,17 +207,17 @@ msgstr "Radiostation"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:175
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$NAME op $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:178
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$NAME door $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/noelco/noise/po/../core//Media.vala:184
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$NAME door $ARTIST op $ALBUM"
 
 #: /home/noelco/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
@@ -273,7 +273,7 @@ msgstr ""
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:633
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Favoriete Nummers"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:442
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:640
@@ -293,7 +293,7 @@ msgstr "Nooit afgespeeld"
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:472
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:670
 msgid "Over Played"
-msgstr ""
+msgstr "Vaak gespeeld"
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:677
@@ -572,7 +572,7 @@ msgstr "bevat niet"
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
 msgid "is exactly"
-msgstr ""
+msgstr "is gelijk aan"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "is at most"
@@ -584,7 +584,7 @@ msgstr "is ten minste"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is within"
-msgstr ""
+msgstr "is tussen"
 
 #: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
 msgid "is before"
@@ -1055,7 +1055,7 @@ msgstr "Wachtrij"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:707
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Geen nummers in de wachtrij."
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:707
 msgid ""
@@ -1071,7 +1071,7 @@ msgstr "Geschiedenis"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:713
 msgid "No songs in History"
-msgstr ""
+msgstr "Geen nummers in geschiedenis"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:713
 msgid ""
@@ -1083,13 +1083,13 @@ msgstr ""
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:947
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:949
 msgid "New playlist"
-msgstr ""
+msgstr "Nieuwe afspeellijst"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:950
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:953
 #, c-format
 msgid "New playlist (%i)"
-msgstr ""
+msgstr "Nieuwe afspeellijst (%i)"
 
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:1152
 msgid "Import Music"
@@ -1616,18 +1616,18 @@ msgstr ""
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:64
 msgid "No Albums Found."
-msgstr ""
+msgstr "Geen albums gevonden."
 
 #: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:160
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u album"
+msgstr[1] "%u albums"
 
 #: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
@@ -1658,12 +1658,12 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:144
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:174
 msgid "Empty device!"
-msgstr ""
+msgstr "Leeg apparaat!"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:148
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:178
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "Dit apparaat bevat geen muziek"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:315
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:316
@@ -1730,7 +1730,7 @@ msgstr "Audio CD ongeldig"
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:104
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s kon de inhoud van de audio CD niet lezen"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid ""
