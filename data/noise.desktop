@@ -11,3 +11,5 @@ Categories=Audio;Music;Player;AudioVideo;GNOME;GTK;
 MimeType=x-content/audio-player;x-content/audio-cdda;application/x-ogg;application/ogg;audio/x-vorbis+ogg;audio/x-scpls;audio/x-mp3;audio/x-mpeg;audio/mpeg;audio/x-mpegurl;audio/x-flac;audio/x-ms-wma;
 StartupNotify=true
 X-GNOME-Gettext-Domain=noise
+X-GNOME-Keywords=Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;
+X-AppInstall-Keywords=Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;

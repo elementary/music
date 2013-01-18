@@ -1,8 +1,5 @@
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
- *
- * Originaly Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2011-2012       Corentin Noël <tintou@mailoo.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -20,15 +17,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* Merely a place holder for multiple pieces of information regarding
- * the current media playing. Mostly here because of dependence. */
- 
- // TODO: Complete Rewrite !!!!!!!!!!!!
-
-using Gtk;
-using Gee;
-using Granite.Widgets;
-
 #if USE_GRANITE_DECORATED_WINDOW
 public class Noise.SmartPlaylistEditor : Granite.Widgets.LightWindow {
 #else
@@ -36,248 +24,244 @@ public class Noise.SmartPlaylistEditor : Window {
 #endif
 
     SmartPlaylist sp;
-    
-    VBox content;
-    HBox padding;
-    
-    private Label nameLabel;
-    private Label rulesLabel;
-    private Label optionsLabel;
-    
+    SmartPlaylist receivedsp;
     private bool is_new = false;
-    
-    Granite.Widgets.HintedEntry _name;
-    ComboBoxText comboMatch;
-    VBox vertQueries;
-    Gee.ArrayList<SmartPlaylistEditorQuery> spQueries;
-    Button addButton;
-    CheckButton limitMedias;
-    SpinButton mediaLimit;
-    Button save;
-    
+    private Granite.Widgets.HintedEntry name_entry;
+    private Gtk.ComboBoxText match_combobox;
+    private Gtk.Button save_button;
+    private Gtk.Grid main_grid;
+    private Gtk.Grid queries_grid;
+    private Gtk.CheckButton limit_check;
+    private Gtk.SpinButton limit_spin;
+    private Gtk.Button add_button;
+    private Gee.ArrayList<SmartPlaylistEditorQuery> queries_list;
+    private int row = 0;
+
     public SmartPlaylistEditor(SmartPlaylist? sp = null) {
         
         this.title = _("Smart Playlist Editor");
         
         if (sp == null) {
             is_new = true;
-            this.sp = new SmartPlaylist(App.instance.library_manager.media ());
         } else {
-            this.sp = sp;
+            receivedsp = sp;
         }
         
-        content = new VBox(false, 10);
-        padding = new HBox(false, 10);
+        this.sp = new SmartPlaylist(App.instance.library_manager.media ());
         
         /* start out by creating all category labels */
-        nameLabel = new Label(_("Name of Playlist"));
-        rulesLabel = new Label(_("Rules"));
-        optionsLabel = new Label(_("Options"));
+        var name_label = new Gtk.Label(_("Name of Playlist"));
+        var rules_label = new Gtk.Label(_("Rules"));
+        var options_label = new Gtk.Label(_("Options"));
         
         /* make them look good */
-        nameLabel.xalign = 0.0f;
-        rulesLabel.xalign = 0.0f;
-        optionsLabel.xalign = 0.0f;
-        nameLabel.set_markup("<b>" + Markup.escape_text (_("Name of Playlist"), -1) + "</b>");
-        rulesLabel.set_markup("<b>" + Markup.escape_text (_("Rules"), -1) + "</b>");
-        optionsLabel.set_markup("<b>" + Markup.escape_text (_("Options"), -1) + "</b>");
+        name_label.xalign = 0.0f;
+        rules_label.xalign = 0.0f;
+        options_label.xalign = 0.0f;
+        name_label.set_markup("<b>" + Markup.escape_text (_("Name of Playlist"), -1) + "</b>");
+        rules_label.set_markup("<b>" + Markup.escape_text (_("Rules"), -1) + "</b>");
+        options_label.set_markup("<b>" + Markup.escape_text (_("Options"), -1) + "</b>");
         
         /* add the name entry */
-        _name = new Granite.Widgets.HintedEntry(_("Playlist Title"));
-        if(sp.name != "")
-            _name.set_text(sp.name);
+        name_entry = new Granite.Widgets.HintedEntry (_("Playlist Title"));
+        if(is_new == false)
+            name_entry.set_text(sp.name);
         
-    /* create match checkbox/combo combination */
-        HBox matchBox = new HBox(false, 2);
-        Label tMatch = new Label(_("Match"));
-        comboMatch = new ComboBoxText();
-        comboMatch.insert_text(0, _("any"));
-        comboMatch.insert_text(1, _("all"));
-        Label tOfTheFollowing = new Label(_("of the following:"));
-        
-        matchBox.pack_start(tMatch, false, false, 0);
-        matchBox.pack_start(comboMatch, false, false, 0);
-        matchBox.pack_start(tOfTheFollowing, false, false, 0);
-        
-        comboMatch.set_active(sp.conditional);
+        var match_grid = new Gtk.Grid ();
+        var match_label = new Gtk.Label(_("Match"));
+        match_combobox = new Gtk.ComboBoxText ();
+        match_combobox.insert_text(0, _("any"));
+        match_combobox.insert_text(1, _("all"));
+        match_combobox.set_active(sp.conditional);
+        var match_following_label = new Gtk.Label(_("of the following:"));
+        match_grid.attach (match_label, 0, 0, 1, 1);
+        match_grid.attach (match_combobox, 1, 0, 1, 1);
+        match_grid.attach (match_following_label, 2, 0, 1, 1);
         
         /* create rule list */
-        spQueries = new Gee.ArrayList<SmartPlaylistEditorQuery>();
-        vertQueries = new VBox(true, 2);
+        queries_list = new Gee.ArrayList<SmartPlaylistEditorQuery>();
+        queries_grid = new Gtk.Grid ();
+        queries_grid.column_spacing = 12;
+        queries_grid.expand = true;
         foreach(SmartQuery q in sp.queries()) {
-            SmartPlaylistEditorQuery speq = new SmartPlaylistEditorQuery(q);
-            
-            vertQueries.pack_start(speq._box, false, true, 1);
-            spQueries.add(speq);
+            var editor_query = new SmartPlaylistEditorQuery (q);
+            editor_query.removed.connect (() => {queries_list.remove (editor_query);});
+            queries_grid.attach (editor_query.grid, 0, row, 1, 1);
+            queries_list.add(editor_query);
+            row++;
         }
         
         if(sp.queries().size == 0) {
-            addRow();
+            add_row();
         }
         
-        addButton = new Gtk.Button.from_stock(Gtk.Stock.ADD);
-        vertQueries.pack_end(addButton, false, true, 1);
-        addButton.clicked.connect(addButtonClick);
+        add_button = new Gtk.Button.from_stock (Gtk.Stock.ADD);
+        queries_grid.attach (add_button, 0, row, 1, 1);
+        add_button.clicked.connect(add_button_click);
         
         /* create extra option: limiter */
-        limitMedias = new CheckButton.with_label(_("Limit to"));
-        mediaLimit = new SpinButton.with_range(0, 500, 10);
-        Label limiterLabel = new Label(_("items"));
+        var limiter_grid = new Gtk.Grid ();
+        limit_check = new Gtk.CheckButton.with_label(_("Limit to"));
+        limit_spin = new Gtk.SpinButton.with_range(0, 500, 10);
+        var limit_label = new Gtk.Label(_("items"));
         
-        limitMedias.set_active(sp.limit);
-        mediaLimit.set_value((double)sp.limit_amount);
+        limit_check.set_active (sp.limit);
+        limit_spin.set_value ((double)sp.limit_amount);
         
-        HBox limiterBox = new HBox(false, 2);
-        limiterBox.pack_start(limitMedias, false, false, 0);
-        limiterBox.pack_start(mediaLimit, false, false, 0);
-        limiterBox.pack_start(limiterLabel, false, false, 0);
+        limiter_grid.attach (limit_check, 0, 0, 1, 1);
+        limiter_grid.attach (limit_spin, 1, 0, 1, 1);
+        limiter_grid.attach (limit_label, 2, 0, 1, 1);
         
         /* add the Save button on bottom */
-        HButtonBox bottomButtons = new HButtonBox();
-        bottomButtons.set_spacing (6);
-        save = new Gtk.Button.from_stock(Gtk.Stock.SAVE);
-        var close_button = new Gtk.Button.from_stock(Gtk.Stock.CANCEL);
-        bottomButtons.set_layout(ButtonBoxStyle.END);
-        bottomButtons.pack_end(close_button, false, false, 0);
-        bottomButtons.pack_end(save, false, false, 0);
+        var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        button_box.spacing = 6;
+        save_button = new Gtk.Button.from_stock (Gtk.Stock.SAVE);
+        var close_button = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
+        button_box.set_layout (Gtk.ButtonBoxStyle.END);
+        button_box.pack_end (close_button, false, false, 0);
+        button_box.pack_end (save_button, false, false, 0);
         
-        /* put it all together */
-        content.pack_start(UI.wrap_alignment (nameLabel, 10, 0, 0, 0), false, true, 0);
-        content.pack_start(UI.wrap_alignment (_name, 0, 10, 0, 10), false, true, 0);
-        content.pack_start(rulesLabel, false, true, 0);
-        content.pack_start(UI.wrap_alignment (matchBox, 0, 10, 0, 10) , false, true, 0);
-        content.pack_start(UI.wrap_alignment (vertQueries, 0, 10, 0, 10), false, true, 0);
-        content.pack_start(optionsLabel, false, true, 0);
-        content.pack_start(UI.wrap_alignment (limiterBox, 0, 10, 0, 10), false, true, 0);
-        content.pack_start(bottomButtons, false, false, 10);
-        
-        padding.pack_start(content, true, true, 10);
+        main_grid = new Gtk.Grid ();
+        main_grid.expand = true;
+        main_grid.margin = 12;
+        main_grid.column_spacing = 12;
+        main_grid.row_spacing = 6;
+        main_grid.attach (name_label, 0, 0, 3, 1);
+        main_grid.attach (name_entry, 0, 1, 3, 1);
+        main_grid.attach (rules_label, 0, 2, 3, 1);
+        main_grid.attach (match_grid, 0, 3, 3, 1);
+        main_grid.attach (queries_grid, 0, 4, 3, 1);
+        main_grid.attach (options_label, 0, 5, 3, 1);
+        main_grid.attach (limiter_grid, 0, 6, 3, 1);
+        main_grid.attach (button_box, 0, 7, 3, 1);
+        add (main_grid);
         
         // Validate initial state
-        nameChanged ();
+        name_changed ();
         
-        add(padding);
-        
-        save.clicked.connect(saveClick);
-        close_button.clicked.connect(closeClick);
-        _name.changed.connect(nameChanged);
+        save_button.clicked.connect(save_click);
+        close_button.clicked.connect(close_click);
+        name_entry.changed.connect(name_changed);
     }
     
     public void load_smart_playlist () {
         
-        foreach(SmartPlaylistEditorQuery speq in spQueries) {
-            speq.fieldChanged();
+        foreach(SmartPlaylistEditorQuery speq in queries_list) {
+            speq.field_changed();
         }
     }
     
-    void nameChanged() {
-        if (String.is_white_space (_name.get_text())) {
-            save.set_sensitive(false);
+    private void name_changed() {
+        if (String.is_white_space (name_entry.get_text())) {
+            save_button.set_sensitive(false);
             return;
         }
         else {
             foreach (var p in App.instance.library_manager.smart_playlists ()) {
-                var fixed_name = _name.get_text ().strip ();
-                if((sp == null || sp.rowid != p.rowid) && fixed_name == p.name) {
-                    save.set_sensitive(false);
+                var fixed_name = name_entry.get_text ().strip ();
+                if((sp == null || receivedsp.rowid != p.rowid) && fixed_name == p.name) {
+                    save_button.set_sensitive(false);
                     return;
                 }
             }
         }
 
-        save.set_sensitive(true);
+        save_button.set_sensitive(true);
     }
 
-    public void addRow() {
-        SmartPlaylistEditorQuery speq = new SmartPlaylistEditorQuery(new SmartQuery());
-        
-        vertQueries.pack_start(speq._box, false, true, 1);
-        spQueries.add(speq);
-        
+    public void add_row() {
+        if (add_button.parent != null)
+            queries_grid.remove (add_button);
+        var editor_query = new SmartPlaylistEditorQuery (new SmartQuery());
+        editor_query.removed.connect (() => {queries_list.remove (editor_query);});
+        queries_grid.attach (editor_query.grid, 0, row, 1, 1);
+        queries_list.add(editor_query);
+        row++;
+        queries_grid.attach (add_button, 0, row, 1, 1);
     }
     
-    public virtual void addButtonClick() {
-        addRow();
+    public virtual void add_button_click() {
+        add_row();
     }
     
-    public virtual void closeClick() {
-        sp.clearQueries();
+    public virtual void close_click() {
         
         this.destroy();
     }
     
-    public virtual void saveClick() {
-        sp.clearQueries();
-        foreach(SmartPlaylistEditorQuery speq in spQueries) {
-            if(speq._box.visible)
-                sp.addQuery(speq.getQuery());
+    public virtual void save_click() {
+        receivedsp.clearQueries();
+        foreach(SmartPlaylistEditorQuery speq in queries_list) {
+                receivedsp.addQuery(speq.get_query());
         }
         
-        sp.name = _name.text.strip ();
-        sp.conditional = (SmartPlaylist.ConditionalType) comboMatch.get_active ();
-        sp.limit = limitMedias.get_active();
-        sp.limit_amount = (int)mediaLimit.get_value();
+        sp.name = name_entry.text.strip ();
+        sp.conditional = (SmartPlaylist.ConditionalType) match_combobox.get_active ();
+        sp.limit = limit_check.get_active();
+        sp.limit_amount = (int)limit_spin.get_value();
         if (is_new) {
             App.instance.library_manager.add_smart_playlist (sp);
         }
         this.destroy();
     }
+    
 }
-
 public class Noise.SmartPlaylistEditorQuery : GLib.Object {
     private SmartQuery _q;
     
-    public HBox _box;
-    private ComboBoxText _field;
-    private ComboBoxText _comparator;
-    private Entry _value;
-    private Rating _valueRating;
-    private SpinButton _valueNumerical;
-    private ComboBoxText _valueOption;
-    private Label _units;
-    private Button _remove;
+    public Gtk.Grid grid;
+    private Gtk.ComboBoxText field_combobox;
+    private Gtk.ComboBoxText comparator_combobox;
+    private Granite.Widgets.Rating _valueRating;
+    private Gtk.SpinButton _valueNumerical;
+    private Gtk.ComboBoxText _valueOption;
+    private Gtk.Label _units;
+    private Gtk.Button remove_button;
+    private Gtk.Entry value_entry;
     
-    private HashTable<int, SmartQuery.ComparatorType> comparators;
+    private GLib.HashTable<int, SmartQuery.ComparatorType> comparators;
     
-    public signal void removed();
+    public signal void removed ();
+    public signal void changed ();
     
     public SmartPlaylistEditorQuery(SmartQuery q) {
         _q = q;
         
-        comparators = new HashTable<int, SmartQuery.ComparatorType>(null, null);
+        comparators = new GLib.HashTable<int, SmartQuery.ComparatorType>(null, null);
         
-        _box = new HBox(false, 2);
-        _field = new ComboBoxText();
-        _comparator = new ComboBoxText();
-        _value = new Entry();
-        _valueNumerical = new SpinButton.with_range(0, 9999, 1);
-        _valueOption = new ComboBoxText();
-        _valueRating = new Rating (true, IconSize.MENU, true);
-        _remove = new Gtk.Button.from_stock(Gtk.Stock.REMOVE);
+        grid = new Gtk.Grid ();
+        field_combobox = new Gtk.ComboBoxText ();
+        comparator_combobox = new Gtk.ComboBoxText();
+        value_entry = new Gtk.Entry ();
+        _valueNumerical = new Gtk.SpinButton.with_range(0, 9999, 1);
+        _valueOption = new Gtk.ComboBoxText();
+        _valueRating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
+        remove_button = new Gtk.Button.from_stock(Gtk.Stock.REMOVE);
+        remove_button.halign = Gtk.Align.END;
         
-        _field.append_text(_("Album"));
-        _field.append_text(_("Artist"));
-        _field.append_text(_("Bitrate"));
-        _field.append_text(_("Comment"));
-        _field.append_text(_("Composer"));
-        _field.append_text(_("Date Added"));
-        _field.append_text(_("Date Released"));
-        _field.append_text(_("Genre"));
-        _field.append_text(_("Grouping"));
-        _field.append_text(_("Last Played"));
-        _field.append_text(_("Length"));
-        _field.append_text(_("Playcount"));
-        _field.append_text(_("Rating"));
-        _field.append_text(_("Skipcount"));
-        _field.append_text(_("Title"));
-        _field.append_text(_("Year"));
+        field_combobox.append_text(_("Album"));
+        field_combobox.append_text(_("Artist"));
+        field_combobox.append_text(_("Bitrate"));
+        field_combobox.append_text(_("Comment"));
+        field_combobox.append_text(_("Composer"));
+        field_combobox.append_text(_("Date Added"));
+        field_combobox.append_text(_("Date Released"));
+        field_combobox.append_text(_("Genre"));
+        field_combobox.append_text(_("Grouping"));
+        field_combobox.append_text(_("Last Played"));
+        field_combobox.append_text(_("Length"));
+        field_combobox.append_text(_("Playcount"));
+        field_combobox.append_text(_("Rating"));
+        field_combobox.append_text(_("Skipcount"));
+        field_combobox.append_text(_("Title"));
+        field_combobox.append_text(_("Year"));
         
-        _field.set_active((int)q.field);
+        field_combobox.set_active((int)q.field);
         message ("setting filed to %d\n", q.field);
-        _comparator.set_active((int)q.comparator);
+        comparator_combobox.set_active((int)q.comparator);
         
         if(needs_value (q.field)) {
-            _value.text = q.value;
+            value_entry.text = q.value;
         }
         else if(q.field == SmartQuery.FieldType.RATING) {
             _valueRating.rating = int.parse (q.value);
@@ -286,33 +270,34 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
             _valueNumerical.set_value(int.parse(q.value));
         }
             
-        _units = new Label("");
+        _units = new Gtk.Label ("");
         
-        _box.pack_start(_field, false, true, 0);
-        _box.pack_start(_comparator, false ,true, 1);
-        _box.pack_start(_value, true, true, 1);
-        _box.pack_start(_valueOption, true, true, 1);
-        _box.pack_start(_valueRating, true, true, 1);
-        _box.pack_start(_valueNumerical, true, true, 1);
-        _box.pack_start(_units, false, true, 1);
-        _box.pack_start(_remove, false, true, 0);
+        grid.hexpand = true;
+        grid.attach (field_combobox, 0, 0, 1, 1);
+        grid.attach (comparator_combobox, 1, 0, 1, 1);
+        grid.attach (value_entry, 2, 0, 1, 1);
+        grid.attach (_valueOption, 3, 0, 1, 1);
+        grid.attach (_valueRating, 3, 0, 1, 1);
+        grid.attach (_valueNumerical, 3, 0, 1, 1);
+        grid.attach (_units, 4, 0, 1, 1);
+        grid.attach (remove_button, 5, 0, 1, 1);
         
-        _box.show_all();
+        grid.show_all ();
         
-        fieldChanged();
-        _remove.clicked.connect(removeClicked);
-        _field.changed.connect(fieldChanged);
+        field_changed (false);
+        remove_button.clicked.connect (remove_clicked);
+        field_combobox.changed.connect (() => {field_changed (true);});
     }
     
-    public SmartQuery getQuery() {
-        SmartQuery rv = new SmartQuery();
+    public SmartQuery get_query () {
+        SmartQuery rv = new SmartQuery ();
         
-        rv.field = (SmartQuery.FieldType)_field.get_active ();
-        rv.comparator = comparators.get(_comparator.get_active ());
+        rv.field = (SmartQuery.FieldType)field_combobox.get_active ();
+        rv.comparator = comparators.get(comparator_combobox.get_active ());
         
-        if(needs_value ((SmartQuery.FieldType)_field.get_active ()))
-            rv.value = _value.text;
-        else if(_field.get_active() == SmartQuery.FieldType.RATING)
+        if(needs_value ((SmartQuery.FieldType)field_combobox.get_active ()))
+            rv.value = value_entry.text;
+        else if(field_combobox.get_active() == SmartQuery.FieldType.RATING)
             rv.value = _valueRating.rating.to_string();
         else
             rv.value = _valueNumerical.value.to_string();
@@ -320,19 +305,19 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         return rv;
     }
     
-    public virtual void fieldChanged() {
-        if(needs_value ((SmartQuery.FieldType)_field.get_active ())) {
-            _value.show();
+    public virtual void field_changed (bool from_user = true) {
+        if(needs_value ((SmartQuery.FieldType)field_combobox.get_active ())) {
+            value_entry.show();
             _valueNumerical.hide();
             _valueOption.hide();
             _valueRating.hide();
             
             comparators.remove_all ();
-            for(int i = 0;i < 3; ++i) _comparator.remove(0);
+            for(int i = 0;i < 3; ++i) comparator_combobox.remove(0);
             
-            _comparator.append_text(_("is"));
-            _comparator.append_text(_("contains"));
-            _comparator.append_text(_("does not contain"));
+            comparator_combobox.append_text(_("is"));
+            comparator_combobox.append_text(_("contains"));
+            comparator_combobox.append_text(_("does not contain"));
             comparators.insert (0, SmartQuery.ComparatorType.IS);
             comparators.insert (1, SmartQuery.ComparatorType.CONTAINS);
             comparators.insert (2, SmartQuery.ComparatorType.NOT_CONTAINS);
@@ -340,18 +325,18 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
             switch (_q.comparator)
             {
                 case SmartQuery.ComparatorType.CONTAINS:
-                    _comparator.set_active(1);
+                    comparator_combobox.set_active(1);
                     break;
                 case SmartQuery.ComparatorType.NOT_CONTAINS:
-                    _comparator.set_active(2);
+                    comparator_combobox.set_active(2);
                     break;
                 default: // SmartQuery.ComparatorType.IS or unset
-                    _comparator.set_active(0);
+                    comparator_combobox.set_active(0);
                     break;
             }
         }
         else {
-            if(is_rating ((SmartQuery.FieldType)_field.get_active ())) {
+            if(is_rating ((SmartQuery.FieldType)field_combobox.get_active ())) {
                 _valueNumerical.hide();
                 _valueRating.show();
             }
@@ -359,28 +344,28 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
                 _valueNumerical.show();
                 _valueRating.hide();
             }
-            _value.hide();
+            value_entry.hide();
             _valueOption.hide();
             
-            if(needs_value_2((SmartQuery.FieldType)_field.get_active ())) {
-                for(int i = 0;i < 3; ++i) _comparator.remove(0);
-                _comparator.append_text(_("is exactly"));
-                _comparator.append_text(_("is at most"));
-                _comparator.append_text(_("is at least"));
+            if(needs_value_2((SmartQuery.FieldType)field_combobox.get_active ())) {
+                for(int i = 0;i < 3; ++i) comparator_combobox.remove(0);
+                comparator_combobox.append_text(_("is exactly"));
+                comparator_combobox.append_text(_("is at most"));
+                comparator_combobox.append_text(_("is at least"));
                 comparators.insert (0, SmartQuery.ComparatorType.IS_EXACTLY);
                 comparators.insert (1, SmartQuery.ComparatorType.IS_AT_MOST);
                 comparators.insert (2, SmartQuery.ComparatorType.IS_AT_LEAST);
 
                 if ((int)_q.comparator >= 4)
-                    _comparator.set_active((int)_q.comparator-4);
+                    comparator_combobox.set_active((int)_q.comparator-4);
                 else
-                    _comparator.set_active(0);
+                    comparator_combobox.set_active(0);
             }
-            else if(is_date((SmartQuery.FieldType)_field.get_active ())) {
-                for(int i = 0;i < 3; ++i) _comparator.remove(0);
-                _comparator.append_text(_("is exactly"));
-                _comparator.append_text(_("is within"));
-                _comparator.append_text(_("is before"));
+            else if(is_date((SmartQuery.FieldType)field_combobox.get_active ())) {
+                for(int i = 0;i < 3; ++i) comparator_combobox.remove(0);
+                comparator_combobox.append_text(_("is exactly"));
+                comparator_combobox.append_text(_("is within"));
+                comparator_combobox.append_text(_("is before"));
                 comparators.insert (0, SmartQuery.ComparatorType.IS_EXACTLY);
                 comparators.insert (1, SmartQuery.ComparatorType.IS_WITHIN);
                 comparators.insert (2, SmartQuery.ComparatorType.IS_BEFORE);
@@ -388,40 +373,43 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
                 switch (_q.comparator)
                 {
                     case SmartQuery.ComparatorType.IS_WITHIN:
-                        _comparator.set_active (1);
+                        comparator_combobox.set_active (1);
                         break;
                     case SmartQuery.ComparatorType.IS_BEFORE:
-                        _comparator.set_active (2);
+                        comparator_combobox.set_active (2);
                         break;
                     default: // SmartQuery.ComparatorType.IS_EXACTLY or unset
-                        _comparator.set_active (0);
+                        comparator_combobox.set_active (0);
                         break;
                 }
             }
         }
         
-        _comparator.show();
+        comparator_combobox.show();
         
         //helper for units
-        if(_field.get_active_text() == _("Length")) {
+        if(field_combobox.get_active_text() == _("Length")) {
             _units.set_text(_("seconds"));
             _units.show();
         }
-        else if(is_date((SmartQuery.FieldType)_field.get_active ())) {
+        else if(is_date((SmartQuery.FieldType)field_combobox.get_active ())) {
             _units.set_text(_("days ago"));
             _units.show();
         }
-        else if((SmartQuery.FieldType)_field.get_active () == SmartQuery.FieldType.BITRATE) {
+        else if((SmartQuery.FieldType)field_combobox.get_active () == SmartQuery.FieldType.BITRATE) {
             _units.set_text(_("kbps"));
             _units.show();
         }
         else
             _units.hide();
+            
+        if (from_user == true)
+            changed ();
     }
     
-    public virtual void removeClicked() {
+    public virtual void remove_clicked() {
         removed();
-        this._box.hide();
+        this.grid.hide();
     }
     
     public bool needs_value (SmartQuery.FieldType compared) {
