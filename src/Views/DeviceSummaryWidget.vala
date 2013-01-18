@@ -21,8 +21,6 @@
  */
 
 public class Noise.DeviceSummaryWidget : Gtk.EventBox {
-    LibraryManager lm;
-    LibraryWindow lw;
     Device dev;
     
     Gtk.Grid main_grid;
@@ -50,9 +48,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     int podcast_index;
     //int audiobook_index;
     
-    public DeviceSummaryWidget (LibraryManager lm, LibraryWindow lw, Device d) {
-        this.lm = lm;
-        this.lw = lw;
+    public DeviceSummaryWidget (Device d) {
         this.dev = d;
         
         build_ui ();
@@ -175,7 +171,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         else {
             bool success = sync_music_combobox.set_active_id (dev.get_preferences().music_playlist);
             if (!success) {
-                //lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+                //notification_manager.doAlertNotification ("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
                 dev.get_preferences ().music_playlist = "";
                 dev.get_preferences ().sync_all_music = true;
                 sync_music_combobox.set_active (0);
@@ -189,7 +185,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         else {
             bool success = sync_podcasts_combobox.set_active_id(dev.get_preferences().podcast_playlist);
             if (!success) {
-                //lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().podcast_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+                //notification_manager.doAlertNotification ("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().podcast_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
                 dev.get_preferences ().podcast_playlist = "";
                 dev.get_preferences ().sync_all_podcasts = true;
                 sync_podcasts_combobox.set_active (0);
@@ -202,7 +198,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         else {
             bool success = audiobookDropdown.set_active_id(dev.get_preferences().audiobook_playlist);
             if(!success) {
-                //lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+                //notification_manager.doAlertNotification ("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
                 dev.get_preferences().audiobook_playlist = "";
                 dev.get_preferences().sync_all_audiobooks = true;
                 audiobookDropdown.set_active(0);
@@ -358,6 +354,8 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_podcasts_combobox.sensitive = sync_podcasts_check.active;
 #endif
         //audiobookDropdown.sensitive = syncAudiobooks.active;
+        
+        App.instance.library_manager.dbu.save_device (pref);
     }
     
     public bool all_medias_selected () {
@@ -403,7 +401,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         /* add all playlists */
         var smart_playlist_pix = Icons.SMART_PLAYLIST.render (Gtk.IconSize.MENU, null);
         var playlist_pix = Icons.PLAYLIST.render (Gtk.IconSize.MENU, null);
-        foreach (var p in lm.smart_playlists ()) {
+        foreach (var p in App.instance.library_manager.smart_playlists ()) {
             //bool music, podcasts, audiobooks;
             //test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
             
@@ -422,7 +420,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 //audiobook_list.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
             //}
         }
-        foreach (var p in lm.playlists ()) {
+        foreach (var p in App.instance.library_manager.playlists ()) {
             //bool music, podcasts, audiobooks;
             //test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
             
@@ -490,15 +488,15 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         if (pref.sync_music) {
             if (pref.sync_all_music) {
-                foreach (var s in lm.media ()) {
+                foreach (var s in App.instance.library_manager.media ()) {
                     if (s.mediatype == 0 && !s.isTemporary)
                         list.add (s);
                 }
             }
             else {
-                GLib.Object p = lm.playlist_from_name (pref.music_playlist);
+                GLib.Object p = App.instance.library_manager.playlist_from_name (pref.music_playlist);
                 if (p == null)
-                    p = lm.smart_playlist_from_name (pref.music_playlist);
+                    p = App.instance.library_manager.smart_playlist_from_name (pref.music_playlist);
                 
                 if (p != null) {
                     if (p is StaticPlaylist) {
@@ -515,7 +513,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                     }
                 }
                 else {
-                    lw.doAlert(_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.music_playlist + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
+                    notification_manager.doAlertNotification (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.music_playlist + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
                     
                     pref.music_playlist = "";
                     pref.sync_all_music = true;
@@ -528,32 +526,32 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 #if HAVE_PODCASTS
         if(pref.sync_podcasts) {
             if(pref.sync_all_podcasts) {
-                foreach (var s in lm.media()) {
+                foreach (var s in App.instance.library_manager.media()) {
                     if (s != null && s.mediatype == 1 && !s.isTemporary)
                         list.add (s);
                 }
             }
             else {
-                GLib.Object p = lm.playlist_from_name(pref.podcast_playlist);
+                GLib.Object p = App.instance.library_manager.playlist_from_name(pref.podcast_playlist);
                 if(p == null)
-                    p = lm.smart_playlist_from_name(pref.podcast_playlist);
+                    p = App.instance.library_manager.smart_playlist_from_name(pref.podcast_playlist);
                 
                 if(p != null) {
                     if(p is Playlist) {
                         foreach(int i in ((Playlist)p).media ()) {
-                            if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).uri.has_prefix("http:/"))
+                            if(App.instance.library_manager.media_from_id(i).mediatype == 1 && !App.instance.library_manager.media_from_id(i).uri.has_prefix("http:/"))
                                 list.add(i);
                         }
                     }
                     else {
                         foreach(int i in ((SmartPlaylist)p).analyze(lm, lm.media_ids())) {
-                            if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).uri.has_prefix("http:/"))
+                            if(App.instance.library_manager.media_from_id(i).mediatype == 1 && !App.instance.library_manager.media_from_id(i).uri.has_prefix("http:/"))
                                 list.add(i);
                         }
                     }
                 }
                 else {
-                    lw.doAlert(_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.podcast_playlist + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
+                    notification_manager.doAlertNotification (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.podcast_playlist + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
                     pref.podcast_playlist = "";
                     pref.sync_all_podcasts = true;
                     sync_music_combobox.set_active(0);
@@ -590,7 +588,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                     }
                 }
                 else {
-                    lw.doAlert("Sync Failed", "The playlist named <b>" + pref.audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+                    notification_manager.doAlertNotification ("Sync Failed", "The playlist named <b>" + pref.audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
                     pref.audiobook_playlist = "";
                     pref.sync_all_audiobooks = true;
                     sync_music_combobox.set_active(0);
@@ -601,18 +599,18 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         
         bool fits = dev.will_fit(list);
         if(!fits) {
-            lw.doAlert(_("Cannot Sync"), _("Cannot sync device with selected sync settings. Not enough space on disk") +"\n");
+            notification_manager.doAlertNotification (_("Cannot Sync"), _("Cannot sync device with selected sync settings. Not enough space on disk") +"\n");
         }
         else if(dev.is_syncing()) {
-            lw.doAlert(_("Cannot Sync"), _("Device is already being synced."));
+            notification_manager.doAlertNotification (_("Cannot Sync"), _("Device is already being synced."));
         }
         else {
             var found = new Gee.LinkedList<int>();
             var not_found = new Gee.LinkedList<Media>();
-            lm.media_from_name (dev.get_medias(), ref found, ref not_found);
+            App.instance.library_manager.media_from_name (dev.get_medias(), ref found, ref not_found);
             
             if(not_found.size > 0) { // hand control over to SWD
-                SyncWarningDialog swd = new SyncWarningDialog(lm, lw, dev, list, not_found);
+                SyncWarningDialog swd = new SyncWarningDialog(dev, list, not_found);
                 swd.show();
             }
             else {

@@ -23,8 +23,6 @@
 using Gtk;
 
 public class Noise.FileNotFoundDialog : Window {
-	LibraryManager lm;
-	LibraryWindow lw;
 	Gee.LinkedList<Media> media_list;
 	
 	private VBox content;
@@ -35,17 +33,15 @@ public class Noise.FileNotFoundDialog : Window {
 	Button rescanLibrary;
 	Button doNothing;
 	
-	public FileNotFoundDialog(LibraryManager lm, LibraryWindow lw, Gee.LinkedList<Media> media_list) {
-		this.lm = lm;
-		this.lw = lw;
+	public FileNotFoundDialog (Gee.LinkedList<Media> media_list) {
 		this.media_list = media_list;
 
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.title = App.instance.get_name ();
-		this.set_modal(true);
-		this.set_transient_for(lw);
+		this.set_modal (true);
+		this.set_transient_for (App.instance.main_window);
 		this.destroy_with_parent = true;
 		
 		set_default_size(475, -1);
@@ -84,7 +80,7 @@ public class Noise.FileNotFoundDialog : Window {
 
 
 		
-		rescanLibrary.set_sensitive(!lm.doing_file_operations());
+		rescanLibrary.set_sensitive(!App.instance.library_manager.doing_file_operations());
 		
 		/* set up controls layout */
 		HBox information = new HBox(false, 0);
@@ -114,15 +110,15 @@ public class Noise.FileNotFoundDialog : Window {
 			this.destroy(); 
 		});
 		
-		lm.file_operations_started.connect(file_operations_started);
-		lm.file_operations_done.connect(file_operations_done);
+		App.instance.library_manager.file_operations_started.connect(file_operations_started);
+		App.instance.library_manager.file_operations_done.connect(file_operations_done);
 		
 		add(padding);
 		show_all();
 	}
 	
 	void removeMediaClicked() {
-		lm.remove_media (media_list, false);
+		App.instance.library_manager.remove_media (media_list, false);
 		
 		this.destroy();
 	}
@@ -138,7 +134,7 @@ public class Noise.FileNotFoundDialog : Window {
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
 		
 		// try and help user by setting a sane default folder
-		var invalid_file = File.new_for_uri(lm.media_from_id(media_id).uri);
+		var invalid_file = File.new_for_uri(App.instance.library_manager.media_from_id(media_id).uri);
 		
 		if(invalid_file.get_parent().query_exists())
 			file_chooser.set_current_folder(invalid_file.get_parent().get_path());
@@ -161,14 +157,14 @@ public class Noise.FileNotFoundDialog : Window {
 			m.location_unknown = false;
 			m.unique_status_image = null;
 			// TODO: lm.lw.media_found(m.rowid);
-			lm.update_media_item (m, false, false);
+			App.instance.library_manager.update_media_item (m, false, false);
 			
 			this.destroy();
 		}
 	}
 	
 	void rescanLibraryClicked() {
-		lw.rescan_music_folder ();
+		App.instance.main_window.rescan_music_folder ();
 		
 		this.destroy();
 	}

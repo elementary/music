@@ -664,8 +664,8 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
             query.set_string(":name", _("Favorite Songs"));
             query.set_int(":and_or", 0);
-            query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>13<val_sep>6<val_sep>4<query_sep>");
-            query.set_int(":limit", 0);
+            query.set_string(":queries", "11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>12<val_sep>6<val_sep>3<query_sep>");
+            query.set_int(":limit", 1);
             query.set_int(":limit_amount", 50);
             query.execute();
 
@@ -673,7 +673,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.set_int(":and_or", 1);
             query.set_string(":queries", "5<val_sep>7<val_sep>7<query_sep>");
             query.set_int(":limit", 1);
-            query.set_int(":limit_amount", 20);
+            query.set_int(":limit_amount", 50);
             query.execute();
 
             /*
@@ -687,29 +687,29 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
             query.set_string(":name", _("Recent Favorites"));
             query.set_int(":and_or", 0);
-            query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>9<val_sep>7<val_sep>7<query_sep>13<val_sep>6<val_sep>4<query_sep>");
-            query.set_int(":limit", 0);
+            query.set_string(":queries", "11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>9<val_sep>7<val_sep>7<query_sep>");
+            query.set_int(":limit", 1);
             query.set_int(":limit_amount", 50);
             query.execute();
 
             query.set_string(":name", _("Never Played"));
             query.set_int(":and_or", 0);
-            query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>12<val_sep>4<val_sep>0<query_sep>");
-            query.set_int(":limit", 0);
+            query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>");
+            query.set_int(":limit", 1);
             query.set_int(":limit_amount", 50);
             query.execute();
 
             query.set_string(":name", _("Over Played"));
             query.set_int(":and_or", 0);
-            query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>12<val_sep>6<val_sep>10<query_sep>");
-            query.set_int(":limit", 0);
+            query.set_string(":queries", "11<val_sep>4<val_sep>10<query_sep>");
+            query.set_int(":limit", 1);
             query.set_int(":limit_amount", 50);
             query.execute();
 
             query.set_string(":name", _("Not Recently Played"));
             query.set_int(":and_or", 1);
             query.set_string(":queries", "9<val_sep>8<val_sep>7<query_sep>");
-            query.set_int(":limit", 0);
+            query.set_int(":limit", 1);
             query.set_int(":limit_amount", 50);
             query.execute();
 
@@ -1012,10 +1012,10 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             database.execute("DELETE FROM `devices`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
+            Query query = transaction.prepare("INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
             `sync_podcasts`, `sync_audiobooks`, `sync_all_music`, `sync_all_podcasts`, `sync_all_audiobooks`, `music_playlist`,
             `podcast_playlist`, `audiobook_playlist`, `last_sync_time`) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
-            :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);""");
+            :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);");
 
             foreach(DevicePreferences dp in devices) {
                 query.set_string(":unique_id", dp.id);
@@ -1041,6 +1041,55 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
         catch(SQLHeavy.Error err) {
             warning ("Could not save devices: %s\n", err.message);
+        }
+    }
+
+    public void save_device (DevicePreferences dp) {
+        try {
+            remove_device (dp);
+            transaction = database.begin_transaction();
+            Query query = transaction.prepare("INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
+            `sync_podcasts`, `sync_audiobooks`, `sync_all_music`, `sync_all_podcasts`, `sync_all_audiobooks`, `music_playlist`,
+            `podcast_playlist`, `audiobook_playlist`, `last_sync_time`) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
+            :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);");
+
+            query.set_string(":unique_id", dp.id);
+            query.set_int(":sync_when_mounted", dp.sync_when_mounted ? 1 : 0);
+
+            query.set_int(":sync_music", dp.sync_music ? 1 : 0);
+            query.set_int(":sync_podcasts", dp.sync_podcasts ? 1 : 0);
+            query.set_int(":sync_audiobooks", dp.sync_audiobooks ? 1 : 0);
+
+            query.set_int(":sync_all_music", dp.sync_all_music ? 1 : 0);
+            query.set_int(":sync_all_podcasts", dp.sync_all_podcasts ? 1 : 0);
+            query.set_int(":sync_all_audiobooks", dp.sync_all_audiobooks ? 1 : 0);
+
+            query.set_string(":music_playlist", dp.music_playlist);
+            query.set_string(":podcast_playlist", dp.podcast_playlist);
+            query.set_string(":audiobook_playlist", dp.audiobook_playlist);
+            query.set_int(":last_sync_time", dp.last_sync_time);
+
+            query.execute();
+
+            transaction.commit();
+        }
+        catch(SQLHeavy.Error err) {
+            warning ("Could not save device: %s\n", err.message);
+        }
+    }
+
+    public void remove_device (DevicePreferences device) {
+        try {
+            transaction = database.begin_transaction();
+            Query query = transaction.prepare("DELETE FROM `devices` WHERE unique_id=:unique_id");
+
+            query.set_string(":unique_id", device.id);
+            query.execute();
+
+            transaction.commit();
+        }
+        catch (SQLHeavy.Error err) {
+            warning ("Could not remove smart playlist from db: %s\n", err.message);
         }
     }
 }

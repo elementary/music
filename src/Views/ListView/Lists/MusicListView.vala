@@ -177,7 +177,7 @@ public class Noise.MusicListView : GenericList {
             if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
                 mediaMenuNewPlaylist.set_visible(false);
             }
-            foreach (var playlist in lm.playlists ()) {
+            foreach (var playlist in App.instance.library_manager.playlists ()) {
                 // Don't include this playlist in the list of available options
                 if (playlist.rowid == this.get_relative_id ())
                     continue;
@@ -329,9 +329,9 @@ public class Noise.MusicListView : GenericList {
 
         int id = to_edit.get(0);
         string music_folder_uri = File.new_for_path(main_settings.music_folder).get_uri();
-        if(to_edit.size == 1 && !File.new_for_uri(lm.media_from_id(id).uri).query_exists() && lm.media_from_id(id).uri.has_prefix(music_folder_uri)) {
-            lm.media_from_id(id).unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU);
-            FileNotFoundDialog fnfd = new FileNotFoundDialog(lm, lm.lw, to_edit_med);
+        if(to_edit.size == 1 && !File.new_for_uri(App.instance.library_manager.media_from_id(id).uri).query_exists() && App.instance.library_manager.media_from_id(id).uri.has_prefix(music_folder_uri)) {
+            App.instance.library_manager.media_from_id(id).unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU);
+            FileNotFoundDialog fnfd = new FileNotFoundDialog(to_edit_med);
             fnfd.present();
         }
         else {
@@ -339,7 +339,7 @@ public class Noise.MusicListView : GenericList {
             for(int i = 0; i < get_visible_table().size(); ++i) {
                 list.add (get_object_from_index(i).rowid);
             }
-            MediaEditor se = new MediaEditor(lm, list, to_edit);
+            MediaEditor se = new MediaEditor(list, to_edit);
             se.medias_saved.connect(mediaEditorSaved);
         }
     }
@@ -347,10 +347,10 @@ public class Noise.MusicListView : GenericList {
     protected virtual void mediaEditorSaved(LinkedList<int> medias) {
         LinkedList<Media> toUpdate = new LinkedList<Media>();
         foreach(int i in medias)
-            toUpdate.add(lm.media_from_id(i));
+            toUpdate.add(App.instance.library_manager.media_from_id(i));
 
         // could have edited rating, so record_time is true
-        lm.update_media (toUpdate, true, true);
+        App.instance.library_manager.update_media (toUpdate, true, true);
 
         if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
             // make sure these medias still belongs here
@@ -408,7 +408,7 @@ public class Noise.MusicListView : GenericList {
             m.rating = new_rating;
             los.add(m);
         }
-        lm.update_media (los, false, true);
+        App.instance.library_manager.update_media (los, false, true);
     }
 
     protected override void mediaRemoveClicked() {
@@ -419,9 +419,9 @@ public class Noise.MusicListView : GenericList {
         }
 
         if (get_hint() == ViewWrapper.Hint.MUSIC) {
-            var dialog = new RemoveFilesDialog (lm.lw, to_remove, get_hint());
+            var dialog = new RemoveFilesDialog (to_remove, get_hint());
             dialog.remove_media.connect ( (delete_files) => {
-                lm.remove_media (to_remove, delete_files);
+                App.instance.library_manager.remove_media (to_remove, delete_files);
             });
         }
         else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
@@ -430,11 +430,11 @@ public class Noise.MusicListView : GenericList {
         }
 
         if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-            lm.playlist_from_id(relative_id).remove_medias (to_remove);
+            App.instance.library_manager.playlist_from_id(relative_id).remove_medias (to_remove);
         }
 
         if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST && is_queue == true) {
-            lm.playlist_from_id(relative_id).remove_medias (to_remove);
+            App.instance.library_manager.playlist_from_id(relative_id).remove_medias (to_remove);
         }
     }
 
@@ -711,11 +711,13 @@ public class Noise.MusicListView : GenericList {
                 renderer = new SmartAlbumRenderer ();
                 tvc.set_cell_data_func (renderer, cell_data_helper.album_art_func);
                 // XXX set_row_separator_func (cell_data_helper.row_separator_func);
-#endif
+            break;
+# else
+            case ListColumn.ALBUM:
+# endif
 
             case ListColumn.TITLE:
             case ListColumn.ARTIST:
-            case ListColumn.ALBUM:
             case ListColumn.ALBUM_ARTIST:
             case ListColumn.COMPOSER:
             case ListColumn.GENRE:

@@ -24,8 +24,6 @@ using Gtk;
 using Gee;
 
 public class Noise.SyncWarningDialog : Window {
-	LibraryManager lm;
-	LibraryWindow lw;
 	Device d;
 	Gee.LinkedList<Media> to_sync;
 	Gee.LinkedList<Media> to_remove;
@@ -37,9 +35,7 @@ public class Noise.SyncWarningDialog : Window {
 	Button sync;
 	Button cancel;
 	
-	public SyncWarningDialog(LibraryManager lm, LibraryWindow lw, Device d, Gee.LinkedList<Media> to_sync, Gee.LinkedList<Media> removed) {
-		this.lm = lm;
-		this.lw = lw;
+	public SyncWarningDialog(Device d, Gee.LinkedList<Media> to_sync, Gee.LinkedList<Media> removed) {
 		this.d = d;
 		this.to_sync = to_sync;
 		this.to_remove = removed;
@@ -48,7 +44,7 @@ public class Noise.SyncWarningDialog : Window {
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
-		this.set_transient_for(lw);
+		this.set_transient_for(App.instance.main_window);
 		this.destroy_with_parent = true;
 		
 		set_default_size(475, -1);
@@ -86,8 +82,8 @@ public class Noise.SyncWarningDialog : Window {
 		var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));		
 		title.set_markup (title_string);
 
-		importMedias.set_sensitive(!lm.doing_file_operations());
-		sync.set_sensitive(!lm.doing_file_operations());
+		importMedias.set_sensitive(!App.instance.library_manager.doing_file_operations());
+		sync.set_sensitive(!App.instance.library_manager.doing_file_operations());
 		
 		/* set up controls layout */
 		HBox information = new HBox(false, 0);
@@ -115,8 +111,8 @@ public class Noise.SyncWarningDialog : Window {
 			this.destroy(); 
 		});
 		
-		lm.file_operations_started.connect(file_operations_started);
-		lm.file_operations_done.connect(file_operations_done);
+		App.instance.library_manager.file_operations_started.connect(file_operations_started);
+		App.instance.library_manager.file_operations_done.connect(file_operations_done);
 		
 		add(padding);
 		show_all();

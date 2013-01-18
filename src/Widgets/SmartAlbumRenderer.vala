@@ -39,7 +39,7 @@ public class Noise.SmartAlbumRenderer : CellRendererText {
         if (icon != null) {
             var index = current - top;
 			Gdk.Pixbuf slice = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, icon.width, background_area.height);
-			slice.fill (0x00000000);
+			//slice.fill (0x00000000);
 			var remaining_height = (icon.height - (index * background_area.height));
 			
 			// extra_space is calculated to move the art down to be closer to the text below it. (pixel perfect)

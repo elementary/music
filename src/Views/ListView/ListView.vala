@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012- Noise Developers (http://launchpad.net/noise)
  *
  * This software is licensed under the GNU General Public License
  * (version 2 or later). See the COPYING file in this distribution.
@@ -31,7 +31,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	private Gtk.Paned browser_vpane; // for top mode
 
 	public ColumnBrowser column_browser { get; private set; }
-	public GenericList   list_view      { get; private set; }
+	public MusicListView   list_view    { get; private set; }
 
 	private int browser_hpane_position = -1;
 	private int browser_vpane_position = -1;

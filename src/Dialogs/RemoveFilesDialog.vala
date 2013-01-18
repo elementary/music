@@ -24,7 +24,6 @@ using Gtk;
 using Gee;
 
 public class Noise.RemoveFilesDialog : Window {
-	LibraryWindow lw;
 	
 	private VBox content;
 	private HBox padding;
@@ -35,14 +34,13 @@ public class Noise.RemoveFilesDialog : Window {
 	
 	public signal void remove_media(bool response);
 	
-	public RemoveFilesDialog (LibraryWindow lw, LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
-		this.lw = lw;
+	public RemoveFilesDialog (LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
 
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
-		this.set_transient_for(lw);
+		this.set_transient_for(App.instance.main_window);
 		this.destroy_with_parent = true;
 		resizable = false;
 		

@@ -27,7 +27,6 @@ using Gee;
 using Gtk;
 
 public class Noise.TransferFromDeviceDialog : Window {
-	LibraryManager lm;
 	LinkedList<Media> medias;
 	Device d;
 	
@@ -48,8 +47,7 @@ public class Noise.TransferFromDeviceDialog : Window {
 	
 	LinkedList<Media> to_transfer;
 	
-	public TransferFromDeviceDialog(LibraryWindow lw, Device d, LinkedList<Media> medias) {
-		this.lm = lw.library_manager;
+	public TransferFromDeviceDialog(Device d, LinkedList<Media> medias) {
 		this.medias = medias;
 		this.d = d;
 		
@@ -61,7 +59,7 @@ public class Noise.TransferFromDeviceDialog : Window {
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
-		this.set_transient_for(lw);
+		this.set_transient_for(App.instance.main_window);
 		this.destroy_with_parent = true;
 		
 		set_default_size(550, -1);
@@ -289,8 +287,8 @@ public class Noise.TransferFromDeviceDialog : Window {
 		to_transfer.clear();
 		mediasModel.foreach(createTransferList);
 		
-		if(lm.doing_file_operations()) {
-			lm.lw.doAlert(_("Cannot Import"), _("Noise is already doing file operations. Please wait until those finish to import from %d").printf( d.getDisplayName()));
+		if(App.instance.library_manager.doing_file_operations()) {
+			notification_manager.doAlertNotification (_("Cannot Import"), _("Noise is already doing file operations. Please wait until those finish to import from %d").printf( d.getDisplayName()));
 		}
 		else {
 			d.transfer_to_library(to_transfer);

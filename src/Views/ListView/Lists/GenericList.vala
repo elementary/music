@@ -31,8 +31,6 @@ public abstract class Noise.GenericList : FastView {
     private Gtk.CheckMenuItem smart_album_art_menu_item;
 #endif
 
-    protected LibraryManager lm;
-    protected LibraryWindow lw;
     protected ViewWrapper parent_wrapper;
 
     protected TreeViewSetup tvs;
@@ -97,18 +95,16 @@ public abstract class Noise.GenericList : FastView {
         drag_end.connect (on_drag_end);
 #endif
 
-        lm.media_updated.connect (media_updated);
+        App.instance.library_manager.media_updated.connect (media_updated);
 
-        App.player.current_cleared.connect (current_cleared);
-        App.player.media_played.connect (media_played);
+        App.instance.player.current_cleared.connect (current_cleared);
+        App.instance.player.media_played.connect (media_played);
     }
 
     protected abstract void mediaRemoveClicked ();
 
     public void set_parent_wrapper (ViewWrapper parent) {
         this.parent_wrapper = parent;
-        this.lm = parent_wrapper.lm;
-        this.lw = parent_wrapper.lw;
         this.relative_id = parent_wrapper.relative_id;
     }
 
@@ -259,7 +255,7 @@ public abstract class Noise.GenericList : FastView {
 
         var to_update = new Gee.LinkedList<Media> ();
         to_update.add (m);
-        lm.update_media (to_update, true, true);
+        App.instance.library_manager.update_media (to_update, true, true);
     }
 
     protected bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
@@ -292,10 +288,10 @@ public abstract class Noise.GenericList : FastView {
         set_as_current_list (m);
 
         // Now play the song
-        App.player.playMedia (m, false);
+        App.instance.player.playMedia (m, false);
 
-        if (!App.player.playing) {
-            lw.playClicked ();
+        if (!App.instance.player.playing) {
+            App.instance.main_window.playClicked ();
         }
     }
 

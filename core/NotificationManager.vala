@@ -22,6 +22,7 @@
 
 public class Noise.NotificationManager : Object {
 
+    public signal void alertNotification (string title, string message);
     public signal void progressNotification (string? message, double progress);
     public signal void songNotification (string message);
 
@@ -37,13 +38,15 @@ public class Noise.NotificationManager : Object {
         current_action_string = message;
         this.progress = progress;
         progressNotification (message, progress);
-        
     }
 
     public virtual void doSongNotification (string? message) {
         current_title_string = message;
         songNotification (message);
-        
+    }
+
+    public virtual void doAlertNotification (string title, string message) {
+        alertNotification (title, message);
     }
 
     public virtual void showProgressNotification () {

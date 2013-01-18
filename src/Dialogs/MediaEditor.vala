@@ -35,7 +35,6 @@ public class Noise.MediaEditor : Granite.Widgets.LightWindow {
 #else
 public class Noise.MediaEditor : Window {
 #endif
-	LibraryManager _lm;
 	LyricFetcher lf;
 	
 	LinkedList<int> _allMedias;
@@ -49,24 +48,21 @@ public class Noise.MediaEditor : Window {
 	
 	private Button _save;
 	
-	private InfoBar lyricsInfobar;
 	private Label lyricsInfobarLabel;
 	
 	public signal void medias_saved(LinkedList<int> medias);
 	
-	public MediaEditor(LibraryManager lm, LinkedList<int> allMedias, LinkedList<int> medias) {
+	public MediaEditor(LinkedList<int> allMedias, LinkedList<int> medias) {
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(false);
-		this.set_transient_for(lm.lw);
+		this.set_transient_for(App.instance.main_window);
 		this.destroy_with_parent = true;
 		this.resizable = false;
 		
 		this.set_size_request (520, -1);
 
 		lf = new LyricFetcher();
-		
-		_lm = lm;
 		
 		_allMedias = allMedias;
 		_medias = medias;
@@ -128,11 +124,11 @@ public class Noise.MediaEditor : Window {
 	
 	public Gtk.Box createBasicContent () {
 		fields = new HashMap<string, FieldEditor>();
-		Media sum = _lm.media_from_id(_medias.get(0)).copy();
+		Media sum = App.instance.library_manager.media_from_id(_medias.get(0)).copy();
 		
 		/** find what these media have what common, and keep those values **/
 		foreach(int i in _medias) {
-			Media s = _lm.media_from_id(i);
+			Media s = App.instance.library_manager.media_from_id(i);
 			
 			if(s.track != sum.track)
 				sum.track = 0;
@@ -243,14 +239,10 @@ public class Noise.MediaEditor : Window {
 		lyricsInfobarLabel.set_single_line_mode(true);
 		lyricsInfobarLabel.ellipsize = Pango.EllipsizeMode.END;
 		
-		lyricsInfobar = new InfoBar();
-		lyricsInfobar.set_message_type (Gtk.MessageType.INFO);
-		
-		(lyricsInfobar.get_content_area() as Gtk.Container).add (lyricsInfobarLabel);
 
 		lyricsText = new TextView();
 		lyricsText.set_wrap_mode(WrapMode.WORD_CHAR);
-		lyricsText.get_buffer().text = _lm.media_from_id(_medias.get(0)).lyrics;
+		lyricsText.get_buffer().text = App.instance.library_manager.media_from_id(_medias.get(0)).lyrics;
 
 		var text_scroll = new ScrolledWindow(null, null);		
 		text_scroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -258,7 +250,7 @@ public class Noise.MediaEditor : Window {
 		text_scroll.add(lyricsText);
 		
 		lyricsContent.pack_start(text_scroll, true, true, 0);
-		lyricsContent.pack_start(lyricsInfobar, false, true, 5);
+		lyricsContent.pack_start(lyricsInfobarLabel, false, true, 5);
 		
 		lyricsText.set_size_request(400, -1);
 		
@@ -270,14 +262,14 @@ public class Noise.MediaEditor : Window {
 	}
 	
 	private async void fetch_lyrics (bool overwrite) {
-		lyricsInfobar.hide();
-		Media s = _lm.media_from_id(_medias.get(0));
+		lyricsInfobarLabel.hide();
+		Media s = App.instance.library_manager.media_from_id(_medias.get(0));
 
 		// fetch lyrics here
 		if (!(!String.is_white_space (s.lyrics) && !overwrite)) {
 			s.lyrics = yield lf.fetch_lyrics_async (s);
 
-            var current_media = _lm.media_from_id (_medias.get(0));
+            var current_media = App.instance.library_manager.media_from_id (_medias.get(0));
             if (current_media == s)
                 lyricsFetched (s);
 	    }
@@ -288,13 +280,13 @@ public class Noise.MediaEditor : Window {
         Gdk.threads_enter ();
 
 		lyricsInfobarLabel.set_text ("");
-		lyricsInfobar.hide();
+		lyricsInfobarLabel.hide();
 
 		if (!String.is_white_space (m.lyrics)) {
 			lyricsText.get_buffer().text = m.lyrics;
 		}
 		else {
-			lyricsInfobar.show_all();
+			lyricsInfobarLabel.show_all();
 			lyricsInfobarLabel.set_markup (_("Lyrics not found for %s").printf ("<i>" + String.escape (m.title) + "</i>"));
 		}
 
@@ -342,7 +334,7 @@ public class Noise.MediaEditor : Window {
 	public void change_media(LinkedList<int> newMedias) {
 		_medias = newMedias;
 		
-		Media sum = _lm.media_from_id(newMedias.get(0));
+		Media sum = App.instance.library_manager.media_from_id(newMedias.get(0));
 
 		// be explicit to improve translations
 		if(_medias.size == 1) {
@@ -387,7 +379,7 @@ public class Noise.MediaEditor : Window {
 	
 	public void save_medias() {
 		foreach(int i in _medias) {
-			Media s = _lm.media_from_id(i);
+			Media s = App.instance.library_manager.media_from_id(i);
 			
 			if(fields.get("Title").checked())
 				s.title = fields.get("Title").get_value();

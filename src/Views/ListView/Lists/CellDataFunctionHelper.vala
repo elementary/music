@@ -47,8 +47,7 @@ public class Noise.CellDataFunctionHelper {
 
 #if HAVE_SMART_ALBUM_COLUMN
     // for Smart album column
-    public void album_art_func (Gtk.TreeViewColumn tvc, Gtk.CellRenderer renderer,
-                                Gtk.TreeModel tree_model, Gtk.TreeIter iter) {
+    public void album_art_func (Gtk.CellLayout cell_layout, Gtk.CellRenderer renderer, Gtk.TreeModel tree_model, Gtk.TreeIter iter) {
         int index = FastView.get_index_from_iter (iter);
 
         var m = view.get_media_from_index (index);

@@ -23,30 +23,26 @@
 using Gee;
 
 public class Noise.DeviceView : Gtk.Grid {
-    LibraryManager lm;
-    LibraryWindow lw;
     public Device d;
     DeviceSummaryWidget summary;
     
     Gtk.InfoBar infobar;
     Gtk.Label infobar_label;
     
-    public DeviceView(LibraryManager lm, Device d) {
+    public DeviceView (Device d) {
         this.orientation = Gtk.Orientation.VERTICAL;
 
-        this.lm = lm;
-        this.lw = lm.lw;
         this.d = d;
 
         buildUI();
         
-        ulong connector = lm.progress_cancel_clicked.connect( () => {
+        ulong connector = App.instance.library_manager.progress_cancel_clicked.connect( () => {
             if(d.is_syncing()) {
-                lw.doAlert(_("Cancelling Sync"), _("Device Sync has been cancelled. Operation will stop after this media."));
+                notification_manager.doAlertNotification (_("Cancelling Sync"), _("Device Sync has been cancelled. Operation will stop after this media."));
                 d.cancel_sync();
             }
             if(d.is_transferring()) {
-                lw.doAlert(_("Cancelling Import"), _("Import from device has been cancelled. Operation will stop after this media."));
+                notification_manager.doAlertNotification (_("Cancelling Import"), _("Import from device has been cancelled. Operation will stop after this media."));
                 d.cancel_transfer();
             }
         });
@@ -72,7 +68,7 @@ public class Noise.DeviceView : Gtk.Grid {
         infobar.response.connect( (self, response) => {
             infobar.hide ();
         });
-        summary = new DeviceSummaryWidget(lm, lw, d);
+        summary = new DeviceSummaryWidget(d);
         
         attach (infobar, 0, 0, 1, 1);
         if (d.has_custom_view()) {
@@ -101,17 +97,17 @@ public class Noise.DeviceView : Gtk.Grid {
     public void showImportDialog() {
         // ask the user if they want to import medias from device that they don't have in their library (if any)
         // this should be same as MusicViewWrapper
-        if(!lm.doing_file_operations() && main_settings.music_folder != "") {
+        if(!App.instance.library_manager.doing_file_operations() && main_settings.music_folder != "") {
             var found = new LinkedList<int>();
             var not_found = new LinkedList<Media>();
-            lm.media_from_name(d.get_medias(), ref found, ref not_found);
+            App.instance.library_manager.media_from_name(d.get_medias(), ref found, ref not_found);
             
             if(not_found.size > 0) {
-                TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(lw, d, not_found);
+                TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(d, not_found);
                 tfdd.show();
             }
             else {
-                lw.doAlert(_("No External Songs"), _("There were no songs found on this device that are not in your library."));
+                notification_manager.doAlertNotification (_("No External Songs"), _("There were no songs found on this device that are not in your library."));
             }
         }
     }

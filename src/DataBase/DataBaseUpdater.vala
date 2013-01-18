@@ -18,7 +18,7 @@
  */
 
 public class Noise.DataBaseUpdater : Object {
-    private const uint PERIODIC_UI_SAVE_TIMEOUT_SEC = 120;
+    private const uint PERIODIC_UI_SAVE_TIMEOUT_SEC = 600;
 
     public signal void periodical_save ();
 
@@ -133,13 +133,12 @@ public class Noise.DataBaseUpdater : Object {
 
         playlists_and_queue.add (p_music);
 
-        message ("-- Saving device preferences DB.");
+        debug ("-- Saving columns state preferences DB.");
 
         dbm.save_playlist (p_music);
         dbm.save_columns_state (playlists_and_queue, lm.smart_playlists ());
-        dbm.save_devices (lm.device_manager.device_preferences ());
 
-        message ("-- Finished saving device preferences DB.");
+        debug ("-- Finished columns state preferences DB.");
 
         Idle.add (() => {
             periodical_save ();
@@ -147,6 +146,10 @@ public class Noise.DataBaseUpdater : Object {
         });
 
         return true;
+    }
+    // If the name of the playlist changed, it provides the old name to remove it from database
+    public void save_device (DevicePreferences device) {
+        dbm.save_device (device);
     }
     
     // If the name of the playlist changed, it provides the old name to remove it from database

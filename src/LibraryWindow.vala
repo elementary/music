@@ -125,6 +125,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         notification_manager.progressNotification.connect (showProgressNotification);
         notification_manager.songNotification.connect (showSongNotification);
+        notification_manager.alertNotification.connect (doAlert);
         
         match_playlist = new Gee.HashMap<int, int> ();
         match_smartplaylist = new Gee.HashMap<int, int> ();
@@ -741,7 +742,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             lock (match_devices) {
                 Device d = (Device)o;
 
-                var dv = new DeviceView (library_manager, d);
+                var dv = new DeviceView (d);
                 view_number = view_container.add_view (dv);
                 match_devices.set (d.get_unique_identifier(), view_number);
                 if(d.has_custom_view()) {
