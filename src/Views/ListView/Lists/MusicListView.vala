@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
  *
  * This software is licensed under the GNU General Public License
  * (version 2 or later). See the COPYING file in this distribution.
@@ -29,7 +29,6 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem mediaFileBrowse;
     Gtk.MenuItem mediaTopSeparator;
     Gtk.MenuItem mediaMenuQueue;
-    Gtk.MenuItem mediaMenuNewPlaylist;
     Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
     Granite.Widgets.RatingMenuItem mediaRateMedia;
     Gtk.MenuItem mediaRemove;
@@ -79,7 +78,6 @@ public class Noise.MusicListView : GenericList {
             mediaRemove.set_label(_("Remove from Device"));
             mediaMenuQueue.set_visible(false);
             mediaMenuAddToPlaylist.set_visible(false);
-            mediaMenuNewPlaylist.set_visible(false);
             mediaTopSeparator.set_visible(false);
         }
         else {
@@ -95,7 +93,6 @@ public class Noise.MusicListView : GenericList {
         mediaEditMedia = new Gtk.MenuItem.with_label(_("Edit Song Info"));
         mediaFileBrowse = new Gtk.MenuItem.with_label(_("Show in File Browser"));
         mediaMenuQueue = new Gtk.MenuItem.with_label(C_("Action item (verb)", "Queue"));
-        mediaMenuNewPlaylist = new Gtk.MenuItem.with_label(_("New Playlist"));
         mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label(_("Add to Playlist"));
         mediaRemove = new Gtk.MenuItem.with_label(_("Remove Song"));
         importToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
@@ -118,7 +115,6 @@ public class Noise.MusicListView : GenericList {
         mediaActionMenu.append(mediaRateMedia);
         mediaActionMenu.append(mediaTopSeparator);
         mediaActionMenu.append(mediaMenuQueue);
-        mediaActionMenu.append(mediaMenuNewPlaylist);
         mediaActionMenu.append(mediaMenuAddToPlaylist);
 
         if (hint != ViewWrapper.Hint.SMART_PLAYLIST && hint != ViewWrapper.Hint.ALBUM_LIST) {
@@ -136,7 +132,6 @@ public class Noise.MusicListView : GenericList {
         mediaEditMedia.activate.connect(mediaMenuEditClicked);
         mediaFileBrowse.activate.connect(mediaFileBrowseClicked);
         mediaMenuQueue.activate.connect(mediaMenuQueueClicked);
-        mediaMenuNewPlaylist.activate.connect(mediaMenuNewPlaylistClicked);
         mediaRemove.activate.connect(mediaRemoveClicked);
         importToLibrary.activate.connect(importToLibraryClicked);
         mediaRateMedia.activate.connect(mediaRateMediaClicked);
@@ -176,6 +171,12 @@ public class Noise.MusicListView : GenericList {
             // Create add-to-playlist menu
             var addToPlaylistMenu = new Gtk.Menu ();
 
+            var mediaMenuNewPlaylist = new Gtk.MenuItem.with_label(_("New Playlist…"));
+            mediaMenuNewPlaylist.activate.connect(mediaMenuNewPlaylistClicked);
+            addToPlaylistMenu.append (mediaMenuNewPlaylist);
+            if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
+                mediaMenuNewPlaylist.set_visible(false);
+            }
             foreach (var playlist in lm.playlists ()) {
                 // Don't include this playlist in the list of available options
                 if (playlist.rowid == this.get_relative_id ())
@@ -197,12 +198,6 @@ public class Noise.MusicListView : GenericList {
 
             addToPlaylistMenu.show_all ();
             mediaMenuAddToPlaylist.submenu = addToPlaylistMenu;
-            // don't allow to add from a playlist to itself
-            if(get_hint() == ViewWrapper.Hint.PLAYLIST && is_queue == false) {
-                mediaMenuAddToPlaylist.set_sensitive (lm.playlist_count_without_read_only () > 1);
-            } else {
-                mediaMenuAddToPlaylist.set_sensitive (lm.playlist_count_without_read_only () > 0);
-            }
 
             // if all medias are downloaded already, desensitize.
             // if half and half, change text to 'Download %external of %total'
@@ -394,12 +389,15 @@ public class Noise.MusicListView : GenericList {
             to_add.add (m);
         }
         p.add_medias (to_add);
-
-        PlaylistNameWindow pnw = new PlaylistNameWindow (lw, p);
-        pnw.playlist_saved.connect( (newP) => {
-            lm.add_playlist(p);
-            lw.addSourceListItem(p);
-        });
+        p.name = _("New playlist");
+        int index = 1;
+        if (App.instance.library_manager.playlist_from_name (_("New playlist")) != null) {
+            while (App.instance.library_manager.playlist_from_name (_("New playlist (%i)").printf (index)) != null) {
+                index++;
+            }
+            p.name = _("New playlist (%i)").printf (index);
+        }
+        App.instance.library_manager.add_playlist (p);
     }
 
     protected void mediaRateMediaClicked() {

@@ -71,7 +71,6 @@ set(CLIENT_SOURCE
     Dialogs/PreferencesWindow.vala
     Dialogs/InstallGstreamerPluginsDialog.vala
     Dialogs/MediaEditor.vala
-    Dialogs/PlaylistNameWindow.vala
     Dialogs/FileNotFoundDialog.vala
     Dialogs/RemoveFilesDialog.vala
     Dialogs/NotImportedWindow.vala
