@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-11 16:38+0100\n"
-"PO-Revision-Date: 2013-01-12 09:20+0000\n"
-"Last-Translator: Antonio <ponny_@rock.com>\n"
+"PO-Revision-Date: 2013-01-18 11:29+0000\n"
+"Last-Translator: Julián Unrrein <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-13 04:52+0000\n"
-"X-Generator: Launchpad (build 16420)\n"
+"X-Launchpad-Export-Date: 2013-01-19 06:09+0000\n"
+"X-Generator: Launchpad (build 16430)\n"
 "Language: es\n"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
@@ -256,7 +256,7 @@ msgstr ""
 #: /home/noelco/noise/po/../src//LibraryManager.vala:255
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Importando música desde %s…"
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:298
 msgid "Adding files to library…"
@@ -893,7 +893,7 @@ msgstr "Guardar como lista de reproducción"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:79
 msgid "Export…"
-msgstr ""
+msgstr "Exportar…"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:120
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:285
@@ -1703,21 +1703,21 @@ msgstr "Este dispositivo no contiene archivos de música."
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Sincronizando <b>%s</b>…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Finalizando el proceso de sincronización…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Cancelando la sincronización…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
