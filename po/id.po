@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-11 16:38+0100\n"
-"PO-Revision-Date: 2012-12-10 15:29+0000\n"
-"Last-Translator: Risman Rangga Pratama <Unknown>\n"
+"PO-Revision-Date: 2013-01-20 02:07+0000\n"
+"Last-Translator: Affif Mukhlashin <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-01-12 05:13+0000\n"
-"X-Generator: Launchpad (build 16420)\n"
+"X-Launchpad-Export-Date: 2013-01-20 04:58+0000\n"
+"X-Generator: Launchpad (build 16430)\n"
 "Language: id\n"
 
 #: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
@@ -241,29 +241,29 @@ msgstr "Artis Tak Dikenal"
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
-msgstr ""
+msgstr "Mengimpor <b>%s</b> ke Pustaka..."
 
 #: /home/noelco/noise/po/../src//FileOperator.vala:428
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "<b>Menyalin</b> berkas ke <b>Folder Musik</b>..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:255
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Mengimpor musik dari %s…"
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:298
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Menambah berkas ke pustaka…"
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:340
 #, c-format
 msgid "Adding music from %s to library…"
-msgstr ""
+msgstr "Menambah musik dari %s ke pustaka..."
 
 #: /home/noelco/noise/po/../src//LibraryManager.vala:368
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "Memindai perubahan musik. Ini membutuhkan beberapa waktu..."
 
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
 #: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:633
@@ -664,7 +664,7 @@ msgstr "Singkronisasi akan menghapus 1 item dari %s"
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Pilih Folder Musik..."
 
 #: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:289
@@ -885,7 +885,7 @@ msgstr "Simpan sebagai Daftar Putar"
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:79
 msgid "Export…"
-msgstr ""
+msgstr "Ekspor..."
 
 #: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:120
 #: /home/noelco/noise/po/../src//LibraryWindow.vala:285
@@ -1695,21 +1695,21 @@ msgstr "Perangkat tidak berisi musik"
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Menyelaraskan <b>%s</b>..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Menyelesaikan proses penyelarasan…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Membataklan Penyelarasan..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
@@ -1717,6 +1717,7 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
 msgid "There is not enough space on Device to complete the Sync…"
 msgstr ""
+"Ruang kosong pada Perangkat tidak cukup untuk menyelesaikan Penyelarasan…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
@@ -1724,14 +1725,14 @@ msgstr ""
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "Menghapus dari <b>%s</b>..."
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1015
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "Mengimpor <b>$NAME</b> oleh <b>$ARTIST</b> ke pustaka…"
 
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
@@ -1741,7 +1742,7 @@ msgstr "Menambahkan <b>$NAME</b> oleh <b>$ARTIST</b> ke $DEVICE"
 #: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "Menghapus <b>$NAME</b> oleh <b>$ARTIST</b> dari $DEVICE"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Audio CD Invalid"
@@ -1811,11 +1812,11 @@ msgstr "Kesalahan terjadi ketika mengimpor ke CD"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Kesalahan Terjadi"
 
 #: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Ada galat saat memuat CD Audio ini."
 
 #: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
 msgid "Syncing playlists"
@@ -1831,6 +1832,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Tidak ada lagu yang mirip dengan lagu yang sedang di pustaka Anda. Pastikan "
+"semua info lagu sudah benar dan Anda terhubung ke Internet. Beberapa lagu "
+"mungkin tidak cocok."
 
 #: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
