@@ -27,6 +27,7 @@ public interface Noise.SourceListEntry : Granite.Widgets.SourceList.Item {
  */
 public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListEntry {
     
+    public signal void playlist_rename_clicked (int page_number);
     public signal void playlist_edit_clicked (int page_number);
     public signal void playlist_remove_clicked (int page_number);
     public signal void playlist_save_clicked (int page_number);
@@ -36,6 +37,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
     
     //for playlist right click
     Gtk.Menu playlistMenu;
+    Gtk.MenuItem playlistRename;
     Gtk.MenuItem playlistEdit;
     Gtk.MenuItem playlistRemove;
     Gtk.MenuItem playlistSave;
@@ -51,23 +53,29 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
         
         if (hint == ViewWrapper.Hint.PLAYLIST) {
             playlistMenu = new Gtk.Menu();
+            playlistRename = new Gtk.MenuItem.with_label(_("Rename"));
             playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
             playlistExport = new Gtk.MenuItem.with_label(_("Export"));
+            playlistMenu.append(playlistRename);
             playlistMenu.append(playlistRemove);
             playlistMenu.append(playlistExport);
             playlistMenu.show_all ();
+            playlistRename.activate.connect(() => {playlist_rename_clicked (page_number);});
             playlistRemove.activate.connect(() => {playlist_remove_clicked (page_number);});
             playlistExport.activate.connect(() => {playlist_export_clicked (page_number);});
         }
         if (hint == ViewWrapper.Hint.SMART_PLAYLIST) {
             playlistMenu = new Gtk.Menu();
+            playlistRename = new Gtk.MenuItem.with_label(_("Rename"));
             playlistEdit = new Gtk.MenuItem.with_label(_("Edit"));
             playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
             playlistExport = new Gtk.MenuItem.with_label(_("Export"));
+            playlistMenu.append(playlistRename);
             playlistMenu.append(playlistEdit);
             playlistMenu.append(playlistRemove);
             playlistMenu.append(playlistExport);
             playlistMenu.show_all ();
+            playlistRename.activate.connect(() => {playlist_rename_clicked (page_number);});
             playlistEdit.activate.connect(() => {playlist_edit_clicked (page_number);});
             playlistRemove.activate.connect(() => {playlist_remove_clicked (page_number);});
             playlistExport.activate.connect(() => {playlist_export_clicked (page_number);});
@@ -181,6 +189,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     public signal void item_action_activated (int page_number);
     public signal void selection_changed (int page_number);
     
+    public signal void playlist_rename_clicked (int page_number);
     public signal void playlist_edit_clicked (int page_number);
     public signal void playlist_remove_clicked (int page_number);
     public signal void playlist_save_clicked (int page_number);
@@ -239,6 +248,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         // Connect to signals
         sourcelist_item.edited.connect ((new_name) => {this.edited (sourcelist_item.page_number, new_name);});
         expandable_item.action_activated.connect ((sl) => {this.item_action_activated (sourcelist_item.page_number);});
+        sourcelist_item.playlist_rename_clicked.connect ((pn) => {playlist_rename_clicked (pn);});
         sourcelist_item.playlist_edit_clicked.connect ((pn) => {playlist_edit_clicked (pn);});
         sourcelist_item.playlist_remove_clicked.connect ((pn) => {playlist_remove_clicked (pn);});
         sourcelist_item.playlist_save_clicked.connect ((pn) => {playlist_save_clicked (pn);});
