@@ -18,9 +18,6 @@
  */
 
 public class Noise.DataBaseUpdater : Object {
-    private const uint PERIODIC_UI_SAVE_TIMEOUT_SEC = 600;
-
-    public signal void periodical_save ();
 
     private LibraryManager lm;
     private DataBaseManager dbm;
@@ -38,8 +35,7 @@ public class Noise.DataBaseUpdater : Object {
         to_remove = new Gee.LinkedList<Object> ();
 
         // Save on a regular basis and before exit
-        Timeout.add_seconds (PERIODIC_UI_SAVE_TIMEOUT_SEC, periodic_ui_save);
-        App.instance.shutdown.connect_after (() => periodic_ui_save ());
+        App.instance.shutdown.connect_after (() => on_close_ui_save ());
         App.instance.shutdown.connect_after (update_db_sync);
     }
 
@@ -124,7 +120,7 @@ public class Noise.DataBaseUpdater : Object {
         } while (operation_done);
     }
 
-    private bool periodic_ui_save () {
+    private bool on_close_ui_save () {
         var playlists_and_queue = new Gee.LinkedList<StaticPlaylist> ();
         playlists_and_queue.add_all (lm.playlists ());
 
@@ -139,11 +135,6 @@ public class Noise.DataBaseUpdater : Object {
         dbm.save_columns_state (playlists_and_queue, lm.smart_playlists ());
 
         debug ("-- Finished columns state preferences DB.");
-
-        Idle.add (() => {
-            periodical_save ();
-            return false;
-        });
 
         return true;
     }

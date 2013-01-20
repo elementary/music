@@ -71,7 +71,6 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         show_all ();
         
         lw.info_panel.to_update.connect (update_visibilities);
-        lm.dbu.periodical_save.connect (do_periodical_save);
 
         love_ban_buttons.changed.connect (love_ban_buttons_changed);
     }
@@ -88,12 +87,6 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
             scroll.show_all ();
         else
             scroll.hide ();
-    }
-    
-    private void do_periodical_save () {
-        /*lm.dbm.save_artists((Noise.ArtistInfo)lfm.artists());
-        lm.dbm.save_albums(lfm.albums());
-        lm.dbm.save_tracks(lfm.tracks());*/
     }
     
     private void similar_retrieved (Gee.LinkedList<int> similar_internal, Gee.LinkedList<Media> similar_external) {
