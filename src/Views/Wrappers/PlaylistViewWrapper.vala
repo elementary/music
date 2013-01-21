@@ -39,7 +39,6 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
 
-        grid_view = new GridView (this);
         list_view = new ListView (this, tvs);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 

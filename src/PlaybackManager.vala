@@ -31,12 +31,10 @@
 using Gee;
 
 public class Noise.PlaybackManager : Object, Noise.Player {
-    /*
-    public Player.Shuffle shuffle_mode {
-        set { setShuffleMode (value); }
-        // TODO: get { return ... }
-    }
-    */
+
+    // TODO: Have a correct implementation based on playlists.
+    //        Show the next 2 medias in the queue when shuffle mode is enabled and create a playlist to remember shuffled songs
+    //        Get the current filter (search, playlist) to be able to store and set it back when restart.
 
     public signal void current_cleared ();
 
@@ -56,10 +54,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     //list of id's yet to be played while on shuffle
     private HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
 
-    // rowid, Media of queue
     public StaticPlaylist queue_playlist = new StaticPlaylist ();
-
-    // Media of already played
     public StaticPlaylist history_playlist = new StaticPlaylist ();
 
 
@@ -113,7 +108,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         playbacks.add (playback);
     }
 
-    /**************** Queue Stuff **************************/
+    /*
+     * Queue Stuff
+     */
     
     public void queue_media (Gee.Collection<Media> to_queue) {
         if (to_queue.size < 1)
@@ -149,7 +146,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         return m;
     }
 
-    /************ Already Played Stuff **************/
+    /*
+     * Already Played Stuff
+     */
     public void reset_already_played() {
         history_playlist.clear();
     }
@@ -163,7 +162,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         }
     }*/
 
-    /************ Current medialist stuff ***************/
+    /*
+     * Current medialist stuff
+     */
     public bool playing_queued_song() {
         return _playing_queued_song;
     }
@@ -172,7 +173,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         return _current_shuffled.size > 0;
     }
     
-    /* value returned depends on whether shuffle is on or not */
+    /*
+     * Value returned depends on whether shuffle is on or not
+     */
     public int current_index {
         get {
             if(_current_shuffled.size == 0)
