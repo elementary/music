@@ -150,11 +150,15 @@ public class Noise.TopDisplay : Box {
     }
     
     public virtual bool scale_button_press(Gdk.EventButton event) {
+        if (event.type != Gdk.EventType.BUTTON_PRESS) {
+            return true;
+        }
+
         App.player.player.current_position_update.disconnect(player_position_update);
         is_seeking = true;
         change_value (ScrollType.NONE, get_current_time ());
-        
-        return true;
+
+        return false;
     }
     
     public virtual bool scale_button_release(Gdk.EventButton event) {
