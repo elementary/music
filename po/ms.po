@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-11 16:38+0100\n"
+"POT-Creation-Date: 2013-01-21 00:14+0100\n"
 "PO-Revision-Date: 2013-01-12 14:07+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -15,97 +15,76 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-13 04:52+0000\n"
-"X-Generator: Launchpad (build 16420)\n"
+"X-Launchpad-Export-Date: 2013-01-21 04:59+0000\n"
+"X-Generator: Launchpad (build 16430)\n"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Rata"
+#. / Used for unknown titles, artists, or album names.
+#: /home/noelco/fix-1084151/po/../core//Media.vala:35
+msgid "Unknown"
+msgstr "Tidak diketahui"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klasik"
+#: /home/noelco/fix-1084151/po/../core//Media.vala:45
+msgid "Radio Station"
+msgstr "Stesen Radio"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Kelab"
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: /home/noelco/fix-1084151/po/../core//Media.vala:175
+msgid "$NAME on $ALBUM"
+msgstr "$NAME pada $ALBUM"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Dance"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/noelco/fix-1084151/po/../core//Media.vala:178
+msgid "$NAME by $ARTIST"
+msgstr "$NAME oleh $ARTIST"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Bass Penuh"
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/noelco/fix-1084151/po/../core//Media.vala:184
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME oleh $ARTIST pada $ALBUM"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Trebel Penuh"
+#: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:188
+msgid "Export Playlist"
+msgstr "Eksport Senarai Main"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Bass + Trebel Penuh"
+#: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:196
+#: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:290
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "Versi MPEG 3.0 Sambungan (*.m3u)"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Fon Kepala"
+#: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:201
+#: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:295
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Senarai Main Shoutcast Versi 2.0 (*.pls)"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Dewan Besar"
+#: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:275
+msgid "Playlist"
+msgstr "Senarai main"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Langsung"
+#: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:281
+#, c-format
+msgid "Import %s"
+msgstr "Import %s"
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Pesta"
+#: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:315
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Fail senarai main tidak dikenali. Import mengalami kegagalan."
 
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Soft"
-
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Soft Rock"
-
-#: /home/noelco/noise/po/../core//GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Techno"
-
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:36
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:36
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d saat"
 msgstr[1] "%d saat"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:44
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:75
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:44
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:75
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u minit"
 msgstr[1] "%u minit"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:48
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:48
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
@@ -113,20 +92,20 @@ msgstr[0] "%u saat"
 msgstr[1] "%u saat"
 
 #. / Minutes and seconds
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:50
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:50
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s dan %s"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:69
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:69
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u hari"
 msgstr[1] "%u hari"
 
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:72
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:72
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
@@ -134,28 +113,28 @@ msgstr[0] "%u jam"
 msgstr[1] "%u jam"
 
 #. / days, hours and minutes
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s dan %s"
 
 #. / days and hours
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:86
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s dan %s"
 
 #. / days and minutes
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:91
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s dan %s"
 
 #. / hours and minutes
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:100
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:100
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -163,638 +142,1173 @@ msgstr "%s dan %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/noelco/noise/po/../core//Utils/TimeUtils.vala:159
+#: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:188
-msgid "Export Playlist"
-msgstr "Eksport Senarai Main"
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Rata"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:196
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:290
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "Versi MPEG 3.0 Sambungan (*.m3u)"
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Klasik"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:201
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:295
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Senarai Main Shoutcast Versi 2.0 (*.pls)"
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Kelab"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:275
-msgid "Playlist"
-msgstr "Senarai main"
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Dance"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:281
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Bass Penuh"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Trebel Penuh"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Bass + Trebel Penuh"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Fon Kepala"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Dewan Besar"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Langsung"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Pesta"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Soft"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+#: /home/noelco/fix-1084151/po/../core//GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Techno"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:288
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:98
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:128
+msgid "Import to Library"
+msgstr "Import ke Pustaka"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:289
+msgid "Rescan Music Folder"
+msgstr "Imbas Semula Folder Muzik"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:292
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:84
+msgid "Preferences"
+msgstr "Keutamaan"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:312
+msgid "Search Music"
+msgstr "Gelintar Muzik"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:669
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:765
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:109
+msgid "Music"
+msgstr "Muzik"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:715
+#: /home/noelco/fix-1084151/po/../src//PlaybackManager.vala:105
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Baris Gilir"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:717
+msgid "No songs in Queue"
+msgstr "Tiada lagu dalam Baris Gilir"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:717
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Untuk menambah lagu ke baris  gilir, guna <b>klik kedua</b> pada item dan "
+"pilih <b>Baris Gilir</b>. Bila lagu selesai dimainkan, lagu dibaris gilir "
+"akan dimainkan dahulu sebelum lagi berikutnya dalam senarai main."
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:721
+#: /home/noelco/fix-1084151/po/../src//PlaybackManager.vala:103
+msgid "History"
+msgstr "Sejarah"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:723
+msgid "No songs in History"
+msgstr "Tiada lagu dalam Sejarah"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:723
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Selepas sebahagian lagu telah dimainkan, ia akan ditambah ke senarai.\n"
+"Sejarah. Anda  boleh guna senarai ini untuk melihat semua lagu yang anda "
+"telah\n"
+"main ketika sesi semasa."
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:955
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:957
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:392
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:394
+msgid "New playlist"
+msgstr "Senarai main baru"
+
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:958
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:961
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:395
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:398
 #, c-format
-msgid "Import %s"
-msgstr "Import %s"
+msgid "New playlist (%i)"
+msgstr "Senarai main baru (%i)"
 
-#: /home/noelco/noise/po/../core//Utils/PlaylistsUtils.vala:315
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Fail senarai main tidak dikenali. Import mengalami kegagalan."
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:1160
+msgid "Import Music"
+msgstr "Import Muzik"
 
-#. / Used for unknown titles, artists, or album names.
-#: /home/noelco/noise/po/../core//Media.vala:35
-msgid "Unknown"
-msgstr "Tidak diketahui"
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:1192
+#, c-format
+msgid "<b>Importing</b> music from <b>%s</b> to library."
+msgstr "<b>Mengimport</b> muzik dari pustaka <b>%s</b>."
 
-#: /home/noelco/noise/po/../core//Media.vala:45
-msgid "Radio Station"
-msgstr "Stesen Radio"
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:1207
+msgid "Rescanning music folder for changes"
+msgstr "Mengimbas semula folder muzik untuk perubahan"
 
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: /home/noelco/noise/po/../core//Media.vala:175
-msgid "$NAME on $ALBUM"
-msgstr "$NAME pada $ALBUM"
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:1214
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
+msgid "Could not find Music Folder"
+msgstr "Tidak dapat cari Folder Muzik"
 
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: /home/noelco/noise/po/../core//Media.vala:178
-msgid "$NAME by $ARTIST"
-msgstr "$NAME oleh $ARTIST"
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:1214
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr "Sila pastikan folder muzik anda boleh dicapai dan dilekap."
 
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: /home/noelco/noise/po/../core//Media.vala:184
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME oleh $ARTIST pada $ALBUM"
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:1281
+msgid "Import Complete"
+msgstr "Proses Mengimport Selesai"
 
-#: /home/noelco/noise/po/../src//Noise.vala:37
-msgid "Listen to music"
-msgstr "Dengari muzik"
+#: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:1281
+#, c-format
+msgid "%s has imported your library."
+msgstr "%s telah mengimport pustaka anda."
 
-#: /home/noelco/noise/po/../src//Noise.vala:38
-msgid "Music Player"
-msgstr "Pemain Muzik"
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:74
+msgid "Device Name:"
+msgstr "Nama Peranti:"
 
-#: /home/noelco/noise/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Trek Tidak Diketahui"
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:77
+msgid "Device Name"
+msgstr "Nama Peranti"
 
-#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Album Tidak Diketahui"
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:79
+msgid "Automatically sync when plugged in:"
+msgstr "Segerak secara automatik bila dipalamkan:"
 
-#: /home/noelco/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/noelco/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/noelco/noise/po/../src//GStreamer/Streamer.vala:195
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
-msgid "Unknown Artist"
-msgstr "Penyanyi/Artis tidak diketahui"
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:86
+msgid "Sync:"
+msgstr "Segerak"
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:332
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:108
+msgid "Other Files"
+msgstr "Fail Lain"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:110
+msgid "Podcasts"
+msgstr "Podcast"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:383
+msgid "All Music"
+msgstr "Semua Muzik"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:386
+msgid "All Podcasts"
+msgstr "Semua Podcast"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:516
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:554
+msgid "Sync Failed"
+msgstr "Segerak Mengalami Kegagaln"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:516
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:554
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"Senarai main bernama %s digunakan untuk segerakan peranti %s, tetapi tidak "
+"ditemui."
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:602
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:605
+msgid "Cannot Sync"
+msgstr "Tidak Dapat Segerak"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:602
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Tidak dapat segerak peranti dengan tetapan segerak terpilih. Ruang cakera "
+"tidak mencukupi"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceSummaryWidget.vala:605
+msgid "Device is already being synced."
+msgstr "Peranti sudah disegerakan."
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
+msgid "No Songs"
+msgstr "Tiada Lagu"
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
+msgid "Please wait until that this playlist get updated."
+msgstr "Tunggu sehingga senarai main ini dikemaskinikan."
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+msgid "Get Some Tunes"
+msgstr "Dapatkan Beberapa Tona"
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:43
+#, c-format
+msgid "%s can't seem to find your music."
+msgstr "%s tidak dapat cari muzik anda."
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+msgid "Locate"
+msgstr "Cari"
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+msgid "Change your music folder."
+msgstr "Ubah folder muzik anda."
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+msgid "Import your Music"
+msgstr "Import Muzik anda"
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "Import semua muzik anda dari %s ke dalam pustaka anda."
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
+msgid "Select Music Folder"
+msgstr "Pilih Folder Muzik"
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/ViewWrapper.vala:473
+msgid "No media"
+msgstr "Tiada Media"
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+"Untuk menambah lagu ke senarai main, guna <b>klik sekunder</b> pada item dan "
+"pilih <b>Tambah ke Senarai Main</b>."
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:100
+msgid "Edit Smart Playlist"
+msgstr "Sunting Senarai Main Pintar"
+
+#: /home/noelco/fix-1084151/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"Senarai main ini akan dipopulasikan secara automatik dengan lagu yang anda "
+"padankan peraturannya. Untuk ubahsuai peraturan ini, guna  <b>klik "
+"sekunder</b> padanya dalam palang sisi dan klik <b>Sunting</b>. Selain itu, "
+"anda boleh klik pada butang dibawah."
+
+#: /home/noelco/fix-1084151/po/../src//Views/ContentView.vala:21
+#, c-format
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
+
+#: /home/noelco/fix-1084151/po/../src//Views/GridView/GridView.vala:64
+msgid "No Albums Found."
+msgstr "Tiada Album Ditemui."
+
+#: /home/noelco/fix-1084151/po/../src//Views/GridView/GridView.vala:160
+#, c-format
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+msgstr[1] "%u album"
+
+#: /home/noelco/fix-1084151/po/../src//Views/GridView/PopupListView.vala:161
+#, c-format
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s oleh %s"
+
+#: /home/noelco/fix-1084151/po/../src//Views/GridView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr "%d minit"
+
+#: /home/noelco/fix-1084151/po/../src//Views/GridView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr "%d jam"
+
+#: /home/noelco/fix-1084151/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d hari"
+
+#: /home/noelco/fix-1084151/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u item, %s, %s"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:58
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:61
+msgctxt "List column title"
+msgid "Track"
+msgstr "Trek"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:64
+msgctxt "List column title"
+msgid "Title"
+msgstr "Tajuk"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:67
+msgctxt "List column title"
+msgid "Length"
+msgstr "Panjang"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Artis"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Album"
+msgstr "Album"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Artis Album"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Penggubah"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Genre"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Year"
+msgstr "Tahun"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Pengumpulan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Kadar Bit"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Penarafan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Main"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Langkau"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Tarikh Ditambah"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Terakhir Dimainkan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Lokasi"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Saiz Fail"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:57
+msgid "Remove from Library"
+msgstr "Buang dari Pustaka"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:66
+msgid "Remove from Queue"
+msgstr "Buang dari Baris Gilir"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:78
+msgid "Remove from Device"
+msgstr "Buang dari Peranti"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:92
+msgid "Scroll to Current Song"
+msgstr "Tatal ke Lagu Semasa"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:93
+msgid "Edit Song Info"
+msgstr "Sunting Maklumat Lagu"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:94
+msgid "Show in File Browser"
+msgstr "Papar dalam Pelayar Fail"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:95
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Baris Gilir"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:96
+msgid "Add to Playlist"
+msgstr "Tambah ke Senarai main"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:97
+msgid "Remove Song"
+msgstr "Buang Lagu"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:174
+msgid "New Playlist…"
+msgstr ""
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:218
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Import %i dari %i lagu terpilih"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:220
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "Import %i lagu"
+msgstr[1] "Import %i lagu"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:655
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:670
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
+msgid "Never"
+msgstr "Tidak Sesekali"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:735
+msgid "Sample List String"
+msgstr "Rentetan Senarai Sampel"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/GenericList.vala:121
+msgid "Autosize Columns"
+msgstr "Lajur Saiz Sendiri"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/GenericList.vala:128
+msgid "Display Album Art"
+msgstr "Papar Seni Kulit Album"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
+#, c-format
+msgid "%i kbps"
+msgstr "%i kbps"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ListView.vala:93
+msgid "No Songs Found."
+msgstr "Tiada Lagu Ditemui."
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ListView.vala:369
+#, c-format
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i trek"
+msgstr[1] "%i trek"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ListView.vala:371
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u lagu"
+msgstr[1] "%u lagu"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ListView.vala:379
+#, c-format
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "Semua Genre"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+#, c-format
+msgid "All %i Genres"
+msgstr "Semua %i Genre"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "Tanpa Genre"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "Semua Artis"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Artists"
+msgstr "Semua %i Artis"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "Tanpa Artis"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "Semua Album"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Albums"
+msgstr "Semua %i Album"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "Tanpa Album"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "Semua Tahun"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Years"
+msgstr "Semua %i Tahun"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "Tanpa Tahun"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "Semua Penarafan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "Tanpa Penarapan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr "Semua Pengumpulan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#, c-format
+msgid "All %i Groupings"
+msgstr "Semua %i Pengumpulan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr "Tiada Pengumpulan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "Semua Penggubah"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Composers"
+msgstr "Semua %i Penggubah"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "Tiada Penggubah"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+#: /home/noelco/fix-1084151/po/../src//Widgets/PresetList.vala:49
+msgid "Automatic"
+msgstr "Automatik"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:156
+msgid "On Left"
+msgstr "Disebelah Kiri"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:158
+msgid "On Top"
+msgstr "Di Atas"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:404
+msgid "Unrated"
+msgstr "Tidak ditarafkan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:406
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i Bintang"
+msgstr[1] "%i Bintang"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr "Genre"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr "Artis"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr "Album"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr "Tahun"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr "Penarafan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr "Penggubah"
+
+#: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr "Pengumpulan"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceView.vala:41
+msgid "Cancelling Sync"
+msgstr "Membatalkan Segerak"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceView.vala:41
+msgid "Device Sync has been cancelled. Operation will stop after this media."
+msgstr ""
+"Segerak peranti telah dibatalkan. Operasi akan henti selepas media ini."
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceView.vala:45
+msgid "Cancelling Import"
+msgstr "Membatalkan Import"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceView.vala:45
+msgid ""
+"Import from device has been cancelled. Operation will stop after this media."
+msgstr ""
+"Import dari peranti telah dibatalkan. Operasi akan henti selepas media ini."
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceView.vala:110
+msgid "No External Songs"
+msgstr "Tiada Lagu Luaran"
+
+#: /home/noelco/fix-1084151/po/../src//Views/DeviceView.vala:110
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr ""
+"Tiada lagu ditemui dalam peranti ini yang mana bukan dalam pustaka anda."
+
+#: /home/noelco/fix-1084151/po/../src//FileOperator.vala:332
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
 msgstr "Mengimport <b>%s</b> ke Pustaka..."
 
-#: /home/noelco/noise/po/../src//FileOperator.vala:428
+#: /home/noelco/fix-1084151/po/../src//FileOperator.vala:428
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Menyalin</b> fail ke <b>Folder Muzik </b>…"
 
-#: /home/noelco/noise/po/../src//LibraryManager.vala:255
-#, c-format
-msgid "Importing music from %s…"
-msgstr "Mengimport muzik dari %s..."
-
-#: /home/noelco/noise/po/../src//LibraryManager.vala:298
-msgid "Adding files to library…"
-msgstr "Menambah fail ke pustaka..."
-
-#: /home/noelco/noise/po/../src//LibraryManager.vala:340
-#, c-format
-msgid "Adding music from %s to library…"
-msgstr "Menambah muzik dari %s ke pustaka..."
-
-#: /home/noelco/noise/po/../src//LibraryManager.vala:368
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Mengimbas semula muzik untuk perubahan. Ia mengambil masa..."
-
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:435
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:633
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:435
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:665
 msgid "Favorite Songs"
 msgstr "Lagu Kegemaran"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:442
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:640
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:442
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:672
 msgid "Recently Added"
 msgstr "Baru Ditambah"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:458
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:656
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:458
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:688
 msgid "Recent Favorites"
 msgstr "Kegemaran baru-baru ini"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:465
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:663
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:465
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:695
 msgid "Never Played"
 msgstr "Tidak Pernah Dimainkan"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:472
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:670
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:472
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:702
 msgid "Over Played"
 msgstr "Terlebih Main"
 
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:479
-#: /home/noelco/noise/po/../src//DataBase/DataBaseManager.vala:677
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:479
+#: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:709
 msgid "Not Recently Played"
 msgstr "Tiada Dimain Baru-baru Ini"
 
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
+#: /home/noelco/fix-1084151/po/../src//Noise.vala:37
+msgid "Listen to music"
+msgstr "Dengari muzik"
+
+#: /home/noelco/fix-1084151/po/../src//Noise.vala:38
+msgid "Music Player"
+msgstr "Pemain Muzik"
+
+#: /home/noelco/fix-1084151/po/../src//Noise.vala:39
+msgid "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
+msgstr ""
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SpaceWidget.vala:238
+msgid "Sync"
+msgstr "Segerak"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "Bebas"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SpaceWidget.vala:384
+msgid "Using %s of %s (%.2f%)"
+msgstr "Menggunakan %s dari %s (%.2f%)"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Padam Semasa"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:66
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:99
+msgid "Off"
+msgstr "Dimatikan"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:66
+msgid "Enable Repeat"
+msgstr "Benarkan Ulang"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:67
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:533
+msgid "Song"
+msgstr "Lagu"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Song"
+msgstr "Ulang Lagu"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:68
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:189
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:245
+msgid "Album"
+msgstr "Album"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Album"
+msgstr "Ulang Album"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:69
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:187
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:246
+msgid "Artist"
+msgstr "Artis"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat Artist"
+msgstr "Ulang Artis"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:70
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:100
+msgid "All"
+msgstr "Semua"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:70
+msgid "Repeat All"
+msgstr "Ulang Semua"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:99
+msgid "Enable Shuffle"
+msgstr "Benarkan Kocok"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:100
+msgid "Disable Shuffle"
+msgstr "Lumpuhkan Kocok"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:133
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Playlist"
+msgstr "Tambah Senarai Main"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:145
+msgid "Add Smart Playlist"
+msgstr "Tambah Senarai Main Pintar"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:191
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:230
+msgid "Hide"
+msgstr "Sembunyi"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:191
+msgid "Show Equalizer"
+msgstr "Papar Penyama"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:192
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:231
+msgid "Show"
+msgstr "Papar"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:192
+msgid "Hide Equalizer"
+msgstr "Sembunyi Penyama"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:230
+msgid "Show Info Panel"
+msgstr "Papar Panel Maklumat"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/StatusBar.vala:231
+msgid "Hide Info Panel"
+msgstr "Sembunyi Panel Maklumat"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/TopDisplay.vala:69
+#: /home/noelco/fix-1084151/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Cancel"
+msgstr "Batal"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:56
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:69
+msgid "Rename"
+msgstr ""
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:57
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:71
+msgid "Remove"
+msgstr "Buang"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:58
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:72
+msgid "Export"
+msgstr "Eksport"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:70
+msgid "Edit"
+msgstr "Sunting"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:85
+msgid "Save as Playlist"
+msgstr "Simpan sebagai Senarai Main"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:87
+msgid "Export…"
+msgstr "eksport..."
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:136
+msgid "Eject"
+msgstr "Lenting"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:162
+msgid "New Playlist"
+msgstr "Senarai Main Baru"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:163
+msgid "New Smart Playlist"
+msgstr "Senarai Main Pintar Baru"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:164
+msgid "Import Playlists"
+msgstr "Import Senarai Main"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:204
+msgid "Library"
+msgstr "Pustaka"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:205
+msgid "Devices"
+msgstr "Peranti"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:206
+msgid "Network"
+msgstr "Rangkaian"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:207
+msgid "Playlists"
+msgstr "Senarai Main"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr "Lihat sebagai Album"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr "Lihat sebagai Senarai"
+
+#: /home/noelco/fix-1084151/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr "Lihat dalam Lajur"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:44
+msgid "Select Music Folder…"
+msgstr "Pilih Folder Muzik..."
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:117
+msgid "General"
+msgstr "Am"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:123
+msgid "Music Folder Location:"
+msgstr "Lokasi Folder Muzik:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:131
+msgid "Library Management:"
+msgstr "Pengurusan Pustaka:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:136
+msgid "Keep Music folder organized:"
+msgstr "Kekalkan folder Muzik terurus:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:140
+msgid "Write metadata to file:"
+msgstr "Tulis data meta ke fail:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:144
+msgid "Copy imported files to Library:"
+msgstr "Salin fail terimport ke Pustaka:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:146
+msgid "Desktop Integration:"
+msgstr "Penyepaduan Desktop:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:152
+msgid "Show notifications:"
+msgstr "Papar pemberitahuan:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:157
+msgid "Minimize window when a song is being played:"
+msgstr "Minimumkan tetingkap bila lagu dimainkan:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:159
+msgid "Hide window when a song is being played:"
+msgstr "Sembunyi tetingkap bila lagu dimainkan:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:77
+msgid "Metadata"
+msgstr "Data meta"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:79
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:371
+msgid "Lyrics"
+msgstr "Lirik"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:175
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:342
+msgid "Editing $NAME by $ARTIST"
+msgstr "Menyunting $NAME oleh $ARTIST"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:177
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:344
+#, c-format
+msgid "Editing %s"
+msgstr "Menyunting %s"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:180
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:347
+#, c-format
+msgid "Editing %i songs"
+msgstr "Menyunting %i lagu"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Title"
+msgstr "Tajuk"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:188
+msgid "Album Artist"
+msgstr "Artis Album"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:474
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:252
+msgid "Genre"
+msgstr "Genre"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:249
+msgid "Composer"
+msgstr "Penggubah"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:192
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:474
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:253
+msgid "Grouping"
+msgstr "Pengumpulan"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:248
+msgid "Comment"
+msgstr "Ulasan"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:194
+msgid "Track"
+msgstr "Trek"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:195
+msgid "Disc"
+msgstr "Cakera"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:196
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+msgid "Year"
+msgstr "Tahun"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+msgid "Rating"
+msgstr "Penarafan"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Media Type"
+msgstr "Jenis Media"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:290
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr "Lirik untuk %s tidak ditemui"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/MediaEditor.vala:535
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/FileNotFoundDialog.vala:57
 msgid "Remove Media"
 msgstr "Buang Media"
 
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
+#: /home/noelco/fix-1084151/po/../src//Dialogs/FileNotFoundDialog.vala:58
 msgid "Locate Media"
 msgstr "Cari Media"
 
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
+#: /home/noelco/fix-1084151/po/../src//Dialogs/FileNotFoundDialog.vala:59
 msgid "Rescan Library"
 msgstr "Imbas Semula Pustaka"
 
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
+#: /home/noelco/fix-1084151/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Do Nothing"
 msgstr "Jangan Buat Apa-apa"
 
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:70
+#: /home/noelco/fix-1084151/po/../src//Dialogs/FileNotFoundDialog.vala:66
 msgid "Could not find media file"
 msgstr "Tidak dapat cari fail media"
 
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:79
+#: /home/noelco/fix-1084151/po/../src//Dialogs/FileNotFoundDialog.vala:75
 msgid ""
 "The music file for $NAME by $ARTIST could not be found. What would you like "
 "to do?"
 msgstr ""
 "Fail muzik untuk $NAME oleh $ARTIST tidak ditemui. Apa anda hendak buat?"
 
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:82
+#: /home/noelco/fix-1084151/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
 msgstr "%i fail media tidak dapat ditemui. Apa anda hendak lakukan?"
 
-#: /home/noelco/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/noelco/fix-1084151/po/../src//Dialogs/FileNotFoundDialog.vala:131
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 msgid "Choose Music Folder"
 msgstr "Pilih Folder Muzik"
 
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-msgid "Import from Device"
-msgstr "Import dari Peranti"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-#, c-format
-msgid "Import media from %s"
-msgstr "Import media dari %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
-#, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Fail berikut ditemui pada %s, tetapi bukan dalam pustaka anda. Tanda semua "
-"fail yang anda hendak import."
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
-msgid "Import all media"
-msgstr "Import semua media"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr "Import"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
-msgid "Don't Import"
-msgstr "Jangan Import"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
-#, c-format
-msgid "Import %i items from %s"
-msgstr "Import %i item dari %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
-#, c-format
-msgid "Import %s from %s"
-msgstr "Import %s dari %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-msgid "ID"
-msgstr "ID"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:190
-msgid "Title"
-msgstr "Tajuk"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Artist"
-msgstr "Artis"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:193
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
-msgid "Album"
-msgstr "Album"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
-msgid "Select individual media to import:"
-msgstr "Pilih media individu untuk diimport:"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Item"
-msgstr "Semak Item"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
-msgid "Check Album"
-msgstr "Semak Album"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
-msgid "Check Artist"
-msgstr "Semak Artis"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
-msgid "Cannot Import"
-msgstr "Tidak dapat Import"
-
-#: /home/noelco/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:293
-#, c-format
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-"Noise suda membuat operasi fail. Sila tunggu sehingga ia selesai mengimport "
-"dari %d"
-
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "Eksport Senarai Main"
-
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "Tetapkan Folder Muzik"
-
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
-msgid "Set Music Folder?"
-msgstr "Tetapkan Folder Muzik?"
-
-#: /home/noelco/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Anda pasti hendak tetapkan folder muzik ke %s? Ia akan tetapkan semula "
-"pustaka dan buang senarai main anda."
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:60
-msgid "Smart Playlist Editor"
-msgstr "Penyunting Senarai Main Pintar"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:70
-msgid "Name of Playlist"
-msgstr "Nama Senarai Main"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:75
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
-msgid "Rules"
-msgstr "Peraturan"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:84
-msgid "Options"
-msgstr "Pilihan"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Playlist Title"
-msgstr "Tajuk Senarai Main"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
-msgid "Match"
-msgstr "Padan"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:95
-msgid "any"
-msgstr "sebarang"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "all"
-msgstr "semua"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:97
-msgid "of the following:"
-msgstr "yang berikut:"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:124
-msgid "Limit to"
-msgstr "Hadkan ke"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:126
-msgid "items"
-msgstr "item"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-msgid "Bitrate"
-msgstr "Kadar Bit"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:197
-msgid "Comment"
-msgstr "Ulasan"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:195
-msgid "Composer"
-msgstr "Penggubah"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Added"
-msgstr "Tarikh Ditambah"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-msgid "Date Released"
-msgstr "Tarikh Dilepaskan"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:194
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
-msgid "Genre"
-msgstr "Genre"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:482
-msgid "Grouping"
-msgstr "Pengumpulan"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-msgid "Last Played"
-msgstr "Terakhir Dimain"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Jangka masa"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-msgid "Playcount"
-msgstr "Kiraan Main"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:201
-msgid "Rating"
-msgstr "Penarafan"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-msgid "Skipcount"
-msgstr "Kiraan Langkau"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:200
-msgid "Year"
-msgstr "Tahun"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:333
-msgid "is"
-msgstr "adalah"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:334
-msgid "contains"
-msgstr "mengandungi"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
-msgid "does not contain"
-msgstr "tidak mengandungi"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:381
-msgid "is exactly"
-msgstr "dengan tepat"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
-msgid "is at most"
-msgstr "adalah keseluruhannya"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:369
-msgid "is at least"
-msgstr "adalah sekurang-kurangnya"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
-msgid "is within"
-msgstr "adalah didalam"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
-msgid "is before"
-msgstr "adalah sebelum"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "saat"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
-msgid "days ago"
-msgstr "hari yang lalu"
-
-#: /home/noelco/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
-msgid "kbps"
-msgstr "kbps"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:83
-msgid "Equalizer"
-msgstr "Penyama"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:150
-msgid "Save preset"
-msgstr "Simpan praset"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:414
-#, c-format
-msgid "%s (Custom)"
-msgstr "%s (Suai)"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:416
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (Suai %i)"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:420
-msgid "Custom Preset"
-msgstr "Praset Suai"
-
-#: /home/noelco/noise/po/../src//Dialogs/EqualizerWindow.vala:422
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Praset Suai %i"
-
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
-msgid "Import media to Library"
-msgstr "Import media ke Pustaka"
-
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
-msgid "Continue Syncing"
-msgstr "Terus Menyegerak"
-
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
-msgid "Stop Syncing"
-msgstr "Henti Menyegerak"
-
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Jika anda teruskan segerak, media akan dibuang dari %s kerana ia tiada dalam "
-"senarai segerak. Anda hendak import ia ke dalam pustaka anda dahulu"
-
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr "Segerak akan buang %i item dari %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr "Segerak akan buang 1 item dari %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:44
-msgid "Select Music Folder…"
-msgstr "Pilih Folder Muzik..."
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:84
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:289
-msgid "Preferences"
-msgstr "Keutamaan"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:117
-msgid "General"
-msgstr "Am"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:123
-msgid "Music Folder Location:"
-msgstr "Lokasi Folder Muzik:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:131
-msgid "Library Management:"
-msgstr "Pengurusan Pustaka:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:136
-msgid "Keep Music folder organized:"
-msgstr "Kekalkan folder Muzik terurus:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:140
-msgid "Write metadata to file:"
-msgstr "Tulis data meta ke fail:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:144
-msgid "Copy imported files to Library:"
-msgstr "Salin fail terimport ke Pustaka:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:146
-msgid "Desktop Integration:"
-msgstr "Penyepaduan Desktop:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:152
-msgid "Show notifications:"
-msgstr "Papar pemberitahuan:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:157
-msgid "Minimize window when a song is being played:"
-msgstr "Minimumkan tetingkap bila lagu dimainkan:"
-
-#: /home/noelco/noise/po/../src//Dialogs/PreferencesWindow.vala:159
-msgid "Hide window when a song is being played:"
-msgstr "Sembunyi tetingkap bila lagu dimainkan:"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:81
-msgid "Metadata"
-msgstr "Data meta"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:83
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:379
-msgid "Lyrics"
-msgstr "Lirik"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:179
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:350
-msgid "Editing $NAME by $ARTIST"
-msgstr "Menyunting $NAME oleh $ARTIST"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:181
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:352
-#, c-format
-msgid "Editing %s"
-msgstr "Menyunting %s"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:184
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:355
-#, c-format
-msgid "Editing %i songs"
-msgstr "Menyunting %i lagu"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:192
-msgid "Album Artist"
-msgstr "Artis Album"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:198
-msgid "Track"
-msgstr "Trek"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:199
-msgid "Disc"
-msgstr "Cakera"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:203
-msgid "Media Type"
-msgstr "Jenis Media"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:298
-#, c-format
-msgid "Lyrics not found for %s"
-msgstr "Lirik untuk %s tidak ditemui"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:541
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Song"
-msgstr "Lagu"
-
-#: /home/noelco/noise/po/../src//Dialogs/MediaEditor.vala:543
-msgid "Podcast"
-msgstr "Podcast"
-
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/noelco/fix-1084151/po/../src//Dialogs/RemoveFilesDialog.vala:54
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:71
 msgid "Move to Trash"
 msgstr "Alih ke Tong Sampah"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#: /home/noelco/fix-1084151/po/../src//Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove from %s"
 msgstr "Buang dari %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
-#: /home/noelco/noise/po/../src//Widgets/TopDisplay.vala:69
-msgid "Cancel"
-msgstr "Batal"
-
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:68
+#: /home/noelco/fix-1084151/po/../src//Dialogs/RemoveFilesDialog.vala:66
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Buang %d Lagu Dari %s?"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:72
+#: /home/noelco/fix-1084151/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "buang \"%s\" Dari %s?"
 
-#: /home/noelco/noise/po/../src//Dialogs/RemoveFilesDialog.vala:81
+#: /home/noelco/fix-1084151/po/../src//Dialogs/RemoveFilesDialog.vala:79
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -809,59 +1323,324 @@ msgstr[1] ""
 "Ia akan buang lagu dari pustaka anda dan dari sebarang peranti yang "
 "disegerak secara automatik dengan %s."
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Export Playlists"
+msgstr "Eksport Senarai Main"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+msgid "Set Music Folder"
+msgstr "Tetapkan Folder Muzik"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+msgid "Set Music Folder?"
+msgstr "Tetapkan Folder Muzik?"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Anda pasti hendak tetapkan folder muzik ke %s? Ia akan tetapkan semula "
+"pustaka dan buang senarai main anda."
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/EqualizerWindow.vala:83
+msgid "Equalizer"
+msgstr "Penyama"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/EqualizerWindow.vala:150
+msgid "Save preset"
+msgstr "Simpan praset"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/EqualizerWindow.vala:414
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (Suai)"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/EqualizerWindow.vala:416
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (Suai %i)"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/EqualizerWindow.vala:420
+msgid "Custom Preset"
+msgstr "Praset Suai"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/EqualizerWindow.vala:422
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Praset Suai %i"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
+msgid "Import from Device"
+msgstr "Import dari Peranti"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
+#, c-format
+msgid "Import media from %s"
+msgstr "Import media dari %s"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"Fail berikut ditemui pada %s, tetapi bukan dalam pustaka anda. Tanda semua "
+"fail yang anda hendak import."
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+msgid "Import all media"
+msgstr "Import semua media"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDView.vala:90
+msgid "Import"
+msgstr "Import"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
+msgid "Don't Import"
+msgstr "Jangan Import"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
+#, c-format
+msgid "Import %i items from %s"
+msgstr "Import %i item dari %s"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
+#, c-format
+msgid "Import %s from %s"
+msgstr "Import %s dari %s"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
+msgid "ID"
+msgstr "ID"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
+msgid "Select individual media to import:"
+msgstr "Pilih media individu untuk diimport:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
+msgid "Check Item"
+msgstr "Semak Item"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
+msgid "Check Album"
+msgstr "Semak Album"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Artist"
+msgstr "Semak Artis"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+msgid "Cannot Import"
+msgstr "Tidak dapat Import"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+#, c-format
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"Noise suda membuat operasi fail. Sila tunggu sehingga ia selesai mengimport "
+"dari %d"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SyncWarningDialog.vala:60
+msgid "Import media to Library"
+msgstr "Import media ke Pustaka"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SyncWarningDialog.vala:61
+msgid "Continue Syncing"
+msgstr "Terus Menyegerak"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SyncWarningDialog.vala:62
+msgid "Stop Syncing"
+msgstr "Henti Menyegerak"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SyncWarningDialog.vala:69
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Jika anda teruskan segerak, media akan dibuang dari %s kerana ia tiada dalam "
+"senarai segerak. Anda hendak import ia ke dalam pustaka anda dahulu"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SyncWarningDialog.vala:75
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr "Segerak akan buang %i item dari %s"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SyncWarningDialog.vala:78
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr "Segerak akan buang 1 item dari %s"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:42
+msgid "Smart Playlist Editor"
+msgstr "Penyunting Senarai Main Pintar"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:54
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:62
+msgid "Name of Playlist"
+msgstr "Nama Senarai Main"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:55
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:63
+msgid "Rules"
+msgstr "Peraturan"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:56
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:64
+msgid "Options"
+msgstr "Pilihan"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:67
+msgid "Playlist Title"
+msgstr "Tajuk Senarai Main"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:72
+msgid "Match"
+msgstr "Padan"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+msgid "any"
+msgstr "sebarang"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:75
+msgid "all"
+msgstr "semua"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:77
+msgid "of the following:"
+msgstr "yang berikut:"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:92
+msgid "Limit to"
+msgstr "Hadkan ke"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:94
+msgid "items"
+msgstr "item"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:247
+msgid "Bitrate"
+msgstr "Kadar Bit"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:250
+msgid "Date Added"
+msgstr "Tarikh Ditambah"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:251
+msgid "Date Released"
+msgstr "Tarikh Dilepaskan"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:254
+msgid "Last Played"
+msgstr "Terakhir Dimain"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:255
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:387
+msgid "Length"
+msgstr "Jangka masa"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:256
+msgid "Playcount"
+msgstr "Kiraan Main"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+msgid "Skipcount"
+msgstr "Kiraan Langkau"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:323
+msgid "is"
+msgstr "adalah"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:324
+msgid "contains"
+msgstr "mengandungi"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:325
+msgid "does not contain"
+msgstr "tidak mengandungi"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:350
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+msgid "is exactly"
+msgstr "dengan tepat"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:351
+msgid "is at most"
+msgstr "adalah keseluruhannya"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:352
+msgid "is at least"
+msgstr "adalah sekurang-kurangnya"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:364
+msgid "is within"
+msgstr "adalah didalam"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:365
+msgid "is before"
+msgstr "adalah sebelum"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:388
+msgid "seconds"
+msgstr "saat"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:391
+msgid "days ago"
+msgstr "hari yang lalu"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/SmartPlaylistEditor.vala:394
+msgid "kbps"
+msgstr "kbps"
+
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
 msgstr "Bukan Fail Terimport"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
 msgstr "Tidak boleh import %d item dari %s"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr "%s tidak boleh improt %d item. Fail mungkin rosak."
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
 msgstr "Buang semua fail rosak ke tong sampah"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
 msgstr "Abai"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
 msgstr "del"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
 msgstr "Lokasi Fail"
 
-#: /home/noelco/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+#: /home/noelco/fix-1084151/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
 msgstr "Pilih fail individu untuk dialih ke tong sampah:"
 
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:46
-msgid "Playlist Editor"
-msgstr "Penyunting Senarai Main"
-
-#: /home/noelco/noise/po/../src//Dialogs/PlaylistNameWindow.vala:142
-#, c-format
-msgid "The name %s is already in use"
-msgstr "Nama %s sudah digunakan"
-
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+#: /home/noelco/fix-1084151/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
 msgstr "Pasang Pemalam"
 
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+#: /home/noelco/fix-1084151/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
 msgstr "Pemalam GStreamer yang diperlukan tidak dipasang"
 
-#: /home/noelco/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#: /home/noelco/fix-1084151/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
@@ -870,891 +1649,57 @@ msgstr ""
 "Pemalam untuk jenis media %s tidak dipasang.\n"
 "Apa anda hendak lakukan?"
 
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:54
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:65
-msgid "Remove"
-msgstr "Buang"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:55
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:66
-msgid "Export"
-msgstr "Eksport"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:64
-msgid "Edit"
-msgstr "Sunting"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:77
-msgid "Save as Playlist"
-msgstr "Simpan sebagai Senarai Main"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:79
-msgid "Export…"
-msgstr "eksport..."
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:120
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:285
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:101
-msgid "Import to Library"
-msgstr "Import ke Pustaka"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:128
-msgid "Eject"
-msgstr "Lenting"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:154
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
-msgid "New Playlist"
-msgstr "Senarai Main Baru"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:155
-msgid "New Smart Playlist"
-msgstr "Senarai Main Pintar Baru"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:156
-msgid "Import Playlists"
-msgstr "Import Senarai Main"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:195
-msgid "Library"
-msgstr "Pustaka"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:196
-msgid "Devices"
-msgstr "Peranti"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:197
-msgid "Network"
-msgstr "Rangkaian"
-
-#: /home/noelco/noise/po/../src//Widgets/SourceListView.vala:198
-msgid "Playlists"
-msgstr "Senarai Main"
-
-#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:49
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
-msgid "Automatic"
-msgstr "Automatik"
-
-#: /home/noelco/noise/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Padam Semasa"
-
-#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr "Lihat sebagai Album"
-
-#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr "Lihat sebagai Senarai"
-
-#: /home/noelco/noise/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr "Lihat dalam Lajur"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Off"
-msgstr "Dimatikan"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:66
-msgid "Enable Repeat"
-msgstr "Benarkan Ulang"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Repeat Song"
-msgstr "Ulang Lagu"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:68
-msgid "Repeat Album"
-msgstr "Ulang Album"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Repeat Artist"
-msgstr "Ulang Artis"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
-msgid "All"
-msgstr "Semua"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:70
-msgid "Repeat All"
-msgstr "Ulang Semua"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Enable Shuffle"
-msgstr "Benarkan Kocok"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:100
-msgid "Disable Shuffle"
-msgstr "Lumpuhkan Kocok"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:133
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:144
-msgid "Add Playlist"
-msgstr "Tambah Senarai Main"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:145
-msgid "Add Smart Playlist"
-msgstr "Tambah Senarai Main Pintar"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Hide"
-msgstr "Sembunyi"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:191
-msgid "Show Equalizer"
-msgstr "Papar Penyama"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:231
-msgid "Show"
-msgstr "Papar"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:192
-msgid "Hide Equalizer"
-msgstr "Sembunyi Penyama"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Show Info Panel"
-msgstr "Papar Panel Maklumat"
-
-#: /home/noelco/noise/po/../src//Widgets/StatusBar.vala:231
-msgid "Hide Info Panel"
-msgstr "Sembunyi Panel Maklumat"
-
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:238
-msgid "Sync"
-msgstr "Segerak"
-
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "Bebas"
-
-#: /home/noelco/noise/po/../src//Widgets/SpaceWidget.vala:384
-msgid "Using %s of %s (%.2f%)"
-msgstr "Menggunakan %s dari %s (%.2f%)"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:286
-msgid "Rescan Music Folder"
-msgstr "Imbas Semula Folder Muzik"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:309
-msgid "Search Music"
-msgstr "Gelintar Muzik"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:659
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:754
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:113
-msgid "Music"
-msgstr "Muzik"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:705
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:105
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Baris Gilir"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
-msgid "No songs in Queue"
-msgstr "Tiada lagu dalam Baris Gilir"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:707
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"Untuk menambah lagu ke baris  gilir, guna <b>klik kedua</b> pada item dan "
-"pilih <b>Baris Gilir</b>. Bila lagu selesai dimainkan, lagu dibaris gilir "
-"akan dimainkan dahulu sebelum lagi berikutnya dalam senarai main."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:711
-#: /home/noelco/noise/po/../src//PlaybackManager.vala:103
-msgid "History"
-msgstr "Sejarah"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
-msgid "No songs in History"
-msgstr "Tiada lagu dalam Sejarah"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:713
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"Selepas sebahagian lagu telah dimainkan, ia akan ditambah ke senarai.\n"
-"Sejarah. Anda  boleh guna senarai ini untuk melihat semua lagu yang anda "
-"telah\n"
-"main ketika sesi semasa."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:947
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:949
-msgid "New playlist"
-msgstr "Senarai main baru"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:950
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:953
+#: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:257
 #, c-format
-msgid "New playlist (%i)"
-msgstr "Senarai main baru (%i)"
+msgid "Importing music from %s…"
+msgstr "Mengimport muzik dari %s..."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1152
-msgid "Import Music"
-msgstr "Import Muzik"
+#: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:300
+msgid "Adding files to library…"
+msgstr "Menambah fail ke pustaka..."
 
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1184
+#: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:342
 #, c-format
-msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "<b>Mengimport</b> muzik dari pustaka <b>%s</b>."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1199
-msgid "Rescanning music folder for changes"
-msgstr "Mengimbas semula folder muzik untuk perubahan"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
-msgid "Could not find Music Folder"
-msgstr "Tidak dapat cari Folder Muzik"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1206
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Sila pastikan folder muzik anda boleh dicapai dan dilekap."
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
-msgid "Import Complete"
-msgstr "Proses Mengimport Selesai"
-
-#: /home/noelco/noise/po/../src//LibraryWindow.vala:1273
-#, c-format
-msgid "%s has imported your library."
-msgstr "%s telah mengimport pustaka anda."
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
-msgid "Cancelling Sync"
-msgstr "Membatalkan Segerak"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:45
-msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
-"Segerak peranti telah dibatalkan. Operasi akan henti selepas media ini."
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
-msgid "Cancelling Import"
-msgstr "Membatalkan Import"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:49
-msgid ""
-"Import from device has been cancelled. Operation will stop after this media."
-msgstr ""
-"Import dari peranti telah dibatalkan. Operasi akan henti selepas media ini."
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
-msgid "No External Songs"
-msgstr "Tiada Lagu Luaran"
-
-#: /home/noelco/noise/po/../src//Views/DeviceView.vala:114
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr ""
-"Tiada lagu ditemui dalam peranti ini yang mana bukan dalam pustaka anda."
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr "Genre"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr "Artis"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr "Album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr "Tahun"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr "Penarafan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr "Penggubah"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr "Pengumpulan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:156
-msgid "On Left"
-msgstr "Disebelah Kiri"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:158
-msgid "On Top"
-msgstr "Di Atas"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:404
-msgid "Unrated"
-msgstr "Tidak ditarafkan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:406
-#, c-format
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i Bintang"
-msgstr[1] "%i Bintang"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Semua Genre"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-#, c-format
-msgid "All %i Genres"
-msgstr "Semua %i Genre"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Tanpa Genre"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Semua Artis"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Artists"
-msgstr "Semua %i Artis"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Tanpa Artis"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Semua Album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Albums"
-msgstr "Semua %i Album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Tanpa Album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Semua Tahun"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Years"
-msgstr "Semua %i Tahun"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Tanpa Tahun"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Semua Penarafan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Tanpa Penarapan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "Semua Pengumpulan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-#, c-format
-msgid "All %i Groupings"
-msgstr "Semua %i Pengumpulan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "Tiada Pengumpulan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Semua Penggubah"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Composers"
-msgstr "Semua %i Penggubah"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Tiada Penggubah"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:58
-msgid "Remove from Library"
-msgstr "Buang dari Pustaka"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:67
-msgid "Remove from Queue"
-msgstr "Buang dari Baris Gilir"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:79
-msgid "Remove from Device"
-msgstr "Buang dari Peranti"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
-msgid "Scroll to Current Song"
-msgstr "Tatal ke Lagu Semasa"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
-msgid "Edit Song Info"
-msgstr "Sunting Maklumat Lagu"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:96
-msgid "Show in File Browser"
-msgstr "Papar dalam Pelayar Fail"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:97
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Baris Gilir"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
-msgid "Add to Playlist"
-msgstr "Tambah ke Senarai main"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:100
-msgid "Remove Song"
-msgstr "Buang Lagu"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Import %i dari %i lagu terpilih"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:225
-#, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Import %i lagu"
-msgstr[1] "Import %i lagu"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:657
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:672
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:252
-msgid "Never"
-msgstr "Tidak Sesekali"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/MusicListView.vala:735
-msgid "Sample List String"
-msgstr "Rentetan Senarai Sampel"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:125
-msgid "Autosize Columns"
-msgstr "Lajur Saiz Sendiri"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/GenericList.vala:132
-msgid "Display Album Art"
-msgstr "Papar Seni Kulit Album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
-msgctxt "List column title"
-msgid "Track"
-msgstr "Trek"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
-msgctxt "List column title"
-msgid "Title"
-msgstr "Tajuk"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
-msgctxt "List column title"
-msgid "Length"
-msgstr "Panjang"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Artis"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
-msgctxt "List column title"
-msgid "Album"
-msgstr "Album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Artis Album"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Penggubah"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Genre"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
-msgctxt "List column title"
-msgid "Year"
-msgstr "Tahun"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Pengumpulan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Kadar Bit"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Penarafan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Main"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Langkau"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Tarikh Ditambah"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Terakhir Dimainkan"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Lokasi"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Saiz Fail"
-
-#: /home/noelco/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:227
-#, c-format
-msgid "%i kbps"
-msgstr "%i kbps"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:93
-msgid "No Songs Found."
-msgstr "Tiada Lagu Ditemui."
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:369
-#, c-format
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i trek"
-msgstr[1] "%i trek"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:371
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u lagu"
-msgstr[1] "%u lagu"
-
-#: /home/noelco/noise/po/../src//Views/ListView/ListView.vala:379
-#, c-format
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:78
-msgid "Device Name:"
-msgstr "Nama Peranti:"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:81
-msgid "Device Name"
-msgstr "Nama Peranti"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:83
-msgid "Automatically sync when plugged in:"
-msgstr "Segerak secara automatik bila dipalamkan:"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:90
-msgid "Sync:"
-msgstr "Segerak"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-msgid "Other Files"
-msgstr "Fail Lain"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:114
-msgid "Podcasts"
-msgstr "Podcast"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:385
-msgid "All Music"
-msgstr "Semua Muzik"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:388
-msgid "All Podcasts"
-msgstr "Semua Podcast"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
-msgid "Sync Failed"
-msgstr "Segerak Mengalami Kegagaln"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:518
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:556
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Senarai main bernama %s digunakan untuk segerakan peranti %s, tetapi tidak "
-"ditemui."
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-msgid "Cannot Sync"
-msgstr "Tidak Dapat Segerak"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:604
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Tidak dapat segerak peranti dengan tetapan segerak terpilih. Ruang cakera "
-"tidak mencukupi"
-
-#: /home/noelco/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-msgid "Device is already being synced."
-msgstr "Peranti sudah disegerakan."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
-msgid "Get Some Tunes"
-msgstr "Dapatkan Beberapa Tona"
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:43
-#, c-format
-msgid "%s can't seem to find your music."
-msgstr "%s tidak dapat cari muzik anda."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
-msgid "Locate"
-msgstr "Cari"
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
-msgid "Change your music folder."
-msgstr "Ubah folder muzik anda."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
-msgid "Import your Music"
-msgstr "Import Muzik anda"
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
-#, c-format
-msgid "Import all your Music from %s into your library."
-msgstr "Import semua muzik anda dari %s ke dalam pustaka anda."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
-msgid "Select Music Folder"
-msgstr "Pilih Folder Muzik"
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
-msgid "No Songs"
-msgstr "Tiada Lagu"
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
-msgid "Please wait until that this playlist get updated."
-msgstr "Tunggu sehingga senarai main ini dikemaskinikan."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:97
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Untuk menambah lagu ke senarai main, guna <b>klik sekunder</b> pada item dan "
-"pilih <b>Tambah ke Senarai Main</b>."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:100
-msgid "Edit Smart Playlist"
-msgstr "Sunting Senarai Main Pintar"
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:112
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"Senarai main ini akan dipopulasikan secara automatik dengan lagu yang anda "
-"padankan peraturannya. Untuk ubahsuai peraturan ini, guna  <b>klik "
-"sekunder</b> padanya dalam palang sisi dan klik <b>Sunting</b>. Selain itu, "
-"anda boleh klik pada butang dibawah."
-
-#: /home/noelco/noise/po/../src//Views/Wrappers/ViewWrapper.vala:473
-msgid "No media"
-msgstr "Tiada Media"
-
-#: /home/noelco/noise/po/../src//Views/ContentView.vala:21
-#, c-format
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
-
-#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:64
-msgid "No Albums Found."
-msgstr "Tiada Album Ditemui."
-
-#: /home/noelco/noise/po/../src//Views/GridView/GridView.vala:160
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-msgstr[1] "%u album"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d minit"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d jam"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d hari"
-
-#: /home/noelco/noise/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u item, %s, %s"
-
-#: /home/noelco/noise/po/../src//Views/GridView/PopupListView.vala:161
-#, c-format
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s oleh %s"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:144
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:174
-msgid "Empty device!"
-msgstr "Peranti kosong!"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:148
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:178
-msgid "This device does not contain any music."
-msgstr "Peranti ini tidak mengandungi sebarang muzik."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:315
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:316
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:458
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:459
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:337
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:338
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:577
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
-#, c-format
-msgid "Syncing <b>%s</b>…"
-msgstr "Menyegerak <b>%s</b>…"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
-msgid "Finishing sync process…"
-msgstr "Menyelesaikan proses segerak..."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
-msgid "Cancelling Sync…"
-msgstr "Membatalkan Segerak..."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:475
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
-msgid "There is not enough space on Device to complete the Sync…"
-msgstr "Ruang tidak mencukupu dalam Peranti untuk selesaikan Segerak..."
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:729
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
-#, c-format
-msgid "Removing from <b>%s</b>…"
-msgstr "Membuang dari <b>%s</b>…"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1015
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Mengimport <b>$NAME</b> oleh <b>$ARTIST</b> ke pustaka…"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Menambah <b>$NAME</b> oleh <b>$ARTIST</b> ke $DEVICE"
-
-#: /home/noelco/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Membuang <b>$NAME</b> oleh <b>$ARTIST</b> daripada $DEVICE"
-
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+msgid "Adding music from %s to library…"
+msgstr "Menambah muzik dari %s ke pustaka..."
+
+#: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:370
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "Mengimbas semula muzik untuk perubahan. Ia mengambil masa..."
+
+#: /home/noelco/fix-1084151/po/../src//GStreamer/Streamer.vala:195
+#: /home/noelco/fix-1084151/po/../src//Objects/ArtistInfo.vala:27
+#: /home/noelco/fix-1084151/po/../src//Objects/AlbumInfo.vala:26
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDPlayer.vala:207
+msgid "Unknown Artist"
+msgstr "Penyanyi/Artis tidak diketahui"
+
+#: /home/noelco/fix-1084151/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Trek Tidak Diketahui"
+
+#: /home/noelco/fix-1084151/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Album Tidak Diketahui"
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr "Ralat Berlaku"
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr "Terdapat ralat semasa memuatkan CD Audio ini."
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Audio CD Invalid"
 msgstr "CD Audio Tidak Sah"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:104
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:104
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s tidak dapat baca kandungan CD Audio ini"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1762,22 +1707,22 @@ msgstr ""
 "Sila pastikan folder muzik anda boleh dicapai dan dilekap sebelum mengimport "
 "CD."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
 msgid "No songs on CD"
 msgstr "Tiada lagu dalam CD"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "%s tidak dapat cari sebarang lagu dalam CD. Tiada lagu boleh diimport"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s sudah membuat pengimportan"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1785,51 +1730,123 @@ msgid ""
 msgstr ""
 "Sila tunggu sehingga %s selesai dengan import semasa sebelum mengimport CD."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 msgid "CD Import Complete"
 msgstr "Import CD Selesai"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s telah selesai mengimport %i lagu dari CD Audio."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s telag selesai mengimport satu lagu dari CD Audio."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:411
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:411
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "Mengimport trek %i: %s"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:428
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:428
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Import CD akan <b>dibatalkan</b> selepas import semasa."
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:451
+#: /home/noelco/fix-1084151/po/../plugins//Devices/CDRom/CDRomDevice.vala:451
 msgid "An error occured during the Import of this CD"
 msgstr "Ralat berlaku semasa mengimport CD ini"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
-msgid "An Error Occured"
-msgstr "Ralat Berlaku"
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:144
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:174
+msgid "Empty device!"
+msgstr "Peranti kosong!"
 
-#: /home/noelco/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
-msgid "There was an error while loading this Audio CD."
-msgstr "Terdapat ralat semasa memuatkan CD Audio ini."
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:148
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:178
+msgid "This device does not contain any music."
+msgstr "Peranti ini tidak mengandungi sebarang muzik."
 
-#: /home/noelco/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:315
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:316
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:458
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:459
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:337
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:338
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:577
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:578
+#, c-format
+msgid "Syncing <b>%s</b>…"
+msgstr "Menyegerak <b>%s</b>…"
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:440
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:608
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:778
+msgid "Finishing sync process…"
+msgstr "Menyelesaikan proses segerak..."
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:465
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:626
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:795
+msgid "Cancelling Sync…"
+msgstr "Membatalkan Segerak..."
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:475
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:476
+msgid "There is not enough space on Device to complete the Sync…"
+msgstr "Ruang tidak mencukupu dalam Peranti untuk selesaikan Segerak..."
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:729
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:730
+#, c-format
+msgid "Removing from <b>%s</b>…"
+msgstr "Membuang dari <b>%s</b>…"
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:976
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:1015
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "Mengimport <b>$NAME</b> oleh <b>$ARTIST</b> ke pustaka…"
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:664
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "Menambah <b>$NAME</b> oleh <b>$ARTIST</b> ke $DEVICE"
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:824
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "Membuang <b>$NAME</b> oleh <b>$ARTIST</b> daripada $DEVICE"
+
+#: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:909
 msgid "Syncing playlists"
 msgstr "Menyegerak senarai main"
 
-#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "media"
+
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr "Media Serupa"
+
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/SimilarMedia.vala:46
+msgid "Similar"
+msgstr "Seakan"
+
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/LastFM.vala:77
 msgid "No similar songs found"
 msgstr "Tiada lagu yang serupa ditemui"
 
-#: /home/noelco/noise/po/../plugins//LastFM/LastFM.vala:77
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/LastFM.vala:77
 msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
@@ -1839,57 +1856,45 @@ msgstr ""
 "semua maklumat lagu adalah betul dan anda bersambung dengan Internet. "
 "Sesetengah lagu mungkin tidak mempunyai padanan."
 
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
-msgid "media"
-msgstr "media"
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
-msgid "Similar Media"
-msgstr "Media Serupa"
-
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
 msgstr "Beri Keizinan Noise"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
 msgstr "Tidak berjaya. Klik Untuk Cuba Lagi"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
 msgstr "Scroble Sudah Dibenarkan"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
 msgstr "Berjaya!"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
 msgstr "Lengkapkan Daftar Masuk"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:42
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:42
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:47
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:47
 msgid "Last.fm Integration"
 msgstr "Penyepaduan Last.fm"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:54
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
 msgstr "Klik untuk buat semula proses daftar masuk Last.fm"
 
-#: /home/noelco/noise/po/../plugins//LastFM/PreferencesSection.vala:57
+#: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
 "Untuk membenarkan penyepaduan Last.fm, anda mesti beri keizinan ke Noise. "
 "Anda perlu buat ini sekali sahaja."
-
-#: /home/noelco/noise/po/../plugins//LastFM/SimilarMedia.vala:46
-msgid "Similar"
-msgstr "Seakan"
 
 #~ msgid "Recently Played"
 #~ msgstr "Baru Dimainkan"
@@ -2143,6 +2148,10 @@ msgstr "Seakan"
 #~ "Anda mesti tunggu sehingga operasi fail terdahulu selesai sebelum menetapkan "
 #~ "folder muzik anda"
 
+#, c-format
+#~ msgid "The name %s is already in use"
+#~ msgstr "Nama %s sudah digunakan"
+
 #~ msgid "Ripping track 1"
 #~ msgstr "Meretas trek 1"
 
@@ -2200,3 +2209,6 @@ msgstr "Seakan"
 
 #~ msgid "Write metadata to file"
 #~ msgstr "Tulis data meta ke fail"
+
+#~ msgid "Playlist Editor"
+#~ msgstr "Penyunting Senarai Main"
