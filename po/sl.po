@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2013-01-21 05:00+0000\n"
+"X-Launchpad-Export-Date: 2013-01-22 05:11+0000\n"
 "X-Generator: Launchpad (build 16430)\n"
 "Language: sl\n"
 
@@ -2105,9 +2105,6 @@ msgstr ""
 #, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Ime %s je že v uporabi"
-
-#~ msgid "Playlist Editor"
-#~ msgstr "Urejevalnik seznama predvajanja"
 
 #, c-format
 #~ msgid ""

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-21 00:14+0100\n"
-"PO-Revision-Date: 2012-12-31 12:30+0000\n"
+"PO-Revision-Date: 2013-01-21 18:25+0000\n"
 "Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-21 04:59+0000\n"
+"X-Launchpad-Export-Date: 2013-01-22 05:11+0000\n"
 "X-Generator: Launchpad (build 16430)\n"
 "Language: hu\n"
 
@@ -645,7 +645,7 @@ msgstr "Szám eltávolítása"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "Új lejátszólista..."
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -890,11 +890,11 @@ msgstr ""
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
-msgstr ""
+msgstr "<b>%s</b> importálása a Gyűjteménybe..."
 
 #: /home/noelco/fix-1084151/po/../src//FileOperator.vala:428
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "Fájlok <b>másolása</b> a <b>zenemappába</b>…"
 
 #: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:435
 #: /home/noelco/fix-1084151/po/../src//DataBase/DataBaseManager.vala:665
@@ -937,6 +937,7 @@ msgstr "Zenelejátszó"
 #: /home/noelco/fix-1084151/po/../src//Noise.vala:39
 msgid "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
+"Zene;Audio;Lejátszó;MP3;iPod;Lejátszás;Lejátszólista;Média;CD;Telefon"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SpaceWidget.vala:238
 msgid "Sync"
@@ -1054,7 +1055,7 @@ msgstr "Mégsem"
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Átnevezés"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:71
@@ -1076,7 +1077,7 @@ msgstr "Mentés lejátszólistaként"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr ""
+msgstr "Exportálás..."
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:136
 msgid "Eject"
@@ -1124,7 +1125,7 @@ msgstr "Oszlop nézet"
 
 #: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Zenemappa választása..."
 
 #: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
@@ -1659,20 +1660,20 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:257
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Zene importálása innen: %s..."
 
 #: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:300
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Fájlok hozzáadása a gyűjteményhez..."
 
 #: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:342
 #, c-format
 msgid "Adding music from %s to library…"
-msgstr ""
+msgstr "Zene hozzáadása a gyűjteményhez innen: %s..."
 
 #: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:370
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "Zenék újravizsgálása változások után. Ez eltarthat egy ideig..."
 
 #: /home/noelco/fix-1084151/po/../src//GStreamer/Streamer.vala:195
 #: /home/noelco/fix-1084151/po/../src//Objects/ArtistInfo.vala:27
@@ -1785,28 +1786,28 @@ msgstr "Ez az eszköz nem tartalmaz zenét."
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:578
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Szinkronizálás ezzel: <b>%s</b>…"
 
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:440
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:608
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:778
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Szinkronizáció befejezése..."
 
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:465
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:626
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:795
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Szinkronizáció megszakítása..."
 
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:475
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:476
 msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
+msgstr "Nincs elég hely az eszközön a szinkronizálás befejezéséhez..."
 
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
@@ -1814,14 +1815,14 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:730
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "Eltávolitás innen: <b>%s</b>…"
 
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:976
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:1015
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> importálása a gyűjteménybe..."
 
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:664
@@ -1832,7 +1833,7 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:824
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> eltávolítása $DEVICE eszközről"
 
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:909
 msgid "Syncing playlists"
@@ -1860,6 +1861,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Nincsenek az éppen lejátszotthoz hasonló számok a gyűjteményében. Győződjön "
+"meg róla, hogy minden száminformáció helyes, és hogy csatlakozik-e az "
+"internetre. Néhány számra nincs találat."
 
 #: /home/noelco/fix-1084151/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
@@ -2200,6 +2204,3 @@ msgstr ""
 #~ "A(z) %s nem talált ehhez hasonló dalokat a gyűjteményében: %s - %s. "
 #~ "Győződjön meg róla, hogy az összes száminformáció helyes, és hogy "
 #~ "csatlakozik-e az internetre. Néhány számra lehet, hogy nincs találat."
-
-#~ msgid "Playlist Editor"
-#~ msgstr "Lejátszólista szerkesztő"

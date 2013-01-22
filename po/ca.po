@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-21 04:59+0000\n"
+"X-Launchpad-Export-Date: 2013-01-22 05:10+0000\n"
 "X-Generator: Launchpad (build 16430)\n"
 "Language: ca\n"
 
@@ -2185,9 +2185,6 @@ msgstr ""
 
 #~ msgid "Complete login"
 #~ msgstr "Inici de sessió completat"
-
-#~ msgid "Playlist Editor"
-#~ msgstr "Editor de llistes de reproducció"
 
 #, c-format
 #~ msgid "Importing music from %s..."

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-21 00:14+0100\n"
-"PO-Revision-Date: 2013-01-12 22:11+0000\n"
-"Last-Translator: Mukusev Vladimir <damon95@yandex.ru>\n"
+"PO-Revision-Date: 2013-01-21 16:00+0000\n"
+"Last-Translator: михаил <ded.mixei@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-01-21 05:00+0000\n"
+"X-Launchpad-Export-Date: 2013-01-22 05:11+0000\n"
 "X-Generator: Launchpad (build 16430)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -655,7 +655,7 @@ msgstr "Удалить композицию"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "Новый плейлист"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -1065,7 +1065,7 @@ msgstr "Отмена"
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Переименовать"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:71
@@ -2236,6 +2236,3 @@ msgstr ""
 
 #~ msgid "Skips"
 #~ msgstr "Число пропусков"
-
-#~ msgid "Playlist Editor"
-#~ msgstr "Редактор списка воспроизведения"

@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-01-21 05:00+0000\n"
+"X-Launchpad-Export-Date: 2013-01-22 05:11+0000\n"
 "X-Generator: Launchpad (build 16430)\n"
 "Language: \n"
 
@@ -2128,6 +2128,3 @@ msgstr "您必須給予Noise權限使Last.fm與Noise作整合。此動作只需�
 
 #~ msgid "Write metadata to file"
 #~ msgstr "將中介資料寫入檔案"
-
-#~ msgid "Playlist Editor"
-#~ msgstr "播放清單編輯器"
