@@ -95,6 +95,9 @@ public class Noise.SmartPlaylistEditor : Window {
         
         limit_check.set_active (sp.limit);
         limit_spin.set_value ((double)sp.limit_amount);
+
+        limit_spin.sensitive = limit_check.active;
+        limit_check.toggled.connect(() => { limit_spin.sensitive = limit_check.active; });
         
         limiter_grid.attach (limit_check, 0, 0, 1, 1);
         limiter_grid.attach (limit_spin, 1, 0, 1, 1);
