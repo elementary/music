@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-21 00:14+0100\n"
-"PO-Revision-Date: 2013-01-02 19:15+0000\n"
-"Last-Translator: Lorenzo Fagundes Antunes <fantunes.lorenzo@gmail.com>\n"
+"PO-Revision-Date: 2013-01-22 12:13+0000\n"
+"Last-Translator: Guilherme Ferreira <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2013-01-22 05:11+0000\n"
-"X-Generator: Launchpad (build 16430)\n"
+"X-Launchpad-Export-Date: 2013-01-23 05:36+0000\n"
+"X-Generator: Launchpad (build 16441)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/fix-1084151/po/../core//Media.vala:35
@@ -645,7 +645,7 @@ msgstr "Remover Música"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "Nova lista de reprodução..."
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -1076,7 +1076,7 @@ msgstr "Salvar como lista de reprodução"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr ""
+msgstr "Exportar..."
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:136
 msgid "Eject"
@@ -1661,7 +1661,7 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:257
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Importando música de %s…"
 
 #: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:300
 msgid "Adding files to library…"
@@ -1670,11 +1670,13 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:342
 #, c-format
 msgid "Adding music from %s to library…"
-msgstr ""
+msgstr "Adicionando música de %s para biblioteca..."
 
 #: /home/noelco/fix-1084151/po/../src//LibraryManager.vala:370
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
+"Escaneando músicas novamente para verificar mudanças. Isso pode demorar um "
+"pouco."
 
 #: /home/noelco/fix-1084151/po/../src//GStreamer/Streamer.vala:195
 #: /home/noelco/fix-1084151/po/../src//Objects/ArtistInfo.vala:27
@@ -1787,7 +1789,7 @@ msgstr "Esse dispositivo contém nenhuma música"
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:578
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Sincronizando <b>%s</b>..."
 
 #: /home/noelco/fix-1084151/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
 #: /home/noelco/fix-1084151/po/../plugins//Devices/iPod/iPodDevice.vala:440
