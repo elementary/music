@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-21 00:14+0100\n"
-"PO-Revision-Date: 2012-10-18 23:13+0000\n"
-"Last-Translator: Sho0ter <Sho0ter@mail.ua>\n"
+"PO-Revision-Date: 2013-01-23 17:17+0000\n"
+"Last-Translator: Max_ym <kontact.cat@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-01-22 05:11+0000\n"
-"X-Generator: Launchpad (build 16430)\n"
+"X-Launchpad-Export-Date: 2013-01-24 05:08+0000\n"
+"X-Generator: Launchpad (build 16445)\n"
 "Language: uk\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/fix-1084151/po/../core//Media.vala:35
 msgid "Unknown"
-msgstr ""
+msgstr "Невідомо"
 
 #: /home/noelco/fix-1084151/po/../core//Media.vala:45
 msgid "Radio Station"
@@ -51,7 +51,7 @@ msgstr "Експортувати список композицій"
 #: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:196
 #: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:290
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG Version 3.0 Extended (*.m3u)"
 
 #: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:201
 #: /home/noelco/fix-1084151/po/../core//Utils/PlaylistsUtils.vala:295
@@ -100,7 +100,7 @@ msgstr[2] "%u секунд"
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s та %s"
 
 #: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:69
 #, c-format
@@ -121,28 +121,28 @@ msgstr[1] "%u годин"
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s та %s"
 
 #. / days and hours
 #: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:86
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s та %s"
 
 #. / days and minutes
 #: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s та %s"
 
 #. / hours and minutes
 #: /home/noelco/fix-1084151/po/../core//Utils/TimeUtils.vala:100
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s та %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -251,7 +251,7 @@ msgstr "Музика"
 #: /home/noelco/fix-1084151/po/../src//PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Черга"
 
 #: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:717
 msgid "No songs in Queue"
@@ -291,7 +291,7 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:392
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:394
 msgid "New playlist"
-msgstr ""
+msgstr "Новий список композицій"
 
 #: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:958
 #: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:961
@@ -299,7 +299,7 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:398
 #, c-format
 msgid "New playlist (%i)"
-msgstr ""
+msgstr "Новий список композицій (%i)"
 
 #: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:1160
 msgid "Import Music"
@@ -424,13 +424,13 @@ msgstr "Змінити каталог з музикою"
 #: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import your Music"
-msgstr ""
+msgstr "Імпортувати вашу музику"
 
 #: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
 #: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "Імпортувати всі композиції з %s до вашої бібліотеки."
 
 #: /home/noelco/fix-1084151/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
 msgid "Select Music Folder"
@@ -469,11 +469,11 @@ msgstr ""
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: /home/noelco/fix-1084151/po/../src//Views/GridView/GridView.vala:64
 msgid "No Albums Found."
-msgstr ""
+msgstr "Не знайдено жодного альбому."
 
 #: /home/noelco/fix-1084151/po/../src//Views/GridView/GridView.vala:160
 #, c-format
@@ -516,47 +516,47 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
 msgid "Track"
-msgstr ""
+msgstr "Доріжка"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "Тривалість"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "Виконавець"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "Альбом"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "Виконавець альбома"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "Композитор"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
 msgid "Genre"
-msgstr ""
+msgstr "Жанр"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "Рік"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
@@ -566,27 +566,27 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr ""
+msgstr "Бітрейт"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
 msgid "Rating"
-msgstr ""
+msgstr "Оцінка"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:97
 msgctxt "List column title"
 msgid "Plays"
-msgstr ""
+msgstr "Відтворень"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:100
 msgctxt "List column title"
 msgid "Skips"
-msgstr ""
+msgstr "Пропусків"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:103
 msgctxt "List column title"
 msgid "Date Added"
-msgstr ""
+msgstr "Дата долучення"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:106
 msgctxt "List column title"
@@ -596,17 +596,17 @@ msgstr ""
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr ""
+msgstr "Такт/хв."
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr ""
+msgstr "Розташування"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
 msgid "File Size"
-msgstr ""
+msgstr "Розмір файла"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:57
 msgid "Remove from Library"
@@ -635,7 +635,7 @@ msgstr "Показати в переглядачі тек"
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:95
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "Черга"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:96
 msgid "Add to Playlist"
@@ -647,7 +647,7 @@ msgstr "Вилучити композицію"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "Новий список композицій..."
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -696,7 +696,7 @@ msgstr "%i кбіт/сек"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/ListView.vala:93
 msgid "No Songs Found."
-msgstr ""
+msgstr "Не знайдено жодної пісні."
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/ListView.vala:369
 #, c-format
@@ -716,7 +716,7 @@ msgstr[1] "%u пісень"
 #, c-format
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
-msgstr ""
+msgstr "%s, %s"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -793,12 +793,12 @@ msgstr ""
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Composers"
-msgstr ""
+msgstr "Всі композитори"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 #, c-format
 msgid "All %i Composers"
-msgstr ""
+msgstr "Всі %i композитори"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Composers"
