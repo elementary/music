@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-21 00:14+0100\n"
-"PO-Revision-Date: 2013-01-23 17:17+0000\n"
+"PO-Revision-Date: 2013-01-24 08:51+0000\n"
 "Last-Translator: Max_ym <kontact.cat@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-01-24 05:08+0000\n"
+"X-Launchpad-Export-Date: 2013-01-25 05:46+0000\n"
 "X-Generator: Launchpad (build 16445)\n"
 "Language: uk\n"
 
@@ -933,7 +933,7 @@ msgstr ""
 
 #: /home/noelco/fix-1084151/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr ""
+msgstr "Музичний програвач"
 
 #: /home/noelco/fix-1084151/po/../src//Noise.vala:39
 msgid "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
@@ -1055,7 +1055,7 @@ msgstr "Скасувати"
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Перейменувати"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:71
@@ -1065,7 +1065,7 @@ msgstr "Видалити"
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:58
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:72
 msgid "Export"
-msgstr ""
+msgstr "Експортувати"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:70
 msgid "Edit"
@@ -1077,7 +1077,7 @@ msgstr "Зберегти як список відтворення"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr ""
+msgstr "Експортувати..."
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:136
 msgid "Eject"
@@ -1145,7 +1145,7 @@ msgstr ""
 
 #: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Записати метадані до файла:"
 
 #: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"

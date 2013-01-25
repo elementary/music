@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-21 00:14+0100\n"
-"PO-Revision-Date: 2013-01-13 12:22+0000\n"
+"PO-Revision-Date: 2013-01-24 11:02+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-22 05:11+0000\n"
-"X-Generator: Launchpad (build 16430)\n"
+"X-Launchpad-Export-Date: 2013-01-25 05:46+0000\n"
+"X-Generator: Launchpad (build 16445)\n"
 "Language: gl\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -646,7 +646,7 @@ msgstr "Retirar a canción"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "Nova lista de reprodución..."
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -937,6 +937,8 @@ msgstr "Reprodutor de música"
 #: /home/noelco/fix-1084151/po/../src//Noise.vala:39
 msgid "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
+"Musica;Son;Reprodutor;MP3;iPod;Reproducir;Lista de "
+"reprodución;Multimedia;CD;Teléfono;"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SpaceWidget.vala:238
 msgid "Sync"
@@ -1054,7 +1056,7 @@ msgstr "Cancelar"
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Renomear"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:71
