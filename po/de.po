@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-21 00:14+0100\n"
-"PO-Revision-Date: 2013-01-20 04:43+0000\n"
+"PO-Revision-Date: 2013-01-27 05:37+0000\n"
 "Last-Translator: Alexander Wilms <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-01-22 05:10+0000\n"
-"X-Generator: Launchpad (build 16430)\n"
+"X-Launchpad-Export-Date: 2013-01-28 05:28+0000\n"
+"X-Generator: Launchpad (build 16451)\n"
 "Language: de\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -649,7 +649,7 @@ msgstr "Titel entfernen"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "Neue Wiedergabeliste..."
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -941,6 +941,8 @@ msgstr "Musikwiedergabe"
 #: /home/noelco/fix-1084151/po/../src//Noise.vala:39
 msgid "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
+"Musik;Audio;Spieler;MP3;iPod;Wiedergabe;Playlist;Widergabeliste;Medien;CD;Pho"
+"ne;Handy"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SpaceWidget.vala:238
 msgid "Sync"
@@ -1058,7 +1060,7 @@ msgstr "Abbrechen"
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Umbenennen"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:71
