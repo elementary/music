@@ -1,1 +1,1 @@
-add_schema("org.pantheon.noise.LastFM.gschema.xml")
+add_schema("org.pantheon.noise.lastfm.gschema.xml")

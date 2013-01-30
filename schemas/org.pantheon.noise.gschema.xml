@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/org/pantheon/noise/settings/" id="org.pantheon.noise.Settings">
+  <schema path="/org/pantheon/noise/settings/" id="org.pantheon.noise.settings">
     <key type="s" name="music-folder">
       <default>''</default>
       <summary>Path to music folder</summary>
@@ -73,7 +73,7 @@
     </key>
   </schema>
 
-  <schema path="/org/pantheon/noise/savedstate/" id="org.pantheon.noise.SavedState">
+  <schema path="/org/pantheon/noise/saved-state/" id="org.pantheon.noise.saved-state">
     <key type="i" name="window-width">
       <default>1100</default>
       <summary>Window width</summary>
@@ -141,7 +141,7 @@
     </key>
   </schema>
 
-  <schema path="/org/pantheon/noise/equalizer/" id="org.pantheon.noise.Equalizer">
+  <schema path="/org/pantheon/noise/equalizer/" id="org.pantheon.noise.equalizer">
     <key type="b" name="equalizer-enabled">
       <default>false</default>
       <summary>Whether or not the equalizer is enabled</summary>

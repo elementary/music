@@ -39,7 +39,7 @@ namespace Noise.Settings {
         public int column_browser_position { get; set; }
 
         public SavedState () {
-            base ("org.pantheon.noise.SavedState");
+            base ("org.pantheon.noise.saved-state");
         }
     }
 
@@ -61,7 +61,7 @@ namespace Noise.Settings {
         public string[] minimize_while_playing_shells { get; set; }
 
         public Main ()  {
-            base ("org.pantheon.noise.Settings");
+            base ("org.pantheon.noise.settings");
         }
     }
 
@@ -73,7 +73,7 @@ namespace Noise.Settings {
         public string[] custom_presets { get; set;}
         
         public Equalizer () {
-            base ("org.pantheon.noise.Equalizer");
+            base ("org.pantheon.noise.equalizer");
         }
         
         public Gee.Collection<Noise.EqualizerPreset> getPresets () {

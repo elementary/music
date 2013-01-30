@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/org/pantheon/noise/lastfm/" id="org.pantheon.noise.LastFM">
+  <schema path="/org/pantheon/noise/lastfm/" id="org.pantheon.noise.lastfm">
     <key type="s" name="session-key">
       <default>''</default>
       <summary>Unique session key</summary>
