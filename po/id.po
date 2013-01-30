@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-21 00:14+0100\n"
-"PO-Revision-Date: 2013-01-20 02:07+0000\n"
-"Last-Translator: Affif Mukhlashin <Unknown>\n"
+"PO-Revision-Date: 2013-01-30 01:05+0000\n"
+"Last-Translator: Viko Adi Rahmawan <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-01-22 05:11+0000\n"
-"X-Generator: Launchpad (build 16430)\n"
+"X-Launchpad-Export-Date: 2013-01-30 04:54+0000\n"
+"X-Generator: Launchpad (build 16455)\n"
 "Language: id\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -218,7 +218,7 @@ msgstr "Tekno"
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:98
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:128
 msgid "Import to Library"
-msgstr "Impor ke Pustaka"
+msgstr "Impor folder ke Pustaka"
 
 #: /home/noelco/fix-1084151/po/../src//LibraryWindow.vala:289
 msgid "Rescan Music Folder"
@@ -625,7 +625,7 @@ msgstr "Buka di Peramban Berkas"
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:95
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr "Antrian"
+msgstr "Tambah ke Antrian"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:96
 msgid "Add to Playlist"
@@ -637,7 +637,7 @@ msgstr "Hapus Lagu"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "Daftarputar baru…"
 
 #: /home/noelco/fix-1084151/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -1049,7 +1049,7 @@ msgstr "Batal"
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Ubah nama"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/fix-1084151/po/../src//Widgets/SourceListView.vala:71
@@ -1107,15 +1107,15 @@ msgstr "Daftar Putar"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr "Tampilkan dalam album"
+msgstr "Tampilkan sebagai album"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr "Tampilkan dalam daftar"
+msgstr "Tampilkan sebagai daftar"
 
 #: /home/noelco/fix-1084151/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr "Tampilkan dalam kolom"
+msgstr "Tampilkan sebagai kolom"
 
 #: /home/noelco/fix-1084151/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
