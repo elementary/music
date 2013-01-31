@@ -59,7 +59,7 @@ public class Noise.SmartPlaylist : Playlist {
     public void addQuery(SmartQuery s) {
         query_count++;
         _queries.add(s);
-        reanalyze ();
+        analyse_list_async (medias_library);
         updated ();
     }
 
@@ -71,7 +71,7 @@ public class Noise.SmartPlaylist : Playlist {
             added_media.add (m);
         }
         if (!limit && limit_amount > medias.size) {
-            reanalyze ();
+            analyse_list_async (added_media);
         }
     }
 
@@ -85,7 +85,7 @@ public class Noise.SmartPlaylist : Playlist {
             }
         }
         if (!limit && limit_amount > medias.size) {
-            reanalyze ();
+            analyse_list_async (added_media);
         }
     }
 
@@ -153,17 +153,17 @@ public class Noise.SmartPlaylist : Playlist {
 
     public Gee.Collection<Media> reanalyze () {
 
-        reanalyze_thread();
+        analyse_list_async (medias_library);
         return medias.read_only_view;
     }
 
-    async void reanalyze_thread() {
+    async void analyse_list_async (Gee.Collection<Media> given_library) {
         var added = new Gee.LinkedList<Media> ();
         var removed = new Gee.LinkedList<Media> ();
         
         lock (medias_library) {
             Threads.add (() => {
-                foreach (var m in medias_library) {
+                foreach (var m in given_library) {
                     if (m == null)
                         continue;
 

@@ -663,7 +663,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
 
             query.set_string(":name", _("Favorite Songs"));
-            query.set_int(":and_or", 0);
+            query.set_int(":and_or", 1);
             query.set_string(":queries", "11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>12<val_sep>6<val_sep>3<query_sep>");
             query.set_int(":limit", 1);
             query.set_int(":limit_amount", 50);
@@ -686,7 +686,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             */
 
             query.set_string(":name", _("Recent Favorites"));
-            query.set_int(":and_or", 0);
+            query.set_int(":and_or", 1);
             query.set_string(":queries", "11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>9<val_sep>7<val_sep>7<query_sep>");
             query.set_int(":limit", 1);
             query.set_int(":limit_amount", 50);
@@ -700,7 +700,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.execute();
 
             query.set_string(":name", _("Over Played"));
-            query.set_int(":and_or", 0);
+            query.set_int(":and_or", 1);
             query.set_string(":queries", "11<val_sep>4<val_sep>10<query_sep>");
             query.set_int(":limit", 1);
             query.set_int(":limit_amount", 50);

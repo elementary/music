@@ -24,7 +24,6 @@ public class Noise.SmartPlaylistEditor : Window {
 #endif
 
     SmartPlaylist sp;
-    SmartPlaylist receivedsp;
     private bool is_new = false;
     private Granite.Widgets.HintedEntry name_entry;
     private Gtk.ComboBoxText match_combobox;
@@ -43,12 +42,10 @@ public class Noise.SmartPlaylistEditor : Window {
         
         if (sp == null) {
             is_new = true;
-            receivedsp = new SmartPlaylist (App.instance.library_manager.media ());
+            this.sp = new SmartPlaylist (App.instance.library_manager.media ());
         } else {
-            receivedsp = sp;
+            this.sp = sp;
         }
-        
-        this.sp = new SmartPlaylist (App.instance.library_manager.media ());
         
         /* start out by creating all category labels */
         var name_label = new Gtk.Label (_("Name of Playlist"));
@@ -137,7 +134,7 @@ public class Noise.SmartPlaylistEditor : Window {
     
     public void load_smart_playlist () {
         
-        foreach (SmartQuery q in receivedsp.queries ()) {
+        foreach (SmartQuery q in sp.queries ()) {
             var editor_query = new SmartPlaylistEditorQuery (q);
             editor_query.removed.connect (() => {queries_list.remove (editor_query);});
             queries_grid.attach (editor_query.grid, 0, row, 1, 1);
@@ -146,7 +143,7 @@ public class Noise.SmartPlaylistEditor : Window {
         }
         
         queries_grid.attach (add_button, 0, row, 1, 1);
-        if(receivedsp.queries ().size == 0) {
+        if(sp.queries ().size == 0) {
             add_row ();
         }
         foreach(SmartPlaylistEditorQuery speq in queries_list) {
@@ -164,7 +161,7 @@ public class Noise.SmartPlaylistEditor : Window {
         else {
             foreach (var p in App.instance.library_manager.smart_playlists ()) {
                 var fixed_name = name_entry.get_text ().strip ();
-                if ( (sp == null || receivedsp.rowid != p.rowid) && fixed_name == p.name) {
+                if ( (sp == null || sp.rowid != p.rowid) && fixed_name == p.name) {
                     save_button.set_sensitive (false);
                     return;
                 }
@@ -195,9 +192,9 @@ public class Noise.SmartPlaylistEditor : Window {
     }
     
     public virtual void save_click () {
-        receivedsp.clearQueries ();
+        sp.clearQueries ();
         foreach (SmartPlaylistEditorQuery speq in queries_list) {
-                receivedsp.addQuery (speq.get_query ());
+                sp.addQuery (speq.get_query ());
         }
         
         sp.name = name_entry.text.strip ();
