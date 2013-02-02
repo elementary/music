@@ -360,7 +360,6 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
 
     // get the device page_number associated to the view
     public int get_device_from_item (Noise.SourceListExpandableItem item) {
-        warning ("here");
         foreach (var device in devices_category.children) {
             if (item.parent == (Granite.Widgets.SourceList.ExpandableItem)device) {
                 if (device is SourceListExpandableItem) {

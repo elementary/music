@@ -66,6 +66,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Granite.Widgets.SearchBar  searchField      { get; private set; }
     public Widgets.StatusBar          statusbar        { get; private set; }
 
+    private SourceListEntry queue_entry;
+    private SourceListEntry similar_entry;
+
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
     private Gtk.MenuItem      fileImportMusic;
@@ -696,6 +699,20 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     }
 
+    private void update_playlist_badge (Playlist playlist, SourceListEntry entry) {
+        int media_count = playlist.medias.size;
+        string new_badge = media_count > 0 ? media_count.to_string() : "";
+        entry.badge = new_badge;
+    }
+
+    private void on_queue_updated (Playlist queue) {
+        update_playlist_badge (queue, queue_entry);
+    }
+
+    private void on_similar_updated (Playlist similar) {
+        update_playlist_badge (similar, similar_entry);
+    }
+
     public int addSourceListItem (GLib.Object o, GLib.Object? source_o = null, out SourceListEntry? entry = null) {
         int view_number = -1;
         entry = null;
@@ -715,6 +732,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                         queue_view.set_no_media_alert_message (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), Gtk.MessageType.INFO);
                         view_number = view_container.add_view (queue_view);
                         entry = source_list_view.add_item  (view_number, App.player.queue_playlist.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.MUSIC.gicon);
+                        queue_entry = entry;
+                        p.media_added.connect((s) => { on_queue_updated(p); });
+                        p.media_removed.connect((s) => { on_queue_updated(p); });
                         set_treeviewsetup_from_playlist (App.player.queue_playlist, library_manager.queue_setup);
                     } else if (p.name == _("History")) {
                         var history_view = new ReadOnlyPlaylistViewWrapper (this, App.player.history_playlist.rowid);
@@ -726,6 +746,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                         var view = new ReadOnlyPlaylistViewWrapper (this, p.rowid);
                         view_number = view_container.add_view (view);
                         entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.PLAYLIST.gicon);
+                        if (p.name == _("Similar")) {
+                            similar_entry = entry;
+                            p.media_added.connect((s) => { on_similar_updated(p); });
+                            p.media_removed.connect((s) => { on_similar_updated(p); });
+                        }
                     }
                 }
             }
