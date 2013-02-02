@@ -24,6 +24,7 @@ using Gee;
 
 public class Noise.StaticPlaylist : Playlist {
     public bool read_only { get; set; default=false;}
+    public bool show_badge { get; set; default=false;}
     public bool allow_duplicate { get; set; default=false;}
 
     public StaticPlaylist() {

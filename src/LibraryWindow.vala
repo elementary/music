@@ -66,9 +66,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Granite.Widgets.SearchBar  searchField      { get; private set; }
     public Widgets.StatusBar          statusbar        { get; private set; }
 
-    private SourceListEntry queue_entry;
-    private SourceListEntry similar_entry;
-
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
     private Gtk.MenuItem      fileImportMusic;
@@ -88,6 +85,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gee.HashMap<int, int> match_playlist;
     private Gee.HashMap<int, int> match_smartplaylist;
     private Gee.HashMap<string, int> match_devices;
+    private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
 
     public LibraryWindow () {
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
@@ -131,6 +129,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         match_playlist = new Gee.HashMap<int, int> ();
         match_smartplaylist = new Gee.HashMap<int, int> ();
         match_devices = new Gee.HashMap<string, int> ();
+        match_playlist_entry = new Gee.HashMap<unowned Playlist, SourceListEntry> ();
 
 
         // init some booleans
@@ -699,18 +698,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     }
 
-    private void update_playlist_badge (Playlist playlist, SourceListEntry entry) {
+    private void update_playlist_badge (Playlist playlist) {
+        var entry = match_playlist_entry.get (playlist);
         int media_count = playlist.medias.size;
         string new_badge = media_count > 0 ? media_count.to_string() : "";
         entry.badge = new_badge;
-    }
-
-    private void on_queue_updated (Playlist queue) {
-        update_playlist_badge (queue, queue_entry);
-    }
-
-    private void on_similar_updated (Playlist similar) {
-        update_playlist_badge (similar, similar_entry);
     }
 
     public int addSourceListItem (GLib.Object o, GLib.Object? source_o = null, out SourceListEntry? entry = null) {
@@ -729,27 +721,31 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 } else {
                     if (p.name == C_("Name of the playlist", "Queue")) {
                         var queue_view = new ReadOnlyPlaylistViewWrapper (this, App.player.queue_playlist.rowid, true);
-                        queue_view.set_no_media_alert_message (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), Gtk.MessageType.INFO);
+                        queue_view.set_no_media_alert_message (_("No songs in Queue"), 
+                                _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), Gtk.MessageType.INFO);
                         view_number = view_container.add_view (queue_view);
-                        entry = source_list_view.add_item  (view_number, App.player.queue_playlist.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.MUSIC.gicon);
-                        queue_entry = entry;
-                        p.media_added.connect((s) => { on_queue_updated(p); });
-                        p.media_removed.connect((s) => { on_queue_updated(p); });
+                        entry = source_list_view.add_item  (view_number, App.player.queue_playlist.name,
+                                                            ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.MUSIC.gicon);
+                        match_playlist_entry.set (p, entry);
+                        p.media_added.connect(() => { update_playlist_badge (p); });
+                        p.media_removed.connect(() => { update_playlist_badge (p); });
                         set_treeviewsetup_from_playlist (App.player.queue_playlist, library_manager.queue_setup);
                     } else if (p.name == _("History")) {
                         var history_view = new ReadOnlyPlaylistViewWrapper (this, App.player.history_playlist.rowid);
-                        history_view.set_no_media_alert_message (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), Gtk.MessageType.INFO);
+                        history_view.set_no_media_alert_message (_("No songs in History"), 
+                                _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), Gtk.MessageType.INFO);
                         view_number = view_container.add_view (history_view);
-                        entry = source_list_view.add_item  (view_number, App.player.history_playlist.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.HISTORY.gicon);
+                        entry = source_list_view.add_item  (view_number, App.player.history_playlist.name,
+                                                            ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.HISTORY.gicon);
                         set_treeviewsetup_from_playlist (App.player.history_playlist, library_manager.history_setup);
                     } else {
                         var view = new ReadOnlyPlaylistViewWrapper (this, p.rowid);
                         view_number = view_container.add_view (view);
                         entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.PLAYLIST.gicon);
-                        if (p.name == _("Similar")) {
-                            similar_entry = entry;
-                            p.media_added.connect((s) => { on_similar_updated(p); });
-                            p.media_removed.connect((s) => { on_similar_updated(p); });
+                        if (p.show_badge == true) {
+                            match_playlist_entry.set (p, entry);
+                            p.media_added.connect((s) => { update_playlist_badge (p); });
+                            p.media_removed.connect((s) => { update_playlist_badge (p); });
                         }
                     }
                 }
@@ -760,10 +756,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 var p = o as SmartPlaylist;
                 
                 var view = new PlaylistViewWrapper (this, p.rowid, ViewWrapper.Hint.SMART_PLAYLIST);
-                view.button_clicked.connect ((playlist_id) => {show_smart_playlist_dialog(library_manager.smart_playlist_from_id(playlist_id));});
+                view.button_clicked.connect ((playlist_id) => {
+                    show_smart_playlist_dialog(library_manager.smart_playlist_from_id(playlist_id));
+                });
                 view_number = view_container.add_view (view);
                 entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.SMART_PLAYLIST, Icons.SMART_PLAYLIST.gicon);
-                p.updated.connect ((old_name) => {if (old_name != null) source_list_view.change_playlist_name (match_smartplaylist.get(p.rowid), p.name);});
+                p.updated.connect ((old_name) => {
+                    if (old_name != null)
+                        source_list_view.change_playlist_name (match_smartplaylist.get(p.rowid), p.name);
+                });
                 match_smartplaylist.set (p.rowid, view_number);
             }
         }

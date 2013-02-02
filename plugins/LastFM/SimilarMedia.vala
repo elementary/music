@@ -45,6 +45,7 @@ public class LastFM.SimilarMedias : Object {
         similar_playlist = new Noise.StaticPlaylist ();
         similar_playlist.name = _("Similar");
         similar_playlist.read_only = true;
+        similar_playlist.show_badge = true;
     }
     
     public virtual void queryForSimilar (Noise.Media s) {
