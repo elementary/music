@@ -123,8 +123,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.player.error_occured.connect (error_occured);
         });
         
-        notification_manager.progressNotification.connect (showProgressNotification);
-        notification_manager.songNotification.connect (showSongNotification);
         notification_manager.alertNotification.connect (doAlert);
         
         match_playlist = new Gee.HashMap<int, int> ();
@@ -306,7 +304,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         previousButton          = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_PREVIOUS);
         playButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_PLAY);
         nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
-        topDisplay              = new TopDisplay (library_manager);
+        topDisplay              = new TopDisplay ();
         topDisplayBin           = new FixedBin (-1, -1, 800, -1);
         viewSelector            = new Widgets.ViewSelector ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
@@ -345,7 +343,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         /** Info Panel **/
 
-        info_panel = new InfoPanel (library_manager, this);
+        info_panel = new InfoPanel ();
 
 
         /** Statusbar widgets **/
@@ -883,18 +881,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         remove_view_and_update (page_number);
     }
 
-    public virtual void showProgressNotification (string? message, double progress) {
-        if(message != null && progress >= 0.0 && progress <= 1.0)
-            topDisplay.set_label_markup (message);
-
-        topDisplay.set_progress_value (progress);
-    }
-
-    public virtual void showSongNotification (string? message) {
-        if(message != null)
-            topDisplay.set_label_markup (message);
-    }
-
     private void playlist_name_edited (int page_number, string new_name) {
         var unparsed_view = view_container.get_view (page_number);
         if (unparsed_view is PlaylistViewWrapper) {
@@ -922,7 +908,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         if(!App.player.media_active) {
-            topDisplay.set_label_markup("");
+            notification_manager.doSongNotification ("");
             debug ("setting info label as ''");
             return;
         }
@@ -965,10 +951,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     /** This should be used whenever a call to play a new media is made
      *
-     * XXX: this doesn't belong here, but to the playback manager or Last.fm plugin
+     * XXX: this doesn't belong here, but to the playback manager
      * @param s The media that is now playing
      */
-    public void media_played(Media m) {
+    public void media_played (Media m) {
         /*if(old == -2 && i != -2) { // -2 is id reserved for previews
             Media s = settings.getLastMediaPlaying();
             s = library_manager.media_from_name(s.title, s.artist);
@@ -982,7 +968,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
         }*/
 
-        updateInfoLabel();
+        updateInfoLabel ();
 
         //reset the media position
         topDisplay.set_scale_sensitivity(true);
@@ -1106,8 +1092,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             int next_id = App.player.next_gapless_id;
             m = library_manager.media_from_id (next_id);
             App.player.playMedia (m, false);
-        }
-        else
+        } else
             m = App.player.getNext (true);
 
         /* test to stop playback/reached end */
@@ -1133,12 +1118,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 App.player.playing = false;
                 update_sensitivities();
                 return;
-            }
-            else if (play && !inhibit_notifications) {
+            } else if (play && !inhibit_notifications) {
                 notify_current_media_async.begin ();
             }
-        }
-        else
+        } else
             topDisplay.change_value(ScrollType.NONE, 0);
     }
 

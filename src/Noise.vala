@@ -110,7 +110,9 @@ public class Noise.App : Granite.Application {
 
     public override void open (File[] files, string hint) {
         // Activate, then play files
-        this.activate ();
+        if (library_manager == null) {
+            this.activate ();
+        }
         library_manager.play_files (files);
     }
 

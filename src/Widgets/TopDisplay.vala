@@ -23,7 +23,6 @@
 using Gtk;
 
 public class Noise.TopDisplay : Box {
-    Noise.LibraryManager lm;
     Gtk.Label label;
     Gtk.Box scaleBox;
     Gtk.Label leftTime;
@@ -36,8 +35,7 @@ public class Noise.TopDisplay : Box {
     
     public signal void scale_value_changed(ScrollType scroll, double val);
     
-    public TopDisplay(Noise.LibraryManager lmm) {
-        this.lm = lmm;
+    public TopDisplay() {
 
         this.orientation = Orientation.HORIZONTAL;
 
@@ -85,13 +83,27 @@ public class Noise.TopDisplay : Box {
         this.scale.change_value.connect(change_value);
 
         App.player.player.current_position_update.connect (player_position_update);
+        
         App.player.changing_player.connect (() => {
             App.player.player.current_position_update.disconnect (player_position_update);
         });
+        
         App.player.player_changed.connect (() => {
             App.player.player.current_position_update.connect (player_position_update);
         });
-        this.lm.media_updated.connect(media_updated);
+        
+        notification_manager.progressNotification.connect ((message, progress) => {
+            if (message != null && progress >= 0.0 && progress <= 1.0)
+                set_label_markup (message);
+
+            set_progress_value (progress);
+        });
+        
+        notification_manager.songNotification.connect ((message) => {
+            if (message != null)
+                this.set_label_markup (message);
+        });
+        App.library_manager.media_updated.connect(media_updated);
     }
     
     /** label functions **/
@@ -107,12 +119,12 @@ public class Noise.TopDisplay : Box {
         return label.get_text();
     }
     
-    public void set_label_showing(bool val) {
+    public void set_label_showing (bool val) {
         label.set_visible (val);
     }
     
     /** progressbar functions **/
-    public void set_scale_sensitivity(bool val) {
+    public void set_scale_sensitivity (bool val) {
         scale.set_sensitive(val);
         scale.set_visible(val);
         leftTime.set_visible(val);
@@ -120,7 +132,7 @@ public class Noise.TopDisplay : Box {
     }
     
     // automatically shows/hides progress bar/scale based on progress's value
-    public void set_progress_value(double progress) {
+    public void set_progress_value (double progress) {
         if(progress >= 0.0 && progress <= 1.0) {
             if(!progressbar.visible) {
                 show_progressbar();
@@ -254,7 +266,7 @@ public class Noise.TopDisplay : Box {
     }
 
     public void cancel_clicked() {
-        lm.cancel_operations();
+        App.library_manager.cancel_operations();
     }
 
     public void set_media (Media current_media) {

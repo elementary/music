@@ -197,8 +197,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
                             
                             if ((old_title != App.player.media_info.media.title || old_artist != App.player.media_info.media.artist) && (App.player.media_info.media != null))
                                 App.main_window.media_played (App.player.media_info.media); // pretend as if media changed
-                        }
-                        else {
+                        } else {
                             // if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
                             notification_manager.doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
                         }

@@ -452,9 +452,25 @@ public class Noise.LibraryManager : Object {
     
     private void media_opened_finished() {
         App.player.queue_media (open_media_list);
-        if (!App.player.playing) {
-            App.player.getNext (true);
-            lw.playClicked ();
+        if (open_media_list.size > 0) {
+            if (!App.player.playing) {
+                App.player.playMedia (open_media_list.get (0), false);
+                App.main_window.playClicked ();
+            } else {
+                string primary_text = _("Added to your queue:");
+
+                var secondary_text = new StringBuilder ();
+                secondary_text.append (open_media_list.get (0).get_display_title ());
+                secondary_text.append ("\n");
+                secondary_text.append (open_media_list.get (0).get_display_artist ());
+
+                Gdk.Pixbuf? pixbuf = CoverartCache.instance.get_original_cover (open_media_list.get (0)).scale_simple (128, 128, Gdk.InterpType.HYPER);
+#if HAVE_LIBNOTIFY
+                App.main_window.show_notification (primary_text, secondary_text.str, pixbuf, Notify.Urgency.LOW);
+#else
+                App.main_window.show_notification (primary_text, secondary_text.str, pixbuf);
+#endif
+            }
         }
     }
     

@@ -20,38 +20,31 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-using Gee;
-
 public class Noise.InfoPanel : Gtk.EventBox {
     public signal void to_update();
 
     public unowned Media current_media { get { return App.player.media_info.media; } }
     public bool can_show_up { get { return App.player.media_active; } }
 
-    private LibraryManager lm;
-    private LibraryWindow lw;
-
-    private Label title;
-    private Label artist;
+    private Gtk.Label title;
+    private Gtk.Label artist;
     private Gtk.Image coverArt;
     private Granite.Widgets.Rating rating;
-    private Label album;
-    private Label year_label;
+    private Gtk.Label album;
+    private Gtk.Label year_label;
     private int place = 1;
     private Gtk.Grid container;
     
     private const string TITLE_MARKUP = "<span size=\"large\"><b>%s</b></span>";
 
 
-    public InfoPanel(LibraryManager lmm, LibraryWindow lww) {
-        lm = lmm;
-        lw = lww;
+    public InfoPanel () {
 
         buildUI();
 
         App.player.media_played.connect_after (on_media_updated);
-        lm.media_updated.connect_after (on_media_updated);
+        App.library_manager.media_updated.connect_after (on_media_updated);
+        notification_manager.songNotification.connect (on_media_updated);
         CoverartCache.instance.changed.connect_after (update_cover_art);
     }
     
@@ -61,19 +54,19 @@ public class Noise.InfoPanel : Gtk.EventBox {
         return place-1;
     }
     
-    private void buildUI() {
+    private void buildUI () {
         // add View class
         this.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
         
         container = new Gtk.Grid ();
 
-        title = new Label("");
-        artist = new Label("");
+        title = new Gtk.Label("");
+        artist = new Gtk.Label("");
         coverArt = new Gtk.Image();
         coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
-        rating = new Granite.Widgets.Rating (true, IconSize.MENU, true); // centered = true
-        album = new Label("");
-        year_label = new Label("");
+        rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true); // centered = true
+        album = new Gtk.Label("");
+        year_label = new Gtk.Label("");
 
         /* ellipsize */
         title.set_hexpand (true);
@@ -111,7 +104,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
         update_visibilities();
     }
 
-    private void update_visibilities() {
+    private void update_visibilities () {
         // Don't show rating for external media
         bool hide_rating = true;
 
@@ -149,10 +142,10 @@ public class Noise.InfoPanel : Gtk.EventBox {
             coverArt.set_from_pixbuf (CoverartCache.instance.get_cover (current_media));
     }
     
-    private void ratingChanged(int new_rating) {
+    private void ratingChanged (int new_rating) {
         if (current_media != null) {
             current_media.rating = new_rating;
-            lm.update_media_item (current_media, false, true);
+            App.instance.library_manager.update_media_item (current_media, false, true);
         }
     }
 }

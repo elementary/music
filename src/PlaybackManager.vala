@@ -83,7 +83,18 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         }
     }
 
-    public Player.Shuffle shuffle { get; private set; }
+    private Player.Shuffle? _shuffle = null;
+    public Player.Shuffle shuffle {
+        get {
+            if (_shuffle == null)
+                _shuffle = (Player.Shuffle)main_settings.shuffle_mode;
+            return _shuffle;
+        }
+        set {
+            _shuffle = value;
+            main_settings.shuffle_mode = value;
+        }
+    }
     public int next_gapless_id;
 
     public Noise.Streamer file_player;
@@ -211,7 +222,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         current_cleared();
         _current.clear();
         
-        shuffle = Player.Shuffle.OFF; // must manually reshuffle
+        setShuffleMode(shuffle, true); // must manually reshuffle
     }
 
 
@@ -223,7 +234,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         /*if(mode == shuffle)
             return;
         */
-        main_settings.shuffle_mode = mode;
         shuffle = mode;
         
         if(!reshuffle)
