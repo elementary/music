@@ -200,7 +200,7 @@ namespace Noise.Widgets {
             int val = current_option;
 
             if (equalizer_window == null && val == 1) {
-                equalizer_window = new EqualizerWindow (App.library_manager, App.main_window);
+                equalizer_window = new EqualizerWindow ();
                 equalizer_window.show_all ();
                 equalizer_window.destroy.connect ( () => {
                     // revert the option to "Hide equalizer" after the window is destroyed

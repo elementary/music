@@ -223,7 +223,7 @@ public class Noise.PixbufCache {
                 // We store the unmodified image. Otherwise modifications would be applied over and
                 // over again every time the images are retrieved from disk.
                 if (save_to_disk)
-                    save_image_to_file (key, image);
+                    save_image_to_file.begin (key, image);
             }
         }
     }

@@ -31,8 +31,8 @@ public class Noise.NotImportedWindow : Window{
 	string music_folder;
 	
 	//for padding around notebook mostly
-	private VBox content;
-	private HBox padding;
+	private Gtk.Box content;
+	private Gtk.Box padding;
 	
 	CheckButton trashAll;
 	ScrolledWindow filesScroll;
@@ -40,7 +40,7 @@ public class Noise.NotImportedWindow : Window{
 	ListStore filesModel;
 	Button moveToTrash;
 	
-	public NotImportedWindow(LibraryWindow lw, LinkedList<string> files, string music) {
+	public NotImportedWindow(LinkedList<string> files, string music) {
 		_files = files;
 		this.music_folder = music;
 		
@@ -49,15 +49,15 @@ public class Noise.NotImportedWindow : Window{
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.set_modal(true);
-		this.set_transient_for(lw);
+		this.set_modal (true);
+		this.set_transient_for (App.main_window);
 		this.destroy_with_parent = true;
 		
 		set_default_size(475, -1);
 		resizable = false;
 		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 20);
+		content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
+		padding = new Gtk.Box (Gtk.Orientation.VERTICAL, 20);
 		
 		// initialize controls
 		var warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
@@ -112,21 +112,21 @@ public class Noise.NotImportedWindow : Window{
 		moveToTrash.set_sensitive(false);
 		
 		/* set up controls layout */
-		HBox information = new HBox(false, 0);
-		VBox information_text = new VBox(false, 0);
+		var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+		var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		information.pack_start(warning, false, false, 10);
 		information_text.pack_start(title, false, true, 10);
 		information_text.pack_start(info, false, true, 0);
 		information.pack_start(information_text, true, true, 10);
 		
-		VBox listBox = new VBox(false, 0);
+		var listBox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		listBox.pack_start(filesScroll, true, true, 5);
 		
 		Expander exp = new Expander(_("Select individual files to move to trash:"));
 		exp.add(listBox);
 		exp.expanded = false;
 		
-		HButtonBox bottomButtons = new HButtonBox();
+		var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(moveToTrash, false, false, 0);
 		bottomButtons.pack_end(okButton, false, false, 10);

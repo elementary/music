@@ -25,8 +25,8 @@ using Gee;
 
 public class Noise.RemoveFilesDialog : Window {
 	
-	private VBox content;
-	private HBox padding;
+	private Gtk.Box content;
+	private Gtk.Box padding;
 	
 	private Button remove_button;
 	private Button trash_button;
@@ -40,12 +40,12 @@ public class Noise.RemoveFilesDialog : Window {
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
-		this.set_transient_for(App.instance.main_window);
+		this.set_transient_for(App.main_window);
 		this.destroy_with_parent = true;
 		resizable = false;
 		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 20);
+		content = new Gtk.Box(Gtk.Orientation.VERTICAL, 10);
+		padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
@@ -89,14 +89,14 @@ public class Noise.RemoveFilesDialog : Window {
 		}
 		
 		/* set up controls layout */
-		HBox information = new HBox(false, 0);
-		VBox information_text = new VBox(false, 0);
+		var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+		var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		information.pack_start(warning, false, false, 10);
 		information_text.pack_start(title, false, true, 10);
 		information_text.pack_start(info, false, true, 0);
 		information.pack_start(information_text, true, true, 10);
 		
-		HButtonBox bottomButtons = new HButtonBox();
+		var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		if(need_trash)	bottomButtons.pack_end(trash_button, false, false, 0);
 		bottomButtons.pack_end(cancel_button, false, false, 0);

@@ -37,8 +37,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	private int browser_vpane_position = -1;
 
 	private ViewWrapper view_wrapper;
-	private LibraryWindow lw;
-	private LibraryManager lm;
     private ViewTextOverlay list_text_overlay;
 
     private bool obey_column_browser = false;
@@ -78,8 +76,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
 	public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false, bool? is_queue = false) {
 		this.view_wrapper = view_wrapper;
-		this.lm = view_wrapper.lm;
-		this.lw = view_wrapper.lw;
 
 		list_view = new MusicListView (view_wrapper, tvs, is_queue);
 
@@ -198,7 +194,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
 		// For automatic position stuff
 		this.size_allocate.connect (() => {
-			if (!lw.initialization_finished)
+			if (!App.main_window.initialization_finished)
 				return;
 
 			if (column_browser.position == ColumnBrowser.Position.AUTOMATIC)
@@ -206,7 +202,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		});
 
 		column_browser.size_allocate.connect (() => {
-			if (!lw.initialization_finished || !column_browser_enabled)
+			if (!App.main_window.initialization_finished || !column_browser_enabled)
 				return;
 
 			if (column_browser.actual_position == ColumnBrowser.Position.LEFT) {
@@ -219,7 +215,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 			}
 		});
 
-        lw.viewSelector.column_browser_toggled.connect (  (enabled) => {
+        App.main_window.viewSelector.column_browser_toggled.connect (  (enabled) => {
 			if (enabled != column_browser_enabled)
 				column_browser_enabled = enabled;
 		});
@@ -285,7 +281,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	}
 
 	private void column_browser_changed () {
-		if (lw.initialization_finished) {
+		if (App.main_window.initialization_finished) {
             // This is supposed to take the browser's filter into account because obey_column_browser is #false
 			list_view.do_search (null);
 			view_wrapper.update_statusbar_info ();
@@ -294,7 +290,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
 	// TODO: Since is_initial is deprecated and not used, update the external code to stop using it
 	public void set_as_current_list (int media_id, bool is_initial = false) {
-		list_view.set_as_current_list (lm.media_from_id (media_id));
+		list_view.set_as_current_list (App.library_manager.media_from_id (media_id));
 	}
 
 	public bool get_is_current_list ()  {

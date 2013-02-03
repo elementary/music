@@ -28,8 +28,8 @@ public class Noise.SyncWarningDialog : Window {
 	Gee.LinkedList<Media> to_sync;
 	Gee.LinkedList<Media> to_remove;
 	
-	private VBox content;
-	private HBox padding;
+	private Gtk.Box content;
+	private Gtk.Box padding;
 	
 	Button importMedias;
 	Button sync;
@@ -44,14 +44,14 @@ public class Noise.SyncWarningDialog : Window {
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
-		this.set_transient_for(App.instance.main_window);
+		this.set_transient_for(App.main_window);
 		this.destroy_with_parent = true;
 		
 		set_default_size(475, -1);
 		resizable = false;
 		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 20);
+		content = new Gtk.Box(Gtk.Orientation.VERTICAL, 10);
+		padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
@@ -82,18 +82,18 @@ public class Noise.SyncWarningDialog : Window {
 		var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));		
 		title.set_markup (title_string);
 
-		importMedias.set_sensitive(!App.instance.library_manager.doing_file_operations());
-		sync.set_sensitive(!App.instance.library_manager.doing_file_operations());
+		importMedias.set_sensitive(!App.library_manager.doing_file_operations());
+		sync.set_sensitive(!App.library_manager.doing_file_operations());
 		
 		/* set up controls layout */
-		HBox information = new HBox(false, 0);
-		VBox information_text = new VBox(false, 0);
+		var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+		var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		information.pack_start(warning, false, false, 10);
 		information_text.pack_start(title, false, true, 10);
 		information_text.pack_start(info, false, true, 0);
 		information.pack_start(information_text, true, true, 10);
 		
-		HButtonBox bottomButtons = new HButtonBox();
+		var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(importMedias, false, false, 0);
 		bottomButtons.pack_end(sync, false, false, 0);
@@ -111,8 +111,8 @@ public class Noise.SyncWarningDialog : Window {
 			this.destroy(); 
 		});
 		
-		App.instance.library_manager.file_operations_started.connect(file_operations_started);
-		App.instance.library_manager.file_operations_done.connect(file_operations_done);
+		App.library_manager.file_operations_started.connect(file_operations_started);
+		App.library_manager.file_operations_done.connect(file_operations_done);
 		
 		add(padding);
 		show_all();

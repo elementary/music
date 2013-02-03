@@ -23,7 +23,6 @@
 using Gee;
 
 public class Noise.DeviceManager : GLib.Object {
-    LibraryManager lm;
     VolumeMonitor vm;
     
     GLib.List <DevicePreferences> _device_preferences;
@@ -35,17 +34,11 @@ public class Noise.DeviceManager : GLib.Object {
     public signal void mount_added (Mount mount);
     public signal void mount_removed (Mount mount);
     
-    public DeviceManager(LibraryManager lm) {
-        this.lm = lm;
+    public DeviceManager() {
         
         _device_preferences = new GLib.List <DevicePreferences> ();
         _devices = new Gee.LinkedList <unowned Device> ();
         
-        // pre-load devices and their preferences
-        
-        lock(_device_preferences) {
-            _device_preferences = lm.dbm.load_devices();
-        }
         
         vm = VolumeMonitor.get();
         
@@ -57,6 +50,11 @@ public class Noise.DeviceManager : GLib.Object {
     }
     
     public void loadPreExistingMounts() {
+        // pre-load devices and their preferences
+        
+        lock(_device_preferences) {
+            _device_preferences = App.library_manager.dbm.load_devices();
+        }
         // this can take time if we have to rev up the cd drive
         Threads.add (get_pre_existing_mounts);
     }
@@ -90,7 +88,7 @@ public class Noise.DeviceManager : GLib.Object {
     void volume_added(Volume volume) {
         if(main_settings.music_mount_name == volume.get_name() && volume.get_mount() == null) {
             debug ("mounting %s because it is believed to be the music folder\n", volume.get_name());
-            volume.mount(MountMountFlags.NONE, null, null);
+            volume.mount.begin (MountMountFlags.NONE, null, null);
         }
     }
     
@@ -98,7 +96,7 @@ public class Noise.DeviceManager : GLib.Object {
         debug ("adding device\n");
         device_added (d);
         _devices.add (d);
-        lm.lw.update_sensitivities();
+        App.main_window.update_sensitivities.begin ();
     }
     
     public virtual void mount_changed (Mount mount) {

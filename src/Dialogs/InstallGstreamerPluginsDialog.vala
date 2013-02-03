@@ -24,8 +24,6 @@ using Gtk;
 using Gee;
 
 public class Noise.InstallGstreamerPluginsDialog : Window {
-	LibraryManager lm;
-	LibraryWindow lw;
 	Gst.Message message;
 	string detail;
 	
@@ -35,9 +33,7 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 	Button installPlugin;
 	Button doNothing;
 	
-	public InstallGstreamerPluginsDialog(LibraryManager lm, LibraryWindow lw, Gst.Message message) {
-		this.lm = lm;
-		this.lw = lw;
+	public InstallGstreamerPluginsDialog(Gst.Message message) {
 		this.message = message;
 		this.detail = Gst.missing_plugin_message_get_description(message);
 		
@@ -45,7 +41,7 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
-		this.set_transient_for(lw);
+		this.set_transient_for(App.main_window);
 		this.destroy_with_parent = true;
 		
 		set_default_size(475, -1);
@@ -70,14 +66,14 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 
 		
 		/* set up controls layout */
-		HBox information = new HBox(false, 0);
-		VBox information_text = new VBox(false, 0);
+		var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+		var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		information.pack_start(warning, false, false, 10);
 		information_text.pack_start(title, false, true, 10);
 		information_text.pack_start(info, false, true, 0);
 		information.pack_start(information_text, true, true, 10);
 		
-		HButtonBox bottomButtons = new HButtonBox();
+		var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(installPlugin, false, false, 0);
 		bottomButtons.pack_end(doNothing, false, false, 10);

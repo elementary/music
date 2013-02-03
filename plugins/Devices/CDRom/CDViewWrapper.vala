@@ -26,8 +26,8 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
     private string message_body;
     private Gtk.MessageType message_type;
 
-    public CDViewWrapper (LibraryWindow lw, Noise.StaticPlaylist p) {
-        base (lw, ViewWrapper.Hint.READ_ONLY_PLAYLIST);
+    public CDViewWrapper (Noise.StaticPlaylist p) {
+        base (ViewWrapper.Hint.READ_ONLY_PLAYLIST);
         tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
         message_head = _("An Error Occured");
         message_body = _("There was an error while loading this Audio CD.");

@@ -24,8 +24,8 @@
 public class Noise.DeviceViewWrapper : ViewWrapper {
     public Device d { get; private set; }
     
-    public DeviceViewWrapper (LibraryWindow lww, TreeViewSetup tvs, Device d) {
-        base (lww, tvs.get_hint ());
+    public DeviceViewWrapper (TreeViewSetup tvs, Device d) {
+        base (tvs.get_hint ());
 
         list_view = new ListView (this, tvs);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
@@ -44,17 +44,17 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
         this.d = device;
         d.sync_finished.connect (sync_finished);
 
-        set_media_async (d.get_medias ());
+        set_media_async.begin (d.get_medias ());
     }
 
     private void import_request (Gee.LinkedList<Media> to_import) {
-        if (!lm.doing_file_operations())
+        if (!App.library_manager.doing_file_operations())
             d.transfer_to_library (to_import);
     }
 
     private void sync_finished(bool success) {
         if (hint == ViewWrapper.Hint.DEVICE_AUDIO)
-            set_media_async (d.get_songs ());
+            set_media_async.begin (d.get_songs ());
     }
 }
 

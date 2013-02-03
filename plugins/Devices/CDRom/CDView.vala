@@ -39,7 +39,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         this.lm = lm;
         this.dev = d;
         cd_playlist = new Noise.StaticPlaylist ();
-        cd_viewwrapper = new CDViewWrapper (lm.lw, cd_playlist);
+        cd_viewwrapper = new CDViewWrapper (cd_playlist);
         
         build_ui ();
         

@@ -31,14 +31,14 @@ public class Noise.TransferFromDeviceDialog : Window {
 	Device d;
 	
 	//for padding around notebook mostly
-	private VBox content;
-	private HBox padding;
+	private Gtk.Box content;
+	private Gtk.Box padding;
 	
-	CheckButton transferAll;
-	ScrolledWindow mediasScroll;
-	TreeView mediasView;
-	ListStore mediasModel;
-	Button transfer;
+	Gtk.CheckButton transferAll;
+	Gtk.ScrolledWindow mediasScroll;
+	Gtk.TreeView mediasView;
+	Gtk.ListStore mediasModel;
+	Gtk.Button transfer;
 	
 	Gtk.Menu viewMenu;
 	Gtk.MenuItem selectItem;
@@ -59,22 +59,22 @@ public class Noise.TransferFromDeviceDialog : Window {
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
-		this.set_transient_for(App.instance.main_window);
+		this.set_transient_for (App.main_window);
 		this.destroy_with_parent = true;
 		
-		set_default_size(550, -1);
+		set_default_size (550, -1);
 		resizable = false;
 		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 20);
+		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
-		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_QUESTION, Gtk.IconSize.DIALOG);
-		Label title = new Label(_("Import media from %s").printf (d.getDisplayName ()));
-		Label info = new Label(_("The following files were found on %s, but are not in your library. Check all the files you would like to import.").printf (d.getDisplayName ()));
-		transferAll = new CheckButton.with_label(_("Import all media"));
-		mediasScroll = new ScrolledWindow(null, null);
-		mediasView = new TreeView();
+		var warning = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_QUESTION, Gtk.IconSize.DIALOG);
+		var title = new Gtk.Label (_("Import media from %s").printf (d.getDisplayName ()));
+		var info = new Gtk.Label (_("The following files were found on %s, but are not in your library. Check all the files you would like to import.").printf (d.getDisplayName ()));
+		transferAll = new Gtk.CheckButton.with_label (_("Import all media"));
+		mediasScroll = new Gtk.ScrolledWindow (null, null);
+		mediasView = new Gtk.TreeView ();
 		mediasModel = new ListStore(5, typeof(bool), typeof(int), typeof(string), typeof(string), typeof(string));
 		mediasView.set_model(mediasModel);
 		transfer = new Button.with_label(_("Import"));
@@ -160,25 +160,25 @@ public class Noise.TransferFromDeviceDialog : Window {
 		transfer.set_sensitive(false);
 		
 		/* set up controls layout */
-		HBox information = new HBox(false, 0);
-		VBox information_text = new VBox(false, 0);
+		var information = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+		var information_text = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 		information.pack_start(warning, false, false, 10);
 		information_text.pack_start(title, false, true, 10);
 		information_text.pack_start(info, false, true, 0);
 		information.pack_start(information_text, true, true, 10);
 		
-		VBox listBox = new VBox(false, 0);
+		var listBox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		listBox.pack_start(mediasScroll, true, true, 5);
 		
 		Expander exp = new Expander(_("Select individual media to import:"));
 		exp.add(listBox);
 		exp.expanded = false;
 		
-		HButtonBox bottomButtons = new HButtonBox();
-		bottomButtons.set_layout(ButtonBoxStyle.END);
-		bottomButtons.pack_end(cancel, false, false, 10);
-		bottomButtons.pack_end(transfer, false, false, 0);
-		bottomButtons.set_spacing(10);
+		var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+		bottomButtons.set_layout (Gtk.ButtonBoxStyle.END);
+		bottomButtons.pack_end (cancel, false, false, 10);
+		bottomButtons.pack_end (transfer, false, false, 0);
+		bottomButtons.set_spacing (10);
 		
 		content.pack_start(information, false, true, 0);
 		content.pack_start(UI.wrap_alignment (transferAll, 5, 0, 0, 75), false, true, 0);
@@ -287,7 +287,7 @@ public class Noise.TransferFromDeviceDialog : Window {
 		to_transfer.clear();
 		mediasModel.foreach(createTransferList);
 		
-		if(App.instance.library_manager.doing_file_operations()) {
+		if(App.library_manager.doing_file_operations()) {
 			notification_manager.doAlertNotification (_("Cannot Import"), _("Noise is already doing file operations. Please wait until those finish to import from %d").printf( d.getDisplayName()));
 		}
 		else {

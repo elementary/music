@@ -36,7 +36,7 @@ public class Noise.DeviceView : Gtk.Grid {
 
         buildUI();
         
-        ulong connector = App.instance.library_manager.progress_cancel_clicked.connect( () => {
+        ulong connector = App.library_manager.progress_cancel_clicked.connect( () => {
             if(d.is_syncing()) {
                 notification_manager.doAlertNotification (_("Cancelling Sync"), _("Device Sync has been cancelled. Operation will stop after this media."));
                 d.cancel_sync();
@@ -97,10 +97,10 @@ public class Noise.DeviceView : Gtk.Grid {
     public void showImportDialog() {
         // ask the user if they want to import medias from device that they don't have in their library (if any)
         // this should be same as MusicViewWrapper
-        if(!App.instance.library_manager.doing_file_operations() && main_settings.music_folder != "") {
+        if(!App.library_manager.doing_file_operations() && main_settings.music_folder != "") {
             var found = new LinkedList<int>();
             var not_found = new LinkedList<Media>();
-            App.instance.library_manager.media_from_name(d.get_medias(), ref found, ref not_found);
+            App.library_manager.media_from_name(d.get_medias(), ref found, ref not_found);
             
             if(not_found.size > 0) {
                 TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(d, not_found);

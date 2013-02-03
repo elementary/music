@@ -435,7 +435,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         stop_importation ();
         if(err == "missing element") {
             if(message.get_structure() != null && Gst.is_missing_plugin_message(message)) {
-                    Noise.InstallGstreamerPluginsDialog dialog = new Noise.InstallGstreamerPluginsDialog(lm, lw, message);
+                    Noise.InstallGstreamerPluginsDialog dialog = new Noise.InstallGstreamerPluginsDialog(message);
                     dialog.show();
                 }
         }

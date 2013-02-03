@@ -29,7 +29,7 @@ public class Noise.GridView : ContentView, GridLayout {
             if (_popup == null) {
                 _popup = new PopupListView (this);
                 _popup.focus_out_event.connect ( () => {
-                    if (_popup.visible && lw.has_focus) {
+                    if (_popup.visible && App.main_window.has_focus) {
                         _popup.show_all ();
                         _popup.present ();
                     }
@@ -46,14 +46,8 @@ public class Noise.GridView : ContentView, GridLayout {
      */
     private Gee.HashMap<string, Album> album_info;
 
-    private LibraryManager lm;
-    private LibraryWindow lw;
-
     public GridView (ViewWrapper view_wrapper) {
         base (view_wrapper);
-
-        lm = view_wrapper.lm;
-        lw = view_wrapper.lw;
 
         album_info = new Gee.HashMap<string, Album> ();
 
@@ -66,12 +60,12 @@ public class Noise.GridView : ContentView, GridLayout {
 
     public void setup_focus () {
         var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
-        focus_blacklist.add (lw.viewSelector);
-        focus_blacklist.add (lw.searchField);
-        focus_blacklist.add (lw.source_list_view);
-        focus_blacklist.add (lw.statusbar);
+        focus_blacklist.add (App.main_window.viewSelector);
+        focus_blacklist.add (App.main_window.searchField);
+        focus_blacklist.add (App.main_window.source_list_view);
+        focus_blacklist.add (App.main_window.statusbar);
 
-        lw.viewSelector.mode_changed.connect ( () => {
+        App.main_window.viewSelector.mode_changed.connect ( () => {
             popup_list_view.hide ();
         });
 
@@ -280,7 +274,7 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     protected override void item_activated (Object? object) {
-        if (!lw.initialization_finished)
+        if (!App.main_window.initialization_finished)
             return;
 
         if (object == null) {
@@ -297,11 +291,11 @@ public class Noise.GridView : ContentView, GridLayout {
         // find window's location
         int x, y;
         Gtk.Allocation alloc;
-        lm.lw.get_position (out x, out y);
+        App.main_window.get_position (out x, out y);
         get_allocation (out alloc);
 
         // move down to icon view's allocation
-        x += lm.lw.main_hpaned.position;
+        x += App.main_window.main_hpaned.position;
         y += alloc.y;
 
         int window_width = 0;

@@ -101,8 +101,6 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 	public CheckMenuItem menu_item { get; construct set;}
 
 	private ColumnBrowser miller_parent;
-	private LibraryManager lm;
-	private LibraryWindow lw;
 
 	private TreeView view;
 	private BrowserColumnModel model;
@@ -115,9 +113,6 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 	public BrowserColumn (ColumnBrowser miller_parent, Category category) {
 		this.miller_parent = miller_parent;
 		this.category = category;
-
-		lw = miller_parent.lw;
-		lm = miller_parent.lm;
 
 		menu_item = new CheckMenuItem.with_label (category.to_string ());
 		this.visible = false;
@@ -191,7 +186,7 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 
 		if (!first_item_selected)
 			set_selected (null, true); // always notify
-		else if (model.n_items + 1 >= 1 && this.visible && lw.initialization_finished) // FIXME: Use this.get_realized ()
+		else if (model.n_items + 1 >= 1 && this.visible && App.main_window.initialization_finished) // FIXME: Use this.get_realized ()
 			//...just scroll to the cell
 			view.scroll_to_cell (new TreePath.first(), null, false, 0.0f, 0.0f);
 	}
@@ -234,7 +229,7 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 	}
 
 	public void set_selected (string? val, bool notify = false) {
-		if (model != null && (!lw.initialization_finished || val == _selected))
+		if (model != null && (!App.main_window.initialization_finished || val == _selected))
 			return;
 
 		_selected = val;

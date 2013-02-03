@@ -25,8 +25,8 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
     public TreeViewSetup tvs;
     public signal void button_clicked (int playlist_id);
 
-    public PlaylistViewWrapper (LibraryWindow lw, int playlist_id, ViewWrapper.Hint hint) {
-        base (lw, hint);
+    public PlaylistViewWrapper (int playlist_id, ViewWrapper.Hint hint) {
+        base (hint);
         tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, hint);
 
         this.playlist_id = playlist_id;
@@ -49,9 +49,9 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         // by the handlers connected below through connect_data_signals()
         if (hint == Hint.SMART_PLAYLIST) {
             // this sets the media indirectly through the signal handlers connected above
-            yield set_media_async (lm.media_from_smart_playlist (playlist_id));
+            yield set_media_async (App.library_manager.media_from_smart_playlist (playlist_id));
         } else if (hint == Hint.PLAYLIST) {
-            yield set_media_async (lm.media_from_playlist (playlist_id));
+            yield set_media_async (App.library_manager.media_from_playlist (playlist_id));
         } else {
             assert_not_reached ();
         }
@@ -62,7 +62,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
     private void connect_data_signals () {
         switch (hint) {
             case Hint.PLAYLIST:
-                var p = lm.playlist_from_id (playlist_id);
+                var p = App.library_manager.playlist_from_id (playlist_id);
 
                 // Connect to playlist signals
                 if (p != null) {
@@ -73,7 +73,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
             break;
             
             case Hint.SMART_PLAYLIST:
-                var p = lm.smart_playlist_from_id (playlist_id);
+                var p = App.library_manager.smart_playlist_from_id (playlist_id);
 
                 // Connect to smart playlist signals
                 if (p != null) {

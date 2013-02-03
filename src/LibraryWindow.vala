@@ -493,7 +493,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.playlist_import_clicked.connect ( () => {
             try {
                 library_manager.fo.import_from_playlist_file_info(Noise.PlaylistsUtils.get_playlists_to_import ());
-                update_sensitivities();
+                update_sensitivities.begin ();
             } catch (GLib.Error e) {
                 warning (e.message);
             }
@@ -529,7 +529,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         nextButton.clicked.connect(nextClicked);
 
         searchField.activate.connect (searchFieldActivate);
-        searchField.set_text (main_settings.search_string);
+        searchField.text = main_settings.search_string;
 
         debug ("DONE WITH USER INTERFACE");
 
@@ -664,7 +664,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         debug ("Building main views ...");
 
         // Add Music Library View
-        var music_view_wrapper = new MusicViewWrapper (this);
+        var music_view_wrapper = new MusicViewWrapper ();
         int view_number = view_container.add_view (music_view_wrapper);
         source_list_view.add_item  (view_number, _("Music"), ViewWrapper.Hint.MUSIC, Icons.MUSIC.gicon);
         // set as the current view
@@ -714,13 +714,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 StaticPlaylist p = o as StaticPlaylist;
 
                 if (p.read_only == false) {
-                    var view = new PlaylistViewWrapper (this, p.rowid, ViewWrapper.Hint.PLAYLIST);
+                    var view = new PlaylistViewWrapper (p.rowid, ViewWrapper.Hint.PLAYLIST);
                     view_number = view_container.add_view (view);
                     entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.PLAYLIST, Icons.PLAYLIST.gicon);
                     match_playlist.set (p.rowid, view_number);
                 } else {
                     if (p.name == C_("Name of the playlist", "Queue")) {
-                        var queue_view = new ReadOnlyPlaylistViewWrapper (this, App.player.queue_playlist.rowid, true);
+                        var queue_view = new ReadOnlyPlaylistViewWrapper (App.player.queue_playlist.rowid, true);
                         queue_view.set_no_media_alert_message (_("No songs in Queue"), 
                                 _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), Gtk.MessageType.INFO);
                         view_number = view_container.add_view (queue_view);
@@ -731,7 +731,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                         p.media_removed.connect(() => { update_playlist_badge (p); });
                         set_treeviewsetup_from_playlist (App.player.queue_playlist, library_manager.queue_setup);
                     } else if (p.name == _("History")) {
-                        var history_view = new ReadOnlyPlaylistViewWrapper (this, App.player.history_playlist.rowid);
+                        var history_view = new ReadOnlyPlaylistViewWrapper (App.player.history_playlist.rowid);
                         history_view.set_no_media_alert_message (_("No songs in History"), 
                                 _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), Gtk.MessageType.INFO);
                         view_number = view_container.add_view (history_view);
@@ -739,7 +739,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                                                             ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.HISTORY.gicon);
                         set_treeviewsetup_from_playlist (App.player.history_playlist, library_manager.history_setup);
                     } else {
-                        var view = new ReadOnlyPlaylistViewWrapper (this, p.rowid);
+                        var view = new ReadOnlyPlaylistViewWrapper (p.rowid);
                         view_number = view_container.add_view (view);
                         entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.PLAYLIST.gicon);
                         if (p.show_badge == true) {
@@ -755,7 +755,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             lock (match_smartplaylist) {
                 var p = o as SmartPlaylist;
                 
-                var view = new PlaylistViewWrapper (this, p.rowid, ViewWrapper.Hint.SMART_PLAYLIST);
+                var view = new PlaylistViewWrapper (p.rowid, ViewWrapper.Hint.SMART_PLAYLIST);
                 view.button_clicked.connect ((playlist_id) => {
                     show_smart_playlist_dialog(library_manager.smart_playlist_from_id(playlist_id));
                 });
@@ -782,7 +782,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon);
                 } else {
                     debug ("adding device view with %d\n", d.get_medias().size);
-                    var music_view_wrapper = new DeviceViewWrapper(this, new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
+                    var music_view_wrapper = new DeviceViewWrapper(new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
                     
                     int subview_number = view_container.add_view (music_view_wrapper);
                     entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon);
@@ -1021,7 +1021,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         added_to_play_count = false;
         media_half_played_sended = false;
         
-        update_sensitivities();
+        update_sensitivities.begin ();
 
         Timeout.add(3000, () => {
             if (App.player.media_info.media != null && App.player.media_info.media == m) {
@@ -1040,7 +1040,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         media_considered_played = false;
         added_to_play_count = false;
 
-        update_sensitivities();
+        update_sensitivities.begin ();
 
         debug ("stopped\n");
     }
@@ -1125,7 +1125,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if(m == null) {
             App.player.player.pause();
             App.player.playing = false;
-            update_sensitivities();
+            update_sensitivities.begin ();
             return;
         }
 
@@ -1142,7 +1142,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             if(prev == null) {
                 App.player.player.pause();
                 App.player.playing = false;
-                update_sensitivities();
+                update_sensitivities.begin ();
                 return;
             } else if (play && !inhibit_notifications) {
                 notify_current_media_async.begin ();
@@ -1202,7 +1202,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 topDisplay.show_progressbar();
 
                 library_manager.add_folder_to_library(folders[0], folders[1:folders.length]);
-                update_sensitivities();
+                update_sensitivities.begin ();
             }
         }
         else {
@@ -1217,7 +1217,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 topDisplay.show_progressbar();
 
                 library_manager.rescan_music_folder();
-                update_sensitivities();
+                update_sensitivities.begin ();
             }
             else {
                 doAlert(_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted."));
@@ -1266,11 +1266,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             topDisplay.set_label_text("");
 
         if(not_imported.size > 0) {
-            NotImportedWindow nim = new NotImportedWindow(this, not_imported, main_settings.music_folder);
+            NotImportedWindow nim = new NotImportedWindow(not_imported, main_settings.music_folder);
             nim.show();
         }
 
-        update_sensitivities();
+        update_sensitivities.begin ();
     }
 
     /* this is when you import music from a foreign location into the library */
@@ -1282,7 +1282,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         //resetSideTree(false);
 
-        update_sensitivities();
+        update_sensitivities.begin ();
 
 
         //now notify user
@@ -1298,7 +1298,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         //resetSideTree(false);
         debug("music Rescanned\n");
-        update_sensitivities();
+        update_sensitivities.begin ();
     }
 
     public void editPreferencesClick() {
@@ -1318,15 +1318,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
 
         if (library_manager.media_count () > 0 || library_manager.playlist_count() > 0) {
-            var smfc = new SetMusicFolderConfirmation(library_manager, this, folder);
+            var smfc = new SetMusicFolderConfirmation(folder);
             smfc.finished.connect( (cont) => {
                 if(cont) {
-                    library_manager.set_music_folder(folder);
+                    library_manager.set_music_folder.begin (folder);
                 }
             });
         }
         else {
-            library_manager.set_music_folder (folder);
+            library_manager.set_music_folder.begin (folder);
             
             //resetSideTree (true);
         }

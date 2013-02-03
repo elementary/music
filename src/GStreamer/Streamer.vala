@@ -159,7 +159,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
             break;
         case Gst.MessageType.ELEMENT:
             if(message.get_structure() != null && is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
-                dialog = new InstallGstreamerPluginsDialog(App.library_manager, App.main_window, message);
+                dialog = new InstallGstreamerPluginsDialog(message);
             }
             break;
         case Gst.MessageType.EOS:

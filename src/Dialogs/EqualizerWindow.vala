@@ -24,9 +24,6 @@ using Gtk;
 
 public class Noise.EqualizerWindow : Gtk.Window {
 
-	LibraryManager lm;
-	LibraryWindow lw;
-
 	private Switch eq_switch;
 	private PresetList preset_combo;
 	private Entry new_preset_entry;
@@ -41,7 +38,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 
 	private const int ANIMATION_TIMEOUT = 20;
 
-	private List<VScale> scale_list;
+	private List<Scale> scale_list;
 	private List<Label> label_list;
 
 	private bool in_transition;
@@ -49,12 +46,8 @@ public class Noise.EqualizerWindow : Gtk.Window {
 
 	private string new_preset_name;
 
-	public EqualizerWindow (LibraryManager lm, LibraryWindow lw) {
-
-		this.lm = lm;
-		this.lw = lw;
-
-		scale_list = new List<VScale>();
+	public EqualizerWindow () {
+		scale_list = new List<Gtk.Scale>();
 		label_list = new List<Label>();
 		target_levels = new Gee.ArrayList<int>();
 
@@ -84,16 +77,16 @@ public class Noise.EqualizerWindow : Gtk.Window {
 
 		window_position = WindowPosition.CENTER;
 		type_hint = Gdk.WindowTypeHint.DIALOG;
-		set_transient_for(lw);
+		set_transient_for (App.main_window);
 		set_size_request(440, 224);
 		resizable = false;
 		set_deletable(false);
 
 		set_icon(render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
 
-		var outer_box = new HBox(false, 10);
-		var inner_box = new VBox(false, 0);
-		var scales = new HBox(false, 0);
+		var outer_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
+		var inner_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+		var scales = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
 		bottom_toolbar = new Toolbar();
 		eq_switch = new Switch();
@@ -105,8 +98,8 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		//string[] decibels = {"32", "64", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"};
 
 		for (int index = 0; index < 10; ++index) {
-			VBox holder = new VBox(false, 0);
-			VScale v = new VScale.with_range(-80, 80, 1);
+			var holder = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+			var v = new Gtk.Scale.with_range(Gtk.Orientation.VERTICAL, -80, 80, 1);
 			v.add_mark(0, PositionType.LEFT, null);
 			v.draw_value = false;
 			v.inverted = true;
@@ -381,7 +374,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		int i = 0;
 		int[] gains = new int[10];
 
-		foreach(VScale scale in scale_list) {
+		foreach(Scale scale in scale_list) {
 			gains[i] = (int)scale_list.nth_data(scale_list.index(scale)).get_value();
 			i++;
 		}

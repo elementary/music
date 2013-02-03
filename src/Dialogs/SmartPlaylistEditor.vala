@@ -42,7 +42,7 @@ public class Noise.SmartPlaylistEditor : Window {
         
         if (sp == null) {
             is_new = true;
-            this.sp = new SmartPlaylist (App.instance.library_manager.media ());
+            this.sp = new SmartPlaylist (App.library_manager.media ());
         } else {
             this.sp = sp;
         }
@@ -63,7 +63,7 @@ public class Noise.SmartPlaylistEditor : Window {
         /* add the name entry */
         name_entry = new Granite.Widgets.HintedEntry (_("Playlist Title"));
         if (is_new == false)
-            name_entry.set_text (sp.name);
+            name_entry.text = sp.name;
         
         var match_grid = new Gtk.Grid ();
         var match_label = new Gtk.Label (_("Match"));
@@ -154,13 +154,13 @@ public class Noise.SmartPlaylistEditor : Window {
     }
     
     private void name_changed() {
-        if (String.is_white_space (name_entry.get_text ())) {
+        if (String.is_white_space (name_entry.text)) {
             save_button.set_sensitive (false);
             return;
         }
         else {
-            foreach (var p in App.instance.library_manager.smart_playlists ()) {
-                var fixed_name = name_entry.get_text ().strip ();
+            foreach (var p in App.library_manager.smart_playlists ()) {
+                var fixed_name = name_entry.text.strip ();
                 if ( (sp == null || sp.rowid != p.rowid) && fixed_name == p.name) {
                     save_button.set_sensitive (false);
                     return;
@@ -202,7 +202,7 @@ public class Noise.SmartPlaylistEditor : Window {
         sp.limit = limit_check.get_active ();
         sp.limit_amount = (int)limit_spin.get_value ();
         if (is_new) {
-            App.instance.library_manager.add_smart_playlist (sp);
+            App.library_manager.add_smart_playlist (sp);
         }
         this.destroy ();
     }

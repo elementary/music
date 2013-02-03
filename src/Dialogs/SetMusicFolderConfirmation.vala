@@ -24,12 +24,10 @@ using Gtk;
 using Gee;
 
 public class Noise.SetMusicFolderConfirmation : Window {
-	LibraryManager lm;
-	LibraryWindow lw;
 	string folder_path;
 	
-	private VBox content;
-	private HBox padding;
+	private Box content;
+	private Box padding;
 	
 	Button savePlaylists;
 	Button ok;
@@ -40,23 +38,21 @@ public class Noise.SetMusicFolderConfirmation : Window {
 	
 	public signal void finished(bool response);
 	
-	public SetMusicFolderConfirmation(LibraryManager lm, LibraryWindow lw, string path) {
-		this.lm = lm;
-		this.lw = lw;
+	public SetMusicFolderConfirmation(string path) {
 		folder_path = path;
 		
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.set_modal(true);
-		this.set_transient_for(lw);
+		this.set_modal (true);
+		this.set_transient_for (App.main_window);
 		this.destroy_with_parent = true;
 		
 		//set_default_size(250, -1);
 		resizable = false;
 		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 20);
+		content = new Gtk.Box(Gtk.Orientation.VERTICAL, 10);
+		padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL,  20);
 		
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
@@ -76,21 +72,21 @@ public class Noise.SetMusicFolderConfirmation : Window {
 		info.set_markup (_("Are you sure you want to set the music folder to %s? This will reset your library and remove your playlists.").printf ("<b>" + String.escape (path) + "</b>"));
 
 		/* set up controls layout */
-		HBox information = new HBox(false, 0);
-		VBox information_text = new VBox(false, 0);
+		var information = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+		var information_text = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 		information.pack_start(warning, false, false, 10);
 		information_text.pack_start(title, false, true, 10);
 		information_text.pack_start(info, false, true, 0);
 		information.pack_start(information_text, true, true, 10);
 		
 		// save playlist hbox
-		HBox playlistBox = new HBox(false, 6);
+		var playlistBox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 6);
 		playlistBox.pack_start(savePlaylists, true, true, 0);
 		playlistBox.pack_end(is_finished, false, false, 0);
 		playlistBox.pack_end(is_working, false, false, 0);
 		
-		HButtonBox bottomButtons = new HButtonBox();
-		bottomButtons.set_layout(ButtonBoxStyle.END);
+		var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
+		bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
 		bottomButtons.pack_start(playlistBox, false, false, 0);
 		bottomButtons.pack_end(cancel, false, false, 0);
 		bottomButtons.pack_end(ok, false, false, 0);
@@ -103,7 +99,7 @@ public class Noise.SetMusicFolderConfirmation : Window {
 		
 		padding.pack_start(content, true, true, 10);
 		
-		savePlaylists.set_sensitive(lm.media_count() > 0 && lm.playlist_count() > 0);
+		savePlaylists.set_sensitive(App.library_manager.media_count() > 0 && App.library_manager.playlist_count() > 0);
 		
 		savePlaylists.clicked.connect(savePlaylistsClicked);
 		cancel.clicked.connect(cancel_clicked);
@@ -133,7 +129,7 @@ public class Noise.SetMusicFolderConfirmation : Window {
 			
 			// foreach playlist in lm.playlists(), save to (p.name).m3u
 			var success = true;
-			foreach(var p in lm.playlists()) {
+			foreach(var p in App.library_manager.playlists()) {
 				if(!Noise.PlaylistsUtils.save_playlist_m3u(p, folder))
 					success = false;
 			}

@@ -28,8 +28,8 @@ public class Noise.ReadOnlyPlaylistViewWrapper : ViewWrapper {
     private Gtk.MessageType message_type;
     public bool is_queue;
 
-    public ReadOnlyPlaylistViewWrapper (LibraryWindow lw, int playlist_id, bool? is_queue = false) {
-        base (lw, ViewWrapper.Hint.READ_ONLY_PLAYLIST);
+    public ReadOnlyPlaylistViewWrapper (int playlist_id, bool? is_queue = false) {
+        base (ViewWrapper.Hint.READ_ONLY_PLAYLIST);
         tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.READ_ONLY_PLAYLIST);
         this.is_queue = is_queue;
         message_head = _("No Songs");
@@ -54,14 +54,14 @@ public class Noise.ReadOnlyPlaylistViewWrapper : ViewWrapper {
 
         // Do initial population. Further additions and removals will be handled
         // by the handlers connected below through connect_data_signals()
-        yield set_media_async (lm.media_from_playlist (playlist_id));
+        yield set_media_async (App.library_manager.media_from_playlist (playlist_id));
 
         connect_data_signals ();
     }
 
     private void connect_data_signals () {
         // Connect to playlist signals
-        var p = lm.playlist_from_id (playlist_id);
+        var p = App.library_manager.playlist_from_id (playlist_id);
         if (p != null) {
             p.media_added.connect (on_playlist_media_added);
             p.media_removed.connect (on_playlist_media_removed);

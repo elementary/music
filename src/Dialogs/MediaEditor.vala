@@ -56,7 +56,7 @@ public class Noise.MediaEditor : Window {
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(false);
-		this.set_transient_for(App.instance.main_window);
+		this.set_transient_for(App.main_window);
 		this.destroy_with_parent = true;
 		this.resizable = false;
 		
@@ -114,7 +114,7 @@ public class Noise.MediaEditor : Window {
 			foreach(FieldEditor fe in fields.values)
 				fe.set_check_visible(false);
 				
-			fetch_lyrics (false);
+			fetch_lyrics.begin (false);
 		}
 
 		arrows.previous_clicked.connect(previousClicked);
@@ -124,11 +124,11 @@ public class Noise.MediaEditor : Window {
 	
 	public Gtk.Box createBasicContent () {
 		fields = new HashMap<string, FieldEditor>();
-		Media sum = App.instance.library_manager.media_from_id(_medias.get(0)).copy();
+		Media sum = App.library_manager.media_from_id(_medias.get(0)).copy();
 		
 		/** find what these media have what common, and keep those values **/
 		foreach(int i in _medias) {
-			Media s = App.instance.library_manager.media_from_id(i);
+			Media s = App.library_manager.media_from_id(i);
 			
 			if(s.track != sum.track)
 				sum.track = 0;
@@ -242,7 +242,7 @@ public class Noise.MediaEditor : Window {
 
 		lyricsText = new TextView();
 		lyricsText.set_wrap_mode(WrapMode.WORD_CHAR);
-		lyricsText.get_buffer().text = App.instance.library_manager.media_from_id(_medias.get(0)).lyrics;
+		lyricsText.get_buffer().text = App.library_manager.media_from_id(_medias.get(0)).lyrics;
 
 		var text_scroll = new ScrolledWindow(null, null);		
 		text_scroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -263,13 +263,13 @@ public class Noise.MediaEditor : Window {
 	
 	private async void fetch_lyrics (bool overwrite) {
 		lyricsInfobarLabel.hide();
-		Media s = App.instance.library_manager.media_from_id(_medias.get(0));
+		Media s = App.library_manager.media_from_id(_medias.get(0));
 
 		// fetch lyrics here
 		if (!(!String.is_white_space (s.lyrics) && !overwrite)) {
 			s.lyrics = yield lf.fetch_lyrics_async (s);
 
-            var current_media = App.instance.library_manager.media_from_id (_medias.get(0));
+            var current_media = App.library_manager.media_from_id (_medias.get(0));
             if (current_media == s)
                 lyricsFetched (s);
 	    }
@@ -334,7 +334,7 @@ public class Noise.MediaEditor : Window {
 	public void change_media(LinkedList<int> newMedias) {
 		_medias = newMedias;
 		
-		Media sum = App.instance.library_manager.media_from_id(newMedias.get(0));
+		Media sum = App.library_manager.media_from_id(newMedias.get(0));
 
 		// be explicit to improve translations
 		if(_medias.size == 1) {
@@ -374,12 +374,12 @@ public class Noise.MediaEditor : Window {
 
 		lyricsText.get_buffer().text = sum.lyrics;
 
-		fetch_lyrics (false);
+		fetch_lyrics.begin (false);
 	}
 	
 	public void save_medias() {
 		foreach(int i in _medias) {
-			Media s = App.instance.library_manager.media_from_id(i);
+			Media s = App.library_manager.media_from_id(i);
 			
 			if(fields.get("Title").checked())
 				s.title = fields.get("Title").get_value();
@@ -430,11 +430,11 @@ public class Noise.MediaEditor : Window {
 	}
 }
 
-public class Noise.FieldEditor : VBox {
+public class Noise.FieldEditor : Box {
 	private string _name;
 	private string _original;
 	
-	private HBox nameBox;
+	private Gtk.Box nameBox;
 	
 	private CheckButton check;
 	private Label label;
@@ -451,12 +451,12 @@ public class Noise.FieldEditor : VBox {
 	public FieldEditor(string name, string original, Widget w) {
 		_name = name;
 		_original = original;
-		
+		set_orientation (Gtk.Orientation.VERTICAL);
 		this.spacing = 0;
 		
 		check = new CheckButton();
 		label = new Label(_name);
-		nameBox = new HBox(false, 0);
+		nameBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 		
 		label.justify = Justification.LEFT;
 		label.xalign = 0.0f;
@@ -658,7 +658,7 @@ public class Noise.FieldEditor : VBox {
 	}
 }
 
-public class Noise.StatsDisplay : VBox {
+public class Noise.StatsDisplay : Box {
 	public int plays;
 	public int skips;
 	public int last_played;
@@ -671,6 +671,7 @@ public class Noise.StatsDisplay : VBox {
 		this.plays = plays;
 		this.skips = skips;
 		this.last_played = last_played;
+		set_orientation (Gtk.Orientation.VERTICAL);
 		
 		header = new Label("");
 		info = new Label("");

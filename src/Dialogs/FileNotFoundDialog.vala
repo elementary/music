@@ -25,8 +25,8 @@ using Gtk;
 public class Noise.FileNotFoundDialog : Window {
 	Gee.LinkedList<Media> media_list;
 	
-	private VBox content;
-	private HBox padding;
+	private Gtk.Box content;
+	private Gtk.Box padding;
 	
 	Button removeMedia;
 	Button locateMedia;
@@ -41,14 +41,14 @@ public class Noise.FileNotFoundDialog : Window {
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.title = App.instance.get_name ();
 		this.set_modal (true);
-		this.set_transient_for (App.instance.main_window);
+		this.set_transient_for (App.main_window);
 		this.destroy_with_parent = true;
 		
 		set_default_size(475, -1);
 		resizable = false;
 		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 20);
+		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
@@ -80,17 +80,17 @@ public class Noise.FileNotFoundDialog : Window {
 
 
 		
-		rescanLibrary.set_sensitive(!App.instance.library_manager.doing_file_operations());
+		rescanLibrary.set_sensitive(!App.library_manager.doing_file_operations());
 		
 		/* set up controls layout */
-		HBox information = new HBox(false, 0);
-		VBox information_text = new VBox(false, 0);
+		var information = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+		var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		information.pack_start(warning, false, false, 10);
 		information_text.pack_start(title, false, true, 10);
 		information_text.pack_start(info, false, true, 0);
 		information.pack_start(information_text, true, true, 10);
 		
-		HButtonBox bottomButtons = new HButtonBox();
+		var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(removeMedia, false, false, 0);
 		bottomButtons.pack_end(rescanLibrary, false, false, 0);
@@ -110,15 +110,15 @@ public class Noise.FileNotFoundDialog : Window {
 			this.destroy(); 
 		});
 		
-		App.instance.library_manager.file_operations_started.connect(file_operations_started);
-		App.instance.library_manager.file_operations_done.connect(file_operations_done);
+		App.library_manager.file_operations_started.connect(file_operations_started);
+		App.library_manager.file_operations_done.connect(file_operations_done);
 		
 		add(padding);
 		show_all();
 	}
 	
 	void removeMediaClicked() {
-		App.instance.library_manager.remove_media (media_list, false);
+		App.library_manager.remove_media (media_list, false);
 		
 		this.destroy();
 	}
@@ -134,7 +134,7 @@ public class Noise.FileNotFoundDialog : Window {
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
 		
 		// try and help user by setting a sane default folder
-		var invalid_file = File.new_for_uri(App.instance.library_manager.media_from_id(media_id).uri);
+		var invalid_file = File.new_for_uri(App.library_manager.media_from_id(media_id).uri);
 		
 		if(invalid_file.get_parent().query_exists())
 			file_chooser.set_current_folder(invalid_file.get_parent().get_path());
@@ -157,14 +157,14 @@ public class Noise.FileNotFoundDialog : Window {
 			m.location_unknown = false;
 			m.unique_status_image = null;
 			// TODO: lm.lw.media_found(m.rowid);
-			App.instance.library_manager.update_media_item (m, false, false);
+			App.library_manager.update_media_item (m, false, false);
 			
 			this.destroy();
 		}
 	}
 	
 	void rescanLibraryClicked() {
-		App.instance.main_window.rescan_music_folder ();
+		App.main_window.rescan_music_folder ();
 		
 		this.destroy();
 	}

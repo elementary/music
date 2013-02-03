@@ -62,9 +62,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         NONE    = 4    // Nothing showing
     }
 
-    public LibraryManager lm { get; protected set; }
-    public LibraryWindow  lw { get; protected set; }
-
     public ListView list_view { get; protected set; }
     public GridView grid_view { get; protected set; }
     protected Granite.Widgets.EmbeddedAlert embedded_alert { get; set; }
@@ -104,11 +101,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public bool is_current_wrapper {
         get {
-            return (lw.initialization_finished && index == lw.view_container.get_current_index ());
+            return (App.main_window.initialization_finished && index == App.main_window.view_container.get_current_index ());
         }
     }
 
-    public int index { get { return lw.view_container.get_view_index (this); } }
+    public int index { get { return App.main_window.view_container.get_view_index (this); } }
 
     /**
      * TODO: deprecate. it's only useful for PlaylistViewWrapper
@@ -131,10 +128,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     // No widget is set as active until this is true!
     private bool data_initialized = false;
 
-    public ViewWrapper (LibraryWindow lw, Hint hint)
+    public ViewWrapper (Hint hint)
     {
-        this.lm = lw.library_manager;
-        this.lw = lw;
         this.hint = hint;
 
         orientation = Gtk.Orientation.VERTICAL;
@@ -142,8 +137,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         view_container = new ViewContainer ();
         add (view_container);
 
-        lw.viewSelector.mode_changed.connect (view_selector_changed);
-        lw.searchField.text_changed_pause.connect (search_field_changed);
+        App.main_window.viewSelector.mode_changed.connect (view_selector_changed);
+        App.main_window.searchField.text_changed_pause.connect (search_field_changed);
     }
 
     /**
@@ -224,17 +219,17 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         debug ("update_library_window_widgets [%s]", hint.to_string());
 
         // Restore this view wrapper's search string
-        lw.searchField.set_text (get_search_string ());
+        App.main_window.searchField.text = get_search_string ();
 
         // Insensitive if there's no media to search
         
         bool has_media = media_count > 0;
-        lw.searchField.set_sensitive (has_media);
+        App.main_window.searchField.set_sensitive (has_media);
 
         // Make the view switcher and search box insensitive if the current item
         // is the welcome screen. The view selector will only be sensitive if both
         // views are available.
-        lw.viewSelector.set_sensitive (has_grid_view && has_list_view
+        App.main_window.viewSelector.set_sensitive (has_grid_view && has_list_view
                                        && current_view != ViewType.ALERT
                                        && current_view != ViewType.WELCOME);
 
@@ -249,22 +244,22 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
                 column_browser_visible = list_view.column_browser.visible;
         }
 
-        lw.viewSelector.set_column_browser_toggle_visible (column_browser_available);
-        lw.viewSelector.set_column_browser_toggle_active (column_browser_visible);
+        App.main_window.viewSelector.set_column_browser_toggle_visible (column_browser_available);
+        App.main_window.viewSelector.set_column_browser_toggle_active (column_browser_visible);
 
         // select the right view in the view selector if it's one of the three views.
         // The order is important here. The sensitivity set above must be set before this,
         // as view_selector_changed() depends on that.
-        if (!lw.viewSelector.get_column_browser_toggle_active ()) {
-            if (lw.viewSelector.selected != (int)last_used_view && (int)last_used_view <= 1)
-                lw.viewSelector.selected = (Widgets.ViewSelector.Mode)last_used_view;
+        if (!App.main_window.viewSelector.get_column_browser_toggle_active ()) {
+            if (App.main_window.viewSelector.selected != (int)last_used_view && (int)last_used_view <= 1)
+                App.main_window.viewSelector.selected = (Widgets.ViewSelector.Mode)last_used_view;
         }
 
         update_statusbar_info ();
     }
 
     public void view_selector_changed () {
-        if (!lw.initialization_finished || !lw.viewSelector.sensitive)
+        if (!App.main_window.initialization_finished || !App.main_window.viewSelector.sensitive)
             return;
 
         if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
@@ -272,7 +267,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("view_selector_changed [%s]", hint.to_string());
 
-        var selected_view = (ViewType) lw.viewSelector.selected;
+        var selected_view = (ViewType) App.main_window.viewSelector.selected;
 
         if (is_current_wrapper)
             set_active_view (selected_view);
@@ -297,7 +292,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             App.player.player.play ();
 
             if (!App.player.playing)
-                lw.play_media ();
+                App.main_window.play_media ();
         }
     }
 
@@ -311,7 +306,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      *       by request of SideTreeView. See LibraryWindow :: set_active_view() for more details.
      */
     public void set_as_current_view () {
-        if (!lw.initialization_finished)
+        if (!App.main_window.initialization_finished)
             return;
         debug ("SETTING AS CURRENT VIEW [%s]", hint.to_string ());
 
@@ -339,7 +334,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             return;
 
         debug ("updating statusbar info [%s]", hint.to_string ());
-        lw.statusbar.set_info (get_statusbar_text ());
+        App.main_window.statusbar.set_info (get_statusbar_text ());
     }
     
     private void search_field_changed (string search) {
@@ -400,7 +395,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     protected virtual void select_proper_content_view () {
         debug ("Selecting proper content view automatically");
 
-        var new_view = (ViewType) lw.viewSelector.selected;
+        var new_view = (ViewType) App.main_window.viewSelector.selected;
         debug ("[%s] Showing view: %s", hint.to_string(), new_view.to_string ());
 
         const int N_VIEWS = 2; // list and grid views
@@ -443,7 +438,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     public void clear_filters () requires (is_current_wrapper) {
         // Currently setting the search to "" is enough. Remember to update it
         // if the internal views try to restore their previous state after changes.
-        lw.searchField.set_text ("");
+        App.main_window.searchField.text ="";
         update_visible_media (); // force a refresh ;)
     }
 

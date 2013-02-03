@@ -95,10 +95,10 @@ public abstract class Noise.GenericList : FastView {
         drag_end.connect (on_drag_end);
 #endif
 
-        App.instance.library_manager.media_updated.connect (media_updated);
+        App.library_manager.media_updated.connect (media_updated);
 
-        App.instance.player.current_cleared.connect (current_cleared);
-        App.instance.player.media_played.connect (media_played);
+        App.player.current_cleared.connect (current_cleared);
+        App.player.media_played.connect (media_played);
     }
 
     protected abstract void mediaRemoveClicked ();
@@ -255,7 +255,7 @@ public abstract class Noise.GenericList : FastView {
 
         var to_update = new Gee.LinkedList<Media> ();
         to_update.add (m);
-        App.instance.library_manager.update_media (to_update, true, true);
+        App.library_manager.update_media (to_update, true, true);
     }
 
     protected bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
@@ -288,10 +288,10 @@ public abstract class Noise.GenericList : FastView {
         set_as_current_list (m);
 
         // Now play the song
-        App.instance.player.playMedia (m, false);
+        App.player.playMedia (m, false);
 
-        if (!App.instance.player.playing) {
-            App.instance.main_window.playClicked ();
+        if (!App.player.playing) {
+            App.main_window.playClicked ();
         }
     }
 
@@ -334,7 +334,7 @@ public abstract class Noise.GenericList : FastView {
             }
         }
 
-        media_played (App.player.media_info.media);
+        media_played.begin (App.player.media_info.media);
     }
 
     protected GLib.List<Media> get_selected_medias () {

@@ -28,7 +28,6 @@ public class Noise.PopupListView : Window {
 
     public const int MIN_SIZE = 400;
 
-    LibraryManager lm;
     ViewWrapper view_wrapper;
 
     Gtk.Label album_label;
@@ -71,9 +70,8 @@ public class Noise.PopupListView : Window {
 #endif
 
         this.view_wrapper = grid_view.parent_view_wrapper;
-        this.lm = view_wrapper.lm;
 
-        transient_for = lm.lw;
+        transient_for = App.main_window;
         destroy_with_parent = true;
         skip_taskbar_hint = true;
 
@@ -180,7 +178,7 @@ public class Noise.PopupListView : Window {
 
         // Set rating
         update_album_rating ();
-        lm.media_updated.connect (update_album_rating);
+        App.library_manager.media_updated.connect (update_album_rating);
     }
 
     void update_album_rating () {
@@ -220,7 +218,7 @@ public class Noise.PopupListView : Window {
 
         }
 
-        lm.update_media (updated, false, true);
+        App.library_manager.update_media (updated, false, true);
     }
 
     private void view_search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {

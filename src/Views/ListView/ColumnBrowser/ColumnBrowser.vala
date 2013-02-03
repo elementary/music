@@ -56,8 +56,6 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
 	public Position actual_position { get; set; default = Position.LEFT; }
 
-	public LibraryManager lm { get; private set; }
-	public LibraryWindow  lw { get; private set; }
 	public ViewWrapper view_wrapper { get; private set; }
 
 	/**
@@ -133,8 +131,6 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 	public ColumnBrowser (ViewWrapper view_wrapper, BrowserColumn.Category[] categories) {
 		this.orientation = Gtk.Orientation.HORIZONTAL;
 
-		this.lm = view_wrapper.lm;
-		this.lw = view_wrapper.lw;
 		this.view_wrapper = view_wrapper;
 
 		columns = new Gee.LinkedList<unowned BrowserColumn> ();

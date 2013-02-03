@@ -192,7 +192,7 @@ public class Noise.LibraryManager : Object {
                                                Gtk.SortType.ASCENDING,
                                                ViewWrapper.Hint.READ_ONLY_PLAYLIST);
 
-        device_manager = new DeviceManager (this);
+        device_manager = new DeviceManager ();
         device_manager.device_added.connect ((device) => {device_added (device);});
         device_manager.device_removed.connect ((device) => {device_removed (device);});
 
@@ -229,9 +229,7 @@ public class Noise.LibraryManager : Object {
 
     public bool doProgressNotificationWithTimeout () {
         if (_doing_file_operations) {
-            Gdk.threads_enter ();
             notification_manager.doProgressNotification (null, (double) fo.index / (double) fo.item_count);
-            Gdk.threads_leave ();
         }
 
         if (fo.index < fo.item_count && _doing_file_operations)
@@ -263,14 +261,14 @@ public class Noise.LibraryManager : Object {
 
             App.player.reset_already_played ();
             // FIXME: these are library window's internals. Shouldn't be here
-            lw.update_sensitivities ();
+            App.main_window.update_sensitivities.begin ();
             App.player.stopPlayback ();
 
             main_settings.music_folder = folder;
 
             main_settings.music_mount_name = "";
 
-            set_music_folder_thread ();
+            set_music_folder_thread.begin ();
         }
     }
 
@@ -299,7 +297,7 @@ public class Noise.LibraryManager : Object {
     public void add_files_to_library (LinkedList<string> files) {
         if (start_file_operations (_("Adding files to library…"))) {
             temp_add_files = files;
-            add_files_to_library_async ();
+            add_files_to_library_async.begin ();
         }
     }
 
@@ -341,7 +339,7 @@ public class Noise.LibraryManager : Object {
 
         if (start_file_operations (_("Adding music from %s to library…").printf ("<b>" + String.escape (folder) + "</b>"))) {
             temp_add_folder = folder;
-            add_folder_to_library_async ();
+            add_folder_to_library_async.begin ();
         }
     }
 
@@ -368,7 +366,7 @@ public class Noise.LibraryManager : Object {
 
     public void rescan_music_folder () {
         if (start_file_operations (_("Rescanning music for changes. This may take a while…"))) {
-            rescan_music_folder_async ();
+            rescan_music_folder_async.begin ();
         }
     }
 
@@ -536,7 +534,7 @@ public class Noise.LibraryManager : Object {
             _playlists.unset (id, out removed);
         }
 
-        dbu.removeItem (removed);
+        dbu.removeItem.begin (removed);
         playlist_removed (removed);
     }
 
@@ -611,7 +609,7 @@ public class Noise.LibraryManager : Object {
         }
 
         smartplaylist_removed (removed);
-        dbu.removeItem (removed);
+        dbu.removeItem.begin (removed);
     }
 
     public void smart_playlist_updated (SmartPlaylist p, string? old_name = null) {
@@ -685,7 +683,7 @@ public class Noise.LibraryManager : Object {
             fo.save_media (updates);
 
         foreach (Media s in updates)
-            dbu.update_media (s);
+            dbu.update_media.begin (s);
 
         update_smart_playlists_async.begin ();
     }
@@ -820,7 +818,7 @@ public class Noise.LibraryManager : Object {
                 App.player.stopPlayback ();
         }
 
-        dbu.removeItem (removeURIs);
+        dbu.removeItem.begin (removeURIs);
 
         if (trash)
             fo.remove_media (removeURIs);
@@ -855,7 +853,7 @@ public class Noise.LibraryManager : Object {
 
         notification_manager.doProgressNotification (message, 0.0);
         _doing_file_operations = true;
-        lw.update_sensitivities ();
+        App.main_window.update_sensitivities.begin ();
         file_operations_started ();
         return true;
     }

@@ -145,7 +145,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
     private void ratingChanged (int new_rating) {
         if (current_media != null) {
             current_media.rating = new_rating;
-            App.instance.library_manager.update_media_item (current_media, false, true);
+            App.library_manager.update_media_item (current_media, false, true);
         }
     }
 }
