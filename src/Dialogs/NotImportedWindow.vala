@@ -40,8 +40,9 @@ public class Noise.NotImportedWindow : Window{
 	ListStore filesModel;
 	Button moveToTrash;
 	
-	public NotImportedWindow(LinkedList<string> files, string music) {
-		_files = files;
+	public NotImportedWindow(Collection<string> files, string music) {
+		_files = new LinkedList<string> ();
+		_files.add_all (files);
 		this.music_folder = music;
 		
 		this.set_title(_("Not Imported Files"));

@@ -34,13 +34,13 @@ public class Noise.LibraryManager : Object {
     public signal void progress_cancel_clicked ();
 
 	public signal void music_counted (int count);
-	public signal void music_added (LinkedList<string> not_imported);
-	public signal void music_imported (LinkedList<Media> new_media, LinkedList<string> not_imported);
-	public signal void music_rescanned (LinkedList<Media> new_media, LinkedList<string> not_imported);
+	public signal void music_added (Collection<string> not_imported);
+	public signal void music_imported (Collection<Media> new_media, Collection<string> not_imported);
+	public signal void music_rescanned (Collection<Media> new_media, Collection<string> not_imported);
 
-    public signal void media_added (Gee.LinkedList<int> ids);
-    public signal void media_updated (Gee.LinkedList<int> ids);
-    public signal void media_removed (Gee.LinkedList<int> ids);
+    public signal void media_added (Gee.Collection<int> ids);
+    public signal void media_updated (Gee.Collection<int> ids);
+    public signal void media_removed (Gee.Collection<int> ids);
     
     public signal void playlist_added (StaticPlaylist playlist);
     public signal void playlist_removed (StaticPlaylist playlist);
@@ -636,7 +636,7 @@ public class Noise.LibraryManager : Object {
         debug ("--- MEDIA CLEARED ---");
     }
 
-    private async void update_smart_playlists_async () {
+    private async void update_smart_playlists_async (Collection<Media> medias) {
         Idle.add (update_smart_playlists_async.callback);
         yield;
 
@@ -678,6 +678,7 @@ public class Noise.LibraryManager : Object {
         debug ("%d media updated", rv.size);
         media_updated (rv);
 
+
         /* now do background work. even if updateMeta is true, so must user preferences */
         if (updateMeta)
             fo.save_media (updates);
@@ -685,7 +686,7 @@ public class Noise.LibraryManager : Object {
         foreach (Media s in updates)
             dbu.update_media.begin (s);
 
-        update_smart_playlists_async.begin ();
+        update_smart_playlists_async.begin (updates);
     }
 
     public async void save_media () {
@@ -803,7 +804,7 @@ public class Noise.LibraryManager : Object {
         media_added (added);
 
         dbm.add_media (new_media);
-        update_smart_playlists_async.begin ();
+        update_smart_playlists_async.begin (new_media);
     }
 
     public void remove_media (Gee.LinkedList<Media> toRemove, bool trash) {
@@ -837,10 +838,7 @@ public class Noise.LibraryManager : Object {
                 p.remove_medias (toRemove);
         }
 
-        // TODO: move away. It's called twice due to LW's internal handlers
-        //lw.update_sensitivities ();
-
-        update_smart_playlists_async.begin ();
+        update_smart_playlists_async.begin (toRemove);
     }
 
     public void cancel_operations () {

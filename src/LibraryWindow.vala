@@ -1261,7 +1261,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     /* this is after setting the music library */
-    public virtual void musicAdded (Gee.LinkedList<string> not_imported) {
+    public virtual void musicAdded (Gee.Collection<string> not_imported) {
         if(App.player.media_active)
             updateInfoLabel();
         else
@@ -1276,7 +1276,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     /* this is when you import music from a foreign location into the library */
-    public virtual void musicImported(LinkedList<Media> imported, LinkedList<string> not_imported) {
+    public virtual void musicImported(Collection<Media> imported, Collection<string> not_imported) {
         if (App.player.media_active)
             updateInfoLabel();
         else

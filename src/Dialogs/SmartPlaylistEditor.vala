@@ -193,9 +193,11 @@ public class Noise.SmartPlaylistEditor : Window {
     
     public virtual void save_click () {
         sp.clearQueries ();
+        var queries = new Gee.LinkedList<SmartQuery> ();
         foreach (SmartPlaylistEditorQuery speq in queries_list) {
-                sp.addQuery (speq.get_query ());
+            queries.add (speq.get_query ());
         }
+        sp.add_queries (queries);
         
         sp.name = name_entry.text.strip ();
         sp.conditional = (SmartPlaylist.ConditionalType) match_combobox.get_active ();
@@ -260,7 +262,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         field_combobox.append_text (_("Year"));
         
         field_combobox.set_active ((int)q.field);
-        message ("setting filed to %d\n", q.field);
+        debug ("setting filed to %d\n", q.field);
         comparator_combobox.set_active ((int)q.comparator);
         
         if (needs_value (q.field)) {

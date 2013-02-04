@@ -16,8 +16,6 @@ vala_precompile(LAST_FM_VALA_C ${TARGET_NAME}
     Settings.vala
     AlbumInfo.vala
     Tag.vala
-    TrackInfo.vala
-    ArtistInfo.vala
     SimilarMedia.vala
     SimilarMediaView.vala
     SimilarMediaWidget.vala

@@ -47,134 +47,17 @@ namespace LastFM {
 
         LastFM.SimilarMedias similarMedias;
 
-        HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
-        HashMap<string, LastFM.AlbumInfo> _albums;//key:artist<sep>album
-        HashMap<string, LastFM.TrackInfo> _tracks;//key:artist<sep>album<sep>track
-
         public Core(Noise.LibraryManager lmm) {
             lm = lmm;
 
             lastfm_settings = new LastFM.Settings ();
 
             similarMedias = new LastFM.SimilarMedias(lm);
-
-            _artists = new HashMap<string, LastFM.ArtistInfo>();
-            _albums = new HashMap<string, LastFM.AlbumInfo>();
-            _tracks = new HashMap<string, LastFM.TrackInfo>();
-
-            lock(_artists) {
-                foreach(Noise.ArtistInfo a in lm.dbm.load_artists()) {
-                    _artists.set(a.name, (LastFM.ArtistInfo)a);
-                }
-            }
-
-            lock(_albums) {
-                foreach(Noise.AlbumInfo a in lm.dbm.load_albums()) {
-                    _albums.set(a.name + " by " + a.artist, (LastFM.AlbumInfo)a);
-                }
-            }
-
-            lock(_tracks) {
-                foreach(Noise.TrackInfo t in lm.dbm.load_tracks()) {
-                    _tracks.set(t.name + " by " + t.artist, (LastFM.TrackInfo)t);
-                }
-            }
             
             Noise.App.main_window.update_media_info.connect ((media) => {postNowPlaying (media);});
             Noise.App.main_window.media_half_played.connect ((media) => {postScrobbleTrack (media);});
 
             similarMedias.similar_retrieved.connect(similar_retrieved_signal);
-        }
-
-        /************* Last FM Artist Stuff ************/
-        public GLib.List<LastFM.ArtistInfo> artists() {
-            var rv = new GLib.List<LastFM.ArtistInfo>();
-            foreach(var artist in _artists.values)
-                rv.append(artist);
-
-            return rv;
-        }
-
-        public void save_artist(LastFM.ArtistInfo artist) {
-            lock(_artists) {
-                _artists.set(artist.name.down(), artist);
-            }
-        }
-
-        public bool artist_info_exists(string artist_key) {
-            return _artists.get(artist_key.down()) != null;
-        }
-
-        public LastFM.ArtistInfo? get_artist(string artist_key) {
-            LastFM.ArtistInfo? rv = null;
-
-            lock(_artists) {
-                if(artist_info_exists(artist_key.down()))
-                    rv = _artists.get(artist_key.down());
-            }
-
-            return rv;
-        }
-
-        /************** LastFM Album stuff **************/
-        public GLib.List<LastFM.AlbumInfo> albums() {
-            var rv = new GLib.List<LastFM.AlbumInfo>();
-            foreach(var album in _albums.values)
-                rv.append(album);
-
-            return rv;
-        }
-
-        public void save_album(LastFM.AlbumInfo album) {
-            lock(_albums) {
-                _albums.set(album.name.down() + " by " + album.artist.down(), album);
-            }
-        }
-
-        public bool album_info_exists(string album_key) {
-            return _albums.get(album_key) != null;
-        }
-
-        public LastFM.AlbumInfo? get_album(string album_key) {
-            LastFM.AlbumInfo? rv = null;
-
-            lock(_albums) {
-                if(album_info_exists(album_key.down()))
-                    rv = _albums.get(album_key.down());
-            }
-
-            return rv;
-        }
-
-        /************** Last FM Track Stuff ***************/
-        public GLib.List<LastFM.TrackInfo> tracks() {
-            var rv = new GLib.List<LastFM.TrackInfo>();
-            foreach(var track in _tracks.values)
-                rv.append(track);
-
-            return rv;
-        }
-
-        public void save_track(LastFM.TrackInfo track) {
-            lock(_tracks) {
-                if (track != null && track.name != null && track.artist != null)
-                _tracks.set(track.name.down() + " by " + track.artist.down(), track);
-            }
-        }
-
-        public bool track_info_exists(string track_key) {
-            return _tracks.get(track_key.down()) != null;
-        }
-
-        public LastFM.TrackInfo? get_track(string track_key) {
-            LastFM.TrackInfo? rv = null;
-
-            lock(_tracks) {
-                if(track_info_exists(track_key.down()))
-                    rv = _tracks.get(track_key.down());
-            }
-
-            return rv;
         }
 
         /** Last.FM Api functions **/
@@ -272,7 +155,7 @@ namespace LastFM {
             }
             if (Noise.String.is_empty (title, true) | Noise.String.is_empty (artist, true))
                 return;
-            love_thread (title, artist);
+            love_thread.begin (title, artist);
         }
         
         private async void love_thread (string title, string artist) {
@@ -313,7 +196,7 @@ namespace LastFM {
             }
             if (Noise.String.is_empty (title, true) | Noise.String.is_empty (artist, true))
                 return;
-            ban_thread (title, artist);
+            ban_thread.begin (title, artist);
         }
         
         private async void ban_thread (string title, string artist) {
@@ -353,44 +236,6 @@ namespace LastFM {
 
         Mutex fetch_info_guard;
 
-        public void fetchCurrentTrackInfo () {
-            if (Noise.App.player.media_info.media == null)
-                return;
-            track_thread (Noise.App.player.media_info.media);
-        }
-
-        private async void track_thread (Noise.Media m) {
-            SourceFunc callback = track_thread.callback;
-
-            Noise.Threads.add (() => {
-
-                string album_artist_s = m.album_artist;
-                string track_s = m.title;
-
-                if (album_artist_s == "")
-                    album_artist_s = m.artist;
-
-                // first fetch track info since that is most likely to change
-                if (!track_info_exists (track_s + " by " + album_artist_s)) {
-                    var track = new LastFM.TrackInfo.with_info (album_artist_s, track_s);
-
-                    if (track != null)
-                        save_track (track);
-
-                    // helps to avoid a race condition, since Noise.App.player.media_info.media is subject to change
-                    // as the songs are skipped
-                    fetch_info_guard.lock ();
-                    if (Noise.App.player.media_info.media == m)
-                        Noise.App.player.media_info.track = track;
-                    fetch_info_guard.unlock ();
-                }
-
-                Idle.add ((owned) callback);
-            });
-
-            yield;
-        }
-
         public void fetchCurrentAlbumInfo() {
             Noise.Threads.add (album_thread_function);
         }
@@ -407,77 +252,32 @@ namespace LastFM {
             if (album_artist_s == "")
                 album_artist_s = current_media.artist;
 
-            /* fetch album info now. only save if still on current media */
-            if (!album_info_exists (album_s + " by " + album_artist_s)) {
-                // This does the fetching to internet. may take a few seconds
-                var album = new LastFM.AlbumInfo.with_info (album_artist_s, album_s);
+            // This does the fetching to internet. may take a few seconds
+            var album = new LastFM.AlbumInfo.with_info (album_artist_s, album_s);
 
-                if (album == null)
-                    return;
-
-                save_album (album);
-
-                /* If on same song, update Noise.App.player.media_info.album */
-                fetch_info_guard.lock ();
-
-                if (Noise.App.player.media_active && Noise.App.player.media_info.media == current_media) {
-                    Noise.App.player.media_info.album = album;
-                }
-
-                fetch_info_guard.unlock ();
-
-                /* If we found an album art, and we don't have one yet, save it to file **/
-                var coverart_cache = Noise.CoverartCache.instance;
-
-                if (coverart_cache.has_image (current_media))
-                    return;
-
-                if (album.image_uri != "") {
-                    message ("Caching last.fm image from URL: %s", album.image_uri);
-
-                    var image_file = File.new_for_uri (album.image_uri);
-                    coverart_cache.cache_image_from_file_async.begin (current_media, image_file);
-                }
-
-            }
-            else {
-                message ("Not fetching album info or art");
-            }
-        }
-
-        /** Fetches artist info for currently playing song's artist
-         */
-        public void fetchCurrentArtistInfo() {
-            Noise.Threads.add (artist_thread_function);
-        }
-
-        private void artist_thread_function () {
-            var current_media = Noise.App.player.media_info.media;
-            if (current_media == null)
+            if (album == null)
                 return;
 
-            string album_artist_s = current_media.album_artist;
-            if (album_artist_s == "")
-                album_artist_s = current_media.artist;
+            /* If on same song, update Noise.App.player.media_info.album */
+            fetch_info_guard.lock ();
 
+            if (Noise.App.player.media_active && Noise.App.player.media_info.media == current_media) {
+                Noise.App.player.media_info.album = album;
+            }
 
-            /* fetch artist info now. save only if still on current media */
+            fetch_info_guard.unlock ();
 
-            if (!artist_info_exists (album_artist_s)) {
-                // This does the fetching to internet. may take a few seconds
-                var artist = new LastFM.ArtistInfo.with_artist (album_artist_s);
+            /* If we found an album art, and we don't have one yet, save it to file **/
+            var coverart_cache = Noise.CoverartCache.instance;
 
-                if (artist != null)
-                    save_artist (artist);
+            if (coverart_cache.has_image (current_media))
+                return;
 
-                // If still playing the same song, update Noise.App.player.media_info.artist
-                fetch_info_guard.lock ();
+            if (album.image_uri != "") {
+                debug ("Caching last.fm image from URL: %s", album.image_uri);
 
-                if (Noise.App.player.media_info.media == current_media) {
-                    Noise.App.player.media_info.artist = (Noise.ArtistInfo)artist;
-                }
-
-                fetch_info_guard.unlock ();
+                var image_file = File.new_for_uri (album.image_uri);
+                coverart_cache.cache_image_from_file_async.begin (current_media, image_file);
             }
         }
 
@@ -491,7 +291,7 @@ namespace LastFM {
             }
             if (m == null)
                 return;
-            update_nowplaying_thread (m);
+            update_nowplaying_thread.begin (m);
         }
         
         private async void update_nowplaying_thread (Noise.Media m) {
@@ -536,7 +336,7 @@ namespace LastFM {
                 return;
             if (m == null)
                 return;
-            scrobble_thread (m);
+            scrobble_thread.begin (m);
         }
         
         private async void scrobble_thread (Noise.Media m) {

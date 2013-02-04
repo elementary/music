@@ -47,8 +47,6 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         lw.update_media_info.connect (() => {
             lfm.fetchCurrentSimilarSongs();
             lfm.fetchCurrentAlbumInfo();
-            lfm.fetchCurrentArtistInfo();
-            lfm.fetchCurrentTrackInfo();
         });
         
         love_ban_buttons = new LoveBanButtons ();

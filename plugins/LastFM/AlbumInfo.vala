@@ -116,10 +116,11 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
                     this.mbid = node_content;
                 else if(node_name == "url")
                     this.url = node_content;
-                else if(node_name == "releasedate")
-                    //TODO: convert it to GLib.Date
-                    message (node_content);
-                else if(node_name == "playcount")
+                else if(node_name == "releasedate") {
+                    var date = GLib.Date ();
+                    date.set_parse (node_content);
+                    this.releasedate = date;
+                } else if(node_name == "playcount")
                     this.playcount = int.parse(node_content);
                 else if(node_name == "listeners")
                     this.listeners = int.parse(node_content);

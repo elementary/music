@@ -53,7 +53,7 @@ public class LastFM.SimilarMedias : Object {
         if (!working) {
             working = true;
             
-            similar_thread(s);
+            similar_thread.begin (s);
         }
     }
     

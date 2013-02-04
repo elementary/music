@@ -304,7 +304,7 @@ public abstract class Noise.GenericList : FastView {
         scroll_to_current_media (false);
     }
 
-    public void media_updated (LinkedList<int> ids) {
+    public void media_updated (Collection<int> ids) {
         queue_draw ();
     }
 

@@ -54,7 +54,7 @@ public class Noise.TreeViewSetup : Object {
 
     public List<Gtk.TreeViewColumn> get_columns () {
         if (columns.size < 1 || columns.size != ListColumn.N_COLUMNS) {
-            message ("Creating a new TreeViewSetup for %s", get_hint ().to_string ());
+            debug ("Creating a new TreeViewSetup for %s", get_hint ().to_string ());
             create_default_columns ();
         }
 

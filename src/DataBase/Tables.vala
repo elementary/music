@@ -60,20 +60,4 @@ CREATE TABLE IF NOT EXISTS devices (`unique_id` TEXT, `sync_when_mounted` INT,
 `podcast_playlist` STRING, `audiobook_playlist` STRING, `last_sync_time` INT)
 """;
 
-public const string ARTISTS = """
-CREATE TABLE IF NOT EXISTS artists ( `name` TEXT, `mbid` TEXT, `listeners` INT,
-`playcount` INT, `published` TEXT, `summary` TEXT, `content` TEXT, `image_uri` TEXT)
-""";
-
-public const string ALBUMS = """
-CREATE TABLE IF NOT EXISTS albums (`name` TEXT, `artist` TEXT, `mbid` TEXT,
-`release_date` TEXT, `summary` TEXT, `listeners` INT, `playcount` INT, `image_uri` TEXT)
-""";
-
-public const string TRACKS = """
-CREATE TABLE IF NOT EXISTS tracks (`id` INT, `name` TEXT, `artist` TEXT,
-`album` TEXT, `duration` INT, `listeners` INT, `playcount` INT, `summary` TEXT,
-`content` TEXT)
-""";
-
 }

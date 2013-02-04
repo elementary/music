@@ -56,9 +56,16 @@ public class Noise.SmartPlaylist : Playlist {
         return _queries;
     }
 
-    public void addQuery(SmartQuery s) {
+    public void add_query(SmartQuery s) {
         query_count++;
         _queries.add(s);
+        analyse_list_async.begin (medias_library);
+        updated ();
+    }
+
+    public void add_queries(Gee.Collection<SmartQuery> queries) {
+        query_count = query_count + queries.size;
+        _queries.add_all (queries);
         analyse_list_async.begin (medias_library);
         updated ();
     }
@@ -118,6 +125,8 @@ public class Noise.SmartPlaylist : Playlist {
         string[] queries_in_string = q.split(QUERY_SEPARATOR, 0);
         
         int index;
+        
+        var queries = new Gee.LinkedList<SmartQuery> ();
         for(index = 0; index < queries_in_string.length - 1; index++) {
             string[] pieces_of_query = queries_in_string[index].split(VALUE_SEPARATOR, 3);
             pieces_of_query.resize (3);
@@ -127,8 +136,9 @@ public class Noise.SmartPlaylist : Playlist {
             sq.comparator = (SmartQuery.ComparatorType)int.parse(pieces_of_query[1]);
             sq.value = pieces_of_query[2];
             
-            addQuery(sq);
+            queries.add (sq);
         }
+        add_queries (queries);
     }
 
     public string queries_to_string() {
