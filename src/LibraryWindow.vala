@@ -698,6 +698,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     }
 
+    public void update_badge_on_playlist_update (Playlist p, SourceListEntry entry) {
+        match_playlist_entry.set (p, entry);
+        p.media_added.connect((s) => { update_playlist_badge (p); });
+        p.media_removed.connect((s) => { update_playlist_badge (p); });
+    }
+
     private void update_playlist_badge (Playlist playlist) {
         var entry = match_playlist_entry.get (playlist);
         int media_count = playlist.medias.size;
@@ -726,9 +732,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                         view_number = view_container.add_view (queue_view);
                         entry = source_list_view.add_item  (view_number, App.player.queue_playlist.name,
                                                             ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.MUSIC.gicon);
-                        match_playlist_entry.set (p, entry);
-                        p.media_added.connect(() => { update_playlist_badge (p); });
-                        p.media_removed.connect(() => { update_playlist_badge (p); });
+                        update_badge_on_playlist_update (p, entry);
                         set_treeviewsetup_from_playlist (App.player.queue_playlist, library_manager.queue_setup);
                     } else if (p.name == _("History")) {
                         var history_view = new ReadOnlyPlaylistViewWrapper (App.player.history_playlist.rowid);
@@ -743,9 +747,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                         view_number = view_container.add_view (view);
                         entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.PLAYLIST.gicon);
                         if (p.show_badge == true) {
-                            match_playlist_entry.set (p, entry);
-                            p.media_added.connect((s) => { update_playlist_badge (p); });
-                            p.media_removed.connect((s) => { update_playlist_badge (p); });
+                            update_badge_on_playlist_update (p, entry);
                         }
                     }
                 }
