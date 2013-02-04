@@ -91,7 +91,7 @@ public class Noise.App : Granite.Application {
 
         app_copyright = "2012";
         application_id = "org.pantheon.noise";
-        app_icon = "noise";
+        app_icon = "multimedia-audio-player";
         app_launcher = "noise.desktop";
         app_years = "2012";
 
