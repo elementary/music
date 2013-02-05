@@ -393,6 +393,7 @@ public class Noise.FileOperator : Object {
         if (index == queue_size) {
             lm.add_media (new_imports); // give user some feedback
             new_imports.clear();
+            lm.music_imported (all_new_imports, import_errors);
         } else if (new_imports.size >= 200) {
             lm.add_media (new_imports); // give user some feedback
             new_imports.clear();

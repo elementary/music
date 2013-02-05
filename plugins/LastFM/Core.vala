@@ -56,6 +56,7 @@ namespace LastFM {
             
             Noise.App.main_window.update_media_info.connect ((media) => {postNowPlaying (media);});
             Noise.App.main_window.media_half_played.connect ((media) => {postScrobbleTrack (media);});
+            lm.music_imported.connect ((medias, uris) => {fetch_albums_slowly (medias);});
 
             similarMedias.similar_retrieved.connect(similar_retrieved_signal);
         }
@@ -234,51 +235,66 @@ namespace LastFM {
         /** Fetches the current track's info from last.fm
          */
 
-        Mutex fetch_info_guard;
+        public async void fetch_albums_slowly (Collection<Noise.Media> new_medias) {
+            var albums = new Gee.ArrayList<string> ();
+            var album_artist = new Gee.ArrayList<string> ();
+            foreach (var media in new_medias) {
+                string album_artist_s = media.album_artist;
+                string album_s = media.album;
 
-        public void fetchCurrentAlbumInfo() {
-            Noise.Threads.add (album_thread_function);
+                if (album_artist_s == "")
+                    album_artist_s = media.artist;
+                
+                if (!albums.contains (album_s) || !album_artist.contains (album_artist_s)) {
+                    if (!albums.contains (album_s))
+                        albums.add (album_s);
+                    if (!album_artist.contains (album_artist_s))
+                        album_artist.add (album_artist_s);
+                    fetch_album_info_async.begin (media);
+                }
+            }
         }
 
-        private void album_thread_function () {
+        public void fetch_album_info (Noise.Media media) {
+            fetch_album_info_async.begin (media);
+        }
 
-            var current_media = Noise.App.player.media_info.media;
-            if (current_media == null)
-                return;
+        private async void fetch_album_info_async (Noise.Media media) {
 
-            string album_artist_s = current_media.album_artist;
-            string album_s = current_media.album;
+            SourceFunc callback = fetch_album_info_async.callback;
 
-            if (album_artist_s == "")
-                album_artist_s = current_media.artist;
+            Noise.Threads.add (() => {
+                if (media == null)
+                    return;
 
-            // This does the fetching to internet. may take a few seconds
-            var album = new LastFM.AlbumInfo.with_info (album_artist_s, album_s);
+                string album_artist_s = media.album_artist;
+                string album_s = media.album;
 
-            if (album == null)
-                return;
+                if (album_artist_s == "")
+                    album_artist_s = media.artist;
 
-            /* If on same song, update Noise.App.player.media_info.album */
-            fetch_info_guard.lock ();
+                // This does the fetching to internet. may take a few seconds
+                var album = new LastFM.AlbumInfo.with_info (album_artist_s, album_s);
 
-            if (Noise.App.player.media_active && Noise.App.player.media_info.media == current_media) {
-                Noise.App.player.media_info.album = album;
-            }
+                if (album == null)
+                    return;
 
-            fetch_info_guard.unlock ();
+                /* If we found an album art, and we don't have one yet, save it to file **/
+                var coverart_cache = Noise.CoverartCache.instance;
 
-            /* If we found an album art, and we don't have one yet, save it to file **/
-            var coverart_cache = Noise.CoverartCache.instance;
+                if (coverart_cache.has_image (media))
+                    return;
 
-            if (coverart_cache.has_image (current_media))
-                return;
+                if (album.image_uri != "") {
+                    debug ("Caching last.fm image from URL: %s", album.image_uri);
 
-            if (album.image_uri != "") {
-                debug ("Caching last.fm image from URL: %s", album.image_uri);
+                    var image_file = File.new_for_uri (album.image_uri);
+                    coverart_cache.cache_image_from_file_async.begin (media, image_file);
+                }
+                Idle.add ((owned) callback);
+            });
 
-                var image_file = File.new_for_uri (album.image_uri);
-                coverart_cache.cache_image_from_file_async.begin (current_media, image_file);
-            }
+            yield;
         }
 
         /** Update's the user's currently playing track on last.fm
