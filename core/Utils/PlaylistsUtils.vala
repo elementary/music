@@ -170,6 +170,32 @@ namespace Noise.PlaylistsUtils {
         map.set(index, val);
     }
 
+    public static string get_new_playlist_name (Gee.Collection<Playlist> playlists, string? name = null) {
+        string new_name;
+        if (name == null)
+            new_name = _("New playlist");
+        else
+            new_name = name;
+        bool is_fine = true;
+        int index = 0;
+        while (is_fine) {
+            bool found = false;
+            foreach (var p in playlists) {
+                if (p.name == new_name) {
+                    index++;
+                    // Translators: used for new playlists ex: "New playlist (1)"
+                    new_name = _("%s (%i)").printf (name, index);
+                    found = true;
+                    break;
+                }
+            }
+            if (found == false) {
+                is_fine = false;
+            }
+        }
+        return new_name;
+    }
+
     public StaticPlaylist static_playlist_from_smartplaylist (SmartPlaylist sp) {
         var p = new StaticPlaylist();
         sp.reanalyze ();

@@ -391,9 +391,7 @@ public class Noise.FileOperator : Object {
         ++index;
         
         if (index == queue_size) {
-            lm.add_media (new_imports); // give user some feedback
-            new_imports.clear();
-            lm.music_imported (all_new_imports, import_errors);
+            queue_finished();
         } else if (new_imports.size >= 200) {
             lm.add_media (new_imports); // give user some feedback
             new_imports.clear();
@@ -403,9 +401,13 @@ public class Noise.FileOperator : Object {
     void import_error(string file) {
         ++index;
         import_errors.add(file);
+        if (index == queue_size) {
+            queue_finished();
+        }
     }
     
     void queue_finished() {
+        lm.music_imported (all_new_imports, import_errors);
         lm.add_media (new_imports);
         new_imports.clear();
         
@@ -414,12 +416,7 @@ public class Noise.FileOperator : Object {
             foreach (var s in all_new_imports)
                 to_add.add (s.rowid);
             new_playlist.add_medias (to_add);
-            
-            string extra = "";
-            while(lm.playlist_from_name (new_playlist.name + extra) != null)
-                extra += "_";
-            
-            new_playlist.name = new_playlist.name + extra;
+            new_playlist.name = PlaylistsUtils.get_new_playlist_name (lm.playlists (), new_playlist.name);
             lm.add_playlist (new_playlist);
             lm.lw.addSourceListItem (new_playlist);
         }

@@ -458,14 +458,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             var view = view_container.get_view (page_number);
             if (view is ReadOnlyPlaylistViewWrapper) {
                 var playlistview = (ReadOnlyPlaylistViewWrapper)view;
-                int index = 1;
                 var playlist = library_manager.playlist_from_id (playlistview.playlist_id);
                 if (playlist != null) {
                     var new_playlist = new StaticPlaylist();
-                    while (library_manager.playlist_from_name ("%s (%i)".printf (playlist.name, index)) != null) {
-                        index++;
-                    }
-                    new_playlist.name = "%s (%i)".printf (playlist.name, index);
+                    new_playlist.name = PlaylistsUtils.get_new_playlist_name (library_manager.playlists (), playlist.name);
                     new_playlist.add_medias (playlist.medias);
                     library_manager.add_playlist(new_playlist);
                 }
@@ -966,14 +962,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public void create_new_playlist () {
         var playlist = new StaticPlaylist ();
-        playlist.name = _("New playlist");
-        int index = 1;
-        if (library_manager.playlist_from_name (_("New playlist")) != null) {
-            while (library_manager.playlist_from_name (_("New playlist (%i)").printf (index)) != null) {
-                index++;
-            }
-            playlist.name = _("New playlist (%i)").printf (index);
-        }
+        playlist.name = PlaylistsUtils.get_new_playlist_name (library_manager.playlists ());
         library_manager.add_playlist(playlist);
     }
 
