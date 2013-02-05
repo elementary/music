@@ -27,7 +27,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     Noise.LibraryWindow lw;
     Mount mount;
     GLib.Icon icon;
-    string display_name;
+    string display_name = "";
     
     CDRipper ripper;
     Noise.Media media_being_ripped;
@@ -109,7 +109,10 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     }
     
     public string getDisplayName() {
-        return display_name;
+        if (display_name == "" || display_name == null)
+            return mount.get_name ();
+        else
+            return display_name;
     }
     
     public void setDisplayName(string name) {
@@ -349,6 +352,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         // Create a copy and add it to the library
         Noise.Media lib_copy = s.copy();
         lib_copy.isTemporary = false;
+        lib_copy.unique_status_image = null;
         lm.add_media_item (lib_copy);
         
         // update media in cdrom list to show as completed

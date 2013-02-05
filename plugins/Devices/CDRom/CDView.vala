@@ -56,6 +56,9 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         /* Content view styling */
         main_event_box.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
         
+        if ( cd_playlist.is_empty () == false) {
+        }
+        
         var default_pix = Icons.DEFAULT_ALBUM_ART.render_at_size (Icons.DEFAULT_ALBUM_ART_SIZE);
         default_pix = PixbufUtils.get_pixbuf_shadow (default_pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
         
@@ -118,10 +121,20 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     public void cd_initialised () {
         cd_playlist.add_medias (dev.get_medias ());
         if ( cd_playlist.is_empty () == false) {
-            author.set_markup (cd_playlist.medias.get(0).album_artist);
-            title.set_markup (cd_playlist.medias.get(0).album);
+            author.set_markup (cd_playlist.medias.get(0).get_display_album_artist (true));
+            title.set_markup (cd_playlist.medias.get(0).get_display_album ());
+            CoverartCache.instance.changed.connect (load_cover);
+            load_cover ();
+            notification_manager.searchCover (cd_playlist.medias.get(0));
         }
         show_all ();
+    }
+    
+    private void load_cover () {
+        var cover_pixbuf = CoverartCache.instance.get_cover (cd_playlist.medias.get(0));
+        if (cover_pixbuf != null) {
+            album_image.set_from_pixbuf (cover_pixbuf);
+        }
     }
     
     //XXX: This is not well working, so deactivating it for now !

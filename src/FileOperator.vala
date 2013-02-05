@@ -27,7 +27,6 @@ public class Noise.FileOperator : Object {
     public signal void import_cancelled();
     public signal void rescan_cancelled();
 
-    private Noise.LibraryManager lm;
     public GStreamerTagger tagger;
     
     bool inThread;
@@ -53,8 +52,7 @@ public class Noise.FileOperator : Object {
         IMPORT
     }
     
-    public FileOperator(Noise.LibraryManager lm) {
-        this.lm = lm;
+    public FileOperator() {
         inThread = false;
         toSave = new LinkedList<Media>();
         cancelled = false;
@@ -66,13 +64,15 @@ public class Noise.FileOperator : Object {
         tagger.media_imported.connect(media_imported);
         tagger.import_error.connect(import_error);
         tagger.queue_finished.connect(queue_finished);
-        lm.progress_cancel_clicked.connect( () => { 
+        // Use right encoding
+        TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
+    }
+    
+    public void connect_to_manager () {
+        App.library_manager.progress_cancel_clicked.connect( () => { 
             cancelled = true;
             tagger.cancel_operations();
         } );
-
-        // Use right encoding
-        TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
     }
 
     public void resetProgress(int items) {
@@ -224,7 +224,7 @@ public class Noise.FileOperator : Object {
                 // wait to update media when out of thread
                 if(emit_update) {
                     Idle.add( () => {
-                        lm.update_media_item (s, false, false); return false;
+                        App.library_manager.update_media_item (s, false, false); return false;
                     });
                 }
             }
@@ -275,35 +275,9 @@ public class Noise.FileOperator : Object {
             }
             catch(Error err) {
                 warning("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s, err.message);
-                
-                //tell the user the file could not be moved and ask if they'd like to delete permanently instead.
-                //Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Could not trash file %s, would you like to permanently delete it? You cannot undo these changes.", s);
             }
         }
     }
-    
-    /*public static void guess_content_type(GLib.File root, ref int audio, ref int other) {
-        GLib.FileInfo file_info = null;
-        
-        try {
-            var enumerator = root.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
-            while ((file_info = enumerator.next_file ()) != null) {
-                var file_path = root.get_path() + "/" + file_info.get_name();
-                
-                if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
-                    ++audio;
-                }
-                else if(file_info.get_file_type() == GLib.FileType.REGULAR) {
-                    ++other;
-                }
-                else if(file_info.get_file_type() == GLib.FileType.DIRECTORY)
-                    guess_content_type(GLib.File.new_for_path(file_path), ref audio, ref other);
-            }
-        }
-        catch(GLib.Error err) {
-            message("Could not guess content types: %s\n", err.message);
-        }
-    }*/
     
     public string get_extension(string name) {
         return name.slice(name.last_index_of(".", 0), name.length);
@@ -322,31 +296,31 @@ public class Noise.FileOperator : Object {
         
         foreach (var playlist in playlists.entries) {
             if (playlist.value.get (0).has_prefix ("/")) {
-                lm.add_files_to_library (convert_paths_to_uris (playlist.value));
+                App.library_manager.add_files_to_library (convert_paths_to_uris (playlist.value));
             } else {
-                lm.add_files_to_library (playlist.value);
+                App.library_manager.add_files_to_library (playlist.value);
             }
         }
         
         foreach (var playlist in playlists.entries) {
-            lm.start_file_operations(C_("Importing playlist", "Importing <b>%s</b> to Library…").printf (playlist.key));
+            App.library_manager.start_file_operations(C_("Importing playlist", "Importing <b>%s</b> to Library…").printf (playlist.key));
             var new_playlist = new StaticPlaylist();
             new_playlist.name = playlist.key;
             var medias_to_use = playlist.value;
             var to_add = new LinkedList<Media> ();
-            foreach (var media in lm.media ()) {
+            foreach (var media in App.library_manager.media ()) {
                 if (medias_to_use.contains (media.file.get_path())) {
                     to_add.add (media);
                }
             }
             new_playlist.add_medias (to_add);
-            lm.add_playlist (new_playlist);
-            lm.finish_file_operations();
+            App.library_manager.add_playlist (new_playlist);
+            App.library_manager.finish_file_operations();
         }
         
         /*foreach(string path in paths[0]) {
             Media s;
-            if( (s = lm.media_from_file(File.new_for_path (path))) != null)
+            if( (s = App.library_manager.media_from_file(File.new_for_path (path))) != null)
                 internals.add(s.rowid);
 
                 externals.add(path);
@@ -356,8 +330,8 @@ public class Noise.FileOperator : Object {
         var to_add = new LinkedList<int>();
         foreach(int i in internals) {
             to_add.add (i);
-            lm.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
-            lm.finish_file_operations();
+            App.library_manager.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
+            App.library_manager.finish_file_operations();
         }
 
         new_playlist.add_media (to_add);
@@ -393,7 +367,7 @@ public class Noise.FileOperator : Object {
         if (index == queue_size) {
             queue_finished();
         } else if (new_imports.size >= 200) {
-            lm.add_media (new_imports); // give user some feedback
+            App.library_manager.add_media (new_imports); // give user some feedback
             new_imports.clear();
         }
     }
@@ -407,8 +381,8 @@ public class Noise.FileOperator : Object {
     }
     
     void queue_finished() {
-        lm.music_imported (all_new_imports, import_errors);
-        lm.add_media (new_imports);
+        App.library_manager.music_imported (all_new_imports, import_errors);
+        App.library_manager.add_media (new_imports);
         new_imports.clear();
         
         if(import_type == ImportType.PLAYLIST) {
@@ -416,9 +390,8 @@ public class Noise.FileOperator : Object {
             foreach (var s in all_new_imports)
                 to_add.add (s.rowid);
             new_playlist.add_medias (to_add);
-            new_playlist.name = PlaylistsUtils.get_new_playlist_name (lm.playlists (), new_playlist.name);
-            lm.add_playlist (new_playlist);
-            lm.lw.addSourceListItem (new_playlist);
+            new_playlist.name = PlaylistsUtils.get_new_playlist_name (App.library_manager.playlists (), new_playlist.name);
+            App.library_manager.add_playlist (new_playlist);
         }
         
         // if doing import and copy to music folder is enabled, do copy here
@@ -428,8 +401,8 @@ public class Noise.FileOperator : Object {
             Threads.add (copy_imports_thread);
         }
         else {
-            lm.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
-            lm.finish_file_operations();
+            App.library_manager.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
+            App.library_manager.finish_file_operations();
         }
     }
     
@@ -446,8 +419,8 @@ public class Noise.FileOperator : Object {
         }
         
         Idle.add( () => {
-            lm.music_added(import_errors);
-            lm.finish_file_operations();
+            App.library_manager.music_added(import_errors);
+            App.library_manager.finish_file_operations();
             
             return false;
         });

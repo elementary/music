@@ -74,13 +74,13 @@ public class Noise.MediaKeyListener : Object {
             return;
 
         if(key == "Previous") {
-            App.main_window.previousClicked();
+            App.main_window.play_previous_media ();
         }
         else if(key == "Play") {
-            App.main_window.playClicked();
+            App.main_window.play_media ();
         }
         else if(key == "Next") {
-            App.main_window.nextClicked();
+            App.main_window.play_next_media ();
         }
         else if(key == "Pause") {
             // TODO

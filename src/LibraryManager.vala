@@ -58,6 +58,8 @@ public class Noise.LibraryManager : Object {
     public FileOperator fo;
     public DeviceManager device_manager;
     public GStreamerTagger tagger;
+    
+    public const string MUSIC_PLAYLIST = "autosaved_music";
 
     public bool main_directory_set {
         get { return !String.is_empty (main_settings.music_folder, true); }
@@ -76,12 +78,7 @@ public class Noise.LibraryManager : Object {
     private int _media_rowid = 0;
 
     private Gee.LinkedList<Media> open_media_list;
-
-    // TODO: remove this from librarymanager
-    public TreeViewSetup music_setup   { get; private set; default = null; }
-    public TreeViewSetup queue_setup   { get; private set; default = null; }
-    public TreeViewSetup history_setup { get; private set; default = null; }
-
+    
     // TODO: get rid of this
     private string temp_add_folder;
     private string[] temp_add_other_folders;
@@ -92,17 +89,22 @@ public class Noise.LibraryManager : Object {
     private bool _opening_file = false;
 
     public LibraryManager () {
-        this.dbm = new DataBaseManager (this);
-        this.dbu = new DataBaseUpdater (this, dbm);
-        this.fo = new FileOperator (this);
-
-        fo.fo_progress.connect (dbProgress);
-        dbm.db_progress.connect (dbProgress);
+        this.dbm = new DataBaseManager ();
+        this.dbu = new DataBaseUpdater (dbm);
+        this.fo = new FileOperator ();
 
         _smart_playlists = new Gee.HashMap<int, SmartPlaylist> ();
         _playlists = new Gee.TreeMap<int, StaticPlaylist> ();
         _media = new Gee.TreeMap<int, Media> ();
 
+        device_manager = new DeviceManager ();
+    }
+    
+    public void initialize_library () {
+        dbm.init_database ();
+        fo.connect_to_manager ();
+        fo.fo_progress.connect (dbProgress);
+        dbm.db_progress.connect (dbProgress);
         // Load all media from database
         lock (_media) {
             foreach (var m in dbm.load_media ()) {
@@ -123,76 +125,20 @@ public class Noise.LibraryManager : Object {
         }
 
         // Load all static playlists from database
-        var playlists_added = new Gee.HashSet<string> (); // Used to check for duplicates
 
-        foreach (var p in dbm.load_playlists ()) {
-            if (!playlists_added.contains (p.name)) { // Sometimes we get duplicates; ignore them.
-                // TODO: these names should be constants defined in DatabaseManager
-                // TODO: This souldn't be done like that, create a better function XXX
-                switch (p.name) {
-                    case "autosaved_music":
-                        music_setup = lw.get_treeviewsetup_from_playlist(p);
-                        if (music_setup != null)
-                            music_setup.set_hint (ViewWrapper.Hint.MUSIC);
+        lock (_playlists) {
+            foreach (var p in dbm.load_playlists ()) {
+                if (p.name == C_("Name of the playlist", "Queue") || p.name == _("History")) {
                     break;
-
-                    case "autosaved_queue":
-                        queue_setup = lw.get_treeviewsetup_from_playlist(p);
-                        if (queue_setup != null)
-                            queue_setup.set_hint (ViewWrapper.Hint.READ_ONLY_PLAYLIST);
-
-                        var to_queue = new LinkedList<Media> ();
-
-                        foreach (var m in p.medias)
-                            to_queue.add (m);
-
-                        App.player.queue_media (to_queue);
-                    break;
-
-                    // TODO: Use ZeitGeist to handle history !
-                    case "autosaved_history":
-                        history_setup = lw.get_treeviewsetup_from_playlist(p);
-                        if (history_setup != null)
-                            history_setup.set_hint (ViewWrapper.Hint.READ_ONLY_PLAYLIST);
-                        
-                        var to_history = new LinkedList<Media> ();
-
-                        foreach (var m in p.medias)
-                            to_history.add (m);
-
-                        App.player.history_playlist.add_medias (to_history);
-                    break;
-
-                    default:
-                        lock (_playlists) {
-                            p.rowid = _playlist_rowid;
-                            _playlists.set (_playlist_rowid, p);
-                            p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
-                            _playlist_rowid++;
-                        }
+                } else if (p.name != MUSIC_PLAYLIST) {
+                    p.rowid = _playlist_rowid;
+                    _playlists.set (_playlist_rowid, p);
+                    p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
+                    _playlist_rowid++;
                     break;
                 }
-
-                playlists_added.add (p.name);
             }
         }
-
-        if (music_setup == null)
-            music_setup = new TreeViewSetup (ListColumn.ARTIST,
-                                             Gtk.SortType.ASCENDING,
-                                             ViewWrapper.Hint.MUSIC);
-
-        if (queue_setup == null)
-            queue_setup = new TreeViewSetup (ListColumn.NUMBER,
-                                             Gtk.SortType.ASCENDING,
-                                             ViewWrapper.Hint.READ_ONLY_PLAYLIST);
-
-        if (history_setup == null)
-            history_setup = new TreeViewSetup (ListColumn.NUMBER,
-                                               Gtk.SortType.ASCENDING,
-                                               ViewWrapper.Hint.READ_ONLY_PLAYLIST);
-
-        device_manager = new DeviceManager ();
         device_manager.device_added.connect ((device) => {device_added (device);});
         device_manager.device_removed.connect ((device) => {device_removed (device);});
 
@@ -453,7 +399,7 @@ public class Noise.LibraryManager : Object {
         if (open_media_list.size > 0) {
             if (!App.player.playing) {
                 App.player.playMedia (open_media_list.get (0), false);
-                App.main_window.playClicked ();
+                App.main_window.play_media ();
             } else {
                 string primary_text = _("Added to your queue:");
 

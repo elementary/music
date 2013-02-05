@@ -19,7 +19,6 @@
 
 public class Noise.DataBaseUpdater : Object {
 
-    private LibraryManager lm;
     private DataBaseManager dbm;
 
     private Gee.LinkedList<Media> media_updates;
@@ -27,8 +26,7 @@ public class Noise.DataBaseUpdater : Object {
 
     private bool in_update_thread = false;
 
-    public DataBaseUpdater (LibraryManager lm, DataBaseManager databm) {
-        this.lm = lm;
+    public DataBaseUpdater (DataBaseManager databm) {
         dbm = databm;
 
         media_updates = new Gee.LinkedList<Media> ();
@@ -122,17 +120,17 @@ public class Noise.DataBaseUpdater : Object {
 
     private bool on_close_ui_save () {
         var playlists_and_queue = new Gee.LinkedList<StaticPlaylist> ();
-        playlists_and_queue.add_all (lm.playlists ());
+        playlists_and_queue.add_all (App.library_manager.playlists ());
 
         var p_music = new StaticPlaylist ();
-        p_music.name = "autosaved_music";
+        p_music.name = App.library_manager.MUSIC_PLAYLIST;
 
         playlists_and_queue.add (p_music);
 
         debug ("-- Saving columns state preferences DB.");
 
         dbm.save_playlist (p_music);
-        dbm.save_columns_state (playlists_and_queue, lm.smart_playlists ());
+        dbm.save_columns_state (playlists_and_queue, App.library_manager.smart_playlists ());
 
         debug ("-- Finished columns state preferences DB.");
 

@@ -25,9 +25,12 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
     public TreeViewSetup tvs;
     public signal void button_clicked (int playlist_id);
 
-    public PlaylistViewWrapper (int playlist_id, ViewWrapper.Hint hint) {
+    public PlaylistViewWrapper (int playlist_id, ViewWrapper.Hint hint, TreeViewSetup? tvs = null) {
         base (hint);
-        tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, hint);
+        if (tvs == null)
+            this.tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, hint);
+        else
+            this.tvs = tvs;
 
         this.playlist_id = playlist_id;
         relative_id = playlist_id;

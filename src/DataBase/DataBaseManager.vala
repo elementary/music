@@ -24,9 +24,9 @@ using SQLHeavy;
 using Gee;
 
 public class Noise.DataBaseManager : GLib.Object {
+
     public signal void db_progress (string? message, double progress);
 
-    private LibraryManager lm;
     private SQLHeavy.Database database;
     private Transaction transaction; // the current sql transaction
 
@@ -34,13 +34,12 @@ public class Noise.DataBaseManager : GLib.Object {
     private int item_count = 0;
 
     /** Creates a new DatabaseManager **/
-    public DataBaseManager (LibraryManager lm) {
-        this.lm = lm;
-        init_database ();
+    public DataBaseManager () {
+        
     }
 
     /** Creates/Reads the database file and folder **/
-    private void init_database () {
+    public void init_database () {
         assert (database == null);
 
         var database_dir = FileUtils.get_data_directory ();
@@ -99,6 +98,7 @@ public class Noise.DataBaseManager : GLib.Object {
      * Loads media from db
      */
     public ArrayList<Media> load_media () {
+        assert (database != null);
         var rv = new ArrayList<Media>();
 
         try {
@@ -145,6 +145,7 @@ public class Noise.DataBaseManager : GLib.Object {
     }
 
     public void clear_media () {
+        assert (database != null);
         try {
             database.execute ("DELETE FROM `media`");
         }
@@ -154,6 +155,7 @@ public class Noise.DataBaseManager : GLib.Object {
     }
 
     public void add_media (Collection<Media> media) {
+        assert (database != null);
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare ("""INSERT INTO `media` (`uri`, `file_size`, `title`, `artist`, `composer`, `album_artist`,
@@ -207,6 +209,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
     }
 
     public void remove_media (Collection<string> media) {
+        assert (database != null);
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare ("DELETE FROM `media` WHERE uri=:uri");
@@ -224,6 +227,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
     }
 
     public void update_media (Gee.Collection<Media> media) {
+        assert (database != null);
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare("""UPDATE `media` SET file_size=:file_size, title=:title, artist=:artist,
@@ -279,6 +283,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
      *
      */
     public HashMap<Object, TreeViewSetup> load_columns_state () {
+        assert (database != null);
         var rv = new HashMap<Object, TreeViewSetup>();
 
         try {
@@ -287,13 +292,13 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 if (results.fetch_int(0) == 0) {
-                    StaticPlaylist p = lm.playlist_from_name (results.fetch_string(1));
+                    StaticPlaylist p = App.library_manager.playlist_from_name (results.fetch_string(1));
                     var tvs = new TreeViewSetup (results.fetch_int(2), Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
                     tvs.set_sort_direction_from_string(results.fetch_string(3));
                     tvs.import_columns(results.fetch_string(4));
                     rv.set (p, tvs);
                 } else {
-                    SmartPlaylist p = lm.smart_playlist_from_name (results.fetch_string(1));
+                    SmartPlaylist p = App.library_manager.smart_playlist_from_name (results.fetch_string(1));
                     var tvs = new TreeViewSetup (results.fetch_int(2), Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
                     tvs.set_sort_direction_from_string(results.fetch_string(3));
                     tvs.import_columns(results.fetch_string(4));
@@ -309,6 +314,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void save_columns_state (Collection<StaticPlaylist>? playlists = null, Collection<SmartPlaylist>? smart_playlists = null) {
+        assert (database != null);
         try {
             database.execute("DELETE FROM `columns`");
             transaction = database.begin_transaction();
@@ -318,7 +324,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             if (playlists != null) {
                 foreach(StaticPlaylist p in playlists) {
                     if (p.read_only == false) {
-                        var tvs = lm.lw.get_treeviewsetup_from_playlist (p);
+                        var tvs = App.main_window.get_treeviewsetup_from_playlist (p);
                         
                         query.set_int    (":is_smart", 0);
                         query.set_string (":name", p.name);
@@ -333,7 +339,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             
             if (smart_playlists != null) {
                 foreach(SmartPlaylist p in smart_playlists) {
-                    var tvs = lm.lw.get_treeviewsetup_from_smartplaylist (p);
+                    var tvs = App.main_window.get_treeviewsetup_from_smartplaylist (p);
                     
                     query.set_int    (":is_smart", 1);
                     query.set_string (":name", p.name);
@@ -353,6 +359,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void add_columns_state (StaticPlaylist? p = null, SmartPlaylist? sp = null) {
+        assert (database != null);
         
         string name = "";
         int is_smart = 0;
@@ -363,13 +370,13 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             if (p.read_only == true)
                 return;
             name = p.name;
-            tvs = lm.lw.get_treeviewsetup_from_playlist (p);
+            tvs = App.main_window.get_treeviewsetup_from_playlist (p);
         } else {
             if (sp == null)
                 return;
             is_smart = 1;
             name = sp.name;
-            tvs = lm.lw.get_treeviewsetup_from_smartplaylist (sp);
+            tvs = App.main_window.get_treeviewsetup_from_smartplaylist (sp);
         }
 
         try {
@@ -392,6 +399,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void remove_columns_state (StaticPlaylist? p = null, SmartPlaylist? sp = null) {
+        assert (database != null);
         
         string name = "";
         if (sp == null) {
@@ -420,6 +428,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void add_default_columns () {
+        assert (database != null);
         try {
             
             TreeViewSetup tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
@@ -495,6 +504,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
      */
     public Gee.ArrayList<StaticPlaylist> load_playlists () {
         var rv = new ArrayList<StaticPlaylist>();
+        assert (database != null);
 
         try {
             string script = "SELECT * FROM `playlists`";
@@ -509,14 +519,15 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                 var new_media = new Gee.LinkedList<Media> ();
                 for (index = 0; index < media_strings.length - 1; ++index) {
                     string uri = media_strings[index];
-                    var m = lm.media_from_uri (uri);
+                    var m = App.library_manager.media_from_uri (uri);
                     if (m != null) {
                         new_media.add (m);
                     }
                 }
                 p.add_medias (new_media);
 
-                rv.add(p);
+                if (!rv.contains (p))
+                    rv.add(p);
             }
         }
         catch (SQLHeavy.Error err) {
@@ -527,13 +538,14 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void save_playlists (Collection<StaticPlaylist> playlists) {
+        assert (database != null);
         try {
             database.execute("DELETE FROM `playlists`");
             transaction = database.begin_transaction();
             Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
 
             foreach (var p in playlists) {
-                if (p.read_only == false) {
+                if (p.read_only == false || p.name == C_("Name of the playlist", "Queue") || p.name == _("History")) {
                     string rv = "";
                     
                     foreach (var m in p.medias) {
@@ -555,6 +567,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void save_playlist (StaticPlaylist p, string? old_name = null) {
+        assert (database != null);
         try {
             if (p.read_only == true)
                 return;
@@ -587,6 +600,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void add_playlist (StaticPlaylist p) {
+        assert (database != null);
         if (p.read_only == true)
             return;
         string rv = "";
@@ -620,7 +634,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
             foreach (var p in playlists) {
                 query.set_string(":name", p.name);
-                query.set_string(":media", p.media_to_string(lm));
+                query.set_string(":media", p.media_to_string(App.library_manager));
                 query.set_int(":sort_column_id", p.tvs.sort_column_id);
                 query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
                 query.set_string(":columns", p.tvs.columns_to_string());
@@ -636,6 +650,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }*/
 
     public void remove_playlist (StaticPlaylist p) {
+        assert (database != null);
         if (p.read_only == true)
             return;
         try {
@@ -655,6 +670,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     /** SMART PLAYLISTS **/
 
     public void add_default_smart_playlists () {
+        assert (database != null);
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
@@ -719,13 +735,14 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
     public Gee.ArrayList<SmartPlaylist> load_smart_playlists() {
         var rv = new ArrayList<SmartPlaylist>();
+        assert (database != null);
 
         try {
             string script = "SELECT * FROM `smart_playlists`";
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
-                SmartPlaylist p = new SmartPlaylist(lm.media ());
+                SmartPlaylist p = new SmartPlaylist(App.library_manager.media ());
 
                 p.name = results.fetch_string(0);
                 p.conditional = (SmartPlaylist.ConditionalType)results.fetch_int(1);
@@ -744,6 +761,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void save_smart_playlists(Collection<SmartPlaylist> smarts) {
+        assert (database != null);
         try {
             database.execute("DELETE FROM `smart_playlists`");
             transaction = database.begin_transaction();
@@ -767,6 +785,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void save_smart_playlist (SmartPlaylist p, string? old_name = null) {
+        assert (database != null);
         if (old_name == null) {
             remove_smart_playlist (p);
         } else {
@@ -793,6 +812,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void remove_smart_playlist (SmartPlaylist p) {
+        assert (database != null);
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare("DELETE FROM `smart_playlists` WHERE name=:name");
@@ -808,6 +828,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public GLib.List<DevicePreferences> load_devices() {
+        assert (database != null);
         var rv = new GLib.List<DevicePreferences>();
 
         try {
@@ -840,6 +861,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void save_devices(GLib.List<DevicePreferences> devices) {
+        assert (database != null);
         try {
             database.execute("DELETE FROM `devices`");
             transaction = database.begin_transaction();
@@ -876,6 +898,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void save_device (DevicePreferences dp) {
+        assert (database != null);
         try {
             remove_device (dp);
             transaction = database.begin_transaction();
@@ -910,6 +933,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void remove_device (DevicePreferences device) {
+        assert (database != null);
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare("DELETE FROM `devices` WHERE unique_id=:unique_id");

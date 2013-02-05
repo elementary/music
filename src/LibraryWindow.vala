@@ -86,6 +86,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gee.HashMap<int, int> match_smartplaylist;
     private Gee.HashMap<string, int> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
+    private Gee.HashMap<int, TreeViewSetup> match_playlist_tvs;
+    private Gee.HashMap<int, TreeViewSetup> match_smartplaylist_tvs;
 
     public LibraryWindow () {
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
@@ -130,12 +132,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         match_smartplaylist = new Gee.HashMap<int, int> ();
         match_devices = new Gee.HashMap<string, int> ();
         match_playlist_entry = new Gee.HashMap<unowned Playlist, SourceListEntry> ();
+        match_playlist_tvs = new Gee.HashMap<int, TreeViewSetup> ();
+        match_smartplaylist_tvs = new Gee.HashMap<int, TreeViewSetup> ();
 
 
         // init some booleans
         if (main_settings.music_folder == "") {
             main_settings.music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
-            message("First run.\n");
+            debug ("First run.");
         }
         else {
             App.player.clearCurrent();
@@ -154,67 +158,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }*/
     }
 
-    public TreeViewSetup? get_treeviewsetup_from_playlist (StaticPlaylist sp) {
-        int index = 0;
-        while (view_container.get_view (index) != null && sp != null) {
-            Gtk.Widget view = view_container.get_view (index);
-            if (view is PlaylistViewWrapper) {
-                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
-                    return ((PlaylistViewWrapper)view).tvs;
-                }
-            }
-            index++;
-        }
-        return null;
-    }
-
-    public TreeViewSetup? get_treeviewsetup_from_smartplaylist (SmartPlaylist sp) {
-        int index = 0;
-        while (view_container.get_view (index) != null && sp != null) {
-            Gtk.Widget view = view_container.get_view (index);
-            if (view is PlaylistViewWrapper) {
-                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
-                    return ((PlaylistViewWrapper)view).tvs;
-                }
-            }
-            index++;
-        }
-        return null;
-    }
-
-    public void set_treeviewsetup_from_playlist (StaticPlaylist sp, TreeViewSetup tvs) {
-        int index = 0;
-        while (view_container.get_view (index) != null) {
-            Gtk.Widget view = view_container.get_view (index);
-            if (view is PlaylistViewWrapper) {
-                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
-                    ((PlaylistViewWrapper)view).tvs = tvs;
-                }
-            }
-            index++;
-        }
-    }
-
-    public void set_treeviewsetup_from_smartplaylist (SmartPlaylist sp, TreeViewSetup tvs) {
-        int index = 0;
-        while (view_container.get_view (index) != null) {
-            Gtk.Widget view = view_container.get_view (index);
-            if (view is PlaylistViewWrapper) {
-                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
-                    ((PlaylistViewWrapper)view).tvs = tvs;
-                }
-            }
-            index++;
-        }
-    }
-
     public override bool key_press_event (Gdk.EventKey event) {
         var modifiers = Gtk.accelerator_get_default_mod_mask ();
         bool modifiers_active = (event.state & modifiers) != 0;
 
         if (!modifiers_active) {
             if (event.keyval == Gdk.Key.space && !searchField.has_focus && !source_list_view.editing) {
-                playClicked (); // toggle play/pause
+                play_media (); // toggle play/pause
                 return true;
             }
 
@@ -520,9 +470,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             setMusicFolder (Environment.get_user_special_dir(UserDirectory.MUSIC));
 
         /* Connect events to functions */
-        previousButton.clicked.connect(previousClicked);
-        playButton.clicked.connect(playClicked);
-        nextButton.clicked.connect(nextClicked);
+        previousButton.clicked.connect (() => {play_previous_media ();});
+        playButton.clicked.connect (() => {play_media ();});
+        nextButton.clicked.connect (() => {play_next_media ();});
 
         searchField.activate.connect (searchFieldActivate);
         searchField.text = main_settings.search_string;
@@ -538,7 +488,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-
+    /**
+     * Notifications
+     */
 #if HAVE_LIBNOTIFY
     private Notify.Notification? notification = null;
 #endif
@@ -616,33 +568,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             yield show_notification_from_media_async (App.player.media_info.media);
     }
 
-    /**
-     * Description:
-     * Builds the views (view wrapper) and adds the respective element to the sidebar TreeView.
-     *
-     * @return true if succeeds, false if fails.
-     */
-//    public int add_view (string view_name, ViewWrapper view_wrapper) {
-
-        /* Pack view wrapper into the main views */
-/*        int view_number = view_container.add_view (view_wrapper);
-        if (view_name == null || view_number < 0) {
-            critical ("Failed to append views", view_name);
-            return -1;
-        }
-        source_list_view
-        iter = sideTree.add_item (view_wrapper, view_name);
-
-        return view_number;
-    }*/
 
     /**
      * Sets the given view as the active item
-     *
-     * TODO: change Gtk.Widget to ViewWrapper when the transition of
-     *       devices to the new API is finished
      */
-    public void set_active_view (Gtk.Widget view) {
+    public void set_active_view (ViewWrapper view) {
         if (!initialization_finished)
             return;
 
@@ -669,30 +599,37 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         debug ("Done with main views.");
     }
-    
+
+    public void remove_view_and_update (int index) {
+        view_container.remove_view (view_container.get_view (index));
+    }
+
     private void load_playlists () {
         debug ("Loading playlists");
         
         library_manager.add_playlist (App.player.queue_playlist);
         library_manager.add_playlist (App.player.history_playlist);
         
+        var treeview_setups = library_manager.dbm.load_columns_state ();
+        
         foreach (SmartPlaylist p in library_manager.smart_playlists()) {
             addSourceListItem (p);
+            match_smartplaylist_tvs.set (p.rowid, treeview_setups.get (p));
         }
 
-        // load playlists.
         foreach (StaticPlaylist p in library_manager.playlists()) {
             if (p.name != App.player.queue_playlist.name && p.name != App.player.history_playlist.name)
                 addSourceListItem (p);
+            match_smartplaylist_tvs.set (p.rowid, treeview_setups.get (p));
         }
 
         debug ("Finished loading playlists");
     }
     
-    public void remove_view_and_update (int index) {
-        view_container.remove_view (view_container.get_view (index));
 
-    }
+    /**
+     * SourceList Configuration
+     */
 
     public void update_badge_on_playlist_update (Playlist p, SourceListEntry entry) {
         match_playlist_entry.set (p, entry);
@@ -706,7 +643,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         string new_badge = media_count > 0 ? media_count.to_string() : "";
         entry.badge = new_badge;
     }
-
     public int addSourceListItem (GLib.Object o, GLib.Object? source_o = null, out SourceListEntry? entry = null) {
         int view_number = -1;
         entry = null;
@@ -722,24 +658,26 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     match_playlist.set (p.rowid, view_number);
                 } else {
                     if (p.name == C_("Name of the playlist", "Queue")) {
-                        var queue_view = new ReadOnlyPlaylistViewWrapper (App.player.queue_playlist.rowid, true);
+                        var queue_view = new ReadOnlyPlaylistViewWrapper (App.player.queue_playlist.rowid, 
+                                                match_playlist_tvs.get (App.player.queue_playlist.rowid), true);
                         queue_view.set_no_media_alert_message (_("No songs in Queue"), 
                                 _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), Gtk.MessageType.INFO);
                         view_number = view_container.add_view (queue_view);
                         entry = source_list_view.add_item  (view_number, App.player.queue_playlist.name,
                                                             ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.MUSIC.gicon);
                         update_badge_on_playlist_update (p, entry);
-                        set_treeviewsetup_from_playlist (App.player.queue_playlist, library_manager.queue_setup);
+                        App.player.queue_media (p.medias);
                     } else if (p.name == _("History")) {
-                        var history_view = new ReadOnlyPlaylistViewWrapper (App.player.history_playlist.rowid);
+                        var history_view = new ReadOnlyPlaylistViewWrapper (App.player.history_playlist.rowid, 
+                                                        match_playlist_tvs.get(App.player.history_playlist.rowid));
                         history_view.set_no_media_alert_message (_("No songs in History"), 
                                 _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), Gtk.MessageType.INFO);
                         view_number = view_container.add_view (history_view);
                         entry = source_list_view.add_item  (view_number, App.player.history_playlist.name,
                                                             ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.HISTORY.gicon);
-                        set_treeviewsetup_from_playlist (App.player.history_playlist, library_manager.history_setup);
+                        App.player.history_playlist.add_medias (p.medias);
                     } else {
-                        var view = new ReadOnlyPlaylistViewWrapper (p.rowid);
+                        var view = new ReadOnlyPlaylistViewWrapper (p.rowid, match_playlist_tvs.get(p.rowid));
                         view_number = view_container.add_view (view);
                         entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.PLAYLIST.gicon);
                         if (p.show_badge == true) {
@@ -753,7 +691,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             lock (match_smartplaylist) {
                 var p = o as SmartPlaylist;
                 
-                var view = new PlaylistViewWrapper (p.rowid, ViewWrapper.Hint.SMART_PLAYLIST);
+                var view = new PlaylistViewWrapper (p.rowid, ViewWrapper.Hint.SMART_PLAYLIST, match_smartplaylist_tvs.get(p.rowid));
                 view.button_clicked.connect ((playlist_id) => {
                     show_smart_playlist_dialog(library_manager.smart_playlist_from_id(playlist_id));
                 });
@@ -802,6 +740,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
 
+    /**
+     * Updating the interface
+     */
+
     private bool update_sensitivities_pending = false;
 
     public async void update_sensitivities () {
@@ -815,10 +757,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities_sync ();
         update_sensitivities_pending = false;
     }
-
-    /**
-     * This is handled more carefully inside each ViewWrapper object.
-     */
     private void update_sensitivities_sync () {
         debug ("UPDATE SENSITIVITIES");
 
@@ -862,7 +800,27 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         statusbar.update_sensitivities ();
     }
-    
+
+    public void updateInfoLabel () {
+        if(library_manager.doing_file_operations()) {
+            debug ("doing file operations, returning in updateInfoLabel");
+            return;
+        }
+
+        if(!App.player.media_active) {
+            notification_manager.doSongNotification ("");
+            debug ("setting info label as ''");
+            return;
+        }
+
+        // Set the title
+        var m = App.player.media_info.media;
+        notification_manager.doSongNotification (m != null ? m.get_title_markup () : "");
+    }
+
+    /**
+     * Devices
+     */
     private void change_device_name (Device device) {
         int page_number = match_devices.get (device.get_unique_identifier());
         source_list_view.change_device_name (page_number, device.getDisplayName());
@@ -877,6 +835,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         remove_view_and_update (page_number);
     }
 
+    /**
+     * StaticPlaylists
+     */
     private void add_playlist (StaticPlaylist playlist) {
         SourceListEntry? entry;
         addSourceListItem (playlist, null, out entry);
@@ -890,6 +851,37 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             match_playlist.unset (playlist.rowid);
         }
         remove_view_and_update (page_number);
+    }
+
+    public TreeViewSetup? get_treeviewsetup_from_playlist (StaticPlaylist sp) {
+        int index = 0;
+        while (view_container.get_view (index) != null && sp != null) {
+            Gtk.Widget view = view_container.get_view (index);
+            if (view is PlaylistViewWrapper) {
+                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
+                    return ((PlaylistViewWrapper)view).tvs;
+                }
+            }
+            index++;
+        }
+        return null;
+    }
+
+    /**
+     * SmartPlaylists
+     */
+    public TreeViewSetup? get_treeviewsetup_from_smartplaylist (SmartPlaylist sp) {
+        int index = 0;
+        while (view_container.get_view (index) != null && sp != null) {
+            Gtk.Widget view = view_container.get_view (index);
+            if (view is PlaylistViewWrapper) {
+                if (((PlaylistViewWrapper)view).playlist_id == sp.rowid) {
+                    return ((PlaylistViewWrapper)view).tvs;
+                }
+            }
+            index++;
+        }
+        return null;
     }
 
     private void add_smartplaylist (SmartPlaylist smartplaylist) {
@@ -925,27 +917,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    public void updateInfoLabel () {
-        if(library_manager.doing_file_operations()) {
-            debug ("doing file operations, returning in updateInfoLabel");
-            return;
-        }
-
-        if(!App.player.media_active) {
-            notification_manager.doSongNotification ("");
-            debug ("setting info label as ''");
-            return;
-        }
-
-        // Set the title
-        var m = App.player.media_info.media;
-        notification_manager.doSongNotification (m != null ? m.get_title_markup () : "");
-    }
-
     /**
-     *
      * Dialogs from the interface
-     *
      */
 
     public void show_smart_playlist_dialog (SmartPlaylist? smartplaylist = null) {
@@ -972,38 +945,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * @param s The media that is now playing
      */
     public void media_played (Media m) {
-        /*if(old == -2 && i != -2) { // -2 is id reserved for previews
-            Media s = settings.getLastMediaPlaying();
-            s = library_manager.media_from_name(s.title, s.artist);
-
-            if(s.rowid != 0) {
-                library_manager.playMedia(s.rowid);
-                int position = (int)settings.getLastMediaPosition();
-                topDisplay.change_value(ScrollType.NONE, position);
-            }
-
-            return;
-        }*/
 
         updateInfoLabel ();
 
         //reset the media position
         topDisplay.set_scale_sensitivity(true);
         topDisplay.set_media (App.player.media_info.media);
-
-        /*if(m.mediatype == 1 || m.mediatype == 2) {
-            /*message("setting position to resume_pos which is %d\n", library_manager.media_from_id(i).resume_pos );
-            Timeout.add(250, () => {
-                topDisplay.change_value(ScrollType.NONE, library_manager.media_from_id(i).resume_pos);
-                return false;
-            });*
-        }
-        else {
-            topDisplay.change_value(ScrollType.NONE, 0);
-        }*/
-
-        //if(!mediaPosition.get_sensitive())
-        //    mediaPosition.set_sensitive(true);
 
         //reset some booleans
         tested_for_video = false;
@@ -1040,30 +987,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if(App.player.media_active && ids.contains(App.player.media_info.media.rowid)) {
             updateInfoLabel();
         }
-    }
-
-
-    /**
-     * @deprecated. Use play_media()
-     */
-    public virtual void playClicked () {
-        play_media ();
-    }
-
-
-    /**
-     * @deprecated. Use play_next_media()
-     */
-    public virtual void nextClicked () {
-        play_next_media ();
-    }
-
-
-    /**
-     * @deprecated. Use play_previous_media()
-     */
-    public virtual void previousClicked () {
-        play_previous_media ();
     }
 
     public virtual void play_media (bool inhibit_notifications = false) {
@@ -1324,7 +1247,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void end_of_stream() {
-        nextClicked();
+        play_next_media ();
     }
 
     public virtual void error_occured () {

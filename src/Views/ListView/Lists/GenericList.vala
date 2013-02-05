@@ -291,7 +291,7 @@ public abstract class Noise.GenericList : FastView {
         App.player.playMedia (m, false);
 
         if (!App.player.playing) {
-            App.main_window.playClicked ();
+            App.main_window.play_media ();
         }
     }
 

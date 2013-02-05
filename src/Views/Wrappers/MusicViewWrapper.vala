@@ -22,21 +22,28 @@
  */
 
 public class Noise.MusicViewWrapper : ViewWrapper {
-    public MusicViewWrapper () {
+    public MusicViewWrapper (TreeViewSetup? tvs = null) {
         base (Hint.MUSIC);
-        build_async.begin ();
+        build_async.begin (tvs);
     }
 
     private Gee.HashMap<unowned Device, int> _devices;
 
-    private async void build_async () {
+    private async void build_async (TreeViewSetup? tvs = null) {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
         // Add grid view
         grid_view = new GridView (this);
 
         // Add list view and column browser
-        list_view = new ListView (this, App.library_manager.music_setup, true);
+        TreeViewSetup music_setup;
+        if (tvs == null)
+            music_setup = new TreeViewSetup (ListColumn.ARTIST,
+                                             Gtk.SortType.ASCENDING,
+                                             ViewWrapper.Hint.MUSIC);
+        else
+            music_setup = tvs;
+        list_view = new ListView (this, music_setup, true);
 
         // Welcome screen
         welcome_screen = new Granite.Widgets.Welcome (_("Get Some Tunes"),

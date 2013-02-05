@@ -25,6 +25,7 @@ public class Noise.NotificationManager : Object {
     public signal void alertNotification (string title, string message);
     public signal void progressNotification (string? message, double progress);
     public signal void songNotification (string message);
+    public signal void searchCover (Media m);
 
     string current_title_string;
     double progress;

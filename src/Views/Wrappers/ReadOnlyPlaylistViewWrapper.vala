@@ -28,9 +28,13 @@ public class Noise.ReadOnlyPlaylistViewWrapper : ViewWrapper {
     private Gtk.MessageType message_type;
     public bool is_queue;
 
-    public ReadOnlyPlaylistViewWrapper (int playlist_id, bool? is_queue = false) {
+    public ReadOnlyPlaylistViewWrapper (int playlist_id, TreeViewSetup? tvs = null, bool? is_queue = false) {
         base (ViewWrapper.Hint.READ_ONLY_PLAYLIST);
-        tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.READ_ONLY_PLAYLIST);
+        if (tvs == null)
+            this.tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.READ_ONLY_PLAYLIST);
+        else
+            this.tvs = tvs;
+        
         this.is_queue = is_queue;
         message_head = _("No Songs");
         message_body = _("Please wait until that this playlist get updated.");
