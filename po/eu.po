@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-02 02:22+0100\n"
+"POT-Creation-Date: 2013-02-05 17:58+0100\n"
 "PO-Revision-Date: 2012-12-08 12:39+0000\n"
 "Last-Translator: Ibai Oihanguren <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-02-03 05:04+0000\n"
-"X-Generator: Launchpad (build 16462)\n"
+"X-Launchpad-Export-Date: 2013-02-06 05:34+0000\n"
+"X-Generator: Launchpad (build 16468)\n"
 "Language: eu\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -43,30 +43,41 @@ msgstr "$NAME, $ARTIST artistarena"
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME, $ARTIST(r)ena, $ALBUM albumetik"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:188
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:176
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:392
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:394
+msgid "New playlist"
+msgstr "Erreprodukzio-zerrenda berria"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:187
+#, c-format
+msgid "%s (%i)"
+msgstr ""
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:214
 msgid "Export Playlist"
 msgstr "Esportatu erreprodukzio-zerrenda"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:196
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:290
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:222
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:316
 msgid "MPEG Version 3.0 Extended (*.m3u)"
 msgstr "MPEG 3.0 bertsio hedatua (*.m3u)"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:201
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:295
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:227
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:321
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
 msgstr "Shoutcast erreprodukzio-zerrenda, 2.0 bertsioa (*.pls)"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:275
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:301
 msgid "Playlist"
 msgstr "Erreprodukzio-zerrenda"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:281
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:307
 #, c-format
 msgid "Import %s"
 msgstr "Inportatu %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:315
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:341
 msgid "Unrecognized playlist file. Import failed."
 msgstr ""
 "Erreprodukzio-zerrenda fitxategi ezezaguna. Inportazioak huts egin du."
@@ -220,42 +231,44 @@ msgstr "Rock biguna"
 msgid "Techno"
 msgstr "Teknoa"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:286
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:98
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:128
 msgid "Import to Library"
 msgstr "Inportatu liburutegira"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:287
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:239
 msgid "Rescan Music Folder"
 msgstr "Berreskaneatu musikaren karpeta"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:290
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:242
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Preferences"
 msgstr "Hobespenak"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:310
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:262
 msgid "Search Music"
 msgstr "Bilatu musika"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:667
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:763
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:595
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:725
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:109
 msgid "Music"
 msgstr "Musika"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:713
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:660
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:548
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:131
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:111
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Ilara"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:715
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:663
 msgid "No songs in Queue"
 msgstr "Kantarik ez ilaran"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:715
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:664
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -265,16 +278,18 @@ msgstr ""
 "aukeratu <b>Ilara</b>. Kanta bat amaitzean, ilarako kantak erreproduzituko "
 "dira lehenik, uneko erreprodukzio-zerrendako hurrengo kantaren aurretik."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:719
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:670
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:548
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:131
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:109
 msgid "History"
 msgstr "Historia"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:721
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:673
 msgid "No songs in History"
 msgstr "Kantarik ez Historian"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:721
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:674
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -284,49 +299,34 @@ msgstr ""
 "Uneko saioan erreproduzitu dituzun kanta guztiak ikusteko erabil dezakezu "
 "zerrenda hau."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:941
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:943
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:392
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:394
-msgid "New playlist"
-msgstr "Erreprodukzio-zerrenda berria"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:944
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:947
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:395
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:398
-#, c-format
-msgid "New playlist (%i)"
-msgstr "Erreprodukzio-zerrenda berria (%i)"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1143
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1083
 msgid "Import Music"
 msgstr "Inportatu musika"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1175
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1115
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "Musika <b>inportatzen</b> <b>%s</b>(e)tik liburutegira."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1190
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1130
 msgid "Rescanning music folder for changes"
 msgstr "Musikaren karpeta berreskaneatzen aldaketen bila"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1197
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1137
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
 msgid "Could not find Music Folder"
 msgstr "Ezin izan da musikaren karpeta aurkitu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1197
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1137
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Mesedez, ziurtatu zure musikaren karpeta eskuragarri eta muntatuta dagoela."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1264
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1204
 msgid "Import Complete"
 msgstr "Inportazioa osatuta"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1264
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1204
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s(e)k zure liburutegia inportatu du."
@@ -393,53 +393,53 @@ msgstr ""
 msgid "Device is already being synced."
 msgstr "Gailua dagoeneko sinkronizatzen ari da."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:35
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:114
 msgid "No Songs"
 msgstr "Kantarik ez"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:36
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Please wait until that this playlist get updated."
 msgstr "Itxaron erreprodukzio-zerrenda eguneratu arte."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:49
 msgid "Get Some Tunes"
 msgstr "Eskuratu doinu batzuk"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:43
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr "Dirudienez %s(e)k ezin du zure musika aurkitu."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:53
 msgid "Locate"
 msgstr "Aurkitu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:46
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:53
 msgid "Change your music folder."
 msgstr "Aldatu zure musikaren karpeta"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:82
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:98
 msgid "Import your Music"
 msgstr "Inportatu musika"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:75
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:82
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:98
 #, c-format
 msgid "Import all your Music from %s into your library."
 msgstr "Inportatu zure musika guztia %s(e)tik liburutegira."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:114
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:121
 msgid "Select Music Folder"
 msgstr "Hautatu musikaren karpeta"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:473
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:468
 msgid "No media"
 msgstr "Edukirik ez"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:96
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -447,11 +447,11 @@ msgstr ""
 "Erreprodukzio-zerrendara kantak gehitzeko, egin <b>eskuin klik</b> elementu "
 "batean eta aukeratu <b>Gehitu erreprodukzio-zerrendara</b>."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:102
 msgid "Edit Smart Playlist"
 msgstr "Editatu erreprodukzio-zerrenda azkarra"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:111
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:114
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -469,18 +469,18 @@ msgctxt ""
 msgid "%s, %s, %s"
 msgstr "%s, %s, %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:64
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:58
 msgid "No Albums Found."
 msgstr "Ez da albumik aurkitu."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:160
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:154
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] "album %u"
 msgstr[1] "%u album"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/PopupListView.vala:161
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/PopupListView.vala:159
 #, c-format
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
@@ -659,6 +659,12 @@ msgid_plural "Import %i songs"
 msgstr[0] "Inportatu abesti %i"
 msgstr[1] "Inportatu %i abesti"
 
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:395
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:398
+#, c-format
+msgid "New playlist (%i)"
+msgstr "Erreprodukzio-zerrenda berria (%i)"
+
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:655
 msgid "1234 kbps"
 msgstr "1234 kbps"
@@ -692,25 +698,25 @@ msgstr "Bistaratu albumaren azala"
 msgid "%i kbps"
 msgstr "%i kb/s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:93
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:89
 msgid "No Songs Found."
 msgstr "Ez da abestirik aurkitu."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:369
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:365
 #, c-format
 msgid "%i track"
 msgid_plural "%i tracks"
 msgstr[0] "Pista %i"
 msgstr[1] "%i pista"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:371
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:367
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
 msgstr[0] "kanta %u"
 msgstr[1] "%u kanta"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:379
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:375
 #, c-format
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
@@ -802,24 +808,24 @@ msgstr "%i konpositoreak (guztiak)"
 msgid "No Composers"
 msgstr "Konpositorerik ez"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:49
 msgid "Automatic"
 msgstr "Automatikoa"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:156
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
 msgstr "Ezkerrean"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:158
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
 msgid "On Top"
 msgstr "Goian"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:404
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
 msgid "Unrated"
 msgstr "Baloratu gabea"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:406
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
@@ -884,43 +890,43 @@ msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr "Ez da zure liburutegian ez dagoen kantarik aurkitu gailu honetan."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:332
+#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:306
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:428
+#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:399
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:435
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:665
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:441
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:678
 msgid "Favorite Songs"
 msgstr "Kantarik gogokoenak"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:442
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:672
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:448
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:685
 msgid "Recently Added"
 msgstr "Oraintsu gehituak"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:458
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:688
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:464
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:701
 msgid "Recent Favorites"
 msgstr "Oraintsuko gogokoenak"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:465
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:695
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:471
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:708
 msgid "Never Played"
 msgstr "Inoiz erreproduzitu gabeak"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:472
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:702
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:478
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:715
 msgid "Over Played"
 msgstr "Gehien erreproduzituak"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:479
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:709
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:485
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:722
 msgid "Not Recently Played"
 msgstr "Azkenaldian erreproduzitu gabea"
 
@@ -973,7 +979,7 @@ msgstr "Errepikatu kanta"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:189
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:245
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:247
 msgid "Album"
 msgstr "Albuma"
 
@@ -984,7 +990,7 @@ msgstr "Errepikatu albuma"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:187
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:246
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:248
 msgid "Artist"
 msgstr "Artista"
 
@@ -1192,7 +1198,7 @@ msgstr "%i kanta editatzen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 msgid "Title"
 msgstr "Izenburua"
 
@@ -1202,23 +1208,23 @@ msgstr "Albumaren artista"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:190
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:474
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:252
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:254
 msgid "Genre"
 msgstr "Generoa"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:249
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:251
 msgid "Composer"
 msgstr "Konpositorea"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:192
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:474
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:253
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:255
 msgid "Grouping"
 msgstr "Taldekatzea"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:193
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:248
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:250
 msgid "Comment"
 msgstr "Iruzkina"
 
@@ -1231,12 +1237,12 @@ msgid "Disc"
 msgstr "Diskoa"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
 msgid "Year"
 msgstr "Urtea"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:197
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
 msgid "Rating"
 msgstr "Balorazioa"
 
@@ -1287,12 +1293,12 @@ msgid "%i media files could not be found. What would you like to do?"
 msgstr "Ezin izan dira %i eduki-fitxategi aurkitu. Zer egin nahi duzu?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:131
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
 msgid "Choose Music Folder"
 msgstr "Aukeratu musikaren karpeta"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Move to Trash"
 msgstr "Bota zakarrontzira"
 
@@ -1326,19 +1332,19 @@ msgstr[1] ""
 "Honek abestiak ezabatuko ditu, bai liburutegitik, eta baita %s(r)ekin "
 "automatikoki sinkronizatzen den edozein gailutatik ere."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Export Playlists"
 msgstr "Esportatu erreprodukzio-zerrendak"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
 msgid "Set Music Folder"
 msgstr "Ezarri musikaren karpeta"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
 msgid "Set Music Folder?"
 msgstr "Musikaren karpeta ezarri?"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -1347,29 +1353,29 @@ msgstr ""
 "Ziur zaude zure musikaren karpeta %s(e)n ezarri nahi duzula? Ekintza honek "
 "zure liburutegia berrezarri eta erreprodukzio-zerrendak ezabatuko ditu."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:83
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:76
 msgid "Equalizer"
 msgstr "Ekualizadorea"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:150
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:143
 msgid "Save preset"
 msgstr "Gorde aurrezarpena"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:414
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:407
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Pertsonalizatua)"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:409
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (%i pertsonalizatua)"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:420
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:413
 msgid "Custom Preset"
 msgstr "Aurrezarpen pertsonalizatua"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
 msgid "Custom Preset %i"
 msgstr "%i aurrezarpen pertsonalizatua"
@@ -1397,7 +1403,7 @@ msgid "Import all media"
 msgstr "Inportatu eduki guztiak"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDView.vala:90
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDView.vala:93
 msgid "Import"
 msgstr "Inportatu"
 
@@ -1526,126 +1532,126 @@ msgstr "Mugatu hona:"
 msgid "items"
 msgstr "elementuak"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:247
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:249
 msgid "Bitrate"
 msgstr "Bit-emaria"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:250
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:252
 msgid "Date Added"
 msgstr "Gehitze-data:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:251
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:253
 msgid "Date Released"
 msgstr "Argitaratze-data"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:254
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:256
 msgid "Last Played"
 msgstr "Azken erreprodukzioa"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:255
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:387
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:389
 msgid "Length"
 msgstr "Iraupena"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:256
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
 msgid "Playcount"
 msgstr "Erreprodukzio kopurua"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
 msgid "Skipcount"
 msgstr "Saltatze kopurua"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:323
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:325
 msgid "is"
 msgstr "da"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:324
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:326
 msgid "contains"
 msgstr "hau daukana:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:325
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:327
 msgid "does not contain"
 msgstr "hau ez daukana:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:350
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:352
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:365
 msgid "is exactly"
 msgstr "zehazki da:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:351
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:353
 msgid "is at most"
 msgstr "gehienez hau dena:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:352
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "is at least"
 msgstr "gutxienez hau dena:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 msgid "is within"
 msgstr "tarte honetan dagoena:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:365
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "is before"
 msgstr "honen aurretik dagoena:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:388
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:390
 msgid "seconds"
 msgstr "segundo"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:391
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:393
 msgid "days ago"
 msgstr "egun dela"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:394
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:396
 msgid "kbps"
 msgstr "kb/s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:48
 msgid "Not Imported Files"
 msgstr "Inportatu gabeko fitxategiak"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:77
 #, c-format
 msgid "Unable to import %d items from %s"
 msgstr "Ezin izan dira %d elementu inportatu %s(e)tik"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
 "%s(e)k ezin izan ditu %d elementu inportatu. Baliteke fitxategiak kaltetuta "
 "egotea."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:67
 msgid "Move all corrupted files to trash"
 msgstr "Bota hondatutako fitxategi guztiak zakarrontzira"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:73
 msgid "Ignore"
 msgstr "Ez ikusi"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:94
 msgid "del"
 msgstr "ezabatu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:99
 msgid "File Location"
 msgstr "Fitxategiaren kokapena"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:126
 msgid "Select individual files to move to trash:"
 msgstr "Hautatu zakarrontzira bota beharreko fitxategiak:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
 msgid "Install Plugin"
 msgstr "Instalatu plugina"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
 msgstr "Beharrezko GStreamer plugina ez dago instalatuta"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
@@ -1654,25 +1660,25 @@ msgstr ""
 "%s eduki motarentzako plugina ez dago instalatuta.\n"
 "Zer egin nahi duzu?"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:257
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:201
 #, c-format
 msgid "Importing music from %s…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:300
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:244
 msgid "Adding files to library…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:342
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:286
 #, c-format
 msgid "Adding music from %s to library…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:370
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:314
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:460
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:404
 msgid "Added to your queue:"
 msgstr ""
 
@@ -1708,7 +1714,11 @@ msgstr "Audio CD baliogabea"
 msgid "%s could not read the contents of this Audio CD"
 msgstr "%s(e)k ezin izan ditu Audio CD honen edukiak irakurri"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:113
+msgid "Audio CD"
+msgstr ""
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1716,22 +1726,22 @@ msgstr ""
 "Mesedez ziurtatu zure musika-karpeta eskuragarri eta muntatuta dagoela CDa "
 "inportatu aurretik."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:286
 msgid "No songs on CD"
 msgstr "Kantarik ez CDan"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:283
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:286
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "%s(e)k ezin izan du kantarik aurkitu CDan. Ezin da kantarik inportatu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:291
 #, c-format
 msgid "%s is already doing an import"
 msgstr "%s dagoeneko inportazio bat gauzatzen ari da"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:288
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:291
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1739,33 +1749,33 @@ msgid ""
 msgstr ""
 "Mesedez itxaron %s(e)k uneko inportazioa amaitu arte CDa inportatu aurretik."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:408
 msgid "CD Import Complete"
 msgstr "CD inportazioa osaturik"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:402
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "%s(e)k amaitu du %i kanta inportatzen Audio CDtik."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:408
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "%s(e)k amaitu du kanta bat inportatzen Audio CDtik."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:411
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:414
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "%i. pista inportatzen: %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:428
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:431
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "CDaren inportazioa <b>bertan behera geldituko da</b> uneko inportazioaren "
 "amaitzean."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:451
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:454
 msgid "An error occured during the Import of this CD"
 msgstr "Errore bat gertatu da CD hau inportatzean"
 
