@@ -51,7 +51,7 @@ public class Noise.ReadOnlyPlaylistViewWrapper : ViewWrapper {
         yield;
 
         list_view = new ListView (this, tvs, false, this.is_queue);
-        embedded_alert = new Granite.Widgets.EmbeddedAlert ();            
+        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
         // Refresh view layout
         pack_views ();

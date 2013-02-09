@@ -82,8 +82,9 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             if (view == list_view)
                 return ViewType.LIST;
             
-            if (view == embedded_alert)
+            if (view == embedded_alert) {
                 return ViewType.ALERT;
+            }
 
             if (view == welcome_screen)
                 return ViewType.WELCOME;
@@ -184,8 +185,13 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             case ViewType.GRID:
                 if (has_grid_view)
                     successful = view_container.set_current_view (grid_view);
-                else
+                else {
+                    if (has_list_view) {
+                        successful = view_container.set_current_view (list_view);
+                        list_view.list_view.scroll_to_current_media (true);
+                    }
                     successful = false;
+                }
                 break;
             case ViewType.ALERT:
                 successful = view_container.set_current_view (embedded_alert);
@@ -262,7 +268,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         if (!App.main_window.initialization_finished || !App.main_window.viewSelector.sensitive)
             return;
 
-        if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
+        if ((current_view == ViewType.ALERT && media_count < 1) || 
+        current_view == ViewType.WELCOME)
             return;
 
         debug ("view_selector_changed [%s]", hint.to_string());
@@ -477,7 +484,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         priority += relative_id;
 
         // lower priority
-        if (hint == Hint.SMART_PLAYLIST || hint == Hint.PLAYLIST)
+        if (hint == Hint.SMART_PLAYLIST || hint == Hint.PLAYLIST || hint == Hint.READ_ONLY_PLAYLIST)
             priority += 10;
 
         if (priority > VIEW_CONSTRUCT_PRIORITY)
