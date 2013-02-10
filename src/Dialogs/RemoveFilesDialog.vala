@@ -84,7 +84,10 @@ public class Noise.RemoveFilesDialog : Window {
 		bool need_trash = false;
 		foreach(var m in to_remove) {
 			if(m.uri.has_prefix("file:/")) {
-				need_trash = true;
+			    if (m.file_exists == true) {
+				    need_trash = true;
+				    break;
+				}
 			}
 		}
 		
