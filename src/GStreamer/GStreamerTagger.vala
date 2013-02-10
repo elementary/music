@@ -36,8 +36,6 @@ public class Noise.GStreamerTagger : Object {
 
     public GStreamerTagger () {
         uri_queue = new Gee.LinkedList<string> ();
-
-        d = create_discoverer ();
     }
 
     private Gst.Discoverer? create_discoverer () {
@@ -50,22 +48,33 @@ public class Noise.GStreamerTagger : Object {
         }
 
         discoverer.discovered.connect (import_media);
-        discoverer.finished.connect (finished);
+        discoverer.finished.connect (file_set_finished);
 
         return discoverer;
     }
 
-    private void finished () {
-        if (!cancelled && uri_queue.size > 0) {
-            d = create_discoverer ();
-            d.start ();
-
-            for (int i = 0; i < DISCOVER_SET_SIZE && i < uri_queue.size; i++)
-                d.discover_uri_async (uri_queue.get (i));
-        } else {
-            debug ("queue finished");
+    private void file_set_finished () {
+        if (cancelled) {
+            debug ("import cancelled");
+            d.stop ();
             queue_finished ();
         }
+        else if (uri_queue.size == 0) {
+            debug ("queue finished");
+            d.stop ();
+            queue_finished ();
+        }
+        else {
+            import_next_file_set ();
+        }
+    }
+
+    private void import_next_file_set () {
+        d = create_discoverer ();
+        d.start ();
+
+        for (int i = 0; i < DISCOVER_SET_SIZE && i < uri_queue.size; i++)
+            d.discover_uri_async (uri_queue.get (i));
     }
 
     public void cancel_operations () {
@@ -73,19 +82,14 @@ public class Noise.GStreamerTagger : Object {
     }
 
     public void discoverer_import_media (Gee.LinkedList<string> uris) {
-        int size = 0;
         cancelled = false;
         uri_queue.clear ();
 
         foreach (string uri in uris) {
             uri_queue.add (uri);
-
-            d.start ();
-            if (size < DISCOVER_SET_SIZE) {
-                ++size;
-                d.discover_uri_async (uri);
-            }
         }
+        
+        import_next_file_set ();
     }
 
     private async void import_media (Gst.DiscovererInfo info, Error err) {
