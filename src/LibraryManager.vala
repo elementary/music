@@ -582,14 +582,14 @@ public class Noise.LibraryManager : Object {
         debug ("--- MEDIA CLEARED ---");
     }
 
-    private async void update_smart_playlists_async (Collection<Media> medias) {
+    private async void update_smart_playlists_async (Collection<Media> media) {
         Idle.add (update_smart_playlists_async.callback);
         yield;
 
         lock (_smart_playlists) {
             foreach (var p in smart_playlists ()) {
                 lock (_media) {
-                    p.add_medias (media ());
+                    p.add_medias (media);
                 }
             }
         }
@@ -735,9 +735,14 @@ public class Noise.LibraryManager : Object {
         if (new_media.size < 1) // happens more often than you would think
             return;
 
+        // make a copy of the media list so that it doesn't get modified before
+        // the async code (e.g. updating the smart playlists) is done with it
+        var media = new Gee.LinkedList<Media> ();
         var added = new Gee.LinkedList<int> ();
 
         foreach (var s in new_media) {
+            media.add(s);
+            
             if (s.rowid == 0) {
                 s.rowid = _media_rowid;
                 _media_rowid++;
@@ -749,8 +754,8 @@ public class Noise.LibraryManager : Object {
         }
         media_added (added);
 
-        dbm.add_media (new_media);
-        update_smart_playlists_async.begin (new_media);
+        dbm.add_media (media);
+        update_smart_playlists_async.begin (media);
     }
 
     public void remove_media (Gee.LinkedList<Media> toRemove, bool trash) {
