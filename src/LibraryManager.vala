@@ -589,7 +589,7 @@ public class Noise.LibraryManager : Object {
         lock (_smart_playlists) {
             foreach (var p in smart_playlists ()) {
                 lock (_media) {
-                    p.add_medias (media);
+                    p.update_medias (media);
                 }
             }
         }
