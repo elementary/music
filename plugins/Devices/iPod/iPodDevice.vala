@@ -33,6 +33,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     bool currently_transferring = false;
     bool sync_cancelled = false;
     bool transfer_cancelled = false;
+    public bool is_supported = true;
     int index = 0;
     int total = 0;
     string current_operation = "";
@@ -71,6 +72,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     public bool start_initialization() {
         try {
             db = iTunesDB.parse(mount.get_default_location().get_path());
+            if (db.device.get_ipod_info().ipod_model == iPodModel.INVALID || db.device.get_ipod_info().ipod_model == iPodModel.UNKNOWN) {
+                is_supported = false;
+            }
         }
         catch(Error err) {
             critical("Error parsing db at %s: %s\n", get_uri(), err.message);

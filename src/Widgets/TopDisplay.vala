@@ -55,6 +55,7 @@ public class Noise.TopDisplay : Box {
         scaleBox.pack_start(rightTime, false, false, 0);
         
         scale.set_draw_value (false);
+        scale.can_focus = false;
         
         label.set_justify(Justification.CENTER);
         label.set_single_line_mode(false);
