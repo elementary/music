@@ -14,6 +14,7 @@ vala_precompile(IPOD_VALA_C ${TARGET_NAME}
     iPod.vala
     iPodDevice.vala
     iPodDeviceManager.vala
+    iPodStreamer.vala
     iPodMediaHelper.vala
     iPodPlaylistHelper.vala
 PACKAGES

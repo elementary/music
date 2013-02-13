@@ -27,7 +27,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     Noise.LibraryManager lm;
     Noise.DevicePreferences pref;
     iTunesDB db;
-    Mount mount;
+    public Mount mount;
     GLib.Icon icon;
     bool currently_syncing = false;
     bool currently_transferring = false;
@@ -228,6 +228,15 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     
     public string get_uri() {
         return mount.get_default_location().get_uri();
+    }
+    
+    public bool has_music (string uri) {
+        foreach (var m in medias.values) {
+            if (m.uri == uri) {
+                return true;
+            }
+        }
+        return false;
     }
     
     public void set_icon(GLib.Icon icon) {
