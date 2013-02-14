@@ -37,6 +37,9 @@ add_dependencies(${TARGET_NAME} ${SRC_TARGET})
 
 install(TARGETS ${TARGET_NAME} DESTINATION ${PLUGIN_DIR}/LastFM/)
 install(FILES lastfm.plugin DESTINATION ${PLUGIN_DIR}/LastFM/)
+# location of the fallback icon theme
+set(FALLBACK_THEME_DIR ${ICON_DIR}/hicolor)
+install(FILES icons/playlist-similar.svg DESTINATION ${FALLBACK_THEME_DIR}/16x16/mimetypes)
 
 add_subdirectory(schemas)
 

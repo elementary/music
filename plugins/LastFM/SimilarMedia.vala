@@ -46,6 +46,7 @@ public class LastFM.SimilarMedias : Object {
         similar_playlist.name = _("Similar");
         similar_playlist.read_only = true;
         similar_playlist.show_badge = true;
+        similar_playlist.icon = GLib.Icon.new_for_string ("playlist-similar");
     }
     
     public virtual void queryForSimilar (Noise.Media s) {

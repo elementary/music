@@ -45,6 +45,7 @@ public abstract class Noise.Playlist : Object {
             updated (old_name);
         }
     }
+    public GLib.Icon icon;
 
     public signal void media_added (Gee.Collection<Media> media);
     public signal void media_removed (Gee.Collection<Media> media);

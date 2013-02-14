@@ -34,6 +34,7 @@ public class Noise.Icons {
     public static Icon DEFAULT_ALBUM_ART_2 { get; private set; default = new Icon ("albumart_2"); }
     public static Icon MUSIC_FOLDER { get; private set; default = new Icon ("folder-music"); }
     public static Icon HISTORY { get; private set; default = new Icon ("document-open-recent"); }
+    public static Icon QUEUE { get; private set; default = new Icon ("playlist-queue"); }
     public static Icon NOISE { get; private set; default = new Icon ("multimedia-audio-player"); }
     public static Icon MUSIC { get; private set; default = new Icon ("library-music"); }
     public static Icon AUDIO_CD { get; private set; default = new Icon ("media-cdrom-audio"); }

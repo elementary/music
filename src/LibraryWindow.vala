@@ -654,7 +654,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 if (p.read_only == false) {
                     var view = new PlaylistViewWrapper (p.rowid, ViewWrapper.Hint.PLAYLIST);
                     view_number = view_container.add_view (view);
-                    entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.PLAYLIST, Icons.PLAYLIST.gicon);
+                    var icon = Icons.PLAYLIST.gicon;
+                    if (p.icon != null)
+                        icon = p.icon;
+                    entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.PLAYLIST, icon);
                     match_playlist.set (p.rowid, view_number);
                 } else {
                     if (p.name == C_("Name of the playlist", "Queue")) {
@@ -664,7 +667,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                                 _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), Gtk.MessageType.INFO);
                         view_number = view_container.add_view (queue_view);
                         entry = source_list_view.add_item  (view_number, App.player.queue_playlist.name,
-                                                            ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.MUSIC.gicon);
+                                                            ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.QUEUE.gicon);
                         update_badge_on_playlist_update (p, entry);
                         App.player.queue_media (p.medias);
                     } else if (p.name == _("History")) {
@@ -679,7 +682,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     } else {
                         var view = new ReadOnlyPlaylistViewWrapper (p.rowid, match_playlist_tvs.get(p.rowid));
                         view_number = view_container.add_view (view);
-                        entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.PLAYLIST.gicon);
+                        var icon = Icons.PLAYLIST.gicon;
+                        if (p.icon != null)
+                            icon = p.icon;
+                        entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, icon);
                         if (p.show_badge == true) {
                             update_badge_on_playlist_update (p, entry);
                         }
@@ -696,7 +702,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     show_smart_playlist_dialog(library_manager.smart_playlist_from_id(playlist_id));
                 });
                 view_number = view_container.add_view (view);
-                entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.SMART_PLAYLIST, Icons.SMART_PLAYLIST.gicon);
+                var icon = Icons.SMART_PLAYLIST.gicon;
+                if (p.icon != null)
+                    icon = p.icon;
+                entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.SMART_PLAYLIST, icon);
                 p.updated.connect ((old_name) => {
                     if (old_name != null)
                         source_list_view.change_playlist_name (match_smartplaylist.get(p.rowid), p.name);

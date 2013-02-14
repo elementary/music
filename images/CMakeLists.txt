@@ -56,6 +56,7 @@ set(ACTIONS_16
 set(MIMETYPES_16
     icons/16x16/mimetypes/playlist.svg
     icons/16x16/mimetypes/playlist-automatic.svg
+    icons/16x16/mimetypes/playlist-queue.svg
     icons/16x16/mimetypes/library-music.svg
     icons/16x16/mimetypes/media-cdrom-audio.svg
 )
