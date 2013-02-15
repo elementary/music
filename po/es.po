@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-05 17:58+0100\n"
-"PO-Revision-Date: 2013-02-09 23:31+0000\n"
-"Last-Translator: Roy Fernando Paima Shupingahua "
-"<roy.fernando.psh@gmail.com>\n"
+"PO-Revision-Date: 2013-02-14 18:12+0000\n"
+"Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-02-11 05:24+0000\n"
-"X-Generator: Launchpad (build 16482)\n"
+"X-Launchpad-Export-Date: 2013-02-15 04:58+0000\n"
+"X-Generator: Launchpad (build 16491)\n"
 "Language: es\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -42,7 +41,7 @@ msgstr "$NAME por $ARTIST"
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:184
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME de $ARTIST en $ALBUM"
+msgstr "$NAME por $ARTIST en $ALBUM"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:176
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:392
@@ -311,7 +310,7 @@ msgstr "<b>Importando</b> música desde <b>%s</b> a la biblioteca."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1130
 msgid "Rescanning music folder for changes"
-msgstr "Examinando cambios en la carpeta de música."
+msgstr "Examinando cambios en la carpeta de música"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1137
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
@@ -418,7 +417,7 @@ msgstr "Localizar"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:53
 msgid "Change your music folder."
-msgstr "Cambiar tu carpeta de música"
+msgstr "Cambiar la carpeta de música."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:82
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:98
@@ -486,7 +485,7 @@ msgstr[1] "%u álbumes"
 #, c-format
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr "%s de %s"
+msgstr "%s por %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
@@ -647,7 +646,7 @@ msgstr "Eliminar canción"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr "Nueva lista de reproducción..."
+msgstr "Lista de reproducción nueva…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -898,11 +897,11 @@ msgstr ""
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
-msgstr "Importando <b>%s</b> a la Biblioteca…"
+msgstr "Importando <b>%s</b> a la biblioteca…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:399
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Copiando</b> archivos a la <b>Carpeta de Música</b>…"
+msgstr "<b>Copiando</b> archivos a la <b>carpeta de música</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:441
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:678
@@ -1134,7 +1133,7 @@ msgstr "Ver en columnas"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
-msgstr "Seleccionar la Carpeta de Música…"
+msgstr "Seleccionar la carpeta de música…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
@@ -1188,7 +1187,7 @@ msgstr "Letras"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:175
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:342
 msgid "Editing $NAME by $ARTIST"
-msgstr "Editando $NAME de $ARTIST"
+msgstr "Editando $NAME por $ARTIST"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:177
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:344
@@ -1289,7 +1288,7 @@ msgstr "No se pudo encontrar el archivo multimedia"
 msgid ""
 "The music file for $NAME by $ARTIST could not be found. What would you like "
 "to do?"
-msgstr "El archivo de $NAME de $ARTIST no se encontró. ¿Qué desea hacer?"
+msgstr "El archivo de $NAME por $ARTIST no se encontró. ¿Qué desea hacer?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
@@ -1346,7 +1345,7 @@ msgstr "Establecer carpeta de música"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
 msgid "Set Music Folder?"
-msgstr "¿Establecer carpeta de música?"
+msgstr "¿Desea establecer la carpeta de música?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
 #, c-format
@@ -1680,7 +1679,7 @@ msgstr "Añadiendo música desde %s a la biblioteca…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:314
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Analizando cambios. Esto puede tomar un tiempo..."
+msgstr "Analizando cambios. Esto puede tomar un tiempo…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:404
 msgid "Added to your queue:"
@@ -1827,8 +1826,7 @@ msgstr "Cancelando la sincronización…"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
 msgid "There is not enough space on Device to complete the Sync…"
 msgstr ""
-"No hay suficiente espacio en el dispositivo para completar la "
-"sincronización..."
+"No hay suficiente espacio en el dispositivo para completar la sincronización…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
@@ -1836,7 +1834,7 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "Eliminando de <b>%s</b>..."
+msgstr "Eliminando de <b>%s</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
@@ -1848,12 +1846,12 @@ msgstr "Importando <b>$NAME</b> por <b> $ARTIST</b> a la biblioteca…"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Agregando <b>$NAME</b> de <b>$ARTIST</b> a $DEVICE"
+msgstr "Agregando <b>$NAME</b> por <b>$ARTIST</b> a $DEVICE…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Eliminando <b>$NAME</b> de <b>$ARTIST</b> de $DEVICE"
+msgstr "Eliminando <b>$NAME</b> por <b>$ARTIST</b> de $DEVICE…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
 msgid "Syncing playlists"
@@ -1881,7 +1879,7 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"No hay ninguna canción similar a la actual canción en su biblioteca. "
+"No hay ninguna canción similar a la canción actual en su biblioteca. "
 "Asegúrese de que toda información de la canción es correcta y está conectado "
 "a Internet. Algunas canciones no tienen coincidencias."
 

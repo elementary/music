@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-05 17:58+0100\n"
-"PO-Revision-Date: 2013-01-04 01:02+0000\n"
+"PO-Revision-Date: 2013-02-14 18:12+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-02-06 05:34+0000\n"
-"X-Generator: Launchpad (build 16468)\n"
+"X-Launchpad-Export-Date: 2013-02-15 04:58+0000\n"
+"X-Generator: Launchpad (build 16491)\n"
 "Language: ca\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -36,12 +36,12 @@ msgstr "$NAME a $ALBUM"
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:178
 msgid "$NAME by $ARTIST"
-msgstr "$NAME de $ARTIST"
+msgstr "$NAME per $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:184
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME de $ARTIST a $ALBUM"
+msgstr "$NAME per $ARTIST a $ALBUM"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:176
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:392
@@ -52,7 +52,7 @@ msgstr "Llista de reproducció nova"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:187
 #, c-format
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:214
 msgid "Export Playlist"
@@ -486,7 +486,7 @@ msgstr[1] "%u àlbums"
 #, c-format
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr "%s de %s"
+msgstr "%s per %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
@@ -647,7 +647,7 @@ msgstr "Suprimeix la cançó"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "Llista de reproducció nova…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -898,11 +898,11 @@ msgstr ""
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
-msgstr ""
+msgstr "S'està important <b>%s</b> a la biblioteca…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:399
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "S'estan <b>copiant</b> fitxers a la carpeta de música…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:441
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:678
@@ -945,6 +945,8 @@ msgstr "Reproductor de música"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
+"Música;Àudio;Reproductor;MP3;iPod;Reproduir;Llista de "
+"reproducció;Multimèdia;CD;Telèfon;"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 msgid "Sync"
@@ -1062,7 +1064,7 @@ msgstr "Cancel·la"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Canvia el nom"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
@@ -1084,7 +1086,7 @@ msgstr "Desa com a una llista de reproducció"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr ""
+msgstr "Exporta…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:136
 msgid "Eject"
@@ -1132,7 +1134,7 @@ msgstr "Visualitza en columnes"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Seleccioneu la carpeta de música…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
@@ -1186,7 +1188,7 @@ msgstr "Lletres"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:175
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:342
 msgid "Editing $NAME by $ARTIST"
-msgstr "S'està editant $NAME de $ARTIST"
+msgstr "S'està editant $NAME per $ARTIST"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:177
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:344
@@ -1288,7 +1290,7 @@ msgid ""
 "The music file for $NAME by $ARTIST could not be found. What would you like "
 "to do?"
 msgstr ""
-"No s'ha pogut trobar el fitxer per a $NAME de $ARTIST. Què voleu fer?"
+"No s'ha pogut trobar el fitxer per a $NAME per $ARTIST. Què voleu fer?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
@@ -1666,24 +1668,24 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:201
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "S'està important música des de %s…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:244
 msgid "Adding files to library…"
-msgstr ""
+msgstr "S'estan afegint fitxers a la biblioteca…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:286
 #, c-format
 msgid "Adding music from %s to library…"
-msgstr ""
+msgstr "S'està afegint música des de %s a la biblioteca…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:314
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "S'estan analitzant els canvis. Això pot trigar una bona estona…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:404
 msgid "Added to your queue:"
-msgstr ""
+msgstr "S'ha afegit a la cua:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//GStreamer/Streamer.vala:195
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/ArtistInfo.vala:27
@@ -1719,7 +1721,7 @@ msgstr "El %s no ha pogut llegir el contingut d'aquest CD d'àudio"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:113
 msgid "Audio CD"
-msgstr ""
+msgstr "CD d'àudio"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
 msgid ""
@@ -1802,28 +1804,28 @@ msgstr "Aquest dispositiu no conté cap cançó."
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "S'està sincronitzant <b>%s</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "S'està finalitzant el procés de sincronització…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "S'està canel·lant la sincronització…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:475
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
 msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
+msgstr "No hi ha prou espai al dispositiu per completar la sincronització…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
@@ -1831,24 +1833,24 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "S'està suprimint de <b>%s</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1015
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "S'està <b>$NAME</b> per <b> $ARTIST</b> a la biblioteca…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "S'està afegint <b>$NAME</b> de <b>$ARTIST</b> a $DEVICE"
+msgstr "S'està afegint <b>$NAME</b> per <b>$ARTIST</b> a $DEVICE…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "S'està suprimint <b>$NAME</b> per <b>$ARTIST</b> de $DEVICE…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
 msgid "Syncing playlists"
@@ -1876,6 +1878,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"No hi ha cap cançó similar a la cançó actual a la seva  biblioteca. "
+"Assegureu-vos que tota la informació de la cançó és correcta i que esteu "
+"connectat a Internet. Algunes cançons poden no tenir coincidències."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
