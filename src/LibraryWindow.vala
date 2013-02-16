@@ -827,6 +827,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
     
     private void remove_device (Device device) {
+        if (!match_devices.has_key (device.get_unique_identifier()))
+            return;
         int page_number = match_devices.get (device.get_unique_identifier());
         foreach (int number in source_list_view.remove_device(page_number)) {
             remove_view_and_update (number);

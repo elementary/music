@@ -260,9 +260,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             case GPod.iPodGeneration.IPHONE_2:
                 return "iPhone 2G";
             case GPod.iPodGeneration.IPHONE_3:
-                return "iPod 3G(S)";
+                return "iPhone 3G(S)";
             case GPod.iPodGeneration.IPHONE_4:
-                return "iPod 4(S)";
+                return "iPhone 4(S)";
             case GPod.iPodGeneration.IPAD_1:
                 return "iPad";
             default:
