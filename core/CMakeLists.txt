@@ -13,9 +13,14 @@ set(CORE_SOURCE
     EqualizerPreset.vala
     Player.vala
     LibraryWindowInterface.vala
+    LibraryManagerInterface.vala
     NotificationManager.vala
     Media.vala
     Album.vala
+    Devices/Device.vala
+    Devices/NetworkDevice.vala
+    Devices/DeviceManager.vala
+    Devices/DevicePreferences.vala
     Playlists/Playlist.vala
     Playlists/StaticPlaylist.vala
     Playlists/SmartPlaylist.vala

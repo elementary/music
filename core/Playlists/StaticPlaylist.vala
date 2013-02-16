@@ -30,12 +30,14 @@ public class Noise.StaticPlaylist : Playlist {
     public StaticPlaylist() {
         name = "";
         medias = new Gee.LinkedList<Media>();
+        icon = Icons.PLAYLIST.gicon;
     }
 
     public StaticPlaylist.with_info(int rowid, string name) {
         this.rowid = rowid;
         this.name = name;
         medias = new Gee.LinkedList<Media>();
+        icon = Icons.PLAYLIST.gicon;
     }
 
     public override void add_media (Media m) {

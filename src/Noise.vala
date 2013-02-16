@@ -53,28 +53,6 @@ public class Noise.App : Granite.Application {
     public static LibraryManager library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
 
-    /**
-     * Supported audio types.
-     *
-     * We only support these even though gstreamer
-     */
-    private const string[] MEDIA_CONTENT_TYPES = {
-        "audio/mp2",
-        "audio/mpeg",
-        "audio/mp4",
-        "audio/x-aac",
-        "audio/ogg",
-        "audio/vorbis",
-        "audio/flac",
-        "audio/x-wav",
-        "audio/x-wavpack"
-    };
-
-    /**
-     *
-     */
-
-
     construct {
         // This allows opening files. See the open() method below.
         flags |= ApplicationFlags.HANDLES_OPEN;
@@ -127,6 +105,7 @@ public class Noise.App : Granite.Application {
         notification_manager = new NotificationManager ();
         main_settings = new Settings.Main ();
         equalizer_settings = new Settings.Equalizer ();
+        device_manager = new DeviceManager ();
         
         if (main_window == null) {
 
@@ -150,15 +129,6 @@ public class Noise.App : Granite.Application {
         }
 
         main_window.present ();
-    }
-
-    /**
-     * Returns all the supported media types. This only considers media application.
-     * Playlist content types and other kinds of files are obtained through
-     * {@link Noise.App.get_extra_content_types}
-     */
-    public static string[] get_media_content_types () {
-        return MEDIA_CONTENT_TYPES;
     }
 
     /**

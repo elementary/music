@@ -81,35 +81,6 @@ public class Noise.FileOperator : Object {
         cancelled = false;
         cancelSent = false;
     }
-
-    private static bool is_valid_content_type (string content_type) {
-        return FileUtils.is_valid_content_type (content_type, App.get_media_content_types ());
-    }
-    
-    public int count_music_files (File music_folder, ref LinkedList<string> files) {
-        FileInfo file_info = null;
-        
-        try {
-            var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
-            while ((file_info = enumerator.next_file ()) != null) {
-                var file = music_folder.get_child (file_info.get_name ());
-
-                if(file_info.get_file_type() == FileType.REGULAR && is_valid_content_type(file_info.get_content_type ())) {
-                    index++;
-                    files.add (file.get_uri ());
-                }
-                else if(file_info.get_file_type() == FileType.DIRECTORY) {
-                    count_music_files (file, ref files);
-                }
-            }
-        }
-        catch(Error err) {
-            warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
-        }
-
-        return index;
-    }
-    
     
     public void save_media (Collection<Media> to_save) {
         foreach(Media s in to_save) {
@@ -162,45 +133,10 @@ public class Noise.FileOperator : Object {
         }
     }
     
-    public File? get_new_destination(Media s) {
-        File dest;
-        
-        try {
-            /* initialize file objects */
-            File original = File.new_for_uri(s.uri);
-            
-            var ext = "";
-            if(s.uri.has_prefix("cdda://"))
-                ext = ".mp3";
-            else
-                ext = get_extension(s.uri);
-            
-            dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " - " + s.get_display_title ().replace("/", "_") + ext));
-            
-            if(original.get_path() == dest.get_path()) {
-                debug("File is already in correct location\n");
-                return null;
-            }
-            
-            string extra = "";
-            while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " - " + s.get_display_title ().replace("/", "_") + extra + ext))).query_exists()) {
-                extra += "_";
-            }
-            
-            /* make sure that the parent folders exist */
-            if(!dest.get_parent().query_exists())
-                dest.get_parent().make_directory_with_parents(null);
-        }
-        catch(Error err) {
-            debug("Could not find new destination!: %s\n", err.message);
-        }
-        
-        return dest;
-    }
     
     public bool update_file_hierarchy(Media s, bool delete_old, bool emit_update) {
         try {
-            File dest = get_new_destination(s);
+            File dest = FileUtils.get_new_destination(s);
             if(dest == null)
                 return true;
             
@@ -236,7 +172,7 @@ public class Noise.FileOperator : Object {
             /* if we are supposed to delete the old, make sure there are no items left in folder if we do */
             if(delete_old) {
                 var dummy = new LinkedList<string>();
-                var old_folder_items = count_music_files(original.get_parent(), ref dummy);
+                var old_folder_items = FileUtils.count_music_files(original.get_parent(), ref dummy);
                 // must check for .jpg's as well.
                 
                 if(old_folder_items == 0) {
@@ -259,14 +195,14 @@ public class Noise.FileOperator : Object {
                 var file = File.new_for_uri(s);
                 file.trash();
                 
-                var old_folder_items = count_music_files(file.get_parent(), ref dummy_list);
+                var old_folder_items = FileUtils.count_music_files(file.get_parent(), ref dummy_list);
                     
                 //TODO: COPY ALBUM AND IMAGE ARTWORK
                 if(old_folder_items == 0) {
                     debug("going to delete %s because no files are in it\n", file.get_parent().get_path());
                     //original.get_parent().delete();
                     
-                    var old_folder_parent_items = count_music_files(file.get_parent().get_parent(), ref dummy_list);
+                    var old_folder_parent_items = FileUtils.count_music_files(file.get_parent().get_parent(), ref dummy_list);
                     
                     if(old_folder_parent_items == 0) {
                         debug("going to delete %s because no files are in it\n", file.get_parent().get_parent().get_path());
@@ -283,7 +219,7 @@ public class Noise.FileOperator : Object {
         return name.slice(name.last_index_of(".", 0), name.length);
     }
     
-    private Gee.LinkedList<string> convert_paths_to_uris (Gee.LinkedList<string> paths) {
+    private Gee.LinkedList<string> convert_paths_to_uris (Gee.Collection<string> paths) {
         var uris = new Gee.LinkedList<string> ();
         foreach (var path in paths) {
             uris.add (File.new_for_path (path).get_uri ());
@@ -344,7 +280,7 @@ public class Noise.FileOperator : Object {
         }*/
     }
     
-    public void import_files (LinkedList<string> files, ImportType type) {
+    public void import_files (Collection<string> files, ImportType type) {
         all_new_imports = new LinkedList<Media>();
         new_imports.clear();
         import_errors.clear();

@@ -42,7 +42,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
 
     public virtual void set_device (Device device) {
         this.d = device;
-        d.sync_finished.connect (sync_finished);
+        d.file_operation_finished.connect (sync_finished);
 
         set_media_async.begin (d.get_medias ());
     }

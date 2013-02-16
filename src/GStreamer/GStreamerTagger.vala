@@ -81,7 +81,7 @@ public class Noise.GStreamerTagger : Object {
         cancelled = true;
     }
 
-    public void discoverer_import_media (Gee.LinkedList<string> uris) {
+    public void discoverer_import_media (Gee.Collection<string> uris) {
         cancelled = false;
         uri_queue.clear ();
 

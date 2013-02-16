@@ -21,7 +21,6 @@
  */
 
 public class Noise.Plugins.CDView : Gtk.Grid {
-    LibraryManager lm;
     CDRomDevice dev;
     
     Gtk.EventBox main_event_box;
@@ -35,8 +34,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     Noise.StaticPlaylist cd_playlist;
     private CDViewWrapper cd_viewwrapper;
     
-    public CDView (LibraryManager lm, CDRomDevice d) {
-        this.lm = lm;
+    public CDView (CDRomDevice d) {
         this.dev = d;
         cd_playlist = new Noise.StaticPlaylist ();
         cd_viewwrapper = new CDViewWrapper (cd_playlist);

@@ -24,121 +24,121 @@ using Gtk;
 using Gee;
 
 public class Noise.SyncWarningDialog : Window {
-	Device d;
-	Gee.LinkedList<Media> to_sync;
-	Gee.LinkedList<Media> to_remove;
-	
-	private Gtk.Box content;
-	private Gtk.Box padding;
-	
-	Button importMedias;
-	Button sync;
-	Button cancel;
-	
-	public SyncWarningDialog(Device d, Gee.LinkedList<Media> to_sync, Gee.LinkedList<Media> removed) {
-		this.d = d;
-		this.to_sync = to_sync;
-		this.to_remove = removed;
+    Device d;
+    Gee.LinkedList<Media> to_sync;
+    Gee.LinkedList<Media> to_remove;
+    
+    private Gtk.Box content;
+    private Gtk.Box padding;
+    
+    Button importMedias;
+    Button sync;
+    Button cancel;
+    
+    public SyncWarningDialog(Device d, Gee.LinkedList<Media> to_sync, Gee.LinkedList<Media> removed) {
+        this.d = d;
+        this.to_sync = to_sync;
+        this.to_remove = removed;
 
-		// set the size based on saved gconf settings
-		//this.window_position = WindowPosition.CENTER;
-		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.set_modal(true);
-		this.set_transient_for(App.main_window);
-		this.destroy_with_parent = true;
-		
-		set_default_size(475, -1);
-		resizable = false;
-		
-		content = new Gtk.Box(Gtk.Orientation.VERTICAL, 10);
-		padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 20);
-		
-		// initialize controls
-		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
-		Label title = new Label("");
-		Label info = new Label("");
-		importMedias = new Button.with_label(_("Import media to Library"));
-		sync = new Button.with_label(_("Continue Syncing"));
-		cancel = new Button.with_label(_("Stop Syncing"));
-		
-		// pretty up labels
-		title.xalign = 0.0f;
-		info.xalign = 0.0f;
+        // set the size based on saved gconf settings
+        //this.window_position = WindowPosition.CENTER;
+        this.type_hint = Gdk.WindowTypeHint.DIALOG;
+        this.set_modal(true);
+        this.set_transient_for(App.main_window);
+        this.destroy_with_parent = true;
+        
+        set_default_size(475, -1);
+        resizable = false;
+        
+        content = new Gtk.Box(Gtk.Orientation.VERTICAL, 10);
+        padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 20);
+        
+        // initialize controls
+        Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
+        Label title = new Label("");
+        Label info = new Label("");
+        importMedias = new Button.with_label(_("Import media to Library"));
+        sync = new Button.with_label(_("Continue Syncing"));
+        cancel = new Button.with_label(_("Stop Syncing"));
+        
+        // pretty up labels
+        title.xalign = 0.0f;
+        info.xalign = 0.0f;
 
-		info.set_line_wrap (true);
-		var info_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + String.escape (d.getDisplayName ()) + "</b>");
-		info.set_markup (info_text);
+        info.set_line_wrap (true);
+        var info_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + String.escape (d.getDisplayName ()) + "</b>");
+        info.set_markup (info_text);
 
-		// be a bit explicit to make translations better
-		string title_text = "";
-		if (to_remove.size > 1) {
-			title_text = _("Sync will remove %i items from %s").printf (to_remove.size, d.getDisplayName ());
-		}
-		else {
-			title_text = _("Sync will remove 1 item from %s").printf (d.getDisplayName ());
-		}
+        // be a bit explicit to make translations better
+        string title_text = "";
+        if (to_remove.size > 1) {
+            title_text = _("Sync will remove %i items from %s").printf (to_remove.size, d.getDisplayName ());
+        }
+        else {
+            title_text = _("Sync will remove 1 item from %s").printf (d.getDisplayName ());
+        }
 
-		string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";		
-		var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));		
-		title.set_markup (title_string);
+        string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";        
+        var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));        
+        title.set_markup (title_string);
 
-		importMedias.set_sensitive(!App.library_manager.doing_file_operations());
-		sync.set_sensitive(!App.library_manager.doing_file_operations());
-		
-		/* set up controls layout */
-		var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-		var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-		information.pack_start(warning, false, false, 10);
-		information_text.pack_start(title, false, true, 10);
-		information_text.pack_start(info, false, true, 0);
-		information.pack_start(information_text, true, true, 10);
-		
-		var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-		bottomButtons.set_layout(ButtonBoxStyle.END);
-		bottomButtons.pack_end(importMedias, false, false, 0);
-		bottomButtons.pack_end(sync, false, false, 0);
-		bottomButtons.pack_end(cancel, false, false, 10);
-		bottomButtons.set_spacing(10);
-		
-		content.pack_start(information, false, true, 0);
-		content.pack_start(bottomButtons, false, true, 10);
-		
-		padding.pack_start(content, true, true, 10);
-		
-		importMedias.clicked.connect(importMediasClicked);
-		sync.clicked.connect(syncClicked);
-		cancel.clicked.connect( () => { 
-			this.destroy(); 
-		});
-		
-		App.library_manager.file_operations_started.connect(file_operations_started);
-		App.library_manager.file_operations_done.connect(file_operations_done);
-		
-		add(padding);
-		show_all();
-	}
+        importMedias.set_sensitive(!App.library_manager.doing_file_operations());
+        sync.set_sensitive(!App.library_manager.doing_file_operations());
+        
+        /* set up controls layout */
+        var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+        var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+        information.pack_start(warning, false, false, 10);
+        information_text.pack_start(title, false, true, 10);
+        information_text.pack_start(info, false, true, 0);
+        information.pack_start(information_text, true, true, 10);
+        
+        var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
+        bottomButtons.set_layout(ButtonBoxStyle.END);
+        bottomButtons.pack_end(importMedias, false, false, 0);
+        bottomButtons.pack_end(sync, false, false, 0);
+        bottomButtons.pack_end(cancel, false, false, 10);
+        bottomButtons.set_spacing(10);
+        
+        content.pack_start(information, false, true, 0);
+        content.pack_start(bottomButtons, false, true, 10);
+        
+        padding.pack_start(content, true, true, 10);
+        
+        importMedias.clicked.connect(importMediasClicked);
+        sync.clicked.connect(syncClicked);
+        cancel.clicked.connect( () => { 
+            this.destroy(); 
+        });
+        
+        App.library_manager.file_operations_started.connect(file_operations_started);
+        App.library_manager.file_operations_done.connect(file_operations_done);
+        
+        add(padding);
+        show_all();
+    }
 
-	public void importMediasClicked() {
-		d.transfer_to_library(to_remove);
-		// TODO: After transfer, do sync
-		
-		this.destroy();
-	}
-	
-	public void syncClicked() {
-		d.sync_medias();
-		
-		this.destroy();
-	}
-	
-	public void file_operations_done() {
-		importMedias.set_sensitive(true);
-		sync.set_sensitive(true);
-	}
-	
-	public void file_operations_started() {
-		importMedias.set_sensitive(false);
-		sync.set_sensitive(false);
-	}
-	
+    public void importMediasClicked() {
+        d.transfer_to_library(to_remove);
+        // TODO: After transfer, do sync
+        
+        this.destroy();
+    }
+    
+    public void syncClicked() {
+        device_manager.device_asked_sync (d);
+        
+        this.destroy();
+    }
+    
+    public void file_operations_done() {
+        importMedias.set_sensitive(true);
+        sync.set_sensitive(true);
+    }
+    
+    public void file_operations_started() {
+        importMedias.set_sensitive(false);
+        sync.set_sensitive(false);
+    }
+    
 }

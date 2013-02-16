@@ -23,7 +23,6 @@
 using Gst;
 
 public class Noise.CDRipper : GLib.Object {
-	Noise.LibraryManager lm;
 	public dynamic Gst.Pipeline pipeline;
 	public dynamic Gst.Element src;
 	public dynamic Gst.Element queue;
@@ -39,8 +38,7 @@ public class Noise.CDRipper : GLib.Object {
 	public signal void progress_notification(double progress);
 	public signal void error(string err, Message message);
 	
-	public CDRipper(Noise.LibraryManager lm, Mount mount, int count) {
-		this.lm = lm;
+	public CDRipper(Mount mount, int count) {
 		_device = mount.get_volume ().get_identifier (GLib.VolumeIdentifier.UNIX_DEVICE);
 		track_count = count;
 	}
@@ -154,7 +152,7 @@ public class Noise.CDRipper : GLib.Object {
     }
     
     public void ripMedia (uint track, Noise.Media s) {
-		var f = lm.fo.get_new_destination(s);
+		var f = FileUtils.get_new_destination (s);
 		
 		sink.set_state(Gst.State.NULL);
 		sink.set("location", f.get_path());

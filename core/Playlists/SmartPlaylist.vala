@@ -44,6 +44,7 @@ public class Noise.SmartPlaylist : Playlist {
         _queries = new Gee.ArrayList<SmartQuery>();
         medias = new Gee.LinkedList<Media> ();
         medias_library = library;
+        icon = Icons.SMART_PLAYLIST.gicon;
     }
 
     public void clearQueries() {

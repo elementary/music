@@ -25,9 +25,9 @@ using Gee;
 public interface Noise.Device : GLib.Object {
     public signal void initialized (Device d);
     public signal void device_unmounted ();
-    public signal void progress_notification (string? message, double progress);
     public signal void infobar_message (string message, Gtk.MessageType type);
-    public signal void sync_finished (bool success);
+    public signal void file_operation_started ();
+    public signal void file_operation_finished (bool success);
     
     public abstract DevicePreferences get_preferences();
     public abstract bool start_initialization();
@@ -60,16 +60,15 @@ public interface Noise.Device : GLib.Object {
     public abstract Collection<Media> get_audiobooks();
     public abstract Collection<StaticPlaylist> get_playlists();
     public abstract Collection<SmartPlaylist> get_smart_playlists();
-    public abstract bool sync_medias();
-    public abstract bool add_medias(LinkedList<Media> list);
-    public abstract bool remove_medias(LinkedList<Media> list);
+    public abstract bool sync_medias(Collection<Noise.Media> medias);
+    public abstract bool add_medias(Collection<Media> list);
+    public abstract bool remove_medias(Collection<Media> list);
     public abstract bool is_syncing();
     public abstract void cancel_sync();
-    public abstract bool will_fit(LinkedList<Media> list);
+    public abstract bool will_fit(Collection<Media> list);
     public abstract bool is_transferring();
     public abstract void cancel_transfer();
-    public abstract bool transfer_to_library(LinkedList<Media> list);
-    public abstract bool transfer_all_to_library();
+    public abstract bool transfer_to_library(Collection<Media> list);
     
     public string get_unique_identifier() {
         Mount m = get_mount();

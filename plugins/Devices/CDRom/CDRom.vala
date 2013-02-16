@@ -27,7 +27,6 @@ namespace Noise.Plugins {
 
         Interface plugins;
         public GLib.Object object { owned get; construct; }
-        Noise.LibraryManager lm;
         CDRomDeviceManager cdrom_manager;
 
         public void activate () {
@@ -37,9 +36,8 @@ namespace Noise.Plugins {
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();
             plugins.register_function(Interface.Hook.WINDOW, () => {
-                lm = ((Noise.App)plugins.noise_app).library_manager;
-                cdrom_manager = new CDRomDeviceManager (lm);
-                lm.device_manager.loadPreExistingMounts();
+                cdrom_manager = new CDRomDeviceManager ();
+                device_manager.loadPreExistingMounts();
             });
         }
 

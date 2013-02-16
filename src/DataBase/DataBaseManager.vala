@@ -827,9 +827,9 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
-    public GLib.List<DevicePreferences> load_devices() {
+    public Gee.Collection<DevicePreferences> load_devices() {
         assert (database != null);
-        var rv = new GLib.List<DevicePreferences>();
+        var rv = new Gee.ArrayList<DevicePreferences>();
 
         try {
             string script = "SELECT rowid,* FROM `devices`";
@@ -850,7 +850,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                 dp.audiobook_playlist = results.fetch_string(11);
                 dp.last_sync_time = results.fetch_int(12);
 
-                rv.append(dp);
+                rv.add (dp);
             }
         }
         catch (SQLHeavy.Error err) {
@@ -860,7 +860,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    public void save_devices(GLib.List<DevicePreferences> devices) {
+    public void save_devices(Gee.Collection<DevicePreferences> devices) {
         assert (database != null);
         try {
             database.execute("DELETE FROM `devices`");

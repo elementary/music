@@ -8,10 +8,6 @@ set(CLIENT_SOURCE
     Utils/PixbufUtils.vala
     Utils/PixbufCache.vala
     Utils/Search.vala
-    Devices/Device.vala
-    Devices/NetworkDevice.vala
-    Devices/DeviceManager.vala
-    Devices/DevicePreferences.vala
     Objects/LyricFetcher.vala
     Objects/MediaInfo.vala
     Objects/AlbumInfo.vala

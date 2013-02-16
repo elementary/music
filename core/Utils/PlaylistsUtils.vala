@@ -171,20 +171,21 @@ namespace Noise.PlaylistsUtils {
     }
 
     public static string get_new_playlist_name (Gee.Collection<Playlist> playlists, string? name = null) {
-        string new_name;
+        string base_name;
         if (name == null)
-            new_name = _("New playlist");
+            base_name = _("New playlist");
         else
-            new_name = name;
+            base_name = name;
         bool is_fine = true;
         int index = 0;
+        string new_name = base_name;
         while (is_fine) {
             bool found = false;
             foreach (var p in playlists) {
                 if (p.name == new_name) {
                     index++;
                     // Translators: used for new playlists ex: "New playlist (1)"
-                    new_name = _("%s (%i)").printf (name, index);
+                    new_name = _("%s (%i)").printf (base_name, index);
                     found = true;
                     break;
                 }

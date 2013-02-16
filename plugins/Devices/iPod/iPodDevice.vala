@@ -24,7 +24,6 @@ using GPod;
 using Gee;
 
 public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
-    Noise.LibraryManager lm;
     Noise.DevicePreferences pref;
     iTunesDB db;
     public Mount mount;
@@ -34,6 +33,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     bool sync_cancelled = false;
     bool transfer_cancelled = false;
     public bool is_supported = true;
+    bool is_new = false;
     int index = 0;
     int total = 0;
     string current_operation = "";
@@ -45,17 +45,17 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     HashMap<unowned GPod.Playlist, Noise.StaticPlaylist> playlists;
     HashMap<unowned GPod.Playlist, Noise.SmartPlaylist> smart_playlists;
     
-    public iPodDevice(Noise.LibraryManager lm, Mount mount) {
-        this.lm = lm;
+    public iPodDevice(Mount mount) {
         this.mount = mount;
+        is_new = mount.get_default_location ().get_parse_name ().has_prefix ("afc://");
         
-        pref = lm.device_manager.get_device_preferences(get_unique_identifier());
+        pref = device_manager.get_device_preferences (get_unique_identifier ());
         if(pref == null) {
-            pref = new Noise.DevicePreferences(get_unique_identifier());
-            lm.device_manager.add_device_preferences(pref);
+            pref = new Noise.DevicePreferences (get_unique_identifier ());
+            device_manager.add_device_preferences (pref);
         }
         
-        icon = new Icon (isNew () ? "phone" : "multimedia-player").gicon;
+        icon = new Icon (is_new ? "phone" : "multimedia-player").gicon;
         
         medias = new HashMap<unowned GPod.Track, Noise.Media>();
         songs = new HashMap<unowned GPod.Track, Noise.Media>();
@@ -85,11 +85,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     public void finish_initialization() {
-        device_unmounted.connect( () => {
-            
-        });
         
-        finish_initialization_thread ();
+        finish_initialization_thread.begin ();
     }
     
     async void finish_initialization_thread() {
@@ -131,7 +128,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                     }
                 }
             }
-            sync_finished (true);
+            file_operation_finished (true);
             
             
             //lock(lm._medias) {
@@ -170,10 +167,6 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         yield;
     }
     
-    public bool isNew() {
-        return mount.get_default_location().get_parse_name().has_prefix("afc://");
-    }
-    
     public string getEmptyDeviceTitle() {
         return _("Empty device!");
     }
@@ -183,8 +176,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     public string getContentType() {
-        //TODO: define global constants!
-        if(isNew())
+        if(is_new)
             return "ipod-new";
         else
             return "ipod-old";
@@ -202,20 +194,80 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         catch(GLib.Error err) {
             critical("Could not set iPod Mount Display Name: %s\n", err.message);
         }
-        lm.device_name_changed (this);
+        device_manager.device_name_changed (this);
     }
     
     public string get_fancy_description() {
-        /*unowned GPod.iPodInfo ipod_info = db.device.get_ipod_info();
-        critical("got here\n");
-        GPod.iPodModel enum_model = ipod_info.ipod_model;
-        GPod.iPodGeneration enum_gen = ipod_info.ipod_generation;*/
-        message("got here\n");
-        string model = "model here";//GPod.iPodInfo.get_ipod_model_name_string(enum_model);
-        message("got here\n");
-        //var gen = GPod.iPodInfo.get_ipod_generation_string(enum_gen);
-        string gen = "gen 1";
-        return gen + " " + model;
+        
+        GPod.iPodGeneration enum_gen = db.device.get_ipod_info().ipod_generation;
+        switch (enum_gen) {
+            case GPod.iPodGeneration.FIRST:
+                return "iPod 1G";
+            case GPod.iPodGeneration.SECOND:
+                return "iPod 2G";
+            case GPod.iPodGeneration.THIRD:
+                return "iPod 3G";
+            case GPod.iPodGeneration.FOURTH:
+                return "iPod 4G";
+            case GPod.iPodGeneration.PHOTO:
+                return "iPod photo";
+            case GPod.iPodGeneration.VIDEO_1:
+                return "iPod video";
+            case GPod.iPodGeneration.VIDEO_2:
+                return "iPod video 2G";
+            case GPod.iPodGeneration.MOBILE:
+                return "iPod mobile";
+            case GPod.iPodGeneration.MINI_1:
+                return "iPod mini";
+            case GPod.iPodGeneration.MINI_2:
+                return "iPod mini 2G";
+            case GPod.iPodGeneration.SHUFFLE_1:
+                return "iPod shuffle";
+            case GPod.iPodGeneration.SHUFFLE_2:
+                return "iPod shuffle 2G";
+            case GPod.iPodGeneration.SHUFFLE_3:
+                return "iPod shuffle 3G";
+            case GPod.iPodGeneration.SHUFFLE_4:
+                return "iPod shuffle 4G";
+            case GPod.iPodGeneration.NANO_1:
+                return "iPod nano";
+            case GPod.iPodGeneration.NANO_2:
+                return "iPod nano 2G";
+            case GPod.iPodGeneration.NANO_3:
+                return "iPod nano 3G";
+            case GPod.iPodGeneration.NANO_4:
+                return "iPod nano 4G";
+            case GPod.iPodGeneration.NANO_5:
+                return "iPod nano 5G";
+            case GPod.iPodGeneration.NANO_6:
+                return "iPod nano 6G";
+            case GPod.iPodGeneration.CLASSIC_1:
+                return "iPod classic";
+            case GPod.iPodGeneration.CLASSIC_2:
+                return "iPod classic 2G";
+            case GPod.iPodGeneration.CLASSIC_3:
+                return "iPod classic 3G";
+            case GPod.iPodGeneration.TOUCH_1:
+                return "iPod touch 1G";
+            case GPod.iPodGeneration.TOUCH_2:
+                return "iPod touch 2G";
+            case GPod.iPodGeneration.TOUCH_3:
+                return "iPod touch 3G";
+            case GPod.iPodGeneration.TOUCH_4:
+                return "iPod touch 4G";
+            case GPod.iPodGeneration.IPHONE_1:
+                return "iPhone";
+            case GPod.iPodGeneration.IPHONE_2:
+                return "iPhone 2G";
+            case GPod.iPodGeneration.IPHONE_3:
+                return "iPod 3G(S)";
+            case GPod.iPodGeneration.IPHONE_4:
+                return "iPod 4(S)";
+            case GPod.iPodGeneration.IPAD_1:
+                return "iPad";
+            default:
+                return "";
+        }
     }
     
     public void set_mount(Mount mount) {
@@ -284,12 +336,12 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     public void unmount() {
-        mount.unmount_with_operation (GLib.MountUnmountFlags.NONE, null);
+        mount.unmount_with_operation.begin (GLib.MountUnmountFlags.NONE, null);
     }
     
     public void eject() {
         if (mount.can_eject ()) {
-            mount.get_volume ().get_drive ().eject_with_operation (GLib.MountUnmountFlags.NONE, null);
+            mount.get_volume ().get_drive ().eject_with_operation.begin (GLib.MountUnmountFlags.NONE, null);
         }
     }
     
@@ -337,27 +389,20 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         return smart_playlists.values;
     }
     
-    public bool sync_medias() {
+    public bool sync_medias (Gee.Collection<Noise.Media> medias) {
         if(currently_syncing) {
             warning("Tried to sync when already syncing\n");
             return false;
         }
-        else if(lm.doing_file_operations()) {
-            warning("Can't sync. Already doing file operations\n");
-            return false;
-        }
         
-        if (lm.start_file_operations (_("Syncing <b>%s</b>…").printf (getDisplayName ()))) {
-            current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
-            lm.lw.update_sensitivities();
-            
-            currently_syncing = true;
-            index = 0;
-            total = 100;
-            Timeout.add(500, doProgressNotificationWithTimeout);
-            
-            sync_medias_thread ();
-        }
+        current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
+        
+        currently_syncing = true;
+        index = 0;
+        total = 100;
+        Timeout.add(500, doProgressNotificationWithTimeout);
+        
+        sync_medias_thread.begin (medias);
         return true;
     }
     
@@ -377,7 +422,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         transfer_cancelled = true;
     }
     
-    public bool will_fit(LinkedList<Noise.Media> list) {
+    public bool will_fit(Gee.Collection<Noise.Media> list) {
         uint64 list_size = 0;
         foreach(var m in list) {
             list_size += m.file_size;
@@ -386,7 +431,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         return get_capacity() > list_size;
     }
     
-    private bool will_fit_without(LinkedList<Noise.Media> list, LinkedList<Noise.Media> without) {
+    private bool will_fit_without(Gee.Collection<Noise.Media> list, Gee.Collection<Noise.Media> without) {
         uint64 list_size = 0;
         uint64 without_size = 0;
         foreach(var m in list) {
@@ -402,26 +447,26 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
     }
     
-    private async void sync_medias_thread () {
+    private async void sync_medias_thread (Collection<Noise.Media> given_medias) {
         
         Threads.add (() => {
             bool error_occurred = false;
             int sub_index = 0;
             
-            message("Found %d medias to sync.", list_to_sync ().size);
-            Gee.LinkedList<Noise.Media> medias_to_remove = delete_doubles (songs.values, list_to_sync ());
-            message("Found %d medias to remove.", medias_to_remove.size);
-            Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list_to_sync (), songs.values);
-            message("Found %d medias to add.", medias_to_sync.size);
+            debug ("Found %d medias to sync.", given_medias.size);
+            Gee.LinkedList<Noise.Media> medias_to_remove = delete_doubles (songs.values, given_medias);
+            debug ("Found %d medias to remove.", medias_to_remove.size);
+            Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (given_medias, songs.values);
+            debug ("Found %d medias to add.", medias_to_sync.size);
             int total_medias = medias_to_remove.size + medias_to_sync.size;
             
             if (total_medias > 0) {
                 if (will_fit_without(medias_to_sync, medias_to_remove)) {
                     db.start_sync();
-                    foreach(var m in medias_to_remove) {
-                        if(!sync_cancelled) {
-                            foreach(var e in medias.entries) {
-                                if(e.value == m) {
+                    foreach (var m in medias_to_remove) {
+                        if (!sync_cancelled) {
+                            foreach (var e in medias.entries) {
+                                if (e.value == m) {
                                     remove_media (e.key);
                                     break;
                                 }
@@ -439,7 +484,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                         index = (int)(85.0 * ((double)sub_index/(double)total_medias));
                     }
                             
-                    if(!sync_cancelled) {
+                    if (!sync_cancelled) {
                         // sync playlists
                         index = 90;
                         /* TODO: add support for podcasts & playlists
@@ -454,8 +499,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                         
                         try {
                             db.write();
-                        }
-                        catch(GLib.Error err) {
+                        } catch (GLib.Error err) {
                             error_occurred = true;
                             sync_cancelled = true;
                         }
@@ -463,10 +507,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                         index = 98;
                         
                         /// Clean up unused files
-                        message ("Cleaning up iPod File System\n");
+                        debug ("Cleaning up iPod File System\n");
                         var music_folder = File.new_for_uri(get_uri () + GPod.Device.get_music_dir(mount.get_default_location().get_path()).replace (mount.get_default_location().get_path(), ""));
                         var used_paths = new LinkedList<string>();
-                        foreach(unowned GPod.Track t in medias.keys) {
+                        foreach (unowned GPod.Track t in medias.keys) {
                             used_paths.add(get_uri() + GPod.iTunesDB.filename_ipod2fs(t.ipod_path));
                         }
                         index = 99;
@@ -478,7 +522,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                         current_operation = _("Cancelling Sync…");
                         try {
                             db.write();
-                        } catch(Error err) {
+                        } catch (Error err) {
                             critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
                         }
                         db.stop_sync();
@@ -495,9 +539,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 pref.last_sync_time = (int)time_t();
                 currently_syncing = false;
                 
-                sync_finished(!sync_cancelled);
-                lm.finish_file_operations();
-                lm.lw.update_sensitivities();
+                file_operation_finished (!sync_cancelled);
                 sync_cancelled = false;
                 
                 return false;
@@ -505,24 +547,6 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         });
 
         yield;
-    }
-    
-    public Gee.LinkedList<Noise.Media> list_to_sync () {
-        var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
-        if (pref.sync_music == true) {
-            if (pref.sync_all_music == true) {
-                foreach (Media m in lm.media ()) {
-                    if (m != null)
-                        medias_to_sync.add (m);
-                }
-            } else {
-                foreach (Media m in lm.playlist_from_name (pref.music_playlist).medias) {
-                    if (m != null)
-                        medias_to_sync.add (m);
-                }
-            }
-        }
-        return medias_to_sync;
     }
     
     public Gee.LinkedList<Noise.Media> delete_doubles (Gee.Collection<Noise.Media> source_list, Gee.Collection<Noise.Media> to_remove) {
@@ -552,10 +576,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             }
         } else {
             
-            foreach(var m in source_list) {
-                new_list.add (m);
-            }
-            
+            new_list.add_all (source_list);
         }
         return new_list;
         
@@ -565,43 +586,34 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
      * Specifically only adding medias. This is different and not a part
      * of sync. This is usually called on drag and drop to iPod.
      *********************************/
-    bool add_medias(LinkedList<Noise.Media> list) {
+    bool add_medias(Gee.Collection<Noise.Media> list) {
         if(currently_syncing) {
             warning("Tried to add when already syncing\n");
             return false;
         }
-        else if(lm.doing_file_operations()) {
-            warning("Can't add. Already doing file operations\n");
-            return false;
-        }
         
         // Check if all current media + this list will fit.
-        var new_list = new LinkedList<Noise.Media>();
-        foreach(var m in list)
-            new_list.add(m);
-        foreach(var m in medias.values)
-            new_list.add(m);
-        bool fits = will_fit(new_list);
+        var new_list = new Gee.LinkedList<Noise.Media>();
+        new_list.add_all(list);
+        new_list.add_all(medias.values);
+        bool fits = will_fit (new_list);
         if(!fits) {
             warning("Tried to sync medias that will not fit\n");
             return false;
         }
         
-        if (lm.start_file_operations(_("Syncing <b>%s</b>…").printf (getDisplayName ()))) {
-            current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
-            lm.lw.update_sensitivities();
-            
-            currently_syncing = true;
-            index = 0;
-            total = list.size + 2;
-            Timeout.add(500, doProgressNotificationWithTimeout);
-            add_medias_thread (list);
-        }
+        current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
+        
+        currently_syncing = true;
+        index = 0;
+        total = list.size + 2;
+        Timeout.add(500, doProgressNotificationWithTimeout);
+        add_medias_thread.begin (list);
         
         return true;
     }
     
-    async void add_medias_thread(LinkedList<Noise.Media> to_add) {
+    async void add_medias_thread(Gee.Collection<Noise.Media> to_add) {
         
         Threads.add (() => {
             bool error_occurred = false;
@@ -624,8 +636,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 
                 try {
                     db.write();
-                }
-                catch(GLib.Error err) {
+                } catch(GLib.Error err) {
                     critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
                     error_occurred = true;
                     sync_cancelled = true;
@@ -634,14 +645,12 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 index = total + 1;
                 
                 db.stop_sync();
-            }
-            else {
+            } else {
                 current_operation = _("Cancelling Sync…");
                 
                 try {
                     db.write();
-                }
-                catch(Error err) {
+                } catch(Error err) {
                     critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
                 }
                 
@@ -652,9 +661,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             Idle.add( () => {
                 currently_syncing = false;
                 
-                sync_finished(!sync_cancelled);
-                lm.finish_file_operations();
-                lm.lw.update_sensitivities();
+                file_operation_finished (!sync_cancelled);
                 sync_cancelled = false;
                 
                 return false;
@@ -665,8 +672,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     /* Adds to track list, mpl, and copies the file over */
-    void add_media(Noise.Media s) {
-        if(s == null)
+    void add_media (Noise.Media s) {
+        if (s == null)
             return;
         
         GPod.Track t = iPodMediaHelper.track_from_media (s);
@@ -684,7 +691,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         unowned GPod.Track added = db.tracks.nth_data(db.tracks.length() - 1);
         
         if(added == null || added.title != s.title) {
-            warning("Track was not properly appended. Returning.\n");
+            warning ("Track was not properly appended. Returning.\n");
             return;
         }
         
@@ -703,9 +710,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         bool success = false;
         try {
             success = db.cp_track_to_ipod(added, File.new_for_uri(s.uri).get_path());
-            debug("Copied media %s to ipod\n", added.title);
+            debug ("Copied media %s to ipod\n", added.title);
         } catch(Error err) {
-            warning("Error adding/copying song %s to iPod: %s\n", s.title, err.message);
+            warning ("Error adding/copying song %s to iPod: %s\n", s.title, err.message);
         }
         
         if(success) {
@@ -718,9 +725,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 this.podcasts.set(added, on_ipod);
             else if(added.mediatype == GPod.MediaType.AUDIOBOOK)
                 this.audiobooks.set(added, on_ipod);
-        }
-        else {
-            warning("Failed to copy track %s to iPod. Removing it from database.\n", added.title);
+        } else {
+            warning ("Failed to copy track %s to iPod. Removing it from database.\n", added.title);
             remove_media(added);
         }
     }
@@ -729,32 +735,25 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
      * Specifically only removing medias. This is different and not a part
      * of sync. This is usually called on right click -> Remove.
      *********************************/
-    bool remove_medias(LinkedList<Noise.Media> list) {
+    bool remove_medias(Gee.Collection<Noise.Media> list) {
         if(currently_syncing) {
             warning("Tried to add when already syncing\n");
             return false;
         }
-        else if(lm.doing_file_operations()) {
-            warning("Can't add. Already doing file operations\n");
-            return false;
-        }
         
-        if (lm.start_file_operations (_("Removing from <b>%s</b>…").printf (getDisplayName ()))) {
-            current_operation = _("Removing from <b>%s</b>…").printf (getDisplayName ());
-            lm.lw.update_sensitivities();
-            
-            currently_syncing = true;
-            index = 0;
-            total = medias.size + 2;
-            Timeout.add(500, doProgressNotificationWithTimeout);
-            
-            remove_medias_thread (list);
-        }
+        current_operation = _("Removing from <b>%s</b>…").printf (getDisplayName ());
+        
+        currently_syncing = true;
+        index = 0;
+        total = medias.size + 2;
+        Timeout.add(500, doProgressNotificationWithTimeout);
+        
+        remove_medias_thread.begin (list);
         
         return true;
     }
     
-    async void remove_medias_thread(LinkedList<Noise.Media> list) {
+    async void remove_medias_thread(Collection<Noise.Media> list) {
     
         Threads.add (() => {
             bool error_occurred = false;
@@ -822,9 +821,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             Idle.add( () => {
                 currently_syncing = false;
                 
-                sync_finished(!sync_cancelled);
-                lm.finish_file_operations();
-                lm.lw.update_sensitivities();
+                file_operation_finished (!sync_cancelled);
                 
                 return false;
             });
@@ -903,7 +900,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     public bool doProgressNotificationWithTimeout() {
-        progress_notification(current_operation.replace("&", "&amp;"), (double)((double)index)/((double)total));
+        
+        notification_manager.doProgressNotification (current_operation.replace("&", "&amp;"), (double)((double)index)/((double)total));
         
         if(index < total && (is_syncing() || is_transferring())) {
             return true;
@@ -918,7 +916,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     
     /* should be called from thread */
     // index = 90 at this point. will go to 95
-    private void sync_playlists() {
+    private void sync_playlists (Collection <StaticPlaylist> pls, Collection <SmartPlaylist> spls) {
         current_operation = _("Syncing playlists");
         // first remove all playlists from db
         var all_playlists = new LinkedList<unowned GPod.Playlist>();
@@ -933,17 +931,17 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         index = 91;
         
         int sub_index = 0;
-        foreach(var playlist in lm.playlists()) {
+        foreach(var playlist in pls) {
             GPod.Playlist p = iPodPlaylistHelper.get_gpod_playlist_from_playlist (playlist);
             db.playlist_add((owned)p, -1);
             
             unowned GPod.Playlist added = db.playlists.nth_data(db.playlists.length() - 1);
             foreach(var entry in medias.entries) {
-                    foreach(var e in lm.media_from_playlist(playlist.rowid)) {
+                    foreach(var e in playlist.medias) {
                         if(entry.value == e) {
                             added.add_track(entry.key, -1);
                             ++sub_index;
-                            index = (int)(78.0 + (double)(7.0 * (double)((double)sub_index/(double)lm.playlists().size)));
+                            index = (int)(78.0 + (double)(7.0 * (double)((double)sub_index/(double)pls.size)));
                             break;
                         }
                     }
@@ -951,34 +949,29 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
         index = 93;
         sub_index = 0;
-        foreach(var smart_playlist in lm.smart_playlists()) {
+        foreach(var smart_playlist in spls) {
             GPod.Playlist p = iPodPlaylistHelper.get_gpod_playlist_from_smart_playlist (smart_playlist);
 
             db.playlist_add((owned)p, -1);
 
             ++sub_index;
-            index = (int)(85.0 + (double)(5.0 * (double)((double)sub_index/(double)lm.smart_playlists().size)));
+            index = (int)(85.0 + (double)(5.0 * (double)((double)sub_index/(double)spls.size)));
         }
         index = 94;
         db.spl_update_live();
         index = 95;
     }
     
-    public bool transfer_to_library(LinkedList<Noise.Media> tr_list) {
+    public bool transfer_to_library (Collection <Noise.Media> medias_to_import) {
         if(currently_transferring) {
             warning("Tried to sync when already syncing\n");
             return false;
         }
-        else if(lm.doing_file_operations()) {
-            warning("Can't sync. Already doing file operations\n");
-            return false;
-        }
-        else if(tr_list == null || tr_list.size == 0) {
+        else if(medias_to_import == null || medias_to_import.size == 0) {
             warning("No songs in transfer list\n");
             return false;
         }
         
-        Gee.LinkedList<Noise.Media> medias_to_import = delete_doubles (tr_list, lm.media ());
         if(medias_to_import.is_empty || medias_to_import == null) {
             warning("No songs in transfer list\n");
             return false;
@@ -986,35 +979,22 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         message("Found %d medias to import.", medias_to_import.size);
         int total_medias = medias_to_import.size;
         
-        current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
-        current_operation = current_operation.replace ("$NAME", (total_medias > 1) ? total_medias.to_string() : (medias_to_import.get(0)).title ?? "");
-        current_operation = current_operation.replace ("$ARTIST", (total_medias > 1) ? total_medias.to_string() : (medias_to_import.get(0)).artist ?? "");
-        if (lm.start_file_operations(current_operation)) {
-            
-            if(medias_to_import == null || medias_to_import.size == 0)
-                return true;
-            
-            currently_transferring = true;
-            transfer_cancelled = false;
-            index = 0;
-            total = total_medias;
-            Timeout.add(500, doProgressNotificationWithTimeout);
-            transfer_medias_thread (medias_to_import);
-        }
+        if(medias_to_import == null || medias_to_import.size == 0)
+            return true;
+        
+        currently_transferring = true;
+        transfer_cancelled = false;
+        index = 0;
+        total = total_medias;
+        Timeout.add(500, doProgressNotificationWithTimeout);
+        transfer_medias_thread.begin (medias_to_import);
         return true;
     }
     
-    public bool transfer_all_to_library() {
-        var songs_to_transfer = new LinkedList<Media> ();
-        foreach (var m in songs.values) {
-            songs_to_transfer.add (m);
-        }
-        return transfer_to_library(songs_to_transfer);
-    }
-    
-    public async void transfer_medias_thread (Gee.LinkedList<Noise.Media> source_library) {
+    public async void transfer_medias_thread (Gee.Collection<Noise.Media> source_library) {
         Threads.add (() => {
             
+            var copied_list = new ArrayList<Media> ();
             foreach(var m in source_library) {
                 if(transfer_cancelled)
                     break;
@@ -1024,13 +1004,11 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                     copy.rowid = 0;
                     copy.isTemporary = false;
                     copy.date_added = (int)time_t();
+                    copied_list.add (copy);
                     
                     current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
                     current_operation = current_operation.replace ("$NAME", copy.title ?? "");
                     current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
-                    if (lm.fo.update_file_hierarchy (copy, false, false)) {
-                        lm.add_media_item (copy);
-                    }
                 }
                 else {
                     message ("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
@@ -1038,12 +1016,11 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 
                 ++index;
             }
+            device_manager.device_asked_transfer (this, copied_list);
             
             index = total + 1;
             
             Idle.add( () => {
-                lm.finish_file_operations();
-                lm.lw.update_sensitivities();
                 currently_transferring = false;
                 
                 return false;

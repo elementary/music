@@ -110,7 +110,7 @@ public class MprisRoot : GLib.Object {
     
     public string[] SupportedMimeTypes {
         owned get {
-            return App.get_media_content_types ();
+            return Noise.MEDIA_CONTENT_TYPES;
         }
     }
 
@@ -222,7 +222,9 @@ public class MprisPlayer : GLib.Object {
         _metadata.insert("xesam:useCount", (int) s.play_count);
     }
 
-    private static string[] get_simple_string_array (string text) {
+    private static string[] get_simple_string_array (string? text) {
+        if (text == null)
+            return new string [0];
         string[] array = new string[0];
         array += text;
         return array;

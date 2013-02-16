@@ -23,23 +23,18 @@
 using Gee;
 
 public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
-    Noise.LibraryManager lm;
     ArrayList<CDRomDevice> devices;
     
-    //public signal void device_added(CDRomDevice d);
-    //public signal void device_removed(CDRomDevice d);
-    
-    public CDRomDeviceManager(Noise.LibraryManager lm) {
-        this.lm = lm;
+    public CDRomDeviceManager() {
         devices = new ArrayList<CDRomDevice>();
         
-        lm.device_manager.mount_added.connect (mount_added);
-        lm.device_manager.mount_removed.connect (mount_removed);
+        device_manager.mount_added.connect (mount_added);
+        device_manager.mount_removed.connect (mount_removed);
     }
     
     public void remove_all () {
         foreach(var dev in devices) {
-            lm.device_removed ((Noise.Device)dev);
+            device_manager.device_removed ((Noise.Device)dev);
         }
         devices = new ArrayList<CDRomDevice>();
     }
@@ -51,13 +46,13 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
             }
         }
         if(mount.get_default_location().get_uri().has_prefix("cdda://") && mount.get_volume() != null) {
-            var added = new CDRomDevice(lm, mount);
+            var added = new CDRomDevice(mount);
             added.set_mount(mount);
             devices.add(added);
         
             if(added.start_initialization()) {
                 added.finish_initialization();
-                added.initialized.connect((d) => {lm.device_manager.deviceInitialized ((Noise.Device)d);});
+                added.initialized.connect((d) => {device_manager.deviceInitialized ((Noise.Device)d);});
             }
             else {
                 mount_removed(added.get_mount());
@@ -80,7 +75,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
-                lm.device_removed ((Noise.Device)dev);
+                device_manager.device_removed ((Noise.Device)dev);
                 
                 // Actually remove it
                 devices.remove(dev);

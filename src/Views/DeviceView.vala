@@ -79,7 +79,6 @@ public class Noise.DeviceView : Gtk.Grid {
         
         show_all();
         infobar.hide ();
-        d.progress_notification.connect(deviceProgress);
         d.infobar_message.connect (infobar_message_sended);
     }
     
@@ -114,10 +113,6 @@ public class Noise.DeviceView : Gtk.Grid {
     
     public void syncClicked() {
         summary.sync_clicked();
-    }
-    
-    void deviceProgress(string? message, double progress) {
-        notification_manager.doProgressNotification (message, progress);
     }
 }
 

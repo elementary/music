@@ -168,13 +168,76 @@ namespace Noise.FileUtils {
      * @param content_types A string array containing the expected content types to compare against.
      * @return whether file_content_type is considered valid.
      */
-    public bool is_valid_content_type (string file_content_type, string[] content_types) {
-        foreach (var content_type in content_types) {
+    public bool is_valid_content_type (string file_content_type, string[]? content_types = null) {
+        var considered_content_type = content_types;
+        if (content_types == null) {
+            considered_content_type = MEDIA_CONTENT_TYPES;
+        }
+        foreach (var content_type in considered_content_type) {
             if (ContentType.equals (file_content_type, content_type))
                 return true;
         }
 
         return false;
+    }
+    
+    public int count_music_files (File music_folder, ref Gee.LinkedList<string> files) {
+        FileInfo file_info = null;
+        int index = 0;
+        try {
+            var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
+            while ((file_info = enumerator.next_file ()) != null) {
+                var file = music_folder.get_child (file_info.get_name ());
+
+                if(file_info.get_file_type() == FileType.REGULAR && is_valid_content_type(file_info.get_content_type ())) {
+                    index++;
+                    files.add (file.get_uri ());
+                }
+                else if(file_info.get_file_type() == FileType.DIRECTORY) {
+                    count_music_files (file, ref files);
+                }
+            }
+        }
+        catch(Error err) {
+            warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
+        }
+
+        return index;
+    }
+    public File? get_new_destination(Media s) {
+        File dest;
+        
+        try {
+            /* initialize file objects */
+            File original = File.new_for_uri(s.uri);
+            
+            var ext = "";
+            if(s.uri.has_prefix("cdda://"))
+                ext = ".mp3";
+            else
+                ext = get_extension(s.uri);
+            
+            dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " - " + s.get_display_title ().replace("/", "_") + ext));
+            
+            if(original.get_path() == dest.get_path()) {
+                debug("File is already in correct location\n");
+                return null;
+            }
+            
+            string extra = "";
+            while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " - " + s.get_display_title ().replace("/", "_") + extra + ext))).query_exists()) {
+                extra += "_";
+            }
+            
+            /* make sure that the parent folders exist */
+            if(!dest.get_parent().query_exists())
+                dest.get_parent().make_directory_with_parents(null);
+        }
+        catch(Error err) {
+            debug("Could not find new destination!: %s\n", err.message);
+        }
+        
+        return dest;
     }
 
     /**

@@ -28,35 +28,12 @@ using Gee;
  * from the db, added to the queue, sorted, and more. LibraryWindow is
  * the visual representation of this class
  */
-public class Noise.LibraryManager : Object {
-    public signal void file_operations_started ();
-    public signal void file_operations_done ();
-    public signal void progress_cancel_clicked ();
-
-	public signal void music_counted (int count);
-	public signal void music_added (Collection<string> not_imported);
-	public signal void music_imported (Collection<Media> new_media, Collection<string> not_imported);
-	public signal void music_rescanned (Collection<Media> new_media, Collection<string> not_imported);
-
-    public signal void media_added (Gee.Collection<int> ids);
-    public signal void media_updated (Gee.Collection<int> ids);
-    public signal void media_removed (Gee.Collection<int> ids);
-    
-    public signal void playlist_added (StaticPlaylist playlist);
-    public signal void playlist_removed (StaticPlaylist playlist);
-    
-    public signal void smartplaylist_added (SmartPlaylist smartplaylist);
-    public signal void smartplaylist_removed (SmartPlaylist smartplaylist);
-
-    public signal void device_added (Device d);
-    public signal void device_removed (Device d);
-    public signal void device_name_changed (Device d);
+public class Noise.LibraryManager : Object, LibraryManagerInterface {
 
     public LibraryWindow lw { get { return App.main_window; } }
     public DataBaseManager dbm;
     public DataBaseUpdater dbu;
     public FileOperator fo;
-    public DeviceManager device_manager;
     public GStreamerTagger tagger;
     
     public const string MUSIC_PLAYLIST = "autosaved_music";
@@ -78,12 +55,6 @@ public class Noise.LibraryManager : Object {
     private int _media_rowid = 0;
 
     private Gee.LinkedList<Media> open_media_list;
-    
-    // TODO: get rid of this
-    private string temp_add_folder;
-    private string[] temp_add_other_folders;
-    private int other_folders_added;
-    private Gee.LinkedList<string> temp_add_files;
 
     private bool _doing_file_operations = false;
     private bool _opening_file = false;
@@ -97,7 +68,6 @@ public class Noise.LibraryManager : Object {
         _playlists = new Gee.TreeMap<int, StaticPlaylist> ();
         _media = new Gee.TreeMap<int, Media> ();
 
-        device_manager = new DeviceManager ();
     }
     
     public void initialize_library () {
@@ -139,21 +109,9 @@ public class Noise.LibraryManager : Object {
                 }
             }
         }
-        device_manager.device_added.connect ((device) => {device_added (device);});
-        device_manager.device_removed.connect ((device) => {device_removed (device);});
-
-        other_folders_added = 0;
-
-        file_operations_done.connect (()=> {
-            if (temp_add_other_folders != null) {
-                other_folders_added++;
-                add_folder_to_library (temp_add_other_folders[other_folders_added-1]);
-                if (other_folders_added == temp_add_other_folders.length) {
-                    other_folders_added = 0;
-                    temp_add_other_folders = null;
-                }
-            }
-        });
+        device_manager.device_asked_sync.connect ((device) => {device.sync_medias (answer_to_device_sync (device));});
+        device_manager.device_asked_transfer.connect ((device, list) => {add_media (list);});
+        device_manager.set_device_preferences (dbm.load_devices ());
 
         load_media_art_cache.begin ();
     }
@@ -225,7 +183,7 @@ public class Noise.LibraryManager : Object {
             var music_folder_file = File.new_for_path (main_settings.music_folder);
             LinkedList<string> files = new LinkedList<string> ();
 
-            var items = fo.count_music_files (music_folder_file, ref files);
+            var items = FileUtils.count_music_files (music_folder_file, ref files);
             debug ("found %d items to import\n", items);
 
             var to_import = remove_duplicate_files (files);
@@ -240,18 +198,17 @@ public class Noise.LibraryManager : Object {
         yield;
     }
 
-    public void add_files_to_library (LinkedList<string> files) {
+    public void add_files_to_library (Gee.Collection<string> files) {
         if (start_file_operations (_("Adding files to library…"))) {
-            temp_add_files = files;
-            add_files_to_library_async.begin ();
+            add_files_to_library_async.begin (files);
         }
     }
 
-    private async void add_files_to_library_async () {
+    private async void add_files_to_library_async (Gee.Collection<string> files) {
         SourceFunc callback = add_files_to_library_async.callback;
 
         Threads.add (() => {
-            var to_import = remove_duplicate_files (temp_add_files);
+            var to_import = remove_duplicate_files (files);
 
             fo.resetProgress (to_import.size - 1);
             Timeout.add (100, doProgressNotificationWithTimeout);
@@ -266,7 +223,7 @@ public class Noise.LibraryManager : Object {
     /**
      * Used to avoid importing already-imported files.
      */
-    private Gee.LinkedList<string> remove_duplicate_files (Gee.LinkedList<string> files) {
+    private Gee.Collection<string> remove_duplicate_files (Gee.Collection<string> files) {
         
         var to_import = files;
         foreach (var m in media ()) {
@@ -279,30 +236,29 @@ public class Noise.LibraryManager : Object {
         return to_import;
     }
 
-    public void add_folder_to_library (string folder, string[]? other_folders = null) {
-        if (other_folders != null)
-            temp_add_other_folders = other_folders;
+    public void add_folder_to_library (Gee.Collection<string> folders) {
 
-        if (start_file_operations (_("Adding music from %s to library…").printf ("<b>" + String.escape (folder) + "</b>"))) {
-            temp_add_folder = folder;
-            add_folder_to_library_async.begin ();
+        if (start_file_operations (_("<b>Importing</b> music to library…"))) {
+            add_folder_to_library_async.begin (folders);
         }
     }
 
-    private async void add_folder_to_library_async () {
+    private async void add_folder_to_library_async (Gee.Collection<string> folders) {
         SourceFunc callback = add_folder_to_library_async.callback;
 
         Threads.add (() => {
-            var file = File.new_for_path (temp_add_folder);
-            var files = new LinkedList<string> ();
+            foreach (var folder in folders) {
+                var file = File.new_for_path (folder);
+                var files = new LinkedList<string> ();
 
-            fo.count_music_files (file, ref files);
+                FileUtils.count_music_files (file, ref files);
 
-            var to_import = remove_duplicate_files (files);
+                var to_import = remove_duplicate_files (files);
 
-            fo.resetProgress (to_import.size - 1);
-            Timeout.add (100, doProgressNotificationWithTimeout);
-            fo.import_files (to_import, FileOperator.ImportType.IMPORT);
+                fo.resetProgress (to_import.size - 1);
+                Timeout.add (100, doProgressNotificationWithTimeout);
+                fo.import_files (to_import, FileOperator.ImportType.IMPORT);
+            }
 
             Idle.add ((owned) callback);
         });
@@ -321,7 +277,7 @@ public class Noise.LibraryManager : Object {
 
         var paths = new Gee.HashMap<string, Media> ();
         var to_remove = new Gee.LinkedList<Media> ();
-        var to_import = new Gee.LinkedList<string> ();
+        var to_import_temp = new Gee.LinkedList<string> ();
 
         Threads.add (() => {
             fo.resetProgress (100);
@@ -339,20 +295,20 @@ public class Noise.LibraryManager : Object {
 
             // get a list of the current files
             var files = new LinkedList<string> ();
-            fo.count_music_files (File.new_for_path (music_folder_dir), ref files);
+            FileUtils.count_music_files (File.new_for_path (music_folder_dir), ref files);
             fo.index = 10;
 
             foreach (string s in files) {
                 // XXX: libraries are not necessarily local. This will fail
                 // for remote libraries FIXME
                 if (paths.get (s) == null)
-                    to_import.add (s);
+                    to_import_temp.add (s);
             }
 
-            to_import = remove_duplicate_files (to_import);
+            var to_import = remove_duplicate_files (to_import_temp);
 
             debug ("Importing %d new songs\n", to_import.size);
-            if (to_import.size > 0) {
+            if (!to_import.is_empty) {
                 fo.resetProgress (to_import.size);
                 Timeout.add (100, doProgressNotificationWithTimeout);
                 fo.import_files (to_import, FileOperator.ImportType.RESCAN);
@@ -368,7 +324,7 @@ public class Noise.LibraryManager : Object {
             remove_media (to_remove, false);
         }
 
-        if (to_import.size == 0)
+        if (to_import_temp.is_empty)
             finish_file_operations ();
 
         yield;
@@ -758,7 +714,7 @@ public class Noise.LibraryManager : Object {
         update_smart_playlists_async.begin (media);
     }
 
-    public void remove_media (Gee.LinkedList<Media> toRemove, bool trash) {
+    public void remove_media (Gee.Collection<Media> toRemove, bool trash) {
         var removedIds = new Gee.LinkedList<int> ();
         var removeURIs = new Gee.LinkedList<string> ();
 
@@ -790,6 +746,18 @@ public class Noise.LibraryManager : Object {
         }
 
         update_smart_playlists_async.begin (toRemove);
+    }
+
+    public Gee.LinkedList<Noise.Media> answer_to_device_sync (Device device) {
+        var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
+        if (device.get_preferences ().sync_music == true) {
+            if (device.get_preferences ().sync_all_music == true) {
+                medias_to_sync.add_all (media ());
+            } else {
+                medias_to_sync.add_all (playlist_from_name (device.get_preferences ().music_playlist).medias);
+            }
+        }
+        return medias_to_sync;
     }
 
     public void cancel_operations () {

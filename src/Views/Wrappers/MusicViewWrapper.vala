@@ -70,9 +70,9 @@ public class Noise.MusicViewWrapper : ViewWrapper {
          * possible with internal media. This view wrapper is not intended for use
          * with external (i.e. doesn't belong to library) media anyway.
          */
-         App.library_manager.device_added.connect (on_device_added);
-         App.library_manager.device_removed.connect (on_device_removed);
-         App.library_manager.device_name_changed.connect (on_device_name_changed);
+         device_manager.device_added.connect (on_device_added);
+         device_manager.device_removed.connect (on_device_removed);
+         device_manager.device_name_changed.connect (on_device_name_changed);
          App.library_manager.media_added.connect (on_library_media_added);
          App.library_manager.media_removed.connect (on_library_media_removed);
          App.library_manager.media_updated.connect (on_library_media_updated);
@@ -142,7 +142,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         } else {
             foreach (var device_entry in _devices.entries) {
                 if (device_entry.value == index) {
-                    ((Device)device_entry.key).transfer_all_to_library();
+                    ((Device)device_entry.key).transfer_to_library (App.library_manager.media ());
                 }
             }
         }

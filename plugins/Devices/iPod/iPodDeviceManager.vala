@@ -23,26 +23,21 @@
 using Gee;
 
 public class Noise.Plugins.iPodDeviceManager : GLib.Object {
-    Noise.LibraryManager lm;
     ArrayList<iPodDevice> devices;
     iPodStreamer streamer;
     
-    //public signal void device_added(iPodDevice d);
-    //public signal void device_removed(iPodDevice d);
-    
-    public iPodDeviceManager(Noise.LibraryManager lm) {
-        this.lm = lm;
+    public iPodDeviceManager() {
         devices = new ArrayList<iPodDevice>();
         streamer = new iPodStreamer (this);
         
-        lm.device_manager.mount_added.connect (mount_added);
-        lm.device_manager.mount_removed.connect (mount_removed);
+        device_manager.mount_added.connect (mount_added);
+        device_manager.mount_removed.connect (mount_removed);
         Noise.App.player.add_playback (streamer);
     }
     
     public void remove_all () {
         foreach(var dev in devices) {
-            lm.device_removed ((Noise.Device)dev);
+            device_manager.device_removed ((Noise.Device)dev);
         }
         devices = new ArrayList<iPodDevice>();
     }
@@ -57,7 +52,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
                 File.new_for_uri(mount.get_default_location().get_uri() + "/iPod_Control").query_exists() ||
                 File.new_for_uri(mount.get_default_location().get_uri() + "/iTunes/iTunes_Control").query_exists() ||
                 mount.get_default_location().get_parse_name().has_prefix("afc://")) {
-            var added = new iPodDevice(lm, mount);
+            var added = new iPodDevice(mount);
             added.set_mount(mount);
             devices.add(added);
         
@@ -65,7 +60,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
                 added.finish_initialization();
                 added.initialized.connect((d) => {
                     if (((iPodDevice)d).is_supported == true) {
-                        lm.device_manager.deviceInitialized ((Noise.Device)d);
+                        device_manager.deviceInitialized ((Noise.Device)d);
                     }
                 });
             }
@@ -87,7 +82,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
-                lm.device_removed ((Noise.Device)dev);
+                device_manager.device_removed ((Noise.Device)dev);
                 
                 // Actually remove it
                 devices.remove(dev);

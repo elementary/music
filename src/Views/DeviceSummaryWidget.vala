@@ -71,6 +71,16 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         content_grid.set_column_spacing (12);
         content_grid.set_margin_top (12);
         
+        var device_name_title_label = new Gtk.Label (dev.getDisplayName () ?? "");
+        device_name_title_label.set_alignment (1, 0.5f);
+        device_name_title_label.margin = 20;
+        device_name_title_label.margin_right = 0;
+        Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H1, device_name_title_label);
+        
+        var device_name_description_label = new Gtk.Label (dev.get_fancy_description () ?? "");
+        device_name_description_label.set_alignment (0, 0.5f);
+        Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, device_name_description_label);
+        
         var device_name_label = new Gtk.Label (_("Device Name:"));
         device_name_label.set_alignment (1, 0.5f);
         
@@ -113,18 +123,25 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         refresh_space_widget ();
         
         // device name box
-        content_grid.attach (device_name_label,   1, 0, 1, 1);
-        content_grid.attach (device_name_entry,   2, 0, 2, 1);
-        content_grid.attach (auto_sync_label,     1, 1, 1, 1);
-        content_grid.attach (auto_sync_container, 2, 1, 2, 1);
-        content_grid.attach (sync_options_label,  1, 2, 1, 1);
-        content_grid.attach (sync_music_check,    2, 2, 1, 1);
-        content_grid.attach (sync_music_combobox, 3, 2, 1, 1);
+        if (device_name_description_label.label == "") {
+            content_grid.attach (device_name_title_label,       0, 0, 5, 1);
+            device_name_title_label.set_alignment (0.5f, 0.5f);
+        } else {
+            content_grid.attach (device_name_title_label,       0, 0, 2, 1);
+        }
+        content_grid.attach (device_name_description_label, 2, 0, 3, 1);
+        content_grid.attach (device_name_label,   1, 1, 1, 1);
+        content_grid.attach (device_name_entry,   2, 1, 2, 1);
+        content_grid.attach (auto_sync_label,     1, 2, 1, 1);
+        content_grid.attach (auto_sync_container, 2, 2, 2, 1);
+        content_grid.attach (sync_options_label,  1, 3, 1, 1);
+        content_grid.attach (sync_music_check,    2, 3, 1, 1);
+        content_grid.attach (sync_music_combobox, 3, 3, 1, 1);
         
 #if HAVE_PODCASTS
         if(dev.supports_podcasts()) {
-            content_grid.attach (sync_podcasts_check,    2, 3, 1, 1);
-            content_grid.attach (sync_podcasts_combobox, 3, 3, 1, 1);
+            content_grid.attach (sync_podcasts_check,    2, 4, 1, 1);
+            content_grid.attach (sync_podcasts_combobox, 3, 4, 1, 1);
         }
 #endif
         
@@ -220,7 +237,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         
         device_name_entry.changed.connect (device_name_changed);
         space_widget.sync_clicked.connect (sync_clicked);
-        dev.sync_finished.connect (sync_finished);
+        dev.file_operation_finished.connect (sync_finished);
         
         show_all ();
     }
@@ -313,6 +330,12 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_podcasts_combobox.set_button_sensitivity (Gtk.SensitivityType.ON);
 #endif
         //audiobookDropdown.set_button_sensitivity (SensitivityType.ON);
+        App.library_manager.playlist_added.connect (() => {refresh_lists ();});
+        App.library_manager.playlist_name_updated.connect (() => {refresh_lists ();});
+        App.library_manager.playlist_removed.connect (() => {refresh_lists ();});
+        App.library_manager.smartplaylist_added.connect (() => {refresh_lists ();});
+        App.library_manager.smartplaylist_name_updated.connect (() => {refresh_lists ();});
+        App.library_manager.smartplaylist_removed.connect (() => {refresh_lists ();});
     }
     
     bool rowSeparatorFunc (Gtk.TreeModel model, Gtk.TreeIter iter) {
@@ -399,20 +422,18 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         //audiobookList.set(iter, 0, null, 1, "<separator_item_unique_name>");
         
         /* add all playlists */
-        var smart_playlist_pix = Icons.SMART_PLAYLIST.render (Gtk.IconSize.MENU, null);
-        var playlist_pix = Icons.PLAYLIST.render (Gtk.IconSize.MENU, null);
         foreach (var p in App.library_manager.smart_playlists ()) {
             //bool music, podcasts, audiobooks;
             //test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
             
             //if(music) {
                 music_list.append (out iter);
-                music_list.set (iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+                music_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
             //}
 #if HAVE_PODCASTS
             //if(podcasts) {
                 podcast_list.append (out iter);
-                podcast_list.set (iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+                podcast_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
             //}
 #endif
             //if(audiobooks) {
@@ -423,21 +444,23 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         foreach (var p in App.library_manager.playlists ()) {
             //bool music, podcasts, audiobooks;
             //test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
+            if (p.read_only == false) {
             
             //if(music) {
                 music_list.append(out iter);
-                music_list.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+                music_list.set(iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
             //}
 #if HAVE_PODCASTS
             //if(podcasts) {
                 podcast_list.append(out iter);
-                podcast_list.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+                podcast_list.set(iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
             //}
 #endif
             //if(audiobooks) {
                 //audiobook_list.append(out iter);
                 //audiobook_list.set(iter, 0, p, 1, p.name, 2, playlist_pix);
             //}
+            }
         }
         
         if (!sync_music_combobox.set_active_id (musicString))
@@ -615,7 +638,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             }
             else {
                 space_widget.set_sync_button_sensitive(false);
-                dev.sync_medias();
+                device_manager.device_asked_sync (dev);
             }
         }
     }

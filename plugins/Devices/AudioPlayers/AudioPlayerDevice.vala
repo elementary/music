@@ -30,7 +30,6 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     int total = 0;
     LinkedList<Noise.Media> medias;
     LinkedList<Noise.Media> songs;
-    Noise.LibraryManager lm;
     Noise.DevicePreferences pref;
     bool currently_syncing = false;
     bool currently_transferring = false;
@@ -44,15 +43,14 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     
     public GStreamerTagger tagger;
     
-    public AudioPlayerDevice(Mount mount, Noise.LibraryManager lm, bool is_androphone) {
-        this.lm = lm;
+    public AudioPlayerDevice(Mount mount, bool is_androphone) {
         this.mount = mount;
         this.is_androphone = is_androphone;
         icon = new Icon (is_androphone ? "phone" : "music-player").gicon;
-        pref = lm.device_manager.get_device_preferences(get_unique_identifier());
+        pref = device_manager.get_device_preferences (get_unique_identifier());
         if(pref == null) {
-            pref = new Noise.DevicePreferences(get_unique_identifier());
-            lm.device_manager.add_device_preferences(pref);
+            pref = new Noise.DevicePreferences (get_unique_identifier());
+            device_manager.add_device_preferences (pref);
         }
         medias = new LinkedList<Noise.Media> ();
         songs = new LinkedList<Noise.Media> ();
@@ -70,16 +68,15 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         this.medias.add(m);
         this.songs.add(m);
         if (queue_is_finished)
-            sync_finished (true);
+            file_operation_finished (true);
     }
     
     void import_error(string file) {
     }
     
     void queue_finished() {
-
-        lm.lw.update_sensitivities ();
         queue_is_finished = true;
+        index = total +1;
     }
     
     public Noise.DevicePreferences get_preferences() {
@@ -90,7 +87,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             
         });
         
-        finish_initialization_thread ();
+        finish_initialization_thread.begin ();
     }
     public bool start_initialization() {
         return true;
@@ -125,7 +122,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             int items = 0;
             foreach (var folder in music_folders) {
                 var music_folder_file = GLib.File.new_for_uri (folder);
-                items += lm.fo.count_music_files (music_folder_file, ref files);
+                items += FileUtils.count_music_files (music_folder_file, ref files);
             }
 
             debug ("found %d items to import\n", items);
@@ -188,7 +185,11 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     }
     
     public string get_fancy_description() {
-        return "No Description";
+        if (is_androphone) {
+            return _("Android Phone");
+        } else {
+            return _("Audio Player");
+        }
     }
     
     public void set_mount(Mount mount) {
@@ -218,8 +219,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         try {
             var file_info = File.new_for_uri(get_uri()).query_filesystem_info("filesystem::*", null);
             rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_SIZE);
-        }
-        catch(Error err) {
+        } catch(Error err) {
             stdout.printf("Error calculating capacity of iPod: %s\n", err.message);
         }
         
@@ -240,8 +240,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         try {
             var file_info = File.new_for_uri(get_uri()).query_filesystem_info("filesystem::*", null);
             rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_FREE);
-        }
-        catch(Error err) {
+        } catch(Error err) {
             stdout.printf("Error calculating free space on iPod: %s\n", err.message);
         }
         
@@ -249,12 +248,12 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     }
     
     public void unmount() {
-        mount.unmount_with_operation (GLib.MountUnmountFlags.NONE, null);
+        mount.unmount_with_operation.begin (GLib.MountUnmountFlags.NONE, null);
     }
     
     public void eject() {
         if (mount.can_eject ()) {
-            mount.get_volume ().get_drive ().eject_with_operation (GLib.MountUnmountFlags.NONE, null);
+            mount.get_volume ().get_drive ().eject_with_operation.begin (GLib.MountUnmountFlags.NONE, null);
         }
     }
     
@@ -302,39 +301,32 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         return new LinkedList<Noise.Media>();
     }
     
-    public bool sync_medias() { 
-       if(currently_syncing) {
+    public bool sync_medias (Collection<Noise.Media> medias) { 
+        if(currently_syncing) {
             warning("Tried to sync when already syncing\n");
             return false;
         }
-        else if(lm.doing_file_operations()) {
-            warning("Can't sync. Already doing file operations\n");
-            return false;
-        }
         
-        if (lm.start_file_operations (_("Syncing <b>%s</b>…").printf (getDisplayName ()))) {
-            current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
-            lm.lw.update_sensitivities();
-            
-            currently_syncing = true;
-            index = 0;
-            total = 100;
-            Timeout.add(500, doProgressNotificationWithTimeout);
-            
-            sync_medias_thread ();
-        }
+        current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
+        
+        currently_syncing = true;
+        index = 0;
+        total = 100;
+        Timeout.add(500, doProgressNotificationWithTimeout);
+        
+        sync_medias_thread.begin (medias);
         return true;
     }
     
-    private async void sync_medias_thread () {
+    private async void sync_medias_thread (Collection<Noise.Media> medias) {
         
         Threads.add (() => {
             int sub_index = 0;
             
-            message("Found %d medias to sync.", list_to_sync ().size);
-            Gee.LinkedList<Noise.Media> medias_to_remove = delete_doubles (songs, list_to_sync ());
+            message("Found %d medias to sync.", medias.size);
+            Gee.LinkedList<Noise.Media> medias_to_remove = delete_doubles (songs, medias);
             message("Found %d medias to remove.", medias_to_remove.size);
-            Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list_to_sync (), songs);
+            Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (medias, songs);
             message("Found %d medias to add.", medias_to_sync.size);
             int total_medias = medias_to_remove.size + medias_to_sync.size;
             
@@ -388,9 +380,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                 pref.last_sync_time = (int)time_t();
                 currently_syncing = false;
                 
-                sync_finished(!sync_cancelled);
-                lm.finish_file_operations();
-                lm.lw.update_sensitivities();
+                file_operation_finished (!sync_cancelled);
                 sync_cancelled = false;
                 
                 return false;
@@ -398,24 +388,6 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         });
 
         yield;
-    }
-        
-    public Gee.LinkedList<Noise.Media> list_to_sync () {
-        var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
-        if (pref.sync_music == true) {
-            if (pref.sync_all_music == true) {
-                foreach (Media m in lm.media ()) {
-                    if (m != null)
-                        medias_to_sync.add (m);
-                }
-            } else {
-                foreach (Media m in lm.playlist_from_name (pref.music_playlist).medias) {
-                    if (m != null)
-                        medias_to_sync.add (m);
-                }
-            }
-        }
-        return medias_to_sync;
     }
     
     public Gee.LinkedList<Noise.Media> delete_doubles (Gee.Collection<Noise.Media> source_list, Gee.Collection<Noise.Media> to_remove) {
@@ -445,89 +417,66 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         
         return new_list;
     }
-    public bool add_medias(LinkedList<Noise.Media> list) {
+    public bool add_medias(Collection<Noise.Media> list) {
         if(currently_syncing) {
             warning("Tried to add when already syncing\n");
             return false;
         }
-        else if(lm.doing_file_operations()) {
-            warning("Can't add. Already doing file operations\n");
-            return false;
-        }
         
-        if (lm.start_file_operations (_("Syncing <b>%s</b>…").printf (getDisplayName ()))) {
-            current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
-            lm.lw.update_sensitivities();
-            
-            currently_syncing = true;
-            index = 0;
-            Timeout.add(500, doProgressNotificationWithTimeout);
-            int sub_index = 0;
-            
-            Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list, songs);
-            message("Found %d medias to add.", medias_to_sync.size);
-            int total_medias = medias_to_sync.size;
-            
-            if (total_medias > 0) {
-                if (will_fit(medias_to_sync)) {
-                    imported_files = new LinkedList<string> ();
-                    foreach(var m in medias_to_sync) {
-                        add_media(m);
-                        ++sub_index;
-                        index = (int)(100.0 * ((double)sub_index/(double)total_medias));
-                    }
-                    tagger.discoverer_import_media (imported_files);
+        current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
+        
+        currently_syncing = true;
+        index = 0;
+        Timeout.add(500, doProgressNotificationWithTimeout);
+        int sub_index = 0;
+        
+        Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list, songs);
+        message("Found %d medias to add.", medias_to_sync.size);
+        total = medias_to_sync.size;
+        int total_medias = medias_to_sync.size;
+        
+        if (total_medias > 0) {
+            if (will_fit(medias_to_sync)) {
+                imported_files = new LinkedList<string> ();
+                foreach(var m in medias_to_sync) {
+                    add_media(m);
+                    ++sub_index;
+                    index = (int)(100.0 * ((double)sub_index/(double)total));
                 }
+                tagger.discoverer_import_media (imported_files);
             }
         }
         return true;
     }
     
-    public bool remove_medias(LinkedList<Noise.Media> list) {
+    public bool remove_medias(Collection<Noise.Media> list) {
         if(currently_syncing) {
             warning("Tried to add when already syncing\n");
             return false;
         }
-        else if(lm.doing_file_operations()) {
-            warning("Can't add. Already doing file operations\n");
-            return false;
-        }
         
-        if (lm.start_file_operations (_("Removing from <b>%s</b>…").printf (getDisplayName ()))) {
-            current_operation = _("Removing from <b>%s</b>…").printf (getDisplayName ());
-            lm.lw.update_sensitivities();
-            
-            currently_syncing = true;
-            index = 0;
-            total = list.size;
-            Timeout.add(500, doProgressNotificationWithTimeout);
-            
-            int sub_index = 0;
-            foreach(var m in list) {
-                remove_media(m);
-                ++sub_index;
-                index = (int)(100.0 * ((double)sub_index/(double)total));
-            }
-        }
+        current_operation = _("Removing from <b>%s</b>…").printf (getDisplayName ());
         
+        index = 0;
+        total = list.size;
+        Timeout.add(500, doProgressNotificationWithTimeout);
+        
+        int sub_index = 0;
+        foreach(var m in list) {
+            remove_media(m);
+            ++sub_index;
+            index = (int)(100.0 * ((double)sub_index/(double)total));
+        }
         return true;
     }
     
-    public bool sync_playlists(LinkedList<int> list) {
+    public bool sync_playlists(Collection<int> list) {
         return false;
     }
     
-    public bool transfer_all_to_library() {
-        return transfer_to_library (delete_doubles (songs, lm.media ()));
-    }
-    
-    public bool transfer_to_library(LinkedList<Noise.Media> tr_list) {
+    public bool transfer_to_library(Collection<Noise.Media> tr_list) {
         if(currently_transferring) {
             warning("Tried to sync when already syncing\n");
-            return false;
-        }
-        else if(lm.doing_file_operations()) {
-            warning("Can't sync. Already doing file operations\n");
             return false;
         }
         else if(tr_list == null || tr_list.size == 0) {
@@ -538,16 +487,11 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         debug ("Found %d medias to import.", tr_list.size);
         int total_medias = tr_list.size;
         
-        current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
-        current_operation = current_operation.replace ("$NAME", (total_medias > 1) ? total_medias.to_string() : (tr_list.get(0)).title ?? "");
-        current_operation = current_operation.replace ("$ARTIST", (total_medias > 1) ? total_medias.to_string() : (tr_list.get(0)).artist ?? "");
-        if (lm.start_file_operations(current_operation)) {
-            transfer_medias_thread (tr_list);
-        }
+        transfer_medias_thread.begin (tr_list);
         return true;
     }
     
-    private async void transfer_medias_thread (LinkedList<Noise.Media> list) {
+    private async void transfer_medias_thread (Collection<Noise.Media> list) {
         Threads.add (() => {
             if(list == null || list.size == 0)
                 return;
@@ -557,6 +501,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             index = 0;
             total = list.size;
             Timeout.add(500, doProgressNotificationWithTimeout);
+            var copied_list = new ArrayList<Media> ();
             
             foreach(var m in list) {
                 if(transfer_cancelled)
@@ -567,24 +512,22 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                     copy.rowid = 0;
                     copy.isTemporary = false;
                     copy.date_added = (int)time_t();
-                    lm.add_media_item (copy);
+                    copied_list.add (copy);
                     
                     current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
                     current_operation = current_operation.replace ("$NAME", copy.title ?? "");
                     current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
-                    lm.fo.update_file_hierarchy (copy, false, false);
-                }
-                else {
+                } else {
                     message ("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
                 }
                 
                 ++index;
             }
+            device_manager.device_asked_transfer (this, copied_list);
             
             index = total + 1;
             
             Idle.add( () => {
-                lm.finish_file_operations();
                 currently_transferring = false;
                 
                 return false;
@@ -610,7 +553,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         transfer_cancelled = true;
     }
     
-    public bool will_fit(LinkedList<Noise.Media> list) {
+    public bool will_fit(Collection<Noise.Media> list) {
         uint64 list_size = 0;
         foreach(var m in list) {
             list_size += m.file_size;
@@ -619,7 +562,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         return get_capacity() > list_size;
     }
     
-    private bool will_fit_without(LinkedList<Noise.Media> list, LinkedList<Noise.Media> without) {
+    private bool will_fit_without(Collection<Noise.Media> list, Collection<Noise.Media> without) {
         uint64 list_size = 0;
         uint64 without_size = 0;
         foreach(var m in list) {
@@ -636,7 +579,8 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     }
     
     public bool doProgressNotificationWithTimeout() {
-        progress_notification(current_operation.replace("&", "&amp;"), (double)((double)index)/((double)total));
+        
+        notification_manager.doProgressNotification (current_operation.replace("&", "&amp;"), (double)((double)index)/((double)total));
         
         if(index < total && (is_syncing() || is_transferring())) {
             return true;
@@ -661,7 +605,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         try {
             file.copy (destination_file,GLib.FileCopyFlags.ALL_METADATA);
         } catch(Error err) {
-            warning("Failed to copy track %s : %s\n", m.title, err.message);
+            warning ("Failed to copy track %s : %s\n", m.title, err.message);
             return;
         }
         imported_files.add (destination_file.get_uri());
@@ -681,13 +625,12 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                 songs.remove (m);
                 try {
                     file.delete();
-                } catch(Error err) {
-                    warning("Could not delete File at %s: %s", m.uri, err.message);
+                } catch (Error err) {
+                    warning ("Could not delete File at %s: %s", m.uri, err.message);
                     return;
                 }
                 debug ("Successfully removed music file %s", m.uri);
-            }
-            else {
+            } else {
                 warning("File not found, could not delete File at %s. File may already be deleted", m.uri);
             }
         }

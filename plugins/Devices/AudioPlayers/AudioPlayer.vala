@@ -27,8 +27,7 @@ namespace Noise.Plugins {
 
         Interface plugins;
         public GLib.Object object { owned get; construct; }
-        Noise.LibraryManager lm;
-        AudioPlayerDeviceManager android_manager;
+        AudioPlayerDeviceManager audioplayer_manager;
 
         public void activate () {
             message ("Activating AudioPlayer Device plugin");
@@ -37,15 +36,14 @@ namespace Noise.Plugins {
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();
             plugins.register_function(Interface.Hook.WINDOW, () => {
-                lm = ((Noise.App)plugins.noise_app).library_manager;
-                android_manager = new AudioPlayerDeviceManager (lm);
-                lm.device_manager.loadPreExistingMounts();
+                audioplayer_manager = new AudioPlayerDeviceManager ();
+                device_manager.loadPreExistingMounts();
             });
         }
 
         public void deactivate () {
-            if (android_manager != null)
-                android_manager.remove_all ();
+            if (audioplayer_manager != null)
+                audioplayer_manager.remove_all ();
         }
 
         public void update_state () {

@@ -25,20 +25,24 @@ using Gee;
 public class Noise.DeviceManager : GLib.Object {
     VolumeMonitor vm;
     
-    GLib.List <DevicePreferences> _device_preferences;
-    Gee.LinkedList <unowned Device> _devices;
+    public Gee.ArrayList<DevicePreferences> device_preferences;
+    public Gee.ArrayList<unowned Device> devices;
     
     public signal void device_added(Device d);
     public signal void device_removed(Device d);
+    public signal void device_name_changed (Device d);
+    public signal void device_asked_sync (Device d);
+    public signal void device_asked_transfer (Device d, Collection<Noise.Media> list);
+    
+    public signal void cancel_device_transfer ();
     
     public signal void mount_added (Mount mount);
     public signal void mount_removed (Mount mount);
     
     public DeviceManager() {
         
-        _device_preferences = new GLib.List <DevicePreferences> ();
-        _devices = new Gee.LinkedList <unowned Device> ();
-        
+        device_preferences = new Gee.ArrayList<DevicePreferences> ();
+        devices = new Gee.ArrayList<unowned Device> ();
         
         vm = VolumeMonitor.get();
         
@@ -49,12 +53,11 @@ public class Noise.DeviceManager : GLib.Object {
         vm.volume_added.connect(volume_added);
     }
     
+    public void set_device_preferences (Gee.Collection<DevicePreferences> device_preferences) {
+        this.device_preferences.add_all (device_preferences);
+    }
+    
     public void loadPreExistingMounts() {
-        // pre-load devices and their preferences
-        
-        lock(_device_preferences) {
-            _device_preferences = App.library_manager.dbm.load_devices();
-        }
         // this can take time if we have to rev up the cd drive
         Threads.add (get_pre_existing_mounts);
     }
@@ -95,8 +98,7 @@ public class Noise.DeviceManager : GLib.Object {
     public void deviceInitialized (Device d) {
         debug ("adding device\n");
         device_added (d);
-        _devices.add (d);
-        App.main_window.update_sensitivities.begin ();
+        devices.add (d);
     }
     
     public virtual void mount_changed (Mount mount) {
@@ -107,26 +109,8 @@ public class Noise.DeviceManager : GLib.Object {
         //message ("mount_preunmount:%s\n", mount.get_uuid());
     }
     
-        
-    /** Device Preferences **/
-    public GLib.List<DevicePreferences> device_preferences() {
-        var rv = new GLib.List<Noise.DevicePreferences>();
-        
-        lock(_device_preferences) {
-            foreach(var pref in _device_preferences) {
-                rv.append(pref);
-            }
-        }
-        
-        return rv;
-    }
-    
-    public Gee.LinkedList<unowned Device> devices () {
-        return _devices;
-    }
-    
     public DevicePreferences? get_device_preferences(string id) {
-        foreach (var device in _device_preferences) {
+        foreach (var device in device_preferences) {
             if (device.id == id)
                 return device;
         }
@@ -135,8 +119,8 @@ public class Noise.DeviceManager : GLib.Object {
     
     public void add_device_preferences(DevicePreferences dp) {
         
-        lock(_device_preferences) {
-            _device_preferences.append(dp);
+        lock(device_preferences) {
+            device_preferences.add(dp);
         }
     }
 }
