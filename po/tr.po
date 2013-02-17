@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-05 17:58+0100\n"
+"POT-Creation-Date: 2013-02-16 12:58+0100\n"
 "PO-Revision-Date: 2012-12-11 22:07+0000\n"
 "Last-Translator: Sadık Atalay <seaflames@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-02-06 05:35+0000\n"
-"X-Generator: Launchpad (build 16468)\n"
+"X-Launchpad-Export-Date: 2013-02-17 05:02+0000\n"
+"X-Generator: Launchpad (build 16491)\n"
 "Language: tr\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -49,35 +49,35 @@ msgstr "$ALBUM üzerinde $ARTIST tarafından $NAME"
 msgid "New playlist"
 msgstr "Yeni çalma listesi"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:187
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:188
 #, c-format
 msgid "%s (%i)"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:214
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:215
 msgid "Export Playlist"
 msgstr "Çalma Listesini Aktar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:222
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:316
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:223
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:317
 msgid "MPEG Version 3.0 Extended (*.m3u)"
 msgstr "MPEG Sürüm 3.0 Genişletilmiş (*.m3u)"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:227
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:321
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:228
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:322
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
 msgstr "Shoutcast Çalma Listesi Versiyon 2.0 (*.pls)"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:301
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:302
 msgid "Playlist"
 msgstr "Çalma listesi"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:307
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:308
 #, c-format
 msgid "Import %s"
 msgstr "%s içe aktar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:341
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:342
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Tanımlanamayan çalma listesi dosyası.İçe aktarma başarısız oldu."
 
@@ -246,13 +246,13 @@ msgstr "Müzik Ara"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:595
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:725
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:109
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:119
 msgid "Music"
 msgstr "Müzik"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:660
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:548
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:131
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:101
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:111
 msgctxt "Name of the playlist"
 msgid "Queue"
@@ -275,7 +275,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:670
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:548
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:131
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:101
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:109
 msgid "History"
 msgstr "Geçmiş"
@@ -294,77 +294,77 @@ msgstr ""
 "Bu listeyi geçerli oturumunuzda oynattığınız bütün şarkıları görmek için "
 "kullanabilirsiniz."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1083
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1076
 msgid "Import Music"
 msgstr "Müzik aktar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1115
-#, c-format
-msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "<b>Müzik  </b> şuradan<b>%s</b> kitaplığa aktarılıyor."
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1096
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:241
+msgid "<b>Importing</b> music to library…"
+msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1130
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1111
 msgid "Rescanning music folder for changes"
 msgstr "Değişimler için müzik dizini yeniden taranıyor."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1137
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1118
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid "Could not find Music Folder"
 msgstr "Müzik dizini bulunamadı."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1137
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1118
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Lütfen müzik dizininizin bağlı ve ulaşılabilir olduğundan emin oldun."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1204
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1159
 msgid "Import Complete"
 msgstr "İçe Aktarma Tamamlandı"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1204
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1159
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s kütüphanenize eklendi."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:74
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:84
 msgid "Device Name:"
 msgstr "Aygıt Adı:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:77
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:87
 msgid "Device Name"
 msgstr "Aygıt Adı"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:79
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Automatically sync when plugged in:"
 msgstr "Takıldığı zaman otomatik senkronize et:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:86
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:96
 msgid "Sync:"
 msgstr "Senkronize et:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:108
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:118
 msgid "Other Files"
 msgstr "Diğer Dosyalar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:110
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:120
 msgid "Podcasts"
 msgstr "Podcastler"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:383
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:406
 msgid "All Music"
 msgstr "Tüm Müzikler"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:386
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:409
 msgid "All Podcasts"
 msgstr "Tüm Yayınlar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:516
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:554
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:539
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:577
 msgid "Sync Failed"
 msgstr "Senkronizasyon Başarısız"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:516
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:554
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:539
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:577
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
@@ -372,17 +372,17 @@ msgstr ""
 "%s adlı oynatma listesi %s cihazıyla senkronize edilmek için kullanılıyordu "
 "ama bulunamadı."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:602
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:605
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:625
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:628
 msgid "Cannot Sync"
 msgstr "Senkronize Edilemez."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:602
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:625
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr "Seçili ayarlarla aygıt senkronize edilemiyor. Yetersiz disk alanı"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:605
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:628
 msgid "Device is already being synced."
 msgstr "Aygıt zaten senkronize edildi."
 
@@ -428,7 +428,7 @@ msgstr "%s üzerinde bulunan tüm Müziğinizi kütüphanenize ekleyin."
 msgid "Select Music Folder"
 msgstr "Müzik Dizinini Seç"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:468
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:475
 msgid "No media"
 msgstr "Ortam bulunamadı"
 
@@ -868,22 +868,22 @@ msgid ""
 msgstr ""
 "Bu cihazdan içe akarma iptal edildi.Bu ortamdan sonra işlem durdurulacak."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:110
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:109
 msgid "No External Songs"
 msgstr "Harici Şarkı Yok"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:110
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:109
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr "Bu cihazda kütüphanenizde bulunmayan bir şarkı bulunamadı"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:306
+#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:242
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:399
+#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:335
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr ""
 
@@ -1037,7 +1037,7 @@ msgstr "Bilgi Panelini Göster"
 msgid "Hide Info Panel"
 msgstr "Bilgi Panelini Gizle"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/TopDisplay.vala:67
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/TopDisplay.vala:68
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Cancel"
 msgstr "Vazgeç"
@@ -1387,7 +1387,7 @@ msgid "Import all media"
 msgstr "Tüm medyayı aktar"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDView.vala:93
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDView.vala:91
 msgid "Import"
 msgstr "İçe Aktar"
 
@@ -1642,25 +1642,20 @@ msgstr ""
 "%s türü ortam için gereken eklenti yüklü değil.\n"
 "Ne yapmak istersiniz?"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:201
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:159
 #, c-format
 msgid "Importing music from %s…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:244
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:202
 msgid "Adding files to library…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:286
-#, c-format
-msgid "Adding music from %s to library…"
-msgstr ""
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:314
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:270
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:404
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:360
 msgid "Added to your queue:"
 msgstr ""
 
@@ -1668,6 +1663,7 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/ArtistInfo.vala:27
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
 msgid "Unknown Artist"
 msgstr "Bilinmeyen Sanatçı"
 
@@ -1687,20 +1683,15 @@ msgstr ""
 msgid "There was an error while loading this Audio CD."
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
 msgstr "Bilinmeyen ses CD'si"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:104
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr "%s bu Ses CD'sinin içeriğini okuyamadı"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:113
-msgid "Audio CD"
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+msgid "Impossible to read the contents of this Audio CD"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:279
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1708,128 +1699,112 @@ msgstr ""
 "Lütfen CD den içe aktarım yapmadan önce ,müzik dizininizin erişilebilir "
 "olduğundan emin olun."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:286
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:282
 msgid "No songs on CD"
 msgstr "CD de müzik bulunmuyor"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:286
-#, c-format
-msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr "%s CD de hiç müzik tespit edemedi.İçe aktaracak müzik bulunmuyor"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:291
-#, c-format
-msgid "%s is already doing an import"
-msgstr "%s zaten bir içe aktarım yapıyor"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:291
-#, c-format
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:282
 msgid ""
-"Please wait until %s is finished with the current import before importing "
-"the CD."
+"The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"Lütfen CDyi içe aktarmadan önce devam eden %s içe aktarmasının bitmesini "
-"bekleyin."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:408
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:382
 msgid "CD Import Complete"
 msgstr "CD içe aktarımı tamamlandı"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:405
-#, c-format
-msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s CD den %i parçayı içe aktarmayı tamamladı."
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:382
+msgid "Importation of a song from Audio CD finished."
+msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:408
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:382
 #, c-format
-msgid "%s has finished importing a song from Audio CD."
-msgstr "%s CD deki bir parçayı içe aktarmayı tamamladı."
+msgid "Importation of %i songs from Audio CD finished."
+msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:414
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:387
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "İçe aktarılan parça %i: %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:431
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:404
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "CD den içe aktarma şu an sürmekte olan içe aktarım sona erdikten sonra "
 "<b>iptal edilecek</b>."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:454
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:426
 msgid "An error occured during the Import of this CD"
 msgstr "Bu CD'nin İçe Aktarımı sırasında bir hata oluştu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:144
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:174
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:141
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:171
 msgid "Empty device!"
 msgstr "Boş cihaz!"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:148
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:178
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:145
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:175
 msgid "This device does not contain any music."
 msgstr "Bu cihaz herhangi bir müzik içermiyor."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:315
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:316
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:458
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:459
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:337
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:338
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:577
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:578
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:189
+msgid "Android Phone"
+msgstr ""
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:191
+msgid "Audio Player"
+msgstr ""
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:310
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:426
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:398
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:605
 #, c-format
 msgid "Syncing <b>%s</b>…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:372
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:440
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:608
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:778
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:364
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:498
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:633
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:790
 msgid "Finishing sync process…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:377
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:465
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:626
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:795
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:369
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:522
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:649
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:807
 msgid "Cancelling Sync…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:381
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:382
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:475
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:476
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:373
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:374
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:532
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:533
 msgid "There is not enough space on Device to complete the Sync…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:496
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:497
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:729
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:730
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:458
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:744
 #, c-format
 msgid "Removing from <b>%s</b>…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:541
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:572
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:976
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1015
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:517
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:1009
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:652
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:664
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:596
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:684
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "<b>$ARTIST</b> tarafından <b>$NAME</b  $DEVICE a Ekleniyor"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:671
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:824
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:615
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:834
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:909
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:920
 msgid "Syncing playlists"
 msgstr "Çalma Listesi Senkronize Ediliyor"
 
@@ -1929,11 +1904,31 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " açık "
 
+#, c-format
+#~ msgid "<b>Importing</b> music from <b>%s</b> to library."
+#~ msgstr "<b>Müzik  </b> şuradan<b>%s</b> kitaplığa aktarılıyor."
+
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Müzik CD'sinden şarkıları aktar"
 
 #~ msgid "Import media from device"
 #~ msgstr "Aygıtdan medyaları aktar"
+
+#, c-format
+#~ msgid "%s is already doing an import"
+#~ msgstr "%s zaten bir içe aktarım yapıyor"
+
+#, c-format
+#~ msgid "%s could not find any songs on the CD. No songs can be imported"
+#~ msgstr "%s CD de hiç müzik tespit edemedi.İçe aktaracak müzik bulunmuyor"
+
+#, c-format
+#~ msgid ""
+#~ "Please wait until %s is finished with the current import before importing "
+#~ "the CD."
+#~ msgstr ""
+#~ "Lütfen CDyi içe aktarmadan önce devam eden %s içe aktarmasının bitmesini "
+#~ "bekleyin."
 
 #, c-format
 #~ msgid "Importing music from %s..."
@@ -1951,6 +1946,14 @@ msgstr ""
 
 #~ msgid "Ripping track 1"
 #~ msgstr "Parça 1 sıkıştırılıyor"
+
+#, c-format
+#~ msgid "%s has finished importing %i songs from Audio CD."
+#~ msgstr "%s CD den %i parçayı içe aktarmayı tamamladı."
+
+#, c-format
+#~ msgid "%s has finished importing a song from Audio CD."
+#~ msgstr "%s CD deki bir parçayı içe aktarmayı tamamladı."
 
 #~ msgid "Unknown Title"
 #~ msgstr "Bilinmeyen Başlık"
@@ -2132,6 +2135,10 @@ msgstr ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
 #~ "%s tarafından %s için müzik dosyası bulunamadı. Ne yapmak istersiniz?"
+
+#, c-format
+#~ msgid "%s could not read the contents of this Audio CD"
+#~ msgstr "%s bu Ses CD'sinin içeriğini okuyamadı"
 
 #, c-format
 #~ msgid "Import %i songs"
