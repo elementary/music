@@ -56,6 +56,7 @@ public class Noise.ViewContainer : Gtk.Notebook {
                 break;
             }
         }
+        view.destroy ();
     }
 
     public Gtk.Widget? get_view (int index) {

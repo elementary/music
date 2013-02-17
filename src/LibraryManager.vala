@@ -247,18 +247,15 @@ public class Noise.LibraryManager : Object, LibraryManagerInterface {
         SourceFunc callback = add_folder_to_library_async.callback;
 
         Threads.add (() => {
+            var files = new LinkedList<string> ();
             foreach (var folder in folders) {
                 var file = File.new_for_path (folder);
-                var files = new LinkedList<string> ();
-
                 FileUtils.count_music_files (file, ref files);
-
-                var to_import = remove_duplicate_files (files);
-
-                fo.resetProgress (to_import.size - 1);
-                Timeout.add (100, doProgressNotificationWithTimeout);
-                fo.import_files (to_import, FileOperator.ImportType.IMPORT);
             }
+            var to_import = remove_duplicate_files (files);
+            fo.resetProgress (to_import.size - 1);
+            Timeout.add (100, doProgressNotificationWithTimeout);
+            fo.import_files (to_import, FileOperator.ImportType.IMPORT);
 
             Idle.add ((owned) callback);
         });
