@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-02-16 12:58+0100\n"
-"PO-Revision-Date: 2013-02-10 09:04+0000\n"
+"PO-Revision-Date: 2013-02-18 11:22+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-02-17 05:01+0000\n"
+"X-Launchpad-Export-Date: 2013-02-19 05:21+0000\n"
 "X-Generator: Launchpad (build 16491)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -305,7 +305,7 @@ msgstr "Import Muzik"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1096
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:241
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Mengimport</b> muzik ke pustaka…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1111
 msgid "Rescanning music folder for changes"
@@ -1702,7 +1702,7 @@ msgstr "CD Audio Tidak Sah"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "Mustahil dapat membaca kandungan CD Audio ini"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid ""
@@ -1720,6 +1720,8 @@ msgstr "Tiada lagu dalam CD"
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"Aplikasi tidak dapat cari sebarang lagu di dalam CD ini. Tiada lagu dapat "
+"diimport"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:382
 msgid "CD Import Complete"
@@ -1727,12 +1729,12 @@ msgstr "Import CD Selesai"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:382
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "Pengimportan lagu dari CD Audio telah selesai."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:382
 #, c-format
 msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
+msgstr "Pengimportan %i lagu dari CD Audio telah selesai."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:387
 #, c-format
@@ -1759,11 +1761,11 @@ msgstr "Peranti ini tidak mengandungi sebarang muzik."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:189
 msgid "Android Phone"
-msgstr ""
+msgstr "Telefon Android"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:191
 msgid "Audio Player"
-msgstr ""
+msgstr "Pemain Audio"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:310
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:426
