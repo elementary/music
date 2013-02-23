@@ -6,8 +6,8 @@ project(noise)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 set(GETTEXT_PACKAGE ${CMAKE_PROJECT_NAME})
-set(RELEASE_NAME "Luna-Beta-1")
-set(VERSION "1.0")
+set(RELEASE_NAME "Luna-Beta-2")
+set(VERSION "0.2")
 set(VERSION_INFO "Pre-Release")
 
 set(DATADIR ${CMAKE_INSTALL_PREFIX}/share)

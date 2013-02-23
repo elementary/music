@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -67,11 +67,11 @@ public class Noise.App : Granite.Application {
         program_name = "Noise";
         exec_name = "noise";
 
-        app_copyright = "2012";
+        app_copyright = "2012-2013";
         application_id = "org.pantheon.noise";
         app_icon = "multimedia-audio-player";
         app_launcher = "noise.desktop";
-        app_years = "2012";
+        app_years = "2012-2013";
 
         main_url = "https://launchpad.net/noise";
         bug_url = "https://bugs.launchpad.net/noise/+filebug";
