@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-16 12:58+0100\n"
-"PO-Revision-Date: 2013-02-09 08:43+0000\n"
+"PO-Revision-Date: 2013-02-22 14:17+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-02-17 05:01+0000\n"
-"X-Generator: Launchpad (build 16491)\n"
+"X-Launchpad-Export-Date: 2013-02-23 05:50+0000\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: gl\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -306,7 +306,7 @@ msgstr "Importar música"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1096
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:241
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Importando</b> música para a fonoteca…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1111
 msgid "Rescanning music folder for changes"
@@ -1713,7 +1713,7 @@ msgstr "CD de son incorrecto"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "Non foi posíbel ler o contido deste Cd de son"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:276
 msgid ""
@@ -1731,6 +1731,8 @@ msgstr "Non hai cancións no CD"
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"O aplicativo non puido atopar ningunha canción no CD. Non hai cancións se "
+"poidan importar"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:382
 msgid "CD Import Complete"
@@ -1738,12 +1740,12 @@ msgstr "Rematou a importación do CD"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:382
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "A importación da canción desde o CD de son rematou."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:382
 #, c-format
 msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
+msgstr "A importación de %i cancións desde o CD de son rematou."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:387
 #, c-format
@@ -1771,11 +1773,11 @@ msgstr "Este dispositivo non conten música ningunha."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:189
 msgid "Android Phone"
-msgstr ""
+msgstr "Teléfono Android"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:191
 msgid "Audio Player"
-msgstr ""
+msgstr "Reprodutor de son"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:310
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:426
