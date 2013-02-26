@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-16 12:58+0100\n"
-"PO-Revision-Date: 2013-01-09 23:20+0000\n"
+"PO-Revision-Date: 2013-02-25 10:03+0000\n"
 "Last-Translator: Kristjan Vool <Unknown>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-02-17 05:01+0000\n"
-"X-Generator: Launchpad (build 16491)\n"
+"X-Launchpad-Export-Date: 2013-02-26 05:22+0000\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: et\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -121,8 +121,8 @@ msgstr[1] "%u päeva"
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] "%u tund"
-msgstr[1] "%u tundi"
+msgstr[0] "kestvusega %u tund"
+msgstr[1] "kestvusega %u tundi"
 
 #. / days, hours and minutes
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:83
@@ -305,7 +305,7 @@ msgstr "Muusika importimine"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1096
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:241
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "Muusika <b>importimine</b> kogumikku..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1111
 msgid "Rescanning music folder for changes"
@@ -642,7 +642,7 @@ msgstr "Eemalda laul"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "Uus esitusloend..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -680,7 +680,7 @@ msgstr "Mitte kunagi"
 #. / by the column's title header.
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:735
 msgid "Sample List String"
-msgstr ""
+msgstr "Nimekirja ridade näidis"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
 msgid "Autosize Columns"
@@ -890,11 +890,11 @@ msgstr ""
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
-msgstr ""
+msgstr "<b>%s</b> importimine kogumikku…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:335
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "Failide <b>kopeerimine muusika kausta</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:441
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:678
@@ -937,6 +937,8 @@ msgstr "Muusikamängija"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
+"Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Muusika;Esitaja;Mäng"
+"ija;Esita;Mängi;Meedia;Telegon;Mobiil"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 msgid "Sync"
@@ -988,7 +990,7 @@ msgstr "Korda albumit"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:248
 msgid "Artist"
-msgstr "Esitaja"
+msgstr "Esitaja:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
 msgid "Repeat Artist"
@@ -1178,7 +1180,7 @@ msgstr "Laulusõnad"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:175
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:342
 msgid "Editing $NAME by $ARTIST"
-msgstr "$NAME - $ARTIST redigeerimine"
+msgstr "$NAME - $ARTIST"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:177
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:344
@@ -1332,7 +1334,7 @@ msgstr "Määra"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
 msgid "Set Music Folder?"
-msgstr "Määrata muusika kaustaks?"
+msgstr "Muusika kausta määramine"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
 #, c-format
@@ -1340,8 +1342,9 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Oled sa kindel, et soovid %s määrata vaikimisi muusika kaustaks? Sel juhul "
-"taastatakse kogumiku algsed andmed ning esitusloendid kustutatakse."
+"Oled sa kindel, et soovid kausta %s määrata vaikimisi muusika kaustaks? Sel "
+"juhul taastatakse kogumiku algsed andmed ning eelnevad esitusloendid "
+"kustutatakse."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:76
 msgid "Equalizer"
@@ -1865,7 +1868,7 @@ msgid ""
 "only need to do this once."
 msgstr ""
 "Last.FM-iga ühendamiseks peavad Noise'il olema vajalikud õigused. Selle "
-"tegemiseks vajuta allolevat nuppu (seda on vaja teha ainult üks kord)."
+"jaoks vajuta allolevat nuppu (seda on vaja teha ainult üks kord)."
 
 #~ msgid "Done"
 #~ msgstr "Valmis"
