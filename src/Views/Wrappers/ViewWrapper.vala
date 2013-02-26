@@ -99,6 +99,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * It defines how child widgets behave and some other properties.
      */
     public Hint hint { get; protected set; }
+    public Library library { get; protected set; }
 
     public bool is_current_wrapper {
         get {
@@ -129,9 +130,10 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     // No widget is set as active until this is true!
     private bool data_initialized = false;
 
-    public ViewWrapper (Hint hint)
+    public ViewWrapper (Hint hint, Library library)
     {
         this.hint = hint;
+        this.library = library;
 
         orientation = Gtk.Orientation.VERTICAL;
 

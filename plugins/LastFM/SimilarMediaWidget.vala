@@ -19,9 +19,6 @@
 
 public class Noise.SimilarMediasWidget : Gtk.Grid {
 
-    private Noise.LibraryManager lm;
-    private Noise.LibraryWindow lw;
-
     public LastFM.Core lfm;
     
     private Gtk.ScrolledWindow scroll;
@@ -33,10 +30,8 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
     
     bool similars_fetched;
     
-    public SimilarMediasWidget (Noise.LibraryManager lm, LastFM.Core core) {
-        this.lm = lm;
-        this.lw = lm.lw;
-        ssv = new SimilarMediasView(lm, lm.lw);
+    public SimilarMediasWidget (LastFM.Core core) {
+        ssv = new SimilarMediasView();
         lfm = core;
         
         similars_fetched = false;
@@ -44,7 +39,7 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         // Last.fm
         lfm.logged_in.connect (logged_in_to_lastfm);
         lfm.similar_retrieved.connect (similar_retrieved);
-        lw.update_media_info.connect ((m) => {
+        App.main_window.update_media_info.connect ((m) => {
             lfm.fetchCurrentSimilarSongs();
             lfm.fetch_album_info (m);
         });
@@ -66,10 +61,10 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         this.attach (love_ban_buttons, 0, 0, 1, 1);
         this.attach (scroll, 0, 1, 1, 1);
         
-        lw.info_panel.add_view (this);
+        App.main_window.info_panel.add_view (this);
         show_all ();
         
-        lw.info_panel.to_update.connect (update_visibilities);
+        App.main_window.info_panel.to_update.connect (update_visibilities);
 
         love_ban_buttons.changed.connect (love_ban_buttons_changed);
     }

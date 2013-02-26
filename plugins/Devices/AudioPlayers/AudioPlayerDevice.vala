@@ -277,6 +277,10 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         return false;
     }
     
+    public Noise.Library get_library () {
+        return new AudioPlayerLibrary ();
+    }
+    
     public Collection<Noise.Media> get_medias() {
         return medias;
     }

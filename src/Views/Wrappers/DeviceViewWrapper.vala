@@ -24,8 +24,8 @@
 public class Noise.DeviceViewWrapper : ViewWrapper {
     public Device d { get; private set; }
     
-    public DeviceViewWrapper (TreeViewSetup tvs, Device d) {
-        base (tvs.get_hint ());
+    public DeviceViewWrapper (TreeViewSetup tvs, Device d, Library library) {
+        base (tvs.get_hint (), library);
 
         list_view = new ListView (this, tvs);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
@@ -48,7 +48,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
     }
 
     private void import_request (Gee.LinkedList<Media> to_import) {
-        if (!App.library_manager.doing_file_operations())
+        if (!library.doing_file_operations())
             d.transfer_to_library (to_import);
     }
 

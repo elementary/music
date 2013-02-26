@@ -43,7 +43,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
         buildUI();
 
         App.player.media_played.connect_after (on_media_updated);
-        App.library_manager.media_updated.connect_after (on_media_updated);
+        libraries_manager.local_library.media_updated.connect_after (on_media_updated);
         notification_manager.songNotification.connect (on_media_updated);
         CoverartCache.instance.changed.connect_after (update_cover_art);
     }
@@ -145,7 +145,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
     private void ratingChanged (int new_rating) {
         if (current_media != null) {
             current_media.rating = new_rating;
-            App.library_manager.update_media_item (current_media, false, true);
+            libraries_manager.local_library.update_media (current_media, false, true);
         }
     }
 }

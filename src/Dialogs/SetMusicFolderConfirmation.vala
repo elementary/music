@@ -99,7 +99,7 @@ public class Noise.SetMusicFolderConfirmation : Window {
 		
 		padding.pack_start(content, true, true, 10);
 		
-		savePlaylists.set_sensitive(App.library_manager.media_count() > 0 && App.library_manager.playlist_count() > 0);
+		savePlaylists.set_sensitive(!libraries_manager.local_library.get_medias ().is_empty && libraries_manager.local_library.playlist_count_without_read_only () > 0);
 		
 		savePlaylists.clicked.connect(savePlaylistsClicked);
 		cancel.clicked.connect(cancel_clicked);
@@ -129,7 +129,7 @@ public class Noise.SetMusicFolderConfirmation : Window {
 			
 			// foreach playlist in lm.playlists(), save to (p.name).m3u
 			var success = true;
-			foreach(var p in App.library_manager.playlists()) {
+			foreach(var p in libraries_manager.local_library.get_playlists()) {
 				if(!Noise.PlaylistsUtils.save_playlist_m3u(p, folder))
 					success = false;
 			}

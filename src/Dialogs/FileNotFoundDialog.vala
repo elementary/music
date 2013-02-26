@@ -1,8 +1,6 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,8 +16,18 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Corentin Noël <tintou@mailoo.org>
  */
-
 using Gtk;
 
 public class Noise.FileNotFoundDialog : Window {
@@ -80,7 +88,7 @@ public class Noise.FileNotFoundDialog : Window {
 
 
 		
-		rescanLibrary.set_sensitive(!App.library_manager.doing_file_operations());
+		rescanLibrary.set_sensitive(!libraries_manager.local_library.doing_file_operations());
 		
 		/* set up controls layout */
 		var information = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -110,15 +118,15 @@ public class Noise.FileNotFoundDialog : Window {
 			this.destroy(); 
 		});
 		
-		App.library_manager.file_operations_started.connect(file_operations_started);
-		App.library_manager.file_operations_done.connect(file_operations_done);
+		libraries_manager.local_library.file_operations_started.connect(file_operations_started);
+		libraries_manager.local_library.file_operations_done.connect(file_operations_done);
 		
 		add(padding);
 		show_all();
 	}
 	
 	void removeMediaClicked() {
-		App.library_manager.remove_media (media_list, false);
+		libraries_manager.local_library.remove_medias (media_list, false);
 		
 		this.destroy();
 	}
@@ -134,7 +142,7 @@ public class Noise.FileNotFoundDialog : Window {
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
 		
 		// try and help user by setting a sane default folder
-		var invalid_file = File.new_for_uri(App.library_manager.media_from_id(media_id).uri);
+		var invalid_file = File.new_for_uri(libraries_manager.local_library.media_from_id(media_id).uri);
 		
 		if(invalid_file.get_parent().query_exists())
 			file_chooser.set_current_folder(invalid_file.get_parent().get_path());
@@ -157,7 +165,7 @@ public class Noise.FileNotFoundDialog : Window {
 			m.location_unknown = false;
 			m.unique_status_image = null;
 			// TODO: lm.lw.media_found(m.rowid);
-			App.library_manager.update_media_item (m, false, false);
+			libraries_manager.local_library.update_media (m, false, false);
 			
 			this.destroy();
 		}

@@ -48,8 +48,7 @@ namespace Noise.Widgets {
         }
 
         public void update_sensitivities () {
-            var lm = App.library_manager;
-            playlist_item.set_sensitive (lm.main_directory_set && lm.have_media);
+            playlist_item.set_sensitive (((LocalLibrary)libraries_manager.local_library).main_directory_set && libraries_manager.local_library.get_medias().size > 0);
             info_panel_item.set_sensitive (App.main_window.info_panel.can_show_up);
         }
     }

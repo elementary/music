@@ -2,7 +2,7 @@ set(CLIENT_SOURCE
     main.vala
     Noise.vala
     LibraryWindow.vala
-    LibraryManager.vala
+    LocalLibrary.vala
     PlaybackManager.vala
     FileOperator.vala
     Utils/PixbufUtils.vala

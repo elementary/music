@@ -292,13 +292,13 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 if (results.fetch_int(0) == 0) {
-                    StaticPlaylist p = App.library_manager.playlist_from_name (results.fetch_string(1));
+                    StaticPlaylist p = libraries_manager.local_library.playlist_from_name (results.fetch_string(1));
                     var tvs = new TreeViewSetup (results.fetch_int(2), Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
                     tvs.set_sort_direction_from_string(results.fetch_string(3));
                     tvs.import_columns(results.fetch_string(4));
                     rv.set (p, tvs);
                 } else {
-                    SmartPlaylist p = App.library_manager.smart_playlist_from_name (results.fetch_string(1));
+                    SmartPlaylist p = libraries_manager.local_library.smart_playlist_from_name (results.fetch_string(1));
                     var tvs = new TreeViewSetup (results.fetch_int(2), Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
                     tvs.set_sort_direction_from_string(results.fetch_string(3));
                     tvs.import_columns(results.fetch_string(4));
@@ -519,7 +519,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                 var new_media = new Gee.LinkedList<Media> ();
                 for (index = 0; index < media_strings.length - 1; ++index) {
                     string uri = media_strings[index];
-                    var m = App.library_manager.media_from_uri (uri);
+                    var m = libraries_manager.local_library.media_from_uri (uri);
                     if (m != null) {
                         new_media.add (m);
                     }
@@ -742,7 +742,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
-                SmartPlaylist p = new SmartPlaylist(App.library_manager.media ());
+                SmartPlaylist p = new SmartPlaylist(libraries_manager.local_library.get_medias ());
 
                 p.name = results.fetch_string(0);
                 p.conditional = (SmartPlaylist.ConditionalType)results.fetch_int(1);

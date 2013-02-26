@@ -82,8 +82,8 @@ public class Noise.SyncWarningDialog : Window {
         var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));        
         title.set_markup (title_string);
 
-        importMedias.set_sensitive(!App.library_manager.doing_file_operations());
-        sync.set_sensitive(!App.library_manager.doing_file_operations());
+        importMedias.set_sensitive(!libraries_manager.local_library.doing_file_operations());
+        sync.set_sensitive(!libraries_manager.local_library.doing_file_operations());
         
         /* set up controls layout */
         var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
@@ -111,8 +111,8 @@ public class Noise.SyncWarningDialog : Window {
             this.destroy(); 
         });
         
-        App.library_manager.file_operations_started.connect(file_operations_started);
-        App.library_manager.file_operations_done.connect(file_operations_done);
+        libraries_manager.local_library.file_operations_started.connect(file_operations_started);
+        libraries_manager.local_library.file_operations_done.connect(file_operations_done);
         
         add(padding);
         show_all();

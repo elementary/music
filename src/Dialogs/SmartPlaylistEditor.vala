@@ -35,14 +35,15 @@ public class Noise.SmartPlaylistEditor : Window {
     private Gtk.Button add_button;
     private Gee.ArrayList<SmartPlaylistEditorQuery> queries_list;
     private int row = 0;
+    private Library library;
 
-    public SmartPlaylistEditor(SmartPlaylist? sp = null) {
+    public SmartPlaylistEditor(SmartPlaylist? sp = null, Library library) {
         
         this.title = _("Smart Playlist Editor");
         
         if (sp == null) {
             is_new = true;
-            this.sp = new SmartPlaylist (App.library_manager.media ());
+            this.sp = new SmartPlaylist (library.get_medias ());
         } else {
             this.sp = sp;
         }
@@ -159,7 +160,7 @@ public class Noise.SmartPlaylistEditor : Window {
             return;
         }
         else {
-            foreach (var p in App.library_manager.smart_playlists ()) {
+            foreach (var p in library.get_smart_playlists ()) {
                 var fixed_name = name_entry.text.strip ();
                 if ( (sp == null || sp.rowid != p.rowid) && fixed_name == p.name) {
                     save_button.set_sensitive (false);
@@ -204,7 +205,7 @@ public class Noise.SmartPlaylistEditor : Window {
         sp.limit = limit_check.get_active ();
         sp.limit_amount = (int)limit_spin.get_value ();
         if (is_new) {
-            App.library_manager.add_smart_playlist (sp);
+            library.add_smart_playlist (sp);
         }
         this.destroy ();
     }

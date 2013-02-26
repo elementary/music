@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -24,6 +24,8 @@
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
+ *
+ * Authored by: Corentin Noël <tintou@mailoo.org>
  */
 
 namespace Noise.SettingsWindow {

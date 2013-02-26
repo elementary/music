@@ -1,8 +1,6 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,12 +16,21 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
 public class Noise.Pipeline : GLib.Object {
 	public Gst.Pipeline pipe;
 	public Equalizer eq;
-	public ReplayGain gapless;
 	
 	public dynamic Gst.Bus bus;
 	//Pad teepad;
@@ -42,7 +49,6 @@ public class Noise.Pipeline : GLib.Object {
 	//dynamic Gst.Element rgvolume;
 	
 	public Pipeline() {
-		gapless = new ReplayGain();
 		
 		pipe = new Gst.Pipeline("pipeline");
 		playbin = Gst.ElementFactory.make("playbin2", "play");

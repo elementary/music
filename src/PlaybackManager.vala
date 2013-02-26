@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -26,6 +26,7 @@
  * statement from your version.
  *
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Corentin Noël <tintou@mailoo.org>
  */
 
 using Gee;
@@ -57,6 +58,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public StaticPlaylist queue_playlist = new StaticPlaylist ();
     public StaticPlaylist history_playlist = new StaticPlaylist ();
 
+    // TODO: REWRITE IT USING THE LIBRARY
+    public Library library { get { return libraries_manager.local_library; } }
 
     public int _played_index = 0;//if user press back, this goes back 1 until it hits 0. as new media play, this goes with it
     public int _current_index;
@@ -133,7 +136,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
     public void queue_media_by_id (Collection<int> ids) {
-        queue_media (App.library_manager.media_from_ids (ids));        
+        queue_media (library.medias_from_ids (ids));        
     }
 
 
@@ -142,7 +145,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
     public void unqueue_media_by_id (Collection<int> ids) {
-        unqueue_media (App.library_manager.media_from_ids (ids));        
+        unqueue_media (library.medias_from_ids (ids));        
     }
 
     public Media peek_queue() {
@@ -336,7 +339,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 rv = _current_shuffled.get(_current_shuffled_index);
             }
             else {
-                foreach(Media s in App.library_manager.media ())
+                foreach(Media s in library.get_medias ())
                     addToCurrent(s);
                 
                 _current_shuffled_index = 0;
@@ -381,7 +384,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 rv = _current.get(_current_index);
             }
             else {
-                foreach(Media s in App.library_manager.media ())
+                foreach(Media s in library.get_medias ())
                     addToCurrent(s);
                 
                 _current_index = 0;
@@ -435,7 +438,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 rv = _current_shuffled.get(_current_shuffled_index);
             }
             else {
-                foreach(Media s in App.library_manager.media ())
+                foreach(Media s in library.get_medias ())
                     addToCurrent(s);
                 
                 _current_shuffled_index = _current_shuffled.size - 1;
@@ -479,7 +482,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 rv = _current.get(_current_index);
             }
             else {
-                foreach(Media s in App.library_manager.media ())
+                foreach(Media s in library.get_medias ())
                     addToCurrent(s);
                 
                 _current_index = _current.size - 1;
@@ -593,7 +596,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                     int delta_s = (int)player_duration_s - (int)(m.length / Numeric.MILI_INV);
                     if (Math.fabs ((double)delta_s) > 3) {
                         m.length = (uint)(player_duration_s * Numeric.MILI_INV);
-                        App.library_manager.update_media_item (m, false, false);
+                        library.update_media (m, false, false);
                     }
                 }
             }

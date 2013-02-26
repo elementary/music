@@ -216,6 +216,10 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return false;
     }
     
+    public Noise.Library get_library () {
+        return libraries_manager.local_library;
+    }
+    
     public Collection<int> get_medias() {
         return medias;
     }

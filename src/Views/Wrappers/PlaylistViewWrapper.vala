@@ -25,8 +25,8 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
     public TreeViewSetup tvs;
     public signal void button_clicked (int playlist_id);
 
-    public PlaylistViewWrapper (int playlist_id, ViewWrapper.Hint hint, TreeViewSetup? tvs = null) {
-        base (hint);
+    public PlaylistViewWrapper (int playlist_id, ViewWrapper.Hint hint, TreeViewSetup? tvs = null, Library library) {
+        base (hint, library);
         if (tvs == null)
             this.tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, hint);
         else
@@ -52,9 +52,9 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         // by the handlers connected below through connect_data_signals()
         if (hint == Hint.SMART_PLAYLIST) {
             // this sets the media indirectly through the signal handlers connected above
-            yield set_media_async (App.library_manager.media_from_smart_playlist (playlist_id));
+            yield set_media_async (library.smart_playlist_from_id (playlist_id).medias);
         } else if (hint == Hint.PLAYLIST) {
-            yield set_media_async (App.library_manager.media_from_playlist (playlist_id));
+            yield set_media_async (library.playlist_from_id (playlist_id).medias);
         } else {
             assert_not_reached ();
         }
@@ -65,7 +65,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
     private void connect_data_signals () {
         switch (hint) {
             case Hint.PLAYLIST:
-                var p = App.library_manager.playlist_from_id (playlist_id);
+                var p = library.playlist_from_id (playlist_id);
 
                 // Connect to playlist signals
                 if (p != null) {
@@ -76,7 +76,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
             break;
             
             case Hint.SMART_PLAYLIST:
-                var p = App.library_manager.smart_playlist_from_id (playlist_id);
+                var p = library.smart_playlist_from_id (playlist_id);
 
                 // Connect to smart playlist signals
                 if (p != null) {

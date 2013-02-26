@@ -104,7 +104,7 @@ public class Noise.TopDisplay : Box {
             if (message != null)
                 this.set_label_markup (message);
         });
-        App.library_manager.media_updated.connect(media_updated);
+        libraries_manager.local_library.media_updated.connect(media_updated);
     }
     
     /** label functions **/
@@ -267,7 +267,7 @@ public class Noise.TopDisplay : Box {
     }
 
     public void cancel_clicked() {
-        App.library_manager.cancel_operations();
+        libraries_manager.local_library.cancel_operations ();
     }
 
     public void set_media (Media current_media) {

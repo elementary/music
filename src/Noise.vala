@@ -50,7 +50,7 @@ public class Noise.App : Granite.Application {
 
     // TODO: Expose Noise.Player instead of PlaybackManager
     public static PlaybackManager player { get; private set; }
-    public static LibraryManager library_manager { get; private set; }
+    private LocalLibrary library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
 
     construct {
@@ -105,6 +105,7 @@ public class Noise.App : Granite.Application {
         notification_manager = new NotificationManager ();
         main_settings = new Settings.Main ();
         equalizer_settings = new Settings.Equalizer ();
+        libraries_manager = new LibrariesManager ();
         device_manager = new DeviceManager ();
         
         if (main_window == null) {
@@ -113,7 +114,7 @@ public class Noise.App : Granite.Application {
             // members. See https://bugzilla.gnome.org/show_bug.cgi?id=543189
             Icons.init ();
 
-            library_manager = new LibraryManager ();
+            library_manager = new LocalLibrary ();
             player = new PlaybackManager ();
             library_manager.initialize_library ();
             main_window = new LibraryWindow ();

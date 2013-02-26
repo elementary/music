@@ -1,8 +1,6 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,6 +16,17 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Corentin Noël <tintou@mailoo.org>
  */
 
 using Gee;
@@ -69,7 +78,7 @@ public class Noise.FileOperator : Object {
     }
     
     public void connect_to_manager () {
-        App.library_manager.progress_cancel_clicked.connect( () => { 
+        libraries_manager.local_library.progress_cancel_clicked.connect( () => { 
             cancelled = true;
             tagger.cancel_operations();
         } );
@@ -160,7 +169,7 @@ public class Noise.FileOperator : Object {
                 // wait to update media when out of thread
                 if(emit_update) {
                     Idle.add( () => {
-                        App.library_manager.update_media_item (s, false, false); return false;
+                        libraries_manager.local_library.update_media (s, false, false); return false;
                     });
                 }
             }
@@ -232,31 +241,31 @@ public class Noise.FileOperator : Object {
         
         foreach (var playlist in playlists.entries) {
             if (playlist.value.get (0).has_prefix ("/")) {
-                App.library_manager.add_files_to_library (convert_paths_to_uris (playlist.value));
+                libraries_manager.local_library.add_files_to_library (convert_paths_to_uris (playlist.value));
             } else {
-                App.library_manager.add_files_to_library (playlist.value);
+                libraries_manager.local_library.add_files_to_library (playlist.value);
             }
         }
         
         foreach (var playlist in playlists.entries) {
-            App.library_manager.start_file_operations(C_("Importing playlist", "Importing <b>%s</b> to Library…").printf (playlist.key));
+            libraries_manager.local_library.start_file_operations(C_("Importing playlist", "Importing <b>%s</b> to Library…").printf (playlist.key));
             var new_playlist = new StaticPlaylist();
             new_playlist.name = playlist.key;
             var medias_to_use = playlist.value;
             var to_add = new LinkedList<Media> ();
-            foreach (var media in App.library_manager.media ()) {
+            foreach (var media in libraries_manager.local_library.get_medias ()) {
                 if (medias_to_use.contains (media.file.get_path())) {
                     to_add.add (media);
                }
             }
             new_playlist.add_medias (to_add);
-            App.library_manager.add_playlist (new_playlist);
-            App.library_manager.finish_file_operations();
+            libraries_manager.local_library.add_playlist (new_playlist);
+            libraries_manager.local_library.finish_file_operations();
         }
         
         /*foreach(string path in paths[0]) {
             Media s;
-            if( (s = App.library_manager.media_from_file(File.new_for_path (path))) != null)
+            if( (s = libraries_manager.local_library.media_from_file(File.new_for_path (path))) != null)
                 internals.add(s.rowid);
 
                 externals.add(path);
@@ -266,8 +275,8 @@ public class Noise.FileOperator : Object {
         var to_add = new LinkedList<int>();
         foreach(int i in internals) {
             to_add.add (i);
-            App.library_manager.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
-            App.library_manager.finish_file_operations();
+            libraries_manager.local_library.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
+            libraries_manager.local_library.finish_file_operations();
         }
 
         new_playlist.add_media (to_add);
@@ -303,7 +312,7 @@ public class Noise.FileOperator : Object {
         if (index == queue_size) {
             queue_finished();
         } else if (new_imports.size >= 200) {
-            App.library_manager.add_media (new_imports); // give user some feedback
+            libraries_manager.local_library.add_medias (new_imports); // give user some feedback
             new_imports.clear();
         }
     }
@@ -317,8 +326,8 @@ public class Noise.FileOperator : Object {
     }
     
     void queue_finished() {
-        App.library_manager.music_imported (all_new_imports, import_errors);
-        App.library_manager.add_media (new_imports);
+        libraries_manager.local_library.music_imported (all_new_imports, import_errors);
+        libraries_manager.local_library.add_medias (new_imports);
         new_imports.clear();
         
         if(import_type == ImportType.PLAYLIST) {
@@ -326,8 +335,8 @@ public class Noise.FileOperator : Object {
             foreach (var s in all_new_imports)
                 to_add.add (s.rowid);
             new_playlist.add_medias (to_add);
-            new_playlist.name = PlaylistsUtils.get_new_playlist_name (App.library_manager.playlists (), new_playlist.name);
-            App.library_manager.add_playlist (new_playlist);
+            new_playlist.name = PlaylistsUtils.get_new_playlist_name (libraries_manager.local_library.get_playlists (), new_playlist.name);
+            libraries_manager.local_library.add_playlist (new_playlist);
         }
         
         // if doing import and copy to music folder is enabled, do copy here
@@ -337,8 +346,8 @@ public class Noise.FileOperator : Object {
             Threads.add (copy_imports_thread);
         }
         else {
-            App.library_manager.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
-            App.library_manager.finish_file_operations();
+            libraries_manager.local_library.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
+            libraries_manager.local_library.finish_file_operations();
         }
     }
     
@@ -355,8 +364,8 @@ public class Noise.FileOperator : Object {
         }
         
         Idle.add( () => {
-            App.library_manager.music_added(import_errors);
-            App.library_manager.finish_file_operations();
+            libraries_manager.local_library.music_added(import_errors);
+            libraries_manager.local_library.finish_file_operations();
             
             return false;
         });

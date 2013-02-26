@@ -330,12 +330,12 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_podcasts_combobox.set_button_sensitivity (Gtk.SensitivityType.ON);
 #endif
         //audiobookDropdown.set_button_sensitivity (SensitivityType.ON);
-        App.library_manager.playlist_added.connect (() => {refresh_lists ();});
-        App.library_manager.playlist_name_updated.connect (() => {refresh_lists ();});
-        App.library_manager.playlist_removed.connect (() => {refresh_lists ();});
-        App.library_manager.smartplaylist_added.connect (() => {refresh_lists ();});
-        App.library_manager.smartplaylist_name_updated.connect (() => {refresh_lists ();});
-        App.library_manager.smartplaylist_removed.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.playlist_added.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.playlist_name_updated.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.playlist_removed.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.smartplaylist_added.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.smartplaylist_name_updated.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.smartplaylist_removed.connect (() => {refresh_lists ();});
     }
     
     bool rowSeparatorFunc (Gtk.TreeModel model, Gtk.TreeIter iter) {
@@ -378,7 +378,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 #endif
         //audiobookDropdown.sensitive = syncAudiobooks.active;
         
-        App.library_manager.dbu.save_device (pref);
+        ((LocalLibrary)libraries_manager.local_library).dbu.save_device (pref);
     }
     
     public bool all_medias_selected () {
@@ -422,7 +422,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         //audiobookList.set(iter, 0, null, 1, "<separator_item_unique_name>");
         
         /* add all playlists */
-        foreach (var p in App.library_manager.smart_playlists ()) {
+        foreach (var p in libraries_manager.local_library.get_smart_playlists ()) {
             //bool music, podcasts, audiobooks;
             //test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
             
@@ -441,7 +441,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 //audiobook_list.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
             //}
         }
-        foreach (var p in App.library_manager.playlists ()) {
+        foreach (var p in libraries_manager.local_library.get_playlists ()) {
             //bool music, podcasts, audiobooks;
             //test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
             if (p.read_only == false) {
@@ -511,15 +511,15 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         if (pref.sync_music) {
             if (pref.sync_all_music) {
-                foreach (var s in App.library_manager.media ()) {
+                foreach (var s in libraries_manager.local_library.get_medias ()) {
                     if (s.mediatype == 0 && !s.isTemporary)
                         list.add (s);
                 }
             }
             else {
-                GLib.Object p = App.library_manager.playlist_from_name (pref.music_playlist);
+                GLib.Object p = libraries_manager.local_library.playlist_from_name (pref.music_playlist);
                 if (p == null)
-                    p = App.library_manager.smart_playlist_from_name (pref.music_playlist);
+                    p = libraries_manager.local_library.smart_playlist_from_name (pref.music_playlist);
                 
                 if (p != null) {
                     if (p is StaticPlaylist) {
@@ -555,20 +555,20 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 }
             }
             else {
-                GLib.Object p = App.library_manager.playlist_from_name(pref.podcast_playlist);
+                GLib.Object p = libraries_manager.local_library.playlist_from_name(pref.podcast_playlist);
                 if(p == null)
-                    p = App.library_manager.smart_playlist_from_name(pref.podcast_playlist);
+                    p = libraries_manager.local_library.smart_playlist_from_name(pref.podcast_playlist);
                 
                 if(p != null) {
                     if(p is Playlist) {
                         foreach(int i in ((Playlist)p).media ()) {
-                            if(App.library_manager.media_from_id(i).mediatype == 1 && !App.library_manager.media_from_id(i).uri.has_prefix("http:/"))
+                            if(libraries_manager.local_library.media_from_id(i).mediatype == 1 && !libraries_manager.local_library.media_from_id(i).uri.has_prefix("http:/"))
                                 list.add(i);
                         }
                     }
                     else {
                         foreach(int i in ((SmartPlaylist)p).analyze(lm, lm.media_ids())) {
-                            if(App.library_manager.media_from_id(i).mediatype == 1 && !App.library_manager.media_from_id(i).uri.has_prefix("http:/"))
+                            if(libraries_manager.local_library.media_from_id(i).mediatype == 1 && !libraries_manager.local_library.media_from_id(i).uri.has_prefix("http:/"))
                                 list.add(i);
                         }
                     }
@@ -630,7 +630,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         else {
             var found = new Gee.LinkedList<int>();
             var not_found = new Gee.LinkedList<Media>();
-            App.library_manager.media_from_name (dev.get_medias(), ref found, ref not_found);
+            libraries_manager.local_library.media_from_name (dev.get_medias(), ref found, ref not_found);
             
             if(not_found.size > 0) { // hand control over to SWD
                 SyncWarningDialog swd = new SyncWarningDialog(dev, list, not_found);

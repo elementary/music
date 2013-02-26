@@ -35,7 +35,6 @@ namespace LastFM {
     public const string SECRET = "f61323da870d6ed9322dc51c875357c6";
 
     public class Core : Object {
-        Noise.LibraryManager lm;
 
         public Settings lastfm_settings { get; private set; }
 
@@ -47,16 +46,15 @@ namespace LastFM {
 
         LastFM.SimilarMedias similarMedias;
 
-        public Core(Noise.LibraryManager lmm) {
-            lm = lmm;
+        public Core() {
 
             lastfm_settings = new LastFM.Settings ();
 
-            similarMedias = new LastFM.SimilarMedias(lm);
+            similarMedias = new LastFM.SimilarMedias();
             
             Noise.App.main_window.update_media_info.connect ((media) => {postNowPlaying (media);});
             Noise.App.main_window.media_half_played.connect ((media) => {postScrobbleTrack (media);});
-            lm.music_imported.connect ((medias, uris) => {fetch_albums_slowly (medias);});
+            Noise.libraries_manager.local_library.music_imported.connect ((medias, uris) => {fetch_albums_slowly (medias);});
 
             similarMedias.similar_retrieved.connect(similar_retrieved_signal);
         }

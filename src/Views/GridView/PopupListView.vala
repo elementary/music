@@ -178,7 +178,7 @@ public class Noise.PopupListView : Window {
 
         // Set rating
         update_album_rating ();
-        App.library_manager.media_updated.connect (update_album_rating);
+        view_wrapper.library.media_updated.connect (update_album_rating);
     }
 
     void update_album_rating () {
@@ -218,7 +218,7 @@ public class Noise.PopupListView : Window {
 
         }
 
-        App.library_manager.update_media (updated, false, true);
+        view_wrapper.library.update_medias (updated, false, true);
     }
 
     private void view_search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {

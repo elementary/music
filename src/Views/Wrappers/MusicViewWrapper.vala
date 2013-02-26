@@ -22,8 +22,9 @@
  */
 
 public class Noise.MusicViewWrapper : ViewWrapper {
-    public MusicViewWrapper (TreeViewSetup? tvs = null) {
-        base (Hint.MUSIC);
+    
+    public MusicViewWrapper (TreeViewSetup? tvs = null, Library library) {
+        base (Hint.MUSIC, library);
         build_async.begin (tvs);
     }
 
@@ -61,7 +62,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         pack_views ();
 
         connect_data_signals ();
-        yield set_media_async (App.library_manager.media ());
+        yield set_media_async (library.get_medias ());
     }
 
     private void connect_data_signals () {
@@ -70,12 +71,14 @@ public class Noise.MusicViewWrapper : ViewWrapper {
          * possible with internal media. This view wrapper is not intended for use
          * with external (i.e. doesn't belong to library) media anyway.
          */
-         device_manager.device_added.connect (on_device_added);
-         device_manager.device_removed.connect (on_device_removed);
-         device_manager.device_name_changed.connect (on_device_name_changed);
-         App.library_manager.media_added.connect (on_library_media_added);
-         App.library_manager.media_removed.connect (on_library_media_removed);
-         App.library_manager.media_updated.connect (on_library_media_updated);
+         if (library == libraries_manager.local_library) {
+             device_manager.device_added.connect (on_device_added);
+             device_manager.device_removed.connect (on_device_removed);
+             device_manager.device_name_changed.connect (on_device_name_changed);
+         }
+         library.media_added.connect (on_library_media_added);
+         library.media_removed.connect (on_library_media_removed);
+         library.media_updated.connect (on_library_media_updated);
     }
 
     private void on_device_added (Device d) {
@@ -101,23 +104,23 @@ public class Noise.MusicViewWrapper : ViewWrapper {
     }
 
     private async void on_library_media_added (Gee.Collection<int> added_ids) {
-        var to_add = App.library_manager.media_from_ids (added_ids);
+        var to_add = library.medias_from_ids (added_ids);
         yield add_media_async (to_add);
     }
 
     private async void on_library_media_removed (Gee.Collection<int> removed_ids) {
-        var to_remove = App.library_manager.media_from_ids (removed_ids);
+        var to_remove = library.medias_from_ids (removed_ids);
         yield remove_media_async (to_remove);
     }
 
     private async void on_library_media_updated (Gee.Collection<int> updated_ids) {
-        var to_update = App.library_manager.media_from_ids (updated_ids);
+        var to_update = library.medias_from_ids (updated_ids);
         yield update_media_async (to_update);
     }
 
     private void welcome_screen_activated (int index) {
         if (index == 0) {
-            if (!App.library_manager.doing_file_operations ()) {
+            if (!library.doing_file_operations ()) {
                 var file_chooser = new Gtk.FileChooserDialog (_("Select Music Folder"), App.main_window,
                                                               Gtk.FileChooserAction.SELECT_FOLDER,
                                                               Gtk.Stock.CANCEL,
@@ -142,7 +145,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         } else {
             foreach (var device_entry in _devices.entries) {
                 if (device_entry.value == index) {
-                    ((Device)device_entry.key).transfer_to_library (App.library_manager.media ());
+                    ((Device)device_entry.key).transfer_to_library (libraries_manager.local_library.get_medias ());
                 }
             }
         }

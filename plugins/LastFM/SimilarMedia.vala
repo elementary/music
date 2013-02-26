@@ -28,7 +28,6 @@ using Xml;
 public class LastFM.SimilarMedias : Object {
     public static const int MAX_FETCHED = 20;
     
-    Noise.LibraryManager _lm;
     bool working;
     
     public Noise.StaticPlaylist similar_playlist;
@@ -38,8 +37,7 @@ public class LastFM.SimilarMedias : Object {
     
     public signal void similar_retrieved (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
     
-    public class SimilarMedias (Noise.LibraryManager lm) {
-        _lm = lm;
+    public class SimilarMedias () {
         working = false;
         similar_medias = new Gee.LinkedList<Noise.Media> ();
         similar_playlist = new Noise.StaticPlaylist ();
@@ -69,10 +67,10 @@ public class LastFM.SimilarMedias : Object {
         
                 similar_medias.clear ();
                 getSimilarTracks (s.title, s.artist);
-                _lm.media_from_name (similar_medias, ref similarIDs, ref similarDont);
+                Noise.libraries_manager.local_library.media_from_name (similar_medias, ref similarIDs, ref similarDont);
                 similarIDs.offer_head (s.rowid);
                 similar_playlist.clear ();
-                similar_playlist.add_medias (_lm.media_from_ids (similarIDs));
+                similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
                 similar_retrieved (similarIDs, similarDont);
         
                 working = false;

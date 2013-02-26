@@ -365,6 +365,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         return true; // no device.supports_audiobook(), but there is audiobook playlist
     }
     
+    public Noise.Library get_library () {
+        return new iPodLibrary (db);
+    }
+    
     public Collection<Noise.Media> get_medias() {
         return medias.values;
     }

@@ -95,7 +95,7 @@ public abstract class Noise.GenericList : FastView {
         drag_end.connect (on_drag_end);
 #endif
 
-        App.library_manager.media_updated.connect (media_updated);
+        parent_wrapper.library.media_updated.connect (media_updated);
 
         App.player.current_cleared.connect (current_cleared);
         App.player.media_played.connect (media_played);
@@ -255,7 +255,7 @@ public abstract class Noise.GenericList : FastView {
 
         var to_update = new Gee.LinkedList<Media> ();
         to_update.add (m);
-        App.library_manager.update_media (to_update, true, true);
+        parent_wrapper.library.update_medias (to_update, true, true);
     }
 
     protected bool view_header_click (Gdk.EventButton e, bool is_selector_col) {

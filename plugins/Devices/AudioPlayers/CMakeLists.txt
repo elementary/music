@@ -7,6 +7,7 @@ vala_precompile(AUDIOPLAYER_VALA_C ${TARGET_NAME}
     AudioPlayer.vala
     AudioPlayerDevice.vala
     AudioPlayerDeviceManager.vala
+    AudioPlayerLibrary.vala
 PACKAGES
     ${DEPS_PACKAGES}
 OPTIONS

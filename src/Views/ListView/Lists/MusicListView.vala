@@ -177,7 +177,7 @@ public class Noise.MusicListView : GenericList {
             if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
                 mediaMenuNewPlaylist.set_visible(false);
             }
-            foreach (var playlist in App.library_manager.playlists ()) {
+            foreach (var playlist in parent_wrapper.library.get_playlists ()) {
                 // Don't include this playlist in the list of available options
                 if (playlist.rowid == this.get_relative_id ())
                     continue;
@@ -329,8 +329,8 @@ public class Noise.MusicListView : GenericList {
 
         int id = to_edit.get(0);
         string music_folder_uri = File.new_for_path(main_settings.music_folder).get_uri();
-        if(to_edit.size == 1 && !File.new_for_uri(App.library_manager.media_from_id(id).uri).query_exists() && App.library_manager.media_from_id(id).uri.has_prefix(music_folder_uri)) {
-            App.library_manager.media_from_id(id).unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU);
+        if(to_edit.size == 1 && !File.new_for_uri(parent_wrapper.library.media_from_id(id).uri).query_exists() && parent_wrapper.library.media_from_id(id).uri.has_prefix(music_folder_uri)) {
+            parent_wrapper.library.media_from_id(id).unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU);
             FileNotFoundDialog fnfd = new FileNotFoundDialog(to_edit_med);
             fnfd.present();
         }
@@ -339,7 +339,7 @@ public class Noise.MusicListView : GenericList {
             for(int i = 0; i < get_visible_table().size(); ++i) {
                 list.add (get_object_from_index(i).rowid);
             }
-            MediaEditor se = new MediaEditor(list, to_edit);
+            MediaEditor se = new MediaEditor(list, to_edit, parent_wrapper.library);
             se.medias_saved.connect(mediaEditorSaved);
         }
     }
@@ -347,10 +347,10 @@ public class Noise.MusicListView : GenericList {
     protected virtual void mediaEditorSaved(LinkedList<int> medias) {
         LinkedList<Media> toUpdate = new LinkedList<Media>();
         foreach(int i in medias)
-            toUpdate.add(App.library_manager.media_from_id(i));
+            toUpdate.add(parent_wrapper.library.media_from_id(i));
 
         // could have edited rating, so record_time is true
-        App.library_manager.update_media (toUpdate, true, true);
+        parent_wrapper.library.update_medias (toUpdate, true, true);
 
         if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
             // make sure these medias still belongs here
@@ -391,13 +391,13 @@ public class Noise.MusicListView : GenericList {
         p.add_medias (to_add);
         p.name = _("New playlist");
         int index = 1;
-        if (App.library_manager.playlist_from_name (_("New playlist")) != null) {
-            while (App.library_manager.playlist_from_name (_("New playlist (%i)").printf (index)) != null) {
+        if (parent_wrapper.library.playlist_from_name (_("New playlist")) != null) {
+            while (parent_wrapper.library.playlist_from_name (_("New playlist (%i)").printf (index)) != null) {
                 index++;
             }
             p.name = _("New playlist (%i)").printf (index);
         }
-        App.library_manager.add_playlist (p);
+        parent_wrapper.library.add_playlist (p);
     }
 
     protected void mediaRateMediaClicked() {
@@ -408,7 +408,7 @@ public class Noise.MusicListView : GenericList {
             m.rating = new_rating;
             los.add(m);
         }
-        App.library_manager.update_media (los, false, true);
+        parent_wrapper.library.update_medias (los, false, true);
     }
 
     protected override void mediaRemoveClicked() {
@@ -421,7 +421,7 @@ public class Noise.MusicListView : GenericList {
         if (get_hint() == ViewWrapper.Hint.MUSIC) {
             var dialog = new RemoveFilesDialog (to_remove, get_hint());
             dialog.remove_media.connect ( (delete_files) => {
-                App.library_manager.remove_media (to_remove, delete_files);
+                parent_wrapper.library.remove_medias (to_remove, delete_files);
             });
         }
         else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
@@ -430,11 +430,11 @@ public class Noise.MusicListView : GenericList {
         }
 
         if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-            App.library_manager.playlist_from_id(relative_id).remove_medias (to_remove);
+            parent_wrapper.library.playlist_from_id(relative_id).remove_medias (to_remove);
         }
 
         if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST && is_queue == true) {
-            App.library_manager.playlist_from_id(relative_id).remove_medias (to_remove);
+            parent_wrapper.library.playlist_from_id(relative_id).remove_medias (to_remove);
         }
     }
 

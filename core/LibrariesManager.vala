@@ -25,56 +25,32 @@
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  *
- * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
- *              Corentin Noël <tintou@mailoo.org>
+ * Authored by: Corentin Noël <tintou@mailoo.org>
  */
 
-public class Noise.SmartQuery : Object {
+public class Noise.LibrariesManager : GLib.Object {
     
-    public enum ComparatorType {
-        IS,
-        IS_NOT,
-        CONTAINS,
-        NOT_CONTAINS,
-        IS_EXACTLY,
-        IS_AT_MOST,
-        IS_AT_LEAST,
-        IS_WITHIN,
-        IS_BEFORE
+    public signal void library_removed (Library library);
+    public signal void library_added (Library library);
+    
+    private Gee.LinkedList<Library> libraries;
+    public Library local_library;
+    
+    public LibrariesManager () {
+        libraries = new Gee.LinkedList<Library> ();
     }
     
-    public enum FieldType {
-        ALBUM,
-        ARTIST,
-        BITRATE,
-        COMMENT,
-        COMPOSER,
-        DATE_ADDED,
-        DATE_RELEASED,
-        GENRE,
-        GROUPING,
-        LAST_PLAYED,
-        LENGTH,
-        PLAYCOUNT,
-        RATING,
-        SKIPCOUNT,
-        TITLE,
-        YEAR
+    public void add_library (Library library) {
+        if (!libraries.contains (library)) {
+            libraries.add (library);
+            library_added (library);
+        }
     }
     
-    public int rowid { get; set; default = 0; }
-    public FieldType field { get; set; default = FieldType.ALBUM; }
-    public ComparatorType comparator { get; set; default = ComparatorType.IS; }
-    public string value { get; set; default = ""; } //internally this often holds numbers, but that's ok.
-    
-    public SmartQuery () {
-        
+    public void remove_library (Library library) {
+        if (libraries.contains (library)) {
+            library_removed (library);
+            libraries.remove (library);
+        }
     }
-    
-    public SmartQuery.with_info (FieldType field, ComparatorType comparator, string value) {
-        this.field = field;
-        this.comparator = comparator;
-        this.value = value;
-    }
-
 }

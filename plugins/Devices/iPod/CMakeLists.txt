@@ -12,6 +12,7 @@ link_directories(${DEPS_LIBRARY_DIRS})
 set(TARGET_NAME ipod-device)
 vala_precompile(IPOD_VALA_C ${TARGET_NAME}
     iPod.vala
+    iPodLibrary.vala
     iPodDevice.vala
     iPodDeviceManager.vala
     iPodStreamer.vala

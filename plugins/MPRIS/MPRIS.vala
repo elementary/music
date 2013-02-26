@@ -147,7 +147,7 @@ public class MprisPlayer : GLib.Object {
         App.player.media_played.connect_after (on_media_played);
         App.player.playback_stopped.connect_after ( () => update_metadata (null) );
 
-        App.library_manager.media_updated.connect_after (refresh_current_media);
+        libraries_manager.local_library.media_updated.connect_after (refresh_current_media);
         CoverartCache.instance.changed.connect_after (refresh_current_media);
         App.main_window.playPauseChanged.connect_after (playing_changed);
 

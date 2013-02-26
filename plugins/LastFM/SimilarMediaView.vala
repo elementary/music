@@ -24,16 +24,12 @@ using Gtk;
 using Gee;
 
 public class Noise.SimilarMediasView : TreeView {
-	private Noise.LibraryManager _lm;
-	private Noise.LibraryWindow _lw;
 	private new ListStore model;
 	private LinkedList<Media> medias;
 	
 	private LinkedList<string> urlsToOpen;//queue for opening urls
 	
-	public SimilarMediasView(Noise.LibraryManager lm, Noise.LibraryWindow lw) {
-		_lm = lm;
-		_lw = lw;
+	public SimilarMediasView() {
 		medias = new LinkedList<Media>();
 		urlsToOpen = new LinkedList<string>();
 		

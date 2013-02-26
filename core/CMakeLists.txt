@@ -13,7 +13,8 @@ set(CORE_SOURCE
     EqualizerPreset.vala
     Player.vala
     LibraryWindowInterface.vala
-    LibraryManagerInterface.vala
+    Library.vala
+    LibrariesManager.vala
     NotificationManager.vala
     Media.vala
     Album.vala
@@ -39,7 +40,6 @@ set(CORE_SOURCE
     GStreamer/Pipeline.vala
     GStreamer/Equalizer.vala
     GStreamer/Playback.vala
-    GStreamer/ReplayGain.vala
     Widgets/SettingsWidgets.vala
     main.vala
 )
