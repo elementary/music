@@ -37,13 +37,9 @@ public class Noise.DeviceView : Gtk.Grid {
         buildUI();
         
         ulong connector = libraries_manager.local_library.progress_cancel_clicked.connect( () => {
-            if(d.is_syncing()) {
-                notification_manager.doAlertNotification (_("Cancelling Sync"), _("Device Sync has been cancelled. Operation will stop after this media."));
-                d.cancel_sync();
-            }
-            if(d.is_transferring()) {
-                notification_manager.doAlertNotification (_("Cancelling Import"), _("Import from device has been cancelled. Operation will stop after this media."));
-                d.cancel_transfer();
+            if(d.get_library ().doing_file_operations ()) {
+                notification_manager.doAlertNotification (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
+                d.get_library ().cancel_operations ();
             }
         });
         d.device_unmounted.connect( () => {
@@ -99,7 +95,7 @@ public class Noise.DeviceView : Gtk.Grid {
         if(!libraries_manager.local_library.doing_file_operations() && main_settings.music_folder != "") {
             var found = new LinkedList<int>();
             var not_found = new LinkedList<Media>();
-            libraries_manager.local_library.media_from_name(d.get_medias(), ref found, ref not_found);
+            libraries_manager.local_library.media_from_name(d.get_library ().get_medias(), ref found, ref not_found);
             
             if(not_found.size > 0) {
                 TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(d, not_found);

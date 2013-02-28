@@ -26,57 +26,24 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
 
     Mount mount;
     GLib.Icon icon;
-    int index = 0;
-    int total = 0;
-    LinkedList<Noise.Media> medias;
-    LinkedList<Noise.Media> songs;
     Noise.DevicePreferences pref;
-    bool currently_syncing = false;
-    bool currently_transferring = false;
-    bool sync_cancelled = false;
-    bool transfer_cancelled = false;
-    bool queue_is_finished = false;
     bool is_androphone = false;
-    string current_operation = "";
-    LinkedList<string> music_folders;
-    LinkedList<string> imported_files;
+    Gee.LinkedList<string> music_folders;
     
-    public GStreamerTagger tagger;
+    private AudioPlayerLibrary library;
+    
     
     public AudioPlayerDevice(Mount mount, bool is_androphone) {
         this.mount = mount;
         this.is_androphone = is_androphone;
+        music_folders = new Gee.LinkedList<string> ();
+        library = new AudioPlayerLibrary (this);
         icon = new Icon (is_androphone ? "phone" : "music-player").gicon;
         pref = device_manager.get_device_preferences (get_unique_identifier());
         if(pref == null) {
             pref = new Noise.DevicePreferences (get_unique_identifier());
             device_manager.add_device_preferences (pref);
         }
-        medias = new LinkedList<Noise.Media> ();
-        songs = new LinkedList<Noise.Media> ();
-        tagger = new GStreamerTagger();
-        music_folders = new LinkedList<string> ();
-        imported_files = new LinkedList<string> ();
-        
-        tagger.media_imported.connect(media_imported);
-        tagger.import_error.connect(import_error);
-        tagger.queue_finished.connect(queue_finished);
-    }
-    
-    void media_imported(Media m) {
-        m.isTemporary = true;
-        this.medias.add(m);
-        this.songs.add(m);
-        if (queue_is_finished)
-            file_operation_finished (true);
-    }
-    
-    void import_error(string file) {
-    }
-    
-    void queue_finished() {
-        queue_is_finished = true;
-        index = total +1;
     }
     
     public Noise.DevicePreferences get_preferences() {
@@ -126,15 +93,20 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             }
 
             debug ("found %d items to import\n", items);
-            tagger.discoverer_import_media (files);
+            library.tagger.discoverer_import_media (files);
+            if (files.size == 0)
+                library.queue_finished ();
             Idle.add( () => {
-                initialized(this);
                 
                 return false;
             });
         });
 
         yield;
+    }
+    
+    public Library get_library() {
+        return library;
     }
     
     public string getEmptyDeviceTitle() {
@@ -223,7 +195,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             stdout.printf("Error calculating capacity of iPod: %s\n", err.message);
         }
         
-        return rv;
+        return (uint64)rv;
     }
     
     public string get_fancy_capacity() {
@@ -232,6 +204,10 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     
     public uint64 get_used_space() {
         return get_capacity() - get_free_space();
+    }
+    
+    public string get_music_folder () {
+        return music_folders.get(0);
     }
     
     public uint64 get_free_space() {
@@ -257,6 +233,10 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         }
     }
     
+    public void synchronize () {
+        library.sync_medias ();
+    }
+    
     public bool has_custom_view() {
         return false;
     }
@@ -267,377 +247,5 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     
     public bool read_only() {
         return false;
-    }
-    
-    public bool supports_podcasts() {
-        return false;
-    }
-    
-    public bool supports_audiobooks() {
-        return false;
-    }
-    
-    public Noise.Library get_library () {
-        return new AudioPlayerLibrary ();
-    }
-    
-    public Collection<Noise.Media> get_medias() {
-        return medias;
-    }
-    
-    public Collection<Noise.Media> get_songs() {
-        return songs;
-    }
-    
-    public Collection<Noise.Media> get_podcasts() {
-        return new LinkedList<Noise.Media>();
-    }
-    
-    public Collection<Noise.Media> get_audiobooks() {
-        return new LinkedList<Noise.Media>();
-    }
-    
-    public Collection<Noise.Media> get_playlists() {
-        return new LinkedList<Noise.Media>();
-    }
-    
-    public Collection<Noise.Media> get_smart_playlists() {
-        return new LinkedList<Noise.Media>();
-    }
-    
-    public bool sync_medias (Collection<Noise.Media> medias) { 
-        if(currently_syncing) {
-            warning("Tried to sync when already syncing\n");
-            return false;
-        }
-        
-        current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
-        
-        currently_syncing = true;
-        index = 0;
-        total = 100;
-        Timeout.add(500, doProgressNotificationWithTimeout);
-        
-        sync_medias_thread.begin (medias);
-        return true;
-    }
-    
-    private async void sync_medias_thread (Collection<Noise.Media> medias) {
-        
-        Threads.add (() => {
-            int sub_index = 0;
-            
-            message("Found %d medias to sync.", medias.size);
-            Gee.LinkedList<Noise.Media> medias_to_remove = delete_doubles (songs, medias);
-            message("Found %d medias to remove.", medias_to_remove.size);
-            Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (medias, songs);
-            message("Found %d medias to add.", medias_to_sync.size);
-            int total_medias = medias_to_remove.size + medias_to_sync.size;
-            
-            if (total_medias > 0) {
-                if (will_fit_without(medias_to_sync, medias_to_remove)) {
-                    foreach(var m in medias_to_remove) {
-                        if(!sync_cancelled) {
-                            remove_media(m);
-                        }
-                        ++sub_index;
-                        index = (int)(85.0 * (double)((double)sub_index/(double)total_medias));
-                    }
-                    sub_index = 0;
-                    imported_files = new LinkedList<string> ();
-                    foreach(var m in medias_to_sync) {
-                        if(!sync_cancelled) {
-                            add_media(m);
-                        }
-                        ++sub_index;
-                        index = (int)(85.0 * ((double)sub_index/(double)total_medias));
-                    }
-                    tagger.discoverer_import_media (imported_files);
-                    
-                    if(!sync_cancelled) {
-                        // sync playlists
-                        index = 90;
-                        /* TODO: add support for podcasts & playlists
-                        if (pref.sync_all_music == true) {
-                            sync_playlists();
-                        }
-                        if (pref.sync_all_podcasts == true) {
-                            sync_podcasts();
-                        }*/
-                        
-                        current_operation = _("Finishing sync process…");
-                        
-                        index = 98;
-                        
-                    } else {
-                        current_operation = _("Cancelling Sync…");
-                        index = total + 1;
-                    }
-                } else {
-                        infobar_message (_("There is not enough space on Device to complete the Sync…"), Gtk.MessageType.INFO);
-                        current_operation = _("There is not enough space on Device to complete the Sync…");
-                }
-            }
-
-            Idle.add( () => {
-                index = total + 1;
-                pref.last_sync_time = (int)time_t();
-                currently_syncing = false;
-                
-                file_operation_finished (!sync_cancelled);
-                sync_cancelled = false;
-                
-                return false;
-            });
-        });
-
-        yield;
-    }
-    
-    public Gee.LinkedList<Noise.Media> delete_doubles (Gee.Collection<Noise.Media> source_list, Gee.Collection<Noise.Media> to_remove) {
-        var new_list = new Gee.LinkedList<Noise.Media> ();
-        foreach(var m in source_list) {
-            if (m != null) {
-                bool needed = true;
-                foreach(var med in to_remove) {
-                    if (med != null && med.title != null) {
-                        if (med.album != null && m.album != null) { // If you don't have the album name, don't care of it
-                            if(med.title.down() == m.title.down() && med.artist.down() == m.artist.down() && med.album.down() == m.album.down()) {
-                                needed = false;
-                                break;
-                            }
-                        } else {
-                            if(med.title.down() == m.title.down() && med.artist.down() == m.artist.down()) {
-                                needed = false;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (needed == true)
-                    new_list.add (m);
-            }
-        }
-        
-        return new_list;
-    }
-    public bool add_medias(Collection<Noise.Media> list) {
-        if(currently_syncing) {
-            warning("Tried to add when already syncing\n");
-            return false;
-        }
-        
-        current_operation = _("Syncing <b>%s</b>…").printf (getDisplayName ());
-        
-        currently_syncing = true;
-        index = 0;
-        Timeout.add(500, doProgressNotificationWithTimeout);
-        int sub_index = 0;
-        
-        Gee.LinkedList<Noise.Media> medias_to_sync = delete_doubles (list, songs);
-        message("Found %d medias to add.", medias_to_sync.size);
-        total = medias_to_sync.size;
-        int total_medias = medias_to_sync.size;
-        
-        if (total_medias > 0) {
-            if (will_fit(medias_to_sync)) {
-                imported_files = new LinkedList<string> ();
-                foreach(var m in medias_to_sync) {
-                    add_media(m);
-                    ++sub_index;
-                    index = (int)(100.0 * ((double)sub_index/(double)total));
-                }
-                tagger.discoverer_import_media (imported_files);
-            }
-        }
-        return true;
-    }
-    
-    public bool remove_medias(Collection<Noise.Media> list) {
-        if(currently_syncing) {
-            warning("Tried to add when already syncing\n");
-            return false;
-        }
-        
-        current_operation = _("Removing from <b>%s</b>…").printf (getDisplayName ());
-        
-        index = 0;
-        total = list.size;
-        Timeout.add(500, doProgressNotificationWithTimeout);
-        
-        int sub_index = 0;
-        foreach(var m in list) {
-            remove_media(m);
-            ++sub_index;
-            index = (int)(100.0 * ((double)sub_index/(double)total));
-        }
-        return true;
-    }
-    
-    public bool sync_playlists(Collection<int> list) {
-        return false;
-    }
-    
-    public bool transfer_to_library(Collection<Noise.Media> tr_list) {
-        if(currently_transferring) {
-            warning("Tried to sync when already syncing\n");
-            return false;
-        }
-        else if(tr_list == null || tr_list.size == 0) {
-            warning("No songs in transfer list\n");
-            return false;
-        }
-        
-        debug ("Found %d medias to import.", tr_list.size);
-        int total_medias = tr_list.size;
-        
-        transfer_medias_thread.begin (tr_list);
-        return true;
-    }
-    
-    private async void transfer_medias_thread (Collection<Noise.Media> list) {
-        Threads.add (() => {
-            if(list == null || list.size == 0)
-                return;
-            
-            currently_transferring = true;
-            transfer_cancelled = false;
-            index = 0;
-            total = list.size;
-            Timeout.add(500, doProgressNotificationWithTimeout);
-            var copied_list = new ArrayList<Media> ();
-            
-            foreach(var m in list) {
-                if(transfer_cancelled)
-                    break;
-                
-                Noise.Media copy = m.copy();
-                if(File.new_for_uri(copy.uri).query_exists()) {
-                    copy.rowid = 0;
-                    copy.isTemporary = false;
-                    copy.date_added = (int)time_t();
-                    copied_list.add (copy);
-                    
-                    current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
-                    current_operation = current_operation.replace ("$NAME", copy.title ?? "");
-                    current_operation = current_operation.replace ("$ARTIST", copy.artist ?? "");
-                } else {
-                    message ("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", copy.title);
-                }
-                
-                ++index;
-            }
-            device_manager.device_asked_transfer (this, copied_list);
-            
-            index = total + 1;
-            
-            Idle.add( () => {
-                currently_transferring = false;
-                
-                return false;
-            });
-        });
-
-        yield;
-    }
-    
-    public bool is_syncing() {
-        return currently_syncing;
-    }
-    
-    public bool is_transferring() {
-        return currently_transferring;
-    }
-    
-    public void cancel_sync() {
-        sync_cancelled = true;
-    }
-    
-    public void cancel_transfer() {
-        transfer_cancelled = true;
-    }
-    
-    public bool will_fit(Collection<Noise.Media> list) {
-        uint64 list_size = 0;
-        foreach(var m in list) {
-            list_size += m.file_size;
-        }
-        
-        return get_capacity() > list_size;
-    }
-    
-    private bool will_fit_without(Collection<Noise.Media> list, Collection<Noise.Media> without) {
-        uint64 list_size = 0;
-        uint64 without_size = 0;
-        foreach(var m in list) {
-            list_size += m.file_size;
-        }
-        foreach(var m in without) {
-            without_size += m.file_size;
-        }
-        if (without_size > list_size) {
-            return true;
-        } else {
-            return get_capacity() > (list_size - without_size);
-        }
-    }
-    
-    public bool doProgressNotificationWithTimeout() {
-        
-        notification_manager.doProgressNotification (current_operation.replace("&", "&amp;"), (double)((double)index)/((double)total));
-        
-        if(index < total && (is_syncing() || is_transferring())) {
-            return true;
-        }
-        
-        return false;
-    }
-    
-    void add_media(Noise.Media m) {
-        if(m == null)
-            return;
-
-        current_operation = _("Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
-        current_operation = current_operation.replace ("$NAME", m.title ?? "");
-        current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
-        current_operation = current_operation.replace ("$DEVICE", getDisplayName() ?? "");
-        debug ("Adding media %s by %s\n", m.title, m.artist);
-        
-        var file = File.new_for_uri (m.uri);
-        var destination_file = File.new_for_uri (music_folders.get(0) + file.get_basename ());
-        
-        try {
-            file.copy (destination_file,GLib.FileCopyFlags.ALL_METADATA);
-        } catch(Error err) {
-            warning ("Failed to copy track %s : %s\n", m.title, err.message);
-            return;
-        }
-        imported_files.add (destination_file.get_uri());
-    }
-    
-    void remove_media(Noise.Media m) {
-        current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE");
-        current_operation = current_operation.replace ("$NAME", m.title ?? "");
-        current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
-        current_operation = current_operation.replace ("$DEVICE", getDisplayName() ?? "");
-        /* first check if the file exists disk */
-        if(m.uri != null) {
-            var file = File.new_for_uri(m.uri);
-            
-            if(file.query_exists()) {
-                medias.remove (m);
-                songs.remove (m);
-                try {
-                    file.delete();
-                } catch (Error err) {
-                    warning ("Could not delete File at %s: %s", m.uri, err.message);
-                    return;
-                }
-                debug ("Successfully removed music file %s", m.uri);
-            } else {
-                warning("File not found, could not delete File at %s. File may already be deleted", m.uri);
-            }
-        }
-        
     }
 }

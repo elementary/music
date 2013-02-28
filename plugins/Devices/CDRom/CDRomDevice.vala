@@ -70,7 +70,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     }
     
     public void finish_initialization() {
-        device_manager.cancel_device_transfer.connect (cancel_transfer);
+        libraries_manager.cancel_transfer.connect (cancel_transfer);
         
         finish_initialization_thread.begin ();
     }
@@ -220,28 +220,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return libraries_manager.local_library;
     }
     
-    public Collection<int> get_medias() {
+    public Collection<Noise.Media> get_medias() {
         return medias;
-    }
-    
-    public Collection<int> get_songs() {
-        return new LinkedList<int>();
-    }
-    
-    public Collection<int> get_podcasts() {
-        return new LinkedList<int>();
-    }
-    
-    public Collection<int> get_audiobooks() {
-        return new LinkedList<int>();
-    }
-    
-    public Collection<int> get_playlists() {
-        return new LinkedList<int>();
-    }
-    
-    public Collection<int> get_smart_playlists() {
-        return new LinkedList<int>();
     }
     
     public bool sync_medias (Gee.Collection<Noise.Media> list) {
@@ -249,16 +229,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return false;
     }
     
-    public bool add_medias(Gee.Collection<Noise.Media> list) {
-        return false;
-    }
-    
-    public bool remove_medias(Gee.Collection<Noise.Media> list) {
-        return false;
-    }
-    
-    public bool sync_playlists(Gee.Collection<int> list) {
-        return false;
+    public void synchronize () {
+        
     }
     
     public bool will_fit(Gee.Collection<Noise.Media> list) {
@@ -306,7 +278,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 
         _is_transferring = true;
 
-        Timeout.add(500, doProgressNotificationWithTimeout);
+        Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
 
         user_cancelled = false;
 
@@ -366,7 +338,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             //s.file_size = 5; // best guess
         }
         
-        device_manager.device_asked_transfer (this, copied_list);
+        libraries_manager.transfer_to_local_library (copied_list);
         
         // do it again on next track
         if(current_list_index < (list.size - 1) && !user_cancelled) {
@@ -391,26 +363,11 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return _("Importing track %i: %s").printf (m.track, m.get_title_markup ());
     }
     
-    public bool is_syncing() {
-        return false;
-    }
-    
-    public bool is_transferring() {
-        return _is_transferring;
-    }
-    
-    public void cancel_sync() {
-        
-    }
-    
     public void cancel_transfer() {
         user_cancelled = true;
         current_operation = _("CD import will be <b>cancelled</b> after current import.");
     }
     
-
-
-
     public void ripperError(string err, Gst.Message message) {
         stop_importation ();
         if(err == "missing element") {
@@ -429,15 +386,5 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             _is_transferring = false;
             infobar_message (_("An error occured during the Import of this CD"), Gtk.MessageType.ERROR);
         }
-    }
-    
-    public bool doProgressNotificationWithTimeout() {
-        notification_manager.doProgressNotification (current_operation, (double)(((double)index + current_song_progress)/((double)total)));
-        
-        if(index < total && (is_transferring())) {
-            return true;
-        }
-        
-        return false;
     }
 }

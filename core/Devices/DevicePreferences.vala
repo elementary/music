@@ -43,9 +43,9 @@ public class Noise.DevicePreferences : GLib.Object {
 	public bool sync_all_podcasts { get; set; default=true; }
 	public bool sync_all_audiobooks { get; set; default=true; }
 	
-	public string music_playlist { get; set; }
-	public string podcast_playlist { get; set; } // must only contain podcasts. if not, will ignore others
-	public string audiobook_playlist { get; set; } // must only contain audiobooks. if not, will ignore others
+	public unowned Playlist music_playlist { get; set; }
+	public unowned Playlist podcast_playlist { get; set; } // must only contain podcasts. if not, will ignore others
+	public unowned Playlist audiobook_playlist { get; set; } // must only contain audiobooks. if not, will ignore others
 	
 	public DevicePreferences(string id) {
 		this.id = id;

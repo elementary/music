@@ -94,7 +94,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     
     public iPodDevice? get_device_for_uri (string uri) {
         foreach (var device in devices) {
-            if (device.has_music (uri)) {
+            if (device.get_library ().media_from_uri (uri) != null) {
                 return device;
             }
         }

@@ -55,7 +55,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
             playlistMenu = new Gtk.Menu();
             playlistRename = new Gtk.MenuItem.with_label(_("Rename"));
             playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
-            playlistExport = new Gtk.MenuItem.with_label(_("Export"));
+            playlistExport = new Gtk.MenuItem.with_label(_("Export…"));
             playlistMenu.append(playlistRename);
             playlistMenu.append(playlistRemove);
             playlistMenu.append(playlistExport);
@@ -67,9 +67,9 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
         if (hint == ViewWrapper.Hint.SMART_PLAYLIST) {
             playlistMenu = new Gtk.Menu();
             playlistRename = new Gtk.MenuItem.with_label(_("Rename"));
-            playlistEdit = new Gtk.MenuItem.with_label(_("Edit"));
+            playlistEdit = new Gtk.MenuItem.with_label(_("Edit…"));
             playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
-            playlistExport = new Gtk.MenuItem.with_label(_("Export"));
+            playlistExport = new Gtk.MenuItem.with_label(_("Export…"));
             playlistMenu.append(playlistRename);
             playlistMenu.append(playlistEdit);
             playlistMenu.append(playlistRemove);
@@ -111,11 +111,17 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
     Gtk.Menu deviceMenu;
     Gtk.MenuItem deviceImportToLibrary;
     Gtk.MenuItem deviceEject;
+    Gtk.MenuItem deviceAddPlaylist;
+    Gtk.MenuItem deviceAddSmartPlaylist;
+    Gtk.MenuItem deviceSync;
 
     public signal void device_import_clicked (int page_number);
     public signal void device_eject_clicked (int page_number);
+    public signal void device_sync_clicked (int page_number);
+    public signal void device_new_playlist_clicked (int page_number);
+    public signal void device_new_smartplaylist_clicked (int page_number);
 
-    public SourceListExpandableItem (int page_number, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null) {
+    public SourceListExpandableItem (int page_number, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null, Object? give_more_information = null) {
         base (name);
         this.page_number = page_number;
         this.icon = icon;
@@ -133,8 +139,26 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
 
         if (hint == ViewWrapper.Hint.DEVICE) {
             deviceMenu = new Gtk.Menu();
-            deviceEject = new Gtk.MenuItem.with_label(_("Eject"));
+            deviceEject = new Gtk.MenuItem.with_label (_("Eject"));
             deviceEject.activate.connect (() => {device_eject_clicked (page_number);});
+            if (give_more_information is Device) {
+                var device = (Device)give_more_information;
+                if (device.get_library ().support_playlists ()) {
+                    deviceAddPlaylist = new Gtk.MenuItem.with_label (_("New Playlist"));
+                    deviceAddPlaylist.activate.connect (() => {device_new_playlist_clicked (page_number);});
+                    deviceMenu.append (deviceAddPlaylist);
+                }
+                if (device.get_library ().support_smart_playlists ()) {
+                    deviceAddSmartPlaylist = new Gtk.MenuItem.with_label (_("New Smart Playlist"));
+                    deviceAddSmartPlaylist.activate.connect (() => {device_new_smartplaylist_clicked (page_number);});
+                    deviceMenu.append (deviceAddSmartPlaylist);
+                }
+                if (device.read_only() == false) {
+                    deviceSync = new Gtk.MenuItem.with_label (_("Sync"));
+                    deviceSync.activate.connect (() => {device_sync_clicked (page_number);});
+                    deviceMenu.append (deviceSync);
+                }
+            }
             deviceMenu.append (deviceEject);
             deviceMenu.show_all ();
         }
@@ -168,7 +192,7 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem 
         playlistMenu.append(playlistImport);
         playlistMenu.show_all ();
         
-        playlistNew.activate.connect(App.main_window.create_new_playlist);
+        playlistNew.activate.connect(() => {App.main_window.create_new_playlist ();});
         smartPlaylistNew.activate.connect(() => {App.main_window.show_smart_playlist_dialog ();});
         playlistImport.activate.connect(() => {playlist_import_clicked ();});
     }
@@ -198,6 +222,9 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     
     public signal void device_import_clicked (int page_number);
     public signal void device_eject_clicked (int page_number);
+    public signal void device_sync_clicked (int page_number);
+    public signal void device_new_playlist_clicked (int page_number);
+    public signal void device_new_smartplaylist_clicked (int page_number);
 
     public SourceListView () {
         // Adds the different sidebar categories.
@@ -232,11 +259,11 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
                         ViewWrapper.Hint hint,
                         GLib.Icon icon,
                         GLib.Icon? activatable_icon = null,
-                        SourceListExpandableItem? into_expandable = null) {
+                        SourceListExpandableItem? into_expandable = null, Object? give_more_information = null) {
         
         // Initialize all widgets
         var sourcelist_item = new SourceListItem (page_number, name, hint, icon, activatable_icon);
-        var expandable_item = new SourceListExpandableItem (page_number, name, hint, icon, activatable_icon);
+        var expandable_item = new SourceListExpandableItem (page_number, name, hint, icon, activatable_icon, give_more_information);
         
         if (hint == ViewWrapper.Hint.DEVICE) {
             expandable_item.collapsible = false;
@@ -256,6 +283,9 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         
         expandable_item.device_import_clicked.connect ((pn) => {device_import_clicked (get_device_from_item(expandable_item));});
         expandable_item.device_eject_clicked.connect ((pn) => {device_eject_clicked (pn);});
+        expandable_item.device_sync_clicked.connect ((pn) => {device_sync_clicked (pn);});
+        expandable_item.device_new_playlist_clicked.connect ((pn) => {device_new_playlist_clicked (pn);});
+        expandable_item.device_new_smartplaylist_clicked.connect ((pn) => {device_new_smartplaylist_clicked (pn);});
     
         switch (hint) {
             case ViewWrapper.Hint.MUSIC:

@@ -22,17 +22,48 @@
 
 public class Noise.Plugins.iPodPlaylistHelper {
 
-    public static GPod.Playlist get_gpod_playlist_from_playlist (Noise.Playlist pl) {
+    public static GPod.Playlist get_gpod_playlist_from_playlist (Noise.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Media> library, GPod.iTunesDB db) {
         var rv = new GPod.Playlist (pl.name, false);
+        rv.itdb = db;
+        int32 index = 0;
+        foreach (var m in pl.medias) {
+            foreach (var entry in library.entries) {
+                if (entry.value == m) {
+                    rv.add_track (entry.key, index);
+                    index++;
+                    break;
+                }
+            }
+        }
         //rv.sortorder = get_gpod_sortorder_from_tvs (pl.tvs);
         return rv;
     }
     
-    /*public static Noise.Playlist get_playlist_from_gpod_playlist (GPod.Playlist pl) {
-        var rv = new GPod.Playlist (pl.name, false);
-        rv.sortorder = get_gpod_sortorder_from_tvs (pl.tvs);
-        return rv;
-    }*/
+    public static Gee.Collection<unowned GPod.Track> get_gpod_tracks_from_medias (Gee.Collection<Media> medias, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
+        var list = new Gee.LinkedList <unowned GPod.Track> ();
+        foreach (var m in medias) {
+            foreach (var entry in library.entries) {
+                if (entry.value == m) {
+                    list.add (entry.key);
+                    break;
+                }
+            }
+        }
+        return list;
+    }
+    
+    public static Noise.Playlist? get_playlist_from_gpod_playlist (GPod.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
+        if (pl.is_spl) {
+            
+        } else if (pl.is_podcasts () == false && pl.is_audiobooks () == false && pl.is_mpl() == false) {
+            var playlist = new StaticPlaylist.with_info (0, pl.name);
+            foreach (var track in pl.members) {
+                playlist.add_media (library.get (track));
+            }
+            return playlist;
+        }
+        return null;
+    }
     
     public static GPod.Playlist get_gpod_playlist_from_smart_playlist (Noise.SmartPlaylist pl) {
         var rv = new GPod.Playlist (pl.name, false);

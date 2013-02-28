@@ -74,11 +74,13 @@ public abstract class Noise.Library : GLib.Object {
     public abstract void remove_media (Media s, bool trash);
     public abstract void remove_medias (Gee.Collection<Media> toRemove, bool trash);
     
+    public abstract bool support_smart_playlists ();
     public abstract void add_smart_playlist (SmartPlaylist p);
     public abstract void remove_smart_playlist (int id);
     public abstract SmartPlaylist? smart_playlist_from_id (int id);
     public abstract SmartPlaylist? smart_playlist_from_name (string name);
     
+    public abstract bool support_playlists ();
     public abstract void add_playlist (StaticPlaylist p);
     public abstract void remove_playlist (int id);
     public abstract StaticPlaylist? playlist_from_id (int id);
@@ -109,4 +111,5 @@ public abstract class Noise.Library : GLib.Object {
             }
         }
     }
+    
 }

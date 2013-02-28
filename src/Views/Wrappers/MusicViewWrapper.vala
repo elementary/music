@@ -145,7 +145,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         } else {
             foreach (var device_entry in _devices.entries) {
                 if (device_entry.value == index) {
-                    ((Device)device_entry.key).transfer_to_library (libraries_manager.local_library.get_medias ());
+                    libraries_manager.transfer_to_local_library (((Device)device_entry.key).get_library ().get_medias ());
                 }
             }
         }

@@ -845,9 +845,21 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                 dp.sync_all_music = (results.fetch_int(6) == 1);
                 dp.sync_all_podcasts = (results.fetch_int(7) == 1);
                 dp.sync_all_audiobooks = (results.fetch_int(8) == 1);
-                dp.music_playlist = results.fetch_string(9);
-                dp.podcast_playlist = results.fetch_string(10);
-                dp.audiobook_playlist = results.fetch_string(11);
+                if (results.fetch_string(9) != null) {
+                    dp.music_playlist = libraries_manager.local_library.playlist_from_name (results.fetch_string(9));
+                    if (dp.music_playlist == null)
+                        dp.music_playlist = libraries_manager.local_library.smart_playlist_from_name (results.fetch_string(9));
+                }
+                if (results.fetch_string(10) != null) {
+                    dp.podcast_playlist = libraries_manager.local_library.playlist_from_name (results.fetch_string(10));
+                    if (dp.podcast_playlist == null)
+                        dp.podcast_playlist = libraries_manager.local_library.smart_playlist_from_name (results.fetch_string(10));
+                }
+                if (results.fetch_string(11) != null) {
+                    dp.audiobook_playlist = libraries_manager.local_library.playlist_from_name (results.fetch_string(11));
+                    if (dp.audiobook_playlist == null)
+                        dp.audiobook_playlist = libraries_manager.local_library.smart_playlist_from_name (results.fetch_string(11));
+                }
                 dp.last_sync_time = results.fetch_int(12);
 
                 rv.add (dp);
@@ -881,10 +893,21 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                 query.set_int(":sync_all_music", dp.sync_all_music ? 1 : 0);
                 query.set_int(":sync_all_podcasts", dp.sync_all_podcasts ? 1 : 0);
                 query.set_int(":sync_all_audiobooks", dp.sync_all_audiobooks ? 1 : 0);
+                
+                string music_playlist = "";
+                string podcast_playlist = "";
+                string audiobook_playlist = "";
+                
+                if (dp.music_playlist != null)
+                    music_playlist = dp.music_playlist.name;
+                if (dp.podcast_playlist != null)
+                    podcast_playlist = dp.podcast_playlist.name;
+                if (dp.audiobook_playlist != null)
+                    audiobook_playlist = dp.audiobook_playlist.name;
 
-                query.set_string(":music_playlist", dp.music_playlist);
-                query.set_string(":podcast_playlist", dp.podcast_playlist);
-                query.set_string(":audiobook_playlist", dp.audiobook_playlist);
+                query.set_string(":music_playlist", music_playlist);
+                query.set_string(":podcast_playlist", podcast_playlist);
+                query.set_string(":audiobook_playlist", audiobook_playlist);
                 query.set_int(":last_sync_time", dp.last_sync_time);
 
                 query.execute();
@@ -917,10 +940,21 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.set_int(":sync_all_music", dp.sync_all_music ? 1 : 0);
             query.set_int(":sync_all_podcasts", dp.sync_all_podcasts ? 1 : 0);
             query.set_int(":sync_all_audiobooks", dp.sync_all_audiobooks ? 1 : 0);
+                
+            string music_playlist = "";
+            string podcast_playlist = "";
+            string audiobook_playlist = "";
+            
+            if (dp.music_playlist != null)
+                music_playlist = dp.music_playlist.name;
+            if (dp.podcast_playlist != null)
+                podcast_playlist = dp.podcast_playlist.name;
+            if (dp.audiobook_playlist != null)
+                audiobook_playlist = dp.audiobook_playlist.name;
 
-            query.set_string(":music_playlist", dp.music_playlist);
-            query.set_string(":podcast_playlist", dp.podcast_playlist);
-            query.set_string(":audiobook_playlist", dp.audiobook_playlist);
+            query.set_string(":music_playlist", music_playlist);
+            query.set_string(":podcast_playlist", podcast_playlist);
+            query.set_string(":audiobook_playlist", audiobook_playlist);
             query.set_int(":last_sync_time", dp.last_sync_time);
 
             query.execute();

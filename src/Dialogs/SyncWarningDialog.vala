@@ -119,14 +119,14 @@ public class Noise.SyncWarningDialog : Window {
     }
 
     public void importMediasClicked() {
-        d.transfer_to_library(to_remove);
+        libraries_manager.transfer_to_local_library (to_remove);
         // TODO: After transfer, do sync
         
         this.destroy();
     }
     
     public void syncClicked() {
-        device_manager.device_asked_sync (d);
+        d.synchronize ();
         
         this.destroy();
     }

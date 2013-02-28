@@ -134,7 +134,7 @@ public class Noise.TopDisplay : Box {
     
     // automatically shows/hides progress bar/scale based on progress's value
     public void set_progress_value (double progress) {
-        if(progress >= 0.0 && progress <= 1.0) {
+        if(progress >= 0.0 && progress < 1.0) {
             if(!progressbar.visible) {
                 show_progressbar();
                 set_label_showing(true);

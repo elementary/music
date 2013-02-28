@@ -36,14 +36,11 @@ public class Noise.DeviceManager : GLib.Object {
     
     public Gee.ArrayList<DevicePreferences> device_preferences;
     public Gee.ArrayList<unowned Device> devices;
+    private Gee.ArrayList<Playlist> local_playlists;
     
     public signal void device_added(Device d);
     public signal void device_removed(Device d);
     public signal void device_name_changed (Device d);
-    public signal void device_asked_sync (Device d);
-    public signal void device_asked_transfer (Device d, Collection<Noise.Media> list);
-    
-    public signal void cancel_device_transfer ();
     
     public signal void mount_added (Mount mount);
     public signal void mount_removed (Mount mount);
@@ -52,6 +49,7 @@ public class Noise.DeviceManager : GLib.Object {
         
         device_preferences = new Gee.ArrayList<DevicePreferences> ();
         devices = new Gee.ArrayList<unowned Device> ();
+        local_playlists = new Gee.ArrayList<Playlist> ();
         
         vm = VolumeMonitor.get();
         

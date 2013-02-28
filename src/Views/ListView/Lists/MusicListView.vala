@@ -77,8 +77,10 @@ public class Noise.MusicListView : GenericList {
             mediaEditMedia.set_visible(false);
             mediaRemove.set_label(_("Remove from Device"));
             mediaMenuQueue.set_visible(false);
-            mediaMenuAddToPlaylist.set_visible(false);
-            mediaTopSeparator.set_visible(false);
+            if (parent_wrapper.library.support_playlists () == false) {
+                mediaMenuAddToPlaylist.set_visible(false);
+                mediaTopSeparator.set_visible(false);
+            }
         }
         else {
             mediaRemove.set_visible(false);
@@ -174,7 +176,7 @@ public class Noise.MusicListView : GenericList {
             var mediaMenuNewPlaylist = new Gtk.MenuItem.with_label(_("New Playlist…"));
             mediaMenuNewPlaylist.activate.connect(mediaMenuNewPlaylistClicked);
             addToPlaylistMenu.append (mediaMenuNewPlaylist);
-            if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
+            if(parent_wrapper.library.support_playlists () == false) {
                 mediaMenuNewPlaylist.set_visible(false);
             }
             foreach (var playlist in parent_wrapper.library.get_playlists ()) {
@@ -426,7 +428,7 @@ public class Noise.MusicListView : GenericList {
         }
         else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
             DeviceViewWrapper dvw = (DeviceViewWrapper)parent_wrapper;
-            dvw.d.remove_medias(to_remove);
+            dvw.library.remove_medias(to_remove, true);
         }
 
         if(get_hint() == ViewWrapper.Hint.PLAYLIST) {

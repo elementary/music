@@ -42,19 +42,20 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
 
     public virtual void set_device (Device device) {
         this.d = device;
-        d.file_operation_finished.connect (sync_finished);
+        library.file_operations_done.connect (sync_finished);
 
-        set_media_async.begin (d.get_medias ());
+        set_media_async.begin (library.get_medias ());
     }
 
     private void import_request (Gee.LinkedList<Media> to_import) {
-        if (!library.doing_file_operations())
-            d.transfer_to_library (to_import);
+        if (!library.doing_file_operations()) {
+            libraries_manager.transfer_to_local_library (to_import);
+        }
     }
 
-    private void sync_finished(bool success) {
+    private void sync_finished () {
         if (hint == ViewWrapper.Hint.DEVICE_AUDIO)
-            set_media_async.begin (d.get_songs ());
+            set_media_async.begin (library.get_medias ());
     }
 }
 

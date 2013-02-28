@@ -112,8 +112,6 @@ public class Noise.LocalLibrary : Library {
                 }
             }
         }
-        device_manager.device_asked_sync.connect ((device) => {device.sync_medias (answer_to_device_sync (device));});
-        device_manager.device_asked_transfer.connect ((device, list) => {add_medias (list);});
         device_manager.set_device_preferences (dbm.load_devices ());
 
         load_media_art_cache.begin ();
@@ -376,6 +374,10 @@ public class Noise.LocalLibrary : Library {
     
     /************************ StaticPlaylist stuff ******************/
 
+    public override bool support_playlists () {
+        return true;
+    }
+    
     public override Gee.Collection<StaticPlaylist> get_playlists () {
         return _playlists;
     }
@@ -425,6 +427,10 @@ public class Noise.LocalLibrary : Library {
     }
 
     /**************** Smart playlists ****************/
+    
+    public override bool support_smart_playlists () {
+        return true;
+    }
     
     public override Collection<SmartPlaylist> get_smart_playlists () {
         return _smart_playlists;
@@ -702,7 +708,7 @@ public class Noise.LocalLibrary : Library {
             if (device.get_preferences ().sync_all_music == true) {
                 medias_to_sync.add_all (get_medias ());
             } else {
-                medias_to_sync.add_all (playlist_from_name (device.get_preferences ().music_playlist).medias);
+                medias_to_sync.add_all (device.get_preferences ().music_playlist.medias);
             }
         }
         return medias_to_sync;

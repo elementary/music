@@ -35,8 +35,6 @@ public interface Noise.Device : GLib.Object {
     public signal void initialized (Device d);
     public signal void device_unmounted ();
     public signal void infobar_message (string message, Gtk.MessageType type);
-    public signal void file_operation_started ();
-    public signal void file_operation_finished (bool success);
     
     public abstract DevicePreferences get_preferences();
     public abstract bool start_initialization();
@@ -58,27 +56,64 @@ public interface Noise.Device : GLib.Object {
     public abstract uint64 get_free_space();
     public abstract void unmount();
     public abstract void eject();
+    public abstract void synchronize ();
     public abstract bool has_custom_view();
     public abstract Gtk.Grid get_custom_view();
     public abstract bool read_only();
-    public abstract bool supports_podcasts();
-    public abstract bool supports_audiobooks();
     public abstract Library get_library ();
-    public abstract Collection<Media> get_medias();
-    public abstract Collection<Media> get_songs();
-    public abstract Collection<Media> get_podcasts();
-    public abstract Collection<Media> get_audiobooks();
-    public abstract Collection<StaticPlaylist> get_playlists();
-    public abstract Collection<SmartPlaylist> get_smart_playlists();
-    public abstract bool sync_medias(Collection<Noise.Media> medias);
-    public abstract bool add_medias(Collection<Media> list);
-    public abstract bool remove_medias(Collection<Media> list);
-    public abstract bool is_syncing();
-    public abstract void cancel_sync();
-    public abstract bool will_fit(Collection<Media> list);
-    public abstract bool is_transferring();
-    public abstract void cancel_transfer();
-    public abstract bool transfer_to_library(Collection<Media> list);
+    
+    public Gee.Collection<Noise.Media> delete_doubles (Gee.Collection<Noise.Media> source_list, Gee.Collection<Noise.Media> to_remove) {
+        var new_list = new Gee.LinkedList<Noise.Media> ();
+        foreach(var m in source_list) {
+            if (m != null) {
+                bool needed = true;
+                foreach(var med in to_remove) {
+                    if (med != null && med.title != null) {
+                        if (med.album != null && m.album != null) { // If you don't have the album name, don't care of it
+                            if(med.title.down() == m.title.down() && med.artist.down() == m.artist.down() && med.album.down() == m.album.down()) {
+                                needed = false;
+                                break;
+                            }
+                        } else {
+                            if(med.title.down() == m.title.down() && med.artist.down() == m.artist.down()) {
+                                needed = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (needed == true)
+                    new_list.add (m);
+            }
+        }
+        
+        return new_list;
+    }
+    
+    public bool will_fit(Gee.Collection<Noise.Media> list) {
+        uint64 list_size = 0;
+        foreach(var m in list) {
+            list_size += m.file_size;
+        }
+        
+        return get_capacity() > list_size;
+    }
+    
+    public bool will_fit_without(Gee.Collection<Noise.Media> list, Gee.Collection<Noise.Media> without) {
+        uint64 list_size = 0;
+        uint64 without_size = 0;
+        foreach (var m in list) {
+            list_size += m.file_size;
+        }
+        foreach (var m in without) {
+            without_size += m.file_size;
+        }
+        if (without_size > list_size) {
+            return true;
+        } else {
+            return get_capacity () > (list_size - without_size);
+        }
+    }
     
     public string get_unique_identifier() {
         Mount m = get_mount();

@@ -22,6 +22,7 @@
 
 public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Device dev;
+    private Gee.LinkedList<unowned Playlist> playlists { get; set; }
     
     Gtk.Grid main_grid;
     
@@ -55,6 +56,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     }
     
     public void build_ui () {
+        playlists = new Gee.LinkedList<unowned Playlist> ();
 
         main_grid = new Gtk.Grid ();
 
@@ -183,13 +185,13 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 #endif
         //syncAudiobooks.active = dev.get_preferences ().sync_audiobooks;
         
-        if(dev.get_preferences ().sync_all_music)
+        if(dev.get_preferences ().sync_all_music || dev.get_preferences().music_playlist == null)
             sync_music_combobox.set_active (0);
         else {
-            bool success = sync_music_combobox.set_active_id (dev.get_preferences().music_playlist);
+            bool success = sync_music_combobox.set_active_id (dev.get_preferences().music_playlist.name);
             if (!success) {
                 //notification_manager.doAlertNotification ("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
-                dev.get_preferences ().music_playlist = "";
+                dev.get_preferences ().music_playlist = null;
                 dev.get_preferences ().sync_all_music = true;
                 sync_music_combobox.set_active (0);
             }
@@ -237,12 +239,18 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         
         device_name_entry.changed.connect (device_name_changed);
         space_widget.sync_clicked.connect (sync_clicked);
-        dev.file_operation_finished.connect (sync_finished);
+        dev.get_library ().file_operations_done.connect (sync_finished);
+        libraries_manager.local_library.playlist_added.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.playlist_name_updated.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.playlist_removed.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.smartplaylist_added.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.smartplaylist_name_updated.connect (() => {refresh_lists ();});
+        libraries_manager.local_library.smartplaylist_removed.connect (() => {refresh_lists ();});
         
         show_all ();
     }
     
-    void refresh_space_widget () {
+    private void refresh_space_widget () {
         uint64 other_files_size = 0;
         uint64 music_size = 0;
 #if HAVE_PODCASTS
@@ -251,7 +259,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         //double audiobook_size = 0.0;
 
 
-        foreach (var m in dev.get_songs ()) {
+        foreach (var m in dev.get_library ().get_medias ()) {
             if (m != null)
                 music_size += m.file_size;
         }
@@ -279,7 +287,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         //spaceWidget.update_item_size (audiobook_index, audiobook_size);
     }
     
-    void setup_lists() {
+    private void setup_lists() {
         sync_music_combobox.set_model (music_list);
 #if HAVE_PODCASTS
         sync_podcasts_combobox.set_model (podcast_list);
@@ -330,26 +338,20 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_podcasts_combobox.set_button_sensitivity (Gtk.SensitivityType.ON);
 #endif
         //audiobookDropdown.set_button_sensitivity (SensitivityType.ON);
-        libraries_manager.local_library.playlist_added.connect (() => {refresh_lists ();});
-        libraries_manager.local_library.playlist_name_updated.connect (() => {refresh_lists ();});
-        libraries_manager.local_library.playlist_removed.connect (() => {refresh_lists ();});
-        libraries_manager.local_library.smartplaylist_added.connect (() => {refresh_lists ();});
-        libraries_manager.local_library.smartplaylist_name_updated.connect (() => {refresh_lists ();});
-        libraries_manager.local_library.smartplaylist_removed.connect (() => {refresh_lists ();});
     }
     
-    bool rowSeparatorFunc (Gtk.TreeModel model, Gtk.TreeIter iter) {
+    private bool rowSeparatorFunc (Gtk.TreeModel model, Gtk.TreeIter iter) {
         string sep = "";
         model.get (iter, 1, out sep);
         
         return sep == "<separator_item_unique_name>";
     }
     
-    void device_name_changed () {
+    private void device_name_changed () {
         dev.setDisplayName (device_name_entry.text);
     }
     
-    void save_preferences () {
+    private void save_preferences () {
         var pref = dev.get_preferences ();
         
         pref.sync_when_mounted = auto_sync_switch.active;
@@ -365,10 +367,12 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         pref.sync_all_podcasts = sync_podcasts_combobox.get_active () == 0;
 #endif
         //pref.sync_all_audiobooks = audiobookDropdown.get_active () == 0;
-        
-        pref.music_playlist = sync_music_combobox.get_active_id ();
+        if (sync_music_combobox.get_active ()-2 >= 0)
+            pref.music_playlist = playlists.get (sync_music_combobox.get_active ()-2);
+        else
+            pref.music_playlist = null;
 #if HAVE_PODCASTS
-        pref.podcast_playlist = sync_podcasts_combobox.get_active_id ();
+        pref.podcast_playlist = libraries_manager.local_library.playlist_from_name (sync_podcasts_combobox.get_active_id ());
 #endif
         //pref.audiobook_playlist = audiobookDropdown.get_active_id ();
         
@@ -388,7 +392,13 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     public void refresh_lists () {
         message ("refreshing lists\n");
         
-        string musicString = sync_music_combobox.get_active_id ();
+        string musicString = "";
+        if (sync_music_combobox.get_active ()-2 >= 0) {
+            musicString = playlists.get (sync_music_combobox.get_active ()-2).name;
+        }
+        
+        playlists.clear ();
+        
         music_list.clear ();
         
 #if HAVE_PODCASTS
@@ -429,6 +439,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             //if(music) {
                 music_list.append (out iter);
                 music_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
+                playlists.add (p);
             //}
 #if HAVE_PODCASTS
             //if(podcasts) {
@@ -449,6 +460,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             //if(music) {
                 music_list.append(out iter);
                 music_list.set(iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
+                playlists.add (p);
             //}
 #if HAVE_PODCASTS
             //if(podcasts) {
@@ -500,7 +512,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         }
     }*/
     
-    void sync_finished (bool success) {
+    private void sync_finished () {
         refresh_space_widget ();
         space_widget.set_sync_button_sensitive (true);
     }
@@ -517,28 +529,18 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 }
             }
             else {
-                GLib.Object p = libraries_manager.local_library.playlist_from_name (pref.music_playlist);
-                if (p == null)
-                    p = libraries_manager.local_library.smart_playlist_from_name (pref.music_playlist);
+                var p = pref.music_playlist;
                 
                 if (p != null) {
-                    if (p is StaticPlaylist) {
-                        foreach (var m in ( (StaticPlaylist) p).medias) {
-                            if (m != null && m.mediatype == 0)
-                                list.add (m);
-                        }
-                    }
-                    else {
-                        foreach (var m in ( (SmartPlaylist) p).medias) {
-                            if(m != null && m.mediatype == 0)
-                                list.add (m);
-                        }
+                    foreach (var m in p.medias) {
+                        if (m != null && m.mediatype == 0)
+                            list.add (m);
                     }
                 }
                 else {
-                    notification_manager.doAlertNotification (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.music_playlist + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
+                    notification_manager.doAlertNotification (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.music_playlist.name + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
                     
-                    pref.music_playlist = "";
+                    pref.music_playlist = null;
                     pref.sync_all_music = true;
                     sync_music_combobox.set_active(0);
                     return;
@@ -555,22 +557,12 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 }
             }
             else {
-                GLib.Object p = libraries_manager.local_library.playlist_from_name(pref.podcast_playlist);
-                if(p == null)
-                    p = libraries_manager.local_library.smart_playlist_from_name(pref.podcast_playlist);
+                GLib.Object p = pref.podcast_playlist;
                 
                 if(p != null) {
-                    if(p is Playlist) {
-                        foreach(int i in ((Playlist)p).media ()) {
-                            if(libraries_manager.local_library.media_from_id(i).mediatype == 1 && !libraries_manager.local_library.media_from_id(i).uri.has_prefix("http:/"))
-                                list.add(i);
-                        }
-                    }
-                    else {
-                        foreach(int i in ((SmartPlaylist)p).analyze(lm, lm.media_ids())) {
-                            if(libraries_manager.local_library.media_from_id(i).mediatype == 1 && !libraries_manager.local_library.media_from_id(i).uri.has_prefix("http:/"))
-                                list.add(i);
-                        }
+                    foreach(var s in p.medias ()) {
+                        if(s.mediatype == 1 && !s.uri.has_prefix("http:/"))
+                            list.add(i);
                     }
                 }
                 else {
@@ -592,22 +584,12 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 }
             }
             else {
-                GLib.Object p = lm.playlist_from_name(pref.audiobook_playlist);
-                if(p == null)
-                    p = lm.smart_playlist_from_name(pref.audiobook_playlist);
+                GLib.Object p = pref.audiobook_playlist;
                 
                 if(p != null) {
-                    if(p is Playlist) {
-                        foreach(int i in ((Playlist)p).medias()) {
-                            if(lm.media_from_id(i).mediatype == 2)
-                                list.add(i);
-                        }
-                    }
-                    else {
-                        foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
-                            if(lm.media_from_id(i).mediatype == 2)
-                                list.add(i);
-                        }
+                    foreach (var s in p.medias()) {
+                        if(s.mediatype == 2)
+                            list.add(i);
                     }
                 }
                 else {
@@ -620,17 +602,17 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             }
         }*/
         
-        bool fits = dev.will_fit(list);
+        bool fits = dev.will_fit (list);
         if(!fits) {
-            notification_manager.doAlertNotification (_("Cannot Sync"), _("Cannot sync device with selected sync settings. Not enough space on disk") +"\n");
+            notification_manager.doAlertNotification (_("Cannot Sync"), _("Cannot sync device with selected sync settings. Not enough space on disk"));
         }
-        else if(dev.is_syncing()) {
-            notification_manager.doAlertNotification (_("Cannot Sync"), _("Device is already being synced."));
+        else if(dev.get_library ().doing_file_operations ()) {
+            notification_manager.doAlertNotification (_("Cannot Sync"), _("Device is already doing an operation."));
         }
         else {
             var found = new Gee.LinkedList<int>();
             var not_found = new Gee.LinkedList<Media>();
-            libraries_manager.local_library.media_from_name (dev.get_medias(), ref found, ref not_found);
+            libraries_manager.local_library.media_from_name (dev.get_library ().get_medias(), ref found, ref not_found);
             
             if(not_found.size > 0) { // hand control over to SWD
                 SyncWarningDialog swd = new SyncWarningDialog(dev, list, not_found);
@@ -638,7 +620,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             }
             else {
                 space_widget.set_sync_button_sensitive(false);
-                device_manager.device_asked_sync (dev);
+                dev.synchronize ();
             }
         }
     }

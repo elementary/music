@@ -31,19 +31,57 @@
 
 public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     
-    public AudioPlayerLibrary () {
+    AudioPlayerDevice device;
+    Gee.LinkedList<Noise.Media> medias;
+    bool operation_cancelled = false;
+    bool is_doing_file_operations = false;
+    bool queue_is_finished = false;
+    Gee.LinkedList<string> imported_files;
+    bool is_initialized = false;
+    
+    public GStreamerTagger tagger;
+    
+    public AudioPlayerLibrary (AudioPlayerDevice device) {
+        this.device = device;
+        medias = new Gee.LinkedList<Noise.Media> ();
+        imported_files = new Gee.LinkedList<string> ();
+    
+        tagger = new GStreamerTagger();
         
+        tagger.media_imported.connect(media_imported);
+        tagger.import_error.connect(import_error);
+        tagger.queue_finished.connect(queue_finished);
+    }
+    
+    void media_imported (Media m) {
+        m.isTemporary = true;
+        this.medias.add(m);
+        m.rowid = medias.index_of (m);
+        if (queue_is_finished)
+            file_operations_done ();
+    }
+    
+    void import_error(string file) {
+    }
+    
+    public void queue_finished () {
+        queue_is_finished = true;
+        libraries_manager.progress = 1;
+        if (is_initialized == false) {
+            is_initialized = true;
+            device.initialized (device);
+        }
     }
     
     public override void initialize_library () {
-    
+        
     }
     public override void add_files_to_library (Gee.Collection<string> files) {
     
     }
     
     public override Gee.Collection<Media> get_medias () {
-        return new Gee.LinkedList<Media> ();
+        return medias;
     }
     public override Gee.Collection<StaticPlaylist> get_playlists () {
         return new Gee.LinkedList<StaticPlaylist> ();
@@ -52,12 +90,153 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         return new Gee.LinkedList<SmartPlaylist> ();
     }
     
-    public override void add_media (Media s) {
-    
+    public override void add_media (Media m) {
+        if(m == null)
+            return;
+
+        string current_operation = _("Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
+        current_operation = current_operation.replace ("$NAME", m.title ?? "");
+        current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
+        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.getDisplayName() ?? "");
+        debug ("Adding media %s by %s\n", m.title, m.artist);
+        
+        var file = File.new_for_uri (m.uri);
+        var destination_file = File.new_for_uri (device.get_music_folder () + file.get_basename ());
+        
+        try {
+            file.copy (destination_file,GLib.FileCopyFlags.ALL_METADATA);
+        } catch(Error err) {
+            warning ("Failed to copy track %s : %s\n", m.title, err.message);
+            return;
+        }
+        imported_files.add (destination_file.get_uri());
     }
-    public override void add_medias (Gee.Collection<Media> new_media) {
     
+    public override void add_medias (Gee.Collection<Media> list) {
+        if(doing_file_operations ()) {
+            warning("Tried to add when already syncing\n");
+            return;
+        }
+        
+        libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.getDisplayName ());
+        
+        is_doing_file_operations = true;
+        Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
+        int sub_index = 0;
+        
+        var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
+        medias_to_sync.add_all (device.delete_doubles (list, medias));
+        message("Found %d medias to add.", medias_to_sync.size);
+        int total_medias = medias_to_sync.size;
+        
+        if (total_medias > 0) {
+            if (device.will_fit(medias_to_sync)) {
+                imported_files = new Gee.LinkedList<string> ();
+                foreach(var m in medias_to_sync) {
+                    add_media(m);
+                    ++sub_index;
+                    libraries_manager.progress = (double)(sub_index/total_medias);
+                }
+                tagger.discoverer_import_media (imported_files);
+            }
+        }
+        return;
     }
+    
+    public void sync_medias () {
+        if(doing_file_operations ()) {
+            warning("Tried to add when already syncing\n");
+            return;
+        }
+        Playlist playlist = null;
+        if (device.get_preferences().sync_all_music == false) {
+            playlist = device.get_preferences().music_playlist;
+            if (playlist == null)
+                return;
+        }
+        
+        
+        libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.getDisplayName ());
+        
+        is_doing_file_operations = true;
+        Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
+        if (playlist == null)
+            sync_medias_thread.begin (libraries_manager.local_library.get_medias ());
+        else
+            sync_medias_thread.begin (playlist.medias);
+        return;
+    }
+    
+    public async void sync_medias_thread (Gee.Collection<Noise.Media> songs) {
+        
+        Threads.add (() => {
+            
+            var medias_to_remove = new Gee.LinkedList<Noise.Media> ();
+            medias_to_remove.add_all (device.delete_doubles (medias, songs));
+            
+            var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
+            medias_to_sync.add_all (device.delete_doubles (songs, medias));
+            
+            int total_medias = medias_to_remove.size + medias_to_sync.size;
+            
+            int sub_index = 0;
+            if (total_medias > 0) {
+                if (device.will_fit_without (medias_to_sync, medias_to_remove)) {
+                    foreach(var m in medias_to_remove) {
+                        if(!operation_cancelled) {
+                            remove_media(m, true);
+                        }
+                        ++sub_index;
+                        libraries_manager.progress = (double)(sub_index/total_medias);
+                    }
+                    sub_index = 0;
+                    imported_files = new Gee.LinkedList<string> ();
+                    foreach(var m in medias_to_sync) {
+                        if(!operation_cancelled) {
+                            add_media (m);
+                        }
+                        ++sub_index;
+                        libraries_manager.progress = (double)(sub_index/total_medias);
+                    }
+                    tagger.discoverer_import_media (imported_files);
+                    
+                    if(!operation_cancelled) {
+                        // sync playlists
+                        /* TODO: add support for podcasts & playlists
+                        if (pref.sync_all_music == true) {
+                            sync_playlists();
+                        }
+                        if (pref.sync_all_podcasts == true) {
+                            sync_podcasts();
+                        }*/
+                        
+                        libraries_manager.current_operation = _("Finishing sync process…");
+                        
+                    } else {
+                        libraries_manager.current_operation = _("Cancelling Sync…");
+                        libraries_manager.progress = 1;
+                    }
+                } else {
+                        device.infobar_message (_("There is not enough space on Device to complete the Sync…"), Gtk.MessageType.INFO);
+                        libraries_manager.current_operation = _("There is not enough space on Device to complete the Sync…");
+                }
+            }
+
+            Idle.add( () => {
+                libraries_manager.progress = 1;
+                device.get_preferences().last_sync_time = (int)time_t();
+                is_doing_file_operations = false;
+                
+                file_operations_done ();
+                operation_cancelled = false;
+                
+                return false;
+            });
+        });
+
+        yield;
+    }
+    
     public override Media? media_from_id (int id) {
         return null;
     }
@@ -79,11 +258,55 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
     
     }
-    public override void remove_media (Media s, bool trash) {
-    
+    public override void remove_media (Media m, bool trash) {
+        string current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE");
+        current_operation = current_operation.replace ("$NAME", m.title ?? "");
+        current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
+        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.getDisplayName() ?? "");
+        /* first check if the file exists disk */
+        if(m.uri != null) {
+            var file = File.new_for_uri(m.uri);
+            
+            if(file.query_exists()) {
+                var idlist = new Gee.ArrayList<int> ();
+                idlist.add (m.rowid);
+                media_removed (idlist);
+                medias.remove (m);
+                try {
+                    file.delete();
+                } catch (Error err) {
+                    warning ("Could not delete File at %s: %s", m.uri, err.message);
+                    return;
+                }
+                debug ("Successfully removed music file %s", m.uri);
+            } else {
+                warning("File not found, could not delete File at %s. File may already be deleted", m.uri);
+            }
+        }
     }
-    public override void remove_medias (Gee.Collection<Media> toRemove, bool trash) {
+    public override void remove_medias (Gee.Collection<Media> list, bool trash) {
+        if(doing_file_operations ()) {
+            warning("Tried to add when already syncing\n");
+            return;
+        }
+        
+        libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.getDisplayName ());
+        
+        int total = list.size;
+        Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
+        
+        int sub_index = 0;
+        foreach(var m in list) {
+            remove_media (m, true);
+            ++sub_index;
+            libraries_manager.progress = (double)(sub_index/total);
+        }
+        libraries_manager.progress = 1;
+        file_operations_done ();
+    }
     
+    public override bool support_smart_playlists () {
+        return false;
     }
     
     public override void add_smart_playlist (SmartPlaylist p) {
@@ -97,6 +320,10 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     }
     public override SmartPlaylist? smart_playlist_from_name (string name) {
         return null;
+    }
+    
+    public override bool support_playlists () {
+        return false;
     }
     
     public override void add_playlist (StaticPlaylist p) {
@@ -113,15 +340,20 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     }
     
     public override bool start_file_operations (string? message) {
-        return true;
+        if (doing_file_operations ()) {
+            
+            return true;
+        } else
+            return false;
     }
     public override bool doing_file_operations () {
-        return true;
+        return is_doing_file_operations;
     }
     public override void finish_file_operations () {
     
     }
     public override void cancel_operations () {
-    
+        operation_cancelled = true;
     }
+    
 }
