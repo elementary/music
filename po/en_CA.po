@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-16 12:58+0100\n"
-"PO-Revision-Date: 2013-02-04 04:07+0000\n"
+"PO-Revision-Date: 2013-02-27 20:39+0000\n"
 "Last-Translator: Shawn McTear <Unknown>\n"
 "Language-Team: English (Canada) <en_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-02-17 05:02+0000\n"
-"X-Generator: Launchpad (build 16491)\n"
+"X-Launchpad-Export-Date: 2013-02-28 05:12+0000\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: \n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -305,7 +305,7 @@ msgstr "Import Music"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1096
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryManager.vala:241
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Importing</b> music to library…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1111
 msgid "Rescanning music folder for changes"
@@ -425,7 +425,7 @@ msgstr "Import your Music"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:98
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "Import all your Music from %s into your library."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:121
 msgid "Select Music Folder"
@@ -642,7 +642,7 @@ msgstr "Remove Song"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:174
 msgid "New Playlist…"
-msgstr ""
+msgstr "New Playlist…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:218
 #, c-format
@@ -653,8 +653,8 @@ msgstr "Import %i of %i selected songs"
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Import %i song"
+msgstr[1] "Import %i songs"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:395
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:398
@@ -664,12 +664,12 @@ msgstr "New playlist (%i)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:655
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:670
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
 msgid "Never"
-msgstr ""
+msgstr "Never"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -680,15 +680,15 @@ msgstr ""
 #. / by the column's title header.
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:735
 msgid "Sample List String"
-msgstr ""
+msgstr "Sample List String"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Autosize Columns"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
 msgid "Display Album Art"
-msgstr ""
+msgstr "Display Album Art"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
 #, c-format
@@ -697,21 +697,21 @@ msgstr "%i kbps"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:89
 msgid "No Songs Found."
-msgstr ""
+msgstr "No Songs Found."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:365
 #, c-format
 msgid "%i track"
 msgid_plural "%i tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i track"
+msgstr[1] "%i tracks"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:367
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u song"
+msgstr[1] "%u songs"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:375
 #, c-format
@@ -781,29 +781,29 @@ msgstr "No Ratings"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Groupings"
-msgstr ""
+msgstr "All Groupings"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 #, c-format
 msgid "All %i Groupings"
-msgstr ""
+msgstr "All %i Groupings"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Groupings"
-msgstr ""
+msgstr "No Groupings"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Composers"
-msgstr ""
+msgstr "All Composers"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 #, c-format
 msgid "All %i Composers"
-msgstr ""
+msgstr "All %i Composers"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Composers"
-msgstr ""
+msgstr "No Composers"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:49
@@ -826,8 +826,8 @@ msgstr "Unrated"
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i Star"
+msgstr[1] "%i Stars"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
 msgid "Genres"
@@ -851,11 +851,11 @@ msgstr "Ratings"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
 msgid "Composers"
-msgstr ""
+msgstr "Composers"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
 msgid "Groupings"
-msgstr ""
+msgstr "Groupings"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling Sync"
