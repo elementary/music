@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-01 00:46+0100\n"
-"PO-Revision-Date: 2012-12-16 11:37+0000\n"
-"Last-Translator: Damir Jerovšek <Unknown>\n"
+"PO-Revision-Date: 2013-03-01 10:02+0000\n"
+"Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2013-03-01 05:19+0000\n"
+"X-Launchpad-Export-Date: 2013-03-02 05:10+0000\n"
 "X-Generator: Launchpad (build 16514)\n"
 "Language: sl\n"
 
@@ -2119,9 +2119,6 @@ msgstr ""
 #~ "Usklajevanje naprave je bilo preklicano. Dejanje se bo po tej predstavni "
 #~ "vsebini ustavila."
 
-#~ msgid "Export"
-#~ msgstr "Izvozi"
-
 #, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Ime %s je že v uporabi"
@@ -2135,9 +2132,6 @@ msgstr ""
 #~ msgstr ""
 #~ "%s ni našel nobene skladbe na CD-ju. Nobene skladbe ni mogoče uvoziti"
 
-#~ msgid "Syncing playlists"
-#~ msgstr "Usklajevanje seznamov predvajanja"
-
 #, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
@@ -2147,3 +2141,9 @@ msgstr ""
 #~ "V tem pogledu bo %s samodejno našel skladbe, podobne trenutno predvajani. "
 #~ "Nato lahko začnete predvajati te skladbe ali pa jih shranite kot seznam "
 #~ "predvajanja za pozneje."
+
+#~ msgid "Export"
+#~ msgstr "Izvozi"
+
+#~ msgid "Syncing playlists"
+#~ msgstr "Usklajevanje seznamov predvajanja"
