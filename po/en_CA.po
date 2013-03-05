@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-01 00:46+0100\n"
-"PO-Revision-Date: 2013-02-27 20:39+0000\n"
+"PO-Revision-Date: 2013-03-04 18:42+0000\n"
 "Last-Translator: Shawn McTear <Unknown>\n"
 "Language-Team: English (Canada) <en_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-03-02 05:10+0000\n"
+"X-Launchpad-Export-Date: 2013-03-05 05:27+0000\n"
 "X-Generator: Launchpad (build 16514)\n"
 "Language: \n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
@@ -391,7 +391,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "Device is already doing an operation."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -485,7 +485,7 @@ msgstr[1] "%u albums"
 #, c-format
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr ""
+msgstr "%s by %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
@@ -883,28 +883,28 @@ msgstr ""
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
-msgstr ""
+msgstr "Importing <b>%s</b> to Library…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:344
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "<b>Copying</b> files to <b>Music Folder</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:160
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Importing music from %s…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:203
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Adding files to library…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:268
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "Rescanning music for changes. This may take a while…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:358
 msgid "Added to your queue:"
-msgstr ""
+msgstr "Added to your queue:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:441
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:678
@@ -946,7 +946,7 @@ msgstr "Music Player"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
-msgstr ""
+msgstr "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
@@ -981,7 +981,7 @@ msgstr "Song"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
 msgid "Repeat Song"
-msgstr ""
+msgstr "Repeat Song"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:200
@@ -992,7 +992,7 @@ msgstr "Album"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
 msgid "Repeat Album"
-msgstr ""
+msgstr "Repeat Album"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:198
@@ -1003,7 +1003,7 @@ msgstr "Artist"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Repeat Artist"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
@@ -1012,7 +1012,7 @@ msgstr "All"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
 msgid "Repeat All"
-msgstr ""
+msgstr "Repeat All"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
 msgid "Enable Shuffle"
@@ -1029,7 +1029,7 @@ msgstr "Add Playlist"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:144
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Add Smart Playlist"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
@@ -1065,7 +1065,7 @@ msgstr "Cancel"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Rename"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
@@ -1076,11 +1076,11 @@ msgstr "Remove"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:72
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr ""
+msgstr "Export…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:70
 msgid "Edit…"
-msgstr ""
+msgstr "Edit…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:85
 msgid "Save as Playlist"
@@ -1122,31 +1122,31 @@ msgstr "Playlists"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:66
 msgid "View as Albums"
-msgstr ""
+msgstr "View as Albums"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:70
 msgid "View as List"
-msgstr ""
+msgstr "View as List"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:74
 msgid "View in Columns"
-msgstr ""
+msgstr "View in Columns"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Select Music Folder…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:123
 msgid "Music Folder Location:"
-msgstr ""
+msgstr "Music Folder Location:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
-msgstr ""
+msgstr "Library Management:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
@@ -1154,19 +1154,19 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Write metadata to file:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
-msgstr ""
+msgstr "Copy imported files to Library:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
-msgstr ""
+msgstr "Desktop Integration:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
-msgstr ""
+msgstr "Show notifications:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
@@ -1174,7 +1174,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
-msgstr ""
+msgstr "Hide window when a song is being played:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:88
 msgid "Metadata"
@@ -1188,7 +1188,7 @@ msgstr "Lyrics"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:353
 msgid "Editing $NAME by $ARTIST"
-msgstr ""
+msgstr "Editing $NAME by $ARTIST"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:355
@@ -1259,7 +1259,7 @@ msgstr "Media Type"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:301
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Lyrics not found for %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:546
 msgid "Podcast"
@@ -1839,7 +1839,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:42
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:47
 msgid "Last.fm Integration"
@@ -1847,13 +1847,15 @@ msgstr "Last.fm Integration"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Click to redo the Last.fm login process"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"To allow for Last.fm integration, you must give permission to Noise. You "
+"only need to do this once."
 
 #~ msgid "Done"
 #~ msgstr "Done"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-03-01 00:46+0100\n"
-"PO-Revision-Date: 2013-03-03 11:11+0000\n"
+"PO-Revision-Date: 2013-03-04 14:47+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-03-04 05:47+0000\n"
+"X-Launchpad-Export-Date: 2013-03-05 05:27+0000\n"
 "X-Generator: Launchpad (build 16514)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
@@ -2175,9 +2175,3 @@ msgstr "要允许集成 Last.fm，您必须赋予 Noise 权限。您仅需执行
 
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "正在重新扫描音乐，请稍后..."
-
-#~ msgid "Syncing playlists"
-#~ msgstr "正在同步播放列表"
-
-#~ msgid "Export"
-#~ msgstr "导出"

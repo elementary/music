@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-01 00:46+0100\n"
-"PO-Revision-Date: 2013-03-03 11:10+0000\n"
+"PO-Revision-Date: 2013-03-04 14:45+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-03-04 05:47+0000\n"
+"X-Launchpad-Export-Date: 2013-03-05 05:27+0000\n"
 "X-Generator: Launchpad (build 16514)\n"
 "Language: \n"
 
@@ -2155,9 +2155,3 @@ msgstr "您必須給予Noise權限使Last.fm與Noise作整合。此動作只需�
 
 #~ msgid "Write metadata to file"
 #~ msgstr "將中介資料寫入檔案"
-
-#~ msgid "Syncing playlists"
-#~ msgstr "同步播放清單"
-
-#~ msgid "Export"
-#~ msgstr "匯出"
