@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-01 00:46+0100\n"
-"PO-Revision-Date: 2012-09-13 19:31+0000\n"
-"Last-Translator: Rus F Adrian <adirusf@gmail.com>\n"
+"PO-Revision-Date: 2013-03-06 12:15+0000\n"
+"Last-Translator: Richard B. <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2013-03-02 05:10+0000\n"
+"X-Launchpad-Export-Date: 2013-03-07 05:35+0000\n"
 "X-Generator: Launchpad (build 16514)\n"
 "Language: ro\n"
 
@@ -27,7 +27,7 @@ msgstr ""
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
 msgid "Unknown"
-msgstr ""
+msgstr "Necunoscut"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:53
 msgid "Radio Station"
@@ -36,28 +36,28 @@ msgstr "Stație Radio"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:183
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$NAME din $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:186
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$NAME de $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:192
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$NAME de $ARTIST din $ALBUM"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:184
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:394
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:396
 msgid "New playlist"
-msgstr ""
+msgstr "Listă de redare nouă"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:196
 #, c-format
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:223
 msgid "Export Playlist"
@@ -66,12 +66,12 @@ msgstr "Exportă listă de redare"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:231
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:325
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG versiunea 3.0 Extended (*. m3u)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:236
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:330
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Listă de redare Shoutcast versiunea 2.0 (*.pls)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:310
 msgid "Playlist"
@@ -84,7 +84,7 @@ msgstr "Importă %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:350
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Listă de redare nerecunoscută. Importare eșuată."
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
@@ -116,7 +116,7 @@ msgstr[2] "%u secunde"
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s și %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
@@ -139,28 +139,28 @@ msgstr[2] "%u ore"
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s și %s"
 
 #. / days and hours
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:94
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s și %s"
 
 #. / days and minutes
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:99
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s și %s"
 
 #. / hours and minutes
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:108
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s și %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -271,7 +271,7 @@ msgstr "Muzică"
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:114
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Coadă"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:862
 msgid "No songs in Queue"
@@ -315,7 +315,7 @@ msgstr "Importă muzică"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1127
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:242
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Se importă</b> muzica în librărie..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1142
 msgid "Rescanning music folder for changes"
@@ -400,7 +400,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "Dizpozitivul face deja o operație."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -410,7 +410,7 @@ msgstr "Nici o piesă"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Please wait until that this playlist get updated."
-msgstr ""
+msgstr "Te rog așteaptă până când această listă de redare se actualizează."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
 msgid "Get Some Tunes"
