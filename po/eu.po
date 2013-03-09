@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-01 00:46+0100\n"
-"PO-Revision-Date: 2013-03-04 14:48+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2013-03-08 22:55+0000\n"
+"Last-Translator: Ibai Oihanguren <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-03-05 05:26+0000\n"
-"X-Generator: Launchpad (build 16514)\n"
+"X-Launchpad-Export-Date: 2013-03-09 05:28+0000\n"
+"X-Generator: Launchpad (build 16523)\n"
 "Language: eu\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "<b>$NAME</b> (<b>$ARTIST</b>) liburutegira inportatzen…"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
@@ -56,7 +56,7 @@ msgstr "Erreprodukzio-zerrenda berria"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:196
 #, c-format
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:223
 msgid "Export Playlist"
@@ -310,7 +310,7 @@ msgstr "Inportatu musika"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1127
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:242
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "Musika liburutegira <b>inportatzen</b>..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1142
 msgid "Rescanning music folder for changes"
@@ -395,7 +395,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "Gailua dagoeneko eragiketa bat burutzen ari da."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -649,7 +649,7 @@ msgstr "Kendu kanta"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:176
 msgid "New Playlist…"
-msgstr ""
+msgstr "Erreprodukzio-zerrenda berria..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:220
 #, c-format
@@ -866,11 +866,13 @@ msgstr "Taldekatzeak"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling…"
-msgstr ""
+msgstr "Bertan behera uzten..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
 msgstr ""
+"Gailuaren eragiketa bertan behera utzi da eta multimedia honen ondoren "
+"geldituko da."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:105
 msgid "No External Songs"
@@ -885,28 +887,28 @@ msgstr "Ez da zure liburutegian ez dagoen kantarik aurkitu gailu honetan."
 #, c-format
 msgctxt "Importing playlist"
 msgid "Importing <b>%s</b> to Library…"
-msgstr ""
+msgstr "<b>%s</b> liburutegira inportatzen..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:344
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "<b>Musika karpetara</b> fitxategiak <b>kopiatzen</b>..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:160
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Musika inportatzen hemendik: %s..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:203
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Fitxategiak liburutegira gehitzen..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:268
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "Musika berreskaneatzen. Honek bere denbora beharko du..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:358
 msgid "Added to your queue:"
-msgstr ""
+msgstr "Ilarara gehituta:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:441
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:678
@@ -949,6 +951,8 @@ msgstr "Musika-erreproduzitzailea"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
+"Musika;Audioa;Erreproduzitzailea;MP3;iPod;Erreproduzitu;Erreprodukzio-"
+"zerrenda;Multimedia;CD;Mugikor;"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
@@ -1067,7 +1071,7 @@ msgstr "Utzi"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Berrizendatu"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
@@ -1078,11 +1082,11 @@ msgstr "Kendu"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:72
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr ""
+msgstr "Esportatu..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:70
 msgid "Edit…"
-msgstr ""
+msgstr "Editatu..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:85
 msgid "Save as Playlist"
@@ -1136,7 +1140,7 @@ msgstr "Ikusi zutabetan"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Hautatu musika-karpeta"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
@@ -1686,11 +1690,11 @@ msgstr "Album ezezaguna"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Errore bat gertatu da"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Errore bat gertatu da Audio CD hau kargatzerakoan."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
@@ -1698,7 +1702,7 @@ msgstr "Audio CD baliogabea"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "Ezinezkoa izan da Audio CD honen edukiak irakurtzea."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid ""
@@ -1716,6 +1720,7 @@ msgstr "Kantarik ez CDan"
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"Aplikazioak ezin izan du abestirik aurkitu CDan. Ezin da abestirik inportatu"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:358
 msgid "CD Import Complete"
@@ -1723,12 +1728,12 @@ msgstr "CD inportazioa osaturik"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:358
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "Audio CDko abesti baten inportazioa burutu da."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:358
 #, c-format
 msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
+msgstr "Audio CDko %i abestiren inportazioa burutu da."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:363
 #, c-format
@@ -1757,11 +1762,11 @@ msgstr "Gailu honek ez dauka musikarik."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
 msgid "Android Phone"
-msgstr ""
+msgstr "Android mugikorra"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
 msgid "Audio Player"
-msgstr ""
+msgstr "Audio-erreproduzigailua"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:97
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:141
@@ -1774,39 +1779,39 @@ msgstr "$DEVICE(e)ra <b>$NAME</b> (<b>$ARTIST</b> artistarena) gehitzen"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:563
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "<b>%s</b> sinkronizatzen..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:213
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:233
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:350
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:619
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Sinkronizazio-prozesua amaitzen..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:216
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:247
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:366
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:640
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Sinkronizazioa bertan behera uzten..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:220
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:221
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:650
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:651
 msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
+msgstr "Gailuan ez dago behar beste leku huts sinkronizazioa burutzeko..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:262
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:513
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "$DEVICE gailutik <b>$NAME</b> (<b>$ARTIST</b>) ezabatzen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:293
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:306
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "<b>%s</b>(e)tik ezabatzen..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
 msgid "media"
@@ -1830,6 +1835,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Ez dago uneko abestiaren antzekorik liburutegian. Egiaztatu abestien "
+"informazio guztia zuzena dela eta Internetera konektaturik zaudela. Baliteke "
+"zenbait abestik parekorik ez izatea."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
