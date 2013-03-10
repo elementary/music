@@ -181,6 +181,19 @@ namespace Noise.FileUtils {
         return false;
     }
     
+    public bool is_valid_playlist_type (string file_content_type, string[]? content_types = null) {
+        var considered_content_type = content_types;
+        if (content_types == null) {
+            considered_content_type = PLAYLISTS_CONTENT_TYPES;
+        }
+        foreach (var content_type in considered_content_type) {
+            if (ContentType.equals (file_content_type, content_type))
+                return true;
+        }
+
+        return false;
+    }
+    
     public int count_music_files (File music_folder, ref Gee.LinkedList<string> files) {
         FileInfo file_info = null;
         int index = 0;
@@ -204,6 +217,31 @@ namespace Noise.FileUtils {
 
         return index;
     }
+    
+    public int count_playlists_files (File playlist_folder, ref Gee.LinkedList<string> files) {
+        FileInfo file_info = null;
+        int index = 0;
+        try {
+            var enumerator = playlist_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
+            while ((file_info = enumerator.next_file ()) != null) {
+                var file = playlist_folder.get_child (file_info.get_name ());
+
+                if(file_info.get_file_type() == FileType.REGULAR && is_valid_playlist_type(file_info.get_content_type ())) {
+                    index++;
+                    files.add (file.get_uri ());
+                }
+                else if(file_info.get_file_type() == FileType.DIRECTORY) {
+                    count_playlists_files (file, ref files);
+                }
+            }
+        }
+        catch(Error err) {
+            warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
+        }
+
+        return index;
+    }
+    
     public File? get_new_destination(Media s) {
         File dest;
         

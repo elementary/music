@@ -228,67 +228,6 @@ public class Noise.FileOperator : Object {
         return name.slice(name.last_index_of(".", 0), name.length);
     }
     
-    private Gee.LinkedList<string> convert_paths_to_uris (Gee.Collection<string> paths) {
-        var uris = new Gee.LinkedList<string> ();
-        foreach (var path in paths) {
-            uris.add (File.new_for_path (path).get_uri ());
-        }
-        return uris;
-    }
-    
-    /* should be called from thread */
-    public void import_from_playlist_file_info(Gee.HashMap<string, Gee.LinkedList<string>> playlists) {
-        
-        foreach (var playlist in playlists.entries) {
-            if (playlist.value.get (0).has_prefix ("/")) {
-                libraries_manager.local_library.add_files_to_library (convert_paths_to_uris (playlist.value));
-            } else {
-                libraries_manager.local_library.add_files_to_library (playlist.value);
-            }
-        }
-        
-        foreach (var playlist in playlists.entries) {
-            libraries_manager.local_library.start_file_operations(C_("Importing playlist", "Importing <b>%s</b> to Library…").printf (playlist.key));
-            var new_playlist = new StaticPlaylist();
-            new_playlist.name = playlist.key;
-            var medias_to_use = playlist.value;
-            var to_add = new LinkedList<Media> ();
-            foreach (var media in libraries_manager.local_library.get_medias ()) {
-                if (medias_to_use.contains (media.file.get_path())) {
-                    to_add.add (media);
-               }
-            }
-            new_playlist.add_medias (to_add);
-            libraries_manager.local_library.add_playlist (new_playlist);
-            libraries_manager.local_library.finish_file_operations();
-        }
-        
-        /*foreach(string path in paths[0]) {
-            Media s;
-            if( (s = libraries_manager.local_library.media_from_file(File.new_for_path (path))) != null)
-                internals.add(s.rowid);
-
-                externals.add(path);
-        }
-        
-        new_playlist.name = names[0];
-        var to_add = new LinkedList<int>();
-        foreach(int i in internals) {
-            to_add.add (i);
-            libraries_manager.local_library.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
-            libraries_manager.local_library.finish_file_operations();
-        }
-
-        new_playlist.add_media (to_add);
-
-        if (other_names_list.length > 0) {
-            import_from_playlist_file_info({other_names_list[other_playlists_added]}, {other_paths_list[other_playlists_added]});
-            other_playlists_added++;
-            if (other_playlists_added == other_names_list.length)
-            other_names_list = {};
-        }*/
-    }
-    
     public void import_files (Collection<string> files, ImportType type) {
         all_new_imports = new LinkedList<Media>();
         new_imports.clear();

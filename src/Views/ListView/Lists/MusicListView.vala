@@ -76,10 +76,8 @@ public class Noise.MusicListView : GenericList {
         else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
             mediaEditMedia.set_visible(false);
             mediaRemove.set_label(_("Remove from Device"));
-            mediaMenuQueue.set_visible(false);
             if (parent_wrapper.library.support_playlists () == false) {
                 mediaMenuAddToPlaylist.set_visible(false);
-                mediaTopSeparator.set_visible(false);
             }
         }
         else {

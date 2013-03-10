@@ -30,23 +30,19 @@
 
 namespace Noise.PlaylistsUtils {
 
-    public bool save_playlist_m3u (Playlist p, string folder) {
+    public bool save_playlist_m3u (Playlist p, string folder, string without_path) {
         bool rv = false;
-        string to_save = "#EXTM3U";
+        string to_save = get_playlist_m3u_file (p, without_path);
         
-        foreach(var s in p.medias) {
-            if (s == null)
-                continue;
-
-            to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + File.new_for_uri(s.uri).get_path();
-        }
-        
-        File dest = GLib.File.new_for_path(Path.build_path("/", folder, p.name.replace("/", "_") + ".m3u"));
+        string path = Path.build_path("/", folder, p.name.replace("/", "_"));
+        File dest = GLib.File.new_for_path(path + ".m3u");
         try {
             // find a file path that doesn't exist
-            string extra = "";
-            while((dest = GLib.File.new_for_path(Path.build_path("/", folder, p.name.replace("/", "_") + extra + ".m3u"))).query_exists()) {
-                extra += "_";
+            if (!dest.query_exists ()) {
+                int i = 2;
+                while((dest = GLib.File.new_for_path (path + "(%d)".printf (i) + ".m3u")).query_exists()) {
+                    i++;
+                }
             }
             
             var file_stream = dest.create(FileCreateFlags.NONE);
@@ -63,6 +59,20 @@ namespace Noise.PlaylistsUtils {
         return rv;
     }
 
+    public string get_playlist_m3u_file (Playlist p, string without_path) {
+        string to_save = "#EXTM3U";
+        
+        foreach(var s in p.medias) {
+            if (s == null)
+                continue;
+
+            to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + File.new_for_uri(s.uri).get_path();
+            to_save = to_save.replace (without_path, "");
+        }
+        
+        return to_save;
+    }
+    
     public bool save_playlist_pls(Playlist p, string folder) {
         bool rv = false;
         string to_save = "[playlist]\n\nNumberOfEntries=" + p.medias.size.to_string() + "\nVersion=2";
@@ -104,9 +114,11 @@ namespace Noise.PlaylistsUtils {
         // if so, just do import_individual_files
         // if not, do nothing and accept that music files are scattered.
         
-        var file = File.new_for_path(path);
-        if(!file.query_exists())
+        var file = File.new_for_uri(path);
+        if(!file.query_exists()) {
+            critical ("The imported playlist doesn't exist !");
             return false;
+        }
         
         try {
             string line;
@@ -115,6 +127,7 @@ namespace Noise.PlaylistsUtils {
             
             while ((line = dis.read_line(null)) != null) {
                 if(line[0] != '#' && line.replace(" ", "").length > 0) {
+                    warning (line);
                     locals.add(line);
                 }
                 
@@ -176,6 +189,41 @@ namespace Noise.PlaylistsUtils {
         val = parts[1];
         
         map.set(index, val);
+    }
+    
+    private Gee.LinkedList<string> convert_paths_to_uris (Gee.Collection<string> paths) {
+        var uris = new Gee.LinkedList<string> ();
+        foreach (var path in paths) {
+            uris.add (File.new_for_path (path).get_uri ());
+        }
+        return uris;
+    }
+    
+    public void import_from_playlist_file_info(Gee.HashMap<string, Gee.LinkedList<string>> playlists, Library library) {
+        
+        foreach (var playlist in playlists.entries) {
+            if (playlist.value.size > 0) {
+                if (playlist.value.get (0).has_prefix ("/")) {
+                    library.add_files_to_library (convert_paths_to_uris (playlist.value));
+                } else {
+                    library.add_files_to_library (playlist.value);
+                }
+            }
+        }
+        
+        foreach (var playlist in playlists.entries) {
+            var new_playlist = new StaticPlaylist();
+            new_playlist.name = playlist.key;
+            var medias_to_use = playlist.value;
+            var to_add = new Gee.LinkedList<Media> ();
+            foreach (var media in library.get_medias ()) {
+                if (medias_to_use.contains (media.file.get_path())) {
+                    to_add.add (media);
+               }
+            }
+            new_playlist.add_medias (to_add);
+            library.add_playlist (new_playlist);
+        }
     }
 
     public static string get_new_playlist_name (Gee.Collection<Playlist> playlists, string? name = null) {
@@ -296,7 +344,7 @@ namespace Noise.PlaylistsUtils {
             p.name = name; // temporary to save
             
             if(file.has_suffix(".m3u"))
-                save_playlist_m3u(p, folder);
+                save_playlist_m3u(p, folder, "");
             else
                 save_playlist_pls(p, folder);
         }

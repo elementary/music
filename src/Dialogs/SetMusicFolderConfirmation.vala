@@ -130,7 +130,7 @@ public class Noise.SetMusicFolderConfirmation : Window {
 			// foreach playlist in lm.playlists(), save to (p.name).m3u
 			var success = true;
 			foreach(var p in libraries_manager.local_library.get_playlists()) {
-				if(!Noise.PlaylistsUtils.save_playlist_m3u(p, folder))
+				if(!Noise.PlaylistsUtils.save_playlist_m3u(p, folder, ""))
 					success = false;
 			}
 			

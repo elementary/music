@@ -300,6 +300,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
                     sourcelist_item.editable = true;
                     playlists_category.add (sourcelist_item);
                 } else {
+                    sourcelist_item.editable = true;
                     into_expandable.add (sourcelist_item);
                 }
                 break;
@@ -308,6 +309,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
                     sourcelist_item.editable = false;
                     playlists_category.add (sourcelist_item);
                 } else {
+                    sourcelist_item.editable = false;
                     into_expandable.add (sourcelist_item);
                 }
                 break;
@@ -371,6 +373,18 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
                 }
             }
         }
+        var items = new Gee.LinkedList<SourceListItem> ();
+        foreach (var device in devices_category.children) {
+            if (device is SourceListExpandableItem) {
+                enumerate_children_items ((SourceListExpandableItem)device, ref items);
+                foreach (var item in items) {
+                    if (item.page_number == page_number) {
+                        item.parent.remove (item);
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     // removes the device from menu
@@ -411,6 +425,16 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         }
     }
     
+    public void enumerate_children_items (SourceListExpandableItem exp_item, ref Gee.LinkedList<SourceListItem> pages) {
+        foreach (var views in ((SourceListExpandableItem)exp_item).children) {
+            if (views is SourceListExpandableItem) {
+                enumerate_children_items ((SourceListExpandableItem)views, ref pages);
+            } else if (views is SourceListItem) {
+                pages.add (((SourceListItem)views));
+            }
+        }
+    }
+    
     // change the name shown
     public void change_playlist_name (int page_number, string new_name) {
         foreach (var playlist in playlists_category.children) {
@@ -418,6 +442,18 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
                 if (page_number == ((SourceListItem)playlist).page_number) {
                     ((SourceListItem)playlist).name = new_name;
                     return;
+                }
+            }
+        }
+        var items = new Gee.LinkedList<SourceListItem> ();
+        foreach (var device in devices_category.children) {
+            if (device is SourceListExpandableItem) {
+                enumerate_children_items ((SourceListExpandableItem)device, ref items);
+                foreach (var item in items) {
+                    if (item.page_number == page_number) {
+                        ((SourceListItem)item).name = new_name;
+                        return;
+                    }
                 }
             }
         }

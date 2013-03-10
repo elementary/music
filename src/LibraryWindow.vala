@@ -82,8 +82,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     
     PreferencesWindow? preferences = null;
     
-    private Gee.HashMap<int, int> match_playlist;
-    private Gee.HashMap<int, int> match_smartplaylist;
+    private Gee.HashMap<unowned Playlist, int> match_playlists;
     private Gee.HashMap<string, int> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
     private Gee.HashMap<int, TreeViewSetup> match_playlist_tvs;
@@ -100,13 +99,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         this.library_manager.media_added.connect (update_sensitivities);
         this.library_manager.media_removed.connect (update_sensitivities);
 
-        this.library_manager.playlist_added.connect (add_playlist);
-        this.library_manager.playlist_removed.connect (remove_playlist);
+        this.library_manager.playlist_added.connect ((p) => {add_playlist (p);});
+        this.library_manager.playlist_removed.connect ((p) => {remove_playlist (p);});
 
-        this.library_manager.smartplaylist_added.connect (add_smartplaylist);
-        this.library_manager.smartplaylist_removed.connect (remove_smartplaylist);
+        this.library_manager.smartplaylist_added.connect ((p) => {add_smartplaylist (p);});
+        this.library_manager.smartplaylist_removed.connect ((p) => {remove_smartplaylist (p);});
 
-        device_manager.device_added.connect ((item) => {addSourceListItem (item);});
+        device_manager.device_added.connect ((item) => {create_device_source_list (item);});
         device_manager.device_name_changed.connect (change_device_name);
         device_manager.device_removed.connect (remove_device);
 
@@ -128,8 +127,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         notification_manager.alertNotification.connect (doAlert);
         
-        match_playlist = new Gee.HashMap<int, int> ();
-        match_smartplaylist = new Gee.HashMap<int, int> ();
+        match_playlists = new Gee.HashMap<unowned Playlist, int> ();
         match_devices = new Gee.HashMap<string, int> ();
         match_playlist_entry = new Gee.HashMap<unowned Playlist, SourceListEntry> ();
         match_playlist_tvs = new Gee.HashMap<int, TreeViewSetup> ();
@@ -459,7 +457,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         source_list_view.playlist_import_clicked.connect ( () => {
             try {
-                library_manager.fo.import_from_playlist_file_info(Noise.PlaylistsUtils.get_playlists_to_import ());
+                PlaylistsUtils.import_from_playlist_file_info(Noise.PlaylistsUtils.get_playlists_to_import (), library_manager);
                 update_sensitivities.begin ();
             } catch (GLib.Error e) {
                 warning (e.message);
@@ -634,14 +632,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var treeview_setups = library_manager.dbm.load_columns_state ();
         
         foreach (SmartPlaylist p in library_manager.get_smart_playlists()) {
-            addSourceListItem (p);
             match_smartplaylist_tvs.set (p.rowid, treeview_setups.get (p));
+            add_smartplaylist (p);
         }
 
         foreach (StaticPlaylist p in library_manager.get_playlists()) {
+            match_playlist_tvs.set (p.rowid, treeview_setups.get (p));
             if (p.name != App.player.queue_playlist.name && p.name != App.player.history_playlist.name)
-                addSourceListItem (p);
-            match_smartplaylist_tvs.set (p.rowid, treeview_setups.get (p));
+                add_playlist (p);
         }
 
         debug ("Finished loading playlists");
@@ -653,7 +651,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      */
 
     public void update_badge_on_playlist_update (Playlist p, SourceListEntry entry) {
-        match_playlist_entry.set (p, entry);
         p.media_added.connect((s) => { update_playlist_badge (p); });
         p.media_removed.connect((s) => { update_playlist_badge (p); });
     }
@@ -664,28 +661,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         string new_badge = media_count > 0 ? media_count.to_string() : "";
         entry.badge = new_badge;
     }
-    public void addSourceListItem (GLib.Object o, GLib.Object? source_o = null) {
-
-        if (o is StaticPlaylist) {
-            create_playlist_source_list ((StaticPlaylist) o);
-        }
-        else if(o is SmartPlaylist) {
-            create_smartplaylist_source_list ((SmartPlaylist) o);
-        }
-        else if(o is Device) {
-            create_device_source_list ((Device) o);
-        }
-        /*else if(o is NetworkDevice) {
-
-            var nd_setup = new TreeViewSetup (ListColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.NETWORK_DEVICE);
-            var view = new NetworkDeviceViewWrapper (this, nd_setup, (Noise.NetworkDevice)o);
-            add_view (((Noise.NetworkDevice)o).getDisplayName(), view, out iter);
-
-            view.set_media_async (((Noise.NetworkDevice)o).get_medias ());
-        }*/
-        //source_list_added (o, view_number);
-    }
-
 
     /**
      * Updating the interface
@@ -805,8 +780,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 foreach (var p in d.get_library ().get_playlists ()) {
                     create_playlist_source_list (p, (SourceListExpandableItem)entry, d.get_library ());
                 }
-                d.get_library ().playlist_added.connect ( (np) => {create_playlist_source_list (np, (SourceListExpandableItem)entry, d.get_library ());});
-                d.get_library ().playlist_removed.connect ( (np) => {create_playlist_source_list (np, (SourceListExpandableItem)entry, d.get_library ());});
+                d.get_library ().playlist_added.connect ( (np) => {add_playlist (np, d.get_library (), (SourceListExpandableItem)entry);});
+        this.library_manager.playlist_removed.connect (remove_playlist);
+                d.get_library ().playlist_removed.connect ( (np) => {remove_playlist (np);});
             }
         }
     }
@@ -815,15 +791,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     /**
      * StaticPlaylists
      */
-    private void add_playlist (StaticPlaylist playlist) {
-        addSourceListItem (playlist, null);
+    private void add_playlist (StaticPlaylist playlist, Library? library = library_manager, SourceListExpandableItem? entry = null) {
+        create_playlist_source_list (playlist, entry, library);
     }
 
     private void remove_playlist (StaticPlaylist playlist) {
-        int page_number = match_playlist.get (playlist.rowid);
-        lock (match_playlist) {
+        int page_number = match_playlists.get (playlist);
+        lock (match_playlists) {
             source_list_view.remove_playlist(page_number);
-            match_playlist.unset (playlist.rowid);
+            match_playlists.unset (playlist);
         }
         remove_view_and_update (page_number);
     }
@@ -884,6 +860,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         }
+        lock (match_playlists) {
+            match_playlist_entry.set (p, entry);
+            match_playlists.set (p, view_number);
+        }
     }
 
     /**
@@ -903,14 +883,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         return null;
     }
 
-    private void add_smartplaylist (SmartPlaylist smartplaylist) {
-        addSourceListItem (smartplaylist);
+    private void add_smartplaylist (SmartPlaylist smartplaylist, Library? library = library_manager, SourceListExpandableItem? entry = null) {
+        create_smartplaylist_source_list (smartplaylist);
     }
 
     private void remove_smartplaylist (SmartPlaylist smartplaylist) {
-        int page_number = match_smartplaylist.get (smartplaylist.rowid);
-        lock (match_smartplaylist) {
-            match_smartplaylist.unset (smartplaylist.rowid);
+        int page_number = match_playlists.get (smartplaylist);
+        lock (match_playlists) {
+            match_playlists.unset (smartplaylist);
             source_list_view.remove_playlist(page_number);
         }
         remove_view_and_update (page_number);
@@ -920,26 +900,19 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var unparsed_view = view_container.get_view (page_number);
         if (unparsed_view is PlaylistViewWrapper) {
             var view = unparsed_view as PlaylistViewWrapper;
-            if (view.hint == ViewWrapper.Hint.PLAYLIST || view.hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-                var playlist = library_manager.playlist_from_id(((PlaylistViewWrapper)view).playlist_id);
-                if (playlist.name != new_name) {
-                    if (library_manager.playlist_from_name (new_name) == null) {
-                        playlist.name = new_name;
-                        library_manager.playlist_name_updated (playlist);
-                    }
-                }
-            } else if (view.hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-                var smartplaylist = library_manager.smart_playlist_from_id(((PlaylistViewWrapper)view).playlist_id);
-                if (smartplaylist.name != new_name) {
-                    if (library_manager.smart_playlist_from_name (new_name) == null) {
-                        smartplaylist.name = new_name;
-                        library_manager.smartplaylist_name_updated (smartplaylist);
+            if (view.hint == ViewWrapper.Hint.PLAYLIST || view.hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST || view.hint == ViewWrapper.Hint.SMART_PLAYLIST) {
+                foreach (var entry in match_playlists.entries) {
+                    if (entry.value == page_number) {
+                        if (entry.key.name != new_name) {
+                            entry.key.name = new_name;
+                            return;
+                        }
                     }
                 }
             }
         }
     }
-    private void create_smartplaylist_source_list (SmartPlaylist p, SourceListExpandableItem? into_expandable = null) {
+    private void create_smartplaylist_source_list (SmartPlaylist p, SourceListExpandableItem? into_expandable = null, Library? library = library_manager) {
         SourceListEntry? entry;
         int view_number;
         
@@ -951,10 +924,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.SMART_PLAYLIST, p.icon);
         p.updated.connect ((old_name) => {
             if (old_name != null)
-                source_list_view.change_playlist_name (match_smartplaylist.get(p.rowid), p.name);
+                source_list_view.change_playlist_name (match_playlists.get(p), p.name);
         });
-        lock (match_smartplaylist) {
-            match_smartplaylist.set (p.rowid, view_number);
+        lock (match_playlists) {
+            match_playlists.set (p, view_number);
         }
     }
 

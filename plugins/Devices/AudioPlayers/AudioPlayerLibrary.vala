@@ -33,6 +33,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     
     AudioPlayerDevice device;
     Gee.LinkedList<Noise.Media> medias;
+    Gee.LinkedList<Noise.StaticPlaylist> playlists;
     bool operation_cancelled = false;
     bool is_doing_file_operations = false;
     bool queue_is_finished = false;
@@ -44,6 +45,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     public AudioPlayerLibrary (AudioPlayerDevice device) {
         this.device = device;
         medias = new Gee.LinkedList<Noise.Media> ();
+        playlists = new Gee.LinkedList<Noise.StaticPlaylist> ();
         imported_files = new Gee.LinkedList<string> ();
     
         tagger = new GStreamerTagger();
@@ -70,12 +72,34 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         if (is_initialized == false) {
             is_initialized = true;
             device.initialized (device);
+            load_playlists ();
         }
     }
     
     public override void initialize_library () {
         
     }
+    
+    private void load_playlists () {
+        var imported_pl = new Gee.LinkedList<string> ();
+        FileUtils.count_playlists_files (GLib.File.new_for_uri (device.get_music_folder () + "/Playlists/"), ref imported_pl);
+        var playlists = new Gee.HashMap<string, Gee.LinkedList<string>> ();
+        foreach (var file in imported_pl) {
+            if(file != "") {
+                var f = GLib.File.new_for_uri (file);
+                var infos = f.query_info (GLib.FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NONE);
+                var name = infos.get_display_name ();
+                var paths = new Gee.LinkedList<string> ();
+                if (file.has_suffix(".m3u")) {
+                    name = name.replace (".m3u", "");
+                    PlaylistsUtils.parse_paths_from_m3u(file, ref paths);
+                }
+                playlists.set (name, paths);
+            }
+        }
+        PlaylistsUtils.import_from_playlist_file_info(playlists, this);
+    }
+    
     public override void add_files_to_library (Gee.Collection<string> files) {
     
     }
@@ -84,7 +108,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         return medias;
     }
     public override Gee.Collection<StaticPlaylist> get_playlists () {
-        return new Gee.LinkedList<StaticPlaylist> ();
+        return playlists;
     }
     public override Gee.Collection<SmartPlaylist> get_smart_playlists () {
         return new Gee.LinkedList<SmartPlaylist> ();
@@ -323,19 +347,78 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     }
     
     public override bool support_playlists () {
-        return false;
+        return true;
     }
     
     public override void add_playlist (StaticPlaylist p) {
-    
+        
+        playlists.add (p);
+        playlist_added (p);
+        keep_playlist_synchronized (p);
+        p.media_added.connect(() => {keep_playlist_synchronized (p);});
+        p.media_removed.connect(() => {keep_playlist_synchronized (p);});
+        p.updated.connect ((old_name) => {remove_playlist_from_name (old_name); keep_playlist_synchronized (p);});
     }
     public override void remove_playlist (int id) {
-    
+        if (id < get_playlists ().size) {
+            var array_v = new Gee.ArrayList<StaticPlaylist> ();
+            array_v.add_all (playlists);
+            var p = array_v.get (id);
+            remove_playlist_from_name (p.name);
+            playlist_removed (p);
+            playlists.remove (p);
+        }
     }
+    
+    private void remove_playlist_from_name (string name) {
+        File dest = GLib.File.new_for_uri (Path.build_path("/", device.get_music_folder (), "Playlists", name.replace("/", "_") + ".m3u"));
+        try {
+            // find a file path that doesn't exist
+            if (dest.query_exists()) {
+                dest.delete ();
+            }
+        }
+        catch(Error err) {
+            warning ("Could not remove playlist %s to file %s: %s", name, dest.get_path(), err.message);
+        }
+    }
+    
+    private void keep_playlist_synchronized (StaticPlaylist p) {
+        string content = PlaylistsUtils.get_playlist_m3u_file (p, device.get_uri ());
+        content = content.replace (GLib.File.new_for_uri (device.get_uri ()).get_path (), "");
+        
+        File dest = GLib.File.new_for_uri (Path.build_path("/", device.get_music_folder (), "Playlists", p.name.replace("/", "_") + ".m3u"));
+        try {
+            // find a file path that doesn't exist
+            if (dest.query_exists()) {
+                dest.delete ();
+            }
+            
+            var file_stream = dest.create(FileCreateFlags.NONE);
+            
+            // Write text data to file
+            var data_stream = new DataOutputStream (file_stream);
+            data_stream.put_string(content);
+        }
+        catch(Error err) {
+            warning ("Could not save playlist %s to m3u file %s: %s\n", p.name, dest.get_path(), err.message);
+        }
+    }
+    
     public override StaticPlaylist? playlist_from_id (int id) {
+        if (id < get_playlists ().size) {
+            var array = new Gee.ArrayList<StaticPlaylist> ();
+            array.add_all (get_playlists ());
+            return array.get (id);
+        }
         return null;
     }
     public override StaticPlaylist? playlist_from_name (string name) {
+        foreach (var playlist in get_playlists ()) {
+            if (playlist.name == name) {
+                return playlist;
+            }
+        }
         return null;
     }
     

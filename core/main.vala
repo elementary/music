@@ -47,6 +47,11 @@ namespace Noise {
         "audio/x-wavpack"
     };
     
+    public const string[] PLAYLISTS_CONTENT_TYPES = {
+        "audio/x-mpegurl",
+        "audio/x-scpls"
+    };
+    
     public const string MUSIC_PLAYLIST = "autosaved_music";
 
     /**
