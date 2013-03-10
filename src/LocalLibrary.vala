@@ -585,7 +585,10 @@ public class Noise.LocalLibrary : Library {
      */
      
     public override Media? media_from_id (int id) {
-        return _medias.get (id);
+        if (id < get_medias ().size) {
+            return _medias.get (id);
+        }
+        return null;
     }
 
     public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {

@@ -262,18 +262,52 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     }
     
     public override Media? media_from_id (int id) {
+        if (id < get_medias ().size) {
+            return medias.get (id);
+        }
         return null;
     }
     public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
-        return new Gee.LinkedList<Media> ();
+        var media_collection = new Gee.LinkedList<Media> ();
+
+        foreach (int id in ids) {
+            var m = media_from_id (id);
+            if (m != null)
+                media_collection.add (m);
+        }
+
+        return media_collection;
     }
     public override Media? find_media (Media to_find) {
-        return null;
+        Media? found = null;
+        lock (medias) {
+            foreach (var m in medias) {
+                if (to_find.title.down () == m.title.down () && to_find.artist.down () == m.artist.down ()) {
+                    found = m;
+                    break;
+                }
+            }
+        }
+        return found;
     }
     public override Media? media_from_file (File file) {
+        lock (medias) {
+            foreach (var m in medias) {
+                if (m != null && m.file.equal (file))
+                    return m;
+            }
+        }
+
         return null;
     }
     public override Media? media_from_uri (string uri) {
+        lock (medias) {
+            foreach (var m in medias) {
+                if (m != null && m.uri == uri)
+                    return m;
+            }
+        }
+
         return null;
     }
     public override void update_media (Media s, bool updateMeta, bool record_time) {

@@ -115,7 +115,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         queue_playlist.read_only = true;
         queue_playlist.allow_duplicate = true;
 
-        setShuffleMode ((Player.Shuffle)main_settings.shuffle_mode, true);
+        setShuffleMode (shuffle, true);
     }
 
     public void add_playback (Noise.Playback playback) {
