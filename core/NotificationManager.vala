@@ -32,6 +32,7 @@ public class Noise.NotificationManager : Object {
 
     public signal void alertNotification (string title, string message);
     public signal void progressNotification (string? message, double progress);
+    public signal void progress_canceled ();
     public signal void songNotification (string message);
     public signal void searchCover (Media m);
 

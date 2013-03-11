@@ -295,6 +295,7 @@ public class Noise.LocalLibrary : Library {
                 if (files.contains (m.uri))
                     files.remove (m.uri);
             }
+            debug ("found %d items to import\n", files.size);
 
             to_import.add_all (remove_duplicate_files (files));
 
@@ -305,15 +306,15 @@ public class Noise.LocalLibrary : Library {
                 fo.import_files (to_import, FileOperator.ImportType.RESCAN);
             }
 
+            if (files.is_empty)
+                finish_file_operations ();
+
             Idle.add ((owned) callback);
         });
 
         if (!fo.cancelled) {
             remove_medias (to_remove, false);
         }
-
-        if (files.is_empty)
-            finish_file_operations ();
 
         yield;
     }
@@ -707,10 +708,6 @@ public class Noise.LocalLibrary : Library {
         return medias_to_sync;
     }
 
-    public override void cancel_operations () {
-        progress_cancel_clicked ();
-    }
-
     public override bool start_file_operations (string? message) {
         if (_doing_file_operations)
             return false;
@@ -730,6 +727,7 @@ public class Noise.LocalLibrary : Library {
         _doing_file_operations = false;
         debug ("file operations finished or cancelled\n");
 
+        fo.index = fo.item_count +1;
         file_operations_done ();
         update_media_art_cache.begin ();
         Timeout.add(3000, () => {

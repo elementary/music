@@ -78,7 +78,7 @@ public class Noise.FileOperator : Object {
     }
     
     public void connect_to_manager () {
-        libraries_manager.local_library.progress_cancel_clicked.connect( () => { 
+        notification_manager.progress_canceled.connect( () => { 
             cancelled = true;
             tagger.cancel_operations();
         } );

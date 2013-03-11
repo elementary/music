@@ -36,7 +36,6 @@ public abstract class Noise.Library : GLib.Object {
     
     public signal void file_operations_started ();
     public signal void file_operations_done ();
-    public signal void progress_cancel_clicked ();
 
     public signal void music_counted (int count);
     public signal void music_added (Gee.Collection<string> not_imported);
@@ -89,7 +88,6 @@ public abstract class Noise.Library : GLib.Object {
     public abstract bool start_file_operations (string? message);
     public abstract bool doing_file_operations ();
     public abstract void finish_file_operations ();
-    public abstract void cancel_operations ();
     
     public int playlist_count_without_read_only () {
         int i = 0;

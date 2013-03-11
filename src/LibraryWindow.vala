@@ -778,7 +778,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     create_playlist_source_list (p, (SourceListExpandableItem)entry, d.get_library ());
                 }
                 d.get_library ().playlist_added.connect ( (np) => {add_playlist (np, d.get_library (), (SourceListExpandableItem)entry);});
-        this.library_manager.playlist_removed.connect (remove_playlist);
                 d.get_library ().playlist_removed.connect ( (np) => {remove_playlist (np);});
             }
         }
@@ -1197,8 +1196,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
         else {
             library_manager.set_music_folder.begin (folder);
-            
-            //resetSideTree (true);
         }
     }
 

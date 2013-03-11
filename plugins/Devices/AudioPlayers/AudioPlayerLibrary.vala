@@ -53,6 +53,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         tagger.media_imported.connect(media_imported);
         tagger.import_error.connect(import_error);
         tagger.queue_finished.connect(queue_finished);
+        notification_manager.progress_canceled.connect( () => {operation_cancelled = true;});
     }
     
     void media_imported (Media m) {
@@ -468,9 +469,6 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     }
     public override void finish_file_operations () {
     
-    }
-    public override void cancel_operations () {
-        operation_cancelled = true;
     }
     
 }

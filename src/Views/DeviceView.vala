@@ -36,10 +36,9 @@ public class Noise.DeviceView : Gtk.Grid {
 
         buildUI();
         
-        ulong connector = libraries_manager.local_library.progress_cancel_clicked.connect( () => {
+        ulong connector = notification_manager.progress_canceled.connect( () => {
             if(d.get_library ().doing_file_operations ()) {
                 notification_manager.doAlertNotification (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
-                d.get_library ().cancel_operations ();
             }
         });
         d.device_unmounted.connect( () => {

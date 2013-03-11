@@ -49,6 +49,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         audiobooks = new Gee.HashMap<unowned GPod.Track, Noise.Media>();
         playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist>();
         smart_playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.SmartPlaylist>();
+        notification_manager.progress_canceled.connect( () => {operation_cancelled = true;});
     }
     
     public override void initialize_library () {
@@ -500,15 +501,15 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     public override bool start_file_operations (string? message) {
         return true;
     }
+    
     public override bool doing_file_operations () {
         return true;
     }
+    
     public override void finish_file_operations () {
     
     }
-    public override void cancel_operations () {
     
-    }
     void remove_media_from_ipod (GPod.Track t) {
         string current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE");
         current_operation = current_operation.replace ("$NAME", t.title ?? "");

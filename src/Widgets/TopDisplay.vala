@@ -267,7 +267,7 @@ public class Noise.TopDisplay : Box {
     }
 
     public void cancel_clicked() {
-        libraries_manager.local_library.cancel_operations ();
+        notification_manager.progress_canceled ();
     }
 
     public void set_media (Media current_media) {
