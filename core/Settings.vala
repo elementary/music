@@ -70,6 +70,9 @@ namespace Noise.Settings {
 
         public Main ()  {
             base ("org.pantheon.noise.settings");
+            if (music_folder == "") {
+                music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
+            }
         }
     }
 

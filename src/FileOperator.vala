@@ -253,6 +253,9 @@ public class Noise.FileOperator : Object {
         } else if (new_imports.size >= 200) {
             libraries_manager.local_library.add_medias (new_imports); // give user some feedback
             new_imports.clear();
+        } else if (index == 1) {
+            libraries_manager.local_library.add_medias (new_imports); // give user the first feedback
+            new_imports.clear();
         }
     }
     

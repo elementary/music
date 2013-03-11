@@ -380,7 +380,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
 
         // Setting bottom label text
         uint64 used = total_size - free_space_size;
-        double p = (double)(used / total_size) * 100.0;
+        double p = ((double)used / (double)total_size) * 100.0;
         status_label.set_text(_("Using %s of %s (%.2f%)").printf(GLib.format_size (used), GLib.format_size (total_size), p));
     }
 

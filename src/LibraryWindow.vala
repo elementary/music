@@ -135,11 +135,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
         // init some booleans
-        if (main_settings.music_folder == "") {
-            main_settings.music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
-            debug ("First run.");
-        }
-        else {
+        if (this.library_manager.get_medias ().size > 0) {
             App.player.clearCurrent();
 
             // make sure we don't re-count stats
@@ -485,9 +481,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         initialization_finished = true;
 
-        if (library_manager._medias.is_empty)
-            setMusicFolder (Environment.get_user_special_dir(UserDirectory.MUSIC));
-
         /* Connect events to functions */
         previousButton.clicked.connect (() => {play_previous_media ();});
         playButton.clicked.connect (() => {play_media ();});
@@ -497,6 +490,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         searchField.text = main_settings.search_string;
 
         debug ("DONE WITH USER INTERFACE");
+
+        if (this.library_manager.get_medias ().size <= 0) {
+            library_manager.set_music_folder.begin (main_settings.music_folder);
+        }
 
         int last_playing_id = main_settings.last_media_playing;
 

@@ -157,7 +157,11 @@ public class Noise.LocalLibrary : Library {
     }
 
     public async void set_music_folder (string folder) {
-        if (start_file_operations (_("Importing music from %s…").printf ("<b>" + String.escape (folder) + "</b>"))) {
+        string m_folder = folder;
+        m_folder = m_folder.replace ("/media", "");
+        m_folder = m_folder.replace (GLib.Environment.get_home_dir ()+ "/", "");
+        
+        if (start_file_operations (_("Importing music from %s…").printf ("<b>" + String.escape (m_folder) + "</b>"))) {
             remove_all_static_playlists ();
 
             clear_medias ();
@@ -169,9 +173,8 @@ public class Noise.LocalLibrary : Library {
             App.main_window.update_sensitivities.begin ();
             App.player.stopPlayback ();
 
-            main_settings.music_folder = folder;
-
             main_settings.music_mount_name = "";
+            main_settings.music_folder = folder;
 
             set_music_folder_thread.begin ();
         }
@@ -266,6 +269,7 @@ public class Noise.LocalLibrary : Library {
 
     public void rescan_music_folder () {
         if (start_file_operations (_("Rescanning music for changes. This may take a while…"))) {
+            App.main_window.update_sensitivities.begin ();
             rescan_music_folder_async.begin ();
         }
     }
@@ -273,46 +277,32 @@ public class Noise.LocalLibrary : Library {
     private async void rescan_music_folder_async () {
         SourceFunc callback = rescan_music_folder_async.callback;
 
-        var paths = new Gee.HashMap<string, Media> ();
         var to_remove = new Gee.LinkedList<Media> ();
-        var to_import_temp = new Gee.LinkedList<string> ();
+        var to_import = new Gee.LinkedList<string> ();
+        var files = new LinkedList<string> ();
 
         Threads.add (() => {
-            fo.resetProgress (100);
-            Timeout.add (100, doProgressNotificationWithTimeout);
-
-            var music_folder_dir = main_settings.music_folder;
-            foreach (Media s in _medias) {
-                if (!s.isTemporary && !s.isPreview && s.uri.contains (music_folder_dir))
-                    paths.set (s.uri, s);
-
-                if (s.uri.contains (music_folder_dir) && !File.new_for_uri (s.uri).query_exists ())
-                        to_remove.add (s);
-            }
-            fo.index = 5;
 
             // get a list of the current files
-            var files = new LinkedList<string> ();
+            var music_folder_dir = main_settings.music_folder;
             FileUtils.count_music_files (File.new_for_path (music_folder_dir), ref files);
-            fo.index = 10;
+            
+            foreach (var m in get_medias ()) {
+                if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir))
 
-            foreach (string s in files) {
-                // XXX: libraries are not necessarily local. This will fail
-                // for remote libraries FIXME
-                if (paths.get (s) == null)
-                    to_import_temp.add (s);
+                if (!File.new_for_uri (m.uri).query_exists ())
+                    to_remove.add (m);
+                if (files.contains (m.uri))
+                    files.remove (m.uri);
             }
 
-            var to_import = remove_duplicate_files (to_import_temp);
+            to_import.add_all (remove_duplicate_files (files));
 
             debug ("Importing %d new songs\n", to_import.size);
             if (!to_import.is_empty) {
-                fo.resetProgress (to_import.size);
+                fo.resetProgress (to_import.size - 1);
                 Timeout.add (100, doProgressNotificationWithTimeout);
                 fo.import_files (to_import, FileOperator.ImportType.RESCAN);
-            }
-            else {
-                fo.index = 90;
             }
 
             Idle.add ((owned) callback);
@@ -322,7 +312,7 @@ public class Noise.LocalLibrary : Library {
             remove_medias (to_remove, false);
         }
 
-        if (to_import_temp.is_empty)
+        if (files.is_empty)
             finish_file_operations ();
 
         yield;
