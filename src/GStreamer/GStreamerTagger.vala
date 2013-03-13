@@ -73,8 +73,11 @@ public class Noise.GStreamerTagger : Object {
         d = create_discoverer ();
         d.start ();
 
-        for (int i = 0; i < DISCOVER_SET_SIZE && i < uri_queue.size; i++)
-            d.discover_uri_async (uri_queue.get (i));
+        for (int i = 0; i < DISCOVER_SET_SIZE; i++) {
+            lock (uri_queue) {
+                d.discover_uri_async (uri_queue.poll_head ());
+            }
+        }
     }
 
     public void cancel_operations () {
@@ -96,7 +99,6 @@ public class Noise.GStreamerTagger : Object {
         Media? m = null;
 
         string uri = info.get_uri ();
-        uri_queue.remove (uri);
 
         bool gstreamer_discovery_successful = false;
 

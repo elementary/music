@@ -44,7 +44,8 @@ namespace Noise {
         "audio/vorbis",
         "audio/flac",
         "audio/x-wav",
-        "audio/x-wavpack"
+        "audio/x-wavpack",
+        "audio/x-ms-wma"
     };
     
     public const string[] PLAYLISTS_CONTENT_TYPES = {
