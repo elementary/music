@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-01 00:46+0100\n"
-"PO-Revision-Date: 2013-03-04 14:38+0000\n"
-"Last-Translator: Danny Damsky <dannydamsky99@gmail.com>\n"
+"PO-Revision-Date: 2013-03-12 10:29+0000\n"
+"Last-Translator: Megolas <ofeklavie@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-03-05 05:26+0000\n"
-"X-Generator: Launchpad (build 16514)\n"
+"X-Launchpad-Export-Date: 2013-03-13 04:52+0000\n"
+"X-Generator: Launchpad (build 16532)\n"
 "Language: \n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
@@ -51,7 +51,7 @@ msgstr "רשימת השמעה חדשה"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:196
 #, c-format
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:223
 msgid "Export Playlist"
@@ -155,7 +155,7 @@ msgstr "‏%s ו־%s"
 #. / for more details.
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "e/%m/%Y %l:%M %p%"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -384,7 +384,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "המכשיר כבר מבצע תהליך."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
@@ -699,8 +699,8 @@ msgstr "שירים לא נמצאו"
 #, c-format
 msgid "%i track"
 msgid_plural "%i tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "רצועה %i"
+msgstr[1] "%i רצועות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:367
 #, c-format
@@ -761,7 +761,7 @@ msgstr "כל השנים"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "כל שנות %i"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Years"
@@ -855,7 +855,7 @@ msgstr "הקבצות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling…"
-msgstr ""
+msgstr "בהליכי ביטול..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
@@ -950,7 +950,7 @@ msgstr "חינם"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:384
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "משתמש ב-%s מ- %s (%.2f%)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
@@ -1071,7 +1071,7 @@ msgstr "ייצא..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:70
 msgid "Edit…"
-msgstr ""
+msgstr "ערוך..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:85
 msgid "Save as Playlist"
@@ -1715,7 +1715,7 @@ msgstr "יבוא של %i מתוך דיסק הסתיים."
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:363
 #, c-format
 msgid "Importing track %i: %s"
-msgstr ""
+msgstr "מיבא רצועה %i: %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:368
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1819,7 +1819,7 @@ msgstr "תן רשות ל- Noise"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "נכשל. לחץ כדי לנסות שוב."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
@@ -1831,11 +1831,11 @@ msgstr "הצלחה!"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "השלם התחברות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:42
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:47
 msgid "Last.fm Integration"
@@ -1843,13 +1843,13 @@ msgstr "אינטגרציה עם last.fm"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "לחץ כדי להתחבר מחדש ל-Last.fm"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
-msgstr ""
+msgstr "בכדי להשתמש ב-Last.fm, עליך לתת הרשאות לNoise. זהו הליך חד-פעמי."
 
 #~ msgid "Episode"
 #~ msgstr "פרק"
