@@ -156,7 +156,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var modifiers = Gtk.accelerator_get_default_mod_mask ();
         bool modifiers_active = (event.state & modifiers) != 0;
 
-        if (!modifiers_active) {
+        if (!modifiers_active && search_field_has_focus) {
             if (event.keyval == Gdk.Key.space && !searchField.has_focus && !source_list_view.editing) {
                 play_media (); // toggle play/pause
                 return true;
@@ -334,6 +334,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         source_list_view.selection_changed.connect ( (page_number) => {
             view_container.set_current_view_from_index (page_number);
+        });
+        
+        source_list_view.activated.connect ( () => {
+            search_field_has_focus = false;
         });
         
         source_list_view.item_action_activated.connect ( (page_number) => {
@@ -893,6 +897,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void playlist_name_edited (int page_number, string new_name) {
+        search_field_has_focus = true;
         var unparsed_view = view_container.get_view (page_number);
         if (unparsed_view is PlaylistViewWrapper) {
             var view = unparsed_view as PlaylistViewWrapper;

@@ -69,11 +69,11 @@ public class Noise.GStreamerTagger : Object {
         }
     }
 
-    private void import_next_file_set () {
+    private async void import_next_file_set () {
         d = create_discoverer ();
         d.start ();
 
-        for (int i = 0; i < DISCOVER_SET_SIZE; i++) {
+        for (int i = 0; i < uri_queue.size; i++) {
             lock (uri_queue) {
                 d.discover_uri_async (uri_queue.poll_head ());
             }
@@ -88,9 +88,7 @@ public class Noise.GStreamerTagger : Object {
         cancelled = false;
         uri_queue.clear ();
 
-        foreach (string uri in uris) {
-            uri_queue.add (uri);
-        }
+        uri_queue.add_all (uris);
         
         import_next_file_set ();
     }

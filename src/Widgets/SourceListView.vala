@@ -212,6 +212,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     public signal void edited (int page_number, string new_name);
     public signal void item_action_activated (int page_number);
     public signal void selection_changed (int page_number);
+    public signal void activated ();
     
     public signal void playlist_rename_clicked (int page_number);
     public signal void playlist_edit_clicked (int page_number);
@@ -273,6 +274,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         }
         
         // Connect to signals
+        sourcelist_item.activated.connect (() => {activated ();});
         sourcelist_item.edited.connect ((new_name) => {this.edited (sourcelist_item.page_number, new_name);});
         expandable_item.action_activated.connect ((sl) => {this.item_action_activated (sourcelist_item.page_number);});
         sourcelist_item.playlist_rename_clicked.connect ((pn) => {playlist_rename_clicked (pn);});
