@@ -282,9 +282,10 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
      * load_columns_state() loads the state of each columns from db
      *
      */
-    public HashMap<Object, TreeViewSetup> load_columns_state () {
+    public HashMap<Playlist, TreeViewSetup> load_columns_state () {
+        debug ("load columns");
         assert (database != null);
-        var rv = new HashMap<Object, TreeViewSetup>();
+        var rv = new HashMap<Playlist, TreeViewSetup>();
 
         try {
             string script = "SELECT * FROM `columns`";
@@ -314,6 +315,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void save_columns_state (Collection<StaticPlaylist>? playlists = null, Collection<SmartPlaylist>? smart_playlists = null) {
+        debug ("save columns");
         assert (database != null);
         try {
             database.execute("DELETE FROM `columns`");
@@ -339,7 +341,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             
             if (smart_playlists != null) {
                 foreach(SmartPlaylist p in smart_playlists) {
-                    var tvs = App.main_window.get_treeviewsetup_from_smartplaylist (p);
+                    var tvs = App.main_window.get_treeviewsetup_from_playlist (p);
                     
                     query.set_int    (":is_smart", 1);
                     query.set_string (":name", p.name);
@@ -359,6 +361,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void add_columns_state (StaticPlaylist? p = null, SmartPlaylist? sp = null) {
+        debug ("add columns");
         assert (database != null);
         
         string name = "";
@@ -376,7 +379,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                 return;
             is_smart = 1;
             name = sp.name;
-            tvs = App.main_window.get_treeviewsetup_from_smartplaylist (sp);
+            tvs = App.main_window.get_treeviewsetup_from_playlist (sp);
         }
 
         try {
@@ -399,6 +402,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public void remove_columns_state (StaticPlaylist? p = null, SmartPlaylist? sp = null) {
+        debug ("remove columns");
         assert (database != null);
         
         string name = "";

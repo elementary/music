@@ -48,6 +48,8 @@ public class Noise.LocalLibrary : Library {
     public Gee.LinkedList<StaticPlaylist> _playlists;
     public Gee.LinkedList<SmartPlaylist> _smart_playlists;
     public Gee.LinkedList<Media> _medias;
+    
+    public StaticPlaylist p_music;
 
     public bool main_directory_set {
         get { return !String.is_empty (main_settings.music_folder, true); }
@@ -62,6 +64,8 @@ public class Noise.LocalLibrary : Library {
         _playlists = new Gee.LinkedList<StaticPlaylist> ();
         _smart_playlists = new Gee.LinkedList<SmartPlaylist> ();
         _medias = new Gee.LinkedList<Media> ();
+        p_music = new StaticPlaylist ();
+        p_music.name = MUSIC_PLAYLIST;
         
         this.dbm = new DataBaseManager ();
         this.dbu = new DataBaseUpdater (dbm);
@@ -379,6 +383,9 @@ public class Noise.LocalLibrary : Library {
 
     public override StaticPlaylist? playlist_from_name (string name) {
         StaticPlaylist? rv = null;
+        
+        if (name == p_music.name)
+            return p_music;
 
         lock (_playlists) {
             foreach (var p in get_playlists ()) {

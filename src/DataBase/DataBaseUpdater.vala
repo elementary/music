@@ -122,14 +122,11 @@ public class Noise.DataBaseUpdater : Object {
         var playlists_and_queue = new Gee.LinkedList<StaticPlaylist> ();
         playlists_and_queue.add_all (libraries_manager.local_library.get_playlists ());
 
-        var p_music = new StaticPlaylist ();
-        p_music.name = MUSIC_PLAYLIST;
-
-        playlists_and_queue.add (p_music);
+        playlists_and_queue.add (((LocalLibrary)libraries_manager.local_library).p_music);
 
         debug ("-- Saving columns state preferences DB.");
 
-        dbm.save_playlist (p_music);
+        dbm.save_playlist (((LocalLibrary)libraries_manager.local_library).p_music);
         dbm.save_columns_state (playlists_and_queue, libraries_manager.local_library.get_smart_playlists ());
 
         debug ("-- Finished columns state preferences DB.");
