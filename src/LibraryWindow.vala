@@ -46,6 +46,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public bool dragging_from_music         { get; set; default = false; }
     public bool initialization_finished     { get; private set; default = false; }
 
+    public bool newly_created_playlist     { get; private set; default = false; }
+
 
     /* Main layout widgets */
     private Gtk.Box       verticalBox;
@@ -801,6 +803,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void create_new_playlist (Library? library = library_manager) {
         var playlist = new StaticPlaylist ();
         playlist.name = PlaylistsUtils.get_new_playlist_name (library_manager.get_playlists ());
+        newly_created_playlist = true;
         library.add_playlist(playlist);
     }
 
@@ -843,6 +846,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     update_badge_on_playlist_update (p, entry);
                 }
             }
+        }
+        if (newly_created_playlist == true) {
+            newly_created_playlist = false;
+            source_list_view.start_editing_item (entry);
         }
         lock (match_playlists) {
             match_playlist_entry.set (p, entry);

@@ -410,14 +410,22 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void remove_playlist (int id) {
-        StaticPlaylist removed;
-
+        StaticPlaylist? removed = null;
+        
         lock (_playlists) {
-            removed = _playlists.remove_at (id);
+            foreach (var playlist in get_playlists ()) {
+                if (playlist.rowid == id) {
+                    removed = playlist;
+                    _playlists.remove (playlist);
+                    break;
+                }
+            }
         }
-
-        dbu.removeItem.begin (removed);
-        playlist_removed (removed);
+        
+        if (removed != null) {
+            dbu.removeItem.begin (removed);
+            playlist_removed (removed);
+        }
     }
 
     public void playlist_updated (StaticPlaylist p, string? old_name = null) {
