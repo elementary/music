@@ -65,7 +65,7 @@ public class Noise.GStreamerTagger : Object {
             queue_finished ();
         }
         else {
-            import_next_file_set ();
+            import_next_file_set.begin ();
         }
     }
 
@@ -90,7 +90,7 @@ public class Noise.GStreamerTagger : Object {
 
         uri_queue.add_all (uris);
         
-        import_next_file_set ();
+        import_next_file_set.begin ();
     }
 
     private async void import_media (Gst.DiscovererInfo info, Error err) {

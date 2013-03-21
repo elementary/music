@@ -48,6 +48,9 @@ public class Noise.LocalLibrary : Library {
     public Gee.LinkedList<StaticPlaylist> _playlists;
     public Gee.LinkedList<SmartPlaylist> _smart_playlists;
     public Gee.LinkedList<Media> _medias;
+    public int medias_rowid = 0;
+    public int playlists_rowid = 0;
+    public int smartplaylists_rowid = 0;
     
     public StaticPlaylist p_music;
 
@@ -81,21 +84,19 @@ public class Noise.LocalLibrary : Library {
         dbm.db_progress.connect (dbProgress);
         // Load all media from database
         lock (_medias) {
-            int new_rowid = 0;
             foreach (var m in dbm.load_media ()) {
                 _medias.add (m);
-                m.rowid = new_rowid;
-                new_rowid++;
+                m.rowid = medias_rowid;
+                medias_rowid++;
             }
         }
 
         // Load smart playlists from database
         lock (_smart_playlists) {
-            int new_rowid = 0;
             foreach (var p in dbm.load_smart_playlists ()) {
                 _smart_playlists.add (p);
-                p.rowid = new_rowid;
-                new_rowid++;
+                p.rowid = smartplaylists_rowid;
+                smartplaylists_rowid++;
                 p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
             }
         }
@@ -103,14 +104,13 @@ public class Noise.LocalLibrary : Library {
         // Load all static playlists from database
 
         lock (_playlists) {
-            int new_rowid = 0;
             foreach (var p in dbm.load_playlists ()) {
                 if (p.name == C_("Name of the playlist", "Queue") || p.name == _("History")) {
                     break;
                 } else if (p.name != MUSIC_PLAYLIST) {
                     _playlists.add (p);
-                    p.rowid = new_rowid;
-                    new_rowid++;
+                    p.rowid = playlists_rowid;
+                    playlists_rowid++;
                     p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
                     break;
                 }
@@ -378,53 +378,52 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override StaticPlaylist? playlist_from_id (int id) {
-        return _playlists.get (id);
+        lock (_playlists) {
+            foreach (var p in get_playlists ()) {
+                if (p.rowid == id) {
+                    return p;
+                }
+            }
+        }
+        return null;
     }
 
     public override StaticPlaylist? playlist_from_name (string name) {
-        StaticPlaylist? rv = null;
-        
         if (name == p_music.name)
             return p_music;
 
         lock (_playlists) {
             foreach (var p in get_playlists ()) {
                 if (p.name == name) {
-                    rv = p;
-                    break;
+                    return p;
                 }
             }
         }
-
-        return rv;
+        return null;
     }
 
     public override void add_playlist (StaticPlaylist p) {
         lock (_playlists) {
             _playlists.add (p);
         }
-        p.rowid = _playlists.index_of (p);
+        p.rowid = playlists_rowid;
+        playlists_rowid++;
         p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
         dbm.add_playlist (p);
         playlist_added (p);
+        warning ("playlist %s added",p.name);
     }
 
     public override void remove_playlist (int id) {
-        StaticPlaylist? removed = null;
-        
         lock (_playlists) {
             foreach (var playlist in get_playlists ()) {
                 if (playlist.rowid == id) {
-                    removed = playlist;
                     _playlists.remove (playlist);
+                    dbu.removeItem.begin (playlist);
+                    playlist_removed (playlist);
                     break;
                 }
             }
-        }
-        
-        if (removed != null) {
-            dbu.removeItem.begin (removed);
-            playlist_removed (removed);
         }
     }
 
@@ -443,22 +442,27 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override SmartPlaylist? smart_playlist_from_id (int id) {
-        return _smart_playlists.get (id);
+        lock (_smart_playlists) {
+            foreach (var p in get_smart_playlists ()) {
+                if (p.rowid == id) {
+                    return p;
+                }
+            }
+         }
+        return null;
     }
 
     public override SmartPlaylist? smart_playlist_from_name (string name) {
-        SmartPlaylist? rv = null;
 
         lock (_smart_playlists) {
             foreach (var p in get_smart_playlists ()) {
                 if (p.name == name) {
-                    rv = p;
-                    break;
+                    return p;
                 }
             }
          }
 
-        return rv;
+        return null;
     }
 
     public async void save_smart_playlists () {
@@ -480,22 +484,24 @@ public class Noise.LocalLibrary : Library {
         lock (_smart_playlists) {
             _smart_playlists.add (p);
         }
-        p.rowid = _smart_playlists.index_of (p);
+        p.rowid = smartplaylists_rowid;
+        smartplaylists_rowid++;
 
         p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
         smartplaylist_added (p);
-        return;
     }
 
     public override void remove_smart_playlist (int id) {
-        SmartPlaylist removed;
-
         lock (_smart_playlists) {
-            removed = _smart_playlists.remove_at (id);
+            foreach (var p in get_smart_playlists ()) {
+                if (p.rowid == id) {
+                    _smart_playlists.remove (p);
+                    smartplaylist_removed (p);
+                    dbu.removeItem.begin (p);
+                    break;
+                }
+            }
         }
-
-        smartplaylist_removed (removed);
-        dbu.removeItem.begin (removed);
     }
 
     public void smart_playlist_updated (SmartPlaylist p, string? old_name = null) {
@@ -511,7 +517,6 @@ public class Noise.LocalLibrary : Library {
         var unset = new Gee.LinkedList<Media> ();
 
         foreach (var s in _medias) {
-
             if (!s.isTemporary && !s.isPreview)
                 unset.add (s);
         }
@@ -591,8 +596,11 @@ public class Noise.LocalLibrary : Library {
      */
      
     public override Media? media_from_id (int id) {
-        if (id < get_medias ().size) {
-            return _medias.get (id);
+        lock (_medias) {
+            foreach (var m in _medias) {
+                if (m.rowid == id)
+                    return m;
+            }
         }
         return null;
     }
@@ -600,10 +608,13 @@ public class Noise.LocalLibrary : Library {
     public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
         var media_collection = new Gee.LinkedList<Media> ();
 
-        foreach (int id in ids) {
-            var m = media_from_id (id);
-            if (m != null)
-                media_collection.add (m);
+        lock (_medias) {
+            foreach (var m in _medias) {
+                if (ids.contains (m.rowid))
+                    media_collection.add (m);
+                if (media_collection.size == ids.size)
+                    break;
+            }
         }
 
         return media_collection;
@@ -662,8 +673,9 @@ public class Noise.LocalLibrary : Library {
         foreach (var s in new_media) {
             media.add(s);
             _medias.add (s);
-            s.rowid = _medias.index_of (s);
-            added.add (_medias.index_of(s));
+            s.rowid = medias_rowid;
+            medias_rowid++;
+            added.add (s.rowid);
         }
         media_added (added);
 

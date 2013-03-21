@@ -30,17 +30,16 @@
 
 namespace Noise.PlaylistsUtils {
 
-    public bool save_playlist_m3u (Playlist p, string folder, string without_path) {
+    public bool save_playlist_m3u (Playlist p, string folder_uri, string without_path) {
         bool rv = false;
         string to_save = get_playlist_m3u_file (p, without_path);
         
-        string path = Path.build_path("/", folder, p.name.replace("/", "_"));
-        File dest = GLib.File.new_for_path(path + ".m3u");
+        File dest = GLib.File.new_for_uri(folder_uri + "/" + p.name.replace("/", "_") + ".m3u");
         try {
             // find a file path that doesn't exist
-            if (!dest.query_exists ()) {
+            if (dest.query_exists ()) {
                 int i = 2;
-                while((dest = GLib.File.new_for_path (path + "(%d)".printf (i) + ".m3u")).query_exists()) {
+                while((dest = GLib.File.new_for_uri (folder_uri + "/" + p.name.replace("/", "_") + "(%d)".printf (i) + ".m3u")).query_exists()) {
                     i++;
                 }
             }
@@ -73,25 +72,30 @@ namespace Noise.PlaylistsUtils {
         return to_save;
     }
     
-    public bool save_playlist_pls(Playlist p, string folder) {
+    public bool save_playlist_pls(Playlist p, string folder_uri) {
         bool rv = false;
-        string to_save = "[playlist]\n\nNumberOfEntries=" + p.medias.size.to_string() + "\nVersion=2";
+        string to_save = "[playlist]\nX-GNOME-Title=%s\nNumberOfEntries=%d\nVersion=2".printf (p.name, p.medias.size);
         
         int index = 1;
         foreach(var s in p.medias) {
             if (s == null)
                 continue;
             
-            to_save += "\n\nFile" + index.to_string() + "=" + File.new_for_uri(s.uri).get_path() + "\nTitle" + index.to_string() + "=" + s.title + "\nLength" + index.to_string() + "=" + s.length.to_string();
+            to_save += "\n\nFile%d=%s".printf (index, s.uri.replace (folder_uri, ""));
+            to_save += "\nTitle%d=%s".printf (index, s.title);
+            to_save += "\nLength%d=%u".printf (index, s.length);
             ++index;
         }
         
-        File dest = GLib.File.new_for_path(Path.build_path("/", folder, p.name.replace("/", "_") + ".pls"));
+        File dest = GLib.File.new_for_uri(folder_uri + "/" + p.name.replace("/", "_") + ".pls");
         try {
             // find a file path that doesn't exist
-            string extra = "";
-            while((dest = GLib.File.new_for_path(Path.build_path("/", folder, p.name.replace("/", "_") + extra + ".pls"))).query_exists()) {
-                extra += "_";
+            int extra = 2;
+            if (dest.query_exists() == true) {
+                while((dest = GLib.File.new_for_uri(folder_uri + "/" + 
+                            _("%s (%d)").printf (p.name.replace("/", "_"), extra) + ".pls")).query_exists()) {
+                    extra++;
+                }
             }
             
             var file_stream = dest.create(FileCreateFlags.NONE);
@@ -108,13 +112,13 @@ namespace Noise.PlaylistsUtils {
         return rv;
     }
 
-    public static bool parse_paths_from_m3u(string path, ref Gee.LinkedList<string> locals) {
+    public static bool parse_paths_from_m3u(string uri, ref Gee.LinkedList<string> locals) {
         // now try and load m3u file
         // if some files are not found by media_from_file(), ask at end if user would like to import the file to library
         // if so, just do import_individual_files
         // if not, do nothing and accept that music files are scattered.
         
-        var file = File.new_for_uri(path);
+        var file = File.new_for_uri(uri);
         if(!file.query_exists()) {
             critical ("The imported playlist doesn't exist !");
             return false;
@@ -127,29 +131,30 @@ namespace Noise.PlaylistsUtils {
             
             while ((line = dis.read_line(null)) != null) {
                 if(line[0] != '#' && line.replace(" ", "").length > 0) {
-                    warning (line);
-                    locals.add(line);
+                    warning ("file://" + line);
+                    locals.add("file://" + line);
                 }
                 
                 previous_line = line;
             }
         }
         catch(Error err) {
-            warning ("Could not load m3u file at %s: %s\n", path, err.message);
+            warning ("Could not load m3u file at %s: %s\n", uri, err.message);
             return false;
         }
         
         return true;
     }
 
-    public static bool parse_paths_from_pls(string path, ref Gee.LinkedList<string> locals) {
+    public static bool parse_paths_from_pls(string uri, ref Gee.LinkedList<string> locals, ref string title) {
         var files = new Gee.HashMap<int, string>();
         var titles = new Gee.HashMap<int, string>();
         var lengths = new Gee.HashMap<int, string>();
         
-        var file = File.new_for_path(path);
+        var file = File.new_for_uri(uri);
         if(!file.query_exists())
             return false;
+        
         
         try {
             string line;
@@ -158,23 +163,21 @@ namespace Noise.PlaylistsUtils {
             while ((line = dis.read_line(null)) != null) {
                 if(line.has_prefix("File")) {
                     parse_index_and_value("File", line, ref files);
-                }
-                else if(line.has_prefix("Title")) {
+                } else if(line.has_prefix("X-GNOME-Title")) {
+                    string[] parts = line.split("=", 2);
+                    title = parts[1];
+                } else if(line.has_prefix("Title")) {
                     parse_index_and_value("Title", line, ref titles);
-                }
-                else if(line.has_prefix("Length")) {
+                } else if(line.has_prefix("Length")) {
                     parse_index_and_value("Length", line, ref lengths);
                 }
             }
         }
         catch(Error err) {
-            warning ("Could not load m3u file at %s: %s\n", path, err.message);
+            warning ("Could not load m3u file at %s: %s\n", uri, err.message);
             return false;
         }
-        
-        foreach(var entry in files.entries) {
-            locals.add(entry.value);
-        }
+        locals.add_all(files.values);
         
         
         return true;
@@ -201,12 +204,12 @@ namespace Noise.PlaylistsUtils {
     
     public void import_from_playlist_file_info(Gee.HashMap<string, Gee.LinkedList<string>> playlists, Library library) {
         
-        foreach (var playlist in playlists.entries) {
-            if (playlist.value.size > 0) {
-                if (playlist.value.get (0).has_prefix ("/")) {
-                    library.add_files_to_library (convert_paths_to_uris (playlist.value));
+        foreach (var values in playlists.values) {
+            if (values.size > 0) {
+                if (values.get (0).has_prefix ("/")) {
+                    library.add_files_to_library (convert_paths_to_uris (values));
                 } else {
-                    library.add_files_to_library (playlist.value);
+                    library.add_files_to_library (values);
                 }
             }
         }
@@ -217,9 +220,9 @@ namespace Noise.PlaylistsUtils {
             var medias_to_use = playlist.value;
             var to_add = new Gee.LinkedList<Media> ();
             foreach (var media in library.get_medias ()) {
-                if (medias_to_use.contains (media.file.get_path())) {
+                if (medias_to_use.contains (media.file.get_path()) || medias_to_use.contains (media.file.get_uri())) {
                     to_add.add (media);
-               }
+                }
             }
             new_playlist.add_medias (to_add);
             library.add_playlist (new_playlist);
@@ -233,15 +236,15 @@ namespace Noise.PlaylistsUtils {
         else
             base_name = name;
         bool is_fine = true;
-        int index = 0;
+        int index =2;
         string new_name = base_name;
         while (is_fine) {
             bool found = false;
             foreach (var p in playlists) {
                 if (p.name == new_name) {
-                    index++;
                     // Translators: used for new playlists ex: "New playlist (1)"
                     new_name = _("%s (%i)").printf (base_name, index);
+                    index++;
                     found = true;
                     break;
                 }
@@ -340,7 +343,7 @@ namespace Noise.PlaylistsUtils {
         if(file != "") {
             var f = File.new_for_path(file);
             
-            string folder = f.get_parent().get_path();
+            string folder = f.get_parent().get_uri();
             p.name = name; // temporary to save
             
             if(file.has_suffix(".m3u"))
@@ -389,10 +392,10 @@ namespace Noise.PlaylistsUtils {
                 var paths = new Gee.LinkedList<string> ();
                 if (file.has_suffix(".m3u")) {
                     name = name.replace (".m3u", "");
-                    success = parse_paths_from_m3u(file, ref paths);
+                    success = parse_paths_from_m3u("file://" + file, ref paths);
                 } else if(file.has_suffix(".pls")) {
                     name = name.replace (".pls", "");
-                    success = parse_paths_from_pls(file, ref paths);
+                    success = parse_paths_from_pls("file://" + file, ref paths, ref name);
                 } else {
                     success = false;
                     throw new GLib.Error (GLib.Quark.from_string ("not-recognized"), 1, _("Unrecognized playlist file. Import failed."));

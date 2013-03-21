@@ -625,6 +625,8 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             query.execute();
 
             transaction.commit();
+        
+            debug ("playlist %s stored into database", p.name);
         }
         catch(SQLHeavy.Error err) {
             warning ("Could not add playlists: %s \n", err.message);
