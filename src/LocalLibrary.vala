@@ -64,6 +64,7 @@ public class Noise.LocalLibrary : Library {
     private bool _opening_file = false;
 
     public LocalLibrary () {
+        libraries_manager.local_library = this;
         _playlists = new Gee.LinkedList<StaticPlaylist> ();
         _smart_playlists = new Gee.LinkedList<SmartPlaylist> ();
         _medias = new Gee.LinkedList<Media> ();
@@ -77,7 +78,6 @@ public class Noise.LocalLibrary : Library {
     }
     
     public override void initialize_library () {
-        libraries_manager.local_library = this;
         dbm.init_database ();
         fo.connect_to_manager ();
         fo.fo_progress.connect (dbProgress);

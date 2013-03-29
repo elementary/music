@@ -625,10 +625,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         foreach (var entry in match_tvs.entries) {
             if (entry.key.name == MUSIC_PLAYLIST) {
                 music_tvs = entry.value;
+                music_tvs.set_hint (ViewWrapper.Hint.MUSIC);
                 break;
             }
         }
         if (music_tvs == null) {
+            music_tvs = new TreeViewSetup (ListColumn.ARTIST,
+                                             Gtk.SortType.ASCENDING,
+                                             ViewWrapper.Hint.MUSIC);
             match_tvs.set (library_manager.p_music, music_tvs);
         }
         // Add Music Library View

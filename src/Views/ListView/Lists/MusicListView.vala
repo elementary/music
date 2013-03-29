@@ -56,11 +56,9 @@ public class Noise.MusicListView : GenericList {
         if(get_hint() == ViewWrapper.Hint.MUSIC) {
             mediaRemove.set_label(_("Remove from Library"));
             importToLibrary.set_visible(false);
-        }
-        else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
+        } else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
             importToLibrary.set_visible(false);
-        }
-        else if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
+        } else if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
             importToLibrary.set_visible(false);
             if (is_queue == true) {
                 mediaRemove.set_label(_("Remove from Queue"));
@@ -68,19 +66,16 @@ public class Noise.MusicListView : GenericList {
             } else {
                 mediaRemove.set_visible(false);
             }
-        }
-        else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
+        } else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
             mediaRemove.set_visible(false);
             importToLibrary.set_visible(false);
-        }
-        else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
+        } else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
             mediaEditMedia.set_visible(false);
             mediaRemove.set_label(_("Remove from Device"));
             if (parent_wrapper.library.support_playlists () == false) {
                 mediaMenuAddToPlaylist.set_visible(false);
             }
-        }
-        else {
+        } else {
             mediaRemove.set_visible(false);
             importToLibrary.set_visible(false);
         }
@@ -423,17 +418,12 @@ public class Noise.MusicListView : GenericList {
             dialog.remove_media.connect ( (delete_files) => {
                 parent_wrapper.library.remove_medias (to_remove, delete_files);
             });
-        }
-        else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
+        } else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
             DeviceViewWrapper dvw = (DeviceViewWrapper)parent_wrapper;
             dvw.library.remove_medias(to_remove, true);
-        }
-
-        if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
+        } else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
             parent_wrapper.library.playlist_from_id(relative_id).remove_medias (to_remove);
-        }
-
-        if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST && is_queue == true) {
+        } else if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST && is_queue == true) {
             parent_wrapper.library.playlist_from_id(relative_id).remove_medias (to_remove);
         }
     }
