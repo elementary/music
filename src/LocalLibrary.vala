@@ -105,14 +105,15 @@ public class Noise.LocalLibrary : Library {
 
         lock (_playlists) {
             foreach (var p in dbm.load_playlists ()) {
+                warning (p.name);
                 if (p.name == C_("Name of the playlist", "Queue") || p.name == _("History")) {
-                    break;
+                    continue;
                 } else if (p.name != MUSIC_PLAYLIST) {
                     _playlists.add (p);
                     p.rowid = playlists_rowid;
                     playlists_rowid++;
                     p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
-                    break;
+                    continue;
                 }
             }
         }
@@ -411,7 +412,7 @@ public class Noise.LocalLibrary : Library {
         p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
         dbm.add_playlist (p);
         playlist_added (p);
-        warning ("playlist %s added",p.name);
+        debug ("playlist %s added",p.name);
     }
 
     public override void remove_playlist (int id) {

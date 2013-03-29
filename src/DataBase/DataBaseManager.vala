@@ -515,7 +515,8 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
-                StaticPlaylist p = new StaticPlaylist.with_info(0, results.fetch_string(0));
+                var p = new StaticPlaylist.with_info(0, results.fetch_string(0));
+                
                 string media = results.fetch_string(1);
                 
                 string[] media_strings = media.split("<sep>", 0);
