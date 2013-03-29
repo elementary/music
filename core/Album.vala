@@ -62,10 +62,10 @@ public class Noise.Album : Object {
      */
     public Album.from_media (Media m) {
         name = m.album;
-        artist = m.artist;
+        artist = m.album_artist;
 
         if (String.is_empty (artist, true))
-            artist = m.album_artist;
+            artist = m.artist;
     }
 
     public uint n_media {
