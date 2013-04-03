@@ -1,4 +1,4 @@
-noise (1:1.0-0) quantal; urgency=low
+noise (2:0.2-0) quantal; urgency=low
 
   * New upstream release.
 
