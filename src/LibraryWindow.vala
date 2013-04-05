@@ -195,8 +195,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private inline void setup_window () {
         debug ("setting up main window");
 
-        this.height_request = 440;
-        this.width_request = 750;
+        this.height_request = 350;
+        this.width_request = 600;
         this.window_position = Gtk.WindowPosition.CENTER;
 
         // set the size based on saved settings

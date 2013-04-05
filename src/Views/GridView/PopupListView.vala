@@ -47,6 +47,8 @@ public class Noise.PopupListView : Window {
 
         // Hide titlebar (we want to set a title, but not showing it!)
         this.show_title = false;
+        // We have to fullscreen it otherwise it's not shown on fullscreen mode
+        fullscreen ();
 #else
         window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 
@@ -70,8 +72,8 @@ public class Noise.PopupListView : Window {
 #endif
 
         this.view_wrapper = grid_view.parent_view_wrapper;
-
-        transient_for = App.main_window;
+        
+        set_transient_for (App.main_window);
         destroy_with_parent = true;
         skip_taskbar_hint = true;
 
