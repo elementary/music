@@ -70,6 +70,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public bool media_active { get { return media_info.media != null; } }
 
     public bool playing { get; set; default = false; } // TODO private set
+    private double volume = 1;
 
     bool _playing_queued_song;
 
@@ -120,6 +121,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
     public void add_playback (Noise.Playback playback) {
         playbacks.add (playback);
+    }
+    
+    public void change_volume (double val) {
+        volume = val;
+        player.set_volume (volume);
     }
 
     /*
@@ -530,6 +536,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                     player.set_state (Gst.State.NULL);
                     found = true;
                     player = playback;
+                    player.set_volume (volume);
                     player_changed ();
                     break;
                 }

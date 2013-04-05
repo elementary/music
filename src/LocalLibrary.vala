@@ -105,7 +105,6 @@ public class Noise.LocalLibrary : Library {
 
         lock (_playlists) {
             foreach (var p in dbm.load_playlists ()) {
-                warning (p.name);
                 if (p.name == C_("Name of the playlist", "Queue") || p.name == _("History")) {
                     continue;
                 } else if (p.name != MUSIC_PLAYLIST) {

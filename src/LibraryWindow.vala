@@ -54,10 +54,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.Paned     view_container_hpaned; // view_container / info_panel
     public InfoPanel      info_panel;
 
-    private Gtk.Toolbar    main_toolbar; // Toolbar
-    private Gtk.ToolButton previousButton;
-    private Gtk.ToolButton playButton;
-    private Gtk.ToolButton nextButton;
+    private Gtk.Toolbar      main_toolbar; // Toolbar
+    private Gtk.ToolButton   previousButton;
+    private Gtk.ToolButton   playButton;
+    private Gtk.ToolButton   nextButton;
+    private Gtk.VolumeButton volumeButton;
 
     public Granite.Widgets.ThinPaned  main_hpaned      { get; private set; }
     public SourceListView             source_list_view { get; private set; }
@@ -72,6 +73,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.Menu          settingsMenu;
     private Gtk.MenuItem      fileImportMusic;
     private Gtk.MenuItem      fileRescanMusicFolder;
+    private Gtk.CheckMenuItem fullscreen_item;
     private Gtk.ImageMenuItem editPreferences;
 
     /* Window state properties */
@@ -156,6 +158,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var modifiers = Gtk.accelerator_get_default_mod_mask ();
         bool modifiers_active = (event.state & modifiers) != 0;
 
+        if (!modifiers_active && event.keyval == Gdk.Key.F11) {
+            toggle_fullscreen ();
+        }
+
         if (!modifiers_active && search_field_has_focus) {
             if (event.keyval == Gdk.Key.space && !searchField.has_focus && !source_list_view.editing) {
                 play_media (); // toggle play/pause
@@ -199,10 +205,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Maximize window if necessary
         switch (saved_state.window_state) {
             case WindowState.MAXIMIZED:
+                window_maximized = true;
                 this.maximize ();
                 break;
             case WindowState.FULLSCREEN:
-                this.fullscreen ();
+                toggle_fullscreen ();
                 break;
             default:
                 break;
@@ -231,17 +238,21 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         settingsMenu            = new Gtk.Menu ();
         fileImportMusic         = new Gtk.MenuItem.with_label (_("Import to Library"));
         fileRescanMusicFolder   = new Gtk.MenuItem.with_label (_("Rescan Music Folder"));
+        fullscreen_item         = new Gtk.CheckMenuItem.with_label (_("Fullscreen"));
         editPreferences         = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.PREFERENCES, null);
 
+        fullscreen_item.set_active (window_fullscreen);
         editPreferences.set_label (_("Preferences"));
 
         settingsMenu.append (fileImportMusic);
         settingsMenu.append (fileRescanMusicFolder);
         settingsMenu.append (new Gtk.SeparatorMenuItem ());
+        settingsMenu.append (fullscreen_item);
         settingsMenu.append (editPreferences);
 
         fileImportMusic.activate.connect (fileImportMusicClick);
         fileRescanMusicFolder.activate.connect ( () => { rescan_music_folder (); }); // FIXME
+        fullscreen_item.toggled.connect(toggle_fullscreen);
         editPreferences.activate.connect(editPreferencesClick);
 
         /** Toolbar widgets **/
@@ -250,6 +261,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         previousButton          = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_PREVIOUS);
         playButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_PLAY);
         nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
+        volumeButton            = new Gtk.VolumeButton ();
         topDisplay              = new TopDisplay ();
         topDisplayBin           = new FixedBin (-1, -1, 800, -1);
         viewSelector            = new Widgets.ViewSelector ();
@@ -264,9 +276,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         var top_display_item   = new Gtk.ToolItem ();
         var search_field_item  = new Gtk.ToolItem ();
+        var volume_item        = new Gtk.ToolItem ();
 
         top_display_item.add (topDisplayBin);
         search_field_item.add (searchField);
+        volume_item.add (volumeButton);
+        
+        volumeButton.use_symbolic = true;
+        volumeButton.value = 1;
 
         // Tweak view selector's size
         viewSelector.margin_left = 12;
@@ -277,13 +294,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         top_display_item.set_expand (true);
         topDisplay.margin_left = 30;
         topDisplay.margin_right = 30;
-
+        
         main_toolbar.insert (previousButton, -1);
         main_toolbar.insert (playButton, -1);
         main_toolbar.insert (nextButton, -1);
         main_toolbar.insert (viewSelector, -1);
         main_toolbar.insert (top_display_item, -1);
         main_toolbar.insert (search_field_item, -1);
+        main_toolbar.insert (volume_item, -1);
         main_toolbar.insert (App.instance.create_appmenu (settingsMenu), -1);
 
 
@@ -487,6 +505,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         previousButton.clicked.connect (() => {play_previous_media ();});
         playButton.clicked.connect (() => {play_media ();});
         nextButton.clicked.connect (() => {play_next_media ();});
+        volumeButton.value_changed.connect (change_volume);
 
         searchField.activate.connect (searchFieldActivate);
         searchField.text = main_settings.search_string;
@@ -503,6 +522,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             var last_playing_media = library_manager.media_from_id (last_playing_id);
             if (last_playing_media != null && last_playing_media.file.query_exists ())
                 App.player.playMedia (last_playing_media, true);
+        }
+        
+        if (window_fullscreen == false) {
+            volumeButton.get_parent ().visible = false;
         }
     }
 
@@ -1291,6 +1314,20 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         dialog.run();
         dialog.destroy();
+    }
+    
+    private void change_volume (double val) {
+        App.player.change_volume (val);
+    }
+    
+    private void toggle_fullscreen () {
+        window_fullscreen = !window_fullscreen;
+        volumeButton.get_parent ().visible = window_fullscreen;
+        if (window_fullscreen == true) {
+            this.fullscreen ();
+        } else {
+            this.unfullscreen ();
+        }
     }
 
     private void on_quit () {
