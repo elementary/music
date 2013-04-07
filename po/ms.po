@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-04-06 05:52+0000\n"
+"X-Launchpad-Export-Date: 2013-04-07 05:24+0000\n"
 "X-Generator: Launchpad (build 16550)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
@@ -2241,8 +2241,3 @@ msgstr ""
 
 #~ msgid "Write metadata to file"
 #~ msgstr "Tulis data meta ke fail"
-
-#, c-format
-#~ msgctxt "Importing playlist"
-#~ msgid "Importing <b>%s</b> to Library…"
-#~ msgstr "Mengimport <b>%s</b> ke Pustaka..."
