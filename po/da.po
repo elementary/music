@@ -8,25 +8,25 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-05 16:02+0200\n"
-"PO-Revision-Date: 2012-08-29 05:06+0000\n"
-"Last-Translator: kroq-gar78 <Unknown>\n"
+"PO-Revision-Date: 2013-04-08 16:37+0000\n"
+"Last-Translator: Mathias Lindberg <mathverden@gmail.com>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-04-06 05:52+0000\n"
+"X-Launchpad-Export-Date: 2013-04-09 05:47+0000\n"
 "X-Generator: Launchpad (build 16550)\n"
 "Language: da\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "Importerer <b>$NAME</b> af <b>$ARTIST</b> til bibliotek…"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
 msgid "Unknown"
-msgstr ""
+msgstr "Ukendt"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:53
 msgid "Radio Station"
@@ -35,17 +35,17 @@ msgstr "Radiostation"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:183
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$NAME på $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:186
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$NAME af $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:192
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$NAME af $ARTIST på $ALBUM"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
@@ -56,7 +56,7 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:387
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:389
 msgid "New playlist"
-msgstr ""
+msgstr "Ny playliste"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:246
 #, c-format
@@ -65,7 +65,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr "Eksporter Afspilningsliste"
+msgstr "Eksportér afspilningsliste"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:282
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:376
@@ -79,7 +79,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
-msgstr "Afspilningsliste"
+msgstr "Playliste"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:367
 #, c-format
@@ -88,7 +88,7 @@ msgstr "Importér %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Ikke genkendt playliste fil. Importering fejlede."
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
@@ -117,7 +117,7 @@ msgstr[1] "%u sekunder"
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s og %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
@@ -138,28 +138,28 @@ msgstr[1] "%u timer"
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s og %s"
 
 #. / days and hours
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:94
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s og %s"
 
 #. / days and minutes
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:99
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s og %s"
 
 #. / hours and minutes
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:108
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s og %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -177,11 +177,11 @@ msgstr "Klassisk"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:80
 msgid "Club"
-msgstr "Club"
+msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:81
 msgid "Dance"
-msgstr "Dance"
+msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:82
 msgid "Full Bass"
@@ -233,11 +233,11 @@ msgstr "Ska"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:94
 msgid "Soft Rock"
-msgstr "Blød rock"
+msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:95
 msgid "Techno"
-msgstr "Techno"
+msgstr "Tekno"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:235
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
@@ -251,12 +251,12 @@ msgstr "Genskan musik mappen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Fullscreen"
-msgstr ""
+msgstr "Fuldskærm"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:241
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Preferences"
-msgstr "Præferencer"
+msgstr "Indstillinger"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:264
 msgid "Search Music"
@@ -274,7 +274,7 @@ msgstr "Musik"
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:115
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Sæt i kø"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:848
 msgid "No songs in Queue"
@@ -319,7 +319,7 @@ msgstr "Importér musik"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1102
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:249
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Importerer</b> musik til bibliotek…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1117
 msgid "Rescanning music folder for changes"
