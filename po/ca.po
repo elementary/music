@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-05 16:02+0200\n"
-"PO-Revision-Date: 2013-03-06 20:11+0000\n"
+"PO-Revision-Date: 2013-04-09 15:14+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-04-06 05:52+0000\n"
+"X-Launchpad-Export-Date: 2013-04-10 05:39+0000\n"
 "X-Generator: Launchpad (build 16550)\n"
 "Language: ca\n"
 
@@ -50,7 +50,7 @@ msgstr "$NAME per $ARTIST a $ALBUM"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:387
@@ -253,7 +253,7 @@ msgstr "Torna a examinar la carpeta de música"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pantalla completa"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:241
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
@@ -2230,8 +2230,3 @@ msgstr ""
 #~ msgstr ""
 #~ "La importació des del dispositiu ha estat cancel·lada. L'operació s'aturarà "
 #~ "després d'importar aquest element."
-
-#, c-format
-#~ msgctxt "Importing playlist"
-#~ msgid "Importing <b>%s</b> to Library…"
-#~ msgstr "S'està important <b>%s</b> a la biblioteca…"
