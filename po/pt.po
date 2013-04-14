@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-05 16:02+0200\n"
-"PO-Revision-Date: 2013-03-30 01:08+0000\n"
-"Last-Translator: Daniel Jorge <Unknown>\n"
+"PO-Revision-Date: 2013-04-13 11:20+0000\n"
+"Last-Translator: Pedro Monteiro <Unknown>\n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-04-06 05:52+0000\n"
-"X-Generator: Launchpad (build 16550)\n"
+"X-Launchpad-Export-Date: 2013-04-14 05:26+0000\n"
+"X-Generator: Launchpad (build 16564)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -49,7 +49,7 @@ msgstr "$NAME de $ARTIST em $ALBUM"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:387
@@ -164,7 +164,7 @@ msgstr "%s e %s"
 #. / for more details.
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
-msgstr "%Y-%m-%e %H:%M"
+msgstr "%e/%m/%Y %H:%M"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -250,7 +250,7 @@ msgstr "Reanalisar pasta de músicas"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Fullscreen"
-msgstr ""
+msgstr "Ecrã Completo"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:241
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
@@ -273,7 +273,7 @@ msgstr "Música"
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:115
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "Fila"
+msgstr "Fila de Reprodução"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:848
 msgid "No songs in Queue"
@@ -696,7 +696,7 @@ msgstr "Nunca"
 #. / by the column's title header.
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:725
 msgid "Sample List String"
-msgstr ""
+msgstr "Exemplo de uma String"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
 msgid "Autosize Columns"
@@ -2219,8 +2219,3 @@ msgstr ""
 
 #~ msgid "Similar Song View"
 #~ msgstr "Faixas semelhantes"
-
-#, c-format
-#~ msgctxt "Importing playlist"
-#~ msgid "Importing <b>%s</b> to Library…"
-#~ msgstr "A importar <b>%s</b> para a coleção..."
