@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-05 16:02+0200\n"
-"PO-Revision-Date: 2013-03-27 12:46+0000\n"
-"Last-Translator: Megolas <ofeklavie@gmail.com>\n"
+"PO-Revision-Date: 2013-04-14 13:07+0000\n"
+"Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-04-06 05:52+0000\n"
-"X-Generator: Launchpad (build 16550)\n"
+"X-Launchpad-Export-Date: 2013-04-15 05:41+0000\n"
+"X-Generator: Launchpad (build 16564)\n"
 "Language: \n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
@@ -21,7 +21,7 @@ msgstr "יבוא <b>$NAME</b> של <b>$ARTIST</b> לספרייה..."
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
 msgid "Unknown"
-msgstr "ֹלא ידוע"
+msgstr "לא ידוע"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:53
 msgid "Radio Station"
@@ -1940,11 +1940,6 @@ msgstr "בכדי להשתמש ב-Last.fm, עליך לתת הרשאות לNoise. 
 
 #~ msgid "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr "סינכרון המכשיר התבטל. תהליך זה יפסיק אחרי המדיה."
-
-#, c-format
-#~ msgctxt "Importing playlist"
-#~ msgid "Importing <b>%s</b> to Library…"
-#~ msgstr "מביא <b>%s</b> לספרייה..."
 
 #~ msgid "Edit"
 #~ msgstr "ערוך"

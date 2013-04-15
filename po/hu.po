@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-05 16:02+0200\n"
-"PO-Revision-Date: 2013-03-11 12:25+0000\n"
+"PO-Revision-Date: 2013-04-14 07:07+0000\n"
 "Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-04-06 05:52+0000\n"
-"X-Generator: Launchpad (build 16550)\n"
+"X-Launchpad-Export-Date: 2013-04-15 05:41+0000\n"
+"X-Generator: Launchpad (build 16564)\n"
 "Language: hu\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
@@ -50,7 +50,7 @@ msgstr "$NAME, $ARTIST előadó $ALBUM című albumáról"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:387
@@ -251,7 +251,7 @@ msgstr "Zenemappa újravizsgálása"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Fullscreen"
-msgstr ""
+msgstr "Teljes képernyő"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:241
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
@@ -2234,8 +2234,3 @@ msgstr ""
 #~ "A(z) %s nem talált ehhez hasonló dalokat a gyűjteményében: %s - %s. "
 #~ "Győződjön meg róla, hogy az összes száminformáció helyes, és hogy "
 #~ "csatlakozik-e az internetre. Néhány számra lehet, hogy nincs találat."
-
-#, c-format
-#~ msgctxt "Importing playlist"
-#~ msgid "Importing <b>%s</b> to Library…"
-#~ msgstr "<b>%s</b> importálása a Gyűjteménybe..."
