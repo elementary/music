@@ -39,6 +39,9 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     bool queue_is_finished = false;
     Gee.LinkedList<string> imported_files;
     bool is_initialized = false;
+    public int medias_rowid = 0;
+    public int playlists_rowid = 0;
+    public int smartplaylists_rowid = 0;
     
     public GStreamerTagger tagger;
     
@@ -59,7 +62,8 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     void media_imported (Media m) {
         m.isTemporary = true;
         this.medias.add(m);
-        m.rowid = medias.index_of (m);
+        m.rowid = medias_rowid;
+        medias_rowid++;
         if (queue_is_finished)
             file_operations_done ();
     }
@@ -73,7 +77,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         if (is_initialized == false) {
             is_initialized = true;
             device.initialized (device);
-            load_playlists ();
+            //load_playlists ();
         }
     }
     
@@ -263,8 +267,12 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     }
     
     public override Media? media_from_id (int id) {
-        if (id < get_medias ().size) {
-            return medias.get (id);
+        lock (medias) {
+            foreach (var m in medias) {
+                if (m.rowid == id) {
+                    return m;
+                }
+            }
         }
         return null;
     }
@@ -382,7 +390,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     }
     
     public override bool support_playlists () {
-        return true;
+        return false;
     }
     
     public override void add_playlist (StaticPlaylist p) {
