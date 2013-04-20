@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-05 16:02+0200\n"
-"PO-Revision-Date: 2013-04-15 15:35+0000\n"
-"Last-Translator: zvacet <ikoli@yahoo.com>\n"
+"PO-Revision-Date: 2013-04-19 19:26+0000\n"
+"Last-Translator: Ivan <ivan-os@live.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-04-16 05:05+0000\n"
-"X-Generator: Launchpad (build 16564)\n"
+"X-Launchpad-Export-Date: 2013-04-20 06:04+0000\n"
+"X-Generator: Launchpad (build 16567)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -26,7 +26,7 @@ msgstr ""
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
 msgid "Unknown"
-msgstr ""
+msgstr "Nepoznato"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:53
 msgid "Radio Station"
@@ -40,23 +40,23 @@ msgstr ""
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:186
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$IME od $IZVOĐAČ"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:192
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$IME od $IZVOĐAČ na $ALBUMU"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:387
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:389
 msgid "New playlist"
-msgstr ""
+msgstr "Novi popis izvođenja"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:246
 #, c-format
@@ -65,12 +65,12 @@ msgstr "%s (%i)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr ""
+msgstr "Izvezi popis izvođenja"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:282
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:376
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG Verzija 3.0 Proširen (*.m3u)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:287
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:381
@@ -79,23 +79,24 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
-msgstr ""
+msgstr "Popis izvođenja"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:367
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "Uvezi %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Neprepoznata datoteka izvođenja. Neuspjeli uvoz"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekunda"
+msgstr[1] "%d sekunde"
+msgstr[2] "%d sekundi"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:52
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:83
@@ -110,22 +111,24 @@ msgstr[2] "%u minuta"
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u sekunda"
+msgstr[1] "%u sekunde"
+msgstr[2] "%u sekundi"
 
 #. / Minutes and seconds
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:58
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s i %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u dan"
+msgstr[1] "%u dani"
+msgstr[2] "%u dana"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:80
 #, c-format
@@ -171,19 +174,19 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
-msgstr ""
+msgstr "Ravan"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:79
 msgid "Classical"
-msgstr ""
+msgstr "Klasičan"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:80
 msgid "Club"
-msgstr ""
+msgstr "Klupska"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:81
 msgid "Dance"
-msgstr ""
+msgstr "Ples"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:82
 msgid "Full Bass"
