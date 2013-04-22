@@ -369,6 +369,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.playlist_rename_clicked.connect ( (page_number) => {
             var view = view_container.get_view (page_number);
             if (view is PlaylistViewWrapper) {
+                search_field_has_focus = false;
                 source_list_view.start_editing_item(source_list_view.selected);
             }
         });
