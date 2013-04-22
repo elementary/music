@@ -457,7 +457,7 @@ namespace Granite.Widgets {
             var state = style_context.get_state ();
 
             // Only draw stars of 0-rating if the cursor is over the cell
-            if (_rating == 0 && !Noise.Utils.flags_set (state, Gtk.StateFlags.SELECTED))
+            if (_rating == 0 && !Noise.Utils.flags_set (state, Gtk.StateFlags.SELECTED) && !Noise.Utils.flags_set (state, Gtk.StateFlags.PRELIGHT))
                 return;
 
             /*
