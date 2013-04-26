@@ -74,10 +74,10 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		}
 	}
 
-	public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false, bool? is_queue = false) {
+	public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false, bool? is_queue = false, bool? read_only = false) {
 		this.view_wrapper = view_wrapper;
 
-		list_view = new MusicListView (view_wrapper, tvs, is_queue);
+		list_view = new MusicListView (view_wrapper, tvs, is_queue, read_only);
 
 		var list_scrolled = new Gtk.ScrolledWindow (null, null);
 		list_scrolled.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);

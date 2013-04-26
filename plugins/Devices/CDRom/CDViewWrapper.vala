@@ -45,7 +45,7 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
 
-        list_view = new ListView (this, tvs, false, false);
+        list_view = new ListView (this, tvs, false, false, true);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
         // Refresh view layout

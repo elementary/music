@@ -35,13 +35,15 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem importToLibrary;
     Gtk.MenuItem mediaScrollToCurrent;
     bool is_queue = false;
+    bool read_only = false;
 
     /**
      * for sort_id use 0+ for normal, -1 for auto, -2 for none
      */
-    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool? is_queue = false) {
+    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool? is_queue = false, bool? read_only = false) {
         base (view_wrapper, tvs);
         this.is_queue = is_queue;
+        this.read_only = read_only;
 
         // This is vital
         set_value_func (view_value_func);
@@ -105,12 +107,18 @@ public class Noise.MusicListView : GenericList {
 
         mediaTopSeparator = new SeparatorMenuItem ();
 
-        mediaActionMenu.append(mediaEditMedia);
+        if (read_only == false) {
+            mediaActionMenu.append(mediaEditMedia);
+        }
         mediaActionMenu.append(mediaFileBrowse);
-        mediaActionMenu.append(mediaRateMedia);
+        if (read_only == false) {
+            mediaActionMenu.append(mediaRateMedia);
+        }
         mediaActionMenu.append(mediaTopSeparator);
         mediaActionMenu.append(mediaMenuQueue);
-        mediaActionMenu.append(mediaMenuAddToPlaylist);
+        if (read_only == false) {
+            mediaActionMenu.append(mediaMenuAddToPlaylist);
+        }
 
         if (hint != ViewWrapper.Hint.SMART_PLAYLIST && hint != ViewWrapper.Hint.ALBUM_LIST) {
             if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {

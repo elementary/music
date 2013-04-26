@@ -284,6 +284,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     public override Media? media_from_uri (string uri) {
         return null;
     }
+    
     public override void update_media (Media s, bool updateMeta, bool record_time) {
     
     }
