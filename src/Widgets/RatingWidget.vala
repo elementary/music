@@ -455,31 +455,21 @@ namespace Granite.Widgets {
         {
             var style_context = widget.get_style_context ();
             var state = style_context.get_state ();
+            int old_n_stars = n_stars;
 
             // Only draw stars of 0-rating if the cursor is over the cell
             if (_rating == 0 && !Noise.Utils.flags_set (state, Gtk.StateFlags.SELECTED) && !Noise.Utils.flags_set (state, Gtk.StateFlags.PRELIGHT))
                 return;
 
-            /*
-            Hover rating support
-
-            if ((Utils.flags_set (flags, Gtk.CellRendererState.PRELIT)) {
-                var device = Gtk.get_current_event_device ();
-                if (device != null) {
-                    var window = widget.get_window ();
-                    if (window != null) {
-                        int x, y;
-                        window.get_device_position (device, out x, out y, null);
-                        renderer.rating = renderer.get_new_rating (x - cell_area.x);
-                    }
-                }
-            }
-            */
-
+            // Only show the filled stars if the row is neither selected nor mouseovered
+            if(0 < _rating && !Noise.Utils.flags_set (state, Gtk.StateFlags.SELECTED) && !Noise.Utils.flags_set (state, Gtk.StateFlags.PRELIGHT))
+                n_stars = (int)rating;
+            
             renderer.style_context = style_context;
             renderer.render ();
             update_pixbuf ();
             base.render (ctx, widget, background_area, cell_area, flags);
+            n_stars = old_n_stars;
         }
 
         public override bool activate (Gdk.Event event, Gtk.Widget widget, string path,
