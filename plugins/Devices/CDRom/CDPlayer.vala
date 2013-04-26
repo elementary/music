@@ -204,8 +204,8 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
                         if (pieces.length >= 2) {
                             string old_title = App.player.media_info.media.title;
                             string old_artist = App.player.media_info.media.artist;
-                            App.player.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : _("Unknown Artist");
-                            App.player.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
+                            App.player.media_info.media.artist = (pieces[0] != null || pieces[0] != "") ? pieces[0].chug().strip() : _("Unknown Artist");
+                            App.player.media_info.media.title = (pieces[1] != null || pieces[1] != "") ? pieces[1].chug().strip() : title;
                             
                             if ((old_title != App.player.media_info.media.title || old_artist != App.player.media_info.media.artist) && (App.player.media_info.media != null))
                                 App.main_window.media_played (App.player.media_info.media); // pretend as if media changed

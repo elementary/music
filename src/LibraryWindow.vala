@@ -236,7 +236,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         /** App menu widgets **/
 
         settingsMenu            = new Gtk.Menu ();
-        fileImportMusic         = new Gtk.MenuItem.with_label (_("Import to Library"));
+        fileImportMusic         = new Gtk.MenuItem.with_label (_("Import to Library…"));
         fileRescanMusicFolder   = new Gtk.MenuItem.with_label (_("Rescan Music Folder"));
         fullscreen_item         = new Gtk.CheckMenuItem.with_label (_("Fullscreen"));
         editPreferences         = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.PREFERENCES, null);
@@ -950,8 +950,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         spe.set_transient_for (this);
         spe.set_modal(true);
         spe.destroy_with_parent = true;
-        spe.show_all();
         spe.load_smart_playlist ();
+        spe.show_all();
     }
 
     /** This should be used whenever a call to play a new media is made

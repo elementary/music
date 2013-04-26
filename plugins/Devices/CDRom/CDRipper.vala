@@ -32,6 +32,7 @@ public class Noise.CDRipper : GLib.Object {
 	Noise.Media current_media; // media currently being processed/ripped
 	private string _device;
 	public int track_count;
+	public int track_index;
 	private Format _format;
 	
 	public signal void media_ripped(Noise.Media s, bool success);
@@ -84,7 +85,7 @@ public class Noise.CDRipper : GLib.Object {
 	}
 	
 	public bool doPositionUpdate () {
-		progress_notification ((double)getPosition()/getDuration());
+		progress_notification ((double)((double)getPosition()/(double)getDuration())*((double)track_index/(double)track_count));
 		
 		if (getDuration() <= 0)
 			return false;
@@ -159,6 +160,7 @@ public class Noise.CDRipper : GLib.Object {
 		src.set("track", track);
 		if (current_media != null)
             current_media.unique_status_image = Icons.PROCESS_COMPLETED.render(Gtk.IconSize.MENU);
+        track_index++;
 		current_media = s;
         current_media.unique_status_image = Icons.REFRESH_SYMBOLIC.render(Gtk.IconSize.MENU);
 		

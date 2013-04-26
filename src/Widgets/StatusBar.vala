@@ -75,16 +75,16 @@ namespace Noise.Widgets {
         }
 
         private void update_option () {
-            setOption ((int)App.player.repeat);
+            setOption ((int)main_settings.repeat_mode);
         }
 
         private void on_option_changed () {
             int val = current_option;
 
-            if ((int)App.player.repeat == val)
+            if ((int)main_settings.repeat_mode == val)
                 return;
 
-            App.player.repeat = (Player.Repeat)val;
+            App.player.set_repeat_mode ((Noise.Settings.Repeat)val);
         }
     }
 
@@ -105,16 +105,16 @@ namespace Noise.Widgets {
         }
 
         private void update_mode () {
-            setOption ((int)App.player.shuffle);
+            setOption ((int)main_settings.shuffle_mode);
         }
 
         private void on_option_changed () {
             int val = current_option;
 
-            if ((int)App.player.shuffle == val)
+            if ((int)main_settings.shuffle_mode == val)
                 return;
 
-            App.player.setShuffleMode ((Player.Shuffle)val, true);
+            App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val, true);
         }
     }
 

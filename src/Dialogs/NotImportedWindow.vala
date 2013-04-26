@@ -57,8 +57,8 @@ public class Noise.NotImportedWindow : Window{
 		set_default_size(475, -1);
 		resizable = false;
 		
-		content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
-		padding = new Gtk.Box (Gtk.Orientation.VERTICAL, 20);
+		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
 		var warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
@@ -113,7 +113,7 @@ public class Noise.NotImportedWindow : Window{
 		moveToTrash.set_sensitive(false);
 		
 		/* set up controls layout */
-		var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+		var information = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 		information.pack_start(warning, false, false, 10);
 		information_text.pack_start(title, false, true, 10);

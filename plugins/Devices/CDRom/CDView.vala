@@ -32,7 +32,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     Gtk.Label author;
     
     Noise.StaticPlaylist cd_playlist;
-    private CDViewWrapper cd_viewwrapper;
+    public CDViewWrapper cd_viewwrapper;
     
     public CDView (CDRomDevice d) {
         this.dev = d;
@@ -42,8 +42,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         build_ui ();
         
         dev.initialized.connect (cd_initialised);
-        dev.current_importation.connect (current_importation);
-        dev.stop_importation.connect (stop_importation);
+        
     }
     
     public void build_ui () {
@@ -133,21 +132,6 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         if (cover_pixbuf != null) {
             album_image.set_from_pixbuf (cover_pixbuf);
         }
-    }
-    
-    //XXX: This is not well working, so deactivating it for now !
-    public void current_importation (int track) {
-    /*    spinner.unparent ();
-        spinner = new Gtk.Spinner ();
-        list_view.attach(spinner, 0, track, 1, 1);
-        spinner.start ();
-        show_all ();*/
-    }
-    
-    public void stop_importation () {
-    /*    spinner.hide ();
-        spinner.unparent ();
-        spinner = new Gtk.Spinner ();*/
     }
     
     public Granite.Widgets.WrapLabel create_title_label (string title) {

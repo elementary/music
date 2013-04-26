@@ -255,7 +255,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         
         
         if(list.size == 0) {
-            notification_manager.doAlertNotification (_("No songs on CD"), _("The Application could not find any songs on the CD. No songs can be imported"));
+            infobar_message (_("The Application could not find any songs on the CD. No songs can be imported"), Gtk.MessageType.ERROR);
             return false;
         }
         
@@ -284,6 +284,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 
         ripper.progress_notification.connect( (progress) => {
             current_song_progress = progress;
+            libraries_manager.progress = progress;
         });
         
         // connect callbacks
@@ -355,7 +356,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             _is_transferring = false;
             
             int n_songs = current_list_index + 1;
-            notification_manager.doAlertNotification (_("CD Import Complete"), ngettext (_("Importation of a song from Audio CD finished."), _("Importation of %i songs from Audio CD finished."), n_songs));
+            infobar_message (ngettext (_("Importation of a song from Audio CD finished."), _("Importation of %i songs from Audio CD finished.").printf(n_songs), n_songs), Gtk.MessageType.INFO);
         }
     }
 

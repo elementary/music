@@ -62,8 +62,8 @@ namespace Noise.Settings {
         public bool show_notifications { get; set; }
         public int last_media_playing { get; set; }
         public int last_media_position { get; set; }
-        public int shuffle_mode { get; set; }
-        public int repeat_mode { get; set; }
+        public Shuffle shuffle_mode { get; set; }
+        public Repeat repeat_mode { get; set; }
         public string search_string { get; set; }
         public string[] plugins_enabled { get; set;}
         public string[] minimize_while_playing_shells { get; set; }
@@ -74,6 +74,7 @@ namespace Noise.Settings {
                 music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
             }
         }
+
     }
 
     public class Equalizer : Granite.Services.Settings {
@@ -105,5 +106,17 @@ namespace Noise.Settings {
             
             return rv;
         }
+    }
+    public enum Shuffle {
+        OFF,
+        ALL
+    }
+
+    public enum Repeat {
+        OFF,
+        MEDIA,
+        ALBUM,
+        ARTIST,
+        ALL
     }
 }

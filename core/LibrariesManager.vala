@@ -119,10 +119,10 @@ public class Noise.LibrariesManager : GLib.Object {
                     }
                     
                     current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
-                    current_operation = current_operation.replace ("$NAME", m.title ?? "");
-                    current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
+                    current_operation = current_operation.replace ("$NAME", m.get_display_title ());
+                    current_operation = current_operation.replace ("$ARTIST", m.get_display_artist ());
                 } else {
-                    message ("Skipped transferring media %s. Either already in library, or has invalid file path.\n", m.title);
+                    message ("Skipped transferring media %s. Either already in library, or has invalid file path.\n", m.get_display_title ());
                 }
                 index++;
                 progress = (double)index/total;

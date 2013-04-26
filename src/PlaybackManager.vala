@@ -74,31 +74,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
     bool _playing_queued_song;
 
-    private Player.Repeat? _repeat = null;
-    public Player.Repeat repeat {
-        get {
-            if (_repeat == null)
-                _repeat = (Player.Repeat)main_settings.repeat_mode;
-            return _repeat;
-        }
-        set {
-            _repeat = value;
-            main_settings.repeat_mode = value;
-        }
-    }
-
-    private Player.Shuffle? _shuffle = null;
-    public Player.Shuffle shuffle {
-        get {
-            if (_shuffle == null)
-                _shuffle = (Player.Shuffle)main_settings.shuffle_mode;
-            return _shuffle;
-        }
-        set {
-            _shuffle = value;
-            main_settings.shuffle_mode = value;
-        }
-    }
     public int next_gapless_id;
 
     public Noise.Streamer file_player;
@@ -115,8 +90,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         queue_playlist.name = C_("Name of the playlist", "Queue");
         queue_playlist.read_only = true;
         queue_playlist.allow_duplicate = true;
-
-        setShuffleMode (shuffle, true);
     }
 
     public void add_playback (Noise.Playback playback) {
@@ -213,14 +186,14 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
     
     public Media mediaFromCurrentIndex (int index_in_current) {
-        if(shuffle == Player.Shuffle.OFF)
+        if(main_settings.shuffle_mode == Noise.Settings.Shuffle.OFF)
             return _current.get(index_in_current);
         else
             return _current_shuffled.get(index_in_current);
     }
     
     public Collection<Media> current_media () {
-        if(shuffle == Player.Shuffle.OFF)
+        if(main_settings.shuffle_mode == Noise.Settings.Shuffle.OFF)
             return _current_shuffled.values;
         else
             return _current.values;
@@ -231,7 +204,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         current_cleared();
         _current.clear();
         
-        setShuffleMode(shuffle, true); // must manually reshuffle
+        set_shuffle_mode (main_settings.shuffle_mode, true); // must manually reshuffle
     }
 
 
@@ -239,11 +212,16 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         _current.set (_current.size, m);
     }
     
-    public void setShuffleMode(Player.Shuffle mode, bool reshuffle) {
-        /*if(mode == shuffle)
-            return;
-        */
-        shuffle = mode;
+    public void set_repeat_mode (Noise.Settings.Repeat mode) {
+        
+        if (main_settings.repeat_mode != mode)
+            main_settings.repeat_mode = mode;
+    }
+    
+    public void set_shuffle_mode (Noise.Settings.Shuffle mode, bool reshuffle) {
+        
+        if (main_settings.shuffle_mode != mode)
+            main_settings.shuffle_mode = mode;
         
         if(!reshuffle)
             return;
@@ -251,7 +229,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         _current_shuffled.clear();
         _current_shuffled_index = 0;
         
-        if(mode == Player.Shuffle.OFF) {
+        if(mode == Noise.Settings.Shuffle.OFF) {
             if(media_active) {
                 //make sure we continue playing where we left off
                 for(int i = 0; i < _current.size; ++i) {
@@ -265,7 +243,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 _current_index = 0;
             }
         }
-        else if(mode == Player.Shuffle.ALL) {
+        else if(mode == Noise.Settings.Shuffle.ALL) {
             //create temp list of all of current's media
             var temp = new LinkedList<Media>();
             foreach(var m in _current.values) {
@@ -306,11 +284,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 _current_shuffled_index = 0;
                 rv = _current_shuffled.get(0);
             }
-            else if(repeat == Player.Repeat.MEDIA) {
+            else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current_shuffled.get(_current_shuffled_index);
             }
             else if(_current_shuffled_index == (_current_shuffled.size - 1)) {// consider repeat options
-                if(repeat == Player.Repeat.ALL)
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
                     _current_shuffled_index = 0;
                 else {
                     /* reset to no media playing */
@@ -330,11 +308,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             }
             else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
                 // make sure we are repeating what we need to be
-                if(repeat == Player.Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index + 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index + 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
                     while(_current_shuffled.get(_current_shuffled_index - 1).artist == media_info.media.artist)
                         --_current_shuffled_index;
                 }
-                else if(repeat == Player.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index + 1).album != _current_shuffled.get(_current_shuffled_index).album) {
+                else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index + 1).album != _current_shuffled.get(_current_shuffled_index).album) {
                     while(_current_shuffled.get(_current_shuffled_index - 1).album == media_info.media.album)
                         --_current_shuffled_index;
                 }
@@ -349,7 +327,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                     addToCurrent(s);
                 
                 _current_shuffled_index = 0;
-                setShuffleMode(Player.Shuffle.ALL, true);
+                set_shuffle_mode(Noise.Settings.Shuffle.ALL, true);
                 rv = _current_shuffled.get(0);
             }
         }
@@ -360,11 +338,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 _current_index = 0;
                 rv = _current.get(0);
             }
-            else if(repeat == Player.Repeat.MEDIA) {
+            else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current.get(_current_index);
             }
             else if(_current_index == (_current.size - 1)) {// consider repeat options
-                if(repeat == Player.Repeat.ALL)
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
                     _current_index = 0;
                 else {
                     if(play)
@@ -376,11 +354,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             }
             else if(_current_index >= 0 && _current_index < (_current.size - 1)){
                 // make sure we are repeating what we need to be
-                if(repeat == Player.Repeat.ARTIST && _current.get(_current_index + 1).artist != _current.get(_current_index).artist) {
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current.get(_current_index + 1).artist != _current.get(_current_index).artist) {
                     while(_current.get(_current_index - 1).artist == media_info.media.artist)
                         --_current_index;
                 }
-                else if(repeat == Player.Repeat.ALBUM && _current.get(_current_index + 1).album != _current.get(_current_index).album) {
+                else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current.get(_current_index + 1).album != _current.get(_current_index).album) {
                     while(_current.get(_current_index - 1).album == media_info.media.album)
                         --_current_index;
                 }
@@ -415,11 +393,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 _current_shuffled_index = _current_shuffled.size - 1;
                 rv = _current_shuffled.get (_current_shuffled_index);
             }
-            else if(repeat == Player.Repeat.MEDIA) {
+            else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current_shuffled.get(_current_shuffled_index);
             }
             else if(_current_shuffled_index == 0) {// consider repeat options
-                if(repeat == Player.Repeat.ALL)
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
                     _current_shuffled_index = _current_shuffled.size - 1;
                 else {
                     stopPlayback();
@@ -430,11 +408,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             }
             else if(_current_shuffled_index > 0 && _current_shuffled_index < _current_shuffled.size){
                 // make sure we are repeating what we need to be
-                if(repeat == Player.Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index - 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index - 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
                     while(_current_shuffled.get(_current_shuffled_index + 1).artist == media_info.media.artist)
                         ++_current_shuffled_index;
                 }
-                else if(repeat == Player.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index - 1).album != _current_shuffled.get(_current_shuffled_index).album) {
+                else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index - 1).album != _current_shuffled.get(_current_shuffled_index).album) {
                     while(_current_shuffled.get(_current_shuffled_index + 1).album == media_info.media.album)
                         ++_current_shuffled_index;
                 }
@@ -458,11 +436,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 _current_index = _current.size - 1;
                 rv = _current.get(_current_index);
             }
-            else if(repeat == Player.Repeat.MEDIA) {
+            else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current.get(_current_index);
             }
             else if(_current_index == (0)) {// consider repeat options
-                if(repeat == Player.Repeat.ALL)
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
                     _current_index = _current.size - 1;
                 else {
                     stopPlayback();
@@ -474,11 +452,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             else if(_current_index > 0 && _current_index < _current.size){
                 // make sure we are repeating what we need to be
                 
-                if(repeat == Player.Repeat.ARTIST && _current.get(_current_index - 1).artist != _current.get(_current_index).artist) {
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current.get(_current_index - 1).artist != _current.get(_current_index).artist) {
                     while(_current.get(_current_index + 1).artist == media_info.media.artist)
                         ++_current_index;
                 }
-                else if(repeat == Player.Repeat.ALBUM && _current.get(_current_index - 1).album != _current.get(_current_index).album) {
+                else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current.get(_current_index - 1).album != _current.get(_current_index).album) {
                     while(_current.get(_current_index + 1).album == media_info.media.album)
                         ++_current_index;
                 }

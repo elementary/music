@@ -295,14 +295,14 @@ public class MprisPlayer : GLib.Object {
     
     public string LoopStatus {
         owned get {
-            switch(App.player.repeat) {
-                case(Noise.Player.Repeat.OFF):
+            switch(main_settings.repeat_mode) {
+                case(Noise.Settings.Repeat.OFF):
                     return "None";
-                case(Noise.Player.Repeat.MEDIA):
+                case(Noise.Settings.Repeat.MEDIA):
                     return "Track";
-                case(Noise.Player.Repeat.ALBUM):
-                case(Noise.Player.Repeat.ARTIST):
-                case(Noise.Player.Repeat.ALL):
+                case(Noise.Settings.Repeat.ALBUM):
+                case(Noise.Settings.Repeat.ARTIST):
+                case(Noise.Settings.Repeat.ALL):
                     return "Playlist";
             }
             
@@ -311,16 +311,16 @@ public class MprisPlayer : GLib.Object {
         set {
             switch(value) {
                 case("None"):
-                    App.player.repeat = Noise.Player.Repeat.OFF;
+                    App.player.set_repeat_mode (Noise.Settings.Repeat.OFF);
                     break;
                 case("Track"):
-                    App.player.repeat = Noise.Player.Repeat.MEDIA;
+                    App.player.set_repeat_mode (Noise.Settings.Repeat.MEDIA);
                     break;
                 case("Playlist"):
-                    App.player.repeat = Noise.Player.Repeat.ALL;
+                    App.player.set_repeat_mode (Noise.Settings.Repeat.ALL);
                     break;
                 default:
-                    App.player.repeat = Noise.Player.Repeat.ALL;
+                    App.player.set_repeat_mode (Noise.Settings.Repeat.ALL);
                     break;
             }
             
@@ -339,16 +339,16 @@ public class MprisPlayer : GLib.Object {
     
     public bool Shuffle {
         get {
-            if (App.player.shuffle == Noise.Player.Shuffle.ALL)
+            if (main_settings.shuffle_mode == Noise.Settings.Shuffle.ALL)
                 return true;
             return false;
         }
         set {
             if (value) {
-                App.player.setShuffleMode (Noise.Player.Shuffle.ALL, true);
+                App.player.set_shuffle_mode (Noise.Settings.Shuffle.ALL, true);
             }
             else {
-                App.player.setShuffleMode (Noise.Player.Shuffle.OFF, true);
+                App.player.set_shuffle_mode (Noise.Settings.Shuffle.OFF, true);
             }
             
             Variant variant = value;

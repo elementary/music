@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
+  <enum id="org.pantheon.noise.repeat">
+    <value value="0" nick="off"/>
+    <value value="1" nick="media"/>
+    <value value="2" nick="album"/>
+    <value value="3" nick="artist"/>
+    <value value="4" nick="all"/>
+  </enum>
+  <enum id="org.pantheon.noise.shuffle">
+    <value value="0" nick="off"/>
+    <value value="1" nick="all"/>
+  </enum>
   <schema path="/org/pantheon/noise/settings/" id="org.pantheon.noise.settings">
     <key type="s" name="music-folder">
       <default>''</default>
@@ -51,13 +62,13 @@
       <summary>Position, in seconds, of media</summary>
       <description>Position, in seconds, of media when noise last closed</description>
     </key>
-    <key type="i" name="shuffle-mode">
-      <default>0</default>
+    <key enum="org.pantheon.noise.shuffle" name="shuffle-mode">
+      <default>'off'</default>
       <summary>An index representing the shuffle mode</summary>
       <description>An index representing the shuffle mode</description>
     </key>
-    <key type="i" name="repeat-mode">
-      <default>0</default>
+    <key enum="org.pantheon.noise.repeat" name="repeat-mode">
+      <default>'off'</default>
       <summary>An index representing the repeat mode</summary>
       <description>An index representing the repeat mode</description>
     </key>

@@ -40,6 +40,7 @@ public class Noise.SmartPlaylistEditor : Window {
     public SmartPlaylistEditor(SmartPlaylist? sp = null, Library library) {
         
         this.title = _("Smart Playlist Editor");
+        this.library = library;
         
         if (sp == null) {
             is_new = true;
@@ -71,7 +72,10 @@ public class Noise.SmartPlaylistEditor : Window {
         match_combobox = new Gtk.ComboBoxText ();
         match_combobox.insert_text (0, _("any"));
         match_combobox.insert_text (1, _("all"));
-        match_combobox.set_active (sp.conditional);
+        if (is_new == false)
+            match_combobox.set_active (sp.conditional);
+        else
+            match_combobox.set_active (0);
         var match_following_label = new Gtk.Label (_("of the following:"));
         match_grid.attach (match_label, 0, 0, 1, 1);
         match_grid.attach (match_combobox, 1, 0, 1, 1);
@@ -91,8 +95,13 @@ public class Noise.SmartPlaylistEditor : Window {
         limit_spin = new Gtk.SpinButton.with_range (0, 500, 10);
         var limit_label = new Gtk.Label (_("items"));
         
-        limit_check.set_active (sp.limit);
-        limit_spin.set_value ((double)sp.limit_amount);
+        if (is_new == false) {
+            limit_check.set_active (sp.limit);
+            limit_spin.set_value ((double)sp.limit_amount);
+        } else {
+            limit_check.set_active (true);
+            limit_spin.set_value (50);
+        }
 
         limit_spin.sensitive = limit_check.active;
         limit_check.toggled.connect(() => { limit_spin.sensitive = limit_check.active; });
@@ -125,9 +134,6 @@ public class Noise.SmartPlaylistEditor : Window {
         main_grid.attach (button_box, 0, 7, 3, 1);
         add (main_grid);
         
-        // Validate initial state
-        name_changed ();
-        
         save_button.clicked.connect (save_click);
         close_button.clicked.connect (close_click);
         name_entry.changed.connect (name_changed);
@@ -152,6 +158,8 @@ public class Noise.SmartPlaylistEditor : Window {
         }
         add_button.clicked.connect (add_button_click);
         add_button.show ();
+        // Validate initial state
+        name_changed ();
     }
     
     private void name_changed() {
@@ -162,7 +170,7 @@ public class Noise.SmartPlaylistEditor : Window {
         else {
             foreach (var p in library.get_smart_playlists ()) {
                 var fixed_name = name_entry.text.strip ();
-                if ( (sp == null || sp.rowid != p.rowid) && fixed_name == p.name) {
+                if ( sp.rowid != p.rowid && fixed_name == p.name) {
                     save_button.set_sensitive (false);
                     return;
                 }

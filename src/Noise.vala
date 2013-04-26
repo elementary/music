@@ -117,7 +117,6 @@ public class Noise.App : Granite.Application {
             library_manager = new LocalLibrary ();
             player = new PlaybackManager ();
             library_manager.initialize_library ();
-            player.setShuffleMode (player.shuffle, true);
             main_window = new LibraryWindow ();
             main_window.build_ui ();
             main_window.set_application (this);
