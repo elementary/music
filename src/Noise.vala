@@ -96,19 +96,19 @@ public class Noise.App : Granite.Application {
 
 
     protected override void activate () {
-        if (DEBUG)
-            Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
-        else
-            Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
-
-        saved_state = new Settings.SavedState ();
-        notification_manager = new NotificationManager ();
-        main_settings = new Settings.Main ();
-        equalizer_settings = new Settings.Equalizer ();
-        libraries_manager = new LibrariesManager ();
-        device_manager = new DeviceManager ();
         
         if (main_window == null) {
+            if (DEBUG)
+                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
+            else
+                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
+
+            saved_state = new Settings.SavedState ();
+            notification_manager = new NotificationManager ();
+            main_settings = new Settings.Main ();
+            equalizer_settings = new Settings.Equalizer ();
+            libraries_manager = new LibrariesManager ();
+            device_manager = new DeviceManager ();
 
             // Load icon information. Needed until vala supports initialization of static
             // members. See https://bugzilla.gnome.org/show_bug.cgi?id=543189
