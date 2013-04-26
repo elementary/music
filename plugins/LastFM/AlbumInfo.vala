@@ -39,8 +39,8 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
     }
     
     public AlbumInfo.with_info(string artist, string album) {
-        string album_fixed = LastFM.Core.fix_for_url(album);
-        string artist_fixed = LastFM.Core.fix_for_url(artist);
+        string album_fixed = GLib.Uri.escape_string (album);
+        string artist_fixed = GLib.Uri.escape_string (artist);
         
         var url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + API + "&artist=" + artist_fixed + "&album=" + album_fixed;
         

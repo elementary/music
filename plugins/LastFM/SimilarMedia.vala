@@ -44,7 +44,11 @@ public class LastFM.SimilarMedias : Object {
         similar_playlist.name = _("Similar");
         similar_playlist.read_only = true;
         similar_playlist.show_badge = true;
-        similar_playlist.icon = GLib.Icon.new_for_string ("playlist-similar");
+        try {
+            similar_playlist.icon = GLib.Icon.new_for_string ("playlist-similar");
+        } catch (GLib.Error e) {
+            critical (e.message);
+        }
     }
     
     public virtual void queryForSimilar (Noise.Media s) {
@@ -86,8 +90,8 @@ public class LastFM.SimilarMedias : Object {
      * @return The media that are similar
      */
     public void getSimilarTracks(string title, string artist) {
-        var artist_fixed = LastFM.Core.fix_for_url(artist);
-        var title_fixed =  LastFM.Core.fix_for_url(title);
+        var artist_fixed = GLib.Uri.escape_string (artist);
+        var title_fixed =  GLib.Uri.escape_string (title);
         var url = "http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=" + artist_fixed + "&track=" + title_fixed + "&api_key=" + LastFM.API;
         
         Soup.SessionSync session = new Soup.SessionSync();
