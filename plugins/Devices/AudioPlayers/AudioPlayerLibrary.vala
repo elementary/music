@@ -130,7 +130,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         debug ("Adding media %s by %s\n", m.title, m.artist);
         
         var file = File.new_for_uri (m.uri);
-        var destination_file = File.new_for_uri (device.get_music_folder () + file.get_basename ());
+        var destination_file = File.new_for_uri (device.get_music_folder () + "/" + file.get_basename ());
         
         try {
             file.copy (destination_file,GLib.FileCopyFlags.ALL_METADATA);
