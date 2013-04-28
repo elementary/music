@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-26 23:57+0200\n"
-"PO-Revision-Date: 2013-04-09 19:17+0000\n"
+"PO-Revision-Date: 2013-04-27 15:32+0000\n"
 "Last-Translator: Leonardo Lemos <leonardolemos@live.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2013-04-27 06:12+0000\n"
+"X-Launchpad-Export-Date: 2013-04-28 04:51+0000\n"
 "X-Generator: Launchpad (build 16580)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
@@ -240,7 +240,7 @@ msgstr "Techno"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:239
 msgid "Import to Library…"
-msgstr ""
+msgstr "Importar para a biblioteca..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:240
 msgid "Rescan Music Folder"

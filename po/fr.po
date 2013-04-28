@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-26 23:57+0200\n"
-"PO-Revision-Date: 2013-04-05 14:14+0000\n"
+"PO-Revision-Date: 2013-04-27 09:15+0000\n"
 "Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2013-04-27 06:11+0000\n"
+"X-Launchpad-Export-Date: 2013-04-28 04:50+0000\n"
 "X-Generator: Launchpad (build 16580)\n"
 "Language: \n"
 
@@ -248,7 +248,7 @@ msgstr "Techno"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:239
 msgid "Import to Library…"
-msgstr ""
+msgstr "Importer dans la bibliothèque…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:240
 msgid "Rescan Music Folder"
