@@ -291,6 +291,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	// TODO: Since is_initial is deprecated and not used, update the external code to stop using it
 	public void set_as_current_list (int media_id, bool is_initial = false) {
 		list_view.set_as_current_list (view_wrapper.library.media_from_id (media_id));
+    	refilter (null);
 	}
 
 	public bool get_is_current_list ()  {
@@ -336,6 +337,9 @@ public class Noise.ListView : ContentView, Gtk.Box {
         obey_column_browser = false;
         list_view.do_search (search);
         obey_column_browser = true;
+        if (list_view.get_is_current_list () == true) {
+            list_view.set_as_current_list ();
+        }
 
         if (has_column_browser)
             column_browser.set_media (get_visible_media ());

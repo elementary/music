@@ -226,9 +226,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("update_library_window_widgets [%s]", hint.to_string());
 
-        // Restore this view wrapper's search string
-        App.main_window.searchField.text = get_search_string ();
-
         // Insensitive if there's no media to search
         
         bool has_media = media_count > 0;
@@ -411,21 +408,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             set_active_view (ViewType.GRID);
     }
 
-
-    /**
-     * Each view wrapper has its own search string. It is cleared when the user moves
-     * away from the view, and restored when the user selects the view again. One of
-     * the main reasons behind this behavior is fast view-wrapper switching. If all
-     * the wrappers used the same search string, switching would be slow because a new
-     * search would have to be applied to the view the user is switching to (unless
-     * all the searches were triggered at the same time, which would be uber-slow).
-     *
-     * @return What the user has typed in the search field while this view was active.
-     */
-    public string get_search_string () {
-        return last_search;
-    }
-
     /**
      * @return A collection containing ALL the media associated to this view.
      */
@@ -439,9 +421,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * wrapper.
      */
     public void clear_filters () requires (is_current_wrapper) {
-        // Currently setting the search to "" is enough. Remember to update it
-        // if the internal views try to restore their previous state after changes.
-        App.main_window.searchField.text ="";
         update_visible_media (); // force a refresh ;)
     }
 
@@ -452,7 +431,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     protected void update_visible_media () {
         debug ("UPDATING VISIBLE MEDIA [%s]", hint.to_string ());
 
-        string to_search = get_search_string ();
+        string to_search = App.main_window.searchField.text;
 
         lock (list_view) {
             if (has_list_view)
@@ -549,6 +528,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         data_initialized = true;
 
         update_widget_state ();
+        update_visible_media ();
     }
 
     private void update_media (Gee.Collection<Media> media) requires (data_initialized) {

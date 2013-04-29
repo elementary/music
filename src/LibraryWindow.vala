@@ -1343,8 +1343,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Now set the selected view
         saved_state.view_mode = viewSelector.selected;
 
-        // Search FIXME: Temporarily disabled
-        //main_settings.search_string = searchField.get_text ();
+        // Search
+        main_settings.search_string = searchField.get_text ();
         
         // Save info pane (context pane) width
         saved_state.more_width = info_panel.get_allocated_width ();

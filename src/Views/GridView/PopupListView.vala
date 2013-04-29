@@ -171,7 +171,7 @@ public class Noise.PopupListView : Window {
             list_view.set_media (media_list);
 
             // Search again to match the view wrapper's search
-            list_view.do_search (view_wrapper.get_search_string ());
+            list_view.do_search (App.main_window.searchField.text);
 
         }
 

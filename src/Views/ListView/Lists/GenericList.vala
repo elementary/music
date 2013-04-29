@@ -42,7 +42,7 @@ public abstract class Noise.GenericList : FastView {
     protected CellDataFunctionHelper cell_data_helper;
 
     public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-		var types = new GLib.List<Type> ();
+        var types = new GLib.List<Type> ();
         foreach (var type in ListColumn.get_all ())
             types.append (type.get_data_type ());
 
