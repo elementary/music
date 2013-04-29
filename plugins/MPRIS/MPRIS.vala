@@ -25,6 +25,8 @@ using Noise;
 public class Noise.MPRIS : GLib.Object {
     public MprisPlayer player = null;
     public MprisRoot root = null;
+    // Uncomment this when the bug on the playlist selection is fixed
+    //public MprisPlaylists playlists = null;
     
     private unowned DBusConnection conn;
     private uint owner_id;
@@ -54,6 +56,8 @@ public class Noise.MPRIS : GLib.Object {
             connection.register_object ("/org/mpris/MediaPlayer2", root);
             player = new MprisPlayer (connection);
             connection.register_object ("/org/mpris/MediaPlayer2", player);
+            /*playlists = new MprisPlaylists(connection);
+            connection.register_object("/org/mpris/MediaPlayer2", playlists);*/
         }
         catch(IOError e) {
             warning("could not create MPRIS player: %s\n", e.message);
@@ -231,8 +235,8 @@ public class MprisPlayer : GLib.Object {
     }
 
     private ObjectPath get_track_id (Media m) {
-    	return new ObjectPath ("/org/pantheon/%s/Track/%d".printf (App.instance.exec_name, m.rowid));
-	}
+        return new ObjectPath ("/org/pantheon/%s/Track/%d".printf (App.instance.exec_name, m.rowid));
+    }
 
     private bool send_property_change() {
         
@@ -365,10 +369,10 @@ public class MprisPlayer : GLib.Object {
     
     public double Volume {
         get{
-            return App.player.player.get_volume();
+            return App.player.volume;
         }
         set {
-            App.player.player.set_volume(value);
+            App.player.volume = value;
         }
     }
     
@@ -441,7 +445,7 @@ public class MprisPlayer : GLib.Object {
     public void Pause() {
         // inhibit notifications
         if(App.player.playing)
-            App.main_window.play_media(true);
+            App.player.pause_playback ();
     }
 
     public void PlayPause() {
@@ -450,25 +454,26 @@ public class MprisPlayer : GLib.Object {
     }
 
     public void Stop() {
-        App.player.stopPlayback();
+        if(App.player.playing)
+            App.player.stop_playback();
     }
     
     public void Play() {
         // inhibit notifications
         if(!App.player.playing)
-            App.main_window.play_media(true);
+            App.player.start_playback ();
     }
 
     public void Seek(int64 Offset) {
-		int64 Position = this.Position + Offset;
-		if (Position < 0)
-			Position = 0;
+        int64 Position = this.Position + Offset;
+        if (Position < 0)
+            Position = 0;
 
-		if (Position < App.player.player.get_duration () / Numeric.MILI_INV) {
-			SetPosition ("", Position);
-			Seeked (Position);
-		} else if (CanGoNext) {
-			Next ();
+        if (Position < App.player.player.get_duration () / Numeric.MILI_INV) {
+            SetPosition ("", Position);
+            Seeked (Position);
+        } else if (CanGoNext) {
+            Next ();
         }
     }
     
@@ -477,5 +482,178 @@ public class MprisPlayer : GLib.Object {
     }
     
     public void OpenUri(string Uri) {
+        
     }
+}
+    
+[DBus(name = "org.mpris.MediaPlayer2.Playlists")]
+public class MprisPlaylists : GLib.Object {
+    public struct MprisPlaylist {
+        ObjectPath Id;
+        string Name;
+        string Icon;
+    }
+
+    public struct MaybePlaylist {
+        bool Valid;
+        MprisPlaylist Playlist;
+    }
+
+    private unowned DBusConnection conn;
+    private MaybePlaylist active_playlist;
+    private const string INTERFACE_NAME = "org.mpris.MediaPlayer2.Playlists";
+    const string PLAYLIST_ID = "/org/pantheon/noise/Playlists/%d";
+
+    private uint send_property_source = 0;
+    private HashTable<string,Variant> changed_properties = null;
+
+    public MprisPlaylists(DBusConnection conn) {
+        this.conn = conn;
+
+        libraries_manager.local_library.playlist_added.connect(playlist_added);
+        libraries_manager.local_library.playlist_removed.connect(playlist_removed);
+    }
+
+    void playlist_added(Playlist p) {
+        Variant variant = this.PlaylistCount;
+        queue_property_for_notification("PlaylistCount", variant);
+    }
+
+    void playlist_removed(Playlist p) {
+        Variant variant = this.PlaylistCount;
+        queue_property_for_notification("PlaylistCount", variant);
+    }
+
+    private void queue_property_for_notification(string property, Variant val) {
+        // putting the properties into a hashtable works as akind of event compression
+        if(changed_properties == null)
+            changed_properties = new HashTable<string,Variant>(str_hash, str_equal);
+
+        changed_properties.insert(property, val);
+
+        if(send_property_source == 0) {
+            send_property_source = Idle.add(send_property_change);
+        }
+    }
+
+    // This is same as the Player above
+    // FIXME: Put this somewhere that can be used by all
+    // All this is used for right now is PlaylistCount property
+    private bool send_property_change() {
+        if(changed_properties == null)
+            return false;
+
+        var builder             = new VariantBuilder(VariantType.ARRAY);
+        var invalidated_builder = new VariantBuilder(new VariantType("as"));
+
+        foreach(string name in changed_properties.get_keys()) {
+            Variant variant = changed_properties.lookup(name);
+            builder.add("{sv}", name, variant);
+        }
+
+        changed_properties = null;
+
+        try {
+            conn.emit_signal(null,
+                             "/org/mpris/MediaPlayer2", 
+                             "org.freedesktop.DBus.Properties", 
+                             "PropertiesChanged", 
+                             new Variant("(sa{sv}as)", 
+                                         INTERFACE_NAME, 
+                                         builder, 
+                                         invalidated_builder)
+                             );
+            message("Sent properties changed signal\n");
+        }
+        catch(Error e) {
+            print("Could not send MPRIS property change: %s\n", e.message);
+        }
+
+        send_property_source = 0;
+        return false;
+    }
+
+    public void ActivatePlaylist(ObjectPath path) {
+        string playlist_id = path.replace ("/org/pantheon/noise/Playlists/", "");
+
+        Playlist p = libraries_manager.local_library.playlist_from_id (int.parse (playlist_id));
+        if(p == null) {
+            warning ("Selected playlist had invalid path %s and could not be found", path);
+            return;
+        }
+        p.request_play ();
+    }
+
+    public MprisPlaylist?[] GetPlaylists(uint index, uint maxcount, string playlist_ordering, bool reversed) {
+        debug("Get Playlist called with index %u and maxcount %u\n", index, maxcount);
+        var playlists = new GLib.List<Playlist>();
+
+        foreach(var p in libraries_manager.local_library.get_playlists ()) {
+            playlists.append(p);
+        }
+
+        if (reversed) {
+            playlists.reverse();
+        }
+
+        int i = 0;
+        var rv = new Gee.LinkedList<MprisPlaylist?>();
+        foreach(Playlist p in playlists) {
+            ObjectPath path = new ObjectPath(PLAYLIST_ID.printf(p.rowid));
+
+            MprisPlaylist to_add = MprisPlaylist();
+            to_add.Id = path;
+            to_add.Name = p.name;
+            to_add.Icon = "file://" + Build.ICON_DIR + "/hicolor/16x16/mimetypes/" + p.icon.to_string () + ".svg";
+
+            rv.add(to_add);
+            debug("Added playlist %s %s\n", path, p.name);
+
+            if(i >= maxcount)
+                break;
+        }
+
+        return rv.to_array();
+    }
+
+    public signal void PlaylistChanged(Variant playlist);
+
+    public uint PlaylistCount {
+        get {
+            return (uint)(libraries_manager.local_library.get_playlists ().size + libraries_manager.local_library.get_smart_playlists ().size);
+        }
+    }
+
+    private static string[] all_orderings = { "UserDefined"};
+    public string[] Orderings {
+        get {
+            return all_orderings;
+        }
+    }
+
+    public MaybePlaylist ActivePlaylist {
+        get {
+            // FIXME: Should be a real playlist
+            Playlist p = null;
+
+            if(p == null) {
+                active_playlist.Valid = true; // Set it to true to force that 'Playlist' shows
+                MprisPlaylist mprisP = MprisPlaylist();
+                mprisP.Id = new ObjectPath(PLAYLIST_ID.printf(0));
+                mprisP.Name = _("Playlists"); // Just a filler, should never show
+                mprisP.Icon = "";
+                active_playlist.Playlist = mprisP;
+            } else {
+                active_playlist.Valid = true;
+                MprisPlaylist mprisP = MprisPlaylist();
+                mprisP.Id = new ObjectPath(PLAYLIST_ID.printf(p.rowid));
+                mprisP.Name = p.name;
+                mprisP.Icon = "file://" + Build.ICON_DIR + "/hicolor/16x16/mimetypes/" + p.icon.to_string () + ".svg";
+                active_playlist.Playlist = mprisP;
+            }
+
+            return active_playlist;
+        }
+    }
+
 }

@@ -11,6 +11,11 @@
     <value value="0" nick="off"/>
     <value value="1" nick="all"/>
   </enum>
+  <enum id="org.pantheon.noise.windowstate">
+    <value value="0" nick="normal"/>
+    <value value="1" nick="maximized"/>
+    <value value="2" nick="fullscreen"/>
+  </enum>
   <schema path="/org/pantheon/noise/settings/" id="org.pantheon.noise.settings">
     <key type="s" name="music-folder">
       <default>''</default>
@@ -95,8 +100,8 @@
       <summary>Window height</summary>
       <description>Window height</description>
     </key>
-    <key type="i" name="window-state">
-      <default>0</default>
+    <key enum="org.pantheon.noise.windowstate" name="window-state">
+      <default>'normal'</default>
       <summary>The saved state of the window.</summary>
       <description>The saved state of the window.</description>
     </key>

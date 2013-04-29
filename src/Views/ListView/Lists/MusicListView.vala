@@ -392,14 +392,7 @@ public class Noise.MusicListView : GenericList {
             to_add.add (m);
         }
         p.add_medias (to_add);
-        p.name = _("New playlist");
-        int index = 1;
-        if (parent_wrapper.library.playlist_from_name (_("New playlist")) != null) {
-            while (parent_wrapper.library.playlist_from_name (_("New playlist (%i)").printf (index)) != null) {
-                index++;
-            }
-            p.name = _("New playlist (%i)").printf (index);
-        }
+        p.name = PlaylistsUtils.get_new_playlist_name (parent_wrapper.library.get_playlists ());
         parent_wrapper.library.add_playlist (p);
     }
 

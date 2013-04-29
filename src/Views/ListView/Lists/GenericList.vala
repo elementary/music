@@ -328,11 +328,11 @@ public abstract class Noise.GenericList : FastView {
             var test = vis_table.get (i) as Media;
             App.player.addToCurrent (test);
 
-
             if (to_set == test) {
                 App.player.current_index = i;
             }
         }
+        App.player.reshuffle ();
 
         media_played.begin (App.player.media_info.media);
     }

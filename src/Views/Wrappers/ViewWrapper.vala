@@ -284,25 +284,19 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             last_used_view = selected_view;
     }
 
-    public void play_first_media () {
+    public void play_first_media (bool? force=false) {
         if (!has_list_view)
             return;
 
         debug ("play_first_media [%s]", hint.to_string());
 
-        if (has_list_view) {
-            list_view.set_as_current_list (1, true);
-            var m = App.player.mediaFromCurrentIndex (0);
+        list_view.set_as_current_list (1, true);
+        var m = App.player.mediaFromCurrentIndex (0);
 
-            if (m == null)
-               return;
-
-            App.player.playMedia (m, false);
-            App.player.player.play ();
-
-            if (!App.player.playing)
-                App.main_window.play_media ();
-        }
+        if (m == null)
+           return;
+        App.player.playMedia (m, false);
+        App.player.start_playback ();
     }
 
     /**

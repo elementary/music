@@ -34,7 +34,7 @@ namespace Noise.Settings {
 
         public int window_width { get; set; }
         public int window_height { get; set; }
-        public int window_state { get; set; }
+        public WindowState window_state { get; set; }
         public int sidebar_width { get; set; }
         public int more_width { get; set; }
         public bool more_visible { get; set; }
@@ -107,6 +107,7 @@ namespace Noise.Settings {
             return rv;
         }
     }
+
     public enum Shuffle {
         OFF,
         ALL
@@ -118,5 +119,11 @@ namespace Noise.Settings {
         ALBUM,
         ARTIST,
         ALL
+    }
+
+    public enum WindowState {
+        NORMAL,
+        MAXIMIZED,
+        FULLSCREEN
     }
 }

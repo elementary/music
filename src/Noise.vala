@@ -85,7 +85,6 @@ public class Noise.App : Granite.Application {
         _instance = this;
     }
 
-
     public override void open (File[] files, string hint) {
         // Activate, then play files
         if (library_manager == null) {

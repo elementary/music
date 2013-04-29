@@ -175,7 +175,7 @@ public class Noise.LocalLibrary : Library {
             App.player.reset_already_played ();
             // FIXME: these are library window's internals. Shouldn't be here
             App.main_window.update_sensitivities.begin ();
-            App.player.stopPlayback ();
+            App.player.stop_playback ();
 
             main_settings.music_mount_name = "";
             main_settings.music_folder = folder;
@@ -698,7 +698,7 @@ public class Noise.LocalLibrary : Library {
             removeURIs.add (s.uri);
 
             if (s == App.player.media_info.media)
-                App.player.stopPlayback ();
+                App.player.stop_playback ();
         }
 
         dbu.removeItem.begin (removeURIs);

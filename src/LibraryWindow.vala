@@ -27,12 +27,6 @@ using Gee;
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void playPauseChanged ();
 
-    public enum WindowState {
-        NORMAL,
-        MAXIMIZED,
-        FULLSCREEN
-    }
-
     public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
 
     /* Info related to the media being played */
@@ -117,6 +111,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         App.player.player.error_occured.connect (error_occured);
         App.player.media_played.connect_after (media_played);
         App.player.playback_stopped.connect (playback_stopped);
+        App.player.playback_started.connect (playback_started);
+        App.player.playback_paused.connect (playback_paused);
         App.player.changing_player.connect (() => {
             App.player.player.end_of_stream.disconnect (end_of_stream);
             App.player.player.current_position_update.disconnect (current_position_update);
@@ -204,11 +200,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Maximize window if necessary
         switch (saved_state.window_state) {
-            case WindowState.MAXIMIZED:
+            case Settings.WindowState.MAXIMIZED:
                 window_maximized = true;
                 this.maximize ();
                 break;
-            case WindowState.FULLSCREEN:
+            case Settings.WindowState.FULLSCREEN:
                 toggle_fullscreen ();
                 break;
             default:
@@ -986,7 +982,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
 
-    public virtual void playback_stopped(int was_playing) {
+    public virtual void playback_stopped (int was_playing) {
+        playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
         //reset some booleans
         tested_for_video = false;
         media_considered_previewed = false;
@@ -995,8 +992,21 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         update_sensitivities.begin ();
 
-        debug ("stopped\n");
+        debug ("playback stopped");
     }
+    
+    public virtual void playback_started () {
+        playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
+
+        debug ("playback started");
+    }
+    
+    public virtual void playback_paused () {
+        playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+
+        debug ("playback paused");
+    }
+    
 
     public virtual void medias_updated(Collection<int> ids) {
         if(App.player.media_active && ids.contains(App.player.media_info.media.rowid)) {
@@ -1009,24 +1019,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             debug("No media is currently playing. Starting from the top\n");
 
             App.player.getNext (true);
-            App.player.playing = true;
-            playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
-            App.player.player.play();
+            App.player.start_playback ();
 
             if (!inhibit_notifications)
                 notify_current_media_async.begin ();
-        }
-        else {
+        } else {
             if(App.player.playing) {
-                App.player.playing = false;
-                App.player.player.pause();
-
-                playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
-            }
-            else {
-                App.player.playing = true;
-                App.player.player.play();
-                playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
+                App.player.pause_playback ();
+            } else {
+                App.player.start_playback ();
             }
         }
 
@@ -1052,8 +1053,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         /* test to stop playback/reached end */
         if(m == null) {
-            App.player.player.pause();
-            App.player.playing = false;
+            App.player.stop_playback ();
             update_sensitivities.begin ();
             return;
         }
@@ -1069,8 +1069,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
             /* test to stop playback/reached end */
             if(prev == null) {
-                App.player.player.pause();
-                App.player.playing = false;
+                App.player.stop_playback ();
                 update_sensitivities.begin ();
                 return;
             } else if (play && !inhibit_notifications) {
@@ -1318,7 +1317,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
     
     private void change_volume (double val) {
-        App.player.change_volume (val);
+        App.player.volume = val;
     }
     
     private void toggle_fullscreen () {
@@ -1356,11 +1355,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Save window state
         if (window_maximized)
-                saved_state.window_state = WindowState.MAXIMIZED;
+            saved_state.window_state = Settings.WindowState.MAXIMIZED;
         else if (window_fullscreen)
-                saved_state.window_state = WindowState.FULLSCREEN;
+            saved_state.window_state = Settings.WindowState.FULLSCREEN;
         else
-                saved_state.window_state = WindowState.NORMAL;
+            saved_state.window_state = Settings.WindowState.NORMAL;
 
         saved_state.window_width = window_width;
         saved_state.window_height = window_height;

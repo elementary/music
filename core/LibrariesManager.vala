@@ -39,25 +39,34 @@ public class Noise.LibrariesManager : GLib.Object {
     public double progress;
     public string current_operation;
     
-    private Gee.LinkedList<Library> libraries;
+    private Gee.HashMap<Library, int> libraries;
+    private int current_index = 0;
     public Library local_library;
     
     public LibrariesManager () {
-        libraries = new Gee.LinkedList<Library> ();
+        libraries = new Gee.HashMap<Library, int> ();
     }
     
     public void add_library (Library library) {
-        if (!libraries.contains (library)) {
-            libraries.add (library);
+        if (!libraries.keys.contains (library)) {
+            libraries.set (library, current_index);
             library_added (library);
         }
     }
     
     public void remove_library (Library library) {
-        if (libraries.contains (library)) {
+        if (libraries.keys.contains (library)) {
             library_removed (library);
-            libraries.remove (library);
+            libraries.unset (library);
         }
+    }
+    
+    public Library? get_library_from_index (int index) {
+        foreach (var entry in libraries.entries) {
+            if (entry.value == index)
+                return entry.key;
+        }
+        return null;
     }
     
     public void transfer_to_local_library (Gee.Collection<Media> to_transfer) {

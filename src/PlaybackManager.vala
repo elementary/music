@@ -44,6 +44,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
     public signal void media_played (Media played_media);
     public signal void playback_stopped (int was_playing);
+    public signal void playback_started ();
+    public signal void playback_paused ();
     public signal void changing_player ();
     public signal void player_changed ();
 
@@ -69,8 +71,17 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     // Whether or not a media is being played. Returns true even if the media is paused
     public bool media_active { get { return media_info.media != null; } }
 
-    public bool playing { get; set; default = false; } // TODO private set
-    private double volume = 1;
+    public bool playing { get; private set; default = false; }
+    private double saved_volume = 1;
+    public double volume {
+        get{
+            return player.get_volume ();
+        }
+        set {
+            saved_volume = value;
+            player.set_volume (value);
+        }
+    }
 
     bool _playing_queued_song;
 
@@ -94,11 +105,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
     public void add_playback (Noise.Playback playback) {
         playbacks.add (playback);
-    }
-    
-    public void change_volume (double val) {
-        volume = val;
-        player.set_volume (volume);
     }
 
     /*
@@ -204,7 +210,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         current_cleared();
         _current.clear();
         
-        set_shuffle_mode (main_settings.shuffle_mode, true); // must manually reshuffle
+        reshuffle ();
     }
 
 
@@ -218,18 +224,20 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             main_settings.repeat_mode = mode;
     }
     
-    public void set_shuffle_mode (Noise.Settings.Shuffle mode, bool reshuffle) {
+    public void set_shuffle_mode (Noise.Settings.Shuffle mode, bool need_reshuffle) {
         
         if (main_settings.shuffle_mode != mode)
             main_settings.shuffle_mode = mode;
         
-        if(!reshuffle)
-            return;
-        
+        if(need_reshuffle)
+            reshuffle ();
+    }
+    
+    public void reshuffle () {
         _current_shuffled.clear();
         _current_shuffled_index = 0;
         
-        if(mode == Noise.Settings.Shuffle.OFF) {
+        if(main_settings.shuffle_mode == Noise.Settings.Shuffle.OFF) {
             if(media_active) {
                 //make sure we continue playing where we left off
                 for(int i = 0; i < _current.size; ++i) {
@@ -238,12 +246,10 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                         return;
                     }
                 }
-            }
-            else {
+            } else {
                 _current_index = 0;
             }
-        }
-        else if(mode == Noise.Settings.Shuffle.ALL) {
+        } else if(main_settings.shuffle_mode == Noise.Settings.Shuffle.ALL) {
             //create temp list of all of current's media
             var temp = new LinkedList<Media>();
             foreach(var m in _current.values) {
@@ -260,8 +266,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 if(media_active && temp.get(random) == media_info.media) {
                     _current_shuffled.set(0, media_info.media);
                     --i;
-                }
-                else {
+                } else {
                     _current_shuffled.set(i, temp.get(random));
                 }
                 temp.remove(temp.get(random));
@@ -276,21 +281,18 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         if(queue_playlist.medias.size > 0) {
             rv = poll_queue();
             _playing_queued_song = true;
-        }
-        else if(_current_shuffled.size != 0) {
+        } else if(_current_shuffled.size != 0) {
             _playing_queued_song = false;
             
             if(media_info.media == null) {
                 _current_shuffled_index = 0;
                 rv = _current_shuffled.get(0);
-            }
-            else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
+            } else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current_shuffled.get(_current_shuffled_index);
-            }
-            else if(_current_shuffled_index == (_current_shuffled.size - 1)) {// consider repeat options
-                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
+            } else if(_current_shuffled_index == (_current_shuffled.size - 1)) {// consider repeat options
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL) {
                     _current_shuffled_index = 0;
-                else {
+                } else {
                     /* reset to no media playing */
                     media_info.media = null;
                     _current_shuffled.clear();
@@ -299,30 +301,26 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                     _current_index = 0;
                     
                     if(play)
-                        stopPlayback();
+                        stop_playback ();
                     
                     return null;
                 }
                 
                 rv = _current_shuffled.get(0);
-            }
-            else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
+            } else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
                 // make sure we are repeating what we need to be
                 if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index + 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
                     while(_current_shuffled.get(_current_shuffled_index - 1).artist == media_info.media.artist)
                         --_current_shuffled_index;
-                }
-                else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index + 1).album != _current_shuffled.get(_current_shuffled_index).album) {
+                } else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index + 1).album != _current_shuffled.get(_current_shuffled_index).album) {
                     while(_current_shuffled.get(_current_shuffled_index - 1).album == media_info.media.album)
                         --_current_shuffled_index;
-                }
-                else {
+                } else {
                     ++_current_shuffled_index;
                 }
                 
                 rv = _current_shuffled.get(_current_shuffled_index);
-            }
-            else {
+            } else {
                 foreach(Media s in library.get_medias ())
                     addToCurrent(s);
                 
@@ -330,44 +328,38 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 set_shuffle_mode(Noise.Settings.Shuffle.ALL, true);
                 rv = _current_shuffled.get(0);
             }
-        }
-        else {
+        } else {
             _playing_queued_song = false;
             
             if(media_info.media == null) {
                 _current_index = 0;
                 rv = _current.get(0);
-            }
-            else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
+            } else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current.get(_current_index);
-            }
-            else if(_current_index == (_current.size - 1)) {// consider repeat options
-                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
+            } else if(_current_index == (_current.size - 1)) {// consider repeat options
+                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL) {
                     _current_index = 0;
-                else {
+                } else {
                     if(play)
-                        stopPlayback();
+                        stop_playback ();
                     return null;
                 }
                 
                 rv = _current.get(0);
-            }
-            else if(_current_index >= 0 && _current_index < (_current.size - 1)){
+            } else if(_current_index >= 0 && _current_index < (_current.size - 1)){
                 // make sure we are repeating what we need to be
                 if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current.get(_current_index + 1).artist != _current.get(_current_index).artist) {
                     while(_current.get(_current_index - 1).artist == media_info.media.artist)
                         --_current_index;
-                }
-                else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current.get(_current_index + 1).album != _current.get(_current_index).album) {
+                } else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current.get(_current_index + 1).album != _current.get(_current_index).album) {
                     while(_current.get(_current_index - 1).album == media_info.media.album)
                         --_current_index;
-                }
-                else
+                } else {
                     ++_current_index;
+                }
                 
                 rv = _current.get(_current_index);
-            }
-            else {
+            } else {
                 foreach(Media s in library.get_medias ())
                     addToCurrent(s);
                 
@@ -400,7 +392,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
                     _current_shuffled_index = _current_shuffled.size - 1;
                 else {
-                    stopPlayback();
+                    stop_playback ();
                     return null;
                 }
                 
@@ -443,7 +435,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
                     _current_index = _current.size - 1;
                 else {
-                    stopPlayback();
+                    stop_playback ();
                     return null;
                 }
                 
@@ -501,7 +493,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 m.unique_status_image = null;
                 //App.main_window.media_found(m.rowid);
             } else { // to avoid infinite loop with repeat on, don't try to play next again
-                stopPlayback();
+                stop_playback ();
                 return;
             }
         }
@@ -514,7 +506,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                     player.set_state (Gst.State.NULL);
                     found = true;
                     player = playback;
-                    player.set_volume (volume);
+                    volume = saved_volume;
                     player_changed ();
                     break;
                 }
@@ -639,8 +631,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         return null;
     }
 
-    public void stopPlayback() {
-        player.pause();
+    public void stop_playback () {
+        player.pause ();
         playing = false;
         
         int was_playing = 0;
@@ -648,10 +640,22 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             was_playing = media_info.media.rowid;
         
         main_settings.last_media_playing = 0;
-        media_info.update(null, null, null, null);
+        media_info.update (null, null, null, null);
         
         playback_stopped (was_playing);
     }
 
+    public void start_playback () {
+        player.play ();
+        playing = true;
+        
+        playback_started ();
+    }
 
+    public void pause_playback () {
+        player.pause ();
+        playing = false;
+        
+        playback_paused ();
+    }
 }

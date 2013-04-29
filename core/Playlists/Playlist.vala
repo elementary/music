@@ -31,6 +31,7 @@
 using Gee;
 
 public abstract class Noise.Playlist : Object {
+    public signal void request_play ();
     public Gee.LinkedList<Media> medias { get; set; }
 
     public int rowid { get; set; }

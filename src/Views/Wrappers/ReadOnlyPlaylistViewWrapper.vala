@@ -70,6 +70,7 @@ public class Noise.ReadOnlyPlaylistViewWrapper : ViewWrapper {
             p.media_added.connect (on_playlist_media_added);
             p.media_removed.connect (on_playlist_media_removed);
             p.cleared.connect (on_playlist_cleared);
+            p.request_play.connect (() => {App.player.clearCurrent(); play_first_media (true);App.player.getNext(true);});
         }
     }
 
