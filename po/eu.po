@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-26 23:57+0200\n"
-"PO-Revision-Date: 2013-03-08 22:55+0000\n"
-"Last-Translator: Ibai Oihanguren <Unknown>\n"
+"PO-Revision-Date: 2013-04-28 15:48+0000\n"
+"Last-Translator: jajasuperman <enekosampedro@gmail.com>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-04-27 06:10+0000\n"
+"X-Launchpad-Export-Date: 2013-04-29 05:13+0000\n"
 "X-Generator: Launchpad (build 16580)\n"
 "Language: eu\n"
 
@@ -50,7 +50,7 @@ msgstr "$NAME, $ARTIST(r)ena, $ALBUM albumetik"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:387
@@ -242,7 +242,7 @@ msgstr "Teknoa"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:239
 msgid "Import to Library…"
-msgstr ""
+msgstr "Inportatu liburutegira..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:240
 msgid "Rescan Music Folder"
@@ -250,7 +250,7 @@ msgstr "Berreskaneatu musikaren karpeta"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:241
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pantaila osoan"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:245
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
@@ -1849,7 +1849,7 @@ msgstr "Arrakastarik ez. Klikatu berriz saiatzeko."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "Scrobbling-a gaituta dago"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
