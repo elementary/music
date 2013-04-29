@@ -834,7 +834,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public TreeViewSetup? get_treeviewsetup_from_playlist (Playlist p) {
         return match_tvs.get (p);
     }
-    
+
+    public void show_playlist_view (Playlist p) {
+        if (match_playlists.contains (p)) {
+            view_container.set_current_view_from_index (match_playlists.get (p));
+        }
+    }
+
     private void create_playlist_source_list (StaticPlaylist p, SourceListExpandableItem? into_expandable = null, Library? library = library_manager) {
         SourceListEntry? entry;
         int view_number;

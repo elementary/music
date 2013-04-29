@@ -61,6 +61,7 @@ namespace Noise.Settings {
         public bool close_while_playing { get; set; }
         public bool show_notifications { get; set; }
         public int last_media_playing { get; set; }
+        public int last_playlist_playing { get; set; }
         public int last_media_position { get; set; }
         public Shuffle shuffle_mode { get; set; }
         public Repeat repeat_mode { get; set; }

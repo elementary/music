@@ -106,6 +106,13 @@ public abstract class Noise.GenericList : FastView {
     public void set_parent_wrapper (ViewWrapper parent) {
         this.parent_wrapper = parent;
         this.relative_id = parent_wrapper.relative_id;
+        if (relative_id == main_settings.last_playlist_playing && relative_id != -1) {
+            set_as_current_list ();
+            if (parent.hint == Noise.ViewWrapper.Hint.PLAYLIST || parent.hint == Noise.ViewWrapper.Hint.READ_ONLY_PLAYLIST)
+                App.main_window.show_playlist_view (libraries_manager.local_library.playlist_from_id (relative_id));
+            else if (parent.hint == Noise.ViewWrapper.Hint.SMART_PLAYLIST)
+                App.main_window.show_playlist_view (libraries_manager.local_library.smart_playlist_from_id (relative_id));
+        }
     }
 
     protected void add_column_chooser_menu_item (TreeViewColumn tvc, ListColumn type) {
@@ -321,6 +328,7 @@ public abstract class Noise.GenericList : FastView {
 
         App.player.clearCurrent ();
         is_current_list = true;
+        main_settings.last_playlist_playing = relative_id;
 
         App.player.current_index = 0;
         var vis_table = get_visible_table ();

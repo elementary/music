@@ -109,9 +109,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public int index { get { return App.main_window.view_container.get_view_index (this); } }
 
-    /**
-     * TODO: deprecate. it's only useful for PlaylistViewWrapper
-     */
     public int relative_id { get; protected set; default = -1; }
 
     public int media_count {
@@ -180,14 +177,16 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
                 if (has_list_view) {
                     successful = view_container.set_current_view (list_view);
                     list_view.list_view.scroll_to_current_media (true);
+                    update_visible_media ();
                 } else {
                     successful = false;
                 }
                 break;
             case ViewType.GRID:
-                if (has_grid_view)
+                if (has_grid_view) {
                     successful = view_container.set_current_view (grid_view);
-                else {
+                    update_visible_media ();
+                } else {
                     if (has_list_view) {
                         successful = view_container.set_current_view (list_view);
                         list_view.list_view.scroll_to_current_media (true);
@@ -279,6 +278,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             set_active_view (selected_view);
         else
             last_used_view = selected_view;
+        update_visible_media ();
     }
 
     public void play_first_media (bool? force=false) {
