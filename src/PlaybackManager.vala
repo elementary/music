@@ -121,7 +121,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
     public void queue_media_by_id (Collection<int> ids) {
-        queue_media (library.medias_from_ids (ids));        
+        queue_media (library.medias_from_ids (ids));
     }
 
 
@@ -277,6 +277,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public Media? getNext(bool play) {
         Media? rv = null;
         
+        if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF && _current_shuffled.is_empty )
+            reshuffle ();
+        
         // next check if user has queued media
         if(queue_playlist.medias.size > 0) {
             rv = poll_queue();
@@ -377,6 +380,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     // TODO: remove code redundancy
     public Media? getPrevious(bool play) {
         Media? rv = null;
+        
+        if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF && _current_shuffled.is_empty )
+            reshuffle ();
         
         if(_current_shuffled.size != 0) {
             _playing_queued_song = false;
