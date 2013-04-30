@@ -400,7 +400,8 @@ public class Noise.GridView : ContentView, GridLayout {
         }
 
         // If nothing will be shown, display the "no albums found" message.
-        if (showing.size () < 1)
+        if (showing.size () < 1) {
             message_visible = true;
+        }
     }
 }

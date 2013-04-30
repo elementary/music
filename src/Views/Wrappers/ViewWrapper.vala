@@ -190,6 +190,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
                     if (has_list_view) {
                         successful = view_container.set_current_view (list_view);
                         list_view.list_view.scroll_to_current_media (true);
+                        update_visible_media ();
                     }
                     successful = false;
                 }
@@ -220,7 +221,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * current view.
      */
     protected void update_library_window_widgets () {
-        if (!is_current_wrapper)
+        if (!is_current_wrapper || !has_list_view)
             return;
 
         debug ("update_library_window_widgets [%s]", hint.to_string());
@@ -241,12 +242,9 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         bool column_browser_visible = false;
 
         // Sensitive only if the column browser is available
-        if (has_list_view) {
-            column_browser_available = list_view.has_column_browser;
-
-            if (column_browser_available)
-                column_browser_visible = list_view.column_browser.visible;
-        }
+        column_browser_available = list_view.has_column_browser;
+        if (column_browser_available)
+            column_browser_visible = list_view.column_browser.visible;
 
         App.main_window.viewSelector.set_column_browser_toggle_visible (column_browser_available);
         App.main_window.viewSelector.set_column_browser_toggle_active (column_browser_visible);
@@ -274,11 +272,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         var selected_view = (ViewType) App.main_window.viewSelector.selected;
 
-        if (is_current_wrapper)
+        if (is_current_wrapper) {
             set_active_view (selected_view);
-        else
+            update_visible_media ();
+        } else
             last_used_view = selected_view;
-        update_visible_media ();
     }
 
     public void play_first_media (bool? force=false) {
@@ -527,8 +525,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         data_initialized = true;
 
-        update_widget_state ();
         update_visible_media ();
+        update_widget_state ();
     }
 
     private void update_media (Gee.Collection<Media> media) requires (data_initialized) {

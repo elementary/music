@@ -50,7 +50,6 @@ public class Noise.LocalLibrary : Library {
     public Gee.LinkedList<Media> _medias;
     public int medias_rowid = 0;
     public int playlists_rowid = 0;
-    public int smartplaylists_rowid = 0;
     
     public StaticPlaylist p_music;
 
@@ -95,8 +94,8 @@ public class Noise.LocalLibrary : Library {
         lock (_smart_playlists) {
             foreach (var p in dbm.load_smart_playlists ()) {
                 _smart_playlists.add (p);
-                p.rowid = smartplaylists_rowid;
-                smartplaylists_rowid++;
+                p.rowid = playlists_rowid;
+                playlists_rowid++;
                 p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
             }
         }
@@ -484,8 +483,8 @@ public class Noise.LocalLibrary : Library {
         lock (_smart_playlists) {
             _smart_playlists.add (p);
         }
-        p.rowid = smartplaylists_rowid;
-        smartplaylists_rowid++;
+        p.rowid = playlists_rowid;
+        playlists_rowid++;
 
         p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
         smartplaylist_added (p);

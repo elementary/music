@@ -40,7 +40,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public bool dragging_from_music         { get; set; default = false; }
     public bool initialization_finished     { get; private set; default = false; }
 
-    public bool newly_created_playlist     { get; private set; default = false; }
+    public bool newly_created_playlist     { get; set; default = false; }
 
 
     /* Main layout widgets */
@@ -497,6 +497,23 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         viewSelector.selected = (Widgets.ViewSelector.Mode) saved_state.view_mode;
 
         initialization_finished = true;
+        
+        // Set the focus on the current view
+        if (main_settings.last_playlist_playing != -1) {
+            for (int i =0; i< view_container.get_n_pages (); i++) {
+                var parent = view_container.get_nth_page (i) as ViewWrapper;
+                if (parent.relative_id == main_settings.last_playlist_playing) {
+                    if (parent.hint == Noise.ViewWrapper.Hint.PLAYLIST || parent.hint == Noise.ViewWrapper.Hint.READ_ONLY_PLAYLIST)
+                        show_playlist_view (libraries_manager.local_library.playlist_from_id (parent.relative_id));
+                    else if (parent.hint == Noise.ViewWrapper.Hint.SMART_PLAYLIST)
+                        show_playlist_view (libraries_manager.local_library.smart_playlist_from_id (parent.relative_id));
+                    break;
+                }
+                show_playlist_view (library_manager.p_music);
+            }
+        } else {
+            show_playlist_view (library_manager.p_music);
+        }
 
         /* Connect events to functions */
         previousButton.clicked.connect (() => {play_previous_media ();});
@@ -658,10 +675,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Add Music Library View
         var music_view_wrapper = new MusicViewWrapper (music_tvs, library_manager);
         int view_number = view_container.add_view (music_view_wrapper);
-        source_list_view.add_item  (view_number, _("Music"), ViewWrapper.Hint.MUSIC, Icons.MUSIC.gicon);
-        // set as the current view
-        view_container.set_current_view (music_view_wrapper);
-        music_view_wrapper.set_as_current_view ();
+        var entry = source_list_view.add_item  (view_number, _("Music"), ViewWrapper.Hint.MUSIC, Icons.MUSIC.gicon);
+        match_playlist_entry.set (library_manager.p_music, entry);
+        match_playlists.set (library_manager.p_music, view_number);
 
         debug ("Finished loading playlists");
     }
@@ -819,6 +835,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         int page_number = match_playlists.get (playlist);
         lock (match_playlists) {
             source_list_view.remove_playlist(page_number);
+            match_playlist_entry.unset (playlist);
             match_playlists.unset (playlist);
         }
         remove_view_and_update (page_number);
@@ -836,8 +853,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public void show_playlist_view (Playlist p) {
-        if (match_playlists.contains (p)) {
-            view_container.set_current_view_from_index (match_playlists.get (p));
+        if (match_playlists.has_key (p)) {
+            source_list_view.selected = match_playlist_entry.get (p);
+            set_active_view ((Noise.ViewWrapper)view_container.get_view (match_playlists.get (p)));
         }
     }
 
@@ -877,13 +895,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         }
-        if (newly_created_playlist == true) {
-            newly_created_playlist = false;
-            source_list_view.start_editing_item (entry);
-        }
         lock (match_playlists) {
             match_playlist_entry.set (p, entry);
             match_playlists.set (p, view_number);
+        }
+        if (newly_created_playlist == true) {
+            newly_created_playlist = false;
+            show_playlist_view (p);
+            source_list_view.start_editing_item (entry);
         }
     }
 
@@ -900,6 +919,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         lock (match_playlists) {
             match_playlists.unset (smartplaylist);
             source_list_view.remove_playlist(page_number);
+            match_playlists.unset (smartplaylist);
         }
         remove_view_and_update (page_number);
     }
@@ -936,7 +956,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 source_list_view.change_playlist_name (match_playlists.get(p), p.name);
         });
         lock (match_playlists) {
+            match_playlist_entry.set (p, entry);
             match_playlists.set (p, view_number);
+        }
+        if (newly_created_playlist == true) {
+            newly_created_playlist = false;
+            show_playlist_view (p);
         }
     }
 

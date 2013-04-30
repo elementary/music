@@ -213,6 +213,7 @@ public class Noise.SmartPlaylistEditor : Window {
         sp.limit = limit_check.get_active ();
         sp.limit_amount = (int)limit_spin.get_value ();
         if (is_new) {
+            App.main_window.newly_created_playlist = true;
             library.add_smart_playlist (sp);
         }
         this.destroy ();

@@ -465,25 +465,25 @@ public class Noise.MusicListView : GenericList {
             break;
 
             case ListColumn.TITLE:
-                order = compare_titles (media_a, media_b);
+                order = Noise.Compare.titles (media_a, media_b);
             break;
 
             case ListColumn.LENGTH:
                 order = Numeric.compare (media_a.length, media_b.length);
                 if (order == 0)
-                    compare_titles (media_a, media_b);
+                    Noise.Compare.titles (media_a, media_b);
             break;
 
             case ListColumn.ARTIST:
-                order = compare_artists (media_a, media_b);
+                order = Noise.Compare.artists (media_a, media_b);
             break;
 
             case ListColumn.ALBUM:
-                order = compare_albums (media_a, media_b);
+                order = Noise.Compare.albums (media_a, media_b);
             break;
 
             case ListColumn.ALBUM_ARTIST:
-                order = String.compare (media_a.get_display_album_artist (false), media_b.get_display_album_artist (false));
+                order = Noise.Compare.artists (media_a, media_b);
             break;
 
             case ListColumn.COMPOSER:
@@ -499,7 +499,7 @@ public class Noise.MusicListView : GenericList {
             // equivalent to sorting by genre.
             case ListColumn.TRACK:
             case ListColumn.GENRE:
-                order = compare_genres (media_a, media_b);
+                order = Noise.Compare.genres (media_a, media_b);
             break;
 
             case ListColumn.YEAR:
@@ -546,7 +546,7 @@ public class Noise.MusicListView : GenericList {
         // When order is zero, we'd like to jump into sorting by genre, but that'd
         // be a performance killer. Let's compare titles and that's it.
         if (order == 0 && column != ListColumn.GENRE && column != ListColumn.ARTIST)
-            order = compare_titles (media_a, media_b);
+            order = Noise.Compare.titles (media_a, media_b);
 
         // If still 0, fall back to comparing URIS
         if (order == 0)
@@ -558,37 +558,6 @@ public class Noise.MusicListView : GenericList {
 
         return order;
 
-    }
-
-    private inline int compare_titles (Media a, Media b) {
-        return String.compare (a.get_display_title (), b.get_display_title ());
-    }
-
-    private inline int compare_genres (Media a, Media b) {
-        int order = String.compare (a.get_display_genre (), b.get_display_genre ());
-        if (order == 0)
-            order = compare_artists (a, b);
-        return order;
-    }
-
-    private inline int compare_artists (Media a, Media b) {
-        int order = String.compare (a.get_display_artist (), b.get_display_artist ());
-        if (order == 0)
-            order = compare_albums (a, b);
-        return order;
-    }
-
-    private inline int compare_albums (Media a, Media b) {
-        int order = String.compare (a.get_display_album (), b.get_display_album ());
-        if (order == 0)
-            order = Numeric.compare (a.album_number, b.album_number);
-        if (order == 0)
-            order = compare_track_numbers (a, b);
-        return order;
-    }
-
-    private inline int compare_track_numbers (Media a, Media b) {
-        return Numeric.compare (a.track, b.track);
     }
 
     protected Value? view_value_func (int row, int column, Object o) {

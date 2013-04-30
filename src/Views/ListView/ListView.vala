@@ -419,7 +419,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
         }
 
         // If nothing will be shown, display the "no media found" message.
-        if (showing.size () < 1)
+        if (showing.size () < 1) {
             list_text_overlay.message_visible = true;
+        }
     }
 }

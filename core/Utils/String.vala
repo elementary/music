@@ -164,4 +164,18 @@ namespace Noise.String {
 
         return string_utf8;
     }
+
+    /**
+     * Converts a string with prefixes as "The", "A" in a basic one.
+     *
+     * @param to_consider String to consider.
+     * @return String without the prefixes.
+     */
+    public string get_basic_part (string to_consider) {
+        string output_string = to_consider.down ();
+        foreach (string prefix in _("the|a|an|le|la|les|un|une|der|die|das|los").split("|")) {
+            output_string = output_string.replace ("%s ".printf (prefix), "");
+        }
+        return output_string;
+    }
 }

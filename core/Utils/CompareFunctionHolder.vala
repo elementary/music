@@ -36,3 +36,37 @@ public class Noise.CompareFuncHolder {
         sort_func = func;
     }
 }
+
+namespace Noise.Compare {
+    
+    public inline int titles (Media a, Media b) {
+        return String.compare (a.get_display_title (), b.get_display_title ());
+    }
+
+    public inline int genres (Media a, Media b) {
+        int order = String.compare (a.get_display_genre (), b.get_display_genre ());
+        if (order == 0)
+            order = artists (a, b);
+        return order;
+    }
+
+    public inline int artists (Media a, Media b) {
+        int order = String.compare (String.get_basic_part (a.get_display_artist ()), String.get_basic_part (b.get_display_artist ()));
+        if (order == 0)
+            order = albums (a, b);
+        return order;
+    }
+
+    public inline int albums (Media a, Media b) {
+        int order = String.compare (String.get_basic_part (a.get_display_album ()), String.get_basic_part (b.get_display_album ()));
+        if (order == 0)
+            order = Numeric.compare (a.album_number, b.album_number);
+        if (order == 0)
+            order = track_numbers (a, b);
+        return order;
+    }
+
+    public inline int track_numbers (Media a, Media b) {
+        return Numeric.compare (a.track, b.track);
+    }
+}
