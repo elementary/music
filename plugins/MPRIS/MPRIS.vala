@@ -349,10 +349,10 @@ public class MprisPlayer : GLib.Object {
         }
         set {
             if (value) {
-                App.player.set_shuffle_mode (Noise.Settings.Shuffle.ALL, true);
+                App.player.set_shuffle_mode (Noise.Settings.Shuffle.ALL);
             }
             else {
-                App.player.set_shuffle_mode (Noise.Settings.Shuffle.OFF, true);
+                App.player.set_shuffle_mode (Noise.Settings.Shuffle.OFF);
             }
             
             Variant variant = value;

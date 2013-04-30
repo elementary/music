@@ -209,6 +209,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public void clearCurrent() {
         current_cleared();
         _current.clear();
+        current_index = 0;
         
         reshuffle ();
     }
@@ -224,13 +225,12 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             main_settings.repeat_mode = mode;
     }
     
-    public void set_shuffle_mode (Noise.Settings.Shuffle mode, bool need_reshuffle) {
+    public void set_shuffle_mode (Noise.Settings.Shuffle mode) {
         
-        if (main_settings.shuffle_mode != mode)
+        if (main_settings.shuffle_mode != mode) {
             main_settings.shuffle_mode = mode;
-        
-        if(need_reshuffle)
             reshuffle ();
+        }
     }
     
     public void reshuffle () {
@@ -277,102 +277,116 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public Media? getNext(bool play) {
         Media? rv = null;
         
-        if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF && _current_shuffled.is_empty )
-            reshuffle ();
-        
         // next check if user has queued media
         if(queue_playlist.medias.size > 0) {
             rv = poll_queue();
             _playing_queued_song = true;
-        } else if(_current_shuffled.size != 0) {
+        } else if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
+            if (_current_shuffled.is_empty ) {
+                reshuffle ();
+            }
             _playing_queued_song = false;
             
-            if(media_info.media == null) {
+            if (media_info.media == null) {
                 _current_shuffled_index = 0;
-                rv = _current_shuffled.get(0);
-            } else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
-                rv = _current_shuffled.get(_current_shuffled_index);
-            } else if(_current_shuffled_index == (_current_shuffled.size - 1)) {// consider repeat options
-                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL) {
+                rv = _current_shuffled.get (0);
+            } else if (main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
+                rv = _current_shuffled.get (_current_shuffled_index);
+            } else if (_current_shuffled_index == (_current_shuffled.size - 1)) {// consider repeat options
+                if (main_settings.repeat_mode == Noise.Settings.Repeat.ALL) {
                     _current_shuffled_index = 0;
                 } else {
                     /* reset to no media playing */
                     media_info.media = null;
-                    _current_shuffled.clear();
-                    _current.clear();
+                    _current_shuffled.clear ();
+                    _current.clear ();
                     _current_shuffled_index = 0;
                     _current_index = 0;
                     
-                    if(play)
+                    if (play) {
                         stop_playback ();
+                    }
                     
                     return null;
                 }
                 
-                rv = _current_shuffled.get(0);
-            } else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
+                rv = _current_shuffled.get (0);
+            } else if (_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)) {
                 // make sure we are repeating what we need to be
-                if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index + 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
-                    while(_current_shuffled.get(_current_shuffled_index - 1).artist == media_info.media.artist)
-                        --_current_shuffled_index;
-                } else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index + 1).album != _current_shuffled.get(_current_shuffled_index).album) {
-                    while(_current_shuffled.get(_current_shuffled_index - 1).album == media_info.media.album)
-                        --_current_shuffled_index;
+                var next_current = _current_shuffled.get (_current_shuffled_index + 1);
+                var now_current = _current_shuffled.get (_current_shuffled_index);
+                
+                if (main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && next_current.artist != now_current.artist) {
+                    while (_current_shuffled.get (_current_shuffled_index - 1).artist == media_info.media.artist) {
+                        _current_shuffled_index --;
+                    }
+                } else if (main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && next_current.album != now_current.album) {
+                    while (_current_shuffled.get(_current_shuffled_index - 1).album == media_info.media.album) {
+                        _current_shuffled_index--;
+                    }
                 } else {
-                    ++_current_shuffled_index;
+                    _current_shuffled_index++;
                 }
                 
-                rv = _current_shuffled.get(_current_shuffled_index);
+                rv = _current_shuffled.get (_current_shuffled_index);
             } else {
-                foreach(Media s in library.get_medias ())
-                    addToCurrent(s);
+                foreach (Media s in library.get_medias ())
+                    addToCurrent (s);
                 
                 _current_shuffled_index = 0;
-                set_shuffle_mode(Noise.Settings.Shuffle.ALL, true);
-                rv = _current_shuffled.get(0);
+                set_shuffle_mode (Noise.Settings.Shuffle.ALL);
+                rv = _current_shuffled.get (0);
             }
         } else {
             _playing_queued_song = false;
             
-            if(media_info.media == null) {
+            if (media_info.media == null) {
                 _current_index = 0;
-                rv = _current.get(0);
-            } else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
-                rv = _current.get(_current_index);
-            } else if(_current_index == (_current.size - 1)) {// consider repeat options
-                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL) {
+                rv = _current.get (0);
+            } else if (main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
+                rv = _current.get (_current_index);
+            } else if (_current_index == (_current.size - 1)) {// consider repeat options
+                if (main_settings.repeat_mode == Noise.Settings.Repeat.ALL) {
                     _current_index = 0;
                 } else {
-                    if(play)
+                    if (play) {
                         stop_playback ();
+                    }
                     return null;
                 }
                 
-                rv = _current.get(0);
-            } else if(_current_index >= 0 && _current_index < (_current.size - 1)){
+                rv = _current.get (0);
+            } else if (_current_index >= 0 && _current_index < (_current.size - 1)){
                 // make sure we are repeating what we need to be
-                if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current.get(_current_index + 1).artist != _current.get(_current_index).artist) {
-                    while(_current.get(_current_index - 1).artist == media_info.media.artist)
-                        --_current_index;
-                } else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current.get(_current_index + 1).album != _current.get(_current_index).album) {
-                    while(_current.get(_current_index - 1).album == media_info.media.album)
-                        --_current_index;
+                var next_current = _current.get (_current_index + 1);
+                var now_current = _current.get (_current_index);
+                
+                if (main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && next_current.artist != now_current.artist) {
+                    while (_current.get(_current_index - 1).artist == media_info.media.artist) {
+                        _current_index--;
+                    }
+                } else if (main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && next_current.album != now_current.album) {
+                    while (_current.get (_current_index - 1).album == media_info.media.album) {
+                        _current_index--;
+                    }
                 } else {
-                    ++_current_index;
+                    _current_index++;
                 }
                 
-                rv = _current.get(_current_index);
+                rv = _current.get (_current_index);
             } else {
-                foreach(Media s in library.get_medias ())
+                foreach (Media s in library.get_medias ()) {
                     addToCurrent(s);
+                }
                 
                 _current_index = 0;
-                rv = _current.get(0);
+                rv = _current.get (0);
             }
         }
         
-        if(play)
-            playMedia(rv, false);
+        if (play) {
+            playMedia (rv, false);
+        }
         
         return rv;
     }
@@ -381,20 +395,18 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public Media? getPrevious(bool play) {
         Media? rv = null;
         
-        if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF && _current_shuffled.is_empty )
-            reshuffle ();
         
-        if(_current_shuffled.size != 0) {
+        if(main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
+            if (_current_shuffled.is_empty)
+                reshuffle ();
             _playing_queued_song = false;
             
             if(media_info.media == null) {
                 _current_shuffled_index = _current_shuffled.size - 1;
                 rv = _current_shuffled.get (_current_shuffled_index);
-            }
-            else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
+            } else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current_shuffled.get(_current_shuffled_index);
-            }
-            else if(_current_shuffled_index == 0) {// consider repeat options
+            } else if(_current_shuffled_index == 0) {// consider repeat options
                 if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
                     _current_shuffled_index = _current_shuffled.size - 1;
                 else {
@@ -403,41 +415,34 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 }
                 
                 rv = _current_shuffled.get(_current_shuffled_index);
-            }
-            else if(_current_shuffled_index > 0 && _current_shuffled_index < _current_shuffled.size){
+            } else if(_current_shuffled_index > 0 && _current_shuffled_index < _current_shuffled.size){
                 // make sure we are repeating what we need to be
                 if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index - 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
                     while(_current_shuffled.get(_current_shuffled_index + 1).artist == media_info.media.artist)
                         ++_current_shuffled_index;
-                }
-                else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index - 1).album != _current_shuffled.get(_current_shuffled_index).album) {
+                } else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index - 1).album != _current_shuffled.get(_current_shuffled_index).album) {
                     while(_current_shuffled.get(_current_shuffled_index + 1).album == media_info.media.album)
                         ++_current_shuffled_index;
-                }
-                else
+                } else
                     --_current_shuffled_index;
                 
                 rv = _current_shuffled.get(_current_shuffled_index);
-            }
-            else {
+            } else {
                 foreach(Media s in library.get_medias ())
                     addToCurrent(s);
                 
                 _current_shuffled_index = _current_shuffled.size - 1;
                 rv = _current_shuffled.get(_current_shuffled_index);
             }
-        }
-        else {
+        } else {
             _playing_queued_song = false;
             
             if(media_info.media == null) {
                 _current_index = _current.size - 1;
                 rv = _current.get(_current_index);
-            }
-            else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
+            } else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current.get(_current_index);
-            }
-            else if(_current_index == (0)) {// consider repeat options
+            } else if(_current_index == (0)) {// consider repeat options
                 if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
                     _current_index = _current.size - 1;
                 else {
@@ -446,24 +451,20 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 }
                 
                 rv = _current.get(_current_index);
-            }
-            else if(_current_index > 0 && _current_index < _current.size){
+            } else if(_current_index > 0 && _current_index < _current.size){
                 // make sure we are repeating what we need to be
                 
                 if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current.get(_current_index - 1).artist != _current.get(_current_index).artist) {
                     while(_current.get(_current_index + 1).artist == media_info.media.artist)
                         ++_current_index;
-                }
-                else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current.get(_current_index - 1).album != _current.get(_current_index).album) {
+                } else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current.get(_current_index - 1).album != _current.get(_current_index).album) {
                     while(_current.get(_current_index + 1).album == media_info.media.album)
                         ++_current_index;
-                }
-                else
+                } else
                     --_current_index;
                 
                 rv = _current.get(_current_index);
-            }
-            else {
+            } else {
                 foreach(Media s in library.get_medias ())
                     addToCurrent(s);
                 

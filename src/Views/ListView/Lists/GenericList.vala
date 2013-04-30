@@ -270,6 +270,8 @@ public abstract class Noise.GenericList : FastView {
     public void on_rows_reordered () {
         updateTreeViewSetup ();
         scroll_to_current_media (false);
+        if (is_current_list)
+            set_as_current_list ();
     }
 
     public override void row_activated (TreePath path, TreeViewColumn column) {
@@ -319,11 +321,10 @@ public abstract class Noise.GenericList : FastView {
         else
             to_set = App.player.media_info.media;
 
-        App.player.clearCurrent ();
         is_current_list = true;
         main_settings.last_playlist_playing = relative_id;
 
-        App.player.current_index = 0;
+        App.player.clearCurrent ();
         var vis_table = get_visible_table ();
         for (int i = 0; i < vis_table.size (); ++i) {
             var test = vis_table.get (i) as Media;
@@ -333,7 +334,6 @@ public abstract class Noise.GenericList : FastView {
                 App.player.current_index = i;
             }
         }
-        App.player.reshuffle ();
 
         media_played.begin (App.player.media_info.media);
     }

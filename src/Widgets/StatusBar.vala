@@ -114,7 +114,7 @@ namespace Noise.Widgets {
             if ((int)main_settings.shuffle_mode == val)
                 return;
 
-            App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val, true);
+            App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val);
         }
     }
 
