@@ -509,6 +509,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         foreach (var playback in playbacks) {
             foreach (var supported_uri in playback.get_supported_uri ()) {
                 if (m.uri.has_prefix (supported_uri)) {
+                    saved_volume = player.get_volume ();
+                    App.main_window.change_button_volume (saved_volume);
                     changing_player ();
                     player.set_state (Gst.State.NULL);
                     found = true;

@@ -29,7 +29,6 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
     private SimilarMediasView ssv;
     
     bool similars_fetched;
-    string similars_fetched_string;
     
     public SimilarMediasWidget (LastFM.Core core) {
         ssv = new SimilarMediasView();

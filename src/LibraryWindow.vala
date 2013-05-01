@@ -40,7 +40,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public bool dragging_from_music         { get; set; default = false; }
     public bool initialization_finished     { get; private set; default = false; }
 
-    public bool newly_created_playlist     { get; set; default = false; }
+    public bool newly_created_playlist      { get; set; default = false; }
+    private bool changing_volume            { get; set; default = false; }
 
 
     /* Main layout widgets */
@@ -155,7 +156,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool modifiers_active = (event.state & modifiers) != 0;
 
         if (!modifiers_active && event.keyval == Gdk.Key.F11) {
-            toggle_fullscreen ();
+            fullscreen_item.set_active (!window_fullscreen);
         }
 
         if (!modifiers_active && search_field_has_focus) {
@@ -205,7 +206,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 this.maximize ();
                 break;
             case Settings.WindowState.FULLSCREEN:
-                toggle_fullscreen ();
+                fullscreen_item.set_active (!window_fullscreen);
                 break;
             default:
                 break;
@@ -1349,7 +1350,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
     
     private void change_volume (double val) {
-        App.player.volume = val;
+        if (changing_volume == false)
+            App.player.volume = val;
+        else
+            changing_volume = false;
+    }
+    
+    public void change_button_volume (double val) {
+        changing_volume = true;
+        volumeButton.value = val;
     }
     
     private void toggle_fullscreen () {
