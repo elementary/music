@@ -482,8 +482,13 @@ public class Noise.MusicListView : GenericList {
                 order = Noise.Compare.albums (media_a, media_b);
             break;
 
+
+            // Typically, when users choose to sort their media collection by track numbers,
+            // what they actually want is ordering their albums, which means that this is
+            // equivalent to sorting by album_artists.
+            case ListColumn.TRACK:
             case ListColumn.ALBUM_ARTIST:
-                order = Noise.Compare.artists (media_a, media_b);
+                order = Noise.Compare.album_artists (media_a, media_b);
             break;
 
             case ListColumn.COMPOSER:
@@ -493,11 +498,6 @@ public class Noise.MusicListView : GenericList {
             case ListColumn.GROUPING:
                 order = String.compare (media_a.grouping, media_b.grouping);
             break;
-
-            // Typically, when users choose to sort their media collection by track numbers,
-            // what they actually want is ordering their albums, which means that this is
-            // equivalent to sorting by genre.
-            case ListColumn.TRACK:
             case ListColumn.GENRE:
                 order = Noise.Compare.genres (media_a, media_b);
             break;

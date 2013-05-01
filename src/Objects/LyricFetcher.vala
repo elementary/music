@@ -37,7 +37,7 @@ public class Noise.LyricFetcher : Object {
     }
 
     private string fetch_lyrics (Media m) {
-        var source = new AZLyricsFetcher ();
+        var source = new LyricsManiaFetcher ();
         return source.fetch_lyrics (m.title, m.album_artist, m.artist);
     }
 
@@ -48,8 +48,8 @@ public class Noise.LyricFetcher : Object {
  * LYRIC SOURCES
  */
 
-private class AZLyricsFetcher : Object {
-    private const string URL_FORMAT = "http://www.azlyrics.com/lyrics/%s/%s.html";
+private class LyricsManiaFetcher : Object {
+    private const string URL_FORMAT = "http://www.lyricsmania.com/%s_lyrics_%s.html";
 
     public string fetch_lyrics (string title, string album_artist, string artist) {
         var url = parse_url (artist, title);
@@ -82,7 +82,7 @@ private class AZLyricsFetcher : Object {
     }
 
     private string parse_url (string artist, string title) {
-        return URL_FORMAT.printf (fix_string (artist), fix_string (title));
+        return URL_FORMAT.printf (fix_string (title), fix_string (artist));
     }
 
     private string fix_string (string? str) {
@@ -96,8 +96,38 @@ private class AZLyricsFetcher : Object {
             c = c.tolower ();
             if ( ('a' <= c && c <= 'z') || ('0' <= c && c <= '9'))
                 fixed_string.append_unichar (c);
+            else if (' ' == c)
+                fixed_string.append_unichar ('_');
+            else if ('/' == c)
+                fixed_string.append_unichar ('_');
+            else if ('!' == c)
+                fixed_string.append_unichar (c);
+            else if (',' == c)
+                fixed_string.append_unichar (c);
+            else if ('à' == c)
+                fixed_string.append_unichar ('a');
+            else if ('ï' == c)
+                fixed_string.append_unichar ('i');
+            else if ('î' == c)
+                fixed_string.append_unichar ('i');
+            else if ('é' == c)
+                fixed_string.append_unichar ('e');
+            else if ('è' == c)
+                fixed_string.append_unichar ('e');
+            else if ('ê' == c)
+                fixed_string.append_unichar ('e');
+            else if ('ë' == c)
+                fixed_string.append_unichar ('e');
+            else if ('ù' == c)
+                fixed_string.append_unichar ('u');
+            else if ('ô' == c)
+                fixed_string.append_unichar ('o');
+            else if ('ö' == c)
+                fixed_string.append_unichar ('o');
+            else if ('-' == c)
+                fixed_string.append_unichar (c);
         }
-
+        warning (fixed_string.str);
         return fixed_string.str;
     }
 
@@ -106,8 +136,8 @@ private class AZLyricsFetcher : Object {
         string lyrics = "";
         var rv = new StringBuilder ();
 
-        const string START_STRING = "<!-- start of lyrics -->";
-        const string END_STRING = "<!-- end of lyrics -->";
+        const string START_STRING = "<div id='songlyrics_h' class='dn'>";
+        const string END_STRING = "</div>\n<script type=\"text/javascript\">\n	var	song_id = ";
 
         var start = content.index_of (START_STRING, 0) + START_STRING.length;
         var end = content.index_of (END_STRING, start);
@@ -121,6 +151,9 @@ private class AZLyricsFetcher : Object {
             warning ("Could not parse lyrics: %s", err.message);
             return "";
         }
+        
+        if (!Noise.String.is_empty (lyrics.replace("\n", "").replace(" ", ""), true));
+            lyrics = lyrics + "\n\n" + _("Lyrics fetched from www.lyricsmania.com");
 
         rv.append (lyrics);
         rv.append ("\n");

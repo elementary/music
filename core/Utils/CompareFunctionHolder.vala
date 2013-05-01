@@ -46,12 +46,19 @@ namespace Noise.Compare {
     public inline int genres (Media a, Media b) {
         int order = String.compare (a.get_display_genre (), b.get_display_genre ());
         if (order == 0)
-            order = artists (a, b);
+            order = album_artists (a, b);
         return order;
     }
 
     public inline int artists (Media a, Media b) {
         int order = String.compare (String.get_basic_part (a.get_display_artist ()), String.get_basic_part (b.get_display_artist ()));
+        if (order == 0)
+            order = albums (a, b);
+        return order;
+    }
+
+    public inline int album_artists (Media a, Media b) {
+        int order = String.compare (String.get_basic_part (a.get_display_album_artist (true)), String.get_basic_part (b.get_display_album_artist (true)));
         if (order == 0)
             order = albums (a, b);
         return order;
