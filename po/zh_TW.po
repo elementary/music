@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-26 23:57+0200\n"
+"POT-Creation-Date: 2013-04-29 21:32+0200\n"
 "PO-Revision-Date: 2013-03-04 14:45+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: \n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-04-27 06:12+0000\n"
+"X-Launchpad-Export-Date: 2013-05-01 04:58+0000\n"
 "X-Generator: Launchpad (build 16580)\n"
 "Language: \n"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:121
+#: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:130
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "正將 <b>$ARTIST</b> 的 <b>$NAME</b> 匯入珍藏館中..."
 
@@ -53,8 +53,6 @@ msgid "%s (%d)"
 msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:387
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:389
 msgid "New playlist"
 msgstr "新增播放清單"
 
@@ -162,6 +160,10 @@ msgstr "%s %s"
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y/%m/%e %p %l:%M"
 
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/String.vala:176
+msgid "the|a|an|le|la|les|un|une|der|die|das|los"
+msgstr ""
+
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
 msgstr "平穩"
@@ -234,47 +236,46 @@ msgstr "柔和搖滾"
 msgid "Techno"
 msgstr "電音"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:239
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:235
 msgid "Import to Library…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:240
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
 msgid "Rescan Music Folder"
 msgstr "重新掃描音樂資料夾"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:241
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Fullscreen"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:245
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:241
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:268
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:264
 msgid "Search Music"
 msgstr "搜尋音樂"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:665
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:803
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:661
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:799
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:121
 msgid "Music"
 msgstr "音樂"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:850
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:852
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:108
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/noelco/Programmation/Projets/noise/po/../src//oldPlaybackManager.vala:115
-#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:90
+#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:101
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "佇列"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:853
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:855
 msgid "No songs in Queue"
 msgstr "佇列中沒有歌曲"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:854
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:856
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -282,19 +283,18 @@ msgid ""
 msgstr ""
 "要添加歌曲至佇列，必須在曲目上 <b>雙擊滑鼠</b>，並選擇<b>佇列</b>。在目前播放的清單中，當一首歌結束後將優先播放剛佇列的歌曲。"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:860
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:862
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:108
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/noelco/Programmation/Projets/noise/po/../src//oldPlaybackManager.vala:113
-#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:88
+#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:99
 msgid "History"
 msgstr "歷史"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:863
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:865
 msgid "No songs in History"
 msgstr "歷史中沒有歌曲"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:864
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:866
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -303,33 +303,33 @@ msgstr ""
 "當一首歌的一部份已開始播放後，它會被加入歷史清單中。\n"
 "您可以用該清單來查看您本次作業階段中已播放過的歌曲。"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1087
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1092
 msgid "Import Music"
 msgstr "匯入音樂"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1107
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1112
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:249
 msgid "<b>Importing</b> music to library…"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1122
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1127
 msgid "Rescanning music folder for changes"
 msgstr "正重新掃描音樂資料夾以瞭解變動狀態"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1129
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1134
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid "Could not find Music Folder"
 msgstr "找不到「音樂」資料夾"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1129
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1134
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "請確認您的音樂資料夾可以存取且已經掛載。"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1170
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1175
 msgid "Import Complete"
 msgstr "匯入完成"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1170
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1175
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s 已匯入至您的珍藏館中。"
@@ -393,8 +393,8 @@ msgid "Device is already doing an operation."
 msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:114
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid "No Songs"
 msgstr "沒有歌曲"
 
@@ -434,21 +434,21 @@ msgstr "從 %s 匯入您的所有音樂至珍藏館。"
 msgid "Select Music Folder"
 msgstr "選擇音樂資料夾"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:477
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:450
 msgid "No media"
 msgstr "沒有媒體"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:99
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr "若要添加歌曲至播放清單，請對曲目<b>雙擊滑鼠</b>，並選擇<b>加入至播放清單</b>。"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:102
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
 msgstr "編輯智慧型播放清單"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:114
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -601,74 +601,68 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr "檔案大小"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:57
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
 msgid "Remove from Library"
 msgstr "從珍藏館移除"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:64
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
 msgid "Remove from Queue"
 msgstr "從佇列中移除"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:74
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
 msgid "Remove from Device"
 msgstr "從裝置中移除"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:87
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
 msgid "Scroll to Current Song"
 msgstr "捲動至目前歌曲"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:88
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
 msgid "Edit Song Info"
 msgstr "編輯歌曲資訊"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
 msgid "Show in File Browser"
 msgstr "在檔案瀏覽器中顯示"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
 msgctxt "Action item (verb)"
 msgid "Queue"
 msgstr "佇列"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
 msgid "Add to Playlist"
 msgstr "加入至播放清單"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
 msgid "Remove Song"
 msgstr "移除歌曲"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:134
 msgid "Import to Library"
 msgstr "匯入至珍藏館"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:169
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
 msgid "New Playlist…"
 msgstr "新增播放清單..."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:213
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "匯入 %i/%i 首所選的歌曲"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:215
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] "匯入 %i 首歌曲"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:390
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:393
-#, c-format
-msgid "New playlist (%i)"
-msgstr "新增播放清單 (%i)"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:645
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:660
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
 msgid "Never"
 msgstr "永不"
@@ -680,15 +674,15 @@ msgstr "永不"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:725
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
 msgid "Sample List String"
 msgstr "樣本清單字串"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
 msgid "Autosize Columns"
 msgstr "自動調整欄位大小"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:135
 msgid "Display Album Art"
 msgstr "顯示專輯封面"
 
@@ -701,19 +695,19 @@ msgstr "%i kb/秒"
 msgid "No Songs Found."
 msgstr "查無歌曲。"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:365
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:369
 #, c-format
 msgid "%i track"
 msgid_plural "%i tracks"
 msgstr[0] "%i 道音軌"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:367
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:371
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
 msgstr[0] "%u 首歌曲"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:375
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:379
 #, c-format
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
@@ -1107,6 +1101,7 @@ msgid "Network"
 msgstr "網路"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:235
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//MPRIS/MPRIS.vala:643
 msgid "Playlists"
 msgstr "播放清單"
 
@@ -1730,39 +1725,39 @@ msgstr "正在將來自 <b>$ARTIST</b> 的 <b>$NAME</b> 加入至 $DEVICE"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:564
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
 #, c-format
 msgid "Syncing <b>%s</b>…"
 msgstr "正在同步 <b>%s</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:351
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:620
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
 msgid "Finishing sync process…"
 msgstr "正在完成同步程序..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:367
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:641
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
 msgid "Cancelling Sync…"
 msgstr "正在取消同步..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:651
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
 msgid "There is not enough space on Device to complete the Sync…"
 msgstr "裝置上空間不足而無法完成同步..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:514
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "正從 $DEVICE 移除 <b>$ARTIST</b> 的 <b>$NAME</b>"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:307
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
 #, c-format
 msgid "Removing from <b>%s</b>…"
 msgstr "正從 <b>%s</b> 移除..."
