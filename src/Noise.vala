@@ -36,7 +36,7 @@ public class Noise.App : Granite.Application {
      */
     public const string COMMENT = N_("Listen to music");
     public const string GENERIC = N_("Music Player");
-    public const string KEYWORDS = N_("Music;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;");
+    public const string KEYWORDS = N_("Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;");
 
 
     private static App _instance;
@@ -64,7 +64,7 @@ public class Noise.App : Granite.Application {
         build_version = Build.VERSION;
         build_version_info = Build.VERSION_INFO;
 
-        program_name = "Noise";
+        program_name = _("Music");
         exec_name = "noise";
 
         app_copyright = "2012-2013";
@@ -78,8 +78,8 @@ public class Noise.App : Granite.Application {
         help_url = "https://answers.launchpad.net/noise";
         translate_url = "https://translations.launchpad.net/noise";
 
-        about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>",
-                         "Corentin Noël <tintou@mailoo.org>", null};
+        about_authors = {"Corentin Noël <tintou@mailoo.org>",
+                         "Scott Ringwelski <sgringwe@mtu.edu>", null};
 
         about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
         _instance = this;
