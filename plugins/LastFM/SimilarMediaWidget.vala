@@ -29,6 +29,7 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
     private SimilarMediasView ssv;
     
     bool similars_fetched;
+    string similars_fetched_string;
     
     public SimilarMediasWidget (LastFM.Core core) {
         ssv = new SimilarMediasView();
@@ -39,11 +40,16 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         // Last.fm
         lfm.logged_in.connect (logged_in_to_lastfm);
         lfm.similar_retrieved.connect (similar_retrieved);
+        
         App.main_window.update_media_info.connect ((m) => {
             lfm.fetchCurrentSimilarSongs();
             lfm.fetch_album_info (m);
         });
-        notification_manager.searchCover.connect ((m) => {lfm.fetch_album_info (m);});
+        App.player.changing_player.connect ((m) => {
+            similars_fetched = false;
+            update_visibilities ();
+        });
+        notification_manager.searchCover.connect ((m) => { lfm.fetch_album_info (m);});
         
         love_ban_buttons = new LoveBanButtons ();
         // put treeview inside scrolled window
@@ -63,6 +69,7 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         
         App.main_window.info_panel.add_view (this);
         show_all ();
+        update_visibilities ();
         
         App.main_window.info_panel.to_update.connect (update_visibilities);
 

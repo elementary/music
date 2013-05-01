@@ -690,6 +690,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void update_badge_on_playlist_update (Playlist p, SourceListEntry entry) {
         p.media_added.connect((s) => { update_playlist_badge (p); });
         p.media_removed.connect((s) => { update_playlist_badge (p); });
+        p.cleared.connect((s) => { update_playlist_badge (p); });
     }
 
     private void update_playlist_badge (Playlist playlist) {

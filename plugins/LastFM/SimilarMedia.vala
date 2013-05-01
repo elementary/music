@@ -49,6 +49,11 @@ public class LastFM.SimilarMedias : Object {
         } catch (GLib.Error e) {
             critical (e.message);
         }
+        
+        Noise.App.player.changing_player.connect ((m)=>{
+            similar_medias.clear ();
+            similar_playlist.clear ();
+        });
     }
     
     public virtual void queryForSimilar (Noise.Media s) {
@@ -68,12 +73,13 @@ public class LastFM.SimilarMedias : Object {
                 debug ("In the similar thread");
                 var similarIDs = new Gee.LinkedList<int> ();
                 var similarDont = new Gee.LinkedList<Noise.Media> ();
-        
+                
                 similar_medias.clear ();
+                similar_playlist.clear ();
+            
                 getSimilarTracks (s.title, s.artist);
                 Noise.libraries_manager.local_library.media_from_name (similar_medias, ref similarIDs, ref similarDont);
                 similarIDs.offer_head (s.rowid);
-                similar_playlist.clear ();
                 similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
                 similar_retrieved (similarIDs, similarDont);
         
