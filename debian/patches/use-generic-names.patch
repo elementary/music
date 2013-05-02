@@ -1,0 +1,47 @@
+Description: Expose only generic names to the user
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ noise (1:0.2) quantal; urgency=low
+ .
+   * New upstream release.
+Author: Corentin Noël <tintou@mailoo.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: vendor, https://launchpadlibrarian.net/138883796/noise.diff
+Bug: https://bugs.launchpad.net/noise/+bug/1175403
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: not-needed
+Reviewed-By: Sergey "Shnatsel" Davidoff <sergey@elementaryos.org>
+Last-Update: 2013-05-02
+
+--- noise-0.2.orig/data/noise.desktop
++++ noise-0.2/data/noise.desktop
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Type=Application
+ Version=1.0
+-Name=Noise
++Name=Music
+ GenericName=Music Player
+ Comment=Listen to music
+ Exec=noise %U
+--- noise-0.2.orig/src/Noise.vala
++++ noise-0.2/src/Noise.vala
+@@ -64,7 +64,7 @@ public class Noise.App : Granite.Applica
+         build_version = Build.VERSION;
+         build_version_info = Build.VERSION_INFO;
+ 
+-        program_name = "Noise";
++        program_name = _("Music");
+         exec_name = "noise";
+ 
+         app_copyright = "2012-2013";
