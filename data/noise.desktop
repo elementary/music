@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-Name=Music
+Name=Noise
 GenericName=Music Player
 Comment=Listen to music
 Exec=noise %U

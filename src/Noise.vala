@@ -64,7 +64,7 @@ public class Noise.App : Granite.Application {
         build_version = Build.VERSION;
         build_version_info = Build.VERSION_INFO;
 
-        program_name = _("Music");
+        program_name = "Noise";
         exec_name = "noise";
 
         app_copyright = "2012-2013";
