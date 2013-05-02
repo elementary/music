@@ -33,8 +33,6 @@ public class LastFM.SimilarMedias : Object {
     public Noise.StaticPlaylist similar_playlist;
     private Gee.LinkedList<Noise.Media> similar_medias;
     
-    Noise.Media similarToAdd;
-    
     public signal void similar_retrieved (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
     
     public class SimilarMedias () {
@@ -74,11 +72,13 @@ public class LastFM.SimilarMedias : Object {
                 var similarIDs = new Gee.LinkedList<int> ();
                 var similarDont = new Gee.LinkedList<Noise.Media> ();
                 
-                similar_medias.clear ();
-                similar_playlist.clear ();
-            
-                getSimilarTracks (s.title, s.artist);
-                Noise.libraries_manager.local_library.media_from_name (similar_medias, ref similarIDs, ref similarDont);
+                lock (similar_medias) {
+                    similar_medias.clear ();
+                    similar_playlist.clear ();
+                
+                    getSimilarTracks (s.title, s.artist);
+                    Noise.libraries_manager.local_library.media_from_name (similar_medias, ref similarIDs, ref similarDont);
+                }
                 similarIDs.offer_head (s.rowid);
                 similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
                 similar_retrieved (similarIDs, similarDont);
@@ -116,7 +116,6 @@ public class LastFM.SimilarMedias : Object {
             GLib.message("Oddly, similar artist information was invalid\n");
         else {
             //message("Getting similar tracks with %s... \n", url);
-            similarToAdd = null;
             
             parse_similar_nodes(doc->get_root_element(), "");
         }
@@ -126,6 +125,7 @@ public class LastFM.SimilarMedias : Object {
     
     public void parse_similar_nodes(Xml.Node* node, string parent) {
         Xml.Node* iter;
+        Noise.Media similarToAdd = null;
         for (iter = node->children; iter != null; iter = iter->next) {
             
             if (iter->type != ElementType.ELEMENT_NODE) {
