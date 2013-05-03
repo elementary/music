@@ -358,10 +358,10 @@ public class Noise.GridView : ContentView, GridLayout {
         if (album_b == null)
             return 1;
 
-        int order = String.compare (album_a.get_display_name (), album_b.get_display_name ());
+        int order = String.compare (album_a.get_display_artist (), album_b.get_display_artist ());
 
         if (order == 0)
-            order = String.compare (album_a.get_display_artist (), album_b.get_display_artist ());
+            order = String.compare (album_a.get_display_name (), album_b.get_display_name ());
 
         return order;
     }
