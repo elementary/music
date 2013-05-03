@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-02 01:21+0200\n"
-"PO-Revision-Date: 2013-05-01 11:27+0000\n"
+"PO-Revision-Date: 2013-05-02 15:13+0000\n"
 "Last-Translator: Phillip Sz <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-02 05:43+0000\n"
-"X-Generator: Launchpad (build 16580)\n"
+"X-Launchpad-Export-Date: 2013-05-03 05:50+0000\n"
+"X-Generator: Launchpad (build 16598)\n"
 "Language: de\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:130
@@ -167,7 +167,7 @@ msgstr "%m/%e/%Y %l:%M %p"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/String.vala:176
 msgid "the|a|an|le|la|les|un|une|der|die|das|los"
-msgstr ""
+msgstr "the|a|an|le|la|les|un|une|der|die|das|los"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -959,6 +959,7 @@ msgstr "Musikwiedergabe"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
+"Noise;Audio;Player;MP3;iPod;Abspielen;Wiedergabeliste;Media;CD;Handy;"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
@@ -1692,7 +1693,7 @@ msgstr "Unbekannter Interpret"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/LyricFetcher.vala:156
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
+msgstr "Die Liedtexte werden von www.lyricsmania.com heruntergeladen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
@@ -1857,7 +1858,7 @@ msgstr "Erfolglos. Klicken, um es noch einmal zu versuchen."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr "Scrobbeln ist Bereits Aktiviert"
+msgstr "Scrobbeln ist bereits Aktiviert"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-02 01:21+0200\n"
-"PO-Revision-Date: 2013-04-09 15:14+0000\n"
-"Last-Translator: Alfredo Hernández <Unknown>\n"
+"PO-Revision-Date: 2013-05-03 01:23+0000\n"
+"Last-Translator: Ezequiel Sapo <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-02 05:44+0000\n"
-"X-Generator: Launchpad (build 16580)\n"
+"X-Launchpad-Export-Date: 2013-05-03 05:50+0000\n"
+"X-Generator: Launchpad (build 16598)\n"
 "Language: es\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:130
@@ -244,7 +244,7 @@ msgstr "Techno"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
 msgid "Import to Library…"
-msgstr ""
+msgstr "Importar a la biblioteca..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Rescan Music Folder"
@@ -276,7 +276,7 @@ msgstr "Música"
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:101
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "Cola"
+msgstr "Añadir a la cola"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:875
 msgid "No songs in Queue"
@@ -1685,7 +1685,7 @@ msgstr "Artista desconocido"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/LyricFetcher.vala:156
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
+msgstr "Letras obtenidas de www.lyricsmania.com"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
