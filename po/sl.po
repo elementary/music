@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-02 01:21+0200\n"
-"PO-Revision-Date: 2013-04-06 21:34+0000\n"
-"Last-Translator: MarkoD <Unknown>\n"
+"PO-Revision-Date: 2013-05-05 18:51+0000\n"
+"Last-Translator: Damir Jerovšek <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2013-05-02 05:44+0000\n"
-"X-Generator: Launchpad (build 16580)\n"
+"X-Launchpad-Export-Date: 2013-05-06 05:54+0000\n"
+"X-Generator: Launchpad (build 16598)\n"
 "Language: sl\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:130
@@ -675,7 +675,7 @@ msgstr "Uvozi v knjižnico"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
 msgid "New Playlist…"
-msgstr ""
+msgstr "Nov seznam predvajanja ..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
 #, c-format
@@ -911,24 +911,25 @@ msgstr "Na napravi ni bilo najdenih pesmi, ki niso v tvoji knjižnici."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:286
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "<b>Kopiranje</b> datotek v <b>mapo Glasba</b> …"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:167
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Uvažanje glasbe iz %s ..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:209
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Dodajanje datotek v knjižnico ..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:274
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
+"Ponovno preiskovanje glasbe zaradi sprememb. To lahko traja nekaj časa ..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:352
 msgid "Added to your queue:"
-msgstr ""
+msgstr "Dodano v čakalno vrsto:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:445
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:685
@@ -979,7 +980,7 @@ msgstr "Uskladi"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr ""
+msgstr "Brezplačno"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:384
 msgid "Using %s of %s (%.2f%)"
@@ -1089,7 +1090,7 @@ msgstr "Prekliči"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Preimenuj"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
@@ -1100,7 +1101,7 @@ msgstr "Odstrani"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:72
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr ""
+msgstr "Izvozi ..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:70
 msgid "Edit…"
@@ -1159,7 +1160,7 @@ msgstr "Pogled v stolpcih"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Izberite mapo s skladbami ..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
@@ -1668,7 +1669,7 @@ msgstr "Prezri"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:94
 msgid "del"
-msgstr ""
+msgstr "izbriši"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:99
 msgid "File Location"
@@ -1717,11 +1718,11 @@ msgstr "Neznan album"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Prišlo je do napake"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Med nalaganjem zvočnega CD-ja je prišlo do napake."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
