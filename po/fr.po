@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-02 01:21+0200\n"
-"PO-Revision-Date: 2013-05-02 04:12+0000\n"
-"Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
+"PO-Revision-Date: 2013-05-06 07:09+0000\n"
+"Last-Translator: Jean Bégaint <jean.begaint@gmail.com>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2013-05-03 05:50+0000\n"
+"X-Launchpad-Export-Date: 2013-05-07 05:46+0000\n"
 "X-Generator: Launchpad (build 16598)\n"
 "Language: \n"
 
@@ -174,7 +174,7 @@ msgstr "%e/%m/%Y %k:%M"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/String.vala:176
 msgid "the|a|an|le|la|les|un|une|der|die|das|los"
-msgstr ""
+msgstr "the|a|an|le|la|les|un|une|der|die|das|los"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
