@@ -27,7 +27,7 @@
  */
 
 private class LastFM.PreferencesSection {
-    static string ENABLE_SCROBBLING = _("Give Noise Permission");
+    static string ENABLE_SCROBBLING = _("Give Music Permission");
     static string LOGIN_UNSUCCESSFUL = _("Unsuccessful. Click To Try Again.");
     static string SCROBBLING_ENABLED = _("Scrobbling Already Enabled");
     static string LOGIN_SUCCESSFUL = _("Success!");
@@ -54,7 +54,7 @@ private class LastFM.PreferencesSection {
             login_button.set_tooltip_text(_("Click to redo the Last.fm login process"));
         }
  
-        var label = new Gtk.Label (_("To allow for Last.fm integration, you must give permission to Noise. You only need to do this once."));
+        var label = new Gtk.Label (_("To allow for Last.fm integration, you must give permission to Music. You only need to do this once."));
         label.xalign = 0.0f;
         label.halign = Gtk.Align.START;
         label.set_line_wrap (true);
