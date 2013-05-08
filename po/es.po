@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-02 01:21+0200\n"
-"PO-Revision-Date: 2013-05-06 18:34+0000\n"
-"Last-Translator: Victor <victoreduardm@gmail.com>\n"
+"PO-Revision-Date: 2013-05-07 20:45+0000\n"
+"Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-07 05:46+0000\n"
+"X-Launchpad-Export-Date: 2013-05-08 05:47+0000\n"
 "X-Generator: Launchpad (build 16598)\n"
 "Language: es\n"
 
@@ -957,6 +957,8 @@ msgstr "Reproductor de música"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
+"Noise;Audio;Reproductor;MP3;iPod;Reproducir;Lista de "
+"reproducción;CD;Teléfono;"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-02 01:21+0200\n"
-"PO-Revision-Date: 2013-04-13 05:08+0000\n"
+"PO-Revision-Date: 2013-05-07 13:12+0000\n"
 "Last-Translator: Wang Dianjin <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-05-02 05:44+0000\n"
-"X-Generator: Launchpad (build 16580)\n"
+"X-Launchpad-Export-Date: 2013-05-08 05:47+0000\n"
+"X-Generator: Launchpad (build 16598)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:130
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -237,7 +237,7 @@ msgstr "电音"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
 msgid "Import to Library…"
-msgstr ""
+msgstr "导入到库中..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Rescan Music Folder"
@@ -927,6 +927,8 @@ msgstr "音乐播放器"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
+"Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;媒体;音频;播放器;播放;播放列表;音乐"
+";"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
@@ -1640,7 +1642,7 @@ msgstr "未知艺术家"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/LyricFetcher.vala:156
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
+msgstr "歌词(抓取自 www.lyricsmania.com)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
