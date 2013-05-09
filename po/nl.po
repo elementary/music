@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-02 01:21+0200\n"
-"PO-Revision-Date: 2013-05-02 16:54+0000\n"
+"PO-Revision-Date: 2013-05-08 17:53+0000\n"
 "Last-Translator: Thomas Berends <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-03 05:50+0000\n"
+"X-Launchpad-Export-Date: 2013-05-09 05:41+0000\n"
 "X-Generator: Launchpad (build 16598)\n"
 "Language: nl\n"
 
@@ -287,6 +287,10 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Om items in de wachtlijst te zetten, klik met de <b>rechter muisknop</b> op "
+"een nummer en selecteer je <b>Wachtlijst</b>. Wanneer een nummer eindigt, "
+"zullen items voor het volgende nummer in de huidige wachtlijst eerst "
+"afgespeeld worden."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:882
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:107
@@ -468,6 +472,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"De afspeellijst zal automatisch aangevuld worden met nummers die "
+"overeenkomen met de opgegeven regels. Om deze regels aan te passen, gebruik "
+"je de <b>rechter muisknop</b> op de regel in de kantlijn en klik je op "
+"<b>Aanpassen</b>.  Je kan optioneel ook op de knop hieronder klikken."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ContentView.vala:21
 #, c-format
@@ -872,7 +880,7 @@ msgstr "Afbreken…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "Apparaat bewerking is geannuleerd en stopt na deze media."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid "No External Songs"
@@ -1147,7 +1155,7 @@ msgstr "Muziekmap locatie:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
-msgstr ""
+msgstr "Bibliotheekmanagement"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
@@ -1155,7 +1163,7 @@ msgstr "Houd Muziekmap georganiseerd:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Schrijf metadata naar bestand"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
@@ -1163,7 +1171,7 @@ msgstr "Kopieer geïmporteerde bestanden naar bibliotheek:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
-msgstr ""
+msgstr "Desktopintegratie"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
@@ -1189,7 +1197,7 @@ msgstr "Liedteksten"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:353
 msgid "Editing $NAME by $ARTIST"
-msgstr ""
+msgstr "Bewerken van $NAME door $ARTIST"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:355
@@ -1458,6 +1466,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %d"
 msgstr ""
+"Noise is al bezig met bestandsbewerkingen. Wacht totdat deze klaar zijn om "
+"te importeren uit %d"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
 msgid "Import media to Library"
@@ -1700,7 +1710,7 @@ msgstr "Audio CD ongeldig"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "Onmogelijk om de inhoud van deze Audio CD te lezen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid ""
@@ -1729,7 +1739,7 @@ msgstr "Klaar met het importeren van %i liedjes van audio cd."
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
 #, c-format
 msgid "Importing track %i: %s"
-msgstr ""
+msgstr "Importeren van spoor %i: %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1737,7 +1747,7 @@ msgstr "CD-import zal worden <b>geannuleerd<b> na de huidig import."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
 msgid "An error occured during the Import of this CD"
-msgstr ""
+msgstr "Er is een fout opgetreden tijdens het importeren van deze CD"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
@@ -1760,7 +1770,7 @@ msgstr "Muziekspeler"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "Toevoegen van <b>$NAME</b> door <b>$ARTIST</b> aan $DEVICE"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
@@ -1775,7 +1785,7 @@ msgstr "Syncroniseren <b>%s</b>..."
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Synchronisatieproces is bijna klaar..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
@@ -1790,17 +1800,19 @@ msgstr "Syncroniseren afbreken..."
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
 msgid "There is not enough space on Device to complete the Sync…"
 msgstr ""
+"Er is niet voldoende opslagruimte op het apparaat om de synchronisatie te "
+"voltooien"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "Verwijderen van <b>$NAME</b> door <b>$ARTIST</b> van $DEVICE"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "Verwijderen van <b>%s</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
 msgid "media"
@@ -1824,6 +1836,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Er zijn geen nummers vergelijkbaar met het huidige nummer in je bibliotheek. "
+"Ga na of alle informatie over het nummer correct is, en dat je met internet "
+"verbonden bent. Sommige nummers kunnen geen resultaten hebben."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
@@ -1831,11 +1846,11 @@ msgstr "Geef Noise rechten"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "Mislukt. Klik om opnieuw te proberen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "Scrobbling is al aan"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1843,7 +1858,7 @@ msgstr "Gelukt!"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Login afronden"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:42
 msgid "Last.fm"
@@ -1855,13 +1870,15 @@ msgstr "Last.fm integratie"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:54
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Klik om het Last.fm-loginproces opnieuw te proberen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:57
 msgid ""
 "To allow for Last.fm integration, you must give permission to Noise. You "
 "only need to do this once."
 msgstr ""
+"Om Last.fm-integratie mogelijk te maken moet je Noise permissie geven. Dit "
+"hoef je maar één keer te doen."
 
 #~ msgid "Add Podcast"
 #~ msgstr "Podcast toevoegen"
