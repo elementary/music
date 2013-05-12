@@ -32,6 +32,7 @@ public class Noise.TopDisplay : Box {
     Gtk.Button cancelButton;
 
     private bool is_seeking = false;
+    private uint timeout_id = 0;
     
     public signal void scale_value_changed(ScrollType scroll, double val);
     
@@ -40,7 +41,7 @@ public class Noise.TopDisplay : Box {
         this.orientation = Orientation.HORIZONTAL;
 
         label = new Label("");
-        scale = new Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 1);
+        scale = new Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 1000);
         leftTime = new Label("0:00");
         rightTime = new Label("0:00");
         progressbar = new ProgressBar();
@@ -212,16 +213,22 @@ public class Noise.TopDisplay : Box {
         //make pretty remaining time
         rightTime.set_text (TimeUtils.pretty_length_from_ms (media_duration_secs - elapsed_secs));
     }
-
+    
     public virtual bool change_value(ScrollType scroll, double val) {
         App.player.player.current_position_update.disconnect(player_position_update);
         scale.set_value(val);
         scale_value_changed(scroll, val);
 
-        if( !is_seeking ) {
-            App.player.player.set_position((int64) TimeUtils.miliseconds_to_nanoseconds ((uint) val));
-            App.player.player.current_position_update.connect(player_position_update);
-        }
+        if (timeout_id > 0)
+                Source.remove (timeout_id);
+ 
+        timeout_id = Timeout.add (300, () => {
+            if( !is_seeking ) {
+                App.player.player.set_position((int64) TimeUtils.miliseconds_to_nanoseconds ((uint) val));
+                App.player.player.current_position_update.connect(player_position_update);
+            }
+            return Source.remove (timeout_id);
+        });
         
         return false;
     }
