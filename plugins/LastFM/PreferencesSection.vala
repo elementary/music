@@ -27,7 +27,7 @@
  */
 
 private class LastFM.PreferencesSection {
-    static string ENABLE_SCROBBLING = _("Give Noise Permission");
+    static string ENABLE_SCROBBLING = _("Give %s Permission");
     static string LOGIN_UNSUCCESSFUL = _("Unsuccessful. Click To Try Again.");
     static string SCROBBLING_ENABLED = _("Scrobbling Already Enabled");
     static string LOGIN_SUCCESSFUL = _("Success!");
@@ -39,6 +39,7 @@ private class LastFM.PreferencesSection {
     Gtk.Button login_button;
 
     public PreferencesSection (Core core) {
+        string program_name = Noise.App.instance.get_name ();
         page = new Noise.SettingsWindow.NoteBook_Page(_("Last.fm"));
 
         this.core = core;
@@ -48,13 +49,13 @@ private class LastFM.PreferencesSection {
         login_button = new Gtk.Button ();
 
         if (core.lastfm_settings.session_key == null || core.lastfm_settings.session_key == "") {
-            login_button.label = ENABLE_SCROBBLING;
+            login_button.label = ENABLE_SCROBBLING.printf(program_name);
         } else {
             login_button.label = SCROBBLING_ENABLED;
             login_button.set_tooltip_text(_("Click to redo the Last.fm login process"));
         }
  
-        var label = new Gtk.Label (_("To allow for Last.fm integration, you must give permission to Noise. You only need to do this once."));
+        var label = new Gtk.Label (_("To allow for Last.fm integration, you must give permission to %s. You only need to do this once.").printf(program_name));
         label.xalign = 0.0f;
         label.halign = Gtk.Align.START;
         label.set_line_wrap (true);
