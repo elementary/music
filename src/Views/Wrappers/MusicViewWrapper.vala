@@ -52,7 +52,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
         var music_folder_icon = Icons.MUSIC_FOLDER.render (Gtk.IconSize.DIALOG, null);
         welcome_screen.append_with_pixbuf (music_folder_icon, _("Locate Music Folder"),
-            _("Load music from a folder, a network or an external disk"));
+            _("Load music from a folder, a network or an external disk."));
 
         welcome_screen.activated.connect (welcome_screen_activated);
         _devices = new Gee.HashMap<Device, int> ();
