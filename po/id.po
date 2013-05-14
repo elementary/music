@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-02 01:21+0200\n"
+"POT-Creation-Date: 2013-05-13 18:49-0500\n"
 "PO-Revision-Date: 2013-03-04 14:36+0000\n"
 "Last-Translator: Jeffry <jeffry.a@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
@@ -15,140 +15,75 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-05-02 05:43+0000\n"
-"X-Generator: Launchpad (build 16580)\n"
+"X-Launchpad-Export-Date: 2013-05-14 05:49+0000\n"
+"X-Generator: Launchpad (build 16617)\n"
 "Language: id\n"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:130
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Mengimpor <b>$NAME</b> oleh <b>$ARTIST</b> ke pustaka…"
-
-#. / Used for unknown titles, artists, or album names.
-#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
-msgid "Unknown"
-msgstr "Tak Dikenal"
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:53
-msgid "Radio Station"
-msgstr "Stasiun Radio"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:183
-msgid "$NAME on $ALBUM"
-msgstr "$NAME dalam $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:186
-msgid "$NAME by $ARTIST"
-msgstr "$NAME oleh $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:192
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME oleh $ARTIST dalam $ALBUM"
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
-#, c-format
-msgid "%s (%d)"
+#: /home/codygarver/noise/po/../core//Utils/String.vala:176
+msgid "the|a|an|le|la|les|un|une|der|die|das|los"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
-msgid "New playlist"
-msgstr "Daftar putar baru"
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:246
-#, c-format
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "Ekspor Daftar Putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:282
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:376
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG Versi 3.0 Extended (*.m3u)"
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:287
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:381
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Daftar Putar Shoutcast versi 2.0 (*.pls)"
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:361
-msgid "Playlist"
-msgstr "Daftar Putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:367
-#, c-format
-msgid "Import %s"
-msgstr "Impor %s"
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:401
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Berkas daftar putar tidak dapat dikenali. Impor gagal."
-
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d detik"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:52
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:52
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u menit"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:56
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:56
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
 msgstr[0] "%u detik"
 
 #. / Minutes and seconds
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:58
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:58
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s dan %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:77
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u hari"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:80
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u jam"
 
 #. / days, hours and minutes
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:91
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s dan %s"
 
 #. / days and hours
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:94
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:94
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s dan %s"
 
 #. / days and minutes
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:99
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:99
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s dan %s"
 
 #. / hours and minutes
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:108
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:108
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -156,296 +91,158 @@ msgstr "%s dan %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:167
+#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y/%m/%e %k:%M"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/String.vala:176
-msgid "the|a|an|le|la|les|un|une|der|die|das|los"
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:96
+#, c-format
+msgid "%s (%d)"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:235
+msgid "New playlist"
+msgstr "Daftar putar baru"
+
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:246
+#, c-format
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr "Ekspor Daftar Putar"
+
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:282
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:376
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG Versi 3.0 Extended (*.m3u)"
+
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:287
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:381
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Daftar Putar Shoutcast versi 2.0 (*.pls)"
+
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:361
+msgid "Playlist"
+msgstr "Daftar Putar"
+
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:367
+#, c-format
+msgid "Import %s"
+msgstr "Impor %s"
+
+#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:401
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Berkas daftar putar tidak dapat dikenali. Impor gagal."
+
+#: /home/codygarver/noise/po/../core//LibrariesManager.vala:130
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "Mengimpor <b>$NAME</b> oleh <b>$ARTIST</b> ke pustaka…"
+
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
 msgstr "Datar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:79
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:79
 msgid "Classical"
 msgstr "Klasik"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:80
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:80
 msgid "Club"
 msgstr "Klub"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:81
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:81
 msgid "Dance"
 msgstr "Dansa"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:82
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:82
 msgid "Full Bass"
 msgstr "Bass Penuh"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:83
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:83
 msgid "Full Treble"
 msgstr "Trebel Penuh"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:84
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:84
 msgid "Full Bass + Treble"
 msgstr "Penuh Bass + Trebel"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:85
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:85
 msgid "Headphones"
 msgstr "Headfon"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:86
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:86
 msgid "Large Hall"
 msgstr "Aula Besar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:87
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:87
 msgid "Live"
 msgstr "Langsung"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:88
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:88
 msgid "Party"
 msgstr "Pesta"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:89
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:89
 msgid "Pop"
 msgstr "Pop"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:90
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:90
 msgid "Reggae"
 msgstr "Reggae"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:91
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:91
 msgid "Rock"
 msgstr "Rock"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:92
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:92
 msgid "Soft"
 msgstr "Lembut"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:93
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:93
 msgid "Ska"
 msgstr "Ska"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:94
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:94
 msgid "Soft Rock"
 msgstr "Rock Lembut"
 
-#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:95
+#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:95
 msgid "Techno"
 msgstr "Tekno"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
-msgid "Import to Library…"
-msgstr ""
+#. / Used for unknown titles, artists, or album names.
+#: /home/codygarver/noise/po/../core//Media.vala:43
+msgid "Unknown"
+msgstr "Tak Dikenal"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
-msgid "Rescan Music Folder"
-msgstr "Pindai Ulang Folder Musik"
+#: /home/codygarver/noise/po/../core//Media.vala:53
+msgid "Radio Station"
+msgstr "Stasiun Radio"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:238
-msgid "Fullscreen"
-msgstr ""
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: /home/codygarver/noise/po/../core//Media.vala:183
+msgid "$NAME on $ALBUM"
+msgstr "$NAME dalam $ALBUM"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:242
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
-msgid "Preferences"
-msgstr "Pengaturan"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/codygarver/noise/po/../core//Media.vala:186
+msgid "$NAME by $ARTIST"
+msgstr "$NAME oleh $ARTIST"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:265
-msgid "Search Music"
-msgstr "Cari Musik"
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/codygarver/noise/po/../core//Media.vala:192
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME oleh $ARTIST dalam $ALBUM"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:679
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:817
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:121
-#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:67
-msgid "Music"
-msgstr "Musik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:872
-#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:107
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:101
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Antrian"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:875
-msgid "No songs in Queue"
-msgstr "Tidak ada lagu di antrian"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:876
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"Untuk menambahkan lagu ke antrian, gunakan <b>klik kanan</b> di lagu yang "
-"diinginkan lalu pilih <b>Antrian</b>. Ketika lagu selesai diputar, lagu "
-"dalam antrian akan diputar dahulu sebelum memutar lagu-lagu di daftar putar."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:882
-#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:107
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:99
-msgid "History"
-msgstr "Riwayat"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:885
-msgid "No songs in History"
-msgstr "Tidak ada lagu di Riwayat"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:886
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"Lagu yang sudah diputar akan ditambahkan ke Riwayat.\n"
-"Anda dapat melihat semua lagu yang telah Anda putar di sesi ini."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1119
-msgid "Import Music"
-msgstr "Impor Musik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1139
-#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:248
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>mengimpor</b> musik ke library..."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1154
-msgid "Rescanning music folder for changes"
-msgstr "Sedang memindai folder musik untuk perubahan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1161
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
-msgid "Could not find Music Folder"
-msgstr "Tak menemukan Folder Musik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1161
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Pastikan folder musik Anda dapat diakses dan di-mount"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1202
-msgid "Import Complete"
-msgstr "Impor Selesai"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1202
-#, c-format
-msgid "%s has imported your library."
-msgstr "%s telah diimpor ke Pustaka."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:86
-msgid "Device Name:"
-msgstr "Nama Perangkat:"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:89
-msgid "Device Name"
-msgstr "Nama Perangkat"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:91
-msgid "Automatically sync when plugged in:"
-msgstr "Sinkronkan otomatis ketika terpasang:"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:98
-msgid "Sync:"
-msgstr "Singkronisasi:"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:120
-msgid "Other Files"
-msgstr "Berkas lain"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:122
-msgid "Podcasts"
-msgstr "Podcast"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:416
-msgid "All Music"
-msgstr "Semua Musik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:419
-msgid "All Podcasts"
-msgstr "Semua Podcast"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
-msgid "Sync Failed"
-msgstr "Sinkronisasi Gagal"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Daftar Putar dengan nama %s digunakan untuk singkronisasi perangkat %s, "
-"tetapi tidak dapat ditemukan."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
-msgid "Cannot Sync"
-msgstr "Tidak Dapat Mensinkroniasi"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Tidak dapat mensinkronisasi perangkat dengan pengaturan sinkronisasi ini. "
-"Tidak cukup tempat di disk"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
-msgid "Device is already doing an operation."
-msgstr "Perangkat siap melakukan operasi."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+#: /home/codygarver/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 msgid "No Songs"
 msgstr "Tidak ada lagu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
-msgid "Please wait until that this playlist get updated."
-msgstr "Tunggu  hingga daftar putar ini diperbaharui"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
-msgid "Get Some Tunes"
-msgstr "Ambil Sejumlah Nada"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
-#, c-format
-msgid "%s can't seem to find your music."
-msgstr "Nampaknya %s tidak dapat menemukan musik Anda."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Locate"
-msgstr "Lokasi"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Change your music folder."
-msgstr "Ubah Folder Musik Anda"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:85
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
-msgid "Import your Music"
-msgstr "Impor Musikmu"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:85
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
-#, c-format
-msgid "Import all your Music from %s into your library."
-msgstr "Impor semua Musikmu dari %s ke Pustaka."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:124
-msgid "Select Music Folder"
-msgstr "Pilih Folder Musik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
-msgid "No media"
-msgstr "Tak ada media"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -453,11 +250,11 @@ msgstr ""
 "Untuk menambahkan lagu ini ke daftar putar, gunakan <b>klik kanan</b> di "
 "lagu yang diinginkan lalu pilih <Tambah ke Daftar Putar</b>."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
+#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
 msgstr "Sunting Daftar Putar Pintar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -469,214 +266,124 @@ msgstr ""
 "Daftar Putar di sisi kiri  dan klik <b>Sunting</b>. Selain itu anda juga "
 "dapat mengaksesnya dengan mengeklik tombol di bawah ini."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ContentView.vala:21
+#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
+msgid "Get Some Tunes"
+msgstr "Ambil Sejumlah Nada"
+
+#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
 #, c-format
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
+msgid "%s can't seem to find your music."
+msgstr "Nampaknya %s tidak dapat menemukan musik Anda."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:58
-msgid "No Albums Found."
-msgstr "Tak Ada Album yang Ditemukan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:154
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/PopupListView.vala:161
-#, c-format
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s oleh %s"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d menit"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d jam"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d hari"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u item, %s, %s"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
-msgctxt "List column title"
-msgid "Track"
-msgstr "Track"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
-msgctxt "List column title"
-msgid "Title"
-msgstr "Judul"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
-msgctxt "List column title"
-msgid "Length"
-msgstr "Durasi"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Artis"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
-msgctxt "List column title"
-msgid "Album"
-msgstr "Album"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Album Artis"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Komposer"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Jenis Musik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
-msgctxt "List column title"
-msgid "Year"
-msgstr "Tahun"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Pengelompokan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Bitrate"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Penilaian"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Dilewati"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Tanggal Ditambahkan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Terakhir Diputar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
-msgctxt "List column title (file location)"
-msgid "Location"
+#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Locate"
 msgstr "Lokasi"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Ukuran Berkas"
+#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Change your music folder."
+msgstr "Ubah Folder Musik Anda"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
+#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:85
+#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
+msgid "Import your Music"
+msgstr "Impor Musikmu"
+
+#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:85
+#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "Impor semua Musikmu dari %s ke Pustaka."
+
+#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:124
+msgid "Select Music Folder"
+msgstr "Pilih Folder Musik"
+
+#: /home/codygarver/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
+msgid "No media"
+msgstr "Tak ada media"
+
+#: /home/codygarver/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
+msgid "Please wait until that this playlist get updated."
+msgstr "Tunggu  hingga daftar putar ini diperbaharui"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
+msgid "Autosize Columns"
+msgstr "Ukuran Kolom Otomatis"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
+msgid "Display Album Art"
+msgstr "Tampilkan AlbumArt"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
+#, c-format
+msgid "%i kbps"
+msgstr "%i kbps"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
+msgid "Never"
+msgstr "Tak pernah"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
 msgid "Remove from Library"
 msgstr "Hapus dari Pustaka"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
 msgid "Remove from Queue"
 msgstr "Hapus dari Antrian."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
 msgid "Remove from Device"
 msgstr "Hapus dari Perangkat"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
 msgid "Scroll to Current Song"
 msgstr "Tunjukkan Lagu yang dimainkan"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
 msgid "Edit Song Info"
 msgstr "Ubah Info Lagu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
 msgid "Show in File Browser"
 msgstr "Buka di Peramban Berkas"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
 msgctxt "Action item (verb)"
 msgid "Queue"
 msgstr "Tambah ke Antrian"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
 msgid "Add to Playlist"
 msgstr "Tambah ke Daftar Putar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
 msgid "Remove Song"
 msgstr "Hapus Lagu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:134
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:134
 msgid "Import to Library"
 msgstr "Impor folder ke Pustaka"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
 msgid "New Playlist…"
 msgstr "Daftarputar baru…"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Impor %i dari %i berkas yang terpilih."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] "impor %i song"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
 msgid "1234 kbps"
 msgstr "1234 kbps"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
-msgid "Never"
-msgstr "Tak pernah"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -685,7 +392,7 @@ msgstr "Tak pernah"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
 msgid "Sample List String"
 msgstr ""
 "/ String sampel digunakan untuk memperkirakan ukuran yang ideal untuk kolom "
@@ -696,637 +403,853 @@ msgstr ""
 "otomatis mengikuti panjang dari string ini dan ruang yang / dibutuhkan oleh "
 "header judul dari kolom tersebut."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
-msgid "Autosize Columns"
-msgstr "Ukuran Kolom Otomatis"
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
-msgid "Display Album Art"
-msgstr "Tampilkan AlbumArt"
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
+msgctxt "List column title"
+msgid "Track"
+msgstr "Track"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
-#, c-format
-msgid "%i kbps"
-msgstr "%i kbps"
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
+msgctxt "List column title"
+msgid "Title"
+msgstr "Judul"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:89
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
+msgctxt "List column title"
+msgid "Length"
+msgstr "Durasi"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Artis"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Album"
+msgstr "Album"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Album Artis"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Komposer"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Jenis Musik"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Year"
+msgstr "Tahun"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Pengelompokan"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Bitrate"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Penilaian"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Putar"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Dilewati"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Tanggal Ditambahkan"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Terakhir Diputar"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Lokasi"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Ukuran Berkas"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:89
 msgid "No Songs Found."
 msgstr "Tak Ada Lagu yang Ditemukan."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:369
+#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:369
 #, c-format
 msgid "%i track"
 msgid_plural "%i tracks"
 msgstr[0] "%i lagu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:371
+#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:371
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
 msgstr[0] "%u lagu"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:379
+#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:379
 #, c-format
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
 msgstr "%s, %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Semua Aliran"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-#, c-format
-msgid "All %i Genres"
-msgstr "Semua Aliran %i"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Tidak ada Aliran"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Semua Artis"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Artists"
-msgstr "Semua Artis %i"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Tidak ada Artis"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Semua Album"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Albums"
-msgstr "Semua Album %i"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Tidak ada Album"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Semua Tahun"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Years"
-msgstr "Semua Tahun %i"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Tidak Ada Tahun"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Semua Peringkat"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Tanpa Peringkat"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "Semua Kelompok"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-#, c-format
-msgid "All %i Groupings"
-msgstr "Semua %i Kelompok"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "Tanpa Pengelompokan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Semua Komposer"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Composers"
-msgstr "Semua %i Komposer"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Tanpa Komposer"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:49
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
+#: /home/codygarver/noise/po/../src//Widgets/PresetList.vala:49
 msgid "Automatic"
 msgstr "Otomatis"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
 msgstr "Di Kiri"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
 msgid "On Top"
 msgstr "Di Atas"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
 msgid "Unrated"
 msgstr "Tanpa peringkat"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
 msgstr[0] "%i bintang"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "Semua Aliran"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+#, c-format
+msgid "All %i Genres"
+msgstr "Semua Aliran %i"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "Tidak ada Aliran"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "Semua Artis"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Artists"
+msgstr "Semua Artis %i"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "Tidak ada Artis"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "Semua Album"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Albums"
+msgstr "Semua Album %i"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "Tidak ada Album"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "Semua Tahun"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Years"
+msgstr "Semua Tahun %i"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "Tidak Ada Tahun"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "Semua Peringkat"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "Tanpa Peringkat"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr "Semua Kelompok"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#, c-format
+msgid "All %i Groupings"
+msgstr "Semua %i Kelompok"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr "Tanpa Pengelompokan"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "Semua Komposer"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Composers"
+msgstr "Semua %i Komposer"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "Tanpa Komposer"
+
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
 msgid "Genres"
 msgstr "Aliran"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
 msgid "Artists"
 msgstr "Artis"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
 msgid "Albums"
 msgstr "Album"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
 msgid "Years"
 msgstr "Tahun"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Ratings"
 msgstr "Nilai"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
 msgid "Composers"
 msgstr "Komposer"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
 msgid "Groupings"
 msgstr "Pengelompokan"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
+#: /home/codygarver/noise/po/../src//Views/ContentView.vala:21
+#, c-format
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
+
+#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr "%d menit"
+
+#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr "%d jam"
+
+#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d hari"
+
+#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u item, %s, %s"
+
+#: /home/codygarver/noise/po/../src//Views/GridView/GridView.vala:58
+msgid "No Albums Found."
+msgstr "Tak Ada Album yang Ditemukan"
+
+#: /home/codygarver/noise/po/../src//Views/GridView/GridView.vala:154
+#, c-format
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+
+#: /home/codygarver/noise/po/../src//Views/GridView/PopupListView.vala:161
+#, c-format
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s oleh %s"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:86
+msgid "Device Name:"
+msgstr "Nama Perangkat:"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Device Name"
+msgstr "Nama Perangkat"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:91
+msgid "Automatically sync when plugged in:"
+msgstr "Sinkronkan otomatis ketika terpasang:"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:98
+msgid "Sync:"
+msgstr "Singkronisasi:"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:120
+msgid "Other Files"
+msgstr "Berkas lain"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:121
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:679
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:817
+msgid "Music"
+msgstr "Musik"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:122
+msgid "Podcasts"
+msgstr "Podcast"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:416
+msgid "All Music"
+msgstr "Semua Musik"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:419
+msgid "All Podcasts"
+msgstr "Semua Podcast"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+msgid "Sync Failed"
+msgstr "Sinkronisasi Gagal"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"Daftar Putar dengan nama %s digunakan untuk singkronisasi perangkat %s, "
+"tetapi tidak dapat ditemukan."
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+msgid "Cannot Sync"
+msgstr "Tidak Dapat Mensinkroniasi"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Tidak dapat mensinkronisasi perangkat dengan pengaturan sinkronisasi ini. "
+"Tidak cukup tempat di disk"
+
+#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+msgid "Device is already doing an operation."
+msgstr "Perangkat siap melakukan operasi."
+
+#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling…"
 msgstr "Membatalkan..."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
+#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
 msgstr "Operasi perangkat dibatalkan dan dihentikan setelah media ini."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
+#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:104
 msgid "No External Songs"
 msgstr "Tidak Ada Lagu Eksternal"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
+#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:104
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
 "Ada lagu-lagu yang ditemukan pada perangkat yang tidak ada dalam pustaka "
 "Anda."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:286
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Menyalin</b> berkas ke <b>Folder Musik</b>..."
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:236
+msgid "Import to Library…"
+msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:167
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:237
+msgid "Rescan Music Folder"
+msgstr "Pindai Ulang Folder Musik"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:238
+msgid "Fullscreen"
+msgstr ""
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:242
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+msgid "Preferences"
+msgstr "Pengaturan"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:265
+msgid "Search Music"
+msgstr "Cari Musik"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:872
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/codygarver/noise/po/../src//LocalLibrary.vala:107
+#: /home/codygarver/noise/po/../src//PlaybackManager.vala:101
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Antrian"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:875
+msgid "No songs in Queue"
+msgstr "Tidak ada lagu di antrian"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:876
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Untuk menambahkan lagu ke antrian, gunakan <b>klik kanan</b> di lagu yang "
+"diinginkan lalu pilih <b>Antrian</b>. Ketika lagu selesai diputar, lagu "
+"dalam antrian akan diputar dahulu sebelum memutar lagu-lagu di daftar putar."
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:882
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/codygarver/noise/po/../src//LocalLibrary.vala:107
+#: /home/codygarver/noise/po/../src//PlaybackManager.vala:99
+msgid "History"
+msgstr "Riwayat"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:885
+msgid "No songs in History"
+msgstr "Tidak ada lagu di Riwayat"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:886
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Lagu yang sudah diputar akan ditambahkan ke Riwayat.\n"
+"Anda dapat melihat semua lagu yang telah Anda putar di sesi ini."
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1119
+msgid "Import Music"
+msgstr "Impor Musik"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1139
+#: /home/codygarver/noise/po/../src//LocalLibrary.vala:248
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>mengimpor</b> musik ke library..."
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1154
+msgid "Rescanning music folder for changes"
+msgstr "Sedang memindai folder musik untuk perubahan"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1161
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+msgid "Could not find Music Folder"
+msgstr "Tak menemukan Folder Musik"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1161
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr "Pastikan folder musik Anda dapat diakses dan di-mount"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1202
+msgid "Import Complete"
+msgstr "Impor Selesai"
+
+#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1202
+#, c-format
+msgid "%s has imported your library."
+msgstr "%s telah diimpor ke Pustaka."
+
+#: /home/codygarver/noise/po/../src//Noise.vala:37
+msgid "Listen to music"
+msgstr "Dengarkan music"
+
+#: /home/codygarver/noise/po/../src//Noise.vala:38
+msgid "Music Player"
+msgstr "Pemutar Musik"
+
+#: /home/codygarver/noise/po/../src//Noise.vala:39
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
+msgstr ""
+
+#: /home/codygarver/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/codygarver/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/codygarver/noise/po/../src//GStreamer/Streamer.vala:195
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
+msgid "Unknown Artist"
+msgstr "Artis Tak Dikenal"
+
+#: /home/codygarver/noise/po/../src//Objects/LyricFetcher.vala:156
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr ""
+
+#: /home/codygarver/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Trek Tak Dikenal"
+
+#: /home/codygarver/noise/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Album Tak Diketahui"
+
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:445
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:685
+msgid "Favorite Songs"
+msgstr "Lagu kesukaan"
+
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:452
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:692
+msgid "Recently Added"
+msgstr "Terakhir Ditambahkan"
+
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:468
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:708
+msgid "Recent Favorites"
+msgstr "Terakhir disukai"
+
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:475
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:715
+msgid "Never Played"
+msgstr "Belum pernah dimainkan"
+
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:482
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:722
+msgid "Over Played"
+msgstr "Dimainkan berulang-ulang"
+
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:489
+#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:729
+msgid "Not Recently Played"
+msgstr "Selain yang baru dimainkan"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:65
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Off"
+msgstr "Padam"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:65
+msgid "Enable Repeat"
+msgstr "Nyalakan Pengulangan"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:66
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:544
+msgid "Song"
+msgstr "Lagu"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:66
+msgid "Repeat Song"
+msgstr "Putar Ulang Lagu"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:67
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:200
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+msgid "Album"
+msgstr "Album"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Album"
+msgstr "Putar Ulang Album"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:198
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+msgid "Artist"
+msgstr "Artis"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Artist"
+msgstr "Putar Ulang Artis"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:69
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "All"
+msgstr "Semua"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat All"
+msgstr "Putar Ulang Semua"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Enable Shuffle"
+msgstr "Hidupkan Putar Acak"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Disable Shuffle"
+msgstr "Matikan Putar Acak"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:132
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:143
+msgid "Add Playlist"
+msgstr "Tambahkan Daftar Putar"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Smart Playlist"
+msgstr "Tambah Daftar Putar Pintar"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:190
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Hide"
+msgstr "Sembunyikan"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:190
+msgid "Show Equalizer"
+msgstr "Tampilkan Ekualiser"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:191
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Show"
+msgstr "Tampilkan"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:191
+msgid "Hide Equalizer"
+msgstr "Sembunyikan Ekualiser"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Show Info Panel"
+msgstr "Tampilkan Panel Info"
+
+#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Hide Info Panel"
+msgstr "Sembunyikan Panel Info"
+
+#: /home/codygarver/noise/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr "Tampilkan sebagai album"
+
+#: /home/codygarver/noise/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr "Tampilkan sebagai daftar"
+
+#: /home/codygarver/noise/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr "Tampilkan sebagai kolom"
+
+#: /home/codygarver/noise/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Hapus Ini"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:56
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:69
+msgid "Rename"
+msgstr "Ubah nama"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:57
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:71
+msgid "Remove"
+msgstr "Singkirkan"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:58
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:72
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:87
+msgid "Export…"
+msgstr "Ekspor..."
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:70
+msgid "Edit…"
+msgstr "Sunting..."
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:85
+msgid "Save as Playlist"
+msgstr "Simpan sebagai Daftar Putar"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:142
+msgid "Eject"
+msgstr "Keluarkan Media"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:147
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:186
+msgid "New Playlist"
+msgstr "Daftar Putar Baru"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:152
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:187
+msgid "New Smart Playlist"
+msgstr "Daftar Putar pintar baru"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:157
+#: /home/codygarver/noise/po/../src//Widgets/SpaceWidget.vala:238
+msgid "Sync"
+msgstr "Sinkronisasi"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:188
+msgid "Import Playlists"
+msgstr "Mengimpor Daftar Putar"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:232
+msgid "Library"
+msgstr "Pustaka"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:233
+msgid "Devices"
+msgstr "Perangkat"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:234
+msgid "Network"
+msgstr "Jaringan"
+
+#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:235
+#: /home/codygarver/noise/po/../plugins//MPRIS/MPRIS.vala:643
+msgid "Playlists"
+msgstr "Daftar Putar"
+
+#: /home/codygarver/noise/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "Bebas"
+
+#: /home/codygarver/noise/po/../src//Widgets/SpaceWidget.vala:384
+msgid "Using %s of %s (%.2f%)"
+msgstr "Menggunakan %s dari %s (%.2f%)"
+
+#: /home/codygarver/noise/po/../src//Widgets/TopDisplay.vala:68
+#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Cancel"
+msgstr "Batal"
+
+#: /home/codygarver/noise/po/../src//LocalLibrary.vala:167
 #, c-format
 msgid "Importing music from %s…"
 msgstr "Mengimpor musik dari %s…"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:209
+#: /home/codygarver/noise/po/../src//LocalLibrary.vala:209
 msgid "Adding files to library…"
 msgstr "Menambah berkas ke pustaka…"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:274
+#: /home/codygarver/noise/po/../src//LocalLibrary.vala:274
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "Memindai perubahan musik. Ini membutuhkan beberapa waktu..."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:352
+#: /home/codygarver/noise/po/../src//LocalLibrary.vala:352
 msgid "Added to your queue:"
 msgstr "Telah ditambahkan pada antrian:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:445
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:685
-msgid "Favorite Songs"
-msgstr "Lagu kesukaan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:452
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:692
-msgid "Recently Added"
-msgstr "Terakhir Ditambahkan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:468
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:708
-msgid "Recent Favorites"
-msgstr "Terakhir disukai"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:475
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:715
-msgid "Never Played"
-msgstr "Belum pernah dimainkan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:482
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:722
-msgid "Over Played"
-msgstr "Dimainkan berulang-ulang"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:489
-#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:729
-msgid "Not Recently Played"
-msgstr "Selain yang baru dimainkan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:37
-msgid "Listen to music"
-msgstr "Dengarkan music"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:38
-msgid "Music Player"
-msgstr "Pemutar Musik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
-msgstr ""
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
-msgid "Sync"
-msgstr "Sinkronisasi"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "Bebas"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:384
-msgid "Using %s of %s (%.2f%)"
-msgstr "Menggunakan %s dari %s (%.2f%)"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Hapus Ini"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Off"
-msgstr "Padam"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
-msgid "Enable Repeat"
-msgstr "Nyalakan Pengulangan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:544
-msgid "Song"
-msgstr "Lagu"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
-msgid "Repeat Song"
-msgstr "Putar Ulang Lagu"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:200
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-msgid "Album"
-msgstr "Album"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Repeat Album"
-msgstr "Putar Ulang Album"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:198
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-msgid "Artist"
-msgstr "Artis"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
-msgid "Repeat Artist"
-msgstr "Putar Ulang Artis"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "All"
-msgstr "Semua"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Repeat All"
-msgstr "Putar Ulang Semua"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Enable Shuffle"
-msgstr "Hidupkan Putar Acak"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Disable Shuffle"
-msgstr "Matikan Putar Acak"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:132
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:143
-msgid "Add Playlist"
-msgstr "Tambahkan Daftar Putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:144
-msgid "Add Smart Playlist"
-msgstr "Tambah Daftar Putar Pintar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Hide"
-msgstr "Sembunyikan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
-msgid "Show Equalizer"
-msgstr "Tampilkan Ekualiser"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Show"
-msgstr "Tampilkan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
-msgid "Hide Equalizer"
-msgstr "Sembunyikan Ekualiser"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Show Info Panel"
-msgstr "Tampilkan Panel Info"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Hide Info Panel"
-msgstr "Sembunyikan Panel Info"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/TopDisplay.vala:68
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Cancel"
-msgstr "Batal"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:56
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:69
-msgid "Rename"
-msgstr "Ubah nama"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
-msgid "Remove"
-msgstr "Singkirkan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:58
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:72
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:87
-msgid "Export…"
-msgstr "Ekspor..."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:70
-msgid "Edit…"
-msgstr "Sunting..."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:85
-msgid "Save as Playlist"
-msgstr "Simpan sebagai Daftar Putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:142
-msgid "Eject"
-msgstr "Keluarkan Media"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:147
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:186
-msgid "New Playlist"
-msgstr "Daftar Putar Baru"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:152
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:187
-msgid "New Smart Playlist"
-msgstr "Daftar Putar pintar baru"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:188
-msgid "Import Playlists"
-msgstr "Mengimpor Daftar Putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:232
-msgid "Library"
-msgstr "Pustaka"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:233
-msgid "Devices"
-msgstr "Perangkat"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:234
-msgid "Network"
-msgstr "Jaringan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:235
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//MPRIS/MPRIS.vala:643
-msgid "Playlists"
-msgstr "Daftar Putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr "Tampilkan sebagai album"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr "Tampilkan sebagai daftar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr "Tampilkan sebagai kolom"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:44
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
 msgstr "Pilih Folder Musik..."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
 msgstr "Umum"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:123
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:123
 msgid "Music Folder Location:"
 msgstr "Lokasi Folder Musik"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:131
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
 msgstr "Pengaturan Pustaka:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:136
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
 msgstr "Atur berkas di folder musik:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:140
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
 msgstr "Tulis metadata ke dalam berkas:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:144
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
 msgstr "Salin berkas yang diimpor ke Pustaka:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
 msgstr "Integrasi Desktop"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
 msgstr "Tampilkan notifikasi:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
 msgstr "Kecilkan window ketika memainkan lagu:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:159
+#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
 msgstr "Sembunyikan window ketika memainkan lagu:"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:88
-msgid "Metadata"
-msgstr "Metadata"
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:48
+msgid "Not Imported Files"
+msgstr "Berkas Tak Terimpor"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:90
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:382
-msgid "Lyrics"
-msgstr "Lirik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:353
-msgid "Editing $NAME by $ARTIST"
-msgstr "Menyunting $NAME oleh $ARTIST"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:355
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:77
 #, c-format
-msgid "Editing %s"
-msgstr "Mengubah %s"
+msgid "Unable to import %d items from %s"
+msgstr "Tak dapat mengimpor %d item dari %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:358
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 #, c-format
-msgid "Editing %i songs"
-msgstr "Mengubah %i lagu"
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s tak dapat mengimpor %d item. Mungkin berkas rusak."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:197
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-msgid "Title"
-msgstr "Judul"
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:67
+msgid "Move all corrupted files to trash"
+msgstr "Buang semua berkas rusak ke tempat sampah"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:199
-msgid "Album Artist"
-msgstr "Artis Album"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:201
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-msgid "Genre"
-msgstr "Aliran"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:202
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-msgid "Composer"
-msgstr "Komposer"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:203
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-msgid "Grouping"
-msgstr "Pengelompokan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:204
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-msgid "Comment"
-msgstr "Komentar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:205
-msgid "Track"
-msgstr "Track"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:206
-msgid "Disc"
-msgstr "Cakram"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:207
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-msgid "Year"
-msgstr "Tahun"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:208
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-msgid "Rating"
-msgstr "Peringkat"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:210
-msgid "Media Type"
-msgstr "Jenis Media"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:301
-#, c-format
-msgid "Lyrics not found for %s"
-msgstr "lirik tak ditemukan untuk %s"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:546
-msgid "Podcast"
-msgstr "Podcast"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
-msgid "Remove Media"
-msgstr "Lepas Media"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
-msgid "Locate Media"
-msgstr "Tempatkan Media"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
-msgid "Rescan Library"
-msgstr "Periksa ulang Pustaka"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
-msgid "Do Nothing"
-msgstr "Jangan Lakukan Apapun"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
-msgid "Could not find media file"
-msgstr "Tidak dapat menemukan berkas media"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
-msgid ""
-"The music file for $NAME by $ARTIST could not be found. What would you like "
-"to do?"
-msgstr ""
-"Berkas musik untuk $NAME oleh $ARTIST tak dapat ditemukan. Apa yang ingin "
-"anda lakukan?"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
-#, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i berkas media tidak dapat ditemukan. Apa yang ingin Anda lakukan?"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
-msgid "Choose Music Folder"
-msgstr "Pilih Folder Musik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
 msgid "Move to Trash"
 msgstr "Pindah ke Tong Sampah"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:73
+msgid "Ignore"
+msgstr "Abaikan"
+
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:94
+msgid "del"
+msgstr "hapus"
+
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:99
+msgid "File Location"
+msgstr "Lokasi Berkas"
+
+#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:126
+msgid "Select individual files to move to trash:"
+msgstr "Pilih berkas satu-satu untuk dipindah ke tong sampah:"
+
+#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove from %s"
 msgstr "Hapus dari %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
+#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Menghapus %d lagu dari %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
+#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Hapus \"%s\" Dari %s?"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
+#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -1338,19 +1261,256 @@ msgstr[0] ""
 "Ini akan menghapus lagu dari pustakamu dan dari perangkat lain yang "
 "disingkronisasikan dengan %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
+msgid "Smart Playlist Editor"
+msgstr "Pengubah Daftar Putar Pintar"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
+msgid "Name of Playlist"
+msgstr "Nama Daftar Putar"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
+msgid "Rules"
+msgstr "Peraturan"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
+msgid "Options"
+msgstr "Pilihan"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
+msgid "Playlist Title"
+msgstr "Nama Daftar Putar"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
+msgid "Match"
+msgstr "Cocokkan"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
+msgid "any"
+msgstr "sembarang"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+msgid "all"
+msgstr "semua"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
+msgid "of the following:"
+msgstr "dari hal-hal berikut"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr "Batasi sampai"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr "item"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Bitrate"
+msgstr "Bitrate"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:204
+msgid "Comment"
+msgstr "Komentar"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:202
+msgid "Composer"
+msgstr "Komposer"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Date Added"
+msgstr "Tanggal Ditambahkan"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Released"
+msgstr "Tanggal Rilis"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:201
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:485
+msgid "Genre"
+msgstr "Aliran"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:203
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:485
+msgid "Grouping"
+msgstr "Pengelompokan"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Last Played"
+msgstr "Terakhir Diputar"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
+msgid "Length"
+msgstr "Panjang"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+msgid "Playcount"
+msgstr "Jumlah putar"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:208
+msgid "Rating"
+msgstr "Peringkat"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Skipcount"
+msgstr "jumlah diskip"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
+msgid "Title"
+msgstr "Judul"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:207
+msgid "Year"
+msgstr "Tahun"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
+msgid "is"
+msgstr "adalah"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
+msgid "contains"
+msgstr "mengandung"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
+msgid "does not contain"
+msgstr "tidak mengandung"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
+msgid "is exactly"
+msgstr "Tepatnya"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+msgid "is at most"
+msgstr "paling banyak"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
+msgid "is at least"
+msgstr "paling sedikit"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
+msgid "is within"
+msgstr "di antara"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
+msgid "is before"
+msgstr "sebelum"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
+msgid "seconds"
+msgstr "detik"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
+msgid "days ago"
+msgstr "hari yang lalu"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "kbps"
+msgstr "kbps"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:88
+msgid "Metadata"
+msgstr "Metadata"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:90
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:382
+msgid "Lyrics"
+msgstr "Lirik"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:353
+msgid "Editing $NAME by $ARTIST"
+msgstr "Menyunting $NAME oleh $ARTIST"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:355
+#, c-format
+msgid "Editing %s"
+msgstr "Mengubah %s"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:358
+#, c-format
+msgid "Editing %i songs"
+msgstr "Mengubah %i lagu"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Album Artist"
+msgstr "Artis Album"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:205
+msgid "Track"
+msgstr "Track"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:206
+msgid "Disc"
+msgstr "Cakram"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:210
+msgid "Media Type"
+msgstr "Jenis Media"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:301
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr "lirik tak ditemukan untuk %s"
+
+#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:546
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:76
+msgid "Equalizer"
+msgstr "Ekualiser"
+
+#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:143
+msgid "Save preset"
+msgstr "Simpan set awal"
+
+#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:407
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (Sesuka)"
+
+#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:409
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (Sesuka %i)"
+
+#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:413
+msgid "Custom Preset"
+msgstr "Set Awal Sesuka"
+
+#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:415
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Set Awal Sesuka %i"
+
+#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Export Playlists"
 msgstr "Ekspor Daftar Putar"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
+#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
 msgid "Set Music Folder"
 msgstr "Tetapkan Folder Musik"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
+#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
 msgid "Set Music Folder?"
 msgstr "Tetapkan Folder Musik?"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
+#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -1359,43 +1519,54 @@ msgstr ""
 "Anda yakin untuk menetapkan folder musik ke %s? Pustaka akan diatur ulang "
 "dan daftar putar akan hilang."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:76
-msgid "Equalizer"
-msgstr "Ekualiser"
+#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
+#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
+msgid "Choose Music Folder"
+msgstr "Pilih Folder Musik"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:143
-msgid "Save preset"
-msgstr "Simpan set awal"
+#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
+msgid "Remove Media"
+msgstr "Lepas Media"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:407
+#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
+msgid "Locate Media"
+msgstr "Tempatkan Media"
+
+#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
+msgid "Rescan Library"
+msgstr "Periksa ulang Pustaka"
+
+#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
+msgid "Do Nothing"
+msgstr "Jangan Lakukan Apapun"
+
+#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
+msgid "Could not find media file"
+msgstr "Tidak dapat menemukan berkas media"
+
+#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
+msgid ""
+"The music file for $NAME by $ARTIST could not be found. What would you like "
+"to do?"
+msgstr ""
+"Berkas musik untuk $NAME oleh $ARTIST tak dapat ditemukan. Apa yang ingin "
+"anda lakukan?"
+
+#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
 #, c-format
-msgid "%s (Custom)"
-msgstr "%s (Sesuka)"
+msgid "%i media files could not be found. What would you like to do?"
+msgstr "%i berkas media tidak dapat ditemukan. Apa yang ingin Anda lakukan?"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:409
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (Sesuka %i)"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:413
-msgid "Custom Preset"
-msgstr "Set Awal Sesuka"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:415
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Set Awal Sesuka %i"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
 msgid "Import from Device"
 msgstr "Impor dari Perangkat"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
 #, c-format
 msgid "Import media from %s"
 msgstr "impor media dari %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
 #, c-format
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
@@ -1404,54 +1575,54 @@ msgstr ""
 "Berkas berikut ditemukan di %s, tapi belum ada di pustaka. Cek semua berkas "
 "yang ingin anda impor"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 msgid "Import all media"
 msgstr "Impor semua media"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDView.vala:90
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDView.vala:90
 msgid "Import"
 msgstr "Impor"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
 msgid "Don't Import"
 msgstr "Jangan Mengimpor"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
 #, c-format
 msgid "Import %i items from %s"
 msgstr "Impor %i item dari %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
 #, c-format
 msgid "Import %s from %s"
 msgstr "Impor %s dari %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
 msgid "ID"
 msgstr "ID"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
 msgid "Select individual media to import:"
 msgstr "Pilih media satu-persatu untuk diimpor"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
 msgid "Check Item"
 msgstr "Periksa Item"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
 msgid "Check Album"
 msgstr "Periksa Album"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Artist"
 msgstr "Periksa Artis"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
 msgid "Cannot Import"
 msgstr "Tak dapat mengimpor"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
 #, c-format
 msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
@@ -1460,19 +1631,19 @@ msgstr ""
 "Noise sedang melakukan operasi berkas. Mohon tunggu hingga selesai mengimpor "
 "dari %d"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
+#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
 msgid "Import media to Library"
 msgstr "Tambah media ke Pustaka"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
+#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
 msgid "Continue Syncing"
 msgstr "Lanjutkan Sinkronisasi"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
+#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
 msgid "Stop Syncing"
 msgstr "Hentikan Sinkronisasi"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
+#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
 #, c-format
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
@@ -1482,181 +1653,25 @@ msgstr ""
 "ada di daftar singkronisasi. Apakah anda ingin mengimpornya ke pustaka "
 "terlebih dahulu?"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
+#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
 #, c-format
 msgid "Sync will remove %i items from %s"
 msgstr "Sinkronisasi akan menghapus %i item dari %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
+#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
 #, c-format
 msgid "Sync will remove 1 item from %s"
 msgstr "Singkronisasi akan menghapus 1 item dari %s"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
-msgid "Smart Playlist Editor"
-msgstr "Pengubah Daftar Putar Pintar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
-msgid "Name of Playlist"
-msgstr "Nama Daftar Putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
-msgid "Rules"
-msgstr "Peraturan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
-msgid "Options"
-msgstr "Pilihan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
-msgid "Playlist Title"
-msgstr "Nama Daftar Putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
-msgid "Match"
-msgstr "Cocokkan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
-msgid "any"
-msgstr "sembarang"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-msgid "all"
-msgstr "semua"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
-msgid "of the following:"
-msgstr "dari hal-hal berikut"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Batasi sampai"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "item"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-msgid "Bitrate"
-msgstr "Bitrate"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-msgid "Date Added"
-msgstr "Tanggal Ditambahkan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Released"
-msgstr "Tanggal Rilis"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-msgid "Last Played"
-msgstr "Terakhir Diputar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
-msgid "Length"
-msgstr "Panjang"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-msgid "Playcount"
-msgstr "Jumlah putar"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-msgid "Skipcount"
-msgstr "jumlah diskip"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
-msgid "is"
-msgstr "adalah"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
-msgid "contains"
-msgstr "mengandung"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
-msgid "does not contain"
-msgstr "tidak mengandung"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
-msgid "is exactly"
-msgstr "Tepatnya"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
-msgid "is at most"
-msgstr "paling banyak"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
-msgid "is at least"
-msgstr "paling sedikit"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
-msgid "is within"
-msgstr "di antara"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
-msgid "is before"
-msgstr "sebelum"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
-msgid "seconds"
-msgstr "detik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
-msgid "days ago"
-msgstr "hari yang lalu"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "kbps"
-msgstr "kbps"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:48
-msgid "Not Imported Files"
-msgstr "Berkas Tak Terimpor"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:65
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:77
-#, c-format
-msgid "Unable to import %d items from %s"
-msgstr "Tak dapat mengimpor %d item dari %s"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:66
-#, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s tak dapat mengimpor %d item. Mungkin berkas rusak."
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:67
-msgid "Move all corrupted files to trash"
-msgstr "Buang semua berkas rusak ke tempat sampah"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:73
-msgid "Ignore"
-msgstr "Abaikan"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:94
-msgid "del"
-msgstr "hapus"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:99
-msgid "File Location"
-msgstr "Lokasi Berkas"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:126
-msgid "Select individual files to move to trash:"
-msgstr "Pilih berkas satu-satu untuk dipindah ke tong sampah:"
-
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
+#: /home/codygarver/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
 msgid "Install Plugin"
 msgstr "Pasang Pengaya"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/codygarver/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
 msgstr "Pengaya GStreamer tak terpasang"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
+#: /home/codygarver/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
@@ -1665,159 +1680,61 @@ msgstr ""
 "Pengaya jenis media %s tak terpasang.\n"
 "Apa yang ingin Anda perbuat?"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//GStreamer/Streamer.vala:195
-#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
-msgid "Unknown Artist"
-msgstr "Artis Tak Dikenal"
+#: /home/codygarver/noise/po/../src//FileOperator.vala:286
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>Menyalin</b> berkas ke <b>Folder Musik</b>..."
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/LyricFetcher.vala:156
-msgid "Lyrics fetched from www.lyricsmania.com"
+#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#, c-format
+msgid "Give %s Permission"
 msgstr ""
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Trek Tak Dikenal"
+#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+msgid "Unsuccessful. Click To Try Again."
+msgstr "Tak Berhasil. Klik untuk Mencoba Lagi"
 
-#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Album Tak Diketahui"
+#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+msgid "Scrobbling Already Enabled"
+msgstr "Scrobbling Sudah Diaktifkan"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
-msgid "An Error Occured"
-msgstr "Kesalahan Terjadi"
+#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+msgid "Success!"
+msgstr "Berhasil!"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
-msgid "There was an error while loading this Audio CD."
-msgstr "Ada galat saat memuat CD Audio ini."
+#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+msgid "Complete Login"
+msgstr "Selesaikan Login"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
-msgid "Audio CD Invalid"
-msgstr "CD Audio Tidak Valid"
+#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:43
+msgid "Last.fm"
+msgstr "Last.fm"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Mustahil untuk membaca isi dari Audio CD ini"
+#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:48
+msgid "Last.fm Integration"
+msgstr "Integrasi Last.fm"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:55
+msgid "Click to redo the Last.fm login process"
+msgstr "Klik untuk mengulangi proses login Last.fm"
+
+#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:58
+#, c-format
 msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
+"To allow for Last.fm integration, you must give permission to %s. You only "
+"need to do this once."
 msgstr ""
-"Pastikan folder musik dapat diakses dan sudah dikaitkan sebelum mengimpor CD."
+"Untuk integrasi Last.fm, Anda harus memberi izin pada %s. Anda hanya perlu "
+"melakukan ini satu kali."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Aplikasi tidak menemukan adanya lagu pada CD. Tidak ada lagu yang bisa di "
-"impor"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
-msgid "Importation of a song from Audio CD finished."
-msgstr "Pengimporan sebuah lagu dari Audio CD telah selesai."
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
-#, c-format
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "Pengimporan %i lagu dari Audio CD telah selesai."
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
-#, c-format
-msgid "Importing track %i: %s"
-msgstr "mengimpor track %i:%s"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Impor CD akan <b>dibatalkan</b> setelah impor berikut."
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
-msgid "An error occured during the Import of this CD"
-msgstr "Kesalahan terjadi ketika mengimpor ke CD"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
-msgid "Empty device!"
-msgstr "Perangkat kosong!"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
-msgid "This device does not contain any music."
-msgstr "Perangkat tidak berisi musik"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
-msgid "Android Phone"
-msgstr "Ponsel Android"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
-msgid "Audio Player"
-msgstr "Pemutar Suara"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Menambahkan <b>$NAME</b> oleh <b>$ARTIST</b> ke $DEVICE"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
-#, c-format
-msgid "Syncing <b>%s</b>…"
-msgstr "Menyelaraskan <b>%s</b>..."
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
-msgid "Finishing sync process…"
-msgstr "Menyelesaikan proses penyelarasan…"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
-msgid "Cancelling Sync…"
-msgstr "Membataklan Penyelarasan..."
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
-msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
-"Ruang kosong pada Perangkat tidak cukup untuk menyelesaikan Penyelarasan…"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Menghapus <b>$NAME</b> oleh <b>$ARTIST</b> dari $DEVICE"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
-#, c-format
-msgid "Removing from <b>%s</b>…"
-msgstr "Menghapus dari <b>%s</b>..."
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
-msgid "media"
-msgstr "media"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
-msgid "Similar Media"
-msgstr "Lagu yang Mirip"
-
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMedia.vala:44
+#: /home/codygarver/noise/po/../plugins//LastFM/SimilarMedia.vala:42
 msgid "Similar"
 msgstr "Serupa"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/codygarver/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"
 msgstr "Tidak ditemukan lagu yang mirip"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/codygarver/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
@@ -1827,45 +1744,129 @@ msgstr ""
 "semua info lagu sudah benar dan Anda terhubung ke Internet. Beberapa lagu "
 "mungkin tidak cocok."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
-msgid "Give Noise Permission"
-msgstr "Beri Izin Noise"
+#: /home/codygarver/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
+msgid "media"
+msgstr "media"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:31
-msgid "Unsuccessful. Click To Try Again."
-msgstr "Tak Berhasil. Klik untuk Mencoba Lagi"
+#: /home/codygarver/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "Similar Media"
+msgstr "Lagu yang Mirip"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
-msgid "Scrobbling Already Enabled"
-msgstr "Scrobbling Sudah Diaktifkan"
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
+msgid "Empty device!"
+msgstr "Perangkat kosong!"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:33
-msgid "Success!"
-msgstr "Berhasil!"
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
+msgid "This device does not contain any music."
+msgstr "Perangkat tidak berisi musik"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:34
-msgid "Complete Login"
-msgstr "Selesaikan Login"
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
+msgid "Android Phone"
+msgstr "Ponsel Android"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:42
-msgid "Last.fm"
-msgstr "Last.fm"
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
+msgid "Audio Player"
+msgstr "Pemutar Suara"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:47
-msgid "Last.fm Integration"
-msgstr "Integrasi Last.fm"
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "Menambahkan <b>$NAME</b> oleh <b>$ARTIST</b> ke $DEVICE"
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:54
-msgid "Click to redo the Last.fm login process"
-msgstr "Klik untuk mengulangi proses login Last.fm"
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
+#, c-format
+msgid "Syncing <b>%s</b>…"
+msgstr "Menyelaraskan <b>%s</b>..."
 
-#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:57
-msgid ""
-"To allow for Last.fm integration, you must give permission to Noise. You "
-"only need to do this once."
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
+msgid "Finishing sync process…"
+msgstr "Menyelesaikan proses penyelarasan…"
+
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
+msgid "Cancelling Sync…"
+msgstr "Membataklan Penyelarasan..."
+
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
+msgid "There is not enough space on Device to complete the Sync…"
 msgstr ""
-"Anda harus mengizinkan Noise untuk melakukan integrasi dengan Last.fm. Anda "
-"hanya perlu melakukannya sekali."
+"Ruang kosong pada Perangkat tidak cukup untuk menyelesaikan Penyelarasan…"
+
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "Menghapus <b>$NAME</b> oleh <b>$ARTIST</b> dari $DEVICE"
+
+#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
+#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
+#, c-format
+msgid "Removing from <b>%s</b>…"
+msgstr "Menghapus dari <b>%s</b>..."
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr "Kesalahan Terjadi"
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr "Ada galat saat memuat CD Audio ini."
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
+msgid "Audio CD Invalid"
+msgstr "CD Audio Tidak Valid"
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+msgid "Impossible to read the contents of this Audio CD"
+msgstr "Mustahil untuk membaca isi dari Audio CD ini"
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"Pastikan folder musik dapat diakses dan sudah dikaitkan sebelum mengimpor CD."
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+msgid ""
+"The Application could not find any songs on the CD. No songs can be imported"
+msgstr ""
+"Aplikasi tidak menemukan adanya lagu pada CD. Tidak ada lagu yang bisa di "
+"impor"
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+msgid "Importation of a song from Audio CD finished."
+msgstr "Pengimporan sebuah lagu dari Audio CD telah selesai."
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+#, c-format
+msgid "Importation of %i songs from Audio CD finished."
+msgstr "Pengimporan %i lagu dari Audio CD telah selesai."
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
+#, c-format
+msgid "Importing track %i: %s"
+msgstr "mengimpor track %i:%s"
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr "Impor CD akan <b>dibatalkan</b> setelah impor berikut."
+
+#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
+msgid "An error occured during the Import of this CD"
+msgstr "Kesalahan terjadi ketika mengimpor ke CD"
 
 #~ msgid "Queue"
 #~ msgstr "Antrian"
@@ -2037,14 +2038,6 @@ msgstr ""
 #, c-format
 #~ msgid "%i days"
 #~ msgstr "%i hari"
-
-#, c-format
-#~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
-#~ msgstr ""
-#~ "Untuk integrasi Last.fm, Anda harus memberi izin pada %s. Anda hanya perlu "
-#~ "melakukan ini satu kali."
 
 #, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
