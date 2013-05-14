@@ -38,7 +38,7 @@ namespace Noise.SettingsWindow {
      * every section.
      */
     public class NoteBook_Page : Gtk.Grid {
-        public string name { get; private set; }
+        public new string name { get; private set; }
 
         private static const int IDENTATION_MARGIN = 12;
 
