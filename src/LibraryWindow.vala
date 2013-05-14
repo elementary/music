@@ -1385,7 +1385,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         saved_state.view_mode = viewSelector.selected;
 
         // Search
-        main_settings.search_string = searchField.get_text ();
+        main_settings.search_string = searchField.text;
         
         // Save info pane (context pane) width
         saved_state.more_width = info_panel.get_allocated_width ();
