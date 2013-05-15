@@ -7,23 +7,160 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-13 18:49-0500\n"
-"PO-Revision-Date: 2013-05-10 16:04+0000\n"
-"Last-Translator: Sergey Cinaylo <funeral20@gmail.com>\n"
+"POT-Creation-Date: 2013-05-14 18:03+0200\n"
+"PO-Revision-Date: 2013-05-14 10:20+0000\n"
+"Last-Translator: Sergey \"Shnatsel\" Davidoff <Shnatsel@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-05-14 05:49+0000\n"
+"X-Launchpad-Export-Date: 2013-05-15 05:47+0000\n"
 "X-Generator: Launchpad (build 16617)\n"
 
-#: /home/codygarver/noise/po/../core//Utils/String.vala:176
-msgid "the|a|an|le|la|les|un|une|der|die|das|los"
+#: /home/tutebatti/noise/po/../core//LibrariesManager.vala:130
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "Импорт <b>$NAME</b> by <b>$ARTIST</b> в библиотеку..."
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:78
+msgid "Flat"
+msgstr "Простой"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:79
+msgid "Classical"
+msgstr "Классическая музыка"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:80
+msgid "Club"
+msgstr "Клубная музыка"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:81
+msgid "Dance"
+msgstr "Танцевальная музыка"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:82
+msgid "Full Bass"
+msgstr "Усиление басов"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:83
+msgid "Full Treble"
+msgstr "Усиление высоких частот"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:84
+msgid "Full Bass + Treble"
+msgstr "Усиление басов и высоких частот"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:85
+msgid "Headphones"
+msgstr "Наушники"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:86
+msgid "Large Hall"
+msgstr "Большой зал"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:87
+msgid "Live"
+msgstr "Живое исполнение"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:88
+msgid "Party"
+msgstr "Вечеринка"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:89
+msgid "Pop"
+msgstr "Поп-музыка"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:90
+msgid "Reggae"
+msgstr "Регги"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:91
+msgid "Rock"
+msgstr "Рок"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:92
+msgid "Soft"
+msgstr "Мягкая музыка"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:93
+msgid "Ska"
+msgstr "Ска"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:94
+msgid "Soft Rock"
+msgstr "Софт-рок"
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:95
+msgid "Techno"
+msgstr "Техно"
+
+#. / Used for unknown titles, artists, or album names.
+#: /home/tutebatti/noise/po/../core//Media.vala:43
+msgid "Unknown"
+msgstr "Неизвестный"
+
+#: /home/tutebatti/noise/po/../core//Media.vala:53
+msgid "Radio Station"
+msgstr "Радиостанция"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: /home/tutebatti/noise/po/../core//Media.vala:183
+msgid "$NAME on $ALBUM"
+msgstr "$NAME на $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/tutebatti/noise/po/../core//Media.vala:186
+msgid "$NAME by $ARTIST"
+msgstr "$NAME исполняет $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/tutebatti/noise/po/../core//Media.vala:192
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME из альбома $ALBUM, исполняет $ARTIST"
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:96
+#, c-format
+msgid "%s (%d)"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:235
+msgid "New playlist"
+msgstr "Новый список воспроизведения"
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:246
+#, c-format
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr "Экспорт списка воспроизведения"
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:282
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:376
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "Расширенная версия MPEG 3.0 (*.m3u)"
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:287
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:381
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Список воспроизведения Shoutcast версии 2.0(*.pls)"
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:361
+msgid "Playlist"
+msgstr "Список воспроизведения"
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:367
+#, c-format
+msgid "Import %s"
+msgstr "Импортировать «%s»"
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:401
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Файл списка воспроизведения не распознан. Импортирование не удалось."
+
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -31,8 +168,8 @@ msgstr[0] "%d секунда"
 msgstr[1] "%d секунды"
 msgstr[2] "%d секунд"
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:52
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:52
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -40,7 +177,7 @@ msgstr[0] "%u минута"
 msgstr[1] "%u минуты"
 msgstr[2] "%u минут"
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:56
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:56
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
@@ -49,13 +186,13 @@ msgstr[1] "%u секунды"
 msgstr[2] "%u секунд"
 
 #. / Minutes and seconds
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:58
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:58
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s и %s"
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:77
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
@@ -63,7 +200,7 @@ msgstr[0] "%u день"
 msgstr[1] "%u дня"
 msgstr[2] "%u дней"
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:80
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
@@ -72,28 +209,28 @@ msgstr[1] "%u часа"
 msgstr[2] "%u часов"
 
 #. / days, hours and minutes
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:91
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s и %s"
 
 #. / days and hours
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:94
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:94
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s и %s"
 
 #. / days and minutes
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:99
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:99
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s и %s"
 
 #. / hours and minutes
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:108
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:108
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -101,158 +238,535 @@ msgstr "%s и %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:167
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:96
-#, c-format
-msgid "%s (%d)"
+#: /home/tutebatti/noise/po/../core//Utils/String.vala:176
+msgid "the|a|an|le|la|les|un|une|der|die|das|los"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:235
-msgid "New playlist"
-msgstr "Новый список воспроизведения"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:236
+msgid "Import to Library…"
+msgstr "Импортировать в медиатеку..."
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:246
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:237
+msgid "Rescan Music Folder"
+msgstr "Сканировать папку с музыкой заново"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:238
+msgid "Fullscreen"
+msgstr "Полноэкранный  режим"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:242
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+msgid "Preferences"
+msgstr "Параметры"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:265
+msgid "Search Music"
+msgstr "Поиск музыки"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:679
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:817
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:121
+msgid "Music"
+msgstr "Музыка"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:872
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:107
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/tutebatti/noise/po/../src//PlaybackManager.vala:101
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Очередь"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:875
+msgid "No songs in Queue"
+msgstr "Нет композиций в очереди"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:876
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Чтобы добавить композиции в очередь, <b>щёлкните правой кнопкой мыши</b> по "
+"элементу и выберите в контекстном меню пункт «<b>Добавить в очередь</b>». "
+"Когда композиция закончится, композиции в очереди будут воспроизведены перед "
+"следующей песней в текущем списке воспроизведения."
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:882
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:107
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/tutebatti/noise/po/../src//PlaybackManager.vala:99
+msgid "History"
+msgstr "Журнал"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:885
+msgid "No songs in History"
+msgstr "Нет композиций в журнале"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:886
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"После того, как часть композиции проиграна, она добавлена в журнал.\n"
+"Можно использовать журнал, чтобы увидеть все композиции, воспроизведённые за "
+"этот сеанс."
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1119
+msgid "Import Music"
+msgstr "Импортировать музыку"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1139
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:248
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>Импорт</b> музыки в библиотеку…"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1154
+msgid "Rescanning music folder for changes"
+msgstr "Повторное сканирование папки с музыкой для поиска изменений"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1161
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+msgid "Could not find Music Folder"
+msgstr "Не удалось найти папку с музыкой"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1161
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr ""
+"Убедитесь, что папка с музыкой доступна, а устройство, на котором она "
+"находится, монтировано."
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1202
+msgid "Import Complete"
+msgstr "Импортирование завершено"
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1202
 #, c-format
-msgid "%s (%i)"
-msgstr "%s (%i)"
+msgid "%s has imported your library."
+msgstr "%s импортировал библиотеку."
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "Экспорт списка воспроизведения"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "Все жанры"
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:282
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:376
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "Расширенная версия MPEG 3.0 (*.m3u)"
-
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:287
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:381
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Список воспроизведения Shoutcast версии 2.0(*.pls)"
-
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:361
-msgid "Playlist"
-msgstr "Список воспроизведения"
-
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:367
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 #, c-format
-msgid "Import %s"
-msgstr "Импортировать «%s»"
+msgid "All %i Genres"
+msgstr "Все %i жанров"
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:401
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Файл списка воспроизведения не распознан. Импортирование не удалось."
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "Нет жанров"
 
-#: /home/codygarver/noise/po/../core//LibrariesManager.vala:130
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Импорт <b>$NAME</b> by <b>$ARTIST</b> в библиотеку..."
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "Все исполнители"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:78
-msgid "Flat"
-msgstr "Простой"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Artists"
+msgstr "Все %i исполнителей"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:79
-msgid "Classical"
-msgstr "Классическая музыка"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "Нет исполнителей"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:80
-msgid "Club"
-msgstr "Клубная музыка"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "Все альбомы"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:81
-msgid "Dance"
-msgstr "Танцевальная музыка"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Albums"
+msgstr "Все %i альбомов"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:82
-msgid "Full Bass"
-msgstr "Усиление басов"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "Нет альбомов"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:83
-msgid "Full Treble"
-msgstr "Усиление высоких частот"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "Все года"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:84
-msgid "Full Bass + Treble"
-msgstr "Усиление басов и высоких частот"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Years"
+msgstr "Все %i годов"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:85
-msgid "Headphones"
-msgstr "Наушники"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "Нет годов"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:86
-msgid "Large Hall"
-msgstr "Большой зал"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "Все оценки"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:87
-msgid "Live"
-msgstr "Живое исполнение"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "Нет оценок"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:88
-msgid "Party"
-msgstr "Вечеринка"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr "Все группы"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:89
-msgid "Pop"
-msgstr "Поп-музыка"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#, c-format
+msgid "All %i Groupings"
+msgstr "Все %i Группы"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:90
-msgid "Reggae"
-msgstr "Регги"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr "Нет Групп"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:91
-msgid "Rock"
-msgstr "Рок"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "Все композиторы"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:92
-msgid "Soft"
-msgstr "Мягкая музыка"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Composers"
+msgstr "Всех %i  Композиторов"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:93
-msgid "Ska"
-msgstr "Ска"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "Нет Композиторов"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:94
-msgid "Soft Rock"
-msgstr "Софт-рок"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
+#: /home/tutebatti/noise/po/../src//Widgets/PresetList.vala:49
+msgid "Automatic"
+msgstr "Автоматически"
 
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:95
-msgid "Techno"
-msgstr "Техно"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
+msgid "On Left"
+msgstr "Слева"
 
-#. / Used for unknown titles, artists, or album names.
-#: /home/codygarver/noise/po/../core//Media.vala:43
-msgid "Unknown"
-msgstr "Неизвестный"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+msgid "On Top"
+msgstr "Сверху"
 
-#: /home/codygarver/noise/po/../core//Media.vala:53
-msgid "Radio Station"
-msgstr "Радиостанция"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "Без оценки"
 
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: /home/codygarver/noise/po/../core//Media.vala:183
-msgid "$NAME on $ALBUM"
-msgstr "$NAME на $ALBUM"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i звезда"
+msgstr[1] "%i звезды"
+msgstr[2] "%i звёзд"
 
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: /home/codygarver/noise/po/../core//Media.vala:186
-msgid "$NAME by $ARTIST"
-msgstr "$NAME исполняет $ARTIST"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr "Жанры"
 
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: /home/codygarver/noise/po/../core//Media.vala:192
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME из альбома $ALBUM, исполняет $ARTIST"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr "Исполнители"
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
-#: /home/codygarver/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr "Альбомы"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr "Годы"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr "Оценки"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr "Композиторы"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr "Группы"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
+msgid "Autosize Columns"
+msgstr "Авторазмер столбцов"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
+msgid "Display Album Art"
+msgstr "Отображать обложки альбомов"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
+#, c-format
+msgid "%i kbps"
+msgstr "%i кбит/с"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
+msgid "Never"
+msgstr "Никогда"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
+msgid "Remove from Library"
+msgstr "Удалить из библиотеки"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
+msgid "Remove from Queue"
+msgstr "Удалить из очереди"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
+msgid "Remove from Device"
+msgstr "Удалить с устройства"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
+msgid "Scroll to Current Song"
+msgstr "Прокрутить до текущей композиции"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
+msgid "Edit Song Info"
+msgstr "Редактировать информацию о композиции"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
+msgid "Show in File Browser"
+msgstr "Показать в обозревателе файлов"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Поставить в очередь"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
+msgid "Add to Playlist"
+msgstr "Добавить в список воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
+msgid "Remove Song"
+msgstr "Удалить композицию"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:134
+msgid "Import to Library"
+msgstr "Импортировать в библиотеку"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
+msgid "New Playlist…"
+msgstr "Новый список воспроизведения..."
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Импортировать %i из %i выбранных композиций"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "Импорт %i песня"
+msgstr[1] "Импорт %i песни"
+msgstr[2] "Импорт %i песен"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
+msgid "Sample List String"
+msgstr "Простой список"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
+msgctxt "List column title"
+msgid "Track"
+msgstr "Композиция"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
+msgctxt "List column title"
+msgid "Title"
+msgstr "Название"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
+msgctxt "List column title"
+msgid "Length"
+msgstr "Длительность"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Исполнитель"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Album"
+msgstr "Альбом"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Исполнитель альбома"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Композитор"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Жанр"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Year"
+msgstr "Год"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Группировка"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Качество звука"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Оценка"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Воспроизведение"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Пропустить"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Дата добавления"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Последнее воспроизведение"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "Уд./мин."
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Расположение"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Размер файла"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:89
+msgid "No Songs Found."
+msgstr "Композиции не найдены."
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:369
+#, c-format
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i композиция"
+msgstr[1] "%i композиции"
+msgstr[2] "%i композиций"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:371
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u композиция"
+msgstr[1] "%u композиции"
+msgstr[2] "%u композиций"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:379
+#, c-format
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/GridView.vala:58
+msgid "No Albums Found."
+msgstr "Альбомы не найдены."
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/GridView.vala:154
+#, c-format
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u альбом"
+msgstr[1] "%u альбома"
+msgstr[2] "%u альбомов"
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/PopupListView.vala:161
+#, c-format
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s в исполнении %s"
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr "%d минут"
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr "%d часов"
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d дней"
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u элементов, %s, %s"
+
+#: /home/tutebatti/noise/po/../src//Views/ContentView.vala:21
+#, c-format
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid "No Songs"
 msgstr "Нет композиций"
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
+msgid "Please wait until that this playlist get updated."
+msgstr "Пожалуйста, дождитесь обновления списка воспроизведения."
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
+msgid "No media"
+msgstr "Нет диска"
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -261,11 +775,11 @@ msgstr ""
 "кнопкой мыши</b> по элементу и выберите в контекстном меню пункт "
 "«<b>Добавить в список воспроизведения</b>»."
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
 msgstr "Изменить динамический список воспроизведения"
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -278,493 +792,76 @@ msgstr ""
 "контекстном меню пункт «<b>Изменить</b>». Кроме того, можно щёлкнуть по "
 "кнопке внизу."
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
 msgid "Get Some Tunes"
 msgstr "Настройтесь на мелодию"
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
-#, c-format
-msgid "%s can't seem to find your music."
-msgstr "Возможно, %s не нашло музыку."
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Add music to your library."
+msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Locate"
-msgstr "Местоположение"
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Locate Music Folder"
+msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Change your music folder."
-msgstr "Изменить расположение папки с музыкой."
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Load music from a folder, a network or an external disk"
+msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:85
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
 msgid "Import your Music"
-msgstr "Импортировать вашу музыку"
+msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:85
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
 #, c-format
 msgid "Import all your Music from %s into your library."
 msgstr "Импортировать музыкальные файлы из %s в медиатеку."
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:124
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:125
 msgid "Select Music Folder"
 msgstr "Выберите папку с музыкой"
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
-msgid "No media"
-msgstr "Нет диска"
-
-#: /home/codygarver/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
-msgid "Please wait until that this playlist get updated."
-msgstr "Пожалуйста, дождитесь обновления списка воспроизведения."
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
-msgid "Autosize Columns"
-msgstr "Авторазмер столбцов"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
-msgid "Display Album Art"
-msgstr "Отображать обложки альбомов"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
-#, c-format
-msgid "%i kbps"
-msgstr "%i кбит/с"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
-msgid "Never"
-msgstr "Никогда"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
-msgid "Remove from Library"
-msgstr "Удалить из библиотеки"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
-msgid "Remove from Queue"
-msgstr "Удалить из очереди"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
-msgid "Remove from Device"
-msgstr "Удалить с устройства"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
-msgid "Scroll to Current Song"
-msgstr "Прокрутить до текущей композиции"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
-msgid "Edit Song Info"
-msgstr "Редактировать информацию о композиции"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
-msgid "Show in File Browser"
-msgstr "Показать в обозревателе файлов"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Поставить в очередь"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
-msgid "Add to Playlist"
-msgstr "Добавить в список воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
-msgid "Remove Song"
-msgstr "Удалить композицию"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:134
-msgid "Import to Library"
-msgstr "Импортировать в библиотеку"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
-msgid "New Playlist…"
-msgstr "Новый список воспроизведения..."
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Импортировать %i из %i выбранных композиций"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
-#, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Импорт %i песня"
-msgstr[1] "Импорт %i песни"
-msgstr[2] "Импорт %i песен"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
-msgid "Sample List String"
-msgstr "Простой список"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
-msgctxt "List column title"
-msgid "Track"
-msgstr "Композиция"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
-msgctxt "List column title"
-msgid "Title"
-msgstr "Название"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
-msgctxt "List column title"
-msgid "Length"
-msgstr "Длительность"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Исполнитель"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
-msgctxt "List column title"
-msgid "Album"
-msgstr "Альбом"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Исполнитель альбома"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Композитор"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Жанр"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
-msgctxt "List column title"
-msgid "Year"
-msgstr "Год"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Группировка"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Качество звука"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Оценка"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Воспроизведение"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Пропустить"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Дата добавления"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Последнее воспроизведение"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "Уд./мин."
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Расположение"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Размер файла"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:89
-msgid "No Songs Found."
-msgstr "Композиции не найдены."
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:369
-#, c-format
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i композиция"
-msgstr[1] "%i композиции"
-msgstr[2] "%i композиций"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:371
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u композиция"
-msgstr[1] "%u композиции"
-msgstr[2] "%u композиций"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:379
-#, c-format
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
-#: /home/codygarver/noise/po/../src//Widgets/PresetList.vala:49
-msgid "Automatic"
-msgstr "Автоматически"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
-msgid "On Left"
-msgstr "Слева"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
-msgid "On Top"
-msgstr "Сверху"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Без оценки"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-#, c-format
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i звезда"
-msgstr[1] "%i звезды"
-msgstr[2] "%i звёзд"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Все жанры"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-#, c-format
-msgid "All %i Genres"
-msgstr "Все %i жанров"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Нет жанров"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Все исполнители"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Artists"
-msgstr "Все %i исполнителей"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Нет исполнителей"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Все альбомы"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Albums"
-msgstr "Все %i альбомов"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Нет альбомов"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Все года"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Years"
-msgstr "Все %i годов"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Нет годов"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Все оценки"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Нет оценок"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "Все группы"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-#, c-format
-msgid "All %i Groupings"
-msgstr "Все %i Группы"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "Нет Групп"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Все композиторы"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Composers"
-msgstr "Всех %i  Композиторов"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Нет Композиторов"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr "Жанры"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr "Исполнители"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr "Альбомы"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr "Годы"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr "Оценки"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr "Композиторы"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr "Группы"
-
-#: /home/codygarver/noise/po/../src//Views/ContentView.vala:21
-#, c-format
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
-
-#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d минут"
-
-#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d часов"
-
-#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d дней"
-
-#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u элементов, %s, %s"
-
-#: /home/codygarver/noise/po/../src//Views/GridView/GridView.vala:58
-msgid "No Albums Found."
-msgstr "Альбомы не найдены."
-
-#: /home/codygarver/noise/po/../src//Views/GridView/GridView.vala:154
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u альбом"
-msgstr[1] "%u альбома"
-msgstr[2] "%u альбомов"
-
-#: /home/codygarver/noise/po/../src//Views/GridView/PopupListView.vala:161
-#, c-format
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s в исполнении %s"
-
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:86
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:86
 msgid "Device Name:"
 msgstr "Название устройства:"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Device Name"
 msgstr "Название устройства"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:91
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Automatically sync when plugged in:"
 msgstr "Автоматически синхронизировать при подключении:"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:98
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:98
 msgid "Sync:"
 msgstr "Синхронизировать:"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:120
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:120
 msgid "Other Files"
 msgstr "Другие файлы"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:121
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:679
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:817
-msgid "Music"
-msgstr "Музыка"
-
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:122
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:122
 msgid "Podcasts"
 msgstr "Подкасты"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:416
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:416
 msgid "All Music"
 msgstr "Вся музыка"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:419
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:419
 msgid "All Podcasts"
 msgstr "Все подкасты"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 msgid "Sync Failed"
 msgstr "Синхронизация не удалась"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
@@ -772,504 +869,664 @@ msgstr ""
 "Список воспроизведения «%s» используется для синхронизации с устройством "
 "«%s», но не был найден."
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Cannot Sync"
 msgstr "Невозможно синхронизировать"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Невозможно синхронизировать устройство при выбранных параметрах. "
 "Недостаточно места на диске."
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
 msgstr "Устройство уже занято."
 
-#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:41
+#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling…"
 msgstr "Отмена…"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:41
+#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
 msgstr "Операция была отменена и прекратит работу вместе с устройством"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:104
+#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:104
 msgid "No External Songs"
 msgstr "Нет внешних композиций"
 
-#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:104
+#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:104
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr "На устройстве нет композиций, отсутствующих в библиотеке."
 
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:236
-msgid "Import to Library…"
-msgstr "Импорт в медиатеку..."
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:237
-msgid "Rescan Music Folder"
-msgstr "Сканировать папку с музыкой заново"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:238
-msgid "Fullscreen"
-msgstr "Полноэкранный  режим"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:242
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:84
-msgid "Preferences"
-msgstr "Параметры"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:265
-msgid "Search Music"
-msgstr "Поиск музыки"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:872
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:107
-#: /home/codygarver/noise/po/../src//PlaybackManager.vala:101
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Очередь"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:875
-msgid "No songs in Queue"
-msgstr "Нет композиций в очереди"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:876
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"Чтобы добавить композиции в очередь, <b>щёлкните правой кнопкой мыши</b> по "
-"элементу и выберите в контекстном меню пункт «<b>Добавить в очередь</b>». "
-"Когда композиция закончится, композиции в очереди будут воспроизведены перед "
-"следующей песней в текущем списке воспроизведения."
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:882
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:107
-#: /home/codygarver/noise/po/../src//PlaybackManager.vala:99
-msgid "History"
-msgstr "Журнал"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:885
-msgid "No songs in History"
-msgstr "Нет композиций в журнале"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:886
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"После того, как часть композиции проиграна, она добавлена в журнал.\n"
-"Можно использовать журнал, чтобы увидеть все композиции, воспроизведённые за "
-"этот сеанс."
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1119
-msgid "Import Music"
-msgstr "Импортировать музыку"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1139
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:248
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Импорт</b> музыки в библиотеку…"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1154
-msgid "Rescanning music folder for changes"
-msgstr "Повторное сканирование папки с музыкой для поиска изменений"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1161
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
-msgid "Could not find Music Folder"
-msgstr "Не удалось найти папку с музыкой"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1161
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
-"Убедитесь, что папка с музыкой доступна, а устройство, на котором она "
-"находится, монтировано."
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1202
-msgid "Import Complete"
-msgstr "Импортирование завершено"
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1202
-#, c-format
-msgid "%s has imported your library."
-msgstr "%s импортировал библиотеку."
-
-#: /home/codygarver/noise/po/../src//Noise.vala:37
-msgid "Listen to music"
-msgstr "Слушайте музыку"
-
-#: /home/codygarver/noise/po/../src//Noise.vala:38
-msgid "Music Player"
-msgstr "Музыкальный проигрыватель"
-
-#: /home/codygarver/noise/po/../src//Noise.vala:39
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
-msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
-
-#: /home/codygarver/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/codygarver/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/codygarver/noise/po/../src//GStreamer/Streamer.vala:195
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
-msgid "Unknown Artist"
-msgstr "Неизвестный исполнитель"
-
-#: /home/codygarver/noise/po/../src//Objects/LyricFetcher.vala:156
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Тексти взяты с www.lyricsmania.com"
-
-#: /home/codygarver/noise/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Неизвестная дорожка"
-
-#: /home/codygarver/noise/po/../src//Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Неизвестный альбом"
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:445
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:685
-msgid "Favorite Songs"
-msgstr "Любимые композиции"
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:452
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:692
-msgid "Recently Added"
-msgstr "Недавно добавленные"
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:468
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:708
-msgid "Recent Favorites"
-msgstr "Последние понравившиеся"
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:475
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:715
-msgid "Never Played"
-msgstr "Не воспроизводившиеся ранее"
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:482
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:722
-msgid "Over Played"
-msgstr "Часто воспроизводившиеся"
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:489
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:729
-msgid "Not Recently Played"
-msgstr "Воспроизведённые давно"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:65
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Off"
-msgstr "Выкл."
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:65
-msgid "Enable Repeat"
-msgstr "Включить повтор"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:66
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:544
-msgid "Song"
-msgstr "Композиция"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:66
-msgid "Repeat Song"
-msgstr "Повторять песню"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:67
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:200
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-msgid "Album"
-msgstr "Альбом"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Repeat Album"
-msgstr "Повторять альбом"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:68
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:198
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-msgid "Artist"
-msgstr "Исполнитель"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:68
-msgid "Repeat Artist"
-msgstr "Повторять композиции исполнителя"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:69
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "All"
-msgstr "Всё"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Repeat All"
-msgstr "Повторять всё"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Enable Shuffle"
-msgstr "Включить воспроизведение в случайном порядке"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Disable Shuffle"
-msgstr "Отключить воспроизведение в случайном порядке"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:132
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:143
-msgid "Add Playlist"
-msgstr "Добавить список воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:144
-msgid "Add Smart Playlist"
-msgstr "Добавить динамический список воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:190
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Hide"
-msgstr "Скрыть"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:190
-msgid "Show Equalizer"
-msgstr "Показать эквалайзер"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:191
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Show"
-msgstr "Показать"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:191
-msgid "Hide Equalizer"
-msgstr "Скрыть эквалайзер"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Show Info Panel"
-msgstr "Показать панель с информацией"
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Hide Info Panel"
-msgstr "Скрыть панель с информацией"
-
-#: /home/codygarver/noise/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr "Режим просмотра: Альбомы"
-
-#: /home/codygarver/noise/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr "Режим просмотра: Список"
-
-#: /home/codygarver/noise/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr "Режим просмотра: Таблица"
-
-#: /home/codygarver/noise/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Удалить текущий"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:56
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:69
-msgid "Rename"
-msgstr "Переименовать"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:57
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:71
-msgid "Remove"
-msgstr "Удалить"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:58
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:72
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:87
-msgid "Export…"
-msgstr "Экспортировать..."
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:70
-msgid "Edit…"
-msgstr "Изменить ..."
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:85
-msgid "Save as Playlist"
-msgstr "Сохранить как список воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:142
-msgid "Eject"
-msgstr "Извлечь"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:147
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:186
-msgid "New Playlist"
-msgstr "Новый список воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:152
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:187
-msgid "New Smart Playlist"
-msgstr "Новый динамический список воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:157
-#: /home/codygarver/noise/po/../src//Widgets/SpaceWidget.vala:238
-msgid "Sync"
-msgstr "Синхронизация"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:188
-msgid "Import Playlists"
-msgstr "Импортировать списки воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:232
-msgid "Library"
-msgstr "Библиотека"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:233
-msgid "Devices"
-msgstr "Устройства"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:234
-msgid "Network"
-msgstr "Сеть"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:235
-#: /home/codygarver/noise/po/../plugins//MPRIS/MPRIS.vala:643
-msgid "Playlists"
-msgstr "Списки воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "Свободно"
-
-#: /home/codygarver/noise/po/../src//Widgets/SpaceWidget.vala:384
-msgid "Using %s of %s (%.2f%)"
-msgstr "Использовано %s из %s (%.2f%)"
-
-#: /home/codygarver/noise/po/../src//Widgets/TopDisplay.vala:68
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Cancel"
-msgstr "Отмена"
-
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:167
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:167
 #, c-format
 msgid "Importing music from %s…"
 msgstr "Импорт музыки из %s…"
 
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:209
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:209
 msgid "Adding files to library…"
 msgstr "Добавление файлов в библиотеку..."
 
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:274
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:274
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
 "Повторное сканирование музыки на изменения. Это может занять некоторое "
 "время..."
 
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:352
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:352
 msgid "Added to your queue:"
 msgstr "Добавлено в очередь"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:44
+#: /home/tutebatti/noise/po/../src//Noise.vala:37
+msgid "Listen to music"
+msgstr "Слушайте музыку"
+
+#: /home/tutebatti/noise/po/../src//Noise.vala:38
+msgid "Music Player"
+msgstr "Музыкальный проигрыватель"
+
+#: /home/tutebatti/noise/po/../src//Noise.vala:39
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
+msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:56
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:69
+msgid "Rename"
+msgstr "Переименовать"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:57
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:71
+msgid "Remove"
+msgstr "Удалить"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:58
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:72
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:87
+msgid "Export…"
+msgstr "Экспортировать..."
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:70
+msgid "Edit…"
+msgstr "Изменить ..."
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:85
+msgid "Save as Playlist"
+msgstr "Сохранить как список воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:142
+msgid "Eject"
+msgstr "Извлечь"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:147
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:186
+msgid "New Playlist"
+msgstr "Новый список воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:152
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:187
+msgid "New Smart Playlist"
+msgstr "Новый динамический список воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:157
+#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:238
+msgid "Sync"
+msgstr "Синхронизация"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:188
+msgid "Import Playlists"
+msgstr "Импортировать списки воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:232
+msgid "Library"
+msgstr "Библиотека"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:233
+msgid "Devices"
+msgstr "Устройства"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:234
+msgid "Network"
+msgstr "Сеть"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:235
+#: /home/tutebatti/noise/po/../plugins//MPRIS/MPRIS.vala:643
+msgid "Playlists"
+msgstr "Списки воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Widgets/TopDisplay.vala:68
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Cancel"
+msgstr "Отмена"
+
+#: /home/tutebatti/noise/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Удалить текущий"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:65
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Off"
+msgstr "Выкл."
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:65
+msgid "Enable Repeat"
+msgstr "Включить повтор"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:66
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:544
+msgid "Song"
+msgstr "Композиция"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:66
+msgid "Repeat Song"
+msgstr "Повторять песню"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:67
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:200
+msgid "Album"
+msgstr "Альбом"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Album"
+msgstr "Повторять альбом"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:198
+msgid "Artist"
+msgstr "Исполнитель"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Artist"
+msgstr "Повторять композиции исполнителя"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:69
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "All"
+msgstr "Всё"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat All"
+msgstr "Повторять всё"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Enable Shuffle"
+msgstr "Включить воспроизведение в случайном порядке"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Disable Shuffle"
+msgstr "Отключить воспроизведение в случайном порядке"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:132
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:143
+msgid "Add Playlist"
+msgstr "Добавить список воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Smart Playlist"
+msgstr "Добавить динамический список воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:190
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Hide"
+msgstr "Скрыть"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:190
+msgid "Show Equalizer"
+msgstr "Показать эквалайзер"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:191
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Show"
+msgstr "Показать"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:191
+msgid "Hide Equalizer"
+msgstr "Скрыть эквалайзер"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Show Info Panel"
+msgstr "Показать панель с информацией"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Hide Info Panel"
+msgstr "Скрыть панель с информацией"
+
+#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr "Режим просмотра: Альбомы"
+
+#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr "Режим просмотра: Список"
+
+#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr "Режим просмотра: Таблица"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "Свободно"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:384
+msgid "Using %s of %s (%.2f%)"
+msgstr "Использовано %s из %s (%.2f%)"
+
+#: /home/tutebatti/noise/po/../src//FileOperator.vala:286
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>Копирование</b> файлов в </b>Музыка<b>..."
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:445
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:685
+msgid "Favorite Songs"
+msgstr "Любимые композиции"
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:452
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:692
+msgid "Recently Added"
+msgstr "Недавно добавленные"
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:468
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:708
+msgid "Recent Favorites"
+msgstr "Последние понравившиеся"
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:475
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:715
+msgid "Never Played"
+msgstr "Не воспроизводившиеся ранее"
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:482
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:722
+msgid "Over Played"
+msgstr "Часто воспроизводившиеся"
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:489
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:729
+msgid "Not Recently Played"
+msgstr "Воспроизведённые давно"
+
+#: /home/tutebatti/noise/po/../src//Objects/LyricFetcher.vala:156
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "Тексти взяты с www.lyricsmania.com"
+
+#: /home/tutebatti/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Неизвестная дорожка"
+
+#: /home/tutebatti/noise/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Неизвестный альбом"
+
+#: /home/tutebatti/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/tutebatti/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/tutebatti/noise/po/../src//GStreamer/Streamer.vala:195
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
+msgid "Unknown Artist"
+msgstr "Неизвестный исполнитель"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
 msgstr "Выберите папку с музыкальными файлами..."
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
 msgstr "Общие"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:123
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:123
 msgid "Music Folder Location:"
 msgstr "Местоположение папки с музыкой:"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:131
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
 msgstr "Управление медиатекой:"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:136
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
 msgstr "Сохранять структуру папки с музыкой:"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:140
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
 msgstr "Записать метаданные в файл:"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:144
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
 msgstr "Копировать импортированные файлы в медиатеку:"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
 msgstr "Интеграция с рабочим столом:"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
 msgstr "Показывать уведомления:"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
 msgstr "Свернуть окно во время воспроизведения композиции:"
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:159
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
 msgstr "Скрыть окно во время воспроизведения композиции::"
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:48
-msgid "Not Imported Files"
-msgstr "Не импортированные файлы"
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
+msgid "Import from Device"
+msgstr "Импортировать с устройства"
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:65
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:77
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
 #, c-format
-msgid "Unable to import %d items from %s"
-msgstr "Невозможно импортировать %d элементов из «%s»"
+msgid "Import media from %s"
+msgstr "Импорт данных из %s"
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
 #, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
 msgstr ""
-"%s не может импортировать %d элементов. Эти файлы могут быть повреждены."
+"Следующие данные на устройстве «%s» отсутствуют в библиотеке. Отметьте все "
+"файлы, которые нужно импортировать."
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:67
-msgid "Move all corrupted files to trash"
-msgstr "Переместить все поврежденные файлы в корзину"
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+msgid "Import all media"
+msgstr "Импортировать все данные"
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:72
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDView.vala:90
+msgid "Import"
+msgstr "Импортировать"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
+msgid "Don't Import"
+msgstr "Не импортировать"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
+#, c-format
+msgid "Import %i items from %s"
+msgstr "Импортировать %i объектов из «%s»"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
+#, c-format
+msgid "Import %s from %s"
+msgstr "Импортировать «%s» из «%s»"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
+msgid "ID"
+msgstr "ID"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:197
+msgid "Title"
+msgstr "Название"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
+msgid "Select individual media to import:"
+msgstr "Выберите отдельные файлы для импорта:"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
+msgid "Check Item"
+msgstr "Отметить элемент"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
+msgid "Check Album"
+msgstr "Отметить альбом"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Artist"
+msgstr "Отметить исполнителя"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+msgid "Cannot Import"
+msgstr "Невозможно импортировать"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+#, c-format
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"Noise уже выполняет операции с файлами. Пожалуйста, подождите пока не "
+"закончится импортирование из %d"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
+msgid "Export Playlists"
+msgstr "Экспортировать списки воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
+msgid "Set Music Folder"
+msgstr "Выбрать папку с музыкой"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
+msgid "Set Music Folder?"
+msgstr "Обозначить папку как содержащую музыку?"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Назначить «%s» папкой для музыкальных файлов? Это удалит сведения о "
+"библиотеке и списки воспроизведения."
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
+msgid "Choose Music Folder"
+msgstr "Выберите папку с музыкой"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
+msgid "Import media to Library"
+msgstr "Импорт данных в библиотеку"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
+msgid "Continue Syncing"
+msgstr "Завершить синхронизацию"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
+msgid "Stop Syncing"
+msgstr "Остановить синхронизацию"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Если продолжить синхронизацию, данные будут удалены с «%s», поскольку они не "
+"находятся в списке синхронизации. Импортировать сначала их в библиотеку?"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr "Синхронизация удалит %i элементов из «%s»"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr "Синхронизация удалит 1 элемент из «%s»"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
+msgid "Smart Playlist Editor"
+msgstr "Редактор динамических списков воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
+msgid "Name of Playlist"
+msgstr "Название списка воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
+msgid "Rules"
+msgstr "Правила"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
+msgid "Options"
+msgstr "Параметры"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
+msgid "Playlist Title"
+msgstr "Заголовок списка воспроизведения"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
+msgid "Match"
+msgstr "Композиции соответствуют"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
+msgid "any"
+msgstr "любым"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+msgid "all"
+msgstr "всем"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
+msgid "of the following:"
+msgstr "из следующих правил:"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr "Ограничить до"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr "элементы"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Bitrate"
+msgstr "Битрейт"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:204
+msgid "Comment"
+msgstr "Примечание"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:202
+msgid "Composer"
+msgstr "Композитор"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Date Added"
+msgstr "Добавлено"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Released"
+msgstr "Дата выхода"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:201
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:485
+msgid "Genre"
+msgstr "Жанр"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:203
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:485
+msgid "Grouping"
+msgstr "Группа"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Last Played"
+msgstr "Последнее воспроизведение"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
+msgid "Length"
+msgstr "Длина"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+msgid "Playcount"
+msgstr "Количество воспроизведений"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:208
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Skipcount"
+msgstr "Количество пропусков"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:207
+msgid "Year"
+msgstr "Год"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
+msgid "is"
+msgstr "является"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
+msgid "contains"
+msgstr "содержит"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
+msgid "does not contain"
+msgstr "не содержит"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
+msgid "is exactly"
+msgstr "равно"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+msgid "is at most"
+msgstr "не более"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
+msgid "is at least"
+msgstr "не менее"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
+msgid "is within"
+msgstr "после"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
+msgid "is before"
+msgstr "до"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
+msgid "seconds"
+msgstr "секунд"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
+msgid "days ago"
+msgstr "дней назад"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "kbps"
+msgstr "кбит/с"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Move to Trash"
 msgstr "Переместить в корзину"
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:73
-msgid "Ignore"
-msgstr "игнорировать"
-
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:94
-msgid "del"
-msgstr "удалить"
-
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:99
-msgid "File Location"
-msgstr "Расположение файла"
-
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:126
-msgid "Select individual files to move to trash:"
-msgstr "Выбор отдельных файлов для перемещения в корзину:"
-
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove from %s"
 msgstr "Удалить из «%s»"
 
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Удалить %d композиций из %s?"
 
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Удалить «%s» из %s?"
 
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -1287,415 +1544,110 @@ msgstr[2] ""
 "Это удалит композиции из вашей медиатеки и всех устройств,  "
 "синхронизирующихся с %s"
 
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
-msgid "Smart Playlist Editor"
-msgstr "Редактор динамических списков воспроизведения"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:48
+msgid "Not Imported Files"
+msgstr "Не импортированные файлы"
 
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
-msgid "Name of Playlist"
-msgstr "Название списка воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
-msgid "Rules"
-msgstr "Правила"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
-msgid "Options"
-msgstr "Параметры"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
-msgid "Playlist Title"
-msgstr "Заголовок списка воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
-msgid "Match"
-msgstr "Композиции соответствуют"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
-msgid "any"
-msgstr "любым"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-msgid "all"
-msgstr "всем"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
-msgid "of the following:"
-msgstr "из следующих правил:"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Ограничить до"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "элементы"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-msgid "Bitrate"
-msgstr "Битрейт"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:204
-msgid "Comment"
-msgstr "Примечание"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:202
-msgid "Composer"
-msgstr "Композитор"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-msgid "Date Added"
-msgstr "Добавлено"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Released"
-msgstr "Дата выхода"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:201
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:485
-msgid "Genre"
-msgstr "Жанр"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:203
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:485
-msgid "Grouping"
-msgstr "Группа"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-msgid "Last Played"
-msgstr "Последнее воспроизведение"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
-msgid "Length"
-msgstr "Длина"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-msgid "Playcount"
-msgstr "Количество воспроизведений"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:208
-msgid "Rating"
-msgstr "Рейтинг"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-msgid "Skipcount"
-msgstr "Количество пропусков"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:197
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
-msgid "Title"
-msgstr "Название"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:207
-msgid "Year"
-msgstr "Год"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
-msgid "is"
-msgstr "является"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
-msgid "contains"
-msgstr "содержит"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
-msgid "does not contain"
-msgstr "не содержит"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
-msgid "is exactly"
-msgstr "равно"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
-msgid "is at most"
-msgstr "не более"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
-msgid "is at least"
-msgstr "не менее"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
-msgid "is within"
-msgstr "после"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
-msgid "is before"
-msgstr "до"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
-msgid "seconds"
-msgstr "секунд"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
-msgid "days ago"
-msgstr "дней назад"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "kbps"
-msgstr "кбит/с"
-
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:88
-msgid "Metadata"
-msgstr "Метаданные"
-
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:90
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:382
-msgid "Lyrics"
-msgstr "Текст композиции"
-
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:353
-msgid "Editing $NAME by $ARTIST"
-msgstr "Редактирование $NAME в исполнении $ARTIST"
-
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:355
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:77
 #, c-format
-msgid "Editing %s"
-msgstr "Изменение «%s»"
+msgid "Unable to import %d items from %s"
+msgstr "Невозможно импортировать %d элементов из «%s»"
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:358
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 #, c-format
-msgid "Editing %i songs"
-msgstr "Изменение %i композиций"
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr ""
+"%s не может импортировать %d элементов. Эти файлы могут быть повреждены."
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:199
-msgid "Album Artist"
-msgstr "Исполнитель альбома"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:67
+msgid "Move all corrupted files to trash"
+msgstr "Переместить все поврежденные файлы в корзину"
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:205
-msgid "Track"
-msgstr "Композиция"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:73
+msgid "Ignore"
+msgstr "игнорировать"
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:206
-msgid "Disc"
-msgstr "Диск"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:94
+msgid "del"
+msgstr "удалить"
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:210
-msgid "Media Type"
-msgstr "Вид данных"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:99
+msgid "File Location"
+msgstr "Расположение файла"
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:301
-#, c-format
-msgid "Lyrics not found for %s"
-msgstr "Не найден текст для %s"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:126
+msgid "Select individual files to move to trash:"
+msgstr "Выбор отдельных файлов для перемещения в корзину:"
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:546
-msgid "Podcast"
-msgstr "Подкаст"
-
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:76
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:76
 msgid "Equalizer"
 msgstr "Эквалайзер"
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:143
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:143
 msgid "Save preset"
 msgstr "Сохранить профиль"
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:407
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:407
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Пользовательский)"
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:409
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:409
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Пользовательский %i)"
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:413
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:413
 msgid "Custom Preset"
 msgstr "Пользовательский профиль"
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:415
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Пользовательский профиль %i"
 
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
-msgid "Export Playlists"
-msgstr "Экспортировать списки воспроизведения"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
-msgid "Set Music Folder"
-msgstr "Выбрать папку с музыкой"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
-msgid "Set Music Folder?"
-msgstr "Обозначить папку как содержащую музыку?"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Назначить «%s» папкой для музыкальных файлов? Это удалит сведения о "
-"библиотеке и списки воспроизведения."
-
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
-msgid "Choose Music Folder"
-msgstr "Выберите папку с музыкой"
-
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
 msgid "Remove Media"
 msgstr "Отключить устройство"
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
 msgid "Locate Media"
 msgstr "Расположение данных"
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
 msgid "Rescan Library"
 msgstr "Сканировать библиотеку заново"
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
 msgid "Do Nothing"
 msgstr "Не использовать"
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
 msgid "Could not find media file"
 msgstr "Не удалось найти файл"
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
 msgid ""
 "The music file for $NAME by $ARTIST could not be found. What would you like "
 "to do?"
 msgstr ""
 "Музыкальная композиция $NAME - $ARTIST не найдена. Что бы вы хотели сделать?"
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
 msgstr "%i файлов не были найдены. Каковы дальнейшие действия?"
 
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
-msgid "Import from Device"
-msgstr "Импортировать с устройства"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
-#, c-format
-msgid "Import media from %s"
-msgstr "Импорт данных из %s"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
-#, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Следующие данные на устройстве «%s» отсутствуют в библиотеке. Отметьте все "
-"файлы, которые нужно импортировать."
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-msgid "Import all media"
-msgstr "Импортировать все данные"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr "Импортировать"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
-msgid "Don't Import"
-msgstr "Не импортировать"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
-#, c-format
-msgid "Import %i items from %s"
-msgstr "Импортировать %i объектов из «%s»"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
-#, c-format
-msgid "Import %s from %s"
-msgstr "Импортировать «%s» из «%s»"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
-msgid "ID"
-msgstr "ID"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
-msgid "Select individual media to import:"
-msgstr "Выберите отдельные файлы для импорта:"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
-msgid "Check Item"
-msgstr "Отметить элемент"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
-msgid "Check Album"
-msgstr "Отметить альбом"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Artist"
-msgstr "Отметить исполнителя"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
-msgid "Cannot Import"
-msgstr "Невозможно импортировать"
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
-#, c-format
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-"Noise уже выполняет операции с файлами. Пожалуйста, подождите пока не "
-"закончится импортирование из %d"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
-msgid "Import media to Library"
-msgstr "Импорт данных в библиотеку"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
-msgid "Continue Syncing"
-msgstr "Завершить синхронизацию"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
-msgid "Stop Syncing"
-msgstr "Остановить синхронизацию"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Если продолжить синхронизацию, данные будут удалены с «%s», поскольку они не "
-"находятся в списке синхронизации. Импортировать сначала их в библиотеку?"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr "Синхронизация удалит %i элементов из «%s»"
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr "Синхронизация удалит 1 элемент из «%s»"
-
-#: /home/codygarver/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
+#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
 msgid "Install Plugin"
 msgstr "Установить плагин"
 
-#: /home/codygarver/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
 msgstr "Необходимый плагин GStreamer не установлен"
 
-#: /home/codygarver/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
+#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
@@ -1704,61 +1656,177 @@ msgstr ""
 "Плагин для воспроизведения формата «%s» не установлен.\n"
 "Каковы дальнейшие действия?"
 
-#: /home/codygarver/noise/po/../src//FileOperator.vala:286
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Копирование</b> файлов в </b>Музыка<b>..."
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:88
+msgid "Metadata"
+msgstr "Метаданные"
 
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:90
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:382
+msgid "Lyrics"
+msgstr "Текст композиции"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:353
+msgid "Editing $NAME by $ARTIST"
+msgstr "Редактирование $NAME в исполнении $ARTIST"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
-msgid "Give %s Permission"
-msgstr ""
+msgid "Editing %s"
+msgstr "Изменение «%s»"
 
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:31
-msgid "Unsuccessful. Click To Try Again."
-msgstr "Неудача. Нажмите, чтобы попробовать снова."
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:32
-msgid "Scrobbling Already Enabled"
-msgstr "Скробблинг уже используется"
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:33
-msgid "Success!"
-msgstr "Завершено!"
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:34
-msgid "Complete Login"
-msgstr "Выполните вход"
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:43
-msgid "Last.fm"
-msgstr "Last.fm"
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:48
-msgid "Last.fm Integration"
-msgstr "Интеграция с Last.fm"
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:55
-msgid "Click to redo the Last.fm login process"
-msgstr "Щёлкните, чтобы повторить вход в Last.fm"
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:58
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:358
 #, c-format
+msgid "Editing %i songs"
+msgstr "Изменение %i композиций"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Album Artist"
+msgstr "Исполнитель альбома"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:205
+msgid "Track"
+msgstr "Композиция"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:206
+msgid "Disc"
+msgstr "Диск"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:210
+msgid "Media Type"
+msgstr "Вид данных"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:301
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr "Не найден текст для %s"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:546
+msgid "Podcast"
+msgstr "Подкаст"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr "Произошла ошибка"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr "Ошибка при загрузке этого Audio CD."
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
+msgid "Audio CD Invalid"
+msgstr "Неверный аудио диск"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+msgid "Impossible to read the contents of this Audio CD"
+msgstr "Невозможно прочитать содержимое этого компакт-диска"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid ""
-"To allow for Last.fm integration, you must give permission to %s. You only "
-"need to do this once."
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
 msgstr ""
-"Если вы хотите разрешить интеграцию Last.fm, вам необходимо задать "
-"полномочия %s. Это необходимо сделать единожды."
+"Пожалуйста, убедитесь, что ваша папка с музыкой доступна и установлена перед "
+"импортом с компакт-диска."
 
-#: /home/codygarver/noise/po/../plugins//LastFM/SimilarMedia.vala:42
-msgid "Similar"
-msgstr "Похожие"
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+msgid ""
+"The Application could not find any songs on the CD. No songs can be imported"
+msgstr "Приложением не найдено музыки на компакт-диске для импортирования"
 
-#: /home/codygarver/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+msgid "Importation of a song from Audio CD finished."
+msgstr "Импорт песен с компакт-диска закончен."
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+#, c-format
+msgid "Importation of %i songs from Audio CD finished."
+msgstr "Импорт %i песен с компакт-диска закончен."
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
+#, c-format
+msgid "Importing track %i: %s"
+msgstr "Импортирование композиции %i: %s"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr ""
+"Импорт с компакт-диска будет <b>отменён</b> после текущего импортирования."
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
+msgid "An error occured during the Import of this CD"
+msgstr "Произошла ошибка во время импортирования композиций с компакт-диска"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "копирование <b>$NAME</b>, исполнитель <b>$ARTIST</b> в $DEVICE"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
+#, c-format
+msgid "Syncing <b>%s</b>…"
+msgstr "Синхронизация <b>%s</b>…"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
+msgid "Finishing sync process…"
+msgstr "Заканчивание процесса синхронизации ..."
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
+msgid "Cancelling Sync…"
+msgstr "Отмена синхронизации..."
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
+msgid "There is not enough space on Device to complete the Sync…"
+msgstr "Недостаточно места на Устройстве для завершения синхронизации ..."
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "Удаление <b>$NAME</b>, исполнитель <b>$ARTIST</b> из $DEVICE"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
+#, c-format
+msgid "Removing from <b>%s</b>…"
+msgstr "Удаление из <b>%s</b>…"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
+msgid "Empty device!"
+msgstr "Нет файлов в устройстве!"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
+msgid "This device does not contain any music."
+msgstr "В устройстве нет музыкальных файлов."
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
+msgid "Android Phone"
+msgstr "Android Phone"
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
+msgid "Audio Player"
+msgstr "Аудио-плеер"
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"
 msgstr "Похожие композиции не найдены"
 
-#: /home/codygarver/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/tutebatti/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
@@ -1768,128 +1836,59 @@ msgstr ""
 "информация всех песен является правильной и вы подключены к Интернету. "
 "Некоторые песни могут не совпадать."
 
-#: /home/codygarver/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#, c-format
+msgid "Give %s Permission"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+msgid "Unsuccessful. Click To Try Again."
+msgstr "Неудача. Нажмите, чтобы попробовать снова."
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+msgid "Scrobbling Already Enabled"
+msgstr "Скробблинг уже используется"
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+msgid "Success!"
+msgstr "Завершено!"
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+msgid "Complete Login"
+msgstr "Выполните вход"
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:43
+msgid "Last.fm"
+msgstr "Last.fm"
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:48
+msgid "Last.fm Integration"
+msgstr "Интеграция с Last.fm"
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:55
+msgid "Click to redo the Last.fm login process"
+msgstr "Щёлкните, чтобы повторить вход в Last.fm"
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:58
+#, c-format
+msgid ""
+"To allow for Last.fm integration, you must give permission to %s. You only "
+"need to do this once."
+msgstr ""
+"Если вы хотите разрешить интеграцию Last.fm, вам необходимо задать "
+"полномочия %s. Это необходимо сделать единожды."
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
 msgid "media"
 msgstr "медиа"
 
-#: /home/codygarver/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "Similar Media"
 msgstr "Похожие файлы"
 
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
-msgid "Empty device!"
-msgstr "Нет файлов в устройстве!"
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
-msgid "This device does not contain any music."
-msgstr "В устройстве нет музыкальных файлов."
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
-msgid "Android Phone"
-msgstr "Android Phone"
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
-msgid "Audio Player"
-msgstr "Аудио-плеер"
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "копирование <b>$NAME</b>, исполнитель <b>$ARTIST</b> в $DEVICE"
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
-#, c-format
-msgid "Syncing <b>%s</b>…"
-msgstr "Синхронизация <b>%s</b>…"
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
-msgid "Finishing sync process…"
-msgstr "Заканчивание процесса синхронизации ..."
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
-msgid "Cancelling Sync…"
-msgstr "Отмена синхронизации..."
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
-msgid "There is not enough space on Device to complete the Sync…"
-msgstr "Недостаточно места на Устройстве для завершения синхронизации ..."
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Удаление <b>$NAME</b>, исполнитель <b>$ARTIST</b> из $DEVICE"
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
-#, c-format
-msgid "Removing from <b>%s</b>…"
-msgstr "Удаление из <b>%s</b>…"
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
-msgid "An Error Occured"
-msgstr "Произошла ошибка"
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
-msgid "There was an error while loading this Audio CD."
-msgstr "Ошибка при загрузке этого Audio CD."
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
-msgid "Audio CD Invalid"
-msgstr "Неверный аудио диск"
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Невозможно прочитать содержимое этого компакт-диска"
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Пожалуйста, убедитесь, что ваша папка с музыкой доступна и установлена перед "
-"импортом с компакт-диска."
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "Приложением не найдено музыки на компакт-диске для импортирования"
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
-msgid "Importation of a song from Audio CD finished."
-msgstr "Импорт песен с компакт-диска закончен."
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
-#, c-format
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "Импорт %i песен с компакт-диска закончен."
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
-#, c-format
-msgid "Importing track %i: %s"
-msgstr "Импортирование композиции %i: %s"
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"Импорт с компакт-диска будет <b>отменён</b> после текущего импортирования."
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
-msgid "An error occured during the Import of this CD"
-msgstr "Произошла ошибка во время импортирования композиций с компакт-диска"
+#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMedia.vala:42
+msgid "Similar"
+msgstr "Похожие"
 
 #~ msgid "Add Podcast"
 #~ msgstr "Добавить подкаст"
@@ -2074,6 +2073,16 @@ msgstr "Произошла ошибка во время импортирован
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Импортировать композиции с звукового компакт-диска"
+
+#, c-format
+#~ msgid "%s can't seem to find your music."
+#~ msgstr "Возможно, %s не нашло музыку."
+
+#~ msgid "Change your music folder."
+#~ msgstr "Изменить расположение папки с музыкой."
+
+#~ msgid "Locate"
+#~ msgstr "Местоположение"
 
 #~ msgid "Import media from device"
 #~ msgstr "Импортировать данные с устройства"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-13 18:49-0500\n"
+"POT-Creation-Date: 2013-05-14 18:03+0200\n"
 "PO-Revision-Date: 2012-07-11 10:37+0000\n"
 "Last-Translator: Skandee <Unknown>\n"
 "Language-Team: Southern Sami <sma@li.org>\n"
@@ -15,30 +15,167 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Launchpad-Export-Date: 2013-05-14 05:49+0000\n"
+"X-Launchpad-Export-Date: 2013-05-15 05:47+0000\n"
 "X-Generator: Launchpad (build 16617)\n"
 "Language: sma\n"
 
-#: /home/codygarver/noise/po/../core//Utils/String.vala:176
-msgid "the|a|an|le|la|les|un|une|der|die|das|los"
+#: /home/tutebatti/noise/po/../core//LibrariesManager.vala:130
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:78
+msgid "Flat"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:79
+msgid "Classical"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:80
+msgid "Club"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:81
+msgid "Dance"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:82
+msgid "Full Bass"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:83
+msgid "Full Treble"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:84
+msgid "Full Bass + Treble"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:85
+msgid "Headphones"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:86
+msgid "Large Hall"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:87
+msgid "Live"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:88
+msgid "Party"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:89
+msgid "Pop"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:90
+msgid "Reggae"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:91
+msgid "Rock"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:92
+msgid "Soft"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:93
+msgid "Ska"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:94
+msgid "Soft Rock"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:95
+msgid "Techno"
+msgstr ""
+
+#. / Used for unknown titles, artists, or album names.
+#: /home/tutebatti/noise/po/../core//Media.vala:43
+msgid "Unknown"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Media.vala:53
+msgid "Radio Station"
+msgstr "Radijovve stasjovne"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: /home/tutebatti/noise/po/../core//Media.vala:183
+msgid "$NAME on $ALBUM"
+msgstr ""
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: /home/tutebatti/noise/po/../core//Media.vala:186
+msgid "$NAME by $ARTIST"
+msgstr ""
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: /home/tutebatti/noise/po/../core//Media.vala:192
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:96
+#, c-format
+msgid "%s (%d)"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:235
+msgid "New playlist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:246
+#, c-format
+msgid "%s (%i)"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:282
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:376
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:287
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:381
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:361
+msgid "Playlist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:367
+#, c-format
+msgid "Import %s"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:401
+msgid "Unrecognized playlist file. Import failed."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:52
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:52
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:56
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:56
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
@@ -46,20 +183,20 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. / Minutes and seconds
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:58
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:58
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:77
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:80
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
@@ -67,28 +204,28 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. / days, hours and minutes
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:91
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr ""
 
 #. / days and hours
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:94
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:94
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr ""
 
 #. / days and minutes
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:99
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:99
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr ""
 
 #. / hours and minutes
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:108
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:108
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -96,292 +233,324 @@ msgstr ""
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/codygarver/noise/po/../core//Utils/TimeUtils.vala:167
+#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:96
-#, c-format
-msgid "%s (%d)"
+#: /home/tutebatti/noise/po/../core//Utils/String.vala:176
+msgid "the|a|an|le|la|les|un|une|der|die|das|los"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:235
-msgid "New playlist"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:236
+msgid "Import to Library…"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:246
-#, c-format
-msgid "%s (%i)"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:237
+msgid "Rescan Music Folder"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:238
+msgid "Fullscreen"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:282
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:376
-msgid "MPEG Version 3.0 Extended (*.m3u)"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:242
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+msgid "Preferences"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:287
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:381
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:265
+msgid "Search Music"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:361
-msgid "Playlist"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:679
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:817
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:121
+msgid "Music"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:367
-#, c-format
-msgid "Import %s"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:872
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:107
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/tutebatti/noise/po/../src//PlaybackManager.vala:101
+msgctxt "Name of the playlist"
+msgid "Queue"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//Utils/PlaylistsUtils.vala:401
-msgid "Unrecognized playlist file. Import failed."
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:875
+msgid "No songs in Queue"
 msgstr ""
 
-#: /home/codygarver/noise/po/../core//LibrariesManager.vala:130
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:78
-msgid "Flat"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:79
-msgid "Classical"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:80
-msgid "Club"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:81
-msgid "Dance"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:82
-msgid "Full Bass"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:83
-msgid "Full Treble"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:84
-msgid "Full Bass + Treble"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:85
-msgid "Headphones"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:86
-msgid "Large Hall"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:87
-msgid "Live"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:88
-msgid "Party"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:89
-msgid "Pop"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:90
-msgid "Reggae"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:91
-msgid "Rock"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:92
-msgid "Soft"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:93
-msgid "Ska"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:94
-msgid "Soft Rock"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//GStreamer/Equalizer.vala:95
-msgid "Techno"
-msgstr ""
-
-#. / Used for unknown titles, artists, or album names.
-#: /home/codygarver/noise/po/../core//Media.vala:43
-msgid "Unknown"
-msgstr ""
-
-#: /home/codygarver/noise/po/../core//Media.vala:53
-msgid "Radio Station"
-msgstr "Radijovve stasjovne"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: /home/codygarver/noise/po/../core//Media.vala:183
-msgid "$NAME on $ALBUM"
-msgstr ""
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: /home/codygarver/noise/po/../core//Media.vala:186
-msgid "$NAME by $ARTIST"
-msgstr ""
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: /home/codygarver/noise/po/../core//Media.vala:192
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
-#: /home/codygarver/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
-msgid "No Songs"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:876
 msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
-msgid "Edit Smart Playlist"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:882
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:107
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/tutebatti/noise/po/../src//PlaybackManager.vala:99
+msgid "History"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:885
+msgid "No songs in History"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:886
 msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
-msgid "Get Some Tunes"
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1119
+msgid "Import Music"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1139
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:248
+msgid "<b>Importing</b> music to library…"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1154
+msgid "Rescanning music folder for changes"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1161
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+msgid "Could not find Music Folder"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1161
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1202
+msgid "Import Complete"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1202
 #, c-format
-msgid "%s can't seem to find your music."
+msgid "%s has imported your library."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Locate"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Change your music folder."
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:85
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
-msgid "Import your Music"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:85
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 #, c-format
-msgid "Import all your Music from %s into your library."
+msgid "All %i Genres"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:124
-msgid "Select Music Folder"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
-msgid "No media"
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
-msgid "Please wait until that this playlist get updated."
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Artists"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Albums"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Years"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#, c-format
+msgid "All %i Groupings"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Composers"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
+#: /home/tutebatti/noise/po/../src//Widgets/PresetList.vala:49
+msgid "Automatic"
+msgstr "Automatike"
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
+msgid "On Left"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+msgid "On Top"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
 msgid "Autosize Columns"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
 msgid "Display Album Art"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
 #, c-format
 msgid "%i kbps"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
 msgid "Never"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
 msgid "Remove from Library"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
 msgid "Remove from Queue"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
 msgid "Remove from Device"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
 msgid "Scroll to Current Song"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
 msgid "Edit Song Info"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
 msgid "Show in File Browser"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
 msgctxt "Action item (verb)"
 msgid "Queue"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
 msgid "Add to Playlist"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
 msgid "Remove Song"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:134
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:134
 msgid "Import to Library"
 msgstr "Arkivesne vïedtjedh"
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
 msgid "New Playlist…"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
 msgid "1234 kbps"
 msgstr ""
 
@@ -392,850 +561,931 @@ msgstr ""
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
 msgid "Sample List String"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
 msgid "#"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
 msgid "Track"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
 msgid "Length"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
 msgid "Genre"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
 msgid "Grouping"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
 msgid "Bitrate"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
 msgid "Rating"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
 msgctxt "List column title"
 msgid "Plays"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
 msgctxt "List column title"
 msgid "Skips"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
 msgctxt "List column title"
 msgid "Date Added"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
 msgctxt "List column title"
 msgid "Last Played"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
 msgid "Location"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
+#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
 msgid "File Size"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:89
+#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:89
 msgid "No Songs Found."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:369
+#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:369
 #, c-format
 msgid "%i track"
 msgid_plural "%i tracks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:371
+#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:371
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/ListView.vala:379
+#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:379
 #, c-format
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
-#: /home/codygarver/noise/po/../src//Widgets/PresetList.vala:49
-msgid "Automatic"
-msgstr "Automatike"
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
-msgid "On Left"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
-msgid "On Top"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-#, c-format
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-#, c-format
-msgid "All %i Genres"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Artists"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Albums"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Years"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-#, c-format
-msgid "All %i Groupings"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Composers"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/ContentView.vala:21
-#, c-format
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/GridView/GridView.vala:58
+#: /home/tutebatti/noise/po/../src//Views/GridView/GridView.vala:58
 msgid "No Albums Found."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/GridView/GridView.vala:154
+#: /home/tutebatti/noise/po/../src//Views/GridView/GridView.vala:154
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/codygarver/noise/po/../src//Views/GridView/PopupListView.vala:161
+#: /home/tutebatti/noise/po/../src//Views/GridView/PopupListView.vala:161
 #, c-format
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:86
+#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/ContentView.vala:21
+#, c-format
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+msgid "No Songs"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
+msgid "Please wait until that this playlist get updated."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
+msgid "No media"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
+msgid "Edit Smart Playlist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
+msgid "Get Some Tunes"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Add music to your library."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Locate Music Folder"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Load music from a folder, a network or an external disk"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
+msgid "Import your Music"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:125
+msgid "Select Music Folder"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:86
 msgid "Device Name:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Device Name"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:91
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Automatically sync when plugged in:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:98
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:98
 msgid "Sync:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:120
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:120
 msgid "Other Files"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:121
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:679
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:817
-msgid "Music"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:122
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:122
 msgid "Podcasts"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:416
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:416
 msgid "All Music"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:419
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:419
 msgid "All Podcasts"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 msgid "Sync Failed"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Cannot Sync"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:41
+#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling…"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:41
+#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:104
+#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:104
 msgid "No External Songs"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Views/DeviceView.vala:104
+#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:104
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:236
-msgid "Import to Library…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:237
-msgid "Rescan Music Folder"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:238
-msgid "Fullscreen"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:242
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:84
-msgid "Preferences"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:265
-msgid "Search Music"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:872
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:107
-#: /home/codygarver/noise/po/../src//PlaybackManager.vala:101
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:875
-msgid "No songs in Queue"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:876
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:882
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:107
-#: /home/codygarver/noise/po/../src//PlaybackManager.vala:99
-msgid "History"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:885
-msgid "No songs in History"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:886
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1119
-msgid "Import Music"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1139
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:248
-msgid "<b>Importing</b> music to library…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1154
-msgid "Rescanning music folder for changes"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1161
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
-msgid "Could not find Music Folder"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1161
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1202
-msgid "Import Complete"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LibraryWindow.vala:1202
-#, c-format
-msgid "%s has imported your library."
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Noise.vala:37
-msgid "Listen to music"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Noise.vala:38
-msgid "Music Player"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Noise.vala:39
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/codygarver/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/codygarver/noise/po/../src//GStreamer/Streamer.vala:195
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
-msgid "Unknown Artist"
-msgstr "Ovnohkens artiste"
-
-#: /home/codygarver/noise/po/../src//Objects/LyricFetcher.vala:156
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Ovnohkens laavlome"
-
-#: /home/codygarver/noise/po/../src//Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Ovnohkens albume"
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:445
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:685
-msgid "Favorite Songs"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:452
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:692
-msgid "Recently Added"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:468
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:708
-msgid "Recent Favorites"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:475
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:715
-msgid "Never Played"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:482
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:722
-msgid "Over Played"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:489
-#: /home/codygarver/noise/po/../src//DataBase/DataBaseManager.vala:729
-msgid "Not Recently Played"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:65
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Off"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:65
-msgid "Enable Repeat"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:66
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:544
-msgid "Song"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:66
-msgid "Repeat Song"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:67
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:200
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-msgid "Album"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Repeat Album"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:68
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:198
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-msgid "Artist"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:68
-msgid "Repeat Artist"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:69
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "All"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Repeat All"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Enable Shuffle"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Disable Shuffle"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:132
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:143
-msgid "Add Playlist"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:144
-msgid "Add Smart Playlist"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:190
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Hide"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:190
-msgid "Show Equalizer"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:191
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Show"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:191
-msgid "Hide Equalizer"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Show Info Panel"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Hide Info Panel"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Dihten måjkoedidh"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:56
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:69
-msgid "Rename"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:57
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:71
-msgid "Remove"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:58
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:72
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:87
-msgid "Export…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:70
-msgid "Edit…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:85
-msgid "Save as Playlist"
-msgstr "spååredh goh Spealadidh-læstoe"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:142
-msgid "Eject"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:147
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:186
-msgid "New Playlist"
-msgstr "orre"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:152
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:187
-msgid "New Smart Playlist"
-msgstr "orre væjkeles  spealadidh-læstoe"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:157
-#: /home/codygarver/noise/po/../src//Widgets/SpaceWidget.vala:238
-msgid "Sync"
-msgstr "Synk"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:188
-msgid "Import Playlists"
-msgstr "Spealadidh-læstoe vïedtjedh"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:232
-msgid "Library"
-msgstr "Arkive"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:233
-msgid "Devices"
-msgstr "Ektievoete"
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:234
-msgid "Network"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/SourceListView.vala:235
-#: /home/codygarver/noise/po/../plugins//MPRIS/MPRIS.vala:643
-msgid "Playlists"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "Namhtah"
-
-#: /home/codygarver/noise/po/../src//Widgets/SpaceWidget.vala:384
-msgid "Using %s of %s (%.2f%)"
-msgstr "Utnedh %s  %s (%.2f%)este"
-
-#: /home/codygarver/noise/po/../src//Widgets/TopDisplay.vala:68
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Cancel"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:167
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:167
 #, c-format
 msgid "Importing music from %s…"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:209
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:209
 msgid "Adding files to library…"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:274
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:274
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//LocalLibrary.vala:352
+#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:352
 msgid "Added to your queue:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:44
+#: /home/tutebatti/noise/po/../src//Noise.vala:37
+msgid "Listen to music"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Noise.vala:38
+msgid "Music Player"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Noise.vala:39
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:56
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:69
+msgid "Rename"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:57
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:71
+msgid "Remove"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:58
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:72
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:87
+msgid "Export…"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:70
+msgid "Edit…"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:85
+msgid "Save as Playlist"
+msgstr "spååredh goh Spealadidh-læstoe"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:142
+msgid "Eject"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:147
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:186
+msgid "New Playlist"
+msgstr "orre"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:152
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:187
+msgid "New Smart Playlist"
+msgstr "orre væjkeles  spealadidh-læstoe"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:157
+#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:238
+msgid "Sync"
+msgstr "Synk"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:188
+msgid "Import Playlists"
+msgstr "Spealadidh-læstoe vïedtjedh"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:232
+msgid "Library"
+msgstr "Arkive"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:233
+msgid "Devices"
+msgstr "Ektievoete"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:234
+msgid "Network"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:235
+#: /home/tutebatti/noise/po/../plugins//MPRIS/MPRIS.vala:643
+msgid "Playlists"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/TopDisplay.vala:68
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Cancel"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Dihten måjkoedidh"
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:65
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Off"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:65
+msgid "Enable Repeat"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:66
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:544
+msgid "Song"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:66
+msgid "Repeat Song"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:67
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:200
+msgid "Album"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Album"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:198
+msgid "Artist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Artist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:69
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "All"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat All"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Enable Shuffle"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Disable Shuffle"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:132
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:143
+msgid "Add Playlist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Smart Playlist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:190
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Hide"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:190
+msgid "Show Equalizer"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:191
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Show"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:191
+msgid "Hide Equalizer"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Show Info Panel"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Hide Info Panel"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr "Namhtah"
+
+#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:384
+msgid "Using %s of %s (%.2f%)"
+msgstr "Utnedh %s  %s (%.2f%)este"
+
+#: /home/tutebatti/noise/po/../src//FileOperator.vala:286
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:445
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:685
+msgid "Favorite Songs"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:452
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:692
+msgid "Recently Added"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:468
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:708
+msgid "Recent Favorites"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:475
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:715
+msgid "Never Played"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:482
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:722
+msgid "Over Played"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:489
+#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:729
+msgid "Not Recently Played"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Objects/LyricFetcher.vala:156
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Ovnohkens laavlome"
+
+#: /home/tutebatti/noise/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Ovnohkens albume"
+
+#: /home/tutebatti/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/tutebatti/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/tutebatti/noise/po/../src//GStreamer/Streamer.vala:195
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
+msgid "Unknown Artist"
+msgstr "Ovnohkens artiste"
+
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:123
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:123
 msgid "Music Folder Location:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:131
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:136
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:140
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:144
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/PreferencesWindow.vala:159
+#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:48
-msgid "Not Imported Files"
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
+msgid "Import from Device"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:65
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:77
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
 #, c-format
-msgid "Unable to import %d items from %s"
+msgid "Import media from %s"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
 #, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:67
-msgid "Move all corrupted files to trash"
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+msgid "Import all media"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:72
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDView.vala:90
+msgid "Import"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
+msgid "Don't Import"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
+#, c-format
+msgid "Import %i items from %s"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
+#, c-format
+msgid "Import %s from %s"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
+msgid "ID"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:197
+msgid "Title"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
+msgid "Select individual media to import:"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
+msgid "Check Item"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
+msgid "Check Album"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Artist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+msgid "Cannot Import"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+#, c-format
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
+msgid "Export Playlists"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
+msgid "Set Music Folder"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
+msgid "Set Music Folder?"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
+msgid "Choose Music Folder"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
+msgid "Import media to Library"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
+msgid "Continue Syncing"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
+msgid "Stop Syncing"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
+msgid "Smart Playlist Editor"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
+msgid "Name of Playlist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
+msgid "Rules"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
+msgid "Options"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
+msgid "Playlist Title"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
+msgid "Match"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
+msgid "any"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+msgid "all"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
+msgid "of the following:"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Bitrate"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:204
+msgid "Comment"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:202
+msgid "Composer"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Date Added"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Date Released"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:201
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:485
+msgid "Genre"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:203
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:485
+msgid "Grouping"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Last Played"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
+msgid "Length"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+msgid "Playcount"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:208
+msgid "Rating"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Skipcount"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:207
+msgid "Year"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
+msgid "is"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
+msgid "contains"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
+msgid "does not contain"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
+msgid "is exactly"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+msgid "is at most"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
+msgid "is at least"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
+msgid "is within"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
+msgid "is before"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
+msgid "seconds"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
+msgid "days ago"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
+msgid "kbps"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Move to Trash"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:73
-msgid "Ignore"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:94
-msgid "del"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:99
-msgid "File Location"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/NotImportedWindow.vala:126
-msgid "Select individual files to move to trash:"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove from %s"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
+#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -1246,589 +1496,338 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
-msgid "Smart Playlist Editor"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:48
+msgid "Not Imported Files"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
-msgid "Name of Playlist"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
-msgid "Rules"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
-msgid "Options"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
-msgid "Playlist Title"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
-msgid "Match"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
-msgid "any"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-msgid "all"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
-msgid "of the following:"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-msgid "Bitrate"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:204
-msgid "Comment"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:202
-msgid "Composer"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-msgid "Date Added"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Released"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:201
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:485
-msgid "Genre"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:203
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:485
-msgid "Grouping"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-msgid "Last Played"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
-msgid "Length"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-msgid "Playcount"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:208
-msgid "Rating"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-msgid "Skipcount"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:197
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
-msgid "Title"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:207
-msgid "Year"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
-msgid "is"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
-msgid "contains"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
-msgid "does not contain"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
-msgid "is exactly"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
-msgid "is at most"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
-msgid "is at least"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
-msgid "is within"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
-msgid "is before"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
-msgid "seconds"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
-msgid "days ago"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "kbps"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:88
-msgid "Metadata"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:90
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:382
-msgid "Lyrics"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:353
-msgid "Editing $NAME by $ARTIST"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:355
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:77
 #, c-format
-msgid "Editing %s"
+msgid "Unable to import %d items from %s"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:358
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 #, c-format
-msgid "Editing %i songs"
+msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:199
-msgid "Album Artist"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:67
+msgid "Move all corrupted files to trash"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:205
-msgid "Track"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:73
+msgid "Ignore"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:206
-msgid "Disc"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:94
+msgid "del"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:210
-msgid "Media Type"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:99
+msgid "File Location"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:301
-#, c-format
-msgid "Lyrics not found for %s"
+#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:126
+msgid "Select individual files to move to trash:"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/MediaEditor.vala:546
-msgid "Podcast"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:76
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:76
 msgid "Equalizer"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:143
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:143
 msgid "Save preset"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:407
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:407
 #, c-format
 msgid "%s (Custom)"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:409
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:409
 #, c-format
 msgid "%s (Custom %i)"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:413
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:413
 msgid "Custom Preset"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/EqualizerWindow.vala:415
+#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
 msgid "Custom Preset %i"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
-msgid "Export Playlists"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
-msgid "Set Music Folder"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
-msgid "Set Music Folder?"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
-msgid "Choose Music Folder"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
 msgid "Remove Media"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
 msgid "Locate Media"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
 msgid "Rescan Library"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
 msgid "Do Nothing"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
 msgid "Could not find media file"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
 msgid ""
 "The music file for $NAME by $ARTIST could not be found. What would you like "
 "to do?"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
+#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
-msgid "Import from Device"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
-#, c-format
-msgid "Import media from %s"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
-#, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-msgid "Import all media"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
-msgid "Don't Import"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
-#, c-format
-msgid "Import %i items from %s"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
-#, c-format
-msgid "Import %s from %s"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
-msgid "ID"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
-msgid "Select individual media to import:"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
-msgid "Check Item"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
-msgid "Check Album"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Artist"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
-msgid "Cannot Import"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
-#, c-format
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
-msgid "Import media to Library"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
-msgid "Continue Syncing"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
-msgid "Stop Syncing"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr ""
-
-#: /home/codygarver/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
+#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
 msgid "Install Plugin"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
+#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
 
-#: /home/codygarver/noise/po/../src//FileOperator.vala:286
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:88
+msgid "Metadata"
 msgstr ""
 
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:90
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:382
+msgid "Lyrics"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:353
+msgid "Editing $NAME by $ARTIST"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
-msgid "Give %s Permission"
+msgid "Editing %s"
 msgstr ""
 
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:31
-msgid "Unsuccessful. Click To Try Again."
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:32
-msgid "Scrobbling Already Enabled"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:33
-msgid "Success!"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:34
-msgid "Complete Login"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:43
-msgid "Last.fm"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:48
-msgid "Last.fm Integration"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:55
-msgid "Click to redo the Last.fm login process"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//LastFM/PreferencesSection.vala:58
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:358
 #, c-format
+msgid "Editing %i songs"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Album Artist"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:205
+msgid "Track"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:206
+msgid "Disc"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:210
+msgid "Media Type"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:301
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:546
+msgid "Podcast"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
+msgid "Audio CD Invalid"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+msgid "Impossible to read the contents of this Audio CD"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid ""
-"To allow for Last.fm integration, you must give permission to %s. You only "
-"need to do this once."
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
 msgstr ""
 
-#: /home/codygarver/noise/po/../plugins//LastFM/SimilarMedia.vala:42
-msgid "Similar"
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+msgid ""
+"The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
 
-#: /home/codygarver/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+msgid "Importation of a song from Audio CD finished."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+#, c-format
+msgid "Importation of %i songs from Audio CD finished."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
+#, c-format
+msgid "Importing track %i: %s"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
+msgid "An error occured during the Import of this CD"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
+#, c-format
+msgid "Syncing <b>%s</b>…"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
+msgid "Finishing sync process…"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
+msgid "Cancelling Sync…"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
+msgid "There is not enough space on Device to complete the Sync…"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
+#, c-format
+msgid "Removing from <b>%s</b>…"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
+msgid "Empty device!"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
+#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
+msgid "This device does not contain any music."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
+msgid "Android Phone"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
+msgid "Audio Player"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"
 msgstr ""
 
-#: /home/codygarver/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/tutebatti/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
 
-#: /home/codygarver/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#, c-format
+msgid "Give %s Permission"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+msgid "Unsuccessful. Click To Try Again."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+msgid "Scrobbling Already Enabled"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+msgid "Success!"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+msgid "Complete Login"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:43
+msgid "Last.fm"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:48
+msgid "Last.fm Integration"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:55
+msgid "Click to redo the Last.fm login process"
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:58
+#, c-format
+msgid ""
+"To allow for Last.fm integration, you must give permission to %s. You only "
+"need to do this once."
+msgstr ""
+
+#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
 msgid "media"
 msgstr ""
 
-#: /home/codygarver/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "Similar Media"
 msgstr ""
 
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
-msgid "Empty device!"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
-msgid "This device does not contain any music."
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
-msgid "Android Phone"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
-msgid "Audio Player"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
-#, c-format
-msgid "Syncing <b>%s</b>…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
-msgid "Finishing sync process…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
-msgid "Cancelling Sync…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
-msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
-#: /home/codygarver/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
-#, c-format
-msgid "Removing from <b>%s</b>…"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
-msgid "An Error Occured"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
-msgid "There was an error while loading this Audio CD."
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
-msgid "Audio CD Invalid"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
-msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
-msgid "Importation of a song from Audio CD finished."
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
-#, c-format
-msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
-#, c-format
-msgid "Importing track %i: %s"
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-
-#: /home/codygarver/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
-msgid "An error occured during the Import of this CD"
+#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMedia.vala:42
+msgid "Similar"
 msgstr ""
 
 #, c-format
