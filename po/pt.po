@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-14 18:03+0200\n"
-"PO-Revision-Date: 2013-05-04 00:47+0000\n"
-"Last-Translator: Sérgio Marques <Unknown>\n"
+"PO-Revision-Date: 2013-05-15 13:16+0000\n"
+"Last-Translator: Pedro Monteiro <Unknown>\n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-15 05:47+0000\n"
-"X-Generator: Launchpad (build 16617)\n"
+"X-Launchpad-Export-Date: 2013-05-16 05:24+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 
 #: /home/tutebatti/noise/po/../core//LibrariesManager.vala:130
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -784,15 +784,15 @@ msgstr "Obter músicas"
 
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "Adicionar música à sua biblioteca"
 
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Locate Music Folder"
-msgstr ""
+msgstr "Escolher a Pasta de Músicas"
 
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk"
-msgstr ""
+msgstr "Carregar música de uma pasta, rede ou disco externo"
 
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
@@ -1825,7 +1825,7 @@ msgstr ""
 #: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 #, c-format
 msgid "Give %s Permission"
-msgstr ""
+msgstr "Dar permissão a %s"
 
 #: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
@@ -1861,6 +1861,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"Para permitir a integração com o Last.fm, precisa de dar permissões a %s. Só "
+"precisa de o fazer uma vez."
 
 #: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
 msgid "media"
