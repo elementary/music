@@ -980,7 +980,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         spe.set_modal(true);
         spe.destroy_with_parent = true;
         spe.load_smart_playlist ();
-        spe.show_all();
+        spe.show ();
     }
 
     /** This should be used whenever a call to play a new media is made
