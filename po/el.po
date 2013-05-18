@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-14 18:03+0200\n"
-"PO-Revision-Date: 2012-10-20 21:36+0000\n"
-"Last-Translator: adem <Unknown>\n"
+"PO-Revision-Date: 2013-05-17 17:44+0000\n"
+"Last-Translator: Filippos Kolyvas <fkolyvas@gmail.com>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-15 05:47+0000\n"
-"X-Generator: Launchpad (build 16617)\n"
+"X-Launchpad-Export-Date: 2013-05-18 05:48+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 
 #: /home/tutebatti/noise/po/../core//LibrariesManager.vala:130
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -24,51 +24,51 @@ msgstr ""
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
-msgstr ""
+msgstr "Επίπεδο"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:79
 msgid "Classical"
-msgstr ""
+msgstr "Κλασσική"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:80
 msgid "Club"
-msgstr ""
+msgstr "Club"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:81
 msgid "Dance"
-msgstr ""
+msgstr "Dance"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:82
 msgid "Full Bass"
-msgstr ""
+msgstr "Πλήρη μπάσα"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:83
 msgid "Full Treble"
-msgstr ""
+msgstr "Πλήρη πρίμα"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:84
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Πλήρη μπάσα και πρίμα"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:85
 msgid "Headphones"
-msgstr ""
+msgstr "Ακουστικά"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:86
 msgid "Large Hall"
-msgstr ""
+msgstr "Μεγάλη αίθουσα"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:87
 msgid "Live"
-msgstr ""
+msgstr "Συναυλία"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:88
 msgid "Party"
-msgstr ""
+msgstr "Πάρτυ"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:89
 msgid "Pop"
-msgstr ""
+msgstr "Ποπ"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:90
 msgid "Reggae"
@@ -76,7 +76,7 @@ msgstr ""
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:91
 msgid "Rock"
-msgstr ""
+msgstr "Ροκ"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:92
 msgid "Soft"
@@ -84,11 +84,11 @@ msgstr ""
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:93
 msgid "Ska"
-msgstr ""
+msgstr "Σκα"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:94
 msgid "Soft Rock"
-msgstr ""
+msgstr "Απαλό Ροκ"
 
 #: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:95
 msgid "Techno"
@@ -97,7 +97,7 @@ msgstr ""
 #. / Used for unknown titles, artists, or album names.
 #: /home/tutebatti/noise/po/../core//Media.vala:43
 msgid "Unknown"
-msgstr ""
+msgstr "Άγνωστο"
 
 #: /home/tutebatti/noise/po/../core//Media.vala:53
 msgid "Radio Station"
@@ -139,12 +139,12 @@ msgstr "Εξαγωγή λίστας αναπαραγωγής"
 #: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:282
 #: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:376
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG έκδοση 3.0 εκτεταμένη (*.m3u)"
 
 #: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:287
 #: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:381
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Λίστα Αναπαραγωγής Shoutcast Έκδοση 2.0 (*.pls)"
 
 #: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
@@ -157,7 +157,7 @@ msgstr "Εισαγωγή %s"
 
 #: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Μη αναγνωρίσιμο αρχείο λίστας αναπαραγωγής. Αποτυχία εισαγωγής."
 
 #: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
@@ -186,7 +186,7 @@ msgstr[1] "%u δευτερόλεπτα"
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s και %s"
 
 #: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
@@ -207,28 +207,28 @@ msgstr[1] "%u ώρες"
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s και %s"
 
 #. / days and hours
 #: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:94
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s και %s"
 
 #. / days and minutes
 #: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:99
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s και %s"
 
 #. / hours and minutes
 #: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:108
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s και %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -246,7 +246,7 @@ msgstr ""
 
 #: /home/tutebatti/noise/po/../src//LibraryWindow.vala:237
 msgid "Rescan Music Folder"
-msgstr ""
+msgstr "Νέα σάρωση φακέλου μουσικής"
 
 #: /home/tutebatti/noise/po/../src//LibraryWindow.vala:238
 msgid "Fullscreen"
@@ -259,7 +259,7 @@ msgstr "Προτιμήσεις"
 
 #: /home/tutebatti/noise/po/../src//LibraryWindow.vala:265
 msgid "Search Music"
-msgstr ""
+msgstr "Αναζήτηση μουσικής"
 
 #: /home/tutebatti/noise/po/../src//LibraryWindow.vala:679
 #: /home/tutebatti/noise/po/../src//LibraryWindow.vala:817
