@@ -22,7 +22,7 @@
  */
 
 public class Noise.GStreamerTagger : Object {
-    private const int DISCOVER_SET_SIZE = 50;
+    private const int DISCOVER_SET_SIZE = 20;
     private const int DISCOVERER_TIMEOUT_MS = 10;
 
     public signal void media_imported (Media m);
@@ -36,21 +36,6 @@ public class Noise.GStreamerTagger : Object {
 
     public GStreamerTagger () {
         uri_queue = new Gee.LinkedList<string> ();
-    }
-
-    private Gst.Discoverer? create_discoverer () {
-        Gst.Discoverer? discoverer = null;
-
-        try {
-            discoverer = new Gst.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
-        } catch (Error err) {
-            critical ("Could not create Gst discoverer object: %s", err.message);
-        }
-
-        discoverer.discovered.connect (import_media);
-        discoverer.finished.connect (file_set_finished);
-
-        return discoverer;
     }
 
     private void file_set_finished () {
@@ -70,12 +55,29 @@ public class Noise.GStreamerTagger : Object {
     }
 
     private async void import_next_file_set () {
-        d = create_discoverer ();
+        if (d == null) {
+            try {
+                d = new Gst.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
+            } catch (Error err) {
+                critical ("Could not create Gst discoverer object: %s", err.message);
+            }
+
+            d.discovered.connect (import_media);
+            d.finished.connect (file_set_finished);
+        } else {
+            d.stop ();
+        }
         d.start ();
 
-        for (int i = 0; i < uri_queue.size; i++) {
-            lock (uri_queue) {
-                d.discover_uri_async (uri_queue.poll_head ());
+        for (int i = 0; i < DISCOVER_SET_SIZE; i++) {
+            bool not_found = true;
+            string uri = null;
+            while (uri == null && !uri_queue.is_empty) {
+                uri = uri_queue.poll_head ();
+                if (uri != null) {
+                    d.discover_uri_async (uri);
+                    not_found = false;
+                }
             }
         }
     }
@@ -86,9 +88,10 @@ public class Noise.GStreamerTagger : Object {
 
     public void discoverer_import_media (Gee.Collection<string> uris) {
         cancelled = false;
-        uri_queue.clear ();
-
-        uri_queue.add_all (uris);
+        lock (uri_queue) {
+            uri_queue.clear ();
+            uri_queue.add_all (uris);
+        }
         
         import_next_file_set.begin ();
     }
@@ -244,12 +247,10 @@ public class Noise.GStreamerTagger : Object {
                 break;
            }
 
-            // Get cover art
-            import_art_async.begin (m, info);
         }
 
         // Use taglib as fallback if GStreamer fails
-        if (m == null)
+        if (m == null && uri != null)
             m = taglib_import_media (uri);
 
         if (m != null) {
@@ -322,164 +323,5 @@ public class Noise.GStreamerTagger : Object {
         return null;
     }
 
-    private async void import_art_async (Media m, Gst.DiscovererInfo info) {
-        var cache = CoverartCache.instance;
-        if (cache.has_image (m))
-            return;
 
-        var pix = get_image (info.get_tags ());
-
-        if (pix != null)
-            yield cache.cache_image_async (m, pix);
-        else
-            warning ("Could not find embedded image for '%s'", info.get_uri ());
-            
-    }
-
-    private static Gdk.Pixbuf? get_image (Gst.TagList tag) {
-        Gst.Buffer? buffer = null;
-
-        for (int i = 0; ; i++) {
-            Gst.Buffer? loop_buffer = null;
-            if (!tag.get_buffer_index (Gst.TAG_IMAGE, i, out loop_buffer))
-                break;
-
-            if (loop_buffer == null)
-                continue;
-
-            var structure = loop_buffer.caps.get_structure (0);
-            if (structure == null)
-                continue;
-
-            int image_type;
-            structure.get_enum ("image-type", typeof (Gst.TagImageType), out image_type);
-
-            if (image_type == Gst.TagImageType.FRONT_COVER) {
-                buffer = loop_buffer;
-                break;
-            } else if (image_type == Gst.TagImageType.UNDEFINED || buffer == null) {
-                buffer = loop_buffer;
-            }
-        }
-
-        if (buffer == null) {
-            debug ("Final image buffer is null");
-            return null;
-        }
-
-        return get_pixbuf_from_buffer (buffer);
-    }
-
-    private static Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
-        Gdk.Pixbuf? pix = null;
-        var loader = new Gdk.PixbufLoader ();
-
-        try {
-            if (loader.write (buffer.data))
-                pix = loader.get_pixbuf ();
-            loader.close ();
-        } catch (Error err) {
-            warning ("Error processing pixbuf data: %s", err.message);
-        }
-
-        return pix;
-    }
-
-#if 0
-    public bool save_media (Media s) {
-        return false;
-
-        Gst.Pipeline pipe = new Pipeline ("pipe");
-        Element src = Element.make_from_uri (URIType.SRC, "file://" + s.file, null);
-        Element decoder = ElementFactory.make ("decodebin", "decoder");
-
-        Signal.connect (decoder, "new-decoded-pad", (Callback)newDecodedPad, this);
-
-        if (! ((Gst.Bin)pipe).add_many (src, decoder)) {
-            message ("Could not add src and decoder to pipeline to save metadata\n");
-            return false;
-        }
-
-        if (!src.link_many (decoder)) {
-            message ("Could not link src to decoder to save metadata\n");
-            return false;
-        }
-
-
-        Gst.Element queue = ElementFactory.make ("queue", "queue");
-        Gst.Element queue2 = ElementFactory.make ("queue", "queue2");
-
-        if (queue == null || queue2 == null) {
-            message ("could not add create queues to save metadata\n");
-            return false;
-        }
-
-        if (! ((Gst.Bin)pipe).add_many (queue, queue2)) {
-            warning ("Could not add queue's to save metadata\n");
-            return false;
-        }
-
-        queue.set ("max-size-time", 120 * Gst.SECOND);
-
-
-
-
-        //Element encoder = new_element_from_uri (URIType.SINK, "file://" + s.file, null);
-
-        Gst.TagList tags;
-        bool rv = true;
-        //long day;
-
-        tags = new TagList ();
-        tags.add (TagMergeMode.REPLACE,  TAG_TITLE, s.title,
-                                        TAG_ARTIST, s.artist,
-                                        TAG_COMPOSER, s.composer,
-                                        TAG_ALBUM_ARTIST, s.album_artist,
-                                        TAG_ALBUM, s.album,
-                                        TAG_GROUPING, s.grouping,
-                                        TAG_GENRE, s.genre,
-                                        TAG_COMMENT, s.comment,
-                                        TAG_LYRICS, s.lyrics,
-                                        TAG_TRACK_NUMBER, s.track,
-                                        TAG_TRACK_COUNT, s.track_count,
-                                        TAG_ALBUM_VOLUME_NUMBER, s.album_number,
-                                        TAG_ALBUM_VOLUME_COUNT, s.album_count,
-                                        TAG_USER_RATING, s.rating);
-
-        /* fetch date, set new year to s.year, set date */
-
-        // now find a tag setter interface and use it
-        /*Gst.Iterator iter;
-        bool done;
-
-        iter = ((Gst.Bin)pipeline).iterate_all_by_interface (typeof (Gst.TagSetter));
-        done = false;
-        while (!done) {
-              Gst.TagSetter tagger = null;
-
-              switch (iter.next (out tagger) {
-              case GST_ITERATOR_OK:
-                    tagger.merge_tags (tags, GST_TAG_MERGE_REPLACE_ALL);
-                    break;
-              case GST_ITERATOR_RESYNC:
-                    iter.resync ();
-                    break;
-              case GST_ITERATOR_ERROR:
-                    warning ("Could not update metadata on media\n");
-                    rv = false;
-                    done = true;
-                    break;
-              case GST_ITERATOR_DONE:
-                    done = true;
-                    break;
-              }
-        }
-
-        return rv;
-    }
-
-    public bool save_embeddeart_d (Gdk.Pixbuf pix) {
-        return false;
-    }
-#endif
 }

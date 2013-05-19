@@ -67,6 +67,7 @@ public class Noise.FileOperator : Object {
         cancelled = false;
         cancelSent = false;
         new_imports = new LinkedList<Media>();
+        all_new_imports = new LinkedList<Media>();
         import_errors = new LinkedList<string>();
         tagger = new GStreamerTagger();
         
@@ -75,6 +76,7 @@ public class Noise.FileOperator : Object {
         tagger.queue_finished.connect(queue_finished);
         // Use right encoding
         TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
+        
     }
     
     public void connect_to_manager () {
@@ -229,14 +231,14 @@ public class Noise.FileOperator : Object {
     }
     
     public void import_files (Collection<string> files, ImportType type) {
-        all_new_imports = new LinkedList<Media>();
-        new_imports.clear();
-        import_errors.clear();
+        all_new_imports.clear ();
+        new_imports.clear ();
+        import_errors.clear ();
         import_type = type;
         queue_size = files.size;
         
         if(files.size == 0) {
-            queue_finished();
+            queue_finished ();
         }
         else {
             tagger.discoverer_import_media (files);
@@ -244,8 +246,8 @@ public class Noise.FileOperator : Object {
     }
     
     void media_imported(Media m) {
-        new_imports.add(m);
-        all_new_imports.add(m);
+        new_imports.add (m);
+        all_new_imports.add (m);
         ++index;
         
         if (index == queue_size) {
@@ -268,6 +270,9 @@ public class Noise.FileOperator : Object {
     }
     
     void queue_finished() {
+        var cover_importer = new CoverImport ();
+        cover_importer.discoverer_import_media (all_new_imports);
+        
         libraries_manager.local_library.music_imported (all_new_imports, import_errors);
         libraries_manager.local_library.add_medias (new_imports);
         new_imports.clear();
@@ -291,6 +296,7 @@ public class Noise.FileOperator : Object {
             libraries_manager.local_library.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
             libraries_manager.local_library.finish_file_operations();
         }
+        
     }
     
     public void copy_imports_thread() {

@@ -39,6 +39,7 @@ set(CLIENT_SOURCE
     DataBase/Tables.vala
     GStreamer/GStreamerTagger.vala
     GStreamer/Streamer.vala
+    GStreamer/CoverImport.vala
     Views/ViewContainer.vala
     Views/Wrappers/ViewWrapper.vala
     Views/Wrappers/MusicViewWrapper.vala
