@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-14 18:03+0200\n"
-"PO-Revision-Date: 2013-05-17 17:03+0000\n"
+"PO-Revision-Date: 2013-05-18 10:48+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-18 05:48+0000\n"
+"X-Launchpad-Export-Date: 2013-05-19 05:31+0000\n"
 "X-Generator: Launchpad (build 16626)\n"
 
 #: /home/tutebatti/noise/po/../core//LibrariesManager.vala:130
@@ -1107,7 +1107,7 @@ msgstr "Käytössä %s/%s (%.2f%)"
 
 #: /home/tutebatti/noise/po/../src//FileOperator.vala:286
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "<b>Kopioidaan</b> tiedostoja <b>musiikkikansioon</b>…"
 
 #: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:445
 #: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:685

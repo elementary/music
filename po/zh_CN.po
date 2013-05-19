@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-14 18:03+0200\n"
-"PO-Revision-Date: 2013-05-07 13:12+0000\n"
-"Last-Translator: Wang Dianjin <Unknown>\n"
+"PO-Revision-Date: 2013-05-19 02:31+0000\n"
+"Last-Translator: Yangyu Huang <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-05-15 05:48+0000\n"
-"X-Generator: Launchpad (build 16617)\n"
+"X-Launchpad-Export-Date: 2013-05-19 05:31+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 
 #: /home/tutebatti/noise/po/../core//LibrariesManager.vala:130
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -763,15 +763,15 @@ msgstr "获取曲目"
 
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "添加音乐到你的资料库"
 
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Locate Music Folder"
-msgstr ""
+msgstr "指定音乐文件夹"
 
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk"
-msgstr ""
+msgstr "从文件夹、网络、外置硬盘加载音乐"
 
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
@@ -1776,7 +1776,7 @@ msgstr "库中无与当前歌曲类似的歌曲。确保全部歌曲信息正确
 #: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 #, c-format
 msgid "Give %s Permission"
-msgstr ""
+msgstr "给予 %s 权限"
 
 #: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
