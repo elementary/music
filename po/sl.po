@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-14 18:03+0200\n"
+"POT-Creation-Date: 2013-05-20 01:06+0200\n"
 "PO-Revision-Date: 2013-05-08 09:48+0000\n"
 "Last-Translator: Damir Jerovšek <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -16,152 +16,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2013-05-15 05:47+0000\n"
-"X-Generator: Launchpad (build 16617)\n"
+"X-Launchpad-Export-Date: 2013-05-20 05:50+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "Language: sl\n"
 
-#: /home/tutebatti/noise/po/../core//LibrariesManager.vala:130
+#: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:130
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Uvažanje <b>$NAME</b> od izvajalca <b>$ARTIST</b> v knjižnico…"
 
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:78
-msgid "Flat"
-msgstr ""
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:79
-msgid "Classical"
-msgstr "Klasična"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:80
-msgid "Club"
-msgstr "Klubska"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:81
-msgid "Dance"
-msgstr "Plesna"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:82
-msgid "Full Bass"
-msgstr "Polni basi"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:83
-msgid "Full Treble"
-msgstr "Polni visoki toni"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:84
-msgid "Full Bass + Treble"
-msgstr "Polni basi in visoki toni"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:85
-msgid "Headphones"
-msgstr "Slušalke"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:86
-msgid "Large Hall"
-msgstr "Velika dvorana"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:87
-msgid "Live"
-msgstr "V živo"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:88
-msgid "Party"
-msgstr "Zabava"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:89
-msgid "Pop"
-msgstr "Pop"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:90
-msgid "Reggae"
-msgstr "corruptcorruptcorruptcorruptcorruptcorrupt"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:91
-msgid "Rock"
-msgstr "Rok"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:92
-msgid "Soft"
-msgstr "Mehak"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:93
-msgid "Ska"
-msgstr "Ska"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:94
-msgid "Soft Rock"
-msgstr "Mehki rok"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:95
-msgid "Techno"
-msgstr "Tehno"
-
 #. / Used for unknown titles, artists, or album names.
-#: /home/tutebatti/noise/po/../core//Media.vala:43
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
 msgid "Unknown"
 msgstr "Neznano"
 
-#: /home/tutebatti/noise/po/../core//Media.vala:53
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:53
 msgid "Radio Station"
 msgstr "Radijska postaja"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: /home/tutebatti/noise/po/../core//Media.vala:183
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:183
 msgid "$NAME on $ALBUM"
 msgstr "$NAME iz $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: /home/tutebatti/noise/po/../core//Media.vala:186
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:186
 msgid "$NAME by $ARTIST"
 msgstr "$NAME od $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: /home/tutebatti/noise/po/../core//Media.vala:192
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:192
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME od $ARTIST iz $ALBUM"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:96
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
 msgid "%s (%d)"
 msgstr "%s (%d)"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:235
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
 msgstr "Nov seznam predvajanja"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:246
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
 msgstr "%s (%i)"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:274
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
 msgstr "Izvoz seznama predvajanja"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:282
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:376
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:282
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:376
 msgid "MPEG Version 3.0 Extended (*.m3u)"
 msgstr "MPEG razširjena različica 3.0 (*.m3u)"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:287
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:381
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:287
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:381
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
 msgstr "Seznam predvajanja Shoutcast različica 2.0 (*.pls)"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:361
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
 msgstr "Seznam predvajanja"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:367
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:367
 #, c-format
 msgid "Import %s"
 msgstr "Uvozi %s"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:401
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Neprepoznana datoteka seznama predvajanja. Uvoz je spodletel."
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -170,8 +98,8 @@ msgstr[1] "%d sekunda"
 msgstr[2] "%d sekundi"
 msgstr[3] "%d sekunde"
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:52
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:52
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
@@ -180,7 +108,7 @@ msgstr[1] "%u minuta"
 msgstr[2] "%u minuti"
 msgstr[3] "%u minute"
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:56
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:56
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
@@ -190,13 +118,13 @@ msgstr[2] "%u sekundi"
 msgstr[3] "%u sekunde"
 
 #. / Minutes and seconds
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:58
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:58
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s in %s"
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:77
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
@@ -205,7 +133,7 @@ msgstr[1] "%u dan"
 msgstr[2] "%u dni"
 msgstr[3] "%u dni"
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:80
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
@@ -215,28 +143,28 @@ msgstr[2] "%u uri"
 msgstr[3] "%u ure"
 
 #. / days, hours and minutes
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:91
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s in %s"
 
 #. / days and hours
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:94
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:94
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s in %s"
 
 #. / days and minutes
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:99
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:99
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s in %s"
 
 #. / hours and minutes
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:108
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:108
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -244,54 +172,126 @@ msgstr "%s in %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:167
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e. %m. %Y %l:%M"
 
-#: /home/tutebatti/noise/po/../core//Utils/String.vala:176
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/String.vala:176
 msgid "the|a|an|le|la|les|un|une|der|die|das|los"
 msgstr ""
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:236
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
+msgid "Flat"
+msgstr ""
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:79
+msgid "Classical"
+msgstr "Klasična"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:80
+msgid "Club"
+msgstr "Klubska"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:81
+msgid "Dance"
+msgstr "Plesna"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:82
+msgid "Full Bass"
+msgstr "Polni basi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:83
+msgid "Full Treble"
+msgstr "Polni visoki toni"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:84
+msgid "Full Bass + Treble"
+msgstr "Polni basi in visoki toni"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:85
+msgid "Headphones"
+msgstr "Slušalke"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:86
+msgid "Large Hall"
+msgstr "Velika dvorana"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:87
+msgid "Live"
+msgstr "V živo"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:88
+msgid "Party"
+msgstr "Zabava"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:89
+msgid "Pop"
+msgstr "Pop"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:90
+msgid "Reggae"
+msgstr "corruptcorruptcorruptcorruptcorruptcorrupt"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:91
+msgid "Rock"
+msgstr "Rok"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:92
+msgid "Soft"
+msgstr "Mehak"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:93
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:94
+msgid "Soft Rock"
+msgstr "Mehki rok"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:95
+msgid "Techno"
+msgstr "Tehno"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
 msgid "Import to Library…"
 msgstr "Uvozi v knjižnico ..."
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:237
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Rescan Music Folder"
 msgstr "Ponovno preišči mapo z glasbo"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:238
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:238
 msgid "Fullscreen"
 msgstr "Celozaslonski način"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:242
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:242
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Preferences"
 msgstr "Možnosti"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:265
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:265
 msgid "Search Music"
 msgstr "Iskanje glasbe"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:679
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:817
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:121
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:679
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:817
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:121
 msgid "Music"
 msgstr "Glasba"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:872
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:107
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/tutebatti/noise/po/../src//PlaybackManager.vala:101
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:872
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:107
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:101
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Vrsta"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:875
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:875
 msgid "No songs in Queue"
 msgstr "Ni pesmi v vrsti"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:876
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:876
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -301,18 +301,18 @@ msgstr ""
 "in izberite <b>Vrsta</b>. Ko se skladba konča, bodo najprej predvajane "
 "skladbe v vrsti pred naslednjo skladbo na trenutno predvajanem seznamu."
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:882
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:107
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/tutebatti/noise/po/../src//PlaybackManager.vala:99
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:882
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:107
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:99
 msgid "History"
 msgstr "Zgodovina"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:885
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:885
 msgid "No songs in History"
 msgstr "Ni pesmi v zgodovini"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:886
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:886
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -321,459 +321,145 @@ msgstr ""
 "Po delnem predvajanju pesmi se ta doda v seznam zgodovine.\n"
 "Ta seznam lahko uporabite za pogled vseh predvajanih pesmi med trenutno sejo."
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1119
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1119
 msgid "Import Music"
 msgstr "Uvozi glasbo"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1139
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:248
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1139
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:248
 msgid "<b>Importing</b> music to library…"
 msgstr "<b>Uvažanje</b> glasbe v knjižnico …"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1154
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1154
 msgid "Rescanning music folder for changes"
 msgstr "Ponovno preiskovanje mape z glasbo za spremembami"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1161
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1161
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid "Could not find Music Folder"
 msgstr "Ni mogoče najti mape z glasbo"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1161
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1161
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Prepričajte se, da je mapa z glasbo dostopna in priklopljena."
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1202
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1202
 msgid "Import Complete"
 msgstr "Uvoz je končan"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1202
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1202
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s je uvozil vašo knjižnico."
 
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Vse zvrsti"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:86
+msgid "Device Name:"
+msgstr "Ime naprave:"
 
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Device Name"
+msgstr "Ime naprave"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:91
+msgid "Automatically sync when plugged in:"
+msgstr "Samodejno uskladi ob priklopu:"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:98
+msgid "Sync:"
+msgstr "Uskladi:"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:120
+msgid "Other Files"
+msgstr "Druge datoteke"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:122
+msgid "Podcasts"
+msgstr "Poddaje"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:416
+msgid "All Music"
+msgstr "Vsa glasba"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:419
+msgid "All Podcasts"
+msgstr "Vse poddaje"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+msgid "Sync Failed"
+msgstr "Uskladitev spodletela"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 #, c-format
-msgid "All %i Genres"
-msgstr "Vseh %i zvrsti"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Ni zvrsti"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Vsi izvajalci"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Artists"
-msgstr "Vseh %i izvajalcev"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Ni izvajalcev"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Vsi albumi"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Albums"
-msgstr "Vseh %i albumov"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Ni albumov"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Vsa leta"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Years"
-msgstr "Vseh %i let"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Ni let"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Vse ocenitve"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Ni ocen"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "Vse razvrstitve v skupine"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-#, c-format
-msgid "All %i Groupings"
-msgstr "Vse %i razvrstitve v skupine"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "Ni razvrstitev v skupine"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Vsi skladatelji"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Composers"
-msgstr "Vsi %i skladatelji"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Ni skladateljev"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
-#: /home/tutebatti/noise/po/../src//Widgets/PresetList.vala:49
-msgid "Automatic"
-msgstr "Samodejno"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
-msgid "On Left"
-msgstr "Na levi"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
-msgid "On Top"
-msgstr "Zgoraj"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Neocenjeno"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-#, c-format
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i zvezdic"
-msgstr[1] "%i zvezdica"
-msgstr[2] "%i zvezdici"
-msgstr[3] "%i zvezdice"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr "Zvrsti"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr "Izvajalci"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr "Albumi"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr "Leta"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr "Ocenitve"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr "Skladatelji"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr "Razvrstitve v skupine"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
-msgid "Autosize Columns"
-msgstr "Samodejna velikost stolpcev"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
-msgid "Display Album Art"
-msgstr "Prikaži podobo albuma"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
-#, c-format
-msgid "%i kbps"
-msgstr "%i kb/s"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
-msgid "Never"
-msgstr "Nikoli"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
-msgid "Remove from Library"
-msgstr "Odstrani iz knjižnice"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
-msgid "Remove from Queue"
-msgstr "Odstrani z vrste"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
-msgid "Remove from Device"
-msgstr "Odstrani z naprave"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
-msgid "Scroll to Current Song"
-msgstr "Premik do trenutne pesmi"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
-msgid "Edit Song Info"
-msgstr "Uredi podatke pesmi"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
-msgid "Show in File Browser"
-msgstr "Pokaži v pregledovalniku datotek"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Vrsta"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
-msgid "Add to Playlist"
-msgstr "Dodaj na seznam predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
-msgid "Remove Song"
-msgstr "Odstrani skladbo"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:134
-msgid "Import to Library"
-msgstr "Uvozi v knjižnico"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
-msgid "New Playlist…"
-msgstr "Nov seznam predvajanja ..."
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Uvoz %i od %i izbranih pesmi"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
-#, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Uvoz %i skladb"
-msgstr[1] "Uvoz %i skladbe"
-msgstr[2] "Uvoz %i skladb"
-msgstr[3] "Uvoz %i skladb"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
-msgid "Sample List String"
-msgstr "Vzorec Seznam Niz"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
-msgctxt "List column title"
-msgid "#"
-msgstr "št."
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
-msgctxt "List column title"
-msgid "Track"
-msgstr "Sled"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
-msgctxt "List column title"
-msgid "Title"
-msgstr "Naslov"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
-msgctxt "List column title"
-msgid "Length"
-msgstr "Čas trajanja"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Izvajalec"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
-msgctxt "List column title"
-msgid "Album"
-msgstr "Album"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Izvajalec albuma"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Skladatelj"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Zvrst"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
-msgctxt "List column title"
-msgid "Year"
-msgstr "Leto"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Razvrstev v skupine"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Bitna hitrost"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Ocena"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Predvajanj"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Preskokov"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Dodano dne"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Nazadnje predvajano"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "udarcev/min"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Mesto"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Velikost datoteke"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:89
-msgid "No Songs Found."
-msgstr "Najdene ni nobene skladbe."
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:369
-#, c-format
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i sledi"
-msgstr[1] "%i sled"
-msgstr[2] "%i sledi"
-msgstr[3] "%i sledi"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:371
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u skladb"
-msgstr[1] "%u skladba"
-msgstr[2] "%u skladbi"
-msgstr[3] "%u skladbe"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:379
-#, c-format
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/GridView.vala:58
-msgid "No Albums Found."
-msgstr "Najdenega ni nobenega albuma."
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/GridView.vala:154
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u albumov"
-msgstr[1] "%u album"
-msgstr[2] "%u albuma"
-msgstr[3] "%u albumi"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/PopupListView.vala:161
-#, c-format
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s od %s"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d minut"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d ur"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d dni"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u predmetov, %s, %s"
-
-#: /home/tutebatti/noise/po/../src//Views/ContentView.vala:21
-#, c-format
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"Seznam predvajanja, imenovan %s, je uporabljen za uskladitev naprave %s, a "
+"je ni mogoče najti."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+msgid "Cannot Sync"
+msgstr "Ni mogoče uskladiti"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Naprave ni mogoče uskladiti z izbranimi nastavitvami usklajevanja. Na disku "
+"ni dovolj prostora"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+msgid "Device is already doing an operation."
+msgstr "Naprava že izvaja opravilo."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid "No Songs"
 msgstr "Ni pesmi"
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Please wait until that this playlist get updated."
 msgstr "Počakajte, da se ta seznam predvajanja posodobi."
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
+msgid "Get Some Tunes"
+msgstr "Pridobi nekaj melodij"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Add music to your library."
+msgstr ""
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Locate Music Folder"
+msgstr ""
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Load music from a folder, a network or an external disk."
+msgstr ""
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
+msgid "Import your Music"
+msgstr "Uvozite svojo glasbo"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "Uvozite vso svojo glasbo iz %s v svojo knjižnico."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:125
+msgid "Select Music Folder"
+msgstr "Izberite mapo z glasbo"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
 msgid "No media"
 msgstr "Ni predstavne vsebine"
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -781,11 +467,11 @@ msgstr ""
 "Za dodanje skladb na ta seznam predvajanja uporabite <b>drugotni klik</b> na "
 "predmetu in izberite <b>Dodaj na seznam predvajanja</b>."
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
 msgstr "Uredi pameten seznam predvajanja"
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -797,743 +483,874 @@ msgstr ""
 "stranski vrstici in kliknite na <b>Uredi</b>. Lahko pa tudi kliknete na "
 "spodnji gumb."
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
-msgid "Get Some Tunes"
-msgstr "Pridobi nekaj melodij"
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Add music to your library."
-msgstr ""
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Locate Music Folder"
-msgstr ""
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Load music from a folder, a network or an external disk"
-msgstr ""
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
-msgid "Import your Music"
-msgstr "Uvozite svojo glasbo"
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ContentView.vala:21
 #, c-format
-msgid "Import all your Music from %s into your library."
-msgstr "Uvozite vso svojo glasbo iz %s v svojo knjižnico."
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:125
-msgid "Select Music Folder"
-msgstr "Izberite mapo z glasbo"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:58
+msgid "No Albums Found."
+msgstr "Najdenega ni nobenega albuma."
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:86
-msgid "Device Name:"
-msgstr "Ime naprave:"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:89
-msgid "Device Name"
-msgstr "Ime naprave"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:91
-msgid "Automatically sync when plugged in:"
-msgstr "Samodejno uskladi ob priklopu:"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:98
-msgid "Sync:"
-msgstr "Uskladi:"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:120
-msgid "Other Files"
-msgstr "Druge datoteke"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:122
-msgid "Podcasts"
-msgstr "Poddaje"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:416
-msgid "All Music"
-msgstr "Vsa glasba"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:419
-msgid "All Podcasts"
-msgstr "Vse poddaje"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:569
-msgid "Sync Failed"
-msgstr "Uskladitev spodletela"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:154
 #, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Seznam predvajanja, imenovan %s, je uporabljen za uskladitev naprave %s, a "
-"je ni mogoče najti."
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u albumov"
+msgstr[1] "%u album"
+msgstr[2] "%u albuma"
+msgstr[3] "%u albumi"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:610
-msgid "Cannot Sync"
-msgstr "Ni mogoče uskladiti"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/PopupListView.vala:161
+#, c-format
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s od %s"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Naprave ni mogoče uskladiti z izbranimi nastavitvami usklajevanja. Na disku "
-"ni dovolj prostora"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr "%d minut"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:610
-msgid "Device is already doing an operation."
-msgstr "Naprava že izvaja opravilo."
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr "%d ur"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:41
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d dni"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u predmetov, %s, %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
+msgctxt "List column title"
+msgid "#"
+msgstr "št."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
+msgctxt "List column title"
+msgid "Track"
+msgstr "Sled"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
+msgctxt "List column title"
+msgid "Title"
+msgstr "Naslov"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
+msgctxt "List column title"
+msgid "Length"
+msgstr "Čas trajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Izvajalec"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Album"
+msgstr "Album"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Izvajalec albuma"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Skladatelj"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Zvrst"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Year"
+msgstr "Leto"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Razvrstev v skupine"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Bitna hitrost"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Ocena"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Predvajanj"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Preskokov"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Dodano dne"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Nazadnje predvajano"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "udarcev/min"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Mesto"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Velikost datoteke"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
+msgid "Remove from Library"
+msgstr "Odstrani iz knjižnice"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
+msgid "Remove from Queue"
+msgstr "Odstrani z vrste"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
+msgid "Remove from Device"
+msgstr "Odstrani z naprave"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
+msgid "Scroll to Current Song"
+msgstr "Premik do trenutne pesmi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
+msgid "Edit Song Info"
+msgstr "Uredi podatke pesmi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
+msgid "Show in File Browser"
+msgstr "Pokaži v pregledovalniku datotek"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Vrsta"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
+msgid "Add to Playlist"
+msgstr "Dodaj na seznam predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
+msgid "Remove Song"
+msgstr "Odstrani skladbo"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:134
+msgid "Import to Library"
+msgstr "Uvozi v knjižnico"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
+msgid "New Playlist…"
+msgstr "Nov seznam predvajanja ..."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Uvoz %i od %i izbranih pesmi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "Uvoz %i skladb"
+msgstr[1] "Uvoz %i skladbe"
+msgstr[2] "Uvoz %i skladb"
+msgstr[3] "Uvoz %i skladb"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
+msgid "Never"
+msgstr "Nikoli"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
+msgid "Sample List String"
+msgstr "Vzorec Seznam Niz"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
+msgid "Autosize Columns"
+msgstr "Samodejna velikost stolpcev"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
+msgid "Display Album Art"
+msgstr "Prikaži podobo albuma"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
+#, c-format
+msgid "%i kbps"
+msgstr "%i kb/s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:89
+msgid "No Songs Found."
+msgstr "Najdene ni nobene skladbe."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:369
+#, c-format
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i sledi"
+msgstr[1] "%i sled"
+msgstr[2] "%i sledi"
+msgstr[3] "%i sledi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:371
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u skladb"
+msgstr[1] "%u skladba"
+msgstr[2] "%u skladbi"
+msgstr[3] "%u skladbe"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:379
+#, c-format
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "Vse zvrsti"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+#, c-format
+msgid "All %i Genres"
+msgstr "Vseh %i zvrsti"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "Ni zvrsti"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "Vsi izvajalci"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Artists"
+msgstr "Vseh %i izvajalcev"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "Ni izvajalcev"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "Vsi albumi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Albums"
+msgstr "Vseh %i albumov"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "Ni albumov"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "Vsa leta"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Years"
+msgstr "Vseh %i let"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "Ni let"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "Vse ocenitve"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "Ni ocen"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr "Vse razvrstitve v skupine"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#, c-format
+msgid "All %i Groupings"
+msgstr "Vse %i razvrstitve v skupine"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr "Ni razvrstitev v skupine"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "Vsi skladatelji"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Composers"
+msgstr "Vsi %i skladatelji"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "Ni skladateljev"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:49
+msgid "Automatic"
+msgstr "Samodejno"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
+msgid "On Left"
+msgstr "Na levi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+msgid "On Top"
+msgstr "Zgoraj"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "Neocenjeno"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i zvezdic"
+msgstr[1] "%i zvezdica"
+msgstr[2] "%i zvezdici"
+msgstr[3] "%i zvezdice"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr "Zvrsti"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr "Izvajalci"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr "Albumi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr "Leta"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr "Ocenitve"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr "Skladatelji"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr "Razvrstitve v skupine"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling…"
 msgstr "Preklic ..."
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:41
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
 msgstr ""
 "Opravilo naprave je preklicano in se bo končalo po tej predstavni vsebini."
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:104
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid "No External Songs"
 msgstr "Ni zunanjih pesmi"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:104
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr "Na napravi ni bilo najdenih pesmi, ki niso v tvoji knjižnici."
 
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:167
+#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:291
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>Kopiranje</b> datotek v <b>mapo Glasba</b> …"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:167
 #, c-format
 msgid "Importing music from %s…"
 msgstr "Uvažanje glasbe iz %s ..."
 
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:209
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:209
 msgid "Adding files to library…"
 msgstr "Dodajanje datotek v knjižnico ..."
 
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:274
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:274
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
 "Ponovno preiskovanje glasbe zaradi sprememb. To lahko traja nekaj časa ..."
 
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:352
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:352
 msgid "Added to your queue:"
 msgstr "Dodano v čakalno vrsto:"
 
-#: /home/tutebatti/noise/po/../src//Noise.vala:37
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:445
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:685
+msgid "Favorite Songs"
+msgstr "Priljubljene pesmi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:452
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:692
+msgid "Recently Added"
+msgstr "Dodano pred kratkim"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:468
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:708
+msgid "Recent Favorites"
+msgstr "Priljubljeno pred kratkim"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:475
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:715
+msgid "Never Played"
+msgstr "Nikoli predvajano"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:482
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:722
+msgid "Over Played"
+msgstr "Preveč predvajano"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:489
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:729
+msgid "Not Recently Played"
+msgstr "Dolgo nepredvajano"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
 msgstr "Poslušajte glasbo"
 
-#: /home/tutebatti/noise/po/../src//Noise.vala:38
+#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:38
 msgid "Music Player"
 msgstr "Predvajalnik glasbe"
 
-#: /home/tutebatti/noise/po/../src//Noise.vala:39
+#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
 "Noise;Zvok;Predvajalnik;MP3;iPod;Predvajanje;Seznam predvajanja;Predstavna "
 "vsebina;CD;Telefon;"
 
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:56
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:69
-msgid "Rename"
-msgstr "Preimenuj"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:57
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:71
-msgid "Remove"
-msgstr "Odstrani"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:58
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:72
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:87
-msgid "Export…"
-msgstr "Izvozi ..."
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:70
-msgid "Edit…"
-msgstr "Uredi …"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:85
-msgid "Save as Playlist"
-msgstr "Shrani kot seznam predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:142
-msgid "Eject"
-msgstr "Izvrzi"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:147
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:186
-msgid "New Playlist"
-msgstr "Nov seznam predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:152
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:187
-msgid "New Smart Playlist"
-msgstr "Nov pameten seznam predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:157
-#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:238
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
 msgid "Sync"
 msgstr "Uskladi"
 
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:188
-msgid "Import Playlists"
-msgstr "Uvozi predvajalne sezname"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:232
-msgid "Library"
-msgstr "Knjižnica"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:233
-msgid "Devices"
-msgstr "Naprave"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:234
-msgid "Network"
-msgstr "Omrežje"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:235
-#: /home/tutebatti/noise/po/../plugins//MPRIS/MPRIS.vala:643
-msgid "Playlists"
-msgstr "Seznami predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Widgets/TopDisplay.vala:68
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Cancel"
-msgstr "Prekliči"
-
-#: /home/tutebatti/noise/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Izbriši trenutno"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:65
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Off"
-msgstr "Izključeno"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:65
-msgid "Enable Repeat"
-msgstr "Omogoči ponavljanje"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:66
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:544
-msgid "Song"
-msgstr "Skladba"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:66
-msgid "Repeat Song"
-msgstr "Ponovi skladbo"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:67
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:200
-msgid "Album"
-msgstr "Album"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Repeat Album"
-msgstr "Ponovi album"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:68
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:198
-msgid "Artist"
-msgstr "Izvajalec"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:68
-msgid "Repeat Artist"
-msgstr "Ponovi izvajalca"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:69
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "All"
-msgstr "Vse"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Repeat All"
-msgstr "Ponovi vse"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Enable Shuffle"
-msgstr "Omogoči prerazporeditev"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Disable Shuffle"
-msgstr "Onemogoči prerazporeditev"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:132
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:143
-msgid "Add Playlist"
-msgstr "Dodaj seznam predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:144
-msgid "Add Smart Playlist"
-msgstr "Dodaj pametni seznam predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:190
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Hide"
-msgstr "Skrij"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:190
-msgid "Show Equalizer"
-msgstr "Pokaži izenačevalnik"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:191
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Show"
-msgstr "Pokaži"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:191
-msgid "Hide Equalizer"
-msgstr "Skrij izenačevalnik"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Show Info Panel"
-msgstr "Pokaži pult podrobnosti"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Hide Info Panel"
-msgstr "Skrij pult podrobnosti"
-
-#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr "Pogled albumov"
-
-#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr "Pogled seznama"
-
-#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr "Pogled v stolpcih"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:267
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
 msgstr "Brezplačno"
 
-#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:384
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:384
 msgid "Using %s of %s (%.2f%)"
 msgstr "Uporabljano %s od %s (%.2f%)"
 
-#: /home/tutebatti/noise/po/../src//FileOperator.vala:286
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kopiranje</b> datotek v <b>mapo Glasba</b> …"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Izbriši trenutno"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:445
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:685
-msgid "Favorite Songs"
-msgstr "Priljubljene pesmi"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Off"
+msgstr "Izključeno"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:452
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:692
-msgid "Recently Added"
-msgstr "Dodano pred kratkim"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
+msgid "Enable Repeat"
+msgstr "Omogoči ponavljanje"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:468
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:708
-msgid "Recent Favorites"
-msgstr "Priljubljeno pred kratkim"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:544
+msgid "Song"
+msgstr "Skladba"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:475
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:715
-msgid "Never Played"
-msgstr "Nikoli predvajano"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
+msgid "Repeat Song"
+msgstr "Ponovi skladbo"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:482
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:722
-msgid "Over Played"
-msgstr "Preveč predvajano"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:200
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+msgid "Album"
+msgstr "Album"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:489
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:729
-msgid "Not Recently Played"
-msgstr "Dolgo nepredvajano"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Album"
+msgstr "Ponovi album"
 
-#: /home/tutebatti/noise/po/../src//Objects/LyricFetcher.vala:156
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Besedilo pridobljeno iz www.lyricsmania.com"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:198
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Artist"
+msgstr "Izvajalec"
 
-#: /home/tutebatti/noise/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Neznana sled"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Artist"
+msgstr "Ponovi izvajalca"
 
-#: /home/tutebatti/noise/po/../src//Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Neznan album"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "All"
+msgstr "Vse"
 
-#: /home/tutebatti/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/tutebatti/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/tutebatti/noise/po/../src//GStreamer/Streamer.vala:195
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
-msgid "Unknown Artist"
-msgstr "Neznan izvajalec"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat All"
+msgstr "Ponovi vse"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:44
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Enable Shuffle"
+msgstr "Omogoči prerazporeditev"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Disable Shuffle"
+msgstr "Onemogoči prerazporeditev"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:132
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:143
+msgid "Add Playlist"
+msgstr "Dodaj seznam predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Smart Playlist"
+msgstr "Dodaj pametni seznam predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Hide"
+msgstr "Skrij"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
+msgid "Show Equalizer"
+msgstr "Pokaži izenačevalnik"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Show"
+msgstr "Pokaži"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
+msgid "Hide Equalizer"
+msgstr "Skrij izenačevalnik"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Show Info Panel"
+msgstr "Pokaži pult podrobnosti"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Hide Info Panel"
+msgstr "Skrij pult podrobnosti"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/TopDisplay.vala:68
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:56
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:69
+msgid "Rename"
+msgstr "Preimenuj"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
+msgid "Remove"
+msgstr "Odstrani"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:58
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:72
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:87
+msgid "Export…"
+msgstr "Izvozi ..."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:70
+msgid "Edit…"
+msgstr "Uredi …"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:85
+msgid "Save as Playlist"
+msgstr "Shrani kot seznam predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:142
+msgid "Eject"
+msgstr "Izvrzi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:147
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:186
+msgid "New Playlist"
+msgstr "Nov seznam predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:152
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:187
+msgid "New Smart Playlist"
+msgstr "Nov pameten seznam predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:188
+msgid "Import Playlists"
+msgstr "Uvozi predvajalne sezname"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:232
+msgid "Library"
+msgstr "Knjižnica"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:233
+msgid "Devices"
+msgstr "Naprave"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:234
+msgid "Network"
+msgstr "Omrežje"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:235
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//MPRIS/MPRIS.vala:643
+msgid "Playlists"
+msgstr "Seznami predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr "Pogled albumov"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr "Pogled seznama"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr "Pogled v stolpcih"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
 msgstr "Izberite mapo s skladbami ..."
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
 msgstr "Splošno"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:123
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:123
 msgid "Music Folder Location:"
 msgstr "Mesto mape z glasbo:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:131
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
 msgstr "Upravljanje knjižnice:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:136
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
 msgstr "Ohrani mapo z glasbo urejeno:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:140
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
 msgstr "Zapiši metapodatke v datoteko:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:144
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
 msgstr "Kopiraj uvožene datoteke v knjižnico:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
 msgstr "Podpora namizju:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
 msgstr "Pokaži obvestila:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
 msgstr "Skrči okno, kadar se predvaja skladba:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:159
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
 msgstr "Skrij okno, kadar se predvaja skladba:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
-msgid "Import from Device"
-msgstr "Uvozi iz naprave"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:88
+msgid "Metadata"
+msgstr "Metapodatki"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:90
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:382
+msgid "Lyrics"
+msgstr "Besedilo"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:353
+msgid "Editing $NAME by $ARTIST"
+msgstr "Urejanje $NAME od $ARTIST"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
-msgid "Import media from %s"
-msgstr "Uvozi predstavnost iz %s"
+msgid "Editing %s"
+msgstr "Urejanje %s"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:358
 #, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Naslednje datoteke so bile najdene na %s, toda niso v vaši knjižnici. "
-"Preverite vse datoteke, ki bi jih želeli uvoziti."
+msgid "Editing %i songs"
+msgstr "Urejanje %i pesmi"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-msgid "Import all media"
-msgstr "Uvozi vso predstavnost"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr "Uvozi"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
-msgid "Don't Import"
-msgstr "Ne uvozi"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
-#, c-format
-msgid "Import %i items from %s"
-msgstr "Uvozi %i predmetov iz %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
-#, c-format
-msgid "Import %s from %s"
-msgstr "Uvozi %s iz %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
-msgid "ID"
-msgstr "ID"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:275
 msgid "Title"
 msgstr "Naslov"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
-msgid "Select individual media to import:"
-msgstr "Izberi posamezno predstavnost za uvoz:"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Album Artist"
+msgstr "Izvajalec albuma"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
-msgid "Check Item"
-msgstr "Označi predmet"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
-msgid "Check Album"
-msgstr "Označi album"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Artist"
-msgstr "Označi izvajalca"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
-msgid "Cannot Import"
-msgstr "Ni mogoče uvoziti"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
-#, c-format
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-"Noise že počne datotečna opravila. Počakajte, dokler ta ne končajo z "
-"uvažanjem iz %d"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
-msgid "Export Playlists"
-msgstr "Izvozi seznam predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
-msgid "Set Music Folder"
-msgstr "Nastavite mapo z glasbo"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
-msgid "Set Music Folder?"
-msgstr "Nastavitev mape z glasbo?"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Ali ste prepričani, da želite nastaviti mapo z glasbo k %s? To bo "
-"ponastavilo vašo knjižnico in odstranilo vaše sezname predvajanja."
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
-msgid "Choose Music Folder"
-msgstr "Izberite mapo z glasbo"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
-msgid "Import media to Library"
-msgstr "Uvozi predstavnost v knjižnico"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
-msgid "Continue Syncing"
-msgstr "Nadaljuj usklajevanje"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
-msgid "Stop Syncing"
-msgstr "Ustavi usklajevanje"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Če nadaljujete z usklajevanjem, bo predstavna vsebina odstranjena iz %s, saj "
-"ni na seznamu usklajevanja. Ali jo želite najprej uvoziti v svojo knjižnico?"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr "Usklajevanje bo odstranilo %i predmetov iz %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr "Usklajevanje bo odstranilo 1 predmet iz %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
-msgid "Smart Playlist Editor"
-msgstr "Urejevalnik pametnega seznama predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
-msgid "Name of Playlist"
-msgstr "Ime seznama predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
-msgid "Rules"
-msgstr "Pravila"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
-msgid "Options"
-msgstr "Možnosti"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
-msgid "Playlist Title"
-msgstr "Naslov seznama predvajanja"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
-msgid "Match"
-msgstr "Ujemanje"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
-msgid "any"
-msgstr "karkoli"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-msgid "all"
-msgstr "vse"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
-msgid "of the following:"
-msgstr "od naslednjih:"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Omeji na"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "predmetov"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-msgid "Bitrate"
-msgstr "Bitna hitrost"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:204
-msgid "Comment"
-msgstr "Komentar"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:202
-msgid "Composer"
-msgstr "Skladatelj"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-msgid "Date Added"
-msgstr "Dodano dne"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Released"
-msgstr "Datum izdaje"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:201
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:485
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:201
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Genre"
 msgstr "Zvrst"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:203
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:485
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:202
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+msgid "Composer"
+msgstr "Skladatelj"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:203
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 msgid "Grouping"
 msgstr "Združevanje"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-msgid "Last Played"
-msgstr "Nazadnje predvajano"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:204
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+msgid "Comment"
+msgstr "Komentar"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
-msgid "Length"
-msgstr "Dolžina"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:205
+msgid "Track"
+msgstr "Sled"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-msgid "Playcount"
-msgstr "Število predvajanj"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:206
+msgid "Disc"
+msgstr "Plošča"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:208
-msgid "Rating"
-msgstr "Ocena"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-msgid "Skipcount"
-msgstr "Število preskokov"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:207
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:207
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:276
 msgid "Year"
 msgstr "Leto"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
-msgid "is"
-msgstr "je"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:208
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
+msgid "Rating"
+msgstr "Ocena"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
-msgid "contains"
-msgstr "vsebuje"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:210
+msgid "Media Type"
+msgstr "Predstavnostni tip"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
-msgid "does not contain"
-msgstr "ne vsebuje"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:301
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr "Besedila niso najdena  za %s"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
-msgid "is exactly"
-msgstr "je natanko"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:546
+msgid "Podcast"
+msgstr "Poddaja"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
-msgid "is at most"
-msgstr "je največ"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
+msgid "Remove Media"
+msgstr "Odstrani predstavnost"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
-msgid "is at least"
-msgstr "je najmanj"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
+msgid "Locate Media"
+msgstr "Poišči predstavno vsebino"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
-msgid "is within"
-msgstr "je znotraj"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
+msgid "Rescan Library"
+msgstr "Ponovno preišči knjižnico"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
-msgid "is before"
-msgstr "je pred"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
+msgid "Do Nothing"
+msgstr "Ne naredi ničesar"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
-msgid "seconds"
-msgstr "sekund"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
+msgid "Could not find media file"
+msgstr "Ni mogoče najti predstavnostne datoteke"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
-msgid "days ago"
-msgstr "dni nazaj"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
+msgid ""
+"The music file for $NAME by $ARTIST could not be found. What would you like "
+"to do?"
+msgstr ""
+"Glasbene datoteke za $NAME od $ARTIST ni bilo mogoče najti. Kaj želite "
+"storiti?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "kbps"
-msgstr "kb/s"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
+#, c-format
+msgid "%i media files could not be found. What would you like to do?"
+msgstr "%i predstavnih vsebin ni bilo mogoče najti. Kaj želite storiti?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
+msgid "Choose Music Folder"
+msgstr "Izberite mapo z glasbo"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Move to Trash"
 msgstr "Premakni v smeti"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove from %s"
 msgstr "Odstrani iz %s"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Odstranitev %d skladb iz %s?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Odstranitev \"%s\" iz %s?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -1554,110 +1371,324 @@ msgstr[3] ""
 "To bo odstranilo skladbe iz vaše knjižnice in vsake naprave, ki se samodejno "
 "usklajuje z %s."
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:48
-msgid "Not Imported Files"
-msgstr "Neuvožene datoteke"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
+msgid "Export Playlists"
+msgstr "Izvozi seznam predvajanja"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:65
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:77
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
+msgid "Set Music Folder"
+msgstr "Nastavite mapo z glasbo"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
+msgid "Set Music Folder?"
+msgstr "Nastavitev mape z glasbo?"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
 #, c-format
-msgid "Unable to import %d items from %s"
-msgstr "Nemogoče uvoziti %d predmetov iz %s"
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Ali ste prepričani, da želite nastaviti mapo z glasbo k %s? To bo "
+"ponastavilo vašo knjižnico in odstranilo vaše sezname predvajanja."
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:66
-#, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s ni uspelo uvoziti %d predmetov. Datoteke so lahko poškodovane."
-
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:67
-msgid "Move all corrupted files to trash"
-msgstr "Premakni vse pokvarjene datoteke v smeti."
-
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:73
-msgid "Ignore"
-msgstr "Prezri"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:94
-msgid "del"
-msgstr "izbriši"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:99
-msgid "File Location"
-msgstr "Lokacija datoteke"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:126
-msgid "Select individual files to move to trash:"
-msgstr "Izberi pozamezne datoteke za premik v smeti."
-
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:76
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:76
 msgid "Equalizer"
 msgstr "Izenačevalnik"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:143
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:143
 msgid "Save preset"
 msgstr "Shrani prednastavitev"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:407
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:407
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Poljubno)"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:409
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:409
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Poljubno %i)"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:413
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:413
 msgid "Custom Preset"
 msgstr "Poljubna prednastavitev"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:415
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Poljubna prednastavitev %i"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
-msgid "Remove Media"
-msgstr "Odstrani predstavnost"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
+msgid "Import from Device"
+msgstr "Uvozi iz naprave"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
-msgid "Locate Media"
-msgstr "Poišči predstavno vsebino"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
-msgid "Rescan Library"
-msgstr "Ponovno preišči knjižnico"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
-msgid "Do Nothing"
-msgstr "Ne naredi ničesar"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
-msgid "Could not find media file"
-msgstr "Ni mogoče najti predstavnostne datoteke"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
-msgid ""
-"The music file for $NAME by $ARTIST could not be found. What would you like "
-"to do?"
-msgstr ""
-"Glasbene datoteke za $NAME od $ARTIST ni bilo mogoče najti. Kaj želite "
-"storiti?"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
 #, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i predstavnih vsebin ni bilo mogoče najti. Kaj želite storiti?"
+msgid "Import media from %s"
+msgstr "Uvozi predstavnost iz %s"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"Naslednje datoteke so bile najdene na %s, toda niso v vaši knjižnici. "
+"Preverite vse datoteke, ki bi jih želeli uvoziti."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+msgid "Import all media"
+msgstr "Uvozi vso predstavnost"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDView.vala:90
+msgid "Import"
+msgstr "Uvozi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
+msgid "Don't Import"
+msgstr "Ne uvozi"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
+#, c-format
+msgid "Import %i items from %s"
+msgstr "Uvozi %i predmetov iz %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
+#, c-format
+msgid "Import %s from %s"
+msgstr "Uvozi %s iz %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
+msgid "ID"
+msgstr "ID"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
+msgid "Select individual media to import:"
+msgstr "Izberi posamezno predstavnost za uvoz:"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
+msgid "Check Item"
+msgstr "Označi predmet"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
+msgid "Check Album"
+msgstr "Označi album"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Artist"
+msgstr "Označi izvajalca"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+msgid "Cannot Import"
+msgstr "Ni mogoče uvoziti"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+#, c-format
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"Noise že počne datotečna opravila. Počakajte, dokler ta ne končajo z "
+"uvažanjem iz %d"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
+msgid "Import media to Library"
+msgstr "Uvozi predstavnost v knjižnico"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
+msgid "Continue Syncing"
+msgstr "Nadaljuj usklajevanje"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
+msgid "Stop Syncing"
+msgstr "Ustavi usklajevanje"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Če nadaljujete z usklajevanjem, bo predstavna vsebina odstranjena iz %s, saj "
+"ni na seznamu usklajevanja. Ali jo želite najprej uvoziti v svojo knjižnico?"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr "Usklajevanje bo odstranilo %i predmetov iz %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr "Usklajevanje bo odstranilo 1 predmet iz %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
+msgid "Smart Playlist Editor"
+msgstr "Urejevalnik pametnega seznama predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
+msgid "Name of Playlist"
+msgstr "Ime seznama predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
+msgid "Rules"
+msgstr "Pravila"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
+msgid "Options"
+msgstr "Možnosti"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
+msgid "Playlist Title"
+msgstr "Naslov seznama predvajanja"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
+msgid "Match"
+msgstr "Ujemanje"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
+msgid "any"
+msgstr "karkoli"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+msgid "all"
+msgstr "vse"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
+msgid "of the following:"
+msgstr "od naslednjih:"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr "Omeji na"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr "predmetov"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Bitrate"
+msgstr "Bitna hitrost"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Date Added"
+msgstr "Dodano dne"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+msgid "Date Released"
+msgstr "Datum izdaje"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Last Played"
+msgstr "Nazadnje predvajano"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
+msgid "Length"
+msgstr "Dolžina"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+msgid "Playcount"
+msgstr "Število predvajanj"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:274
+msgid "Skipcount"
+msgstr "Število preskokov"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
+msgid "is"
+msgstr "je"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
+msgid "contains"
+msgstr "vsebuje"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:338
+msgid "does not contain"
+msgstr "ne vsebuje"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
+msgid "is exactly"
+msgstr "je natanko"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
+msgid "is at most"
+msgstr "je največ"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:365
+msgid "is at least"
+msgstr "je najmanj"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
+msgid "is within"
+msgstr "je znotraj"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:378
+msgid "is before"
+msgstr "je pred"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+msgid "seconds"
+msgstr "sekund"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
+msgid "days ago"
+msgstr "dni nazaj"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
+msgid "kbps"
+msgstr "kb/s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:48
+msgid "Not Imported Files"
+msgstr "Neuvožene datoteke"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:77
+#, c-format
+msgid "Unable to import %d items from %s"
+msgstr "Nemogoče uvoziti %d predmetov iz %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+#, c-format
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s ni uspelo uvoziti %d predmetov. Datoteke so lahko poškodovane."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:67
+msgid "Move all corrupted files to trash"
+msgstr "Premakni vse pokvarjene datoteke v smeti."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:73
+msgid "Ignore"
+msgstr "Prezri"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:94
+msgid "del"
+msgstr "izbriši"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:99
+msgid "File Location"
+msgstr "Lokacija datoteke"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:126
+msgid "Select individual files to move to trash:"
+msgstr "Izberi pozamezne datoteke za premik v smeti."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
 msgid "Install Plugin"
 msgstr "Namesti vstavek"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
 msgstr "Potreben GStreamer vtičnik ni nameščen"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
@@ -1666,74 +1697,43 @@ msgstr ""
 "Vstavek za predstavno vrsto %s ni nameščen.\n"
 "Kaj želite narediti?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:88
-msgid "Metadata"
-msgstr "Metapodatki"
+#: /home/noelco/Programmation/Projets/noise/po/../src//GStreamer/Streamer.vala:195
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
+msgid "Unknown Artist"
+msgstr "Neznan izvajalec"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:90
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:382
-msgid "Lyrics"
-msgstr "Besedilo"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/LyricFetcher.vala:156
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "Besedilo pridobljeno iz www.lyricsmania.com"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:353
-msgid "Editing $NAME by $ARTIST"
-msgstr "Urejanje $NAME od $ARTIST"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Neznana sled"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:355
-#, c-format
-msgid "Editing %s"
-msgstr "Urejanje %s"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Neznan album"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:358
-#, c-format
-msgid "Editing %i songs"
-msgstr "Urejanje %i pesmi"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:199
-msgid "Album Artist"
-msgstr "Izvajalec albuma"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:205
-msgid "Track"
-msgstr "Sled"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:206
-msgid "Disc"
-msgstr "Plošča"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:210
-msgid "Media Type"
-msgstr "Predstavnostni tip"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:301
-#, c-format
-msgid "Lyrics not found for %s"
-msgstr "Besedila niso najdena  za %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:546
-msgid "Podcast"
-msgstr "Poddaja"
-
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
 msgstr "Prišlo je do napake"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
 msgstr "Med nalaganjem zvočnega CD-ja je prišlo do napake."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
 msgstr "Neveljaven zvočni CD"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "Ni mogoče prebrati vsebine tega zvočnega CD-ja"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1741,102 +1741,114 @@ msgstr ""
 "Preden začnete z uvozom CD-ja, se prepričajte, da je mapa z glasbo dostopna "
 "in priklopljena."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "Program ni najdel nobene skladbe na CD-ju. Nobene skladbe ni mogoče uvoziti"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
 msgid "Importation of a song from Audio CD finished."
 msgstr "Uvoz skladbe z zvočnega CD-ja je končan."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importation of %i songs from Audio CD finished."
 msgstr "Uvoz %i skladb z zvočnega CD-ja je končan."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "Uvoz sledi %i: %s"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Uvoz CD-ja bo <b>preklican</b> po trenutnem uvozu."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
 msgid "An error occured during the Import of this CD"
 msgstr "Med uvažanjem tega CD-ja se je pojavila napaka"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
+msgid "Empty device!"
+msgstr "Prazna naprava!"
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
+msgid "This device does not contain any music."
+msgstr "Ta naprava ne vsebuje nobene glasbe."
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
+msgid "Android Phone"
+msgstr "Telefon z Andoidom"
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
+msgid "Audio Player"
+msgstr "Zvočni predvajalnik"
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "Dodajanje <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
 #, c-format
 msgid "Syncing <b>%s</b>…"
 msgstr "Usklajevanje <b>%s</b> …"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
 msgid "Finishing sync process…"
 msgstr "Končevanje opravila usklajevanja ..."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
 msgid "Cancelling Sync…"
 msgstr "Preklicevanje usklajevanja ..."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
 msgid "There is not enough space on Device to complete the Sync…"
 msgstr "Na napravi ni dovolj prostora za dokončanje usklajevanja ..."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "Odstranjevanje <b>$NAME</b> od <b>$ARTIST</b> iz $DEVICE"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
 #, c-format
 msgid "Removing from <b>%s</b>…"
 msgstr "Odstranjevanje iz <b>%s</b> …"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
-msgid "Empty device!"
-msgstr "Prazna naprava!"
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
+msgid "media"
+msgstr "predstavnost"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
-msgid "This device does not contain any music."
-msgstr "Ta naprava ne vsebuje nobene glasbe."
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "Similar Media"
+msgstr "Podobna predstavnost"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
-msgid "Android Phone"
-msgstr "Telefon z Andoidom"
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMedia.vala:42
+msgid "Similar"
+msgstr "Podobno"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
-msgid "Audio Player"
-msgstr "Zvočni predvajalnik"
-
-#: /home/tutebatti/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"
 msgstr "Ni najdenih podobnih pesmi"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
@@ -1846,57 +1858,45 @@ msgstr ""
 "podatki vseh skladb ustrezni in da ste povezani z internetom. Nekatere "
 "skladbe morda ne bodo imele ujemanj."
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 #, c-format
 msgid "Give %s Permission"
 msgstr ""
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
 msgstr "Neuspešno. Kliknite za ponovni poizkus."
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
 msgstr "Beleženje poslušanih skladb je že omogočeno"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
 msgstr "Uspešno!"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
 msgstr "Celotna prijava"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:43
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:48
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:48
 msgid "Last.fm Integration"
 msgstr "Podpora Last.fm"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:55
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
 msgstr "Kliknite za uveljavitev opravila prijave Last.fm"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:58
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:58
 #, c-format
 msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
-
-#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
-msgid "media"
-msgstr "predstavnost"
-
-#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
-msgid "Similar Media"
-msgstr "Podobna predstavnost"
-
-#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMedia.vala:42
-msgid "Similar"
-msgstr "Podobno"
 
 #~ msgid "Done"
 #~ msgstr "Končano"

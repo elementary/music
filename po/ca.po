@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-14 18:03+0200\n"
+"POT-Creation-Date: 2013-05-20 01:06+0200\n"
 "PO-Revision-Date: 2013-05-15 21:46+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -15,169 +15,97 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-16 05:24+0000\n"
+"X-Launchpad-Export-Date: 2013-05-20 05:49+0000\n"
 "X-Generator: Launchpad (build 16626)\n"
 "Language: ca\n"
 
-#: /home/tutebatti/noise/po/../core//LibrariesManager.vala:130
+#: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:130
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "S'està <b>$NAME</b> per <b> $ARTIST</b> a la biblioteca…"
 
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:78
-msgid "Flat"
-msgstr "Plana"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:79
-msgid "Classical"
-msgstr "Música clàssica"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:80
-msgid "Club"
-msgstr "Club"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:81
-msgid "Dance"
-msgstr "Dance"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:82
-msgid "Full Bass"
-msgstr "Màxim de greus"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:83
-msgid "Full Treble"
-msgstr "Màxim d'aguts"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:84
-msgid "Full Bass + Treble"
-msgstr "Màxim de greus i aguts"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:85
-msgid "Headphones"
-msgstr "Auriculars"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:86
-msgid "Large Hall"
-msgstr "Auditori gran"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:87
-msgid "Live"
-msgstr "En directe"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:88
-msgid "Party"
-msgstr "Festa"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:89
-msgid "Pop"
-msgstr "Pop"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:90
-msgid "Reggae"
-msgstr "Reggae"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:91
-msgid "Rock"
-msgstr "Rock"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:92
-msgid "Soft"
-msgstr "Suau"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:93
-msgid "Ska"
-msgstr "Ska"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:94
-msgid "Soft Rock"
-msgstr "Rock suau"
-
-#: /home/tutebatti/noise/po/../core//GStreamer/Equalizer.vala:95
-msgid "Techno"
-msgstr "Techno"
-
 #. / Used for unknown titles, artists, or album names.
-#: /home/tutebatti/noise/po/../core//Media.vala:43
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: /home/tutebatti/noise/po/../core//Media.vala:53
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:53
 msgid "Radio Station"
 msgstr "Estació de ràdio"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: /home/tutebatti/noise/po/../core//Media.vala:183
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:183
 msgid "$NAME on $ALBUM"
 msgstr "$NAME a $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: /home/tutebatti/noise/po/../core//Media.vala:186
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:186
 msgid "$NAME by $ARTIST"
 msgstr "$NAME per $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: /home/tutebatti/noise/po/../core//Media.vala:192
+#: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:192
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME per $ARTIST a $ALBUM"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:96
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
 msgid "%s (%d)"
 msgstr "%s (%d)"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:235
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
 msgstr "Llista de reproducció nova"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:246
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
 msgstr "%s (%i)"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:274
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
 msgstr "Exporta la llista de reproducció"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:282
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:376
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:282
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:376
 msgid "MPEG Version 3.0 Extended (*.m3u)"
 msgstr "MPEG versió 3.0 ampliada (*.m3u)"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:287
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:381
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:287
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:381
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
 msgstr "Llista de reproducció Shoutcast versió 2.0 (*.pls)"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:361
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
 msgstr "Llista de reproducció"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:367
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:367
 #, c-format
 msgid "Import %s"
 msgstr "Importa %s"
 
-#: /home/tutebatti/noise/po/../core//Utils/PlaylistsUtils.vala:401
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
 msgstr ""
 "No s'ha pogut reconèixer el fitxer de la llista de reproducció. Ha fallat la "
 "importació."
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:44
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d segon"
 msgstr[1] "%d segons"
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:52
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:52
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:83
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u minut"
 msgstr[1] "%u minuts"
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:56
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:56
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
@@ -185,20 +113,20 @@ msgstr[0] "%u segon"
 msgstr[1] "%u segons"
 
 #. / Minutes and seconds
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:58
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:58
 #, c-format
 msgctxt "minutes and seconds"
 msgid "%s and %s"
 msgstr "%s i %s"
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:77
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u dia"
 msgstr[1] "%u dies"
 
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:80
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
@@ -206,28 +134,28 @@ msgstr[0] "%u hora"
 msgstr[1] "%u hores"
 
 #. / days, hours and minutes
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:91
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:91
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
 msgstr "%s, %s i %s"
 
 #. / days and hours
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:94
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:94
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
 msgstr "%s i %s"
 
 #. / days and minutes
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:99
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:99
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
 msgstr "%s i %s"
 
 #. / hours and minutes
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:108
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:108
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
@@ -235,54 +163,126 @@ msgstr "%s i %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
-#: /home/tutebatti/noise/po/../core//Utils/TimeUtils.vala:167
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e/%m/%Y %H:%M"
 
-#: /home/tutebatti/noise/po/../core//Utils/String.vala:176
+#: /home/noelco/Programmation/Projets/noise/po/../core//Utils/String.vala:176
 msgid "the|a|an|le|la|les|un|une|der|die|das|los"
 msgstr "the|a|an|le|la|les|un|une|los|las|el|els"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:236
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
+msgid "Flat"
+msgstr "Plana"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:79
+msgid "Classical"
+msgstr "Música clàssica"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:80
+msgid "Club"
+msgstr "Club"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:81
+msgid "Dance"
+msgstr "Dance"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:82
+msgid "Full Bass"
+msgstr "Màxim de greus"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:83
+msgid "Full Treble"
+msgstr "Màxim d'aguts"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:84
+msgid "Full Bass + Treble"
+msgstr "Màxim de greus i aguts"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:85
+msgid "Headphones"
+msgstr "Auriculars"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:86
+msgid "Large Hall"
+msgstr "Auditori gran"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:87
+msgid "Live"
+msgstr "En directe"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:88
+msgid "Party"
+msgstr "Festa"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:89
+msgid "Pop"
+msgstr "Pop"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:90
+msgid "Reggae"
+msgstr "Reggae"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:91
+msgid "Rock"
+msgstr "Rock"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:92
+msgid "Soft"
+msgstr "Suau"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:93
+msgid "Ska"
+msgstr "Ska"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:94
+msgid "Soft Rock"
+msgstr "Rock suau"
+
+#: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:95
+msgid "Techno"
+msgstr "Techno"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
 msgid "Import to Library…"
 msgstr "Importa a la biblioteca…"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:237
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Rescan Music Folder"
 msgstr "Torna a examinar la carpeta de música"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:238
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:238
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:242
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:84
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:242
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Preferences"
 msgstr "Preferències"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:265
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:265
 msgid "Search Music"
 msgstr "Cerca música"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:679
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:817
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:121
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:679
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:817
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:121
 msgid "Music"
 msgstr "Música"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:872
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:107
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/tutebatti/noise/po/../src//PlaybackManager.vala:101
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:872
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:107
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:101
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Cua"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:875
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:875
 msgid "No songs in Queue"
 msgstr "No hi ha cap cançó a la cua"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:876
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:876
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -293,18 +293,18 @@ msgstr ""
 "cançons a la cua seran reproduïdes abans que la cançó següent a la llista de "
 "reproducció actual."
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:882
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:107
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:553
-#: /home/tutebatti/noise/po/../src//PlaybackManager.vala:99
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:882
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:107
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
+#: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:99
 msgid "History"
 msgstr "Historial"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:885
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:885
 msgid "No songs in History"
 msgstr "No hi ha cap cançó a l'historial"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:886
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:886
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -313,449 +313,145 @@ msgstr ""
 "Les cançons s'inclouen a l'historial un cop són reproduïdes.\n"
 "Aquesta llista enumeria totes les cançons reproduïdes a la sessió actual."
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1119
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1119
 msgid "Import Music"
 msgstr "Importa música"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1139
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:248
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1139
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:248
 msgid "<b>Importing</b> music to library…"
 msgstr "<b>S'està important</b> música a la biblioteca…"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1154
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1154
 msgid "Rescanning music folder for changes"
 msgstr "S'estan cercant canvis a la carpeta de música"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1161
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1161
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid "Could not find Music Folder"
 msgstr "No s'ha pogut trobar la carpeta de música"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1161
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1161
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Assegureu-vos que la carpeta de música sigui accessible i muntada."
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1202
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1202
 msgid "Import Complete"
 msgstr "S'ha completat la importació"
 
-#: /home/tutebatti/noise/po/../src//LibraryWindow.vala:1202
+#: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1202
 #, c-format
 msgid "%s has imported your library."
 msgstr "El %s ha importat la vostra biblioteca."
 
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Tots els gèneres"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:86
+msgid "Device Name:"
+msgstr "Nom del dispositiu:"
 
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Device Name"
+msgstr "Nom del dispositiu"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:91
+msgid "Automatically sync when plugged in:"
+msgstr "Sincronitza automàticament en connectar-lo:"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:98
+msgid "Sync:"
+msgstr "Sincronitza:"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:120
+msgid "Other Files"
+msgstr "Altres fitxers"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:122
+msgid "Podcasts"
+msgstr "Podcasts"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:416
+msgid "All Music"
+msgstr "Tota la música"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:419
+msgid "All Podcasts"
+msgstr "Tots els podcasts"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+msgid "Sync Failed"
+msgstr "La sincronització ha fallat"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 #, c-format
-msgid "All %i Genres"
-msgstr "Tots els gèneres (%i)"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Sense gèneres"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Tots els artistes"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Artists"
-msgstr "Tots els artistes (%i)"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Sense artistes"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Tots els àlbums"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Albums"
-msgstr "Tots els àlbums (%i)"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Sense àlbums"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Tots els anys"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Years"
-msgstr "Tots els anys (%i)"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Sense anys"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Totes les valoracions"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Sense valoracions"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "Totes les agrupacions"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-#, c-format
-msgid "All %i Groupings"
-msgstr "Totes les agrupacions (%i)"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "Sense agrupacions"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Tots els compositors"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Composers"
-msgstr "Tots els compositors (%i)"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Sense compositors"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
-#: /home/tutebatti/noise/po/../src//Widgets/PresetList.vala:49
-msgid "Automatic"
-msgstr "Automàtic"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
-msgid "On Left"
-msgstr "A l'esquerra"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
-msgid "On Top"
-msgstr "A dalt"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Sense valoració"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-#, c-format
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i estrella"
-msgstr[1] "%i estrelles"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr "Gèneres"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr "Artistes"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr "Àlbums"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr "Anys"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr "Valoracions"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr "Compositors"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr "Agrupacions"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
-msgid "Autosize Columns"
-msgstr "Mida de les columnes automàtic"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
-msgid "Display Album Art"
-msgstr "Mostra la portada de l'àlbum"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
-#, c-format
-msgid "%i kbps"
-msgstr "%i kbps"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
-msgid "Never"
-msgstr "Mai"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
-msgid "Remove from Library"
-msgstr "Suprimeix de la biblioteca"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
-msgid "Remove from Queue"
-msgstr "Suprimeix de la cua"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
-msgid "Remove from Device"
-msgstr "Suprimeix del dispositiu"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
-msgid "Scroll to Current Song"
-msgstr "Desplaça fins la cançó actual"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
-msgid "Edit Song Info"
-msgstr "Edita la informació de la cançó"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
-msgid "Show in File Browser"
-msgstr "Mostra al navegador de fitxers"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Afegeix a la cua"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
-msgid "Add to Playlist"
-msgstr "Afegeix a una llista de reproducció"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
-msgid "Remove Song"
-msgstr "Suprimeix la cançó"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:134
-msgid "Import to Library"
-msgstr "Importa a la biblioteca"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
-msgid "New Playlist…"
-msgstr "Llista de reproducció nova…"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Importa %i de les %i cançons seleccionades"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
-#, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Importa %i cançó"
-msgstr[1] "Importa %i cançons"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
-msgid "Sample List String"
-msgstr "Exemple de títol de cançó"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
-msgctxt "List column title"
-msgid "#"
-msgstr "Núm."
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
-msgctxt "List column title"
-msgid "Track"
-msgstr "Pista"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
-msgctxt "List column title"
-msgid "Title"
-msgstr "Tí­tol"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
-msgctxt "List column title"
-msgid "Length"
-msgstr "Durada"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Artista"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
-msgctxt "List column title"
-msgid "Album"
-msgstr "Àlbum"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Artista de l'àlbum"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Compositor"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Gènere"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
-msgctxt "List column title"
-msgid "Year"
-msgstr "Any"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Agrupació"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Taxa de bits"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Valoració"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Reproduccions"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Omissions"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Data d'addició"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Darrera reproducció"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "PPM"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Ubicació"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Mida del fitxer"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:89
-msgid "No Songs Found."
-msgstr "No s'ha trobat cap cançó."
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:369
-#, c-format
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i pista"
-msgstr[1] "%i pistes"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:371
-#, c-format
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u cançó"
-msgstr[1] "%u cançons"
-
-#: /home/tutebatti/noise/po/../src//Views/ListView/ListView.vala:379
-#, c-format
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/GridView.vala:58
-msgid "No Albums Found."
-msgstr "No s'ha trobat cap àlbum."
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/GridView.vala:154
-#, c-format
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u àlbum"
-msgstr[1] "%u àlbums"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/PopupListView.vala:161
-#, c-format
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s per %s"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d minuts"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d hores"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d dies"
-
-#: /home/tutebatti/noise/po/../src//Views/GridView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u elements, %s, %s"
-
-#: /home/tutebatti/noise/po/../src//Views/ContentView.vala:21
-#, c-format
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"La llista de reproducció %s acostuma a sincronitzar-se amb el dispositiu %s, "
+"però no s'ha pogut trobar."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+msgid "Cannot Sync"
+msgstr "No es pot sincronitzar"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"No es pot sincronitzar el dispositiu amb la configuració seleccionada. No hi "
+"ha prou espai al disc."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
+msgid "Device is already doing an operation."
+msgstr "El dispositiu ja està fent una operació."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid "No Songs"
 msgstr "No hi ha cap cançó"
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Please wait until that this playlist get updated."
 msgstr "Espereu mentre la llista de reproducció s'actualitza."
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
+msgid "Get Some Tunes"
+msgstr "Aconseguïu algunes cançons"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Add music to your library."
+msgstr "Afegiu música a la vostra biblioteca."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Locate Music Folder"
+msgstr "Ubiqueu la carpeta de música"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Load music from a folder, a network or an external disk."
+msgstr ""
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
+msgid "Import your Music"
+msgstr "Importeu la vostra música"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "Importa tota la música des de %s a la biblioteca."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:125
+msgid "Select Music Folder"
+msgstr "Seleccioneu la carpeta de música"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:448
 msgid "No media"
 msgstr "No hi ha cap element multimèdia"
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -764,11 +460,11 @@ msgstr ""
 "secundari</b> sobre un element i seleccioneu <b>«Afegeix a una llista de "
 "reproducció»<b>."
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
 msgstr "Edita la llista de reproducció intel·ligent"
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -780,745 +476,864 @@ msgstr ""
 "<b>botó secundari</b> sobre la llista de reproducció a la barra lateral i "
 "feu clic a <b>«Edita»</b>. Opcionalment podeu fer clic al botó de baix."
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
-msgid "Get Some Tunes"
-msgstr "Aconseguïu algunes cançons"
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Add music to your library."
-msgstr "Afegiu música a la vostra biblioteca."
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Locate Music Folder"
-msgstr "Ubiqueu la carpeta de música"
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Load music from a folder, a network or an external disk"
-msgstr "Carregueu música des d'una carpeta, una xarxa o un disc extern"
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
-msgid "Import your Music"
-msgstr "Importeu la vostra música"
-
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ContentView.vala:21
 #, c-format
-msgid "Import all your Music from %s into your library."
-msgstr "Importa tota la música des de %s a la biblioteca."
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
 
-#: /home/tutebatti/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:125
-msgid "Select Music Folder"
-msgstr "Seleccioneu la carpeta de música"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:58
+msgid "No Albums Found."
+msgstr "No s'ha trobat cap àlbum."
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:86
-msgid "Device Name:"
-msgstr "Nom del dispositiu:"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:89
-msgid "Device Name"
-msgstr "Nom del dispositiu"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:91
-msgid "Automatically sync when plugged in:"
-msgstr "Sincronitza automàticament en connectar-lo:"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:98
-msgid "Sync:"
-msgstr "Sincronitza:"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:120
-msgid "Other Files"
-msgstr "Altres fitxers"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:122
-msgid "Podcasts"
-msgstr "Podcasts"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:416
-msgid "All Music"
-msgstr "Tota la música"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:419
-msgid "All Podcasts"
-msgstr "Tots els podcasts"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:569
-msgid "Sync Failed"
-msgstr "La sincronització ha fallat"
-
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:541
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:569
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:154
 #, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"La llista de reproducció %s acostuma a sincronitzar-se amb el dispositiu %s, "
-"però no s'ha pogut trobar."
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u àlbum"
+msgstr[1] "%u àlbums"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:610
-msgid "Cannot Sync"
-msgstr "No es pot sincronitzar"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/PopupListView.vala:161
+#, c-format
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s per %s"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:607
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"No es pot sincronitzar el dispositiu amb la configuració seleccionada. No hi "
-"ha prou espai al disc."
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr "%d minuts"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceSummaryWidget.vala:610
-msgid "Device is already doing an operation."
-msgstr "El dispositiu ja està fent una operació."
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr "%d hores"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:41
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d dies"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u elements, %s, %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
+msgctxt "List column title"
+msgid "#"
+msgstr "Núm."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
+msgctxt "List column title"
+msgid "Track"
+msgstr "Pista"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
+msgctxt "List column title"
+msgid "Title"
+msgstr "Tí­tol"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
+msgctxt "List column title"
+msgid "Length"
+msgstr "Durada"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Artista"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
+msgctxt "List column title"
+msgid "Album"
+msgstr "Àlbum"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Artista de l'àlbum"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Compositor"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Gènere"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
+msgctxt "List column title"
+msgid "Year"
+msgstr "Any"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Agrupació"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Taxa de bits"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Valoració"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Reproduccions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Omissions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Data d'addició"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Darrera reproducció"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "PPM"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Ubicació"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Mida del fitxer"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
+msgid "Remove from Library"
+msgstr "Suprimeix de la biblioteca"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
+msgid "Remove from Queue"
+msgstr "Suprimeix de la cua"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
+msgid "Remove from Device"
+msgstr "Suprimeix del dispositiu"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
+msgid "Scroll to Current Song"
+msgstr "Desplaça fins la cançó actual"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
+msgid "Edit Song Info"
+msgstr "Edita la informació de la cançó"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
+msgid "Show in File Browser"
+msgstr "Mostra al navegador de fitxers"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Afegeix a la cua"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
+msgid "Add to Playlist"
+msgstr "Afegeix a una llista de reproducció"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
+msgid "Remove Song"
+msgstr "Suprimeix la cançó"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:134
+msgid "Import to Library"
+msgstr "Importa a la biblioteca"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
+msgid "New Playlist…"
+msgstr "Llista de reproducció nova…"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Importa %i de les %i cançons seleccionades"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "Importa %i cançó"
+msgstr[1] "Importa %i cançons"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
+msgid "Never"
+msgstr "Mai"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:695
+msgid "Sample List String"
+msgstr "Exemple de títol de cançó"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
+msgid "Autosize Columns"
+msgstr "Mida de les columnes automàtic"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
+msgid "Display Album Art"
+msgstr "Mostra la portada de l'àlbum"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
+#, c-format
+msgid "%i kbps"
+msgstr "%i kbps"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:89
+msgid "No Songs Found."
+msgstr "No s'ha trobat cap cançó."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:369
+#, c-format
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i pista"
+msgstr[1] "%i pistes"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:371
+#, c-format
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u cançó"
+msgstr[1] "%u cançons"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:379
+#, c-format
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "Tots els gèneres"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+#, c-format
+msgid "All %i Genres"
+msgstr "Tots els gèneres (%i)"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "Sense gèneres"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "Tots els artistes"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Artists"
+msgstr "Tots els artistes (%i)"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "Sense artistes"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "Tots els àlbums"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Albums"
+msgstr "Tots els àlbums (%i)"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "Sense àlbums"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "Tots els anys"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Years"
+msgstr "Tots els anys (%i)"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "Sense anys"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "Totes les valoracions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "Sense valoracions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr "Totes les agrupacions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+#, c-format
+msgid "All %i Groupings"
+msgstr "Totes les agrupacions (%i)"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr "Sense agrupacions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "Tots els compositors"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Composers"
+msgstr "Tots els compositors (%i)"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "Sense compositors"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:49
+msgid "Automatic"
+msgstr "Automàtic"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
+msgid "On Left"
+msgstr "A l'esquerra"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
+msgid "On Top"
+msgstr "A dalt"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "Sense valoració"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+#, c-format
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i estrella"
+msgstr[1] "%i estrelles"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Genres"
+msgstr "Gèneres"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Artists"
+msgstr "Artistes"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Albums"
+msgstr "Àlbums"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Years"
+msgstr "Anys"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Ratings"
+msgstr "Valoracions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
+msgid "Composers"
+msgstr "Compositors"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
+msgid "Groupings"
+msgstr "Agrupacions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling…"
 msgstr "S'està cancel·lant…"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:41
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
 msgstr ""
 "L'operació del dispositiu ha estat cancel·lada i pararà després d'aquest "
 "fitxer."
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:104
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid "No External Songs"
 msgstr "No hi ha cap cançó externa"
 
-#: /home/tutebatti/noise/po/../src//Views/DeviceView.vala:104
+#: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
 "No s'ha pogut trobar cap cançó al dispositiu que no sigui a la vostra "
 "biblioteca."
 
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:167
+#: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:291
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "S'estan <b>copiant</b> fitxers a la carpeta de música…"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:167
 #, c-format
 msgid "Importing music from %s…"
 msgstr "S'està important música des de %s…"
 
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:209
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:209
 msgid "Adding files to library…"
 msgstr "S'estan afegint fitxers a la biblioteca…"
 
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:274
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:274
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "S'estan analitzant els canvis. Això pot trigar una bona estona…"
 
-#: /home/tutebatti/noise/po/../src//LocalLibrary.vala:352
+#: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:352
 msgid "Added to your queue:"
 msgstr "S'ha afegit a la cua:"
 
-#: /home/tutebatti/noise/po/../src//Noise.vala:37
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:445
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:685
+msgid "Favorite Songs"
+msgstr "Cançons preferides"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:452
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:692
+msgid "Recently Added"
+msgstr "Afegits recents"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:468
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:708
+msgid "Recent Favorites"
+msgstr "Preferits recents"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:475
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:715
+msgid "Never Played"
+msgstr "Les mai reproduïdes"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:482
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:722
+msgid "Over Played"
+msgstr "Les més reproduïdes"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:489
+#: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:729
+msgid "Not Recently Played"
+msgstr "Reproduccions no recents"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
 msgstr "Escolteu música"
 
-#: /home/tutebatti/noise/po/../src//Noise.vala:38
+#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:38
 msgid "Music Player"
 msgstr "Reproductor de música"
 
-#: /home/tutebatti/noise/po/../src//Noise.vala:39
+#: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
 msgstr ""
 "Noise;Àudio;Reproductor;MP3;iPod;Reproduir;Llista de reproducció;CD;Telèfon;"
 
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:56
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:69
-msgid "Rename"
-msgstr "Canvia el nom"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:57
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:71
-msgid "Remove"
-msgstr "Suprimeix"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:58
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:72
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:87
-msgid "Export…"
-msgstr "Exporta…"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:70
-msgid "Edit…"
-msgstr "Edita…"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:85
-msgid "Save as Playlist"
-msgstr "Desa com a una llista de reproducció"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:142
-msgid "Eject"
-msgstr "Expulsa"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:147
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:186
-msgid "New Playlist"
-msgstr "Llista de reproducció nova"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:152
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:187
-msgid "New Smart Playlist"
-msgstr "Llista de reproducció intel·ligent nova"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:157
-#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:238
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
 msgid "Sync"
 msgstr "Sincronitza"
 
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:188
-msgid "Import Playlists"
-msgstr "Importa les llistes de reproducció"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:232
-msgid "Library"
-msgstr "Biblioteca"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:233
-msgid "Devices"
-msgstr "Dispositius"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:234
-msgid "Network"
-msgstr "Xarxa"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SourceListView.vala:235
-#: /home/tutebatti/noise/po/../plugins//MPRIS/MPRIS.vala:643
-msgid "Playlists"
-msgstr "Llistes de reproducció"
-
-#: /home/tutebatti/noise/po/../src//Widgets/TopDisplay.vala:68
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#: /home/tutebatti/noise/po/../src//Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Suprimeix l'actual"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:65
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Off"
-msgstr "Inactiu"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:65
-msgid "Enable Repeat"
-msgstr "Activa la repetició"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:66
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:544
-msgid "Song"
-msgstr "Cançó"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:66
-msgid "Repeat Song"
-msgstr "Repeteix la cançó"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:67
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:200
-msgid "Album"
-msgstr "Àlbum"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:67
-msgid "Repeat Album"
-msgstr "Repeteix l'àlbum"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:68
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:198
-msgid "Artist"
-msgstr "Artista"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:68
-msgid "Repeat Artist"
-msgstr "Repeteix l'artista"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:69
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "All"
-msgstr "Tot"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:69
-msgid "Repeat All"
-msgstr "Repeteix tot"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:98
-msgid "Enable Shuffle"
-msgstr "Activa la reproducció aleatòria"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:99
-msgid "Disable Shuffle"
-msgstr "Desactiva la reproducció aleatòria"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:132
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:143
-msgid "Add Playlist"
-msgstr "Afegeix una llista de reproducció"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:144
-msgid "Add Smart Playlist"
-msgstr "Afegeix una llista de reproducció intel·ligent"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:190
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Hide"
-msgstr "Amaga"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:190
-msgid "Show Equalizer"
-msgstr "Mostra l'equalitzador"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:191
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Show"
-msgstr "Mostra"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:191
-msgid "Hide Equalizer"
-msgstr "Amaga l'equalitzador"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:229
-msgid "Show Info Panel"
-msgstr "Mostra el tauler d'informació"
-
-#: /home/tutebatti/noise/po/../src//Widgets/StatusBar.vala:230
-msgid "Hide Info Panel"
-msgstr "Amaga el tauler d'informació"
-
-#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:66
-msgid "View as Albums"
-msgstr "Visualitza els àlbums"
-
-#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:70
-msgid "View as List"
-msgstr "Visualitza com a llista"
-
-#: /home/tutebatti/noise/po/../src//Widgets/ViewSelector.vala:74
-msgid "View in Columns"
-msgstr "Visualitza en columnes"
-
-#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:267
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
 msgstr "Lliure"
 
-#: /home/tutebatti/noise/po/../src//Widgets/SpaceWidget.vala:384
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:384
 msgid "Using %s of %s (%.2f%)"
 msgstr "S'estan utilitzant %s de %s (%.2f%)"
 
-#: /home/tutebatti/noise/po/../src//FileOperator.vala:286
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "S'estan <b>copiant</b> fitxers a la carpeta de música…"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:50
+msgid "Delete Current"
+msgstr "Suprimeix l'actual"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:445
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:685
-msgid "Favorite Songs"
-msgstr "Cançons preferides"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Off"
+msgstr "Inactiu"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:452
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:692
-msgid "Recently Added"
-msgstr "Afegits recents"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
+msgid "Enable Repeat"
+msgstr "Activa la repetició"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:468
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:708
-msgid "Recent Favorites"
-msgstr "Preferits recents"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:544
+msgid "Song"
+msgstr "Cançó"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:475
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:715
-msgid "Never Played"
-msgstr "Les mai reproduïdes"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
+msgid "Repeat Song"
+msgstr "Repeteix la cançó"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:482
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:722
-msgid "Over Played"
-msgstr "Les més reproduïdes"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:200
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+msgid "Album"
+msgstr "Àlbum"
 
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:489
-#: /home/tutebatti/noise/po/../src//DataBase/DataBaseManager.vala:729
-msgid "Not Recently Played"
-msgstr "Reproduccions no recents"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
+msgid "Repeat Album"
+msgstr "Repeteix l'àlbum"
 
-#: /home/tutebatti/noise/po/../src//Objects/LyricFetcher.vala:156
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Lletras obtingudes de www.lyricsmania.com"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:198
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+msgid "Artist"
+msgstr "Artista"
 
-#: /home/tutebatti/noise/po/../src//Objects/TrackInfo.vala:26
-msgid "Unknown Track"
-msgstr "Pista desconeguda"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
+msgid "Repeat Artist"
+msgstr "Repeteix l'artista"
 
-#: /home/tutebatti/noise/po/../src//Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Àlbum desconegut"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "All"
+msgstr "Tot"
 
-#: /home/tutebatti/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/tutebatti/noise/po/../src//Objects/ArtistInfo.vala:27
-#: /home/tutebatti/noise/po/../src//GStreamer/Streamer.vala:195
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
-msgid "Unknown Artist"
-msgstr "Artista desconegut"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
+msgid "Repeat All"
+msgstr "Repeteix tot"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:44
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
+msgid "Enable Shuffle"
+msgstr "Activa la reproducció aleatòria"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
+msgid "Disable Shuffle"
+msgstr "Desactiva la reproducció aleatòria"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:132
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:143
+msgid "Add Playlist"
+msgstr "Afegeix una llista de reproducció"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:144
+msgid "Add Smart Playlist"
+msgstr "Afegeix una llista de reproducció intel·ligent"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Hide"
+msgstr "Amaga"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
+msgid "Show Equalizer"
+msgstr "Mostra l'equalitzador"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Show"
+msgstr "Mostra"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
+msgid "Hide Equalizer"
+msgstr "Amaga l'equalitzador"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
+msgid "Show Info Panel"
+msgstr "Mostra el tauler d'informació"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
+msgid "Hide Info Panel"
+msgstr "Amaga el tauler d'informació"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/TopDisplay.vala:68
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:56
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:69
+msgid "Rename"
+msgstr "Canvia el nom"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
+msgid "Remove"
+msgstr "Suprimeix"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:58
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:72
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:87
+msgid "Export…"
+msgstr "Exporta…"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:70
+msgid "Edit…"
+msgstr "Edita…"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:85
+msgid "Save as Playlist"
+msgstr "Desa com a una llista de reproducció"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:142
+msgid "Eject"
+msgstr "Expulsa"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:147
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:186
+msgid "New Playlist"
+msgstr "Llista de reproducció nova"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:152
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:187
+msgid "New Smart Playlist"
+msgstr "Llista de reproducció intel·ligent nova"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:188
+msgid "Import Playlists"
+msgstr "Importa les llistes de reproducció"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:232
+msgid "Library"
+msgstr "Biblioteca"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:233
+msgid "Devices"
+msgstr "Dispositius"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:234
+msgid "Network"
+msgstr "Xarxa"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:235
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//MPRIS/MPRIS.vala:643
+msgid "Playlists"
+msgstr "Llistes de reproducció"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:66
+msgid "View as Albums"
+msgstr "Visualitza els àlbums"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:70
+msgid "View as List"
+msgstr "Visualitza com a llista"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:74
+msgid "View in Columns"
+msgstr "Visualitza en columnes"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
 msgstr "Seleccioneu la carpeta de música…"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "General"
 msgstr "General"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:123
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:123
 msgid "Music Folder Location:"
 msgstr "Ubicació de la carpeta de música:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:131
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:131
 msgid "Library Management:"
 msgstr "Gestió de la biblioteca:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:136
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
 msgstr "Mantén la carpeta de música organitzada:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:140
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
 msgstr "Escriu metadades al fitxer:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:144
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
 msgstr "Copia els fitxers importats a la biblioteca:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:146
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
 msgstr "Integració amb l'escriptori:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:152
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
 msgstr "Mostra notificacions:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:157
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
 msgstr "Minimitza la finestra quan s'estigui reproduint alguna cançó:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/PreferencesWindow.vala:159
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
 msgstr "Oculta la finestra quan s'estigui reproduint alguna cançó:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
-msgid "Import from Device"
-msgstr "Importa des d'un dispositiu"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:88
+msgid "Metadata"
+msgstr "Metadades"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:90
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:382
+msgid "Lyrics"
+msgstr "Lletres"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:353
+msgid "Editing $NAME by $ARTIST"
+msgstr "S'està editant $NAME per $ARTIST"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
-msgid "Import media from %s"
-msgstr "Importa elements multimèdia des de %s"
+msgid "Editing %s"
+msgstr "S'està editant %s"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:358
 #, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"S'han trobat els següents fitxers a %s, però no hi són a la biblioteca. "
-"Seleccioneu tots els fitxers que voleu importar."
+msgid "Editing %i songs"
+msgstr "S'estan editant %i cançons"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-msgid "Import all media"
-msgstr "Importa tots els elements multimèdia"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr "Importa"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
-msgid "Don't Import"
-msgstr "No ho importis"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
-#, c-format
-msgid "Import %i items from %s"
-msgstr "Importa %i elements des de %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
-#, c-format
-msgid "Import %s from %s"
-msgstr "Importa %s des de %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
-msgid "ID"
-msgstr "Identificador"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:197
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:275
 msgid "Title"
 msgstr "Títol"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
-msgid "Select individual media to import:"
-msgstr "Seleccioneu els elements multimèdia individuals a importar:"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:199
+msgid "Album Artist"
+msgstr "Artista de l'àlbum"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
-msgid "Check Item"
-msgstr "Selecciona l'element"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
-msgid "Check Album"
-msgstr "Selecciona l'àlbum"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Artist"
-msgstr "Selecciona l'artista"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
-msgid "Cannot Import"
-msgstr "No es pot importar"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
-#, c-format
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-"El Noise ja està fent operacions amb els fitxers. Espereu fins que finalitzi "
-"l'importació des de %d"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
-msgid "Export Playlists"
-msgstr "Exporta les llistes de reproducció"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
-msgid "Set Music Folder"
-msgstr "Estableix la carpeta de música"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
-msgid "Set Music Folder?"
-msgstr "Voleu establir la carpeta de música?"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Esteu segur que voleu que %s sigui la vostra carpeta de música? Això "
-"reiniciarà la biblioteca i suprimirà les llistes de reproducció."
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
-msgid "Choose Music Folder"
-msgstr "Escolliu la carpeta de música"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
-msgid "Import media to Library"
-msgstr "Importa elements multimèdia a la biblioteca"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
-msgid "Continue Syncing"
-msgstr "Continua la sincronització"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
-msgid "Stop Syncing"
-msgstr "Atura la sincronització"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Si countinueu amb la sincronització, els elements multimèdia seran suprimits "
-"de %s ja que no són a la llista de sincronització. Voleu importar-los a la "
-"biblioteca abans de procedir?"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr "La sincronització suprimirà %i elements de %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr "La sincronització suprimirà 1 element de %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
-msgid "Smart Playlist Editor"
-msgstr "Editor de llistes de reproducció intel·ligents"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
-msgid "Name of Playlist"
-msgstr "Nom de la llista de reproducció"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
-msgid "Rules"
-msgstr "Regles"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
-msgid "Options"
-msgstr "Opcions"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
-msgid "Playlist Title"
-msgstr "Títol de la llista de reproducció"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
-msgid "Match"
-msgstr "Coincideix amb"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
-msgid "any"
-msgstr "qualsevol"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
-msgid "all"
-msgstr "tots"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
-msgid "of the following:"
-msgstr "dels següents:"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Limita a"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "elements"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-msgid "Bitrate"
-msgstr "Taxa de bits"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:204
-msgid "Comment"
-msgstr "Comentari"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:202
-msgid "Composer"
-msgstr "Compositor"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
-msgid "Date Added"
-msgstr "Data d'addició"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
-msgid "Date Released"
-msgstr "Data de llançament"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:201
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:485
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:201
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 msgid "Genre"
 msgstr "Gènere"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:203
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:485
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:202
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+msgid "Composer"
+msgstr "Compositor"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:203
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 msgid "Grouping"
 msgstr "Agrupació"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
-msgid "Last Played"
-msgstr "Reproduïdes darrerament"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:204
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+msgid "Comment"
+msgstr "Comentari"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
-msgid "Length"
-msgstr "Durada"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:205
+msgid "Track"
+msgstr "Pista"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
-msgid "Playcount"
-msgstr "Nombre de reproduccions"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:206
+msgid "Disc"
+msgstr "Disc"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:208
-msgid "Rating"
-msgstr "Valoració"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
-msgid "Skipcount"
-msgstr "Nombre d'omissions"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:207
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:207
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:276
 msgid "Year"
 msgstr "Any"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:335
-msgid "is"
-msgstr "és"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:208
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
+msgid "Rating"
+msgstr "Valoració"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
-msgid "contains"
-msgstr "conté"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:210
+msgid "Media Type"
+msgstr "Tipus d'elements multimèdia"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
-msgid "does not contain"
-msgstr "no conté"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:301
+#, c-format
+msgid "Lyrics not found for %s"
+msgstr "No s'ha trobat la lletra de %s"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
-msgid "is exactly"
-msgstr "és exactament"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:546
+msgid "Podcast"
+msgstr "Podcast"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
-msgid "is at most"
-msgstr "és com a màxim"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
+msgid "Remove Media"
+msgstr "Suprimeix l'element multimèdia"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
-msgid "is at least"
-msgstr "és com a  mínim"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
+msgid "Locate Media"
+msgstr "Troba elements multimèdia"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
-msgid "is within"
-msgstr "es troba entre"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
+msgid "Rescan Library"
+msgstr "Torna a examinar la biblioteca"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
-msgid "is before"
-msgstr "és abans de"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
+msgid "Do Nothing"
+msgstr "No facis res"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
-msgid "seconds"
-msgstr "segons"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
+msgid "Could not find media file"
+msgstr "No s'ha pogut trobar el fitxer multimèdia"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
-msgid "days ago"
-msgstr "dies enrere"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
+msgid ""
+"The music file for $NAME by $ARTIST could not be found. What would you like "
+"to do?"
+msgstr ""
+"No s'ha pogut trobar el fitxer per a $NAME per $ARTIST. Què voleu fer?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:406
-msgid "kbps"
-msgstr "kbps"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
+#, c-format
+msgid "%i media files could not be found. What would you like to do?"
+msgstr "No s'han pogut trobar %i fitxers multimèdia. Què voleu fer?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
+msgid "Choose Music Folder"
+msgstr "Escolliu la carpeta de música"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Move to Trash"
 msgstr "Mou a la paperera"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove from %s"
 msgstr "Suprimeix de %s"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
 #, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Voleu suprimir %d cançons de %s?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Voleu suprimir «%s» de %s?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
 #, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
@@ -1533,110 +1348,326 @@ msgstr[1] ""
 "Això suprimirà les cançons de la vostra biblioteca i de tots els dispositius "
 "que se sincronitzin automàticament amb el %s."
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:48
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
+msgid "Export Playlists"
+msgstr "Exporta les llistes de reproducció"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
+msgid "Set Music Folder"
+msgstr "Estableix la carpeta de música"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
+msgid "Set Music Folder?"
+msgstr "Voleu establir la carpeta de música?"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:72
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Esteu segur que voleu que %s sigui la vostra carpeta de música? Això "
+"reiniciarà la biblioteca i suprimirà les llistes de reproducció."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:76
+msgid "Equalizer"
+msgstr "Equalitzador"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:143
+msgid "Save preset"
+msgstr "Desa els valors predefinits"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:407
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (Personalitzat)"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:409
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (%i personalitzat)"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:413
+msgid "Custom Preset"
+msgstr "Valors predefinits personalitzats"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:415
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Valors predefinits personalitzats de %i"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
+msgid "Import from Device"
+msgstr "Importa des d'un dispositiu"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
+#, c-format
+msgid "Import media from %s"
+msgstr "Importa elements multimèdia des de %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"S'han trobat els següents fitxers a %s, però no hi són a la biblioteca. "
+"Seleccioneu tots els fitxers que voleu importar."
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+msgid "Import all media"
+msgstr "Importa tots els elements multimèdia"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDView.vala:90
+msgid "Import"
+msgstr "Importa"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
+msgid "Don't Import"
+msgstr "No ho importis"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
+#, c-format
+msgid "Import %i items from %s"
+msgstr "Importa %i elements des de %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
+#, c-format
+msgid "Import %s from %s"
+msgstr "Importa %s des de %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
+msgid "ID"
+msgstr "Identificador"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
+msgid "Select individual media to import:"
+msgstr "Seleccioneu els elements multimèdia individuals a importar:"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
+msgid "Check Item"
+msgstr "Selecciona l'element"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
+msgid "Check Album"
+msgstr "Selecciona l'àlbum"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Artist"
+msgstr "Selecciona l'artista"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+msgid "Cannot Import"
+msgstr "No es pot importar"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
+#, c-format
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"El Noise ja està fent operacions amb els fitxers. Espereu fins que finalitzi "
+"l'importació des de %d"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
+msgid "Import media to Library"
+msgstr "Importa elements multimèdia a la biblioteca"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
+msgid "Continue Syncing"
+msgstr "Continua la sincronització"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
+msgid "Stop Syncing"
+msgstr "Atura la sincronització"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Si countinueu amb la sincronització, els elements multimèdia seran suprimits "
+"de %s ja que no són a la llista de sincronització. Voleu importar-los a la "
+"biblioteca abans de procedir?"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr "La sincronització suprimirà %i elements de %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr "La sincronització suprimirà 1 element de %s"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
+msgid "Smart Playlist Editor"
+msgstr "Editor de llistes de reproducció intel·ligents"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
+msgid "Name of Playlist"
+msgstr "Nom de la llista de reproducció"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
+msgid "Rules"
+msgstr "Regles"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
+msgid "Options"
+msgstr "Opcions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
+msgid "Playlist Title"
+msgstr "Títol de la llista de reproducció"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
+msgid "Match"
+msgstr "Coincideix amb"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
+msgid "any"
+msgstr "qualsevol"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
+msgid "all"
+msgstr "tots"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
+msgid "of the following:"
+msgstr "dels següents:"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr "Limita a"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr "elements"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+msgid "Bitrate"
+msgstr "Taxa de bits"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Date Added"
+msgstr "Data d'addició"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
+msgid "Date Released"
+msgstr "Data de llançament"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+msgid "Last Played"
+msgstr "Reproduïdes darrerament"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
+msgid "Length"
+msgstr "Durada"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+msgid "Playcount"
+msgstr "Nombre de reproduccions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:274
+msgid "Skipcount"
+msgstr "Nombre d'omissions"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
+msgid "is"
+msgstr "és"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
+msgid "contains"
+msgstr "conté"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:338
+msgid "does not contain"
+msgstr "no conté"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
+msgid "is exactly"
+msgstr "és exactament"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
+msgid "is at most"
+msgstr "és com a màxim"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:365
+msgid "is at least"
+msgstr "és com a  mínim"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
+msgid "is within"
+msgstr "es troba entre"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:378
+msgid "is before"
+msgstr "és abans de"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+msgid "seconds"
+msgstr "segons"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
+msgid "days ago"
+msgstr "dies enrere"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
+msgid "kbps"
+msgstr "kbps"
+
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:48
 msgid "Not Imported Files"
 msgstr "Fitxers no importats"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:65
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:77
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:77
 #, c-format
 msgid "Unable to import %d items from %s"
 msgstr "No s'han pogut importar %d elements des de %s"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
 "El %s no ha pogut importar %d elements. Els fitxers podrien estar danyats."
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:67
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:67
 msgid "Move all corrupted files to trash"
 msgstr "Mou tots els fitxers corruptes a la paperera"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:73
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:73
 msgid "Ignore"
 msgstr "Ignora"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:94
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:94
 msgid "del"
 msgstr "supr"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:99
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:99
 msgid "File Location"
 msgstr "Ubicació del fitxer"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/NotImportedWindow.vala:126
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:126
 msgid "Select individual files to move to trash:"
 msgstr "Selecciona els fitxers individualment per moure'ls a la paperera:"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:76
-msgid "Equalizer"
-msgstr "Equalitzador"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:143
-msgid "Save preset"
-msgstr "Desa els valors predefinits"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:407
-#, c-format
-msgid "%s (Custom)"
-msgstr "%s (Personalitzat)"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:409
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (%i personalitzat)"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:413
-msgid "Custom Preset"
-msgstr "Valors predefinits personalitzats"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/EqualizerWindow.vala:415
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Valors predefinits personalitzats de %i"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
-msgid "Remove Media"
-msgstr "Suprimeix l'element multimèdia"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
-msgid "Locate Media"
-msgstr "Troba elements multimèdia"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
-msgid "Rescan Library"
-msgstr "Torna a examinar la biblioteca"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
-msgid "Do Nothing"
-msgstr "No facis res"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
-msgid "Could not find media file"
-msgstr "No s'ha pogut trobar el fitxer multimèdia"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
-msgid ""
-"The music file for $NAME by $ARTIST could not be found. What would you like "
-"to do?"
-msgstr ""
-"No s'ha pogut trobar el fitxer per a $NAME per $ARTIST. Què voleu fer?"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
-#, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "No s'han pogut trobar %i fitxers multimèdia. Què voleu fer?"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
 msgid "Install Plugin"
 msgstr "Instal·la el connector"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
 msgstr "El connector del GStreamer no està instal·lat"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
+#: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
@@ -1645,74 +1676,43 @@ msgstr ""
 "El connector pel tipus d'elements multimèdia %s no està instal·lat.\n"
 "Què voleu fer?"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:88
-msgid "Metadata"
-msgstr "Metadades"
+#: /home/noelco/Programmation/Projets/noise/po/../src//GStreamer/Streamer.vala:195
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/ArtistInfo.vala:27
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:26
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
+msgid "Unknown Artist"
+msgstr "Artista desconegut"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:90
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:382
-msgid "Lyrics"
-msgstr "Lletres"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/LyricFetcher.vala:156
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "Lletras obtingudes de www.lyricsmania.com"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:353
-msgid "Editing $NAME by $ARTIST"
-msgstr "S'està editant $NAME per $ARTIST"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr "Pista desconeguda"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:355
-#, c-format
-msgid "Editing %s"
-msgstr "S'està editant %s"
+#: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Àlbum desconegut"
 
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:358
-#, c-format
-msgid "Editing %i songs"
-msgstr "S'estan editant %i cançons"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:199
-msgid "Album Artist"
-msgstr "Artista de l'àlbum"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:205
-msgid "Track"
-msgstr "Pista"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:206
-msgid "Disc"
-msgstr "Disc"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:210
-msgid "Media Type"
-msgstr "Tipus d'elements multimèdia"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:301
-#, c-format
-msgid "Lyrics not found for %s"
-msgstr "No s'ha trobat la lletra de %s"
-
-#: /home/tutebatti/noise/po/../src//Dialogs/MediaEditor.vala:546
-msgid "Podcast"
-msgstr "Podcast"
-
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
 msgstr "S'ha produït un error"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
 msgstr "S'ha produït un error en carregar aquest CD d'àudio."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
 msgstr "El CD d'àudio no és vàlid"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "No ha estat possible llegir el contingut d'aquest CD d'àudio"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -1720,103 +1720,115 @@ msgstr ""
 "Assegureu-vos que la carpeta de música sigui accessible i muntada abans de "
 "la importació del CD."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "L'aplicació no pot trobar cançons al CD. No es pot importar cap cançó"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
 msgid "Importation of a song from Audio CD finished."
 msgstr "Ha finalitzat la importació d'una cançó del CD d'àudio."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importation of %i songs from Audio CD finished."
 msgstr "Ha finalitzat la importació de %i cançons del CD d'àudio."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
 #, c-format
 msgid "Importing track %i: %s"
 msgstr "S'està important la pista %i:%s"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "La importació del CD <b>es cancel·larà</b> després de la importació actual."
 
-#: /home/tutebatti/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
 msgid "An error occured during the Import of this CD"
 msgstr "S'ha produït un error en importar aquest CD"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
+msgid "Empty device!"
+msgstr "El dispositiu està buit"
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
+msgid "This device does not contain any music."
+msgstr "Aquest dispositiu no conté cap cançó."
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
+msgid "Android Phone"
+msgstr "Telèfon amb Android"
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
+msgid "Audio Player"
+msgstr "Reproductor d'àudio"
+
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:126
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:142
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "S'està afegint <b>$NAME</b> per <b>$ARTIST</b> a $DEVICE…"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:150
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:188
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:207
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:565
 #, c-format
 msgid "Syncing <b>%s</b>…"
 msgstr "S'està sincronitzant <b>%s</b>…"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:242
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:234
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:352
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:621
 msgid "Finishing sync process…"
 msgstr "S'està finalitzant el procés de sincronització…"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:245
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:248
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:368
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:642
 msgid "Cancelling Sync…"
 msgstr "S'està canel·lant la sincronització…"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:249
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:250
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:653
 msgid "There is not enough space on Device to complete the Sync…"
 msgstr "No hi ha prou espai al dispositiu per completar la sincronització…"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:329
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:515
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "S'està suprimint <b>$NAME</b> per <b>$ARTIST</b> de $DEVICE…"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:360
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:308
 #, c-format
 msgid "Removing from <b>%s</b>…"
 msgstr "S'està suprimint de <b>%s</b>…"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodDevice.vala:74
-msgid "Empty device!"
-msgstr "El dispositiu està buit"
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
+msgid "media"
+msgstr "elements multimèdia"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:117
-#: /home/tutebatti/noise/po/../plugins//Devices/iPod/iPodDevice.vala:78
-msgid "This device does not contain any music."
-msgstr "Aquest dispositiu no conté cap cançó."
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "Similar Media"
+msgstr "Elements multimèdia similars"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:161
-msgid "Android Phone"
-msgstr "Telèfon amb Android"
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMedia.vala:42
+msgid "Similar"
+msgstr "Similars"
 
-#: /home/tutebatti/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:163
-msgid "Audio Player"
-msgstr "Reproductor d'àudio"
-
-#: /home/tutebatti/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"
 msgstr "No s'ha trobat cap cançó similar"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/LastFM.vala:75
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
@@ -1826,40 +1838,40 @@ msgstr ""
 "biblioteca. Assegureu-vos que tota la informació de la cançó és correcta i "
 "que esteu connectat a Internet. Algunes cançons poden no tenir coincidències."
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 #, c-format
 msgid "Give %s Permission"
 msgstr "Doneu permisos al %s"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
 msgstr "No hi ha hagut èxit. Feu clic per tornar-ho a intentar."
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
 msgstr "L'Scrobbling ja està activat."
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
 msgstr "L'operació s'ha realitzat correctament."
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
 msgstr "Completa l'inici de sessió"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:43
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
 msgstr "Last.fm"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:48
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:48
 msgid "Last.fm Integration"
 msgstr "Integració amb el Last.fm"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:55
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
 msgstr "Feu clic per tornar a realitzar l'inici de sessió al Last.fm"
 
-#: /home/tutebatti/noise/po/../plugins//LastFM/PreferencesSection.vala:58
+#: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:58
 #, c-format
 msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
@@ -1867,18 +1879,6 @@ msgid ""
 msgstr ""
 "Per permetre la integració amb el Last.fm, heu de donar permisos al %s. "
 "Només s'ha de fer un cop."
-
-#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMediaView.vala:44
-msgid "media"
-msgstr "elements multimèdia"
-
-#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
-msgid "Similar Media"
-msgstr "Elements multimèdia similars"
-
-#: /home/tutebatti/noise/po/../plugins//LastFM/SimilarMedia.vala:42
-msgid "Similar"
-msgstr "Similars"
 
 #~ msgid "Add Podcast"
 #~ msgstr "Afegeix un podcast"
