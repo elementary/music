@@ -56,6 +56,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 is_supported = false;
             }
             library = new iPodLibrary (db, this);
+            libraries_manager.add_library (library);
         }
         catch(Error err) {
             critical("Error parsing db at %s: %s\n", get_uri(), err.message);
