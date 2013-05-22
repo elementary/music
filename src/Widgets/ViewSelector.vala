@@ -42,6 +42,8 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
     public Mode selected {
         get { return (mode != Mode.COLUMN) ? mode : Mode.LIST; }
         set {
+            if (this.mode == value)
+                return;
             this.mode = value;
             mode_button.set_active ((int)value);
 

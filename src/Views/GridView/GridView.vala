@@ -167,6 +167,7 @@ public class Noise.GridView : ContentView, GridLayout {
         album_info = new Gee.HashMap<string, Album> ();
         clear_objects ();
         add_media (to_add);
+        set_research_needed (true);
     }
 
     // checks for duplicates
@@ -198,6 +199,7 @@ public class Noise.GridView : ContentView, GridLayout {
 
         // Add new albums
         add_objects (albums_to_append.values);
+        set_research_needed (true);
     }
 
     public void remove_media (Gee.Collection<Media> to_remove) {
@@ -267,6 +269,7 @@ public class Noise.GridView : ContentView, GridLayout {
         }
 
         remove_objects (objects_to_remove);
+        set_research_needed (true);
     }
 
     public int get_relative_id () {
@@ -368,35 +371,30 @@ public class Noise.GridView : ContentView, GridLayout {
 
     protected override void search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
         message_visible = false;
+        var result = parent_view_wrapper.library.get_search_result ();
 
-        int parsed_rating;
-        string parsed_search_string;
+        if (result != parent_view_wrapper.library.get_medias ()) {
+            int show_index = 0;
+            for (int i = 0; i < table.size (); i++) {
+                var album = table.get (i) as Album;
+                if (album == null)
+                    continue;
 
-        base_search_method (search, out parsed_rating, out parsed_search_string);
-
-        bool rating_search = parsed_rating > 0;
-
-        int show_index = 0;
-        for (int i = 0; i < table.size (); i++) {
-            var album = table.get (i) as Album;
-            if (album == null)
-                continue;
-
-            // Search in the album's media. After the first match found, we break
-            // the loop because we know the album has (at least) one of the items
-            // we want. Real search is done later by the popup list after an album
-            // is selected.
-            foreach (var m in album.get_media ()) {
-                if (rating_search) {
-                    if (m.rating == (uint) parsed_rating) {
-                        showing.set (show_index++, album);
-                        break; // we only need to add the album once.
+                // Search in the album's media. After the first match found, we break
+                // the loop because we know the album has (at least) one of the items
+                // we want. Real search is done later by the popup list after an album
+                // is selected.
+                foreach (var m in album.get_media ()) {
+                    if (m != null) {
+                        if (result.contains (m)) {
+                            showing.set (show_index++, album);
+                            break;
+                        }
                     }
-                } else if (Search.match_string_to_media (m, parsed_search_string)) {
-                    showing.set (show_index++, album);
-                    break; // we only need to add the album once.
                 }
             }
+        } else {
+            showing = table;
         }
 
         // If nothing will be shown, display the "no albums found" message.

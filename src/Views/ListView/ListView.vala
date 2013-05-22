@@ -100,6 +100,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 			column_browser = new MusicColumnBrowser (view_wrapper);
 
         list_view.set_search_func (view_search_func);
+        view_wrapper.library.search_finished.connect (() => {this.list_view.research_needed = true;});
 
 		if (has_column_browser) {
 			browser_hpane = new Granite.Widgets.ThinPaned ();
@@ -291,7 +292,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	// TODO: Since is_initial is deprecated and not used, update the external code to stop using it
 	public void set_as_current_list (int media_id, bool is_initial = false) {
 		list_view.set_as_current_list (view_wrapper.library.media_from_id (media_id));
-    	refilter (null);
 	}
 
 	public bool get_is_current_list ()  {
@@ -300,11 +300,13 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
 	public void add_media (Gee.Collection<Media> to_add) {
     	list_view.add_media (to_add);
+    	this.list_view.research_needed = true;
     	refilter (null);
 	}
 
 	public void remove_media (Gee.Collection<Media> to_remove) {
     	list_view.remove_media (to_remove);
+    	this.list_view.research_needed = true;
         refilter (null);
 	}
 
@@ -312,6 +314,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         obey_column_browser = false;
 
 		list_view.set_media (media);
+		this.list_view.research_needed = true;
 
 		if (has_column_browser)
 			column_browser.set_media (media);
@@ -337,9 +340,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
         obey_column_browser = false;
         list_view.do_search (search);
         obey_column_browser = true;
-        if (list_view.get_is_current_list () == true) {
-            list_view.set_as_current_list ();
-        }
 
         if (has_column_browser)
             column_browser.set_media (get_visible_media ());
@@ -389,33 +389,28 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
     private void view_search_func (string search, HashTable<int, Media> table, ref HashTable<int, Media> showing) {
         list_text_overlay.message_visible = false;
+        var result = view_wrapper.library.get_search_result ();
 
-        int parsed_rating;
-        string parsed_search_string;
+        if (result != view_wrapper.library.get_medias ()) {
+            // If an external refiltering is going on, we cannot obey the column browser filter
+            // because it wil be refreshed after this search based on the new 'showing' table
+            // (populated by this method).
+            bool obey_column_browser = column_browser_enabled && this.obey_column_browser;
+            int show_index = 0;
 
-        base_search_method (search, out parsed_rating, out parsed_search_string);
+            for (int i = 0; i < table.size (); ++i) {
+                var m = table.get (i);
+                if (m != null) {
+                    if (obey_column_browser && !column_browser.match_media (m))
+                        continue;
 
-        bool rating_search = parsed_rating > 0;
-
-        // If an external refiltering is going on, we cannot obey the column browser filter
-        // because it wil be refreshed after this search based on the new 'showing' table
-        // (populated by this method).
-        bool obey_column_browser = column_browser_enabled && this.obey_column_browser;
-        int show_index = 0;
-
-        for (int i = 0; i < table.size (); ++i) {
-            var m = table.get (i);
-            if (m != null) {
-                if (obey_column_browser && !column_browser.match_media (m))
-                    continue;
-
-                if (rating_search) {
-                    if (m.rating == (uint) parsed_rating)
+                    if (result.contains (m)) {
                         showing.set (show_index++, m);
-                } else if (Search.match_string_to_media (m, parsed_search_string)) {
-                    showing.set (show_index++, m);
+                    }
                 }
             }
+        } else {
+            showing = table;
         }
 
         // If nothing will be shown, display the "no media found" message.

@@ -38,6 +38,7 @@ public class Noise.LibrariesManager : GLib.Object {
     
     public double progress;
     public string current_operation;
+    private string old_search = null;
     
     private Gee.HashMap<Library, int> libraries;
     private int current_index = 0;
@@ -67,6 +68,15 @@ public class Noise.LibrariesManager : GLib.Object {
                 return entry.key;
         }
         return null;
+    }
+    
+    public void search_for_string (string search) {
+        if (old_search == search)
+            return;
+        old_search = search;
+        foreach (var library in libraries.keys) {
+            library.search_medias (search);
+        }
     }
     
     public void transfer_to_local_library (Gee.Collection<Media> to_transfer) {

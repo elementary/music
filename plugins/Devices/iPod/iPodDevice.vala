@@ -37,7 +37,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         is_new = mount.get_default_location ().get_parse_name ().has_prefix ("afc://");
         
         pref = device_manager.get_device_preferences (get_unique_identifier ());
-        if(pref == null) {
+        if (pref == null) {
             pref = new Noise.DevicePreferences (get_unique_identifier ());
             device_manager.add_device_preferences (pref);
         }

@@ -119,7 +119,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     protected const int VIEW_CONSTRUCT_PRIORITY = Priority.DEFAULT_IDLE - 10;
 
     private bool widgets_ready = false;
-    private string last_search = "";
     private ViewContainer view_container;
     private ViewType last_used_view = ViewType.NONE;
 
@@ -138,7 +137,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         add (view_container);
 
         App.main_window.viewSelector.mode_changed.connect (view_selector_changed);
-        App.main_window.searchField.text_changed_pause.connect (search_field_changed);
+        library.search_finished.connect (search_field_changed);
     }
 
     /**
@@ -177,7 +176,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
                 if (has_list_view) {
                     successful = view_container.set_current_view (list_view);
                     list_view.list_view.scroll_to_current_media (true);
-                    update_visible_media ();
                 } else {
                     successful = false;
                 }
@@ -185,12 +183,10 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             case ViewType.GRID:
                 if (has_grid_view) {
                     successful = view_container.set_current_view (grid_view);
-                    update_visible_media ();
                 } else {
                     if (has_list_view) {
                         successful = view_container.set_current_view (list_view);
                         list_view.list_view.scroll_to_current_media (true);
-                        update_visible_media ();
                     }
                     successful = false;
                 }
@@ -213,6 +209,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         // Update LibraryWindow widgets
         update_library_window_widgets ();
+        update_visible_media ();
     }
 
     /**
@@ -221,7 +218,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * current view.
      */
     protected void update_library_window_widgets () {
-        if (!is_current_wrapper || !has_list_view)
+        if (!is_current_wrapper || !has_list_view || !App.main_window.initialization_finished)
             return;
 
         debug ("update_library_window_widgets [%s]", hint.to_string());
@@ -308,6 +305,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             return;
         debug ("SETTING AS CURRENT VIEW [%s]", hint.to_string ());
 
+        update_visible_media ();
         check_have_media ();
         update_library_window_widgets ();
     }
@@ -335,11 +333,9 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         App.main_window.statusbar.set_info (get_statusbar_text ());
     }
     
-    private void search_field_changed (string search) {
-        if (!is_current_wrapper || search == last_search)
+    private void search_field_changed () {
+        if (!is_current_wrapper)
             return;
-
-        last_search = search;
 
         // Do the actual search and show up results....
         update_visible_media ();
@@ -427,6 +423,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * Primarily used for searches
      */
     protected void update_visible_media () {
+        if (!is_current_wrapper)
+            return;
         debug ("UPDATING VISIBLE MEDIA [%s]", hint.to_string ());
 
         string to_search = App.main_window.searchField.text;

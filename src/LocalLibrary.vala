@@ -48,6 +48,7 @@ public class Noise.LocalLibrary : Library {
     public Gee.LinkedList<StaticPlaylist> _playlists;
     public Gee.LinkedList<SmartPlaylist> _smart_playlists;
     public Gee.LinkedList<Media> _medias;
+    public Gee.LinkedList<Media> _searched_medias;
     public int medias_rowid = 0;
     public int playlists_rowid = 0;
     
@@ -67,6 +68,7 @@ public class Noise.LocalLibrary : Library {
         _playlists = new Gee.LinkedList<StaticPlaylist> ();
         _smart_playlists = new Gee.LinkedList<SmartPlaylist> ();
         _medias = new Gee.LinkedList<Media> ();
+        _searched_medias = new Gee.LinkedList<Media> ();
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;
         
@@ -89,6 +91,7 @@ public class Noise.LocalLibrary : Library {
                 medias_rowid++;
             }
         }
+        search_medias ("");
 
         // Load smart playlists from database
         lock (_smart_playlists) {
@@ -508,6 +511,39 @@ public class Noise.LocalLibrary : Library {
     }
 
     /******************** Media stuff ******************/
+    
+    public override void search_medias (string search) {
+        lock (_searched_medias) {
+            _searched_medias.clear ();
+            if (search == "") {
+                _searched_medias.add_all (_medias);
+                search_finished ();
+                return;
+            }
+            
+            int parsed_rating;
+            string parsed_search_string;
+            String.base_search_method (search, out parsed_rating, out parsed_search_string);
+            bool rating_search = parsed_rating > 0;
+            
+            lock (_medias) {
+                foreach (var m in _medias) {
+                    if (rating_search) {
+                        if (m.rating == (uint) parsed_rating)
+                            _searched_medias.add (m);
+                    } else if (Search.match_string_to_media (m, parsed_search_string)) {
+                        _searched_medias.add (m);
+                    }
+                }
+            }
+        }
+        search_finished ();
+    }
+    
+    public override Gee.Collection<Media> get_search_result () {
+        return _searched_medias;
+    }
+    
     public void clear_medias () {
         message ("-- Clearing medias");
 

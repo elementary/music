@@ -39,14 +39,14 @@ public class Noise.FastView : TreeView {
 
 	protected int sort_column_id;
 	protected SortType sort_direction;
+	public bool research_needed = false;
 	private unowned SortCompareFunc compare_func;
 	
 	// search stuff
-	string last_search;
 	public delegate void ViewSearchFunc (string search, HashTable<int, Media> table, ref HashTable<int, Media> showing);
 	private unowned ViewSearchFunc search_func;
 	
-	public signal void rows_reordered();
+	public signal void rows_reordered ();
 	
 	public FastView (List<Type> types) {
 		columns = types.copy();
@@ -56,7 +56,6 @@ public class Noise.FastView : TreeView {
 		
 		sort_column_id = OPTIMAL_COLUMN;
 		sort_direction = SortType.ASCENDING;
-		last_search = "";
 		
 		fm.reorder_requested.connect(reorder_requested);
 		
@@ -100,17 +99,15 @@ public class Noise.FastView : TreeView {
 	}
 
 	public void do_search (string? search = null) {
-        if (search_func == null)
+        if (search_func == null || research_needed == false)
             return;
-
+        
+        research_needed = false;
 		var old_size = showing.size();
 		
 		showing.remove_all();
 
-		if(search != null)
-			last_search = search;
-
-		search_func (last_search ?? "", table, ref showing);
+		search_func (search ?? "", table, ref showing);
         /* Commented out this code because empty search strings should still trigger
         a search if the view contains an external filter applied through search_func
         (E.g. a column browser)

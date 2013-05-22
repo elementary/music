@@ -37,6 +37,7 @@ set(CORE_SOURCE
     Utils/Threads.vala
     Utils/Icon.vala
     Utils/Icons.vala
+    Utils/Search.vala
     GStreamer/Pipeline.vala
     GStreamer/Equalizer.vala
     GStreamer/Playback.vala

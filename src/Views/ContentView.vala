@@ -53,28 +53,5 @@ public interface Noise.ContentView : Gtk.Widget {
 	public abstract void remove_media (Gee.Collection<Media> to_remove);
 	public abstract void update_media (Gee.Collection<Media> to_update);
 
-    /**
-     * Base method used for searches. It does a previous parsing on the search string.
-     *
-     * If the output value of parsed_rating is greater than 0, then the view should
-     * only display the media with that rating in the search results, and ignore
-     * the value of parsed_search_string.
-     *
-     * @param search Non-parsed version of the search string.
-     * @param parsed_rating location where the parsed rating it stored, or -1 if the
-     * string didn't represent a valid rating.
-     * @param parsed_search_string location where the canonicalized version of the
-     * search string is stored. Should be passed to the methods in Noise.Search.
-     */
-    public static void base_search_method (string search, out int parsed_rating,
-                                           out string parsed_search_string)
-    {
-        parsed_rating = Search.get_rating_from_string (search.strip ());
-
-        if (parsed_rating > 0)
-            parsed_rating = parsed_rating.clamp (1, 5);
-
-        parsed_search_string = Search.get_valid_search_string (search);
-    }
 }
 

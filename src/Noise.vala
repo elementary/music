@@ -116,6 +116,7 @@ public class Noise.App : Granite.Application {
             library_manager = new LocalLibrary ();
             player = new PlaybackManager ();
             library_manager.initialize_library ();
+            libraries_manager.add_library (library_manager);
             main_window = new LibraryWindow ();
             main_window.build_ui ();
             main_window.set_application (this);

@@ -40,7 +40,7 @@ public class Noise.FastGrid : IconView {
 
     public delegate void ViewSearchFunc (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing);
     private unowned ViewSearchFunc search_func;
-    private string? last_search;
+    public bool research_needed = false;
 
     public FastGrid () {
         table = new HashTable<int, GLib.Object> (null, null);
@@ -119,23 +119,16 @@ public class Noise.FastGrid : IconView {
     }
     
     public void do_search (string? search) {
-        if (search_func == null)
+        if (search_func == null || research_needed == false)
             return;
         
+        research_needed = false;
         var old_size = showing.size ();
         
         showing.remove_all ();
         if (search != null)
-            last_search = search;
         
-        //if (last_search == "") {
-        //    for (int i = 0; i < table.size (); ++i) {
-        //        showing.set (i, table.get (i));
-        //    }
-        //}
-        //else {
-            search_func (last_search ?? "", table, ref showing);
-        //}
+        search_func (search ?? "", table, ref showing);
         
         if (showing.size () == old_size) {
             fm.set_table (showing);

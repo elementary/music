@@ -32,6 +32,7 @@
 public class Noise.Plugins.iPodLibrary : Noise.Library {
     private unowned GPod.iTunesDB db;
     Gee.HashMap<unowned GPod.Track, Noise.Media> medias;
+    Gee.LinkedList<Noise.Media> searched_medias;
     Gee.HashMap<unowned GPod.Track, Noise.Media> podcasts;
     Gee.HashMap<unowned GPod.Track, Noise.Media> audiobooks;
     Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist> playlists;
@@ -49,6 +50,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         audiobooks = new Gee.HashMap<unowned GPod.Track, Noise.Media>();
         playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist>();
         smart_playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.SmartPlaylist>();
+        searched_medias = new Gee.LinkedList<Noise.Media>();
         notification_manager.progress_canceled.connect( () => {operation_cancelled = true;});
     }
     
@@ -108,6 +110,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
 
             Idle.add( () => {
                 device.initialized (device);
+                search_medias ("");
                 
                 return false;
             });
@@ -118,6 +121,38 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     
     public override void add_files_to_library (Gee.Collection<string> files) {
     
+    }
+    
+    public override void search_medias (string search) {
+        lock (searched_medias) {
+            searched_medias.clear ();
+            if (search == "" || search == null) {
+                searched_medias.add_all (medias.values);
+                search_finished ();
+                return;
+            }
+            
+            int parsed_rating;
+            string parsed_search_string;
+            String.base_search_method (search, out parsed_rating, out parsed_search_string);
+            bool rating_search = parsed_rating > 0;
+            
+            lock (medias) {
+                foreach (var m in medias.values) {
+                    if (rating_search) {
+                        if (m.rating == (uint) parsed_rating)
+                            searched_medias.add (m);
+                    } else if (Search.match_string_to_media (m, parsed_search_string)) {
+                        searched_medias.add (m);
+                    }
+                }
+            }
+        }
+        search_finished ();
+    }
+    
+    public override Gee.Collection<Media> get_search_result () {
+        return searched_medias;
     }
     
     public override Gee.Collection<Media> get_medias () {

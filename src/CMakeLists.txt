@@ -7,7 +7,6 @@ set(CLIENT_SOURCE
     FileOperator.vala
     Utils/PixbufUtils.vala
     Utils/PixbufCache.vala
-    Utils/Search.vala
     Objects/LyricFetcher.vala
     Objects/MediaInfo.vala
     Objects/AlbumInfo.vala

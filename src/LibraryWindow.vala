@@ -523,7 +523,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         volumeButton.value_changed.connect (change_volume);
 
         searchField.activate.connect (searchFieldActivate);
+        searchField.text_changed_pause.connect ((text) => {libraries_manager.search_for_string (text);});
         searchField.text = main_settings.search_string;
+        libraries_manager.search_for_string (main_settings.search_string);
 
         debug ("DONE WITH USER INTERFACE");
 

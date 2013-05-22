@@ -45,6 +45,7 @@ public abstract class Noise.Library : GLib.Object {
     public signal void media_added (Gee.Collection<int> ids);
     public signal void media_updated (Gee.Collection<int> ids);
     public signal void media_removed (Gee.Collection<int> ids);
+    public signal void search_finished ();
     
     public signal void playlist_added (StaticPlaylist playlist);
     public signal void playlist_name_updated (StaticPlaylist playlist);
@@ -60,6 +61,9 @@ public abstract class Noise.Library : GLib.Object {
     public abstract Gee.Collection<Media> get_medias ();
     public abstract Gee.Collection<StaticPlaylist> get_playlists ();
     public abstract Gee.Collection<SmartPlaylist> get_smart_playlists ();
+    
+    public abstract void search_medias (string search);
+    public abstract Gee.Collection<Media> get_search_result ();
     
     public abstract void add_media (Media s);
     public abstract void add_medias (Gee.Collection<Media> new_media);
