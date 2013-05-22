@@ -255,16 +255,27 @@ namespace Noise.FileUtils {
             else
                 ext = get_extension(s.uri);
             
-            dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " - " + s.get_display_title ().replace("/", "_") + ext));
+            /* Available translations are $ALBUM $ARTIST $ALBUM_ARTIST $TITLE $TRACK*/
+            string path = main_settings.path_string.replace ("$ALBUM_ARTIST", s.get_display_album_artist ().replace("/", "_"));
+            path = path.replace ("$ARTIST", s.get_display_artist ().replace("/", "_"));
+            path = path.replace ("$ALBUM", s.get_display_album ().replace("/", "_"));
+            path = path.replace ("$TITLE", s.get_display_title ().replace("/", "_"));
+            path = path.replace ("$TRACK", s.track.to_string());
+            if (path == "" || path == null) {
+                path = "$ALBUM_ARTIST/$ALBUM/$TRACK - $TITLE";
+                main_settings.path_string = "$ALBUM_ARTIST/$ALBUM/$TRACK - $TITLE";
+            }
             
-            if(original.get_path() == dest.get_path()) {
+            dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + ext));
+            
+            if(original.get_path() == dest.get_path() || !dest.query_exists()) {
                 debug("File is already in correct location\n");
                 return null;
             }
             
-            string extra = "";
-            while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, s.get_display_album_artist ().replace("/", "_"), s.get_display_album ().replace("/", "_"), s.track.to_string() + " - " + s.get_display_title ().replace("/", "_") + extra + ext))).query_exists()) {
-                extra += "_";
+            int number = 2;
+            while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + _(" (%d)").printf (number) + ext))).query_exists()) {
+                number++;
             }
             
             /* make sure that the parent folders exist */

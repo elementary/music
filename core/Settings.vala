@@ -66,6 +66,7 @@ namespace Noise.Settings {
         public Shuffle shuffle_mode { get; set; }
         public Repeat repeat_mode { get; set; }
         public string search_string { get; set; }
+        public string path_string { get; set; }
         public string[] plugins_enabled { get; set;}
         public string[] minimize_while_playing_shells { get; set; }
 

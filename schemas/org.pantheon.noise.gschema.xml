@@ -87,6 +87,11 @@
       <summary>String of last search</summary>
       <description>String of last search</description>
     </key>
+    <key type="s" name="path-string">
+      <default>'$ALBUM_ARTIST/$ALBUM/$TRACK - $TITLE'</default>
+      <summary>String of the destination path to save files</summary>
+      <description>String of the destination path to save files</description>
+    </key>
     <key type="as" name="plugins-enabled">
       <default>['lastfm','mpris','cdrom-device','ipod-device','audioplayer-device']</default>
       <summary>List of enabled plugins</summary>

@@ -716,6 +716,7 @@ public class Noise.LocalLibrary : Library {
 
         dbm.add_media (media);
         update_smart_playlists_async.begin (media);
+        search_medias (App.main_window.searchField.text);
     }
 
     public override void remove_media (Media s, bool trash) {
