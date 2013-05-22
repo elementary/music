@@ -186,7 +186,7 @@ public class Noise.FastView : TreeView {
 #else
 		quicksort (0, (int)table.size() - 1);
 #endif
-		
+		research_needed = true;
 		do_search (null);
 		
 		// Let it be known the row order changed
@@ -199,6 +199,8 @@ public class Noise.FastView : TreeView {
 #endif
 			quicksort(0, (int)(table.size() - 1));
 		
+		
+		research_needed = true;
 		do_search (null);
 	}
 	
