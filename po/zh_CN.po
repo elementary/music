@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-20 01:06+0200\n"
-"PO-Revision-Date: 2013-05-21 13:10+0000\n"
-"Last-Translator: Wang Dianjin <Unknown>\n"
+"PO-Revision-Date: 2013-05-24 11:39+0000\n"
+"Last-Translator: Yangyu Huang <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-05-22 04:55+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-05-25 05:43+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:130
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -414,7 +414,7 @@ msgstr "指定音乐文件夹"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk."
-msgstr ""
+msgstr "从文件夹、网络或外置硬盘内导入文件。"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
