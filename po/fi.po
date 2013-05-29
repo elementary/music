@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-25 11:22+0200\n"
-"PO-Revision-Date: 2013-05-18 10:48+0000\n"
+"PO-Revision-Date: 2013-05-28 10:15+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-26 05:05+0000\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:28+0000\n"
 "X-Generator: Launchpad (build 16640)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -142,7 +142,7 @@ msgstr "Tunnistamaton soittolistatiedosto. Tuonti epäonnistui."
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/FileUtils.vala:277
 #, c-format
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
@@ -653,11 +653,12 @@ msgstr "Lisää musiikkia kirjastoosi."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Change Music Folder"
-msgstr ""
+msgstr "Vaihda musiikkikansiota"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk."
 msgstr ""
+"Lataa musiikkia kansiosta, verkosta tai erilliseltä tallennuslaitteelta."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-25 11:22+0200\n"
-"PO-Revision-Date: 2013-05-12 08:16+0000\n"
+"PO-Revision-Date: 2013-05-28 15:59+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-05-26 05:06+0000\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:28+0000\n"
 "X-Generator: Launchpad (build 16640)\n"
 "Language: \n"
 
@@ -143,7 +143,7 @@ msgstr "無法辨識的播放清單檔案。匯入失敗。"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/FileUtils.vala:277
 #, c-format
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
@@ -641,15 +641,15 @@ msgstr "取得一些樂曲"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "將音樂加入珍藏館。"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Change Music Folder"
-msgstr ""
+msgstr "變更音樂資料夾"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk."
-msgstr ""
+msgstr "從資料夾、網路、外部磁碟中等處載入音樂。"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
@@ -1772,7 +1772,7 @@ msgstr "匯入這張 CD 時遭遇錯誤"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 #, c-format
 msgid "Give %s Permission"
-msgstr ""
+msgstr "給予 %s 許可"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
@@ -1807,7 +1807,7 @@ msgstr "點擊以再次執行  Last.fm 登入程序的動作"
 msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
-msgstr ""
+msgstr "若要允許 Last.fm 整合，您必須准許「%s」存取。您只需執行此動作一次。"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"

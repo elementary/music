@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-25 11:22+0200\n"
-"PO-Revision-Date: 2013-05-25 10:12+0000\n"
-"Last-Translator: דוביקס <dovix2003@gmail.com>\n"
+"PO-Revision-Date: 2013-05-29 05:23+0000\n"
+"Last-Translator: Uri Damsker <ud1955@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-26 05:05+0000\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:28+0000\n"
 "X-Generator: Launchpad (build 16640)\n"
 "Language: \n"
 
@@ -36,11 +36,11 @@ msgstr "בס מלא"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:83
 msgid "Full Treble"
-msgstr "לשלש מלא"
+msgstr "טרבל מלא"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:84
 msgid "Full Bass + Treble"
-msgstr "בס מלא + לשלש"
+msgstr "בס + טרבל מלא"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:85
 msgid "Headphones"
@@ -110,7 +110,7 @@ msgstr "%s (%i)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr "יצוא רשימת השמעה"
+msgstr "יְצוּא רשימת השמעה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:282
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:376
@@ -129,11 +129,11 @@ msgstr "רשימת השמעה"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:367
 #, c-format
 msgid "Import %s"
-msgstr "ייבוא %s"
+msgstr "יְבוּא  %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
-msgstr "קובץ של רשימת השמעה לא ידוע. ייבוא נכשל."
+msgstr "קובץ רשימת השמעה אינו מוכר. היבוא נכשל."
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/FileUtils.vala:277
 #, c-format
@@ -144,7 +144,7 @@ msgstr ""
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "שנייה %d"
+msgstr[0] "שְׁנִיָה %d"
 msgstr[1] "%d שניות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:52
@@ -264,12 +264,12 @@ msgstr "לא הושמע מעולם"
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:482
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:722
 msgid "Over Played"
-msgstr "הושמע יותר מדי"
+msgstr "המנוגנים ביותר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:489
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:729
 msgid "Not Recently Played"
-msgstr "לא הושמע לאחרונה"
+msgstr "לא נוגנו לאחרונה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:874
@@ -277,7 +277,7 @@ msgstr "לא הושמע לאחרונה"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:110
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "המתנה"
+msgstr "תור"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:884
@@ -288,7 +288,7 @@ msgstr "היסטוריה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:89
 msgid "No Songs Found."
-msgstr "שירים לא נמצאו"
+msgstr "לא נמצאו שירים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:369
 #, c-format
@@ -313,7 +313,7 @@ msgstr "%s, %s"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
 msgid "#"
-msgstr "#"
+msgstr "מס׳"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
@@ -333,7 +333,7 @@ msgstr "אורך"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr "אומן"
+msgstr "אָמָן"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
@@ -343,7 +343,7 @@ msgstr "אלבום"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr "אמן האלבום"
+msgstr "אלבום אָמָן"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
@@ -353,17 +353,17 @@ msgstr "מלחין"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
 msgid "Genre"
-msgstr "סגנון"
+msgstr "סִגְנוֹן"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
-msgstr "שנה"
+msgstr "שָׁנָה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
 msgid "Grouping"
-msgstr "קיבוץ"
+msgstr "מִקבָּץ"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
@@ -373,27 +373,27 @@ msgstr "קצב סיביות"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
 msgid "Rating"
-msgstr "דירוג"
+msgstr "דֵרוּג"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
 msgctxt "List column title"
 msgid "Plays"
-msgstr "השמעות"
+msgstr "ניגונים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
 msgctxt "List column title"
 msgid "Skips"
-msgstr "דילוגים"
+msgstr "דִלוּגים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
 msgctxt "List column title"
 msgid "Date Added"
-msgstr "נוסף בתאריך"
+msgstr "תאריך הוספה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
 msgctxt "List column title"
 msgid "Last Played"
-msgstr "הושמע לאחרונה"
+msgstr "מועד ההשמעה האחרון"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
@@ -403,20 +403,20 @@ msgstr "פעימות לדקה"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr "מיקום"
+msgstr "מִקוּם"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
 msgid "File Size"
-msgstr "גודל קובץ"
+msgstr "גודל הקובץ"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:121
 msgid "Autosize Columns"
-msgstr "כוון גודל אוטומטית בטור"
+msgstr "גודל עמודות אוטומטי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
 msgid "Display Album Art"
-msgstr "הצג אומנות תמונות"
+msgstr "הצגת אלבום אָמָנוּת"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
 #, c-format
@@ -426,49 +426,49 @@ msgstr "kbps %i"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
 msgid "Never"
-msgstr "אף פעם"
+msgstr "לעולם לא"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
 msgid "Remove from Library"
-msgstr "הסר מהספרייה"
+msgstr "הסרה מהספריה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
 msgid "Remove from Queue"
-msgstr "הסר מההמתנה"
+msgstr "הסרה מרשימת התורים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
 msgid "Remove from Device"
-msgstr "הסר מהמכשיר"
+msgstr "הסרה מהמכשיר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
 msgid "Scroll to Current Song"
-msgstr "גלגל עד לשיר הנוכחי"
+msgstr "לגלול לשיר הנוכחי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
 msgid "Edit Song Info"
-msgstr "ערוך מידע של השיר"
+msgstr "עריכת מידע שיר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
 msgid "Show in File Browser"
-msgstr "הראה בדפדפן קבצים"
+msgstr "הצגה בדפדפן הקבצים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr "המתנה"
+msgstr "תור"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
 msgid "Add to Playlist"
-msgstr "הוספה לרשימת השמעה"
+msgstr "הוספה לרשימת ההשמעה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
 msgid "Remove Song"
-msgstr "הסר שיר"
+msgstr "הסרת השיר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:134
 msgid "Import to Library"
-msgstr "ייבוא לאוסף"
+msgstr "ייבוא לספרייה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
 msgid "New Playlist…"
@@ -477,7 +477,7 @@ msgstr "רשימת השמעה חדשה..."
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr "יבוא %i מתוך %i שירים מובחרים"
+msgstr "יבוא %i מתוך %i שירים שנבחרו"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
 #, c-format
@@ -504,19 +504,19 @@ msgstr "מחרוזת רשימה לדוגמא"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:49
 msgid "Automatic"
-msgstr "אוטומטי"
+msgstr "אוטומטית"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
-msgstr "בצד שמאל"
+msgstr "בצד השמאלי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
 msgid "On Top"
-msgstr "מלמעלה"
+msgstr "מִלְמַעלָה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
 msgid "Unrated"
-msgstr "לא מדורג"
+msgstr "לא דורג"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 #, c-format
@@ -532,11 +532,11 @@ msgstr "כל הסיגנונות"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 #, c-format
 msgid "All %i Genres"
-msgstr "כל סיגנונות %i"
+msgstr "כל הסִגְנוֹנות  %i"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
 msgid "No Genres"
-msgstr "אף סיגנונות"
+msgstr "אין סִגְנוֹנות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Artists"
@@ -549,7 +549,7 @@ msgstr "כל אמנים %i"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
-msgstr "אף אומן"
+msgstr "אין אמנים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Albums"
@@ -558,11 +558,11 @@ msgstr "כל האלבומים"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 #, c-format
 msgid "All %i Albums"
-msgstr "כל אלבומים %i"
+msgstr "כל האלבומים %i"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Albums"
-msgstr "אף אלבום"
+msgstr "אין אלבומים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Years"
@@ -571,11 +571,11 @@ msgstr "כל השנים"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Years"
-msgstr "כל שנות %i"
+msgstr "כל השנים %i"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Years"
-msgstr "אף שנה"
+msgstr "אין שנים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Ratings"
@@ -583,7 +583,7 @@ msgstr "כל הדירוגים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Ratings"
-msgstr "אף דירוג"
+msgstr "אין דירוגים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Groupings"
@@ -645,48 +645,48 @@ msgstr "יבוא השירים שלך"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "הוספת מוסיקה לספריה שלך"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Change Music Folder"
-msgstr ""
+msgstr "שינוי תיקיית מוסיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk."
-msgstr ""
+msgstr "טעינת מוסיקה מספריה, מהרשת או מכונן חיצוני"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
 msgid "Import your Music"
-msgstr "יבוא שירים שלכם."
+msgstr "יבוא המוסיקה שלך"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "הביאו את כל השירים שלכם מתוך %s לתוך הספרייה שלכם."
+msgstr "יבוא כל המוסיקה שלך מ %s אל הספריה שלך."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:125
 msgid "Select Music Folder"
-msgstr "בחר תיקיית מוסיקה"
+msgstr "בחירת ספרית מוסיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 msgid "No Songs"
-msgstr "אף שירים."
+msgstr "אין שירים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"הוסיפו שירים לרשימת השמעה, השתמשו ב <b>כפתור אמצעי</b> על פריט ובחרו "
-"<b>הוסיפו לרשימת השמעה</b>."
+"להוספה לרשימת ההשמעה, נא להשתמש ב  <b> לחיצה משנית <b> על הפריט ובחירת <b> "
+"הוספה לרשימת השמעה </b>."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
-msgstr "עריכת רשימת ההשמעה החכמה"
+msgstr "עריכת רשימת השמעה חכמה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
@@ -695,9 +695,9 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"רשימת השמעה זו אוטומטית תשתלב עם השירים שמותאמים לחוקייה. כדי לחדש את חוקים "
-"אלו, נא להשתמש ב <b>כפתור אמצעי</b> על זה בפאנל ולחצו <b>ערוך</b>. יש לכם "
-"אופציה, לבחור בכפתור מתחת."
+"רשימת השמעה זו תאוכלס אוטומטית עם שירים התואמים את כלליה. כדי לשנות את "
+"הכללים, נא להשתמש <b> לחיצה משנית </b> עליו בסרגל הצד ולחיצה על   <b> עריכה  "
+"<b>. לחלופין, ניתן ללחוץ על הכפתור למטה."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:446
 msgid "No media"
@@ -705,24 +705,24 @@ msgstr "אין מדיה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Please wait until that this playlist get updated."
-msgstr "בבקשה המתינו כאשר רשימת ההשמעה מתעדכנת."
+msgstr "נא להמתין לעדכון רשימת השמעה זו."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling…"
-msgstr "בהליכי ביטול..."
+msgstr "בהליך ביטול....."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr "פעולת המכשיר התבטלה ותפסיק לאחר מדיה זו."
+msgstr "פעולת המכשיר בוטלה ותעצור לאחר מדיה זו."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid "No External Songs"
-msgstr "אף שירים בנוסף"
+msgstr "אין שירים חיצוניים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr "אין שירים שנמצאו על מכשיר זה שלא נמצאים בספרייה שלכם."
+msgstr "לא נמצאו שירים במכשיר זה שאינם בשימוש ספריה שלך."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ContentView.vala:21
 #, c-format
@@ -739,7 +739,7 @@ msgstr "%s מאת %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:58
 msgid "No Albums Found."
-msgstr "אף אלבום לא נמצא."
+msgstr "לא נמצא אלבום"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/GridView.vala:154
 #, c-format
@@ -770,19 +770,19 @@ msgstr "%u פריטים, %s, %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:86
 msgid "Device Name:"
-msgstr "שם המכשיר:"
+msgstr "שם ההתקן:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Device Name"
-msgstr "שם המכשיר"
+msgstr "שם ההתקן"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Automatically sync when plugged in:"
-msgstr "סנכרן באופן אוטומטי בעת החיבור"
+msgstr "סנכרון באופן אוטומטי בעת החיבור"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:98
 msgid "Sync:"
-msgstr "סנכרן:"
+msgstr "סנכרון:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:120
 msgid "Other Files"
@@ -809,14 +809,14 @@ msgstr "כל הפודקאסטים"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 msgid "Sync Failed"
-msgstr "הסינכרון נכשל"
+msgstr "הסנכרון נכשל"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
-msgstr "רשימת ההשמעה %s משומשת לסינכרון המכשיר %s, אך היא לא נמצאה."
+msgstr "רשימת ההשמעה %s משמשת לסנכרון ההתקן %s, אך היא לא נמצאה."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
@@ -827,8 +827,7 @@ msgstr "אין אפשרות לסנכרן"
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"לא ניתן לסנכרן את המכשיר לפי הגדרות הסינכרון שנקבעו. אין מספיק מקום פנוי "
-"בכונן."
+"אין אפשרות לסנכרן את ההתקן לפי התצורה שהוגדרה. אין מספיק מקום פנוי בכונן."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
@@ -840,20 +839,18 @@ msgstr "התקן תוסף"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
-msgstr "דרוש תוסף GStreamer לא הותקן"
+msgstr "לא הותקן תוסף GStreamer נדרש"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
 msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
-msgstr ""
-"התוסף בשביל סוג מדיה %s לא הותקן.\n"
-"מה תרצו לעשות בנוגע לזאת?"
+msgstr "התוסף עבור סוג מדיה %s אינו מותקן. מה היית רוצה לעשות?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
 msgid "Import media to Library"
-msgstr "יבוא מדיה לתוך ספרייה"
+msgstr "יבוא מדיה אל הספריה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
 msgid "Continue Syncing"
@@ -869,18 +866,18 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"אם תמשיכו לסנכרן, מדיה תוסר מתוך %s משום שהיא לא ברשימת הסנכרון. האם תרצו "
-"ליבא אותה לספרייה קודם?"
+"באם הסנכרון ימשך, מדיה תוסר מ %s מכיוון שאינםברשימת הסנכרון.  האם ברצונך "
+"לייבא אותם תחילה לספרייה שלך?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr "סינכרון ימחק את פרטי %i מתוך %s"
+msgstr "הסנכרון ימחק את פריטי   %i מ %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr "סינכרון ימחק פריט 1 מתוך %s"
+msgstr "הסנכרון ימחק פריט 1 מתוך %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:76
 msgid "Equalizer"
@@ -917,29 +914,29 @@ msgstr "קבצים שלא יובאו"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:77
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr "לא ניתן ליבא פרטי %d מתוך %s"
+msgstr "לא ניתן ליבא פריטי %d מ %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s לא הצליך ליבא פרטי %d. הקבצים יכולים להיות פגועים."
+msgstr "%s לא היה מסוגל לייבאאת  פריטי %d. הקבצים עלולים להינזק."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:67
 msgid "Move all corrupted files to trash"
-msgstr "העביר את כל הקבצים הפגועים לתוך האשפה"
+msgstr "העברת כל הקבצים הפגומים לסל המיחזור"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:54
 msgid "Move to Trash"
-msgstr "העברה לאשפה"
+msgstr "העברה לסל המיחזור"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:73
 msgid "Ignore"
-msgstr "התעלם"
+msgstr "התעלמות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:94
 msgid "del"
-msgstr "מחק"
+msgstr "מחיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:99
 msgid "File Location"
@@ -947,27 +944,27 @@ msgstr "מיקום קובץ"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:126
 msgid "Select individual files to move to trash:"
-msgstr "בחר קבצים מסויימים כדי להעביר לאשפה:"
+msgstr "בחירת קבצים בודדים להעברה אל סל המיחזור"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove from %s"
-msgstr "הסר מתוך %s"
+msgstr "הסרה מ %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/TopDisplay.vala:68
 msgid "Cancel"
-msgstr "בטל"
+msgstr "ביטול"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr "הסר %d שירים מתוך %s?"
+msgstr "הסרת %d מ  %s?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr "הסר \"%s\" מתוך %s?"
+msgstr "הסרת  \"%s\" מ  %s?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:79
 #, c-format
@@ -978,9 +975,9 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
-"פעולה זו תסיר את השיר מתוך הספרייה שלכם ומכל מכשיר שאוטומטית מסכרן עם %s"
+"פעולה זו תסיר את השיר מהספרייה שלך ומכל מכשיר המסונכרן אוטומטית עם %s."
 msgstr[1] ""
-"פעולה זו תסיר את השירים מתוך הספרייה שלכם ומכל מכשיר שאוטומטית מסכרן עם %s"
+"פעולה זו תסיר את השירים מהספרייה שלך ומכל מכשיר המסונכרן אוטומטית עם %s."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Export Playlists"
@@ -1000,13 +997,13 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"האם אתם בטוחים שרוצים לקבוע את תקיית המוסיקה ל %s? פעולה זו תקבע מחדש את "
-"הספרייה ותסיר את כל הרשימות השמעה שלכם."
+"האם ברצונך להגדיר את ספריית המוסיקה ל  %s? הפעולה תאפס את הספרייה שלך ותסיר "
+"את כל רשימות ההשמעה."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
 msgid "Choose Music Folder"
-msgstr "בחירת תיקיית מוזיקה"
+msgstr "בחירת תיקיית מוסיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
 msgid "Import from Device"
@@ -1015,7 +1012,7 @@ msgstr "יבוא מהמכשיר"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
 #, c-format
 msgid "Import media from %s"
-msgstr "יבוא מדיה מתוך ה-%s"
+msgstr "יבוא מדיה מ %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
 #, c-format
@@ -1023,8 +1020,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
-"קבצים אלו נמצאו ב- %s, אבל לא נמצאים בתוך הספרייה שלכם. נא לבדוק את כל "
-"הקבצים שתרצו להביא."
+"הקבצים להלן לא נמצאו ב %s, הם אינם קיימים בפרייה שלך. נא לסמן את כל הקבצים "
+"שברצונך לייבא."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 msgid "Import all media"
@@ -1033,25 +1030,25 @@ msgstr "יבוא כל המדיה"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDView.vala:90
 msgid "Import"
-msgstr "יבוא"
+msgstr "ייבוא:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
 msgid "Don't Import"
-msgstr "לא ליבא"
+msgstr "לא לייבא"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
 #, c-format
 msgid "Import %i items from %s"
-msgstr "יבוא פריטי %i מתוך %s"
+msgstr "ייבוא פריטי %i מ %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:93
 #, c-format
 msgid "Import %s from %s"
-msgstr "יבוא %s מתוך %s"
+msgstr "יבוא %s מ %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:121
 msgid "ID"
-msgstr "ID"
+msgstr "מזהה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:275
@@ -1064,7 +1061,7 @@ msgstr "כותרת"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:198
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
 msgid "Artist"
-msgstr "אמן"
+msgstr "אָמָן"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
@@ -1075,7 +1072,7 @@ msgstr "אלבום"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:173
 msgid "Select individual media to import:"
-msgstr "בחר פרט מדיה ליבא:"
+msgstr "בחירת מדיה אישית לייבוא."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:191
 msgid "Check Item"
@@ -1083,15 +1080,15 @@ msgstr "בדיקת פריט"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
 msgid "Check Album"
-msgstr "בדוק אלבום"
+msgstr "בדיקת אלבום"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Artist"
-msgstr "בדוק יוצר"
+msgstr "בדיקת יוצר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
 msgid "Cannot Import"
-msgstr "לא ניתן ליבא"
+msgstr "לא ניתן לייבא"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:291
 #, c-format
@@ -1099,7 +1096,7 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %d"
 msgstr ""
-"Noise כבר מפעיל תהליך קבצים. בבקשה המתינו עד שהקבצים יסיימו ליבא לתוך %d"
+"Noise כבר מבצע פעולות הקבצים. נא להמתין לסיום היבוא של קבצים אלו ל %d"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
 msgid "Smart Playlist Editor"
@@ -1118,7 +1115,7 @@ msgstr "כללים"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:63
 msgid "Options"
-msgstr "הגדרות"
+msgstr "אפשרויות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
 msgid "Playlist Title"
@@ -1130,11 +1127,11 @@ msgstr "התאמה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:73
 msgid "any"
-msgstr "כל"
+msgstr "כלשהו"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:74
 msgid "all"
-msgstr "הכל"
+msgstr "הכול"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
 msgid "of the following:"
@@ -1164,27 +1161,27 @@ msgstr "מלחין"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Date Added"
-msgstr "נוסף בתאריך"
+msgstr "תאריך הוספה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
 msgid "Date Released"
-msgstr "תאריך יציאה לאור"
+msgstr "תאריך השחרור"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:201
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
 msgid "Genre"
-msgstr "סגנון"
+msgstr "סִגְנוֹן"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:203
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
 msgid "Grouping"
-msgstr "קיבוץ"
+msgstr "מִקבָּץ"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Last Played"
-msgstr "הושמע לאחרונה"
+msgstr "מועד ההשמעה האחרון"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
@@ -1198,7 +1195,7 @@ msgstr "מספור השמעות"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:208
 msgid "Rating"
-msgstr "דירוג"
+msgstr "דֵרוּג"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:274
 msgid "Skipcount"
@@ -1207,7 +1204,7 @@ msgstr "מספור דילוגים"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:276
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:207
 msgid "Year"
-msgstr "שנה"
+msgstr "שָׁנָה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
 msgid "is"
@@ -1228,11 +1225,11 @@ msgstr "הוא בדיוק"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
 msgid "is at most"
-msgstr "הוא בשיאו"
+msgstr "הוא לכל היותר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:365
 msgid "is at least"
-msgstr "הוא בחולשו"
+msgstr "הוא לפחות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
 msgid "is within"
@@ -1256,7 +1253,7 @@ msgstr "kbps"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:44
 msgid "Select Music Folder…"
-msgstr "בחר תיקיית מוסיקה"
+msgstr "בחירת תיקיית מוסיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:242
@@ -1277,40 +1274,40 @@ msgstr "ניהול סיפרייה:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid "Keep Music folder organized:"
-msgstr "שמור על הסדר של תקיית המוסיקה:"
+msgstr "שמירת תיקיית המוסיקה מאורגנת:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:140
 msgid "Write metadata to file:"
-msgstr "הוסף metadata לקובץ:"
+msgstr "הוספת metadata לקובץ:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:144
 msgid "Copy imported files to Library:"
-msgstr "העתק קבצים מובאים לתוך הספרייה:"
+msgstr "העתקת קבצים מיובאים אל ספרייה:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:146
 msgid "Desktop Integration:"
-msgstr "השתלבות שולחן העבודה:"
+msgstr "שִׁלוּב שולחן העבודה:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 msgid "Show notifications:"
-msgstr "הראה הודעות:"
+msgstr "הצגת הודעות:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:157
 msgid "Minimize window when a song is being played:"
-msgstr "הקטן חלון כששיר מנגן:"
+msgstr "מיזעור החלון בזמן נגינת שיר:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
-msgstr "החבא חלון כאשר שיר מנגן:"
+msgstr "הסתרת החלון בזמן נגינת השיר:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:88
 msgid "Metadata"
-msgstr "נתוני על"
+msgstr "נתונים נוספים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:90
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:382
 msgid "Lyrics"
-msgstr "מילות השיר"
+msgstr "מִלִים לְשִׁיר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:353
@@ -1321,17 +1318,17 @@ msgstr "עורך $NAME של $ARTIST"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
 msgid "Editing %s"
-msgstr "עורך %s"
+msgstr "עריכת %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:358
 #, c-format
 msgid "Editing %i songs"
-msgstr "עורך שירי %i"
+msgstr "עריכת שירים %i"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:199
 msgid "Album Artist"
-msgstr "אמן האלבום"
+msgstr "אלבום אָמָן"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:205
 msgid "Track"
@@ -1339,7 +1336,7 @@ msgstr "רצועה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:206
 msgid "Disc"
-msgstr "דיסק"
+msgstr "תקליטור"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:210
 msgid "Media Type"
@@ -1348,7 +1345,7 @@ msgstr "סוג המדיה"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:301
 #, c-format
 msgid "Lyrics not found for %s"
-msgstr "מילות שיר לא נמצאו בשביל %s"
+msgstr "לא נמצאו מִלִים לְשִׁיר %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:544
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
@@ -1361,15 +1358,15 @@ msgstr "פודקאסט"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
 msgid "Remove Media"
-msgstr "הסר מדיה"
+msgstr "הסרת מדיה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
 msgid "Locate Media"
-msgstr "מצא מדיה"
+msgstr "איתור מדיה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
 msgid "Rescan Library"
-msgstr "סקור מחדש את הספרייה"
+msgstr "סריקה מחודשת של הספרייה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
 msgid "Do Nothing"
@@ -1377,27 +1374,26 @@ msgstr "אל תעשה דבר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
 msgid "Could not find media file"
-msgstr "לא ניתן למצוא קובץ מדיה"
+msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:83
 msgid ""
 "The music file for $NAME by $ARTIST could not be found. What would you like "
 "to do?"
-msgstr ""
-"הקובץ המוסיקאי בשביל $NAME של $ARTIST לא נמצא. מה תרצו לעשות בנוגע לזאת?"
+msgstr "קובץ המוסיקה של $NAME של $ARTIST לא נמצא. מה היית רוצה לעשות?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr "קבצי מדיה %i לא נמצאו. מה תרצו לעשות בנוגע לזאת?"
+msgstr "קבצי המדיה %i לא נמצאו. מה היית רוצה לעשות?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
 msgid "Import to Library…"
-msgstr "יבא לספרייה..."
+msgstr "יבוא לספרייה...."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Rescan Music Folder"
-msgstr "סרוק מחדש את תיקיית המוזיקה"
+msgstr "סריקה מחודשת של ספריית המוסיקה."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:238
 msgid "Fullscreen"
@@ -1405,11 +1401,11 @@ msgstr "מסך מלא"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:265
 msgid "Search Music"
-msgstr "חפש מוסיקה"
+msgstr "חיפוש מוסיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:877
 msgid "No songs in Queue"
-msgstr "אין שירים בהמתנה"
+msgstr "אין שירים ברישמת התורים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:878
 msgid ""
@@ -1417,8 +1413,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"הוסף שירים להמתנה, השתמש ב-<b> כפתור אמצעי</b> על פריט ובחר <b>המתנה</b>. "
-"כאשר שיר נגמר, השירים הממתינים יונגנו לפני השיר הבא ברשימת השמעה הנוכחית."
+"להוספת שירים לרשימת התורים, נא להשתמש ב <b> לחיצה משנית <b> על פריט ובחירת "
+"<b> המתנה <b>. בסיום שיר, השירים בהמתנה ינוגנו ראשונים ולפני השיר הבא ברשימת "
+"ההשמעה הנוכחית."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:887
 msgid "No songs in History"
@@ -1430,34 +1427,34 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
-"אחרי שחלק משיר נוגן, הוא מוסף לרשימת ההיסטוריה.\n"
-"ניתן להשתמש ברשימה זו בכדי לראות את כל השירים שנוגנו בסמסטר הנוכחי."
+"לאחר שחלק משיר כבר נוגן, הוא יתווסף לרשימת ההיסטוריה.\n"
+"ניתן להשתמש ברשימה זו כדי לראות את כל השירים שנוגנו במהלך ההפעלה הנוכחי."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1121
 msgid "Import Music"
-msgstr "יבוא מוזיקה"
+msgstr "יבוא מוסיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1141
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:251
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>הובאת</b> שירים לתוך סיפרייה..."
+msgstr "<b>מייבא</b> שירים אל סיפרייה..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1156
 msgid "Rescanning music folder for changes"
-msgstr "סורק מחדש את תיקיית המוזיקה לאיתור שינויים"
+msgstr "תיקיית המוסיקה נסרקת מחדש לאיתור שינויים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1163
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid "Could not find Music Folder"
-msgstr "לא ניתן למצוא את תיקיית המוזיקה"
+msgstr "לא הצליח למצוא את תיקיית המוסיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1163
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "נא לוודא שתיקיית המוזיקה שלך זמינה ומחוברת."
+msgstr "עליך לוודא שתיקיית המוסיקה שלך זמינה ומעוגנת."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1204
 msgid "Import Complete"
-msgstr "היבוא הושלם"
+msgstr "הייבוא הושלם"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1204
 #, c-format
