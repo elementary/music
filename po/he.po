@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-25 11:22+0200\n"
-"PO-Revision-Date: 2013-05-29 05:23+0000\n"
+"PO-Revision-Date: 2013-05-30 03:07+0000\n"
 "Last-Translator: Uri Damsker <ud1955@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-29 07:28+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-05-30 06:19+0000\n"
+"X-Generator: Launchpad (build 16652)\n"
 "Language: \n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -20,7 +20,7 @@ msgstr "שטוח"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:79
 msgid "Classical"
-msgstr "קלאסית"
+msgstr "קלַאסִית"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:80
 msgid "Club"
@@ -28,7 +28,7 @@ msgstr "מועדון"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:81
 msgid "Dance"
-msgstr "ריקוד"
+msgstr "רִקוּד"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:82
 msgid "Full Bass"
@@ -44,7 +44,7 @@ msgstr "בס + טרבל מלא"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:85
 msgid "Headphones"
-msgstr "אוזנית"
+msgstr "אוזניות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:86
 msgid "Large Hall"
@@ -52,7 +52,7 @@ msgstr "אולם גדול"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:87
 msgid "Live"
-msgstr "הופעה חייה"
+msgstr "חי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:88
 msgid "Party"
@@ -1467,16 +1467,16 @@ msgstr "%s הובא לתוך הספרייה."
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:207
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
 msgid "Unknown Artist"
-msgstr "אמן לא מוכר"
+msgstr "אָמָן לא מוכר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
 msgid "Sync"
-msgstr "סנכרן"
+msgstr "סנכרון"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr "חינם"
+msgstr "חופשי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:384
 msgid "Using %s of %s (%.2f%)"
@@ -1485,22 +1485,22 @@ msgstr "משתמש ב-%s מ- %s (%.2f%)"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr "שנה שם"
+msgstr "שינוי שם"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
 msgid "Remove"
-msgstr "הסר"
+msgstr "הסרה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:58
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:72
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr "ייצא..."
+msgstr "יְצוּא...."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:70
 msgid "Edit…"
-msgstr "ערוך..."
+msgstr "עריכה..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:85
 msgid "Save as Playlist"
@@ -1522,11 +1522,11 @@ msgstr "רשימת השמעה חכמה חדשה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:188
 msgid "Import Playlists"
-msgstr "יבא רשימות השמעה"
+msgstr "יבוא רשימת השמעה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:232
 msgid "Library"
-msgstr "אוסף"
+msgstr "ספרייה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:233
 msgid "Devices"
@@ -1548,36 +1548,36 @@ msgstr "כבוי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
 msgid "Enable Repeat"
-msgstr "הפעל חזרה"
+msgstr "לאפשר ניגון חוזר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
 msgid "Repeat Song"
-msgstr "חזור על השיר"
+msgstr "ניגון חוזר של השיר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
 msgid "Repeat Album"
-msgstr "חזור על האלבום"
+msgstr "ניגון חוזר של האלבום"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
 msgid "Repeat Artist"
-msgstr "חזור על האמן"
+msgstr "ניגון חוזר של האמן"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
 msgid "All"
-msgstr "הכל"
+msgstr "הַכֹּל"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
 msgid "Repeat All"
-msgstr "חזור על הכל"
+msgstr "חזרה על הַכֹּל"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
 msgid "Enable Shuffle"
-msgstr "הפעל ערבוב"
+msgstr "הפעלת ערבול צליל"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
 msgid "Disable Shuffle"
-msgstr "סגור ערבוב"
+msgstr "מניעת ערבול צליל"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:132
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:143
@@ -1591,52 +1591,52 @@ msgstr "הוספת רשימת השמעה חכמה"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
 msgid "Hide"
-msgstr "הסתר"
+msgstr "הסתרה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
 msgid "Show Equalizer"
-msgstr "הראה שוין"
+msgstr "הצגת אקולייזר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
 msgid "Show"
-msgstr "הצג"
+msgstr "הצגה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
 msgid "Hide Equalizer"
-msgstr "הסתר שוין"
+msgstr "הסתרת אקולייזר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
 msgid "Show Info Panel"
-msgstr "הצגת חלונית מידע"
+msgstr "הצגת לוח מידע"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
 msgid "Hide Info Panel"
-msgstr "הסתרת חלונית מידע"
+msgstr "הסתרת לוח מידע"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
-msgstr "מחק את הנוכחי"
+msgstr "מחיקת נוֹכְחִי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:68
 msgid "View as Albums"
-msgstr "הצג כאלבומים"
+msgstr "הצגה כאלבומים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:72
 msgid "View as List"
-msgstr "הצג כרשימה"
+msgstr "הצגה כרשימה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:76
 msgid "View in Columns"
-msgstr "הצג בטורים"
+msgstr "הצגה בעמודות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/LyricFetcher.vala:156
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "הכתוביות נלקחו מהאתר www.lyricsmania.com"
+msgstr "מילות השיר הובאו מ www.lyricsmania.com"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:25
 msgid "Unknown Album"
-msgstr "אלבום לא ידוע"
+msgstr "אלבום לא מוכר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
@@ -1644,15 +1644,15 @@ msgstr "רצועה לא מוכרת"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:291
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>מעתיק</b> קבצים לתוך <b>תיקיית מוסיקה</b>…"
+msgstr "<b>מעתיק</b> קבצים ל <b>תיקיית מוסיקה</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr "האזנה למוזיקה"
+msgstr "האזנה למוסיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr "נגן מוזיקה"
+msgstr "נגן המוסיקה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;"
@@ -1661,42 +1661,42 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:170
 #, c-format
 msgid "Importing music from %s…"
-msgstr "מביא מוסיקה מתוך %s…"
+msgstr "יבוא מוסיקה מ %s…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "מוסיף קבצים לתוך הספרייה..."
+msgstr "הוספת קבצים לספרייה..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:277
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "סוקר מחדש מוסיקה בשביל שינויים. זה יכול לקחת זמן."
+msgstr "סריקה מחודשת של המוסיקה לאיתור שינויים. הפעולה עשויה להמשך זמן מה…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:355
 msgid "Added to your queue:"
-msgstr "מוסף לתוך ההמתנה שלכם:"
+msgstr "התווסף לרשימת התורים שלך:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:114
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:75
 msgid "Empty device!"
-msgstr "המכשיר ריק!"
+msgstr "ההתקן ריק!"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:118
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:79
 msgid "This device does not contain any music."
-msgstr "אין מוסיקה בתוך מכשיר זה."
+msgstr "התקן זה אינו מכיל מוסיקה."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:162
 msgid "Android Phone"
-msgstr "פלאפון אנדרואיד"
+msgstr "טלפון אנדרואיד"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:164
 msgid "Audio Player"
-msgstr "נגן אודיו"
+msgstr "נגן שֶׁמַע"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:177
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "מוסיף <b>$NAME</b> של <b>$ARTIST</b> לתוך $DEVICE"
+msgstr "מוסיף <b>$NAME</b> של <b>$ARTIST</b> ל $DEVICE"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:185
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:223
@@ -1704,94 +1704,93 @@ msgstr "מוסיף <b>$NAME</b> של <b>$ARTIST</b> לתוך $DEVICE"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:600
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "מסנכרן <b>%s</b>…"
+msgstr "סינכרון <b>%s</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:277
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:269
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:387
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:656
 msgid "Finishing sync process…"
-msgstr "מסיים תהליך סנכרון..."
+msgstr "גמר תהליך סינכרון..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:280
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:283
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:403
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:677
 msgid "Cancelling Sync…"
-msgstr "מבטל סנכרון..."
+msgstr "ביטול סינכרון..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:284
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:285
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:687
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:688
 msgid "There is not enough space on Device to complete the Sync…"
-msgstr "אין מספיק מקום ריק על מכשיר זה כדי לסיים סנכרון..."
+msgstr "אין מספיק מקום במכשירהתקן כדי להשלים את הסנכרון ..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:364
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:550
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "מסיר <b>$NAME</b> של <b>$ARTIST</b> מתוך $DEVICE"
+msgstr "הסרת <b>$NAME</b> של <b>$ARTIST</b> מ $DEVICE"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:395
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:343
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "מסיר מתוך <b>%s</b>…"
+msgstr "הסרה מ <b>%s</b>…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr "שגיאה קרתה"
+msgstr "אירעה שגיאה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr "הייתה שגיעה באמצע פתיחת הדיסק."
+msgstr "אירעה שגיאה בעת טעינת תקליטור שמע זה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
-msgstr "תקליטור השמע אינו תקין"
+msgstr "תקליטור שמע אינו תקף"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Impossible to read the contents of this Audio CD"
-msgstr "בלתי אפשרי לקרוא את הנתונים של דיסק זה"
+msgstr "לא ניתן לקרוא את תוכנו של תקליטור שמע זה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
-msgstr ""
-"בבקשה תוודאו שתקיית המוסיקה שלכם ניתנת לשימוש ופועלת לפני שמביאים את הדיסק."
+msgstr "נא לוודא שתיקיית המוזיקה שלך נגישה ומעוגנת לפני יבוא התקליטור."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
-msgstr "התוכנה לא יכולה למצוא שירים בדיסק. אף שיר לא יכול ליבא."
+msgstr "היישום לא הצליח למצוא את כל השירים שבתקליטור. לא ניתן לייבא שירים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
 msgid "Importation of a song from Audio CD finished."
-msgstr "יבוא של שיר מתוך הדיסק הסתיים."
+msgstr "הסתיים יבוא של שיר מתוך תקליטור שמע."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importation of %i songs from Audio CD finished."
-msgstr "יבוא של %i מתוך דיסק הסתיים."
+msgstr "הסתיים יבוא של  %i שירים מתוך תקליטור שמע."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
 #, c-format
 msgid "Importing track %i: %s"
-msgstr "מיבא רצועה %i: %s"
+msgstr "יבוא רצועה  %i: %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "יבוא דיסק יהיה <b>מבוטל</b> אחרי יבוא נוכחי."
+msgstr "יבוא תקליטור יהיה <b>מבוטל</b> אחרי היבוא הנוכחי."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
 msgid "An error occured during the Import of this CD"
-msgstr "הייתה שגיאה באמצע יבוא הדיסק."
+msgstr "אירעה שגיאה בעת היבוא של תקליטור זה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 #, c-format
 msgid "Give %s Permission"
-msgstr ""
+msgstr "מתן  %s הרשאה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
@@ -1799,7 +1798,7 @@ msgstr "נכשל. לחץ כדי לנסות שוב."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "העקיבה אחר הרגלי ההאזנה כבר מופעלת"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1807,7 +1806,7 @@ msgstr "הצלחה!"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr "השלם התחברות"
+msgstr "השלמת רישום"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
@@ -1815,11 +1814,11 @@ msgstr "Last.fm"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:48
 msgid "Last.fm Integration"
-msgstr "אינטגרציה עם last.fm"
+msgstr "השתלבות עם Last.fm"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
-msgstr "לחץ כדי להתחבר מחדש ל-Last.fm"
+msgstr "לחיצה כדי לבצע שנית את תהליך הרישום ל  Last.fm"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:58
 #, c-format
@@ -1827,6 +1826,7 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"כדי לאפשר שילוב Last.fm, יש לאפשר הרשאה ל % s. יש לבצע זאת פעם אחת בלבד."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"
@@ -1838,8 +1838,8 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"אין שירים דומים לנוכחי שבספרייה שלכם. תוודאו שכל מידע של השיר הוא מדויק "
-"ושאתם מחוברים לרשת. יש שירים שלא מותאמים."
+"אין שירים דומים לשיר הנוכחי בספרייה שלך. נא לוודא שכל פרטי השיר נכונים "
+"ושקיים מחובר לאינטרנט. שירים מסוימים עשויים שלא להיות תואמים."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMedia.vala:42
 msgid "Similar"
