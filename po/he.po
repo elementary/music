@@ -3,44 +3,44 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-25 11:22+0200\n"
-"PO-Revision-Date: 2013-05-30 03:07+0000\n"
-"Last-Translator: Uri Damsker <ud1955@gmail.com>\n"
+"PO-Revision-Date: 2013-06-01 04:26+0000\n"
+"Last-Translator: Danny Damsky <dannydamsky99@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-31 06:16+0000\n"
+"X-Launchpad-Export-Date: 2013-06-01 05:39+0000\n"
 "X-Generator: Launchpad (build 16660)\n"
 "Language: \n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
-msgstr "שטוח"
+msgstr "מְשׁוּטָח"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:79
 msgid "Classical"
-msgstr "קלַאסִית"
+msgstr "מוסיקה קלַאסִית"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:80
 msgid "Club"
-msgstr "מועדון"
+msgstr "מוסיקת מועדונים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:81
 msgid "Dance"
-msgstr "רִקוּד"
+msgstr "מוסיקת ריקודים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:82
 msgid "Full Bass"
-msgstr "בס מלא"
+msgstr "צליל נמוך Bass"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:83
 msgid "Full Treble"
-msgstr "טרבל מלא"
+msgstr "צליל גבוה Treble"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:84
 msgid "Full Bass + Treble"
-msgstr "בס + טרבל מלא"
+msgstr "צליל נמוך וגבוה במלוא העוצמה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:85
 msgid "Headphones"
@@ -52,39 +52,39 @@ msgstr "אולם גדול"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:87
 msgid "Live"
-msgstr "חי"
+msgstr "הופעות חיות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:88
 msgid "Party"
-msgstr "מסיבה"
+msgstr "מוסיקת מסיבה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:89
 msgid "Pop"
-msgstr "פופ"
+msgstr "מוסיקת פופ"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:90
 msgid "Reggae"
-msgstr "רגאיי"
+msgstr "מוסיקת רגאיי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:91
 msgid "Rock"
-msgstr "רוק"
+msgstr "מוסיקת רוק"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:92
 msgid "Soft"
-msgstr "רך"
+msgstr "מוסיקה רכה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:93
 msgid "Ska"
-msgstr "סקא"
+msgstr "מוסיקת סקא"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:94
 msgid "Soft Rock"
-msgstr "רוק קל"
+msgstr "מוסיקת רוק קל"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:95
 msgid "Techno"
-msgstr "טכנו"
+msgstr "מוסיקת טכנו"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -92,7 +92,7 @@ msgstr "יבוא <b>$NAME</b> של <b>$ARTIST</b> לספרייה..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/String.vala:176
 msgid "the|a|an|le|la|les|un|une|der|die|das|los"
-msgstr ""
+msgstr "ה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
@@ -120,7 +120,7 @@ msgstr "MPEG גרסה 3.0 מורחבת (‎*.m3u)"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:287
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:381
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "רשימת השמעה Shoutcast גרסה 2.0 (pls.*)"
+msgstr "רשימת השמעה רדיו רשת Shoutcast גרסה 2.0 (pls.*)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
@@ -181,7 +181,7 @@ msgstr[1] "%u ימים"
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u שעה"
-msgstr[1] "שעות %u"
+msgstr[1] "%u שעות"
 
 #. / days, hours and minutes
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:91
@@ -249,12 +249,12 @@ msgstr "שירים מועדפים"
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:452
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:692
 msgid "Recently Added"
-msgstr "נוספו לאחרונה"
+msgstr "נוסף לאחרונה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:468
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:708
 msgid "Recent Favorites"
-msgstr "המועדפים האחרונים"
+msgstr "מועדפים אחרונים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:475
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:715
@@ -277,7 +277,7 @@ msgstr "לא נוגנו לאחרונה"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:110
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "תור"
+msgstr "הוספה לרשימת המתנה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:884
@@ -323,7 +323,7 @@ msgstr "רצועה"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
-msgstr "כותרת"
+msgstr "שם משרה:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
@@ -343,12 +343,12 @@ msgstr "אלבום"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr "אלבום אָמָן"
+msgstr "אלבום האָמָן"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr "מלחין"
+msgstr "מחבר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
@@ -368,7 +368,7 @@ msgstr "מִקבָּץ"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr "קצב סיביות"
+msgstr "איכות ההקלטה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
@@ -388,12 +388,12 @@ msgstr "דִלוּגים"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
 msgctxt "List column title"
 msgid "Date Added"
-msgstr "תאריך הוספה"
+msgstr "מועד ההוספה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
 msgctxt "List column title"
 msgid "Last Played"
-msgstr "מועד ההשמעה האחרון"
+msgstr "נוגן לאחרונה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
@@ -403,7 +403,7 @@ msgstr "פעימות לדקה"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr "מִקוּם"
+msgstr "מיקום"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
@@ -426,7 +426,7 @@ msgstr "kbps %i"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:630
 msgid "Never"
-msgstr "לעולם לא"
+msgstr "אף פעם"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
 msgid "Remove from Library"
@@ -442,20 +442,20 @@ msgstr "הסרה מהמכשיר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
 msgid "Scroll to Current Song"
-msgstr "לגלול לשיר הנוכחי"
+msgstr "גלילה לשיר הנוכחי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
 msgid "Edit Song Info"
-msgstr "עריכת מידע שיר"
+msgstr "עריכת פרטי שיר"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
 msgid "Show in File Browser"
-msgstr "הצגה בדפדפן הקבצים"
+msgstr "הצגה במנהל הקבצים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr "תור"
+msgstr "הוספה לרשימת המתנה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
 msgid "Add to Playlist"
@@ -468,7 +468,7 @@ msgstr "הסרת השיר"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:134
 msgid "Import to Library"
-msgstr "ייבוא לספרייה"
+msgstr "יבוא לספרייה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
 msgid "New Playlist…"
@@ -484,7 +484,7 @@ msgstr "יבוא %i מתוך %i שירים שנבחרו"
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] "יבוא שיר  %i"
-msgstr[1] "יבוא שירים %i"
+msgstr[1] "יבוא  %i שיריםi"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:615
 msgid "1234 kbps"
@@ -512,11 +512,11 @@ msgstr "בצד השמאלי"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
 msgid "On Top"
-msgstr "מִלְמַעלָה"
+msgstr "מִלמעלה"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
 msgid "Unrated"
-msgstr "לא דורג"
+msgstr "לא מדורג"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 #, c-format
@@ -527,12 +527,12 @@ msgstr[1] "%i כוכבים"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
-msgstr "כל הסיגנונות"
+msgstr "כל הסִגְנוֹנות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 #, c-format
 msgid "All %i Genres"
-msgstr "כל הסִגְנוֹנות  %i"
+msgstr "כל  %i הסִגְנוֹנות"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
 msgid "No Genres"
