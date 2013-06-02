@@ -26,6 +26,7 @@ using Gee;
 
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void playPauseChanged ();
+    public signal void close_subwindows ();
 
     public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
 
@@ -1419,11 +1420,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // if playing a song, don't allow closing
         if (!main_settings.close_while_playing && playing) {
-            if (minimize_on_close ()) 
+            if (minimize_on_close ()) {
+                close_subwindows ();
                 iconify (); // i.e. minimize
-             else 
+            } else {
+                close_subwindows ();
                 hide ();
-            
+            }
 
             return true;
         }

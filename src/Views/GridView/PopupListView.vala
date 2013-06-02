@@ -74,6 +74,7 @@ public class Noise.PopupListView : Window {
         this.view_wrapper = grid_view.parent_view_wrapper;
         
         set_transient_for (App.main_window);
+        App.main_window.close_subwindows.connect (() => {this.hide_on_delete ();});
         destroy_with_parent = true;
         skip_taskbar_hint = true;
 
