@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS media (`uri` TEXT, `file_size` INT, `title` TEXT,
 `year` INT, `track` INT, `track_count` INT, `album_number` INT,
 `album_count` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT,
 `playcount` INT, `skipcount` INT, `dateadded` INT, `lastplayed` INT,
-`lastmodified` INT, `mediatype` INT, `resume_pos` INT)
+`lastmodified` INT, `mediatype` INT, `rowid` INT)
 """;
 
 public const string DEVICES = """

@@ -67,11 +67,12 @@ public abstract class Noise.Library : GLib.Object {
     
     public abstract void add_media (Media s);
     public abstract void add_medias (Gee.Collection<Media> new_media);
-    public abstract Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids);
     public abstract Media? find_media (Media to_find);
     public abstract Media? media_from_file (File file);
     public abstract Media? media_from_uri (string uri);
     public abstract Media? media_from_id (int id);
+    public abstract Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris);
+    public abstract Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids);
     public abstract void update_media (Media s, bool updateMeta, bool record_time);
     public abstract void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time);
     public abstract void remove_media (Media s, bool trash);

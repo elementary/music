@@ -227,6 +227,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
 	private void column_selection_changed (BrowserColumn.Category category, string val) {
         update_search_results (category);
+    	view_wrapper.list_view.list_view.research_needed = true;
 		populate_columns (category, false);
 		changed ();
 	}

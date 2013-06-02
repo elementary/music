@@ -87,11 +87,9 @@ public class Noise.LocalLibrary : Library {
         lock (_medias) {
             foreach (var m in dbm.load_media ()) {
                 _medias.add (m);
-                m.rowid = medias_rowid;
-                medias_rowid++;
             }
         }
-        search_medias ("");
+        medias_rowid = dbm.max_id + 1;
 
         // Load smart playlists from database
         lock (_smart_playlists) {
@@ -640,21 +638,6 @@ public class Noise.LocalLibrary : Library {
         return null;
     }
 
-    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
-        var media_collection = new Gee.LinkedList<Media> ();
-
-        lock (_medias) {
-            foreach (var m in _medias) {
-                if (ids.contains (m.rowid))
-                    media_collection.add (m);
-                if (media_collection.size == ids.size)
-                    break;
-            }
-        }
-
-        return media_collection;
-    }
-
     public override Media? find_media (Media to_find) {
         Media? found = null;
         lock (_medias) {
@@ -688,6 +671,36 @@ public class Noise.LocalLibrary : Library {
         }
 
         return null;
+    }
+
+    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
+        var media_collection = new Gee.LinkedList<Media> ();
+
+        lock (_medias) {
+            foreach (var m in _medias) {
+                if (ids.contains (m.rowid))
+                    media_collection.add (m);
+                if (media_collection.size == ids.size)
+                    break;
+            }
+        }
+
+        return media_collection;
+    }
+
+    public override Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris) {
+        var media_collection = new Gee.LinkedList<Media> ();
+
+        lock (_medias) {
+            foreach (var m in _medias) {
+                if (uris.contains (m.uri))
+                    media_collection.add (m);
+                if (media_collection.size == uris.size)
+                    break;
+            }
+        }
+
+        return media_collection;
     }
 
     public override void add_media (Media s) {

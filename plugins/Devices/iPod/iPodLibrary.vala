@@ -308,15 +308,67 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         return null;
     }
     public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
-        return new Gee.LinkedList<Media> ();
+        var media_collection = new Gee.LinkedList<Media> ();
+
+        lock (medias) {
+            foreach (var m in medias.values) {
+                if (ids.contains (m.rowid))
+                    media_collection.add (m);
+                if (media_collection.size == ids.size)
+                    break;
+            }
+        }
+
+        return media_collection;
     }
+
+    public override Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris) {
+        var media_collection = new Gee.LinkedList<Media> ();
+
+        lock (medias) {
+            foreach (var m in medias.values) {
+                if (uris.contains (m.uri))
+                    media_collection.add (m);
+                if (media_collection.size == uris.size)
+                    break;
+            }
+        }
+
+        return media_collection;
+    }
+    
     public override Media? find_media (Media to_find) {
-        return null;
+        Media? found = null;
+        lock (medias) {
+            foreach (var m in medias.values) {
+                if (to_find.title.down () == m.title.down () && to_find.artist.down () == m.artist.down ()) {
+                    found = m;
+                    break;
+                }
+            }
+        }
+        return found;
     }
+
     public override Media? media_from_file (File file) {
+        lock (medias) {
+            foreach (var m in medias.values) {
+                if (m != null && m.file.equal (file))
+                    return m;
+            }
+        }
+
         return null;
     }
+
     public override Media? media_from_uri (string uri) {
+        lock (medias) {
+            foreach (var m in medias.values) {
+                if (m != null && m.uri == uri)
+                    return m;
+            }
+        }
+
         return null;
     }
     

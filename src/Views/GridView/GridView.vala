@@ -372,9 +372,9 @@ public class Noise.GridView : ContentView, GridLayout {
     protected override void search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
         message_visible = false;
         var result = parent_view_wrapper.library.get_search_result ();
+        int show_index = 0;
 
-        if (result != parent_view_wrapper.library.get_medias ()) {
-            int show_index = 0;
+        if (result.size != parent_view_wrapper.library.get_medias ().size) {
             for (int i = 0; i < table.size (); i++) {
                 var album = table.get (i) as Album;
                 if (album == null)
@@ -394,7 +394,22 @@ public class Noise.GridView : ContentView, GridLayout {
                 }
             }
         } else {
-            showing = table;
+            for (int i = 0; i < table.size (); i++) {
+                var album = table.get (i) as Album;
+                if (album == null)
+                    continue;
+
+                // Search in the album's media. After the first match found, we break
+                // the loop because we know the album has (at least) one of the items
+                // we want. Real search is done later by the popup list after an album
+                // is selected.
+                foreach (var m in album.get_media ()) {
+                    if (m != null) {
+                        showing.set (show_index++, album);
+                        break;
+                    }
+                }
+            }
         }
 
         // If nothing will be shown, display the "no albums found" message.

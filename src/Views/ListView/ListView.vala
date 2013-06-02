@@ -391,28 +391,38 @@ public class Noise.ListView : ContentView, Gtk.Box {
         list_text_overlay.message_visible = false;
         var result = view_wrapper.library.get_search_result ();
 
-        if (result != view_wrapper.library.get_medias ()) {
-            // If an external refiltering is going on, we cannot obey the column browser filter
-            // because it wil be refreshed after this search based on the new 'showing' table
-            // (populated by this method).
-            bool obey_column_browser = column_browser_enabled && this.obey_column_browser;
-            int show_index = 0;
-
+        // If an external refiltering is going on, we cannot obey the column browser filter
+        // because it wil be refreshed after this search based on the new 'showing' table
+        // (populated by this method).
+        bool obey_column_browser = column_browser_enabled && this.obey_column_browser;
+        int show_index = 0;
+        
+        if (result.size != view_wrapper.library.get_medias ().size) {
+            
             for (int i = 0; i < table.size (); ++i) {
                 var m = table.get (i);
                 if (m != null) {
                     if (obey_column_browser && !column_browser.match_media (m))
                         continue;
-
+                    
                     if (result.contains (m)) {
                         showing.set (show_index++, m);
                     }
                 }
             }
         } else {
-            showing = table;
+            
+            for (int i = 0; i < table.size (); ++i) {
+                var m = table.get (i);
+                if (m != null) {
+                    if (obey_column_browser && !column_browser.match_media (m))
+                        continue;
+                    
+                    showing.set (show_index++, m);
+                }
+            }
         }
-
+        
         // If nothing will be shown, display the "no media found" message.
         if (showing.size () < 1) {
             list_text_overlay.message_visible = true;

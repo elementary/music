@@ -314,14 +314,33 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
         var media_collection = new Gee.LinkedList<Media> ();
 
-        foreach (int id in ids) {
-            var m = media_from_id (id);
-            if (m != null)
-                media_collection.add (m);
+        lock (medias) {
+            foreach (var m in medias) {
+                if (ids.contains (m.rowid))
+                    media_collection.add (m);
+                if (media_collection.size == ids.size)
+                    break;
+            }
         }
 
         return media_collection;
     }
+
+    public override Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris) {
+        var media_collection = new Gee.LinkedList<Media> ();
+
+        lock (medias) {
+            foreach (var m in medias) {
+                if (uris.contains (m.uri))
+                    media_collection.add (m);
+                if (media_collection.size == uris.size)
+                    break;
+            }
+        }
+
+        return media_collection;
+    }
+    
     public override Media? find_media (Media to_find) {
         Media? found = null;
         lock (medias) {

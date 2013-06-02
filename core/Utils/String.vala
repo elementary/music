@@ -173,6 +173,7 @@ namespace Noise.String {
      */
     public string get_basic_part (string to_consider) {
         string output_string = to_consider.down ();
+        /*Used to sort artists and album (e.g: The Beatles appears before David Guetta), if your language do not use them, translate it with a white space*/
         foreach (string prefix in _("the|a|an|le|la|les|un|une|der|die|das|los").split("|")) {
             output_string = output_string.replace ("%s ".printf (prefix), "");
         }
