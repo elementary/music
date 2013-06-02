@@ -178,7 +178,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         this.mount = mount;
     }
     
-    public Mount get_mount() {
+    public Mount? get_mount() {
         return mount;
     }
     

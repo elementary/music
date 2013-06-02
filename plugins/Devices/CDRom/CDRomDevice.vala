@@ -123,7 +123,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         this.mount = mount;
     }
     
-    public Mount get_mount() {
+    public Mount? get_mount() {
         return mount;
     }
     

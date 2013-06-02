@@ -46,7 +46,7 @@ public interface Noise.Device : GLib.Object {
     public abstract void setDisplayName(string name);
     public abstract string get_fancy_description();
     public abstract void set_mount(Mount mount);
-    public abstract Mount get_mount();
+    public abstract Mount? get_mount();
     public abstract string get_uri();
     public abstract void set_icon(GLib.Icon icon);
     public abstract GLib.Icon get_icon();
@@ -116,18 +116,22 @@ public interface Noise.Device : GLib.Object {
     }
     
     public string get_unique_identifier() {
-        Mount m = get_mount();
-        string uuid = m.get_uuid();
-        File root = m.get_root();
-        string rv = "";
-        debug ("uuid: %s\n", uuid);
-        if(root != null && root.get_uri() != null) {
-            rv += root.get_uri();
+        Mount? m = get_mount();
+        if (m != null) {
+            string uuid = m.get_uuid();
+            File root = m.get_root();
+            string rv = "";
+            debug ("uuid: %s\n", uuid);
+            if(root != null && root.get_uri() != null) {
+                rv += root.get_uri();
+            }
+            if(uuid != null && uuid != "") {
+                rv += ("/" + uuid);
+            }
+            
+            return rv;
+        } else {
+            return get_uri();
         }
-        if(uuid != null && uuid != "") {
-            rv += ("/" + uuid);
-        }
-        
-        return rv;
     }
 }

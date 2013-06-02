@@ -60,7 +60,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
                 added.finish_initialization();
                 added.initialized.connect((d) => {
                     if (((iPodDevice)d).is_supported == true) {
-                        device_manager.deviceInitialized ((Noise.Device)d);
+                        device_manager.device_initialized ((Noise.Device)d);
                     }
                 });
             }

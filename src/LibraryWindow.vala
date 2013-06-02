@@ -803,30 +803,30 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     
     private void create_device_source_list (Device d) {
         lock (match_devices) {
-        SourceListEntry? entry;
-        var dv = new DeviceView (d);
-        int view_number = view_container.add_view (dv);
-        match_devices.set (d.get_unique_identifier(), view_number);
-        if(d.has_custom_view()) {
-            message("new custom device (probably a CD) added with %d songs.\n", d.get_library ().get_medias().size);
+            SourceListEntry? entry;
+            var dv = new DeviceView (d);
+            int view_number = view_container.add_view (dv);
+            match_devices.set (d.get_unique_identifier(), view_number);
+            if(d.has_custom_view()) {
+                message("new custom device (probably a CD) added with %d songs.\n", d.get_library ().get_medias().size);
 
-            entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon, null, d);
-        } else {
-            debug ("adding device view with %d\n", d.get_library ().get_medias().size);
-            var music_view_wrapper = new DeviceViewWrapper(new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d, d.get_library ());
-            
-            int subview_number = view_container.add_view (music_view_wrapper);
-            entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon, null, d);
-            source_list_view.add_item (subview_number, _("Music"), ViewWrapper.Hint.DEVICE_AUDIO, Icons.MUSIC.gicon, null, entry as SourceListExpandableItem, d);
-            if (d.get_library ().support_playlists () == true) {
-                foreach (var p in d.get_library ().get_playlists ()) {
-                    create_playlist_source_list (p, (SourceListExpandableItem)entry, d.get_library ());
+                entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon, null, d);
+            } else {
+                debug ("adding device view with %d\n", d.get_library ().get_medias().size);
+                var music_view_wrapper = new DeviceViewWrapper(new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d, d.get_library ());
+                
+                int subview_number = view_container.add_view (music_view_wrapper);
+                entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon, null, d);
+                source_list_view.add_item (subview_number, _("Music"), ViewWrapper.Hint.DEVICE_AUDIO, Icons.MUSIC.gicon, null, entry as SourceListExpandableItem, d);
+                if (d.get_library ().support_playlists () == true) {
+                    foreach (var p in d.get_library ().get_playlists ()) {
+                        create_playlist_source_list (p, (SourceListExpandableItem)entry, d.get_library ());
+                    }
+                    d.get_library ().playlist_added.connect ( (np) => {add_playlist (np, d.get_library (), (SourceListExpandableItem)entry);});
+                    d.get_library ().playlist_removed.connect ( (np) => {remove_playlist (np);});
                 }
-                d.get_library ().playlist_added.connect ( (np) => {add_playlist (np, d.get_library (), (SourceListExpandableItem)entry);});
-                d.get_library ().playlist_removed.connect ( (np) => {remove_playlist (np);});
             }
         }
-    }
     }
 
     /**

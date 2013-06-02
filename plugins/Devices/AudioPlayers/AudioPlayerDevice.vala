@@ -169,7 +169,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         this.mount = mount;
     }
     
-    public Mount get_mount() {
+    public Mount? get_mount() {
         return mount;
     }
     

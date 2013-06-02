@@ -38,8 +38,8 @@ public class Noise.DeviceManager : GLib.Object {
     public Gee.ArrayList<unowned Device> devices;
     private Gee.ArrayList<Playlist> local_playlists;
     
-    public signal void device_added(Device d);
-    public signal void device_removed(Device d);
+    public signal void device_added (Device d);
+    public signal void device_removed (Device d);
     public signal void device_name_changed (Device d);
     
     public signal void mount_added (Mount mount);
@@ -102,7 +102,7 @@ public class Noise.DeviceManager : GLib.Object {
         }
     }
     
-    public void deviceInitialized (Device d) {
+    public void device_initialized (Device d) {
         debug ("adding device\n");
         device_added (d);
         devices.add (d);
