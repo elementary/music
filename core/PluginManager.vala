@@ -192,13 +192,8 @@ public class Noise.Plugins.Manager : Object {
         
     public Gtk.Toolbar toolbar { set { plugin_iface.toolbar = value; } }
     public Gtk.Application noise_app { set { plugin_iface.noise_app = value;  }}
-
-    //[CCode (cheader_filename = "libpeas/libpeas.h", cname = "peas_extension_set_foreach")]
-    //extern static void peas_extension_set_foreach (Peas.ExtensionSet extset, Peas.ExtensionSetForeachFunc option, void* data);
-    
     public Noise.Plugins.Interface plugin_iface { private set; get; }
 
-    // TODO: Properly integrate with settings class
     public Manager(string d, string? e, string? argument_set) {
 
         plugin_iface = new Noise.Plugins.Interface (this);
@@ -210,8 +205,18 @@ public class Noise.Plugins.Manager : Object {
         engine.enable_loader ("python");
         engine.enable_loader ("gjs");
         engine.add_search_path (d, null);
-
-        main_settings.schema.bind("plugins-enabled", engine, "loaded-plugins", SettingsBindFlags.DEFAULT);
+        
+        /* Do not load blacklisted plugins */
+        var disabled_plugins = new Gee.LinkedList<string> ();
+        foreach (var plugin in main_settings.plugins_disabled) {
+            disabled_plugins.add (plugin);
+        }
+        
+        foreach (var plugin in engine.get_plugin_list ()) {
+            if (!disabled_plugins.contains (plugin.get_module_name ())) {
+                engine.try_load_plugin (plugin);
+            }
+        }
 
         /* Our extension set */
         Parameter param = Parameter();

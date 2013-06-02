@@ -92,10 +92,10 @@
       <summary>String of the destination path to save files</summary>
       <description>String of the destination path to save files</description>
     </key>
-    <key type="as" name="plugins-enabled">
-      <default>['lastfm','mpris','cdrom-device','ipod-device','audioplayer-device']</default>
-      <summary>List of enabled plugins</summary>
-      <description>Plugin modules to load during startup</description>
+    <key type="as" name="plugins-disabled">
+      <default>[]</default>
+      <summary>List of disabled plugins</summary>
+      <description>Plugin modules to not load during startup</description>
     </key>
   </schema>
 
