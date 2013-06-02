@@ -36,7 +36,7 @@ public class Noise.App : Granite.Application {
      */
     public const string COMMENT = N_("Listen to music");
     public const string GENERIC = N_("Music Player");
-    public const string KEYWORDS = N_("Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;");
+    public const string KEYWORDS = N_("Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;");
 
 
     private static App _instance;
