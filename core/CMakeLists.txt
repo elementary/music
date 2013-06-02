@@ -1,8 +1,15 @@
 set(CORE_LIB_VERSION 0.1)
 set(CORE_LIB_SOVERSION 0)
+
+######################
+# lib PC file
+######################
 set(CONFIG_FILE ${CMAKE_CURRENT_BINARY_DIR}/config.vala)
+set(PREFIX ${CMAKE_INSTALL_PREFIX})
+set(DOLLAR "$") # You hear that? It's kittens being killed by the gods of cmake
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.vala.cmake ${CONFIG_FILE})
+configure_file(${CMAKE_SOURCE_DIR}/core/${CORE_LIBRARY_NAME}.pc.cmake ${CMAKE_BINARY_DIR}/core/${CORE_LIBRARY_NAME}.pc)
 
 message(${CONFIG_FILE})
 
@@ -80,5 +87,10 @@ target_link_libraries(${CORE_LIBRARY_NAME} ${CORE_DEPS_LIBRARIES})
 
 if (BUILD_SHARED_LIBS)
     install(TARGETS ${CORE_LIBRARY_NAME} DESTINATION lib)
+    # Install lib stuffs
+    install (FILES ${CMAKE_BINARY_DIR}/core/${CORE_LIBRARY_NAME}.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig/)
+    install (FILES ${CMAKE_CURRENT_BINARY_DIR}/${CORE_LIBRARY_NAME}.vapi DESTINATION share/vala/vapi/)
+    install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/${CORE_LIBRARY_NAME}.deps DESTINATION share/vala/vapi/)
+    install (FILES ${CMAKE_CURRENT_BINARY_DIR}/${CORE_LIBRARY_NAME}.h DESTINATION include/${CORE_LIBRARY_NAME}/)
 endif ()
 
