@@ -33,6 +33,8 @@ public class LastFM.SimilarMedias : Object {
     public Noise.StaticPlaylist similar_playlist;
     private Gee.LinkedList<Noise.Media> similar_medias;
     
+    Noise.Media similarToAdd;
+    
     public signal void similar_retrieved (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
     
     public class SimilarMedias () {
@@ -125,7 +127,6 @@ public class LastFM.SimilarMedias : Object {
     
     public void parse_similar_nodes(Xml.Node* node, string parent) {
         Xml.Node* iter;
-        Noise.Media similarToAdd = null;
         for (iter = node->children; iter != null; iter = iter->next) {
             
             if (iter->type != ElementType.ELEMENT_NODE) {
