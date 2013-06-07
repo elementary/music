@@ -487,6 +487,7 @@ public class Noise.LocalLibrary : Library {
         p.rowid = playlists_rowid;
         playlists_rowid++;
 
+        dbm.save_smart_playlist (p);
         p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
         smartplaylist_added (p);
     }
