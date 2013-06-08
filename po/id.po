@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-02 19:18+0200\n"
-"PO-Revision-Date: 2013-03-04 14:36+0000\n"
-"Last-Translator: Jeffry <jeffry.a@gmail.com>\n"
+"PO-Revision-Date: 2013-06-07 16:15+0000\n"
+"Last-Translator: Surya Handika Putratama <ubunteroz@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-06-03 06:18+0000\n"
-"X-Generator: Launchpad (build 16660)\n"
+"X-Launchpad-Export-Date: 2013-06-08 06:10+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
 "Language: id\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:140
@@ -243,7 +243,7 @@ msgstr "Tekno"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
 msgid "Import to Library…"
-msgstr ""
+msgstr "Impor ke Pustaka"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Rescan Music Folder"
@@ -251,7 +251,7 @@ msgstr "Pindai Ulang Folder Musik"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:238
 msgid "Fullscreen"
-msgstr ""
+msgstr "Layar Penuh"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:242
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
@@ -419,11 +419,11 @@ msgstr "Ambil Sejumlah Nada"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "Tambahkan musik ke dalam Pustaka"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Change Music Folder"
-msgstr ""
+msgstr "Ganti Folder Musik"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk."
@@ -951,7 +951,7 @@ msgstr "Pemutar Musik"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
+msgstr "Noise;Audio;Player;MP3;IPod;Player;CD;Songs;Lagu;Musik;"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
@@ -1678,7 +1678,7 @@ msgstr "Artis Tak Dikenal"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/LyricFetcher.vala:156
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
+msgstr "Lirik diambil dari www.lyricsmania.com"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
@@ -1833,7 +1833,7 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 #, c-format
 msgid "Give %s Permission"
-msgstr ""
+msgstr "Berikan %s izin"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
