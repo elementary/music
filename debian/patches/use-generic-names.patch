@@ -21,19 +21,8 @@ Bug-Debian: http://bugs.debian.org/<bugnumber>
 Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
 Forwarded: not-needed
 Reviewed-By: Sergey "Shnatsel" Davidoff <sergey@elementaryos.org>
-Last-Update: 2013-05-02
+Last-Update: 2013-06-09
 
---- noise-0.2.orig/data/noise.desktop
-+++ noise-0.2/data/noise.desktop
-@@ -1,7 +1,7 @@
- [Desktop Entry]
- Type=Application
- Version=1.0
--Name=Noise
-+Name=Music
- GenericName=Music Player
- Comment=Listen to music
- Exec=noise %U
 --- noise-0.2.orig/src/Noise.vala
 +++ noise-0.2/src/Noise.vala
 @@ -64,7 +64,7 @@ public class Noise.App : Granite.Applica
@@ -45,3 +34,13 @@ Last-Update: 2013-05-02
          exec_name = "noise";
  
          app_copyright = "2012-2013";
+--- noise-0.2.orig/data/noise.desktop
++++ noise-0.2/data/noise.desktop
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+ Type=Application
+-Name=Noise
++Name=Music
+ GenericName=Music Player
+ Comment=Listen to music
+ Exec=noise %U
