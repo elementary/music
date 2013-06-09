@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-02 19:18+0200\n"
-"PO-Revision-Date: 2013-03-04 14:44+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2013-06-08 06:22+0000\n"
+"Last-Translator: Hélion du Mas des Bourboux <helion331990@gmail.com>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2013-06-03 06:19+0000\n"
-"X-Generator: Launchpad (build 16660)\n"
+"X-Launchpad-Export-Date: 2013-06-09 05:35+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
 "Language: \n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:140
@@ -50,12 +50,12 @@ msgstr "$NAME par $ARTIST dans $ALBUM"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/FileUtils.vala:277
 #, c-format
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
@@ -172,7 +172,7 @@ msgstr "%e/%m/%Y %k:%M"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/String.vala:177
 msgid "the|a|an|le|la|les|un|une|der|die|das|los"
-msgstr ""
+msgstr "the|a|an|le|la|les|un|une|der|die|das|los"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -248,7 +248,7 @@ msgstr "Techno"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
 msgid "Import to Library…"
-msgstr ""
+msgstr "Importer dans la bibliothèque…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Rescan Music Folder"
@@ -256,7 +256,7 @@ msgstr "Scanner à nouveau le dossier Musique"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:238
 msgid "Fullscreen"
-msgstr ""
+msgstr "Plein écran"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:242
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:84
@@ -325,7 +325,7 @@ msgstr "Importer de la musique"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1141
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:249
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Importation</b> de musique dans la bibliothèque…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1156
 msgid "Rescanning music folder for changes"
@@ -410,7 +410,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "L'appareil est déjà occupé."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
@@ -429,15 +429,16 @@ msgstr "Obtenez de la musique"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "Ajouter de la musique dans votre bibliothèque."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Change Music Folder"
-msgstr ""
+msgstr "Changer le dossier de musique"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk."
 msgstr ""
+"Charger de la musique depuis un dossier, un réseau ou un disque externe."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
