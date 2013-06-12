@@ -238,12 +238,12 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         library.sync_medias ();
     }
     
-    public bool has_custom_view() {
+    public bool only_use_custom_view () {
         return false;
     }
     
-    public Gtk.Grid get_custom_view() {
-        return new Gtk.Grid();
+    public Gtk.Widget? get_custom_view() {
+        return null;
     }
     
     public bool read_only() {

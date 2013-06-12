@@ -244,12 +244,12 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         // TODO: IMPLEMENT THIS !
     }
     
-    public bool has_custom_view() {
+    public bool only_use_custom_view () {
         return false;
     }
     
-    public Gtk.Grid get_custom_view() {
-        return new Gtk.Grid();
+    public Gtk.Widget? get_custom_view() {
+        return null;
     }
     
     public bool read_only() {

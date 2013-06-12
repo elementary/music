@@ -50,6 +50,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     public Gee.Collection<string> get_supported_uri () {
         var uris = new Gee.LinkedList<string> ();
         uris.add ("file://");
+        uris.add ("http://");
         return uris;
     }
     

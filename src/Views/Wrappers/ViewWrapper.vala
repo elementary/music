@@ -480,6 +480,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             if (!widgets_ready)
                 return true;
             add_media (to_add);
+            update_visible_media ();
             Idle.add (add_media_async.callback);
             return false;
         });
@@ -528,7 +529,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     private void update_media (Gee.Collection<Media> media) requires (data_initialized) {
-        if (media.size < 1)
+        if (media.is_empty)
             return;
 
         debug ("UPDATING MEDIA [%s]", hint.to_string ());
@@ -547,7 +548,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     private void add_media (Gee.Collection<Media> new_media) requires (data_initialized) {
-        if (new_media.size < 1)
+        if (new_media.is_empty)
             return;
 
         debug ("ADDING MEDIA [%s]", hint.to_string());
@@ -566,7 +567,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     private void remove_media (Gee.Collection<Media> media) requires (data_initialized) {
-        if (media.size < 1)
+        if (media.is_empty)
             return;
 
         debug ("REMOVING MEDIA [%s]", hint.to_string ());

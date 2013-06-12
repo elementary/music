@@ -89,10 +89,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public LibraryWindow () {
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
-        this.library_manager.music_counted.connect (musicCounted);
-        this.library_manager.music_added.connect (musicAdded);
-        this.library_manager.music_imported.connect (musicImported);
-        this.library_manager.music_rescanned.connect (musicRescanned);
 
         this.library_manager.media_updated.connect (medias_updated);
         this.library_manager.media_added.connect (update_sensitivities);
@@ -807,7 +803,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             var dv = new DeviceView (d);
             int view_number = view_container.add_view (dv);
             match_devices.set (d.get_unique_identifier(), view_number);
-            if(d.has_custom_view()) {
+            if(d.only_use_custom_view()) {
                 message("new custom device (probably a CD) added with %d songs.\n", d.get_library ().get_medias().size);
 
                 entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon, null, d);
@@ -1167,53 +1163,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         else {
             debug ("Can't rescan.. doing file operations already\n");
         }
-    }
-    
-    public virtual void musicCounted(int count) {
-        debug ("found %d media, importing.\n", count);
-    }
-
-    /* this is after setting the music library */
-    public virtual void musicAdded (Gee.Collection<string> not_imported) {
-        if(App.player.media_active)
-            updateInfoLabel();
-        else
-            topDisplay.set_label_text("");
-
-        if(not_imported.size > 0) {
-            NotImportedWindow nim = new NotImportedWindow(not_imported, main_settings.music_folder);
-            nim.show();
-        }
-
-        update_sensitivities.begin ();
-    }
-
-    /* this is when you import music from a foreign location into the library */
-    public virtual void musicImported(Collection<Media> imported, Collection<string> not_imported) {
-        if (App.player.media_active)
-            updateInfoLabel();
-        else
-            topDisplay.set_label_text("");
-
-        //resetSideTree(false);
-
-        update_sensitivities.begin ();
-
-
-        //now notify user
-        if (imported.size > 0)
-            show_notification (_("Import Complete"), _("%s has imported your library.").printf (App.instance.get_name ()));
-    }
-
-    public virtual void musicRescanned (Gee.Collection<Media> new_medias, Gee.Collection<string> not_imported) {
-        if (App.player.media_active)
-            updateInfoLabel ();
-        else
-            topDisplay.set_label_text ("");
-
-        //resetSideTree(false);
-        debug("music Rescanned\n");
-        update_sensitivities.begin ();
     }
 
     public void editPreferencesClick() {

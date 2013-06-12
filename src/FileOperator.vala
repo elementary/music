@@ -272,8 +272,12 @@ public class Noise.FileOperator : Object {
     void queue_finished() {
         var cover_importer = new CoverImport ();
         cover_importer.discoverer_import_media (all_new_imports);
-        
-        libraries_manager.local_library.music_imported (all_new_imports, import_errors);
+        if (import_errors.size > 0) {
+            NotImportedWindow nim = new NotImportedWindow (import_errors, main_settings.music_folder);
+            nim.show();
+        }
+        if (all_new_imports.size > 0)
+            App.main_window.show_notification (_("Import Complete"), _("%s has imported your library.").printf (App.instance.get_name ()));
         libraries_manager.local_library.add_medias (new_imports);
         new_imports.clear();
         
@@ -293,7 +297,6 @@ public class Noise.FileOperator : Object {
             Threads.add (copy_imports_thread);
         }
         else {
-            libraries_manager.local_library.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
             libraries_manager.local_library.finish_file_operations();
         }
         
@@ -312,7 +315,6 @@ public class Noise.FileOperator : Object {
         }
         
         Idle.add( () => {
-            libraries_manager.local_library.music_added(import_errors);
             libraries_manager.local_library.finish_file_operations();
             
             return false;

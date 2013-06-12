@@ -45,6 +45,8 @@ set(CORE_SOURCE
     Utils/Icon.vala
     Utils/Icons.vala
     Utils/Search.vala
+    Utils/PixbufUtils.vala
+    Utils/PixbufCache.vala
     GStreamer/Pipeline.vala
     GStreamer/Equalizer.vala
     GStreamer/Playback.vala

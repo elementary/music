@@ -5,8 +5,6 @@ set(CLIENT_SOURCE
     LocalLibrary.vala
     PlaybackManager.vala
     FileOperator.vala
-    Utils/PixbufUtils.vala
-    Utils/PixbufCache.vala
     Objects/LyricFetcher.vala
     Objects/MediaInfo.vala
     Objects/AlbumInfo.vala

@@ -37,11 +37,6 @@ public abstract class Noise.Library : GLib.Object {
     public signal void file_operations_started ();
     public signal void file_operations_done ();
 
-    public signal void music_counted (int count);
-    public signal void music_added (Gee.Collection<string> not_imported);
-    public signal void music_imported (Gee.Collection<Media> new_media, Gee.Collection<string> not_imported);
-    public signal void music_rescanned (Gee.Collection<Media> new_media, Gee.Collection<string> not_imported);
-
     public signal void media_added (Gee.Collection<int> ids);
     public signal void media_updated (Gee.Collection<int> ids);
     public signal void media_removed (Gee.Collection<int> ids);

@@ -28,8 +28,7 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Corentin Noël <tintou@mailoo.org>
  */
- 
-using Gee;
+
 
 public interface Noise.Device : GLib.Object {
     public signal void initialized (Device d);
@@ -57,9 +56,9 @@ public interface Noise.Device : GLib.Object {
     public abstract void unmount();
     public abstract void eject();
     public abstract void synchronize ();
-    public abstract bool has_custom_view();
-    public abstract Gtk.Grid get_custom_view();
-    public abstract bool read_only();
+    public abstract bool only_use_custom_view ();
+    public abstract Gtk.Widget? get_custom_view (); // If it's null, use the standard device view
+    public abstract bool read_only ();
     public abstract Library get_library ();
     
     public Gee.Collection<Noise.Media> delete_doubles (Gee.Collection<Noise.Media> source_list, Gee.Collection<Noise.Media> to_remove) {

@@ -196,11 +196,11 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         ejecting = false;
     }
     
-    public bool has_custom_view() {
+    public bool only_use_custom_view () {
         return true;
     }
     
-    public Gtk.Grid get_custom_view() {
+    public Gtk.Widget? get_custom_view() {
         return cdview;
     }
     

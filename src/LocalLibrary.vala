@@ -38,7 +38,7 @@ using Gee;
  * the visual representation of this class
  */
 public class Noise.LocalLibrary : Library {
-
+    
     public LibraryWindow lw { get { return App.main_window; } }
     public DataBaseManager dbm;
     public DataBaseUpdater dbu;
