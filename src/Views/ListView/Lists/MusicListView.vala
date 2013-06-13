@@ -349,8 +349,7 @@ public class Noise.MusicListView : GenericList {
 
     protected virtual void mediaEditorSaved(LinkedList<int> medias) {
         LinkedList<Media> toUpdate = new LinkedList<Media>();
-        foreach(int i in medias)
-            toUpdate.add(parent_wrapper.library.media_from_id(i));
+        toUpdate.add_all (parent_wrapper.library.medias_from_ids(medias));
 
         // could have edited rating, so record_time is true
         parent_wrapper.library.update_medias (toUpdate, true, true);

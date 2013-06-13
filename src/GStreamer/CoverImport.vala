@@ -145,7 +145,7 @@ public class Noise.CoverImport : GLib.Object {
         var pix = get_image (info.get_tags ());
 
         if (pix != null)
-            yield cache.cache_image_async (m, pix);
+            cache.cache_image_async.begin (m, pix);
         else
             warning ("Could not find embedded image for '%s'", info.get_uri ());
             

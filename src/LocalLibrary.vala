@@ -730,7 +730,28 @@ public class Noise.LocalLibrary : Library {
 
         dbm.add_media (media);
         update_smart_playlists_async.begin (media);
-        search_medias (App.main_window.searchField.text);
+        
+        // Update search results
+            if (App.main_window.searchField.text == "") {
+                _searched_medias.add_all (new_media);
+            } else {
+                
+                int parsed_rating;
+                string parsed_search_string;
+                String.base_search_method (App.main_window.searchField.text, out parsed_rating, out parsed_search_string);
+                bool rating_search = parsed_rating > 0;
+                
+                foreach (var m in new_media) {
+                    if (rating_search) {
+                        if (m.rating == (uint) parsed_rating)
+                            _searched_medias.add (m);
+                    } else if (Search.match_string_to_media (m, parsed_search_string)) {
+                        _searched_medias.add (m);
+                    }
+                }
+            }
+        
+        search_finished ();
     }
 
     public override void remove_media (Media s, bool trash) {
@@ -761,8 +782,10 @@ public class Noise.LocalLibrary : Library {
         media_removed (removedIds);
 
         lock (_medias) {
-            foreach (Media s in toRemove)
+            foreach (Media s in toRemove) {
+                _searched_medias.remove (s);
                 _medias.remove (s);
+            }
         }
 
         lock (_playlists) {
@@ -771,6 +794,7 @@ public class Noise.LocalLibrary : Library {
         }
 
         update_smart_playlists_async.begin (toRemove);
+        search_finished ();
     }
 
     public Gee.LinkedList<Noise.Media> answer_to_device_sync (Device device) {
