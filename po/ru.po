@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-02 19:18+0200\n"
-"PO-Revision-Date: 2013-06-02 07:10+0000\n"
-"Last-Translator: Alex Ra <asd667@mail.ru>\n"
+"PO-Revision-Date: 2013-06-14 14:01+0000\n"
+"Last-Translator: Sergey Cinaylo <funeral20@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-06-03 06:18+0000\n"
-"X-Generator: Launchpad (build 16660)\n"
+"X-Launchpad-Export-Date: 2013-06-15 05:33+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -970,7 +970,7 @@ msgstr "Музыкальный проигрыватель"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
+msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
