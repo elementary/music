@@ -51,8 +51,12 @@ public class LastFM.SimilarMedias : Object {
         }
         
         Noise.App.player.changing_player.connect ((m)=>{
-            similar_medias.clear ();
-            similar_playlist.clear ();
+            lock (similar_medias) {
+                similar_medias.clear ();
+            }
+            lock (similar_playlist) {
+                similar_playlist.clear ();
+            }
         });
     }
     
@@ -74,14 +78,12 @@ public class LastFM.SimilarMedias : Object {
                 var similarIDs = new Gee.LinkedList<int> ();
                 var similarDont = new Gee.LinkedList<Noise.Media> ();
                 
+                getSimilarTracks (s.title, s.artist);
                 lock (similar_medias) {
-                    similar_medias.clear ();
-                    similar_playlist.clear ();
-                
-                    getSimilarTracks (s.title, s.artist);
                     Noise.libraries_manager.local_library.media_from_name (similar_medias, ref similarIDs, ref similarDont);
                 }
                 similarIDs.offer_head (s.rowid);
+                
                 similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
                 similar_retrieved (similarIDs, similarDont);
         
@@ -125,7 +127,7 @@ public class LastFM.SimilarMedias : Object {
         delete doc;
     }
     
-    public void parse_similar_nodes(Xml.Node* node, string parent) {
+    public void parse_similar_nodes (Xml.Node* node, string parent) {
         Xml.Node* iter;
         for (iter = node->children; iter != null; iter = iter->next) {
             
