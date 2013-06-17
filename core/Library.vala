@@ -40,6 +40,7 @@ public abstract class Noise.Library : GLib.Object {
     public signal void media_added (Gee.Collection<int> ids);
     public signal void media_updated (Gee.Collection<int> ids);
     public signal void media_removed (Gee.Collection<int> ids);
+    public signal void media_imported (Gee.Collection<Media> medias); // Only sent at the end of import.
     public signal void search_finished ();
     
     public signal void playlist_added (StaticPlaylist playlist);

@@ -54,7 +54,7 @@ namespace LastFM {
             
             Noise.App.main_window.update_media_info.connect ((media) => {postNowPlaying (media);});
             Noise.App.main_window.media_half_played.connect ((media) => {postScrobbleTrack (media);});
-            Noise.libraries_manager.local_library.media_added.connect ((medias) => {fetch_albums_slowly.begin (Noise.libraries_manager.local_library.medias_from_ids (medias));});
+            Noise.libraries_manager.local_library.media_imported.connect ((medias) => {fetch_albums_slowly.begin (medias);});
 
             similarMedias.similar_retrieved.connect(similar_retrieved_signal);
         }

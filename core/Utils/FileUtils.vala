@@ -256,26 +256,29 @@ namespace Noise.FileUtils {
                 ext = get_extension(s.uri);
             
             /* Available translations are $ALBUM $ARTIST $ALBUM_ARTIST $TITLE $TRACK*/
-            string path = main_settings.path_string.replace ("$ALBUM_ARTIST", s.get_display_album_artist ().replace("/", "_"));
-            path = path.replace ("$ARTIST", s.get_display_artist ().replace("/", "_"));
-            path = path.replace ("$ALBUM", s.get_display_album ().replace("/", "_"));
-            path = path.replace ("$TITLE", s.get_display_title ().replace("/", "_"));
-            path = path.replace ("$TRACK", s.track.to_string());
+            string path = main_settings.path_string;
             if (path == "" || path == null) {
                 path = "$ALBUM_ARTIST/$ALBUM/$TRACK - $TITLE";
                 main_settings.path_string = "$ALBUM_ARTIST/$ALBUM/$TRACK - $TITLE";
             }
+            path = path.replace ("$ALBUM_ARTIST", s.get_display_album_artist ().replace("/", "_"));
+            path = path.replace ("$ARTIST", s.get_display_artist ().replace("/", "_"));
+            path = path.replace ("$ALBUM", s.get_display_album ().replace("/", "_"));
+            path = path.replace ("$TITLE", s.get_display_title ().replace("/", "_"));
+            path = path.replace ("$TRACK", s.track.to_string());
             
             dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + ext));
             
-            if(original.get_path() == dest.get_path() || !dest.query_exists()) {
+            if(original.get_path () == dest.get_path ()) {
                 debug("File is already in correct location\n");
                 return null;
             }
             
-            int number = 2;
-            while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + _(" (%d)").printf (number) + ext))).query_exists()) {
-                number++;
+            if (dest.query_exists ()) {
+                int number = 2;
+                while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + _(" (%d)").printf (number) + ext))).query_exists()) {
+                    number++;
+                }
             }
             
             /* make sure that the parent folders exist */

@@ -42,7 +42,7 @@ public class  Noise.Plugins.iPodStreamer : Noise.Playback, GLib.Object {
         pipe = new Noise.Pipeline();
         this.dm = dm;
 
-        pipe.bus.add_watch(bus_callback);
+        pipe.bus.add_watch (bus_callback);
         //pipe.playbin.about_to_finish.connect(about_to_finish);
         
 

@@ -37,6 +37,7 @@ public class Noise.FileOperator : Object {
     public signal void rescan_cancelled();
 
     public GStreamerTagger tagger;
+    CoverImport cover_importer;
     
     bool inThread;
     LinkedList<Media> toSave;
@@ -70,6 +71,7 @@ public class Noise.FileOperator : Object {
         all_new_imports = new LinkedList<Media>();
         import_errors = new LinkedList<string>();
         tagger = new GStreamerTagger();
+        cover_importer = new CoverImport ();
         
         tagger.media_imported.connect(media_imported);
         tagger.import_error.connect(import_error);
@@ -245,7 +247,7 @@ public class Noise.FileOperator : Object {
         }
     }
     
-    void media_imported(Media m) {
+    void media_imported (Media m) {
         new_imports.add (m);
         all_new_imports.add (m);
         ++index;
@@ -270,7 +272,6 @@ public class Noise.FileOperator : Object {
     }
     
     void queue_finished() {
-        var cover_importer = new CoverImport ();
         cover_importer.discoverer_import_media (all_new_imports);
         if (import_errors.size > 0) {
             NotImportedWindow nim = new NotImportedWindow (import_errors, main_settings.music_folder);

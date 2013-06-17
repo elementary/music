@@ -27,20 +27,26 @@ public class Noise.CoverImport : GLib.Object {
 
     private Gst.Discoverer d = null;
     private Gee.LinkedList<Media> uri_queue;
+    private Gee.LinkedList<Media> original_queue;
 
     private bool cancelled;
 
     public CoverImport () {
         uri_queue = new Gee.LinkedList<Media> ();
+        original_queue = new Gee.LinkedList<Media> ();
     }
 
     private void file_set_finished () {
         if (cancelled) {
             debug ("import cancelled");
             d.stop ();
+            libraries_manager.local_library.media_imported (original_queue);
+            original_queue.clear ();
         } else if (uri_queue.size == 0) {
             debug ("queue finished");
             d.stop ();
+            libraries_manager.local_library.media_imported (original_queue);
+            original_queue.clear ();
         } else {
             import_next_file_set.begin ();
         }
@@ -83,6 +89,7 @@ public class Noise.CoverImport : GLib.Object {
         lock (uri_queue) {
             uri_queue.clear ();
             uri_queue.add_all (uris);
+            original_queue.add_all (uris);
         }
         import_next_file_set.begin ();
     }

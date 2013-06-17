@@ -209,7 +209,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         // Update LibraryWindow widgets
         update_library_window_widgets ();
-        update_visible_media ();
     }
 
     /**
@@ -271,7 +270,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         if (is_current_wrapper) {
             set_active_view (selected_view);
-            update_visible_media ();
         } else
             last_used_view = selected_view;
     }
@@ -430,8 +428,9 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         string to_search = App.main_window.searchField.text;
 
         lock (list_view) {
-            if (has_list_view)
+            if (has_list_view) {
                 list_view.refilter (to_search);
+            }
         }
 
         lock (grid_view) {

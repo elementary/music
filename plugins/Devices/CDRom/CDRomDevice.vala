@@ -70,7 +70,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     }
     
     public void finish_initialization() {
-        libraries_manager.cancel_transfer.connect (cancel_transfer);
+        notification_manager.progress_canceled.connect(cancel_transfer);
         
         finish_initialization_thread.begin ();
     }
@@ -278,7 +278,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 
         _is_transferring = true;
 
-        Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
+        Timeout.add (500, () => {notification_manager.doProgressNotification (current_operation, current_song_progress);return false;});
 
         user_cancelled = false;
 

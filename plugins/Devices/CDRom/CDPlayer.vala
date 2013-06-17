@@ -27,8 +27,9 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
     private string device;
     
     public Noise.Pipeline pipe;
-    public dynamic Gst.Element playbin2;
+    public dynamic unowned Gst.Element playbin2;
     public bool first_start = true;
+    private double volume = 1;
     
     public CDPlayer (Mount mount) {
         
@@ -138,12 +139,14 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
     
     public void set_volume (double val) {
         pipe.playbin.set ("volume", val);
+        volume = val;
     }
     
     public double get_volume () {
-        var val = GLib.Value (typeof(double));
+        /*var val = GLib.Value (typeof(double));
         pipe.playbin.get ("volume", ref val);
-        return (double)val;
+        return (double)val;*/
+        return volume;
     }
     
     /* Extra stuff */
