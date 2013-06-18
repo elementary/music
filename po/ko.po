@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-02 19:18+0200\n"
-"PO-Revision-Date: 2013-06-15 15:58+0000\n"
-"Last-Translator: MinSik CHO <Unknown>\n"
+"PO-Revision-Date: 2013-06-17 09:53+0000\n"
+"Last-Translator: Kyu-Seok Yang <lklk9110@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-06-16 05:05+0000\n"
-"X-Generator: Launchpad (build 16667)\n"
+"X-Launchpad-Export-Date: 2013-06-18 06:29+0000\n"
+"X-Generator: Launchpad (build 16673)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -259,7 +259,7 @@ msgstr "환경설정"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:265
 msgid "Search Music"
-msgstr ""
+msgstr "음악 검색"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:681
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:819
@@ -277,7 +277,7 @@ msgstr "대기열"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:877
 msgid "No songs in Queue"
-msgstr ""
+msgstr "재생 목록에 음악 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:878
 msgid ""
@@ -295,7 +295,7 @@ msgstr "기록"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:887
 msgid "No songs in History"
-msgstr ""
+msgstr "기록에 음악 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:888
 msgid ""
@@ -303,6 +303,8 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"음악의 일부가 재생된 후에는, 기록에 추가됩니다.\n"
+"이 리스트를 사용하여 현재 세션에서 당신이 재생했던 모든 음악들을 볼 수 있습니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1121
 msgid "Import Music"
@@ -311,7 +313,7 @@ msgstr "음악 가져오기"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1141
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:249
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "음악을 라이브러리에 </b>불러오는 중...</b>"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1156
 msgid "Rescanning music folder for changes"
@@ -391,7 +393,7 @@ msgstr "현재 설정으로 동기화를 진행할 수 없습니다. 디스크�
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "장치가 이미 작업 중에 있습니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
@@ -401,7 +403,7 @@ msgstr "노래 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Please wait until that this playlist get updated."
-msgstr ""
+msgstr "이 재생 목록이 갱신되는 동안 기다려주십시오."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
 msgid "Get Some Tunes"
@@ -409,11 +411,11 @@ msgstr "더 많은 곡 가져오기"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "당신의 라이브러리에 음악을 추가하십시오."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Change Music Folder"
-msgstr ""
+msgstr "음악 폴더 변경"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk."
@@ -422,27 +424,28 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
 msgid "Import your Music"
-msgstr ""
+msgstr "음악을 불러오십시오."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "%s 으로 부터의 모든 음악을 당신의 라이브러리에 불러옵니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:125
 msgid "Select Music Folder"
-msgstr ""
+msgstr "음악 폴더 선택"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:446
 msgid "No media"
-msgstr ""
+msgstr "미디어 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"음악들을 이 재생목록에 추가하기 위해, 항목 위에 <b>2차 클릭</b>을 누른 후 <b>재생목록에 추가</b>를 선택하십시오."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
@@ -483,22 +486,22 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d 분"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d 시간"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "%d일"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
-msgstr ""
+msgstr "%u 항목들, %s, %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
@@ -513,32 +516,32 @@ msgstr "트랙"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "곡명"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "길이"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "아티스트"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "앨범"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "앨범 아티스트"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "작곡가"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
