@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-02 19:18+0200\n"
-"PO-Revision-Date: 2013-05-28 16:42+0000\n"
-"Last-Translator: Marcus Lundgren <lp@gaoth.org>\n"
+"PO-Revision-Date: 2013-06-19 01:11+0000\n"
+"Last-Translator: Joachim Johansson <joachim.j@gmail.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-06-03 06:19+0000\n"
-"X-Generator: Launchpad (build 16660)\n"
+"X-Launchpad-Export-Date: 2013-06-19 05:45+0000\n"
+"X-Generator: Launchpad (build 16673)\n"
 "X-Poedit-Language: Swedish\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:140
@@ -248,7 +248,7 @@ msgstr "Techno"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:236
 msgid "Import to Library…"
-msgstr "Importera till bibliotek"
+msgstr "Importera till bibliotek..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:237
 msgid "Rescan Music Folder"
@@ -340,7 +340,7 @@ msgstr "Försäkra dig om att din musikmapp är tillgänglig och monterad."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1204
 msgid "Import Complete"
-msgstr "Importeringen är färdig"
+msgstr "Importen är färdig"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1204
 #, c-format
@@ -451,7 +451,7 @@ msgstr "Välj musikmapp"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ViewWrapper.vala:446
 msgid "No media"
-msgstr "Ingen media"
+msgstr "Inget media"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
@@ -755,7 +755,7 @@ msgstr "Alla artister"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Artists"
-msgstr "Alla %i Artister"
+msgstr "Alla %i artister"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
@@ -1077,7 +1077,7 @@ msgstr "Byt namn"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
 msgid "Remove"
-msgstr "Radera"
+msgstr "Ta bort"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:58
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:72
@@ -1496,7 +1496,7 @@ msgstr "Synkroniseringen kommer att ta bort %i objekt från %s"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:78
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr "Synkroniseringen kommer att ta bort 1 objekt från %s"
+msgstr "Synkroniseringen kommer att ta bort ett objekt från %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
 msgid "Smart Playlist Editor"
@@ -1547,7 +1547,7 @@ msgstr "objekt"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Bitrate"
-msgstr "Bitfrekvens"
+msgstr "Bithastighet"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Date Added"
@@ -1621,7 +1621,7 @@ msgstr "kbit/s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:48
 msgid "Not Imported Files"
-msgstr "Ej Importerade Filer"
+msgstr "Ej importerade filer"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:77
@@ -1660,7 +1660,7 @@ msgstr "Installera insticksmodul"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
-msgstr "Nödvändig Gstreamer insticksmodul är inte installerad"
+msgstr "Nödvändig GStreamer-insticksmodul är inte installerad"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
@@ -1712,8 +1712,8 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
-"Vänligen se till att din musikmapp är tillgänglig och monterad innan du "
-"importerar CD:n."
+"Se till att din musikmapp är tillgänglig och monterad innan du importerar "
+"CD:n."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
 msgid ""
@@ -1861,7 +1861,7 @@ msgstr "Last.fm"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:48
 msgid "Last.fm Integration"
-msgstr "Last.fm integration"
+msgstr "Last.fm-integration"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
