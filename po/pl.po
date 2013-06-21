@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-02 19:18+0200\n"
-"PO-Revision-Date: 2013-06-04 15:41+0000\n"
+"PO-Revision-Date: 2013-06-20 12:57+0000\n"
 "Last-Translator: Adrian Widerski <Unknown>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-06-05 05:53+0000\n"
-"X-Generator: Launchpad (build 16660)\n"
+"X-Launchpad-Export-Date: 2013-06-21 05:49+0000\n"
+"X-Generator: Launchpad (build 16677)\n"
 "Language: \n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:140
@@ -52,7 +52,7 @@ msgstr "$NAME w wykonaniu $ARTIST z albumu $ALBUM"
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/FileUtils.vala:277
 #, c-format
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
@@ -179,7 +179,7 @@ msgstr "%m/%e/%Y %k:%M"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/String.vala:177
 msgid "the|a|an|le|la|les|un|une|der|die|das|los"
-msgstr ""
+msgstr "the|a|an|le|la|les|un|une|der|die|das|los"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -969,7 +969,7 @@ msgstr "Odtwarzacz muzyki"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
+msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
