@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-02 19:18+0200\n"
-"PO-Revision-Date: 2013-06-19 01:11+0000\n"
+"PO-Revision-Date: 2013-06-24 00:19+0000\n"
 "Last-Translator: Joachim Johansson <joachim.j@gmail.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-06-20 05:48+0000\n"
-"X-Generator: Launchpad (build 16673)\n"
+"X-Launchpad-Export-Date: 2013-06-24 04:56+0000\n"
+"X-Generator: Launchpad (build 16677)\n"
 "X-Poedit-Language: Swedish\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:140
@@ -200,7 +200,7 @@ msgstr "Full diskant"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:84
 msgid "Full Bass + Treble"
-msgstr "Full bas + diskant"
+msgstr "Full bas och diskant"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:85
 msgid "Headphones"
@@ -907,7 +907,7 @@ msgstr "Lägger till filer till bibliotek..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:275
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Sök efter ändringar i musikmappen. Detta kan ta en stund..."
+msgstr "Söker efter ändringar i musikmappen. Detta kan ta en stund..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:353
 msgid "Added to your queue:"
@@ -1027,7 +1027,7 @@ msgstr "Aktivera slumpvis uppspelning"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
 msgid "Disable Shuffle"
-msgstr "Inaktivera Slumpvis"
+msgstr "Avaktivera slumpvis uppspelning"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:132
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:143
@@ -1652,7 +1652,7 @@ msgstr "Filplats"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:126
 msgid "Select individual files to move to trash:"
-msgstr "Välja filer att flytta till papperskorgen:"
+msgstr "Välj enskilda filer att flytta till papperskorgen:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
 msgid "Install Plugin"
@@ -1701,11 +1701,11 @@ msgstr "Det uppstod ett fel vid läsningen av denna ljud-CD."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
-msgstr "Ogiltig ljudskiva"
+msgstr "Ogiltig ljud-cd"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:100
 msgid "Impossible to read the contents of this Audio CD"
-msgstr "Omöjligt att läsa innehållet på denna ljud-CD"
+msgstr "Omöjligt att läsa innehållet på denna ljud-cd"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid ""
@@ -1723,12 +1723,12 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
 msgid "Importation of a song from Audio CD finished."
-msgstr "Import av låt från ljud-CD:n är färdig."
+msgstr "Import av låt från ljud-cd:n är färdig."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importation of %i songs from Audio CD finished."
-msgstr "Importen av %i låtar från ljud-CD:n är färdig."
+msgstr "Importen av %i låtar från ljud-cd:n är färdig."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
 #, c-format
@@ -1741,7 +1741,7 @@ msgstr "CD-importen kommer att <b>avbrytas</b> efter den aktuella importen."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
 msgid "An error occured during the Import of this CD"
-msgstr "Ett fel uppstod under importen av denna CD"
+msgstr "Ett fel uppstod under importen av denna cd"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:114
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:75
@@ -1865,7 +1865,7 @@ msgstr "Last.fm-integration"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
-msgstr "Klicka för att göra om Last.fm login-försöket"
+msgstr "Klicka för att göra om Last.fm-login-försöket"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:58
 #, c-format
