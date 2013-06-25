@@ -51,21 +51,21 @@ namespace Noise.Compare {
     }
 
     public inline int artists (Media a, Media b) {
-        int order = String.compare (String.get_basic_part (a.get_display_artist ()), String.get_basic_part (b.get_display_artist ()));
+        int order = String.compare (a.get_display_artist (), b.get_display_artist ());
         if (order == 0)
             order = albums (a, b);
         return order;
     }
 
     public inline int album_artists (Media a, Media b) {
-        int order = String.compare (String.get_basic_part (a.get_display_album_artist (true)), String.get_basic_part (b.get_display_album_artist (true)));
+        int order = String.compare (a.get_display_album_artist (true), b.get_display_album_artist (true));
         if (order == 0)
             order = albums (a, b);
         return order;
     }
 
     public inline int albums (Media a, Media b) {
-        int order = String.compare (String.get_basic_part (a.get_display_album ()), String.get_basic_part (b.get_display_album ()));
+        int order = String.compare (a.get_display_album (), b.get_display_album ());
         if (order == 0)
             order = Numeric.compare (a.album_number, b.album_number);
         if (order == 0)

@@ -354,7 +354,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 			}
 			else {
 			    if (category == BrowserColumn.Category.ARTIST || category == BrowserColumn.Category.ALBUM)
-			        rv = String.compare (String.get_basic_part (rows.get (a)), String.get_basic_part (rows.get (b)));
+			        rv = String.compare (rows.get (a), rows.get (b));
 		        else
 				    rv = String.compare (rows.get (a), rows.get (b));
 			}
