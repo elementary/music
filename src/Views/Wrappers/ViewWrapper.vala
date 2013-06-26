@@ -398,6 +398,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             set_active_view (ViewType.LIST);
         else if (new_view == ViewType.GRID && has_grid_view)
             set_active_view (ViewType.GRID);
+        else if (has_list_view) {
+            view_container.set_current_view (list_view);
+            list_view.list_view.scroll_to_current_media (true);
+        } else if (has_grid_view)
+            view_container.set_current_view (grid_view);
     }
 
     /**
@@ -427,15 +432,16 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         string to_search = App.main_window.searchField.text;
 
-        lock (list_view) {
-            if (has_list_view) {
+        if (has_list_view) {
+            lock (list_view) {
                 list_view.refilter (to_search);
             }
         }
 
-        lock (grid_view) {
-            if (has_grid_view)
+        if (has_grid_view) {
+            lock (grid_view) {
                 grid_view.refilter (to_search);
+            }
         }
 
         update_statusbar_info ();
@@ -511,14 +517,16 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     private void set_media (Gee.Collection<Media> new_media) {
         debug ("SETTING MEDIA [%s]", hint.to_string());
 
-        lock (list_view) {
-            if (has_list_view)
+        if (has_list_view) {
+            lock (list_view) {
                 list_view.set_media (new_media);
+            }
         }
 
-        lock (grid_view) {
-            if (has_grid_view)
+        if (has_grid_view) {
+            lock (grid_view) {
                 grid_view.set_media (new_media);
+            }
         }
 
         data_initialized = true;
@@ -533,14 +541,16 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("UPDATING MEDIA [%s]", hint.to_string ());
 
-        lock (list_view) {
-            if (has_list_view)
+        if (has_list_view) {
+            lock (list_view) {
                 list_view.update_media (media);
+            }
         }
 
-        lock (grid_view) {
-            if (has_grid_view)
+        if (has_grid_view) {
+            lock (grid_view) {
                 grid_view.update_media (media);
+            }
         }
 
         update_widget_state ();
@@ -552,14 +562,16 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("ADDING MEDIA [%s]", hint.to_string());
 
-        lock (list_view) {
-            if (has_list_view)
+        if (has_list_view) {
+            lock (list_view) {
                 list_view.add_media (new_media);
+            }
         }
 
-        lock (grid_view) {
-            if (has_grid_view)
+        if (has_grid_view) {
+            lock (grid_view) {
                 grid_view.add_media (new_media);
+            }
         }
 
         update_widget_state ();
@@ -571,14 +583,16 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("REMOVING MEDIA [%s]", hint.to_string ());
 
-        lock (list_view) {
-            if (has_list_view)
+        if (has_list_view) {
+            lock (list_view) {
                 list_view.remove_media (media);
+            }
         }
 
-        lock (grid_view) {
-            if (has_grid_view)
+        if (has_grid_view) {
+            lock (grid_view) {
                 grid_view.remove_media (media);
+            }
         }
 
         update_widget_state ();
