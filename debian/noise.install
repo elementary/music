@@ -1,0 +1,5 @@
+usr/bin/noise
+usr/share/icons/*
+usr/share/locale/*
+usr/share/noise/*
+usr/share/applications/noise.desktop
