@@ -342,7 +342,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         obey_column_browser = true;
 
         if (has_column_browser)
-            column_browser.set_media (get_visible_media ());
+            column_browser.set_media (view_wrapper.library.get_search_result ());
     }
 
     public string get_statusbar_text () {
