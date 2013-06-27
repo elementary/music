@@ -3,7 +3,7 @@ Section: sound
 Priority: optional
 Maintainer: Devid Antonio Filoni <d.filoni@ubuntu.com>
 Build-Depends: cmake (>= 2.6),
-               debhelper (>= 7.0.50~),
+               debhelper (>= 9),
                libdbus-glib-1-dev,
                libdbusmenu-glib-dev (>= 0.4),
                libdbusmenu-gtk3-dev,
@@ -64,6 +64,7 @@ Depends: ${misc:Depends},
          ${shlibs:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
 Recommends: noise
+Conflicts: noise (<< 1:0.2.1+r1487)
 Description: Simple, fast, and good looking music player (core library)
  Noise is an easy to use, stable, fast and good looking music library
  organizer written in vala.
@@ -75,11 +76,30 @@ Description: Simple, fast, and good looking music player (core library)
  .
  This package contains the shared library.
 
+Package: libnoise-core0-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: libnoise-core0 (= ${binary:Version}), ${misc:Depends}
+Pre-Depends: dpkg (>= 1.15.6)
+Recommends: noise-dbg
+Description: Simple, fast, and good looking music player (core library)
+ Noise is an easy to use, stable, fast and good looking music library
+ organizer written in vala.
+ .
+ It has many modern features including Last.FM integration to download
+ artwork, information, and scrobble your music, playlists and smart playlists,
+ find music similar to the currently playing song, simple UI, fast searching
+ for music, queue system, mass song editing and more...
+ .
+ This package contains debugging symbols for the shared library.
+
 Package: libnoise-core-dev
 Section: libdevel
 Architecture: any
 Depends: libnoise-core0 (= ${binary:Version}), ${misc:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
+Conflicts: noise (<< 1:0.2.1+r1487)
 Description: Simple, fast, and good looking music player (development files)
  Noise is an easy to use, stable, fast and good looking music library
  organizer written in vala.
@@ -89,4 +109,4 @@ Description: Simple, fast, and good looking music player (development files)
  find music similar to the currently playing song, simple UI, fast searching
  for music, queue system, mass song editing and more...
  .
- This package contains the static library and header files.
+ This package contains the development files.
