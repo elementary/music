@@ -398,7 +398,7 @@ namespace Noise.PlaylistsUtils {
                     success = parse_paths_from_pls("file://" + file, ref paths, ref name);
                 } else {
                     success = false;
-                    throw new GLib.Error (GLib.Quark.from_string ("not-recognized"), 1, _("Unrecognized playlist file. Import failed."));
+                    throw new GLib.Error (GLib.Quark.from_string ("not-recognized"), 1, "%s", _("Unrecognized playlist file. Import failed."));
                 }
                 playlists.set (name, paths);
             }

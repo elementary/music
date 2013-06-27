@@ -1291,7 +1291,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public void doAlert(string title, string message) {
-        var dialog = new MessageDialog (this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, title);
+        var dialog = new MessageDialog (this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, "%s", title);
 
         dialog.title = App.instance.get_name ();
         dialog.secondary_text = message;
