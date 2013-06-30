@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-06-03 23:01+0000\n"
-"Last-Translator: Pedro Monteiro <Unknown>\n"
+"PO-Revision-Date: 2013-06-29 21:48+0000\n"
+"Last-Translator: Laurentino <laurentinolopes@gmail.com>\n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-06-26 05:47+0000\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Launchpad-Export-Date: 2013-06-30 06:33+0000\n"
+"X-Generator: Launchpad (build 16692)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -962,11 +962,11 @@ msgstr "Certifique-se de que a pasta de músicas está acessível e montada."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
 msgid "Install Plugin"
-msgstr "Instalar <i>plugin</i>"
+msgstr "Instalar Plugin"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
-msgstr "Requer um <i>plugin</i> GStreamer que não está instalado"
+msgstr "Requer o plugin GStreamer, que não está instalado"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
@@ -974,7 +974,7 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
-"O <i>plugin</i> para os ficheiros do tipo %s não está instalado.\n"
+"O plugin para os ficheiros do tipo %s não está instalado.\n"
 "O que pretende fazer?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
