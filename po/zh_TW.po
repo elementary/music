@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-06-15 14:17+0000\n"
+"PO-Revision-Date: 2013-07-04 16:16+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-06-26 05:48+0000\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Launchpad-Export-Date: 2013-07-05 05:59+0000\n"
+"X-Generator: Launchpad (build 16696)\n"
 "Language: \n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -809,7 +809,7 @@ msgstr "請等候至本播放清單更新完成。"
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr "若要添加歌曲至播放清單，請對曲目<b>雙擊滑鼠</b>，並選擇<b>加入至播放清單</b>。"
+msgstr "若要添加歌曲至播放清單，請對曲目按下點擊<b>滑鼠第二鍵</b>，並選擇<b>加入至播放清單</b>。"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
@@ -822,8 +822,8 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"本播放清單將自動篩選加入符合規則的音樂。若要修改規則，請在側邊欄對該規則<b>雙擊滑鼠</b>，並按一下</b>編輯</b>。此外，您也可以點選側邊欄下方"
-"的按鈕並編輯。"
+"本播放清單將自動篩選加入符合規則的音樂。若要修改規則，請在側邊欄對該規則點擊<b>滑鼠第二鍵</b>，並按一下</b>編輯</b>。此外，您也可以點選側邊"
+"欄下方的按鈕並編輯。"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:449
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:685
@@ -908,7 +908,7 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"要添加歌曲至佇列，必須在曲目上 <b>雙擊滑鼠</b>，並選擇<b>佇列</b>。在目前播放的清單中，當一首歌結束後將優先播放剛佇列的歌曲。"
+"要添加歌曲至佇列，必須在曲目上點擊<b>滑鼠第二鍵</b>，並選擇<b>佇列</b>。在目前播放的清單中，當一首歌結束後將優先播放剛佇列的歌曲。"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:884
 msgid "No songs in History"
