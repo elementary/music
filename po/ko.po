@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-07-03 22:33+0000\n"
+"PO-Revision-Date: 2013-07-06 06:12+0000\n"
 "Last-Translator: Kyu-Seok Yang <lklk9110@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-07-04 05:43+0000\n"
-"X-Generator: Launchpad (build 16692)\n"
+"X-Launchpad-Export-Date: 2013-07-06 06:14+0000\n"
+"X-Generator: Launchpad (build 16696)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -452,7 +452,7 @@ msgstr "음악 정보 편집"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
 msgid "Show in File Browser"
-msgstr ""
+msgstr "파일 탐색기에서 보기"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
 msgctxt "Action item (verb)"
@@ -479,7 +479,7 @@ msgstr "새로운 재생목록..."
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "%i (%i개 중) 개의 선택 된 곡을 불러들입니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:223
 #, c-format
@@ -638,11 +638,11 @@ msgstr "연도"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Ratings"
-msgstr ""
+msgstr "등급"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
 msgid "Composers"
-msgstr ""
+msgstr "작곡가"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
 msgid "Groupings"
@@ -655,22 +655,21 @@ msgstr "자동"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
-msgstr ""
+msgstr "왼쪽에"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
 msgid "On Top"
-msgstr ""
+msgstr "상단에"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:401
 msgid "Unrated"
-msgstr ""
+msgstr "등급 지정 안 됨"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:403
 #, c-format
 msgid "%i Star"
 msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i개의 별"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -679,33 +678,33 @@ msgstr "모든 장르"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "모든 %i 장르"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
 msgid "No Genres"
-msgstr ""
+msgstr "장르 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Artists"
-msgstr ""
+msgstr "모든 아티스트"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "모든 %i 아티스트"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
-msgstr ""
+msgstr "아티스트 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Albums"
-msgstr ""
+msgstr "모든 앨범"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "모든 %i 앨범"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Albums"
@@ -713,50 +712,50 @@ msgstr "앨범 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Years"
-msgstr ""
+msgstr "모든 연도"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "모든 %i 년도"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Years"
-msgstr ""
+msgstr "연도 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Ratings"
-msgstr ""
+msgstr "모든 등급"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Ratings"
-msgstr ""
+msgstr "등급 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Groupings"
-msgstr ""
+msgstr "모든 그룹"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 #, c-format
 msgid "All %i Groupings"
-msgstr ""
+msgstr "모든 %i 그룹"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Groupings"
-msgstr ""
+msgstr "그룹 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Composers"
-msgstr ""
+msgstr "모든 작곡가"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 #, c-format
 msgid "All %i Composers"
-msgstr ""
+msgstr "모든 %i 작곡가"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Composers"
-msgstr ""
+msgstr "작곡가 없음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:50
 msgid "Get Some Tunes"
@@ -812,7 +811,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "지능형 재생 목록 수정"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
@@ -857,11 +856,11 @@ msgstr "최근에 재생하지 않은 트랙"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:168
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "%s로부터 음악 불러들이는 중..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:210
 msgid "Adding files to library…"
-msgstr ""
+msgstr "라이브러리에 파일을 추가하는 중입니다..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:249
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1138
