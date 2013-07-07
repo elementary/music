@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-07-06 06:12+0000\n"
+"PO-Revision-Date: 2013-07-06 06:15+0000\n"
 "Last-Translator: Kyu-Seok Yang <lklk9110@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-07-06 06:14+0000\n"
+"X-Launchpad-Export-Date: 2013-07-07 05:41+0000\n"
 "X-Generator: Launchpad (build 16696)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -873,7 +873,7 @@ msgstr "추가된 노래를 찾고 있습니다. 잠시만 기다려주세요."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:353
 msgid "Added to your queue:"
-msgstr ""
+msgstr "대기열에 추가되었습니다:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:233
 msgid "Import to Library…"
@@ -941,11 +941,11 @@ msgstr "음악 폴더에 접근할 수 있는지와 마운트 했는지를 확�
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:57
 msgid "Install Plugin"
-msgstr ""
+msgstr "플러그인 설치"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
-msgstr ""
+msgstr "필수 GStreamer 플러그인 설치 안됨"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
@@ -953,35 +953,37 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"미디어 형식 %s를 위한 플러그인이 설치되지 않았습니다.\n"
+"어떤 작업을 수행하시겠습니까?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:56
 msgid "Import from Device"
-msgstr ""
+msgstr "장치로부터 불러들이기"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:73
 #, c-format
 msgid "Import media from %s"
-msgstr ""
+msgstr "%s로부터 미디어 불러들이기"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:74
 #, c-format
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
-msgstr ""
+msgstr "다음 파일들이 %s에서 발견되었지만, 라이브러리에 존재하지 않습니다. 불러들이고 싶은 모든 파일들을 체크해주십시오."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 msgid "Import all media"
-msgstr ""
+msgstr "모든 미디어 불러들이기"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:80
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDView.vala:90
 msgid "Import"
-msgstr ""
+msgstr "불러들이기"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:81
 msgid "Don't Import"
-msgstr ""
+msgstr "불러들이지 않기"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:89
 #, c-format
