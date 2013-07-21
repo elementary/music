@@ -1,16 +1,16 @@
-noise (1:0.2.2) precise; urgency=low
+noise (0.2.2) precise; urgency=low
 
   * New upstream release.
 
  -- Corentin Noël <tintou@mailoo.org>  Thu, 27 Jun 2013 22:45:09 +0100
 
-noise (1:0.2.1) precise; urgency=low
+noise (0.2.1) precise; urgency=low
 
   * New upstream release.
 
  -- Cody Garver <cody@elementaryos.org>  Sun, 09 Jun 2013 19:55:02 -0500
 
-noise (1:0.2) quantal; urgency=low
+noise (0.2) quantal; urgency=low
 
   * New upstream release.
 
