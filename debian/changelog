@@ -1,3 +1,9 @@
+noise (0.2.3) precise; urgency=low
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementaryos.org>  Sun, 21 Jul 2013 09:09:03 -0500
+
 noise (0.2.2) precise; urgency=low
 
   * New upstream release.
