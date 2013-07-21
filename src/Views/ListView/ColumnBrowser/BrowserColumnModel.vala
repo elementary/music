@@ -92,7 +92,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 			return;
 
 		if (! ( (SequenceIter<string>) iter.user_data).is_end ())
-			val = rows.get ( ( (SequenceIter<string>) iter.user_data));
+			val = Sequence<string>.get ( ( (SequenceIter<string>) iter.user_data));
 	}
 
 	/** Sets iter to point to the first child of parent. **/
@@ -196,7 +196,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 
 	/* Updates the "All" item */
 	private void update_first_item () {
-		rows.set ( (SequenceIter<string>)first_iter.user_data, get_first_item_text (n_items));
+		Sequence<string>.set ( (SequenceIter<string>)first_iter.user_data, get_first_item_text (n_items));
 	}
 
 
@@ -283,7 +283,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 				return;
 			else if (col == 0) {
 				string val = args.arg ();
-				rows.set ( (SequenceIter<string>)iter.user_data, val);
+				Sequence<string>.set ( (SequenceIter<string>)iter.user_data, val);
 			}
 		}
 	}
@@ -293,7 +293,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 			return;
 
 		var path = new TreePath.from_string ( ( (SequenceIter)iter.user_data).get_position ().to_string ());
-		rows.remove ( (SequenceIter<string>)iter.user_data);
+		Sequence<string>.remove ( (SequenceIter<string>)iter.user_data);
 		row_deleted (path);
 	}
 
@@ -354,9 +354,9 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 			}
 			else {
 			    if (category == BrowserColumn.Category.ARTIST || category == BrowserColumn.Category.ALBUM)
-			        rv = String.compare (rows.get (a), rows.get (b));
+			        rv = String.compare (Sequence<string>.get (a), Sequence<string>.get (b));
 		        else
-				    rv = String.compare (rows.get (a), rows.get (b));
+				    rv = String.compare (Sequence<string>.get (a), Sequence<string>.get (b));
 			}
 		}
 

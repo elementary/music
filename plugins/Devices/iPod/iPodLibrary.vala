@@ -40,7 +40,6 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     Device device;
     bool operation_cancelled = false;
     bool is_doing_file_operations = false;
-    bool queue_is_finished = false;
     
     public iPodLibrary (GPod.iTunesDB db, Device device) {
         this.db = db;
@@ -202,7 +201,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         
         bool success = false;
         try {
-            success = db.cp_track_to_ipod(added, File.new_for_uri(s.uri).get_path());
+            success = GPod.iTunesDB.cp_track_to_ipod(added, File.new_for_uri(s.uri).get_path());
             debug ("Copied media %s to ipod\n", added.title);
         } catch(Error err) {
             warning ("Error adding/copying song %s to iPod: %s\n", s.title, err.message);

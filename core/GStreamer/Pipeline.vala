@@ -33,7 +33,6 @@ public class Noise.Pipeline : GLib.Object {
 	public Equalizer eq;
 	
 	public dynamic Gst.Bus bus;
-	//Pad teepad;
 	public Gst.Pad pad;
 	
 	public dynamic Gst.Element audiosink;
@@ -45,8 +44,6 @@ public class Noise.Pipeline : GLib.Object {
 	public dynamic Gst.Element audiotee;
 	public dynamic Gst.Element audiobin;
 	public dynamic Gst.Element preamp;
-	//dynamic Gst.Element volume;
-	//dynamic Gst.Element rgvolume;
 	
 	public Pipeline() {
 		
@@ -54,7 +51,6 @@ public class Noise.Pipeline : GLib.Object {
 		playbin = Gst.ElementFactory.make("playbin2", "play");
 		
 		audiosink = Gst.ElementFactory.make("autoaudiosink", "audio-sink");
-		//audiosink.set("profile", 1); // says we handle music and movies
 		
 		audiobin = new Gst.Bin("audiobin"); // this holds the real primary sink
 		
@@ -87,22 +83,8 @@ public class Noise.Pipeline : GLib.Object {
 		pad = audiotee.get_request_pad("src%d");
 		audiotee.set("alloc-pad", pad);
 		pad.link(sinkpad);
-		
-		//bus.add_watch(busCallback);
-		/*play.audio_tags_changed.connect(audioTagsChanged);
-		play.text_tags_changed.connect(textTagsChanged);*/
 	}
 
-/*
-	private void audioTagsChanged(Gst.Element sender, int stream_number) {
-		
-	}
-
-	/*private void textTagsChanged(Gst.Element sender, int stream_number) {
-		
-	}
-*/
-	
 	public void enableEqualizer() {
 		if (eq.element != null) {
 			audiosinkqueue.unlink_many(audiosink); // link the queue with the real audio sink
