@@ -106,6 +106,10 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         mode_button.set_active (sensitive ? (int)mode : 3);
     }
 
+    public new bool get_sensitive () {
+        return mode_button.get_sensitive ();
+    }
+
     // CRAPPY API
     // XXX ugly workaround to avoid dealing with API breaks, since there's no time
     // to come up with a fancy solution. Needs rewrite
