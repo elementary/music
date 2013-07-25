@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-06-06 11:24+0000\n"
+"PO-Revision-Date: 2013-07-24 06:55+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-06-26 05:47+0000\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Launchpad-Export-Date: 2013-07-25 05:41+0000\n"
+"X-Generator: Launchpad (build 16700)\n"
 "Language: et\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -1576,7 +1576,7 @@ msgstr "Impordi esitusloendeid..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:232
 msgid "Library"
-msgstr "Kogumik"
+msgstr "Kogumik:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:233
 msgid "Devices"
@@ -1589,7 +1589,7 @@ msgstr "Võrk"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:235
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//MPRIS/MPRIS.vala:643
 msgid "Playlists"
-msgstr "Esitusloendid"
+msgstr "Esitusloendid:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:68
 msgid "View as Albums"

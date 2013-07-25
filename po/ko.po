@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-07-23 03:07+0000\n"
+"PO-Revision-Date: 2013-07-24 21:32+0000\n"
 "Last-Translator: Kenny Kim <kennykim12@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-07-24 05:51+0000\n"
+"X-Launchpad-Export-Date: 2013-07-25 05:41+0000\n"
 "X-Generator: Launchpad (build 16700)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -274,7 +274,7 @@ msgstr "알 수 없는 음악가"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:108
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:881
 msgid "History"
-msgstr "사용 기록"
+msgstr "재생 기록"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:101
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
@@ -410,7 +410,7 @@ msgstr "장치가 이미 작업 중에 있습니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:89
 msgid "No Songs Found."
-msgstr "노래를 찾을 수 없음"
+msgstr "아무 곡도 찾지 못 하였습니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:369
 #, c-format
@@ -573,7 +573,7 @@ msgstr "연도"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
 msgid "Grouping"
-msgstr "그룹으로 묶기"
+msgstr "그룹"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
@@ -796,7 +796,7 @@ msgstr "미디어 없음"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid "No Songs"
-msgstr "노래 없음"
+msgstr "아무 곡도 없습니다"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Please wait until that this playlist get updated."
@@ -831,7 +831,7 @@ msgstr "가장 선호하는 노래"
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:456
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:692
 msgid "Recently Added"
-msgstr "최근에 추가됨"
+msgstr "최근 추가된 항목"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:472
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:708
@@ -851,7 +851,7 @@ msgstr "많이 재생된 트랙"
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:493
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:729
 msgid "Not Recently Played"
-msgstr "최근에 재생하지 않은 트랙"
+msgstr "최근 재생하지 않은 항목"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:168
 #, c-format
@@ -898,7 +898,7 @@ msgstr "음악 검색"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:874
 msgid "No songs in Queue"
-msgstr "재생 목록에 음악 없음"
+msgstr "대기열에 아무 곡도 없습니다"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:875
 msgid ""
@@ -911,7 +911,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:884
 msgid "No songs in History"
-msgstr "기록에 음악 없음"
+msgstr "재생 기록에 아무 곡도 없습니다"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:885
 msgid ""
@@ -945,7 +945,7 @@ msgstr "플러그인 설치"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Required GStreamer plugin not installed"
-msgstr "필수 GStreamer 플러그인 설치 안됨"
+msgstr "GStreamer 플러그인이 설치되지 않았습니다"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:65
 #, c-format
@@ -1003,7 +1003,7 @@ msgstr "ID"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:275
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:197
 msgid "Title"
-msgstr "제목"
+msgstr "곡명"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
@@ -1253,7 +1253,7 @@ msgstr "다음 중에서:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
-msgstr "제한"
+msgstr "다음으로 제한"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "items"
@@ -1291,7 +1291,7 @@ msgstr "장르"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:203
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
 msgid "Grouping"
-msgstr ""
+msgstr "그룹"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Last Played"
@@ -1322,36 +1322,36 @@ msgstr "년도"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
 msgid "is"
-msgstr ""
+msgstr "다음과 같음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
 msgid "contains"
-msgstr "포함"
+msgstr "다음을 포함"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:338
 msgid "does not contain"
-msgstr "포함하지 않음"
+msgstr "다음을 포함하지 않음"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
 msgid "is exactly"
-msgstr ""
+msgstr "다음과 일치"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
 msgid "is at most"
-msgstr ""
+msgstr "다음보다 작게"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:365
 msgid "is at least"
-msgstr ""
+msgstr "다음보다 크게"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
 msgid "is within"
-msgstr ""
+msgstr "다음 범위 내"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:378
 msgid "is before"
-msgstr ""
+msgstr "다음 이전에"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "seconds"
@@ -1450,7 +1450,7 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i개의 파일들을 찾지 못 하였습니다. 무엇을 하시겠습니까?"
+msgstr "%i개의 파일들을 찾지 못 하였습니다. 어떤 작업을 수행하시겠습니까?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:60
 msgid "Import media to Library"
@@ -1657,7 +1657,7 @@ msgstr "현재 항목 삭제"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"
-msgstr "비슷한 곡들을 찾지 못 하였습니다"
+msgstr "유사한 곡들을 찾지 못 하였습니다"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid ""
@@ -1674,7 +1674,7 @@ msgstr "미디어"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "Similar Media"
-msgstr "비슷한 미디어"
+msgstr "유사한 미디어"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 #, c-format
@@ -1718,7 +1718,7 @@ msgstr "Last.fm을 통합하려면 %s에게 권한을 주어야합니다. 이 �
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMedia.vala:44
 msgid "Similar"
-msgstr ""
+msgstr "유사 항목"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerDevice.vala:114
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodDevice.vala:75
