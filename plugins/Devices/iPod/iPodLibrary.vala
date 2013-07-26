@@ -201,7 +201,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         
         bool success = false;
         try {
-            success = GPod.iTunesDB.cp_track_to_ipod(added, File.new_for_uri(s.uri).get_path());
+            success = GPod.iTunesDB.cp_track_to_ipod (added, File.new_for_uri (s.uri).get_path ());
             debug ("Copied media %s to ipod\n", added.title);
         } catch(Error err) {
             warning ("Error adding/copying song %s to iPod: %s\n", s.title, err.message);

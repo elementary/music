@@ -55,9 +55,9 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     
         tagger = new GStreamerTagger();
         
-        tagger.media_imported.connect(media_imported_from_tagger);
-        tagger.import_error.connect(import_error);
-        tagger.queue_finished.connect(queue_finished);
+        tagger.media_imported.connect (media_imported_from_tagger);
+        tagger.import_error.connect (import_error);
+        tagger.queue_finished.connect (queue_finished);
         notification_manager.progress_canceled.connect( () => {operation_cancelled = true;});
     }
 
