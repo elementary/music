@@ -190,6 +190,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     if (viewSelector.get_column_browser_toggle_visible ()) {
                         change_view (Widgets.ViewSelector.Mode.COLUMN);
                     }
+
                     break;
                 case Gdk.Key.f:
                     return false;
