@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-07-25 13:58+0000\n"
+"PO-Revision-Date: 2013-07-26 19:32+0000\n"
 "Last-Translator: Alexander Rosolko <rosolko@gmail.com>\n"
 "Language-Team: Belarusian <be@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Launchpad-Export-Date: 2013-07-26 05:44+0000\n"
+"X-Launchpad-Export-Date: 2013-07-27 05:25+0000\n"
 "X-Generator: Launchpad (build 16700)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -353,46 +353,46 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:86
 msgid "Device Name:"
-msgstr ""
+msgstr "Назва Прылады:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Device Name"
-msgstr ""
+msgstr "Назва прылады"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "Аўтаматычная сінхранізацыя пры падключэнні:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:98
 msgid "Sync:"
-msgstr ""
+msgstr "Сінхранізацыя:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:120
 msgid "Other Files"
-msgstr ""
+msgstr "Іншы Файлы"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:121
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:678
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:816
 msgid "Music"
-msgstr ""
+msgstr "Музыка"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:122
 msgid "Podcasts"
-msgstr ""
+msgstr "Падкасты"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:416
 msgid "All Music"
-msgstr ""
+msgstr "Уся Музыка"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:419
 msgid "All Podcasts"
-msgstr ""
+msgstr "Усе Падкасты"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 msgid "Sync Failed"
-msgstr ""
+msgstr "Сінхранізацыя Не Удалася"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
@@ -404,12 +404,14 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Cannot Sync"
-msgstr ""
+msgstr "Немагчыма Сінхранізаваць"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
+"Немагчыма сінхранізаваць прыладу з выбранымі наладкамі  сінхранізацыі. Не "
+"хапае месца на дыску"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
@@ -441,15 +443,15 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
 msgid "Remove from Library"
-msgstr ""
+msgstr "Выдаліць з Бібліятэкі"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Выдаліць з Чаргі"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
 msgid "Remove from Device"
-msgstr ""
+msgstr "Выдаліць з Прылады"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
 msgid "Scroll to Current Song"
@@ -457,29 +459,29 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Рэдагаваць Інфармацыю Песні"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
 msgid "Show in File Browser"
-msgstr ""
+msgstr "Паказаць у Файлавым Браўзары"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "Чарга"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Дадаць у спіс прайгравання"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
 msgid "Remove Song"
-msgstr ""
+msgstr "Выдаліць Песню"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:134
 msgid "Import to Library"
-msgstr ""
+msgstr "Імпартаваць у Бібліятэку"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
 msgid "New Playlist…"
@@ -504,7 +506,7 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:629
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
 msgid "Never"
-msgstr ""
+msgstr "Ніколі"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -523,7 +525,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
 msgid "Display Album Art"
-msgstr ""
+msgstr "Адлюстроўваць Вокладкі Альбомаў"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
 #, c-format
@@ -538,47 +540,47 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
 msgid "Track"
-msgstr ""
+msgstr "Аўдыясцежка"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "Назва"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "Даўжыня"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "Мастак"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "Альбом"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "Выканаўца альбома"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "Кампазітар"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
 msgid "Genre"
-msgstr ""
+msgstr "Жанар"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "Год"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
@@ -588,12 +590,12 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr ""
+msgstr "Частата бітаў"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
 msgid "Rating"
-msgstr ""
+msgstr "Рэйтынг"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
 msgctxt "List column title"
@@ -608,39 +610,39 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
 msgctxt "List column title"
 msgid "Date Added"
-msgstr ""
+msgstr "Дата дадання"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
 msgctxt "List column title"
 msgid "Last Played"
-msgstr ""
+msgstr "Апошні раз гучала"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr ""
+msgstr "Удараў на хвіліну"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr ""
+msgstr "Размяшчэнне"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
 msgid "File Size"
-msgstr ""
+msgstr "Памер файла"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
 msgid "Genres"
-msgstr ""
+msgstr "Жанры"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
 msgid "Artists"
-msgstr ""
+msgstr "Мастакі"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
 msgid "Albums"
-msgstr ""
+msgstr "Альбомы"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
 msgid "Years"
