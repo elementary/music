@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-07-24 21:32+0000\n"
-"Last-Translator: Kenny Kim <kennykim12@gmail.com>\n"
+"PO-Revision-Date: 2013-08-03 06:25+0000\n"
+"Last-Translator: Kyu-Seok Yang <lklk9110@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2013-07-25 05:41+0000\n"
-"X-Generator: Launchpad (build 16700)\n"
+"X-Launchpad-Export-Date: 2013-08-04 05:34+0000\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -1174,8 +1174,7 @@ msgid ""
 msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "이 작업은 %s와 함께 자동으로 동기화되는 장치들과 당신의 라이브러리에서 곡들을 삭제할 것입니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:48
 msgid "Not Imported Files"
@@ -1377,19 +1376,19 @@ msgstr "가사"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:353
 msgid "Editing $NAME by $ARTIST"
-msgstr ""
+msgstr "$NAME을 $ARTIST에 의해 편집"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "%s 편집"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:358
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "%i 곡 편집"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:199
 msgid "Album Artist"
@@ -1445,7 +1444,7 @@ msgstr "미디어를 찾지 못 하였습니다"
 msgid ""
 "The music file for $NAME by $ARTIST could not be found. What would you like "
 "to do?"
-msgstr ""
+msgstr "$ARTIST의 $NAME 음악 파일을 찾을 수 없습니다. 어떻게 할까요?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:86
 #, c-format
@@ -1683,7 +1682,7 @@ msgstr "%s에게 권한 주기"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "실패. 다시 시도하려면 누르세요."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
@@ -1695,7 +1694,7 @@ msgstr "성공!"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "로그인 완료"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
@@ -1741,7 +1740,7 @@ msgstr "음악 재생기"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:177
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "<b>$ARTIST</b>의 <b>$NAME<b>을 $DEVICE로 추가합니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:185
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:223
@@ -1775,7 +1774,7 @@ msgstr "동기화를 완료하기 위한 용량이 부족합니다..."
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:383
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:602
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "$DEVICE에서 <b>$ARTIST</b>의 <b>$NAME</b>를 삭제합니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:414
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:395
@@ -1822,11 +1821,11 @@ msgstr "CD에서 %i개의 곡들을 가져오는 작업을 완료하였습니다
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
 #, c-format
 msgid "Importing track %i: %s"
-msgstr ""
+msgstr "트랙 %i 불러오기: %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
+msgstr "CD 불러오기가 현재 불러오기 후 <b>취소</b>될 것입니다."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:388
 msgid "An error occured during the Import of this CD"
