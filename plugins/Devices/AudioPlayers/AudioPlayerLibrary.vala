@@ -55,13 +55,13 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     
         tagger = new GStreamerTagger();
         
-        tagger.media_imported.connect(media_imported);
-        tagger.import_error.connect(import_error);
-        tagger.queue_finished.connect(queue_finished);
+        tagger.media_imported.connect (media_imported_from_tagger);
+        tagger.import_error.connect (import_error);
+        tagger.queue_finished.connect (queue_finished);
         notification_manager.progress_canceled.connect( () => {operation_cancelled = true;});
     }
-    
-    void media_imported (Media m) {
+
+    void media_imported_from_tagger (Media m) {
         m.isTemporary = true;
         this.medias.add(m);
         m.rowid = medias_rowid;
@@ -80,32 +80,11 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             is_initialized = true;
             device.initialized (device);
             search_medias ("");
-            //load_playlists ();
         }
     }
     
     public override void initialize_library () {
         
-    }
-    
-    private void load_playlists () {
-        var imported_pl = new Gee.LinkedList<string> ();
-        FileUtils.count_playlists_files (GLib.File.new_for_uri (device.get_music_folder () + "/Playlists/"), ref imported_pl);
-        var playlists = new Gee.HashMap<string, Gee.LinkedList<string>> ();
-        foreach (var file in imported_pl) {
-            if(file != "") {
-                var f = GLib.File.new_for_uri (file);
-                var infos = f.query_info (GLib.FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NONE);
-                var name = infos.get_display_name ();
-                var paths = new Gee.LinkedList<string> ();
-                if (file.has_suffix(".m3u")) {
-                    name = name.replace (".m3u", "");
-                    PlaylistsUtils.parse_paths_from_m3u(file, ref paths);
-                }
-                playlists.set (name, paths);
-            }
-        }
-        PlaylistsUtils.import_from_playlist_file_info(playlists, this);
     }
     
     public override void add_files_to_library (Gee.Collection<string> files) {
