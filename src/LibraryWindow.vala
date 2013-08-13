@@ -148,6 +148,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }*/
     }
 
+    private void change_view (Widgets.ViewSelector.Mode mode) {
+        if (viewSelector.get_sensitive ()) {
+            viewSelector.selected = mode;
+        }
+    }
+
     public override bool key_press_event (Gdk.EventKey event) {
         var modifiers = Gtk.accelerator_get_default_mod_mask ();
         bool modifiers_active = (event.state & modifiers) != 0;
@@ -174,6 +180,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
         } else if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
             switch (event.keyval) {
+                case Gdk.Key.@1:
+                    change_view (Widgets.ViewSelector.Mode.GRID);
+                    break;
+                case Gdk.Key.@2:
+                    change_view (Widgets.ViewSelector.Mode.LIST);
+                    break;
+                case Gdk.Key.@3:
+                    if (viewSelector.get_column_browser_toggle_visible ()) {
+                        change_view (Widgets.ViewSelector.Mode.COLUMN);
+                    }
+
+                    break;
                 case Gdk.Key.f:
                     return false;
                 case Gdk.Key.q:
