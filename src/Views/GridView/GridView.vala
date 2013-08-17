@@ -18,10 +18,6 @@
  */
 
 public class Noise.GridView : ContentView, GridLayout {
-
-    private string TEXT_MARKUP = "%s\n<span foreground=\"#999\">%s</span>";
-    private string TOOLTIP_MARKUP = "<span size=\"large\"><b>%s</b></span>\n%s";
-
     // The window used to present album contents
     private static PopupListView? _popup = null;
     public PopupListView popup_list_view {
@@ -329,22 +325,16 @@ public class Noise.GridView : ContentView, GridLayout {
                 // replace the current album-related media fields.
                 return CoverartCache.instance.get_album_cover (album);
 
-            case FastGrid.Column.MARKUP:
-                string name = album.get_display_name ();
-                string artist = album.get_display_artist ();
+            case FastGrid.Column.TITLE:
+                return album.get_display_name ();
 
-                if (name.length > 25)
-                    name = name.substring (0, 21) + "…";
-                if (artist.length > 25)
-                    artist = artist.substring (0, 21) + "…";
-
-                return Markup.printf_escaped (TEXT_MARKUP, name, artist);
+            case FastGrid.Column.SUBTITLE:
+                return album.get_display_artist ();
 
             case FastGrid.Column.TOOLTIP:
                 string name = album.get_display_name ();
                 string artist = album.get_display_artist ();
-
-                return Markup.printf_escaped (TOOLTIP_MARKUP, name, artist);
+                return Markup.printf_escaped ("<span size=\"large\"><b>%s</b></span>\n%s", name, artist);
         }
 
         assert_not_reached ();

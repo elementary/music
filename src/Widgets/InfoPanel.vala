@@ -63,7 +63,6 @@ public class Noise.InfoPanel : Gtk.EventBox {
         title = new Gtk.Label("");
         artist = new Gtk.Label("");
         coverArt = new Gtk.Image();
-        coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true); // centered = true
         album = new Gtk.Label("");
         year_label = new Gtk.Label("");
@@ -138,8 +137,11 @@ public class Noise.InfoPanel : Gtk.EventBox {
     }
     
     private void update_cover_art () {
-        if (current_media != null)
-            coverArt.set_from_pixbuf (CoverartCache.instance.get_cover (current_media));
+        if (current_media != null) {
+            var cover_art = CoverartCache.instance.get_cover (current_media);
+            var cover_art_with_shadow = PixbufUtils.render_pixbuf_shadow (cover_art); 
+            coverArt.set_from_pixbuf (cover_art_with_shadow);
+        }
     }
     
     private void ratingChanged (int new_rating) {

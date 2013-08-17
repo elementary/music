@@ -33,14 +33,7 @@
  * A place to store icon information and pixbufs.
  */
 public class Noise.Icons {
-
-    /**
-     * Size of the cover art used in the album view
-     **/
-    public const int ALBUM_VIEW_IMAGE_SIZE = 168;
     public const int DEFAULT_ALBUM_ART_SIZE = 138;
-
-    public static Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF { get; private set; }
 
     public static Icon DEFAULT_ALBUM_ART { get; private set; default = new Icon ("albumart"); }
     public static Icon DEFAULT_ALBUM_ART_2 { get; private set; default = new Icon ("albumart_2"); }
@@ -82,11 +75,6 @@ public class Noise.Icons {
     public static Icon VIEW_VIDEO { get; private set; default = new Icon ("view-video-symbolic"); }
     public static Icon LIST_ADD_SYMBOLIC { get; private set; default = new Icon ("list-add-symbolic"); }
     public static Icon REFRESH_SYMBOLIC { get; private set; default = new Icon ("view-refresh-symbolic"); }
-
-    static construct {
-        var default_shadow = new Icon ("albumart-shadow");
-        DEFAULT_ALBUM_SHADOW_PIXBUF = default_shadow.render_at_size (ALBUM_VIEW_IMAGE_SIZE);
-    }
 
     /**
      * This is needed until vala really supports initialization of static members.

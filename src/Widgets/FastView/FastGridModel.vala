@@ -28,6 +28,8 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 			return typeof(string);
 		else if(col == 2)
 			return typeof(string);
+		else if(col == 3)
+			return typeof(string);
 		else
 			return typeof(GLib.Object);
 	}
@@ -49,7 +51,7 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 	}
 
 	public int get_n_columns () {
-		return 4;
+		return 5;
 	}
 
 	public TreePath? get_path (TreeIter iter) {

@@ -23,7 +23,6 @@ install(FILES icons/128x128/apps/multimedia-audio-player.svg DESTINATION ${SYSTE
 # GTK+ expects to find in a normal icon theme. They work fine in the root icon dir though.
 set(GENERIC_IMAGES
     icons/albumart.svg
-    icons/albumart-shadow.png
 )
 
 install(FILES ${GENERIC_IMAGES} DESTINATION ${ICON_DIR})
