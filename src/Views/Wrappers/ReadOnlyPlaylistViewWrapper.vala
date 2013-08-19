@@ -37,7 +37,7 @@ public class Noise.ReadOnlyPlaylistViewWrapper : ViewWrapper {
         
         this.is_queue = is_queue;
         message_head = _("No Songs");
-        message_body = _("Please wait until this playlist gets updated.");
+        message_body = _("Updating playlist. Please wait.");
         message_type = Gtk.MessageType.INFO;
 
         this.playlist_id = playlist_id;
