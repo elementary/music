@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-05-26 19:34+0000\n"
+"PO-Revision-Date: 2013-08-30 09:52+0000\n"
 "Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-06-26 05:47+0000\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Launchpad-Export-Date: 2013-08-31 05:23+0000\n"
+"X-Generator: Launchpad (build 16750)\n"
 "Language: hu\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -98,7 +98,7 @@ msgstr "%s (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr "Új lejátszólista"
+msgstr "Új lejátszási lista"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:246
 #, c-format
@@ -107,7 +107,7 @@ msgstr "%s (%i)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr "Lejátszólista exportálása"
+msgstr "Lejátszási lista exportálása"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:282
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:376
@@ -121,7 +121,7 @@ msgstr "Shoutcast lejátszási lista 2.0 (*.pls)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
-msgstr "Lejátszólista"
+msgstr "Lejátszási lista"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:367
 #, c-format
@@ -130,7 +130,7 @@ msgstr "%s importálása"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
-msgstr "Ismeretlen lejátszólista fájl. Az importálás sikertelen."
+msgstr "Ismeretlen lejátszási lista fájl. Az importálás sikertelen."
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:44
 #, c-format
@@ -253,6 +253,8 @@ msgstr "Zenelejátszó"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
+"Noise;Audió;Lejátszó;MP3;iPod;Lejátszás;Lejátszási "
+"lista;Média;CD;Telefon;Számok;"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:281
 msgid "Import Complete"
@@ -403,7 +405,7 @@ msgstr "Szinkronizáció meghiúsult"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"A(z) %s lejátszólistával szinkronizált a(z) %s eszköz, de nem található."
+"A(z) %s lejátszási listával szinkronizált a(z) %s eszköz, de nem található."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
@@ -476,7 +478,7 @@ msgstr "Hozzáadás a lejátszási sorhoz"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
 msgid "Add to Playlist"
-msgstr "Hozzáadás a lejátszólistához"
+msgstr "Hozzáadás a lejátszási listához"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
 msgid "Remove Song"
@@ -489,7 +491,7 @@ msgstr "Importálás a gyűjteménybe"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
 msgid "New Playlist…"
-msgstr "Új lejátszólista..."
+msgstr "Új lejátszási lista..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
 #, c-format
@@ -818,7 +820,7 @@ msgstr "Nincs szám"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Please wait until that this playlist get updated."
-msgstr "Kérem várjon amíg a lejátszólista frissül."
+msgstr "Kérem várjon amíg a lejátszási lista frissül."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
@@ -830,7 +832,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
-msgstr "Okos lejátszólista szerkesztése"
+msgstr "Okos lejátszási lista szerkesztése"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
@@ -839,7 +841,7 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"Ez a lejátszólista automatikusan fog felépülni azokból a zeneszámokból "
+"Ez a lejátszási lista automatikusan fog felépülni azokból a zeneszámokból "
 "amelyek megfelelnek a szabályoknak. A szabályok megváltoztatásához "
 "kattintson <b>jobb gombbal</b> az oldalsávon, és válassza a "
 "<b>Szerkesztés</b> lehetőséget, vagy rá is kattinthat az alább lévő gombra."
@@ -1148,7 +1150,7 @@ msgstr "Egyéni beállítás %i"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Export Playlists"
-msgstr "Lejátszólisták exportálása"
+msgstr "Lejátszási lista exportálása"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:62
 msgid "Set Music Folder"
@@ -1165,7 +1167,7 @@ msgid ""
 "library and remove your playlists."
 msgstr ""
 "Biztos, hogy szeretné a(z) %s mappára állítani a zenemappát? Ez "
-"visszaállítja a gyűjteményét és eltávolítja a lejátszólistáit."
+"visszaállítja a gyűjteményét és eltávolítja a lejátszási listáit."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
@@ -1250,12 +1252,12 @@ msgstr "Egyedifájlok kiválasztása a kukába helyezéshez:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
 msgid "Smart Playlist Editor"
-msgstr "Okos lejátszólista szerkesztő"
+msgstr "Intelligens lejátszási lista szerkesztő"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:53
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:61
 msgid "Name of Playlist"
-msgstr "Lejátszólista neve"
+msgstr "Lejátszási lista neve"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:62
@@ -1269,7 +1271,7 @@ msgstr "Beállítások"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:66
 msgid "Playlist Title"
-msgstr "Lejátszólista címe"
+msgstr "Lejátszási lista címe"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
 msgid "Match"
@@ -1556,7 +1558,7 @@ msgstr "Szerkesztés..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:85
 msgid "Save as Playlist"
-msgstr "Mentés lejátszólistaként"
+msgstr "Mentés lejátszási listaként"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:142
 msgid "Eject"
@@ -1565,12 +1567,12 @@ msgstr "Kiadás"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:147
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:186
 msgid "New Playlist"
-msgstr "Új lejátszólista"
+msgstr "Új lejátszási lista"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:152
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:187
 msgid "New Smart Playlist"
-msgstr "Új okos lejátszólista"
+msgstr "Új okos lejátszási lista"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
@@ -1579,7 +1581,7 @@ msgstr "Szinkronizálás"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:188
 msgid "Import Playlists"
-msgstr "Lejátszólisták importálása"
+msgstr "Lejátszási listák importálása"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:232
 msgid "Library"
@@ -1596,7 +1598,7 @@ msgstr "Hálózat"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:235
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//MPRIS/MPRIS.vala:643
 msgid "Playlists"
-msgstr "Lejátszólisták"
+msgstr "Lejátszási listák"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:68
 msgid "View as Albums"
@@ -1659,11 +1661,11 @@ msgstr "Keverés kikapcsolása"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:132
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:143
 msgid "Add Playlist"
-msgstr "Lejátszólista hozzáadása"
+msgstr "Lejátszási lista hozzáadása"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:144
 msgid "Add Smart Playlist"
-msgstr "Intelligens lejátszólista hozzáadása"
+msgstr "Intelligens lejátszási lista hozzáadása"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
