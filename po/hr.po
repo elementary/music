@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-04-25 01:20+0000\n"
-"Last-Translator: Ivan <ivan-os@live.com>\n"
+"PO-Revision-Date: 2013-09-05 17:35+0000\n"
+"Last-Translator: Aron Matic <brodva@ovi.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-06-26 05:47+0000\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Launchpad-Export-Date: 2013-09-06 06:01+0000\n"
+"X-Generator: Launchpad (build 16760)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -65,15 +65,15 @@ msgstr "Tulum"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:89
 msgid "Pop"
-msgstr ""
+msgstr "Pop"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:90
 msgid "Reggae"
-msgstr ""
+msgstr "Reggae"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:91
 msgid "Rock"
-msgstr ""
+msgstr "Rock"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:92
 msgid "Soft"
@@ -81,15 +81,15 @@ msgstr "Soft"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:93
 msgid "Ska"
-msgstr ""
+msgstr "Ska"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:94
 msgid "Soft Rock"
-msgstr ""
+msgstr "Soft rock"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:95
 msgid "Techno"
-msgstr ""
+msgstr "Techno"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/PlaylistsUtils.vala:96
 #, c-format
@@ -185,28 +185,28 @@ msgstr[2] "%u sata"
 #, c-format
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s i %s"
 
 #. / days and hours
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:94
 #, c-format
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s i %s"
 
 #. / days and minutes
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:99
 #, c-format
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s i %s"
 
 #. / hours and minutes
 #: /home/noelco/Programmation/Projets/noise/po/../core//Utils/TimeUtils.vala:108
 #, c-format
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s i %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -249,24 +249,24 @@ msgstr "$NAME by $ARTIST on $ALBUM"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:37
 msgid "Listen to music"
-msgstr ""
+msgstr "Slušajte glazbu"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:38
 msgid "Music Player"
-msgstr ""
+msgstr "Glazba"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
+msgstr "zvuk;audio;svirač;mp3;iPod;play;playlist;medij,CD,mobilni,pijesme"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:281
 msgid "Import Complete"
-msgstr ""
+msgstr "Import završen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:281
 #, c-format
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s je učitao vašu glazbu"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:296
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -278,14 +278,14 @@ msgstr "<b>Kopiram</b> datoteke u <b>glazbenu mapu</b>…"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDPlayer.vala:210
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodStreamer.vala:201
 msgid "Unknown Artist"
-msgstr ""
+msgstr "Nepoznat izvođač"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:99
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:108
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:881
 msgid "History"
-msgstr ""
+msgstr "Povijest"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//PlaybackManager.vala:101
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:553
@@ -293,28 +293,28 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:871
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Red čekanja"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/PopupListView.vala:162
 #, c-format
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr ""
+msgstr "%s od %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d minuta"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d sati"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "%d dana"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
@@ -329,12 +329,12 @@ msgstr "NIjedan album nije nađen"
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u album"
+msgstr[1] "%u albuma"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Cancelling…"
-msgstr ""
+msgstr "Otkazivanje..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
@@ -342,39 +342,39 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid "No External Songs"
-msgstr ""
+msgstr "Nema vanjskih pjesmi."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr ""
+msgstr "Nije nađeno pjesmi što nisu več u vašoj biblioteci."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ContentView.vala:21
 #, c-format
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:86
 msgid "Device Name:"
-msgstr ""
+msgstr "Naziv uređaja:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Device Name"
-msgstr ""
+msgstr "Naziv uređaja"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "Automatski uskladi kada je priključen:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:98
 msgid "Sync:"
-msgstr ""
+msgstr "Uskladi:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:120
 msgid "Other Files"
-msgstr ""
+msgstr "Ostale datoteke"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:121
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:678
@@ -384,20 +384,20 @@ msgstr "Glazba"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:122
 msgid "Podcasts"
-msgstr ""
+msgstr "Podcasti"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:416
 msgid "All Music"
-msgstr ""
+msgstr "Sva glazba"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:419
 msgid "All Podcasts"
-msgstr ""
+msgstr "Svi podcasti"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
 msgid "Sync Failed"
-msgstr ""
+msgstr "Usklađivanje nije uspjelo."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:541
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:569
@@ -405,24 +405,28 @@ msgstr ""
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"Popis izvođenja naziva %s koristi se za usklađivanje uređaja %s, ali ga je "
+"nemoguće pronaći."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Cannot Sync"
-msgstr ""
+msgstr "Nemoguće usklađivanje"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
+"Nemoguće suklađivanje uređaja sa odabranim postavkama usklađivanja. Premalo "
+"slobodnog prostora na disku"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "Uređaj je več zauzet nekom drugom operacijom."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:89
 msgid "No Songs Found."
-msgstr ""
+msgstr "Glazba nije pronađena"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ListView.vala:369
 #, c-format
@@ -443,15 +447,15 @@ msgstr[2] "%u pjesama"
 #, c-format
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
-msgstr ""
+msgstr "%s, %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:59
 msgid "Remove from Library"
-msgstr ""
+msgstr "Ukloni iz Biblioteke"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:66
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Ukloni iz biblioteke."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:76
 msgid "Remove from Device"
@@ -459,11 +463,11 @@ msgstr "Ukloni iz uređaja"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:89
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Idi do tražene pjesme."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:90
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Uredi informacije o pjesmi."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:91
 msgid "Show in File Browser"
@@ -472,11 +476,11 @@ msgstr "Pokaži u pregledniku datoteka"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:92
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "Red"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:93
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Dodaj u popis izvođenja"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:94
 msgid "Remove Song"
@@ -489,7 +493,7 @@ msgstr "Uvezi u zbirku"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:177
 msgid "New Playlist…"
-msgstr ""
+msgstr "Nova lista glazbe."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:221
 #, c-format
@@ -511,7 +515,7 @@ msgstr "1234 kbps"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:629
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:251
 msgid "Never"
-msgstr ""
+msgstr "Nikad"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -530,7 +534,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/GenericList.vala:128
 msgid "Display Album Art"
-msgstr ""
+msgstr "Prikaži sliku albuma."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:226
 #, c-format
@@ -540,126 +544,126 @@ msgstr "%i kbps"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
 msgid "Track"
-msgstr ""
+msgstr "Pjesma"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "Naslov"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "Trajanje"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "Izvođač"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "Izvođač Albuma"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "Skladatelj"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
 msgid "Genre"
-msgstr ""
+msgstr "Žanr"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "Godina"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
 msgid "Grouping"
-msgstr ""
+msgstr "Grupiranje"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr ""
+msgstr "Bitrate"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
 msgid "Rating"
-msgstr ""
+msgstr "Ocjena"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:97
 msgctxt "List column title"
 msgid "Plays"
-msgstr ""
+msgstr "Svira"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:100
 msgctxt "List column title"
 msgid "Skips"
-msgstr ""
+msgstr "Preskoci"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:103
 msgctxt "List column title"
 msgid "Date Added"
-msgstr ""
+msgstr "Datum dodavanja"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:106
 msgctxt "List column title"
 msgid "Last Played"
-msgstr ""
+msgstr "Zadnje Svirano"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr ""
+msgstr "Mjesto"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
 msgid "File Size"
-msgstr ""
+msgstr "Veličina datoteke"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:57
 msgid "Genres"
-msgstr ""
+msgstr "Žanrovi"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:59
 msgid "Artists"
-msgstr ""
+msgstr "Izvođači"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:61
 msgid "Albums"
-msgstr ""
+msgstr "Albumi"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:63
 msgid "Years"
-msgstr ""
+msgstr "Godine"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Ratings"
-msgstr ""
+msgstr "Ocjene"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:67
 msgid "Composers"
-msgstr ""
+msgstr "Skladatelji"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:69
 msgid "Groupings"
@@ -668,7 +672,7 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:49
 msgid "Automatic"
-msgstr ""
+msgstr "Automatski"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
