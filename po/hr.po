@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-09-05 17:35+0000\n"
+"PO-Revision-Date: 2013-09-06 17:12+0000\n"
 "Last-Translator: Aron Matic <brodva@ovi.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-09-06 06:01+0000\n"
+"X-Launchpad-Export-Date: 2013-09-07 05:33+0000\n"
 "X-Generator: Launchpad (build 16760)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -240,7 +240,7 @@ msgstr "$NAME on $ALBUM"
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:186
 msgid "$NAME by $ARTIST"
-msgstr "$IME od $IZVOĐAČ"
+msgstr "$NAME od $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:192
@@ -338,7 +338,7 @@ msgstr "Otkazivanje..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:41
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "Operacija je uspješno prekinuta, i završit će nakon ovog medija."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceView.vala:104
 msgid "No External Songs"
