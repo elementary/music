@@ -104,7 +104,7 @@ GENERATE_HEADER
     ${CLIENT_VAPI}
 )
 
-set(EXEC_NAME ${SRC_TARGET})
+set(EXEC_NAME ../${SRC_TARGET})
 
 add_definitions(${DEPS_CFLAGS})
 link_directories(${DEPS_LIBRARY_DIRS})
