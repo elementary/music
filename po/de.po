@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-08-16 21:07+0000\n"
-"Last-Translator: Alexander Wilms <Unknown>\n"
+"PO-Revision-Date: 2013-09-12 17:17+0000\n"
+"Last-Translator: UweS <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-08-17 06:10+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2013-09-13 06:04+0000\n"
+"X-Generator: Launchpad (build 16761)\n"
 "Language: de\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -45,7 +45,7 @@ msgstr "Maximale Höhen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:84
 msgid "Full Bass + Treble"
-msgstr "Maximaler Bass + Höhen"
+msgstr "Maximale Bässe + Höhen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:85
 msgid "Headphones"
@@ -216,7 +216,7 @@ msgstr " (%d)"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importiere <b>$NAME</b> von <b>$ARTIST</b> in die Bibliothek…"
+msgstr "Importiere <b>$NAME</b> von <b>$ARTIST</b> in die Bibliothek …"
 
 #. / Used for unknown titles, artists, or album names.
 #: /home/noelco/Programmation/Projets/noise/po/../core//Media.vala:43
@@ -267,7 +267,7 @@ msgstr "%s hat Ihre Bibliothek importiert."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//FileOperator.vala:296
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kopiere</b> Dateien in den <b>Musikordner</b> …"
+msgstr "Dateien in den <b>Musikordner</b> <b>kopieren</b> …"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//GStreamer/Streamer.vala:196
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:26
@@ -366,11 +366,11 @@ msgstr "Gerätename"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Automatically sync when plugged in:"
-msgstr "Synchonisiere automatisch beim Einstecken:"
+msgstr "Beim Einstecken automatisch synchronisieren:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:98
 msgid "Sync:"
-msgstr "Synchronisiere:"
+msgstr "Synchronisieren:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:120
 msgid "Other Files"
@@ -411,7 +411,7 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:610
 msgid "Cannot Sync"
-msgstr "Synchonisation nicht möglich"
+msgstr "Synchronisation nicht möglich"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/DeviceSummaryWidget.vala:607
 msgid ""
@@ -792,12 +792,13 @@ msgstr "Musikordner ändern"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Load music from a folder, a network or an external disk."
 msgstr ""
-"Musik aus einem Ordner, einem Netzwerk oder einer externen Festplatte laden."
+"Musik aus einem Ordner, einem Netzwerk oder von einer externen Festplatte "
+"laden."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
 msgid "Import your Music"
-msgstr "Importieren Ihrer Musik"
+msgstr "Importieren Sie Ihre Musik"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:86
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:102
@@ -821,7 +822,7 @@ msgstr "Keine Titel"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Please wait until that this playlist get updated."
-msgstr "Bitte warten Sie bis diese Wiedergabeliste aktualisiert wird."
+msgstr "Bitte warten Sie, bis diese Wiedergabeliste aktualisiert wird."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
@@ -843,7 +844,7 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"Diese Wiedergabeliste wird automatisch mit Musiktiteln befüllt auf die ihre "
+"Diese Wiedergabeliste wird automatisch mit Musiktiteln befüllt, auf die Ihre "
 "Regeln zutreffen. Um diese Regeln zu verändern, führen Sie einen "
 "<b>Rechtsklick</b> auf der Seitenleiste aus und klicken anschließend auf "
 "<b>Bearbeiten</b>. Optional können Sie auf den unteren Knopf klicken."
@@ -861,7 +862,7 @@ msgstr "Kürzlich hinzugefügt"
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:472
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:708
 msgid "Recent Favorites"
-msgstr "Kürzliche Lieblingstitel"
+msgstr "Aktuelle Lieblingstitel"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:479
 #: /home/noelco/Programmation/Projets/noise/po/../src//DataBase/DataBaseManager.vala:715
@@ -881,7 +882,7 @@ msgstr "Lange ungehört"
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:168
 #, c-format
 msgid "Importing music from %s…"
-msgstr "Importiere Musik aus %s ..."
+msgstr "Musik aus %s importieren …"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:210
 msgid "Adding files to library…"
@@ -890,7 +891,7 @@ msgstr "Fügen Sie Dateien zur Bibliothek hinzu ..."
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:249
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1138
 msgid "<b>Importing</b> music to library…"
-msgstr "Musik in die Bibliothek <b>importieren</b>..."
+msgstr "Musik in die Bibliothek <b>importieren</b> …"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LocalLibrary.vala:275
 msgid "Rescanning music for changes. This may take a while…"
@@ -948,7 +949,7 @@ msgid ""
 msgstr ""
 "Nachdem ein Teil eines Titels wiedergegeben wurde, wird er zum Verlauf "
 "hinzugefügt.\n"
-"Sie können diese Liste benutzen um einen Überblick über die wiedergegebenen "
+"Sie können diese Liste nutzen, um einen Überblick über die wiedergegebenen "
 "Titel zu bekommen."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//LibraryWindow.vala:1118
@@ -1003,7 +1004,7 @@ msgid ""
 "the files you would like to import."
 msgstr ""
 "Die folgenden Dateien wurden auf %s gefunden, aber befinden sich nicht in "
-"Ihrer Bibliothek. Markieren Sie alle Dateien die Sie importieren möchten."
+"Ihrer Bibliothek. Markieren Sie alle Dateien, die Sie importieren möchten."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 msgid "Import all media"
@@ -1123,7 +1124,7 @@ msgstr "Minimiere Fenster, wenn ein Titel gespielt wird:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/PreferencesWindow.vala:159
 msgid "Hide window when a song is being played:"
-msgstr "Verstecke Fenster, wenn ein Titel gespielt wird:"
+msgstr "Fenster ausblenden, wenn ein Titel gespielt wird:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/EqualizerWindow.vala:76
 msgid "Equalizer"
@@ -1170,8 +1171,9 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Sind Sie sicher, dass Sie den Musikordner auf %s setzen möchten? Dies wird "
-"die gesamte Bibliothek zurücksetzen und alle Wiedergabelisten entfernen."
+"Sind Sie sicher, dass Sie %s als Musikordner wählen möchten? Dabei wird die "
+"gesamte Bibliothek zurückgesetzt und es werden alle Wiedergabelisten "
+"entfernt."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:116
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:139
@@ -1196,7 +1198,7 @@ msgstr "Abbrechen"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:66
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr "%d Titel von %s Entfernen?"
+msgstr "%d Titel von %s entfernen?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #, c-format
@@ -1212,11 +1214,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
-"Dies wird den Titel aus Ihrer Bibliothek und von jedem anderen Gerät, dass "
-"automatisch mit %s synchronisiert wird, entfernen."
+"Dies wird den Titel aus Ihrer Bibliothek und von jedem anderen Gerät "
+"entfernen, das automatisch mit %s synchronisiert wird."
 msgstr[1] ""
-"Dies wird die Titel aus Ihrer Bibliothek und von jedem anderen Gerät, dass "
-"automatisch mit %s synchronisiert wird, entfernen."
+"Dies wird die Titel aus Ihrer Bibliothek und von jedem anderen Gerät "
+"entfernen, das automatisch mit %s synchronisiert wird."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:48
 msgid "Not Imported Files"
@@ -1236,7 +1238,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:67
 msgid "Move all corrupted files to trash"
-msgstr "Verschiebe alle beschädigten Datein in den Müll"
+msgstr "Alle beschädigten Datein in den Müll verschieben"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:73
 msgid "Ignore"
@@ -1253,7 +1255,7 @@ msgstr "Speicherort"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:126
 msgid "Select individual files to move to trash:"
 msgstr ""
-"Wählen Sie individuell Dateien aus, die in den Müll verschoben werden sollen:"
+"Wählen Sie einzelne Dateien aus, die in den Müll verschoben werden sollen:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:42
 msgid "Smart Playlist Editor"
@@ -1421,19 +1423,19 @@ msgstr "Liedtexte"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:353
 msgid "Editing $NAME by $ARTIST"
-msgstr "Bearbeite $NAME von $ARTIST"
+msgstr "$NAME von $ARTIST bearbeiten"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
 msgid "Editing %s"
-msgstr "Bearbeiten Sie %s"
+msgstr "%s bearbeiten"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:358
 #, c-format
 msgid "Editing %i songs"
-msgstr "Bearbeiten Sie %i Titel"
+msgstr "%i Titel bearbeiten"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:199
 msgid "Album Artist"
@@ -1518,8 +1520,8 @@ msgid ""
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
 "Wenn Sie mit der Synchronisierung fortfahren, werden Medien von %s gelöscht, "
-"da Sie nicht auf der Synchronisierungsliste stehen. Möchten Sie diese zuerst "
-"noch in die Bibliothek importieren?"
+"da sie nicht in der Synchronisierungsliste enthalten sind. Möchten Sie diese "
+"zuerst noch in die Bibliothek importieren?"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:75
 #, c-format
@@ -1625,7 +1627,7 @@ msgstr "leer"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:384
 msgid "Using %s of %s (%.2f%)"
-msgstr "Nutze %s von %s (%.2f%)"
+msgstr "%s von %s (%.2f%) genutzt"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
@@ -1677,7 +1679,7 @@ msgstr "Intelligente Wiedergabeliste hinzufügen"
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
 msgid "Hide"
-msgstr "Verbergen"
+msgstr "Ausblenden"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
 msgid "Show Equalizer"
@@ -1690,19 +1692,19 @@ msgstr "Anzeigen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
 msgid "Hide Equalizer"
-msgstr "Equalizer verbergen"
+msgstr "Equalizer ausblenden"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
 msgid "Show Info Panel"
-msgstr "Zeige Info-Panel"
+msgstr "Info-Panel anzeigen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
 msgid "Hide Info Panel"
-msgstr "Verberge Info-Panel"
+msgstr "Info-Panel ausblenden"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
-msgstr "Momentanes löschen"
+msgstr "Aktuellen Titel löschen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"
@@ -1716,7 +1718,7 @@ msgid ""
 msgstr ""
 "Es gibt kein Lied in Ihrer Bibliothek, das Ähnlichkeiten mit dem aktuellen "
 "Lied aufweist. \r\n"
-"Stellen Sie sicher, dass alle Informationen korrekt sind, und Sie mit dem "
+"Stellen Sie sicher, dass alle Informationen korrekt sind und Sie mit dem "
 "Internet verbunden sind. \r\n"
 "Manche Lieder könnten dennoch keine Übereinstimmung haben."
 
@@ -1739,7 +1741,7 @@ msgstr "Erfolglos. Klicken, um es noch einmal zu versuchen."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr "Scrobbeln ist bereits Aktiviert"
+msgstr "Scrobbeln ist bereits aktiviert"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1759,7 +1761,7 @@ msgstr "Last.fm-Integration"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
-msgstr "Klicken, um den Last.fm Login-Vorgang zu wiederholen"
+msgstr "Klicken, um die Anmeldung bei Last.fm zu wiederholen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/PreferencesSection.vala:58
 #, c-format
@@ -1767,7 +1769,7 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
-"Um Last.FM Integration zu erlauben, müssen sie %s dazu die Berechtigung "
+"Um Last.fm Integration zu erlauben, müssen Sie %s dazu die Berechtigung "
 "erteilen. Dieser Vorgang ist einmalig."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/SimilarMedia.vala:44
@@ -1795,7 +1797,7 @@ msgstr "Audio-Player"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:177
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Füge <b>$NAME</b> von <b>$ARTIST</b> zu $DEVICE hinzu"
+msgstr "<b>$NAME</b> von <b>$ARTIST</b> zu $DEVICE hinzufügen"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:185
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:223
@@ -1803,21 +1805,21 @@ msgstr "Füge <b>$NAME</b> von <b>$ARTIST</b> zu $DEVICE hinzu"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:652
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Synchronisiere <b>%s</b> …"
+msgstr "<b>%s</b> synchronisieren …"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:277
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:269
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:439
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:708
 msgid "Finishing sync process…"
-msgstr "Beende Synchronisierung …"
+msgstr "Synchronisierung beenden …"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:280
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:283
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:455
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:729
 msgid "Cancelling Sync…"
-msgstr "Breche Synchronisierung ab …"
+msgstr "Synchronisierung abbrechen …"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:284
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:285
@@ -1825,7 +1827,7 @@ msgstr "Breche Synchronisierung ab …"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:740
 msgid "There is not enough space on Device to complete the Sync…"
 msgstr ""
-"Auf dem Gerät ist nicht genug Platz, um die Synchronisierung zu beenden …"
+"Auf dem Gerät ist nicht genug Platz, um die Synchronisierung abzuschließen …"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/AudioPlayers/AudioPlayerLibrary.vala:383
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:602
@@ -1836,7 +1838,7 @@ msgstr "Entferne <b>$NAME</b> von <b>$ARTIST</b> von $DEVICE"
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/iPod/iPodLibrary.vala:395
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "Entferne von <b>%s</b> …"
+msgstr "Von <b>%s</b> entfernen…"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
@@ -1844,7 +1846,7 @@ msgstr "Es ist ein Fehler aufgetreten"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr "Während des Ladens der Audio CD ist ein Fehler aufgetreten."
+msgstr "Während des Ladens der Audio-CD ist ein Fehler aufgetreten."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
@@ -1859,8 +1861,8 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
-"Bitte stellen Sie sicher, dass Noise auf Ihren Musikordner zugreifen kann "
-"und dieser eingehängt ist, bevor die CD importiert wird."
+"Bitte stellen Sie sicher, dass der Zugriff auf Ihren Musikordner erlaubt ist "
+"und dieser vor dem Import der CD eingehängt wurde."
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:258
 msgid ""
@@ -1881,7 +1883,7 @@ msgstr "Import von %i Titeln von einer Audio-CD beendet."
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:364
 #, c-format
 msgid "Importing track %i: %s"
-msgstr "Importiere Titel %i: %s"
+msgstr "Titel %i importieren: %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:369
 msgid "CD import will be <b>cancelled</b> after current import."
