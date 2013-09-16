@@ -1,1 +1,1 @@
-install(FILES noise.desktop DESTINATION share/applications)
+install (FILES noise.desktop DESTINATION share/applications)
