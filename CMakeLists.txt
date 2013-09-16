@@ -62,7 +62,7 @@ set (CORE_PACKAGES
   gstreamer-interfaces-0.10
   gstreamer-pbutils-0.10
   gstreamer-tag-0.10
-  )
+)
 
 set (CORE_PKG
   glib-2.0>=2.32
@@ -76,17 +76,17 @@ set (CORE_PKG
   gstreamer-interfaces-0.10
   gstreamer-tag-0.10
   gstreamer-pbutils-0.10
-  )
+)
 
 set (DEPS_PACKAGES
   ${CORE_LIBRARY_NAME}
   ${CORE_PACKAGES} # this is needed until we provide a ${CORE_LIBRARY_NAME}.deps file
   taglib_c
-  )
+)
 
 set (DEPS_PKG
   taglib_c
-  )
+)
 
 find_package (PkgConfig)
 
@@ -125,7 +125,7 @@ set (DEPS_LIBRARY_DIRS ${DEPS_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS})
 # Libnotify
 #
 pkg_check_modules (LIBNOTIFY QUIET libnotify)
-if  (LIBNOTIFY_FOUND)
+if (LIBNOTIFY_FOUND)
   message ("-- libnotify enabled")
 
   set (GLOBAL_VALAC_OPTIONS ${GLOBAL_VALAC_OPTIONS} --define=HAVE_LIBNOTIFY)
