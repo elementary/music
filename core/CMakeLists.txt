@@ -52,7 +52,7 @@ set (CORE_SOURCE
   GStreamer/Playback.vala
   Widgets/SettingsWidgets.vala
   main.vala
-  )
+)
 
 if  (BUILD_SHARED_LIBS)
   set (LINK_MODE SHARED)
@@ -72,7 +72,7 @@ vala_precompile (CORE_VALA_C ${CORE_LIBRARY_NAME}
   ${CORE_LIBRARY_NAME}
   GENERATE_HEADER
   ${CORE_LIBRARY_NAME}
-  )
+)
 
 add_definitions (${CORE_DEPS_CFLAGS})
 link_directories (${CORE_DEPS_LIBRARY_DIRS})
@@ -83,7 +83,7 @@ set_target_properties (${CORE_LIBRARY_NAME} PROPERTIES
   OUTPUT_NAME ${CORE_LIBRARY_NAME}
   VERSION ${CORE_LIB_VERSION}
   SOVERSION ${CORE_LIB_SOVERSION}
-  )
+)
 
 target_link_libraries (${CORE_LIBRARY_NAME} ${CORE_DEPS_LIBRARIES})
 

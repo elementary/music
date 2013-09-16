@@ -24,7 +24,7 @@ install (FILES icons/128x128/apps/multimedia-audio-player.svg DESTINATION ${SYST
 set (GENERIC_IMAGES
   icons/albumart.svg
   icons/albumart-shadow.png
-  )
+)
 
 install (FILES ${GENERIC_IMAGES} DESTINATION ${ICON_DIR})
 
@@ -42,7 +42,7 @@ set (STATUS_16
   icons/16x16/status/media-playlist-repeat-one-symbolic.svg
   icons/16x16/status/media-playlist-repeat-symbolic.svg
   icons/16x16/status/media-playlist-shuffle-symbolic.svg
-  )
+)
 
 set (ACTIONS_16
   icons/16x16/actions/pane-show-symbolic.svg
@@ -51,7 +51,7 @@ set (ACTIONS_16
   icons/16x16/actions/list-add-symbolic.svg
   icons/16x16/actions/love.svg
   icons/16x16/actions/ban.svg
-  )
+)
 
 set (MIMETYPES_16
   icons/16x16/mimetypes/playlist.svg
@@ -59,7 +59,7 @@ set (MIMETYPES_16
   icons/16x16/mimetypes/playlist-queue.svg
   icons/16x16/mimetypes/library-music.svg
   icons/16x16/mimetypes/media-cdrom-audio.svg
-  )
+)
 
 install (FILES ${STATUS_16} DESTINATION ${FALLBACK_THEME_DIR}/16x16/status)
 install (FILES ${ACTIONS_16} DESTINATION ${FALLBACK_THEME_DIR}/16x16/actions)

@@ -71,7 +71,7 @@ set (CLIENT_SOURCE
   Dialogs/SetMusicFolderConfirmation.vala
   Dialogs/TransferFromDeviceDialog.vala
   Dialogs/SyncWarningDialog.vala
-  )
+)
 
 set (CLIENT_VALAC_OPTIONS
   ${GLOBAL_VALAC_OPTIONS}
@@ -79,7 +79,7 @@ set (CLIENT_VALAC_OPTIONS
   #--define=HAVE_ADD_PLAYLIST_AS_BUTTON
   #--define=HAVE_SMART_ALBUM_COLUMN
   #--define=ENABLE_EXPERIMENTAL
-  )
+)
 
 # Find GTK+ version. A bug with the icon view is supposed to be fixed in version 3.4.3 or higher.
 pkg_check_modules (GTK_ICON_VIEW_BUG_IS_FIXED QUIET gtk+-3.0>=3.4.3)
@@ -102,7 +102,7 @@ vala_precompile (CLIENT_VALA_C ${SRC_TARGET}
   ${CLIENT_VAPI}
   GENERATE_HEADER
   ${CLIENT_VAPI}
-  )
+)
 
 set (EXEC_NAME ../${SRC_TARGET})
 
