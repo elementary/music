@@ -99,7 +99,7 @@ set (GLOBAL_VALAC_OPTIONS
   --vapidir=${CMAKE_BINARY_DIR}/src
   --target-glib=2.32
   --thread
-  )
+)
 
 #
 # SQLHeavy: Use version 0.2 if it is available; otherwise, fall back to 0.1
