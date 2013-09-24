@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-07-25 05:41+0000\n"
-"X-Generator: Launchpad (build 16700)\n"
+"X-Launchpad-Export-Date: 2013-09-24 06:28+0000\n"
+"X-Generator: Launchpad (build 16771)\n"
 "Language: et\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
@@ -2022,3 +2022,36 @@ msgstr "CD-lt importimine pole võimalik"
 
 #~ msgid "CD Import Complete"
 #~ msgstr "Importimine CD-lt valmis"
+
+#, c-format
+#~ msgid "%s is already doing an import"
+#~ msgstr "%s juba tegeleb importimisega"
+
+#, c-format
+#~ msgid "%s has finished importing %i songs from Audio CD."
+#~ msgstr "%s lõpetas %i laulu importimise audio CD-lt."
+
+#, c-format
+#~ msgid ""
+#~ "Please wait until %s is finished with the current import before importing "
+#~ "the CD."
+#~ msgstr ""
+#~ "Enne, kui saad importida  laule CD-lt, pead ootama, kuni %s lõpetab eelmise "
+#~ "importimise"
+
+#, c-format
+#~ msgid "%s has finished importing a song from Audio CD."
+#~ msgstr "%s lõpetas ühe laulu importimise audio CD-lt."
+
+#~ msgid "Unsuccessful. Click to try again."
+#~ msgstr "Ebaõnnestus, palun proovi uuesti."
+
+#, c-format
+#~ msgid "Lyrics not found for \"%s\" by \"%s\""
+#~ msgstr "\"%s\" - \"%s\" jaoks ei leitud sõnu"
+
+#~ msgid "Try again"
+#~ msgstr "Proovi uuesti"
+
+#~ msgid "Music Folder"
+#~ msgstr "Muusika kaust"
