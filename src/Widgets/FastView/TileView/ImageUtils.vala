@@ -45,7 +45,7 @@ namespace Noise.ImageUtils {
         }
     }
 
-    internal inline uchar shift_color_byte(int b, int shift) {
-        return (uchar) (b + shift).clamp(0, 255);
+    internal inline uchar shift_color_byte (int b, int shift) {
+        return (uchar) (b + shift).clamp (0, 255);
     }
 }
