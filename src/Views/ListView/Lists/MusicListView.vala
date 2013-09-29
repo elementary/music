@@ -13,9 +13,13 @@
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  *
- * Authored by: Scott Ringwelski <sgringwe@mtu.edu>,
- *              Victor Eduardo <victoreduardm@gmail.com>,
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Victor Eduardo <victoreduardm@gmail.com>
  *              Corentin Noël <tintou@mailoo.org>
+ *              Lucas Baudin <xapantu@gmail.com>
+ *              ammonkey <am.monkeyd@gmail.com>
+ *              Victor Martinez <victoreduardm@gmail.com>
+ *              Sergey Davidoff <shnatsel@gmail.com>
  */
 
 using Gee;
