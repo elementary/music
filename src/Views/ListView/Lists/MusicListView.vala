@@ -27,20 +27,23 @@ using Gtk;
 
 public class Noise.ContractMenuItem : Gtk.MenuItem {
     private Granite.Services.Contract contract;
-    private Media[] medias;
+    private GLib.List<Noise.Media> medias;
 
-    public ContractMenuItem (Granite.Services.Contract contract, Media[] medias) {
+    public ContractMenuItem (Granite.Services.Contract contract, GLib.List<Noise.Media> medias) {
         this.contract = contract;
-        this.medias = medias;
+        this.medias = medias.copy();
 
         label = contract.get_display_name ();
     }
 
     public override void activate () {
         File[] files = {};
-        foreach(Media m in this.medias)
+        foreach(Media m in this.medias) {
             files += File.new_for_uri (m.uri);
+            debug("Added URI to pass to Contractor: %s", m.uri);
+        }
         try {
+            debug ("Executing contract!");
             contract.execute_with_files (files);
         } catch (Error err) {
             warning (err.message);
@@ -139,10 +142,12 @@ public class Noise.MusicListView : GenericList {
         if (read_only == false) {
             mediaActionMenu.append(mediaEditMedia);
         }
+
         mediaActionMenu.append(mediaFileBrowse);
         if (read_only == false) {
             mediaActionMenu.append(mediaRateMedia);
         }
+
         mediaActionMenu.append(mediaTopSeparator);
         mediaActionMenu.append(mediaMenuQueue);
         if (read_only == false) {
@@ -263,6 +268,16 @@ public class Noise.MusicListView : GenericList {
             }
 
             mediaRateMedia.rating_value = set_rating;
+
+            //FIXME: Don't hardcode the mimetype!
+            var contracts = Granite.Services.ContractorProxy.get_contracts_by_mime ("audio");
+
+            foreach (var contract in contracts) {
+                var menu_item = new ContractMenuItem (contract, get_selected_medias());
+                debug ("Number of selected medias obtained by MusicListView class: %u\n", get_selected_medias ().length ());
+                mediaActionMenu.append (menu_item);
+            }
+            mediaActionMenu.show_all();
 
             mediaActionMenu.popup (null, null, null, 3, get_current_event_time());
 
