@@ -21,6 +21,29 @@
 using Gee;
 using Gtk;
 
+public class Noise.ContractMenuItem : Gtk.MenuItem {
+    private Granite.Services.Contract contract;
+    private Media[] medias;
+
+    public ContractMenuItem (Granite.Services.Contract contract, Media[] medias) {
+        this.contract = contract;
+        this.medias = medias;
+
+        label = contract.get_display_name ();
+    }
+
+    public override void activate () {
+        File[] files = {};
+        foreach(Media m in this.medias)
+            files += File.new_for_uri (m.uri);
+        try {
+            contract.execute_with_files (files);
+        } catch (Error err) {
+            warning (err.message);
+        }
+    }
+}
+
 public class Noise.MusicListView : GenericList {
 
     //for media list right click
