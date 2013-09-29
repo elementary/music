@@ -34,6 +34,7 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem mediaRemove;
     Gtk.MenuItem importToLibrary;
     Gtk.MenuItem mediaScrollToCurrent;
+    Gtk.MenuItem mediaScrollToCurrentSeparator;
     bool is_queue = false;
     bool read_only = false;
 
@@ -87,6 +88,8 @@ public class Noise.MusicListView : GenericList {
         button_release_event.connect(viewClickRelease);
 
         mediaScrollToCurrent = new Gtk.MenuItem.with_label(_("Scroll to Current Song"));
+        mediaScrollToCurrentSeparator = new SeparatorMenuItem ();
+        mediaTopSeparator = new SeparatorMenuItem ();
         mediaEditMedia = new Gtk.MenuItem.with_label(_("Edit Song Info"));
         mediaFileBrowse = new Gtk.MenuItem.with_label(_("Show in File Browser"));
         mediaMenuQueue = new Gtk.MenuItem.with_label(C_("Action item (verb)", "Queue"));
@@ -103,9 +106,8 @@ public class Noise.MusicListView : GenericList {
         if(hint != ViewWrapper.Hint.ALBUM_LIST) {
             //mediaActionMenu.append(browseSame);
             mediaActionMenu.append(mediaScrollToCurrent);
+            mediaActionMenu.append(mediaScrollToCurrentSeparator);
         }
-
-        mediaTopSeparator = new SeparatorMenuItem ();
 
         if (read_only == false) {
             mediaActionMenu.append(mediaEditMedia);
