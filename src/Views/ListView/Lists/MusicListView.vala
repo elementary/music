@@ -269,15 +269,18 @@ public class Noise.MusicListView : GenericList {
 
             mediaRateMedia.rating_value = set_rating;
 
-            //FIXME: Don't hardcode the mimetype!
-            var contracts = Granite.Services.ContractorProxy.get_contracts_by_mime ("audio");
-
-            foreach (var contract in contracts) {
-                var menu_item = new ContractMenuItem (contract, get_selected_medias());
-                debug ("Number of selected medias obtained by MusicListView class: %u\n", get_selected_medias ().length ());
-                mediaActionMenu.append (menu_item);
+            try {
+                //FIXME: Don't hardcode the mimetype!
+                var contracts = Granite.Services.ContractorProxy.get_contracts_by_mime ("audio");
+                foreach (var contract in contracts) {
+                    var menu_item = new ContractMenuItem (contract, get_selected_medias());
+                    debug ("Number of selected medias obtained by MusicListView class: %u\n", get_selected_medias ().length ());
+                    mediaActionMenu.append (menu_item);
+                }
+                mediaActionMenu.show_all();
+            } catch (Error err) {
+                warning ("Could not contact Contractor: %s", err.message);
             }
-            mediaActionMenu.show_all();
 
             mediaActionMenu.popup (null, null, null, 3, get_current_event_time());
 
