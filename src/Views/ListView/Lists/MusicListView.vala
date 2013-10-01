@@ -42,11 +42,13 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
             files += File.new_for_uri (m.uri);
             debug("Added URI to pass to Contractor: %s", m.uri);
         }
+
         try {
-            debug ("Executing contract!");
+            debug ("Executing contract \"%s\"", contract.get_display_name ());
             contract.execute_with_files (files);
         } catch (Error err) {
-            warning (err.message);
+            warning ("Error executing contract \"%s\": %s",
+                     contract.get_display_name (), err.message);
         }
     }
 }
@@ -211,7 +213,7 @@ public class Noise.MusicListView : GenericList {
             var mediaMenuNewPlaylist = new Gtk.MenuItem.with_label(_("New Playlist…"));
             mediaMenuNewPlaylist.activate.connect(mediaMenuNewPlaylistClicked);
             addToPlaylistMenu.append (mediaMenuNewPlaylist);
-            if(parent_wrapper.library.support_playlists () == false) {
+            if (parent_wrapper.library.support_playlists () == false) {
                 mediaMenuNewPlaylist.set_visible(false);
             }
             foreach (var playlist in parent_wrapper.library.get_playlists ()) {
@@ -273,23 +275,26 @@ public class Noise.MusicListView : GenericList {
                 var mimetypes = new HashSet<string> (); //for automatic deduplication
                 var selected_medias = get_selected_medias (); //to avoid querying it every time
                 debug ("Number of selected medias obtained by MusicListView class: %u\n", selected_medias.length ());
+
                 foreach (var media in selected_medias) {
                     try {
                         var file = File.new_for_uri(media.uri);
                         var content_type = file.query_info (FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE).get_content_type();
                         var mimetype = ContentType.get_mime_type(content_type);
-                        debug("Determined mimetype of %s to be %s", media.uri, mimetype);
+                        debug ("Determined mimetype of %s to be \"%s\"", media.uri, mimetype);
                         mimetypes.add (mimetype);
                     } catch (Error err) {
                         warning ("Could not look up the mimetype of %s: %s", media.uri, err.message);
                     }
                 }
-                var contracts = Granite.Services.ContractorProxy.get_contracts_by_mime_list (mimetypes.to_array());
+
+                var contracts = Granite.Services.ContractorProxy.get_contracts_by_mimelist (mimetypes.to_array());
                 foreach (var contract in contracts) {
                     var menu_item = new ContractMenuItem (contract, selected_medias);
                     mediaActionMenu.append (menu_item);
+                    menu_item.show_all();
                 }
-                mediaActionMenu.show_all();
+
             } catch (Error err) {
                 warning ("Could not contact Contractor: %s", err.message);
             }
@@ -380,7 +385,7 @@ public class Noise.MusicListView : GenericList {
         var to_edit = new LinkedList<int>();
         var to_edit_med = new LinkedList<Media>();
 
-        foreach(Media m in get_selected_medias()) {
+        foreach (Media m in get_selected_medias()) {
             to_edit.add(m.rowid);
             if(to_edit.size == 1)
                 to_edit_med.add(m);
@@ -419,7 +424,7 @@ public class Noise.MusicListView : GenericList {
     }
 
     protected void mediaFileBrowseClicked() {
-        foreach(Media m in get_selected_medias()) {
+        foreach (Media m in get_selected_medias()) {
             try {
                 var file = File.new_for_uri(m.uri);
                 Gtk.show_uri(null, file.get_parent().get_uri(), 0);
@@ -458,7 +463,7 @@ public class Noise.MusicListView : GenericList {
         var los = new LinkedList<Media>();
         int new_rating = mediaRateMedia.rating_value;
 
-        foreach(Media m in get_selected_medias()) {
+        foreach (Media m in get_selected_medias()) {
             m.rating = new_rating;
             los.add(m);
         }
@@ -490,7 +495,7 @@ public class Noise.MusicListView : GenericList {
     void importToLibraryClicked() {
         var to_import = new Gee.LinkedList<Media>();
 
-        foreach(Media m in get_selected_medias()) {
+        foreach (Media m in get_selected_medias()) {
             to_import.add (m);
         }
 
@@ -500,7 +505,7 @@ public class Noise.MusicListView : GenericList {
     protected virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
-        foreach(Media m in get_selected_medias()) {
+        foreach (Media m in get_selected_medias()) {
             debug("adding %s\n", m.uri);
             uris += (m.uri);
         }
