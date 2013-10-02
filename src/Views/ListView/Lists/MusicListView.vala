@@ -271,6 +271,11 @@ public class Noise.MusicListView : GenericList {
 
             mediaRateMedia.rating_value = set_rating;
 
+            foreach (var widget in mediaActionMenu.get_children ()) {
+                if (widget is Noise.ContractMenuItem)
+                    widget.destroy ();
+            }
+
             try {
                 var mimetypes = new HashSet<string> (); //for automatic deduplication
                 var selected_medias = get_selected_medias (); //to avoid querying it every time
