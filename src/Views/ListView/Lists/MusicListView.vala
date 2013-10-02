@@ -288,11 +288,13 @@ public class Noise.MusicListView : GenericList {
                     }
                 }
 
-                var contracts = Granite.Services.ContractorProxy.get_contracts_by_mimelist (mimetypes.to_array());
-                foreach (var contract in contracts) {
-                    var menu_item = new ContractMenuItem (contract, selected_medias);
-                    mediaActionMenu.append (menu_item);
-                    menu_item.show_all();
+                if (mimetypes.size != 0) {
+                    var contracts = Granite.Services.ContractorProxy.get_contracts_by_mimelist (mimetypes.to_array());
+                    foreach (var contract in contracts) {
+                        var menu_item = new ContractMenuItem (contract, selected_medias);
+                        mediaActionMenu.append (menu_item);
+                        menu_item.show_all();
+                    }
                 }
 
             } catch (Error err) {
