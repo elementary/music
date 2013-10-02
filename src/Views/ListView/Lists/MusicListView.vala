@@ -298,7 +298,7 @@ public class Noise.MusicListView : GenericList {
                 }
 
             } catch (Error err) {
-                warning ("Could not contact Contractor: %s", err.message);
+                warning ("Failed to obtain Contractor actions: %s", err.message);
             }
 
             mediaActionMenu.popup (null, null, null, 3, get_current_event_time());
