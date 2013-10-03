@@ -308,8 +308,10 @@ public class Noise.MusicListView : GenericList {
                     foreach (var contract in contracts) {
                         var menu_item = new ContractMenuItem (contract, selected_medias);
                         contractorSubMenu.append (menu_item);
-                        menu_item.show_all();
                     }
+                contractorSubMenu.show_all ();
+                } else {
+                    mediaMenuContractor.sensitive = false;
                 }
 
             } catch (Error err) {
