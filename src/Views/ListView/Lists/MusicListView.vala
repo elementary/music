@@ -281,39 +281,28 @@ public class Noise.MusicListView : GenericList {
             var contractorSubMenu = new Gtk.Menu ();
             contractorSubMenu.show_all ();
             mediaMenuContractorEntry.submenu = contractorSubMenu;
+            mediaMenuContractorEntry.sensitive = true;
 
             try {
-                var mimetypes = new HashSet<string> (); //for automatic deduplication
+                var files = new HashSet<File> (); //for automatic deduplication
                 var selected_medias = get_selected_medias (); //to avoid querying it every time
                 debug ("Number of selected medias obtained by MusicListView class: %u\n", selected_medias.length ());
 
                 foreach (var media in selected_medias) {
                     try {
                         var file = File.new_for_uri(media.uri);
-                        var content_type = file.query_info (FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE).get_content_type();
-                        var mimetype = ContentType.get_mime_type(content_type);
-                        if (mimetype != null) {
-                            debug ("Determined mimetype of %s to be \"%s\"", media.uri, mimetype);
-                            mimetypes.add (mimetype);
-                        } else {
-                            warning ("Mimetype of %s is unknown to Glib. Ignoring file.", media.uri);
-                        }
+                        files.add (file);
                     } catch (Error err) {
-                        warning ("Could not look up the mimetype of %s: %s", media.uri, err.message);
+                        warning ("Could not read file %s: %s", media.uri, err.message);
                     }
                 }
 
-                if (mimetypes.size != 0) {
-                    mediaMenuContractorEntry.sensitive = true;
-                    var contracts = Granite.Services.ContractorProxy.get_contracts_by_mimelist (mimetypes.to_array());
-                    foreach (var contract in contracts) {
+                var contracts = Granite.Services.ContractorProxy.get_contracts_for_files (files.to_array());
+                foreach (var contract in contracts) {
                         var menu_item = new ContractMenuItem (contract, selected_medias);
                         contractorSubMenu.append (menu_item);
                     }
                 contractorSubMenu.show_all ();
-                } else {
-                    mediaMenuContractorEntry.sensitive = false;
-                }
 
             } catch (Error err) {
                 warning ("Failed to obtain Contractor actions: %s", err.message);
