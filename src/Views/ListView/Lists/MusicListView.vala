@@ -304,6 +304,7 @@ public class Noise.MusicListView : GenericList {
                 }
 
                 if (mimetypes.size != 0) {
+                    mediaMenuContractorEntry.sensitive = true;
                     var contracts = Granite.Services.ContractorProxy.get_contracts_by_mimelist (mimetypes.to_array());
                     foreach (var contract in contracts) {
                         var menu_item = new ContractMenuItem (contract, selected_medias);
