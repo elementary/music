@@ -27,11 +27,13 @@ using Gtk;
 
 public class Noise.ContractMenuItem : Gtk.MenuItem {
     private Granite.Services.Contract contract;
-    private GLib.List<Noise.Media> medias;
+    private Gee.List<Media> medias = new Gee.LinkedList<Media> ();
 
     public ContractMenuItem (Granite.Services.Contract contract, GLib.List<Noise.Media> medias) {
         this.contract = contract;
-        this.medias = medias.copy();
+
+        foreach (var m in medias)
+            this.medias.add (m);
 
         label = contract.get_display_name ();
     }
