@@ -59,7 +59,7 @@ public class Noise.MusicListView : GenericList {
     Gtk.Menu mediaActionMenu;
     Gtk.MenuItem mediaEditMedia;
     Gtk.MenuItem mediaFileBrowse;
-    Gtk.MenuItem mediaMenuContractor; // make menu on fly
+    Gtk.MenuItem mediaMenuContractorEntry; // make menu on fly
     Gtk.MenuItem mediaTopSeparator;
     Gtk.MenuItem mediaMenuQueue;
     Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
@@ -128,7 +128,7 @@ public class Noise.MusicListView : GenericList {
         mediaTopSeparator = new SeparatorMenuItem ();
         mediaEditMedia = new Gtk.MenuItem.with_label(_("Edit Song Info"));
         mediaFileBrowse = new Gtk.MenuItem.with_label(_("Show in File Browser"));
-        mediaMenuContractor = new Gtk.MenuItem.with_label(_("Other actions"));
+        mediaMenuContractorEntry = new Gtk.MenuItem.with_label(_("Other actions"));
         mediaMenuQueue = new Gtk.MenuItem.with_label(C_("Action item (verb)", "Queue"));
         mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label(_("Add to Playlist"));
         mediaRemove = new Gtk.MenuItem.with_label(_("Remove Song"));
@@ -151,7 +151,7 @@ public class Noise.MusicListView : GenericList {
         }
 
         mediaActionMenu.append(mediaFileBrowse);
-        mediaActionMenu.append(mediaMenuContractor);
+        mediaActionMenu.append(mediaMenuContractorEntry);
         if (read_only == false) {
             mediaActionMenu.append(mediaRateMedia);
         }
@@ -280,7 +280,7 @@ public class Noise.MusicListView : GenericList {
             //remove the previous "Other Actions" submenu and create a new one
             var contractorSubMenu = new Gtk.Menu ();
             contractorSubMenu.show_all ();
-            mediaMenuContractor.submenu = contractorSubMenu;
+            mediaMenuContractorEntry.submenu = contractorSubMenu;
 
             try {
                 var mimetypes = new HashSet<string> (); //for automatic deduplication
@@ -311,12 +311,12 @@ public class Noise.MusicListView : GenericList {
                     }
                 contractorSubMenu.show_all ();
                 } else {
-                    mediaMenuContractor.sensitive = false;
+                    mediaMenuContractorEntry.sensitive = false;
                 }
 
             } catch (Error err) {
                 warning ("Failed to obtain Contractor actions: %s", err.message);
-                mediaMenuContractor.hide ();
+                mediaMenuContractorEntry.hide ();
             }
 
             mediaActionMenu.popup (null, null, null, 3, get_current_event_time());
