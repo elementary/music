@@ -286,8 +286,12 @@ public class Noise.MusicListView : GenericList {
                         var file = File.new_for_uri(media.uri);
                         var content_type = file.query_info (FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE).get_content_type();
                         var mimetype = ContentType.get_mime_type(content_type);
-                        debug ("Determined mimetype of %s to be \"%s\"", media.uri, mimetype);
-                        mimetypes.add (mimetype);
+                        if (mimetype != null) {
+                            debug ("Determined mimetype of %s to be \"%s\"", media.uri, mimetype);
+                            mimetypes.add (mimetype);
+                        } else {
+                            warning ("Glib doesn't recognize the mimetype of %s. Ignoring file.", media.uri);
+                        }
                     } catch (Error err) {
                         warning ("Could not look up the mimetype of %s: %s", media.uri, err.message);
                     }
