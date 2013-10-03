@@ -59,6 +59,7 @@ public class Noise.MusicListView : GenericList {
     Gtk.Menu mediaActionMenu;
     Gtk.MenuItem mediaEditMedia;
     Gtk.MenuItem mediaFileBrowse;
+    Gtk.MenuItem mediaMenuContractor; // make menu on fly
     Gtk.MenuItem mediaTopSeparator;
     Gtk.MenuItem mediaMenuQueue;
     Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
@@ -114,6 +115,9 @@ public class Noise.MusicListView : GenericList {
             mediaRemove.set_visible(false);
             importToLibrary.set_visible(false);
         }
+
+
+
     }
 
     public void build_ui () {
@@ -124,6 +128,7 @@ public class Noise.MusicListView : GenericList {
         mediaTopSeparator = new SeparatorMenuItem ();
         mediaEditMedia = new Gtk.MenuItem.with_label(_("Edit Song Info"));
         mediaFileBrowse = new Gtk.MenuItem.with_label(_("Show in File Browser"));
+        mediaMenuContractor = new Gtk.MenuItem.with_label(_("Other actions"));
         mediaMenuQueue = new Gtk.MenuItem.with_label(C_("Action item (verb)", "Queue"));
         mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label(_("Add to Playlist"));
         mediaRemove = new Gtk.MenuItem.with_label(_("Remove Song"));
@@ -146,6 +151,7 @@ public class Noise.MusicListView : GenericList {
         }
 
         mediaActionMenu.append(mediaFileBrowse);
+        mediaActionMenu.append(mediaMenuContractor);
         if (read_only == false) {
             mediaActionMenu.append(mediaRateMedia);
         }
@@ -271,10 +277,10 @@ public class Noise.MusicListView : GenericList {
 
             mediaRateMedia.rating_value = set_rating;
 
-            foreach (var widget in mediaActionMenu.get_children ()) {
-                if (widget is Noise.ContractMenuItem)
-                    widget.destroy ();
-            }
+            //remove the previous "Other Actions" submenu and create a new one
+            var contractorSubMenu = new Gtk.Menu ();
+            contractorSubMenu.show_all ();
+            mediaMenuContractor.submenu = contractorSubMenu;
 
             try {
                 var mimetypes = new HashSet<string> (); //for automatic deduplication
@@ -290,7 +296,7 @@ public class Noise.MusicListView : GenericList {
                             debug ("Determined mimetype of %s to be \"%s\"", media.uri, mimetype);
                             mimetypes.add (mimetype);
                         } else {
-                            warning ("Glib doesn't recognize the mimetype of %s. Ignoring file.", media.uri);
+                            warning ("Mimetype of %s is unknown to Glib. Ignoring file.", media.uri);
                         }
                     } catch (Error err) {
                         warning ("Could not look up the mimetype of %s: %s", media.uri, err.message);
@@ -301,13 +307,14 @@ public class Noise.MusicListView : GenericList {
                     var contracts = Granite.Services.ContractorProxy.get_contracts_by_mimelist (mimetypes.to_array());
                     foreach (var contract in contracts) {
                         var menu_item = new ContractMenuItem (contract, selected_medias);
-                        mediaActionMenu.append (menu_item);
+                        contractorSubMenu.append (menu_item);
                         menu_item.show_all();
                     }
                 }
 
             } catch (Error err) {
                 warning ("Failed to obtain Contractor actions: %s", err.message);
+                mediaMenuContractor.hide ();
             }
 
             mediaActionMenu.popup (null, null, null, 3, get_current_event_time());
