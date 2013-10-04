@@ -290,18 +290,10 @@ public class Noise.MusicListView : GenericList {
                 debug ("Number of selected medias obtained by MusicListView class: %u\n", selected_medias.length ());
 
                 foreach (var media in selected_medias) {
-                    try {
-                        var file_info = media.file.query_info (FileAttribute.ACCESS_CAN_READ, FileQueryInfoFlags.NONE, null);
-                        bool file_is_readable = file_info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ);
-                        if (file_is_readable) {
-                            files.add (media.file);
-                        } else {
-                            warning ("Could not read file %s, ignoring it", media.uri);
-                            //TODO: it's probably a good idea to indicate that in the UI as well
-                        }
-                    } catch (Error err) {
-                        //err.message usually contains the file name
-                        warning ("Ignoring file: %s", err.message);
+                    if (media.file.query_exists ()) {
+                        files.add (media.file);
+                    } else {
+                        warning ("File %s does not exist, ignoring it", media.uri);
                         //TODO: it's probably a good idea to indicate that in the UI as well
                     }
                 }
