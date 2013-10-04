@@ -40,8 +40,8 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
     public override void activate () {
         File[] files = {};
         foreach(Media m in this.medias) {
-            files += File.new_for_uri (m.uri);
-            debug("Added URI to pass to Contractor: %s", m.uri);
+            files += m.file;
+            debug("Added file to pass to Contractor: %s", m.uri);
         }
 
         try {
@@ -291,10 +291,18 @@ public class Noise.MusicListView : GenericList {
 
                 foreach (var media in selected_medias) {
                     try {
-                        var file = File.new_for_uri(media.uri);
-                        files.add (file);
+                        var file_info = media.file.query_info (FileAttribute.ACCESS_CAN_READ, FileQueryInfoFlags.NONE, null);
+                        bool file_is_readable = file_info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ);
+                        if (file_is_readable) {
+                            files.add (media.file);
+                        } else {
+                            warning ("Could not read file %s, ignoring it", media.uri);
+                            //TODO: it's probably a good idea to indicate that in the UI as well
+                        }
                     } catch (Error err) {
-                        warning ("Could not read file %s: %s", media.uri, err.message);
+                        //err.message usually contains the file name
+                        warning ("Ignoring file: %s", err.message);
+                        //TODO: it's probably a good idea to indicate that in the UI as well
                     }
                 }
 
@@ -307,7 +315,7 @@ public class Noise.MusicListView : GenericList {
 
             } catch (Error err) {
                 warning ("Failed to obtain Contractor actions: %s", err.message);
-                mediaMenuContractorEntry.hide ();
+                mediaMenuContractorEntry.sensitive = false;
             }
 
             mediaActionMenu.popup (null, null, null, 3, get_current_event_time());
