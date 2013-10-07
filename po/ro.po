@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2013-09-24 06:29+0000\n"
-"X-Generator: Launchpad (build 16771)\n"
+"X-Launchpad-Export-Date: 2013-10-07 05:55+0000\n"
+"X-Generator: Launchpad (build 16791)\n"
 "Language: ro\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
