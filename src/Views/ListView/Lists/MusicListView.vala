@@ -39,7 +39,7 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
 
     public override void activate () {
         File[] files = {};
-        foreach(Media m in this.medias) {
+        foreach (Media m in this.medias) {
             files += m.file;
             debug("Added file to pass to Contractor: %s", m.uri);
         }
@@ -116,9 +116,6 @@ public class Noise.MusicListView : GenericList {
             mediaRemove.set_visible(false);
             importToLibrary.set_visible(false);
         }
-
-
-
     }
 
     public void build_ui () {
@@ -305,7 +302,7 @@ public class Noise.MusicListView : GenericList {
                     }
                 }
 
-                var contracts = Granite.Services.ContractorProxy.get_contracts_for_files (files.to_array());
+                var contracts = Granite.Services.ContractorProxy.get_contracts_for_files (files.to_array ());
                 foreach (var contract in contracts) {
                         var menu_item = new ContractMenuItem (contract, selected_medias);
                         contractorSubMenu.append (menu_item);
