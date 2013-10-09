@@ -292,9 +292,16 @@ public class Noise.MusicListView : GenericList {
                 foreach (var media in selected_medias) {
                     if (media.file.query_exists ()) {
                         files.add (media.file);
+                        //if the file was marked nonexistent, update its status
+                        if (media.location_unknown && media.unique_status_image != null) {
+                            media.unique_status_image = null;
+                            media.location_unknown = false;
+                        }
                     } else {
                         warning ("File %s does not exist, ignoring it", media.uri);
-                        //TODO: it's probably a good idea to indicate that in the UI as well
+                        //indicate that the file doesn't exist in the UI
+                        media.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU);
+                        media.location_unknown = true;
                     }
                 }
 
