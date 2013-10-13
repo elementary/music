@@ -532,7 +532,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         }
         
         // check that the file exists
-        if ( ! m.file.query_exists ()) {
+        if (! m.file.query_exists ()) {
             m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU);
             m.location_unknown = true;
             //App.main_window.media_not_found(id);
