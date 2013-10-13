@@ -304,11 +304,11 @@ public class Noise.MusicListView : GenericList {
 
                 var contracts = Granite.Services.ContractorProxy.get_contracts_for_files (files.to_array ());
                 foreach (var contract in contracts) {
-                        var menu_item = new ContractMenuItem (contract, selected_medias);
-                        contractorSubMenu.append (menu_item);
-                    }
+                    var menu_item = new ContractMenuItem (contract, selected_medias);
+                    contractorSubMenu.append (menu_item);
+                }
+                this.queue_draw ();
                 contractorSubMenu.show_all ();
-
             } catch (Error err) {
                 warning ("Failed to obtain Contractor actions: %s", err.message);
                 mediaMenuContractorEntry.sensitive = false;
