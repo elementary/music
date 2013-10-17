@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-25 20:24+0200\n"
-"PO-Revision-Date: 2013-09-01 09:13+0000\n"
-"Last-Translator: Иван Благојевић <ivan_blagojevic@mail.com>\n"
+"PO-Revision-Date: 2013-10-16 22:34+0000\n"
+"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-10-07 05:55+0000\n"
-"X-Generator: Launchpad (build 16791)\n"
+"X-Launchpad-Export-Date: 2013-10-17 05:54+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -508,6 +508,7 @@ msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] "Увези %i песму"
 msgstr[1] "Увези %i песме"
+msgstr[2] "Увези %i песама"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Views/ListView/Lists/MusicListView.vala:614
 msgid "1234 kbps"
@@ -1208,7 +1209,14 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"Ово ће уклонити песму из збирке и са свих уређаја који се самостално "
+"усклађују са %s."
 msgstr[1] ""
+"Ово ће уклонити песме из збирке и са свих уређаја који се самостално "
+"усклађују са %s."
+msgstr[2] ""
+"Ово ће уклонити песме из збирке и са свих уређаја који се самостално "
+"усклађују са %s."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/NotImportedWindow.vala:48
 msgid "Not Imported Files"
@@ -1312,37 +1320,37 @@ msgstr "Датум додавања"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
 msgid "Date Released"
-msgstr ""
+msgstr "Датум издавања"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:201
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
 msgid "Genre"
-msgstr ""
+msgstr "Жанр"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:269
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:203
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:485
 msgid "Grouping"
-msgstr ""
+msgstr "Разврставање"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:270
 msgid "Last Played"
-msgstr ""
+msgstr "Последње извођено"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:271
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
 msgid "Length"
-msgstr ""
+msgstr "Трајање"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:272
 msgid "Playcount"
-msgstr ""
+msgstr "Број пуштања"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:273
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:208
 msgid "Rating"
-msgstr ""
+msgstr "Оцена"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:274
 msgid "Skipcount"
@@ -1351,24 +1359,24 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:276
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:207
 msgid "Year"
-msgstr ""
+msgstr "Година"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:336
 msgid "is"
-msgstr ""
+msgstr "је"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
 msgid "contains"
-msgstr ""
+msgstr "садржи"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:338
 msgid "does not contain"
-msgstr ""
+msgstr "не садржи"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
 msgid "is exactly"
-msgstr ""
+msgstr "је тачно"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:364
 msgid "is at most"
@@ -1384,28 +1392,28 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:378
 msgid "is before"
-msgstr ""
+msgstr "је пре"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "seconds"
-msgstr ""
+msgstr "секунди"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
 msgid "days ago"
-msgstr ""
+msgstr "дана раније"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:407
 msgid "kbps"
-msgstr ""
+msgstr "kbps"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:88
 msgid "Metadata"
-msgstr ""
+msgstr "Метаподаци"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:90
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:382
 msgid "Lyrics"
-msgstr ""
+msgstr "Стихови"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:186
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:353
@@ -1416,7 +1424,7 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:355
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "Уређујем %s"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:358
@@ -1426,7 +1434,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:199
 msgid "Album Artist"
-msgstr ""
+msgstr "Извођач албума"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:205
 msgid "Track"
@@ -1434,7 +1442,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:206
 msgid "Disc"
-msgstr ""
+msgstr "Диск"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:210
 msgid "Media Type"
@@ -1448,11 +1456,11 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:544
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
 msgid "Song"
-msgstr ""
+msgstr "Песма"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/MediaEditor.vala:546
 msgid "Podcast"
-msgstr ""
+msgstr "Подемисија"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
 msgid "Remove Media"
@@ -1464,11 +1472,11 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:67
 msgid "Rescan Library"
-msgstr ""
+msgstr "Учитај збирку поново"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:68
 msgid "Do Nothing"
-msgstr ""
+msgstr "Не ради ништа"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/FileNotFoundDialog.vala:74
 msgid "Could not find media file"
@@ -1491,11 +1499,11 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:61
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Настави усклађивање"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:62
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Заустави усклађивање"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SyncWarningDialog.vala:69
 #, c-format
@@ -1520,7 +1528,7 @@ msgstr ""
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/AlbumInfo.vala:25
 msgid "Unknown Album"
-msgstr ""
+msgstr "Непознати албум"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
@@ -1529,82 +1537,82 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:56
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:69
 msgid "Rename"
-msgstr ""
+msgstr "Преименуј"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:57
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:71
 msgid "Remove"
-msgstr ""
+msgstr "Уклони"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:58
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:72
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr ""
+msgstr "Извоз..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:70
 msgid "Edit…"
-msgstr ""
+msgstr "Уређивање..."
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:85
 msgid "Save as Playlist"
-msgstr ""
+msgstr "Сачувај као списак за извођење"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:142
 msgid "Eject"
-msgstr ""
+msgstr "Избаци"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:147
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:186
 msgid "New Playlist"
-msgstr ""
+msgstr "Нови списак песама"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:152
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:187
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "Нови паметни списак песама"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:157
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:238
 msgid "Sync"
-msgstr ""
+msgstr "Усклади"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:188
 msgid "Import Playlists"
-msgstr ""
+msgstr "Увези списак за извођење"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:232
 msgid "Library"
-msgstr ""
+msgstr "Збирка"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:233
 msgid "Devices"
-msgstr ""
+msgstr "Уређаји"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:234
 msgid "Network"
-msgstr ""
+msgstr "Мрежа"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SourceListView.vala:235
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//MPRIS/MPRIS.vala:643
 msgid "Playlists"
-msgstr ""
+msgstr "Спискови за извођење"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:68
 msgid "View as Albums"
-msgstr ""
+msgstr "Преглед албума"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:72
 msgid "View as List"
-msgstr ""
+msgstr "Преглед списка"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/ViewSelector.vala:76
 msgid "View in Columns"
-msgstr ""
+msgstr "Преглед у ступцима"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr ""
+msgstr "Слободно"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/SpaceWidget.vala:384
 msgid "Using %s of %s (%.2f%)"
@@ -1613,83 +1621,83 @@ msgstr ""
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
 msgid "Off"
-msgstr ""
+msgstr "Искључено"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:65
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Омогући понављање"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:66
 msgid "Repeat Song"
-msgstr ""
+msgstr "Понављај песму"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:67
 msgid "Repeat Album"
-msgstr ""
+msgstr "Понављај албум"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:68
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Понављај извођачево"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
 msgid "All"
-msgstr ""
+msgstr "Све"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:69
 msgid "Repeat All"
-msgstr ""
+msgstr "Понављај све"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:98
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Омогући мешање"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:99
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Онемогући мешање"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:132
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:143
 msgid "Add Playlist"
-msgstr ""
+msgstr "Додај нови списак"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:144
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Додај нови паметан списак"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
 msgid "Hide"
-msgstr ""
+msgstr "Сакриј"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:190
 msgid "Show Equalizer"
-msgstr ""
+msgstr "Прикажи уједначивач"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
 msgid "Show"
-msgstr ""
+msgstr "Прикажи"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:191
 msgid "Hide Equalizer"
-msgstr ""
+msgstr "Сакриј уједначивач"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:229
 msgid "Show Info Panel"
-msgstr ""
+msgstr "Прикажи окно обавештења"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/StatusBar.vala:230
 msgid "Hide Info Panel"
-msgstr ""
+msgstr "Сакриј окно обавештења"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Widgets/PresetList.vala:50
 msgid "Delete Current"
-msgstr ""
+msgstr "Избриши тренутно"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid "No similar songs found"
-msgstr ""
+msgstr "Није пронађена слична песма"
 
 #: /home/noelco/Programmation/Projets/noise/po/../plugins//LastFM/LastFM.vala:75
 msgid ""
