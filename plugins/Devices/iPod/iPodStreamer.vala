@@ -54,14 +54,7 @@ public class  Noise.Plugins.iPodStreamer : Noise.Playback, GLib.Object {
         uris.add ("afc://");
         return uris;
     }
-    
-    public bool check_existance (string uri) {
-        if (!GLib.File.new_for_uri (uri).query_exists ()) {
-            return false;
-        }
-        return true;
-    }
-    
+
     public bool update_position () {
         if(set_resume_pos || (App.player.media_info != null && App.player.media_info.media != null && get_position() >= (int64)(App.player.media_info.media.resume_pos - 1) * 1000000000)) {
             set_resume_pos = true;
