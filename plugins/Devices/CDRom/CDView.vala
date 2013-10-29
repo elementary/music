@@ -57,7 +57,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         }
         
         var default_pix = Icons.DEFAULT_ALBUM_ART.render_at_size (Icons.DEFAULT_ALBUM_ART_SIZE);
-        default_pix = PixbufUtils.get_pixbuf_shadow (default_pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
+        default_pix = PixbufUtils.render_pixbuf_shadow (default_pix);
         
         album_image = new Gtk.Image.from_pixbuf (default_pix);
         album_image.halign = Gtk.Align.CENTER;

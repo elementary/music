@@ -21,9 +21,8 @@ install (FILES icons/128x128/apps/multimedia-audio-player.svg DESTINATION ${SYST
 # Default album image and album shadow. These would not be found by the icon renderer if
 # they were installed to the hicolor sub-directory, since their dimensions are not the ones
 # GTK+ expects to find in a normal icon theme. They work fine in the root icon dir though.
-set (GENERIC_IMAGES
-  icons/albumart.svg
-  icons/albumart-shadow.png
+set(GENERIC_IMAGES
+    icons/albumart.svg
 )
 
 install (FILES ${GENERIC_IMAGES} DESTINATION ${ICON_DIR})

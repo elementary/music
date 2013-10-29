@@ -21,11 +21,12 @@
 
 using Gtk;
 
-public class Noise.FastGrid : IconView {
+public class Noise.FastGrid : Widgets.TileView {
 
     public enum Column {
         PIXBUF,
-        MARKUP,
+        TITLE,
+        SUBTITLE,
         TOOLTIP,
         N_COLUMNS
     }
@@ -50,9 +51,10 @@ public class Noise.FastGrid : IconView {
         set_table (table, true);
         set_model (fm);
 
-        set_pixbuf_column (Column.PIXBUF);
-        set_markup_column (Column.MARKUP);
-        set_tooltip_column (Column.TOOLTIP);
+        image_column = Column.PIXBUF;
+        title_column = Column.TITLE;
+        subtitle_column = Column.SUBTITLE;
+        tooltip_column = Column.TOOLTIP;
     }
 
     public void set_search_func (ViewSearchFunc func) {
