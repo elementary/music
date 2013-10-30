@@ -25,7 +25,7 @@ public class Noise.CoverImport : GLib.Object {
     private const int DISCOVER_SET_SIZE = 50;
     private const int DISCOVERER_TIMEOUT_MS = 10;
 
-    private Gst.Discoverer d = null;
+    private Gst.PbUtils.Discoverer d = null;
     private Gee.LinkedList<Media> uri_queue;
     private Gee.LinkedList<Media> original_queue;
 
@@ -55,7 +55,7 @@ public class Noise.CoverImport : GLib.Object {
     private async void import_next_file_set () {
         if (d == null) {
             try {
-                d = new Gst.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
+                d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
             } catch (Error err) {
                 critical ("Could not create Gst discoverer object: %s", err.message);
             }
@@ -94,34 +94,34 @@ public class Noise.CoverImport : GLib.Object {
         import_next_file_set.begin ();
     }
 
-    private async void import_media (Gst.DiscovererInfo info, Error err) {
+    private async void import_media (Gst.PbUtils.DiscovererInfo info, Error err) {
 
         string uri = info.get_uri ();
 
         bool gstreamer_discovery_successful = false;
 
         switch (info.get_result ()) {
-            case Gst.DiscovererResult.OK:
+            case Gst.PbUtils.DiscovererResult.OK:
                 gstreamer_discovery_successful = true;
             break;
 
-            case Gst.DiscovererResult.URI_INVALID:
+            case Gst.PbUtils.DiscovererResult.URI_INVALID:
                 warning ("GStreamer could not import '%s': invalid URI.", uri);
             break;
 
-            case Gst.DiscovererResult.ERROR:
+            case Gst.PbUtils.DiscovererResult.ERROR:
                 warning ("GStreamer could not import '%s': %s", uri, err.message);
             break;
 
-            case Gst.DiscovererResult.TIMEOUT:
+            case Gst.PbUtils.DiscovererResult.TIMEOUT:
                 warning ("GStreamer could not import '%s': Discovery timed out.", uri);
             break;
 
-            case Gst.DiscovererResult.BUSY:
+            case Gst.PbUtils.DiscovererResult.BUSY:
                 warning ("GStreamer could not import '%s': Already discovering a file.", uri);
             break;
 
-            case Gst.DiscovererResult.MISSING_PLUGINS:
+            case Gst.PbUtils.DiscovererResult.MISSING_PLUGINS:
                 warning ("GStreamer could not import '%s': Missing plugins.", uri);
 
                 /**
@@ -144,7 +144,7 @@ public class Noise.CoverImport : GLib.Object {
 
     }
 
-    private async void import_art_async (Media m, Gst.DiscovererInfo info) {
+    private async void import_art_async (Media m, Gst.PbUtils.DiscovererInfo info) {
         var cache = CoverartCache.instance;
         if (cache.has_image (m))
             return;
@@ -162,25 +162,25 @@ public class Noise.CoverImport : GLib.Object {
         Gst.Buffer? buffer = null;
 
         for (int i = 0; ; i++) {
-            Gst.Buffer? loop_buffer = null;
-            if (!tag.get_buffer_index (Gst.TAG_IMAGE, i, out loop_buffer))
+            Gst.Sample? loop_sample = null;
+            if (!tag.get_sample_index (Gst.Tags.IMAGE, i, out loop_sample))
                 break;
 
-            if (loop_buffer == null)
+            if (loop_sample == null)
                 continue;
 
-            var structure = loop_buffer.caps.get_structure (0);
+            var structure = loop_sample.get_caps ().get_structure (0).copy ();
             if (structure == null)
                 continue;
 
             int image_type;
-            structure.get_enum ("image-type", typeof (Gst.TagImageType), out image_type);
+            structure.get_enum ("image-type", typeof (Gst.Tag.ImageType), out image_type);
 
-            if (image_type == Gst.TagImageType.FRONT_COVER) {
-                buffer = loop_buffer;
+            if (image_type == Gst.Tag.ImageType.FRONT_COVER) {
+                buffer = loop_sample.get_buffer ();
                 break;
-            } else if (image_type == Gst.TagImageType.UNDEFINED || buffer == null) {
-                buffer = loop_buffer;
+            } else if (image_type == Gst.Tag.ImageType.UNDEFINED || buffer == null) {
+                buffer = loop_sample.get_buffer ();
             }
         }
 
@@ -197,7 +197,9 @@ public class Noise.CoverImport : GLib.Object {
         var loader = new Gdk.PixbufLoader ();
 
         try {
-            if (loader.write (buffer.data))
+            uint8[] data;
+            buffer.extract_dup (0, buffer.get_size () , out data);
+            if (loader.write (data))
                 pix = loader.get_pixbuf ();
             loader.close ();
         } catch (Error err) {

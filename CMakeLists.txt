@@ -61,10 +61,9 @@ set (CORE_PACKAGES
   libpeas-gtk-1.0
   gtk+-3.0
   granite
-  gstreamer-0.10
-  gstreamer-interfaces-0.10
-  gstreamer-pbutils-0.10
-  gstreamer-tag-0.10
+  gstreamer-1.0
+  gstreamer-pbutils-1.0
+  gstreamer-tag-1.0
 )
 
 set (CORE_PKG
@@ -75,10 +74,9 @@ set (CORE_PKG
   libpeas-gtk-1.0
   gtk+-3.0>=3.4.2
   granite
-  gstreamer-0.10
-  gstreamer-interfaces-0.10
-  gstreamer-tag-0.10
-  gstreamer-pbutils-0.10
+  gstreamer-1.0
+  gstreamer-tag-1.0
+  gstreamer-pbutils-1.0
 )
 
 set (DEPS_PACKAGES

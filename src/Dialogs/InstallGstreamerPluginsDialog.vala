@@ -24,80 +24,80 @@ using Gtk;
 using Gee;
 
 public class Noise.InstallGstreamerPluginsDialog : Window {
-	Gst.Message message;
-	string detail;
-	
-	private Gtk.Box content;
-	private Gtk.Box padding;
-	
-	Button installPlugin;
-	Button doNothing;
-	
-	public InstallGstreamerPluginsDialog(Gst.Message message) {
-		this.message = message;
-		this.detail = Gst.missing_plugin_message_get_description(message);
-		
-		// set the size based on saved gconf settings
-		//this.window_position = WindowPosition.CENTER;
-		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.set_modal(true);
-		this.set_transient_for(App.main_window);
-		this.destroy_with_parent = true;
-		
-		set_default_size(475, -1);
-		resizable = false;
-		
-		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
-		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
+    Gst.Message message;
+    string detail;
+    
+    private Gtk.Box content;
+    private Gtk.Box padding;
+    
+    Button installPlugin;
+    Button doNothing;
+    
+    public InstallGstreamerPluginsDialog (Gst.Message message) {
+        this.message = message;
+        this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
+        
+        // set the size based on saved gconf settings
+        //this.window_position = WindowPosition.CENTER;
+        this.type_hint = Gdk.WindowTypeHint.DIALOG;
+        this.set_modal(true);
+        this.set_transient_for(App.main_window);
+        this.destroy_with_parent = true;
+        
+        set_default_size(475, -1);
+        resizable = false;
+        
+        content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+        padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 
-		// initialize controls
-		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
-		Label title = new Label("");
-		Label info = new Label("");
-		installPlugin = new Button.with_label(_("Install Plugin"));
-		doNothing = new Button.from_stock (Gtk.Stock.CANCEL);
-		
-		// pretty up labels
-		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (_("Required GStreamer plugin not installed")) + "</span>");
-		info.xalign = 0.0f;
-		info.set_line_wrap(true);
-		info.set_markup(_("The plugin for media type %s is not installed.\nWhat would you like to do?").printf ("<b>" + String.escape (detail) + "</b>"));
+        // initialize controls
+        Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
+        Label title = new Label("");
+        Label info = new Label("");
+        installPlugin = new Button.with_label(_("Install Plugin"));
+        doNothing = new Button.from_stock (Gtk.Stock.CANCEL);
+        
+        // pretty up labels
+        title.xalign = 0.0f;
+        title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (_("Required GStreamer plugin not installed")) + "</span>");
+        info.xalign = 0.0f;
+        info.set_line_wrap(true);
+        info.set_markup(_("The plugin for media type %s is not installed.\nWhat would you like to do?").printf ("<b>" + String.escape (detail) + "</b>"));
 
-		
-		/* set up controls layout */
-		var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-		var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-		information.pack_start(warning, false, false, 10);
-		information_text.pack_start(title, false, true, 10);
-		information_text.pack_start(info, false, true, 0);
-		information.pack_start(information_text, true, true, 10);
-		
-		var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-		bottomButtons.set_layout(ButtonBoxStyle.END);
-		bottomButtons.pack_end(installPlugin, false, false, 0);
-		bottomButtons.pack_end(doNothing, false, false, 10);
-		bottomButtons.set_spacing(10);
-		
-		content.pack_start(information, false, true, 0);
-		content.pack_start(bottomButtons, false, true, 10);
-		
-		padding.pack_start(content, true, true, 10);
-		
-		installPlugin.clicked.connect(installPluginClicked);
+        
+        /* set up controls layout */
+        var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+        var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+        information.pack_start(warning, false, false, 10);
+        information_text.pack_start(title, false, true, 10);
+        information_text.pack_start(info, false, true, 0);
+        information.pack_start(information_text, true, true, 10);
+        
+        var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
+        bottomButtons.set_layout(ButtonBoxStyle.END);
+        bottomButtons.pack_end(installPlugin, false, false, 0);
+        bottomButtons.pack_end(doNothing, false, false, 10);
+        bottomButtons.set_spacing(10);
+        
+        content.pack_start(information, false, true, 0);
+        content.pack_start(bottomButtons, false, true, 10);
+        
+        padding.pack_start(content, true, true, 10);
+        
+        installPlugin.clicked.connect(installPluginClicked);
 
-		doNothing.clicked.connect ( () => {
-		    this.destroy ();
-		});
-		add(padding);
-		show_all();
-	}
-	
-        public void installPluginClicked() {
-            var installer = Gst.missing_plugin_message_get_installer_detail(message);
-            var context = new Gst.InstallPluginsContext();
+        doNothing.clicked.connect ( () => {
+            this.destroy ();
+        });
+        add(padding);
+        show_all();
+    }
+    
+        public void installPluginClicked () {
+            var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail(message);
+            var context = new Gst.PbUtils.InstallPluginsContext();
                 
-            Gst.install_plugins_async({installer}, context, (Gst.InstallPluginsResultFunc)install_plugins_finished);
+            Gst.PbUtils.install_plugins_async ({installer}, context, (Gst.PbUtils.InstallPluginsResultFunc)install_plugins_finished);
             // This callback was called before APT was done, so let's periodically check
             // whether the plugins have actually been installed. We won't update the
             // registry here.
@@ -105,7 +105,7 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
             this.hide ();
         }
 
-        public void install_plugins_finished(Gst.InstallPluginsReturn result) {
+        public void install_plugins_finished (Gst.PbUtils.InstallPluginsReturn result) {
             GLib.message ("Install of plugins finished.. updating registry");
         }
         private bool installation_done = false;
