@@ -228,19 +228,20 @@ public class Noise.GStreamerTagger : Object {
 
             m.length = TimeUtils.nanoseconds_to_miliseconds (duration);
 
-            foreach (var audio_stream in info.get_audio_streams ()) {
+            foreach (var stream_info in info.get_audio_streams ()) {
+                var audio_stream = stream_info as Gst.PbUtils.DiscovererAudioInfo;
                 if (audio_stream == null)
                     continue;
 
                 if (m.samplerate == 0) {
                     debug ("Getting sample rate from stream info");
-                    m.samplerate = ((Gst.PbUtils.DiscovererAudioInfo)audio_stream).get_sample_rate ();
+                    m.samplerate = audio_stream.get_sample_rate ();
                     debug ("Sample rate = %s", m.samplerate.to_string ());
                 }
 
                 if (m.bitrate == 0) {
                     debug ("Getting bitrate from stream info");
-                    m.bitrate = ((Gst.PbUtils.DiscovererAudioInfo)audio_stream).get_bitrate ();
+                    m.bitrate = audio_stream.get_bitrate ();
                     debug ("Bitrate = %s", m.bitrate.to_string ());
                 }
 

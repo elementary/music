@@ -97,7 +97,7 @@ public class Noise.CDRipper : GLib.Object {
 		int64 rv = (int64)0;
 		Format f = Format.TIME;
 		
-		src.query_position(f, out rv);
+		src.query_position (f, out rv);
 		
 		return rv;
 	}
@@ -106,7 +106,7 @@ public class Noise.CDRipper : GLib.Object {
 		int64 rv = (int64)0;
 		Format f = Format.TIME;
 		
-		src.query_duration(f, out rv);
+		src.query_duration (f, out rv);
 		
 		return rv;
 	}

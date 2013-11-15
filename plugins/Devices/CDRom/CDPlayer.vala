@@ -125,7 +125,7 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
         int64 rv = (int64)0;
         Gst.Format f = Gst.Format.TIME;
         
-        pipe.playbin.query_duration(f, out rv);
+        pipe.playbin.query_duration (f, out rv);
         
         return rv;
     }
@@ -166,7 +166,7 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
             error_occured();
             break;
         case Gst.MessageType.ELEMENT:
-            if(message.get_structure() != null && Gst.PbUtils.is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
+            if (message.get_structure () != null && Gst.PbUtils.is_missing_plugin_message (message) && (dialog == null || !dialog.visible)) {
                 dialog = new InstallGstreamerPluginsDialog (message);
             }
             break;
@@ -190,9 +190,9 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
             
             message.parse_tag (out tag_list);
             if (tag_list != null) {
-                if (tag_list.get_tag_size(Gst.Tags.TITLE) > 0) {
+                if (tag_list.get_tag_size (Gst.Tags.TITLE) > 0) {
                     string title = "";
-                    tag_list.get_string(Gst.Tags.TITLE, out title);
+                    tag_list.get_string (Gst.Tags.TITLE, out title);
                     
                     if (App.player.media_info.media.mediatype == 3 && title != "") { // is radio
                         string[] pieces = title.split("-", 0);

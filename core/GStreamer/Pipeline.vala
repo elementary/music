@@ -48,7 +48,7 @@ public class Noise.Pipeline : GLib.Object {
     public Pipeline() {
         
         pipe = new Gst.Pipeline("pipeline");
-        playbin = Gst.ElementFactory.make("playbin", "play");
+        playbin = Gst.ElementFactory.make ("playbin", "play");
         
         audiosink = Gst.ElementFactory.make("autoaudiosink", "audio-sink");
         
@@ -68,7 +68,7 @@ public class Noise.Pipeline : GLib.Object {
         
         ((Gst.Bin)audiobin).add_many(audiotee, audiosinkqueue, audiosink);
         
-        audiobin.add_pad(new Gst.GhostPad("sink", audiotee.get_static_pad("sink")));
+        audiobin.add_pad (new Gst.GhostPad ("sink", audiotee.get_static_pad ("sink")));
         
         if (eq.element != null)
             audiosinkqueue.link_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
@@ -78,9 +78,9 @@ public class Noise.Pipeline : GLib.Object {
         playbin.set("audio-sink", audiobin); 
         bus = playbin.get_bus();
         
-        // Link the first tee pad to the primary audio sink queuev
-        Gst.Pad sinkpad = audiosinkqueue.get_static_pad("sink");
-        pad = audiotee.get_request_pad("src_%u");
+        // Link the first tee pad to the primary audio sink queue
+        Gst.Pad sinkpad = audiosinkqueue.get_static_pad ("sink");
+        pad = audiotee.get_request_pad ("src_%u");
         audiotee.set("alloc-pad", pad);
         pad.link(sinkpad);
     }
