@@ -193,19 +193,30 @@ public class Noise.CoverImport : GLib.Object {
     }
 
     private static Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
+        var memory = buffer.get_memory (0);
+        if (memory == null)
+            return null;
+ 
+        Gst.MapInfo map_info;
+        if (!memory.map (out map_info, Gst.MapFlags.READ))
+            return null;
+ 
         Gdk.Pixbuf? pix = null;
-        var loader = new Gdk.PixbufLoader ();
-
-        try {
-            uint8[] data;
-            buffer.extract_dup (0, buffer.get_size () , out data);
-            if (loader.write (data))
-                pix = loader.get_pixbuf ();
-            loader.close ();
-        } catch (Error err) {
-            warning ("Error processing pixbuf data: %s", err.message);
+ 
+        if (map_info.data != null) {
+            var loader = new Gdk.PixbufLoader ();
+ 
+            try {
+                if (loader.write (map_info.data))
+                    pix = loader.get_pixbuf ();
+                loader.close ();
+            } catch (Error err) {
+                warning ("Error processing image data: %s", err.message);
+            }
         }
-
+ 
+        memory.unmap (map_info);
+ 
         return pix;
     }
 
