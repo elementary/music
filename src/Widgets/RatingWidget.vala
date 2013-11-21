@@ -285,7 +285,6 @@ namespace Granite.Widgets {
         public Rating (bool centered, Gtk.IconSize size, bool symbolic = false) {
             this.centered = centered;
             this.renderer = new Renderer (size, symbolic, get_style_context ());
-
             visible_window = false;
 
             add_events (Gdk.EventMask.BUTTON_PRESS_MASK
