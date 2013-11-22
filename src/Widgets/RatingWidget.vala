@@ -26,7 +26,7 @@
 
 namespace Granite.Widgets {
 
-    public class Rating : Gtk.DrawingArea {
+    public class Rating : Gtk.EventBox {
 
         public class Renderer : Object {
             /**
@@ -285,6 +285,7 @@ namespace Granite.Widgets {
         public Rating (bool centered, Gtk.IconSize size, bool symbolic = false) {
             this.centered = centered;
             this.renderer = new Renderer (size, symbolic, get_style_context ());
+            visible_window = false;
 
             add_events (Gdk.EventMask.BUTTON_PRESS_MASK
                       | Gdk.EventMask.BUTTON_RELEASE_MASK
@@ -344,7 +345,7 @@ namespace Granite.Widgets {
                                          centered ? (al.width - width_request) / 2 : 0,
                                          centered ? (al.height - height_request) / 2 : 0);
             context.paint ();
-            return true;
+            return false;
         }
     }
 
