@@ -169,7 +169,7 @@ public class Noise.CoverImport : GLib.Object {
             if (loop_sample == null)
                 continue;
 
-            var structure = loop_sample.get_caps ().get_structure (0).copy ();
+            var structure = loop_sample.get_caps ().get_structure (0);
             if (structure == null)
                 continue;
 
