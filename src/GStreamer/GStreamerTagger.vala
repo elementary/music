@@ -29,7 +29,7 @@ public class Noise.GStreamerTagger : Object {
     public signal void import_error (string file_uri);
     public signal void queue_finished ();
 
-    private Gst.Discoverer d;
+    private Gst.PbUtils.Discoverer d;
     private Gee.LinkedList<string> uri_queue;
 
     private bool cancelled;
@@ -57,7 +57,7 @@ public class Noise.GStreamerTagger : Object {
     private async void import_next_file_set () {
         if (d == null) {
             try {
-                d = new Gst.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
+                d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
             } catch (Error err) {
                 critical ("Could not create Gst discoverer object: %s", err.message);
             }
@@ -96,7 +96,7 @@ public class Noise.GStreamerTagger : Object {
         import_next_file_set.begin ();
     }
 
-    private async void import_media (Gst.DiscovererInfo info, Error err) {
+    private async void import_media (Gst.PbUtils.DiscovererInfo info, Error err) {
         Media? m = null;
 
         string uri = info.get_uri ();
@@ -104,27 +104,27 @@ public class Noise.GStreamerTagger : Object {
         bool gstreamer_discovery_successful = false;
 
         switch (info.get_result ()) {
-            case Gst.DiscovererResult.OK:
+            case Gst.PbUtils.DiscovererResult.OK:
                 gstreamer_discovery_successful = true;
             break;
 
-            case Gst.DiscovererResult.URI_INVALID:
+            case Gst.PbUtils.DiscovererResult.URI_INVALID:
                 warning ("GStreamer could not import '%s': invalid URI.", uri);
             break;
 
-            case Gst.DiscovererResult.ERROR:
+            case Gst.PbUtils.DiscovererResult.ERROR:
                 warning ("GStreamer could not import '%s': %s", uri, err.message);
             break;
 
-            case Gst.DiscovererResult.TIMEOUT:
+            case Gst.PbUtils.DiscovererResult.TIMEOUT:
                 warning ("GStreamer could not import '%s': Discovery timed out.", uri);
             break;
 
-            case Gst.DiscovererResult.BUSY:
+            case Gst.PbUtils.DiscovererResult.BUSY:
                 warning ("GStreamer could not import '%s': Already discovering a file.", uri);
             break;
 
-            case Gst.DiscovererResult.MISSING_PLUGINS:
+            case Gst.PbUtils.DiscovererResult.MISSING_PLUGINS:
                 warning ("GStreamer could not import '%s': Missing plugins.", uri);
 
                 /**
@@ -149,68 +149,68 @@ public class Noise.GStreamerTagger : Object {
 
             if (tags != null) {
                 string title;
-                if (tags.get_string (Gst.TAG_TITLE, out title))
+                if (tags.get_string (Gst.Tags.TITLE, out title))
                     m.title = title;
 
                 string artist;
-                if (tags.get_string (Gst.TAG_ARTIST, out artist))
+                if (tags.get_string (Gst.Tags.ARTIST, out artist))
                     m.artist = artist;
 
                 string composer;
-                if (tags.get_string (Gst.TAG_COMPOSER, out composer))
+                if (tags.get_string (Gst.Tags.COMPOSER, out composer))
                     m.composer = composer;
 
                 string album_artist;
-                if (tags.get_string (Gst.TAG_ALBUM_ARTIST, out album_artist))
+                if (tags.get_string (Gst.Tags.ALBUM_ARTIST, out album_artist))
                     m.album_artist = album_artist;
 
                 string album;
-                if (tags.get_string (Gst.TAG_ALBUM, out album))
+                if (tags.get_string (Gst.Tags.ALBUM, out album))
                     m.album = album;
 
                 string grouping;
-                if (tags.get_string (Gst.TAG_GROUPING, out grouping))
+                if (tags.get_string (Gst.Tags.GROUPING, out grouping))
                     m.grouping = grouping;
 
                 string genre;
-                if (tags.get_string (Gst.TAG_GENRE, out genre))
+                if (tags.get_string (Gst.Tags.GENRE, out genre))
                     m.genre = genre;
 
                 string comment;
-                if (tags.get_string (Gst.TAG_COMMENT, out comment))
+                if (tags.get_string (Gst.Tags.COMMENT, out comment))
                     m.comment = comment;
 
                 string lyrics;
-                if (tags.get_string (Gst.TAG_LYRICS, out lyrics))
+                if (tags.get_string (Gst.Tags.LYRICS, out lyrics))
                     m.lyrics = lyrics;
 
                 uint track_number;
-                if (tags.get_uint (Gst.TAG_TRACK_NUMBER, out track_number))
+                if (tags.get_uint (Gst.Tags.TRACK_NUMBER, out track_number))
                     m.track = track_number;
 
                 uint track_count;
-                if (tags.get_uint (Gst.TAG_TRACK_COUNT, out track_count))
+                if (tags.get_uint (Gst.Tags.TRACK_COUNT, out track_count))
                     m.track_count = track_count;
 
                 uint album_number;
-                if (tags.get_uint (Gst.TAG_ALBUM_VOLUME_NUMBER, out album_number))
+                if (tags.get_uint (Gst.Tags.ALBUM_VOLUME_NUMBER, out album_number))
                     m.album_number = album_number;
 
                 uint album_count;
-                if (tags.get_uint (Gst.TAG_ALBUM_VOLUME_COUNT, out album_count))
+                if (tags.get_uint (Gst.Tags.ALBUM_VOLUME_COUNT, out album_count))
                     m.album_count = album_count;
 
                 uint bitrate;
-                if (tags.get_uint (Gst.TAG_BITRATE, out bitrate))
+                if (tags.get_uint (Gst.Tags.BITRATE, out bitrate))
                     m.bitrate = bitrate / 1000;
 
                 uint rating;
-                if (tags.get_uint (Gst.TAG_USER_RATING, out rating))
+                if (tags.get_uint (Gst.Tags.USER_RATING, out rating))
                     m.rating = rating; // Noise.Media will clamp the value
 
                 // Get the year
                 Date? date;
-                if (tags.get_date (Gst.TAG_DATE, out date)) {
+                if (tags.get_date (Gst.Tags.DATE, out date)) {
                     // Don't let the assumption that @date is non-null deceive you.
                     // This is sometimes null even though get_date() returned true!
                     if (date != null)
@@ -218,17 +218,18 @@ public class Noise.GStreamerTagger : Object {
                 }
 
                 double bpm;
-                if (tags.get_double (Gst.TAG_BEATS_PER_MINUTE, out bpm))
+                if (tags.get_double (Gst.Tags.BEATS_PER_MINUTE, out bpm))
                     m.bpm = (uint) bpm.clamp (0, bpm);
 
                 if (duration == 0)
-                    if (!tags.get_uint64 (Gst.TAG_DURATION, out duration))
+                    if (!tags.get_uint64 (Gst.Tags.DURATION, out duration))
                         duration = 0;
             }
 
             m.length = TimeUtils.nanoseconds_to_miliseconds (duration);
 
-            foreach (var audio_stream in info.get_audio_streams ()) {
+            foreach (var stream_info in info.get_audio_streams ()) {
+                var audio_stream = stream_info as Gst.PbUtils.DiscovererAudioInfo;
                 if (audio_stream == null)
                     continue;
 

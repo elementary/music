@@ -372,7 +372,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     public void ripperError(string err, Gst.Message message) {
         stop_importation ();
         if(err == "missing element") {
-            if(message.get_structure() != null && Gst.is_missing_plugin_message(message)) {
+            if (message.get_structure () != null && Gst.PbUtils.is_missing_plugin_message (message)) {
                     Noise.InstallGstreamerPluginsDialog dialog = new Noise.InstallGstreamerPluginsDialog(message);
                     dialog.show();
                 }

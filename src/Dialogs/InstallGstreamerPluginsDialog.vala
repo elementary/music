@@ -35,7 +35,7 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 	
 	public InstallGstreamerPluginsDialog(Gst.Message message) {
 		this.message = message;
-		this.detail = Gst.missing_plugin_message_get_description(message);
+		this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 		
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
@@ -94,10 +94,10 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 	}
 	
         public void installPluginClicked() {
-            var installer = Gst.missing_plugin_message_get_installer_detail(message);
-            var context = new Gst.InstallPluginsContext();
+            var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (message);
+            var context = new Gst.PbUtils.InstallPluginsContext ();
                 
-            Gst.install_plugins_async({installer}, context, (Gst.InstallPluginsResultFunc)install_plugins_finished);
+            Gst.PbUtils.install_plugins_async ({installer}, context, (Gst.PbUtils.InstallPluginsResultFunc) install_plugins_finished);
             // This callback was called before APT was done, so let's periodically check
             // whether the plugins have actually been installed. We won't update the
             // registry here.
@@ -105,7 +105,7 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
             this.hide ();
         }
 
-        public void install_plugins_finished(Gst.InstallPluginsReturn result) {
+        public void install_plugins_finished (Gst.PbUtils.InstallPluginsReturn result) {
             GLib.message ("Install of plugins finished.. updating registry");
         }
         private bool installation_done = false;

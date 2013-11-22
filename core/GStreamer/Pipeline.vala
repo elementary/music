@@ -48,7 +48,7 @@ public class Noise.Pipeline : GLib.Object {
     public Pipeline() {
         
         pipe = new Gst.Pipeline("pipeline");
-        playbin = Gst.ElementFactory.make("playbin2", "play");
+        playbin = Gst.ElementFactory.make ("playbin", "play");
         
         audiosink = Gst.ElementFactory.make("autoaudiosink", "audio-sink");
         
@@ -68,7 +68,7 @@ public class Noise.Pipeline : GLib.Object {
         
         ((Gst.Bin)audiobin).add_many(audiotee, audiosinkqueue, audiosink);
         
-        audiobin.add_pad(new Gst.GhostPad("sink", audiotee.get_pad("sink")));
+        audiobin.add_pad (new Gst.GhostPad ("sink", audiotee.get_static_pad ("sink")));
         
         if (eq.element != null)
             audiosinkqueue.link_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
@@ -79,22 +79,26 @@ public class Noise.Pipeline : GLib.Object {
         bus = playbin.get_bus();
         
         // Link the first tee pad to the primary audio sink queue
-        Gst.Pad sinkpad = audiosinkqueue.get_pad("sink");
-        pad = audiotee.get_request_pad("src%d");
+        Gst.Pad sinkpad = audiosinkqueue.get_static_pad ("sink");
+        pad = audiotee.get_request_pad ("src_%u");
         audiotee.set("alloc-pad", pad);
         pad.link(sinkpad);
     }
 
     public void enableEqualizer() {
         if (eq.element != null) {
-            audiosinkqueue.unlink_many(audiosink); // link the queue with the real audio sink
+            audiosinkqueue.unlink (audiosink); // link the queue with the real audio sink
             audiosinkqueue.link_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
         }
     }
     
     public void disableEqualizer() {
         if (eq.element != null) {
-            audiosinkqueue.unlink_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
+            audiosinkqueue.unlink (eq_audioconvert);
+            audiosinkqueue.unlink (preamp);
+            audiosinkqueue.unlink (eq.element);
+            audiosinkqueue.unlink (eq_audioconvert2);
+            audiosinkqueue.unlink (audiosink);
             audiosinkqueue.link_many(audiosink); // link the queue with the real audio sink
         }
     }

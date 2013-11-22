@@ -45,7 +45,7 @@ public class Noise.Equalizer : GLib.Object {
 
 		float last_freq = 0;
 		for (int index = 0; index < 10; index++) {
-			Gst.Object band = ((Gst.ChildProxy)element).get_child_by_index(index);
+			GLib.Object? band = ((Gst.ChildProxy)element).get_child_by_index (index);
 			
 			float freq = freqs[index];
 			float bandwidth = freq - last_freq;
@@ -58,7 +58,7 @@ public class Noise.Equalizer : GLib.Object {
 	}
 	
 	public void setGain(int index, double gain) {
-		Gst.Object band = ((Gst.ChildProxy)element).get_child_by_index(index);
+		GLib.Object? band = ((Gst.ChildProxy)element).get_child_by_index (index);
 		
 		if (gain < 0)
 			gain *= 0.24f;

@@ -69,7 +69,7 @@ public class Noise.CDRipper : GLib.Object {
 		
 		queue.set ("max-size-time", 120 * Gst.SECOND);
 		
-		_format = Gst.format_get_by_nick ("track");
+		_format = Gst.Format.get_by_nick ("track");
 		
 		((Gst.Bin)pipeline).add_many (src, queue, filter, sink);
 		if(!src.link_many (queue, filter, sink)) {
@@ -77,7 +77,7 @@ public class Noise.CDRipper : GLib.Object {
 			return false;
 		}
 		
-		pipeline.bus.add_watch (busCallback);
+		pipeline.bus.add_watch (GLib.Priority.DEFAULT, busCallback);
 		
 		Timeout.add (500, doPositionUpdate);
 		
@@ -97,7 +97,7 @@ public class Noise.CDRipper : GLib.Object {
 		int64 rv = (int64)0;
 		Format f = Format.TIME;
 		
-		src.query_position(ref f, out rv);
+		src.query_position (f, out rv);
 		
 		return rv;
 	}
@@ -106,7 +106,7 @@ public class Noise.CDRipper : GLib.Object {
 		int64 rv = (int64)0;
 		Format f = Format.TIME;
 		
-		src.query_duration(ref f, out rv);
+		src.query_duration (f, out rv);
 		
 		return rv;
 	}
