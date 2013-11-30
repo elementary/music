@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-10-07 05:54+0000\n"
-"X-Generator: Launchpad (build 16791)\n"
+"X-Launchpad-Export-Date: 2013-11-30 05:26+0000\n"
+"X-Generator: Launchpad (build 16856)\n"
 
 #: /home/noelco/Programmation/Projets/noise/po/../core//GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -1294,7 +1294,7 @@ msgstr "από τα παρακάτω:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
-msgstr "Όριο μέχρι"
+msgstr "Περιορισμός σε:"
 
 #: /home/noelco/Programmation/Projets/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:96
 msgid "items"
@@ -1977,3 +1977,12 @@ msgstr "Προέκυψε ένα σφάλμα κατά την εισαγωγή τ
 
 #~ msgid "BPM"
 #~ msgstr "BPM"
+
+#~ msgid "Device is already being synced."
+#~ msgstr "Η συσκευή ήδη συγχρονίζεται."
+
+#~ msgid "Cancelling Sync"
+#~ msgstr "Ακύρωση συγχρονισμού"
+
+#~ msgid "Cancelling Import"
+#~ msgstr "Ακύρωση εισαγωγής"
