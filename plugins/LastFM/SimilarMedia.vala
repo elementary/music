@@ -104,7 +104,7 @@ public class LastFM.SimilarMedias : Object {
         var title_fixed =  GLib.Uri.escape_string (title);
         var url = "http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=" + artist_fixed + "&track=" + title_fixed + "&api_key=" + LastFM.API;
         
-        Soup.SessionSync session = new Soup.SessionSync();
+        var session = new Soup.Session ();
         Soup.Message message = new Soup.Message ("GET", url);
         
         session.timeout = 30;// after 30 seconds, give up

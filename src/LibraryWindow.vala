@@ -21,9 +21,6 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gtk;
-using Gee;
-
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void playPauseChanged ();
     public signal void close_subwindows ();
@@ -828,7 +825,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon, null, d);
             } else {
                 debug ("adding device view with %d\n", d.get_library ().get_medias().size);
-                var music_view_wrapper = new DeviceViewWrapper(new TreeViewSetup(ListColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d, d.get_library ());
+                var music_view_wrapper = new DeviceViewWrapper(new TreeViewSetup(ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d, d.get_library ());
                 
                 int subview_number = view_container.add_view (music_view_wrapper);
                 entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon, null, d);
@@ -992,7 +989,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void show_smart_playlist_dialog (SmartPlaylist? smartplaylist = null) {
         SmartPlaylistEditor spe = null;
         spe = new SmartPlaylistEditor (smartplaylist, library_manager);
-        spe.window_position = WindowPosition.CENTER;
+        spe.window_position = Gtk.WindowPosition.CENTER;
         spe.type_hint = Gdk.WindowTypeHint.DIALOG;
         spe.set_transient_for (this);
         spe.set_modal(true);
@@ -1059,7 +1056,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
     
 
-    public virtual void medias_updated(Collection<int> ids) {
+    public virtual void medias_updated (Gee.Collection<int> ids) {
         if(App.player.media_active && ids.contains(App.player.media_info.media.rowid)) {
             updateInfoLabel();
         }
@@ -1127,21 +1124,21 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 notify_current_media_async.begin ();
             }
         } else
-            topDisplay.change_value(ScrollType.NONE, 0);
+            topDisplay.change_value (Gtk.ScrollType.NONE, 0);
     }
 
     public virtual void fileImportMusicClick() {
         if(!library_manager.doing_file_operations()) {
 
             var folders = new Gee.ArrayList<string> ();
-            var file_chooser = new FileChooserDialog (_("Import Music"), this,
-                                      FileChooserAction.SELECT_FOLDER,
-                                      Gtk.Stock.CANCEL, ResponseType.CANCEL,
-                                      Gtk.Stock.OPEN, ResponseType.ACCEPT);
+            var file_chooser = new Gtk.FileChooserDialog (_("Import Music"), this,
+                                      Gtk.FileChooserAction.SELECT_FOLDER,
+                                      Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                                      Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
             file_chooser.set_select_multiple (true);
             file_chooser.set_local_only(true);
 
-            if (file_chooser.run () == ResponseType.ACCEPT) {
+            if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
                 foreach (var folder in file_chooser.get_filenames()) {
                     folders.add (folder);
                 }
@@ -1298,7 +1295,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (dragging_from_music)
             return;
 
-        var files_dragged = new LinkedList<string> ();
+        var files_dragged = new Gee.LinkedList<string> ();
 
         debug("dragged\n");
 
@@ -1310,7 +1307,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public void doAlert(string title, string message) {
-        var dialog = new MessageDialog (this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, "%s", title);
+        var dialog = new Gtk.MessageDialog (this, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "%s", title);
 
         dialog.title = ((Noise.App) GLib.Application.get_default ()).get_name ();
         dialog.secondary_text = message;

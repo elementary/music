@@ -20,85 +20,80 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-using Gee;
-
-public class Noise.SimilarMediasView : TreeView {
-    private new ListStore model;
-    private LinkedList<Media> medias;
+public class Noise.SimilarMediasView : Gtk.TreeView {
+    private new Gtk.ListStore model;
+    private Gee.LinkedList<Media> medias;
     
-    private LinkedList<string> urlsToOpen;//queue for opening urls
+    private Gee.LinkedList<string> urlsToOpen;//queue for opening urls
     
-    public SimilarMediasView() {
-        medias = new LinkedList<Media>();
-        urlsToOpen = new LinkedList<string>();
+    public SimilarMediasView () {
+        medias = new Gee.LinkedList<Media> ();
+        urlsToOpen = new Gee.LinkedList<string> ();
         
         /* id is always first and is stored as an int. Then the rest are (1)
          * strings (for simplicity), and include:
          * #, track, title, artist, album, genre, comment, year, rating, (9)
          * bitrate, play count, last played, date added, file name, (5)
          * bpm, length, file size, (3) */
-        model = new ListStore(3, typeof(Noise.Media), typeof(string), typeof(Gtk.Widget), -1);
+        model = new Gtk.ListStore (3, typeof (Noise.Media), typeof (string), typeof (Gtk.Widget), -1);
         
-        TreeViewColumn col = new TreeViewColumn();
+        var col = new Gtk.TreeViewColumn ();
         col.title = _("media");
         col.visible = false;
-        insert_column(col, 0);
+        insert_column (col, 0);
         
-        insert_column_with_attributes(-1, _("Similar Media"), new CellRendererText(), "markup", 1, null);
-        get_column(1).sizing = Gtk.TreeViewColumnSizing.FIXED;
-        get_column(1).set_alignment((float)0.5);
+        insert_column_with_attributes (-1, _("Similar Media"), new Gtk.CellRendererText(), "markup", 1, null);
+        get_column (1).sizing = Gtk.TreeViewColumnSizing.FIXED;
+        get_column (1).set_alignment ( (float) 0.5);
         
-        set_model(model);
-        //set_grid_lines(TreeViewGridLines.HORIZONTAL);
+        set_model (model);
+        //set_grid_lines (TreeViewGridLines.HORIZONTAL);
         
-        row_activated.connect(viewDoubleClick);
+        row_activated.connect (viewDoubleClick);
     }
     
-    public void populateView (Collection<Media> nMedias) {
-        medias.clear();
-        model.clear();
+    public void populateView (Gee.Collection<Media> nMedias) {
+        medias.clear ();
+        model.clear ();
         int count = 0;
-        foreach(Media s in nMedias) {
-            medias.add(s);
+        foreach (Media s in nMedias) {
+            medias.add (s);
             
-            TreeIter iter;
-            model.append(out iter);
+            Gtk.TreeIter iter;
+            model.append (out iter);
             
             var title_fixed = String.escape (s.title);
             var artist_fixed = String.escape (s.artist);
             
-            model.set(iter, 0, s, 1, "<b>" + title_fixed + "</b>" + " \n" + artist_fixed );
+            model.set (iter, 0, s, 1, "<b>" + title_fixed + "</b>" + " \n" + artist_fixed );
             ++count;
             
-            if(count >= 16)
+            if (count >= 16)
                 return;
         }
     }
     
-    public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
+    public virtual void viewDoubleClick (Gtk.TreePath path, Gtk.TreeViewColumn column) {
         try {
             new Thread<void*>.try (null, take_action);
-        }
-        catch (GLib.Error err) {
+        } catch (GLib.Error err) {
             warning ("ERROR: Could not create thread to have fun: %s \n", err.message);
         }
     }
     
     public void* take_action () {
-        TreeIter iter;
-        TreeModel mo;
+        Gtk.TreeIter iter;
+        Gtk.TreeModel mo;
         Media s;
         
-        get_selection().get_selected(out mo, out iter);
-        mo.get(iter, 0, out s);
+        get_selection ().get_selected (out mo, out iter);
+        mo.get (iter, 0, out s);
         
         // fall back to just opening the last fm page
-        if(s != null && s.comment != null && s.comment != "") {
+        if (s != null && s.comment != null && s.comment != "") {
             try {
                 GLib.AppInfo.launch_default_for_uri (s.comment, null);
-            }
-            catch(Error err) {
+            } catch(Error err) {
                 message ("Couldn't open the similar media's last fm page: %s\n", err.message);
             }
         }
