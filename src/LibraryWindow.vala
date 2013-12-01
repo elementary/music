@@ -579,7 +579,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             urgency = Notify.Urgency.NORMAL;
 
         if (!Notify.is_initted ()) {
-            if (!Notify.init (App.instance.get_id ())) {
+            if (!Notify.init (((Noise.App) GLib.Application.get_default ()).get_id ())) {
                 warning ("Could not init libnotify");
                 return;
             }
