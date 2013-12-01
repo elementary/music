@@ -94,12 +94,18 @@ find_package (PkgConfig)
 pkg_check_modules (CORE_DEPS REQUIRED ${CORE_PKG})
 pkg_check_modules (DEPS REQUIRED ${DEPS_PKG} ${CORE_PKG})
 
-set (GLOBAL_VALAC_OPTIONS
+set (BASIC_VALAC_OPTIONS
   --vapidir=${CMAKE_SOURCE_DIR}/vapi
-  --vapidir=${CMAKE_BINARY_DIR}/core
-  --vapidir=${CMAKE_BINARY_DIR}/src
   --target-glib=2.32
   --thread
+  # Remove it when vala bindings are no more experimental (see https://bugzilla.gnome.org/show_bug.cgi?id=719597)
+  --enable-experimental
+)
+
+set (GLOBAL_VALAC_OPTIONS
+  --vapidir=${CMAKE_BINARY_DIR}/core
+  --vapidir=${CMAKE_BINARY_DIR}/src
+  ${BASIC_VALAC_OPTIONS}
 )
 
 #

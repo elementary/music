@@ -21,7 +21,6 @@
  * the current media playing. Mostly here because of dependence. */
 
 public class Noise.TrackInfo : GLib.Object {
-    
     public int id;
     public string name { get; set; default=_("Unknown Track"); }
     public string artist;
@@ -32,7 +31,6 @@ public class Noise.TrackInfo : GLib.Object {
     
     public string summary;
     public string content;
-    
     
     public TrackInfo () {
         

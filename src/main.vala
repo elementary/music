@@ -33,6 +33,7 @@ int main (string[] args) {
     Intl.bind_textdomain_codeset (package_name, "UTF-8");
     Intl.textdomain (package_name);
     GLib.Environ.set_variable ({"PULSE_PROP_media.role"}, "audio", "true");
+    var app = new Noise.App ();
 
-    return Noise.App.instance.run (args);
+    return app.run (args);
 }

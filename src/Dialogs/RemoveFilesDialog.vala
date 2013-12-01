@@ -47,17 +47,17 @@ public class Noise.RemoveFilesDialog : Window {
 		content = new Gtk.Box(Gtk.Orientation.VERTICAL, 10);
 		padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 20);
 		
+		var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
+		
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
 		trash_button = new Button.with_label (_("Move to Trash"));
-		remove_button = new Button.with_label (_("Remove from %s").printf (App.instance.get_name ()));
+		remove_button = new Button.with_label (_("Remove from %s").printf (app_name));
 		cancel_button = new Button.with_label (_("Cancel"));
 		
 		bool multiple_media = to_remove.size > 1;
-		
-		var app_name = App.instance.get_name ();
 
 		// set title text
 		title.xalign = 0.0f;

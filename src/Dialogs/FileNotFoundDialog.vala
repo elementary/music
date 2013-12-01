@@ -47,7 +47,7 @@ public class Noise.FileNotFoundDialog : Window {
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.title = App.instance.get_name ();
+		this.title = ((Noise.App) GLib.Application.get_default ()).get_name ();
 		this.set_modal (true);
 		this.set_transient_for (App.main_window);
 		this.destroy_with_parent = true;

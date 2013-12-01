@@ -39,7 +39,7 @@ private class LastFM.PreferencesSection {
     Gtk.Button login_button;
 
     public PreferencesSection (Core core) {
-        string program_name = Noise.App.instance.get_name ();
+        string program_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
         page = new Noise.SettingsWindow.NoteBook_Page(_("Last.fm"));
 
         this.core = core;

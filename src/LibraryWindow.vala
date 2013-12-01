@@ -227,7 +227,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 break;
         }
 
-        this.set_title (App.instance.get_name ());
+        this.set_title (((Noise.App) GLib.Application.get_default ()).get_name ());
         this.set_icon (Icons.NOISE.render_at_size (64));
 
         // set up drag dest stuff
@@ -263,7 +263,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         settingsMenu.append (editPreferences);
 
         fileImportMusic.activate.connect (fileImportMusicClick);
-        fileRescanMusicFolder.activate.connect ( () => { rescan_music_folder (); }); // FIXME
+        // TODO: Never rescan manually but watch the folder !
+        fileRescanMusicFolder.activate.connect ( () => { rescan_music_folder (); });
         fullscreen_item.toggled.connect(toggle_fullscreen);
         editPreferences.activate.connect(editPreferencesClick);
 
@@ -314,7 +315,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         main_toolbar.insert (top_display_item, -1);
         main_toolbar.insert (search_field_item, -1);
         main_toolbar.insert (volume_item, -1);
-        main_toolbar.insert (App.instance.create_appmenu (settingsMenu), -1);
+        main_toolbar.insert (((Noise.App) GLib.Application.get_default ()).create_appmenu (settingsMenu), -1);
 
 
         /** Info Panel **/
@@ -1311,7 +1312,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void doAlert(string title, string message) {
         var dialog = new MessageDialog (this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, "%s", title);
 
-        dialog.title = App.instance.get_name ();
+        dialog.title = ((Noise.App) GLib.Application.get_default ()).get_name ();
         dialog.secondary_text = message;
         dialog.secondary_use_markup = true;
 

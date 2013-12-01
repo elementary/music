@@ -29,8 +29,6 @@
  *              Corentin Noël <tintou@mailoo.org>
  */
 
-using Gee;
-
 public class Noise.PlaybackManager : Object, Noise.Player {
 
     // TODO: Have a correct implementation based on playlists.
@@ -49,13 +47,13 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public signal void changing_player ();
     public signal void player_changed ();
 
-    private LinkedList<unowned Noise.Playback> playbacks = new LinkedList<unowned Noise.Playback> ();
+    private Gee.LinkedList<unowned Noise.Playback> playbacks = new Gee.LinkedList<unowned Noise.Playback> ();
 
     // id, media of current media.
-    private HashMap<int, Media> _current = new Gee.HashMap<int, Media>();
+    private Gee.HashMap<int, Media> _current = new Gee.HashMap<int, Media>();
 
     //list of id's yet to be played while on shuffle
-    private HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
+    private Gee.HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
 
     public StaticPlaylist queue_playlist = new StaticPlaylist ();
     public StaticPlaylist history_playlist = new StaticPlaylist ();
@@ -120,7 +118,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         media_queued (to_queue);
     }
 
-    public void queue_media_by_id (Collection<int> ids) {
+    public void queue_media_by_id (Gee.Collection<int> ids) {
         queue_media (library.medias_from_ids (ids));
     }
 
@@ -129,7 +127,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         queue_playlist.remove_medias (to_unqueue);
     }
 
-    public void unqueue_media_by_id (Collection<int> ids) {
+    public void unqueue_media_by_id (Gee.Collection<int> ids) {
         unqueue_media (library.medias_from_ids (ids));        
     }
 
@@ -193,12 +191,12 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     
     public Media mediaFromCurrentIndex (int index_in_current) {
         if(main_settings.shuffle_mode == Noise.Settings.Shuffle.OFF)
-            return _current.get(index_in_current);
+            return _current.get (index_in_current);
         else
-            return _current_shuffled.get(index_in_current);
+            return _current_shuffled.get (index_in_current);
     }
     
-    public Collection<Media> current_media () {
+    public Gee.Collection<Media> current_media () {
         if(main_settings.shuffle_mode == Noise.Settings.Shuffle.OFF)
             return _current_shuffled.values;
         else
@@ -251,7 +249,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             }
         } else if(main_settings.shuffle_mode == Noise.Settings.Shuffle.ALL) {
             //create temp list of all of current's media
-            var temp = new LinkedList<Media>();
+            var temp = new Gee.LinkedList<Media>();
             foreach(var m in _current.values) {
                 temp.add (m);
             }

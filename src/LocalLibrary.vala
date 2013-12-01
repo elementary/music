@@ -30,8 +30,6 @@
  *              Corentin Noël <tintou@mailoo.org>
  */
 
-using Gee;
-
 /**
  * This is where all the media stuff happens. Here, media is retrieved
  * from the db, added to the queue, sorted, and more. LibraryWindow is
@@ -189,7 +187,7 @@ public class Noise.LocalLibrary : Library {
 
         Threads.add (() => {
             var music_folder_file = File.new_for_path (main_settings.music_folder);
-            LinkedList<string> files = new LinkedList<string> ();
+            var files = new Gee.LinkedList<string> ();
 
             var items = FileUtils.count_music_files (music_folder_file, ref files);
             debug ("found %d items to import\n", items);
@@ -255,7 +253,7 @@ public class Noise.LocalLibrary : Library {
         SourceFunc callback = add_folder_to_library_async.callback;
 
         Threads.add (() => {
-            var files = new LinkedList<string> ();
+            var files = new Gee.LinkedList<string> ();
             foreach (var folder in folders) {
                 var file = File.new_for_path (folder);
                 FileUtils.count_music_files (file, ref files);
@@ -283,7 +281,7 @@ public class Noise.LocalLibrary : Library {
 
         var to_remove = new Gee.LinkedList<Media> ();
         var to_import = new Gee.LinkedList<string> ();
-        var files = new LinkedList<string> ();
+        var files = new Gee.LinkedList<string> ();
 
         Threads.add (() => {
 
@@ -327,23 +325,23 @@ public class Noise.LocalLibrary : Library {
         _opening_file = true;
         tagger = new GStreamerTagger();
         open_media_list = new Gee.LinkedList<Media> ();
-        tagger.media_imported.connect(media_opened_imported);
-        tagger.queue_finished.connect(() => {_opening_file = false;});
-        var files_list = new LinkedList<string>();
+        tagger.media_imported.connect (media_opened_imported);
+        tagger.queue_finished.connect (() => {_opening_file = false;});
+        var files_list = new Gee.LinkedList<string> ();
         foreach (var file in files) {
             files_list.add (file.get_uri ());
         }
         tagger.discoverer_import_media (files_list);
     }
     
-    private void media_opened_imported(Media m) {
+    private void media_opened_imported (Media m) {
         m.isTemporary = true;
         open_media_list.add (m);
         if (!_opening_file)
-            media_opened_finished();
+            media_opened_finished ();
     }
     
-    private void media_opened_finished() {
+    private void media_opened_finished () {
         App.player.queue_media (open_media_list);
         if (open_media_list.size > 0) {
             if (!App.player.playing) {
@@ -437,7 +435,7 @@ public class Noise.LocalLibrary : Library {
         return true;
     }
     
-    public override Collection<SmartPlaylist> get_smart_playlists () {
+    public override Gee.Collection<SmartPlaylist> get_smart_playlists () {
         return _smart_playlists;
     }
 
@@ -560,7 +558,7 @@ public class Noise.LocalLibrary : Library {
         debug ("--- MEDIAS CLEARED ---");
     }
 
-    private async void update_smart_playlists_async (Collection<Media> media) {
+    private async void update_smart_playlists_async (Gee.Collection<Media> media) {
         Idle.add (update_smart_playlists_async.callback);
         yield;
 
@@ -578,14 +576,14 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void update_media (Media s, bool updateMeta, bool record_time) {
-        var one = new LinkedList<Media> ();
+        var one = new Gee.LinkedList<Media> ();
         one.add (s);
 
         update_medias (one, updateMeta, record_time);
     }
 
-    public override void update_medias (Collection<Media> updates, bool updateMeta, bool record_time) {
-        var rv = new LinkedList<int> ();
+    public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
+        var rv = new Gee.LinkedList<int> ();
 
         foreach (Media s in updates) {
             /*_media.set (s.rowid, s);*/

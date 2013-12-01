@@ -33,8 +33,9 @@ public class Noise.DataBaseUpdater : Object {
         to_remove = new Gee.LinkedList<Object> ();
 
         // Save on a regular basis and before exit
-        App.instance.shutdown.connect_after (() => on_close_ui_save ());
-        App.instance.shutdown.connect_after (update_db_sync);
+        var app = (Noise.App) GLib.Application.get_default ();
+        app.shutdown.connect_after (() => on_close_ui_save ());
+        app.shutdown.connect_after (update_db_sync);
     }
 
     public async void removeItem (Object item) {

@@ -20,8 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gee;
-
 public class Noise.DeviceView : Gtk.Grid {
     public Device d;
     DeviceSummaryWidget summary;
@@ -34,36 +32,36 @@ public class Noise.DeviceView : Gtk.Grid {
 
         this.d = d;
 
-        buildUI();
+        buildUI ();
         
-        ulong connector = notification_manager.progress_canceled.connect( () => {
-            if(d.get_library ().doing_file_operations ()) {
+        ulong connector = notification_manager.progress_canceled.connect ( () => {
+            if (d.get_library ().doing_file_operations ()) {
                 notification_manager.doAlertNotification (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
             }
         });
-        d.device_unmounted.connect( () => {
+        d.device_unmounted.connect ( () => {
             message ("device unmounted\n");
-            d.disconnect(connector);
+            d.disconnect (connector);
         });
         
-        if(d.get_preferences().sync_when_mounted)
-            syncClicked();
+        if (d.get_preferences ().sync_when_mounted)
+            syncClicked ();
     }
     
-    void buildUI() {
+    void buildUI () {
         
         /* create infobar */
         
         infobar = new Gtk.InfoBar();
         infobar.get_style_context ().add_class (Gtk.STYLE_CLASS_INFO);
         infobar.set_hexpand (true);
-        infobar_label = new Gtk.Label("");
-        (infobar.get_content_area() as Gtk.Container).add(infobar_label);
-        infobar.add_button(Gtk.Stock.OK, 0);
-        infobar.response.connect( (self, response) => {
+        infobar_label = new Gtk.Label ("");
+        (infobar.get_content_area () as Gtk.Container).add (infobar_label);
+        infobar.add_button (Gtk.Stock.OK, 0);
+        infobar.response.connect ( (self, response) => {
             infobar.hide ();
         });
-        summary = new DeviceSummaryWidget(d);
+        summary = new DeviceSummaryWidget (d);
         
         attach (infobar, 0, 0, 1, 1);
         if (d.get_custom_view () != null) {
@@ -72,42 +70,41 @@ public class Noise.DeviceView : Gtk.Grid {
             attach (summary, 0, 1, 1, 1);
         }
         
-        show_all();
+        show_all ();
         infobar.hide ();
         d.infobar_message.connect (infobar_message_sended);
     }
     
     
-    public void set_as_current_view() {
-        summary.refresh_lists();
+    public void set_as_current_view () {
+        summary.refresh_lists ();
     }
     
     void infobar_message_sended (string message, Gtk.MessageType type) {
         infobar_label.set_label (message);
-        infobar.set_message_type(type);
-        infobar.show_all();
+        infobar.set_message_type (type);
+        infobar.show_all ();
     }
     
-    public void showImportDialog() {
+    public void showImportDialog () {
         // ask the user if they want to import medias from device that they don't have in their library (if any)
         // this should be same as MusicViewWrapper
-        if(!libraries_manager.local_library.doing_file_operations() && main_settings.music_folder != "") {
-            var found = new LinkedList<int>();
-            var not_found = new LinkedList<Media>();
-            libraries_manager.local_library.media_from_name(d.get_library ().get_medias(), ref found, ref not_found);
+        if (!libraries_manager.local_library.doing_file_operations () && main_settings.music_folder != "") {
+            var found = new Gee.LinkedList<int> ();
+            var not_found = new Gee.LinkedList<Media> ();
+            libraries_manager.local_library.media_from_name (d.get_library ().get_medias (), ref found, ref not_found);
             
-            if(not_found.size > 0) {
-                TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(d, not_found);
-                tfdd.show();
-            }
-            else {
+            if (not_found.size > 0) {
+                TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog (d, not_found);
+                tfdd.show ();
+            } else {
                 notification_manager.doAlertNotification (_("No External Songs"), _("There were no songs found on this device that are not in your library."));
             }
         }
     }
     
-    public void syncClicked() {
-        summary.sync_clicked();
+    public void syncClicked () {
+        summary.sync_clicked ();
     }
 }
 

@@ -20,9 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gst;
-using Gtk;
-
 public class Noise.Streamer : Noise.Playback, GLib.Object {
     Noise.Pipeline pipe;
 
@@ -68,24 +65,24 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     
     /* Basic playback functions */
     public void play () {
-        set_state (State.PLAYING);
+        set_state (Gst.State.PLAYING);
     }
     
     public void pause () {
-        set_state (State.PAUSED);
+        set_state (Gst.State.PAUSED);
     }
     
-    public void set_state (State s) {
+    public void set_state (Gst.State s) {
         pipe.playbin.set_state (s);
     }
     
     public void set_media (Media media) {
-        set_state (State.READY);
+        set_state (Gst.State.READY);
         debug ("set uri to %s\n", media.uri);
         //pipe.playbin.uri = uri.replace("#", "%23");
         pipe.playbin.set_property ("uri", media.uri.replace("#", "%23"));
 
-        set_state (State.PLAYING);
+        set_state (Gst.State.PLAYING);
         
         debug ("setURI seeking to %d\n", App.player.media_info.media.resume_pos);
         pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.media_info.media.resume_pos * 1000000000);
@@ -102,7 +99,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     
     public int64 get_position () {
         int64 rv = (int64)0;
-        Format f = Format.TIME;
+        Gst.Format f = Gst.Format.TIME;
         
         pipe.playbin.query_position (f, out rv);
         
@@ -111,7 +108,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     
     public int64 get_duration () {
         int64 rv = (int64)0;
-        Format f = Format.TIME;
+        Gst.Format f = Gst.Format.TIME;
         
         pipe.playbin.query_duration (f, out rv);
         

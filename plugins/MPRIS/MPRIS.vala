@@ -33,7 +33,7 @@ public class Noise.MPRIS : GLib.Object {
     
     public void initialize () {
         owner_id = Bus.own_name(BusType.SESSION,
-                                "org.mpris.MediaPlayer2." + App.instance.exec_name,
+                                "org.mpris.MediaPlayer2.Noise",
                                 GLib.BusNameOwnerFlags.NONE,
                                 on_bus_acquired,
                                 on_name_acquired,
@@ -95,13 +95,13 @@ public class MprisRoot : GLib.Object {
     }
     public string DesktopEntry { 
         owned get {
-            return App.instance.get_desktop_file_name ().replace (".desktop", "");
+            return "noise";
         } 
     }
     
     public string Identity {
         owned get {
-            return App.instance.get_name ();
+            return ((Noise.App) GLib.Application.get_default ()).get_name ();
         }
     }
     
@@ -235,7 +235,7 @@ public class MprisPlayer : GLib.Object {
     }
 
     private ObjectPath get_track_id (Media m) {
-        return new ObjectPath ("/org/pantheon/%s/Track/%d".printf (App.instance.exec_name, m.rowid));
+        return new ObjectPath ("/org/pantheon/noise/Track/%d".printf (m.rowid));
     }
 
     private bool send_property_change() {
@@ -254,7 +254,7 @@ public class MprisPlayer : GLib.Object {
         changed_properties = null;
         
         try {
-            conn.emit_signal("org.mpris.MediaPlayer2." + App.instance.exec_name,
+            conn.emit_signal("org.mpris.MediaPlayer2.Noise",
                              "/org/mpris/MediaPlayer2", 
                              "org.freedesktop.DBus.Properties", 
                              "PropertiesChanged", 

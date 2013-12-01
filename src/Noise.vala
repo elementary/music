@@ -38,17 +38,6 @@ public class Noise.App : Granite.Application {
     public const string GENERIC = N_("Music Player");
     public const string KEYWORDS = N_("Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;");
 
-
-    private static App _instance;
-    public static App instance {
-        get {
-            if (_instance == null)
-                _instance = new App ();
-            return _instance;
-        }
-    }
-
-    // TODO: Expose Noise.Player instead of PlaybackManager
     public static PlaybackManager player { get; private set; }
     private LocalLibrary library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
@@ -82,7 +71,6 @@ public class Noise.App : Granite.Application {
                          "Scott Ringwelski <sgringwe@mtu.edu>", null};
 
         about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
-        _instance = this;
     }
 
     public override void open (File[] files, string hint) {

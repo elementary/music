@@ -21,22 +21,22 @@
  * the current media playing. Mostly here because of dependence. */
 
 public class Noise.MediaInfo : GLib.Object {
-	public Noise.Media? media;
-	public Noise.ArtistInfo? artist;
-	public Noise.TrackInfo? track;
-	public Noise.AlbumInfo? album;
-	
-	public MediaInfo () {
-		//don't initialize media because we check for null throughout the program
-		artist = new Noise.ArtistInfo ();
-		track = new Noise.TrackInfo ();
-		album = new Noise.AlbumInfo ();
-	}
-	
-	public void update (Noise.ArtistInfo? art, Noise.TrackInfo? tra, Noise.AlbumInfo? alb, Noise.Media? s) {
-		media = s;
-		artist = art;
-		track = tra;
-		album = alb;
-	}
+    public Noise.Media? media;
+    public Noise.ArtistInfo? artist;
+    public Noise.TrackInfo? track;
+    public Noise.AlbumInfo? album;
+    
+    public MediaInfo () {
+        //don't initialize media because we check for null throughout the program
+        artist = new Noise.ArtistInfo ();
+        track = new Noise.TrackInfo ();
+        album = new Noise.AlbumInfo ();
+    }
+    
+    public void update (Noise.ArtistInfo? art, Noise.TrackInfo? tra, Noise.AlbumInfo? alb, Noise.Media? s) {
+        media = s;
+        artist = art;
+        track = tra;
+        album = alb;
+    }
 }
