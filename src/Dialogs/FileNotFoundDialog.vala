@@ -59,7 +59,7 @@ public class Noise.FileNotFoundDialog : Window {
 		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
-		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
+		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG); // FIXME
 		Label title = new Label("");
 		Label info = new Label("");
 		removeMedia = new Button.with_label(_("Remove Media"));
@@ -138,8 +138,8 @@ public class Noise.FileNotFoundDialog : Window {
 		string file = "";
 		var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
 								  FileChooserAction.OPEN,
-								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
-								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+								  "dialog-cancel", ResponseType.CANCEL,
+								  "document-open", ResponseType.ACCEPT);
 		
 		// try and help user by setting a sane default folder
 		var invalid_file = File.new_for_uri(libraries_manager.local_library.media_from_id(media_id).uri);

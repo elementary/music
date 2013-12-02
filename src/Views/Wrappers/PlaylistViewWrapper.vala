@@ -103,7 +103,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
             var action = new Gtk.Action ("smart-playlist-rules-edit",
                                          _("Edit Smart Playlist"),
                                          null,
-                                         Gtk.Stock.EDIT);
+                                         Gtk.Stock.EDIT);  // FIXME
             // Connect to the 'activate' signal
             action.activate.connect ( () => {
                 button_clicked (playlist_id);

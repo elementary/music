@@ -96,7 +96,7 @@ public class Noise.MediaEditor : Window {
 
         var arrows = new Granite.Widgets.NavigationArrows ();
 
-        _save = new Button.from_stock (Gtk.Stock.SAVE);
+        _save = new Button.from_stock (Gtk.Stock.SAVE); // FIXME
         _save.set_size_request (85, -1);
 
         _save.valign = arrows.valign = Gtk.Align.END;

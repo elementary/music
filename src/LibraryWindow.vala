@@ -248,7 +248,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         fileImportMusic         = new Gtk.MenuItem.with_label (_("Import to Library…"));
         fileRescanMusicFolder   = new Gtk.MenuItem.with_label (_("Rescan Music Folder"));
         fullscreen_item         = new Gtk.CheckMenuItem.with_label (_("Fullscreen"));
-        editPreferences         = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.PREFERENCES, null);
+        editPreferences         = new Gtk.ImageMenuItem.from_stock ("preferences-system", null);
 
         fullscreen_item.set_active (window_fullscreen);
         editPreferences.set_label (_("Preferences"));
@@ -268,14 +268,19 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         /** Toolbar widgets **/
 
         main_toolbar            = new Gtk.Toolbar ();
-        previousButton          = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_PREVIOUS);
-        playButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_PLAY);
-        nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
+        previousButton          = new Gtk.ToolButton (null, null);
+        playButton              = new Gtk.ToolButton (null, null);
+        nextButton              = new Gtk.ToolButton (null, null);
         volumeButton            = new Gtk.VolumeButton ();
         topDisplay              = new TopDisplay ();
         topDisplayBin           = new FixedBin (-1, -1, 800, -1);
         viewSelector            = new Widgets.ViewSelector ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
+
+        // Set ToolButton icons
+        previousButton.set_icon_name ("media-skip-backward");
+        playButton.set_icon_name ("media-playback-start");
+        nextButton.set_icon_name ("media-skip-forward");
 
         main_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
 
@@ -764,7 +769,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.change_playlist_category_visibility (have_media);
 
         if(!App.player.media_active || have_media && !App.player.playing)
-            playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+            playButton.set_icon_name ("media-playback-start");
 
         bool show_top_display = media_active || doing_ops;
         topDisplay.set_visible (show_top_display);
@@ -1031,7 +1036,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     public virtual void playback_stopped (int was_playing) {
-        playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+        playButton.set_icon_name ("media-playback-start");
         //reset some booleans
         tested_for_video = false;
         media_considered_previewed = false;
@@ -1044,13 +1049,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
     
     public virtual void playback_started () {
-        playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
+        playButton.set_icon_name ("media-playback-pause");
 
         debug ("playback started");
     }
     
     public virtual void playback_paused () {
-        playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+        playButton.set_icon_name ("media-playback-start");
 
         debug ("playback paused");
     }
@@ -1133,8 +1138,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             var folders = new Gee.ArrayList<string> ();
             var file_chooser = new Gtk.FileChooserDialog (_("Import Music"), this,
                                       Gtk.FileChooserAction.SELECT_FOLDER,
-                                      Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                                      Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
+                                     "dialog-cancel", Gtk.ResponseType.CANCEL, // FIXME: what icon?
+                                      "document-open", Gtk.ResponseType.ACCEPT);
             file_chooser.set_select_multiple (true);
             file_chooser.set_local_only(true);
 

@@ -69,7 +69,7 @@ public class Noise.TransferFromDeviceDialog : Window {
 		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
-		var warning = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_QUESTION, Gtk.IconSize.DIALOG);
+		var warning = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_QUESTION, Gtk.IconSize.DIALOG); // FIXME
 		var title = new Gtk.Label (_("Import media from %s").printf (d.getDisplayName ()));
 		var info = new Gtk.Label (_("The following files were found on %s, but are not in your library. Check all the files you would like to import.").printf (d.getDisplayName ()));
 		transferAll = new Gtk.CheckButton.with_label (_("Import all media"));
