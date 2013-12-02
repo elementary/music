@@ -50,7 +50,7 @@ public class Noise.RemoveFilesDialog : Window {
 		var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
 		
 		// initialize controls
-		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG); // FIXME
+		Image warning = new Image.from_stock("dialog-warning", Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
 		trash_button = new Button.with_label (_("Move to Trash"));

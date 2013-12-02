@@ -59,7 +59,7 @@ public class Noise.FileNotFoundDialog : Window {
 		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
-		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG); // FIXME
+		Image warning = new Image.from_stock("dialog-error", Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
 		removeMedia = new Button.with_label(_("Remove Media"));

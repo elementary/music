@@ -61,7 +61,7 @@ public class Noise.NotImportedWindow : Window{
 		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
-		var warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG); // FIXME
+		var warning = new Image.from_stock("dialog-error", Gtk.IconSize.DIALOG);
 		var title = new Label(_("Unable to import %d items from %s").printf (files.size, music_folder));
 		var info = new Label(_("%s was unable to import %d items. The files may be damaged.").printf (((Noise.App) GLib.Application.get_default ()).get_name (), files.size));
 		trashAll = new CheckButton.with_label(_("Move all corrupted files to trash"));
