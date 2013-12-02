@@ -30,28 +30,29 @@
  */
 
 public class Noise.FileOperator : Object {
-    public signal void fo_progress(string? message, double progress);
-    public signal void import_cancelled();
-    public signal void rescan_cancelled();
+    public signal void fo_progress (string? message, double progress);
+    public signal void import_cancelled ();
+    public signal void rescan_cancelled ();
 
     public GStreamerTagger tagger;
     CoverImport cover_importer;
     
-    bool inThread;
+    bool inThread = false;
     Gee.LinkedList<Media> toSave;
     
     public int index;
     public int item_count;
     int queue_size = 0;
     
-    public bool cancelled; // set to true if user cancels
-    bool cancelSent; // needed to not send cancel signal twice (in recursive function)
+    public bool cancelled = false; // set to true if user cancels
+    bool cancelSent = false; // needed to not send cancel signal twice (in recursive function)
     
     ImportType import_type;
     StaticPlaylist new_playlist;
     Gee.LinkedList<Media> new_imports;
     Gee.LinkedList<Media> all_new_imports;
     Gee.LinkedList<string> import_errors;
+    Gee.HashMap<string, GLib.FileMonitor> monitors;
 
     public enum ImportType  {
         SET,
@@ -61,13 +62,13 @@ public class Noise.FileOperator : Object {
     }
     
     public FileOperator () {
-        inThread = false;
+        TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
+        
         toSave = new Gee.LinkedList<Media> ();
-        cancelled = false;
-        cancelSent = false;
         new_imports = new Gee.LinkedList<Media> ();
         all_new_imports = new Gee.LinkedList<Media> ();
         import_errors = new Gee.LinkedList<string> ();
+        monitors = new Gee.HashMap<string, GLib.FileMonitor> (null, null);
         tagger = new GStreamerTagger ();
         cover_importer = new CoverImport ();
         
@@ -75,8 +76,42 @@ public class Noise.FileOperator : Object {
         tagger.import_error.connect (import_error);
         tagger.queue_finished.connect (queue_finished);
         // Use right encoding
-        TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
         
+        var file = GLib.File.new_for_path (main_settings.music_folder);
+        var dirs = new Gee.LinkedList<string> ();
+        dirs.add (main_settings.music_folder);
+        list_recursive_directory (file, ref dirs);
+        foreach (var dir in dirs) {
+            var dir_file = GLib.File.new_for_path (dir);
+            try {
+                var file_monitor = dir_file.monitor (GLib.FileMonitorFlags.SEND_MOVED, null);
+                monitors.set (dir, file_monitor);
+                file_monitor.changed.connect (file_monitored_changed);
+            } catch (Error e) {
+                warning("file %s: %s", dir, e.message);
+            }
+        }
+    }
+    
+    public int list_recursive_directory (File music_folder, ref Gee.LinkedList<string> dirs) {
+        FileInfo file_info = null;
+        int index = 0;
+        try {
+            var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
+            while ((file_info = enumerator.next_file ()) != null) {
+                var file = music_folder.get_child (file_info.get_name ());
+
+                if(file_info.get_file_type() == FileType.DIRECTORY) {
+                    dirs.add (file.get_uri ());
+                    list_recursive_directory (file, ref dirs);
+                }
+            }
+        }
+        catch(Error err) {
+            warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
+        }
+
+        return index;
     }
     
     public void connect_to_manager () {
@@ -217,6 +252,44 @@ public class Noise.FileOperator : Object {
             } catch (GLib.Error err) {
                 warning ("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s, err.message);
             }
+        }
+    }
+    
+    private void file_monitored_changed (GLib.File file, GLib.File? other_file, GLib.FileMonitorEvent event_type) {
+        switch (event_type) {
+            case GLib.FileMonitorEvent.DELETED:
+                var media = libraries_manager.local_library.media_from_file (file);
+                if (media != null)
+                    libraries_manager.local_library.remove_media (media, false);
+                var monitor = monitors.get (file.get_uri ());
+                if (monitor != null) {
+                    var medias_to_remove = new Gee.LinkedList<Noise.Media> ();
+                    foreach (var m in libraries_manager.local_library.get_medias ()) {
+                        if (m.uri.has_prefix (file.get_uri ()))
+                            medias_to_remove.add (m);
+                    }
+                    libraries_manager.local_library.remove_medias (medias_to_remove, false);
+                    monitor.cancel ();
+                    monitors.unset (file.get_uri ());
+                }
+                break;
+            case GLib.FileMonitorEvent.CREATED:
+                var info = file.query_info (FileAttribute.STANDARD_TYPE + "," + GLib.FileAttribute.STANDARD_CONTENT_TYPE, GLib.FileQueryInfoFlags.NONE);
+                if (info.get_file_type () == FileType.REGULAR && FileUtils.is_valid_content_type (info.get_content_type ())) {
+                    var list = new Gee.LinkedList<string> ();
+                    list.add (file.get_uri ());
+                    import_files (list, ImportType.IMPORT);
+                } else if (info.get_file_type () == FileType.DIRECTORY) {
+                    var list = new Gee.LinkedList<string> ();
+                    FileUtils.count_music_files (file, ref list);
+                    import_files (list, ImportType.IMPORT);
+                }
+                break;
+            case GLib.FileMonitorEvent.MOVED:
+                var media = libraries_manager.local_library.media_from_file (file);
+                media.file = other_file;
+                libraries_manager.local_library.update_media (media, true, false);
+                break;
         }
     }
     
