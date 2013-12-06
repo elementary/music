@@ -51,7 +51,7 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 
 		// initialize controls
-		Image warning = new Image.from_icon_name("dialog-error", Gtk.IconSize.DIALOG);
+		Image warning = new Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
 		installPlugin = new Button.with_label(_("Install Plugin"));

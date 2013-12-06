@@ -54,7 +54,7 @@ public class Noise.SyncWarningDialog : Window {
         padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 20);
         
         // initialize controls
-        Image warning = new Image.from_icon_name("dialog-error", Gtk.IconSize.DIALOG);
+        Image warning = new Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
         Label title = new Label("");
         Label info = new Label("");
         importMedias = new Button.with_label(_("Import media to Library"));

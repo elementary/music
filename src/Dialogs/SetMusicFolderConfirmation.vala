@@ -55,12 +55,12 @@ public class Noise.SetMusicFolderConfirmation : Window {
 		padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL,  20);
 		
 		// initialize controls
-		Image warning = new Image.from_icon_name("dialog-warning", Gtk.IconSize.DIALOG);
+		Image warning = new Image.from_icon_name ("dialog-warning", Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
 		savePlaylists = new Button.with_label(_("Export Playlists"));
 		ok = new Button.with_label(_("Set Music Folder"));
-		cancel = new Button.from_stock("dialog-cancel");
+		cancel = new Button.from_stock ("dialog-cancel");
 		is_finished = new Gtk.Image();
 		is_working = new Gtk.Spinner();
 		

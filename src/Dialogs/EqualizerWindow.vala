@@ -82,7 +82,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		resizable = false;
 		set_deletable(false);
 
-		set_icon(render_icon("preferences-system", IconSize.DIALOG, null));
+		set_icon(render_icon ("preferences-system", IconSize.DIALOG, null));
 
 		var outer_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
 		var inner_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
