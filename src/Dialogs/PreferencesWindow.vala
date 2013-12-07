@@ -92,7 +92,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         main_static_notebook.margin_bottom = 24;
 
         ((Gtk.Box)get_content_area()).add (main_static_notebook);
-        add_button (Gtk.Stock.CLOSE, Gtk.ResponseType.ACCEPT);
+        add_button ("window-close", Gtk.ResponseType.ACCEPT);
     }
 }
 
