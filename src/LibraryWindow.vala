@@ -277,10 +277,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         viewSelector            = new Widgets.ViewSelector ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
-        // Set ToolButton icons
+        // Set ToolButton icons and tooltips
         previousButton.set_icon_name ("media-skip-backward");
+        previousButton.set_tooltip_text (_("Previous"));
         playButton.set_icon_name ("media-playback-start");
+        playButton.set_tooltip_text (_("Play"));
         nextButton.set_icon_name ("media-skip-forward");
+        nextButton.set_tooltip_text (_("Next"));
 
         main_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
 
