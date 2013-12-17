@@ -172,7 +172,7 @@ public class Noise.FileNotFoundDialog : Window {
 	}
 	
 	void rescanLibraryClicked() {
-		App.main_window.rescan_music_folder ();
+        ((LocalLibrary)libraries_manager.local_library).rescan_music_folder ();
 		
 		this.destroy();
 	}

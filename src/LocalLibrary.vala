@@ -175,18 +175,15 @@ public class Noise.LocalLibrary : Library {
             App.main_window.update_sensitivities.begin ();
             App.player.stop_playback ();
 
-            main_settings.music_mount_name = "";
-            main_settings.music_folder = folder;
-
-            set_music_folder_thread.begin ();
+            set_music_folder_thread.begin (folder);
         }
     }
 
-    private async void set_music_folder_thread () {
+    private async void set_music_folder_thread (string folder) {
         SourceFunc callback = set_music_folder_thread.callback;
 
         Threads.add (() => {
-            var music_folder_file = File.new_for_path (main_settings.music_folder);
+            var music_folder_file = File.new_for_path (folder);
             var files = new Gee.LinkedList<string> ();
 
             var items = FileUtils.count_music_files (music_folder_file, ref files);

@@ -65,7 +65,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
     private Gtk.MenuItem      fileImportMusic;
-    private Gtk.MenuItem      fileRescanMusicFolder;
     private Gtk.CheckMenuItem fullscreen_item;
     private Gtk.ImageMenuItem editPreferences;
 
@@ -246,7 +245,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         settingsMenu            = new Gtk.Menu ();
         fileImportMusic         = new Gtk.MenuItem.with_label (_("Import to Library…"));
-        fileRescanMusicFolder   = new Gtk.MenuItem.with_label (_("Rescan Music Folder"));
         fullscreen_item         = new Gtk.CheckMenuItem.with_label (_("Fullscreen"));
         editPreferences         = new Gtk.ImageMenuItem.from_stock ("preferences-system", null);
 
@@ -254,14 +252,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         editPreferences.set_label (_("Preferences"));
 
         settingsMenu.append (fileImportMusic);
-        settingsMenu.append (fileRescanMusicFolder);
         settingsMenu.append (new Gtk.SeparatorMenuItem ());
         settingsMenu.append (fullscreen_item);
         settingsMenu.append (editPreferences);
 
         fileImportMusic.activate.connect (fileImportMusicClick);
-        // TODO: Never rescan manually but watch the folder !
-        fileRescanMusicFolder.activate.connect ( () => { rescan_music_folder (); });
         fullscreen_item.toggled.connect(toggle_fullscreen);
         editPreferences.activate.connect(editPreferencesClick);
 
@@ -550,10 +545,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         debug ("DONE WITH USER INTERFACE");
 
-        if (this.library_manager.get_medias ().size <= 0) {
-            library_manager.set_music_folder.begin (main_settings.music_folder);
-        }
-
         int last_playing_id = main_settings.last_media_playing;
 
         if (last_playing_id > 0) {
@@ -750,7 +741,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool media_active = App.player.media_active;
 
         fileImportMusic.set_sensitive (!doing_ops && folder_set);
-        fileRescanMusicFolder.set_sensitive (!doing_ops && folder_set);
 
         if(doing_ops) {
             topDisplay.show_progressbar ();
@@ -1168,24 +1158,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
         else {
             debug("Can't add to library.. already doing file operations\n");
-        }
-    }
-
-    public void rescan_music_folder () {
-        if (!library_manager.doing_file_operations ()) {
-            if (GLib.File.new_for_path (main_settings.music_folder).query_exists()) {
-                topDisplay.set_label_markup("<b>" + _("Rescanning music folder for changes") + "</b>");
-                topDisplay.show_progressbar();
-
-                library_manager.rescan_music_folder();
-                update_sensitivities.begin ();
-            }
-            else {
-                doAlert(_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted."));
-            }
-        }
-        else {
-            debug ("Can't rescan.. doing file operations already\n");
         }
     }
 

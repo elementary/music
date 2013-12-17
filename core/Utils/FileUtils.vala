@@ -269,7 +269,7 @@ namespace Noise.FileUtils {
             
             dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + ext));
             
-            if(original.get_path () == dest.get_path ()) {
+            if (original.get_path ().contains (dest.get_path ())) {
                 debug("File is already in correct location\n");
                 return null;
             }
