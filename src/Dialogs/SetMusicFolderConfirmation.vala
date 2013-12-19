@@ -115,8 +115,8 @@ public class Noise.SetMusicFolderConfirmation : Window {
 		string folder = "";
 		var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
 								  FileChooserAction.SELECT_FOLDER,
-								  "dialog-cancel", ResponseType.CANCEL,
-								  "document-open", ResponseType.ACCEPT);
+								  STRING_CANCEL, ResponseType.CANCEL,
+								  STRING_OPEN, ResponseType.ACCEPT);
 		if (file_chooser.run () == ResponseType.ACCEPT) {
 			folder = file_chooser.get_filename();
 		}

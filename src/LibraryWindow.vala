@@ -1131,8 +1131,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             var folders = new Gee.ArrayList<string> ();
             var file_chooser = new Gtk.FileChooserDialog (_("Import Music"), this,
                                       Gtk.FileChooserAction.SELECT_FOLDER,
-                                     "dialog-cancel", Gtk.ResponseType.CANCEL,
-                                      "document-open", Gtk.ResponseType.ACCEPT);
+                                      STRING_CANCEL, Gtk.ResponseType.CANCEL,
+                                      STRING_OPEN, Gtk.ResponseType.ACCEPT);
             file_chooser.set_select_multiple (true);
             file_chooser.set_local_only(true);
 

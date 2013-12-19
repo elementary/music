@@ -124,9 +124,9 @@ public class Noise.MusicViewWrapper : ViewWrapper {
             if (!library.doing_file_operations ()) {
                 var file_chooser = new Gtk.FileChooserDialog (_("Select Music Folder"), App.main_window,
                                                               Gtk.FileChooserAction.SELECT_FOLDER,
-                                                              "dialog-cancel",
+                                                              STRING_CANCEL,
                                                               Gtk.ResponseType.CANCEL,
-                                                              "document-open",
+                                                              STRING_OPEN,
                                                               Gtk.ResponseType.ACCEPT);
 
                 file_chooser.set_local_only (true);

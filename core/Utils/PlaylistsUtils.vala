@@ -30,6 +30,10 @@
 
 namespace Noise.PlaylistsUtils {
 
+    public const string STRING_CANCEL = _("Cancel");
+    public const string STRING_OPEN = _("Open");
+    public const string STRING_SAVE = _("Save");
+
     public bool save_playlist_m3u (Playlist p, string folder_uri, string without_path) {
         bool rv = false;
         string to_save = get_playlist_m3u_file (p, without_path);
@@ -273,8 +277,8 @@ namespace Noise.PlaylistsUtils {
         string extension = "";
         var file_chooser = new Gtk.FileChooserDialog (_("Export Playlist"), null,
                                   Gtk.FileChooserAction.SAVE,
-                                  "dialog-cancel", Gtk.ResponseType.CANCEL,
-                                  "document-save", Gtk.ResponseType.ACCEPT);
+                                  STRING_CANCEL, Gtk.ResponseType.CANCEL,
+                                  STRING_SAVE, Gtk.ResponseType.ACCEPT);
         
         // filters for .m3u and .pls
         var m3u_filter = new Gtk.FileFilter();
@@ -366,8 +370,8 @@ namespace Noise.PlaylistsUtils {
 
         var file_chooser = new Gtk.FileChooserDialog (_("Import %s").printf (title), null,
                                   Gtk.FileChooserAction.OPEN,
-                                  "dialog-cancel", Gtk.ResponseType.CANCEL,
-                                  "document-open", Gtk.ResponseType.ACCEPT);
+                                  STRING_CANCEL, Gtk.ResponseType.CANCEL,
+                                  STRING_OPEN, Gtk.ResponseType.ACCEPT);
         file_chooser.set_select_multiple (true);
         
         // filters for .m3u and .pls

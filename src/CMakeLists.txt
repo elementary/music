@@ -5,6 +5,7 @@ set(CLIENT_SOURCE
     LocalLibrary.vala
     PlaybackManager.vala
     FileOperator.vala
+    Resources.vala
     Objects/LyricFetcher.vala
     Objects/MediaInfo.vala
     Objects/AlbumInfo.vala
