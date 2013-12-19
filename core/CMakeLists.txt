@@ -25,6 +25,7 @@ set (CORE_SOURCE
   NotificationManager.vala
   Media.vala
   Album.vala
+  Resources.vala
   Devices/Device.vala
   Devices/NetworkDevice.vala
   Devices/DeviceManager.vala

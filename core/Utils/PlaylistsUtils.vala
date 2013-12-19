@@ -30,10 +30,6 @@
 
 namespace Noise.PlaylistsUtils {
 
-    public const string STRING_CANCEL = _("Cancel");
-    public const string STRING_OPEN = _("Open");
-    public const string STRING_SAVE = _("Save");
-
     public bool save_playlist_m3u (Playlist p, string folder_uri, string without_path) {
         bool rv = false;
         string to_save = get_playlist_m3u_file (p, without_path);
