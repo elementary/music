@@ -138,8 +138,8 @@ public class Noise.FileNotFoundDialog : Window {
 		string file = "";
 		var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
 								  FileChooserAction.OPEN,
-								  STRING_CANCEL, ResponseType.CANCEL,
-								  STRING_OPEN, ResponseType.ACCEPT);
+								  _(STRING_CANCEL), ResponseType.CANCEL,
+								  _(STRING_OPEN), ResponseType.ACCEPT);
 		
 		// try and help user by setting a sane default folder
 		var invalid_file = File.new_for_uri(libraries_manager.local_library.media_from_id(media_id).uri);
