@@ -31,7 +31,7 @@ Package: noise
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
-Description: Simple, fast, and good looking music player
+Description: Simple, fast, and elegant music player
  Noise is an easy to use, stable, fast and good looking music library
  organizer written in vala.
  .
@@ -47,7 +47,7 @@ Priority: extra
 Depends: noise (= ${binary:Version}), ${misc:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
 Enhances: noise
-Description: Simple, fast, and good looking music player (debugging symbols)
+Description: Simple, fast, and elegant music player (debugging symbols)
  Noise is an easy to use, stable, fast and good looking music library
  organizer written in vala.
  .
