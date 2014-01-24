@@ -56,7 +56,7 @@ endif ()
 set (CORE_PACKAGES
   glib-2.0
   gio-2.0
-  gee-1.0
+  gee-0.8
   libpeas-1.0
   libpeas-gtk-1.0
   gtk+-3.0
@@ -69,7 +69,7 @@ set (CORE_PACKAGES
 set (CORE_PKG
   glib-2.0>=2.32
   gio-2.0
-  gee-1.0
+  gee-0.8
   libpeas-1.0
   libpeas-gtk-1.0
   gtk+-3.0>=3.4.2
