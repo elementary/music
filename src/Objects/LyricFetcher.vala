@@ -127,7 +127,6 @@ private class LyricsManiaFetcher : Object {
             else if ('-' == c)
                 fixed_string.append_unichar (c);
         }
-        warning (fixed_string.str);
         return fixed_string.str;
     }
 
@@ -161,4 +160,3 @@ private class LyricsManiaFetcher : Object {
         return rv.str;
     }
 }
-

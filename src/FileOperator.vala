@@ -274,15 +274,19 @@ public class Noise.FileOperator : Object {
                 }
                 break;
             case GLib.FileMonitorEvent.CREATED:
-                var info = file.query_info (FileAttribute.STANDARD_TYPE + "," + GLib.FileAttribute.STANDARD_CONTENT_TYPE, GLib.FileQueryInfoFlags.NONE);
-                if (info.get_file_type () == FileType.REGULAR && FileUtils.is_valid_content_type (info.get_content_type ())) {
-                    var list = new Gee.LinkedList<string> ();
-                    list.add (file.get_uri ());
-                    import_files (list, ImportType.IMPORT);
-                } else if (info.get_file_type () == FileType.DIRECTORY) {
-                    var list = new Gee.LinkedList<string> ();
-                    FileUtils.count_music_files (file, ref list);
-                    import_files (list, ImportType.IMPORT);
+                try {
+                    var info = file.query_info (FileAttribute.STANDARD_TYPE + "," + GLib.FileAttribute.STANDARD_CONTENT_TYPE, GLib.FileQueryInfoFlags.NONE);
+                    if (info.get_file_type () == FileType.REGULAR && FileUtils.is_valid_content_type (info.get_content_type ())) {
+                        var list = new Gee.LinkedList<string> ();
+                        list.add (file.get_uri ());
+                        import_files (list, ImportType.IMPORT);
+                    } else if (info.get_file_type () == FileType.DIRECTORY) {
+                        var list = new Gee.LinkedList<string> ();
+                        FileUtils.count_music_files (file, ref list);
+                        import_files (list, ImportType.IMPORT);
+                    }
+                } catch (Error e) {
+                    critical (e.message);
                 }
                 break;
             case GLib.FileMonitorEvent.MOVED:

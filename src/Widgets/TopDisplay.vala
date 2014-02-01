@@ -20,9 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-
-public class Noise.TopDisplay : Box {
+public class Noise.TopDisplay : Gtk.Box {
     Gtk.Label label;
     Gtk.Box scaleBox;
     Gtk.Label leftTime;
@@ -34,18 +32,18 @@ public class Noise.TopDisplay : Box {
     private bool is_seeking = false;
     private uint timeout_id = 0;
     
-    public signal void scale_value_changed(ScrollType scroll, double val);
+    public signal void scale_value_changed (Gtk.ScrollType scroll, double val);
     
     public TopDisplay() {
 
-        this.orientation = Orientation.HORIZONTAL;
+        this.orientation = Gtk.Orientation.HORIZONTAL;
 
-        label = new Label("");
-        scale = new Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 1000);
-        leftTime = new Label("0:00");
-        rightTime = new Label("0:00");
-        progressbar = new ProgressBar();
-        cancelButton = new Button();
+        label = new Gtk.Label ("");
+        scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 1000);
+        leftTime = new Gtk.Label ("0:00");
+        rightTime = new Gtk.Label ("0:00");
+        progressbar = new Gtk.ProgressBar ();
+        cancelButton = new Gtk.Button ();
         
         scaleBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
@@ -58,31 +56,31 @@ public class Noise.TopDisplay : Box {
         scale.set_draw_value (false);
         scale.can_focus = false;
         
-        label.set_justify(Justification.CENTER);
-        label.set_single_line_mode(false);
+        label.set_justify (Gtk.Justification.CENTER);
+        label.set_single_line_mode (false);
         label.ellipsize = Pango.EllipsizeMode.END;
         
-        cancelButton.set_image(Icons.PROCESS_STOP.render_image (IconSize.MENU));
-        cancelButton.set_relief(Gtk.ReliefStyle.NONE);
+        cancelButton.set_image (Icons.PROCESS_STOP.render_image (Gtk.IconSize.MENU));
+        cancelButton.set_relief (Gtk.ReliefStyle.NONE);
         cancelButton.halign = cancelButton.valign = Gtk.Align.CENTER;
 
-        cancelButton.set_tooltip_text (_("Cancel"));
+        cancelButton.set_tooltip_text (_(STRING_CANCEL));
 
         // all but cancel
-        var info = new Box(Gtk.Orientation.VERTICAL, 0);
-        info.pack_start(label, false, true, 0);
-        info.pack_start(progressbar, false, true, 0);
-        info.pack_start(scaleBox, false, true, 0);
+        var info = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        info.pack_start (label, false, true, 0);
+        info.pack_start (progressbar, false, true, 0);
+        info.pack_start (scaleBox, false, true, 0);
         
-        this.pack_start(info, true, true, 0);
-        this.pack_end(cancelButton, false, false, 0);
+        this.pack_start (info, true, true, 0);
+        this.pack_end (cancelButton, false, false, 0);
         
-        this.cancelButton.clicked.connect(cancel_clicked);
+        this.cancelButton.clicked.connect (cancel_clicked);
 
-        this.scale.button_press_event.connect(scale_button_press);
-        this.scale.button_release_event.connect(scale_button_release);
-        this.scale.value_changed.connect(value_changed);
-        this.scale.change_value.connect(change_value);
+        this.scale.button_press_event.connect (scale_button_press);
+        this.scale.button_release_event.connect (scale_button_release);
+        this.scale.value_changed.connect (value_changed);
+        this.scale.change_value.connect (change_value);
 
         App.player.player.current_position_update.connect (player_position_update);
         
@@ -152,15 +150,15 @@ public class Noise.TopDisplay : Box {
     
     /** scale functions **/
     public void set_scale_range(double min, double max) {
-        scale.set_range(min, max);
+        scale.set_range (min, max);
     }
     
-    public void set_scale_value(double val) {
-        scale.set_value(val);
+    public void set_scale_value (double val) {
+        scale.set_value (val);
     }
     
-    public double get_scale_value() {
-        return scale.get_value();
+    public double get_scale_value () {
+        return scale.get_value ();
     }
     
     public virtual bool scale_button_press(Gdk.EventButton event) {
@@ -168,36 +166,42 @@ public class Noise.TopDisplay : Box {
             return true;
         }
 
-        App.player.player.current_position_update.disconnect(player_position_update);
+        App.player.player.current_position_update.disconnect (player_position_update);
         is_seeking = true;
-        change_value (ScrollType.NONE, get_current_time ());
+        change_value (Gtk.ScrollType.NONE, get_current_time ());
 
         return false;
     }
     
-    public virtual bool scale_button_release(Gdk.EventButton event) {
+    public virtual bool scale_button_release (Gdk.EventButton event) {
         is_seeking = false;
 
-        change_value (ScrollType.NONE, get_current_time ());
+        change_value (Gtk.ScrollType.NONE, get_current_time ());
         
         return false;
     }
 
     public double get_current_time () {
         Gtk.Allocation extents;
-        int point_x = 0;
-        int point_y = 0;
-
-        scale.get_pointer (out point_x, out point_y);
+        double point_x = 0;
+        double point_y = 0;
+        Gdk.ModifierType mask;
+        unowned Gdk.Display display = Gdk.Display.get_default ();
+        unowned Gdk.Window scale_window = scale.get_window ();
+        unowned Gdk.DeviceManager device_manager = display.get_device_manager ();
+        scale_window.get_device_position_double (device_manager.get_client_pointer (), out point_x, out point_y, out mask);
         scale.get_allocation (out extents);
+        point_x = point_x - extents.x;
+        if (point_x < 0)
+            point_x = 0;
 
         // get miliseconds of media
         // calculate percentage to go to based on location
         return (double)point_x / (double)extents.width * scale.get_adjustment().upper;
     }
     
-    public virtual void value_changed() {
-        if(!scale.visible)
+    public virtual void value_changed () {
+        if (!scale.visible)
             return;
 
         double val = scale.get_value ();
@@ -214,7 +218,7 @@ public class Noise.TopDisplay : Box {
         rightTime.set_text (TimeUtils.pretty_length_from_ms (media_duration_secs - elapsed_secs));
     }
     
-    public virtual bool change_value(ScrollType scroll, double val) {
+    public virtual bool change_value (Gtk.ScrollType scroll, double val) {
         App.player.player.current_position_update.disconnect(player_position_update);
         scale.set_value(val);
         scale_value_changed(scroll, val);

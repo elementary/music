@@ -31,9 +31,12 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
     public const int MIN_WIDTH = 420;
     public const int MIN_HEIGHT = 300;
 
-    private Gee.Map<int, unowned Noise.SettingsWindow.NoteBook_Page> sections = new Gee.HashMap<int, unowned Noise.SettingsWindow.NoteBook_Page> ();
-    private Granite.Widgets.StaticNotebook main_static_notebook;
     public Gtk.FileChooserButton library_filechooser;
+
+    private Gee.Map<int, unowned Noise.SettingsWindow.NoteBook_Page> sections = new Gee.HashMap<int, unowned Noise.SettingsWindow.NoteBook_Page> ();
+    private Gtk.Stack main_stack;
+    private Gtk.StackSwitcher main_stackswitcher;
+    private int index = 0;
 
     public PreferencesWindow (LibraryWindow lw) {
         build_ui (lw);
@@ -59,11 +62,9 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         return_val_if_fail (section != null, -1);
 
         // Pack the section
-        // TODO: file a bug against granite's static notebook: append_page()
-        // should return the index of the new page.
-        main_static_notebook.append_page (section, new Gtk.Label (section.name));
-        int index = sections.size;
+        main_stack.add_titled (section, "%d".printf (index), section.name);
         sections.set (index, section);
+        index++;
 
         section.show_all ();
 
@@ -72,7 +73,8 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
 
 
     public void remove_section (int index) {
-        main_static_notebook.remove_page (index);
+        var section = sections.get (index);
+        section.destroy ();
         sections.unset (index);
     }
 
@@ -86,13 +88,17 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         window_position = Gtk.WindowPosition.CENTER;
         type_hint = Gdk.WindowTypeHint.DIALOG;
         transient_for = parent_window;
+        var main_grid = new Gtk.Grid ();
+        main_stack = new Gtk.Stack ();
+        main_stackswitcher = new Gtk.StackSwitcher ();
+        main_stackswitcher.set_stack (main_stack);
+        main_stackswitcher.halign = Gtk.Align.CENTER;
+        main_grid.attach (main_stackswitcher, 0, 0, 1, 1);
+        main_grid.attach (main_stack, 0, 1, 1, 1);
+        main_grid.hexpand = true;
 
-        main_static_notebook = new Granite.Widgets.StaticNotebook (false);
-        main_static_notebook.hexpand = true;
-        main_static_notebook.margin_bottom = 24;
-
-        ((Gtk.Box)get_content_area()).add (main_static_notebook);
-        add_button ("window-close", Gtk.ResponseType.ACCEPT);
+        ((Gtk.Box)get_content_area()).add (main_grid);
+        add_button (_(STRING_CANCEL), Gtk.ResponseType.ACCEPT);
     }
 }
 
