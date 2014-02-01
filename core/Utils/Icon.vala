@@ -167,7 +167,7 @@ public class Noise.Icon : Object {
             // If we failed at loading the icon, try to load the default "missing-image"
             if (rv == null) {
                 warning ("Icon not found: %s", file_name ?? name);
-                rv = theme.load_icon (Gtk.Stock.MISSING_IMAGE, pixel_size,
+                rv = theme.load_icon ("image-missing", pixel_size,
                                       Gtk.IconLookupFlags.GENERIC_FALLBACK);
             }
         } catch (Error err) {

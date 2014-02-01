@@ -87,7 +87,7 @@ public class Noise.SmartPlaylistEditor : Window {
         queries_grid.column_spacing = 12;
         queries_grid.expand = true;
         
-        add_button = new Gtk.Button.from_stock (Gtk.Stock.ADD);
+        add_button = new Gtk.Button.from_stock ("list-add");
         
         /* create extra option: limiter */
         var limiter_grid = new Gtk.Grid ();
@@ -113,8 +113,8 @@ public class Noise.SmartPlaylistEditor : Window {
         /* add the Save button on bottom */
         var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
         button_box.spacing = 6;
-        save_button = new Gtk.Button.from_stock (Gtk.Stock.SAVE);
-        var close_button = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
+        save_button = new Gtk.Button.from_stock ("document-save");
+        var close_button = new Gtk.Button.from_stock ("dialog-cancel");
         button_box.set_layout (Gtk.ButtonBoxStyle.END);
         button_box.pack_end (close_button, false, false, 0);
         button_box.pack_end (save_button, false, false, 0);
@@ -255,7 +255,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         _valueNumerical = new Gtk.SpinButton.with_range (0, 9999, 1);
         _valueOption = new Gtk.ComboBoxText ();
         _valueRating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
-        remove_button = new Gtk.Button.from_stock (Gtk.Stock.REMOVE);
+        remove_button = new Gtk.Button.from_stock ("list-remove");
         remove_button.halign = Gtk.Align.END;
         
         field_combobox.append_text (_("Album"));

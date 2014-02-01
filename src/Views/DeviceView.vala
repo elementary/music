@@ -57,7 +57,7 @@ public class Noise.DeviceView : Gtk.Grid {
         infobar.set_hexpand (true);
         infobar_label = new Gtk.Label ("");
         (infobar.get_content_area () as Gtk.Container).add (infobar_label);
-        infobar.add_button (Gtk.Stock.OK, 0);
+        infobar.add_button (_("OK"), 0);
         infobar.response.connect ( (self, response) => {
             infobar.hide ();
         });
