@@ -20,23 +20,28 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using SQLHeavy;
-using Gee;
-
 public class Noise.DataBaseManager : GLib.Object {
 
     public signal void db_progress (string? message, double progress);
 
     private SQLHeavy.Database database;
-    private Transaction transaction; // the current sql transaction
+    private SQLHeavy.Transaction transaction; // the current sql transaction
 
     private int index = 0;
     private int item_count = 0;
     public int max_id = 0;
 
+    private static DataBaseManager? dbm = null;
+
+    public static DataBaseManager get_default () {
+        if (dbm == null)
+            dbm = new DataBaseManager ();
+        return dbm;
+    }
+
     /** Creates a new DatabaseManager **/
-    public DataBaseManager () {
-        
+    private DataBaseManager () {
+        init_database ();
     }
 
     /** Creates/Reads the database file and folder **/
@@ -98,12 +103,12 @@ public class Noise.DataBaseManager : GLib.Object {
     /**
      * Loads media from db
      */
-    public ArrayList<Media> load_media () {
+    public Gee.ArrayList<Media> load_media () {
         assert (database != null);
-        var rv = new ArrayList<Media>();
+        var rv = new Gee.ArrayList<Media>();
 
         try {
-            Query query = new Query (database, "SELECT * FROM `media`");
+            SQLHeavy.Query query = new SQLHeavy.Query (database, """SELECT * FROM `media`""");
 
             for (var results = query.execute (); !results.finished; results.next()) {
                 var s = new Media (results.fetch_string (0));
@@ -151,18 +156,18 @@ public class Noise.DataBaseManager : GLib.Object {
     public void clear_media () {
         assert (database != null);
         try {
-            database.execute ("DELETE FROM `media`");
+            database.execute ("""DELETE FROM `media`""");
         }
         catch(SQLHeavy.Error err) {
             warning ("Could not clear media: %s \n", err.message);
         }
     }
 
-    public void add_media (Collection<Media> media) {
+    public void add_media (Gee.Collection<Media> media) {
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `media` (`uri`, `file_size`, `title`, `artist`, `composer`, `album_artist`,
+            SQLHeavy.Query query = transaction.prepare ("""INSERT INTO `media` (`uri`, `file_size`, `title`, `artist`, `composer`, `album_artist`,
 `album`, `grouping`, `genre`, `comment`, `lyrics`, `has_embedded`, `year`, `track`, `track_count`, `album_number`, `album_count`,
 `bitrate`, `length`, `samplerate`, `rating`, `playcount`, `skipcount`, `dateadded`, `lastplayed`, `lastmodified`, `mediatype`, `rowid`)
 VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping,
@@ -212,11 +217,11 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         }
     }
 
-    public void remove_media (Collection<string> media) {
+    public void remove_media (Gee.Collection<string> media) {
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("DELETE FROM `media` WHERE uri=:uri");
+            SQLHeavy.Query query = transaction.prepare ("""DELETE FROM `media` WHERE uri=:uri""");
 
             foreach (var m in media) {
                 query.set_string (":uri", m);
@@ -234,7 +239,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""UPDATE `media` SET file_size=:file_size, title=:title, artist=:artist,
+            SQLHeavy.Query query = transaction.prepare("""UPDATE `media` SET file_size=:file_size, title=:title, artist=:artist,
 composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics,
  has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number,
 album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount,
@@ -286,14 +291,14 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
      * load_columns_state() loads the state of each columns from db
      *
      */
-    public HashMap<Playlist, TreeViewSetup> load_columns_state () {
+    public Gee.HashMap<Playlist, TreeViewSetup> load_columns_state () {
         debug ("load columns");
         assert (database != null);
-        var rv = new HashMap<Playlist, TreeViewSetup>();
+        var rv = new Gee.HashMap<Playlist, TreeViewSetup>();
 
         try {
-            string script = "SELECT * FROM `columns`";
-            Query query = new Query(database, script);
+            string script = """SELECT * FROM `columns`""";
+            SQLHeavy.Query query = new SQLHeavy.Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 if (results.fetch_int(0) == 0) {
@@ -318,13 +323,13 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    public void save_columns_state (Collection<StaticPlaylist>? playlists = null, Collection<SmartPlaylist>? smart_playlists = null) {
+    public void save_columns_state (Gee.Collection<StaticPlaylist>? playlists = null, Gee.Collection<SmartPlaylist>? smart_playlists = null) {
         debug ("save columns");
         assert (database != null);
         try {
             database.execute("DELETE FROM `columns`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+            SQLHeavy.Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
                                                 VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);""");
 
             if (playlists != null) {
@@ -388,7 +393,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+            SQLHeavy.Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
                                                 VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);""");
             
             query.set_int    (":is_smart", is_smart);
@@ -423,7 +428,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""DELETE FROM `columns` WHERE name=:name""");
+            SQLHeavy.Query query = transaction.prepare("""DELETE FROM `columns` WHERE name=:name""");
 
             query.set_string(":name", name);
             query.execute();
@@ -442,7 +447,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             TreeViewSetup tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
             
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+            SQLHeavy.Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
                                                 VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);""");
 
             query.set_int    (":is_smart", 1);
@@ -511,12 +516,12 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
      * playlist_from_name() loads playlsit given a name
      */
     public Gee.ArrayList<StaticPlaylist> load_playlists () {
-        var rv = new ArrayList<StaticPlaylist>();
+        var rv = new Gee.ArrayList<StaticPlaylist>();
         assert (database != null);
 
         try {
-            string script = "SELECT * FROM `playlists`";
-            Query query = new Query(database, script);
+            string script = """SELECT * FROM `playlists`""";
+            SQLHeavy.Query query = new SQLHeavy.Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 var p = new StaticPlaylist.with_info(0, results.fetch_string(0));
@@ -542,12 +547,12 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    public void save_playlists (Collection<StaticPlaylist> playlists) {
+    public void save_playlists (Gee.Collection<StaticPlaylist> playlists) {
         assert (database != null);
         try {
-            database.execute("DELETE FROM `playlists`");
+            database.execute("""DELETE FROM `playlists`""");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
+            SQLHeavy.Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);""");
 
             foreach (var p in playlists) {
                 if (p.read_only == false || p.name == C_("Name of the playlist", "Queue") || p.name == _("History")) {
@@ -584,7 +589,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                 remove_playlist (pl);
             }
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
+            SQLHeavy.Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);""");
 
             string rv = "";
             
@@ -617,7 +622,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `media`)
+            SQLHeavy.Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `media`)
                                                 VALUES (:name, :media);""");
 
             query.set_string(":name", p.name);
@@ -634,10 +639,10 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
     }
 
-    /*public void update_playlists(LinkedList<StaticPlaylist> playlists) {
+    /*public void update_playlists(Gee.LinkedList<StaticPlaylist> playlists) {
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("UPDATE `playlists` SET name=:name, media=:media, sort_column_id=:sort_column_id, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
+            SQLHeavy.Query query = transaction.prepare("""UPDATE `playlists` SET name=:name, media=:media, sort_column_id=:sort_column_id, sort_direction=:sort_direction, columns=:columns  WHERE name=:name""");
 
             foreach (var p in playlists) {
                 query.set_string(":name", p.name);
@@ -662,7 +667,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             return;
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""DELETE FROM `playlists` WHERE name=:name""");
+            SQLHeavy.Query query = transaction.prepare("""DELETE FROM `playlists` WHERE name=:name""");
 
             query.set_string(":name", p.name);
             query.execute();
@@ -680,7 +685,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
+            SQLHeavy.Query query = transaction.prepare ("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
 
             query.set_string(":name", _("Favorite Songs"));
             query.set_int(":and_or", 1);
@@ -741,12 +746,12 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public Gee.ArrayList<SmartPlaylist> load_smart_playlists() {
-        var rv = new ArrayList<SmartPlaylist>();
+        var rv = new Gee.ArrayList<SmartPlaylist>();
         assert (database != null);
 
         try {
-            string script = "SELECT * FROM `smart_playlists`";
-            Query query = new Query(database, script);
+            string script = """SELECT * FROM `smart_playlists`""";
+            SQLHeavy.Query query = new SQLHeavy.Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 SmartPlaylist p = new SmartPlaylist(libraries_manager.local_library.get_medias ());
@@ -767,12 +772,12 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    public void save_smart_playlists(Collection<SmartPlaylist> smarts) {
+    public void save_smart_playlists(Gee.Collection<SmartPlaylist> smarts) {
         assert (database != null);
         try {
             database.execute("DELETE FROM `smart_playlists`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
+            SQLHeavy.Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
 
             foreach(SmartPlaylist s in smarts) {
                 query.set_string(":name", s.name);
@@ -802,7 +807,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
+            SQLHeavy.Query query = transaction.prepare("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
 
             query.set_string(":name", p.name);
             query.set_int(":and_or", (int)p.conditional);
@@ -822,7 +827,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""DELETE FROM `smart_playlists` WHERE name=:name""");
+            SQLHeavy.Query query = transaction.prepare("""DELETE FROM `smart_playlists` WHERE name=:name""");
 
             query.set_string(":name", p.name);
             query.execute();
@@ -840,7 +845,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
         try {
             string script = """SELECT rowid,* FROM `devices`""";
-            Query query = new Query(database, script);
+            SQLHeavy.Query query = new SQLHeavy.Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 DevicePreferences dp = new DevicePreferences(results.fetch_string(1));
@@ -884,7 +889,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             database.execute("DELETE FROM `devices`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
+            SQLHeavy.Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
             `sync_podcasts`, `sync_audiobooks`, `sync_all_music`, `sync_all_podcasts`, `sync_all_audiobooks`, `music_playlist`,
             `podcast_playlist`, `audiobook_playlist`, `last_sync_time`) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
             :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);""");
@@ -932,7 +937,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             remove_device (dp);
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
+            SQLHeavy.Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
             `sync_podcasts`, `sync_audiobooks`, `sync_all_music`, `sync_all_podcasts`, `sync_all_audiobooks`, `music_playlist`,
             `podcast_playlist`, `audiobook_playlist`, `last_sync_time`) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
             :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);""");
@@ -977,7 +982,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""DELETE FROM `devices` WHERE unique_id=:unique_id""");
+            SQLHeavy.Query query = transaction.prepare("""DELETE FROM `devices` WHERE unique_id=:unique_id""");
 
             query.set_string(":unique_id", device.id);
             query.execute();

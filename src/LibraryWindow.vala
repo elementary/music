@@ -657,7 +657,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.add_playlist (App.player.queue_playlist);
         library_manager.add_playlist (App.player.history_playlist);
         
-        match_tvs.set_all (library_manager.dbm.load_columns_state ());
+        match_tvs.set_all (DataBaseManager.get_default ().load_columns_state ());
         
         foreach (SmartPlaylist p in library_manager.get_smart_playlists()) {
             add_smartplaylist (p);

@@ -38,7 +38,6 @@
 public class Noise.LocalLibrary : Library {
     
     public LibraryWindow lw { get { return App.main_window; } }
-    public DataBaseManager dbm;
     public DataBaseUpdater dbu;
     public FileOperator fo;
     public GStreamerTagger tagger;
@@ -70,14 +69,13 @@ public class Noise.LocalLibrary : Library {
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;
         
-        this.dbm = new DataBaseManager ();
-        this.dbu = new DataBaseUpdater (dbm);
+        this.dbu = new DataBaseUpdater ();
         this.fo = new FileOperator ();
 
     }
     
     public override void initialize_library () {
-        dbm.init_database ();
+        var dbm = DataBaseManager.get_default ();
         fo.connect_to_manager ();
         fo.fo_progress.connect (dbProgress);
         dbm.db_progress.connect (dbProgress);
@@ -404,7 +402,7 @@ public class Noise.LocalLibrary : Library {
         p.rowid = playlists_rowid;
         playlists_rowid++;
         p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
-        dbm.add_playlist (p);
+        DataBaseManager.get_default ().add_playlist (p);
         playlist_added (p);
         debug ("playlist %s added",p.name);
     }
@@ -465,7 +463,7 @@ public class Noise.LocalLibrary : Library {
 
         Threads.add (() => {
             lock (_smart_playlists) {
-                dbm.save_smart_playlists (get_smart_playlists ());
+                DataBaseManager.get_default ().save_smart_playlists (get_smart_playlists ());
             }
 
             Idle.add ((owned) callback);
@@ -482,7 +480,7 @@ public class Noise.LocalLibrary : Library {
         p.rowid = playlists_rowid;
         playlists_rowid++;
 
-        dbm.save_smart_playlist (p);
+        DataBaseManager.get_default ().save_smart_playlist (p);
         p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
         smartplaylist_added (p);
     }
@@ -609,7 +607,7 @@ public class Noise.LocalLibrary : Library {
         
         Threads.add (() => {
             lock (_medias) {
-                dbm.update_media (_medias);
+                DataBaseManager.get_default ().update_media (_medias);
             }
             
             Idle.add ((owned) callback);
@@ -723,7 +721,7 @@ public class Noise.LocalLibrary : Library {
         }
         media_added (added);
 
-        dbm.add_media (media);
+        DataBaseManager.get_default ().add_media (media);
         update_smart_playlists_async.begin (media);
         
         // Update search results
