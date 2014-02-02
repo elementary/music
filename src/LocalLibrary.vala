@@ -53,7 +53,7 @@ public class Noise.LocalLibrary : Library {
     public StaticPlaylist p_music;
 
     public bool main_directory_set {
-        get { return !String.is_empty (main_settings.music_folder, true); }
+        get { return !String.is_empty (Settings.Main.get_default ().music_folder, true); }
     }
 
     private Gee.LinkedList<Media> open_media_list;
@@ -114,7 +114,7 @@ public class Noise.LocalLibrary : Library {
                 }
             }
         }
-        device_manager.set_device_preferences (dbm.load_devices ());
+        DeviceManager.get_default ().set_device_preferences (dbm.load_devices ());
 
         load_media_art_cache.begin ();
     }
@@ -131,12 +131,12 @@ public class Noise.LocalLibrary : Library {
 
     /************ Library/Collection management stuff ************/
     public virtual void dbProgress (string? message, double progress) {
-        notification_manager.doProgressNotification (message, progress);
+        NotificationManager.get_default ().doProgressNotification (message, progress);
     }
 
     public bool doProgressNotificationWithTimeout () {
         if (_doing_file_operations) {
-            notification_manager.doProgressNotification (null, (double) fo.index / (double) fo.item_count);
+            NotificationManager.get_default ().doProgressNotification (null, (double) fo.index / (double) fo.item_count);
         }
 
         if (fo.index < fo.item_count && _doing_file_operations)
@@ -283,7 +283,7 @@ public class Noise.LocalLibrary : Library {
         Threads.add (() => {
 
             // get a list of the current files
-            var music_folder_dir = main_settings.music_folder;
+            var music_folder_dir = Settings.Main.get_default ().music_folder;
             FileUtils.count_music_files (File.new_for_path (music_folder_dir), ref files);
             
             foreach (var m in get_medias ()) {
@@ -808,7 +808,7 @@ public class Noise.LocalLibrary : Library {
         if (_doing_file_operations)
             return false;
 
-        notification_manager.doProgressNotification (message, 0.0);
+        NotificationManager.get_default ().doProgressNotification (message, 0.0);
         _doing_file_operations = true;
         App.main_window.update_sensitivities.begin ();
         file_operations_started ();
@@ -827,9 +827,8 @@ public class Noise.LocalLibrary : Library {
         file_operations_done ();
         update_media_art_cache.begin ();
         Timeout.add(3000, () => {
-            notification_manager.showSongNotification ();
+            NotificationManager.get_default ().showSongNotification ();
             return false;
         });
     }
 }
-

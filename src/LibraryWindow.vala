@@ -73,6 +73,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool window_fullscreen = false;
     private int window_width = 0;
     private int window_height = 0;
+    private Settings.Main main_settings;
 
     private Cancellable notification_cancellable;
 
@@ -88,6 +89,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.show_close_button = true;
         set_titlebar (headerbar);
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
+        main_settings = Settings.Main.get_default ();
 
         this.library_manager.media_updated.connect (medias_updated);
         this.library_manager.media_added.connect (update_sensitivities);
@@ -99,6 +101,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         this.library_manager.smartplaylist_added.connect ((p) => {add_smartplaylist (p);});
         this.library_manager.smartplaylist_removed.connect ((p) => {remove_smartplaylist (p);});
 
+        var device_manager = DeviceManager.get_default ();
         device_manager.device_added.connect ((item) => {create_device_source_list (item);});
         device_manager.device_name_changed.connect (change_device_name);
         device_manager.device_removed.connect (remove_device);
@@ -121,7 +124,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.player.error_occured.connect (error_occured);
         });
         
-        notification_manager.alertNotification.connect (doAlert);
+        NotificationManager.get_default ().alertNotification.connect (doAlert);
         
         match_playlists = new Gee.HashMap<unowned Playlist, int> ();
         match_devices = new Gee.HashMap<string, int> ();
@@ -211,6 +214,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         this.window_position = Gtk.WindowPosition.CENTER;
 
         // set the size based on saved settings
+        var saved_state = Settings.SavedState.get_default ();
         this.set_default_size (saved_state.window_width, saved_state.window_height);
 
         // Maximize window if necessary
@@ -328,6 +332,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view      = new SourceListView ();
 
         // Set properties of various controls
+        var saved_state = Settings.SavedState.get_default ();
         main_hpaned.position = saved_state.sidebar_width;
         int view_container_pos = saved_state.window_width - saved_state.sidebar_width - saved_state.more_width;
         view_container_hpaned.set_position (view_container_pos);
@@ -397,7 +402,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         
         source_list_view.device_import_clicked.connect ( (page_number) => {
-            foreach (var device in device_manager.devices) {
+            foreach (var device in DeviceManager.get_default ().devices) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
                     libraries_manager.transfer_to_local_library (device.get_library().get_medias ());
                     break;
@@ -406,7 +411,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         
         source_list_view.device_new_playlist_clicked.connect ( (page_number) => {
-            foreach (var device in device_manager.devices) {
+            foreach (var device in DeviceManager.get_default ().devices) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
                     create_new_playlist (device.get_library());
                     break;
@@ -415,7 +420,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         
         source_list_view.device_sync_clicked.connect ( (page_number) => {
-            foreach (var device in device_manager.devices) {
+            foreach (var device in DeviceManager.get_default ().devices) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
                     device.synchronize ();
                     break;
@@ -424,7 +429,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         
         source_list_view.device_eject_clicked.connect ( (page_number) => {
-            foreach (var device in device_manager.devices) {
+            foreach (var device in DeviceManager.get_default ().devices) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
                     device.eject();
                     break;
@@ -494,14 +499,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         build_main_widgets ();
 
         // add mounts to side tree view
-        device_manager.loadPreExistingMounts();
+        DeviceManager.get_default ().loadPreExistingMounts();
 
         load_playlists ();
         //sideTree.resetView ();
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
 
         // Now set the selected view
-        viewSelector.selected = (Widgets.ViewSelector.Mode) saved_state.view_mode;
+        viewSelector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.get_default ().view_mode;
 
         initialization_finished = true;
         
@@ -759,7 +764,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         topDisplay.set_scale_sensitivity(media_active);
 
-        bool show_info_panel = saved_state.more_visible && info_panel.can_show_up;
+        bool show_info_panel = Settings.SavedState.get_default ().more_visible && info_panel.can_show_up;
         info_panel.set_visible (show_info_panel);
 
         statusbar.update_sensitivities ();
@@ -772,14 +777,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         if(!App.player.media_active) {
-            notification_manager.doSongNotification ("");
+            NotificationManager.get_default ().doSongNotification ("");
             debug ("setting info label as ''");
             return;
         }
 
         // Set the title
         var m = App.player.media_info.media;
-        notification_manager.doSongNotification (m != null ? m.get_title_markup () : "");
+        NotificationManager.get_default ().doSongNotification (m != null ? m.get_title_markup () : "");
     }
 
     /**
@@ -1320,6 +1325,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         App.player.player.pause();
 
         // Now set the selected view
+        var saved_state = Settings.SavedState.get_default ();
         saved_state.view_mode = viewSelector.selected;
 
         // Search
@@ -1384,7 +1390,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (current_shell != null) {
             debug ("Current shell: %s", current_shell);
 
-            foreach (string shell in main_settings.minimize_while_playing_shells) {
+            foreach (string shell in Settings.Main.get_default ().minimize_while_playing_shells) {
                 if (current_shell == shell) {
                     debug ("Using supported minimize_on_close shell");
                     minimize_on_close = true;

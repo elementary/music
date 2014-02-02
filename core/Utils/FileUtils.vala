@@ -256,6 +256,7 @@ namespace Noise.FileUtils {
                 ext = get_extension(s.uri);
             
             /* Available translations are $ALBUM $ARTIST $ALBUM_ARTIST $TITLE $TRACK*/
+            var main_settings = Settings.Main.get_default ();
             string path = main_settings.path_string;
             if (path == "" || path == null) {
                 path = "$ALBUM_ARTIST/$ALBUM/$TRACK - $TITLE";

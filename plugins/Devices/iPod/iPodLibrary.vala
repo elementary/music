@@ -50,7 +50,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist>();
         smart_playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.SmartPlaylist>();
         searched_medias = new Gee.LinkedList<Noise.Media>();
-        notification_manager.progress_canceled.connect( () => {operation_cancelled = true;});
+        NotificationManager.get_default ().progress_canceled.connect( () => {operation_cancelled = true;});
     }
     
     public override void initialize_library () {

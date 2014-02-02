@@ -122,7 +122,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             // on startup
             this.realize.connect (connect_column_browser_ui_signals);
 
-            column_browser_enabled = saved_state.column_browser_enabled;
+            column_browser_enabled = Settings.SavedState.get_default ().column_browser_enabled;
 
             // Connect data signals
             column_browser.changed.connect (column_browser_changed);
@@ -219,6 +219,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         column_browser.position_changed.connect (set_column_browser_position);
 
         // Read Paned position from settings
+        var saved_state = Settings.SavedState.get_default ();
         browser_hpane_position = saved_state.column_browser_width;
         browser_vpane_position = saved_state.column_browser_height;
 
@@ -233,6 +234,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     private void save_column_browser_settings () {
         // Need to add a proper fix later ... Something similar to TreeViewSetup
         if (has_column_browser) {
+            var saved_state = Settings.SavedState.get_default ();
             if (column_browser.visible) {
                 if (column_browser.actual_position == ColumnBrowser.Position.LEFT)
                     saved_state.column_browser_width = browser_hpane_position;

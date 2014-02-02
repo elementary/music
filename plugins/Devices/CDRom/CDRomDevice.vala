@@ -70,7 +70,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     }
     
     public void finish_initialization() {
-        notification_manager.progress_canceled.connect(cancel_transfer);
+        NotificationManager.get_default ().progress_canceled.connect(cancel_transfer);
         
         finish_initialization_thread.begin ();
     }
@@ -248,8 +248,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             list = medias;
         
         // do checks to make sure we can go on
-        if(!GLib.File.new_for_path(main_settings.music_folder).query_exists()) {
-            notification_manager.doAlertNotification (_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted before importing the CD."));
+        if(!GLib.File.new_for_path (Settings.Main.get_default ().music_folder).query_exists ()) {
+            NotificationManager.get_default ().doAlertNotification (_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted before importing the CD."));
             return false;
         }
         
@@ -278,7 +278,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 
         _is_transferring = true;
 
-        Timeout.add (500, () => {notification_manager.doProgressNotification (current_operation, current_song_progress);return false;});
+        Timeout.add (500, () => {NotificationManager.get_default ().doProgressNotification (current_operation, current_song_progress);return false;});
 
         user_cancelled = false;
 

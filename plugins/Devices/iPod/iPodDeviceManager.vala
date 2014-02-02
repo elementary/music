@@ -30,12 +30,14 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
         devices = new ArrayList<iPodDevice>();
         streamer = new iPodStreamer (this);
         
+        var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
         device_manager.mount_removed.connect (mount_removed);
         Noise.App.player.add_playback (streamer);
     }
     
     public void remove_all () {
+        var device_manager = DeviceManager.get_default ();
         foreach(var dev in devices) {
             device_manager.device_removed ((Noise.Device)dev);
         }
@@ -60,7 +62,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
                 added.finish_initialization();
                 added.initialized.connect((d) => {
                     if (((iPodDevice)d).is_supported == true) {
-                        device_manager.device_initialized ((Noise.Device)d);
+                        DeviceManager.get_default ().device_initialized ((Noise.Device)d);
                     }
                 });
             }
@@ -80,6 +82,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     }
     
     public virtual void mount_removed (Mount mount) {
+        var device_manager = DeviceManager.get_default ();
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 device_manager.device_removed ((Noise.Device)dev);

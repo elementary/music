@@ -43,19 +43,21 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
            visible_categories += ((int)col_cat).to_string ();
         }
 
+        var saved_state = Settings.SavedState.get_default ();
         saved_state.column_browser_visible_columns = visible_categories;
-   	    saved_state.column_browser_position = (int) position;
+        saved_state.column_browser_position = (int) position;
     }
 
     private void restore_saved_state () {
-		// Read visible columns from settings
+        // Read visible columns from settings
         var visible_categories = new List<BrowserColumn.Category> ();
 
-		foreach (var col_n in saved_state.column_browser_visible_columns) {
-			visible_categories.append ((BrowserColumn.Category)int.parse (col_n));
-		}
+        var saved_state = Settings.SavedState.get_default ();
+        foreach (var col_n in saved_state.column_browser_visible_columns) {
+            visible_categories.append ((BrowserColumn.Category)int.parse (col_n));
+        }
 
         visible_columns = visible_categories;
-		position = (ColumnBrowser.Position) saved_state.column_browser_position;
-	}
+        position = (ColumnBrowser.Position) saved_state.column_browser_position;
+    }
 }

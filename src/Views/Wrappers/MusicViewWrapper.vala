@@ -72,14 +72,15 @@ public class Noise.MusicViewWrapper : ViewWrapper {
          * possible with internal media. This view wrapper is not intended for use
          * with external (i.e. doesn't belong to library) media anyway.
          */
-         if (library == libraries_manager.local_library) {
-             device_manager.device_added.connect (on_device_added);
-             device_manager.device_removed.connect (on_device_removed);
-             device_manager.device_name_changed.connect (on_device_name_changed);
-         }
-         library.media_added.connect (on_library_media_added);
-         library.media_removed.connect (on_library_media_removed);
-         library.media_updated.connect (on_library_media_updated);
+        if (library == libraries_manager.local_library) {
+            var device_manager = DeviceManager.get_default ();
+            device_manager.device_added.connect (on_device_added);
+            device_manager.device_removed.connect (on_device_removed);
+            device_manager.device_name_changed.connect (on_device_name_changed);
+        }
+        library.media_added.connect (on_library_media_added);
+        library.media_removed.connect (on_library_media_removed);
+        library.media_updated.connect (on_library_media_updated);
     }
 
     private void on_device_added (Device d) {
@@ -131,7 +132,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
                 file_chooser.set_local_only (true);
                 file_chooser.set_select_multiple (false);
-                file_chooser.set_current_folder (main_settings.music_folder);
+                file_chooser.set_current_folder (Settings.Main.get_default ().music_folder);
 
                 string? folder = null;
 

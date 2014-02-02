@@ -143,14 +143,14 @@ public class Noise.FileNotFoundDialog : Window {
 		
 		// try and help user by setting a sane default folder
 		var invalid_file = File.new_for_uri(libraries_manager.local_library.media_from_id(media_id).uri);
-		
+		var music_folder = Settings.Main.get_default ().music_folder;
 		if(invalid_file.get_parent().query_exists())
 			file_chooser.set_current_folder(invalid_file.get_parent().get_path());
 		else if(invalid_file.get_parent().get_parent().query_exists() && 
-		invalid_file.get_parent().get_parent().get_path().contains(main_settings.music_folder))
+		invalid_file.get_parent ().get_parent ().get_path ().contains (music_folder))
 			file_chooser.set_current_folder(invalid_file.get_parent().get_parent().get_path());
-		else if(File.new_for_path(main_settings.music_folder).query_exists())
-			file_chooser.set_current_folder(main_settings.music_folder);
+		else if(File.new_for_path (music_folder).query_exists ())
+			file_chooser.set_current_folder (music_folder);
 		else
 			file_chooser.set_current_folder(Environment.get_home_dir());
 		

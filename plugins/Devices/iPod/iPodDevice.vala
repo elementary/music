@@ -36,6 +36,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         this.mount = mount;
         is_new = mount.get_default_location ().get_parse_name ().has_prefix ("afc://");
         
+        var device_manager = DeviceManager.get_default ();
         pref = device_manager.get_device_preferences (get_unique_identifier ());
         if (pref == null) {
             pref = new Noise.DevicePreferences (get_unique_identifier ());
@@ -98,7 +99,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         catch(GLib.Error err) {
             critical("Could not set iPod Mount Display Name: %s\n", err.message);
         }
-        device_manager.device_name_changed (this);
+        DeviceManager.get_default ().device_name_changed (this);
     }
     
     public string get_fancy_description() {

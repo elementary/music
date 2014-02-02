@@ -291,6 +291,7 @@ namespace Noise.PlaylistsUtils {
         file_chooser.set_current_name(p.name + ".m3u");
         
         // set original folder. if we don't, then file_chooser.get_filename() starts as null, which is bad for signal below.
+        var main_settings = Settings.Main.get_default ();
         if(File.new_for_path(main_settings.music_folder).query_exists())
             file_chooser.set_current_folder(main_settings.music_folder);
         else

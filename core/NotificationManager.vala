@@ -40,6 +40,14 @@ public class Noise.NotificationManager : Object {
     double progress;
     string current_action_string;
 
+    private static NotificationManager? notification_manager = null;
+
+    public static NotificationManager get_default () {
+        if (notification_manager == null)
+            notification_manager = new NotificationManager ();
+        return notification_manager;
+    }
+
     public NotificationManager () {
     
     }

@@ -322,7 +322,7 @@ public abstract class Noise.GenericList : FastView {
             to_set = App.player.media_info.media;
 
         is_current_list = true;
-        main_settings.last_playlist_playing = relative_id;
+        Settings.Main.get_default ().last_playlist_playing = relative_id;
 
         App.player.clearCurrent ();
         var vis_table = get_visible_table ();
@@ -489,4 +489,3 @@ public abstract class Noise.GenericList : FastView {
     }
 #endif
 }
-

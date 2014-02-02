@@ -34,9 +34,9 @@ public class Noise.DeviceView : Gtk.Grid {
 
         buildUI ();
         
-        ulong connector = notification_manager.progress_canceled.connect ( () => {
+        ulong connector = NotificationManager.get_default ().progress_canceled.connect ( () => {
             if (d.get_library ().doing_file_operations ()) {
-                notification_manager.doAlertNotification (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
+                NotificationManager.get_default ().doAlertNotification (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
             }
         });
         d.device_unmounted.connect ( () => {
@@ -89,7 +89,7 @@ public class Noise.DeviceView : Gtk.Grid {
     public void showImportDialog () {
         // ask the user if they want to import medias from device that they don't have in their library (if any)
         // this should be same as MusicViewWrapper
-        if (!libraries_manager.local_library.doing_file_operations () && main_settings.music_folder != "") {
+        if (!libraries_manager.local_library.doing_file_operations () && Settings.Main.get_default ().music_folder != "") {
             var found = new Gee.LinkedList<int> ();
             var not_found = new Gee.LinkedList<Media> ();
             libraries_manager.local_library.media_from_name (d.get_library ().get_medias (), ref found, ref not_found);
@@ -98,7 +98,7 @@ public class Noise.DeviceView : Gtk.Grid {
                 TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog (d, not_found);
                 tfdd.show ();
             } else {
-                notification_manager.doAlertNotification (_("No External Songs"), _("There were no songs found on this device that are not in your library."));
+                NotificationManager.get_default ().doAlertNotification (_("No External Songs"), _("There were no songs found on this device that are not in your library."));
             }
         }
     }
@@ -107,4 +107,3 @@ public class Noise.DeviceView : Gtk.Grid {
         summary.sync_clicked ();
     }
 }
-

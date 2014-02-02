@@ -52,7 +52,6 @@ set (CORE_SOURCE
   GStreamer/Equalizer.vala
   GStreamer/Playback.vala
   Widgets/SettingsWidgets.vala
-  main.vala
 )
 
 if  (BUILD_SHARED_LIBS)

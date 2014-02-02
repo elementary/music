@@ -47,13 +47,13 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder…"), Gtk.FileChooserAction.SELECT_FOLDER);
         library_filechooser.hexpand = true;
 
-        library_filechooser.set_current_folder (main_settings.music_folder);
+        library_filechooser.set_current_folder (Settings.Main.get_default ().music_folder);
         //library_filechooser.set_local_only (true);
         var general_section = new Preferences.GeneralPage (library_filechooser);
         library_filechooser.file_set.connect (() => {lw.setMusicFolder(library_filechooser.get_current_folder ());});
         add_page (general_section.page);
 
-        plugins.hook_preferences_window (this);
+        Plugins.Manager.get_default ().hook_preferences_window (this);
 
     }
 
@@ -136,6 +136,8 @@ private class Noise.Preferences.GeneralPage {
         
         label = new Gtk.Label (_("Library Management:"));
         page.add_section (label, ref row);
+        
+        var main_settings = Settings.Main.get_default ();
         
         organize_folders_switch = new Gtk.Switch ();
         main_settings.schema.bind("update-folder-hierarchy", organize_folders_switch, "active", SettingsBindFlags.DEFAULT);

@@ -190,14 +190,14 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
     
     public Media mediaFromCurrentIndex (int index_in_current) {
-        if(main_settings.shuffle_mode == Noise.Settings.Shuffle.OFF)
+        if(Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.OFF)
             return _current.get (index_in_current);
         else
             return _current_shuffled.get (index_in_current);
     }
     
     public Gee.Collection<Media> current_media () {
-        if(main_settings.shuffle_mode == Noise.Settings.Shuffle.OFF)
+        if(Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.OFF)
             return _current_shuffled.values;
         else
             return _current.values;
@@ -218,13 +218,13 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
     
     public void set_repeat_mode (Noise.Settings.Repeat mode) {
-        
+        var main_settings = Settings.Main.get_default ();
         if (main_settings.repeat_mode != mode)
             main_settings.repeat_mode = mode;
     }
     
     public void set_shuffle_mode (Noise.Settings.Shuffle mode) {
-        
+        var main_settings = Settings.Main.get_default ();
         if (main_settings.shuffle_mode != mode) {
             main_settings.shuffle_mode = mode;
             reshuffle ();
@@ -235,6 +235,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         _current_shuffled.clear();
         _current_shuffled_index = 0;
         
+        var main_settings = Settings.Main.get_default ();
         if(main_settings.shuffle_mode == Noise.Settings.Shuffle.OFF) {
             if(media_active) {
                 //make sure we continue playing where we left off
@@ -275,6 +276,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public Media? getNext(bool play) {
         Media? rv = null;
         
+        var main_settings = Settings.Main.get_default ();
         // next check if user has queued media
         if(queue_playlist.medias.size > 0) {
             rv = poll_queue();
@@ -393,7 +395,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public Media? getPrevious(bool play) {
         Media? rv = null;
         
-        
+        var main_settings = Settings.Main.get_default ();
         if(main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
             if (_current_shuffled.is_empty)
                 reshuffle ();
@@ -563,7 +565,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         
         //update settings
         if (m.rowid >= 0)
-            main_settings.last_media_playing = m.rowid;
+            Settings.Main.get_default ().last_media_playing = m.rowid;
         
         if (m != null)
             media_played (m);
@@ -592,6 +594,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
     public void* change_gains_thread () {
+        var equalizer_settings = Settings.Equalizer.get_default ();
         if (equalizer_settings.equalizer_enabled) {
             bool automatic_enabled = equalizer_settings.auto_switch_preset;
             string selected_preset = equalizer_settings.selected_preset;
@@ -647,7 +650,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         if (media_active)
             was_playing = media_info.media.rowid;
         
-        main_settings.last_media_playing = 0;
+        Settings.Main.get_default ().last_media_playing = 0;
         media_info.update (null, null, null, null);
         
         playback_stopped (was_playing);

@@ -44,8 +44,16 @@ public class Noise.DeviceManager : GLib.Object {
     
     public signal void mount_added (Mount mount);
     public signal void mount_removed (Mount mount);
+
+    private static DeviceManager? device_manager = null;
+
+    public static DeviceManager get_default () {
+        if (device_manager == null)
+            device_manager = new DeviceManager ();
+        return device_manager;
+    }
     
-    public DeviceManager() {
+    private DeviceManager () {
         
         device_preferences = new Gee.ArrayList<DevicePreferences> ();
         devices = new Gee.ArrayList<unowned Device> ();
@@ -96,7 +104,7 @@ public class Noise.DeviceManager : GLib.Object {
     }
     
     void volume_added(Volume volume) {
-        if(main_settings.music_mount_name == volume.get_name() && volume.get_mount() == null) {
+        if(Settings.Main.get_default ().music_mount_name == volume.get_name() && volume.get_mount() == null) {
             debug ("mounting %s because it is believed to be the music folder\n", volume.get_name());
             volume.mount.begin (MountMountFlags.NONE, null, null);
         }
