@@ -98,7 +98,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         main_grid.hexpand = true;
 
         ((Gtk.Box)get_content_area()).add (main_grid);
-        add_button (_(STRING_CANCEL), Gtk.ResponseType.ACCEPT);
+        add_button (_("Close"), Gtk.ResponseType.ACCEPT);
     }
 }
 
