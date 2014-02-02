@@ -20,9 +20,9 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class Noise.TopDisplay : Gtk.Box {
+public class Noise.TopDisplay : Gtk.Grid {
     Gtk.Label label;
-    Gtk.Box scaleBox;
+    Gtk.Grid scale_grid;
     Gtk.Label leftTime;
     Gtk.Label rightTime;
     Gtk.Scale scale;
@@ -35,26 +35,28 @@ public class Noise.TopDisplay : Gtk.Box {
     public signal void scale_value_changed (Gtk.ScrollType scroll, double val);
     
     public TopDisplay() {
-
-        this.orientation = Gtk.Orientation.HORIZONTAL;
+        width_request = 400;
 
         label = new Gtk.Label ("");
+        label.hexpand = true;
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 1000);
+        scale.hexpand = true;
         leftTime = new Gtk.Label ("0:00");
         rightTime = new Gtk.Label ("0:00");
         progressbar = new Gtk.ProgressBar ();
         cancelButton = new Gtk.Button ();
         
-        scaleBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        scale_grid = new Gtk.Grid ();
 
         leftTime.margin_right = rightTime.margin_left = 3;
 
-        scaleBox.pack_start(leftTime, false, false, 0);
-        scaleBox.pack_start(scale, true, true, 0);
-        scaleBox.pack_start(rightTime, false, false, 0);
+        scale_grid.attach (leftTime, 0, 0, 1, 1);
+        scale_grid.attach (scale, 1, 0, 1, 1);
+        scale_grid.attach (rightTime, 2, 0, 1, 1);
         
         scale.set_draw_value (false);
         scale.can_focus = false;
+        scale.hexpand = true;
         
         label.set_justify (Gtk.Justification.CENTER);
         label.set_single_line_mode (false);
@@ -67,20 +69,20 @@ public class Noise.TopDisplay : Gtk.Box {
         cancelButton.set_tooltip_text (_(STRING_CANCEL));
 
         // all but cancel
-        var info = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        info.pack_start (label, false, true, 0);
-        info.pack_start (progressbar, false, true, 0);
-        info.pack_start (scaleBox, false, true, 0);
+        var info = new Gtk.Grid ();
+        info.attach (label, 0, 0, 1, 1);
+        info.attach (progressbar, 0, 1, 1, 1);
+        info.attach (scale_grid, 0, 1, 1, 1);
         
-        this.pack_start (info, true, true, 0);
-        this.pack_end (cancelButton, false, false, 0);
+        attach (info, 0, 0, 1, 1);
+        attach (cancelButton, 0, 0, 1, 1);
         
-        this.cancelButton.clicked.connect (cancel_clicked);
+        cancelButton.clicked.connect (cancel_clicked);
 
-        this.scale.button_press_event.connect (scale_button_press);
-        this.scale.button_release_event.connect (scale_button_release);
-        this.scale.value_changed.connect (value_changed);
-        this.scale.change_value.connect (change_value);
+        scale.button_press_event.connect (scale_button_press);
+        scale.button_release_event.connect (scale_button_release);
+        scale.value_changed.connect (value_changed);
+        scale.change_value.connect (change_value);
 
         App.player.player.current_position_update.connect (player_position_update);
         
@@ -239,8 +241,8 @@ public class Noise.TopDisplay : Gtk.Box {
     
     /** other functions **/
     public void show_scale() {
-        scaleBox.set_no_show_all (false);
-        scaleBox.show_all ();
+        scale_grid.set_no_show_all (false);
+        scale_grid.show_all ();
 
         progressbar.set_no_show_all (true);
         progressbar.hide ();
@@ -250,8 +252,8 @@ public class Noise.TopDisplay : Gtk.Box {
     }
     
     public void show_progressbar() {
-        scaleBox.set_no_show_all (true);
-        scaleBox.hide();
+        scale_grid.set_no_show_all (true);
+        scale_grid.hide();
 
         progressbar.set_no_show_all (false);
         progressbar.show_all ();
@@ -261,8 +263,8 @@ public class Noise.TopDisplay : Gtk.Box {
     }
 
     public void hide_scale_and_progressbar() {
-        scaleBox.set_no_show_all (true);
-        scaleBox.hide();
+        scale_grid.set_no_show_all (true);
+        scale_grid.hide();
 
         progressbar.set_no_show_all (true);
         progressbar.hide ();
