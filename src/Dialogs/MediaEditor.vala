@@ -681,11 +681,11 @@ public class Noise.StatsDisplay : Gtk.Box {
         
         header = new Gtk.Label("");
         info = new Gtk.Label("");
-        reset = new Gtk.Button.with_label("Reset");
+        reset = new Gtk.Button.with_label(_("Reset"));
         
         header.justify = Gtk.Justification.LEFT;
         header.xalign = 0.0f;
-        header.set_markup("<b>Stats</b>");
+        header.set_markup(_("<b>Stats</b>"));
         
         info.justify = Gtk.Justification.LEFT;
         info.xalign = 0.0f;

@@ -47,20 +47,20 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.Paned     view_container_hpaned; // view_container / info_panel
     public InfoPanel      info_panel;
 
-    private Gtk.HeaderBar    headerbar; // Toolbar
-    private Gtk.Button   previousButton;
-    private Gtk.Button   playButton;
-    private Gtk.Button   nextButton;
+    private Gtk.HeaderBar    headerbar;
+    private Gtk.Button       previousButton;
+    private Gtk.Button       playButton;
+    private Gtk.Button       nextButton;
     private Gtk.VolumeButton volumeButton;
 
     public Granite.Widgets.ThinPaned  main_hpaned      { get; private set; }
     public SourceListView             source_list_view { get; private set; }
     public ViewContainer              view_container   { get; private set; }
     public TopDisplay                 topDisplay       { get; private set; }
-    private FixedBin                  topDisplayBin    { get; private set; }
     public Widgets.ViewSelector       viewSelector     { get; private set; }
     public Granite.Widgets.SearchBar  searchField      { get; private set; }
     public Widgets.StatusBar          statusbar        { get; private set; }
+    private FixedBin                  topDisplayBin;
 
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
@@ -75,9 +75,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private int window_height = 0;
 
     private Cancellable notification_cancellable;
-    
+
     PreferencesWindow? preferences = null;
-    
+
     private Gee.HashMap<unowned Playlist, int> match_playlists;
     private Gee.HashMap<string, int> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
