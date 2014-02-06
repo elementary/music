@@ -145,7 +145,7 @@ public class Noise.TransferFromDeviceDialog : Window {
 		var medias_sorted = new LinkedList<Media>();
 		foreach(var m in medias)
 			medias_sorted.add(m);
-		medias_sorted.sort((CompareFunc)mediaCompareFunc);
+		medias_sorted.sort(mediaCompareFunc);
 		
 		foreach(var s in medias_sorted) {
 			TreeIter item;
