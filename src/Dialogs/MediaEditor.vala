@@ -84,9 +84,6 @@ public class Noise.MediaEditor : Gtk.Window {
             stack.add_titled (createLyricsContent (), "lyrics", _("Lyrics"));
         else
             lyricsText = null;
-        
-        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        buttons.set_layout (Gtk.ButtonBoxStyle.END);
 
         var arrows = new Granite.Widgets.NavigationArrows ();
 
@@ -95,27 +92,29 @@ public class Noise.MediaEditor : Gtk.Window {
 
         _save.valign = arrows.valign = Gtk.Align.END;
 
+        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        buttons.margin_top = 12;
+        buttons.set_layout (Gtk.ButtonBoxStyle.END);
+
         buttons.pack_start (arrows, false, false, 0);
         buttons.pack_end (_save, false, false, 0);
 
         buttons.set_child_secondary (arrows, true);
 
         var content = new Gtk.Grid ();
-
-        buttons.margin_top = 12;
-
-        content.attach (stack_switcher, 0, 0, 1, 1);
-        content.attach (stack, 0, 1, 1, 1);
-        content.attach (buttons, 0, 2, 1, 1);
-
+        content.orientation = Gtk.Orientation.VERTICAL;
         content.margin = 12;
 
+        content.add (stack_switcher);
+        content.add (stack);
+        content.add (buttons);
+
         this.add (content);
-        
+
         this.show_all();
-        
+
         arrows.sensitive = allMedias.size > 1;
-        
+
         if(_medias.size == 1) {
             foreach(FieldEditor fe in fields.values)
                 fe.set_check_visible(false);
