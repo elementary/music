@@ -133,13 +133,11 @@ public class Noise.CoverImport : GLib.Object {
         }
 
         if (gstreamer_discovery_successful) {
-            debug ("Importing with GStreamer: %s", uri);
-
             var m = libraries_manager.local_library.media_from_uri (uri);
 
             // Get cover art
             if (m != null)
-                import_art_async.begin (m, info);
+                yield import_art_async (m, info);
         }
 
     }
@@ -149,75 +147,85 @@ public class Noise.CoverImport : GLib.Object {
         if (cache.has_image (m))
             return;
 
+        debug ("Importing cover art for: %s", info.get_uri ());
+
         var pix = get_image (info.get_tags ());
 
         if (pix != null)
-            cache.cache_image_async.begin (m, pix);
+            yield cache.cache_image_async (m, pix);
         else
             warning ("Could not find embedded image for '%s'", info.get_uri ());
             
     }
 
-    private static Gdk.Pixbuf? get_image (Gst.TagList tag) {
-        Gst.Buffer? buffer = null;
+    private static Gdk.Pixbuf? get_image (Gst.TagList tag_list) {
+        var sample = get_cover_sample (tag_list);
+
+        if (sample == null)
+            tag_list.get_sample_index (Gst.Tags.PREVIEW_IMAGE, 0, out sample);
+
+        if (sample != null) {
+            var buffer = sample.get_buffer ();
+
+            if (buffer != null)
+                return get_pixbuf_from_buffer (buffer);
+
+            debug ("Final image buffer is NULL");
+        } else {
+            debug ("Image sample is NULL");
+        }
+
+        return null;
+    }
+
+    private static Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
+        Gst.Sample cover_sample = null;
 
         for (int i = 0; ; i++) {
-            Gst.Sample? loop_sample = null;
-            if (!tag.get_sample_index (Gst.Tags.IMAGE, i, out loop_sample))
+            Gst.Sample sample;
+
+            if (!tag_list.get_sample_index (Gst.Tags.IMAGE, i, out sample))
                 break;
 
-            if (loop_sample == null)
-                continue;
+            var caps = sample.get_caps ();
+            unowned Gst.Structure caps_struct = caps.get_structure (0);
+            int image_type = Gst.Tag.ImageType.UNDEFINED;
 
-            var structure = loop_sample.get_caps ().get_structure (0).copy ();
-            if (structure == null)
-                continue;
-
-            int image_type;
-            structure.get_enum ("image-type", typeof (Gst.Tag.ImageType), out image_type);
-
-            if (image_type == Gst.Tag.ImageType.FRONT_COVER) {
-                buffer = loop_sample.get_buffer ();
+            caps_struct.get_enum ("image-type", typeof (Gst.Tag.ImageType), out image_type);
+            
+            if (image_type == Gst.Tag.ImageType.UNDEFINED) {
+                if (cover_sample == null)
+                    cover_sample = sample;
+            } else if (image_type == Gst.Tag.ImageType.FRONT_COVER) {
+                cover_sample = sample;
                 break;
-            } else if (image_type == Gst.Tag.ImageType.UNDEFINED || buffer == null) {
-                buffer = loop_sample.get_buffer ();
             }
         }
 
-        if (buffer == null) {
-            debug ("Final image buffer is null");
-            return null;
-        }
-
-        return get_pixbuf_from_buffer (buffer);
+        return cover_sample;
     }
 
     private static Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
-        var memory = buffer.get_memory (0);
-        if (memory == null)
-            return null;
- 
         Gst.MapInfo map_info;
-        if (!memory.map (out map_info, Gst.MapFlags.READ))
+
+        if (!buffer.map (out map_info, Gst.MapFlags.READ)) {
+            warning ("Could not map memory buffer");
             return null;
- 
-        Gdk.Pixbuf? pix = null;
- 
-        if (map_info.data != null) {
+        }
+
+        Gdk.Pixbuf pix = null;
+
+        try {
             var loader = new Gdk.PixbufLoader ();
- 
-            try {
-                if (loader.write (map_info.data))
-                    pix = loader.get_pixbuf ();
-                loader.close ();
-            } catch (Error err) {
-                warning ("Error processing image data: %s", err.message);
-            }
+
+            if (loader.write (map_info.data) && loader.close ())
+                pix = loader.get_pixbuf ();
+        } catch (Error err) {
+            warning ("Error processing image data: %s", err.message);
         }
  
-        memory.unmap (map_info);
+        buffer.unmap (map_info);
  
         return pix;
     }
-
 }
