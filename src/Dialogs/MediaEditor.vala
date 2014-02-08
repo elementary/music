@@ -29,10 +29,6 @@
  *              Corentin Noël <tintou@mailoo.org>
  */
 
-using Gtk;
-using Gee;
-using Granite;
-
 /**
  * TODO: make this dialog edit and handle Media objects and not media rowids.
  *       We need this in order to allow editing temporary tracks (such as Audio
@@ -42,29 +38,29 @@ using Granite;
 #if USE_GRANITE_DECORATED_WINDOW
 public class Noise.MediaEditor : Granite.Widgets.LightWindow {
 #else
-public class Noise.MediaEditor : Window {
+public class Noise.MediaEditor : Gtk.Window {
 #endif
     LyricFetcher lf;
     
-    LinkedList<int> _allMedias;
-    LinkedList<int> _medias;
+    Gee.LinkedList<int> _allMedias;
+    Gee.LinkedList<int> _medias;
     
     //for padding around notebook mostly
-    Granite.Widgets.StaticNotebook notebook;
+    Gtk.Stack stack;
 
-    private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
-    private TextView lyricsText;
+    private Gee.HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
+    private Gtk.TextView lyricsText;
     
-    private Button _save;
+    private Gtk.Button _save;
     
-    private Label lyricsInfobarLabel;
+    private Gtk.Label lyricsInfobarLabel;
     private Library library;
     
-    public signal void medias_saved(LinkedList<int> medias);
+    public signal void medias_saved (Gee.LinkedList<int> medias);
     
-    public MediaEditor(LinkedList<int> allMedias, LinkedList<int> medias, Library library) {
+    public MediaEditor (Gee.LinkedList<int> allMedias, Gee.LinkedList<int> medias, Library library) {
         this.library = library;
-        this.window_position = WindowPosition.CENTER;
+        this.window_position = Gtk.WindowPosition.CENTER;
         this.type_hint = Gdk.WindowTypeHint.DIALOG;
         this.set_modal(false);
         this.set_transient_for(App.main_window);
@@ -78,49 +74,47 @@ public class Noise.MediaEditor : Window {
         _allMedias = allMedias;
         _medias = medias;
         
-        // don't show notebook separator when using a decorated window
-        #if USE_GRANITE_DECORATED_WINDOW
-        notebook = new Granite.Widgets.StaticNotebook (false);
-        #else
-        notebook = new Granite.Widgets.StaticNotebook ();
-        #endif
+        stack = new Gtk.Stack ();
+        var stack_switcher = new Gtk.StackSwitcher ();
+        stack_switcher.set_stack (stack);
+        stack_switcher.halign = Gtk.Align.CENTER;
 
-        notebook.append_page(createBasicContent (), new Label(_("Metadata")));
+        stack.add_titled (createBasicContent (), "metadata", _("Metadata"));
         if(_medias.size == 1)
-            notebook.append_page(createLyricsContent (), new Label(_("Lyrics")));
+            stack.add_titled (createLyricsContent (), "lyrics", _("Lyrics"));
         else
             lyricsText = null;
-        
-        var buttons = new Gtk.ButtonBox (Orientation.HORIZONTAL);
-        buttons.set_layout (Gtk.ButtonBoxStyle.END);
 
         var arrows = new Granite.Widgets.NavigationArrows ();
 
-        _save = new Button.from_stock ("document-save");
+        _save = new Gtk.Button.with_label (_(STRING_SAVE));
         _save.set_size_request (85, -1);
 
         _save.valign = arrows.valign = Gtk.Align.END;
+
+        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        buttons.margin_top = 12;
+        buttons.set_layout (Gtk.ButtonBoxStyle.END);
 
         buttons.pack_start (arrows, false, false, 0);
         buttons.pack_end (_save, false, false, 0);
 
         buttons.set_child_secondary (arrows, true);
 
-        var content = new Gtk.Box (Orientation.VERTICAL, 0);
-
-        buttons.margin_top = 12;
-
-        content.pack_start (notebook, true, true, 0);
-        content.pack_start (buttons, false, true, 0);
-
+        var content = new Gtk.Grid ();
+        content.orientation = Gtk.Orientation.VERTICAL;
         content.margin = 12;
 
+        content.add (stack_switcher);
+        content.add (stack);
+        content.add (buttons);
+
         this.add (content);
-        
+
         this.show_all();
-        
+
         arrows.sensitive = allMedias.size > 1;
-        
+
         if(_medias.size == 1) {
             foreach(FieldEditor fe in fields.values)
                 fe.set_check_visible(false);
@@ -134,7 +128,7 @@ public class Noise.MediaEditor : Window {
     }
     
     public Gtk.Box createBasicContent () {
-        fields = new HashMap<string, FieldEditor>();
+        fields = new Gee.HashMap<string, FieldEditor>();
         Media sum = library.media_from_id(_medias.get(0)).copy();
         
         /** find what these media have what common, and keep those values **/
@@ -194,26 +188,26 @@ public class Noise.MediaEditor : Window {
         if(sum.year == -1)
             sum.year = Time().year;
         
-        fields.set("Title", new FieldEditor(_("Title"), sum.title, new Entry()));
-        fields.set("Artist", new FieldEditor(_("Artist"), sum.artist, new Entry()));
-        fields.set("Album Artist", new FieldEditor(_("Album Artist"), sum.album_artist, new Entry()));
-        fields.set("Album", new FieldEditor(_("Album"), sum.album, new Entry()));
-        fields.set("Genre", new FieldEditor(_("Genre"), sum.genre, new Entry()));
-        fields.set("Composer", new FieldEditor(_("Composer"), sum.composer, new Entry()));
-        fields.set("Grouping", new FieldEditor(_("Grouping"), sum.grouping, new Entry()));
-        fields.set("Comment", new FieldEditor(_("Comment"), sum.comment, new TextView()));
-        fields.set("Track", new FieldEditor(_("Track"), sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
-        fields.set("Disc", new FieldEditor(_("Disc"), sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
-        fields.set("Year", new FieldEditor(_("Year"), sum.year.to_string(), new SpinButton.with_range(0, 9999, 1)));
-        fields.set("Rating", new FieldEditor(_("Rating"), sum.rating.to_string(), new Granite.Widgets.Rating(false, IconSize.MENU)));
+        fields.set("Title", new FieldEditor(_("Title"), sum.title, new Gtk.Entry()));
+        fields.set("Artist", new FieldEditor(_("Artist"), sum.artist, new Gtk.Entry()));
+        fields.set("Album Artist", new FieldEditor(_("Album Artist"), sum.album_artist, new Gtk.Entry()));
+        fields.set("Album", new FieldEditor(_("Album"), sum.album, new Gtk.Entry()));
+        fields.set("Genre", new FieldEditor(_("Genre"), sum.genre, new Gtk.Entry()));
+        fields.set("Composer", new FieldEditor(_("Composer"), sum.composer, new Gtk.Entry()));
+        fields.set("Grouping", new FieldEditor(_("Grouping"), sum.grouping, new Gtk.Entry()));
+        fields.set("Comment", new FieldEditor(_("Comment"), sum.comment, new Gtk.TextView()));
+        fields.set("Track", new FieldEditor(_("Track"), sum.track.to_string(), new Gtk.SpinButton.with_range(0, 500, 1)));
+        fields.set("Disc", new FieldEditor(_("Disc"), sum.album_number.to_string(), new Gtk.SpinButton.with_range(0, 500, 1)));
+        fields.set("Year", new FieldEditor(_("Year"), sum.year.to_string(), new Gtk.SpinButton.with_range(0, 9999, 1)));
+        fields.set("Rating", new FieldEditor(_("Rating"), sum.rating.to_string(), new Granite.Widgets.Rating(false, Gtk.IconSize.MENU)));
 #if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-        fields.set("Media Type", new FieldEditor(_("Media Type"), sum.mediatype.to_string(), new ComboBoxText()));
+        fields.set("Media Type", new FieldEditor(_("Media Type"), sum.mediatype.to_string(), new Gtk.ComboBoxText()));
 #endif
 
-        var vert = new Box (Orientation.VERTICAL, 0); // separates editors with buttons and other stuff
-        var horiz = new Box (Orientation.HORIZONTAL, 0); // separates text with numerical editors
-        var textVert = new Box (Orientation.VERTICAL, 0); // separates text editors
-        var numerVert = new Box (Orientation.VERTICAL, 0); // separates numerical editors
+        var vert = new Gtk.Box (Gtk.Orientation.VERTICAL, 0); // separates editors with buttons and other stuff
+        var horiz = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0); // separates text with numerical editors
+        var textVert = new Gtk.Box (Gtk.Orientation.VERTICAL, 0); // separates text editors
+        var numerVert = new Gtk.Box (Gtk.Orientation.VERTICAL, 0); // separates numerical editors
         
         textVert.pack_start(fields.get("Title"), false, true, 0);
         textVert.pack_start(fields.get("Artist"), false, true, 5);
@@ -242,21 +236,21 @@ public class Noise.MediaEditor : Window {
     }
     
     public Gtk.Box createLyricsContent () {
-        var lyricsContent = new Gtk.Box (Orientation.VERTICAL, 10);
+        var lyricsContent = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
         
-        lyricsInfobarLabel = new Label("");
+        lyricsInfobarLabel = new Gtk.Label("");
         
-        lyricsInfobarLabel.set_justify(Justification.LEFT);
+        lyricsInfobarLabel.set_justify(Gtk.Justification.LEFT);
         lyricsInfobarLabel.set_single_line_mode(true);
         lyricsInfobarLabel.ellipsize = Pango.EllipsizeMode.END;
         
 
-        lyricsText = new TextView();
-        lyricsText.set_wrap_mode(WrapMode.WORD_CHAR);
+        lyricsText = new Gtk.TextView();
+        lyricsText.set_wrap_mode(Gtk.WrapMode.WORD_CHAR);
         lyricsText.get_buffer().text = library.media_from_id(_medias.get(0)).lyrics;
 
-        var text_scroll = new ScrolledWindow(null, null);        
-        text_scroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+        var text_scroll = new Gtk.ScrolledWindow(null, null);
+        text_scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         
         text_scroll.add(lyricsText);
         
@@ -288,20 +282,20 @@ public class Noise.MediaEditor : Window {
     
 
     public void lyricsFetched (Media m) {
-        Gdk.threads_enter ();
+        Idle.add ( () => {
 
-        lyricsInfobarLabel.set_text ("");
-        lyricsInfobarLabel.hide();
+            lyricsInfobarLabel.set_text ("");
+            lyricsInfobarLabel.hide();
 
-        if (!String.is_white_space (m.lyrics)) {
-            lyricsText.get_buffer().text = m.lyrics;
-        }
-        else {
-            lyricsInfobarLabel.show_all();
-            lyricsInfobarLabel.set_markup (_("Lyrics not found for %s").printf ("<i>" + String.escape (m.title) + "</i>"));
-        }
-
-        Gdk.threads_leave ();
+            if (!String.is_white_space (m.lyrics)) {
+                lyricsText.get_buffer().text = m.lyrics;
+            }
+            else {
+                lyricsInfobarLabel.show_all();
+                lyricsInfobarLabel.set_markup (_("Lyrics not found for %s").printf ("<i>" + String.escape (m.title) + "</i>"));
+            }
+            return false;
+        });
     }
 
     
@@ -318,7 +312,7 @@ public class Noise.MediaEditor : Window {
             i = _allMedias.get(indexOfCurrentFirst - 1);
         
         // now fetch the previous media on current_view
-        var newMedias = new LinkedList<int>();
+        var newMedias = new Gee.LinkedList<int>();
         newMedias.add(i);
         
         change_media(newMedias);
@@ -336,13 +330,13 @@ public class Noise.MediaEditor : Window {
         else
             i = _allMedias.get(indexOfCurrentLast + 1);
         
-        var newMedias = new LinkedList<int>();
+        var newMedias = new Gee.LinkedList<int>();
         newMedias.add(i);
         
         change_media(newMedias);
     }
     
-    public void change_media(LinkedList<int> newMedias) {
+    public void change_media(Gee.LinkedList<int> newMedias) {
         _medias = newMedias;
         
         Media sum = library.media_from_id(newMedias.get(0));
@@ -379,7 +373,7 @@ public class Noise.MediaEditor : Window {
 #endif    
         if(lyricsText == null) {
             var lyrics = createLyricsContent ();
-            notebook.append_page(lyrics, new Label(_("Lyrics")));
+            stack.add_titled (lyrics, "lyrics", _("Lyrics"));
             lyrics.show_all();
         }
 
@@ -441,35 +435,35 @@ public class Noise.MediaEditor : Window {
     }
 }
 
-public class Noise.FieldEditor : Box {
+public class Noise.FieldEditor : Gtk.Box {
     private string _name;
     private string _original;
     
     private Gtk.Box nameBox;
     
-    private CheckButton check;
-    private Label label;
-    private Entry entry;
-    private TextView textView;
-    private SpinButton spinButton;
+    private Gtk.CheckButton check;
+    private Gtk.Label label;
+    private Gtk.Entry entry;
+    private Gtk.TextView textView;
+    private Gtk.SpinButton spinButton;
     private Granite.Widgets.Rating ratingWidget;
-    private Image image;
+    private Gtk.Image image;
 #if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-    private ComboBoxText comboBox;
+    private Gtk.ComboBoxText comboBox;
 #endif
     //private DoubleSpinButton doubleSpinButton;
 
-    public FieldEditor(string name, string original, Widget w) {
+    public FieldEditor(string name, string original, Gtk.Widget w) {
         _name = name;
         _original = original;
         set_orientation (Gtk.Orientation.VERTICAL);
         this.spacing = 0;
         
-        check = new CheckButton();
-        label = new Label(_name);
+        check = new Gtk.CheckButton();
+        label = new Gtk.Label(_name);
         nameBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         
-        label.justify = Justification.LEFT;
+        label.justify = Gtk.Justification.LEFT;
         label.xalign = 0.0f;
         label.set_markup("<b>" + _name + "</b>");
         
@@ -478,10 +472,10 @@ public class Noise.FieldEditor : Box {
         
         this.pack_start(nameBox, false, false, 0);
         
-        if(w is Entry && !(w is SpinButton)) {
+        if(w is Gtk.Entry && !(w is Gtk.SpinButton)) {
             check.set_active(original != "");
             
-            entry = (Entry)w;
+            entry = (Gtk.Entry)w;
             if(name != _("Genre") && name != _("Grouping"))
                 entry.set_size_request(300, -1);
             else
@@ -491,16 +485,16 @@ public class Noise.FieldEditor : Box {
             entry.changed.connect(entryChanged);
             this.pack_start(entry, true, true, 0);
         }
-        else if(w is TextView) {
+        else if(w is Gtk.TextView) {
             check.set_active(original != "");
             
-            textView = (TextView)w;
+            textView = (Gtk.TextView)w;
             textView.set_size_request(300, 90);
-            textView.set_wrap_mode(WrapMode.WORD_CHAR);
+            textView.set_wrap_mode(Gtk.WrapMode.WORD_CHAR);
             textView.get_buffer().text = original;
             
-            ScrolledWindow scroll = new ScrolledWindow(null, null);
-            scroll.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
+            var scroll = new Gtk.ScrolledWindow(null, null);
+            scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
             
             scroll.add(textView);
             
@@ -509,19 +503,19 @@ public class Noise.FieldEditor : Box {
             textView.buffer.changed.connect(textViewChanged);
             this.pack_start(scroll, true, true, 0);
         }
-        else if(w is SpinButton) {
+        else if(w is Gtk.SpinButton) {
             check.set_active(original != "0");
             
-            spinButton = (SpinButton)w;
+            spinButton = (Gtk.SpinButton)w;
             spinButton.set_size_request(100, -1);
             spinButton.value = check.get_active() ? double.parse(original) : 0.0;
             spinButton.adjustment.value_changed.connect(spinButtonChanged);
             this.pack_start(spinButton, true, true, 0);
         }
-        else if(w is Image) {
+        else if(w is Gtk.Image) {
             check.set_active(original != "");
             
-            image = (Image)w;
+            image = (Gtk.Image)w;
             image.set_size_request(100, 100);
             image.set_from_file(original);
             //callback on file dialogue saved. setup here
@@ -537,10 +531,10 @@ public class Noise.FieldEditor : Box {
             this.pack_start(ratingWidget, true, true, 0);
         }
 #if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-        else if(w is ComboBoxText) {
+        else if(w is Gtk.ComboBoxText) {
             check.set_active(original != "0");
             
-            comboBox = (ComboBoxText)w;
+            comboBox = (Gtk.ComboBoxText)w;
             comboBox.append_text(_("Song"));
 #if HAVE_PODCASTS
             comboBox.append_text(_("Podcast"));
@@ -669,14 +663,14 @@ public class Noise.FieldEditor : Box {
     }
 }
 
-public class Noise.StatsDisplay : Box {
+public class Noise.StatsDisplay : Gtk.Box {
     public int plays;
     public int skips;
     public int last_played;
     
-    Label header;
-    Label info;
-    Button reset;
+    Gtk.Label header;
+    Gtk.Label info;
+    Gtk.Button reset;
     
     public StatsDisplay(int plays, int skips, int last_played) {
         this.plays = plays;
@@ -684,15 +678,15 @@ public class Noise.StatsDisplay : Box {
         this.last_played = last_played;
         set_orientation (Gtk.Orientation.VERTICAL);
         
-        header = new Label("");
-        info = new Label("");
-        reset = new Button.with_label("Reset");
+        header = new Gtk.Label("");
+        info = new Gtk.Label("");
+        reset = new Gtk.Button.with_label(_("Reset"));
         
-        header.justify = Justification.LEFT;
+        header.justify = Gtk.Justification.LEFT;
         header.xalign = 0.0f;
-        header.set_markup("<b>Stats</b>");
+        header.set_markup(_("<b>Stats</b>"));
         
-        info.justify = Justification.LEFT;
+        info.justify = Gtk.Justification.LEFT;
         info.xalign = 0.0f;
         
         setInfoText();

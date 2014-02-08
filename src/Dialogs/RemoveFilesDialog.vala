@@ -55,7 +55,7 @@ public class Noise.RemoveFilesDialog : Window {
 		Label info = new Label("");
 		trash_button = new Button.with_label (_("Move to Trash"));
 		remove_button = new Button.with_label (_("Remove from %s").printf (app_name));
-		cancel_button = new Button.with_label (_("Cancel"));
+		cancel_button = new Button.with_label (_(STRING_CANCEL));
 		
 		bool multiple_media = to_remove.size > 1;
 

@@ -47,20 +47,20 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.Paned     view_container_hpaned; // view_container / info_panel
     public InfoPanel      info_panel;
 
-    private Gtk.Toolbar      main_toolbar; // Toolbar
-    private Gtk.ToolButton   previousButton;
-    private Gtk.ToolButton   playButton;
-    private Gtk.ToolButton   nextButton;
+    private Gtk.HeaderBar    headerbar;
+    private Gtk.Button       previousButton;
+    private Gtk.Button       playButton;
+    private Gtk.Button       nextButton;
     private Gtk.VolumeButton volumeButton;
 
     public Granite.Widgets.ThinPaned  main_hpaned      { get; private set; }
     public SourceListView             source_list_view { get; private set; }
     public ViewContainer              view_container   { get; private set; }
     public TopDisplay                 topDisplay       { get; private set; }
-    private FixedBin                  topDisplayBin    { get; private set; }
     public Widgets.ViewSelector       viewSelector     { get; private set; }
     public Granite.Widgets.SearchBar  searchField      { get; private set; }
     public Widgets.StatusBar          statusbar        { get; private set; }
+    private FixedBin                  topDisplayBin;
 
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
@@ -75,15 +75,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private int window_height = 0;
 
     private Cancellable notification_cancellable;
-    
+
     PreferencesWindow? preferences = null;
-    
+
     private Gee.HashMap<unowned Playlist, int> match_playlists;
     private Gee.HashMap<string, int> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
     private Gee.HashMap<Playlist, TreeViewSetup> match_tvs;
 
     public LibraryWindow () {
+        headerbar = new Gtk.HeaderBar ();
+        headerbar.show_close_button = true;
+        set_titlebar (headerbar);
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
 
         this.library_manager.media_updated.connect (medias_updated);
@@ -204,7 +207,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         debug ("setting up main window");
 
         this.height_request = 350;
-        this.width_request = 600;
+        this.width_request = 400;
         this.window_position = Gtk.WindowPosition.CENTER;
 
         // set the size based on saved settings
@@ -262,39 +265,24 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         /** Toolbar widgets **/
 
-        main_toolbar            = new Gtk.Toolbar ();
-        previousButton          = new Gtk.ToolButton (null, null);
-        playButton              = new Gtk.ToolButton (null, null);
-        nextButton              = new Gtk.ToolButton (null, null);
+        previousButton          = new Gtk.Button.from_icon_name ("media-skip-backward", Gtk.IconSize.LARGE_TOOLBAR);
+        previousButton.set_tooltip_text (_("Previous"));
+        playButton              = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
+        playButton.set_tooltip_text (_("Play"));
+        nextButton              = new Gtk.Button.from_icon_name ("media-skip-forward", Gtk.IconSize.LARGE_TOOLBAR);
+        nextButton.set_tooltip_text (_("Next"));
         volumeButton            = new Gtk.VolumeButton ();
         topDisplay              = new TopDisplay ();
-        topDisplayBin           = new FixedBin (-1, -1, 800, -1);
+        topDisplayBin           = new FixedBin (200, -1, 600, -1);
         viewSelector            = new Widgets.ViewSelector ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
-        // Set ToolButton icons and tooltips
-        previousButton.set_icon_name ("media-skip-backward");
-        previousButton.set_tooltip_text (_("Previous"));
-        playButton.set_icon_name ("media-playback-start");
-        playButton.set_tooltip_text (_("Play"));
-        nextButton.set_icon_name ("media-skip-forward");
-        nextButton.set_tooltip_text (_("Next"));
-
-        main_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
 
         topDisplayBin.set_widget (topDisplay, true, false);
 
         // Set search timeout in ms
         searchField.pause_delay = 80;
 
-        var top_display_item   = new Gtk.ToolItem ();
-        var search_field_item  = new Gtk.ToolItem ();
-        var volume_item        = new Gtk.ToolItem ();
-
-        top_display_item.add (topDisplayBin);
-        search_field_item.add (searchField);
-        volume_item.add (volumeButton);
-        
         volumeButton.use_symbolic = true;
         volumeButton.value = 1;
 
@@ -304,18 +292,21 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         viewSelector.valign = Gtk.Align.CENTER;
 
-        top_display_item.set_expand (true);
         topDisplay.margin_left = 30;
         topDisplay.margin_right = 30;
-        
-        main_toolbar.insert (previousButton, -1);
-        main_toolbar.insert (playButton, -1);
-        main_toolbar.insert (nextButton, -1);
-        main_toolbar.insert (viewSelector, -1);
-        main_toolbar.insert (top_display_item, -1);
-        main_toolbar.insert (search_field_item, -1);
-        main_toolbar.insert (volume_item, -1);
-        main_toolbar.insert (((Noise.App) GLib.Application.get_default ()).create_appmenu (settingsMenu), -1);
+
+        headerbar.pack_start (previousButton);
+        headerbar.pack_start (playButton);
+        headerbar.pack_start (nextButton);
+        headerbar.pack_start (viewSelector);
+        headerbar.set_custom_title (topDisplayBin);
+        headerbar.pack_end (searchField);
+        // FIXME: Workaround for a bug...
+        var volume_grid = new Gtk.Grid ();
+        volume_grid.attach (volumeButton, 0, 0, 1, 1);
+        headerbar.pack_end (volume_grid);
+        headerbar.pack_end (((Noise.App) GLib.Application.get_default ()).create_appmenu (settingsMenu));
+        headerbar.show_all ();
 
 
         /** Info Panel **/
@@ -348,7 +339,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         main_hpaned.pack2 (view_container_hpaned, true, false);
 
         // Add controls to the GUI
-        verticalBox.pack_start (main_toolbar, false, false, 0);
         verticalBox.pack_start (main_hpaned, true, true, 0);
         verticalBox.pack_end (statusbar, false, false, 0);
 
@@ -762,7 +752,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.change_playlist_category_visibility (have_media);
 
         if(!App.player.media_active || have_media && !App.player.playing)
-            playButton.set_icon_name ("media-playback-start");
+            playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR));
 
         bool show_top_display = media_active || doing_ops;
         topDisplay.set_visible (show_top_display);
@@ -1029,7 +1019,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     public virtual void playback_stopped (int was_playing) {
-        playButton.set_icon_name ("media-playback-start");
+        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR));
         //reset some booleans
         tested_for_video = false;
         media_considered_previewed = false;
@@ -1042,13 +1032,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
     
     public virtual void playback_started () {
-        playButton.set_icon_name ("media-playback-pause");
+        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-pause", Gtk.IconSize.LARGE_TOOLBAR));
 
         debug ("playback started");
     }
     
     public virtual void playback_paused () {
-        playButton.set_icon_name ("media-playback-start");
+        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR));
 
         debug ("playback paused");
     }
@@ -1134,7 +1124,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                                       _(STRING_CANCEL), Gtk.ResponseType.CANCEL,
                                       _(STRING_OPEN), Gtk.ResponseType.ACCEPT);
             file_chooser.set_select_multiple (true);
-            file_chooser.set_local_only(true);
+            file_chooser.set_local_only (true);
 
             if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
                 foreach (var folder in file_chooser.get_filenames()) {
@@ -1416,4 +1406,3 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         return base.configure_event (event);
     }
 }
-

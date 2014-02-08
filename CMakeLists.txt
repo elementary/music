@@ -72,7 +72,7 @@ set (CORE_PKG
   gee-0.8
   libpeas-1.0
   libpeas-gtk-1.0
-  gtk+-3.0>=3.4.2
+  gtk+-3.0>=3.10
   granite
   gstreamer-1.0
   gstreamer-tag-1.0
@@ -148,7 +148,7 @@ endif ()
 
 find_package (Vala REQUIRED)
 include (ValaVersion)
-ensure_vala_version ("0.18.0" MINIMUM)
+ensure_vala_version ("0.22.0" MINIMUM)
 include (ValaPrecompile)
 
 set (DEPS_LIBRARIES ${DEPS_LIBRARIES} -lm)
