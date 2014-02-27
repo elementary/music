@@ -226,7 +226,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         // Insensitive if there's no media to search (applies to ALERT view)
         App.main_window.searchField.set_sensitive (media_count > 0);
         // Invisible if the view is WELCOME
-        App.main_window.searchField.visible = !(current_view == ViewType.WELCOME);
+        App.main_window.searchField.visible = (current_view != ViewType.WELCOME);
 
         // View switcher
         // Insensitive if the view is ALERT
