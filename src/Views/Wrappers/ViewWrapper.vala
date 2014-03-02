@@ -223,18 +223,15 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         debug ("update_library_window_widgets [%s]", hint.to_string());
 
         // Search field
-        // Insensitive if there's no media to search (applies to ALERT view)
+        // Insensitive if there's no media to search (applies to ALERT/WELCOME views)
         App.main_window.searchField.set_sensitive (media_count > 0);
-        // Invisible if the view is WELCOME
-        App.main_window.searchField.visible = (current_view != ViewType.WELCOME);
 
         // View switcher
-        // Insensitive if the view is ALERT
-        App.main_window.viewSelector.set_sensitive (current_view != ViewType.ALERT);
-        // Invisible if the current view is the welcome screen or if both views
-        // are not available (in the queue, device, or playlist lists).
-        App.main_window.viewSelector.visible = (has_grid_view && has_list_view
-                                                && current_view != ViewType.WELCOME);
+        // Insensitive if the current view is the welcome/alert screen or if both views
+        // are not available (in the queue, device, or playlist sources).
+        App.main_window.viewSelector.set_sensitive (has_grid_view && has_list_view
+                                                    && current_view != ViewType.WELCOME
+                                                    && current_view != ViewType.ALERT);
 
         // Set active mode to column view if it is visible. We have to ensure
         // that it is not null because the column_browser is not guaranteed to
