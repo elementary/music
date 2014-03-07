@@ -222,28 +222,23 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("update_library_window_widgets [%s]", hint.to_string());
 
-        // Insensitive if there's no media to search
-        
-        bool has_media = media_count > 0;
-        App.main_window.searchField.set_sensitive (has_media);
+        // Search field
+        // Insensitive if there's no media to search (applies to ALERT/WELCOME views)
+        App.main_window.searchField.set_sensitive (media_count > 0);
 
-        // Make the view switcher and search box insensitive if the current item
-        // is the welcome screen. The view selector will only be sensitive if both
-        // views are available.
+        // View switcher
+        // Insensitive if the current view is the welcome/alert screen or if both views
+        // are not available (in the queue, device, or playlist sources).
         App.main_window.viewSelector.set_sensitive (has_grid_view && has_list_view
-                                       && current_view != ViewType.ALERT
-                                       && current_view != ViewType.WELCOME);
+                                                    && current_view != ViewType.WELCOME
+                                                    && current_view != ViewType.ALERT);
 
-        bool column_browser_available = false;
-        bool column_browser_visible = false;
-
-        // Sensitive only if the column browser is available
-        column_browser_available = list_view.has_column_browser;
-        if (column_browser_available)
-            column_browser_visible = list_view.column_browser.visible;
-
-        App.main_window.viewSelector.set_column_browser_toggle_visible (column_browser_available);
-        App.main_window.viewSelector.set_column_browser_toggle_active (column_browser_visible);
+        // Set active mode to column view if it is visible. We have to ensure
+        // that it is not null because the column_browser is not guaranteed to
+        // exist. This is done separately from below because of ViewSelector's
+        // poor API.
+        App.main_window.viewSelector.set_column_browser_toggle_active (list_view.column_browser != null
+                                                                       && list_view.column_browser.visible);
 
         // select the right view in the view selector if it's one of the three views.
         // The order is important here. The sensitivity set above must be set before this,
