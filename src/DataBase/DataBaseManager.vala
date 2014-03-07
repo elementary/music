@@ -34,13 +34,21 @@ public class Noise.DataBaseManager : GLib.Object {
     private int item_count = 0;
     public int max_id = 0;
 
+    private static DataBaseManager? dbm = null;
+
+    public static DataBaseManager get_default () {
+        if (dbm == null)
+            dbm = new DataBaseManager ();
+        return dbm;
+    }
+
     /** Creates a new DatabaseManager **/
-    public DataBaseManager () {
-        
+    private DataBaseManager () {
+        init_database ();
     }
 
     /** Creates/Reads the database file and folder **/
-    public void init_database () {
+    private void init_database () {
         assert (database == null);
 
         var database_dir = FileUtils.get_data_directory ();
@@ -324,8 +332,8 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             database.execute("DELETE FROM `columns`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
-                                                VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);");
+            Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+                                                VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);""");
 
             if (playlists != null) {
                 foreach(StaticPlaylist p in playlists) {
@@ -388,8 +396,8 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
-                                                VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);");
+            Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+                                                VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);""");
             
             query.set_int    (":is_smart", is_smart);
             query.set_string (":name", name);
@@ -423,7 +431,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("DELETE FROM `columns` WHERE name=:name");
+            Query query = transaction.prepare("""DELETE FROM `columns` WHERE name=:name""");
 
             query.set_string(":name", name);
             query.execute();
@@ -442,8 +450,8 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             TreeViewSetup tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
             
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
-                                                VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);");
+            Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+                                                VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);""");
 
             query.set_int    (":is_smart", 1);
             query.set_string (":name", _("Favorite Songs"));
@@ -617,8 +625,8 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`)
-                                                VALUES (:name, :media);");
+            Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `media`)
+                                                VALUES (:name, :media);""");
 
             query.set_string(":name", p.name);
             query.set_string(":media", rv);
@@ -662,7 +670,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
             return;
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("DELETE FROM `playlists` WHERE name=:name");
+            Query query = transaction.prepare("""DELETE FROM `playlists` WHERE name=:name""");
 
             query.set_string(":name", p.name);
             query.execute();
@@ -680,7 +688,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
+            Query query = transaction.prepare ("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
 
             query.set_string(":name", _("Favorite Songs"));
             query.set_int(":and_or", 1);
@@ -802,7 +810,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         }
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
+            Query query = transaction.prepare("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
 
             query.set_string(":name", p.name);
             query.set_int(":and_or", (int)p.conditional);
@@ -822,7 +830,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("DELETE FROM `smart_playlists` WHERE name=:name");
+            Query query = transaction.prepare("""DELETE FROM `smart_playlists` WHERE name=:name""");
 
             query.set_string(":name", p.name);
             query.execute();
@@ -839,7 +847,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         var rv = new Gee.ArrayList<DevicePreferences>();
 
         try {
-            string script = "SELECT rowid,* FROM `devices`";
+            string script = """SELECT rowid,* FROM `devices`""";
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
@@ -884,10 +892,10 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             database.execute("DELETE FROM `devices`");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
+            Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
             `sync_podcasts`, `sync_audiobooks`, `sync_all_music`, `sync_all_podcasts`, `sync_all_audiobooks`, `music_playlist`,
             `podcast_playlist`, `audiobook_playlist`, `last_sync_time`) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
-            :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);");
+            :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);""");
 
             foreach(DevicePreferences dp in devices) {
                 query.set_string(":unique_id", dp.id);
@@ -932,10 +940,10 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         try {
             remove_device (dp);
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
+            Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
             `sync_podcasts`, `sync_audiobooks`, `sync_all_music`, `sync_all_podcasts`, `sync_all_audiobooks`, `music_playlist`,
             `podcast_playlist`, `audiobook_playlist`, `last_sync_time`) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
-            :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);");
+            :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);""");
 
             query.set_string(":unique_id", dp.id);
             query.set_int(":sync_when_mounted", dp.sync_when_mounted ? 1 : 0);
@@ -977,7 +985,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("DELETE FROM `devices` WHERE unique_id=:unique_id");
+            Query query = transaction.prepare("""DELETE FROM `devices` WHERE unique_id=:unique_id""");
 
             query.set_string(":unique_id", device.id);
             query.execute();

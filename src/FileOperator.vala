@@ -77,9 +77,10 @@ public class Noise.FileOperator : Object {
         tagger.queue_finished.connect (queue_finished);
         // Use right encoding
         
-        var file = GLib.File.new_for_path (main_settings.music_folder);
+        var music_folder = Settings.Main.get_default ().music_folder;
+        var file = GLib.File.new_for_path (music_folder);
         var dirs = new Gee.LinkedList<string> ();
-        dirs.add (main_settings.music_folder);
+        dirs.add (music_folder);
         list_recursive_directory (file, ref dirs);
         foreach (var dir in dirs) {
             var dir_file = GLib.File.new_for_path (dir);
@@ -115,7 +116,7 @@ public class Noise.FileOperator : Object {
     }
     
     public void connect_to_manager () {
-        notification_manager.progress_canceled.connect ( () => { 
+        NotificationManager.get_default ().progress_canceled.connect ( () => { 
             cancelled = true;
             tagger.cancel_operations ();
         } );
@@ -130,7 +131,7 @@ public class Noise.FileOperator : Object {
     
     public void save_media (Gee.Collection<Media> to_save) {
         foreach (Media s in to_save) {
-            if (!s.isTemporary && !s.isPreview && File.new_for_uri (s.uri).get_path ().has_prefix (main_settings.music_folder))
+            if (!s.isTemporary && !s.isPreview && File.new_for_uri (s.uri).get_path ().has_prefix (Settings.Main.get_default ().music_folder))
                 toSave.offer (s);
         }
         
@@ -149,6 +150,7 @@ public class Noise.FileOperator : Object {
                 return;
             }
             
+            var main_settings = Settings.Main.get_default ();
             if (main_settings.write_metadata_to_file) {
                 TagLib.File tag_file;
                 tag_file = new TagLib.File (File.new_for_uri (s.uri).get_path ());
@@ -342,7 +344,7 @@ public class Noise.FileOperator : Object {
     void queue_finished () {
         cover_importer.discoverer_import_media (all_new_imports);
         if (import_errors.size > 0) {
-            NotImportedWindow nim = new NotImportedWindow (import_errors, main_settings.music_folder);
+            NotImportedWindow nim = new NotImportedWindow (import_errors, Settings.Main.get_default ().music_folder);
             nim.show ();
         }
         if (all_new_imports.size > 0)
@@ -360,7 +362,7 @@ public class Noise.FileOperator : Object {
         }
         
         // if doing import and copy to music folder is enabled, do copy here
-        if((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && main_settings.copy_imported_music) {
+        if((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && Settings.Main.get_default ().copy_imported_music) {
             fo_progress(_("<b>Copying</b> files to <b>Music Folder</b>…"), 0.0);
             
             Threads.add (copy_imports_thread);

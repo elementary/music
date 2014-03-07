@@ -198,7 +198,7 @@ public class  Noise.Plugins.iPodStreamer : Noise.Playback, GLib.Object {
                                 App.main_window.media_played (App.player.media_info.media); // pretend as if media changed
                         } else {
                             // if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
-                            notification_manager.doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
+                            NotificationManager.get_default ().doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
                         }
                         
                     }

@@ -46,7 +46,15 @@ namespace Noise.Settings {
         public string[] column_browser_visible_columns { get; set; }
         public int column_browser_position { get; set; }
 
-        public SavedState () {
+        private static SavedState? saved_state = null;
+
+        public static SavedState get_default () {
+            if (saved_state == null)
+                saved_state = new SavedState ();
+            return saved_state;
+        }
+
+        private SavedState () {
             base ("org.pantheon.noise.saved-state");
         }
     }
@@ -70,7 +78,15 @@ namespace Noise.Settings {
         public string[] plugins_disabled { get; set;}
         public string[] minimize_while_playing_shells { get; set; }
 
-        public Main ()  {
+        private static Main? main_settings = null;
+
+        public static Main get_default () {
+            if (main_settings == null)
+                main_settings = new Main ();
+            return main_settings;
+        }
+
+        private Main ()  {
             base ("org.pantheon.noise.settings");
             if (music_folder == "") {
                 music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
@@ -85,13 +101,20 @@ namespace Noise.Settings {
         public bool auto_switch_preset { get; set; }
         public string selected_preset { get; set; }
         public string[] custom_presets { get; set;}
-        
-        public Equalizer () {
+
+        private static Equalizer? equalizer = null;
+
+        public static Equalizer get_default () {
+            if (equalizer == null)
+                equalizer = new Equalizer ();
+            return equalizer;
+        }
+
+        private Equalizer () {
             base ("org.pantheon.noise.equalizer");
         }
-        
-        public Gee.Collection<Noise.EqualizerPreset> getPresets () {
 
+        public Gee.Collection<Noise.EqualizerPreset> getPresets () {
             var presets_data = new Gee.LinkedList<string> ();
             
             if (custom_presets != null) {

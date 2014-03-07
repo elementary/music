@@ -194,21 +194,28 @@ public class Noise.Plugins.Manager : Object {
     public Gtk.Application noise_app { set { plugin_iface.noise_app = value;  }}
     public Noise.Plugins.Interface plugin_iface { private set; get; }
 
-    public Manager(string d, string? e, string? argument_set) {
+    private static Manager? plugin_manager = null;
+
+    public static Manager get_default () {
+        if (plugin_manager == null)
+            plugin_manager = new Manager ();
+        return plugin_manager;
+    }
+
+    private Manager () {
 
         plugin_iface = new Noise.Plugins.Interface (this);
-        plugin_iface.argument = argument_set;
-        plugin_iface.set_name = e ?? "noise";
+        plugin_iface.set_name = "noise";
 
         /* Let's init the engine */
         engine = Peas.Engine.get_default ();
         engine.enable_loader ("python");
         engine.enable_loader ("gjs");
-        engine.add_search_path (d, null);
+        engine.add_search_path (Build.PLUGIN_DIR, null);
         
         /* Do not load blacklisted plugins */
         var disabled_plugins = new Gee.LinkedList<string> ();
-        foreach (var plugin in main_settings.plugins_disabled) {
+        foreach (var plugin in Settings.Main.get_default ().plugins_disabled) {
             disabled_plugins.add (plugin);
         }
         
@@ -277,4 +284,3 @@ public class Noise.Plugins.Manager : Object {
     public void hook_example(string arg) {
     }
 }
-

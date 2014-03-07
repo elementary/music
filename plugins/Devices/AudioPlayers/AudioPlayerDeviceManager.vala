@@ -28,13 +28,14 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
     public AudioPlayerDeviceManager() {
         devices = new ArrayList<AudioPlayerDevice>();
         
+        var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
         device_manager.mount_removed.connect (mount_removed);
     }
     
     public void remove_all () {
         foreach(var dev in devices) {
-            device_manager.device_removed ((Noise.Device)dev);
+            DeviceManager.get_default ().device_removed ((Noise.Device)dev);
         }
         devices = new ArrayList<AudioPlayerDevice>();
     }
@@ -52,7 +53,7 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
         
             if(added.start_initialization()) {
                 added.finish_initialization();
-                added.initialized.connect((d) => {device_manager.device_initialized ((Noise.Device)d);});
+                added.initialized.connect((d) => {DeviceManager.get_default ().device_initialized ((Noise.Device)d);});
             }
             else {
                 mount_removed(added.get_mount());
@@ -75,7 +76,7 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
-                device_manager.device_removed ((Noise.Device)dev);
+                DeviceManager.get_default ().device_removed ((Noise.Device)dev);
                 
                 // Actually remove it
                 devices.remove(dev);

@@ -48,7 +48,8 @@ namespace Noise.Widgets {
         }
 
         public void update_sensitivities () {
-            playlist_item.set_sensitive (((LocalLibrary)libraries_manager.local_library).main_directory_set && libraries_manager.local_library.get_medias().size > 0);
+            var local_library = (LocalLibrary) libraries_manager.local_library;
+            playlist_item.set_sensitive (local_library.main_directory_set && local_library.get_medias ().size > 0);
             info_panel_item.set_sensitive (App.main_window.info_panel.can_show_up);
         }
     }
@@ -75,13 +76,13 @@ namespace Noise.Widgets {
         }
 
         private void update_option () {
-            setOption ((int)main_settings.repeat_mode);
+            setOption ((int)Settings.Main.get_default ().repeat_mode);
         }
 
         private void on_option_changed () {
             int val = current_option;
 
-            if ((int)main_settings.repeat_mode == val)
+            if ((int)Settings.Main.get_default ().repeat_mode == val)
                 return;
 
             App.player.set_repeat_mode ((Noise.Settings.Repeat)val);
@@ -105,13 +106,13 @@ namespace Noise.Widgets {
         }
 
         private void update_mode () {
-            setOption ((int)main_settings.shuffle_mode);
+            setOption ((int)Settings.Main.get_default ().shuffle_mode);
         }
 
         private void on_option_changed () {
             int val = current_option;
 
-            if ((int)main_settings.shuffle_mode == val)
+            if ((int)Settings.Main.get_default ().shuffle_mode == val)
                 return;
 
             App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val);
@@ -251,7 +252,7 @@ namespace Noise.Widgets {
             // for hiding and showing the context pane. Any other visibility change we do internally
             // or elsewhere should not be saved
             if (by_user)
-                saved_state.more_visible = visible;
+                Settings.SavedState.get_default ().more_visible = visible;
         }
     }
 

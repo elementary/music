@@ -38,7 +38,6 @@
 public class Noise.LocalLibrary : Library {
     
     public LibraryWindow lw { get { return App.main_window; } }
-    public DataBaseManager dbm;
     public DataBaseUpdater dbu;
     public FileOperator fo;
     public GStreamerTagger tagger;
@@ -53,7 +52,7 @@ public class Noise.LocalLibrary : Library {
     public StaticPlaylist p_music;
 
     public bool main_directory_set {
-        get { return !String.is_empty (main_settings.music_folder, true); }
+        get { return !String.is_empty (Settings.Main.get_default ().music_folder, true); }
     }
 
     private Gee.LinkedList<Media> open_media_list;
@@ -70,14 +69,13 @@ public class Noise.LocalLibrary : Library {
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;
         
-        this.dbm = new DataBaseManager ();
-        this.dbu = new DataBaseUpdater (dbm);
+        this.dbu = new DataBaseUpdater ();
         this.fo = new FileOperator ();
 
     }
     
     public override void initialize_library () {
-        dbm.init_database ();
+        var dbm = DataBaseManager.get_default ();
         fo.connect_to_manager ();
         fo.fo_progress.connect (dbProgress);
         dbm.db_progress.connect (dbProgress);
@@ -114,7 +112,7 @@ public class Noise.LocalLibrary : Library {
                 }
             }
         }
-        device_manager.set_device_preferences (dbm.load_devices ());
+        DeviceManager.get_default ().set_device_preferences (dbm.load_devices ());
 
         load_media_art_cache.begin ();
     }
@@ -131,12 +129,12 @@ public class Noise.LocalLibrary : Library {
 
     /************ Library/Collection management stuff ************/
     public virtual void dbProgress (string? message, double progress) {
-        notification_manager.doProgressNotification (message, progress);
+        NotificationManager.get_default ().doProgressNotification (message, progress);
     }
 
     public bool doProgressNotificationWithTimeout () {
         if (_doing_file_operations) {
-            notification_manager.doProgressNotification (null, (double) fo.index / (double) fo.item_count);
+            NotificationManager.get_default ().doProgressNotification (null, (double) fo.index / (double) fo.item_count);
         }
 
         if (fo.index < fo.item_count && _doing_file_operations)
@@ -283,7 +281,7 @@ public class Noise.LocalLibrary : Library {
         Threads.add (() => {
 
             // get a list of the current files
-            var music_folder_dir = main_settings.music_folder;
+            var music_folder_dir = Settings.Main.get_default ().music_folder;
             FileUtils.count_music_files (File.new_for_path (music_folder_dir), ref files);
             
             foreach (var m in get_medias ()) {
@@ -404,7 +402,7 @@ public class Noise.LocalLibrary : Library {
         p.rowid = playlists_rowid;
         playlists_rowid++;
         p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
-        dbm.add_playlist (p);
+        DataBaseManager.get_default ().add_playlist (p);
         playlist_added (p);
         debug ("playlist %s added",p.name);
     }
@@ -465,7 +463,7 @@ public class Noise.LocalLibrary : Library {
 
         Threads.add (() => {
             lock (_smart_playlists) {
-                dbm.save_smart_playlists (get_smart_playlists ());
+                DataBaseManager.get_default ().save_smart_playlists (get_smart_playlists ());
             }
 
             Idle.add ((owned) callback);
@@ -482,7 +480,7 @@ public class Noise.LocalLibrary : Library {
         p.rowid = playlists_rowid;
         playlists_rowid++;
 
-        dbm.save_smart_playlist (p);
+        DataBaseManager.get_default ().save_smart_playlist (p);
         p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
         smartplaylist_added (p);
     }
@@ -609,7 +607,7 @@ public class Noise.LocalLibrary : Library {
         
         Threads.add (() => {
             lock (_medias) {
-                dbm.update_media (_medias);
+                DataBaseManager.get_default ().update_media (_medias);
             }
             
             Idle.add ((owned) callback);
@@ -723,7 +721,7 @@ public class Noise.LocalLibrary : Library {
         }
         media_added (added);
 
-        dbm.add_media (media);
+        DataBaseManager.get_default ().add_media (media);
         update_smart_playlists_async.begin (media);
         
         // Update search results
@@ -808,7 +806,7 @@ public class Noise.LocalLibrary : Library {
         if (_doing_file_operations)
             return false;
 
-        notification_manager.doProgressNotification (message, 0.0);
+        NotificationManager.get_default ().doProgressNotification (message, 0.0);
         _doing_file_operations = true;
         App.main_window.update_sensitivities.begin ();
         file_operations_started ();
@@ -827,9 +825,8 @@ public class Noise.LocalLibrary : Library {
         file_operations_done ();
         update_media_art_cache.begin ();
         Timeout.add(3000, () => {
-            notification_manager.showSongNotification ();
+            NotificationManager.get_default ().showSongNotification ();
             return false;
         });
     }
 }
-

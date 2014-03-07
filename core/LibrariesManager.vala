@@ -160,7 +160,7 @@ public class Noise.LibrariesManager : GLib.Object {
     
     public bool do_progress_notification_with_timeout () {
         
-        notification_manager.doProgressNotification (current_operation.replace("&", "&amp;"), progress);
+        NotificationManager.get_default ().doProgressNotification (current_operation.replace("&", "&amp;"), progress);
         
         if (progress < 1) {
             return true;

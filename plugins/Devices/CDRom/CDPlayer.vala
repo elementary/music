@@ -208,7 +208,7 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
                         }
                         else {
                             // if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
-                            notification_manager.doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
+                            NotificationManager.get_default ().doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
                         }
                         
                     }

@@ -19,15 +19,12 @@
 
 public class Noise.DataBaseUpdater : Object {
 
-    private DataBaseManager dbm;
-
     private Gee.LinkedList<Media> media_updates;
     private Gee.LinkedList<Object> to_remove;
 
     private bool in_update_thread = false;
 
-    public DataBaseUpdater (DataBaseManager databm) {
-        dbm = databm;
+    public DataBaseUpdater () {
 
         media_updates = new Gee.LinkedList<Media> ();
         to_remove = new Gee.LinkedList<Object> ();
@@ -89,7 +86,8 @@ public class Noise.DataBaseUpdater : Object {
 
         do {
             operation_done = false;
-
+            
+            var dbm = DataBaseManager.get_default ();
             lock (media_updates) {
                 if (media_updates.size > 0) {
                     dbm.update_media (media_updates);
@@ -127,6 +125,7 @@ public class Noise.DataBaseUpdater : Object {
 
         debug ("-- Saving columns state preferences DB.");
 
+        var dbm = DataBaseManager.get_default ();
         dbm.save_playlist (((LocalLibrary)libraries_manager.local_library).p_music);
         dbm.save_columns_state (playlists_and_queue, libraries_manager.local_library.get_smart_playlists ());
 
@@ -136,16 +135,16 @@ public class Noise.DataBaseUpdater : Object {
     }
     // If the name of the playlist changed, it provides the old name to remove it from database
     public void save_device (DevicePreferences device) {
-        dbm.save_device (device);
+        DataBaseManager.get_default ().save_device (device);
     }
     
     // If the name of the playlist changed, it provides the old name to remove it from database
     public void save_playlist (StaticPlaylist p, string? old_name = null) {
-        dbm.save_playlist (p, old_name);
+        DataBaseManager.get_default ().save_playlist (p, old_name);
     }
     
     // If the name of the playlist changed, it provides the old name to remove it from database
     public void save_smart_playlist (SmartPlaylist p, string? old_name = null) {
-        dbm.save_smart_playlist (p, old_name);
+        DataBaseManager.get_default ().save_smart_playlist (p, old_name);
     }
 }

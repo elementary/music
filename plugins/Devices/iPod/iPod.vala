@@ -37,7 +37,7 @@ namespace Noise.Plugins {
             plugins = (Noise.Plugins.Interface)value.get_object();
             plugins.register_function(Interface.Hook.WINDOW, () => {
                 ipod_manager = new iPodDeviceManager ();
-                device_manager.loadPreExistingMounts();
+                DeviceManager.get_default ().loadPreExistingMounts();
             });
         }
 

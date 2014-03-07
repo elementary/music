@@ -36,6 +36,7 @@ public class Noise.TopDisplay : Gtk.Grid {
     
     public TopDisplay() {
         width_request = 400;
+        column_spacing = 6;
 
         label = new Gtk.Label ("");
         label.hexpand = true;
@@ -75,7 +76,7 @@ public class Noise.TopDisplay : Gtk.Grid {
         info.attach (scale_grid, 0, 1, 1, 1);
         
         attach (info, 0, 0, 1, 1);
-        attach (cancelButton, 0, 0, 1, 1);
+        attach (cancelButton, 1, 0, 1, 1);
         
         cancelButton.clicked.connect (cancel_clicked);
 
@@ -94,6 +95,7 @@ public class Noise.TopDisplay : Gtk.Grid {
             App.player.player.current_position_update.connect (player_position_update);
         });
         
+        var notification_manager = NotificationManager.get_default ();
         notification_manager.progressNotification.connect ((message, progress) => {
             if (message != null && progress >= 0.0 && progress <= 1.0)
                 set_label_markup (message);
@@ -280,7 +282,7 @@ public class Noise.TopDisplay : Gtk.Grid {
     }
 
     public void cancel_clicked() {
-        notification_manager.progress_canceled ();
+        NotificationManager.get_default ().progress_canceled ();
     }
 
     public void set_media (Media current_media) {

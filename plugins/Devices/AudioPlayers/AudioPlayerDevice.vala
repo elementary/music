@@ -40,6 +40,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         library = new AudioPlayerLibrary (this);
         libraries_manager.add_library (library);
         icon = new Icon (is_androphone ? "phone" : "music-player").gicon;
+        var device_manager = DeviceManager.get_default ();
         pref = device_manager.get_device_preferences (get_unique_identifier());
         if(pref == null) {
             pref = new Noise.DevicePreferences (get_unique_identifier());

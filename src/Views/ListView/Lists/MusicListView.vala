@@ -406,7 +406,7 @@ public class Noise.MusicListView : GenericList {
             return;
 
         int id = to_edit.get (0);
-        string music_folder_uri = File.new_for_path (main_settings.music_folder).get_uri ();
+        string music_folder_uri = File.new_for_path (Settings.Main.get_default ().music_folder).get_uri ();
         if (to_edit.size == 1 && !File.new_for_uri (parent_wrapper.library.media_from_id (id).uri).query_exists () && 
                     parent_wrapper.library.media_from_id(id).uri.has_prefix(music_folder_uri)) {
             parent_wrapper.library.media_from_id (id).unique_status_image = Icons.PROCESS_ERROR.render (Gtk.IconSize.MENU);
@@ -845,4 +845,3 @@ public class Noise.MusicListView : GenericList {
         }
     }
 }
-

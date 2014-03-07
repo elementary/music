@@ -45,6 +45,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 	private Gee.ArrayList<int> target_levels;
 
 	private string new_preset_name;
+	private Settings.Equalizer equalizer_settings;
 
 	public EqualizerWindow () {
 		scale_list = new List<Gtk.Scale>();
@@ -60,6 +61,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 
 		initialized = true;
 
+        equalizer_settings = Settings.Equalizer.get_default ();
 		if (equalizer_settings.auto_switch_preset) {
 			preset_combo.selectAutomaticPreset();
 		} else {

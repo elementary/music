@@ -299,7 +299,7 @@ public class MprisPlayer : GLib.Object {
     
     public string LoopStatus {
         owned get {
-            switch(main_settings.repeat_mode) {
+            switch(Noise.Settings.Main.get_default ().repeat_mode) {
                 case(Noise.Settings.Repeat.OFF):
                     return "None";
                 case(Noise.Settings.Repeat.MEDIA):
@@ -343,7 +343,7 @@ public class MprisPlayer : GLib.Object {
     
     public bool Shuffle {
         get {
-            if (main_settings.shuffle_mode == Noise.Settings.Shuffle.ALL)
+            if (Noise.Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.ALL)
                 return true;
             return false;
         }

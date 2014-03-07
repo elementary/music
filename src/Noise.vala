@@ -90,12 +90,7 @@ public class Noise.App : Granite.Application {
             else
                 Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
-            saved_state = new Settings.SavedState ();
-            notification_manager = new NotificationManager ();
-            main_settings = new Settings.Main ();
-            equalizer_settings = new Settings.Equalizer ();
             libraries_manager = new LibrariesManager ();
-            device_manager = new DeviceManager ();
 
             // Load icon information. Needed until vala supports initialization of static
             // members. See https://bugzilla.gnome.org/show_bug.cgi?id=543189
@@ -111,9 +106,8 @@ public class Noise.App : Granite.Application {
 
             MediaKeyListener.instance.init ();
 
-            plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
+            var plugins = Plugins.Manager.get_default ();
             plugins.hook_app (this);
-
             plugins.hook_new_window (main_window);
         }
 
@@ -128,7 +122,6 @@ public class Noise.App : Granite.Application {
         return application_id;
     }
 
-
     /**
      * @return the application's brand name. Should be used for anything that requires
      * branding. For instance: Ubuntu's sound menu, dialog titles, etc.
@@ -136,7 +129,6 @@ public class Noise.App : Granite.Application {
     public string get_name () {
         return program_name;
     }
-
 
     /**
      * @return the application's desktop file name.
