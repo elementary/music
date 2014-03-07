@@ -1,7 +1,7 @@
 prefix=@PREFIX@
 exec_prefix=@DOLLAR@{prefix}
-libdir=@DOLLAR@{prefix}/lib
-includedir=@DOLLAR@{prefix}/include/
+libdir=@DOLLAR@{prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=@DOLLAR@{prefix}/@CMAKE_INSTALL_INCLUDEDIR@/
 plugindir=@DOLLAR@{prefix}/@PLUGIN_DIR_UNPREFIXED@
  
 Name: Noise
