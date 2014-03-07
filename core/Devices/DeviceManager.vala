@@ -29,21 +29,20 @@
  *              Corentin Noël <tintou@mailoo.org>
  */
 
-using Gee;
-
 public class Noise.DeviceManager : GLib.Object {
     VolumeMonitor vm;
-    
-    public Gee.ArrayList<DevicePreferences> device_preferences;
-    public Gee.ArrayList<unowned Device> devices;
-    private Gee.ArrayList<Playlist> local_playlists;
-    
+
     public signal void device_added (Device d);
     public signal void device_removed (Device d);
     public signal void device_name_changed (Device d);
-    
+
     public signal void mount_added (Mount mount);
     public signal void mount_removed (Mount mount);
+
+    private Gee.ArrayList<DevicePreferences> device_preferences;
+    private Gee.ArrayList<unowned Device> initialized_devices;
+    private Gee.ArrayList<unowned Mount> mounts_availables;
+    private Gee.ArrayList<Playlist> local_playlists;
 
     private static DeviceManager? device_manager = null;
 
@@ -52,90 +51,93 @@ public class Noise.DeviceManager : GLib.Object {
             device_manager = new DeviceManager ();
         return device_manager;
     }
-    
+
     private DeviceManager () {
-        
         device_preferences = new Gee.ArrayList<DevicePreferences> ();
-        devices = new Gee.ArrayList<unowned Device> ();
+        initialized_devices = new Gee.ArrayList<unowned Device> ();
+        mounts_availables = new Gee.ArrayList<unowned Mount> ();
         local_playlists = new Gee.ArrayList<Playlist> ();
-        
-        vm = VolumeMonitor.get();
-        
-        vm.mount_added.connect((mount) => {mount_added (mount);});
-        vm.mount_changed.connect(mount_changed);
-        vm.mount_pre_unmount.connect(mount_pre_unmount);
-        vm.mount_removed.connect((mount) => {mount_removed (mount);});
-        vm.volume_added.connect(volume_added);
+
+        vm = VolumeMonitor.get ();
+        vm.mount_added.connect ((mount) => {mounts_availables.add (mount); mount_added (mount);});
+        vm.mount_changed.connect (mount_changed);
+        vm.mount_pre_unmount.connect (mount_pre_unmount);
+        vm.mount_removed.connect ((mount) => {mounts_availables.remove (mount); mount_removed (mount);});
+        vm.volume_added.connect (volume_added);
+        Threads.add (get_pre_existing_mounts);
     }
-    
+
     public void set_device_preferences (Gee.Collection<DevicePreferences> device_preferences) {
         this.device_preferences.add_all (device_preferences);
     }
-    
-    public void loadPreExistingMounts() {
-        // this can take time if we have to rev up the cd drive
-        Threads.add (get_pre_existing_mounts);
-    }
-    
+
     public void get_pre_existing_mounts () {
-        var mounts = new LinkedList<Mount>();
-        var volumes = new LinkedList<Volume>();
-        
-        foreach(var m in vm.get_mounts()) {
-            mounts.add(m);
+        var mounts = new Gee.LinkedList<Mount> ();
+        var volumes = new Gee.LinkedList<Volume> ();
+
+        foreach (var m in vm.get_mounts ()) {
+            mounts.add (m);
         }
-        
-        foreach(var v in vm.get_volumes()) {
-            volumes.add(v);
+
+        foreach (var v in vm.get_volumes ()) {
+            volumes.add (v);
         }
-        
-        Idle.add( () => {
-            
-            foreach(var m in mounts) {
-                mount_added(m);
+
+        Idle.add(() => {
+            foreach (var m in mounts) {
+                mounts_availables.add (m); 
+                mount_added (m);
             }
-            
-            foreach(var v in volumes) {
-                volume_added(v);
+
+            foreach (var v in volumes) {
+                volume_added (v);
             }
-            
+
             return false;
         });
     }
-    
+
     void volume_added(Volume volume) {
-        if(Settings.Main.get_default ().music_mount_name == volume.get_name() && volume.get_mount() == null) {
-            debug ("mounting %s because it is believed to be the music folder\n", volume.get_name());
+        if(Settings.Main.get_default ().music_mount_name == volume.get_name () && volume.get_mount () == null) {
+            debug ("mounting %s because it is believed to be the music folder\n", volume.get_name ());
             volume.mount.begin (MountMountFlags.NONE, null, null);
         }
     }
-    
+
     public void device_initialized (Device d) {
         debug ("adding device\n");
         device_added (d);
-        devices.add (d);
+        initialized_devices.add (d);
     }
-    
+
     public virtual void mount_changed (Mount mount) {
         //message ("mount_changed:%s\n", mount.get_uuid());
     }
-    
+
     public virtual void mount_pre_unmount (Mount mount) {
         //message ("mount_preunmount:%s\n", mount.get_uuid());
     }
-    
-    public DevicePreferences? get_device_preferences(string id) {
+
+    public DevicePreferences? get_device_preferences (string id) {
         foreach (var device in device_preferences) {
             if (device.id == id)
                 return device;
         }
+
         return null;
     }
-    
-    public void add_device_preferences(DevicePreferences dp) {
-        
-        lock(device_preferences) {
-            device_preferences.add(dp);
+
+    public Gee.ArrayList<unowned Device> get_initialized_devices () {
+        return initialized_devices;
+    }
+
+    public Gee.ArrayList<unowned Mount> get_available_mounts () {
+        return mounts_availables;
+    }
+
+    public void add_device_preferences (DevicePreferences dp) {
+        lock (device_preferences) {
+            device_preferences.add (dp);
         }
     }
 }

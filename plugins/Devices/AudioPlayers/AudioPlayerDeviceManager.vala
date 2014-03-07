@@ -31,6 +31,9 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
         var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
         device_manager.mount_removed.connect (mount_removed);
+        foreach (var mount in device_manager.get_available_mounts ()) {
+            mount_added (mount);
+        }
     }
     
     public void remove_all () {

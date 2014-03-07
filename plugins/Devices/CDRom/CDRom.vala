@@ -37,7 +37,6 @@ namespace Noise.Plugins {
             plugins = (Noise.Plugins.Interface)value.get_object();
             plugins.register_function(Interface.Hook.WINDOW, () => {
                 cdrom_manager = new CDRomDeviceManager ();
-                DeviceManager.get_default ().loadPreExistingMounts();
             });
         }
 

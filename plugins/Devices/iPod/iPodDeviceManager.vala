@@ -33,6 +33,9 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
         var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
         device_manager.mount_removed.connect (mount_removed);
+        foreach (var mount in device_manager.get_available_mounts ()) {
+            mount_added (mount);
+        }
         Noise.App.player.add_playback (streamer);
     }
     

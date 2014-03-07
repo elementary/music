@@ -402,7 +402,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         
         source_list_view.device_import_clicked.connect ( (page_number) => {
-            foreach (var device in DeviceManager.get_default ().devices) {
+            foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
                     libraries_manager.transfer_to_local_library (device.get_library().get_medias ());
                     break;
@@ -411,7 +411,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         
         source_list_view.device_new_playlist_clicked.connect ( (page_number) => {
-            foreach (var device in DeviceManager.get_default ().devices) {
+            foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
                     create_new_playlist (device.get_library());
                     break;
@@ -420,7 +420,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         
         source_list_view.device_sync_clicked.connect ( (page_number) => {
-            foreach (var device in DeviceManager.get_default ().devices) {
+            foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
                     device.synchronize ();
                     break;
@@ -429,7 +429,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         
         source_list_view.device_eject_clicked.connect ( (page_number) => {
-            foreach (var device in DeviceManager.get_default ().devices) {
+            foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
                     device.eject();
                     break;
@@ -497,9 +497,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         setup_window ();
 
         build_main_widgets ();
-
-        // add mounts to side tree view
-        DeviceManager.get_default ().loadPreExistingMounts();
 
         load_playlists ();
         //sideTree.resetView ();

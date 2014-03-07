@@ -47,7 +47,7 @@ public class Noise.DevicePreferences : GLib.Object {
 	public unowned Playlist podcast_playlist { get; set; } // must only contain podcasts. if not, will ignore others
 	public unowned Playlist audiobook_playlist { get; set; } // must only contain audiobooks. if not, will ignore others
 	
-	public DevicePreferences(string id) {
+	public DevicePreferences (string id) {
 		this.id = id;
 	}
 }
