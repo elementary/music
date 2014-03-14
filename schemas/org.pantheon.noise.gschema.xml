@@ -14,7 +14,6 @@
   <enum id="org.pantheon.noise.windowstate">
     <value value="0" nick="normal"/>
     <value value="1" nick="maximized"/>
-    <value value="2" nick="fullscreen"/>
   </enum>
   <schema path="/org/pantheon/noise/settings/" id="org.pantheon.noise.settings">
     <key type="s" name="music-folder">
