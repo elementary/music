@@ -218,12 +218,6 @@ namespace Noise.Widgets {
     private class InfoPanelChooser : SimpleOptionChooser {
 
         public InfoPanelChooser () {
-            //To avoid the InfoPanelChooser to overlap with the window resize grip            
-            //Get the grip width
-            int resize_grip_width;
-            App.main_window.style_get ("resize-grip-width", out resize_grip_width);
-            //Use the actual grip width as right margin
-            margin_right = resize_grip_width;
             var info_panel_show = Icons.PANE_SHOW_SYMBOLIC.render_image (Gtk.IconSize.MENU);
             var info_panel_hide = Icons.PANE_HIDE_SYMBOLIC.render_image (Gtk.IconSize.MENU);
 
