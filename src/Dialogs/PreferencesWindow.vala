@@ -157,18 +157,12 @@ private class Noise.Preferences.GeneralPage {
 #if HAVE_LIBNOTIFY
         show_notifications_switch = new Gtk.Switch ();
         main_settings.schema.bind("show-notifications", show_notifications_switch, "active", SettingsBindFlags.DEFAULT);
-        page.add_option (new Gtk.Label (_("Show notifications:")), show_notifications_switch, ref row);
+        page.add_option (new Gtk.Label (_("Notifications:")), show_notifications_switch, ref row);
 #endif
-
-        string hide_on_close_desc;
-        if (LibraryWindow.minimize_on_close ())
-            hide_on_close_desc = _("Minimize window when a song is being played:");
-        else
-            hide_on_close_desc = _("Hide window when a song is being played:");
 
         hide_on_close_switch = new Gtk.Switch ();
         main_settings.schema.bind("close-while-playing", hide_on_close_switch, "active", SettingsBindFlags.INVERT_BOOLEAN);
-        page.add_option (new Gtk.Label (hide_on_close_desc), hide_on_close_switch, ref row);
+        page.add_option (new Gtk.Label (_("Continue playback when closed:")), hide_on_close_switch, ref row);
         
     }
 }
