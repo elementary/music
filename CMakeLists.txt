@@ -1,7 +1,7 @@
 # check http://elementaryos.org/docs/developer-guide/cmake/simple-project
 
-cmake_minimum_required (VERSION 2.6)
-cmake_policy (VERSION 2.6)
+cmake_minimum_required (VERSION 2.8)
+cmake_policy (VERSION 2.8)
 project (noise C)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -74,7 +74,7 @@ set (CORE_PKG
   gee-0.8
   libpeas-1.0
   libpeas-gtk-1.0
-  gtk+-3.0>=3.10
+  gtk+-3.0>=3.11.6
   granite
   gstreamer-1.0
   gstreamer-tag-1.0
@@ -150,7 +150,7 @@ endif ()
 
 find_package (Vala REQUIRED)
 include (ValaVersion)
-ensure_vala_version ("0.22.0" MINIMUM)
+ensure_vala_version ("0.23.2" MINIMUM)
 include (ValaPrecompile)
 
 set (DEPS_LIBRARIES ${DEPS_LIBRARIES} -lm)
