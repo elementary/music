@@ -39,6 +39,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
     private int index = 0;
 
     public PreferencesWindow (LibraryWindow lw) {
+        Object (use_header_bar: 1);
         build_ui (lw);
 
         lw.add_preference_page.connect ((page) => {add_page (page);});
@@ -78,7 +79,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         sections.unset (index);
     }
 
-
     private void build_ui (Gtk.Window parent_window) {
         set_size_request (MIN_WIDTH, MIN_HEIGHT);
 
@@ -88,17 +88,11 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         window_position = Gtk.WindowPosition.CENTER;
         type_hint = Gdk.WindowTypeHint.DIALOG;
         transient_for = parent_window;
-        var main_grid = new Gtk.Grid ();
         main_stack = new Gtk.Stack ();
         main_stackswitcher = new Gtk.StackSwitcher ();
         main_stackswitcher.set_stack (main_stack);
-        main_stackswitcher.halign = Gtk.Align.CENTER;
-        main_grid.attach (main_stackswitcher, 0, 0, 1, 1);
-        main_grid.attach (main_stack, 0, 1, 1, 1);
-        main_grid.hexpand = true;
-
-        ((Gtk.Box)get_content_area()).add (main_grid);
-        add_button (_("Close"), Gtk.ResponseType.ACCEPT);
+        ((Gtk.HeaderBar)get_header_bar ()).set_custom_title (main_stackswitcher);
+        ((Gtk.Container)get_content_area ()).add (main_stack);
     }
 }
 
