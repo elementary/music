@@ -35,11 +35,7 @@
  *       CDs before importing their media to the library).
  */
 
-#if USE_GRANITE_DECORATED_WINDOW
-public class Noise.MediaEditor : Granite.Widgets.LightWindow {
-#else
-public class Noise.MediaEditor : Gtk.Window {
-#endif
+public class Noise.MediaEditor : Gtk.Dialog {
     LyricFetcher lf;
     
     Gee.LinkedList<int> _allMedias;
@@ -75,9 +71,15 @@ public class Noise.MediaEditor : Gtk.Window {
         _medias = medias;
         
         stack = new Gtk.Stack ();
+        
         var stack_switcher = new Gtk.StackSwitcher ();
         stack_switcher.set_stack (stack);
         stack_switcher.halign = Gtk.Align.CENTER;
+        
+        var headerbar = new Gtk.HeaderBar ();
+        headerbar.set_custom_title (stack_switcher);
+        headerbar.show_close_button = true;
+        set_titlebar (headerbar);
 
         stack.add_titled (createBasicContent (), "metadata", _("Metadata"));
         if(_medias.size == 1)
@@ -92,24 +94,17 @@ public class Noise.MediaEditor : Gtk.Window {
 
         _save.valign = arrows.valign = Gtk.Align.END;
 
-        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        buttons.margin_top = 12;
+        var content = get_content_area () as Gtk.Box;
+        content.orientation = Gtk.Orientation.VERTICAL;
+        content.margin_left = content.margin_right = 12;
+        content.add (stack);
+
+        var buttons = (Gtk.ButtonBox)get_action_area ();
         buttons.set_layout (Gtk.ButtonBoxStyle.END);
 
         buttons.pack_start (arrows, false, false, 0);
         buttons.pack_end (_save, false, false, 0);
-
         buttons.set_child_secondary (arrows, true);
-
-        var content = new Gtk.Grid ();
-        content.orientation = Gtk.Orientation.VERTICAL;
-        content.margin = 12;
-
-        content.add (stack_switcher);
-        content.add (stack);
-        content.add (buttons);
-
-        this.add (content);
 
         this.show_all();
 
@@ -720,24 +715,3 @@ public class Noise.StatsDisplay : Gtk.Box {
         info.set_markup(text);
     }
 }
-
-/*public class Noise.DoubleSpinButton : HBox {
-    private SpinButton spin1;
-    private SpinButton spin2;
-    
-    public DoubleSpinButton(double val1, double val2, double maxVal) {
-        spin1 = new SpinButton.with_range(0.0, maxVal, 1.0);
-        spin2 = new SpinButton.with_range(0.0, maxVal, 1.0);
-        
-        spin1.set_value(val1);
-        spin2.set_value(val2);
-    }
-    
-    public double getVal1() {
-        return spin1.get_value();
-    }
-    
-    public double getVal2() {
-        return spin2.get_value();
-    }
-}*/
