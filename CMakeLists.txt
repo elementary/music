@@ -1,7 +1,7 @@
 # check http://elementaryos.org/docs/developer-guide/cmake/simple-project
 
-cmake_minimum_required (VERSION 2.6)
-cmake_policy (VERSION 2.6)
+cmake_minimum_required (VERSION 2.8)
+cmake_policy (VERSION 2.8)
 project (noise C)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -10,10 +10,12 @@ set (RELEASE_NAME "Luna")
 set (VERSION "0.2.4")
 set (VERSION_INFO "Stable Release")
 
+include (GNUInstallDirs)
 set (DATADIR ${CMAKE_INSTALL_PREFIX}/share)
 set (PKG_DATADIR ${DATADIR}/${CMAKE_PROJECT_NAME})
 set (ICON_DIR ${DATADIR}/${CMAKE_PROJECT_NAME}/icons)
-set (PLUGIN_DIR ${CMAKE_INSTALL_PREFIX}/lib/${CMAKE_PROJECT_NAME}/plugins)
+set (PLUGIN_DIR_UNPREFIXED ${CMAKE_INSTALL_LIBDIR}/${CMAKE_PROJECT_NAME}/plugins)
+set (PLUGIN_DIR ${CMAKE_INSTALL_PREFIX}/${PLUGIN_DIR_UNPREFIXED})
 
 add_definitions ("-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\"")
 
@@ -72,7 +74,7 @@ set (CORE_PKG
   gee-0.8
   libpeas-1.0
   libpeas-gtk-1.0
-  gtk+-3.0>=3.10
+  gtk+-3.0>=3.11.6
   granite
   gstreamer-1.0
   gstreamer-tag-1.0
@@ -148,7 +150,7 @@ endif ()
 
 find_package (Vala REQUIRED)
 include (ValaVersion)
-ensure_vala_version ("0.22.0" MINIMUM)
+ensure_vala_version ("0.23.2" MINIMUM)
 include (ValaPrecompile)
 
 set (DEPS_LIBRARIES ${DEPS_LIBRARIES} -lm)

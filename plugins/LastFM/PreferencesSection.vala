@@ -55,10 +55,10 @@ private class LastFM.PreferencesSection {
             login_button.set_tooltip_text(_("Click to redo the Last.fm login process"));
         }
  
-        var label = new Gtk.Label (_("To allow for Last.fm integration, you must give permission to %s. You only need to do this once.").printf(program_name));
+        var label = new Granite.Widgets.WrapLabel (_("To allow for Last.fm integration, you must give permission to %s. You only need to do this once.").printf(program_name));
         label.xalign = 0.0f;
         label.halign = Gtk.Align.START;
-        label.set_line_wrap (true);
+        label.expand = false;
         
         page.add_full_option (label, ref row);
         page.add_full_option (login_button, ref row);

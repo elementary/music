@@ -39,6 +39,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
     private int index = 0;
 
     public PreferencesWindow (LibraryWindow lw) {
+        Object (use_header_bar: 1);
         build_ui (lw);
 
         lw.add_preference_page.connect ((page) => {add_page (page);});
@@ -71,34 +72,39 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         return index;
     }
 
-
     public void remove_section (int index) {
         var section = sections.get (index);
         section.destroy ();
         sections.unset (index);
     }
 
-
     private void build_ui (Gtk.Window parent_window) {
-        set_size_request (MIN_WIDTH, MIN_HEIGHT);
-
         // Window properties
         title = _("Preferences");
+        set_size_request (MIN_WIDTH, MIN_HEIGHT);
         resizable = false;
         window_position = Gtk.WindowPosition.CENTER;
         type_hint = Gdk.WindowTypeHint.DIALOG;
         transient_for = parent_window;
-        var main_grid = new Gtk.Grid ();
+
         main_stack = new Gtk.Stack ();
         main_stackswitcher = new Gtk.StackSwitcher ();
         main_stackswitcher.set_stack (main_stack);
-        main_stackswitcher.halign = Gtk.Align.CENTER;
-        main_grid.attach (main_stackswitcher, 0, 0, 1, 1);
-        main_grid.attach (main_stack, 0, 1, 1, 1);
-        main_grid.hexpand = true;
 
-        ((Gtk.Box)get_content_area()).add (main_grid);
-        add_button (_("Close"), Gtk.ResponseType.ACCEPT);
+        var close_button = new Gtk.Button.with_label (_("Close"));
+        close_button.clicked.connect (() => {this.destroy ();});
+
+        var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        button_box.set_layout (Gtk.ButtonBoxStyle.END);
+        button_box.pack_end (close_button);
+        button_box.margin_right = 12;
+
+        var main_grid = new Gtk.Grid ();
+        main_grid.attach (main_stack, 0, 0, 1, 1);
+        main_grid.attach (button_box, 0, 1, 1, 1);
+
+        ((Gtk.HeaderBar) get_header_bar ()).set_custom_title (main_stackswitcher);
+        ((Gtk.Container) get_content_area ()).add (main_grid);
     }
 }
 
@@ -157,18 +163,12 @@ private class Noise.Preferences.GeneralPage {
 #if HAVE_LIBNOTIFY
         show_notifications_switch = new Gtk.Switch ();
         main_settings.schema.bind("show-notifications", show_notifications_switch, "active", SettingsBindFlags.DEFAULT);
-        page.add_option (new Gtk.Label (_("Show notifications:")), show_notifications_switch, ref row);
+        page.add_option (new Gtk.Label (_("Notifications:")), show_notifications_switch, ref row);
 #endif
-
-        string hide_on_close_desc;
-        if (LibraryWindow.minimize_on_close ())
-            hide_on_close_desc = _("Minimize window when a song is being played:");
-        else
-            hide_on_close_desc = _("Hide window when a song is being played:");
 
         hide_on_close_switch = new Gtk.Switch ();
         main_settings.schema.bind("close-while-playing", hide_on_close_switch, "active", SettingsBindFlags.INVERT_BOOLEAN);
-        page.add_option (new Gtk.Label (hide_on_close_desc), hide_on_close_switch, ref row);
+        page.add_option (new Gtk.Label (_("Continue playback when closed:")), hide_on_close_switch, ref row);
         
     }
 }
