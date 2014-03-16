@@ -47,7 +47,8 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Gee.HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
     private Gtk.TextView lyricsText;
     
-    private Gtk.Button _save;
+    private Gtk.Button save_button;
+    private Gtk.Button close_button;
     
     private Gtk.Label lyricsInfobarLabel;
     private Library library;
@@ -87,21 +88,27 @@ public class Noise.MediaEditor : Gtk.Dialog {
 
         var arrows = new Granite.Widgets.NavigationArrows ();
 
-        _save = new Gtk.Button.with_label (_(STRING_SAVE));
-        _save.set_size_request (85, -1);
+        save_button = new Gtk.Button.with_label (_(STRING_SAVE));
+        save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
-        _save.valign = arrows.valign = Gtk.Align.END;
+        close_button  = new Gtk.Button.with_label (_("Close"));
+
+        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        buttons.set_layout (Gtk.ButtonBoxStyle.END);
+        buttons.set_spacing (6);
+
+        buttons.pack_start (arrows, false, false, 0);
+        buttons.pack_end (close_button, false, false, 0);
+        buttons.pack_end (save_button, false, false, 0);
+        buttons.set_child_secondary (arrows, true);
+
+        var main_grid = new Gtk.Grid ();
+        main_grid.attach (stack, 0, 0, 1, 1);
+        main_grid.attach (buttons, 0, 1, 1, 1);
 
         var content = get_content_area () as Gtk.Container;
         content.margin_left = content.margin_right = 12;
-        content.add (stack);
-
-        var buttons = (Gtk.ButtonBox)get_action_area ();
-        buttons.set_layout (Gtk.ButtonBoxStyle.END);
-
-        buttons.pack_start (arrows, false, false, 0);
-        buttons.pack_end (_save, false, false, 0);
-        buttons.set_child_secondary (arrows, true);
+        content.add (main_grid);
 
         this.show_all();
 
@@ -116,7 +123,8 @@ public class Noise.MediaEditor : Gtk.Dialog {
 
         arrows.previous_clicked.connect(previousClicked);
         arrows.next_clicked.connect(nextClicked);
-        _save.clicked.connect(saveClicked);
+        save_button.clicked.connect(saveClicked);
+        close_button.clicked.connect (() => {destroy ();});
     }
     
     public Gtk.Box createBasicContent () {

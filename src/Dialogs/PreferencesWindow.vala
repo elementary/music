@@ -72,7 +72,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         return index;
     }
 
-
     public void remove_section (int index) {
         var section = sections.get (index);
         section.destroy ();
@@ -80,19 +79,32 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
     }
 
     private void build_ui (Gtk.Window parent_window) {
-        set_size_request (MIN_WIDTH, MIN_HEIGHT);
-
         // Window properties
         title = _("Preferences");
+        set_size_request (MIN_WIDTH, MIN_HEIGHT);
         resizable = false;
         window_position = Gtk.WindowPosition.CENTER;
         type_hint = Gdk.WindowTypeHint.DIALOG;
         transient_for = parent_window;
+
         main_stack = new Gtk.Stack ();
         main_stackswitcher = new Gtk.StackSwitcher ();
         main_stackswitcher.set_stack (main_stack);
-        ((Gtk.HeaderBar)get_header_bar ()).set_custom_title (main_stackswitcher);
-        ((Gtk.Container)get_content_area ()).add (main_stack);
+
+        var close_button = new Gtk.Button.with_label (_("Close"));
+        close_button.clicked.connect (() => {this.destroy ();});
+
+        var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        button_box.set_layout (Gtk.ButtonBoxStyle.END);
+        button_box.pack_end (close_button);
+        button_box.margin_right = 12;
+
+        var main_grid = new Gtk.Grid ();
+        main_grid.attach (main_stack, 0, 0, 1, 1);
+        main_grid.attach (button_box, 0, 1, 1, 1);
+
+        ((Gtk.HeaderBar) get_header_bar ()).set_custom_title (main_stackswitcher);
+        ((Gtk.Container) get_content_area ()).add (main_grid);
     }
 }
 
