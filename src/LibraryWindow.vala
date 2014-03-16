@@ -285,8 +285,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.pack_start (nextButton);
         headerbar.pack_start (viewSelector);
         headerbar.set_custom_title (topDisplayBin);
-        headerbar.pack_end (searchField);
         headerbar.pack_end (((Noise.App) GLib.Application.get_default ()).create_appmenu (settingsMenu));
+        headerbar.pack_end (searchField);
         headerbar.show_all ();
 
 
@@ -1130,7 +1130,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             preferences = new PreferencesWindow(this);
         preferences.show_all ();
         preferences.run ();
-        preferences.hide ();
+        preferences = null;
     }
 
     public void setMusicFolder(string folder) {

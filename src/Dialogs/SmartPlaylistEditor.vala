@@ -17,11 +17,7 @@
  *              Corentin Noël <tintou@mailoo.org>
  */
 
-#if USE_GRANITE_DECORATED_WINDOW
-public class Noise.SmartPlaylistEditor : Granite.Widgets.LightWindow {
-#else
-public class Noise.SmartPlaylistEditor : Window {
-#endif
+public class Noise.SmartPlaylistEditor : Gtk.Dialog {
 
     SmartPlaylist sp;
     private bool is_new = false;
@@ -32,13 +28,13 @@ public class Noise.SmartPlaylistEditor : Window {
     private Gtk.Grid queries_grid;
     private Gtk.CheckButton limit_check;
     private Gtk.SpinButton limit_spin;
-    private Gtk.Button add_button;
+    private Gtk.Button adding_button;
     private Gee.ArrayList<SmartPlaylistEditorQuery> queries_list;
     private int row = 0;
     private Library library;
 
-    public SmartPlaylistEditor(SmartPlaylist? sp = null, Library library) {
-        
+    public SmartPlaylistEditor (SmartPlaylist? sp = null, Library library) {
+        Object (use_header_bar: 1);
         this.title = _("Smart Playlist Editor");
         this.library = library;
         
@@ -68,6 +64,7 @@ public class Noise.SmartPlaylistEditor : Window {
             name_entry.text = sp.name;
         
         var match_grid = new Gtk.Grid ();
+        match_grid.column_spacing = 12;
         var match_label = new Gtk.Label (_("Match"));
         match_combobox = new Gtk.ComboBoxText ();
         match_combobox.insert_text (0, _("any"));
@@ -85,12 +82,14 @@ public class Noise.SmartPlaylistEditor : Window {
         queries_list = new Gee.ArrayList<SmartPlaylistEditorQuery> ();
         queries_grid = new Gtk.Grid ();
         queries_grid.column_spacing = 12;
+        queries_grid.row_spacing = 6;
         queries_grid.expand = true;
         
-        add_button = new Gtk.Button.with_label (_("Add"));
+        adding_button = new Gtk.Button.with_label (_("Add"));
         
         /* create extra option: limiter */
         var limiter_grid = new Gtk.Grid ();
+        limiter_grid.column_spacing = 12;
         limit_check = new Gtk.CheckButton.with_label (_("Limit to"));
         limit_spin = new Gtk.SpinButton.with_range (0, 500, 10);
         var limit_label = new Gtk.Label (_("items"));
@@ -114,6 +113,7 @@ public class Noise.SmartPlaylistEditor : Window {
         var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
         button_box.spacing = 6;
         save_button = new Gtk.Button.with_label (_(STRING_SAVE));
+        save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
         var close_button = new Gtk.Button.with_label (_(STRING_CANCEL));
         button_box.set_layout (Gtk.ButtonBoxStyle.END);
         button_box.pack_end (close_button, false, false, 0);
@@ -121,7 +121,7 @@ public class Noise.SmartPlaylistEditor : Window {
         
         main_grid = new Gtk.Grid ();
         main_grid.expand = true;
-        main_grid.margin = 12;
+        main_grid.margin_left = main_grid.margin_right = 12;
         main_grid.column_spacing = 12;
         main_grid.row_spacing = 6;
         main_grid.attach (name_label, 0, 0, 3, 1);
@@ -132,7 +132,7 @@ public class Noise.SmartPlaylistEditor : Window {
         main_grid.attach (options_label, 0, 5, 3, 1);
         main_grid.attach (limiter_grid, 0, 6, 3, 1);
         main_grid.attach (button_box, 0, 7, 3, 1);
-        add (main_grid);
+        ((Gtk.Container) get_content_area ()).add (main_grid);
         
         save_button.clicked.connect (save_click);
         close_button.clicked.connect (close_click);
@@ -152,15 +152,15 @@ public class Noise.SmartPlaylistEditor : Window {
             row++;
         }
         
-        queries_grid.attach (add_button, 0, row, 1, 1);
+        queries_grid.attach (adding_button, 0, row, 1, 1);
         if(sp.queries ().size == 0) {
             add_row ();
         }
         foreach(SmartPlaylistEditorQuery speq in queries_list) {
             speq.field_changed (false);
         }
-        add_button.clicked.connect (add_button_click);
-        add_button.show ();
+        adding_button.clicked.connect (add_button_click);
+        adding_button.show ();
         // Validate initial state
         name_changed ();
     }
@@ -183,15 +183,15 @@ public class Noise.SmartPlaylistEditor : Window {
     }
 
     public void add_row () {
-        if (add_button.parent != null)
-            queries_grid.remove (add_button);
+        if (adding_button.parent != null)
+            queries_grid.remove (adding_button);
         var editor_query = new SmartPlaylistEditorQuery (new SmartQuery());
         editor_query.removed.connect (() => {queries_list.remove (editor_query);});
         editor_query.changed.connect (() => {if (!queries_list.contains (editor_query)) queries_list.add (editor_query);});
         queries_grid.attach (editor_query.grid, 0, row, 1, 1);
         editor_query.grid.show ();
         row++;
-        queries_grid.attach (add_button, 0, row, 1, 1);
+        queries_grid.attach (adding_button, 0, row, 1, 1);
         editor_query.field_changed (false);
     }
     
@@ -246,8 +246,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         _q = q;
         
         comparators = new GLib.HashTable<int, SmartQuery.ComparatorType> (null, null);
-        
-        grid = new Gtk.Grid ();
+
         field_combobox = new Gtk.ComboBoxText ();
         comparator_combobox = new Gtk.ComboBoxText();
         value_entry = new Gtk.Entry ();
@@ -286,9 +285,10 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         } else {
             _valueNumerical.set_value (int.parse (q.value));
         }
-            
         _units = new Gtk.Label ("");
-        
+
+        grid = new Gtk.Grid ();
+        grid.column_spacing = 12;
         grid.hexpand = true;
         grid.attach (field_combobox, 0, 0, 1, 1);
         grid.attach (comparator_combobox, 1, 0, 1, 1);

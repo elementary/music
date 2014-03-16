@@ -35,11 +35,7 @@
  *       CDs before importing their media to the library).
  */
 
-#if USE_GRANITE_DECORATED_WINDOW
-public class Noise.MediaEditor : Granite.Widgets.LightWindow {
-#else
-public class Noise.MediaEditor : Gtk.Window {
-#endif
+public class Noise.MediaEditor : Gtk.Dialog {
     LyricFetcher lf;
     
     Gee.LinkedList<int> _allMedias;
@@ -51,7 +47,8 @@ public class Noise.MediaEditor : Gtk.Window {
     private Gee.HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
     private Gtk.TextView lyricsText;
     
-    private Gtk.Button _save;
+    private Gtk.Button save_button;
+    private Gtk.Button close_button;
     
     private Gtk.Label lyricsInfobarLabel;
     private Library library;
@@ -59,6 +56,7 @@ public class Noise.MediaEditor : Gtk.Window {
     public signal void medias_saved (Gee.LinkedList<int> medias);
     
     public MediaEditor (Gee.LinkedList<int> allMedias, Gee.LinkedList<int> medias, Library library) {
+        Object (use_header_bar: 1);
         this.library = library;
         this.window_position = Gtk.WindowPosition.CENTER;
         this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -75,9 +73,12 @@ public class Noise.MediaEditor : Gtk.Window {
         _medias = medias;
         
         stack = new Gtk.Stack ();
+        
         var stack_switcher = new Gtk.StackSwitcher ();
         stack_switcher.set_stack (stack);
         stack_switcher.halign = Gtk.Align.CENTER;
+        
+        ((Gtk.HeaderBar) get_header_bar ()).set_custom_title (stack_switcher);
 
         stack.add_titled (createBasicContent (), "metadata", _("Metadata"));
         if(_medias.size == 1)
@@ -87,29 +88,27 @@ public class Noise.MediaEditor : Gtk.Window {
 
         var arrows = new Granite.Widgets.NavigationArrows ();
 
-        _save = new Gtk.Button.with_label (_(STRING_SAVE));
-        _save.set_size_request (85, -1);
+        save_button = new Gtk.Button.with_label (_(STRING_SAVE));
+        save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
-        _save.valign = arrows.valign = Gtk.Align.END;
+        close_button  = new Gtk.Button.with_label (_("Close"));
 
         var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        buttons.margin_top = 12;
         buttons.set_layout (Gtk.ButtonBoxStyle.END);
+        buttons.set_spacing (6);
 
         buttons.pack_start (arrows, false, false, 0);
-        buttons.pack_end (_save, false, false, 0);
-
+        buttons.pack_end (close_button, false, false, 0);
+        buttons.pack_end (save_button, false, false, 0);
         buttons.set_child_secondary (arrows, true);
 
-        var content = new Gtk.Grid ();
-        content.orientation = Gtk.Orientation.VERTICAL;
-        content.margin = 12;
+        var main_grid = new Gtk.Grid ();
+        main_grid.attach (stack, 0, 0, 1, 1);
+        main_grid.attach (buttons, 0, 1, 1, 1);
 
-        content.add (stack_switcher);
-        content.add (stack);
-        content.add (buttons);
-
-        this.add (content);
+        var content = get_content_area () as Gtk.Container;
+        content.margin_left = content.margin_right = 12;
+        content.add (main_grid);
 
         this.show_all();
 
@@ -122,9 +121,10 @@ public class Noise.MediaEditor : Gtk.Window {
             fetch_lyrics.begin (false);
         }
 
-        arrows.previous_clicked.connect(previousClicked);
-        arrows.next_clicked.connect(nextClicked);
-        _save.clicked.connect(saveClicked);
+        arrows.previous_clicked.connect (previousClicked);
+        arrows.next_clicked.connect (nextClicked);
+        save_button.clicked.connect (saveClicked);
+        close_button.clicked.connect (() => {destroy ();});
     }
     
     public Gtk.Box createBasicContent () {
@@ -720,24 +720,3 @@ public class Noise.StatsDisplay : Gtk.Box {
         info.set_markup(text);
     }
 }
-
-/*public class Noise.DoubleSpinButton : HBox {
-    private SpinButton spin1;
-    private SpinButton spin2;
-    
-    public DoubleSpinButton(double val1, double val2, double maxVal) {
-        spin1 = new SpinButton.with_range(0.0, maxVal, 1.0);
-        spin2 = new SpinButton.with_range(0.0, maxVal, 1.0);
-        
-        spin1.set_value(val1);
-        spin2.set_value(val2);
-    }
-    
-    public double getVal1() {
-        return spin1.get_value();
-    }
-    
-    public double getVal2() {
-        return spin2.get_value();
-    }
-}*/
