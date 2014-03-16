@@ -124,7 +124,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 		side_list.add (preset_combo);
 
 		new_preset_entry = new Gtk.Entry ();
-		new_preset_entry.secondary_icon_name = "dialog-apply";
+		new_preset_entry.secondary_icon_name = "document-save-symbolic";
 		new_preset_entry.secondary_icon_tooltip_text = _("Save preset");
 
 		eq_switch.valign = preset_combo.valign = new_preset_entry.valign = Gtk.Align.CENTER;
