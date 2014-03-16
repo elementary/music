@@ -78,7 +78,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
         stack_switcher.set_stack (stack);
         stack_switcher.halign = Gtk.Align.CENTER;
         
-        ((Gtk.HeaderBar)get_header_bar ()).set_custom_title (stack_switcher);
+        ((Gtk.HeaderBar) get_header_bar ()).set_custom_title (stack_switcher);
 
         stack.add_titled (createBasicContent (), "metadata", _("Metadata"));
         if(_medias.size == 1)
@@ -121,9 +121,9 @@ public class Noise.MediaEditor : Gtk.Dialog {
             fetch_lyrics.begin (false);
         }
 
-        arrows.previous_clicked.connect(previousClicked);
-        arrows.next_clicked.connect(nextClicked);
-        save_button.clicked.connect(saveClicked);
+        arrows.previous_clicked.connect (previousClicked);
+        arrows.next_clicked.connect (nextClicked);
+        save_button.clicked.connect (saveClicked);
         close_button.clicked.connect (() => {destroy ();});
     }
     
