@@ -27,6 +27,7 @@ set(CLIENT_SOURCE
     Widgets/SpaceWidget.vala
     Widgets/FixedBin.vala
     Widgets/ViewSelector.vala
+    Widgets/EqualizerPopover.vala
     Widgets/FastView/TileView/ImageUtils.vala
     Widgets/FastView/TileView/TileRenderer.vala
     Widgets/FastView/TileView/TileView.vala
@@ -63,7 +64,6 @@ set(CLIENT_SOURCE
     Views/ListView/Lists/CellDataFunctionHelper.vala
     Views/ListView/Lists/GenericList.vala
     Views/ListView/Lists/MusicListView.vala
-    Dialogs/EqualizerWindow.vala
     Dialogs/SmartPlaylistEditor.vala
     Dialogs/PreferencesWindow.vala
     Dialogs/InstallGstreamerPluginsDialog.vala
