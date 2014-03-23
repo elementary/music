@@ -24,7 +24,7 @@
 public class Noise.EqualizerPopover : Gtk.Popover {
 	private Gtk.Switch eq_switch;
 	private Gtk.Entry new_preset_entry;
-	private Gtk.EventBox side_list;
+	private Gtk.Grid side_list;
 	private Gtk.Grid scale_container;
 	private PresetList preset_combo;
 	private Gee.List<Gtk.Scale> scales;
@@ -149,8 +149,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 		preset_combo = new PresetList ();
 		preset_combo.set_size_request (165, -1);
 
-		side_list = new Gtk.EventBox ();
-		side_list.visible_window = false;
+		side_list = new Gtk.Grid ();
 		side_list.add (preset_combo);
 
 		new_preset_entry = new Gtk.Entry ();
@@ -379,8 +378,9 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 		var new_preset = new EqualizerPreset.with_gains (new_preset_name, gains);
 		preset_combo.addPreset (new_preset);
 
-		side_list.remove (new_preset_entry);
 		side_list.add (preset_combo);
+		side_list.set_focus_child (preset_combo);
+		side_list.remove (new_preset_entry);
 		side_list.show_all ();
 
 		eq_switch.sensitive = true;
