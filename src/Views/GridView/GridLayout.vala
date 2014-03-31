@@ -78,10 +78,6 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
 
         scroll.add (icon_view);
 
-        icon_view.add_events (Gdk.EventMask.POINTER_MOTION_MASK);
-        icon_view.motion_notify_event.connect (on_motion_notify);
-        icon_view.scroll_event.connect (on_scroll_event);
-
         //icon_view.button_press_event.connect (on_button_press);
         icon_view.button_release_event.connect (on_button_release);
         icon_view.item_activated.connect (on_item_activated);
@@ -114,29 +110,6 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
             item_activated (obj);
         }
 
-        return false;
-    }
-
-    private inline void set_cursor (int x, int y) {
-        Gtk.TreePath path;
-        Gtk.CellRenderer cell;
-
-        icon_view.get_item_at_pos (x, y, out path, out cell);
-
-        if (path == null) // blank area
-            icon_view.get_window ().set_cursor (null);
-        else
-            icon_view.get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.HAND1));
-
-    }
-
-    private bool on_motion_notify (Gdk.EventMotion ev) {
-        set_cursor ((int)ev.x, (int)ev.y);
-        return false;
-    }
-
-    private bool on_scroll_event (Gdk.EventScroll ev) {
-        set_cursor ((int)ev.x, (int)ev.y);
         return false;
     }
 }
