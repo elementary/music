@@ -179,41 +179,12 @@ namespace Noise.Widgets {
 #endif
     }
 
-
-    private class EqualizerChooser : SimpleOptionChooser {
-
-        private Gtk.Window? equalizer_window = null;
-
+    private class EqualizerChooser : Gtk.MenuButton {
         public EqualizerChooser () {
-            var eq_show_image = Icons.EQ_SYMBOLIC.render_image (Gtk.IconSize.MENU);
-            var eq_hide_image = Icons.EQ_SYMBOLIC.render_image (Gtk.IconSize.MENU);
-
-            appendItem (_("Hide"), eq_show_image, _("Show Equalizer"));
-            appendItem (_("Show"), eq_hide_image, _("Hide Equalizer"));
-
-            setOption (0);
-
-            option_changed.connect (eq_option_chooser_clicked);
-        }
-
-        private void eq_option_chooser_clicked () {
-            int val = current_option;
-
-            if (equalizer_window == null && val == 1) {
-                equalizer_window = new EqualizerWindow ();
-                equalizer_window.show_all ();
-                equalizer_window.destroy.connect ( () => {
-                    // revert the option to "Hide equalizer" after the window is destroyed
-                    setOption (0);
-                });
-            }
-            else if (val == 0 && equalizer_window != null) {
-                equalizer_window.destroy ();
-                equalizer_window = null;
-            }
+            popover = new EqualizerPopover ();
+            add (Icons.EQ_SYMBOLIC.render_image (Gtk.IconSize.MENU));
         }
     }
-
 
     private class InfoPanelChooser : SimpleOptionChooser {
 

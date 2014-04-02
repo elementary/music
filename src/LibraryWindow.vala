@@ -153,6 +153,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public override bool key_press_event (Gdk.EventKey event) {
+        // when typing in an editable widget, such as Gtk.Entry, don't block the event
+        var focus_widget = get_focus ();
+        if (focus_widget != null && focus_widget is Gtk.Editable)
+            return base.key_press_event (event);
+
         var modifiers = Gtk.accelerator_get_default_mod_mask ();
         bool modifiers_active = (event.state & modifiers) != 0;
 
