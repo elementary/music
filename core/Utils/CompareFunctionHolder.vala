@@ -52,6 +52,9 @@ namespace Noise.Compare {
 
     public inline int artists (Media a, Media b) {
         int order = String.compare (a.get_display_artist (), b.get_display_artist ());
+        // secondarily compare by year
+        if (order == 0)
+            order = Numeric.compare(a.year, b.year);
         if (order == 0)
             order = albums (a, b);
         return order;
@@ -76,4 +79,6 @@ namespace Noise.Compare {
     public inline int track_numbers (Media a, Media b) {
         return Numeric.compare (a.track, b.track);
     }
+
+
 }

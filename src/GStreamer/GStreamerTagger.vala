@@ -148,6 +148,7 @@ public class Noise.GStreamerTagger : Object {
             unowned Gst.TagList? tags = info.get_tags ();
 
             if (tags != null) {
+
                 string title;
                 if (tags.get_string (Gst.Tags.TITLE, out title))
                     m.title = title;
@@ -208,13 +209,25 @@ public class Noise.GStreamerTagger : Object {
                 if (tags.get_uint (Gst.Tags.USER_RATING, out rating))
                     m.rating = rating; // Noise.Media will clamp the value
 
-                // Get the year
-                Date? date;
-                if (tags.get_date (Gst.Tags.DATE, out date)) {
-                    // Don't let the assumption that @date is non-null deceive you.
+                // Get the year, try datetime first, otherwise try date
+                // NOTE: date might be superfluous, it was the original method,
+                //       but doesn't seem to be used.
+                Gst.DateTime? datetime;
+                if (tags.get_date_time (Gst.Tags.DATE_TIME, out datetime)) {
+                    // Don't let the assumption that @datetime is non-null deceive you.
                     // This is sometimes null even though get_date() returned true!
-                    if (date != null)
-                        m.year = date.get_year ();
+                    if (datetime != null) {
+                        m.year = datetime.get_year ();
+                    } else {
+                        Date? date;
+                        if (tags.get_date (Gst.Tags.DATE, out date)) {
+                            // Don't let the assumption that @date is non-null deceive you.
+                            // This is sometimes null even though get_date() returned true!
+                            if (date != null) {
+                                m.year = date.get_year ();
+                            }
+                        }
+                    }
                 }
 
                 double bpm;

@@ -51,6 +51,9 @@ public class Noise.Album : Object {
 
     //public uint rating { get; set; default = 0; }
     //public Date release_date { get; set; }
+    
+    // store release year, date is overkill and not stored in most tags.
+    public uint year { get; set; default = 0; }
 
     private Gee.HashSet<Media> media = new Gee.HashSet<Media> ();
 
@@ -63,6 +66,7 @@ public class Noise.Album : Object {
     public Album.from_media (Media m) {
         name = m.album;
         artist = m.album_artist;
+        year = m.year;
 
         if (String.is_empty (artist, true))
             artist = m.artist;
