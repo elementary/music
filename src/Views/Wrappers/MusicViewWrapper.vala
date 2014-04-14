@@ -58,7 +58,20 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         _devices = new Gee.HashMap<Device, int> ();
 
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
-
+        
+        // Drag n drop in welcome widget
+        Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
+        Gtk.drag_dest_set (welcome_screen, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.COPY);
+        welcome_screen.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
+            var files = new Gee.ArrayList<string> ();
+            for (var i=0; i < sel.get_uris ().length; i++) {
+                File f = File.new_for_uri (sel.get_uris()[i]);
+                string path = f.get_uri ();
+                files.add (path);
+            }
+            App.main_window.library_manager.add_files_to_library (files);
+        });
+        
         // Refresh view layout
         pack_views ();
 
