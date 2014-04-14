@@ -84,11 +84,7 @@ public class Noise.Threads {
 
         lock (thread_pool) {
             try {
-#if VALA_0_18
                 thread_pool = new ThreadPool<TaskFuncWrapper>.with_owned_data (
-#else
-                thread_pool = new ThreadPool<TaskFuncWrapper> (
-#endif
                                                                task_func,
                                                                MAX_THREADS,
                                                                MAX_THREADS > 0);
@@ -128,16 +124,7 @@ public class Noise.Threads {
     private void push_task (TaskFunc task) throws Error {
         lock (thread_pool) {
             var wrapper = new TaskFuncWrapper (task);
-#if VALA_0_18
             thread_pool.add ((owned) wrapper);
-#else
-            // We cannot trust the internal references held by the thread pool. It is
-            // often the case that the wrapper is destroyed before it is passed to
-            // task_func, resulting in an invalid pointer dereferencing. We add our own
-            // reference in order to avoid that, and release it in task_func().
-            wrapper.ref ();
-            thread_pool.push (wrapper);
-#endif
         }
     }
 
@@ -145,23 +132,13 @@ public class Noise.Threads {
      * Called by the thread pool right after preparing a thread. The method is
      * responsible for executing the actual task function.
      */
-#if VALA_0_18
     private void task_func (owned TaskFuncWrapper wrapper) {
-#else
-    private void task_func (TaskFuncWrapper wrapper) {
-#endif
         var id = wrapper.id;
         debug ("-- Dispatching task [%u]", id);
-
         if (wrapper.func != null) {
             debug ("-- starting [%u]", id);
             wrapper.func ();
             debug ("-- finished [%u]", id);
         }
-
-#if !VALA_0_18
-        // Let's drop our reference. See the complete explanation in push_task()
-        wrapper.unref ();
-#endif
     }
 }
