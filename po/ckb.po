@@ -1,21 +1,21 @@
-# Amharic translation for noise
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# Kurdish (Sorani) translation for noise
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the noise package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-14 22:50+0200\n"
-"PO-Revision-Date: 2014-04-14 00:41+0000\n"
-"Last-Translator: samson <Unknown>\n"
-"Language-Team: Amharic <am@li.org>\n"
+"PO-Revision-Date: 2014-03-22 16:39+0000\n"
+"Last-Translator: Nali Ali <Unknown>\n"
+"Language-Team: Kurdish (Sorani) <ckb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-04-15 07:43+0000\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2014-04-15 07:45+0000\n"
 "X-Generator: Launchpad (build 16976)\n"
 
 #: ../core/LibrariesManager.vala:140
@@ -36,19 +36,19 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Flat"
-msgstr "ጠፍጣፋ"
+msgstr "پان"
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Classical"
-msgstr "ክላሲካል"
+msgstr "کلاسیک"
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Club"
-msgstr "ክለብ"
+msgstr "دیسکۆ"
 
 #: ../core/GStreamer/Equalizer.vala:81
 msgid "Dance"
-msgstr "ዳንስ"
+msgstr "هەڵپەڕکێ"
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Full Bass"
@@ -64,133 +64,133 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Headphones"
-msgstr ""
+msgstr "بیستۆکی گوێ"
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Large Hall"
-msgstr "ትልቅ አዳራሽ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Live"
-msgstr "በቀጥታ"
+msgstr "ڕاستەوخۆ"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Party"
-msgstr "ፓርቲ"
+msgstr "فێستیڤاڵ"
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Pop"
-msgstr "ፖፕ"
+msgstr "پۆپ"
 
 #: ../core/GStreamer/Equalizer.vala:90
 msgid "Reggae"
-msgstr "ሬጌ"
+msgstr "ڕێگی"
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Rock"
-msgstr "ሮክ"
+msgstr "ڕۆک"
 
 #: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft"
-msgstr "ለስላሳ"
+msgstr "نەرم"
 
 #: ../core/GStreamer/Equalizer.vala:93
 msgid "Ska"
-msgstr "ስካ"
+msgstr "سکا"
 
 #: ../core/GStreamer/Equalizer.vala:94
 msgid "Soft Rock"
-msgstr "ለስላሳ ሮክ"
+msgstr "ڕۆکی نەرم"
 
 #: ../core/GStreamer/Equalizer.vala:95
 msgid "Techno"
-msgstr "ቴክኖ"
+msgstr "تێکنۆ"
 
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d ሰከንድ"
-msgstr[1] "%d ሰከንዶች"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../core/Utils/TimeUtils.vala:52 ../core/Utils/TimeUtils.vala:83
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] "%u ደቂቃ"
-msgstr[1] "%u ደቂቆች"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../core/Utils/TimeUtils.vala:56
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] "%u ሰከንድ"
-msgstr[1] "%u ሰከንዶች"
+msgstr[0] ""
+msgstr[1] ""
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:58
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr ""
 
 #: ../core/Utils/TimeUtils.vala:77
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] "%u ቀን"
-msgstr[1] "%u ቀኖች"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../core/Utils/TimeUtils.vala:80
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] "%u ሰአት"
-msgstr[1] "%u ሰአቶች"
+msgstr[0] ""
+msgstr[1] ""
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:91
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr "%s, %s እና %s"
+msgstr ""
 
 #. / days and hours
 #: ../core/Utils/TimeUtils.vala:94
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr ""
 
 #. / days and minutes
 #: ../core/Utils/TimeUtils.vala:99
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr ""
 
 #. / hours and minutes
 #: ../core/Utils/TimeUtils.vala:108
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr ""
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
 #: ../core/Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
-msgstr "%m/%e/%Y %l:%M %p"
+msgstr ""
 
 #: ../core/Utils/FileUtils.vala:280
 msgid " (%d)"
-msgstr " (%d)"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr "%s (%d)"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr "አዲስ የማጫወቻ ዝርዝር"
+msgstr "لیستی گۆرانی نوێ"
 
 #: ../core/Utils/PlaylistsUtils.vala:246
 msgid "%s (%i)"
-msgstr "%s (%i)"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr "የማጫወቻ ዝርዝር መላኪያ"
+msgstr "لیستی گۆرانیەکە پاشەکەوت بکە"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
@@ -198,15 +198,15 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "لیستی گۆرانی شاووتکاست 2.0  (*.pls)"
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr "የማጫወቻ ዝርዝር"
+msgstr "لیستی گۆرانی"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
-msgstr "ማምጫ %s"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
@@ -215,11 +215,11 @@ msgstr ""
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:43
 msgid "Unknown"
-msgstr "ያልታወቀ"
+msgstr "نه‌ناسراو"
 
 #: ../core/Media.vala:53
 msgid "Radio Station"
-msgstr "ሬዲዮ ጣቢያ"
+msgstr "پەخشی رادیۆ"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:183
@@ -242,7 +242,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:251 ../src/Dialogs/PreferencesWindow.vala:83
 msgid "Preferences"
-msgstr ""
+msgstr "هەڵبژاردنەکان"
 
 #: ../src/LibraryWindow.vala:263
 msgid "Previous"
@@ -258,18 +258,18 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:271
 msgid "Search Music"
-msgstr ""
+msgstr "گەڕان بۆ موزیک"
 
 #: ../src/LibraryWindow.vala:662 ../src/LibraryWindow.vala:799
 #: ../src/Views/DeviceSummaryWidget.vala:121
 msgid "Music"
-msgstr ""
+msgstr "موزیک"
 
 #: ../src/LibraryWindow.vala:854 ../src/PlaybackManager.vala:99
 #: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "ወረፋ"
+msgstr "ڕیز"
 
 #: ../src/LibraryWindow.vala:857
 msgid "No songs in Queue"
@@ -285,7 +285,7 @@ msgstr ""
 #: ../src/LibraryWindow.vala:864 ../src/PlaybackManager.vala:97
 #: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
 msgid "History"
-msgstr "ታሪክ"
+msgstr "مێژوو"
 
 #: ../src/LibraryWindow.vala:867
 msgid "No songs in History"
@@ -308,7 +308,7 @@ msgstr ""
 
 #: ../src/FileOperator.vala:351
 msgid "Import Complete"
-msgstr "ማምጣቱ ተፈጽሟል"
+msgstr ""
 
 #: ../src/FileOperator.vala:351
 msgid "%s has imported your library."
@@ -320,14 +320,14 @@ msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:25
 msgid "Unknown Album"
-msgstr "ያልታወቀ አልበም"
+msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:26 ../src/Objects/ArtistInfo.vala:27
 #: ../src/GStreamer/Streamer.vala:187
 #: ../plugins/Devices/CDRom/CDPlayer.vala:203
 #: ../plugins/Devices/iPod/iPodStreamer.vala:194
 msgid "Unknown Artist"
-msgstr "ያልታወቀ ድምፃዊ"
+msgstr ""
 
 #: ../src/Objects/TrackInfo.vala:25
 msgid "Unknown Track"
@@ -365,14 +365,14 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:274
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:122
 msgid "Title"
-msgstr ""
+msgstr "پێشناو"
 
 #: ../src/Dialogs/MediaEditor.vala:192
 #: ../src/Dialogs/SmartPlaylistEditor.vala:261
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:123
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Artist"
-msgstr ""
+msgstr "هونەرمەند"
 
 #: ../src/Dialogs/MediaEditor.vala:193
 msgid "Album Artist"
@@ -383,7 +383,7 @@ msgstr ""
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:124
 #: ../src/Widgets/StatusBar.vala:68
 msgid "Album"
-msgstr ""
+msgstr "ئەلبوم"
 
 #: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:479
 #: ../src/Dialogs/SmartPlaylistEditor.vala:267
@@ -648,7 +648,7 @@ msgstr ""
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:80
 #: ../plugins/Devices/CDRom/CDView.vala:90
 msgid "Import"
-msgstr ""
+msgstr "هێنانەناوەوە"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:81
 msgid "Don't Import"
@@ -664,7 +664,7 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
 msgid "ID"
-msgstr ""
+msgstr "پێناس"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:173
 msgid "Select individual media to import:"
@@ -837,11 +837,11 @@ msgstr ""
 
 #: ../src/Noise.vala:37
 msgid "Listen to music"
-msgstr "ሙዚቃ ያድምጡ"
+msgstr "گوێ لە گۆرانی بگرە"
 
 #: ../src/Noise.vala:38
 msgid "Music Player"
-msgstr "ሙዚቃ ማጫወቻ"
+msgstr "لێدەری موسیک"
 
 #: ../src/Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
@@ -1035,12 +1035,12 @@ msgstr ""
 #: ../src/DataBase/DataBaseManager.vala:457
 #: ../src/DataBase/DataBaseManager.vala:693
 msgid "Favorite Songs"
-msgstr ""
+msgstr "گۆرانیە دلخوازەکان"
 
 #: ../src/DataBase/DataBaseManager.vala:464
 #: ../src/DataBase/DataBaseManager.vala:700
 msgid "Recently Added"
-msgstr ""
+msgstr "گۆرانی تازە"
 
 #: ../src/DataBase/DataBaseManager.vala:480
 #: ../src/DataBase/DataBaseManager.vala:716
@@ -1050,12 +1050,12 @@ msgstr ""
 #: ../src/DataBase/DataBaseManager.vala:487
 #: ../src/DataBase/DataBaseManager.vala:723
 msgid "Never Played"
-msgstr ""
+msgstr "هەرگیس لێنەدراو"
 
 #: ../src/DataBase/DataBaseManager.vala:494
 #: ../src/DataBase/DataBaseManager.vala:730
 msgid "Over Played"
-msgstr ""
+msgstr "زۆر لێدراو"
 
 #: ../src/DataBase/DataBaseManager.vala:501
 #: ../src/DataBase/DataBaseManager.vala:737
@@ -1121,7 +1121,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
-msgstr "በመሰረዝ ላይ…"
+msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Device operation has been cancelled and will stop after this media."
@@ -1146,7 +1146,7 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/GenericList.vala:128
 msgid "Display Album Art"
-msgstr ""
+msgstr "پیشاندانی وێنەی ئەلبومەکە"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:226
 msgid "%i kbps"
@@ -1155,7 +1155,7 @@ msgstr ""
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:251
 #: ../src/Views/ListView/Lists/MusicListView.vala:703
 msgid "Never"
-msgstr ""
+msgstr "هه‌رگیز"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:91
 msgid "Remove from Library"
@@ -1188,7 +1188,7 @@ msgstr ""
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "ڕیز"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:128
 msgid "Add to Playlist"
@@ -1200,7 +1200,7 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:214
 msgid "New Playlist…"
-msgstr ""
+msgstr "لیستێکی گۆرانی نوێ"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:258
 msgid "Import %i of %i selected songs"
@@ -1214,7 +1214,7 @@ msgstr[1] ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:688
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1230,37 +1230,37 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
 msgid "Track"
-msgstr ""
+msgstr "گۆرانی"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "ناونیشان"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "درێژی"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "هونەرمەند"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "ئەلبوم"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "هونەرمەندی ئەلبومەکە"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
@@ -1270,32 +1270,32 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
 msgid "Genre"
-msgstr ""
+msgstr "چەشن"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "ساڵ"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
 msgid "Grouping"
-msgstr ""
+msgstr "گروپکردن"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr ""
+msgstr "Bitrate"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
 msgid "Rating"
-msgstr ""
+msgstr "پله‌دانان"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:97
 msgctxt "List column title"
 msgid "Plays"
-msgstr ""
+msgstr "لێدان"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:100
 msgctxt "List column title"
@@ -1315,12 +1315,12 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr ""
+msgstr "ناوچه‌"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
@@ -1333,27 +1333,27 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
 msgid "Artists"
-msgstr ""
+msgstr "هونەرمەندەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
 msgid "Albums"
-msgstr ""
+msgstr "ئەلبوومەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
 msgid "Years"
-msgstr ""
+msgstr "ساڵەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Ratings"
-msgstr ""
+msgstr "پلەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:67
 msgid "Composers"
-msgstr ""
+msgstr "کۆمپۆزەرەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:69
 msgid "Groupings"
-msgstr ""
+msgstr "گروپەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1369,11 +1369,11 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Artists"
-msgstr ""
+msgstr "هەموو هونەرمەندەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 msgid "All %i Artists"
-msgstr ""
+msgstr "هەموو %i  هونەرمەدەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
@@ -1405,7 +1405,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Ratings"
-msgstr ""
+msgstr "هەموو پلەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Ratings"
@@ -1413,7 +1413,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Groupings"
-msgstr ""
+msgstr "هەموو گروپەکان"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 msgid "All %i Groupings"
@@ -1437,21 +1437,21 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
-msgstr ""
+msgstr "لەلای چەپ"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
 msgid "On Top"
-msgstr ""
+msgstr "لە سەرەوە"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:401
 msgid "Unrated"
-msgstr ""
+msgstr "بێپلە"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:403
 msgid "%i Star"
 msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i ئەستێرە"
+msgstr[1] "%i ئەستێرە"
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
@@ -1478,7 +1478,7 @@ msgstr ""
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
+msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
@@ -1527,7 +1527,7 @@ msgstr ""
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:100
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:116
 msgid "Import your Music"
-msgstr ""
+msgstr "تێکردنی موزیک"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:100
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:116
@@ -1544,34 +1544,34 @@ msgstr ""
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
-msgstr "አልበሞች አልተገኙም"
+msgstr ""
 
 #: ../src/Views/GridView/GridView.vala:150
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] "%u አልበም"
-msgstr[1] "%u አልበሞች"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/Views/GridView/PopupListView.vala:162
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr "%s በ %s"
+msgstr "%s له‌لاین %s"
 
 #: ../src/Views/GridView/album-view-clutter.vala:550
 msgid "%d minutes"
-msgstr "%d ደቂቆች"
+msgstr ""
 
 #: ../src/Views/GridView/album-view-clutter.vala:553
 msgid "%d hours"
-msgstr "%d ሰአቶች"
+msgstr ""
 
 #: ../src/Views/GridView/album-view-clutter.vala:556
 msgid "%d days"
-msgstr "%d ቀኖች"
+msgstr ""
 
 #: ../src/Views/GridView/album-view-clutter.vala:561
 msgid "%u items, %s, %s"
-msgstr "%u እቃዎች, %s, %s"
+msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
@@ -1745,7 +1745,3 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
-
-#, c-format
-#~ msgid "Importing music from %s..."
-#~ msgstr "ሙዚቃ በማምጣት ላይ ከ %s..."

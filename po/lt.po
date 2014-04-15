@@ -1,21 +1,22 @@
-# Amharic translation for noise
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# Lithuanian translation for noise
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the noise package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-14 22:50+0200\n"
-"PO-Revision-Date: 2014-04-14 00:41+0000\n"
-"Last-Translator: samson <Unknown>\n"
-"Language-Team: Amharic <am@li.org>\n"
+"PO-Revision-Date: 2014-04-07 09:51+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Lithuanian <lt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-04-15 07:43+0000\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Launchpad-Export-Date: 2014-04-15 07:44+0000\n"
 "X-Generator: Launchpad (build 16976)\n"
 
 #: ../core/LibrariesManager.vala:140
@@ -36,19 +37,19 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Flat"
-msgstr "ጠፍጣፋ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Classical"
-msgstr "ክላሲካል"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Club"
-msgstr "ክለብ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:81
 msgid "Dance"
-msgstr "ዳንስ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Full Bass"
@@ -68,129 +69,129 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Large Hall"
-msgstr "ትልቅ አዳራሽ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Live"
-msgstr "በቀጥታ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Party"
-msgstr "ፓርቲ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Pop"
-msgstr "ፖፕ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:90
 msgid "Reggae"
-msgstr "ሬጌ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Rock"
-msgstr "ሮክ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft"
-msgstr "ለስላሳ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:93
 msgid "Ska"
-msgstr "ስካ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:94
 msgid "Soft Rock"
-msgstr "ለስላሳ ሮክ"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:95
 msgid "Techno"
-msgstr "ቴክኖ"
+msgstr ""
 
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d ሰከንድ"
-msgstr[1] "%d ሰከንዶች"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../core/Utils/TimeUtils.vala:52 ../core/Utils/TimeUtils.vala:83
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] "%u ደቂቃ"
-msgstr[1] "%u ደቂቆች"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../core/Utils/TimeUtils.vala:56
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] "%u ሰከንድ"
-msgstr[1] "%u ሰከንዶች"
+msgstr[0] ""
+msgstr[1] ""
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:58
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr ""
 
 #: ../core/Utils/TimeUtils.vala:77
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] "%u ቀን"
-msgstr[1] "%u ቀኖች"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../core/Utils/TimeUtils.vala:80
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] "%u ሰአት"
-msgstr[1] "%u ሰአቶች"
+msgstr[0] ""
+msgstr[1] ""
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:91
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr "%s, %s እና %s"
+msgstr ""
 
 #. / days and hours
 #: ../core/Utils/TimeUtils.vala:94
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr ""
 
 #. / days and minutes
 #: ../core/Utils/TimeUtils.vala:99
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr ""
 
 #. / hours and minutes
 #: ../core/Utils/TimeUtils.vala:108
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr ""
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
 #: ../core/Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
-msgstr "%m/%e/%Y %l:%M %p"
+msgstr ""
 
 #: ../core/Utils/FileUtils.vala:280
 msgid " (%d)"
-msgstr " (%d)"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr "%s (%d)"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr "አዲስ የማጫወቻ ዝርዝር"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:246
 msgid "%s (%i)"
-msgstr "%s (%i)"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr "የማጫወቻ ዝርዝር መላኪያ"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
@@ -202,11 +203,11 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr "የማጫወቻ ዝርዝር"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
-msgstr "ማምጫ %s"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
@@ -215,11 +216,11 @@ msgstr ""
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:43
 msgid "Unknown"
-msgstr "ያልታወቀ"
+msgstr ""
 
 #: ../core/Media.vala:53
 msgid "Radio Station"
-msgstr "ሬዲዮ ጣቢያ"
+msgstr ""
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:183
@@ -269,7 +270,7 @@ msgstr ""
 #: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "ወረፋ"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:857
 msgid "No songs in Queue"
@@ -285,7 +286,7 @@ msgstr ""
 #: ../src/LibraryWindow.vala:864 ../src/PlaybackManager.vala:97
 #: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
 msgid "History"
-msgstr "ታሪክ"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:867
 msgid "No songs in History"
@@ -308,7 +309,7 @@ msgstr ""
 
 #: ../src/FileOperator.vala:351
 msgid "Import Complete"
-msgstr "ማምጣቱ ተፈጽሟል"
+msgstr ""
 
 #: ../src/FileOperator.vala:351
 msgid "%s has imported your library."
@@ -320,14 +321,14 @@ msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:25
 msgid "Unknown Album"
-msgstr "ያልታወቀ አልበም"
+msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:26 ../src/Objects/ArtistInfo.vala:27
 #: ../src/GStreamer/Streamer.vala:187
 #: ../plugins/Devices/CDRom/CDPlayer.vala:203
 #: ../plugins/Devices/iPod/iPodStreamer.vala:194
 msgid "Unknown Artist"
-msgstr "ያልታወቀ ድምፃዊ"
+msgstr ""
 
 #: ../src/Objects/TrackInfo.vala:25
 msgid "Unknown Track"
@@ -837,11 +838,11 @@ msgstr ""
 
 #: ../src/Noise.vala:37
 msgid "Listen to music"
-msgstr "ሙዚቃ ያድምጡ"
+msgstr ""
 
 #: ../src/Noise.vala:38
 msgid "Music Player"
-msgstr "ሙዚቃ ማጫወቻ"
+msgstr ""
 
 #: ../src/Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
@@ -1121,7 +1122,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
-msgstr "በመሰረዝ ላይ…"
+msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Device operation has been cancelled and will stop after this media."
@@ -1478,7 +1479,7 @@ msgstr ""
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
+msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
@@ -1544,34 +1545,34 @@ msgstr ""
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
-msgstr "አልበሞች አልተገኙም"
+msgstr ""
 
 #: ../src/Views/GridView/GridView.vala:150
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] "%u አልበም"
-msgstr[1] "%u አልበሞች"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/Views/GridView/PopupListView.vala:162
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr "%s በ %s"
+msgstr ""
 
 #: ../src/Views/GridView/album-view-clutter.vala:550
 msgid "%d minutes"
-msgstr "%d ደቂቆች"
+msgstr ""
 
 #: ../src/Views/GridView/album-view-clutter.vala:553
 msgid "%d hours"
-msgstr "%d ሰአቶች"
+msgstr ""
 
 #: ../src/Views/GridView/album-view-clutter.vala:556
 msgid "%d days"
-msgstr "%d ቀኖች"
+msgstr ""
 
 #: ../src/Views/GridView/album-view-clutter.vala:561
 msgid "%u items, %s, %s"
-msgstr "%u እቃዎች, %s, %s"
+msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
@@ -1745,7 +1746,3 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
-
-#, c-format
-#~ msgid "Importing music from %s..."
-#~ msgstr "ሙዚቃ በማምጣት ላይ ከ %s..."

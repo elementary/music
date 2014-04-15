@@ -1,21 +1,21 @@
-# Amharic translation for noise
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# Tamil translation for noise
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the noise package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-14 22:50+0200\n"
-"PO-Revision-Date: 2014-04-14 00:41+0000\n"
-"Last-Translator: samson <Unknown>\n"
-"Language-Team: Amharic <am@li.org>\n"
+"PO-Revision-Date: 2014-03-22 15:29+0000\n"
+"Last-Translator: SyedKhaleel Jageer <jskcse4@gmail.com>\n"
+"Language-Team: Tamil <ta@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-04-15 07:43+0000\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2014-04-15 07:44+0000\n"
 "X-Generator: Launchpad (build 16976)\n"
 
 #: ../core/LibrariesManager.vala:140
@@ -36,23 +36,23 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Flat"
-msgstr "ጠፍጣፋ"
+msgstr "தட்டை"
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Classical"
-msgstr "ክላሲካል"
+msgstr "பாரம்பரிய"
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Club"
-msgstr "ክለብ"
+msgstr "கிலப்"
 
 #: ../core/GStreamer/Equalizer.vala:81
 msgid "Dance"
-msgstr "ዳንስ"
+msgstr "நடனம்"
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Full Bass"
-msgstr ""
+msgstr "முழு பாஸ்"
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Full Treble"
@@ -64,107 +64,107 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Headphones"
-msgstr ""
+msgstr "ஹெட்போன்கள்"
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Large Hall"
-msgstr "ትልቅ አዳራሽ"
+msgstr "பெரிய அறை"
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Live"
-msgstr "በቀጥታ"
+msgstr "நேரடி"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Party"
-msgstr "ፓርቲ"
+msgstr "விருந்து"
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Pop"
-msgstr "ፖፕ"
+msgstr "பாப்"
 
 #: ../core/GStreamer/Equalizer.vala:90
 msgid "Reggae"
-msgstr "ሬጌ"
+msgstr "ரெக்கே"
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Rock"
-msgstr "ሮክ"
+msgstr "ராக்"
 
 #: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft"
-msgstr "ለስላሳ"
+msgstr "மென்மையான"
 
 #: ../core/GStreamer/Equalizer.vala:93
 msgid "Ska"
-msgstr "ስካ"
+msgstr "ஸ்கா"
 
 #: ../core/GStreamer/Equalizer.vala:94
 msgid "Soft Rock"
-msgstr "ለስላሳ ሮክ"
+msgstr "மென்மையான ராக்"
 
 #: ../core/GStreamer/Equalizer.vala:95
 msgid "Techno"
-msgstr "ቴክኖ"
+msgstr "டெக்னோ"
 
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d ሰከንድ"
-msgstr[1] "%d ሰከንዶች"
+msgstr[0] "%d வினாடி"
+msgstr[1] "%d வினாடிகள்"
 
 #: ../core/Utils/TimeUtils.vala:52 ../core/Utils/TimeUtils.vala:83
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] "%u ደቂቃ"
-msgstr[1] "%u ደቂቆች"
+msgstr[0] "%u நிமிடம்"
+msgstr[1] "%u நிமிடங்கள்"
 
 #: ../core/Utils/TimeUtils.vala:56
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] "%u ሰከንድ"
-msgstr[1] "%u ሰከንዶች"
+msgstr[0] "%u விநாடி"
+msgstr[1] "%u விநாடிகள்"
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:58
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr "%s மற்றும் %s"
 
 #: ../core/Utils/TimeUtils.vala:77
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] "%u ቀን"
-msgstr[1] "%u ቀኖች"
+msgstr[0] "%u தினம்"
+msgstr[1] "%u நாட்கள்"
 
 #: ../core/Utils/TimeUtils.vala:80
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] "%u ሰአት"
-msgstr[1] "%u ሰአቶች"
+msgstr[0] "%u மணி"
+msgstr[1] "%u மணிநேரம்"
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:91
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr "%s, %s እና %s"
+msgstr "%s, %s மற்றும் %s"
 
 #. / days and hours
 #: ../core/Utils/TimeUtils.vala:94
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr "%s மற்றும் %s"
 
 #. / days and minutes
 #: ../core/Utils/TimeUtils.vala:99
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr "%s மற்றும் %s"
 
 #. / hours and minutes
 #: ../core/Utils/TimeUtils.vala:108
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr "%s እና %s"
+msgstr "%s மற்றும் %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -182,7 +182,7 @@ msgstr "%s (%d)"
 
 #: ../core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr "አዲስ የማጫወቻ ዝርዝር"
+msgstr "புதிய இசைப்பட்டியல்"
 
 #: ../core/Utils/PlaylistsUtils.vala:246
 msgid "%s (%i)"
@@ -190,11 +190,11 @@ msgstr "%s (%i)"
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr "የማጫወቻ ዝርዝር መላኪያ"
+msgstr "இசைப்பட்டியல் ஏற்றுமதி செய்"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG பதிப்பு 3.0 நீட்டிக்கப்பட்ட (*.m3u)"
 
 #: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
@@ -202,29 +202,29 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr "የማጫወቻ ዝርዝር"
+msgstr "இசைப்பட்டியல்"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
-msgstr "ማምጫ %s"
+msgstr "%s ஐ இறக்குமதி செய்"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "அங்கீகரிக்கப்படாத பிளேலிஸ்ட் கோப்பு. இறக்குமதி தோல்வியடைந்தது."
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:43
 msgid "Unknown"
-msgstr "ያልታወቀ"
+msgstr "அறியப்படாத"
 
 #: ../core/Media.vala:53
 msgid "Radio Station"
-msgstr "ሬዲዮ ጣቢያ"
+msgstr "வானொலி நிலையம்"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:183
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$பெயர் மற்றும் $ஆல்பம்"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: ../core/Media.vala:186
@@ -263,13 +263,13 @@ msgstr ""
 #: ../src/LibraryWindow.vala:662 ../src/LibraryWindow.vala:799
 #: ../src/Views/DeviceSummaryWidget.vala:121
 msgid "Music"
-msgstr ""
+msgstr "இசை"
 
 #: ../src/LibraryWindow.vala:854 ../src/PlaybackManager.vala:99
 #: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "ወረፋ"
+msgstr "வரிசை"
 
 #: ../src/LibraryWindow.vala:857
 msgid "No songs in Queue"
@@ -285,7 +285,7 @@ msgstr ""
 #: ../src/LibraryWindow.vala:864 ../src/PlaybackManager.vala:97
 #: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
 msgid "History"
-msgstr "ታሪክ"
+msgstr "வரலாறு"
 
 #: ../src/LibraryWindow.vala:867
 msgid "No songs in History"
@@ -308,11 +308,11 @@ msgstr ""
 
 #: ../src/FileOperator.vala:351
 msgid "Import Complete"
-msgstr "ማምጣቱ ተፈጽሟል"
+msgstr "இறக்குமதி முடிந்தது"
 
 #: ../src/FileOperator.vala:351
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s உங்கள் நூலகம் இறக்குமதி செய்துள்ளது."
 
 #: ../src/FileOperator.vala:366
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -320,14 +320,14 @@ msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:25
 msgid "Unknown Album"
-msgstr "ያልታወቀ አልበም"
+msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:26 ../src/Objects/ArtistInfo.vala:27
 #: ../src/GStreamer/Streamer.vala:187
 #: ../plugins/Devices/CDRom/CDPlayer.vala:203
 #: ../plugins/Devices/iPod/iPodStreamer.vala:194
 msgid "Unknown Artist"
-msgstr "ያልታወቀ ድምፃዊ"
+msgstr "அறியாத கலைஞர்"
 
 #: ../src/Objects/TrackInfo.vala:25
 msgid "Unknown Track"
@@ -837,15 +837,17 @@ msgstr ""
 
 #: ../src/Noise.vala:37
 msgid "Listen to music"
-msgstr "ሙዚቃ ያድምጡ"
+msgstr ""
 
 #: ../src/Noise.vala:38
 msgid "Music Player"
-msgstr "ሙዚቃ ማጫወቻ"
+msgstr "இசை இயக்கி"
 
 #: ../src/Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
+"சத்தம்;ஆடியோ;பிளேயர்;எம்பி3;ஐபாட்;பிளே;பிளேலிஸ்ட்;மீடியா;குறுவட்டு;தொலைபேசி"
+";பாடல்கள்;"
 
 #: ../src/LocalLibrary.vala:164
 msgid "Importing music from %s…"
@@ -898,7 +900,7 @@ msgstr ""
 #: ../src/Widgets/PresetList.vala:49
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
 msgid "Automatic"
-msgstr ""
+msgstr "தானியங்கி"
 
 #: ../src/Widgets/PresetList.vala:50
 msgid "Delete Current"
@@ -996,7 +998,7 @@ msgstr ""
 #: ../src/Widgets/SourceListView.vala:134
 #: ../src/Views/ListView/Lists/MusicListView.vala:130
 msgid "Import to Library"
-msgstr ""
+msgstr "நூலகத்திற்கு இறக்குமதி செய்யவும்"
 
 #: ../src/Widgets/SourceListView.vala:142
 msgid "Eject"
@@ -1064,11 +1066,11 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:86
 msgid "Device Name:"
-msgstr ""
+msgstr "சாதன பெயர்:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:89
 msgid "Device Name"
-msgstr ""
+msgstr "சாதன பெயர்"
 
 #: ../src/Views/DeviceSummaryWidget.vala:91
 msgid "Automatically sync when plugged in:"
@@ -1076,15 +1078,15 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:98
 msgid "Sync:"
-msgstr ""
+msgstr "ஒத்திசைவு:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:120
 msgid "Other Files"
-msgstr ""
+msgstr "பிற கோப்புகள்"
 
 #: ../src/Views/DeviceSummaryWidget.vala:122
 msgid "Podcasts"
-msgstr ""
+msgstr "போட்காஸ்ட்கள்"
 
 #: ../src/Views/DeviceSummaryWidget.vala:416
 msgid "All Music"
@@ -1121,7 +1123,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
-msgstr "በመሰረዝ ላይ…"
+msgstr "ரத்துசெய்யப்படுகிறது..."
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Device operation has been cancelled and will stop after this media."
@@ -1155,11 +1157,11 @@ msgstr ""
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:251
 #: ../src/Views/ListView/Lists/MusicListView.vala:703
 msgid "Never"
-msgstr ""
+msgstr "எப்போதுமில்லை"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:91
 msgid "Remove from Library"
-msgstr ""
+msgstr "நூலகத்திலிருந்து நீக்குக"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:98
 msgid "Remove from Queue"
@@ -1188,11 +1190,11 @@ msgstr ""
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "வரிசை"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:128
 msgid "Add to Playlist"
-msgstr ""
+msgstr "இயக்க பட்டியலில் சேர்"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove Song"
@@ -1214,7 +1216,7 @@ msgstr[1] ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:688
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1230,42 +1232,42 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
 msgid "Track"
-msgstr ""
+msgstr "தடம்"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "தலைப்பு"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "நீளம்"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "ஆர்டிஸ்ட்"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "ஆல்பம்"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "கோப்பு கலைஞர்"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "கம்போசர்"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
@@ -1275,22 +1277,22 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "ஆண்டு"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
 msgid "Grouping"
-msgstr ""
+msgstr "குழுவாக்கம்"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr ""
+msgstr "பிட்விகிதம்"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
 msgid "Rating"
-msgstr ""
+msgstr "தரவரிசை"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:97
 msgctxt "List column title"
@@ -1305,12 +1307,12 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:103
 msgctxt "List column title"
 msgid "Date Added"
-msgstr ""
+msgstr "சேர்க்கப்பட்ட தேதி"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:106
 msgctxt "List column title"
 msgid "Last Played"
-msgstr ""
+msgstr "கடைசியாக இசைக்கப்பட்டது"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
@@ -1320,28 +1322,28 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr ""
+msgstr "இடம்"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
 msgid "File Size"
-msgstr ""
+msgstr "கோப்பு அளவு"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
 msgid "Genres"
-msgstr ""
+msgstr "பாணிகள்"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
 msgid "Artists"
-msgstr ""
+msgstr "கலைஞர்கள்"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
 msgid "Albums"
-msgstr ""
+msgstr "ஆல்பங்கள்"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
 msgid "Years"
-msgstr ""
+msgstr "ஆண்டுகள்"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Ratings"
@@ -1445,7 +1447,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:401
 msgid "Unrated"
-msgstr ""
+msgstr "தரமிடாதது"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:403
 msgid "%i Star"
@@ -1466,13 +1468,13 @@ msgstr[1] ""
 #: ../src/Views/ListView/ListView.vala:368
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u பாடல்"
+msgstr[1] "%u பாடல்கள்"
 
 #: ../src/Views/ListView/ListView.vala:376
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
-msgstr ""
+msgstr "%s, %s"
 
 #: ../src/Views/ContentView.vala:21
 msgctxt ""
@@ -1544,34 +1546,34 @@ msgstr ""
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
-msgstr "አልበሞች አልተገኙም"
+msgstr ""
 
 #: ../src/Views/GridView/GridView.vala:150
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] "%u አልበም"
-msgstr[1] "%u አልበሞች"
+msgstr[0] "%u ஆல்பம்"
+msgstr[1] "%u ஆல்பங்கள்"
 
 #: ../src/Views/GridView/PopupListView.vala:162
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr "%s በ %s"
+msgstr "%s மூலம் %s"
 
 #: ../src/Views/GridView/album-view-clutter.vala:550
 msgid "%d minutes"
-msgstr "%d ደቂቆች"
+msgstr "%d நிமிடங்கள்"
 
 #: ../src/Views/GridView/album-view-clutter.vala:553
 msgid "%d hours"
-msgstr "%d ሰአቶች"
+msgstr "%d மணிநேரம்"
 
 #: ../src/Views/GridView/album-view-clutter.vala:556
 msgid "%d days"
-msgstr "%d ቀኖች"
+msgstr "%d நாட்கள்"
 
 #: ../src/Views/GridView/album-view-clutter.vala:561
 msgid "%u items, %s, %s"
-msgstr "%u እቃዎች, %s, %s"
+msgstr "%u உருப்படிகள், %s, %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:96
 msgid "Audio CD Invalid"
@@ -1745,7 +1747,3 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
-
-#, c-format
-#~ msgid "Importing music from %s..."
-#~ msgstr "ሙዚቃ በማምጣት ላይ ከ %s..."
