@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-14 22:50+0200\n"
-"PO-Revision-Date: 2014-04-15 17:11+0000\n"
-"Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
+"PO-Revision-Date: 2014-04-16 19:28+0000\n"
+"Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-04-16 07:00+0000\n"
-"X-Generator: Launchpad (build 16976)\n"
+"X-Launchpad-Export-Date: 2014-04-17 06:49+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -28,11 +28,11 @@ msgstr "Peru"
 
 #: ../core/Resources.vala:59
 msgid "Open"
-msgstr ""
+msgstr "Avaa"
 
 #: ../core/Resources.vala:60
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -246,15 +246,15 @@ msgstr "Asetukset"
 
 #: ../src/LibraryWindow.vala:263
 msgid "Previous"
-msgstr ""
+msgstr "Edellinen"
 
 #: ../src/LibraryWindow.vala:265
 msgid "Play"
-msgstr ""
+msgstr "Toista"
 
 #: ../src/LibraryWindow.vala:267
 msgid "Next"
-msgstr ""
+msgstr "Seuraava"
 
 #: ../src/LibraryWindow.vala:271
 msgid "Search Music"
@@ -449,11 +449,11 @@ msgstr "Podcast"
 
 #: ../src/Dialogs/MediaEditor.vala:683
 msgid "Reset"
-msgstr ""
+msgstr "Palauta"
 
 #: ../src/Dialogs/MediaEditor.vala:687
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Tilastot</b>"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:56
 #: ../src/Dialogs/NotImportedWindow.vala:72
@@ -798,11 +798,11 @@ msgstr "Työpöytäintegraatio"
 
 #: ../src/Dialogs/PreferencesWindow.vala:166
 msgid "Notifications:"
-msgstr ""
+msgstr "Ilmoitukset:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:171
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Jatka toistoa suljettaessa:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:65
 msgid "Remove Media"
@@ -1151,7 +1151,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
@@ -1205,7 +1205,7 @@ msgstr "Näytä tiedostonhallinnassa"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Muut toiminnot"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1510,7 +1510,7 @@ msgstr "Ei kappaleita"
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Päivitetään soittolistaa, odota hetki."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
