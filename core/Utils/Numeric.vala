@@ -45,7 +45,7 @@ namespace Noise.Numeric {
      * A method for extracting integers from strings.
      *
      * The method does its best to extract a number from a string by cleaning up
-     * non-numeric characters before parsing the string using uint64.parse(). The
+     * non-numeric characters before parsing the string with uint64.parse(). The
      * purpose of this method is to provide a safe way of extracting numbers
      * from strings without making everything crash when passing a weird localized
      * string that would normally lead uint64.parse, int64.parse or int.parse

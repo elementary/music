@@ -19,8 +19,6 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-using Gtk;
-
 public class Noise.FastGrid : Widgets.TileView {
 
     public enum Column {
@@ -71,8 +69,8 @@ public class Noise.FastGrid : Widgets.TileView {
         return showing;
     }
 
-    public int get_index_from_iter (TreeIter iter) {
-        return (int)iter.user_data;
+    public int get_index_from_iter (Gtk.TreeIter iter) {
+        return (int) iter.user_data;
     }
 
     public GLib.Object get_object_from_index (int index) {
@@ -143,7 +141,7 @@ public class Noise.FastGrid : Widgets.TileView {
         }
         else if (old_size > showing.size ()) { // removing
             while (fm.iter_n_children (null) > showing.size ()) {
-                TreeIter iter;
+                Gtk.TreeIter iter;
                 fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
                 fm.remove (iter);
             }
@@ -152,7 +150,7 @@ public class Noise.FastGrid : Widgets.TileView {
             queue_draw ();
         }
         else if (showing.size () > old_size) { // adding
-            TreeIter iter;
+            Gtk.TreeIter iter;
             
             while (fm.iter_n_children (null) < showing.size ()) {
                 fm.append (out iter);

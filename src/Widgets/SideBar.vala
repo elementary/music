@@ -25,7 +25,6 @@
  */
 
 using Gtk;
-using Gdk;
 
 namespace Granite.Widgets {
 	
@@ -37,14 +36,14 @@ namespace Granite.Widgets {
 			expanded = false;
 		}
 		
-		public override void get_size(Widget widget, Rectangle? cell_area, out int x_offset, out int y_offset, out int width, out int height) {
+		public override void get_size(Widget widget, Gdk.Rectangle? cell_area, out int x_offset, out int y_offset, out int width, out int height) {
 			x_offset = 0;
 			y_offset = 4;
 			width = 8;
 			height = 8;
 		}
 		
-		public override void render(Cairo.Context context, Widget widget, Rectangle background_area, Rectangle cell_area, CellRendererState flags) {
+		public override void render(Cairo.Context context, Widget widget, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gtk.CellRendererState flags) {
 			if(expanded)
 				widget.get_style_context().set_state(StateFlags.ACTIVE);
 			else
@@ -446,7 +445,7 @@ namespace Granite.Widgets {
 		}
 		
 		private bool overClickable(TreeIter iter, TreeViewColumn col, int x, int y) {
-			Pixbuf pix;
+			Gdk.Pixbuf pix;
 			filter.get(iter, 5, out pix);
 			
 			if(pix == null)

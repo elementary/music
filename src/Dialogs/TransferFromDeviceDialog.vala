@@ -23,11 +23,10 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-using Gee;
 using Gtk;
 
 public class Noise.TransferFromDeviceDialog : Window {
-	LinkedList<Media> medias;
+	Gee.LinkedList<Media> medias;
 	Device d;
 	
 	//for padding around notebook mostly
@@ -45,13 +44,13 @@ public class Noise.TransferFromDeviceDialog : Window {
 	Gtk.MenuItem selectAlbum;
 	Gtk.MenuItem selectArtist;
 	
-	LinkedList<Media> to_transfer;
+	Gee.LinkedList<Media> to_transfer;
 	
-	public TransferFromDeviceDialog(Device d, LinkedList<Media> medias) {
+	public TransferFromDeviceDialog(Device d, Gee.LinkedList<Media> medias) {
 		this.medias = medias;
 		this.d = d;
 		
-		to_transfer = new LinkedList<Media>();
+		to_transfer = new Gee.LinkedList<Media>();
 		
 		this.set_title(_("Import from Device"));
 		
@@ -142,7 +141,7 @@ public class Noise.TransferFromDeviceDialog : Window {
 		//view.get_selection().set_mode(SelectionMode.MULTIPLE);
 		
 		/* fill the treeview */
-		var medias_sorted = new LinkedList<Media>();
+		var medias_sorted = new Gee.LinkedList<Media>();
 		foreach(var m in medias)
 			medias_sorted.add(m);
 		medias_sorted.sort(mediaCompareFunc);

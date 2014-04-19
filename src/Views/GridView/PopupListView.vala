@@ -17,9 +17,6 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-using Gee;
-using Gtk;
-
 #if USE_GRANITE_DECORATED_WINDOW
 public class Noise.PopupListView : Granite.Widgets.DecoratedWindow {
 #else
@@ -79,8 +76,8 @@ public class Noise.PopupListView : Window {
         skip_taskbar_hint = true;
 
         // album artist/album labels
-        album_label = new Label ("");
-        artist_label = new Label ("");
+        album_label = new Gtk.Label ("");
+        artist_label = new Gtk.Label ("");
 
         // Apply special style: Level-2 header
         Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, album_label);
@@ -104,17 +101,17 @@ public class Noise.PopupListView : Window {
 
         list_view.expand = true;
         
-        var list_view_scrolled = new ScrolledWindow (null, null);
+        var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
         list_view_scrolled.add (list_view);
 
         // Rating widget
-        rating = new Granite.Widgets.Rating (true, IconSize.MENU, true);
+        rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
         // customize rating
         rating.star_spacing = 16;
         rating.margin_top = rating.margin_bottom = 16;
 
         // Add everything
-        var vbox = new Box(Orientation.VERTICAL, 0);
+        var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 #if !USE_GRANITE_DECORATED_WINDOW
         vbox.pack_start (close, false, false, 0);
 #endif
@@ -208,7 +205,7 @@ public class Noise.PopupListView : Window {
     }
 
     void rating_changed (int new_rating) {
-        var updated = new LinkedList<Media> ();
+        var updated = new Gee.LinkedList<Media> ();
         lock(media_list) {
 
             foreach (var media in media_list) {

@@ -20,16 +20,14 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gee;
-
 public class Noise.Plugins.iPodDeviceManager : GLib.Object {
-    ArrayList<iPodDevice> devices;
+    Gee.ArrayList<iPodDevice> devices;
     iPodStreamer streamer;
-    
+
     public iPodDeviceManager() {
-        devices = new ArrayList<iPodDevice>();
+        devices = new Gee.ArrayList<iPodDevice>();
         streamer = new iPodStreamer (this);
-        
+
         var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
         device_manager.mount_removed.connect (mount_removed);
@@ -38,15 +36,16 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
         }
         Noise.App.player.add_playback (streamer);
     }
-    
+
     public void remove_all () {
         var device_manager = DeviceManager.get_default ();
         foreach(var dev in devices) {
             device_manager.device_removed ((Noise.Device)dev);
         }
-        devices = new ArrayList<iPodDevice>();
+
+        devices = new Gee.ArrayList<iPodDevice>();
     }
-    
+
     public virtual void mount_added (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
@@ -60,7 +59,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
             var added = new iPodDevice(mount);
             added.set_mount(mount);
             devices.add(added);
-        
+
             if(added.start_initialization() == true) {
                 added.finish_initialization();
                 added.initialized.connect((d) => {
@@ -75,29 +74,29 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
             return;
         }
     }
-    
+
     public virtual void mount_changed (Mount mount) {
         //stdout.printf("mount_changed:%s\n", mount.get_uuid());
     }
-    
+
     public virtual void mount_pre_unmount (Mount mount) {
         //stdout.printf("mount_preunmount:%s\n", mount.get_uuid());
     }
-    
+
     public virtual void mount_removed (Mount mount) {
         var device_manager = DeviceManager.get_default ();
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 device_manager.device_removed ((Noise.Device)dev);
-                
+
                 // Actually remove it
                 devices.remove(dev);
-                
+
                 return;
             }
         }
     }
-    
+
     public iPodDevice? get_device_for_uri (string uri) {
         foreach (var device in devices) {
             if (device.get_library ().media_from_uri (uri) != null) {

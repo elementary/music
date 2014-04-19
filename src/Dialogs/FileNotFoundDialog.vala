@@ -28,18 +28,17 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Corentin Noël <tintou@mailoo.org>
  */
-using Gtk;
 
-public class Noise.FileNotFoundDialog : Window {
+public class Noise.FileNotFoundDialog : Gtk.Window {
 	Gee.LinkedList<Media> media_list;
 	
 	private Gtk.Box content;
 	private Gtk.Box padding;
 	
-	Button removeMedia;
-	Button locateMedia;
-	Button rescanLibrary;
-	Button doNothing;
+	Gtk.Button removeMedia;
+	Gtk.Button locateMedia;
+	Gtk.Button rescanLibrary;
+	Gtk.Button doNothing;
 	
 	public FileNotFoundDialog (Gee.LinkedList<Media> media_list) {
 		this.media_list = media_list;
@@ -59,13 +58,13 @@ public class Noise.FileNotFoundDialog : Window {
 		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 		
 		// initialize controls
-		Image warning = new Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
-		Label title = new Label("");
-		Label info = new Label("");
-		removeMedia = new Button.with_label(_("Remove Media"));
-		locateMedia = new Button.with_label(_("Locate Media"));
-		rescanLibrary = new Button.with_label(_("Rescan Library"));
-		doNothing = new Button.with_label(_("Do Nothing"));
+		Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
+		Gtk.Label title = new Gtk.Label("");
+		Gtk.Label info = new Gtk.Label("");
+		removeMedia = new Gtk.Button.with_label(_("Remove Media"));
+		locateMedia = new Gtk.Button.with_label(_("Locate Media"));
+		rescanLibrary = new Gtk.Button.with_label(_("Rescan Library"));
+		doNothing = new Gtk.Button.with_label(_("Do Nothing"));
 		
 		// pretty up labels
 
@@ -99,7 +98,7 @@ public class Noise.FileNotFoundDialog : Window {
 		information.pack_start(information_text, true, true, 10);
 		
 		var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-		bottomButtons.set_layout(ButtonBoxStyle.END);
+		bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
 		bottomButtons.pack_end(removeMedia, false, false, 0);
 		bottomButtons.pack_end(rescanLibrary, false, false, 0);
 		bottomButtons.pack_end(locateMedia, false, false, 0);
@@ -136,10 +135,10 @@ public class Noise.FileNotFoundDialog : Window {
 		int media_id = m.rowid;
 		
 		string file = "";
-		var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
-								  FileChooserAction.OPEN,
-								  _(STRING_CANCEL), ResponseType.CANCEL,
-								  _(STRING_OPEN), ResponseType.ACCEPT);
+		var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,
+								  Gtk.FileChooserAction.OPEN,
+								  _(STRING_CANCEL), Gtk.ResponseType.CANCEL,
+								  _(STRING_OPEN), Gtk.ResponseType.ACCEPT);
 		
 		// try and help user by setting a sane default folder
 		var invalid_file = File.new_for_uri(libraries_manager.local_library.media_from_id(media_id).uri);
@@ -154,7 +153,7 @@ public class Noise.FileNotFoundDialog : Window {
 		else
 			file_chooser.set_current_folder(Environment.get_home_dir());
 		
-		if (file_chooser.run () == ResponseType.ACCEPT) {
+		if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
 			file = file_chooser.get_filename();
 		}
 		

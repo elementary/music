@@ -20,8 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
  
-using Gee;
-
 public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
 
     Mount mount;
@@ -87,7 +85,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
                     stderr.printf ("Error: %s\n", e.message);
                 }
             }
-            LinkedList<string> files = new LinkedList<string> ();
+            Gee.LinkedList<string> files = new Gee.LinkedList<string> ();
             int items = 0;
             foreach (var folder in music_folders) {
                 var music_folder_file = GLib.File.new_for_uri (folder);

@@ -20,14 +20,10 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-using Gdk;
-using Gee;
-
-public class Noise.SimpleOptionChooser : EventBox {
+public class Noise.SimpleOptionChooser : Gtk.EventBox {
 	Gtk.Menu? menu = null;
-	public LinkedList<RadioMenuItem> items;
-	public LinkedList<Gtk.Image> images;
+	public Gee.LinkedList<Gtk.RadioMenuItem> items;
+	public Gee.LinkedList<Gtk.Image> images;
 
 	int clicked_index;
 	int previous_index; // for left click
@@ -42,8 +38,8 @@ public class Noise.SimpleOptionChooser : EventBox {
 	public SimpleOptionChooser (bool menu_only_mode = false) {
         this.menu_only_mode = menu_only_mode;
 
-		items = new LinkedList<RadioMenuItem>();
-		images = new LinkedList<Gtk.Image>();
+		items = new Gee.LinkedList<Gtk.RadioMenuItem>();
+		images = new Gee.LinkedList<Gtk.Image>();
 		toggling = false;
 
 		clicked_index = 0;
@@ -79,9 +75,9 @@ public class Noise.SimpleOptionChooser : EventBox {
 
 		Gtk.RadioMenuItem item;
 		if (items.size == 0)
-		    item = new RadioMenuItem.with_label(new SList<Gtk.RadioMenuItem>(), text);
+		    item = new Gtk.RadioMenuItem.with_label(new SList<Gtk.RadioMenuItem>(), text);
 	    else
-	        item = new RadioMenuItem.with_label_from_widget (items.get(0), text);
+	        item = new Gtk.RadioMenuItem.with_label_from_widget (items.get(0), text);
 		Gtk.Image item_image = image;
 		image.set_tooltip_text (tooltip);
 		items.add(item);

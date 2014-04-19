@@ -20,9 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-
-public class Noise.PresetList : ComboBox {
+public class Noise.PresetList : Gtk.ComboBox {
 
 	public signal void preset_selected(EqualizerPreset p);
 	public signal void automatic_preset_chosen();
@@ -41,7 +39,7 @@ public class Noise.PresetList : ComboBox {
 	private bool modifying_list;
 	private bool automatic_selected;
 
-	private ListStore store;
+	private Gtk.ListStore store;
 
 	private const string SEPARATOR_NAME = "<separator_item_unique_name>";
 
@@ -54,7 +52,7 @@ public class Noise.PresetList : ComboBox {
 		modifying_list = false;
 		automatic_selected = false;
 
-		store = new ListStore(2, typeof(GLib.Object), typeof(string));
+		store = new Gtk.ListStore(2, typeof(GLib.Object), typeof(string));
 
 		buildUI();
 
@@ -73,7 +71,7 @@ public class Noise.PresetList : ComboBox {
 			return content == SEPARATOR_NAME;
 		});
 
-		var cell = new CellRendererText();
+		var cell = new Gtk.CellRendererText();
 		cell.ellipsize = Pango.EllipsizeMode.END;
 		this.pack_start(cell, true);
 		this.add_attribute(cell, "text", 1);
@@ -88,7 +86,7 @@ public class Noise.PresetList : ComboBox {
 	}
 
 	public void addAutomaticMode() {
-		TreeIter iter;
+		Gtk.TreeIter iter;
 
 		store.append(out iter);
 		store.set(iter, 0, null, 1, AUTOMATIC_MODE);
@@ -97,7 +95,7 @@ public class Noise.PresetList : ComboBox {
 	}
 
 	public void addSeparator () {
-		TreeIter iter;
+		Gtk.TreeIter iter;
 		store.append(out iter);
 		store.set(iter, 0, null, 1, SEPARATOR_NAME);
 	}
@@ -113,7 +111,7 @@ public class Noise.PresetList : ComboBox {
    			ncustompresets++;
 		}
 
-		TreeIter iter;
+		Gtk.TreeIter iter;
 		store.append(out iter);
 		store.set(iter, 0, ep, 1, ep.name);
 
@@ -126,7 +124,7 @@ public class Noise.PresetList : ComboBox {
 	public void removeCurrentPreset() {
 		modifying_list = true;
 
-		TreeIter iter;
+		Gtk.TreeIter iter;
 		for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
 			GLib.Object o;
 			store.get(iter, 0, out o);
@@ -153,7 +151,7 @@ public class Noise.PresetList : ComboBox {
 		if (modifying_list)
 			return;
 
-		TreeIter it;
+		Gtk.TreeIter it;
 		get_active_iter (out it);
 
 		GLib.Object o;
@@ -194,7 +192,7 @@ public class Noise.PresetList : ComboBox {
 	public void selectPreset(string? preset_name) {
 
 		if (!(preset_name == null || preset_name.length < 1)) {
-			TreeIter iter;
+			Gtk.TreeIter iter;
 			for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
 				GLib.Object o;
 				store.get(iter, 0, out o);
@@ -212,7 +210,7 @@ public class Noise.PresetList : ComboBox {
 	}
 
 	public EqualizerPreset? getSelectedPreset() {
-		TreeIter it;
+		Gtk.TreeIter it;
 		get_active_iter(out it);
 
 		GLib.Object o;
@@ -228,7 +226,7 @@ public class Noise.PresetList : ComboBox {
 
 		var rv = new Gee.LinkedList<EqualizerPreset>();
 
-		TreeIter iter;
+		Gtk.TreeIter iter;
 		for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
 			GLib.Object o;
 			store.get(iter, 0, out o);
@@ -241,7 +239,7 @@ public class Noise.PresetList : ComboBox {
 	}
 
 	private void remove_delete_option () {
-		TreeIter iter;
+		Gtk.TreeIter iter;
 		for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
 			string text;
 			store.get(iter, 1, out text);
@@ -256,7 +254,7 @@ public class Noise.PresetList : ComboBox {
 
 	private void remove_separator_item (int index) {
 		int count = 0, nitems = store.iter_n_children(null);
-		TreeIter iter;
+		Gtk.TreeIter iter;
 
 		for(int i = nitems - 1; store.get_iter_from_string(out iter, i.to_string()); --i) {
 			count++;
@@ -272,7 +270,7 @@ public class Noise.PresetList : ComboBox {
 
 	private void add_delete_preset_option () {
 		bool already_added = false;
-		TreeIter last_iter, new_iter;
+		Gtk.TreeIter last_iter, new_iter;
 
 		for(int i = 0; store.get_iter_from_string(out last_iter, i.to_string()); ++i) {
 			string text;

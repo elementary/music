@@ -26,10 +26,6 @@
  * statement from your version.
  */
 
-using Gtk;
-using Peas;
-using PeasGtk;
-
 namespace Noise.Plugins {
     
     public class LastFMPlugin : Peas.ExtensionBase, Peas.Activatable {

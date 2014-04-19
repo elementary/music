@@ -20,18 +20,15 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-using Gee;
-
-public class Noise.InstallGstreamerPluginsDialog : Window {
+public class Noise.InstallGstreamerPluginsDialog : Gtk.Window {
 	Gst.Message message;
 	string detail;
 	
 	private Gtk.Box content;
 	private Gtk.Box padding;
 	
-	Button installPlugin;
-	Button doNothing;
+	Gtk.Button installPlugin;
+	Gtk.Button doNothing;
 	
 	public InstallGstreamerPluginsDialog(Gst.Message message) {
 		this.message = message;
@@ -51,11 +48,11 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 
 		// initialize controls
-		Image warning = new Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
-		Label title = new Label("");
-		Label info = new Label("");
-		installPlugin = new Button.with_label(_("Install Plugin"));
-		doNothing = new Button.from_stock ("dialog-cancel");
+		Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
+		Gtk.Label title = new Gtk.Label("");
+		Gtk.Label info = new Gtk.Label("");
+		installPlugin = new Gtk.Button.with_label(_("Install Plugin"));
+		doNothing = new Gtk.Button.from_stock ("dialog-cancel");
 		
 		// pretty up labels
 		title.xalign = 0.0f;
@@ -74,7 +71,7 @@ public class Noise.InstallGstreamerPluginsDialog : Window {
 		information.pack_start(information_text, true, true, 10);
 		
 		var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-		bottomButtons.set_layout(ButtonBoxStyle.END);
+		bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
 		bottomButtons.pack_end(installPlugin, false, false, 0);
 		bottomButtons.pack_end(doNothing, false, false, 10);
 		bottomButtons.set_spacing(10);

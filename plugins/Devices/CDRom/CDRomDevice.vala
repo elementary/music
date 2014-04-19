@@ -20,8 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gee;
-
 public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     Mount mount;
     GLib.Icon icon;
@@ -39,8 +37,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     int index;
     int total;
     
-    LinkedList<Noise.Media> medias;
-    LinkedList<Noise.Media> list;
+    Gee.LinkedList<Noise.Media> medias;
+    Gee.LinkedList<Noise.Media> list;
     CDPlayer cdplayer;
     
     CDView cdview;
@@ -53,8 +51,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         this.icon = new Icon ("media-cdrom-audio").gicon;
         this.display_name = mount.get_name();
         
-        list = new LinkedList<Noise.Media>();
-        medias = new LinkedList<Noise.Media>();
+        list = new Gee.LinkedList<Noise.Media>();
+        medias = new Gee.LinkedList<Noise.Media>();
         
         cdview = new CDView (this);
         cdplayer = new CDPlayer (mount);
@@ -220,7 +218,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return libraries_manager.local_library;
     }
     
-    public Collection<Noise.Media> get_medias() {
+    public Gee.Collection<Noise.Media> get_medias() {
         return medias;
     }
     
@@ -241,7 +239,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return transfer_to_library (medias);
     }
     
-    public bool transfer_to_library(Collection<Noise.Media> trans_list) {
+    public bool transfer_to_library(Gee.Collection<Noise.Media> trans_list) {
         this.list.clear ();
         this.list.add_all (trans_list);
         if(list.size == 0)
@@ -319,7 +317,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         Noise.Media lib_copy = s.copy();
         lib_copy.isTemporary = false;
         lib_copy.unique_status_image = null;
-        var copied_list = new ArrayList<Media> ();
+        var copied_list = new Gee.ArrayList<Media> ();
         copied_list.add (lib_copy);
         
         // update media in cdrom list to show as completed

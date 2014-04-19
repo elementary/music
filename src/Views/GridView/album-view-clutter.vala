@@ -34,9 +34,6 @@
  *   from AlbumIconView.vala and leaving the rest of the code unmodified.
  */
 
-using Gtk;
-using Gee;
-
 namespace Noise {
     bool clutter_usable = false;
 }

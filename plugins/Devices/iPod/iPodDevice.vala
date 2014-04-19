@@ -20,12 +20,9 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using GPod;
-using Gee;
-
 public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     Noise.DevicePreferences pref;
-    iTunesDB db;
+    GPod.iTunesDB db;
     public Mount mount;
     GLib.Icon icon;
     public bool is_supported = true;
@@ -52,8 +49,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     
     public bool start_initialization() {
         try {
-            db = iTunesDB.parse(mount.get_default_location().get_path());
-            if (db.device.get_ipod_info().ipod_model == iPodModel.INVALID || db.device.get_ipod_info().ipod_model == iPodModel.UNKNOWN) {
+            db = GPod.iTunesDB.parse(mount.get_default_location().get_path());
+            if (db.device.get_ipod_info().ipod_model == GPod.iPodModel.INVALID || db.device.get_ipod_info().ipod_model == GPod.iPodModel.UNKNOWN) {
                 is_supported = false;
             }
             library = new iPodLibrary (db, this);
