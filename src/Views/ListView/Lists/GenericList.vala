@@ -17,9 +17,6 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gee;
-using Gtk;
-
 public abstract class Noise.GenericList : FastView {
 
     public signal void import_requested (Gee.LinkedList<Media> to_import);
@@ -72,7 +69,7 @@ public abstract class Noise.GenericList : FastView {
         add_columns ();
 
         // allow selecting multiple rows
-        get_selection ().set_mode (SelectionMode.MULTIPLE);
+        get_selection ().set_mode (Gtk.SelectionMode.MULTIPLE);
 
         rows_reordered.connect (on_rows_reordered);
 
@@ -108,7 +105,7 @@ public abstract class Noise.GenericList : FastView {
         this.relative_id = parent_wrapper.relative_id;
     }
 
-    protected void add_column_chooser_menu_item (TreeViewColumn tvc, ListColumn type) {
+    protected void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {
         if (type == ListColumn.TITLE || type == ListColumn.ICON)
             return;
 
@@ -236,7 +233,7 @@ public abstract class Noise.GenericList : FastView {
     protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
 
     protected void add_columns () {
-        foreach (TreeViewColumn tvc in tvs.get_columns ())
+        foreach (Gtk.TreeViewColumn tvc in tvs.get_columns ())
             add_column (tvc, TreeViewSetup.get_column_type (tvc));
     }
 
@@ -274,7 +271,7 @@ public abstract class Noise.GenericList : FastView {
             set_as_current_list ();
     }
 
-    public override void row_activated (TreePath path, TreeViewColumn column) {
+    public override void row_activated (Gtk.TreePath path, Gtk.TreeViewColumn column) {
         /*if (tvs.get_hint () == ViewWrapper.Hint.DEVICE_AUDIO || tvs.get_hint () == ViewWrapper.Hint.DEVICE_PODCAST) {
             lw.doAlert (_("Playing not Supported"), _("Due to issues with playing songs on certain iOS devices, playing songs off devices is currently not supported."));
             return;
@@ -306,7 +303,7 @@ public abstract class Noise.GenericList : FastView {
         scroll_to_current_media (false);
     }
 
-    public void media_updated (Collection<int> ids) {
+    public void media_updated (Gee.Collection<int> ids) {
         queue_draw ();
     }
 
@@ -340,9 +337,9 @@ public abstract class Noise.GenericList : FastView {
 
     protected GLib.List<Media> get_selected_medias () {
         var rv = new GLib.List<Media> ();
-        TreeModel temp;
+        Gtk.TreeModel temp;
 
-        foreach (TreePath path in get_selection ().get_selected_rows (out temp)) {
+        foreach (Gtk.TreePath path in get_selection ().get_selected_rows (out temp)) {
             var m = get_media_from_index (int.parse (path.to_string ()));
             rv.append (m);
         }
@@ -362,7 +359,7 @@ public abstract class Noise.GenericList : FastView {
             var m = get_media_from_index (i);
 
             if (m == App.player.media_info.media) {
-                var path = new TreePath.from_indices (i, -1);
+                var path = new Gtk.TreePath.from_indices (i, -1);
 
                 // Only scroll to the middle (true) if the cell *is not within the visible range*;
                 // otherwise, do a minimum effort (false) to avoid unnecessary scrolling when

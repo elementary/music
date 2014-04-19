@@ -28,8 +28,6 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-using Gst;
-
 namespace Noise {
 	private Gee.Collection<EqualizerPreset> ? default_presets = null;
 }
@@ -38,7 +36,7 @@ public class Noise.Equalizer : GLib.Object {
 	public dynamic Gst.Element element;
 
 	public Equalizer() {
-		element = ElementFactory.make("equalizer-10bands", "equalizer");
+		element = Gst.ElementFactory.make("equalizer-10bands", "equalizer");
 		
 		int[10] freqs = {60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000};
 		//int[10] freqs = {32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000};

@@ -21,7 +21,6 @@
  */
 
 using Gtk;
-using Gee;
 
 public class SpaceWidget : Gtk.ScrolledWindow {
 
@@ -157,7 +156,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
     private const int MIN_WIDTH = 400;
     private const int DEFAULT_PADDING = 10;
 
-    private HashMap<int, SpaceWidgetItem> items;
+    private Gee.HashMap<int, SpaceWidgetItem> items;
 
     private uint64 total_size;
     private uint64 free_space_size;
@@ -183,7 +182,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         this.min_content_height = MIN_HEIGHT;
         this.set_border_width(0);
 
-        items = new HashMap<int, SpaceWidgetItem>();
+        items = new Gee.HashMap<int, SpaceWidgetItem>();
         widget = new Gtk.EventBox();
 
         this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);

@@ -28,8 +28,6 @@
  * Authored by: Corentin Noël <tintou@mailoo.org>
  */
  
-using Gee;
-
 public abstract class Noise.Playlist : Object {
     public signal void request_play ();
     public Gee.LinkedList<Media> medias { get; set; }

@@ -23,8 +23,6 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-using Xml;
-
 public class LastFM.AlbumInfo : Noise.AlbumInfo {
     
     private string url { get; set; default=""; }
@@ -100,7 +98,7 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
         // Loop over the passed node's children
         for (Xml.Node* iter = node->children; iter != null; iter = iter->next) {
             // Spaces between tags are also nodes, discard them
-            if (iter->type != ElementType.ELEMENT_NODE) {
+            if (iter->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
 

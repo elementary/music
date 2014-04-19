@@ -20,14 +20,12 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gee;
-
 public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
-    ArrayList<CDRomDevice> devices;
-    
+    Gee.ArrayList<CDRomDevice> devices;
+
     public CDRomDeviceManager() {
-        devices = new ArrayList<CDRomDevice>();
-        
+        devices = new Gee.ArrayList<CDRomDevice>();
+
         var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
         device_manager.mount_removed.connect (mount_removed);
@@ -35,15 +33,16 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
             mount_added (mount);
         }
     }
-    
+
     public void remove_all () {
         var device_manager = DeviceManager.get_default ();
         foreach(var dev in devices) {
             device_manager.device_removed ((Noise.Device)dev);
         }
-        devices = new ArrayList<CDRomDevice>();
+
+        devices = new Gee.ArrayList<CDRomDevice>();
     }
-    
+
     public virtual void mount_added (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
@@ -54,7 +53,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
             var added = new CDRomDevice(mount);
             added.set_mount(mount);
             devices.add(added);
-        
+
             if(added.start_initialization()) {
                 added.finish_initialization();
                 added.initialized.connect((d) => {DeviceManager.get_default ().device_initialized ((Noise.Device)d);});
@@ -68,24 +67,24 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
             return;
         }
     }
-    
+
     public virtual void mount_changed (Mount mount) {
         //stdout.printf("mount_changed:%s\n", mount.get_uuid());
     }
-    
+
     public virtual void mount_pre_unmount (Mount mount) {
         //stdout.printf("mount_preunmount:%s\n", mount.get_uuid());
     }
-    
+
     public virtual void mount_removed (Mount mount) {
         var device_manager = DeviceManager.get_default ();
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 device_manager.device_removed ((Noise.Device)dev);
-                
+
                 // Actually remove it
                 devices.remove(dev);
-                
+
                 return;
             }
         }

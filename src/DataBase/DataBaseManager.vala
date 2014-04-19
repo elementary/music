@@ -21,7 +21,6 @@
  */
 
 using SQLHeavy;
-using Gee;
 
 public class Noise.DataBaseManager : GLib.Object {
 
@@ -106,9 +105,9 @@ public class Noise.DataBaseManager : GLib.Object {
     /**
      * Loads media from db
      */
-    public ArrayList<Media> load_media () {
+    public Gee.ArrayList<Media> load_media () {
         assert (database != null);
-        var rv = new ArrayList<Media>();
+        var rv = new Gee.ArrayList<Media>();
 
         try {
             Query query = new Query (database, "SELECT * FROM `media`");
@@ -166,7 +165,7 @@ public class Noise.DataBaseManager : GLib.Object {
         }
     }
 
-    public void add_media (Collection<Media> media) {
+    public void add_media (Gee.Collection<Media> media) {
         assert (database != null);
         try {
             transaction = database.begin_transaction();
@@ -220,7 +219,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         }
     }
 
-    public void remove_media (Collection<string> media) {
+    public void remove_media (Gee.Collection<string> media) {
         assert (database != null);
         try {
             transaction = database.begin_transaction();
@@ -294,10 +293,10 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
      * load_columns_state() loads the state of each columns from db
      *
      */
-    public HashMap<Playlist, TreeViewSetup> load_columns_state () {
+    public Gee.HashMap<Playlist, TreeViewSetup> load_columns_state () {
         debug ("load columns");
         assert (database != null);
-        var rv = new HashMap<Playlist, TreeViewSetup>();
+        var rv = new Gee.HashMap<Playlist, TreeViewSetup>();
 
         try {
             string script = "SELECT * FROM `columns`";
@@ -326,7 +325,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    public void save_columns_state (Collection<StaticPlaylist>? playlists = null, Collection<SmartPlaylist>? smart_playlists = null) {
+    public void save_columns_state (Gee.Collection<StaticPlaylist>? playlists = null, Gee.Collection<SmartPlaylist>? smart_playlists = null) {
         debug ("save columns");
         assert (database != null);
         try {
@@ -519,7 +518,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
      * playlist_from_name() loads playlsit given a name
      */
     public Gee.ArrayList<StaticPlaylist> load_playlists () {
-        var rv = new ArrayList<StaticPlaylist>();
+        var rv = new Gee.ArrayList<StaticPlaylist>();
         assert (database != null);
 
         try {
@@ -550,7 +549,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    public void save_playlists (Collection<StaticPlaylist> playlists) {
+    public void save_playlists (Gee.Collection<StaticPlaylist> playlists) {
         assert (database != null);
         try {
             database.execute("DELETE FROM `playlists`");
@@ -749,7 +748,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
     }
 
     public Gee.ArrayList<SmartPlaylist> load_smart_playlists() {
-        var rv = new ArrayList<SmartPlaylist>();
+        var rv = new Gee.ArrayList<SmartPlaylist>();
         assert (database != null);
 
         try {
@@ -775,7 +774,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
         return rv;
     }
 
-    public void save_smart_playlists(Collection<SmartPlaylist> smarts) {
+    public void save_smart_playlists(Gee.Collection<SmartPlaylist> smarts) {
         assert (database != null);
         try {
             database.execute("DELETE FROM `smart_playlists`");

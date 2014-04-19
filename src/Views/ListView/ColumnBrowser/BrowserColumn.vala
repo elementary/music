@@ -22,9 +22,6 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gtk;
-using Gee;
-
 public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 
 	public signal void selection_changed (BrowserColumn.Category type, string val);
@@ -98,11 +95,11 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 	public bool first_item_selected { get { return _selected == null; } }
 
 	public Category category { get; construct set; }
-	public CheckMenuItem menu_item { get; construct set;}
+	public Gtk.CheckMenuItem menu_item { get; construct set;}
 
 	private ColumnBrowser miller_parent;
 
-	private TreeView view;
+	private Gtk.TreeView view;
 	private BrowserColumnModel model;
 
 	// This will be NULL whenever the first element "All" is selected.
@@ -114,13 +111,13 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 		this.miller_parent = miller_parent;
 		this.category = category;
 
-		menu_item = new CheckMenuItem.with_label (category.to_string ());
+		menu_item = new Gtk.CheckMenuItem.with_label (category.to_string ());
 		this.visible = false;
 
-		view = new TreeView ();
+		view = new Gtk.TreeView ();
 		model = new BrowserColumnModel (category);
 
-		var cell = new CellRendererText ();
+		var cell = new Gtk.CellRendererText ();
 		cell.ellipsize = Pango.EllipsizeMode.END;
 
 		view.insert_column_with_attributes (-1, category.to_string (), cell, "text", 0, null);
@@ -172,7 +169,7 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 
 
 	public void add_item (string text) {
-		TreeIter iter;
+		Gtk.TreeIter iter;
 
 		model.append (out iter);
 		model.set (iter, 0, text);
@@ -188,7 +185,7 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 			set_selected (null, true); // always notify
 		else if (model.n_items + 1 >= 1 && this.visible && App.main_window.initialization_finished) // FIXME: Use this.get_realized ()
 			//...just scroll to the cell
-			view.scroll_to_cell (new TreePath.first(), null, false, 0.0f, 0.0f);
+			view.scroll_to_cell (new Gtk.TreePath.first(), null, false, 0.0f, 0.0f);
 	}
 
 	/**
@@ -244,7 +241,7 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 		}
 	}
 
-	private bool on_header_clicked (Widget w, Gdk.EventButton e) {
+	private bool on_header_clicked (Gtk.Widget w, Gdk.EventButton e) {
 		 // Scroll to top (select 'All') if the primary button is clicked
 		if (e.button == Gdk.BUTTON_PRIMARY) {
 			select_first_item ();
@@ -257,8 +254,8 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 	}
 
 	private void selected_item_changed () {
-		TreeModel tempModel;
-		TreeIter iter;
+		Gtk.TreeModel tempModel;
+		Gtk.TreeIter iter;
 		string text;
 
 		if (view.get_selection ().get_selected (out tempModel, out iter)) {
@@ -272,8 +269,8 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 		}
 	}
 
-	private void view_double_click (TreePath path, TreeViewColumn column) {
-		TreeIter iter;
+	private void view_double_click (Gtk.TreePath path, Gtk.TreeViewColumn column) {
+		Gtk.TreeIter iter;
 		model.get_iter (out iter, path);
 
 		if (((SequenceIter<string>) iter.user_data).get_position () == 0) {
@@ -287,9 +284,9 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 		}
 	}
 
-	private bool select_proper_string (TreeModel tmodel, TreePath path, TreeIter item) {
+	private bool select_proper_string (Gtk.TreeModel tmodel, Gtk.TreePath path, Gtk.TreeIter item) {
 		if (first_item_selected) {
-		    var first_path = new TreePath.first ();
+		    var first_path = new Gtk.TreePath.first ();
 			view.get_selection ().select_path (first_path);
 			view.scroll_to_cell (first_path, null, true, 0.0f, 0.0f);
 			return true;

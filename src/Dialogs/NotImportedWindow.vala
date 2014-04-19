@@ -23,11 +23,10 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-using Gee;
 using Gtk;
 
 public class Noise.NotImportedWindow : Window{
-	LinkedList<string> _files;
+	Gee.LinkedList<string> _files;
 	string music_folder;
 	
 	//for padding around notebook mostly
@@ -40,8 +39,8 @@ public class Noise.NotImportedWindow : Window{
 	ListStore filesModel;
 	Button moveToTrash;
 	
-	public NotImportedWindow(Collection<string> files, string music) {
-		_files = new LinkedList<string> ();
+	public NotImportedWindow(Gee.Collection<string> files, string music) {
+		_files = new Gee.LinkedList<string> ();
 		_files.add_all (files);
 		this.music_folder = music;
 		

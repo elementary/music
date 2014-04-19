@@ -1,7 +1,5 @@
 #if HAVE_SMART_ALBUM_COLUMN
 
-using Gtk;
-
 public class Noise.SmartAlbumRenderer : CellRendererText {
 
     /* icon property set by the tree column */

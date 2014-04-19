@@ -20,10 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-using Gee;
-
-public class Noise.SyncWarningDialog : Window {
+public class Noise.SyncWarningDialog : Gtk.Window {
     Device d;
     Gee.LinkedList<Media> to_sync;
     Gee.LinkedList<Media> to_remove;
@@ -31,9 +28,9 @@ public class Noise.SyncWarningDialog : Window {
     private Gtk.Box content;
     private Gtk.Box padding;
     
-    Button importMedias;
-    Button sync;
-    Button cancel;
+    Gtk.Button importMedias;
+    Gtk.Button sync;
+    Gtk.Button cancel;
     
     public SyncWarningDialog(Device d, Gee.LinkedList<Media> to_sync, Gee.LinkedList<Media> removed) {
         this.d = d;
@@ -54,12 +51,12 @@ public class Noise.SyncWarningDialog : Window {
         padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 20);
         
         // initialize controls
-        Image warning = new Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
-        Label title = new Label("");
-        Label info = new Label("");
-        importMedias = new Button.with_label(_("Import media to Library"));
-        sync = new Button.with_label(_("Continue Syncing"));
-        cancel = new Button.with_label(_("Stop Syncing"));
+        Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
+        Gtk.Label title = new Gtk.Label("");
+        Gtk.Label info = new Gtk.Label("");
+        importMedias = new Gtk.Button.with_label(_("Import media to Library"));
+        sync = new Gtk.Button.with_label(_("Continue Syncing"));
+        cancel = new Gtk.Button.with_label(_("Stop Syncing"));
         
         // pretty up labels
         title.xalign = 0.0f;
@@ -94,7 +91,7 @@ public class Noise.SyncWarningDialog : Window {
         information.pack_start(information_text, true, true, 10);
         
         var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-        bottomButtons.set_layout(ButtonBoxStyle.END);
+        bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
         bottomButtons.pack_end(importMedias, false, false, 0);
         bottomButtons.pack_end(sync, false, false, 0);
         bottomButtons.pack_end(cancel, false, false, 10);

@@ -19,9 +19,7 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-using Gtk;
-
-public class Noise.FastView : TreeView {
+public class Noise.FastView : Gtk.TreeView {
 #if HAVE_BUILTIN_SHUFFLE
     public static const int SHUFFLE_COLUMN_ID = -3;
 #endif
@@ -38,7 +36,7 @@ public class Noise.FastView : TreeView {
                                          int index_a, int index_b); // position of items in the view's @table
 
     protected int sort_column_id;
-    protected SortType sort_direction;
+    protected Gtk.SortType sort_direction;
     public bool research_needed = false;
     private unowned SortCompareFunc compare_func;
     
@@ -55,7 +53,7 @@ public class Noise.FastView : TreeView {
         fm = new FastModel(types);
         
         sort_column_id = OPTIMAL_COLUMN;
-        sort_direction = SortType.ASCENDING;
+        sort_direction = Gtk.SortType.ASCENDING;
         
         fm.reorder_requested.connect(reorder_requested);
         
@@ -73,7 +71,7 @@ public class Noise.FastView : TreeView {
         return showing;
     }
     
-    public static int get_index_from_iter(TreeIter iter) {
+    public static int get_index_from_iter(Gtk.TreeIter iter) {
         return (int) iter.user_data;
     }
     
@@ -133,7 +131,7 @@ public class Noise.FastView : TreeView {
         }
         else if(old_size > showing.size()) { // removing
             while(fm.iter_n_children(null) > showing.size()) {
-                TreeIter iter;
+                Gtk.TreeIter iter;
                 fm.iter_nth_child(out iter, null, fm.iter_n_children(null) - 1);
                 fm.remove(iter);
             }
@@ -142,7 +140,7 @@ public class Noise.FastView : TreeView {
             queue_draw();
         }
         else if(showing.size() > old_size) { // adding
-            TreeIter iter;
+            Gtk.TreeIter iter;
             
             while(fm.iter_n_children(null) < showing.size()) {
                 fm.append(out iter);
@@ -161,11 +159,11 @@ public class Noise.FastView : TreeView {
      * table is sorted and ready to go and we do not need to resort every
      * time we repopulate/search the model
     **/
-    public void set_sort_column_id (int sort_column_id, SortType order) {
+    public void set_sort_column_id (int sort_column_id, Gtk.SortType order) {
         fm.set_sort_column_id(sort_column_id, order); // The model will then go back to us at reorder_requested
     }
     
-    public void get_sort_column_id (out int sort_column, out SortType order) {
+    public void get_sort_column_id (out int sort_column, out Gtk.SortType order) {
         sort_column = sort_column_id;
         order = sort_direction;
     }

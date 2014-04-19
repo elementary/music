@@ -23,8 +23,6 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-using Xml;
-
 public class LastFM.SimilarMedias : Object {
     public static const int MAX_FETCHED = 20;
     
@@ -131,7 +129,7 @@ public class LastFM.SimilarMedias : Object {
         Xml.Node* iter;
         for (iter = node->children; iter != null; iter = iter->next) {
             
-            if (iter->type != ElementType.ELEMENT_NODE) {
+            if (iter->type != Xml.ElementType.ELEMENT_NODE) {
                 continue;
             }
 

@@ -20,17 +20,14 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-using Gee;
-
-public class Noise.SetMusicFolderConfirmation : Window {
+public class Noise.SetMusicFolderConfirmation : Gtk.Window {
 	string folder_path;
 	
 	private Gtk.Grid content;
 	
-	Button savePlaylists;
-	Button ok;
-	Button cancel;
+	Gtk.Button savePlaylists;
+	Gtk.Button ok;
+	Gtk.Button cancel;
 	
 	Gtk.Image is_finished;
 	Gtk.Spinner is_working;
@@ -56,12 +53,12 @@ public class Noise.SetMusicFolderConfirmation : Window {
 		content.row_spacing = 6;
 		
 		// initialize controls
-		Image warning = new Image.from_icon_name ("dialog-warning", Gtk.IconSize.DIALOG);
-		Label title = new Label("");
-		Label info = new Label("");
-		savePlaylists = new Button.with_label(_("Export Playlists"));
-		ok = new Button.with_label(_("Set Music Folder"));
-		cancel = new Button.with_label (_(STRING_CANCEL));
+		Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-warning", Gtk.IconSize.DIALOG);
+		Gtk.Label title = new Gtk.Label("");
+		Gtk.Label info = new Gtk.Label("");
+		savePlaylists = new Gtk.Button.with_label(_("Export Playlists"));
+		ok = new Gtk.Button.with_label(_("Set Music Folder"));
+		cancel = new Gtk.Button.with_label (_(STRING_CANCEL));
 		is_finished = new Gtk.Image();
 		is_working = new Gtk.Spinner();
 		
@@ -107,11 +104,11 @@ public class Noise.SetMusicFolderConfirmation : Window {
 	
 	public void savePlaylistsClicked() {
 		string folder = "";
-		var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
-								  FileChooserAction.SELECT_FOLDER,
-								  _(STRING_CANCEL), ResponseType.CANCEL,
-								  _(STRING_OPEN), ResponseType.ACCEPT);
-		if (file_chooser.run () == ResponseType.ACCEPT) {
+		var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,
+								  Gtk.FileChooserAction.SELECT_FOLDER,
+								  _(STRING_CANCEL), Gtk.ResponseType.CANCEL,
+								  _(STRING_OPEN), Gtk.ResponseType.ACCEPT);
+		if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
 			folder = file_chooser.get_filename();
 		}
 		
@@ -131,8 +128,8 @@ public class Noise.SetMusicFolderConfirmation : Window {
 			is_working.hide();
 			is_finished.show();
 			
-			var process_completed_icon = Icons.PROCESS_COMPLETED.render (IconSize.MENU);
-			var process_error_icon = Icons.PROCESS_ERROR.render (IconSize.MENU);
+			var process_completed_icon = Icons.PROCESS_COMPLETED.render (Gtk.IconSize.MENU);
+			var process_error_icon = Icons.PROCESS_ERROR.render (Gtk.IconSize.MENU);
 			
 			is_finished.set_from_pixbuf(success ? process_completed_icon : process_error_icon);
 		}

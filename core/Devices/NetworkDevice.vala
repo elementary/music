@@ -28,8 +28,6 @@
  * Authored by: Corentin Noël <tintou@mailoo.org>
  */
  
-using Gee;
-
 public interface Noise.NetworkDevice : GLib.Object {
 	public signal void initialized();
 	public signal void device_unmounted();
@@ -49,10 +47,10 @@ public interface Noise.NetworkDevice : GLib.Object {
 	public abstract void get_device_type();
 	public abstract bool supports_podcasts();
 	public abstract bool supports_audiobooks();
-	public abstract Collection<Media> get_medias();
-	public abstract Collection<Media> get_songs();
-	public abstract Collection<Media> get_podcasts();
-	public abstract Collection<Media> get_audiobooks();
-	public abstract Collection<Playlist> get_playlists();
-	public abstract Collection<SmartPlaylist> get_smart_playlists();
+	public abstract Gee.Collection<Media> get_medias();
+	public abstract Gee.Collection<Media> get_songs();
+	public abstract Gee.Collection<Media> get_podcasts();
+	public abstract Gee.Collection<Media> get_audiobooks();
+	public abstract Gee.Collection<Playlist> get_playlists();
+	public abstract Gee.Collection<SmartPlaylist> get_smart_playlists();
 }

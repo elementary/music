@@ -1,10 +1,8 @@
-using Gtk;
-
 /** Since this class is not publicly facing (the FastView is public part),
  * this model is low level and optimized. We are not worried about stupid
  * users here.
 **/
-public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
+public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSource {
 	int stamp; // all iters must match this
 	
 	/* data storage variables */
@@ -34,12 +32,12 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 			return typeof(GLib.Object);
 	}
 
-	public TreeModelFlags get_flags () {
-		return TreeModelFlags.LIST_ONLY;
+	public Gtk.TreeModelFlags get_flags () {
+		return Gtk.TreeModelFlags.LIST_ONLY;
 	}
 
-	public bool get_iter (out TreeIter iter, TreePath path) {
-		iter = TreeIter();
+	public bool get_iter (out Gtk.TreeIter iter, Gtk.TreePath path) {
+		iter = Gtk.TreeIter();
 		int path_index = path.get_indices()[0];
 		if(rows.size() == 0 || path_index < 0 || path_index >= rows.size() || rows.get(path_index) == null)
 			return false;
@@ -54,11 +52,11 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 		return 5;
 	}
 
-	public TreePath? get_path (TreeIter iter) {
-		return new TreePath.from_string (((int)iter.user_data).to_string());
+	public Gtk.TreePath? get_path (Gtk.TreeIter iter) {
+		return new Gtk.TreePath.from_string (((int)iter.user_data).to_string());
 	}
 	
-	public void get_value (TreeIter iter, int column, out Value val) {
+	public void get_value (Gtk.TreeIter iter, int column, out Value val) {
 		val = Value(get_column_type(column));
 
 		if (iter.stamp != this.stamp || column < 0 || column >= get_n_columns())
@@ -73,24 +71,24 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 		}
 	}
 
-	public bool iter_children (out TreeIter iter, TreeIter? parent) {
-		iter = TreeIter();
+	public bool iter_children (out Gtk.TreeIter iter, Gtk.TreeIter? parent) {
+		iter = Gtk.TreeIter();
 		return false;
 	}
 
-	public bool iter_has_child (TreeIter iter) {
+	public bool iter_has_child (Gtk.TreeIter iter) {
 
 		return false;
 	}
 
-	public int iter_n_children (TreeIter? iter) {
+	public int iter_n_children (Gtk.TreeIter? iter) {
 		if(iter == null)
 			return (int)rows.size();
 
 		return 0;
 	}
 
-	public bool iter_next (ref TreeIter iter) {
+	public bool iter_next (ref Gtk.TreeIter iter) {
 		if(iter.stamp != this.stamp)
 			return false;
 
@@ -102,8 +100,8 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 		return true;
 	}
 
-	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
-		iter = TreeIter();
+	public bool iter_nth_child (out Gtk.TreeIter iter, Gtk.TreeIter? parent, int n) {
+		iter = Gtk.TreeIter();
 
 		if(n < 0 || n >= rows.size() || parent != null)
 			return false;
@@ -114,16 +112,16 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 		return true;
 	}
 
-	public bool iter_parent (out TreeIter iter, TreeIter child) {
-		iter = TreeIter();
+	public bool iter_parent (out Gtk.TreeIter iter, Gtk.TreeIter child) {
+		iter = Gtk.TreeIter();
 
 		return false;
 	}
 	
-	public void append (out TreeIter iter) {
-		iter = TreeIter();
+	public void append (out Gtk.TreeIter iter) {
+		iter = Gtk.TreeIter();
 		
-		TreePath path = new TreePath.from_string(((int)rows.size()).to_string());
+		Gtk.TreePath path = new Gtk.TreePath.from_string(((int)rows.size()).to_string());
 		rows.set((int)rows.size(), new GLib.Object());
 		iter.stamp = this.stamp;
 		iter.user_data = (void*)rows.size;
@@ -131,11 +129,11 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 		row_inserted(path, iter);
 	}
 	
-	public void remove (TreeIter iter) {
+	public void remove (Gtk.TreeIter iter) {
 		if(iter.stamp != this.stamp)
 			return;
 
-		var path = new TreePath.from_string(((int)iter.user_data).to_string());
+		var path = new Gtk.TreePath.from_string(((int)iter.user_data).to_string());
 		rows.remove((int)iter.user_data);
 		row_deleted(path);
 		
@@ -144,12 +142,12 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 	}
 	
 	// Not applicable to this custom treemodel
-	public new void set (TreeIter iter, ...) {
+	public new void set (Gtk.TreeIter iter, ...) {
 		return;
 	}
 	
-	public void ref_node (TreeIter iter) {}
-	public void unref_node (TreeIter iter) {}
+	public void ref_node (Gtk.TreeIter iter) {}
+	public void unref_node (Gtk.TreeIter iter) {}
 
 	/** The beauty of this custom model. This tree model is simply a visual
 	 * representation of a HashTable of objects. Before calling this
@@ -176,8 +174,8 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 	}
 	
 	public void update_row (int index) {
-		TreePath path = new TreePath.from_string(index.to_string());
-		TreeIter iter = TreeIter();
+		Gtk.TreePath path = new Gtk.TreePath.from_string(index.to_string());
+		Gtk.TreeIter iter = Gtk.TreeIter();
 		iter.stamp = this.stamp;
 		iter.user_data = (void*)index;
 		
@@ -187,11 +185,11 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 	/************************************
 	 * Drag'n'drop
 	 ************************************/
-	bool drag_data_delete(TreePath path) {
+	bool drag_data_delete(Gtk.TreePath path) {
 		return false;
 	}
 	
-	bool drag_data_get(TreePath path, SelectionData data) {
+	bool drag_data_get(Gtk.TreePath path, Gtk.SelectionData data) {
 		/*string[] old = data.get_uris();
 		string[] cp = new string[old.length + 1];
 		for(int i = 0; i < old.length; ++i)
@@ -202,7 +200,7 @@ public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 		return true;
 	}
 	
-	bool row_draggable(TreePath path) {
+	bool row_draggable(Gtk.TreePath path) {
 		return true;
 	}
 }
