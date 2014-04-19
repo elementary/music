@@ -44,9 +44,9 @@ namespace Noise.Widgets {
         }
 
         public void set_info (string message) {
-            Gtk.Label title = new Gtk.Label (message);
-            set_center_widget (title);
-            title.show ();
+            set_center_widget (null);
+            set_center_widget (new Gtk.Label (message));
+            this.show_all ();
         }
 
         public void update_sensitivities () {
