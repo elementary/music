@@ -20,16 +20,15 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
 using Gee;
 
 public class Noise.RemoveFilesDialog : Gtk.Dialog {
 
     private Gtk.Box content;
 
-    private Button remove_button;
-    private Button trash_button;
-    private Button cancel_button;
+    private Gtk.Button remove_button;
+    private Gtk.Button trash_button;
+    private Gtk.Button cancel_button;
 
     public signal void remove_media(bool response);
 
@@ -50,12 +49,12 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
 
         // initialize controls
-        Image warning = new Image.from_icon_name ("dialog-warning", Gtk.IconSize.DIALOG);
-        Label title = new Label("");
-        Label info = new Label("");
-        trash_button = new Button.with_label (_("Move to Trash"));
-        remove_button = new Button.with_label (_("Remove from %s").printf (app_name));
-        cancel_button = new Button.with_label (_(STRING_CANCEL));
+        Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-warning", Gtk.IconSize.DIALOG);
+        Gtk.Label title = new Gtk.Label("");
+        Gtk.Label info = new Gtk.Label("");
+        trash_button = new Gtk.Button.with_label (_("Move to Trash"));
+        remove_button = new Gtk.Button.with_label (_("Remove from %s").printf (app_name));
+        cancel_button = new Gtk.Button.with_label (_(STRING_CANCEL));
 
         bool multiple_media = to_remove.size > 1;
 
@@ -100,7 +99,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         information.pack_start(information_text, true, true, 10);
 
         var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        bottomButtons.set_layout(ButtonBoxStyle.END);
+        bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
         if(need_trash)	bottomButtons.pack_end(trash_button, false, false, 0);
         bottomButtons.pack_end(cancel_button, false, false, 0);
         bottomButtons.pack_end(remove_button, false, false, 0);
