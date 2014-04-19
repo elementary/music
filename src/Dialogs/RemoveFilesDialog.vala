@@ -23,10 +23,9 @@
 using Gtk;
 using Gee;
 
-public class Noise.RemoveFilesDialog : Window {
+public class Noise.RemoveFilesDialog : Gtk.Dialog {
 	
 	private Gtk.Box content;
-	private Gtk.Box padding;
 	
 	private Button remove_button;
 	private Button trash_button;
@@ -38,14 +37,15 @@ public class Noise.RemoveFilesDialog : Window {
 
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
-		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
 		this.set_transient_for(App.main_window);
 		this.destroy_with_parent = true;
 		resizable = false;
 		
 		content = new Gtk.Box(Gtk.Orientation.VERTICAL, 10);
-		padding = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 20);
+
+        Gtk.Box padding = get_content_area () as Gtk.Box;
+        padding.set_orientation (Gtk.Orientation.HORIZONTAL);
 		
 		var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
 		
@@ -109,7 +109,7 @@ public class Noise.RemoveFilesDialog : Window {
 		content.pack_start(information, false, true, 0);
 		content.pack_start(bottomButtons, false, true, 10);
 		
-		padding.pack_start(content, true, true, 10);
+		padding.pack_start(content, true, true, 0);
 		
 		trash_button.clicked.connect ( () => {
 			remove_media (true);
@@ -128,7 +128,6 @@ public class Noise.RemoveFilesDialog : Window {
 		set_default (cancel_button);
 		cancel_button.grab_focus ();
 		
-		add(padding);
 		show_all();
 	}
 }
