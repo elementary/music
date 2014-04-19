@@ -28,7 +28,7 @@
 
 namespace Noise.Widgets {
 
-    public class StatusBar : Granite.Widgets.StatusBar {
+    public class StatusBar : Gtk.ActionBar {
         public Gtk.Widget playlist_item { get; private set; default = new AddPlaylistChooser (); }
         public Gtk.Widget shuffle_item { get; private set; default = new ShuffleChooser (); }
         public Gtk.Widget repeat_item { get; private set; default = new RepeatChooser (); }
@@ -36,15 +36,16 @@ namespace Noise.Widgets {
         public Gtk.Widget info_panel_item { get; private set; default = new InfoPanelChooser (); }
 
         public StatusBar (LibraryWindow lw) {
-            insert_widget (playlist_item, true);
-            insert_widget (shuffle_item, true);
-            insert_widget (repeat_item, true);
-            insert_widget (equalizer_item, false);
-            insert_widget (info_panel_item, false);
+            pack_start (playlist_item);
+            pack_start (shuffle_item);
+            pack_start (repeat_item);
+            pack_end (equalizer_item);
+            pack_end (info_panel_item);
         }
 
         public void set_info (string message) {
-            set_text (message);
+            Gtk.Label title = new Gtk.Label (message);
+            set_center_widget (title);
         }
 
         public void update_sensitivities () {
