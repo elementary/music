@@ -21,75 +21,75 @@
  */
 
 public class Noise.InstallGstreamerPluginsDialog : Gtk.Window {
-	Gst.Message message;
-	string detail;
-	
-	private Gtk.Box content;
-	private Gtk.Box padding;
-	
-	Gtk.Button installPlugin;
-	Gtk.Button doNothing;
-	
-	public InstallGstreamerPluginsDialog(Gst.Message message) {
-		this.message = message;
-		this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
-		
-		// set the size based on saved gconf settings
-		//this.window_position = WindowPosition.CENTER;
-		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.set_modal(true);
-		this.set_transient_for(App.main_window);
-		this.destroy_with_parent = true;
-		
-		set_default_size(475, -1);
-		resizable = false;
-		
-		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
-		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
+    Gst.Message message;
+    string detail;
 
-		// initialize controls
-		Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
-		Gtk.Label title = new Gtk.Label("");
-		Gtk.Label info = new Gtk.Label("");
-		installPlugin = new Gtk.Button.with_label(_("Install Plugin"));
-		doNothing = new Gtk.Button.from_stock ("dialog-cancel");
-		
-		// pretty up labels
-		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (_("Required GStreamer plugin not installed")) + "</span>");
-		info.xalign = 0.0f;
-		info.set_line_wrap(true);
-		info.set_markup(_("The plugin for media type %s is not installed.\nWhat would you like to do?").printf ("<b>" + String.escape (detail) + "</b>"));
+    private Gtk.Box content;
+    private Gtk.Box padding;
 
-		
-		/* set up controls layout */
-		var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-		var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-		information.pack_start(warning, false, false, 10);
-		information_text.pack_start(title, false, true, 10);
-		information_text.pack_start(info, false, true, 0);
-		information.pack_start(information_text, true, true, 10);
-		
-		var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-		bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
-		bottomButtons.pack_end(installPlugin, false, false, 0);
-		bottomButtons.pack_end(doNothing, false, false, 10);
-		bottomButtons.set_spacing(10);
-		
-		content.pack_start(information, false, true, 0);
-		content.pack_start(bottomButtons, false, true, 10);
-		
-		padding.pack_start(content, true, true, 10);
-		
-		installPlugin.clicked.connect(installPluginClicked);
+    Gtk.Button installPlugin;
+    Gtk.Button doNothing;
 
-		doNothing.clicked.connect ( () => {
-		    this.destroy ();
-		});
-		add(padding);
-		show_all();
-	}
-	
+    public InstallGstreamerPluginsDialog(Gst.Message message) {
+        this.message = message;
+        this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
+
+        // set the size based on saved gconf settings
+        //this.window_position = WindowPosition.CENTER;
+        this.type_hint = Gdk.WindowTypeHint.DIALOG;
+        this.set_modal(true);
+        this.set_transient_for(App.main_window);
+        this.destroy_with_parent = true;
+
+        set_default_size(475, -1);
+        resizable = false;
+
+        content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+        padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
+
+        // initialize controls
+        Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
+        Gtk.Label title = new Gtk.Label("");
+        Gtk.Label info = new Gtk.Label("");
+        installPlugin = new Gtk.Button.with_label(_("Install Plugin"));
+        doNothing = new Gtk.Button.from_stock ("dialog-cancel");
+
+        // pretty up labels
+        title.xalign = 0.0f;
+        title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (_("Required GStreamer plugin not installed")) + "</span>");
+        info.xalign = 0.0f;
+        info.set_line_wrap(true);
+        info.set_markup(_("The plugin for media type %s is not installed.\nWhat would you like to do?").printf ("<b>" + String.escape (detail) + "</b>"));
+
+
+        /* set up controls layout */
+        var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+        var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+        information.pack_start(warning, false, false, 10);
+        information_text.pack_start(title, false, true, 10);
+        information_text.pack_start(info, false, true, 0);
+        information.pack_start(information_text, true, true, 10);
+
+        var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
+        bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
+        bottomButtons.pack_end(installPlugin, false, false, 0);
+        bottomButtons.pack_end(doNothing, false, false, 10);
+        bottomButtons.set_spacing(10);
+
+        content.pack_start(information, false, true, 0);
+        content.pack_start(bottomButtons, false, true, 10);
+
+        padding.pack_start(content, true, true, 10);
+
+        installPlugin.clicked.connect(installPluginClicked);
+
+        doNothing.clicked.connect ( () => {
+            this.destroy ();
+        });
+        add(padding);
+        show_all();
+    }
+
         public void installPluginClicked() {
             var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (message);
             var context = new Gst.PbUtils.InstallPluginsContext ();
@@ -121,4 +121,3 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Window {
             return true;
         }
 }
-
