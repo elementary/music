@@ -18,15 +18,12 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     private int last_image_width = 0;
     private int last_image_height = 0;
     private Granite.Drawing.BufferSurface shadow_buffer;
-    private Pango.Rectangle title_text_logical_rect;
-    private Pango.Rectangle subtitle_text_logical_rect;
     private Pango.Layout title_text_layout;
     private Pango.Layout subtitle_text_layout;
     private Gtk.Border margin;
     private Gtk.Border padding;
     private Gtk.Border border;
 
-    [Deprecated (replacement = "Gtk.CellRenderer.get_preferred_size", since = "")]
     public override void get_size (Gtk.Widget widget, Gdk.Rectangle? cell_area,
                                    out int x_offset, out int y_offset,
                                    out int width, out int height)
@@ -44,11 +41,14 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     {
         update_layout_properties (widget);
 
+        int x_padding;
+        get_padding (out x_padding, null);
+
         int width = compute_total_image_width ()
                   + margin.left + margin.right
                   + padding.left + padding.right
                   + border.left + border.right
-                  + 2 * (int) xpad;
+                  + 2 * x_padding;
 
         minimum_size = natural_size = width;
     }
@@ -59,13 +59,20 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     {
         update_layout_properties (widget);
 
+        int y_padding;
+        get_padding (null, out y_padding);
+
+        int subtitle_height, title_height;
+        title_text_layout.get_pixel_size (null, out title_height);
+        subtitle_text_layout.get_pixel_size (null, out subtitle_height);
+
         int height = compute_total_image_height ()
-                   + title_text_logical_rect.height
-                   + subtitle_text_logical_rect.height
+                   + title_height + subtitle_height
                    + margin.top + margin.bottom
                    + padding.top + padding.bottom
                    + border.top + border.bottom
-                   + 2 * (int) ypad;
+                   + 2 * y_padding
+                   + IMAGE_SHADOW_RADIUS;
 
         minimum_height = natural_height = height;
     }
@@ -97,12 +104,12 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         width -= border.left + border.right + padding.left + padding.right;
         height -= border.top + border.bottom + padding.top + padding.bottom;
 
-        render_image (ctx, cr, x, ref y, width, flags);
+        render_image (ctx, cr, ref x, ref y, width, flags);
         render_title (ctx, cr, x, ref y, width);
         render_subtitle (ctx, cr, x, y, width);
     }
 
-    private void render_image (Gtk.StyleContext ctx, Cairo.Context cr, int x,
+    private void render_image (Gtk.StyleContext ctx, Cairo.Context cr, ref int x,
                                ref int y, int width, Gtk.CellRendererState flags)
     {
         int image_width = compute_total_image_width ();
@@ -139,37 +146,38 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         ctx.render_icon (cr, image, x + offset, y + offset);
 
         if (should_draw_highlight (flags)) {
+            ctx.save ();
             ctx.add_class (Gtk.STYLE_CLASS_IMAGE);
             ctx.render_frame (cr, x + offset - border.left,
                               y + offset - border.top,
                               pixbuf.width + border.left + border.right,
                               pixbuf.height + border.top + border.bottom);
+            ctx.restore ();
         }
 
         y += image_height;
+
+        // move x to the start of the actual image
+        x += (image_width - image.width) / 2;
     }
 
     private void render_title (Gtk.StyleContext ctx, Cairo.Context cr, int x,
                                ref int y, int width)
     {
-        // Center title layout horizontally
-        int offset = (width - title_text_logical_rect.width) / 2;
-        x += title_text_logical_rect.x + int.max (0, offset);
-
+        ctx.save ();
         ctx.add_class ("title-text");
         ctx.render_layout (cr, x, y, title_text_layout);
-        ctx.remove_class ("title-text");
+        ctx.restore ();
 
-        y += title_text_logical_rect.height;
+        int title_height;
+        title_text_layout.get_pixel_size (null, out title_height);
+
+        y += title_height;
     }
 
     private void render_subtitle (Gtk.StyleContext ctx, Cairo.Context cr, int x,
                                   int y, int width)
     {
-        // Center title layout horizontally
-        int offset = (width - subtitle_text_logical_rect.width) / 2;
-        x += subtitle_text_logical_rect.x + int.max (0, offset);
-
         ctx.render_layout (cr, x, y, subtitle_text_layout);
     }
 
@@ -182,6 +190,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         margin = ctx.get_margin (state);
         padding = ctx.get_padding (state);
         border = ctx.get_border (state);
+        ctx.restore ();
 
         subtitle_text_layout = widget.create_pango_layout (subtitle);
         unowned Pango.FontDescription font_description;
@@ -192,6 +201,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         int text_width = pixbuf.width * Pango.SCALE;
         subtitle_text_layout.set_width (text_width);
 
+        ctx.save ();
         ctx.add_class ("title-text");
         title_text_layout = widget.create_pango_layout (title);
         ctx.get (state, Gtk.STYLE_PROPERTY_FONT, out font_description);
@@ -200,10 +210,6 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         title_text_layout.set_ellipsize (Pango.EllipsizeMode.END);
         title_text_layout.set_alignment (Pango.Alignment.LEFT);
         ctx.restore ();
-
-        Pango.Rectangle ink_rect;
-        title_text_layout.get_pixel_extents (out ink_rect, out title_text_logical_rect);
-        subtitle_text_layout.get_pixel_extents (out ink_rect, out subtitle_text_logical_rect);
     }
 
     private int compute_total_image_width () {
