@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-14 22:50+0200\n"
-"PO-Revision-Date: 2014-04-15 17:02+0000\n"
-"Last-Translator: Petar Djakov <shinnobivalley@gmail.com>\n"
+"PO-Revision-Date: 2014-04-19 17:55+0000\n"
+"Last-Translator: ITPROJECTS <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-04-16 06:59+0000\n"
-"X-Generator: Launchpad (build 16976)\n"
+"X-Launchpad-Export-Date: 2014-04-20 05:56+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 "Language: bg\n"
 
 #: ../core/LibrariesManager.vala:140
@@ -29,11 +29,11 @@ msgstr "Отказ"
 
 #: ../core/Resources.vala:59
 msgid "Open"
-msgstr ""
+msgstr "Отвoри"
 
 #: ../core/Resources.vala:60
 msgid "Save"
-msgstr ""
+msgstr "Запази"
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Flat"
@@ -171,7 +171,7 @@ msgstr "%s и %s"
 #. / for more details.
 #: ../core/Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%m/%e/%Y %l:%M %p"
 
 #: ../core/Utils/FileUtils.vala:280
 msgid " (%d)"
@@ -199,7 +199,7 @@ msgstr "MPEG версия 3.0 разширена (*.m3u)"
 
 #: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Шауткаст Музикален Списък Вид 2.0 (*.pls)"
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
@@ -239,7 +239,7 @@ msgstr "$NAME на $ARTIST от $ALBUM"
 
 #: ../src/LibraryWindow.vala:248
 msgid "Import to Library…"
-msgstr ""
+msgstr "Внеси в Библиотеката"
 
 #: ../src/LibraryWindow.vala:251 ../src/Dialogs/PreferencesWindow.vala:83
 msgid "Preferences"
@@ -247,15 +247,15 @@ msgstr "Предпочитания"
 
 #: ../src/LibraryWindow.vala:263
 msgid "Previous"
-msgstr ""
+msgstr "Предишна"
 
 #: ../src/LibraryWindow.vala:265
 msgid "Play"
-msgstr ""
+msgstr "Пускай"
 
 #: ../src/LibraryWindow.vala:267
 msgid "Next"
-msgstr ""
+msgstr "Следваща"
 
 #: ../src/LibraryWindow.vala:271
 msgid "Search Music"
@@ -450,11 +450,11 @@ msgstr "Подкаст"
 
 #: ../src/Dialogs/MediaEditor.vala:683
 msgid "Reset"
-msgstr ""
+msgstr "Нулирай"
 
 #: ../src/Dialogs/MediaEditor.vala:687
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Статистика</b>"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:56
 #: ../src/Dialogs/NotImportedWindow.vala:72
@@ -481,7 +481,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"Това ще премахне песента от библиотеката ви и от всяко устройство което "
+"самостойно се сверява с %s."
 msgstr[1] ""
+"Това ще премахне песените от библиотеката ви и от всяко устройство което "
+"самостойно се сверява с %s."
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:62
 msgid "Export Playlists"
@@ -704,6 +708,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %d"
 msgstr ""
+"Шум (Noise) вече върши файлови действия. Моля почакайте онези да свършат, "
+"преди да внасяте от %d"
 
 #: ../src/Dialogs/NotImportedWindow.vala:48
 msgid "Not Imported Files"
@@ -789,23 +795,23 @@ msgstr "Подържай папката с музика подредена:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:154
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Пиши метаданни в файл:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:158
 msgid "Copy imported files to Library:"
-msgstr ""
+msgstr "Препиши внесените файлове в библотеката"
 
 #: ../src/Dialogs/PreferencesWindow.vala:160
 msgid "Desktop Integration:"
-msgstr ""
+msgstr "Работно-Плотно Вграждане:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:166
 msgid "Notifications:"
-msgstr ""
+msgstr "Известия:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:171
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Продължи възпроизвеждането дори приложението да е затворено:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:65
 msgid "Remove Media"
@@ -867,6 +873,8 @@ msgstr "Музикален плейър"
 #: ../src/Noise.vala:39
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
+"Шум(Noise);Звук;Възпроизведител;МП3;айПод;Пусни;Музикален;Списък;Диск;Телефон"
+";Песен;"
 
 #: ../src/LocalLibrary.vala:164
 msgid "Importing music from %s…"
@@ -1005,7 +1013,7 @@ msgstr "Преименувай"
 #: ../src/Widgets/SourceListView.vala:58 ../src/Widgets/SourceListView.vala:72
 #: ../src/Widgets/SourceListView.vala:87
 msgid "Export…"
-msgstr ""
+msgstr "Износ..."
 
 #: ../src/Widgets/SourceListView.vala:70
 msgid "Edit…"
@@ -1152,10 +1160,11 @@ msgstr "Отказване..."
 #: ../src/Views/DeviceView.vala:39
 msgid "Device operation has been cancelled and will stop after this media."
 msgstr ""
+"Употребата на устройството е преустановена и ще спре след тази пътечка."
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "Добре"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
@@ -1211,7 +1220,7 @@ msgstr "Показване във файлов браузър"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Други действия"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1253,7 +1262,7 @@ msgstr "1234 kbps"
 #. / by the column's title header.
 #: ../src/Views/ListView/Lists/MusicListView.vala:768
 msgid "Sample List String"
-msgstr ""
+msgstr "Пробно Списъчно Изречение"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
@@ -1506,7 +1515,7 @@ msgstr "%s, %s"
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
@@ -1516,7 +1525,7 @@ msgstr "Няма песни"
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Обновляване на Музикалния Списък. Моля почакайте."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
@@ -1652,7 +1661,7 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:388
 msgid "An error occured during the Import of this CD"
-msgstr ""
+msgstr "Грешка е станала при внасянето на този Диск"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
@@ -1768,7 +1777,7 @@ msgstr "Успешно!"
 
 #: ../plugins/LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr ""
+msgstr "Завърши Вписване"
 
 #: ../plugins/LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
