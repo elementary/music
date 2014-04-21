@@ -33,23 +33,18 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
         this.set_transient_for(App.main_window);
         this.destroy_with_parent = true;
         this.border_width = 6;
-
         resizable = false;
 
         var content = get_content_area () as Gtk.Box;
 
-        // initialize controls
         var question = new Gtk.Image.from_icon_name ("dialog-question", Gtk.IconSize.DIALOG);
         question.yalign = 0;
 
         var info = new Granite.Widgets.WrapLabel ("<span weight=\"bold\" size=\"larger\">" + _("Would you like to install the %s plugin?\n").printf (String.escape (detail)) + "</span>" + _("\nThis song cannot be played. The %s plugin is required to play the song.").printf ("<b>" + String.escape (detail) + "</b>"));
         info.m_wrap_width = 350;
-
-        // pretty up labels
         info.set_selectable (true);
         info.set_use_markup (true);
 
-        // set up controls layout
         var layout = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 12);
         layout.set_margin_right (6);
         layout.set_margin_bottom (24);
