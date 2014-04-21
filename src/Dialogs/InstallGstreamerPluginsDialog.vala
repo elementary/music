@@ -48,7 +48,8 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
         info.set_selectable (true);
         info.set_use_markup (true);
 
-        var layout = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12);
+        var layout = new Gtk.Grid ();
+        layout.set_column_spacing (12);
         layout.set_margin_right (6);
         layout.set_margin_bottom (24);
         layout.set_margin_left (6);
