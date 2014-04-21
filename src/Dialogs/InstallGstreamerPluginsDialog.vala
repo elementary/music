@@ -52,8 +52,9 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
 
         /* set up controls layout */
         var layout = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 12);
-        layout.set_margin_bottom (24);
         layout.set_margin_right (6);
+        layout.set_margin_bottom (24);
+        layout.set_margin_left (6);
         layout.add (question);
         layout.add (info);
 
