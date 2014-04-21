@@ -24,7 +24,7 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
     Gst.Message message;
     string detail;
 
-    public InstallGstreamerPluginsDialog(Gst.Message message) {
+    public InstallGstreamerPluginsDialog (Gst.Message message) {
         this.message = message;
         this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 
