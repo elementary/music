@@ -54,11 +54,12 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
 
         if (media_list.size == 1) {
             var s = media_list.get (0);
-            body_string = (_("The music file for " + "<b>" +"$NAME" + "</b>" + 
-            " by " + "<b>" + "$ARTIST" + "</b>" + " could not be found.").replace
-             ("$NAME", s.title.escape ("")).replace ("$ARTIST", s.artist.escape ("")));
+
+            body_string = (_("The music file for " + "<b>" +"$NAME" + "</b>" +
+                             " by " + "<b>" + "$ARTIST" + "</b>" + " could not be found.").replace
+                           ("$NAME", s.title.escape ("")).replace ("$ARTIST", s.artist.escape ("")));
         } else {
-             body_string = (_("%i usica files could not be found?").printf (media_list.size));
+             body_string = (_("%i music files could not be found?").printf (media_list.size));
         }
 
         var info = new Granite.Widgets.WrapLabel (("<span weight=\"bold\" size=\"larger\">%s</span>").printf
@@ -89,13 +90,13 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
         this.response.connect ((response_id) => {
             switch (response_id) {
                 case 1:
-                    rescanLibraryClicked ();
+                    rescan_library_clicked ();
                     break;
                 case 2:
-                    removeMediaClicked ();
+                    remove_media_clicked ();
                     break;
                 case 3:
-                    locateMediaClicked ();
+                    locate_media_clicked ();
                     break;
                 case Gtk.ResponseType.CLOSE:
                     destroy ();
@@ -109,21 +110,21 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
         show_all ();
     }
 
-    void removeMediaClicked () {
+    void remove_media_clicked () {
         libraries_manager.local_library.remove_medias (media_list, false);
 
         this.destroy ();
     }
 
-    void locateMediaClicked () {
+    void locate_media_clicked () {
         Media m = media_list.get (0);
         int media_id = m.rowid;
 
         string file = "";
         var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,
-                                  Gtk.FileChooserAction.OPEN,
-                                  _(STRING_CANCEL), Gtk.ResponseType.CANCEL,
-                                  _(STRING_OPEN), Gtk.ResponseType.ACCEPT);
+                                                      Gtk.FileChooserAction.OPEN,
+                                                      _(STRING_CANCEL), Gtk.ResponseType.CANCEL,
+                                                      _(STRING_OPEN), Gtk.ResponseType.ACCEPT);
 
         // try and help user by setting a sane default folder
         var invalid_file = File.new_for_uri (libraries_manager.local_library.media_from_id (media_id).uri);
@@ -131,8 +132,9 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
 
         if (invalid_file.get_parent ().query_exists ()) {
             file_chooser.set_current_folder (invalid_file.get_parent().get_path ());
-        } else if (invalid_file.get_parent ().get_parent ().query_exists () && 
-        invalid_file.get_parent ().get_parent ().get_path ().contains (music_folder)) {
+        } else if (invalid_file.get_parent ().get_parent ().query_exists () &&
+                   invalid_file.get_parent ().get_parent ().get_path ().contains (music_folder)) {
+
             file_chooser.set_current_folder (invalid_file.get_parent ().get_parent ().get_path ());
         } else if (File.new_for_path (music_folder).query_exists ()) {
             file_chooser.set_current_folder (music_folder);
@@ -150,15 +152,16 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
             m.uri = File.new_for_path (file).get_uri ();
             m.location_unknown = false;
             m.unique_status_image = null;
+
             // TODO: lm.lw.media_found(m.rowid);
             libraries_manager.local_library.update_media (m, false, false);
 
-            this .destroy ();
+            this.destroy ();
         }
     }
 
-    void rescanLibraryClicked () {
-        ((LocalLibrary)libraries_manager.local_library).rescan_music_folder ();
+    void rescan_library_clicked () {
+        ((LocalLibrary) libraries_manager.local_library).rescan_music_folder ();
 
         this.destroy ();
     }
@@ -170,5 +173,4 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
     void file_operations_started () {
         rescanLibrary.set_sensitive (false);
     }
-
 }
