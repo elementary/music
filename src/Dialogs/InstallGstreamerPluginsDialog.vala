@@ -20,15 +20,9 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class Noise.InstallGstreamerPluginsDialog : Gtk.Window {
+public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
     Gst.Message message;
     string detail;
-
-    private Gtk.Box content;
-    private Gtk.Box padding;
-
-    Gtk.Button installPlugin;
-    Gtk.Button doNothing;
 
     public InstallGstreamerPluginsDialog(Gst.Message message) {
         this.message = message;
@@ -37,60 +31,52 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Window {
         // set the size based on saved gconf settings
         //this.window_position = WindowPosition.CENTER;
         this.type_hint = Gdk.WindowTypeHint.DIALOG;
-        this.set_modal(true);
+        this.set_modal (true);
         this.set_transient_for(App.main_window);
         this.destroy_with_parent = true;
+        this.border_width = 6;
 
-        set_default_size(475, -1);
+        set_default_size (350, -1);
         resizable = false;
 
-        content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
-        padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
+        Gtk.Box content = get_content_area () as Gtk.Box;
 
         // initialize controls
-        Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
-        Gtk.Label title = new Gtk.Label("");
-        Gtk.Label info = new Gtk.Label("");
-        installPlugin = new Gtk.Button.with_label(_("Install Plugin"));
-        doNothing = new Gtk.Button.from_stock ("dialog-cancel");
+        Gtk.Image question = new Gtk.Image.from_icon_name ("dialog-question", Gtk.IconSize.DIALOG);
+        Gtk.Label info = new Gtk.Label ("");
 
         // pretty up labels
-        title.xalign = 0.0f;
-        title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (_("Required GStreamer plugin not installed")) + "</span>");
-        info.xalign = 0.0f;
-        info.set_line_wrap(true);
-        info.set_markup(_("The plugin for media type %s is not installed.\nWhat would you like to do?").printf ("<b>" + String.escape (detail) + "</b>"));
-
+        info.set_markup ("<span weight=\"bold\" size=\"larger\">" + _("Would you like to install the %s plugin?\n").printf (String.escape (detail)) + "</span>" + _("\nThis song cannot be played. The %s plugin is required to play the song.").printf ("<b>" + String.escape (detail) + "</b>"));
+        info.set_line_wrap (true);
+        info.set_selectable (true);
 
         /* set up controls layout */
-        var information = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-        var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-        information.pack_start(warning, false, false, 10);
-        information_text.pack_start(title, false, true, 10);
-        information_text.pack_start(info, false, true, 0);
-        information.pack_start(information_text, true, true, 10);
+        var layout = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 12);
+        layout.set_margin_bottom (24);
+        layout.set_margin_right (6);
+        layout.add (question);
+        layout.add (info);
 
-        var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-        bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
-        bottomButtons.pack_end(installPlugin, false, false, 0);
-        bottomButtons.pack_end(doNothing, false, false, 10);
-        bottomButtons.set_spacing(10);
+        content.add (layout);
 
-        content.pack_start(information, false, true, 0);
-        content.pack_start(bottomButtons, false, true, 10);
+        add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
+        add_button (_("Install Plugin"), Gtk.ResponseType.APPLY);
 
-        padding.pack_start(content, true, true, 10);
-
-        installPlugin.clicked.connect(installPluginClicked);
-
-        doNothing.clicked.connect ( () => {
-            this.destroy ();
+        this.response.connect ((response_id) => { 
+            switch (response_id) {
+            case Gtk.ResponseType.APPLY:
+                installPluginClicked ();
+                break;
+            case Gtk.ResponseType.CLOSE:
+                destroy ();
+                break;
+            }
         });
-        add(padding);
-        show_all();
+
+        show_all ();
     }
 
-        public void installPluginClicked() {
+        public void installPluginClicked () {
             var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (message);
             var context = new Gst.PbUtils.InstallPluginsContext ();
                 
@@ -112,7 +98,7 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Window {
             var search = new Granite.Services.SimpleCommand ("/home", "/usr/bin/dpkg -l"); 
             search.run (); // this is asynchronous. It will tell us when its done
             search.done.connect ((exit) => {
-                if(search.output_str.contains ("fluendo")) { // if plugins installed
+                if (search.output_str.contains ("fluendo")) { // if plugins installed
                     Gst.update_registry ();
                     installation_done = true;
                     }
