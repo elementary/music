@@ -28,7 +28,6 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
         this.message = message;
         this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 
-        this.type_hint = Gdk.WindowTypeHint.DIALOG;
         this.set_modal (true);
         this.set_transient_for (App.main_window);
         this.destroy_with_parent = true;
