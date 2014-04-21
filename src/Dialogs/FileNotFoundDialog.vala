@@ -55,8 +55,8 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
         if (media_list.size == 1) {
             var s = media_list.get (0);
 
-            body_string = (_("The music file for <b>%s</b> by <b>%s</b> could not be found").printf (
-                               s.title.escape (""), s.artist.escape ("")));
+            body_string = (_("The music file for <b>%s</b> by <b>%s</b> could not be found.").printf
+                           (s.title.escape (""), s.artist.escape ("")));
         } else {
              body_string = (_("%i music files could not be found?").printf (media_list.size));
         }
