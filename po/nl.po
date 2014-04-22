@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-14 22:50+0200\n"
+"POT-Creation-Date: 2014-04-21 15:39-0500\n"
 "PO-Revision-Date: 2014-04-15 17:13+0000\n"
 "Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -15,15 +15,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-04-16 06:59+0000\n"
-"X-Generator: Launchpad (build 16976)\n"
+"X-Launchpad-Export-Date: 2014-04-22 08:17+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 "Language: nl\n"
 
-#: ../core/LibrariesManager.vala:140
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importeren van <b>$NAME</b> door <b>$ARTIST</b> naar bibliotheek…"
+#. / Used for unknown titles, artists, or album names.
+#: ../core/Media.vala:43
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: ../core/Media.vala:53
+msgid "Radio Station"
+msgstr "Radiostation"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:183
+msgid "$NAME on $ALBUM"
+msgstr "$NAME op $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: ../core/Media.vala:186
+msgid "$NAME by $ARTIST"
+msgstr "$NAME door $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:192
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME door $ARTIST op $ALBUM"
 
 #: ../core/Resources.vala:58
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: ../src/Dialogs/FileNotFoundDialog.vala:86
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -35,77 +57,121 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../core/GStreamer/Equalizer.vala:78
+#: ../core/LibrariesManager.vala:140
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "Importeren van <b>$NAME</b> door <b>$ARTIST</b> naar bibliotheek…"
+
+#: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
 msgstr "Plat"
 
-#: ../core/GStreamer/Equalizer.vala:79
+#: ../core/GStreamer/Equalizer.vala:77
 msgid "Classical"
 msgstr "Klassiek"
 
-#: ../core/GStreamer/Equalizer.vala:80
+#: ../core/GStreamer/Equalizer.vala:78
 msgid "Club"
 msgstr "Club"
 
-#: ../core/GStreamer/Equalizer.vala:81
+#: ../core/GStreamer/Equalizer.vala:79
 msgid "Dance"
 msgstr "Dance"
 
-#: ../core/GStreamer/Equalizer.vala:82
+#: ../core/GStreamer/Equalizer.vala:80
 msgid "Full Bass"
 msgstr "Maximale bas"
 
-#: ../core/GStreamer/Equalizer.vala:83
+#: ../core/GStreamer/Equalizer.vala:81
 msgid "Full Treble"
 msgstr "Maximale hoge tonen"
 
-#: ../core/GStreamer/Equalizer.vala:84
+#: ../core/GStreamer/Equalizer.vala:82
 msgid "Full Bass + Treble"
 msgstr "Maximale bas en hoge tonen"
 
-#: ../core/GStreamer/Equalizer.vala:85
+#: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
 msgstr "Koptelefoon"
 
-#: ../core/GStreamer/Equalizer.vala:86
+#: ../core/GStreamer/Equalizer.vala:84
 msgid "Large Hall"
 msgstr "Grote hal"
 
-#: ../core/GStreamer/Equalizer.vala:87
+#: ../core/GStreamer/Equalizer.vala:85
 msgid "Live"
 msgstr "Live"
 
-#: ../core/GStreamer/Equalizer.vala:88
+#: ../core/GStreamer/Equalizer.vala:86
 msgid "Party"
 msgstr "Party"
 
-#: ../core/GStreamer/Equalizer.vala:89
+#: ../core/GStreamer/Equalizer.vala:87
 msgid "Pop"
 msgstr "Pop"
 
-#: ../core/GStreamer/Equalizer.vala:90
+#: ../core/GStreamer/Equalizer.vala:88
 msgid "Reggae"
 msgstr "Reggae"
 
-#: ../core/GStreamer/Equalizer.vala:91
+#: ../core/GStreamer/Equalizer.vala:89
 msgid "Rock"
 msgstr "Rock"
 
-#: ../core/GStreamer/Equalizer.vala:92
+#: ../core/GStreamer/Equalizer.vala:90
 msgid "Soft"
 msgstr "Soft"
 
-#: ../core/GStreamer/Equalizer.vala:93
+#: ../core/GStreamer/Equalizer.vala:91
 msgid "Ska"
 msgstr "Ska"
 
-#: ../core/GStreamer/Equalizer.vala:94
+#: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft Rock"
 msgstr "Soft Rock"
 
-#: ../core/GStreamer/Equalizer.vala:95
+#: ../core/GStreamer/Equalizer.vala:93
 msgid "Techno"
 msgstr "Techno"
+
+#: ../core/Utils/FileUtils.vala:280
+msgid " (%d)"
+msgstr " (%d)"
+
+#: ../core/Utils/PlaylistsUtils.vala:96
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: ../core/Utils/PlaylistsUtils.vala:235
+msgid "New playlist"
+msgstr "Nieuwe afspeellijst"
+
+#: ../core/Utils/PlaylistsUtils.vala:246
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: ../core/Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr "Afspeellijst exporteren"
+
+#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG versie 3.0 uitgebreid (*.m3u)"
+
+#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Shoutcast Afspeellijst Versie 2.0 (*.pls)"
+
+#: ../core/Utils/PlaylistsUtils.vala:362
+msgid "Playlist"
+msgstr "Afspeellijst"
+
+#: ../core/Utils/PlaylistsUtils.vala:368
+msgid "Import %s"
+msgstr "%s importeren"
+
+#: ../core/Utils/PlaylistsUtils.vala:402
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Onherkenbaar afspeellijst bestand. Importeren mislukt."
 
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
@@ -173,70 +239,6 @@ msgstr "%s en %s"
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%d-%m-%Y %k:%M"
 
-#: ../core/Utils/FileUtils.vala:280
-msgid " (%d)"
-msgstr " (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:96
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:235
-msgid "New playlist"
-msgstr "Nieuwe afspeellijst"
-
-#: ../core/Utils/PlaylistsUtils.vala:246
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: ../core/Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "Afspeellijst exporteren"
-
-#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG versie 3.0 uitgebreid (*.m3u)"
-
-#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast Afspeellijst Versie 2.0 (*.pls)"
-
-#: ../core/Utils/PlaylistsUtils.vala:362
-msgid "Playlist"
-msgstr "Afspeellijst"
-
-#: ../core/Utils/PlaylistsUtils.vala:368
-msgid "Import %s"
-msgstr "%s importeren"
-
-#: ../core/Utils/PlaylistsUtils.vala:402
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Onherkenbaar afspeellijst bestand. Importeren mislukt."
-
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:43
-msgid "Unknown"
-msgstr "Onbekend"
-
-#: ../core/Media.vala:53
-msgid "Radio Station"
-msgstr "Radiostation"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:183
-msgid "$NAME on $ALBUM"
-msgstr "$NAME op $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:186
-msgid "$NAME by $ARTIST"
-msgstr "$NAME door $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:192
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME door $ARTIST op $ALBUM"
-
 #: ../src/LibraryWindow.vala:248
 msgid "Import to Library…"
 msgstr "Importeer naar bibliotheek..."
@@ -266,8 +268,8 @@ msgstr "Zoek muziek"
 msgid "Music"
 msgstr "Muziek"
 
-#: ../src/LibraryWindow.vala:854 ../src/PlaybackManager.vala:99
-#: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
+#: ../src/LibraryWindow.vala:854 ../src/LocalLibrary.vala:104
+#: ../src/PlaybackManager.vala:99 ../src/DataBase/DataBaseManager.vala:560
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Wachtrij"
@@ -287,8 +289,8 @@ msgstr ""
 "zullen items voor het volgende nummer in de huidige wachtlijst eerst "
 "afgespeeld worden."
 
-#: ../src/LibraryWindow.vala:864 ../src/PlaybackManager.vala:97
-#: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
+#: ../src/LibraryWindow.vala:864 ../src/LocalLibrary.vala:104
+#: ../src/PlaybackManager.vala:97 ../src/DataBase/DataBaseManager.vala:560
 msgid "History"
 msgstr "Geschiedenis"
 
@@ -327,153 +329,75 @@ msgstr "%s heeft je muziekbibliotheek geimporteerd."
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "Bestanden <b>kopieren</b> naar <b>Muziekmap</b>"
 
-#: ../src/Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "Onbekend album"
+#: ../src/LocalLibrary.vala:164
+msgid "Importing music from %s…"
+msgstr "Muziek importeren van %s..."
 
-#: ../src/Objects/AlbumInfo.vala:26 ../src/Objects/ArtistInfo.vala:27
-#: ../src/GStreamer/Streamer.vala:187
-#: ../plugins/Devices/CDRom/CDPlayer.vala:203
-#: ../plugins/Devices/iPod/iPodStreamer.vala:194
-msgid "Unknown Artist"
-msgstr "Onbekende artiest"
+#: ../src/LocalLibrary.vala:203
+msgid "Adding files to library…"
+msgstr "Bestanden toevoegen aan bibliotheek..."
 
-#: ../src/Objects/TrackInfo.vala:25
-msgid "Unknown Track"
-msgstr "Onbekend Nummer"
+#: ../src/LocalLibrary.vala:268
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "Muziek opnieuw aan het scannen. Dit kan even duren..."
 
-#: ../src/Objects/LyricFetcher.vala:155
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Songteksten opgehaald van www.lyricsmania.com"
+#: ../src/LocalLibrary.vala:346
+msgid "Added to your queue:"
+msgstr "Toegevoegd aan je wachtrij:"
 
-#: ../src/Dialogs/MediaEditor.vala:83
-msgid "Metadata"
-msgstr "Metadata"
+#: ../src/Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr "Niet geïmporteerde bestanden"
 
-#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:376
-msgid "Lyrics"
-msgstr "Liedteksten"
+#: ../src/Dialogs/NotImportedWindow.vala:64
+#: ../src/Dialogs/NotImportedWindow.vala:76
+msgid "Unable to import %d items from %s"
+msgstr "Kon %d items niet importeren van %s"
 
-#: ../src/Dialogs/MediaEditor.vala:94 ../src/Dialogs/PreferencesWindow.vala:94
-msgid "Close"
-msgstr "Sluiten"
-
-#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:347
-msgid "Editing $NAME by $ARTIST"
-msgstr "Bewerken van $NAME door $ARTIST"
-
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:349
-msgid "Editing %s"
-msgstr "%s bewerken"
-
-#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:352
-msgid "Editing %i songs"
-msgstr "%i nummers aan het bewerken"
-
-#: ../src/Dialogs/MediaEditor.vala:191
-#: ../src/Dialogs/SmartPlaylistEditor.vala:274
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:122
-msgid "Title"
-msgstr "Titel"
-
-#: ../src/Dialogs/MediaEditor.vala:192
-#: ../src/Dialogs/SmartPlaylistEditor.vala:261
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:123
-#: ../src/Widgets/StatusBar.vala:69
-msgid "Artist"
-msgstr "Artiest"
-
-#: ../src/Dialogs/MediaEditor.vala:193
-msgid "Album Artist"
-msgstr "Albumartiest"
-
-#: ../src/Dialogs/MediaEditor.vala:194
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:124
-#: ../src/Widgets/StatusBar.vala:68
-msgid "Album"
-msgstr "Album"
-
-#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:479
-#: ../src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Genre"
-msgstr "Genre"
-
-#: ../src/Dialogs/MediaEditor.vala:196
-#: ../src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Composer"
-msgstr "Componist"
-
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:479
-#: ../src/Dialogs/SmartPlaylistEditor.vala:268
-msgid "Grouping"
-msgstr "Groepering"
-
-#: ../src/Dialogs/MediaEditor.vala:198
-#: ../src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Comment"
-msgstr "Commentaar"
-
-#: ../src/Dialogs/MediaEditor.vala:199
-msgid "Track"
-msgstr "Nummer"
-
-#: ../src/Dialogs/MediaEditor.vala:200
-msgid "Disc"
-msgstr "Schijf"
-
-#: ../src/Dialogs/MediaEditor.vala:201
-#: ../src/Dialogs/SmartPlaylistEditor.vala:275
-msgid "Year"
-msgstr "Jaar"
-
-#: ../src/Dialogs/MediaEditor.vala:202
-#: ../src/Dialogs/SmartPlaylistEditor.vala:272
-msgid "Rating"
-msgstr "Beoordeling"
-
-#: ../src/Dialogs/MediaEditor.vala:204
-msgid "Media Type"
-msgstr "Mediatype"
-
-#: ../src/Dialogs/MediaEditor.vala:295
-msgid "Lyrics not found for %s"
-msgstr "Songtekst niet gevonden voor %s"
-
-#: ../src/Dialogs/MediaEditor.vala:538 ../src/Widgets/StatusBar.vala:67
-msgid "Song"
-msgstr "Nummer"
-
-#: ../src/Dialogs/MediaEditor.vala:540
-msgid "Podcast"
-msgstr "Podcast"
-
-#: ../src/Dialogs/MediaEditor.vala:683
-msgid "Reset"
+#: ../src/Dialogs/NotImportedWindow.vala:65
+msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
+"%s kon %d items niet importeren. De bestanden kunnen beschadigd zijn."
 
-#: ../src/Dialogs/MediaEditor.vala:687
-msgid "<b>Stats</b>"
-msgstr ""
+#: ../src/Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr "Verplaats alle corrupte bestanden naar de prullenbak"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:56
-#: ../src/Dialogs/NotImportedWindow.vala:72
+#: ../src/Dialogs/NotImportedWindow.vala:71
+#: ../src/Dialogs/RemoveFilesDialog.vala:50
 msgid "Move to Trash"
 msgstr "Naar prullenbak verplaatsen"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:57
+#: ../src/Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "Negeren"
+
+#: ../src/Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "verwijderen"
+
+#: ../src/Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "Bestandslocatie"
+
+#: ../src/Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr ""
+"Selecteer afzonderlijke bestanden om naar de prullenbak te verplaatsen:"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
 msgstr "Verwijder van %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:66
+#: ../src/Dialogs/RemoveFilesDialog.vala:61
 msgid "Remove %d Songs From %s?"
 msgstr "Verwijder %d nummers van %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:70
+#: ../src/Dialogs/RemoveFilesDialog.vala:64
 msgid "Remove \"%s\" From %s?"
 msgstr "Verwijder \"%s\" van %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:79
+#: ../src/Dialogs/RemoveFilesDialog.vala:73
 msgid ""
 "This will remove the song from your library and from any device that "
 "automatically syncs with %s."
@@ -487,30 +411,49 @@ msgstr[1] ""
 "Dit zal de nummers verwijderen uit je muziekbibliotheek en van elk apparaat "
 "dat autmatisch synchroniseert met %s."
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:62
-msgid "Export Playlists"
-msgstr "Afspeellijst exporteren"
+#: ../src/Dialogs/PreferencesWindow.vala:48
+msgid "Select Music Folder…"
+msgstr "Selecteer muziekmap..."
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:63
-msgid "Set Music Folder"
-msgstr "Selecteer muziek-map"
+#: ../src/Dialogs/PreferencesWindow.vala:94 ../src/Dialogs/MediaEditor.vala:94
+msgid "Close"
+msgstr "Sluiten"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
-msgid "Set Music Folder?"
-msgstr "Muziek-map instellen?"
+#: ../src/Dialogs/PreferencesWindow.vala:129
+msgid "General"
+msgstr "Algemeen"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:73
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
+#: ../src/Dialogs/PreferencesWindow.vala:135
+msgid "Music Folder Location:"
+msgstr "Muziekmap locatie:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:143
+msgid "Library Management:"
+msgstr "Bibliotheekmanagement"
+
+#: ../src/Dialogs/PreferencesWindow.vala:150
+msgid "Keep Music folder organized:"
+msgstr "Houd Muziekmap georganiseerd:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:154
+msgid "Write metadata to file:"
+msgstr "Schrijf metadata naar bestand"
+
+#: ../src/Dialogs/PreferencesWindow.vala:158
+msgid "Copy imported files to Library:"
+msgstr "Kopieer geïmporteerde bestanden naar bibliotheek:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:160
+msgid "Desktop Integration:"
+msgstr "Desktopintegratie"
+
+#: ../src/Dialogs/PreferencesWindow.vala:166
+msgid "Notifications:"
 msgstr ""
-"Weet je zeker dat je %s als muziekmap in wilt stellen? Dit zal je "
-"muziekbibliotheek resetten en je afspeellijsten verwijderen."
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
-#: ../src/Dialogs/FileNotFoundDialog.vala:139
-msgid "Choose Music Folder"
-msgstr "Kies muziek-map"
+#: ../src/Dialogs/PreferencesWindow.vala:171
+msgid "Continue playback when closed:"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
@@ -568,9 +511,31 @@ msgstr "items"
 msgid "Remove"
 msgstr "Verwijderen"
 
+#: ../src/Dialogs/SmartPlaylistEditor.vala:260
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:123
+#: ../src/Dialogs/MediaEditor.vala:194 ../src/Widgets/StatusBar.vala:70
+msgid "Album"
+msgstr "Album"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:261
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:122
+#: ../src/Dialogs/MediaEditor.vala:192 ../src/Widgets/StatusBar.vala:71
+msgid "Artist"
+msgstr "Artiest"
+
 #: ../src/Dialogs/SmartPlaylistEditor.vala:262
 msgid "Bitrate"
 msgstr "Bitsnelheid"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:263
+#: ../src/Dialogs/MediaEditor.vala:198
+msgid "Comment"
+msgstr "Commentaar"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:264
+#: ../src/Dialogs/MediaEditor.vala:196
+msgid "Composer"
+msgstr "Componist"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Date Added"
@@ -579,6 +544,16 @@ msgstr "Datum toegevoegd"
 #: ../src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Date Released"
 msgstr "Uitgebracht op"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:267
+#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:479
+msgid "Genre"
+msgstr "Genre"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:268
+#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:479
+msgid "Grouping"
+msgstr "Groepering"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Last Played"
@@ -593,9 +568,25 @@ msgstr "Duur"
 msgid "Playcount"
 msgstr "Aantal keren afgespeeld"
 
+#: ../src/Dialogs/SmartPlaylistEditor.vala:272
+#: ../src/Dialogs/MediaEditor.vala:202
+msgid "Rating"
+msgstr "Beoordeling"
+
 #: ../src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Skipcount"
 msgstr "Aantal keren overgeslagen"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:274
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
+#: ../src/Dialogs/MediaEditor.vala:191
+msgid "Title"
+msgstr "Titel"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:275
+#: ../src/Dialogs/MediaEditor.vala:201
+msgid "Year"
+msgstr "Jaar"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:336
 msgid "is"
@@ -642,123 +633,19 @@ msgstr "dagen geleden"
 msgid "kbps"
 msgstr "kbps"
 
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:56
-msgid "Import from Device"
-msgstr "van apparaat importeren"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:73
-msgid "Import media from %s"
-msgstr "Importeer media van %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:74
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"De volgende bestanden zijn gevonden op %s, maar staan niet in je "
-"bibliotheek. Selecteer alle bestanden die je wil importeren."
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:75
-msgid "Import all media"
-msgstr "Importeer alle media"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:80
-#: ../plugins/Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr "Importeer"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:81
-msgid "Don't Import"
-msgstr "Niet importeren"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:89
-msgid "Import %i items from %s"
-msgstr "Importeer %i items van %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:93
-msgid "Import %s from %s"
-msgstr "Importeer %s van %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
-msgid "ID"
-msgstr "ID"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:173
-msgid "Select individual media to import:"
-msgstr "Selecteer individuele media om te importeren"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:191
-msgid "Check Item"
-msgstr "Controleer item"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:192
-msgid "Check Album"
-msgstr "Controleer album"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Artist"
-msgstr "Controleer artiest"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:291
-msgid "Cannot Import"
-msgstr "Kan niet importeren"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:291
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-"Noise is al bezig met bestandsbewerkingen. Wacht totdat deze klaar zijn om "
-"te importeren uit %d"
-
-#: ../src/Dialogs/NotImportedWindow.vala:48
-msgid "Not Imported Files"
-msgstr "Niet geïmporteerde bestanden"
-
-#: ../src/Dialogs/NotImportedWindow.vala:65
-#: ../src/Dialogs/NotImportedWindow.vala:77
-msgid "Unable to import %d items from %s"
-msgstr "Kon %d items niet importeren van %s"
-
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-"%s kon %d items niet importeren. De bestanden kunnen beschadigd zijn."
-
-#: ../src/Dialogs/NotImportedWindow.vala:67
-msgid "Move all corrupted files to trash"
-msgstr "Verplaats alle corrupte bestanden naar de prullenbak"
-
-#: ../src/Dialogs/NotImportedWindow.vala:73
-msgid "Ignore"
-msgstr "Negeren"
-
-#: ../src/Dialogs/NotImportedWindow.vala:94
-msgid "del"
-msgstr "verwijderen"
-
-#: ../src/Dialogs/NotImportedWindow.vala:99
-msgid "File Location"
-msgstr "Bestandslocatie"
-
-#: ../src/Dialogs/NotImportedWindow.vala:126
-msgid "Select individual files to move to trash:"
-msgstr ""
-"Selecteer afzonderlijke bestanden om naar de prullenbak te verplaatsen:"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:60
+#: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
 msgstr "Importeer media naar de bibliotheek"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:61
+#: ../src/Dialogs/SyncWarningDialog.vala:58
 msgid "Continue Syncing"
 msgstr "Ga verder met het synchroniseren"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:62
+#: ../src/Dialogs/SyncWarningDialog.vala:59
 msgid "Stop Syncing"
 msgstr "Stop synchroniseren"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:69
+#: ../src/Dialogs/SyncWarningDialog.vala:66
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
@@ -767,422 +654,327 @@ msgstr ""
 "aangezien deze niet op de synchronisatielijst staan. Wil je deze eerst "
 "importeren in je muziekbibliotheek?"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:75
+#: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
 msgstr "Synchronisatie zal %i items van %s verwijderen"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:78
+#: ../src/Dialogs/SyncWarningDialog.vala:75
 msgid "Sync will remove 1 item from %s"
 msgstr "Sync zal 1 item van %s verwijderen"
 
-#: ../src/Dialogs/PreferencesWindow.vala:48
-msgid "Select Music Folder…"
-msgstr "Selecteer muziekmap..."
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:55
+msgid "Import from Device"
+msgstr "van apparaat importeren"
 
-#: ../src/Dialogs/PreferencesWindow.vala:129
-msgid "General"
-msgstr "Algemeen"
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
+msgid "Import media from %s"
+msgstr "Importeer media van %s"
 
-#: ../src/Dialogs/PreferencesWindow.vala:135
-msgid "Music Folder Location:"
-msgstr "Muziekmap locatie:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:143
-msgid "Library Management:"
-msgstr "Bibliotheekmanagement"
-
-#: ../src/Dialogs/PreferencesWindow.vala:150
-msgid "Keep Music folder organized:"
-msgstr "Houd Muziekmap georganiseerd:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:154
-msgid "Write metadata to file:"
-msgstr "Schrijf metadata naar bestand"
-
-#: ../src/Dialogs/PreferencesWindow.vala:158
-msgid "Copy imported files to Library:"
-msgstr "Kopieer geïmporteerde bestanden naar bibliotheek:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:160
-msgid "Desktop Integration:"
-msgstr "Desktopintegratie"
-
-#: ../src/Dialogs/PreferencesWindow.vala:166
-msgid "Notifications:"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:171
-msgid "Continue playback when closed:"
-msgstr ""
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:65
-msgid "Remove Media"
-msgstr "Verwijder media"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:66
-msgid "Locate Media"
-msgstr "Vind media"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:67
-msgid "Rescan Library"
-msgstr "Scan bibliotheek opnieuw"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:68
-msgid "Do Nothing"
-msgstr "Niets doen"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:74
-msgid "Could not find media file"
-msgstr "Kon mediabestand niet vinden"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:83
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:73
 msgid ""
-"The music file for $NAME by $ARTIST could not be found. What would you like "
-"to do?"
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
 msgstr ""
-"Het bestand voor $NAME door $ARTIST kon niet worden gevonden. Wat wil je "
-"doen?"
+"De volgende bestanden zijn gevonden op %s, maar staan niet in je "
+"bibliotheek. Selecteer alle bestanden die je wil importeren."
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i mediabestanden konden niet gevonden worden. Wat wil je doen?"
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:74
+msgid "Import all media"
+msgstr "Importeer alle media"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:57
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:79
+#: ../plugins/Devices/CDRom/CDView.vala:90
+msgid "Import"
+msgstr "Importeer"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:80
+msgid "Don't Import"
+msgstr "Niet importeren"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:88
+msgid "Import %i items from %s"
+msgstr "Importeer %i items van %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:92
+msgid "Import %s from %s"
+msgstr "Importeer %s van %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
+msgid "ID"
+msgstr "ID"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:172
+msgid "Select individual media to import:"
+msgstr "Selecteer individuele media om te importeren"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
+msgid "Check Item"
+msgstr "Controleer item"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:191
+msgid "Check Album"
+msgstr "Controleer album"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:192
+msgid "Check Artist"
+msgstr "Controleer artiest"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:289
+msgid "Cannot Import"
+msgstr "Kan niet importeren"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:289
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"Noise is al bezig met bestandsbewerkingen. Wacht totdat deze klaar zijn om "
+"te importeren uit %d"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
+msgid "Export Playlists"
+msgstr "Afspeellijst exporteren"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
+msgid "Set Music Folder"
+msgstr "Selecteer muziek-map"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
+msgid "Set Music Folder?"
+msgstr "Muziek-map instellen?"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Weet je zeker dat je %s als muziekmap in wilt stellen? Dit zal je "
+"muziekbibliotheek resetten en je afspeellijsten verwijderen."
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
+#: ../src/Dialogs/FileNotFoundDialog.vala:123
+msgid "Choose Music Folder"
+msgstr "Kies muziek-map"
+
+#: ../src/Dialogs/MediaEditor.vala:83
+msgid "Metadata"
+msgstr "Metadata"
+
+#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:376
+msgid "Lyrics"
+msgstr "Liedteksten"
+
+#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:347
+msgid "Editing $NAME by $ARTIST"
+msgstr "Bewerken van $NAME door $ARTIST"
+
+#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:349
+msgid "Editing %s"
+msgstr "%s bewerken"
+
+#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:352
+msgid "Editing %i songs"
+msgstr "%i nummers aan het bewerken"
+
+#: ../src/Dialogs/MediaEditor.vala:193
+msgid "Album Artist"
+msgstr "Albumartiest"
+
+#: ../src/Dialogs/MediaEditor.vala:199
+msgid "Track"
+msgstr "Nummer"
+
+#: ../src/Dialogs/MediaEditor.vala:200
+msgid "Disc"
+msgstr "Schijf"
+
+#: ../src/Dialogs/MediaEditor.vala:204
+msgid "Media Type"
+msgstr "Mediatype"
+
+#: ../src/Dialogs/MediaEditor.vala:295
+msgid "Lyrics not found for %s"
+msgstr "Songtekst niet gevonden voor %s"
+
+#: ../src/Dialogs/MediaEditor.vala:538 ../src/Widgets/StatusBar.vala:69
+msgid "Song"
+msgstr "Nummer"
+
+#: ../src/Dialogs/MediaEditor.vala:540
+msgid "Podcast"
+msgstr "Podcast"
+
+#: ../src/Dialogs/MediaEditor.vala:683
+msgid "Reset"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:687
+msgid "<b>Stats</b>"
+msgstr ""
+
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
+msgid "Would you like to install the %s plugin?\n"
+msgstr ""
+
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+msgid ""
+"\n"
+"This song cannot be played. The %s plugin is required to play the song."
+msgstr ""
+
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
 msgid "Install Plugin"
 msgstr "Installeer plug-in"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
-msgid "Required GStreamer plugin not installed"
-msgstr "De benodigde GStreamer plug-in is niet geïnstalleerd"
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:65
-msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
+#: ../src/Dialogs/FileNotFoundDialog.vala:52
+msgid "File not found"
 msgstr ""
-"De plug-in voor het bestandstype %s is niet geïnstalleerd.\n"
-"Wat wilt u doen?"
 
-#: ../src/Noise.vala:37
-msgid "Listen to music"
-msgstr "Luister naar muziek"
-
-#: ../src/Noise.vala:38
-msgid "Music Player"
-msgstr "Muziekspeler"
-
-#: ../src/Noise.vala:39
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#: ../src/Dialogs/FileNotFoundDialog.vala:58
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
-"Noise;Muziek;Speler;Audio;MP3;iPod;Afspeellijst;Speel;Media;CD;Telefoon;Liedj"
-"es"
 
-#: ../src/LocalLibrary.vala:164
-msgid "Importing music from %s…"
-msgstr "Muziek importeren van %s..."
+#: ../src/Dialogs/FileNotFoundDialog.vala:61
+msgid "%i music files could not be found?"
+msgstr ""
 
-#: ../src/LocalLibrary.vala:203
-msgid "Adding files to library…"
-msgstr "Bestanden toevoegen aan bibliotheek..."
+#: ../src/Dialogs/FileNotFoundDialog.vala:84
+msgid "Rescan Library"
+msgstr "Scan bibliotheek opnieuw"
 
-#: ../src/LocalLibrary.vala:268
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Muziek opnieuw aan het scannen. Dit kan even duren..."
+#: ../src/Dialogs/FileNotFoundDialog.vala:85
+#: ../src/Views/ListView/Lists/MusicListView.vala:129
+msgid "Remove Song"
+msgstr "Verwijder nummer"
 
-#: ../src/LocalLibrary.vala:346
-msgid "Added to your queue:"
-msgstr "Toegevoegd aan je wachtrij:"
+#: ../src/Dialogs/FileNotFoundDialog.vala:87
+msgid "Find Song"
+msgstr ""
 
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "Albumweergave"
+#: ../src/GStreamer/Streamer.vala:187 ../src/Objects/ArtistInfo.vala:27
+#: ../src/Objects/AlbumInfo.vala:26 ../plugins/Devices/CDRom/CDPlayer.vala:203
+#: ../plugins/Devices/iPod/iPodStreamer.vala:191
+msgid "Unknown Artist"
+msgstr "Onbekende artiest"
 
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "Lijstweergave"
-
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "Kolomweergave"
-
-#: ../src/Widgets/EqualizerPopover.vala:157
-msgid "Save preset"
-msgstr "Voorinstelling opslaan"
-
-#: ../src/Widgets/EqualizerPopover.vala:403
-msgid "%s (Custom)"
-msgstr "%s (aangepast)"
-
-#: ../src/Widgets/EqualizerPopover.vala:405
-msgid "%s (Custom %i)"
-msgstr "%s (aangepast %i)"
-
-#: ../src/Widgets/EqualizerPopover.vala:408
-msgid "Custom Preset"
-msgstr "Aangepaste voorinstelling"
-
-#: ../src/Widgets/EqualizerPopover.vala:410
-msgid "Custom Preset %i"
-msgstr "Aangepaste voorinstelling %i"
-
-#: ../src/Widgets/PresetList.vala:49
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
-msgid "Automatic"
-msgstr "Automatisch"
-
-#: ../src/Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "Huidige verwijderen"
-
-#: ../src/Widgets/SpaceWidget.vala:238 ../src/Widgets/SourceListView.vala:157
-msgid "Sync"
-msgstr "Synchroniseren"
-
-#: ../src/Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "Gratis"
-
-#: ../src/Widgets/SpaceWidget.vala:384
-msgid "Using %s of %s (%.2f%)"
-msgstr "%s van %s in gebruik (%.2f%)"
-
-#: ../src/Widgets/StatusBar.vala:66 ../src/Widgets/StatusBar.vala:99
-msgid "Off"
-msgstr "Uit"
-
-#: ../src/Widgets/StatusBar.vala:66
-msgid "Enable Repeat"
-msgstr "Herhalen inschakelen"
-
-#: ../src/Widgets/StatusBar.vala:67
-msgid "Repeat Song"
-msgstr "Nummer herhalen"
-
-#: ../src/Widgets/StatusBar.vala:68
-msgid "Repeat Album"
-msgstr "Album herhalen"
-
-#: ../src/Widgets/StatusBar.vala:69
-msgid "Repeat Artist"
-msgstr "Artiest herhalen"
-
-#: ../src/Widgets/StatusBar.vala:70 ../src/Widgets/StatusBar.vala:100
-msgid "All"
-msgstr "Alle"
-
-#: ../src/Widgets/StatusBar.vala:70
-msgid "Repeat All"
-msgstr "Alles Herhalen"
-
-#: ../src/Widgets/StatusBar.vala:99
-msgid "Enable Shuffle"
-msgstr "Shuffle inschakelen"
-
-#: ../src/Widgets/StatusBar.vala:100
-msgid "Disable Shuffle"
-msgstr "Shuffle uitschakelen"
-
-#: ../src/Widgets/StatusBar.vala:133 ../src/Widgets/StatusBar.vala:144
-msgid "Add Playlist"
-msgstr "Afspeellijst Toevoegen"
-
-#: ../src/Widgets/StatusBar.vala:145
-msgid "Add Smart Playlist"
-msgstr "voeg intelligente speellijst toe."
-
-#: ../src/Widgets/StatusBar.vala:195
-msgid "Hide"
-msgstr "Verbergen"
-
-#: ../src/Widgets/StatusBar.vala:195
-msgid "Show Info Panel"
-msgstr "Toon Infopaneel"
-
-#: ../src/Widgets/StatusBar.vala:196
-msgid "Show"
-msgstr "Tonen"
-
-#: ../src/Widgets/StatusBar.vala:196
-msgid "Hide Info Panel"
-msgstr "Verberg Infopaneel"
-
-#: ../src/Widgets/SourceListView.vala:56 ../src/Widgets/SourceListView.vala:69
-msgid "Rename"
-msgstr "Naam wijzigen"
-
-#: ../src/Widgets/SourceListView.vala:58 ../src/Widgets/SourceListView.vala:72
-#: ../src/Widgets/SourceListView.vala:87
-msgid "Export…"
-msgstr "Exporteren..."
-
-#: ../src/Widgets/SourceListView.vala:70
-msgid "Edit…"
-msgstr "Bewerken..."
-
-#: ../src/Widgets/SourceListView.vala:85
-msgid "Save as Playlist"
-msgstr "Als afspeellijst opslaan"
-
-#: ../src/Widgets/SourceListView.vala:134
-#: ../src/Views/ListView/Lists/MusicListView.vala:130
-msgid "Import to Library"
-msgstr "Importeren naar bibliotheek"
-
-#: ../src/Widgets/SourceListView.vala:142
-msgid "Eject"
-msgstr "Uitwerpen"
-
-#: ../src/Widgets/SourceListView.vala:147
-#: ../src/Widgets/SourceListView.vala:186
-msgid "New Playlist"
-msgstr "Nieuwe afspeellijst"
-
-#: ../src/Widgets/SourceListView.vala:152
-#: ../src/Widgets/SourceListView.vala:187
-msgid "New Smart Playlist"
-msgstr "Nieuwe slimme afspeellijst"
-
-#: ../src/Widgets/SourceListView.vala:188
-msgid "Import Playlists"
-msgstr "Afspeellijsten importeren"
-
-#: ../src/Widgets/SourceListView.vala:232
-msgid "Library"
-msgstr "Bibliotheek"
-
-#: ../src/Widgets/SourceListView.vala:233
-msgid "Devices"
-msgstr "Apparaten"
-
-#: ../src/Widgets/SourceListView.vala:234
-msgid "Network"
-msgstr "Netwerk"
-
-#: ../src/Widgets/SourceListView.vala:235 ../plugins/MPRIS/MPRIS.vala:643
-msgid "Playlists"
-msgstr "Afspeellijsten"
-
-#: ../src/DataBase/DataBaseManager.vala:457
-#: ../src/DataBase/DataBaseManager.vala:693
+#: ../src/DataBase/DataBaseManager.vala:456
+#: ../src/DataBase/DataBaseManager.vala:692
 msgid "Favorite Songs"
 msgstr "Favoriete Nummers"
 
-#: ../src/DataBase/DataBaseManager.vala:464
-#: ../src/DataBase/DataBaseManager.vala:700
+#: ../src/DataBase/DataBaseManager.vala:463
+#: ../src/DataBase/DataBaseManager.vala:699
 msgid "Recently Added"
 msgstr "Recentelijk toegevoegd"
 
-#: ../src/DataBase/DataBaseManager.vala:480
-#: ../src/DataBase/DataBaseManager.vala:716
+#: ../src/DataBase/DataBaseManager.vala:479
+#: ../src/DataBase/DataBaseManager.vala:715
 msgid "Recent Favorites"
 msgstr "Recente favorieten"
 
-#: ../src/DataBase/DataBaseManager.vala:487
-#: ../src/DataBase/DataBaseManager.vala:723
+#: ../src/DataBase/DataBaseManager.vala:486
+#: ../src/DataBase/DataBaseManager.vala:722
 msgid "Never Played"
 msgstr "Nooit afgespeeld"
 
-#: ../src/DataBase/DataBaseManager.vala:494
-#: ../src/DataBase/DataBaseManager.vala:730
+#: ../src/DataBase/DataBaseManager.vala:493
+#: ../src/DataBase/DataBaseManager.vala:729
 msgid "Over Played"
 msgstr "Vaak gespeeld"
 
-#: ../src/DataBase/DataBaseManager.vala:501
-#: ../src/DataBase/DataBaseManager.vala:737
+#: ../src/DataBase/DataBaseManager.vala:500
+#: ../src/DataBase/DataBaseManager.vala:736
 msgid "Not Recently Played"
 msgstr "Niet recentelijk afgespeeld"
 
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Device Name:"
-msgstr "Apparaatnaam:"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:50
+msgid "Get Some Tunes"
+msgstr "Scoor Wat Nummers"
 
-#: ../src/Views/DeviceSummaryWidget.vala:89
-msgid "Device Name"
-msgstr "Apparaatnaam"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Add music to your library."
+msgstr "Voeg muziek toe aan je bibliotheek."
 
-#: ../src/Views/DeviceSummaryWidget.vala:91
-msgid "Automatically sync when plugged in:"
-msgstr "Automatisch synchroniseren bij aankoppelen:"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Change Music Folder"
+msgstr "Wijzig Muziek-map."
 
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Sync:"
-msgstr "Synchroniseren:"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Laad muziek uit een map, een netwerk of een externe schijf."
 
-#: ../src/Views/DeviceSummaryWidget.vala:120
-msgid "Other Files"
-msgstr "Andere bestanden"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+msgid "Import your Music"
+msgstr "Importeer je muziek"
 
-#: ../src/Views/DeviceSummaryWidget.vala:122
-msgid "Podcasts"
-msgstr "Podcasts"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+msgid "Import all your Music from %s into your library."
+msgstr "Importeer al je muziek uit %s naar je bibliotheek."
 
-#: ../src/Views/DeviceSummaryWidget.vala:416
-msgid "All Music"
-msgstr "Alle muziek"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:139
+msgid "Select Music Folder"
+msgstr "Selecteer muziekmap"
 
-#: ../src/Views/DeviceSummaryWidget.vala:419
-msgid "All Podcasts"
-msgstr "Alle podcasts"
+#: ../src/Views/Wrappers/ViewWrapper.vala:446
+msgid "No media"
+msgstr "Geen medium"
 
-#: ../src/Views/DeviceSummaryWidget.vala:541
-#: ../src/Views/DeviceSummaryWidget.vala:569
-msgid "Sync Failed"
-msgstr "Synchronisatie mislukt"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
+#: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
+msgid "No Songs"
+msgstr "Geen nummers"
 
-#: ../src/Views/DeviceSummaryWidget.vala:541
-#: ../src/Views/DeviceSummaryWidget.vala:569
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
 msgstr ""
-"De afspeellijst %s wordt gebruikt om apparaat %s te synchroniseren, maar kon "
-"niet gevonden worden."
+"Om nummers aan deze afspeellijst toe te voegen, gebruik de <b>rechter "
+"muisknop</b> op een item en kies <b>Toevoegen aan afspeellijst</b>."
 
-#: ../src/Views/DeviceSummaryWidget.vala:607
-#: ../src/Views/DeviceSummaryWidget.vala:610
-msgid "Cannot Sync"
-msgstr "Kan niet synchroniseren"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:104
+msgid "Edit Smart Playlist"
+msgstr "Bewerk slimme afspeellijst"
 
-#: ../src/Views/DeviceSummaryWidget.vala:607
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
 msgstr ""
-"Kan het apparaat niet synchroniseren met de geselecteerde instellingen. Niet "
-"genoeg schijfruimte."
+"De afspeellijst zal automatisch aangevuld worden met nummers die "
+"overeenkomen met de opgegeven regels. Om deze regels aan te passen, gebruik "
+"je de <b>rechter muisknop</b> op de regel in de kantlijn en klik je op "
+"<b>Aanpassen</b>.  Je kan optioneel ook op de knop hieronder klikken."
 
-#: ../src/Views/DeviceSummaryWidget.vala:610
-msgid "Device is already doing an operation."
-msgstr "Het apparaat is al bezig met een operatie."
-
-#: ../src/Views/DeviceView.vala:39
-msgid "Cancelling…"
-msgstr "Afbreken…"
-
-#: ../src/Views/DeviceView.vala:39
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "Apparaat bewerking is geannuleerd en stopt na deze media."
-
-#: ../src/Views/DeviceView.vala:60
-msgid "OK"
+#: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
+msgid "Updating playlist. Please wait."
 msgstr ""
 
-#: ../src/Views/DeviceView.vala:101
-msgid "No External Songs"
-msgstr "Geen externe nummers"
+#: ../src/Views/ListView/ListView.vala:86
+msgid "No Songs Found."
+msgstr "Geen nummers gevonden"
 
-#: ../src/Views/DeviceView.vala:101
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr ""
-"Er zijn geen nummers gevonden op dit apparaat die niet aanwezig zijn in je "
-"bibliotheek"
+#: ../src/Views/ListView/ListView.vala:366
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i liedje"
+msgstr[1] "%i liedjes"
 
-#: ../src/Views/ListView/Lists/GenericList.vala:121
-msgid "Autosize Columns"
-msgstr "Pas kolommen automatisch aan"
+#: ../src/Views/ListView/ListView.vala:368
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u nummer"
+msgstr[1] "%u nummers"
 
-#: ../src/Views/ListView/Lists/GenericList.vala:128
-msgid "Display Album Art"
-msgstr "Toon albumhoes"
+#: ../src/Views/ListView/ListView.vala:376
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:226
 msgid "%i kbps"
@@ -1192,6 +984,14 @@ msgstr "%i kbps"
 #: ../src/Views/ListView/Lists/MusicListView.vala:703
 msgid "Never"
 msgstr "Nooit"
+
+#: ../src/Views/ListView/Lists/GenericList.vala:118
+msgid "Autosize Columns"
+msgstr "Pas kolommen automatisch aan"
+
+#: ../src/Views/ListView/Lists/GenericList.vala:125
+msgid "Display Album Art"
+msgstr "Toon albumhoes"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:91
 msgid "Remove from Library"
@@ -1230,9 +1030,10 @@ msgstr "In wachtrij zetten"
 msgid "Add to Playlist"
 msgstr "Toevoegen aan afspeellijst"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:129
-msgid "Remove Song"
-msgstr "Verwijder nummer"
+#: ../src/Views/ListView/Lists/MusicListView.vala:130
+#: ../src/Widgets/SourceListView.vala:134
+msgid "Import to Library"
+msgstr "Importeren naar bibliotheek"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:214
 msgid "New Playlist…"
@@ -1363,34 +1164,6 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr "Bestandsgrootte"
 
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr "Genres"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr "Artiesten"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr "Albums"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr "Jaren"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr "Waardering"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr "Componisten"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr "Groeperingen"
-
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
 msgstr "Alle Genres"
@@ -1471,6 +1244,11 @@ msgstr "Alle %i componisten"
 msgid "No Composers"
 msgstr "Geen componisten"
 
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
+#: ../src/Widgets/PresetList.vala:47
+msgid "Automatic"
+msgstr "Automatisch"
+
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
 msgstr "Aan de linkerkant"
@@ -1489,26 +1267,117 @@ msgid_plural "%i Stars"
 msgstr[0] "%i ster"
 msgstr[1] "%i sterren"
 
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "Geen nummers gevonden"
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:54
+msgid "Genres"
+msgstr "Genres"
 
-#: ../src/Views/ListView/ListView.vala:366
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i liedje"
-msgstr[1] "%i liedjes"
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:56
+msgid "Artists"
+msgstr "Artiesten"
 
-#: ../src/Views/ListView/ListView.vala:368
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u nummer"
-msgstr[1] "%u nummers"
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
+msgid "Albums"
+msgstr "Albums"
 
-#: ../src/Views/ListView/ListView.vala:376
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
+msgid "Years"
+msgstr "Jaren"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
+msgid "Ratings"
+msgstr "Waardering"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
+msgid "Composers"
+msgstr "Componisten"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
+msgid "Groupings"
+msgstr "Groeperingen"
+
+#: ../src/Views/DeviceSummaryWidget.vala:86
+msgid "Device Name:"
+msgstr "Apparaatnaam:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:89
+msgid "Device Name"
+msgstr "Apparaatnaam"
+
+#: ../src/Views/DeviceSummaryWidget.vala:91
+msgid "Automatically sync when plugged in:"
+msgstr "Automatisch synchroniseren bij aankoppelen:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:98
+msgid "Sync:"
+msgstr "Synchroniseren:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:120
+msgid "Other Files"
+msgstr "Andere bestanden"
+
+#: ../src/Views/DeviceSummaryWidget.vala:122
+msgid "Podcasts"
+msgstr "Podcasts"
+
+#: ../src/Views/DeviceSummaryWidget.vala:416
+msgid "All Music"
+msgstr "Alle muziek"
+
+#: ../src/Views/DeviceSummaryWidget.vala:419
+msgid "All Podcasts"
+msgstr "Alle podcasts"
+
+#: ../src/Views/DeviceSummaryWidget.vala:541
+#: ../src/Views/DeviceSummaryWidget.vala:569
+msgid "Sync Failed"
+msgstr "Synchronisatie mislukt"
+
+#: ../src/Views/DeviceSummaryWidget.vala:541
+#: ../src/Views/DeviceSummaryWidget.vala:569
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"De afspeellijst %s wordt gebruikt om apparaat %s te synchroniseren, maar kon "
+"niet gevonden worden."
+
+#: ../src/Views/DeviceSummaryWidget.vala:607
+#: ../src/Views/DeviceSummaryWidget.vala:610
+msgid "Cannot Sync"
+msgstr "Kan niet synchroniseren"
+
+#: ../src/Views/DeviceSummaryWidget.vala:607
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Kan het apparaat niet synchroniseren met de geselecteerde instellingen. Niet "
+"genoeg schijfruimte."
+
+#: ../src/Views/DeviceSummaryWidget.vala:610
+msgid "Device is already doing an operation."
+msgstr "Het apparaat is al bezig met een operatie."
+
+#: ../src/Views/DeviceView.vala:39
+msgid "Cancelling…"
+msgstr "Afbreken…"
+
+#: ../src/Views/DeviceView.vala:39
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "Apparaat bewerking is geannuleerd en stopt na deze media."
+
+#: ../src/Views/DeviceView.vala:60
+msgid "OK"
+msgstr ""
+
+#: ../src/Views/DeviceView.vala:101
+msgid "No External Songs"
+msgstr "Geen externe nummers"
+
+#: ../src/Views/DeviceView.vala:101
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr ""
+"Er zijn geen nummers gevonden op dit apparaat die niet aanwezig zijn in je "
+"bibliotheek"
 
 #: ../src/Views/ContentView.vala:21
 msgctxt ""
@@ -1516,73 +1385,10 @@ msgctxt ""
 msgid "%s, %s, %s"
 msgstr "%s, %s, %s"
 
-#: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
-msgid "No Songs"
-msgstr "Geen nummers"
-
-#: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
-msgid "Updating playlist. Please wait."
-msgstr ""
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Om nummers aan deze afspeellijst toe te voegen, gebruik de <b>rechter "
-"muisknop</b> op een item en kies <b>Toevoegen aan afspeellijst</b>."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:104
-msgid "Edit Smart Playlist"
-msgstr "Bewerk slimme afspeellijst"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"De afspeellijst zal automatisch aangevuld worden met nummers die "
-"overeenkomen met de opgegeven regels. Om deze regels aan te passen, gebruik "
-"je de <b>rechter muisknop</b> op de regel in de kantlijn en klik je op "
-"<b>Aanpassen</b>.  Je kan optioneel ook op de knop hieronder klikken."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:50
-msgid "Get Some Tunes"
-msgstr "Scoor Wat Nummers"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Add music to your library."
-msgstr "Voeg muziek toe aan je bibliotheek."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Change Music Folder"
-msgstr "Wijzig Muziek-map."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Laad muziek uit een map, een netwerk of een externe schijf."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
-msgid "Import your Music"
-msgstr "Importeer je muziek"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
-msgid "Import all your Music from %s into your library."
-msgstr "Importeer al je muziek uit %s naar je bibliotheek."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:139
-msgid "Select Music Folder"
-msgstr "Selecteer muziekmap"
-
-#: ../src/Views/Wrappers/ViewWrapper.vala:446
-msgid "No media"
-msgstr "Geen medium"
+#: ../src/Views/GridView/PopupListView.vala:159
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s door %s"
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
@@ -1594,73 +1400,269 @@ msgid_plural "%u albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albums"
 
-#: ../src/Views/GridView/PopupListView.vala:162
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s door %s"
-
-#: ../src/Views/GridView/album-view-clutter.vala:550
+#: ../src/Views/GridView/album-view-clutter.vala:547
 msgid "%d minutes"
 msgstr "%d minuten"
 
-#: ../src/Views/GridView/album-view-clutter.vala:553
+#: ../src/Views/GridView/album-view-clutter.vala:550
 msgid "%d hours"
 msgstr "%d uren"
 
-#: ../src/Views/GridView/album-view-clutter.vala:556
+#: ../src/Views/GridView/album-view-clutter.vala:553
 msgid "%d days"
 msgstr "%d dagen"
 
-#: ../src/Views/GridView/album-view-clutter.vala:561
+#: ../src/Views/GridView/album-view-clutter.vala:558
 msgid "%u items, %s, %s"
 msgstr "%u items, %s, %s"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:96
-msgid "Audio CD Invalid"
-msgstr "Audio CD ongeldig"
+#: ../src/Noise.vala:37
+msgid "Listen to music"
+msgstr "Luister naar muziek"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:100
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Onmogelijk om de inhoud van deze Audio CD te lezen"
+#: ../src/Noise.vala:38
+msgid "Music Player"
+msgstr "Muziekspeler"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:252
-msgid "Could not find Music Folder"
-msgstr "Kon de muziek-map niet vinden"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:252
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
+#: ../src/Noise.vala:39
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
-"Zorg ervoor dat u toegang heeft tot uw muziekmap  en deze aangekoppeld is "
-"alvorens de CD te importeren."
+"Noise;Muziek;Speler;Audio;MP3;iPod;Afspeellijst;Speel;Media;CD;Telefoon;Liedj"
+"es"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:258
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
+#: ../src/Objects/TrackInfo.vala:25
+msgid "Unknown Track"
+msgstr "Onbekend Nummer"
+
+#: ../src/Objects/LyricFetcher.vala:155
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "Songteksten opgehaald van www.lyricsmania.com"
+
+#: ../src/Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "Onbekend album"
+
+#: ../src/Widgets/ViewSelector.vala:68
+msgid "View as Albums"
+msgstr "Albumweergave"
+
+#: ../src/Widgets/ViewSelector.vala:72
+msgid "View as List"
+msgstr "Lijstweergave"
+
+#: ../src/Widgets/ViewSelector.vala:76
+msgid "View in Columns"
+msgstr "Kolomweergave"
+
+#: ../src/Widgets/SourceListView.vala:56 ../src/Widgets/SourceListView.vala:69
+msgid "Rename"
+msgstr "Naam wijzigen"
+
+#: ../src/Widgets/SourceListView.vala:58 ../src/Widgets/SourceListView.vala:72
+#: ../src/Widgets/SourceListView.vala:87
+msgid "Export…"
+msgstr "Exporteren..."
+
+#: ../src/Widgets/SourceListView.vala:70
+msgid "Edit…"
+msgstr "Bewerken..."
+
+#: ../src/Widgets/SourceListView.vala:85
+msgid "Save as Playlist"
+msgstr "Als afspeellijst opslaan"
+
+#: ../src/Widgets/SourceListView.vala:142
+msgid "Eject"
+msgstr "Uitwerpen"
+
+#: ../src/Widgets/SourceListView.vala:147
+#: ../src/Widgets/SourceListView.vala:186
+msgid "New Playlist"
+msgstr "Nieuwe afspeellijst"
+
+#: ../src/Widgets/SourceListView.vala:152
+#: ../src/Widgets/SourceListView.vala:187
+msgid "New Smart Playlist"
+msgstr "Nieuwe slimme afspeellijst"
+
+#: ../src/Widgets/SourceListView.vala:157 ../src/Widgets/SpaceWidget.vala:237
+msgid "Sync"
+msgstr "Synchroniseren"
+
+#: ../src/Widgets/SourceListView.vala:188
+msgid "Import Playlists"
+msgstr "Afspeellijsten importeren"
+
+#: ../src/Widgets/SourceListView.vala:232
+msgid "Library"
+msgstr "Bibliotheek"
+
+#: ../src/Widgets/SourceListView.vala:233
+msgid "Devices"
+msgstr "Apparaten"
+
+#: ../src/Widgets/SourceListView.vala:234
+msgid "Network"
+msgstr "Netwerk"
+
+#: ../src/Widgets/SourceListView.vala:235 ../plugins/MPRIS/MPRIS.vala:640
+msgid "Playlists"
+msgstr "Afspeellijsten"
+
+#: ../src/Widgets/SpaceWidget.vala:266
+msgid "Free"
+msgstr "Gratis"
+
+#: ../src/Widgets/SpaceWidget.vala:383
+msgid "Using %s of %s (%.2f%)"
+msgstr "%s van %s in gebruik (%.2f%)"
+
+#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:101
+msgid "Off"
+msgstr "Uit"
+
+#: ../src/Widgets/StatusBar.vala:68
+msgid "Enable Repeat"
+msgstr "Herhalen inschakelen"
+
+#: ../src/Widgets/StatusBar.vala:69
+msgid "Repeat Song"
+msgstr "Nummer herhalen"
+
+#: ../src/Widgets/StatusBar.vala:70
+msgid "Repeat Album"
+msgstr "Album herhalen"
+
+#: ../src/Widgets/StatusBar.vala:71
+msgid "Repeat Artist"
+msgstr "Artiest herhalen"
+
+#: ../src/Widgets/StatusBar.vala:72 ../src/Widgets/StatusBar.vala:102
+msgid "All"
+msgstr "Alle"
+
+#: ../src/Widgets/StatusBar.vala:72
+msgid "Repeat All"
+msgstr "Alles Herhalen"
+
+#: ../src/Widgets/StatusBar.vala:101
+msgid "Enable Shuffle"
+msgstr "Shuffle inschakelen"
+
+#: ../src/Widgets/StatusBar.vala:102
+msgid "Disable Shuffle"
+msgstr "Shuffle uitschakelen"
+
+#: ../src/Widgets/StatusBar.vala:135 ../src/Widgets/StatusBar.vala:146
+msgid "Add Playlist"
+msgstr "Afspeellijst Toevoegen"
+
+#: ../src/Widgets/StatusBar.vala:147
+msgid "Add Smart Playlist"
+msgstr "voeg intelligente speellijst toe."
+
+#: ../src/Widgets/StatusBar.vala:197
+msgid "Hide"
+msgstr "Verbergen"
+
+#: ../src/Widgets/StatusBar.vala:197
+msgid "Show Info Panel"
+msgstr "Toon Infopaneel"
+
+#: ../src/Widgets/StatusBar.vala:198
+msgid "Show"
+msgstr "Tonen"
+
+#: ../src/Widgets/StatusBar.vala:198
+msgid "Hide Info Panel"
+msgstr "Verberg Infopaneel"
+
+#: ../src/Widgets/EqualizerPopover.vala:157
+msgid "Save preset"
+msgstr "Voorinstelling opslaan"
+
+#: ../src/Widgets/EqualizerPopover.vala:403
+msgid "%s (Custom)"
+msgstr "%s (aangepast)"
+
+#: ../src/Widgets/EqualizerPopover.vala:405
+msgid "%s (Custom %i)"
+msgstr "%s (aangepast %i)"
+
+#: ../src/Widgets/EqualizerPopover.vala:408
+msgid "Custom Preset"
+msgstr "Aangepaste voorinstelling"
+
+#: ../src/Widgets/EqualizerPopover.vala:410
+msgid "Custom Preset %i"
+msgstr "Aangepaste voorinstelling %i"
+
+#: ../src/Widgets/PresetList.vala:48
+msgid "Delete Current"
+msgstr "Huidige verwijderen"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: ../plugins/Devices/iPod/iPodDevice.vala:73
+msgid "Empty device!"
+msgstr "Leeg apparaat!"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:117
+#: ../plugins/Devices/iPod/iPodDevice.vala:77
+msgid "This device does not contain any music."
+msgstr "Dit apparaat bevat geen muziek"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:161
+msgid "Android Phone"
+msgstr "Android telefoon"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:163
+msgid "Audio Player"
+msgstr "Muziekspeler"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
+#: ../plugins/Devices/iPod/iPodLibrary.vala:176
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "Toevoegen van <b>$NAME</b> door <b>$ARTIST</b> aan $DEVICE"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:202
+#: ../plugins/Devices/iPod/iPodLibrary.vala:241
+#: ../plugins/Devices/iPod/iPodLibrary.vala:651
+msgid "Syncing <b>%s</b>…"
+msgstr "Syncroniseren <b>%s</b>..."
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:256
+#: ../plugins/Devices/iPod/iPodLibrary.vala:268
+#: ../plugins/Devices/iPod/iPodLibrary.vala:438
+#: ../plugins/Devices/iPod/iPodLibrary.vala:707
+msgid "Finishing sync process…"
+msgstr "Synchronisatieproces is bijna klaar..."
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:259
+#: ../plugins/Devices/iPod/iPodLibrary.vala:282
+#: ../plugins/Devices/iPod/iPodLibrary.vala:454
+#: ../plugins/Devices/iPod/iPodLibrary.vala:728
+msgid "Cancelling Sync…"
+msgstr "Syncroniseren afbreken..."
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:263
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:264
+#: ../plugins/Devices/iPod/iPodLibrary.vala:738
+#: ../plugins/Devices/iPod/iPodLibrary.vala:739
+msgid "There is not enough space on Device to complete the Sync…"
 msgstr ""
-"De applicatie kon geen liedjes vinden op de cd. Er zijn geen liedjes "
-"geïmporteerd."
+"Er is niet voldoende opslagruimte op het apparaat om de synchronisatie te "
+"voltooien"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:359
-msgid "Importation of a song from Audio CD finished."
-msgstr "Klaar met het importeren van een liedje van de audio cd."
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:362
+#: ../plugins/Devices/iPod/iPodLibrary.vala:601
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "Verwijderen van <b>$NAME</b> door <b>$ARTIST</b> van $DEVICE"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:359
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "Klaar met het importeren van %i liedjes van audio cd."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:364
-msgid "Importing track %i: %s"
-msgstr "Importeren van spoor %i: %s"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:369
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "CD-import zal worden <b>geannuleerd<b> na de huidig import."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:388
-msgid "An error occured during the Import of this CD"
-msgstr "Er is een fout opgetreden tijdens het importeren van deze CD"
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
+#: ../plugins/Devices/iPod/iPodLibrary.vala:394
+msgid "Removing from <b>%s</b>…"
+msgstr "Verwijderen van <b>%s</b>…"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
@@ -1670,94 +1672,52 @@ msgstr "Er heeft zich een probleem voorgedaan"
 msgid "There was an error while loading this Audio CD."
 msgstr "Er was een probleem tijdens het laden van deze Audio CD."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:176
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Toevoegen van <b>$NAME</b> door <b>$ARTIST</b> aan $DEVICE"
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:94
+msgid "Audio CD Invalid"
+msgstr "Audio CD ongeldig"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:241
-#: ../plugins/Devices/iPod/iPodLibrary.vala:651
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:202
-msgid "Syncing <b>%s</b>…"
-msgstr "Syncroniseren <b>%s</b>..."
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:98
+msgid "Impossible to read the contents of this Audio CD"
+msgstr "Onmogelijk om de inhoud van deze Audio CD te lezen"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:268
-#: ../plugins/Devices/iPod/iPodLibrary.vala:438
-#: ../plugins/Devices/iPod/iPodLibrary.vala:707
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:256
-msgid "Finishing sync process…"
-msgstr "Synchronisatieproces is bijna klaar..."
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:250
+msgid "Could not find Music Folder"
+msgstr "Kon de muziek-map niet vinden"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:282
-#: ../plugins/Devices/iPod/iPodLibrary.vala:454
-#: ../plugins/Devices/iPod/iPodLibrary.vala:728
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:259
-msgid "Cancelling Sync…"
-msgstr "Syncroniseren afbreken..."
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:394
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
-msgid "Removing from <b>%s</b>…"
-msgstr "Verwijderen van <b>%s</b>…"
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:601
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:362
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Verwijderen van <b>$NAME</b> door <b>$ARTIST</b> van $DEVICE"
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:738
-#: ../plugins/Devices/iPod/iPodLibrary.vala:739
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:263
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:264
-msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
-"Er is niet voldoende opslagruimte op het apparaat om de synchronisatie te "
-"voltooien"
-
-#: ../plugins/Devices/iPod/iPodDevice.vala:76
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:115
-msgid "Empty device!"
-msgstr "Leeg apparaat!"
-
-#: ../plugins/Devices/iPod/iPodDevice.vala:80
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:119
-msgid "This device does not contain any music."
-msgstr "Dit apparaat bevat geen muziek"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:163
-msgid "Android Phone"
-msgstr "Android telefoon"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:165
-msgid "Audio Player"
-msgstr "Muziekspeler"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:41
-msgid "media"
-msgstr "media"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:45
-msgid "Similar Media"
-msgstr "Vergelijkbare media"
-
-#: ../plugins/LastFM/LastFM.vala:75
-msgid "No similar songs found"
-msgstr "Geen vergelijkbare liedjes gevonden"
-
-#: ../plugins/LastFM/LastFM.vala:75
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
 msgstr ""
-"Er zijn geen nummers vergelijkbaar met het huidige nummer in je bibliotheek. "
-"Ga na of alle informatie over het nummer correct is, en dat je met internet "
-"verbonden bent. Sommige nummers kunnen geen resultaten hebben."
+"Zorg ervoor dat u toegang heeft tot uw muziekmap  en deze aangekoppeld is "
+"alvorens de CD te importeren."
 
-#: ../plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Vergelijkbaar"
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:256
+msgid ""
+"The Application could not find any songs on the CD. No songs can be imported"
+msgstr ""
+"De applicatie kon geen liedjes vinden op de cd. Er zijn geen liedjes "
+"geïmporteerd."
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:357
+msgid "Importation of a song from Audio CD finished."
+msgstr "Klaar met het importeren van een liedje van de audio cd."
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:357
+msgid "Importation of %i songs from Audio CD finished."
+msgstr "Klaar met het importeren van %i liedjes van audio cd."
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:362
+msgid "Importing track %i: %s"
+msgstr "Importeren van spoor %i: %s"
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:367
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr "CD-import zal worden <b>geannuleerd<b> na de huidig import."
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:386
+msgid "An error occured during the Import of this CD"
+msgstr "Er is een fout opgetreden tijdens het importeren van deze CD"
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
@@ -1798,6 +1758,32 @@ msgid ""
 msgstr ""
 "Om Last.fm integratie te activeren moet je toestemming geven aan %s. Dit "
 "hoeft maar een keer."
+
+#: ../plugins/LastFM/LastFM.vala:71
+msgid "No similar songs found"
+msgstr "Geen vergelijkbare liedjes gevonden"
+
+#: ../plugins/LastFM/LastFM.vala:71
+msgid ""
+"There are no songs similar to the current song in your library. Make sure "
+"all song info is correct and you are connected to the Internet. Some songs "
+"may not have matches."
+msgstr ""
+"Er zijn geen nummers vergelijkbaar met het huidige nummer in je bibliotheek. "
+"Ga na of alle informatie over het nummer correct is, en dat je met internet "
+"verbonden bent. Sommige nummers kunnen geen resultaten hebben."
+
+#: ../plugins/LastFM/SimilarMediaView.vala:41
+msgid "media"
+msgstr "media"
+
+#: ../plugins/LastFM/SimilarMediaView.vala:45
+msgid "Similar Media"
+msgstr "Vergelijkbare media"
+
+#: ../plugins/LastFM/SimilarMedia.vala:42
+msgid "Similar"
+msgstr "Vergelijkbaar"
 
 #~ msgid "Add Podcast"
 #~ msgstr "Podcast toevoegen"
@@ -1880,6 +1866,16 @@ msgstr ""
 #~ msgid "Equalizer"
 #~ msgstr "Toonregeling"
 
+#~ msgid ""
+#~ "The plugin for media type %s is not installed.\n"
+#~ "What would you like to do?"
+#~ msgstr ""
+#~ "De plug-in voor het bestandstype %s is niet geïnstalleerd.\n"
+#~ "Wat wilt u doen?"
+
+#~ msgid "Required GStreamer plugin not installed"
+#~ msgstr "De benodigde GStreamer plug-in is niet geïnstalleerd"
+
 #, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s is klaar met %i nummers te importeren van de audio-CD"
@@ -1946,11 +1942,26 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Muziek scannen op wijzigingen. Dit kan even duren..."
 
+#~ msgid "Do Nothing"
+#~ msgstr "Niets doen"
+
 #, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
 #~ "Het muziekbestand voor %s door %s kon niet gevonden worden. Wat wil je doen?"
+
+#~ msgid "%i media files could not be found. What would you like to do?"
+#~ msgstr "%i mediabestanden konden niet gevonden worden. Wat wil je doen?"
+
+#~ msgid "Locate Media"
+#~ msgstr "Vind media"
+
+#~ msgid "Remove Media"
+#~ msgstr "Verwijder media"
+
+#~ msgid "Could not find media file"
+#~ msgstr "Kon mediabestand niet vinden"
 
 #~ msgid ""
 #~ "You must wait until previous file operations finish before setting your "

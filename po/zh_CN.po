@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-04-14 22:50+0200\n"
+"POT-Creation-Date: 2014-04-21 15:39-0500\n"
 "PO-Revision-Date: 2014-04-15 16:54+0000\n"
 "Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
@@ -15,14 +15,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-04-16 07:02+0000\n"
-"X-Generator: Launchpad (build 16976)\n"
+"X-Launchpad-Export-Date: 2014-04-22 08:20+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 
-#: ../core/LibrariesManager.vala:140
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "正在导入 <b>$NAME</b> (艺人 <b>$ARTIST</b>) 到库中…"
+#. / Used for unknown titles, artists, or album names.
+#: ../core/Media.vala:43
+msgid "Unknown"
+msgstr "未知"
+
+#: ../core/Media.vala:53
+msgid "Radio Station"
+msgstr "电台"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:183
+msgid "$NAME on $ALBUM"
+msgstr "$NAME 专辑 $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: ../core/Media.vala:186
+msgid "$NAME by $ARTIST"
+msgstr "$NAME 艺术家 $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:192
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME 艺术家 $ARTIST 专辑 $ALBUM"
 
 #: ../core/Resources.vala:58
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: ../src/Dialogs/FileNotFoundDialog.vala:86
 msgid "Cancel"
 msgstr "取消"
 
@@ -34,77 +56,121 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../core/GStreamer/Equalizer.vala:78
+#: ../core/LibrariesManager.vala:140
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "正在导入 <b>$NAME</b> (艺人 <b>$ARTIST</b>) 到库中…"
+
+#: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
 msgstr "平铺"
 
-#: ../core/GStreamer/Equalizer.vala:79
+#: ../core/GStreamer/Equalizer.vala:77
 msgid "Classical"
 msgstr "经典"
 
-#: ../core/GStreamer/Equalizer.vala:80
+#: ../core/GStreamer/Equalizer.vala:78
 msgid "Club"
 msgstr "俱乐部"
 
-#: ../core/GStreamer/Equalizer.vala:81
+#: ../core/GStreamer/Equalizer.vala:79
 msgid "Dance"
 msgstr "舞曲"
 
-#: ../core/GStreamer/Equalizer.vala:82
+#: ../core/GStreamer/Equalizer.vala:80
 msgid "Full Bass"
 msgstr "重低音"
 
-#: ../core/GStreamer/Equalizer.vala:83
+#: ../core/GStreamer/Equalizer.vala:81
 msgid "Full Treble"
 msgstr "全高音"
 
-#: ../core/GStreamer/Equalizer.vala:84
+#: ../core/GStreamer/Equalizer.vala:82
 msgid "Full Bass + Treble"
 msgstr "全低音+高音"
 
-#: ../core/GStreamer/Equalizer.vala:85
+#: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
 msgstr "耳机"
 
-#: ../core/GStreamer/Equalizer.vala:86
+#: ../core/GStreamer/Equalizer.vala:84
 msgid "Large Hall"
 msgstr "大厅"
 
-#: ../core/GStreamer/Equalizer.vala:87
+#: ../core/GStreamer/Equalizer.vala:85
 msgid "Live"
 msgstr "现场"
 
-#: ../core/GStreamer/Equalizer.vala:88
+#: ../core/GStreamer/Equalizer.vala:86
 msgid "Party"
 msgstr "派对"
 
-#: ../core/GStreamer/Equalizer.vala:89
+#: ../core/GStreamer/Equalizer.vala:87
 msgid "Pop"
 msgstr "流行"
 
-#: ../core/GStreamer/Equalizer.vala:90
+#: ../core/GStreamer/Equalizer.vala:88
 msgid "Reggae"
 msgstr "瑞格"
 
-#: ../core/GStreamer/Equalizer.vala:91
+#: ../core/GStreamer/Equalizer.vala:89
 msgid "Rock"
 msgstr "摇滚"
 
-#: ../core/GStreamer/Equalizer.vala:92
+#: ../core/GStreamer/Equalizer.vala:90
 msgid "Soft"
 msgstr "轻音乐"
 
-#: ../core/GStreamer/Equalizer.vala:93
+#: ../core/GStreamer/Equalizer.vala:91
 msgid "Ska"
 msgstr "斯卡"
 
-#: ../core/GStreamer/Equalizer.vala:94
+#: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft Rock"
 msgstr "慢摇滚"
 
-#: ../core/GStreamer/Equalizer.vala:95
+#: ../core/GStreamer/Equalizer.vala:93
 msgid "Techno"
 msgstr "电音"
+
+#: ../core/Utils/FileUtils.vala:280
+msgid " (%d)"
+msgstr " (%d)"
+
+#: ../core/Utils/PlaylistsUtils.vala:96
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: ../core/Utils/PlaylistsUtils.vala:235
+msgid "New playlist"
+msgstr "新建播放列表"
+
+#: ../core/Utils/PlaylistsUtils.vala:246
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: ../core/Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr "导出播放列表"
+
+#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG 版本 3.0 扩展 (*.m3u)"
+
+#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "电台播放列表版本 2.0(*.pls)"
+
+#: ../core/Utils/PlaylistsUtils.vala:362
+msgid "Playlist"
+msgstr "播放列表"
+
+#: ../core/Utils/PlaylistsUtils.vala:368
+msgid "Import %s"
+msgstr "导入 %s"
+
+#: ../core/Utils/PlaylistsUtils.vala:402
+msgid "Unrecognized playlist file. Import failed."
+msgstr "未整理的播放列表文件。导入失败。"
 
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
@@ -167,70 +233,6 @@ msgstr "%s %s"
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y年%m月%e，%p %l:%M"
 
-#: ../core/Utils/FileUtils.vala:280
-msgid " (%d)"
-msgstr " (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:96
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:235
-msgid "New playlist"
-msgstr "新建播放列表"
-
-#: ../core/Utils/PlaylistsUtils.vala:246
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: ../core/Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "导出播放列表"
-
-#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG 版本 3.0 扩展 (*.m3u)"
-
-#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "电台播放列表版本 2.0(*.pls)"
-
-#: ../core/Utils/PlaylistsUtils.vala:362
-msgid "Playlist"
-msgstr "播放列表"
-
-#: ../core/Utils/PlaylistsUtils.vala:368
-msgid "Import %s"
-msgstr "导入 %s"
-
-#: ../core/Utils/PlaylistsUtils.vala:402
-msgid "Unrecognized playlist file. Import failed."
-msgstr "未整理的播放列表文件。导入失败。"
-
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:43
-msgid "Unknown"
-msgstr "未知"
-
-#: ../core/Media.vala:53
-msgid "Radio Station"
-msgstr "电台"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:183
-msgid "$NAME on $ALBUM"
-msgstr "$NAME 专辑 $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:186
-msgid "$NAME by $ARTIST"
-msgstr "$NAME 艺术家 $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:192
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME 艺术家 $ARTIST 专辑 $ALBUM"
-
 #: ../src/LibraryWindow.vala:248
 msgid "Import to Library…"
 msgstr "导入到库中..."
@@ -260,8 +262,8 @@ msgstr "搜索音乐"
 msgid "Music"
 msgstr "音乐"
 
-#: ../src/LibraryWindow.vala:854 ../src/PlaybackManager.vala:99
-#: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
+#: ../src/LibraryWindow.vala:854 ../src/LocalLibrary.vala:104
+#: ../src/PlaybackManager.vala:99 ../src/DataBase/DataBaseManager.vala:560
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "队列"
@@ -277,8 +279,8 @@ msgid ""
 "first before the next song in the currently playing list."
 msgstr "要添加歌曲到队列，使用 <b>右击</b> 条目并选择<b>队列</b>。当歌曲结束时，队列歌曲将先于当前播放列表中的下一首歌曲播放。"
 
-#: ../src/LibraryWindow.vala:864 ../src/PlaybackManager.vala:97
-#: ../src/LocalLibrary.vala:104 ../src/DataBase/DataBaseManager.vala:561
+#: ../src/LibraryWindow.vala:864 ../src/LocalLibrary.vala:104
+#: ../src/PlaybackManager.vala:97 ../src/DataBase/DataBaseManager.vala:560
 msgid "History"
 msgstr "历史"
 
@@ -315,153 +317,73 @@ msgstr "%s 已经导入您的库。"
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>正在复制</b>文件<b>音乐文件夹</b>…"
 
-#: ../src/Objects/AlbumInfo.vala:25
-msgid "Unknown Album"
-msgstr "未知专辑"
+#: ../src/LocalLibrary.vala:164
+msgid "Importing music from %s…"
+msgstr "正在导出 %s 中的音乐..."
 
-#: ../src/Objects/AlbumInfo.vala:26 ../src/Objects/ArtistInfo.vala:27
-#: ../src/GStreamer/Streamer.vala:187
-#: ../plugins/Devices/CDRom/CDPlayer.vala:203
-#: ../plugins/Devices/iPod/iPodStreamer.vala:194
-msgid "Unknown Artist"
-msgstr "未知艺术家"
+#: ../src/LocalLibrary.vala:203
+msgid "Adding files to library…"
+msgstr "正在添加文件到库中..."
 
-#: ../src/Objects/TrackInfo.vala:25
-msgid "Unknown Track"
-msgstr "未知音轨"
+#: ../src/LocalLibrary.vala:268
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "重新扫描音乐更改。请稍等..."
 
-#: ../src/Objects/LyricFetcher.vala:155
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "歌词(抓取自 www.lyricsmania.com)"
+#: ../src/LocalLibrary.vala:346
+msgid "Added to your queue:"
+msgstr "已添加到您的队列："
 
-#: ../src/Dialogs/MediaEditor.vala:83
-msgid "Metadata"
-msgstr "元数据"
+#: ../src/Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr "无导入文件"
 
-#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:376
-msgid "Lyrics"
-msgstr "歌词"
+#: ../src/Dialogs/NotImportedWindow.vala:64
+#: ../src/Dialogs/NotImportedWindow.vala:76
+msgid "Unable to import %d items from %s"
+msgstr "无法从 %2$s 中导入 %1$d 个条目"
 
-#: ../src/Dialogs/MediaEditor.vala:94 ../src/Dialogs/PreferencesWindow.vala:94
-msgid "Close"
-msgstr "关闭"
+#: ../src/Dialogs/NotImportedWindow.vala:65
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s 无法导入 %d 项条目。文件可能被破坏。"
 
-#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:347
-msgid "Editing $NAME by $ARTIST"
-msgstr "正在编辑 $NAME($ARTIST)"
+#: ../src/Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr "移动所有损坏的文件到回收站"
 
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:349
-msgid "Editing %s"
-msgstr "正在编辑 %s"
-
-#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:352
-msgid "Editing %i songs"
-msgstr "正在编辑 %i 首歌曲"
-
-#: ../src/Dialogs/MediaEditor.vala:191
-#: ../src/Dialogs/SmartPlaylistEditor.vala:274
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:122
-msgid "Title"
-msgstr "标题"
-
-#: ../src/Dialogs/MediaEditor.vala:192
-#: ../src/Dialogs/SmartPlaylistEditor.vala:261
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:123
-#: ../src/Widgets/StatusBar.vala:69
-msgid "Artist"
-msgstr "艺术家"
-
-#: ../src/Dialogs/MediaEditor.vala:193
-msgid "Album Artist"
-msgstr "专辑艺术家"
-
-#: ../src/Dialogs/MediaEditor.vala:194
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:124
-#: ../src/Widgets/StatusBar.vala:68
-msgid "Album"
-msgstr "专辑"
-
-#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:479
-#: ../src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Genre"
-msgstr "流派"
-
-#: ../src/Dialogs/MediaEditor.vala:196
-#: ../src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Composer"
-msgstr "作曲家"
-
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:479
-#: ../src/Dialogs/SmartPlaylistEditor.vala:268
-msgid "Grouping"
-msgstr "分组"
-
-#: ../src/Dialogs/MediaEditor.vala:198
-#: ../src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Comment"
-msgstr "注释"
-
-#: ../src/Dialogs/MediaEditor.vala:199
-msgid "Track"
-msgstr "音轨"
-
-#: ../src/Dialogs/MediaEditor.vala:200
-msgid "Disc"
-msgstr "光盘"
-
-#: ../src/Dialogs/MediaEditor.vala:201
-#: ../src/Dialogs/SmartPlaylistEditor.vala:275
-msgid "Year"
-msgstr "年代"
-
-#: ../src/Dialogs/MediaEditor.vala:202
-#: ../src/Dialogs/SmartPlaylistEditor.vala:272
-msgid "Rating"
-msgstr "评分"
-
-#: ../src/Dialogs/MediaEditor.vala:204
-msgid "Media Type"
-msgstr "媒体类型"
-
-#: ../src/Dialogs/MediaEditor.vala:295
-msgid "Lyrics not found for %s"
-msgstr "没有找到 %s 的歌词"
-
-#: ../src/Dialogs/MediaEditor.vala:538 ../src/Widgets/StatusBar.vala:67
-msgid "Song"
-msgstr "歌曲"
-
-#: ../src/Dialogs/MediaEditor.vala:540
-msgid "Podcast"
-msgstr "播客"
-
-#: ../src/Dialogs/MediaEditor.vala:683
-msgid "Reset"
-msgstr ""
-
-#: ../src/Dialogs/MediaEditor.vala:687
-msgid "<b>Stats</b>"
-msgstr ""
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:56
-#: ../src/Dialogs/NotImportedWindow.vala:72
+#: ../src/Dialogs/NotImportedWindow.vala:71
+#: ../src/Dialogs/RemoveFilesDialog.vala:50
 msgid "Move to Trash"
 msgstr "移至回收站"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:57
+#: ../src/Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "忽略"
+
+#: ../src/Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "删除"
+
+#: ../src/Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "文件位置"
+
+#: ../src/Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr "选择单个文件移动到回收站："
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
 msgstr "从 %s 中移除"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:66
+#: ../src/Dialogs/RemoveFilesDialog.vala:61
 msgid "Remove %d Songs From %s?"
 msgstr "要从 %2$s 移除 %1$d 首歌曲吗？"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:70
+#: ../src/Dialogs/RemoveFilesDialog.vala:64
 msgid "Remove \"%s\" From %s?"
 msgstr "从 %2$s 中移除 “%1$s” 吗？"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:79
+#: ../src/Dialogs/RemoveFilesDialog.vala:73
 msgid ""
 "This will remove the song from your library and from any device that "
 "automatically syncs with %s."
@@ -470,28 +392,49 @@ msgid_plural ""
 "automatically syncs with %s."
 msgstr[0] "这将从库和自动同步 %s 的设备中移除歌曲。"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:62
-msgid "Export Playlists"
-msgstr "导出播放列表"
+#: ../src/Dialogs/PreferencesWindow.vala:48
+msgid "Select Music Folder…"
+msgstr "选择音乐文件夹..."
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:63
-msgid "Set Music Folder"
-msgstr "设置音乐文件夹"
+#: ../src/Dialogs/PreferencesWindow.vala:94 ../src/Dialogs/MediaEditor.vala:94
+msgid "Close"
+msgstr "关闭"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
-msgid "Set Music Folder?"
-msgstr "设置音乐文件夹？"
+#: ../src/Dialogs/PreferencesWindow.vala:129
+msgid "General"
+msgstr "常规"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:73
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr "您确定要设置音乐文件夹为 %s 吗？这将重设您的库并移除您的播放列表。"
+#: ../src/Dialogs/PreferencesWindow.vala:135
+msgid "Music Folder Location:"
+msgstr "音乐文件夹地址："
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
-#: ../src/Dialogs/FileNotFoundDialog.vala:139
-msgid "Choose Music Folder"
-msgstr "选择音乐文件夹"
+#: ../src/Dialogs/PreferencesWindow.vala:143
+msgid "Library Management:"
+msgstr "库管理："
+
+#: ../src/Dialogs/PreferencesWindow.vala:150
+msgid "Keep Music folder organized:"
+msgstr "组织音乐文件夹："
+
+#: ../src/Dialogs/PreferencesWindow.vala:154
+msgid "Write metadata to file:"
+msgstr "将元数据写入文件："
+
+#: ../src/Dialogs/PreferencesWindow.vala:158
+msgid "Copy imported files to Library:"
+msgstr "复制已导入文件到库："
+
+#: ../src/Dialogs/PreferencesWindow.vala:160
+msgid "Desktop Integration:"
+msgstr "桌面集成："
+
+#: ../src/Dialogs/PreferencesWindow.vala:166
+msgid "Notifications:"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:171
+msgid "Continue playback when closed:"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
@@ -549,9 +492,31 @@ msgstr "条目"
 msgid "Remove"
 msgstr "移除"
 
+#: ../src/Dialogs/SmartPlaylistEditor.vala:260
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:123
+#: ../src/Dialogs/MediaEditor.vala:194 ../src/Widgets/StatusBar.vala:70
+msgid "Album"
+msgstr "专辑"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:261
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:122
+#: ../src/Dialogs/MediaEditor.vala:192 ../src/Widgets/StatusBar.vala:71
+msgid "Artist"
+msgstr "艺术家"
+
 #: ../src/Dialogs/SmartPlaylistEditor.vala:262
 msgid "Bitrate"
 msgstr "位速率"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:263
+#: ../src/Dialogs/MediaEditor.vala:198
+msgid "Comment"
+msgstr "注释"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:264
+#: ../src/Dialogs/MediaEditor.vala:196
+msgid "Composer"
+msgstr "作曲家"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Date Added"
@@ -560,6 +525,16 @@ msgstr "添加的日期"
 #: ../src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Date Released"
 msgstr "发布日期"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:267
+#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:479
+msgid "Genre"
+msgstr "流派"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:268
+#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:479
+msgid "Grouping"
+msgstr "分组"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Last Played"
@@ -574,9 +549,25 @@ msgstr "长度"
 msgid "Playcount"
 msgstr "播放次数"
 
+#: ../src/Dialogs/SmartPlaylistEditor.vala:272
+#: ../src/Dialogs/MediaEditor.vala:202
+msgid "Rating"
+msgstr "评分"
+
 #: ../src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Skipcount"
 msgstr "跳过次数"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:274
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
+#: ../src/Dialogs/MediaEditor.vala:191
+msgid "Title"
+msgstr "标题"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:275
+#: ../src/Dialogs/MediaEditor.vala:201
+msgid "Year"
+msgstr "年代"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:336
 msgid "is"
@@ -623,530 +614,332 @@ msgstr "天前"
 msgid "kbps"
 msgstr "kbps"
 
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:56
-msgid "Import from Device"
-msgstr "从设备中导入"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:73
-msgid "Import media from %s"
-msgstr "从 %s 导入媒体"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:74
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr "在 %s 发现下列文件，但它们未在您的库中。勾选所有您要导入的文件。"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:75
-msgid "Import all media"
-msgstr "导入所有媒体"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:80
-#: ../plugins/Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr "导入"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:81
-msgid "Don't Import"
-msgstr "不导入"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:89
-msgid "Import %i items from %s"
-msgstr "从 %2$s 中导入 %1$i 个条目"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:93
-msgid "Import %s from %s"
-msgstr "从 %2$s 中导入 %1$s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
-msgid "ID"
-msgstr "ID"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:173
-msgid "Select individual media to import:"
-msgstr "选择要导入的单个媒体："
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:191
-msgid "Check Item"
-msgstr "检测条目"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:192
-msgid "Check Album"
-msgstr "检测专辑"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Artist"
-msgstr "检测艺术家"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:291
-msgid "Cannot Import"
-msgstr "无法导入"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:291
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr "Noise 正在执行文件操作。请等待完成导入 %d"
-
-#: ../src/Dialogs/NotImportedWindow.vala:48
-msgid "Not Imported Files"
-msgstr "无导入文件"
-
-#: ../src/Dialogs/NotImportedWindow.vala:65
-#: ../src/Dialogs/NotImportedWindow.vala:77
-msgid "Unable to import %d items from %s"
-msgstr "无法从 %2$s 中导入 %1$d 个条目"
-
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s 无法导入 %d 项条目。文件可能被破坏。"
-
-#: ../src/Dialogs/NotImportedWindow.vala:67
-msgid "Move all corrupted files to trash"
-msgstr "移动所有损坏的文件到回收站"
-
-#: ../src/Dialogs/NotImportedWindow.vala:73
-msgid "Ignore"
-msgstr "忽略"
-
-#: ../src/Dialogs/NotImportedWindow.vala:94
-msgid "del"
-msgstr "删除"
-
-#: ../src/Dialogs/NotImportedWindow.vala:99
-msgid "File Location"
-msgstr "文件位置"
-
-#: ../src/Dialogs/NotImportedWindow.vala:126
-msgid "Select individual files to move to trash:"
-msgstr "选择单个文件移动到回收站："
-
-#: ../src/Dialogs/SyncWarningDialog.vala:60
+#: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
 msgstr "将媒体导入到库中"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:61
+#: ../src/Dialogs/SyncWarningDialog.vala:58
 msgid "Continue Syncing"
 msgstr "继续同步"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:62
+#: ../src/Dialogs/SyncWarningDialog.vala:59
 msgid "Stop Syncing"
 msgstr "停止同步"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:69
+#: ../src/Dialogs/SyncWarningDialog.vala:66
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr "如果您继续同步，媒体将从 %s 中移除因为它们不在同步列表中。您先要将它们导入到库中吗？"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:75
+#: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
 msgstr "同步将从 %2$s 中移除 %1$i 个条目"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:78
+#: ../src/Dialogs/SyncWarningDialog.vala:75
 msgid "Sync will remove 1 item from %s"
 msgstr "同步将移除 %s 中的 1 项条目"
 
-#: ../src/Dialogs/PreferencesWindow.vala:48
-msgid "Select Music Folder…"
-msgstr "选择音乐文件夹..."
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:55
+msgid "Import from Device"
+msgstr "从设备中导入"
 
-#: ../src/Dialogs/PreferencesWindow.vala:129
-msgid "General"
-msgstr "常规"
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
+msgid "Import media from %s"
+msgstr "从 %s 导入媒体"
 
-#: ../src/Dialogs/PreferencesWindow.vala:135
-msgid "Music Folder Location:"
-msgstr "音乐文件夹地址："
-
-#: ../src/Dialogs/PreferencesWindow.vala:143
-msgid "Library Management:"
-msgstr "库管理："
-
-#: ../src/Dialogs/PreferencesWindow.vala:150
-msgid "Keep Music folder organized:"
-msgstr "组织音乐文件夹："
-
-#: ../src/Dialogs/PreferencesWindow.vala:154
-msgid "Write metadata to file:"
-msgstr "将元数据写入文件："
-
-#: ../src/Dialogs/PreferencesWindow.vala:158
-msgid "Copy imported files to Library:"
-msgstr "复制已导入文件到库："
-
-#: ../src/Dialogs/PreferencesWindow.vala:160
-msgid "Desktop Integration:"
-msgstr "桌面集成："
-
-#: ../src/Dialogs/PreferencesWindow.vala:166
-msgid "Notifications:"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:171
-msgid "Continue playback when closed:"
-msgstr ""
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:65
-msgid "Remove Media"
-msgstr "移除媒体"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:66
-msgid "Locate Media"
-msgstr "定位媒体"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:67
-msgid "Rescan Library"
-msgstr "重新扫描库"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:68
-msgid "Do Nothing"
-msgstr "无动作"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:74
-msgid "Could not find media file"
-msgstr "无法找到媒体文件"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:83
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:73
 msgid ""
-"The music file for $NAME by $ARTIST could not be found. What would you like "
-"to do?"
-msgstr "找不到音频文件  $NAME ($ARTIST)。您打算怎么做？"
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr "在 %s 发现下列文件，但它们未在您的库中。勾选所有您要导入的文件。"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-msgid "%i media files could not be found. What would you like to do?"
-msgstr "%i 个媒体文件无法找到。您打算怎么做？"
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:74
+msgid "Import all media"
+msgstr "导入所有媒体"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:57
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:79
+#: ../plugins/Devices/CDRom/CDView.vala:90
+msgid "Import"
+msgstr "导入"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:80
+msgid "Don't Import"
+msgstr "不导入"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:88
+msgid "Import %i items from %s"
+msgstr "从 %2$s 中导入 %1$i 个条目"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:92
+msgid "Import %s from %s"
+msgstr "从 %2$s 中导入 %1$s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
+msgid "ID"
+msgstr "ID"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:172
+msgid "Select individual media to import:"
+msgstr "选择要导入的单个媒体："
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
+msgid "Check Item"
+msgstr "检测条目"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:191
+msgid "Check Album"
+msgstr "检测专辑"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:192
+msgid "Check Artist"
+msgstr "检测艺术家"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:289
+msgid "Cannot Import"
+msgstr "无法导入"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:289
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr "Noise 正在执行文件操作。请等待完成导入 %d"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
+msgid "Export Playlists"
+msgstr "导出播放列表"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
+msgid "Set Music Folder"
+msgstr "设置音乐文件夹"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
+msgid "Set Music Folder?"
+msgstr "设置音乐文件夹？"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr "您确定要设置音乐文件夹为 %s 吗？这将重设您的库并移除您的播放列表。"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
+#: ../src/Dialogs/FileNotFoundDialog.vala:123
+msgid "Choose Music Folder"
+msgstr "选择音乐文件夹"
+
+#: ../src/Dialogs/MediaEditor.vala:83
+msgid "Metadata"
+msgstr "元数据"
+
+#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:376
+msgid "Lyrics"
+msgstr "歌词"
+
+#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:347
+msgid "Editing $NAME by $ARTIST"
+msgstr "正在编辑 $NAME($ARTIST)"
+
+#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:349
+msgid "Editing %s"
+msgstr "正在编辑 %s"
+
+#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:352
+msgid "Editing %i songs"
+msgstr "正在编辑 %i 首歌曲"
+
+#: ../src/Dialogs/MediaEditor.vala:193
+msgid "Album Artist"
+msgstr "专辑艺术家"
+
+#: ../src/Dialogs/MediaEditor.vala:199
+msgid "Track"
+msgstr "音轨"
+
+#: ../src/Dialogs/MediaEditor.vala:200
+msgid "Disc"
+msgstr "光盘"
+
+#: ../src/Dialogs/MediaEditor.vala:204
+msgid "Media Type"
+msgstr "媒体类型"
+
+#: ../src/Dialogs/MediaEditor.vala:295
+msgid "Lyrics not found for %s"
+msgstr "没有找到 %s 的歌词"
+
+#: ../src/Dialogs/MediaEditor.vala:538 ../src/Widgets/StatusBar.vala:69
+msgid "Song"
+msgstr "歌曲"
+
+#: ../src/Dialogs/MediaEditor.vala:540
+msgid "Podcast"
+msgstr "播客"
+
+#: ../src/Dialogs/MediaEditor.vala:683
+msgid "Reset"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:687
+msgid "<b>Stats</b>"
+msgstr ""
+
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
+msgid "Would you like to install the %s plugin?\n"
+msgstr ""
+
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+msgid ""
+"\n"
+"This song cannot be played. The %s plugin is required to play the song."
+msgstr ""
+
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
 msgid "Install Plugin"
 msgstr "安装插件"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
-msgid "Required GStreamer plugin not installed"
-msgstr "需要的 GStreamer 插件没有安装"
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:65
-msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
+#: ../src/Dialogs/FileNotFoundDialog.vala:52
+msgid "File not found"
 msgstr ""
-"媒体类型 %s 插件没有安装。\n"
-"您会怎么做？"
 
-#: ../src/Noise.vala:37
-msgid "Listen to music"
-msgstr "聆听音乐"
-
-#: ../src/Noise.vala:38
-msgid "Music Player"
-msgstr "音乐播放器"
-
-#: ../src/Noise.vala:39
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#: ../src/Dialogs/FileNotFoundDialog.vala:58
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
-"Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;音频;播放器;播放;播放列表"
-";媒体;歌曲;"
 
-#: ../src/LocalLibrary.vala:164
-msgid "Importing music from %s…"
-msgstr "正在导出 %s 中的音乐..."
+#: ../src/Dialogs/FileNotFoundDialog.vala:61
+msgid "%i music files could not be found?"
+msgstr ""
 
-#: ../src/LocalLibrary.vala:203
-msgid "Adding files to library…"
-msgstr "正在添加文件到库中..."
+#: ../src/Dialogs/FileNotFoundDialog.vala:84
+msgid "Rescan Library"
+msgstr "重新扫描库"
 
-#: ../src/LocalLibrary.vala:268
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "重新扫描音乐更改。请稍等..."
+#: ../src/Dialogs/FileNotFoundDialog.vala:85
+#: ../src/Views/ListView/Lists/MusicListView.vala:129
+msgid "Remove Song"
+msgstr "移除歌曲"
 
-#: ../src/LocalLibrary.vala:346
-msgid "Added to your queue:"
-msgstr "已添加到您的队列："
+#: ../src/Dialogs/FileNotFoundDialog.vala:87
+msgid "Find Song"
+msgstr ""
 
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "专辑视图"
+#: ../src/GStreamer/Streamer.vala:187 ../src/Objects/ArtistInfo.vala:27
+#: ../src/Objects/AlbumInfo.vala:26 ../plugins/Devices/CDRom/CDPlayer.vala:203
+#: ../plugins/Devices/iPod/iPodStreamer.vala:191
+msgid "Unknown Artist"
+msgstr "未知艺术家"
 
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "列表视图"
-
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "直栏显示"
-
-#: ../src/Widgets/EqualizerPopover.vala:157
-msgid "Save preset"
-msgstr "保存预设"
-
-#: ../src/Widgets/EqualizerPopover.vala:403
-msgid "%s (Custom)"
-msgstr "%s (自定义)"
-
-#: ../src/Widgets/EqualizerPopover.vala:405
-msgid "%s (Custom %i)"
-msgstr "%s (自定义 %i)"
-
-#: ../src/Widgets/EqualizerPopover.vala:408
-msgid "Custom Preset"
-msgstr "自定义预设"
-
-#: ../src/Widgets/EqualizerPopover.vala:410
-msgid "Custom Preset %i"
-msgstr "自定义预设 %i"
-
-#: ../src/Widgets/PresetList.vala:49
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
-msgid "Automatic"
-msgstr "自动"
-
-#: ../src/Widgets/PresetList.vala:50
-msgid "Delete Current"
-msgstr "删除当前列表"
-
-#: ../src/Widgets/SpaceWidget.vala:238 ../src/Widgets/SourceListView.vala:157
-msgid "Sync"
-msgstr "同步"
-
-#: ../src/Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr "空闲"
-
-#: ../src/Widgets/SpaceWidget.vala:384
-msgid "Using %s of %s (%.2f%)"
-msgstr "使用了 %s/%s(%.2f%)"
-
-#: ../src/Widgets/StatusBar.vala:66 ../src/Widgets/StatusBar.vala:99
-msgid "Off"
-msgstr "关闭"
-
-#: ../src/Widgets/StatusBar.vala:66
-msgid "Enable Repeat"
-msgstr "启用重复"
-
-#: ../src/Widgets/StatusBar.vala:67
-msgid "Repeat Song"
-msgstr "重复歌曲"
-
-#: ../src/Widgets/StatusBar.vala:68
-msgid "Repeat Album"
-msgstr "重复专辑"
-
-#: ../src/Widgets/StatusBar.vala:69
-msgid "Repeat Artist"
-msgstr "重复艺术家"
-
-#: ../src/Widgets/StatusBar.vala:70 ../src/Widgets/StatusBar.vala:100
-msgid "All"
-msgstr "全部"
-
-#: ../src/Widgets/StatusBar.vala:70
-msgid "Repeat All"
-msgstr "重播全部"
-
-#: ../src/Widgets/StatusBar.vala:99
-msgid "Enable Shuffle"
-msgstr "启用随机播放"
-
-#: ../src/Widgets/StatusBar.vala:100
-msgid "Disable Shuffle"
-msgstr "禁用随机播放"
-
-#: ../src/Widgets/StatusBar.vala:133 ../src/Widgets/StatusBar.vala:144
-msgid "Add Playlist"
-msgstr "添加播放列表"
-
-#: ../src/Widgets/StatusBar.vala:145
-msgid "Add Smart Playlist"
-msgstr "添加智能播放列表"
-
-#: ../src/Widgets/StatusBar.vala:195
-msgid "Hide"
-msgstr "隐藏"
-
-#: ../src/Widgets/StatusBar.vala:195
-msgid "Show Info Panel"
-msgstr "显示信息面板"
-
-#: ../src/Widgets/StatusBar.vala:196
-msgid "Show"
-msgstr "显示"
-
-#: ../src/Widgets/StatusBar.vala:196
-msgid "Hide Info Panel"
-msgstr "隐藏信息面板"
-
-#: ../src/Widgets/SourceListView.vala:56 ../src/Widgets/SourceListView.vala:69
-msgid "Rename"
-msgstr "重命名"
-
-#: ../src/Widgets/SourceListView.vala:58 ../src/Widgets/SourceListView.vala:72
-#: ../src/Widgets/SourceListView.vala:87
-msgid "Export…"
-msgstr "导出..."
-
-#: ../src/Widgets/SourceListView.vala:70
-msgid "Edit…"
-msgstr "编辑..."
-
-#: ../src/Widgets/SourceListView.vala:85
-msgid "Save as Playlist"
-msgstr "保存为播放列表"
-
-#: ../src/Widgets/SourceListView.vala:134
-#: ../src/Views/ListView/Lists/MusicListView.vala:130
-msgid "Import to Library"
-msgstr "导入到库中"
-
-#: ../src/Widgets/SourceListView.vala:142
-msgid "Eject"
-msgstr "弹出"
-
-#: ../src/Widgets/SourceListView.vala:147
-#: ../src/Widgets/SourceListView.vala:186
-msgid "New Playlist"
-msgstr "新建播放列表"
-
-#: ../src/Widgets/SourceListView.vala:152
-#: ../src/Widgets/SourceListView.vala:187
-msgid "New Smart Playlist"
-msgstr "新建智能播放列表"
-
-#: ../src/Widgets/SourceListView.vala:188
-msgid "Import Playlists"
-msgstr "导入播放列表"
-
-#: ../src/Widgets/SourceListView.vala:232
-msgid "Library"
-msgstr "库"
-
-#: ../src/Widgets/SourceListView.vala:233
-msgid "Devices"
-msgstr "设备"
-
-#: ../src/Widgets/SourceListView.vala:234
-msgid "Network"
-msgstr "网络"
-
-#: ../src/Widgets/SourceListView.vala:235 ../plugins/MPRIS/MPRIS.vala:643
-msgid "Playlists"
-msgstr "播放列表"
-
-#: ../src/DataBase/DataBaseManager.vala:457
-#: ../src/DataBase/DataBaseManager.vala:693
+#: ../src/DataBase/DataBaseManager.vala:456
+#: ../src/DataBase/DataBaseManager.vala:692
 msgid "Favorite Songs"
 msgstr "喜爱的歌曲"
 
-#: ../src/DataBase/DataBaseManager.vala:464
-#: ../src/DataBase/DataBaseManager.vala:700
+#: ../src/DataBase/DataBaseManager.vala:463
+#: ../src/DataBase/DataBaseManager.vala:699
 msgid "Recently Added"
 msgstr "最近添加的"
 
-#: ../src/DataBase/DataBaseManager.vala:480
-#: ../src/DataBase/DataBaseManager.vala:716
+#: ../src/DataBase/DataBaseManager.vala:479
+#: ../src/DataBase/DataBaseManager.vala:715
 msgid "Recent Favorites"
 msgstr "最近喜爱的"
 
-#: ../src/DataBase/DataBaseManager.vala:487
-#: ../src/DataBase/DataBaseManager.vala:723
+#: ../src/DataBase/DataBaseManager.vala:486
+#: ../src/DataBase/DataBaseManager.vala:722
 msgid "Never Played"
 msgstr "从未播放的"
 
-#: ../src/DataBase/DataBaseManager.vala:494
-#: ../src/DataBase/DataBaseManager.vala:730
+#: ../src/DataBase/DataBaseManager.vala:493
+#: ../src/DataBase/DataBaseManager.vala:729
 msgid "Over Played"
 msgstr "持续播放的"
 
-#: ../src/DataBase/DataBaseManager.vala:501
-#: ../src/DataBase/DataBaseManager.vala:737
+#: ../src/DataBase/DataBaseManager.vala:500
+#: ../src/DataBase/DataBaseManager.vala:736
 msgid "Not Recently Played"
 msgstr "非最近播放的"
 
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Device Name:"
-msgstr "设备名称："
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:50
+msgid "Get Some Tunes"
+msgstr "获取曲目"
 
-#: ../src/Views/DeviceSummaryWidget.vala:89
-msgid "Device Name"
-msgstr "设备名称"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Add music to your library."
+msgstr "添加音乐到你的资料库"
 
-#: ../src/Views/DeviceSummaryWidget.vala:91
-msgid "Automatically sync when plugged in:"
-msgstr "当插入时自动同步："
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Change Music Folder"
+msgstr "更改音乐文件夹"
 
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Sync:"
-msgstr "同步："
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Load music from a folder, a network or an external disk."
+msgstr "从文件夹、网络或外置硬盘内导入文件。"
 
-#: ../src/Views/DeviceSummaryWidget.vala:120
-msgid "Other Files"
-msgstr "其它文件"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+msgid "Import your Music"
+msgstr "导入您的音乐"
 
-#: ../src/Views/DeviceSummaryWidget.vala:122
-msgid "Podcasts"
-msgstr "播客"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+msgid "Import all your Music from %s into your library."
+msgstr "将 %s 中的音乐导入到库中。"
 
-#: ../src/Views/DeviceSummaryWidget.vala:416
-msgid "All Music"
-msgstr "所有音乐"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:139
+msgid "Select Music Folder"
+msgstr "选择音乐文件夹"
 
-#: ../src/Views/DeviceSummaryWidget.vala:419
-msgid "All Podcasts"
-msgstr "所有播客"
+#: ../src/Views/Wrappers/ViewWrapper.vala:446
+msgid "No media"
+msgstr "无介质"
 
-#: ../src/Views/DeviceSummaryWidget.vala:541
-#: ../src/Views/DeviceSummaryWidget.vala:569
-msgid "Sync Failed"
-msgstr "同步失败"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
+#: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
+msgid "No Songs"
+msgstr "无歌曲"
 
-#: ../src/Views/DeviceSummaryWidget.vala:541
-#: ../src/Views/DeviceSummaryWidget.vala:569
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr "播放列表 %s 被用来同步设备 %s，但未发现该列表。"
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr "要添加歌曲到该播放列表，请在条目上使用<b>二次点击</b>，选择<b>添加到播放列表</b>即可。"
 
-#: ../src/Views/DeviceSummaryWidget.vala:607
-#: ../src/Views/DeviceSummaryWidget.vala:610
-msgid "Cannot Sync"
-msgstr "无法同步"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:104
+msgid "Edit Smart Playlist"
+msgstr "编辑智能播放列表"
 
-#: ../src/Views/DeviceSummaryWidget.vala:607
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr "无法使用选中的同步设置来同步设备。磁盘无足够空间"
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"该播放列表将自动按其规则排出歌曲流行度。如果要修改这些规则，请在侧边栏上使用<b>右键点击</b>并点击<b>编辑</b>。或者，您可以点击下方的按钮。"
 
-#: ../src/Views/DeviceSummaryWidget.vala:610
-msgid "Device is already doing an operation."
-msgstr "设备已在执行操作。"
-
-#: ../src/Views/DeviceView.vala:39
-msgid "Cancelling…"
-msgstr "正在取消..."
-
-#: ../src/Views/DeviceView.vala:39
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "设备操作已被取消且会在该媒体完成后停止。"
-
-#: ../src/Views/DeviceView.vala:60
-msgid "OK"
+#: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
+msgid "Updating playlist. Please wait."
 msgstr ""
 
-#: ../src/Views/DeviceView.vala:101
-msgid "No External Songs"
-msgstr "无外部歌曲"
+#: ../src/Views/ListView/ListView.vala:86
+msgid "No Songs Found."
+msgstr "未发现歌曲。"
 
-#: ../src/Views/DeviceView.vala:101
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr "该设备上未发现您库中没有的歌曲。"
+#: ../src/Views/ListView/ListView.vala:366
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i 首"
 
-#: ../src/Views/ListView/Lists/GenericList.vala:121
-msgid "Autosize Columns"
-msgstr "自动调整栏的大小"
+#: ../src/Views/ListView/ListView.vala:368
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u 首歌曲"
 
-#: ../src/Views/ListView/Lists/GenericList.vala:128
-msgid "Display Album Art"
-msgstr "显示唱片艺术家"
+#: ../src/Views/ListView/ListView.vala:376
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:226
 msgid "%i kbps"
@@ -1156,6 +949,14 @@ msgstr "%i kb/秒"
 #: ../src/Views/ListView/Lists/MusicListView.vala:703
 msgid "Never"
 msgstr "永不"
+
+#: ../src/Views/ListView/Lists/GenericList.vala:118
+msgid "Autosize Columns"
+msgstr "自动调整栏的大小"
+
+#: ../src/Views/ListView/Lists/GenericList.vala:125
+msgid "Display Album Art"
+msgstr "显示唱片艺术家"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:91
 msgid "Remove from Library"
@@ -1194,9 +995,10 @@ msgstr "排队"
 msgid "Add to Playlist"
 msgstr "添加到播放列表"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:129
-msgid "Remove Song"
-msgstr "移除歌曲"
+#: ../src/Views/ListView/Lists/MusicListView.vala:130
+#: ../src/Widgets/SourceListView.vala:134
+msgid "Import to Library"
+msgstr "导入到库中"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:214
 msgid "New Playlist…"
@@ -1326,34 +1128,6 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr "文件大小"
 
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Genres"
-msgstr "流派"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Artists"
-msgstr "艺术家"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Albums"
-msgstr "专辑"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Years"
-msgstr "年份"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Ratings"
-msgstr "评分"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:67
-msgid "Composers"
-msgstr "作曲家"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:69
-msgid "Groupings"
-msgstr "分组"
-
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
 msgstr "所有流派"
@@ -1434,6 +1208,11 @@ msgstr "全部 %i 作曲家"
 msgid "No Composers"
 msgstr "无作曲家"
 
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
+#: ../src/Widgets/PresetList.vala:47
+msgid "Automatic"
+msgstr "自动"
+
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
 msgstr "左侧"
@@ -1451,24 +1230,111 @@ msgid "%i Star"
 msgid_plural "%i Stars"
 msgstr[0] "%i 星"
 
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "未发现歌曲。"
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:54
+msgid "Genres"
+msgstr "流派"
 
-#: ../src/Views/ListView/ListView.vala:366
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i 首"
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:56
+msgid "Artists"
+msgstr "艺术家"
 
-#: ../src/Views/ListView/ListView.vala:368
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u 首歌曲"
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
+msgid "Albums"
+msgstr "专辑"
 
-#: ../src/Views/ListView/ListView.vala:376
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
+msgid "Years"
+msgstr "年份"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
+msgid "Ratings"
+msgstr "评分"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
+msgid "Composers"
+msgstr "作曲家"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
+msgid "Groupings"
+msgstr "分组"
+
+#: ../src/Views/DeviceSummaryWidget.vala:86
+msgid "Device Name:"
+msgstr "设备名称："
+
+#: ../src/Views/DeviceSummaryWidget.vala:89
+msgid "Device Name"
+msgstr "设备名称"
+
+#: ../src/Views/DeviceSummaryWidget.vala:91
+msgid "Automatically sync when plugged in:"
+msgstr "当插入时自动同步："
+
+#: ../src/Views/DeviceSummaryWidget.vala:98
+msgid "Sync:"
+msgstr "同步："
+
+#: ../src/Views/DeviceSummaryWidget.vala:120
+msgid "Other Files"
+msgstr "其它文件"
+
+#: ../src/Views/DeviceSummaryWidget.vala:122
+msgid "Podcasts"
+msgstr "播客"
+
+#: ../src/Views/DeviceSummaryWidget.vala:416
+msgid "All Music"
+msgstr "所有音乐"
+
+#: ../src/Views/DeviceSummaryWidget.vala:419
+msgid "All Podcasts"
+msgstr "所有播客"
+
+#: ../src/Views/DeviceSummaryWidget.vala:541
+#: ../src/Views/DeviceSummaryWidget.vala:569
+msgid "Sync Failed"
+msgstr "同步失败"
+
+#: ../src/Views/DeviceSummaryWidget.vala:541
+#: ../src/Views/DeviceSummaryWidget.vala:569
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr "播放列表 %s 被用来同步设备 %s，但未发现该列表。"
+
+#: ../src/Views/DeviceSummaryWidget.vala:607
+#: ../src/Views/DeviceSummaryWidget.vala:610
+msgid "Cannot Sync"
+msgstr "无法同步"
+
+#: ../src/Views/DeviceSummaryWidget.vala:607
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr "无法使用选中的同步设置来同步设备。磁盘无足够空间"
+
+#: ../src/Views/DeviceSummaryWidget.vala:610
+msgid "Device is already doing an operation."
+msgstr "设备已在执行操作。"
+
+#: ../src/Views/DeviceView.vala:39
+msgid "Cancelling…"
+msgstr "正在取消..."
+
+#: ../src/Views/DeviceView.vala:39
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "设备操作已被取消且会在该媒体完成后停止。"
+
+#: ../src/Views/DeviceView.vala:60
+msgid "OK"
+msgstr ""
+
+#: ../src/Views/DeviceView.vala:101
+msgid "No External Songs"
+msgstr "无外部歌曲"
+
+#: ../src/Views/DeviceView.vala:101
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr "该设备上未发现您库中没有的歌曲。"
 
 #: ../src/Views/ContentView.vala:21
 msgctxt ""
@@ -1476,68 +1342,10 @@ msgctxt ""
 msgid "%s, %s, %s"
 msgstr "%s, %s, %s"
 
-#: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
-msgid "No Songs"
-msgstr "无歌曲"
-
-#: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
-msgid "Updating playlist. Please wait."
-msgstr ""
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr "要添加歌曲到该播放列表，请在条目上使用<b>二次点击</b>，选择<b>添加到播放列表</b>即可。"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:104
-msgid "Edit Smart Playlist"
-msgstr "编辑智能播放列表"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"该播放列表将自动按其规则排出歌曲流行度。如果要修改这些规则，请在侧边栏上使用<b>右键点击</b>并点击<b>编辑</b>。或者，您可以点击下方的按钮。"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:50
-msgid "Get Some Tunes"
-msgstr "获取曲目"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Add music to your library."
-msgstr "添加音乐到你的资料库"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Change Music Folder"
-msgstr "更改音乐文件夹"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Load music from a folder, a network or an external disk."
-msgstr "从文件夹、网络或外置硬盘内导入文件。"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
-msgid "Import your Music"
-msgstr "导入您的音乐"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
-msgid "Import all your Music from %s into your library."
-msgstr "将 %s 中的音乐导入到库中。"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:139
-msgid "Select Music Folder"
-msgstr "选择音乐文件夹"
-
-#: ../src/Views/Wrappers/ViewWrapper.vala:446
-msgid "No media"
-msgstr "无介质"
+#: ../src/Views/GridView/PopupListView.vala:159
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s 作者 %s"
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
@@ -1548,69 +1356,267 @@ msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] "%u 个专辑"
 
-#: ../src/Views/GridView/PopupListView.vala:162
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s 作者 %s"
-
-#: ../src/Views/GridView/album-view-clutter.vala:550
+#: ../src/Views/GridView/album-view-clutter.vala:547
 msgid "%d minutes"
 msgstr "%d 分钟"
 
-#: ../src/Views/GridView/album-view-clutter.vala:553
+#: ../src/Views/GridView/album-view-clutter.vala:550
 msgid "%d hours"
 msgstr "%d 小时"
 
-#: ../src/Views/GridView/album-view-clutter.vala:556
+#: ../src/Views/GridView/album-view-clutter.vala:553
 msgid "%d days"
 msgstr "%d 天"
 
-#: ../src/Views/GridView/album-view-clutter.vala:561
+#: ../src/Views/GridView/album-view-clutter.vala:558
 msgid "%u items, %s, %s"
 msgstr "%u 项，%s，%s"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:96
-msgid "Audio CD Invalid"
-msgstr "音频 CD 无效"
+#: ../src/Noise.vala:37
+msgid "Listen to music"
+msgstr "聆听音乐"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:100
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "无法读取该音频 CD 内容"
+#: ../src/Noise.vala:38
+msgid "Music Player"
+msgstr "音乐播放器"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:252
-msgid "Could not find Music Folder"
-msgstr "找不到音乐文件夹"
+#: ../src/Noise.vala:39
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;音频;播放器;播放;播放列表"
+";媒体;歌曲;"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:252
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr "请确认您的音乐文件夹可访问并在导入 CD 前已挂载。"
+#: ../src/Objects/TrackInfo.vala:25
+msgid "Unknown Track"
+msgstr "未知音轨"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:258
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "应用程序找到 CD 上的任何歌曲。无法导入歌曲"
+#: ../src/Objects/LyricFetcher.vala:155
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "歌词(抓取自 www.lyricsmania.com)"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:359
-msgid "Importation of a song from Audio CD finished."
-msgstr "音乐 CD 歌曲导入完毕。"
+#: ../src/Objects/AlbumInfo.vala:25
+msgid "Unknown Album"
+msgstr "未知专辑"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:359
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "音乐 CD %i 歌曲导入完毕。"
+#: ../src/Widgets/ViewSelector.vala:68
+msgid "View as Albums"
+msgstr "专辑视图"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:364
-msgid "Importing track %i: %s"
-msgstr "正在导入歌曲 %i：%s"
+#: ../src/Widgets/ViewSelector.vala:72
+msgid "View as List"
+msgstr "列表视图"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:369
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "在当前导入完成后，CD 导入将被<b>取消</b>。"
+#: ../src/Widgets/ViewSelector.vala:76
+msgid "View in Columns"
+msgstr "直栏显示"
 
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:388
-msgid "An error occured during the Import of this CD"
-msgstr "该 CD 导入期间发生错误"
+#: ../src/Widgets/SourceListView.vala:56 ../src/Widgets/SourceListView.vala:69
+msgid "Rename"
+msgstr "重命名"
+
+#: ../src/Widgets/SourceListView.vala:58 ../src/Widgets/SourceListView.vala:72
+#: ../src/Widgets/SourceListView.vala:87
+msgid "Export…"
+msgstr "导出..."
+
+#: ../src/Widgets/SourceListView.vala:70
+msgid "Edit…"
+msgstr "编辑..."
+
+#: ../src/Widgets/SourceListView.vala:85
+msgid "Save as Playlist"
+msgstr "保存为播放列表"
+
+#: ../src/Widgets/SourceListView.vala:142
+msgid "Eject"
+msgstr "弹出"
+
+#: ../src/Widgets/SourceListView.vala:147
+#: ../src/Widgets/SourceListView.vala:186
+msgid "New Playlist"
+msgstr "新建播放列表"
+
+#: ../src/Widgets/SourceListView.vala:152
+#: ../src/Widgets/SourceListView.vala:187
+msgid "New Smart Playlist"
+msgstr "新建智能播放列表"
+
+#: ../src/Widgets/SourceListView.vala:157 ../src/Widgets/SpaceWidget.vala:237
+msgid "Sync"
+msgstr "同步"
+
+#: ../src/Widgets/SourceListView.vala:188
+msgid "Import Playlists"
+msgstr "导入播放列表"
+
+#: ../src/Widgets/SourceListView.vala:232
+msgid "Library"
+msgstr "库"
+
+#: ../src/Widgets/SourceListView.vala:233
+msgid "Devices"
+msgstr "设备"
+
+#: ../src/Widgets/SourceListView.vala:234
+msgid "Network"
+msgstr "网络"
+
+#: ../src/Widgets/SourceListView.vala:235 ../plugins/MPRIS/MPRIS.vala:640
+msgid "Playlists"
+msgstr "播放列表"
+
+#: ../src/Widgets/SpaceWidget.vala:266
+msgid "Free"
+msgstr "空闲"
+
+#: ../src/Widgets/SpaceWidget.vala:383
+msgid "Using %s of %s (%.2f%)"
+msgstr "使用了 %s/%s(%.2f%)"
+
+#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:101
+msgid "Off"
+msgstr "关闭"
+
+#: ../src/Widgets/StatusBar.vala:68
+msgid "Enable Repeat"
+msgstr "启用重复"
+
+#: ../src/Widgets/StatusBar.vala:69
+msgid "Repeat Song"
+msgstr "重复歌曲"
+
+#: ../src/Widgets/StatusBar.vala:70
+msgid "Repeat Album"
+msgstr "重复专辑"
+
+#: ../src/Widgets/StatusBar.vala:71
+msgid "Repeat Artist"
+msgstr "重复艺术家"
+
+#: ../src/Widgets/StatusBar.vala:72 ../src/Widgets/StatusBar.vala:102
+msgid "All"
+msgstr "全部"
+
+#: ../src/Widgets/StatusBar.vala:72
+msgid "Repeat All"
+msgstr "重播全部"
+
+#: ../src/Widgets/StatusBar.vala:101
+msgid "Enable Shuffle"
+msgstr "启用随机播放"
+
+#: ../src/Widgets/StatusBar.vala:102
+msgid "Disable Shuffle"
+msgstr "禁用随机播放"
+
+#: ../src/Widgets/StatusBar.vala:135 ../src/Widgets/StatusBar.vala:146
+msgid "Add Playlist"
+msgstr "添加播放列表"
+
+#: ../src/Widgets/StatusBar.vala:147
+msgid "Add Smart Playlist"
+msgstr "添加智能播放列表"
+
+#: ../src/Widgets/StatusBar.vala:197
+msgid "Hide"
+msgstr "隐藏"
+
+#: ../src/Widgets/StatusBar.vala:197
+msgid "Show Info Panel"
+msgstr "显示信息面板"
+
+#: ../src/Widgets/StatusBar.vala:198
+msgid "Show"
+msgstr "显示"
+
+#: ../src/Widgets/StatusBar.vala:198
+msgid "Hide Info Panel"
+msgstr "隐藏信息面板"
+
+#: ../src/Widgets/EqualizerPopover.vala:157
+msgid "Save preset"
+msgstr "保存预设"
+
+#: ../src/Widgets/EqualizerPopover.vala:403
+msgid "%s (Custom)"
+msgstr "%s (自定义)"
+
+#: ../src/Widgets/EqualizerPopover.vala:405
+msgid "%s (Custom %i)"
+msgstr "%s (自定义 %i)"
+
+#: ../src/Widgets/EqualizerPopover.vala:408
+msgid "Custom Preset"
+msgstr "自定义预设"
+
+#: ../src/Widgets/EqualizerPopover.vala:410
+msgid "Custom Preset %i"
+msgstr "自定义预设 %i"
+
+#: ../src/Widgets/PresetList.vala:48
+msgid "Delete Current"
+msgstr "删除当前列表"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: ../plugins/Devices/iPod/iPodDevice.vala:73
+msgid "Empty device!"
+msgstr "清空设备！"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:117
+#: ../plugins/Devices/iPod/iPodDevice.vala:77
+msgid "This device does not contain any music."
+msgstr "该设备不包含任何音乐。"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:161
+msgid "Android Phone"
+msgstr "安卓手机"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:163
+msgid "Audio Player"
+msgstr "音频播放器"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
+#: ../plugins/Devices/iPod/iPodLibrary.vala:176
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "正在添加 <b>$NAME</b>(艺术家 <b>$ARTIST</b>) 到 $DEVICE"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:202
+#: ../plugins/Devices/iPod/iPodLibrary.vala:241
+#: ../plugins/Devices/iPod/iPodLibrary.vala:651
+msgid "Syncing <b>%s</b>…"
+msgstr "正在同步 <b>%s</b>…"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:256
+#: ../plugins/Devices/iPod/iPodLibrary.vala:268
+#: ../plugins/Devices/iPod/iPodLibrary.vala:438
+#: ../plugins/Devices/iPod/iPodLibrary.vala:707
+msgid "Finishing sync process…"
+msgstr "正在完成同步过程..."
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:259
+#: ../plugins/Devices/iPod/iPodLibrary.vala:282
+#: ../plugins/Devices/iPod/iPodLibrary.vala:454
+#: ../plugins/Devices/iPod/iPodLibrary.vala:728
+msgid "Cancelling Sync…"
+msgstr "正在取消同步..."
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:263
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:264
+#: ../plugins/Devices/iPod/iPodLibrary.vala:738
+#: ../plugins/Devices/iPod/iPodLibrary.vala:739
+msgid "There is not enough space on Device to complete the Sync…"
+msgstr "设备上没有足够空间以完成同步..."
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:362
+#: ../plugins/Devices/iPod/iPodLibrary.vala:601
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "正在移除 $DEVICE 中的 <b>$NAME</b>(艺人 <b>$ARTIST</b>)"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
+#: ../plugins/Devices/iPod/iPodLibrary.vala:394
+msgid "Removing from <b>%s</b>…"
+msgstr "正在从 <b>%s</b> 移除…"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
@@ -1620,89 +1626,48 @@ msgstr "发生错误"
 msgid "There was an error while loading this Audio CD."
 msgstr "加载该音频 CD 时发生错误。"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:176
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "正在添加 <b>$NAME</b>(艺术家 <b>$ARTIST</b>) 到 $DEVICE"
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:94
+msgid "Audio CD Invalid"
+msgstr "音频 CD 无效"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:241
-#: ../plugins/Devices/iPod/iPodLibrary.vala:651
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:202
-msgid "Syncing <b>%s</b>…"
-msgstr "正在同步 <b>%s</b>…"
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:98
+msgid "Impossible to read the contents of this Audio CD"
+msgstr "无法读取该音频 CD 内容"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:268
-#: ../plugins/Devices/iPod/iPodLibrary.vala:438
-#: ../plugins/Devices/iPod/iPodLibrary.vala:707
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:256
-msgid "Finishing sync process…"
-msgstr "正在完成同步过程..."
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:250
+msgid "Could not find Music Folder"
+msgstr "找不到音乐文件夹"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:282
-#: ../plugins/Devices/iPod/iPodLibrary.vala:454
-#: ../plugins/Devices/iPod/iPodLibrary.vala:728
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:259
-msgid "Cancelling Sync…"
-msgstr "正在取消同步..."
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:394
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
-msgid "Removing from <b>%s</b>…"
-msgstr "正在从 <b>%s</b> 移除…"
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:601
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:362
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "正在移除 $DEVICE 中的 <b>$NAME</b>(艺人 <b>$ARTIST</b>)"
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:738
-#: ../plugins/Devices/iPod/iPodLibrary.vala:739
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:263
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:264
-msgid "There is not enough space on Device to complete the Sync…"
-msgstr "设备上没有足够空间以完成同步..."
-
-#: ../plugins/Devices/iPod/iPodDevice.vala:76
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:115
-msgid "Empty device!"
-msgstr "清空设备！"
-
-#: ../plugins/Devices/iPod/iPodDevice.vala:80
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:119
-msgid "This device does not contain any music."
-msgstr "该设备不包含任何音乐。"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:163
-msgid "Android Phone"
-msgstr "安卓手机"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:165
-msgid "Audio Player"
-msgstr "音频播放器"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:41
-msgid "media"
-msgstr "媒体"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:45
-msgid "Similar Media"
-msgstr "类似媒体"
-
-#: ../plugins/LastFM/LastFM.vala:75
-msgid "No similar songs found"
-msgstr "未发现相似歌曲"
-
-#: ../plugins/LastFM/LastFM.vala:75
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr "库中无与当前歌曲类似的歌曲。确保全部歌曲信息正确且已连接到网络。部分歌曲可能无法匹配。"
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr "请确认您的音乐文件夹可访问并在导入 CD 前已挂载。"
 
-#: ../plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "相似"
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:256
+msgid ""
+"The Application could not find any songs on the CD. No songs can be imported"
+msgstr "应用程序找到 CD 上的任何歌曲。无法导入歌曲"
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:357
+msgid "Importation of a song from Audio CD finished."
+msgstr "音乐 CD 歌曲导入完毕。"
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:357
+msgid "Importation of %i songs from Audio CD finished."
+msgstr "音乐 CD %i 歌曲导入完毕。"
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:362
+msgid "Importing track %i: %s"
+msgstr "正在导入歌曲 %i：%s"
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:367
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr "在当前导入完成后，CD 导入将被<b>取消</b>。"
+
+#: ../plugins/Devices/CDRom/CDRomDevice.vala:386
+msgid "An error occured during the Import of this CD"
+msgstr "该 CD 导入期间发生错误"
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
@@ -1741,6 +1706,29 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr "要允许 Last.fm 移植，您必须授权 %s。您只需执行一次该操作。"
+
+#: ../plugins/LastFM/LastFM.vala:71
+msgid "No similar songs found"
+msgstr "未发现相似歌曲"
+
+#: ../plugins/LastFM/LastFM.vala:71
+msgid ""
+"There are no songs similar to the current song in your library. Make sure "
+"all song info is correct and you are connected to the Internet. Some songs "
+"may not have matches."
+msgstr "库中无与当前歌曲类似的歌曲。确保全部歌曲信息正确且已连接到网络。部分歌曲可能无法匹配。"
+
+#: ../plugins/LastFM/SimilarMediaView.vala:41
+msgid "media"
+msgstr "媒体"
+
+#: ../plugins/LastFM/SimilarMediaView.vala:45
+msgid "Similar Media"
+msgstr "类似媒体"
+
+#: ../plugins/LastFM/SimilarMedia.vala:42
+msgid "Similar"
+msgstr "相似"
 
 #~ msgid "Done"
 #~ msgstr "完成"
@@ -1886,6 +1874,19 @@ msgstr "要允许 Last.fm 移植，您必须授权 %s。您只需执行一次该
 #~ msgid "Equalizer"
 #~ msgstr "均衡器"
 
+#~ msgid ""
+#~ "The plugin for media type %s is not installed.\n"
+#~ "What would you like to do?"
+#~ msgstr ""
+#~ "媒体类型 %s 插件没有安装。\n"
+#~ "您会怎么做？"
+
+#~ msgid "Required GStreamer plugin not installed"
+#~ msgstr "需要的 GStreamer 插件没有安装"
+
+#~ msgid "Do Nothing"
+#~ msgstr "无动作"
+
 #~ msgid "Copy files to music folder when added to library"
 #~ msgstr "当添加到库中时复制文件到音乐文件夹"
 
@@ -1933,6 +1934,9 @@ msgstr "要允许 Last.fm 移植，您必须授权 %s。您只需执行一次该
 #~ msgid "Try again"
 #~ msgstr "重试"
 
+#~ msgid "Remove Media"
+#~ msgstr "移除媒体"
+
 #, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s 作者 %s"
@@ -1940,6 +1944,9 @@ msgstr "要允许 Last.fm 移植，您必须授权 %s。您只需执行一次该
 #, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s 貌似无法找到您的音乐。"
+
+#~ msgid "Locate Media"
+#~ msgstr "定位媒体"
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "抓取相似歌曲"
@@ -2010,9 +2017,15 @@ msgstr "要允许 Last.fm 移植，您必须授权 %s。您只需执行一次该
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "从 %3$s 中移除 %1$d %2$s 吗？"
 
+#~ msgid "Could not find media file"
+#~ msgstr "无法找到媒体文件"
+
 #, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "名称 %s 已在使用"
+
+#~ msgid "%i media files could not be found. What would you like to do?"
+#~ msgstr "%i 个媒体文件无法找到。您打算怎么做？"
 
 #, c-format
 #~ msgid "%i albums"
