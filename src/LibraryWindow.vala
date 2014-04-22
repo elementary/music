@@ -289,7 +289,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.pack_start (playButton);
         headerbar.pack_start (nextButton);
         headerbar.pack_start (viewSelector);
-        headerbar.set_custom_title (topDisplayBin);
+        //headerbar.set_custom_title (topDisplayBin);
         headerbar.pack_end (((Noise.App) GLib.Application.get_default ()).create_appmenu (settingsMenu));
         headerbar.pack_end (searchField);
         headerbar.show_all ();
@@ -734,9 +734,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR));
 
         bool show_top_display = media_active || doing_ops;
-        topDisplay.set_visible (show_top_display);
-
-        topDisplay.set_scale_sensitivity(media_active);
+        
+        if (show_top_display) {
+            headerbar.set_custom_title (topDisplayBin);
+            topDisplay.set_scale_sensitivity(media_active);
+            topDisplayBin.show_all ();
+        }
+        else {
+            headerbar.set_custom_title (null);
+        }
 
         bool show_info_panel = Settings.SavedState.get_default ().more_visible && info_panel.can_show_up;
         info_panel.set_visible (show_info_panel);
