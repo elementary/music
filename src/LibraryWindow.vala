@@ -289,7 +289,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.pack_start (playButton);
         headerbar.pack_start (nextButton);
         headerbar.pack_start (viewSelector);
-        //headerbar.set_custom_title (topDisplayBin);
         headerbar.pack_end (((Noise.App) GLib.Application.get_default ()).create_appmenu (settingsMenu));
         headerbar.pack_end (searchField);
         headerbar.show_all ();
@@ -737,10 +736,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         if (show_top_display) {
             headerbar.set_custom_title (topDisplayBin);
-            topDisplay.set_scale_sensitivity(media_active);
+            topDisplay.set_scale_sensitivity (media_active);
             topDisplayBin.show_all ();
-        }
-        else {
+        } else {
             headerbar.set_custom_title (null);
         }
 
