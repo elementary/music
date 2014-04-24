@@ -739,7 +739,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             topDisplay.set_scale_sensitivity (media_active);
             topDisplayBin.show_all ();
         } else {
-            headerbar.set_custom_title (null);
+            headerbar.set_title ("");
         }
 
         bool show_info_panel = Settings.SavedState.get_default ().more_visible && info_panel.can_show_up;
