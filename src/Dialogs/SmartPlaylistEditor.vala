@@ -60,7 +60,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         
         /* add the name entry */
         name_entry = new Gtk.Entry ();
-        name_entry.set_placeholder_text (_("Playlist Title"));
+        name_entry.placeholder_text = _("Playlist Title");
         if (is_new == false)
             name_entry.text = sp.name;
         

@@ -87,7 +87,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         device_name_label.set_alignment (1, 0.5f);
         
         device_name_entry = new Gtk.Entry ();
-        device_name_entry.set_placeholder_text (_("Device Name"));
+        device_name_entry.placeholder_text = _("Device Name");
         
         var auto_sync_label = new Gtk.Label (_("Automatically sync when plugged in:"));
         auto_sync_label.set_alignment (1, 0.5f);
