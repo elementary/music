@@ -23,9 +23,7 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-using Gtk;
-
-public class Noise.NotImportedWindow : Window{
+public class Noise.NotImportedWindow : Gtk.Window {
     Gee.LinkedList<string> _files;
     string music_folder;
 
@@ -33,43 +31,39 @@ public class Noise.NotImportedWindow : Window{
     private Gtk.Box content;
     private Gtk.Box padding;
 
-    CheckButton trashAll;
-    ScrolledWindow filesScroll;
-    TreeView filesView;
-    ListStore filesModel;
-    Button moveToTrash;
+    Gtk.CheckButton trashAll;
+    Gtk.ScrolledWindow filesScroll;
+    Gtk.TreeView filesView;
+    Gtk.ListStore filesModel;
+    Gtk.Button moveToTrash;
 
     public NotImportedWindow(Gee.Collection<string> files, string music) {
         _files = new Gee.LinkedList<string> ();
         _files.add_all (files);
         this.music_folder = music;
 
-        this.set_title(_("Not Imported Files"));
-
-        // set the size based on saved gconf settings
-        //this.window_position = WindowPosition.CENTER;
         this.type_hint = Gdk.WindowTypeHint.DIALOG;
         this.set_modal (true);
         this.set_transient_for (App.main_window);
         this.destroy_with_parent = true;
 
-        set_default_size(475, -1);
+        set_default_size (475, -1);
         resizable = false;
 
         content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
         padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
 
         // initialize controls
-        var warning = new Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
-        var title = new Label(_("Unable to import %d items from %s").printf (files.size, music_folder));
-        var info = new Label(_("%s was unable to import %d items. The files may be damaged.").printf (((Noise.App) GLib.Application.get_default ()).get_name (), files.size));
-        trashAll = new CheckButton.with_label(_("Move all corrupted files to trash"));
-        filesScroll = new ScrolledWindow(null, null);
-        filesView = new TreeView();
-        filesModel = new ListStore(2, typeof(bool), typeof(string));
-        filesView.set_model(filesModel);
-        moveToTrash = new Button.with_label(_("Move to Trash"));
-        Button okButton = new Button.with_label(_("Ignore"));
+        var warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
+        var title = new Gtk.Label (_("Unable to import %d items from %s").printf (files.size, music_folder));
+        var info = new Gtk.Label (_("%s was unable to import %d items. The files may be damaged.").printf (((Noise.App) GLib.Application.get_default ()).get_name (), files.size));
+        trashAll = new Gtk.CheckButton.with_label (_("Move all corrupted files to trash"));
+        filesScroll = new Gtk.ScrolledWindow (null, null);
+        filesView = new Gtk.TreeView ();
+        filesModel = new Gtk.ListStore (2, typeof(bool), typeof(string));
+        filesView.set_model (filesModel);
+        moveToTrash = new Gtk.Button.with_label (_("Move to Trash"));
+        Gtk.Button okButton = new Gtk.Button.with_label (_("Ignore"));
 
         // pretty up labels
         title.xalign = 0.0f;
@@ -78,36 +72,36 @@ public class Noise.NotImportedWindow : Window{
         info.set_line_wrap(false);
 
         /* add cellrenderers to columns and columns to treeview */
-        var toggle = new CellRendererToggle ();
+        var toggle = new Gtk.CellRendererToggle ();
         toggle.toggled.connect ((toggle, path) => {
-            var tree_path = new TreePath.from_string (path);
-            TreeIter iter;
+            var tree_path = new Gtk.TreePath.from_string (path);
+            Gtk.TreeIter iter;
             filesModel.get_iter (out iter, tree_path);
             filesModel.set (iter, 0, !toggle.active);
 
-            moveToTrash.set_sensitive(false);
-            filesModel.foreach(updateMoveToTrashSensetivity);
+            moveToTrash.set_sensitive (false);
+            filesModel.foreach (updateMoveToTrashSensetivity);
         });
 
-        var column = new TreeViewColumn ();
+        var column = new Gtk.TreeViewColumn ();
         column.title = _("del");
         column.pack_start (toggle, false);
         column.add_attribute (toggle, "active", 0);
         filesView.append_column (column);
 
-        filesView.insert_column_with_attributes(-1, _("File Location"), new CellRendererText(), "text", 1, null);
+        filesView.insert_column_with_attributes(-1, _("File Location"), new Gtk.CellRendererText(), "text", 1, null);
         filesView.headers_visible = false;
 
         /* fill the treeview */
         foreach(string file in files) {
-            TreeIter item;
+            Gtk.TreeIter item;
             filesModel.append(out item);
 
             filesModel.set(item, 0, false, 1, file.replace(music_folder, ""));
         }
 
-        filesScroll.add(filesView);
-        filesScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+        filesScroll.add (filesView);
+        filesScroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
 
         moveToTrash.set_sensitive(false);
 
@@ -122,15 +116,15 @@ public class Noise.NotImportedWindow : Window{
         var listBox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
         listBox.pack_start(filesScroll, true, true, 5);
 
-        Expander exp = new Expander(_("Select individual files to move to trash:"));
+        Gtk.Expander exp = new Gtk.Expander(_("Select individual files to move to trash:"));
         exp.add(listBox);
         exp.expanded = false;
 
         var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        bottomButtons.set_layout(ButtonBoxStyle.END);
-        bottomButtons.pack_end(moveToTrash, false, false, 0);
-        bottomButtons.pack_end(okButton, false, false, 10);
-        bottomButtons.set_spacing(10);
+        bottomButtons.set_layout (Gtk.ButtonBoxStyle.END);
+        bottomButtons.pack_end (moveToTrash, false, false, 0);
+        bottomButtons.pack_end (okButton, false, false, 10);
+        bottomButtons.set_spacing (10);
 
         content.pack_start(information, false, true, 0);
         content.pack_start(UI.wrap_alignment (trashAll, 5, 0, 0, 75), false, true, 0);
@@ -157,7 +151,7 @@ public class Noise.NotImportedWindow : Window{
         show_all();
     }
 
-    public bool updateMoveToTrashSensetivity(TreeModel model, TreePath path, TreeIter iter) {
+    public bool updateMoveToTrashSensetivity(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         bool sel = false;
         model.get(iter, 0, out sel);
 
@@ -169,13 +163,13 @@ public class Noise.NotImportedWindow : Window{
         return false;
     }
 
-    public bool selectAll(TreeModel model, TreePath path, TreeIter iter) {
+    public bool selectAll(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         filesModel.set(iter, 0, true);
 
         return false;
     }
 
-    public bool unselectAll(TreeModel model, TreePath path, TreeIter iter) {
+    public bool unselectAll(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         filesModel.set(iter, 0, false);
 
         return false;
@@ -193,7 +187,7 @@ public class Noise.NotImportedWindow : Window{
         }
     }
 
-    public bool deleteSelectedItems(TreeModel model, TreePath path, TreeIter iter) {
+    public bool deleteSelectedItems(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         bool selected;
         string location;
         filesModel.get(iter, 0, out selected);
