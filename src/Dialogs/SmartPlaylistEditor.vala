@@ -21,7 +21,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
 
     SmartPlaylist sp;
     private bool is_new = false;
-    private Granite.Widgets.HintedEntry name_entry;
+    private Gtk.Entry name_entry;
     private Gtk.ComboBoxText match_combobox;
     private Gtk.Button save_button;
     private Gtk.Grid main_grid;
@@ -59,7 +59,8 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         options_label.set_markup ("<b>" + Markup.escape_text (_("Options"), -1) + "</b>");
         
         /* add the name entry */
-        name_entry = new Granite.Widgets.HintedEntry (_("Playlist Title"));
+        name_entry = new Gtk.Entry ();
+        name_entry.set_placeholder_text (_("Playlist Title"));
         if (is_new == false)
             name_entry.text = sp.name;
         
