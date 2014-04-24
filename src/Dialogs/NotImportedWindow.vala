@@ -37,7 +37,7 @@ public class Noise.NotImportedWindow : Gtk.Window {
     Gtk.ListStore filesModel;
     Gtk.Button moveToTrash;
 
-    public NotImportedWindow(Gee.Collection<string> files, string music) {
+    public NotImportedWindow (Gee.Collection<string> files, string music) {
         _files = new Gee.LinkedList<string> ();
         _files.add_all (files);
         this.music_folder = music;
@@ -67,9 +67,9 @@ public class Noise.NotImportedWindow : Gtk.Window {
 
         // pretty up labels
         title.xalign = 0.0f;
-        title.set_markup("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text (_("Unable to import %d items from %s").printf (files.size, music_folder), -1) + "</span>");
+        title.set_markup ("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text (_("Unable to import %d items from %s").printf (files.size, music_folder), -1) + "</span>");
         info.xalign = 0.0f;
-        info.set_line_wrap(false);
+        info.set_line_wrap (false);
 
         /* add cellrenderers to columns and columns to treeview */
         var toggle = new Gtk.CellRendererToggle ();
@@ -89,35 +89,35 @@ public class Noise.NotImportedWindow : Gtk.Window {
         column.add_attribute (toggle, "active", 0);
         filesView.append_column (column);
 
-        filesView.insert_column_with_attributes(-1, _("File Location"), new Gtk.CellRendererText(), "text", 1, null);
+        filesView.insert_column_with_attributes (-1, _("File Location"), new Gtk.CellRendererText(), "text", 1, null);
         filesView.headers_visible = false;
 
         /* fill the treeview */
-        foreach(string file in files) {
+        foreach (string file in files) {
             Gtk.TreeIter item;
-            filesModel.append(out item);
+            filesModel.append (out item);
 
-            filesModel.set(item, 0, false, 1, file.replace(music_folder, ""));
+            filesModel.set (item, 0, false, 1, file.replace (music_folder, ""));
         }
 
         filesScroll.add (filesView);
         filesScroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
 
-        moveToTrash.set_sensitive(false);
+        moveToTrash.set_sensitive (false);
 
         /* set up controls layout */
-        var information = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-        var information_text = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-        information.pack_start(warning, false, false, 10);
-        information_text.pack_start(title, false, true, 10);
-        information_text.pack_start(info, false, true, 0);
-        information.pack_start(information_text, true, true, 10);
+        var information = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        var information_text = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        information.pack_start (warning, false, false, 10);
+        information_text.pack_start (title, false, true, 10);
+        information_text.pack_start (info, false, true, 0);
+        information.pack_start (information_text, true, true, 10);
 
-        var listBox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-        listBox.pack_start(filesScroll, true, true, 5);
+        var listBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        listBox.pack_start (filesScroll, true, true, 5);
 
-        Gtk.Expander exp = new Gtk.Expander(_("Select individual files to move to trash:"));
-        exp.add(listBox);
+        Gtk.Expander exp = new Gtk.Expander (_("Select individual files to move to trash:"));
+        exp.add (listBox);
         exp.expanded = false;
 
         var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
@@ -131,24 +131,24 @@ public class Noise.NotImportedWindow : Gtk.Window {
         content.pack_start(UI.wrap_alignment (exp, 0, 0, 0, 75), true, true, 0);
         content.pack_start(bottomButtons, false, true, 10);
 
-        padding.pack_start(content, true, true, 10);
+        padding.pack_start (content, true, true, 10);
 
-        moveToTrash.clicked.connect(moveToTrashClick);
-        trashAll.toggled.connect(trashAllToggled);
-        okButton.clicked.connect( () => { this.destroy(); });
-        exp.activate.connect( () => {
-            if(exp.get_expanded()) {
+        moveToTrash.clicked.connect (moveToTrashClick);
+        trashAll.toggled.connect (trashAllToggled);
+        okButton.clicked.connect ( () => { this.destroy(); });
+        exp.activate.connect ( () => {
+            if (exp.get_expanded()) {
                 resizable = true;
                 set_size_request(475, 180);
                 resize(475, 180);
                 resizable = false;
-            }
-            else
+            } else {
                 set_size_request(475, 350);
+            }
         });
 
-        add(padding);
-        show_all();
+        add (padding);
+        show_all ();
     }
 
     public bool updateMoveToTrashSensetivity(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
