@@ -27,13 +27,13 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     public iPodDeviceManager() {
         devices = new Gee.ArrayList<iPodDevice>();
         streamer = new iPodStreamer (this);
-
         var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
         device_manager.mount_removed.connect (mount_removed);
         foreach (var mount in device_manager.get_available_mounts ()) {
             mount_added (mount);
         }
+
         Noise.App.player.add_playback (streamer);
     }
 
@@ -47,30 +47,30 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     }
 
     public virtual void mount_added (Mount mount) {
-        foreach(var dev in devices) {
-            if(dev.get_uri() == mount.get_default_location().get_uri()) {
+        foreach (var dev in devices) {
+            if (dev.get_uri () == mount.get_default_location ().get_uri ()) {
                 return;
             }
         }
-        if(File.new_for_uri(mount.get_default_location().get_uri() + "/iTunes_Control").query_exists() ||
-                File.new_for_uri(mount.get_default_location().get_uri() + "/iPod_Control").query_exists() ||
-                File.new_for_uri(mount.get_default_location().get_uri() + "/iTunes/iTunes_Control").query_exists() ||
-                mount.get_default_location().get_parse_name().has_prefix("afc://")) {
-            var added = new iPodDevice(mount);
-            added.set_mount(mount);
-            devices.add(added);
 
-            if(added.start_initialization() == true) {
-                added.finish_initialization();
-                added.initialized.connect((d) => {
+        if(File.new_for_uri (mount.get_default_location ().get_uri () + "/iTunes_Control").query_exists () ||
+                File.new_for_uri (mount.get_default_location ().get_uri () + "/iPod_Control").query_exists () ||
+                File.new_for_uri (mount.get_default_location ().get_uri () + "/iTunes/iTunes_Control").query_exists () ||
+                mount.get_default_location ().get_parse_name ().has_prefix ("afc://")) {
+            var added = new iPodDevice (mount);
+            added.set_mount (mount);
+            devices.add (added);
+
+            if(added.start_initialization () == true) {
+                added.finish_initialization ();
+                added.initialized.connect ((d) => {
                     if (((iPodDevice)d).is_supported == true) {
                         DeviceManager.get_default ().device_initialized ((Noise.Device)d);
                     }
                 });
             }
-        }
-        else {
-            debug ("Found device at %s is not an iPod. Not using it", mount.get_default_location().get_uri());
+        } else {
+            debug ("Found device at %s is not an iPod. Not using it", mount.get_default_location ().get_uri ());
             return;
         }
     }
@@ -88,10 +88,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
                 device_manager.device_removed ((Noise.Device)dev);
-
-                // Actually remove it
                 devices.remove(dev);
-
                 return;
             }
         }
@@ -103,6 +100,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
                 return device;
             }
         }
+
         return null;
     }
 
