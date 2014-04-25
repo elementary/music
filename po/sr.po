@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-04-15 17:14+0000\n"
+"PO-Revision-Date: 2014-04-24 06:59+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-04-22 08:19+0000\n"
+"X-Launchpad-Export-Date: 2014-04-25 07:10+0000\n"
 "X-Generator: Launchpad (build 16985)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -828,7 +828,7 @@ msgstr "Инсталирајте прикључак"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:52
 msgid "File not found"
-msgstr ""
+msgstr "Нисам пронашао датотеку"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:58
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
@@ -1020,7 +1020,7 @@ msgstr "Прикажи у Прегледачу датотека"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Остале радње"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1369,7 +1369,7 @@ msgstr "Радња уређаја је отказана и биће зауста
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "У реду"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
