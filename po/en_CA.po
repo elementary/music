@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-04-15 17:08+0000\n"
-"Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
+"PO-Revision-Date: 2014-04-25 15:36+0000\n"
+"Last-Translator: Shawn McTear <Unknown>\n"
 "Language-Team: English (Canada) <en_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-04-22 08:20+0000\n"
+"X-Launchpad-Export-Date: 2014-04-26 07:06+0000\n"
 "X-Generator: Launchpad (build 16985)\n"
 "Language: \n"
 
@@ -51,11 +51,11 @@ msgstr "Cancel"
 
 #: ../core/Resources.vala:59
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 #: ../core/Resources.vala:60
 msgid "Save"
-msgstr ""
+msgstr "Save"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -249,15 +249,15 @@ msgstr "Preferences"
 
 #: ../src/LibraryWindow.vala:263
 msgid "Previous"
-msgstr ""
+msgstr "Previous"
 
 #: ../src/LibraryWindow.vala:265
 msgid "Play"
-msgstr ""
+msgstr "Play"
 
 #: ../src/LibraryWindow.vala:267
 msgid "Next"
-msgstr ""
+msgstr "Next"
 
 #: ../src/LibraryWindow.vala:271
 msgid "Search Music"
@@ -445,11 +445,11 @@ msgstr "Desktop Integration:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:166
 msgid "Notifications:"
-msgstr ""
+msgstr "Notifications:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:171
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Continue playback when closed:"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
@@ -801,21 +801,23 @@ msgstr "Podcast"
 
 #: ../src/Dialogs/MediaEditor.vala:683
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: ../src/Dialogs/MediaEditor.vala:687
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Stats</b>"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Would you like to install the %s plugin?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"This song cannot be played. The %s plugin is required to play the song."
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
 msgid "Install Plugin"
@@ -823,15 +825,15 @@ msgstr "Install Plugin"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:52
 msgid "File not found"
-msgstr ""
+msgstr "File not found"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:58
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "The music file for <b>%s</b> by <b>%s</b> could not be found."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:61
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i music files could not be found?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:84
 msgid "Rescan Library"
@@ -844,7 +846,7 @@ msgstr "Remove Song"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:87
 msgid "Find Song"
-msgstr ""
+msgstr "Find Song"
 
 #: ../src/GStreamer/Streamer.vala:187 ../src/Objects/ArtistInfo.vala:27
 #: ../src/Objects/AlbumInfo.vala:26 ../plugins/Devices/CDRom/CDPlayer.vala:203
@@ -948,7 +950,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Updating playlist. Please wait."
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
@@ -1014,7 +1016,7 @@ msgstr "Show in File Browser"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Other actions"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1359,7 +1361,7 @@ msgstr "Device operation has been cancelled and will stop after this media."
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
