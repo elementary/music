@@ -162,8 +162,14 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	public void set_table (HashTable<int, GLib.Object> table) {
 		rows.remove_all();
 
-		for(int i = 0; i < table.size(); ++i)
-			rows.set(i, table.get(i));
+        table.foreach ((key, val) => {
+            rows.set (key, val);
+        });
+
+        Gtk.TreeIter iter;
+        for (bool valid = get_iter_first (out iter); valid; valid = iter_next (ref iter)) {
+            row_changed (get_path (iter), iter);
+        }
 	}
 	
 	/** Crucial. Must be set by user. Allows for this model to be abstract

@@ -40,12 +40,12 @@ public class Noise.GridView : ContentView, GridLayout {
     /**
      * Hash map containing a set of albums identified by their album key.
      */
-    private Gee.HashMap<string, Album> album_info;
+    private Gee.HashMap<Media, Album> album_info;
 
     public GridView (ViewWrapper view_wrapper) {
         base (view_wrapper);
 
-        album_info = new Gee.HashMap<string, Album> ();
+        album_info = new Gee.HashMap<Media, Album> ();
 
         setup_focus ();
 
@@ -122,10 +122,6 @@ public class Noise.GridView : ContentView, GridLayout {
         return album_list;
     }
 
-    private string get_key (Album? album) {
-        return album != null ? album.to_string () : "";
-    }
-
     public void refilter (string? search) {
         do_search (search);
     }
@@ -160,111 +156,70 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public void set_media (Gee.Collection<Media> to_add) {
-        album_info = new Gee.HashMap<string, Album> ();
+        album_info.clear ();
         clear_objects ();
         add_media (to_add);
-        set_research_needed (true);
     }
 
-    // checks for duplicates
+    // Check for already existing albums, only add the missing ones.
     public void add_media (Gee.Collection<Media> media) {
-        // Albums to append. We use this to check for duplicates. In the end,
-        // the map is supposed to only contain new albums.
-        var albums_to_append = new Gee.HashMap<string, Album> ();
-
-        foreach (var m in media) {
+        var medias_to_add = new Gee.LinkedList<Media> ();
+        medias_to_add.add_all (media);
+        var albums_to_append = new Gee.LinkedList<Album> ();
+        foreach (var m in medias_to_add) {
             if (m == null)
                 continue;
 
-            var album = new Album.from_media (m);
-            string key = get_key (album);
-
-            if (!albums_to_append.has_key (key) && !album_info.has_key (key)) {
-                albums_to_append.set (key, album);
-
-                // Add album to internal media info
-                album_info.set (key, album);
-            }
-
-            // Now let's get the album again. We don't use the reference above because
-            // we don't know if that is the actual instance which was added.
-            var actual_album = album_info.get (key);
-            if (!actual_album.contains (m))
-                actual_album.add_media (m);
-        }
-
-        // Add new albums
-        add_objects (albums_to_append.values);
-        set_research_needed (true);
-    }
-
-    public void remove_media (Gee.Collection<Media> to_remove) {
-        /* There is a special case. Let's say that we're removing
-         * song1, song2 and song5 from Album X, and the album currently
-         * contains song1, song2, song5, and song3. Then we shouldn't remove
-         * the album because it still contains a song (song3).
-         */
-
-        // classify media by album.
-        var to_remove_album_info = new Gee.HashMap <string, Album> ();
-
-        foreach (var m in to_remove) {
-            if (m == null)
+            if (album_info.has_key (m))
                 continue;
 
-            var album = new Album.from_media (m);            
-            string key = get_key (album);
-
-            if (!to_remove_album_info.has_key (key))
-                to_remove_album_info.set (key, album);
-
-            to_remove_album_info.get (key).add_media (m);
-        }
-
-        // table of albums that will be removed
-        var albums_to_remove = new Gee.HashSet<string> ();
-
-        // Then use the list to verify which albums are in the album view and try to remove
-        // the songs which are part of to_remove_album_info from them. Eventually, if it
-        // is found that the album is left empty, it is completely removed.
-        foreach (var album_entry in to_remove_album_info.entries) {
-            if (album_info.has_key (album_entry.key)) {
-                // get current album. It contains all the media
-                var current_album = album_info.get (album_entry.key);
-
-                // Album containing the media that should be removed
-                var to_remove_album = album_entry.value;
-                var to_remove_album_media = to_remove_album.get_media ();
-
-                // Now we will remove the media in to_remove_album from the actual album
-                // contained by album_info.
-                foreach (var m in to_remove_album_media)
-                    current_album.remove_media (m);
-
-                // if the album is left with no songs, it should be removed (we don't remove albums
-                // that still contain media!)
-                if (current_album.is_empty) {
-                    albums_to_remove.add (album_entry.key);
-
-                    // unset from album info
-                    album_info.unset (album_entry.key);
+            // Check if the song might go into an album.
+            bool has_album = false;
+            foreach (var album in album_info.values) {
+                if (album.is_compatible (m) && has_album == false) {
+                    album.add_media (m);
+                    has_album = true;
                 }
             }
+
+            if (has_album == false) {
+                var album = new Album.from_media (m);
+                album.add_media (m);
+                album_info.set (m, album);
+                albums_to_append.add (album);
+            }
         }
 
-        if (albums_to_remove.size < 1)
-            return;        
+        if (albums_to_append.size <= 0)
+            return;
 
-        // Find media representations in table
-        var objects_to_remove = new Gee.HashSet<Object> ();
+        // Add new albums
+        add_objects (albums_to_append);
+        set_research_needed (true);
+    }
 
-        foreach (var album in get_visible_albums ()) {
-            var key = get_key (album);
-            if (albums_to_remove.contains (key))
-                objects_to_remove.add (album);
+    /* There is a special case. Let's say that we're removing
+     * song1, song2 and song5 from Album X, and the album currently
+     * contains song1, song2, song5, and song3. Then we shouldn't remove
+     * the album because it still contains a song (song3).
+     */
+    public void remove_media (Gee.Collection<Media> to_remove) {
+        var albums_to_remove = new Gee.HashSet<Album> ();
+        foreach (var m in to_remove) {
+            var album = album_info.get (m);
+            if (m == null)
+                continue;
+
+            album_info.unset (m);
+            album.remove_media (m);
+            if (album.is_empty == true)
+                albums_to_remove.add (album);
         }
 
-        remove_objects (objects_to_remove);
+        if (albums_to_remove.size <= 0)
+            return;
+
+        remove_objects (albums_to_remove);
         set_research_needed (true);
     }
 
@@ -307,9 +262,9 @@ public class Noise.GridView : ContentView, GridLayout {
         y += (alloc.height - window_height) / 2 + 60;
 
         bool was_visible = popup_list_view.visible;
-        popup_list_view.show_all ();
         if (!was_visible)
             popup_list_view.move (x, y);
+        popup_list_view.show_all ();
         popup_list_view.present ();
     }
 
@@ -334,7 +289,7 @@ public class Noise.GridView : ContentView, GridLayout {
             case FastGrid.Column.TOOLTIP:
                 string name = album.get_display_name ();
                 string artist = album.get_display_artist ();
-                return Markup.printf_escaped ("<span size=\"large\"><b>%s</b></span>\n%s", name, artist);
+                return "<span size=\"large\"><b>%s</b></span>\n%s".printf (String.escape (name), String.escape (artist));
         }
 
         assert_not_reached ();
@@ -361,6 +316,7 @@ public class Noise.GridView : ContentView, GridLayout {
 
         return order;
     }
+
 
     protected override void search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
         message_visible = false;

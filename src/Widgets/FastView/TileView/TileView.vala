@@ -60,6 +60,7 @@ public class Noise.Widgets.TileView : Gtk.IconView {
     public TileView () {
         pack_start (cell_renderer, false);
         apply_default_theme ();
+        activate_on_single_click = true;
     }
 
     private void apply_default_theme () {

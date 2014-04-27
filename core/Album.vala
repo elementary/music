@@ -99,6 +99,13 @@ public class Noise.Album : Object {
         return media.contains (m);
     }
 
+    public bool is_compatible (Media m) {
+        if (name == m.album && (artist == m.album_artist||(String.is_empty (m.album_artist, true) && artist == m.artist)))
+            return true;
+        else
+            return false;
+    }
+
     public void remove_media (Media m) {
         media.remove (m);
     }

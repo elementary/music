@@ -67,8 +67,8 @@ public class Noise.ReadOnlyPlaylistViewWrapper : ViewWrapper {
         // Connect to playlist signals
         var p = library.playlist_from_id (playlist_id);
         if (p != null) {
-            p.media_added.connect (on_playlist_media_added);
-            p.media_removed.connect (on_playlist_media_removed);
+            p.media_added.connect (add_media_async);
+            p.media_removed.connect (remove_media_async);
             p.cleared.connect (on_playlist_cleared);
             p.request_play.connect (() => {App.player.clearCurrent(); play_first_media (true);App.player.getNext(true);});
         }
@@ -87,16 +87,7 @@ public class Noise.ReadOnlyPlaylistViewWrapper : ViewWrapper {
         embedded_alert.set_alert (message_head, message_body, null, true, message_type);
     }
 
-    private async void on_playlist_media_added (Gee.Collection<Media> to_add) {
-        yield add_media_async (to_add);
-    }
-
-    private async void on_playlist_media_removed (Gee.Collection<Media> to_remove) {
-        yield remove_media_async (to_remove);
-    }
-
     private async void on_playlist_cleared () {
         yield set_media_async (new Gee.LinkedList<Media> ());
     }
 }
-
