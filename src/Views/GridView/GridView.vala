@@ -152,7 +152,24 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public void update_media (Gee.Collection<Media> media) {
-        refilter (null);
+        var medias_to_update = new Gee.LinkedList<Media> ();
+        medias_to_update.add_all (media);
+        var medias_to_add = new Gee.LinkedList<Media> ();
+        var albums_to_remove = new Gee.HashSet<Album> ();
+        foreach (var m in medias_to_update) {
+            var album = album_info.get (m);
+            if (album.is_compatible (m) == false) {
+                album.remove_media (m);
+                album_info.unset (m);
+                medias_to_add.add (m);
+                if (album.is_empty == true) {
+                    albums_to_remove.add (album);
+                }
+            }
+        }
+        remove_objects (albums_to_remove);
+        add_media (medias_to_add);
+        set_research_needed (true);
     }
 
     public void set_media (Gee.Collection<Media> to_add) {
