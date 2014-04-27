@@ -188,27 +188,29 @@ public class Noise.GridView : ContentView, GridLayout {
         var medias_to_add = new Gee.LinkedList<Media> ();
         medias_to_add.add_all (media);
         var albums_to_append = new Gee.LinkedList<Album> ();
-        foreach (var m in medias_to_add) {
-            if (m == null)
-                continue;
+        lock (album_info) {
+            foreach (var m in medias_to_add) {
+                if (m == null)
+                    continue;
 
-            if (album_info.has_key (m))
-                continue;
+                if (album_info.has_key (m))
+                    continue;
 
-            // Check if the song might go into an album.
-            bool has_album = false;
-            foreach (var album in album_info.values) {
-                if (album.is_compatible (m) && has_album == false) {
-                    album.add_media (m);
-                    has_album = true;
+                // Check if the song might go into an album.
+                bool has_album = false;
+                foreach (var album in album_info.values) {
+                    if (album.is_compatible (m) && has_album == false) {
+                        album.add_media (m);
+                        has_album = true;
+                    }
                 }
-            }
 
-            if (has_album == false) {
-                var album = new Album.from_media (m);
-                album.add_media (m);
-                album_info.set (m, album);
-                albums_to_append.add (album);
+                if (has_album == false) {
+                    var album = new Album.from_media (m);
+                    album.add_media (m);
+                    album_info.set (m, album);
+                    albums_to_append.add (album);
+                }
             }
         }
 

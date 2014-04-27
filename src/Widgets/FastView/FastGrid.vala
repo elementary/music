@@ -112,7 +112,7 @@ public class Noise.FastGrid : Widgets.TileView {
     public void add_objects (Gee.Collection<Object> objects) {
         // skip calling set_table and just do it ourselves (faster)
         foreach (var o in objects)
-            table.set ( (int)table.size (), o);
+            table.replace ((int)table.size (), o);
 
         // resort the new songs in. this will also call do_search
         resort ();

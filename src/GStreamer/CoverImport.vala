@@ -84,12 +84,41 @@ public class Noise.CoverImport : GLib.Object {
         cancelled = true;
     }
 
-    public void discoverer_import_media (Gee.Collection<Media> uris) {
+    public void discoverer_import_media (Gee.Collection<Media> medias) {
         cancelled = false;
+        var medias_to_discover = new Gee.LinkedList<Media> ();
+        medias_to_discover.add_all (medias);
+        var albums_to_process = new Gee.LinkedList<Album> ();
+        foreach (var m in medias_to_discover) {
+            if (m == null)
+                continue;
+
+            // Check if the song might go into an album.
+            bool has_album = false;
+            foreach (var album in albums_to_process) {
+                if (album.is_compatible (m) && has_album == false) {
+                    album.add_media (m);
+                    has_album = true;
+                }
+            }
+
+            if (has_album == false) {
+                var album = new Album.from_media (m);
+                album.add_media (m);
+                albums_to_process.add (album);
+            }
+        }
+        medias_to_discover.clear ();
+        foreach (var album in albums_to_process) {
+            var album_medias = new Gee.LinkedList<Media> ();
+            album_medias.add_all (album.get_media ());
+            medias_to_discover.add (album_medias.first ());
+        }
+
         lock (uri_queue) {
             uri_queue.clear ();
-            uri_queue.add_all (uris);
-            original_queue.add_all (uris);
+            uri_queue.add_all (medias_to_discover);
+            original_queue.add_all (medias_to_discover);
         }
         import_next_file_set.begin ();
     }
