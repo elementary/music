@@ -158,15 +158,20 @@ public class Noise.GridView : ContentView, GridLayout {
         var albums_to_remove = new Gee.HashSet<Album> ();
         foreach (var m in medias_to_update) {
             var album = album_info.get (m);
+            if (m == null)
+                continue;
+
             if (album.is_compatible (m) == false) {
-                album.remove_media (m);
-                album_info.unset (m);
                 medias_to_add.add (m);
+                album.remove_media (m);
                 if (album.is_empty == true) {
                     albums_to_remove.add (album);
                 }
+
+                album_info.unset (m);
             }
         }
+
         remove_objects (albums_to_remove);
         add_media (medias_to_add);
         set_research_needed (true);
@@ -223,14 +228,18 @@ public class Noise.GridView : ContentView, GridLayout {
     public void remove_media (Gee.Collection<Media> to_remove) {
         var albums_to_remove = new Gee.HashSet<Album> ();
         foreach (var m in to_remove) {
-            var album = album_info.get (m);
             if (m == null)
                 continue;
 
-            album_info.unset (m);
+            var album = album_info.get (m);
+            if (album == null)
+                continue;
+
             album.remove_media (m);
             if (album.is_empty == true)
                 albums_to_remove.add (album);
+
+            album_info.unset (m);
         }
 
         if (albums_to_remove.size <= 0)

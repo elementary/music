@@ -84,7 +84,8 @@ public class Noise.FastGrid : Widgets.TileView {
     public void set_table (HashTable<int, GLib.Object> table, bool do_resort) {
         this.table.remove_all ();
         table.foreach ((key, val) => {
-            this.table.insert (key, val);
+            if (val != null)
+                this.table.insert (key, val);
         });
 
         if (do_resort)
