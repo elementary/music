@@ -57,6 +57,13 @@ public class Noise.Album : Object {
 
     private Gee.HashSet<Media> media = new Gee.HashSet<Media> ();
 
+    ~Album () {
+        foreach (var m in media) {
+            m.album_info = null;
+        }
+        media.clear ();
+    }
+
     /**
      * Convenience constructor.
      *
@@ -100,18 +107,24 @@ public class Noise.Album : Object {
     }
 
     public bool is_compatible (Media m) {
-        if (name == m.album && (artist == m.album_artist||(String.is_empty (m.album_artist, true) && artist == m.artist)))
+        if (m.get_album_hashkey () == get_hashkey ())
             return true;
         else
             return false;
     }
 
     public void remove_media (Media m) {
+        m.album_info = null;
         media.remove (m);
     }
 
     public void add_media (Media m) {
         media.add (m);
+        m.album_info = this;
+    }
+
+    public string get_hashkey () {
+        return "%s|%s".printf (name, artist);
     }
 
     /**

@@ -40,12 +40,12 @@ public class Noise.GridView : ContentView, GridLayout {
     /**
      * Hash map containing a set of albums identified by their album key.
      */
-    private Gee.HashMap<Media, Album> album_info;
+    private Gee.HashMap<string, Album> album_info;
 
     public GridView (ViewWrapper view_wrapper) {
         base (view_wrapper);
 
-        album_info = new Gee.HashMap<Media, Album> ();
+        album_info = new Gee.HashMap<string, Album> ();
 
         setup_focus ();
 
@@ -157,18 +157,21 @@ public class Noise.GridView : ContentView, GridLayout {
         var medias_to_add = new Gee.LinkedList<Media> ();
         var albums_to_remove = new Gee.HashSet<Album> ();
         foreach (var m in medias_to_update) {
-            var album = album_info.get (m);
             if (m == null)
                 continue;
 
-            if (album.is_compatible (m) == false) {
+            var album = m.album_info;
+            if (album == null)
+                continue;
+
+            if (!album.is_compatible (m)) {
                 medias_to_add.add (m);
+                album_info.unset (album.get_hashkey ());
                 album.remove_media (m);
                 if (album.is_empty == true) {
                     albums_to_remove.add (album);
                 }
 
-                album_info.unset (m);
             }
         }
 
@@ -193,22 +196,19 @@ public class Noise.GridView : ContentView, GridLayout {
                 if (m == null)
                     continue;
 
-                if (album_info.has_key (m))
+                if (m.album_info != null)
                     continue;
 
                 // Check if the song might go into an album.
-                bool has_album = false;
-                foreach (var album in album_info.values) {
-                    if (album.is_compatible (m) && has_album == false) {
-                        album.add_media (m);
-                        has_album = true;
-                    }
+                if (m.get_album_hashkey () in album_info.keys) {
+                    var album = album_info.get (m.get_album_hashkey ());
+                    album.add_media (m);
                 }
 
-                if (has_album == false) {
+                if (m.album_info == null) {
                     var album = new Album.from_media (m);
                     album.add_media (m);
-                    album_info.set (m, album);
+                    album_info.set (album.get_hashkey (), album);
                     albums_to_append.add (album);
                 }
             }
@@ -233,7 +233,7 @@ public class Noise.GridView : ContentView, GridLayout {
             if (m == null)
                 continue;
 
-            var album = album_info.get (m);
+            var album = m.album_info;
             if (album == null)
                 continue;
 
@@ -241,7 +241,7 @@ public class Noise.GridView : ContentView, GridLayout {
             if (album.is_empty == true)
                 albums_to_remove.add (album);
 
-            album_info.unset (m);
+            album_info.unset (album.get_hashkey ());
         }
 
         if (albums_to_remove.size <= 0)
