@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-04-15 17:11+0000\n"
+"PO-Revision-Date: 2014-04-29 09:11+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-04-22 08:17+0000\n"
+"X-Launchpad-Export-Date: 2014-04-30 06:38+0000\n"
 "X-Generator: Launchpad (build 16985)\n"
 "Language: gl\n"
 
@@ -51,11 +51,11 @@ msgstr "Cancelar"
 
 #: ../core/Resources.vala:59
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
 #: ../core/Resources.vala:60
 msgid "Save"
-msgstr ""
+msgstr "Gardar"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -250,15 +250,15 @@ msgstr "Preferencias"
 
 #: ../src/LibraryWindow.vala:263
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: ../src/LibraryWindow.vala:265
 msgid "Play"
-msgstr ""
+msgstr "Reproducir"
 
 #: ../src/LibraryWindow.vala:267
 msgid "Next"
-msgstr ""
+msgstr "Seguinte"
 
 #: ../src/LibraryWindow.vala:271
 msgid "Search Music"
@@ -448,11 +448,11 @@ msgstr "Integración co escritorio:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:166
 msgid "Notifications:"
-msgstr ""
+msgstr "Notificacións:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:171
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Continuar a reprodución tras pechar:"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
@@ -495,7 +495,7 @@ msgstr "dos seguintes:"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:88
 msgid "Add"
-msgstr ""
+msgstr "Engadir"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:93
 msgid "Limit to"
@@ -806,21 +806,23 @@ msgstr "Podcast"
 
 #: ../src/Dialogs/MediaEditor.vala:683
 msgid "Reset"
-msgstr ""
+msgstr "Restabelecer"
 
 #: ../src/Dialogs/MediaEditor.vala:687
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Estatísticas</b>"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Quere instalar o engadido %s?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"Non é posíbel reproducir esta canción. Require o engadido %s"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
 msgid "Install Plugin"
@@ -828,15 +830,15 @@ msgstr "Instalar engadido"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:52
 msgid "File not found"
-msgstr ""
+msgstr "Non se atopou o ficheiro"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:58
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "Non se atopou o ficheiro de música <b>%s</b> por <b>%s</b>"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:61
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "Non foi posíbel atopar %i ficheiros de música ?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:84
 msgid "Rescan Library"
@@ -849,7 +851,7 @@ msgstr "Retirar a canción"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:87
 msgid "Find Song"
-msgstr ""
+msgstr "Buscar cancións"
 
 #: ../src/GStreamer/Streamer.vala:187 ../src/Objects/ArtistInfo.vala:27
 #: ../src/Objects/AlbumInfo.vala:26 ../plugins/Devices/CDRom/CDPlayer.vala:203
@@ -953,7 +955,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Actualizando a lista de reprodución. Agarde."
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
@@ -1019,7 +1021,7 @@ msgstr "Amosar no explorador de ficheiros"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Outras accións"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1367,7 +1369,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "Aceptar"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
