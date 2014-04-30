@@ -45,7 +45,7 @@ public class Noise.Icons {
     public static Icon AUDIO_CD { get; private set; default = new Icon ("media-cdrom-audio"); }
     public static Icon AUDIO_DEVICE { get; private set; default = new Icon ("multimedia-player"); }
     // FIXME: have a real icon for audiobooks
-    public static Icon AUDIOBOOK { get; private set; default = new Icon ("audio-x-generic"); }
+    public static Icon GENERIC_AUDIO { get; private set; default = new Icon ("audio-x-generic"); }
     public static Icon NETWORK_DEVICE { get; private set; default = new Icon ("monitor"); }
     public static Icon PLAYLIST { get; private set; default = new Icon ("playlist"); }
     public static Icon SMART_PLAYLIST { get; private set; default = new Icon ("playlist-automatic"); }
