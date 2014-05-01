@@ -26,7 +26,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     
     Gtk.Grid main_grid;
     
-    Granite.Widgets.HintedEntry device_name_entry;
+    Gtk.Entry device_name_entry;
     Gtk.Switch auto_sync_switch;
     
     Gtk.CheckButton sync_music_check;
@@ -86,7 +86,8 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         var device_name_label = new Gtk.Label (_("Device Name:"));
         device_name_label.set_alignment (1, 0.5f);
         
-        device_name_entry = new Granite.Widgets.HintedEntry (_("Device Name"));
+        device_name_entry = new Gtk.Entry ();
+        device_name_entry.placeholder_text = _("Device Name");
         
         var auto_sync_label = new Gtk.Label (_("Automatically sync when plugged in:"));
         auto_sync_label.set_alignment (1, 0.5f);

@@ -27,9 +27,9 @@ namespace Noise.Plugins {
         public void activate () {
             message ("Activating iPod Device plugin");
 
-            Value value = Value(typeof(GLib.Object));
-            get_property("object", ref value);
-            plugins = (Noise.Plugins.Interface)value.get_object();
+            Value value = Value (typeof (GLib.Object));
+            get_property ("object", ref value);
+            plugins = (Noise.Plugins.Interface) value.get_object ();
             plugins.register_function(Interface.Hook.WINDOW, () => {
                 ipod_manager = new iPodDeviceManager ();
             });
@@ -44,13 +44,6 @@ namespace Noise.Plugins {
             
         }
     }
-
-    /*public class iPodConfig : Peas.ExtensionBase, PeasGtk.Configurable {
-        public Gtk.Widget create_configure_widget () {
-            string text = "This is a configuration dialog for the ValaHello plugin.";
-            return new Gtk.Label (text);
-        }
-    }*/
 }
 
 [ModuleInit]
@@ -58,6 +51,4 @@ public void peas_register_types (GLib.TypeModule module) {
     var objmodule = module as Peas.ObjectModule;
     objmodule.register_extension_type (typeof (Peas.Activatable),
                                      typeof (Noise.Plugins.iPodPlugin));
-    /*objmodule.register_extension_type (typeof (PeasGtk.Configurable),
-                                     typeof (Noise.Plugins.iPodConfig));*/
 }
