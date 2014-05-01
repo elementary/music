@@ -263,6 +263,22 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
     }
 }
 
+public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem,
+                                    Granite.Widgets.SourceListSortable
+{
+    public SourceListRoot () {
+        base ("SourceListRoot");
+    }
+
+    public bool allow_dnd_sorting () {
+        return true;
+    }
+
+    public int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
+        return 0;
+    }
+}
+
 public class Noise.SourceListView : Granite.Widgets.SourceList {
 
     Granite.Widgets.SourceList.ExpandableItem library_category;
@@ -290,6 +306,8 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     public signal void device_new_smartplaylist_clicked (int page_number);
 
     public SourceListView () {
+        base (new SourceListRoot ());
+
         // Adds the different sidebar categories.
         library_category = new Granite.Widgets.SourceList.ExpandableItem (_("Library"));
         devices_category = new Granite.Widgets.SourceList.ExpandableItem (_("Devices"));
