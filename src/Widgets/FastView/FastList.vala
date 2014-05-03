@@ -99,37 +99,21 @@ public class Noise.FastView : Gtk.TreeView {
     public void do_search (string? search = null) {
         if (search_func == null || research_needed == false)
             return;
-        
+
         research_needed = false;
         var old_size = showing.size();
-        
+
         showing.remove_all();
-
         search_func (search ?? "", table, ref showing);
-        /* Commented out this code because empty search strings should still trigger
-        a search if the view contains an external filter applied through search_func
-        (E.g. a column browser)
 
-        if(last_search == "") {
-            for(int i = 0; i < table.size(); ++i) {
-                showing.set(i, table.get(i));
-            }
-        }
-        else {
-            search_func(last_search ?? "", table, ref showing);
-        }
-        */
-        
         if(showing.size() == old_size) {
             fm.set_table(showing);
             queue_draw();
-        }
-        else if(old_size == 0) { // if first population, just do normal
+        } else if(old_size == 0) { // if first population, just do normal
             set_model(null);
             fm.set_table(showing);
             set_model(fm);
-        }
-        else if(old_size > showing.size()) { // removing
+        } else if(old_size > showing.size()) { // removing
             while(fm.iter_n_children(null) > showing.size()) {
                 Gtk.TreeIter iter;
                 fm.iter_nth_child(out iter, null, fm.iter_n_children(null) - 1);
@@ -138,8 +122,7 @@ public class Noise.FastView : Gtk.TreeView {
             
             fm.set_table(showing);
             queue_draw();
-        }
-        else if(showing.size() > old_size) { // adding
+        } else if(showing.size() > old_size) { // adding
             Gtk.TreeIter iter;
             
             while(fm.iter_n_children(null) < showing.size()) {
@@ -254,4 +237,3 @@ public class Noise.FastView : Gtk.TreeView {
     }
 #endif
 }
-

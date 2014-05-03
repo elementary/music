@@ -194,9 +194,14 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
 	public void set_table (HashTable<int, Object> table) {
 		rows.clear ();
 
-		for(int i = 0; i < table.size(); ++i) {
-			rows.set (i, table.get (i));
-		}
+        table.foreach ((key, val) => {
+            rows.set (key, val);
+        });
+
+        Gtk.TreeIter iter;
+        for (bool valid = get_iter_first (out iter); valid; valid = iter_next (ref iter)) {
+            row_changed (get_path (iter), iter);
+        }
 	}
 	
 	/** Crucial. Must be set by user. Allows for this model to be abstract
@@ -248,4 +253,3 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
 		// place holder. not used.
 	}
 }
-

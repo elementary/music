@@ -395,31 +395,27 @@ public class Noise.ListView : ContentView, Gtk.Box {
         int show_index = 0;
         
         if (result.size != view_wrapper.library.get_medias ().size) {
-            
-            for (int i = 0; i < table.size (); ++i) {
-                var m = table.get (i);
+            foreach (var m in table.get_values ()) {
                 if (m != null) {
                     if (obey_column_browser && !column_browser.match_media (m))
                         continue;
-                    
+
                     if (result.contains (m)) {
                         showing.set (show_index++, m);
                     }
                 }
             }
         } else {
-            
-            for (int i = 0; i < table.size (); ++i) {
-                var m = table.get (i);
+            foreach (var m in table.get_values ()) {
                 if (m != null) {
                     if (obey_column_browser && !column_browser.match_media (m))
                         continue;
-                    
+
                     showing.set (show_index++, m);
                 }
             }
         }
-        
+
         // If nothing will be shown, display the "no media found" message.
         if (showing.size () < 1) {
             list_text_overlay.message_visible = true;

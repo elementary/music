@@ -82,7 +82,11 @@ public class Noise.FastGrid : Widgets.TileView {
     }
 
     public void set_table (HashTable<int, GLib.Object> table, bool do_resort) {
-        this.table = table;
+        this.table.remove_all ();
+        table.foreach ((key, val) => {
+            if (val != null)
+                this.table.insert (key, val);
+        });
 
         if (do_resort)
             resort (); // this also calls search
@@ -92,27 +96,23 @@ public class Noise.FastGrid : Widgets.TileView {
 
     // If a GLib.Object is in objects but not in table, will just ignore
     public void remove_objects (Gee.HashSet<Object> objects) {
-        int index = 0;
-        var new_table = new HashTable<int, Object> (null, null);
+        var to_remove = new Gee.LinkedList<Object> ();
+        to_remove.add_all (objects);
 
-        for (int i = 0; i < table.size (); ++i) {
-            Object? o = table.get (i);
+        table.foreach_remove ((key, val) => {
+            if (to_remove.contains (val))
+                return true;
+            return false;
+        });
 
-            // create a new table. if not in objects, and is in table, add it.
-            if (o != null && !objects.contains (o)/* && objects.get (o.get_album_artist () + o.get_album ()) != 1*/)
-                new_table.set (index++, o);
-        }
-
-        // no need to resort, just removing
-        set_table (new_table, false);
-        //get_selection ().unselect_all ();
+        do_search (null);
     }
 
     // Does NOT check for duplicates
     public void add_objects (Gee.Collection<Object> objects) {
         // skip calling set_table and just do it ourselves (faster)
         foreach (var o in objects)
-            table.set ( (int)table.size (), o);
+            table.replace ((int)table.size (), o);
 
         // resort the new songs in. this will also call do_search
         resort ();
@@ -121,25 +121,21 @@ public class Noise.FastGrid : Widgets.TileView {
     public void do_search (string? search) {
         if (search_func == null || research_needed == false)
             return;
-        
+
         research_needed = false;
         var old_size = showing.size ();
-        
+
         showing.remove_all ();
-        if (search != null)
-        
         search_func (search ?? "", table, ref showing);
-        
+
         if (showing.size () == old_size) {
             fm.set_table (showing);
             queue_draw ();
-        }
-        else if (old_size == 0) { // if first population, just do normal
+        } else if (old_size == 0) { // if first population, just do normal
             set_model (null);
             fm.set_table (showing);
             set_model (fm);
-        }
-        else if (old_size > showing.size ()) { // removing
+        } else if (old_size > showing.size ()) { // removing
             while (fm.iter_n_children (null) > showing.size ()) {
                 Gtk.TreeIter iter;
                 fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
@@ -148,8 +144,7 @@ public class Noise.FastGrid : Widgets.TileView {
             
             fm.set_table (showing);
             queue_draw ();
-        }
-        else if (showing.size () > old_size) { // adding
+        } else if (showing.size () > old_size) { // adding
             Gtk.TreeIter iter;
             
             while (fm.iter_n_children (null) < showing.size ()) {
@@ -203,5 +198,3 @@ public class Noise.FastGrid : Widgets.TileView {
         if (i < end)        quicksort (i, end);
     }
 }
-
-

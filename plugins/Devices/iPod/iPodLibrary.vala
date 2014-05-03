@@ -602,9 +602,9 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
                     }
 
                     /* Remove from all stored lists */
-                    var idlist = new Gee.ArrayList<int> ();
-                    idlist.add (medias.get (t).rowid);
-                    media_removed (idlist);
+                    var media_list = new Gee.ArrayList<Media> ();
+                    media_list.add (medias.get (t));
+                    media_removed (media_list);
                     medias.unset (t, null);
                     t.remove ();
                     file.delete ();

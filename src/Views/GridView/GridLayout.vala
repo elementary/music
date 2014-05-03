@@ -77,9 +77,6 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
         icon_view.set_columns (-1);
 
         scroll.add (icon_view);
-
-        //icon_view.button_press_event.connect (on_button_press);
-        icon_view.button_release_event.connect (on_button_release);
         icon_view.item_activated.connect (on_item_activated);
 
         show_all ();
@@ -91,25 +88,5 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
 
         var obj = icon_view.get_object_from_index (int.parse (path.to_string ()));
         item_activated (obj);
-    }
-
-    private bool on_button_release (Gdk.EventButton ev) {
-        if (ev.type == Gdk.EventType.BUTTON_RELEASE && ev.button == 1) {
-            Gtk.TreePath path;
-            Gtk.CellRenderer cell;
-
-            icon_view.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
-
-            // blank area
-            if (path == null) {
-                item_activated (null);
-                return false;
-            }
-
-            var obj = icon_view.get_object_from_index (int.parse (path.to_string ()));
-            item_activated (obj);
-        }
-
-        return false;
     }
 }
