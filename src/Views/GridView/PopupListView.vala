@@ -164,7 +164,9 @@ public class Noise.PopupListView : Window {
             
             // Make a copy. Otherwise the list won't work if some elements are
             // removed from the parent wrapper while the window is showing
-            media_list = Utils.copy_collection<Media> (album.get_media ());
+            foreach (var m in album.get_media ()) {
+                media_list.add (m);
+            }
 
             list_view.set_media (media_list);
 
@@ -265,4 +267,3 @@ public class Noise.PopupListView : Window {
         minimum_height = natural_height = width;
     }
 }
-

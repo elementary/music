@@ -91,9 +91,9 @@ public class Noise.MusicViewWrapper : ViewWrapper {
             device_manager.device_removed.connect (on_device_removed);
             device_manager.device_name_changed.connect (on_device_name_changed);
         }
-        library.media_added.connect (on_library_media_added);
-        library.media_removed.connect (on_library_media_removed);
-        library.media_updated.connect (on_library_media_updated);
+        library.media_added.connect (add_media_async);
+        library.media_removed.connect (remove_media_async);
+        library.media_updated.connect (update_media_async);
     }
 
     private void on_device_added (Device d) {
@@ -116,21 +116,6 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         int id = welcome_screen.append (d.get_icon().to_string (), _("Import your Music"), _("Import all your Music from %s into your library.").printf(d.getDisplayName()));
         _devices.set (d, id);
         welcome_screen.show_all ();
-    }
-
-    private async void on_library_media_added (Gee.Collection<int> added_ids) {
-        var to_add = library.medias_from_ids (added_ids);
-        yield add_media_async (to_add);
-    }
-
-    private async void on_library_media_removed (Gee.Collection<int> removed_ids) {
-        var to_remove = library.medias_from_ids (removed_ids);
-        yield remove_media_async (to_remove);
-    }
-
-    private async void on_library_media_updated (Gee.Collection<int> updated_ids) {
-        var to_update = library.medias_from_ids (updated_ids);
-        yield update_media_async (to_update);
     }
 
     private void welcome_screen_activated (int index) {

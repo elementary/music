@@ -82,6 +82,7 @@ public class Noise.Media : Object {
     public string album { get; set; default = ""; }
     public uint album_number { get; set; default = 1; }
     public uint album_count { get; set; default = 1; }
+    public unowned Album album_info { get; set; default = null; }
     public string grouping { get; set; default = ""; }
     public string genre { get; set; default = ""; }
     public string comment { get; set; default = ""; }
@@ -164,6 +165,12 @@ public class Noise.Media : Object {
         return !String.is_empty (text, true);
     }
 
+    public string get_album_hashkey () {
+        if (is_valid_string_field (album_artist))
+            return "%s|%s".printf (album, album_artist);
+        else
+            return "%s|%s".printf (album, artist);
+    }
     /**
      * It's called simple because it simply checks if the string is empty,
      * and returns UNKNOWN if it is.

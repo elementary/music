@@ -578,28 +578,26 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
-        var rv = new Gee.LinkedList<int> ();
-
-        foreach (Media s in updates) {
-            /*_media.set (s.rowid, s);*/
-            rv.add (s.rowid);
-
-            if (record_time)
-                s.last_modified = (int)time_t ();
+        var updated = new Gee.LinkedList<Media> ();
+        updated.add_all (updates);
+        if (record_time) {
+            foreach (Media s in updated) {
+                    s.last_modified = (int)time_t ();
+            }
         }
 
-        debug ("%d media updated", rv.size);
-        media_updated (rv);
+        debug ("%d media updated", updated.size);
+        media_updated (updated);
 
 
         /* now do background work. even if updateMeta is true, so must user preferences */
         if (updateMeta)
-            fo.save_media (updates);
+            fo.save_media (updated);
 
-        foreach (Media s in updates)
+        foreach (Media s in updated)
             dbu.update_media.begin (s);
 
-        update_smart_playlists_async.begin (updates);
+        update_smart_playlists_async.begin (updated);
     }
 
     public async void save_media () {
@@ -710,16 +708,14 @@ public class Noise.LocalLibrary : Library {
         // make a copy of the media list so that it doesn't get modified before
         // the async code (e.g. updating the smart playlists) is done with it
         var media = new Gee.LinkedList<Media> ();
-        var added = new Gee.LinkedList<int> ();
+        media.add_all (new_media);
 
-        foreach (var s in new_media) {
-            media.add(s);
-            _medias.add (s);
+        foreach (var s in media) {
             s.rowid = medias_rowid;
             medias_rowid++;
-            added.add (s.rowid);
+            _medias.add (s);
         }
-        media_added (added);
+        media_added (media);
 
         DataBaseManager.get_default ().add_media (media);
         update_smart_playlists_async.begin (media);
@@ -753,12 +749,12 @@ public class Noise.LocalLibrary : Library {
         remove_medias (coll, trash);
     }
 
-    public override void remove_medias (Gee.Collection<Media> toRemove, bool trash) {
-        var removedIds = new Gee.LinkedList<int> ();
+    public override void remove_medias (Gee.Collection<Media> to_remove, bool trash) {
         var removeURIs = new Gee.LinkedList<string> ();
+        var toRemove = new Gee.LinkedList<Media> ();
+        toRemove.add_all (to_remove);
 
         foreach (var s in toRemove) {
-            removedIds.add (_medias.index_of(s));
             removeURIs.add (s.uri);
 
             if (s == App.player.media_info.media)
@@ -772,7 +768,7 @@ public class Noise.LocalLibrary : Library {
 
         // Emit signal before actually removing the media because otherwise
         // media_from_id () and media_from_ids () wouldn't work.
-        media_removed (removedIds);
+        media_removed (toRemove);
 
         lock (_medias) {
             foreach (Media s in toRemove) {

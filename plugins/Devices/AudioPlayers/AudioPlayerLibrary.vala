@@ -368,9 +368,9 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             var file = File.new_for_uri(m.uri);
             
             if(file.query_exists()) {
-                var idlist = new Gee.ArrayList<int> ();
-                idlist.add (m.rowid);
-                media_removed (idlist);
+                var media_list = new Gee.ArrayList<Media> ();
+                media_list.add (m);
+                media_removed (media_list);
                 medias.remove (m);
                 try {
                     file.delete();
