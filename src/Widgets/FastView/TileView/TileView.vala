@@ -96,10 +96,7 @@ public class Noise.Widgets.TileView : Gtk.IconView {
         // Find ideal column spacing
         num = total_width - columns * item_width - 2 * margin;
         denom = columns - 1;
-        int ideal_spacing = (int) (num / denom);
-
-        // Apply ideal values
-        column_spacing = ideal_spacing;
+        column_spacing = (int) (num / denom);
 
         base.size_allocate (alloc);
     }
