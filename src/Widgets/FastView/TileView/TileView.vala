@@ -65,6 +65,9 @@ public class Noise.Widgets.TileView : Gtk.IconView {
 
         // padding needs to be 0 for pixel-perfect even spacing
         item_padding = 0;
+
+        // use fixed vertical and horizontal margin
+        margin = 24;
     }
 
     private void apply_default_theme () {
@@ -85,17 +88,16 @@ public class Noise.Widgets.TileView : Gtk.IconView {
         int total_width = alloc.width;
 
         // Find out how many items fit in a single row
-        double num = total_width - MIN_HORIZONTAL_SPACING;
+        double num = total_width + MIN_HORIZONTAL_SPACING - 2 * margin;
         double denom = item_width + MIN_HORIZONTAL_SPACING;
         columns = (int) (num / denom);
 
         // Find ideal item spacing, assuming 'margin' equals 'column-spacing'
-        num = total_width - columns * item_width;
-        denom = columns + 1;
+        num = total_width - columns * item_width - 2 * margin;
+        denom = columns - 1;
         int ideal_spacing = (int) (num / denom);
 
         // Apply ideal values
-        margin = ideal_spacing;
         column_spacing = ideal_spacing;
 
         // Apply smaller value for vertical spacing
