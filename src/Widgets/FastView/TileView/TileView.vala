@@ -68,6 +68,7 @@ public class Noise.Widgets.TileView : Gtk.IconView {
 
         // use fixed vertical and horizontal margin
         margin = 24;
+        row_spacing = 12;
     }
 
     private void apply_default_theme () {
@@ -99,9 +100,6 @@ public class Noise.Widgets.TileView : Gtk.IconView {
 
         // Apply ideal values
         column_spacing = ideal_spacing;
-
-        // Apply smaller value for vertical spacing
-        row_spacing = ideal_spacing / 2;
 
         base.size_allocate (alloc);
     }
