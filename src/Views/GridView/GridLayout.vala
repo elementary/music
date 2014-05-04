@@ -29,12 +29,20 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
 
         view_wrapper.library.search_finished.connect (() => {this.icon_view.research_needed = true;});
         icon_view.set_search_func (search_func);
+
+        Gtk.TargetEntry te = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
+        Gtk.drag_source_set (icon_view, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
+
+        icon_view.drag_begin.connect_after (on_drag_begin);
+        icon_view.drag_data_get.connect (on_drag_data_get);
     }
 
     protected abstract void item_activated (Object? object);
     protected abstract Value? val_func (int row, int column, Object o);
     protected abstract int compare_func (Object a, Object b);
     protected abstract void search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing);
+    protected abstract Gee.Collection<Media> get_selected_media (Object obj);
+    protected abstract Gdk.Pixbuf? get_pixbuf (Object o);
 
     protected void set_research_needed (bool value) {
         this.icon_view.research_needed = value;
@@ -86,7 +94,42 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
         if (path == null)
             item_activated (null);
 
-        var obj = icon_view.get_object_from_index (int.parse (path.to_string ()));
+        var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
         item_activated (obj);
+    }
+
+    private void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
+        debug ("drag begin");
+
+        var selected_items = icon_view.get_selected_items ();
+
+        if (selected_items.length () > 0)  {
+            var path = selected_items.nth_data (0);
+            var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
+            var drag_icon = get_pixbuf (obj);
+            Gtk.drag_set_icon_pixbuf (context, drag_icon, 0, 0);
+        }
+    }
+
+    private void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+        string[] uris = null;
+
+        var selected_items = icon_view.get_selected_items ();
+
+        if (selected_items.length () <= 0)
+            return;
+
+        // this code assumes only 1 item can be selected at a time
+        var path = selected_items.nth_data (0);
+        var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
+
+        if (obj == null)
+            return;
+
+        foreach (var m in get_selected_media (obj))
+            uris += m.uri;
+
+        if (uris != null)
+            selection_data.set_uris (uris);
     }
 }
