@@ -135,8 +135,8 @@ private class LyricsManiaFetcher : Object {
         string lyrics = "";
         var rv = new StringBuilder ();
 
-        const string START_STRING = "<div id='songlyrics_h' class='dn'>";
-        const string END_STRING = "</div>\n<script type=\"text/javascript\">\n	var	song_id = ";
+        const string START_STRING = "</strong>\n									";
+        const string END_STRING = "</div> <!-- lyrics-body -->";
 
         var start = content.index_of (START_STRING, 0) + START_STRING.length;
         var end = content.index_of (END_STRING, start);
@@ -151,7 +151,7 @@ private class LyricsManiaFetcher : Object {
             return "";
         }
         
-        if (!Noise.String.is_empty (lyrics.replace("\n", "").replace(" ", ""), true));
+        if (!Noise.String.is_empty (lyrics.replace("\n", "").replace(" ", ""), true))
             lyrics = lyrics + "\n\n" + _("Lyrics fetched from www.lyricsmania.com");
 
         rv.append (lyrics);
