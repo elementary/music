@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-04-25 14:58+0000\n"
-"Last-Translator: Phillip Sz <Unknown>\n"
+"PO-Revision-Date: 2014-05-09 15:59+0000\n"
+"Last-Translator: nebalee <nebalee@outlook.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-04-26 07:06+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-05-10 07:45+0000\n"
+"X-Generator: Launchpad (build 16996)\n"
 "Language: de\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -285,8 +285,8 @@ msgid ""
 "first before the next song in the currently playing list."
 msgstr ""
 "Um Titel zur Warteschlange hinzuzufügen, benutzen Sie den <b>Rechtsklick</b> "
-"und wählen <b>Warteschlange</b>. Wenn ein Titel wiedergegeben wurde, wird "
-"der zur Wiedergabeliste hinzugefügte Titel wiedergegeben, bevor der nächste "
+"und wählen <b>Warteschlange</b>. Wenn ein Titel wiedergegeben wurde, werden "
+"die zur Wiedergabeliste hinzugefügten Titel wiedergegeben, bevor der nächste "
 "Titel der aktuellen Wiedergabeliste gespielt wird."
 
 #: ../src/LibraryWindow.vala:864 ../src/LocalLibrary.vala:104
@@ -335,7 +335,7 @@ msgstr "Musik aus %s importieren …"
 
 #: ../src/LocalLibrary.vala:203
 msgid "Adding files to library…"
-msgstr "Fügen Sie Dateien zur Bibliothek hinzu ..."
+msgstr "Dateien werden zur Bibliothek hinzugefügt ..."
 
 #: ../src/LocalLibrary.vala:268
 msgid "Rescanning music for changes. This may take a while…"
@@ -429,7 +429,7 @@ msgstr "Ort des Musikordners:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:143
 msgid "Library Management:"
-msgstr "Bibliothek verwalten:"
+msgstr "Bibliotheksverwaltung:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:150
 msgid "Keep Music folder organized:"
@@ -453,7 +453,7 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:171
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Wiedergabe beim Schließen fortsetzen:"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
@@ -812,7 +812,7 @@ msgstr "Zurücksetzen"
 
 #: ../src/Dialogs/MediaEditor.vala:687
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Statistik</b>"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
 msgid "Would you like to install the %s plugin?\n"
@@ -823,6 +823,9 @@ msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"Dieses Lied kann nicht wiedergegeben werden. Die »%s«-Erweiterung wird "
+"benötigt, um dieses Lied wiederzugeben."
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
 msgid "Install Plugin"
