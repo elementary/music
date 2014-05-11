@@ -910,7 +910,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (newly_created_playlist == true) {
             newly_created_playlist = false;
             show_playlist_view (p);
-            source_list_view.start_editing_item (entry);
+
+            // the playlist view steals focus from the source list
+            // right after it's created. We add a delay to the edit
+            // operation to prevent this from happening.
+            Idle.add_full (Priority.LOW, () => {
+                source_list_view.start_editing_item (entry);
+                return false;
+            });
         }
     }
 

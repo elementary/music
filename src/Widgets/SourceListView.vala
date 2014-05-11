@@ -321,7 +321,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         this.root.expand_all (false, false);
 
         Gtk.TargetEntry uri_list_entry = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
-        configure_drag_and_drop (0, Gdk.DragAction.COPY, null, { uri_list_entry });
+        enable_drag_dest ({ uri_list_entry });
     }
     
     /**
