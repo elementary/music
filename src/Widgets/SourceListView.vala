@@ -105,14 +105,15 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
         return null;
     }
 
-    public bool data_drop_possible (Gtk.SelectionData data) {
+    public bool data_drop_possible (Gdk.DragContext context, Gtk.SelectionData data) {
         // TODO: need a 'hint' for for QUEUE more specific than READ_ONLY_PLAYLIST
         return hint == ViewWrapper.Hint.PLAYLIST
             && data.get_target () == Gdk.Atom.intern_static_string ("text/uri-list");
     }
 
-    public void data_received (Gtk.SelectionData data) {
+    public Gdk.DragAction data_received (Gdk.DragContext context, Gtk.SelectionData data) {
         playlist_media_added (page_number, data.get_uris ());
+        return Gdk.DragAction.COPY;
     }
 }
 
@@ -321,7 +322,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         this.root.expand_all (false, false);
 
         Gtk.TargetEntry uri_list_entry = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
-        enable_drag_dest ({ uri_list_entry });
+        enable_drag_dest ({ uri_list_entry }, Gdk.DragAction.COPY);
     }
     
     /**
