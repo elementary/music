@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-05-15 21:12+0000\n"
-"Last-Translator: Alfredo Hernández <Unknown>\n"
+"PO-Revision-Date: 2014-05-21 11:30+0000\n"
+"Last-Translator: Edgardo Alvarez <edalvz@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-05-16 06:40+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-05-22 06:38+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 "Language: es\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -836,7 +836,7 @@ msgstr "No se pudo encontrar el archivo de audio <b>%s</b> por <b>%s</b>."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:61
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "¿No se pudieron encontrar %i archivos de música?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:84
 msgid "Rescan Library"
