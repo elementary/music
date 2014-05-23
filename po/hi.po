@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2012-05-23 21:53+0000\n"
-"Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
+"PO-Revision-Date: 2014-05-20 13:30+0000\n"
+"Last-Translator: Vivek Kumar <vivek.vk03@gmail.com>\n"
 "Language-Team: Hindi <hi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-04-22 08:17+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-05-22 06:38+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 "Language: hi\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:43
 msgid "Unknown"
-msgstr ""
+msgstr "अज्ञात"
 
 #: ../core/Media.vala:53
 msgid "Radio Station"
@@ -67,7 +67,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:77
 msgid "Classical"
-msgstr ""
+msgstr "शास्त्रीय"
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Club"
@@ -75,7 +75,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Dance"
-msgstr ""
+msgstr "नृत्य"
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Full Bass"
@@ -91,7 +91,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
-msgstr ""
+msgstr "हेडफोन"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Large Hall"
@@ -103,7 +103,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Party"
-msgstr ""
+msgstr "पार्टी"
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Pop"
