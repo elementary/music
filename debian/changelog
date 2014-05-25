@@ -1,3 +1,9 @@
+noise (0.3.0) trusty; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementaryos.org>  Sun, 25 May 2014 02:38:00 -0500
+
 noise (0.2.4) precise; urgency=low
 
   * New upstream release.
