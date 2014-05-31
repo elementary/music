@@ -57,7 +57,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
 
     }
 
-
     public int add_page (Noise.SettingsWindow.NoteBook_Page section) {
         return_val_if_fail (section != null, -1);
 
