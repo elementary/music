@@ -30,7 +30,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
 
     public const int MIN_WIDTH = 420;
     public const int MIN_HEIGHT = 300;
-
     public Gtk.FileChooserButton library_filechooser;
 
     private Gee.Map<int, unowned Noise.SettingsWindow.NoteBook_Page> sections = new Gee.HashMap<int, unowned Noise.SettingsWindow.NoteBook_Page> ();
