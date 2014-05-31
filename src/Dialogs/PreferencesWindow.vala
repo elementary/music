@@ -89,7 +89,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         main_stack = new Gtk.Stack ();
         main_stackswitcher = new Gtk.StackSwitcher ();
         main_stackswitcher.set_stack (main_stack);
-		main_stackswitcher.halign = Gtk.Align.CENTER;
+	main_stackswitcher.halign = Gtk.Align.CENTER;
 
         var close_button = new Gtk.Button.with_label (_("Close"));
         close_button.clicked.connect (() => {this.destroy ();});
@@ -102,8 +102,8 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
 		// Pack everything into the dialog
         Gtk.Box content = get_content_area () as Gtk.Box;
         content.pack_start (main_stackswitcher, true, true, 0);
-		content.pack_start (main_stack, true, true, 0);
-		content.pack_start (button_box, true, true, 0);
+	content.pack_start (main_stack, true, true, 0);
+	content.pack_start (button_box, true, true, 0);
     }
 }
 
