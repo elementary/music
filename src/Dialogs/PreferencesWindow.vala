@@ -39,7 +39,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
     private int index = 0;
 
     public PreferencesWindow (LibraryWindow lw) {
-        Object (use_header_bar: 1);
         build_ui (lw);
 
         lw.add_preference_page.connect ((page) => {add_page (page);});
@@ -99,12 +98,11 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         button_box.pack_end (close_button);
         button_box.margin_right = 12;
 
-        var main_grid = new Gtk.Grid ();
-        main_grid.attach (main_stack, 0, 0, 1, 1);
-        main_grid.attach (button_box, 0, 1, 1, 1);
-
-        ((Gtk.HeaderBar) get_header_bar ()).set_custom_title (main_stackswitcher);
-        ((Gtk.Container) get_content_area ()).add (main_grid);
+		// Pack everything into the dialog
+        Gtk.Box content = get_content_area () as Gtk.Box;
+        content.pack_start (main_stackswitcher, true, true, 0);
+		content.pack_start (main_stack, true, true, 0);
+		content.pack_start (button_box, true, true, 0);
     }
 }
 
