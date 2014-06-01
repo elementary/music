@@ -100,10 +100,12 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         button_box.margin_right = 12;
 
         // Pack everything into the dialog
-        Gtk.Box content = get_content_area () as Gtk.Box;
-        content.pack_start (main_stackswitcher, true, true, 0);
-        content.pack_start (main_stack, true, true, 0);
-        content.pack_start (button_box, true, true, 0);
+        Gtk.Grid main_grid = new Gtk.Grid ();
+        main_grid.attach (main_stackswitcher, 0, 0, 1, 1);
+        main_grid.attach (main_stack, 0, 1, 1, 1);
+        main_grid.attach (button_box, 0, 2, 1, 1);
+
+        ((Gtk.Container) get_content_area ()).add (main_grid);
     }
 }
 
