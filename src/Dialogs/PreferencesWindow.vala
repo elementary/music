@@ -55,6 +55,16 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
 
         Plugins.Manager.get_default ().hook_preferences_window (this);
 
+        /*
+         *  Allow moving the window
+         */
+        this.button_press_event.connect ( (e) => {
+            if (e.button == 1) {
+                this.begin_move_drag ((int) e.button, (int) e.x_root, (int) e.y_root, e.time);
+                return true;
+            }
+            return false;
+        });
     }
 
 
