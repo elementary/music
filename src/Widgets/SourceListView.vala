@@ -25,13 +25,16 @@ public interface Noise.SourceListEntry : Granite.Widgets.SourceList.Item {
 /**
  * SourceList item. It stores the number of the corresponding page in the notebook widget.
  */
-public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListEntry {
-    
+public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListEntry,
+                                    Granite.Widgets.SourceListDragDest
+{
     public signal void playlist_rename_clicked (int page_number);
     public signal void playlist_edit_clicked (int page_number);
     public signal void playlist_remove_clicked (int page_number);
     public signal void playlist_save_clicked (int page_number);
     public signal void playlist_export_clicked (int page_number);
+    public signal void playlist_media_added (int page_number, string[] media);
+
     public int page_number { get; set; default = -1; }
     public ViewWrapper.Hint hint;
     
@@ -101,6 +104,17 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
         }
         return null;
     }
+
+    public bool data_drop_possible (Gdk.DragContext context, Gtk.SelectionData data) {
+        // TODO: need a 'hint' for for QUEUE more specific than READ_ONLY_PLAYLIST
+        return hint == ViewWrapper.Hint.PLAYLIST
+            && data.get_target () == Gdk.Atom.intern_static_string ("text/uri-list");
+    }
+
+    public Gdk.DragAction data_received (Gdk.DragContext context, Gtk.SelectionData data) {
+        playlist_media_added (page_number, data.get_uris ());
+        return Gdk.DragAction.COPY;
+    }
 }
 
 public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, SourceListEntry {
@@ -169,8 +183,9 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
     }
 }
 
-public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem {
-    
+public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
+                                      Granite.Widgets.SourceListSortable
+{
     //for playlist right click
     Gtk.Menu playlistMenu;
     Gtk.MenuItem playlistNew;
@@ -200,6 +215,69 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem 
     public override Gtk.Menu? get_context_menu () {
         return playlistMenu;
     }
+
+    // implement Sortable interface
+    public bool allow_dnd_sorting () {
+        return true;
+    }
+
+    public int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
+        var item_a = a as SourceListItem;
+        var item_b = b as SourceListItem;
+
+        if (item_a == null || item_b == null)
+            return 0;
+
+        if (item_a.hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
+            // sort read-only playlists alphabetically
+            if (item_b.hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST)
+                return strcmp (item_a.name.collate_key (), item_b.name.collate_key ());
+
+            // place read-only playlists before any item of different kind
+            return -1;
+        }
+
+        if (item_a.hint == ViewWrapper.Hint.SMART_PLAYLIST) {
+            // place smart playlists after read-only playlists
+            if (item_b.hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST)
+                return 1;
+
+            // allow free sorting between smart playlists (users can move them around)
+            if (item_b.hint == ViewWrapper.Hint.SMART_PLAYLIST)
+                return 0;
+
+            // place smart playlists before static playlists
+            if (item_b.hint == ViewWrapper.Hint.PLAYLIST)
+                return -1;
+        }
+
+        if (item_a.hint == ViewWrapper.Hint.PLAYLIST) {
+            // allow free sorting between static playlists (users can move them around)
+            if (item_b.hint == ViewWrapper.Hint.PLAYLIST)
+                return 0;
+
+            // place static playlists after everything else
+            return 1;
+        }
+
+        return 0;
+    }
+}
+
+public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem,
+                                    Granite.Widgets.SourceListSortable
+{
+    public SourceListRoot () {
+        base ("SourceListRoot");
+    }
+
+    public bool allow_dnd_sorting () {
+        return true;
+    }
+
+    public int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
+        return 0;
+    }
 }
 
 public class Noise.SourceListView : Granite.Widgets.SourceList {
@@ -220,7 +298,8 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     public signal void playlist_save_clicked (int page_number);
     public signal void playlist_export_clicked (int page_number);
     public signal void playlist_import_clicked ();
-    
+    public signal void playlist_media_added (int page_number, string[] uris);
+
     public signal void device_import_clicked (int page_number);
     public signal void device_eject_clicked (int page_number);
     public signal void device_sync_clicked (int page_number);
@@ -228,6 +307,8 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     public signal void device_new_smartplaylist_clicked (int page_number);
 
     public SourceListView () {
+        base (new SourceListRoot ());
+
         // Adds the different sidebar categories.
         library_category = new Granite.Widgets.SourceList.ExpandableItem (_("Library"));
         devices_category = new Granite.Widgets.SourceList.ExpandableItem (_("Devices"));
@@ -239,6 +320,9 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         this.root.add (network_category);
         this.root.add (playlists_category);
         this.root.expand_all (false, false);
+
+        Gtk.TargetEntry uri_list_entry = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
+        enable_drag_dest ({ uri_list_entry }, Gdk.DragAction.COPY);
     }
     
     /**
@@ -282,6 +366,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         sourcelist_item.playlist_remove_clicked.connect ((pn) => {playlist_remove_clicked (pn);});
         sourcelist_item.playlist_save_clicked.connect ((pn) => {playlist_save_clicked (pn);});
         sourcelist_item.playlist_export_clicked.connect ((pn) => {playlist_export_clicked (pn);});
+        sourcelist_item.playlist_media_added.connect ((pn, uris) => {playlist_media_added (pn, uris);});
         
         expandable_item.device_import_clicked.connect ((pn) => {device_import_clicked (get_device_from_item(expandable_item));});
         expandable_item.device_eject_clicked.connect ((pn) => {device_eject_clicked (pn);});

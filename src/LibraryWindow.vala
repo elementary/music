@@ -461,7 +461,27 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-        
+
+        source_list_view.playlist_media_added.connect ( (page_number, uris) => {
+            var view = view_container.get_view (page_number);
+            if (view is PlaylistViewWrapper) {
+                var playlistview = (PlaylistViewWrapper) view;
+                if (playlistview.hint == ViewWrapper.Hint.PLAYLIST) {
+                    var library = playlistview.library;
+                    var playlist = library.playlist_from_id (playlistview.playlist_id);
+                    if (playlist == null)
+                        return;
+
+                    var uri_set = new Gee.HashSet<string> ();
+                    foreach (string uri in uris)
+                        uri_set.add (uri);
+
+                    var media_list = library.medias_from_uris (uri_set);
+                    playlist.add_medias (media_list);
+                }
+            }
+        });
+
         source_list_view.playlist_import_clicked.connect ( () => {
             try {
                 PlaylistsUtils.import_from_playlist_file_info(Noise.PlaylistsUtils.get_playlists_to_import (), library_manager);
@@ -890,7 +910,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (newly_created_playlist == true) {
             newly_created_playlist = false;
             show_playlist_view (p);
-            source_list_view.start_editing_item (entry);
+
+            // the playlist view steals focus from the source list
+            // right after it's created. We add a delay to the edit
+            // operation to prevent this from happening.
+            Idle.add_full (Priority.LOW, () => {
+                source_list_view.start_editing_item (entry);
+                return false;
+            });
         }
     }
 

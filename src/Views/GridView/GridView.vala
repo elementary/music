@@ -302,11 +302,7 @@ public class Noise.GridView : ContentView, GridLayout {
 
         switch (column) {
             case FastGrid.Column.PIXBUF:
-                // XXX: this is dangerous. Remember to update CoverartCache.get_album_key
-                // to always match the key for the respective media. As explained in
-                // Noise.Album and Noise.CoveartCache, these classes are supposed to
-                // replace the current album-related media fields.
-                return CoverartCache.instance.get_album_cover (album);
+                return get_pixbuf (o);
 
             case FastGrid.Column.TITLE:
                 return album.get_display_name ();
@@ -321,6 +317,17 @@ public class Noise.GridView : ContentView, GridLayout {
         }
 
         assert_not_reached ();
+    }
+
+    protected override Gdk.Pixbuf? get_pixbuf (Object o) {
+        var album = o as Album;
+        return_val_if_fail (album != null, null);
+
+        // XXX: this is dangerous. Remember to update CoverartCache.get_album_key
+        // to always match the key for the respective media. As explained in
+        // Noise.Album and Noise.CoveartCache, these classes are supposed to
+        // replace the current album-related media fields.
+        return CoverartCache.instance.get_album_cover (album);
     }
 
     protected override int compare_func (Object o_a, Object o_b) {
@@ -393,5 +400,12 @@ public class Noise.GridView : ContentView, GridLayout {
         if (showing.size () < 1) {
             message_visible = true;
         }
+    }
+
+    protected override Gee.Collection<Media> get_selected_media (Object obj) {
+        var album = obj as Album;
+        return_val_if_fail (album != null, null);
+
+        return album.get_media ();
     }
 }

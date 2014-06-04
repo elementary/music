@@ -80,17 +80,15 @@ public abstract class Noise.GenericList : FastView {
                 return false;
         });
 
-#if 0
         // drag source
-        TargetEntry te = { "text/uri-list", TargetFlags.SAME_APP, 0};
-        drag_source_set (this, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
+        Gtk.TargetEntry te = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0};
+        Gtk.drag_source_set (this, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
         //enable_model_drag_source (Gdk.ModifierType.BUTTON1_MASK, {te}, Gdk.DragAction.COPY);
 
         //vadjustment.value_changed.connect (view_scroll);
         drag_begin.connect (on_drag_begin);
         drag_data_get.connect (on_drag_data_get);
         drag_end.connect (on_drag_end);
-#endif
 
         parent_wrapper.library.media_updated.connect (media_updated);
 
@@ -436,28 +434,21 @@ public abstract class Noise.GenericList : FastView {
         return is_current_list;
     }
 
-#if 0
     /** **********************************************************
-     * Drag and drop support. GenericView is a source for uris and can
+     * Drag and drop support. GenericList is a source for media and can
      * be dragged to a playlist in the sidebar. No support for reordering
      * is implemented yet.
     ***************************************************************/
     void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
         dragging = true;
-        lw.dragging_from_music = true;
-        debug ("drag begin\n");
+        debug ("drag begin");
 
         Gdk.drag_abort (context, Gtk.get_current_event_time ());
 
-        if (get_selection ().count_selected_rows () == 1) {
-            drag_source_set_icon_stock (this, Gtk.Stock.DND);
-        }
-        else if (get_selection ().count_selected_rows () > 1) {
-            drag_source_set_icon_stock (this, Gtk.Stock.DND_MULTIPLE);
-        }
-        else {
-            return;
-        }
+        int selected_rows = get_selection ().count_selected_rows ();
+
+        if (selected_rows > 0)
+            Gtk.drag_source_set_icon_gicon (this, Icons.GENERIC_AUDIO.gicon);
     }
 
     void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
@@ -472,7 +463,6 @@ public abstract class Noise.GenericList : FastView {
 
     void on_drag_end (Gtk.Widget sender, Gdk.DragContext context) {
         dragging = false;
-        lw.dragging_from_music = false;
 
         debug ("drag end\n");
 
@@ -484,5 +474,4 @@ public abstract class Noise.GenericList : FastView {
                           Gdk.DragAction.MOVE
                           );
     }
-#endif
 }
