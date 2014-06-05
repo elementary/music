@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-06-03 12:51+0000\n"
+"PO-Revision-Date: 2014-06-04 07:55+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-06-04 06:21+0000\n"
+"X-Launchpad-Export-Date: 2014-06-05 05:58+0000\n"
 "X-Generator: Launchpad (build 17031)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -430,7 +430,7 @@ msgstr "桌面集成："
 
 #: ../src/Dialogs/PreferencesWindow.vala:166
 msgid "Notifications:"
-msgstr "通知"
+msgstr "通知："
 
 #: ../src/Dialogs/PreferencesWindow.vala:171
 msgid "Continue playback when closed:"
@@ -1697,7 +1697,7 @@ msgstr "Last.fm"
 
 #: ../plugins/LastFM/PreferencesSection.vala:48
 msgid "Last.fm Integration"
-msgstr "Last.fm同步"
+msgstr "Last.fm 同步"
 
 #: ../plugins/LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
@@ -1707,7 +1707,7 @@ msgstr "点击重启Last.fm登陆操作"
 msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
-msgstr "要与Last.fm同步，您必须给予 %s 授权。您只需执行一次该操作。"
+msgstr "要与 Last.fm 同步，您必须给予 %s 授权。此操作您只需执行一次。"
 
 #: ../plugins/LastFM/LastFM.vala:71
 msgid "No similar songs found"
