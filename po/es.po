@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-05-21 11:30+0000\n"
-"Last-Translator: Edgardo Alvarez <edalvz@gmail.com>\n"
+"PO-Revision-Date: 2014-06-09 04:30+0000\n"
+"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-06-02 06:04+0000\n"
+"X-Launchpad-Export-Date: 2014-06-09 06:22+0000\n"
 "X-Generator: Launchpad (build 17031)\n"
 "Language: es\n"
 
@@ -131,7 +131,7 @@ msgstr "Rock suave"
 
 #: ../core/GStreamer/Equalizer.vala:93
 msgid "Techno"
-msgstr "Techno"
+msgstr "Tecno"
 
 #: ../core/Utils/FileUtils.vala:280
 msgid " (%d)"
@@ -426,7 +426,7 @@ msgstr "Ubicación de la carpeta de música:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:143
 msgid "Library Management:"
-msgstr "Administración de la biblioteca:"
+msgstr "Gestión de la colección:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:150
 msgid "Keep Music folder organized:"
@@ -434,11 +434,11 @@ msgstr "Mantener carpeta de música organizada:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:154
 msgid "Write metadata to file:"
-msgstr "Escribir metadatos en el archivo"
+msgstr "Guardar metadatos en el archivo:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:158
 msgid "Copy imported files to Library:"
-msgstr "Copiar archivos importados a la biblioteca:"
+msgstr "Copiar archivos importados en la colección:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:160
 msgid "Desktop Integration:"
@@ -536,11 +536,11 @@ msgstr "Compositor"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Date Added"
-msgstr "Fecha en que se añadió"
+msgstr "Fecha de adición"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Date Released"
-msgstr "Fecha en la que fue lanzado"
+msgstr "Fecha de lanzamiento"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:267
 #: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:479
@@ -698,7 +698,7 @@ msgstr "Importar %s desde %s"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
 msgid "ID"
-msgstr "ID"
+msgstr "Id."
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:172
 msgid "Select individual media to import:"
@@ -812,7 +812,7 @@ msgstr "<b>Estadísticas</b>"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
 msgid "Would you like to install the %s plugin?\n"
-msgstr "¿Desea instalar el conector %s?\n"
+msgstr "¿Quiere instalar el complemento %s?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid ""
@@ -880,7 +880,7 @@ msgstr "Nunca reproducida"
 #: ../src/DataBase/DataBaseManager.vala:493
 #: ../src/DataBase/DataBaseManager.vala:729
 msgid "Over Played"
-msgstr "Más reproducida"
+msgstr "Más reproducidas"
 
 #: ../src/DataBase/DataBaseManager.vala:500
 #: ../src/DataBase/DataBaseManager.vala:736
@@ -946,11 +946,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"Esta lista de reproducción sera llenada automáticamente con canciones que "
-"cumplan los criterios establecidos. Para modificar dichos criterios, utilice "
-"el <b>clic secundario</b> sobre ella en el panel lateral y hage clic en "
-"<b>Editar</b>. Opcionalmente, puede hacer clic en el botón que aparece a "
-"continuación."
+"Esta lista de reproducción se llenará automáticamente con canciones que "
+"cumplan con los criterios establecidos. Para modificar dichos criterios, "
+"<b>pulse con el botón secundario</b> sobre ella en la barra lateral y elija "
+"<b>Editar</b>. O bien, pulse en el botón siguiente."
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
@@ -979,7 +978,7 @@ msgstr "%s, %s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:226
 msgid "%i kbps"
-msgstr "%i kbps"
+msgstr "%i kb/s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:251
 #: ../src/Views/ListView/Lists/MusicListView.vala:703
@@ -1252,7 +1251,7 @@ msgstr "Automático"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
-msgstr "A la Izquierda"
+msgstr "A la izquierda"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
 msgid "On Top"
@@ -1338,8 +1337,8 @@ msgstr "Falló la sincronización"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"La lista de reproducción %s es usada para sincroinzar el dispositivo %s, "
-"pero no pudo ser encontrada."
+"La lista de reproducción %s suele sincronizarse con el dispositivo %s, pero "
+"no se puede encontrar."
 
 #: ../src/Views/DeviceSummaryWidget.vala:607
 #: ../src/Views/DeviceSummaryWidget.vala:610
@@ -1498,7 +1497,7 @@ msgstr "Importar listas de reproducción"
 
 #: ../src/Widgets/SourceListView.vala:232
 msgid "Library"
-msgstr "Biblioteca"
+msgstr "Colección"
 
 #: ../src/Widgets/SourceListView.vala:233
 msgid "Devices"
@@ -1518,7 +1517,7 @@ msgstr "Disponible"
 
 #: ../src/Widgets/SpaceWidget.vala:383
 msgid "Using %s of %s (%.2f%)"
-msgstr "Usando %s de %s (%.2f%)"
+msgstr "%s de %s en uso (%.2f %)"
 
 #: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:101
 msgid "Off"
@@ -1729,11 +1728,11 @@ msgstr "Dar permisos a %s"
 
 #: ../plugins/LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr "No ha habido éxito. Haga click para volver a intentarlo."
+msgstr "Ocurrió un error. Pulse para intentarlo de nuevo."
 
 #: ../plugins/LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr "El Scrobbling ya está habilitado"
+msgstr "Ya se activó el «scrobbling»"
 
 #: ../plugins/LastFM/PreferencesSection.vala:33
 msgid "Success!"
@@ -1753,7 +1752,7 @@ msgstr "Integración con Last.fm"
 
 #: ../plugins/LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
-msgstr "Haga clic para repetir el inicio de sesión en Last.fm"
+msgstr "Pulse para reintentar el proceso de acceso a Last.fm"
 
 #: ../plugins/LastFM/PreferencesSection.vala:58
 msgid ""
