@@ -12,8 +12,7 @@ namespace Noise.Plugins {
 
         bool connected = false;
 
-        public void activate ()
-        {
+        public void activate () {
             message ("Activating Zeitgeist plugin");
 
             zeitgeist = Zeitgeist.Log.get_default ();
@@ -39,13 +38,13 @@ namespace Noise.Plugins {
 
         void media_changed (Media played_media) {
             if (current_song != null)
-                add_song.begin (current_song, Zeitgeist.ZG.LEAVE_EVENT);
+                log_interaction.begin (current_song, Zeitgeist.ZG.LEAVE_EVENT);
 
-            add_song.begin (played_media, Zeitgeist.ZG.ACCESS_EVENT);
+            log_interaction.begin (played_media, Zeitgeist.ZG.ACCESS_EVENT);
             current_song = played_media;
         }
 
-        async void add_song (Media song, string interpretation) {
+        async void log_interaction (Media song, string interpretation) {
             var time = new DateTime.now_local ().to_unix ();
 
             FileInfo? info = null;
