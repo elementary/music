@@ -3,7 +3,7 @@ namespace Noise.Plugins {
 
     public class ZeitgeistPlugin : Peas.ExtensionBase, Peas.Activatable {
 
-        public GLib.Object object { owned get; construct; }
+        public Object object { owned get; construct; }
 
         Zeitgeist.Log zeitgeist;
         PlaybackManager player;
@@ -17,9 +17,9 @@ namespace Noise.Plugins {
 
             zeitgeist = Zeitgeist.Log.get_default ();
 
-            Value value = Value(typeof(GLib.Object));
-            get_property("object", ref value);
-            var plugins = (Noise.Plugins.Interface)value.get_object();
+            Value value = Value (typeof (Object));
+            get_property ("object", ref value);
+            var plugins = (Noise.Plugins.Interface) value.get_object();
 
             plugins.register_function (Interface.Hook.WINDOW, () => {
                 connected = true;
@@ -81,7 +81,7 @@ namespace Noise.Plugins {
 }
 
 [ModuleInit]
-public void peas_register_types (GLib.TypeModule module) {
+public void peas_register_types (TypeModule module) {
     var objmodule = module as Peas.ObjectModule;
     objmodule.register_extension_type (typeof (Peas.Activatable),
             typeof (Noise.Plugins.ZeitgeistPlugin));
