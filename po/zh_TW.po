@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-04-15 16:55+0000\n"
+"PO-Revision-Date: 2014-06-23 01:15+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-06-02 06:04+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
-"Language: \n"
+"X-Launchpad-Export-Date: 2014-06-23 06:02+0000\n"
+"X-Generator: Launchpad (build 17065)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:43
@@ -51,11 +50,11 @@ msgstr "取消"
 
 #: ../core/Resources.vala:59
 msgid "Open"
-msgstr ""
+msgstr "開啟"
 
 #: ../core/Resources.vala:60
 msgid "Save"
-msgstr ""
+msgstr "儲存"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -244,15 +243,15 @@ msgstr "偏好設定"
 
 #: ../src/LibraryWindow.vala:263
 msgid "Previous"
-msgstr ""
+msgstr "上一首"
 
 #: ../src/LibraryWindow.vala:265
 msgid "Play"
-msgstr ""
+msgstr "播放"
 
 #: ../src/LibraryWindow.vala:267
 msgid "Next"
-msgstr ""
+msgstr "下一首"
 
 #: ../src/LibraryWindow.vala:271
 msgid "Search Music"
@@ -432,11 +431,11 @@ msgstr "桌面整合："
 
 #: ../src/Dialogs/PreferencesWindow.vala:166
 msgid "Notifications:"
-msgstr ""
+msgstr "通知："
 
 #: ../src/Dialogs/PreferencesWindow.vala:171
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "當關閉時繼續播放："
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
@@ -780,21 +779,23 @@ msgstr "Podcast"
 
 #: ../src/Dialogs/MediaEditor.vala:683
 msgid "Reset"
-msgstr ""
+msgstr "重設"
 
 #: ../src/Dialogs/MediaEditor.vala:687
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>統計</b>"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "您是否要現在安裝 %s 插件？\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"這首歌無法播放。需要 %s 插件才能播放這首歌曲。"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
 msgid "Install Plugin"
@@ -802,15 +803,15 @@ msgstr "安裝插件"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:52
 msgid "File not found"
-msgstr ""
+msgstr "找不到檔案"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:58
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "找不到曲名為 <b>%s</b>，歌手為 <b>%s</b> 的音樂檔案。"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:61
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "找不到 %i 首音樂檔案？"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:84
 msgid "Rescan Library"
@@ -823,7 +824,7 @@ msgstr "移除歌曲"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:87
 msgid "Find Song"
-msgstr ""
+msgstr "尋找歌曲"
 
 #: ../src/GStreamer/Streamer.vala:187 ../src/Objects/ArtistInfo.vala:27
 #: ../src/Objects/AlbumInfo.vala:26 ../plugins/Devices/CDRom/CDPlayer.vala:203
@@ -923,7 +924,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "正在更新播放清。請稍候。"
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
@@ -987,7 +988,7 @@ msgstr "在檔案瀏覽器中顯示"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "其他動作"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1328,7 +1329,7 @@ msgstr "裝置作業已取消，將在此媒體操作後停止。"
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "確定"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
