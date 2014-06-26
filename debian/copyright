@@ -7,16 +7,6 @@ Copyright: 2011-2012 Scott Ringwelski <sgringwe@mtu.edu>
            2011-2012 Victor Eduardo <victoreduardm@gmail.com>
 License: GPL-3.0+
 
-Files: debian/*
-Copyright: 2011-2012 Devid Antonio Filoni <d.filoni@ubuntu.com>
-           2011-2012 Scott Ringwelski <sgringwe@gmail.com>
-           2011-2012 Lucas Baudin <xapantu@gmail.com>
-           2012-2013 Rico Tzschichholz <ricotz@ubuntu.com>
-           2012-2014 Cody Garver <cody@elementaryos.org>
-           2012-2014 Sergey "Shnatsel" Davidoff <sergey@elementaryos.org>
-           2013-2014 Corentin Noël <corentin@elementaryos.org>
-License: GPL-2.0+
-
 Files: cmake/ParseArguments.cmake
 Copyright: 2000-2009 Kitware, Inc., Insight Software Consortium
 License: 2-clause BSD
@@ -53,6 +43,20 @@ License: 2-clause BSD
 Files: cmake/GObjectIntrospectionMacros.cmake
 Copyright: 2012 Lucas Baudin <xapantu@gmail.com>
 License: 2-clause BSD
+
+Files: debian/*
+Copyright: 2011-2012 Devid Antonio Filoni <d.filoni@ubuntu.com>
+           2011-2012 Scott Ringwelski <sgringwe@gmail.com>
+           2011-2012 Lucas Baudin <xapantu@gmail.com>
+           2012-2013 Rico Tzschichholz <ricotz@ubuntu.com>
+           2012-2014 Cody Garver <cody@elementaryos.org>
+           2012-2014 Sergey "Shnatsel" Davidoff <sergey@elementaryos.org>
+           2013-2014 Corentin Noël <corentin@elementaryos.org>
+License: GPL-2.0+
+
+Files: debian/watch
+Copyright: Bart Martens <bartm@debian.org>
+License: GPL-2.0+
 
 License: GPL-2.0+
  This package is free software; you can redistribute it and/or modify
