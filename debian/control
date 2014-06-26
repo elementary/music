@@ -64,7 +64,7 @@ Depends: ${misc:Depends},
          ${shlibs:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
 Recommends: noise
-Conflicts: noise (<< 0.2.1+r1487)
+Breaks: noise (<< 0.2.1+r1487)
 Description: Simple, fast, and good looking music player (core library)
  Noise is an easy to use, stable, fast and good looking music library
  organizer written in vala.
@@ -99,7 +99,7 @@ Section: libdevel
 Architecture: any
 Depends: libnoise-core0 (= ${binary:Version}), ${misc:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
-Conflicts: noise (<< 0.2.1+r1487)
+Breaks: noise (<< 0.2.1+r1487)
 Description: Simple, fast, and good looking music player (development files)
  Noise is an easy to use, stable, fast and good looking music library
  organizer written in vala.
