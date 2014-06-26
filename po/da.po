@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-04-15 17:05+0000\n"
-"Last-Translator: Silas Riisager Dahl <dahl.silas@yahoo.com>\n"
+"PO-Revision-Date: 2014-06-25 19:21+0000\n"
+"Last-Translator: Halland Blekinge <Unknown>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-06-02 06:01+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-06-26 07:04+0000\n"
+"X-Generator: Launchpad (build 17065)\n"
 "Language: da\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -446,11 +446,11 @@ msgstr "Skrivebordsintegration:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:166
 msgid "Notifications:"
-msgstr ""
+msgstr "Notifikationer:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:171
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Fortsæt afspilning når vinduet lukkes:"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
@@ -807,7 +807,7 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:687
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Statistikker</b>"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
 msgid "Would you like to install the %s plugin?\n"
@@ -1059,6 +1059,17 @@ msgstr "1234 kb/s"
 #: ../src/Views/ListView/Lists/MusicListView.vala:768
 msgid "Sample List String"
 msgstr ""
+"/ Teksteksempel brugt  til at finde den ideelle længde til titel, kunstner, "
+"\r\n"
+"/ Album, Album Artist, Komponist, Genre og gruppering af kolonner i \r\n"
+"/ listevisningen. Det bliver *aldrig* vist i userinterfacet. den oversatte "
+"\r\n"
+"/ tekststreng bør have en rimelig længde, der svarer til den gennemsnitlige "
+"længde \r\n"
+"/ af en sangtitel eller et kunstnernavn på dit sprog. Den automatiske "
+"kolonnebredde\r\n"
+"/ vil afhænge af længden af ​​denne tekststreng, og den nødvendige plads \r\n"
+"/ af kolonnens titels overskrift."
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
