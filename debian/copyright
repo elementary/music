@@ -1,6 +1,6 @@
 Format: http://dep.debian.net/deps/dep5
 Upstream-Name: noise
-Source: https://launchpad.net/beat-box
+Source: https://launchpad.net/noise
 
 Files: *
 Copyright: 2011-2012 Scott Ringwelski <sgringwe@mtu.edu>
