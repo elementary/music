@@ -21,8 +21,30 @@ License: GPL-2.0+
 
 Files: debian/*
 Copyright: 2011 Devid Antonio Filoni <d.filoni@ubuntu.com>
-           2012 Sergey "Shnatsel" Davidoff <shnatsel@gmail.com>
+           2012-2014 Sergey "Shnatsel" Davidoff <shnatsel@gmail.com>
 License: GPL-2.0+
+
+Files: isync/*
+Copyright: 
+License: GPL-2.0+ with special exception
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+ .
+ As a special exception, mbsync may be linked with the OpenSSL library,
+ despite that library's more restrictive license.
 
 License: LGPL-2.1+
  This package is free software; you can redistribute it and/or
@@ -58,10 +80,6 @@ License: GPL-2.0+
  .
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
-
-Special exception permission in isync/*:
- As a special exception, mbsync may be linked with the OpenSSL library,
- despite that library's more restrictive license.
 
 License: BSD-3-Clause
  Redistribution and use in source and binary forms, with or without
