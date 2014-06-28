@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-04-15 17:12+0000\n"
+"PO-Revision-Date: 2014-06-28 01:33+0000\n"
 "Last-Translator: Matiss Roberts Treinis <matiss@marolind.com>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-06-02 06:02+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-06-28 05:59+0000\n"
+"X-Generator: Launchpad (build 17077)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:43
@@ -46,15 +46,15 @@ msgstr "$NAME no $ARTIST kas atrodas $ALBUM"
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: ../src/Dialogs/FileNotFoundDialog.vala:86
 msgid "Cancel"
-msgstr ""
+msgstr "Atcelt"
 
 #: ../core/Resources.vala:59
 msgid "Open"
-msgstr ""
+msgstr "Atvērt"
 
 #: ../core/Resources.vala:60
 msgid "Save"
-msgstr ""
+msgstr "Saglabāt"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -253,15 +253,15 @@ msgstr "Preferences"
 
 #: ../src/LibraryWindow.vala:263
 msgid "Previous"
-msgstr ""
+msgstr "Iepriekšējais"
 
 #: ../src/LibraryWindow.vala:265
 msgid "Play"
-msgstr ""
+msgstr "Atskaņot"
 
 #: ../src/LibraryWindow.vala:267
 msgid "Next"
-msgstr ""
+msgstr "Nākamais"
 
 #: ../src/LibraryWindow.vala:271
 msgid "Search Music"
