@@ -94,15 +94,18 @@ public class Noise.BrowserColumn : Gtk.Grid {
 	private Gtk.Separator separator;
 	public bool show_separator {
 		set {
-			if (separator != null && separator.parent == this)
+			if (separator != null && separator.parent == this) {
 				remove (separator);
+				separator = null;
+			}
 
-			separator = new Gtk.Separator (Gtk.Orientation.VERTICAL);
-			separator.hexpand = false;
-			separator.vexpand = true;
-			separator.show ();
-
-			add (separator);
+			if (value) {
+				separator = new Gtk.Separator (Gtk.Orientation.VERTICAL);
+				separator.hexpand = false;
+				separator.vexpand = true;
+				separator.show ();
+				add (separator);
+			}
 		}
 	}
 
