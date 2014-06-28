@@ -447,13 +447,8 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                 first_col = col;
         }
 
-		foreach (var col in columns) {
-			// Every column has 0px on the left. The space is always added on the right side.
-			col.margin_left = 0;
-
-			// adding right space (separator line)
-			col.margin_right = (col.category == first_col || n_visible_columns == 1) ? 0 : 1;
-		}
+		foreach (var col in columns)
+			col.show_separator = (col.category != first_col) && (n_visible_columns > 1);
 	}
 
 	private void column_header_clicked (Gdk.EventButton e) {
