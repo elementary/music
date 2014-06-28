@@ -84,17 +84,6 @@ set (CLIENT_VALAC_OPTIONS
   #--define=ENABLE_EXPERIMENTAL
 )
 
-# Find GTK+ version. A bug with the icon view is supposed to be fixed in version 3.4.3 or higher.
-pkg_check_modules (GTK_ICON_VIEW_BUG_IS_FIXED QUIET gtk+-3.0>=3.4.3)
-if (GTK_ICON_VIEW_BUG_IS_FIXED_FOUND)
-  message ("-- Icon view workaround disabled")
-  set (CLIENT_VALAC_OPTIONS ${CLIENT_VALAC_OPTIONS} --define=GTK_ICON_VIEW_BUG_IS_FIXED)
-else ()
-  message ("-- Icon view workaround enabled")
-endif ()
-
-set (CLIENT_VAPI ${SRC_TARGET})
-
 vala_precompile (CLIENT_VALA_C ${SRC_TARGET}
   ${CLIENT_SOURCE}
   PACKAGES
