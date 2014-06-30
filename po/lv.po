@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-06-28 01:33+0000\n"
+"PO-Revision-Date: 2014-06-29 19:58+0000\n"
 "Last-Translator: Matiss Roberts Treinis <matiss@marolind.com>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-06-29 05:55+0000\n"
+"X-Launchpad-Export-Date: 2014-06-30 06:03+0000\n"
 "X-Generator: Launchpad (build 17077)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -245,7 +245,7 @@ msgstr "%m/%e/%Y %l:%M %p"
 
 #: ../src/LibraryWindow.vala:248
 msgid "Import to Library…"
-msgstr ""
+msgstr "Importēt bibliotēkā..."
 
 #: ../src/LibraryWindow.vala:251 ../src/Dialogs/PreferencesWindow.vala:83
 msgid "Preferences"
@@ -280,7 +280,7 @@ msgstr "Secība"
 
 #: ../src/LibraryWindow.vala:857
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Atskaņošanas rindā nav skaņdarbu"
 
 #: ../src/LibraryWindow.vala:858
 msgid ""
@@ -296,7 +296,7 @@ msgstr "Vēsture"
 
 #: ../src/LibraryWindow.vala:867
 msgid "No songs in History"
-msgstr ""
+msgstr "Atskaņošanas vēsturē nav skaņdarbu"
 
 #: ../src/LibraryWindow.vala:868
 msgid ""
@@ -307,11 +307,11 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1101
 msgid "Import Music"
-msgstr ""
+msgstr "Importēt skaņdarbus"
 
 #: ../src/LibraryWindow.vala:1121 ../src/LocalLibrary.vala:242
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Importē</b> skaņdarbu bibliotēkā..."
 
 #: ../src/FileOperator.vala:351
 msgid "Import Complete"
@@ -331,15 +331,15 @@ msgstr "Importē skaņdarbus no %s…"
 
 #: ../src/LocalLibrary.vala:203
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Pievienot datnes bibliotēkai"
 
 #: ../src/LocalLibrary.vala:268
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "Skenē izmaiņas mūzikas bibliotēkā. Tas var aizņemt kādu brīdi..."
 
 #: ../src/LocalLibrary.vala:346
 msgid "Added to your queue:"
-msgstr ""
+msgstr "Pievienots atskaņošanas rindai:"
 
 #: ../src/Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
