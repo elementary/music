@@ -1,687 +1,687 @@
-+libnoise-core.so.0 libnoise-core0 #MINVER#
-NOISE_MEDIA_CONTENT_TYPES@Base 0.3.0
-NOISE_PIXBUF_CACHE_IMAGE_TYPES@Base 0.3.0
-NOISE_PLAYLISTS_CONTENT_TYPES@Base 0.3.0
-noise_album_add_media@Base 0.3.0
-noise_album_construct@Base 0.3.0
-noise_album_construct_from_media@Base 0.3.0
-noise_album_contains@Base 0.3.0
-noise_album_get_artist@Base 0.3.0
-noise_album_get_display_artist@Base 0.3.0
-noise_album_get_display_name@Base 0.3.0
-noise_album_get_hashkey@Base 0.3.0
-noise_album_get_is_empty@Base 0.3.0
-noise_album_get_media@Base 0.3.0
-noise_album_get_n_discs@Base 0.3.0
-noise_album_get_n_media@Base 0.3.0
-noise_album_get_name@Base 0.3.0
-noise_album_get_type@Base 0.3.0
-noise_album_get_year@Base 0.3.0
-noise_album_is_compatible@Base 0.3.0
-noise_album_new@Base 0.3.0
-noise_album_new_from_media@Base 0.3.0
-noise_album_remove_media@Base 0.3.0
-noise_album_set_artist@Base 0.3.0
-noise_album_set_n_discs@Base 0.3.0
-noise_album_set_name@Base 0.3.0
-noise_album_set_year@Base 0.3.0
-noise_album_to_string@Base 0.3.0
-noise_compare_album_artists@Base 0.3.0
-noise_compare_albums@Base 0.3.0
-noise_compare_artists@Base 0.3.0
-noise_compare_func_holder_construct@Base 0.3.0
-noise_compare_func_holder_get_type@Base 0.3.0
-noise_compare_func_holder_new@Base 0.3.0
-noise_compare_func_holder_ref@Base 0.3.0
-noise_compare_func_holder_unref@Base 0.3.0
-noise_compare_genres@Base 0.3.0
-noise_compare_titles@Base 0.3.0
-noise_compare_track_numbers@Base 0.3.0
-noise_default_presets@Base 0.3.0
-noise_device_delete_doubles@Base 0.3.0
-noise_device_eject@Base 0.3.0
-noise_device_finish_initialization@Base 0.3.0
-noise_device_getContentType@Base 0.3.0
-noise_device_getDisplayName@Base 0.3.0
-noise_device_getEmptyDeviceDescription@Base 0.3.0
-noise_device_getEmptyDeviceTitle@Base 0.3.0
-noise_device_get_capacity@Base 0.3.0
-noise_device_get_custom_view@Base 0.3.0
-noise_device_get_fancy_capacity@Base 0.3.0
-noise_device_get_fancy_description@Base 0.3.0
-noise_device_get_free_space@Base 0.3.0
-noise_device_get_icon@Base 0.3.0
-noise_device_get_library@Base 0.3.0
-noise_device_get_mount@Base 0.3.0
-noise_device_get_preferences@Base 0.3.0
-noise_device_get_type@Base 0.3.0
-noise_device_get_unique_identifier@Base 0.3.0
-noise_device_get_uri@Base 0.3.0
-noise_device_get_used_space@Base 0.3.0
-noise_device_manager_add_device_preferences@Base 0.3.0
-noise_device_manager_device_initialized@Base 0.3.0
-noise_device_manager_get_available_mounts@Base 0.3.0
-noise_device_manager_get_default@Base 0.3.0
-noise_device_manager_get_device_preferences@Base 0.3.0
-noise_device_manager_get_initialized_devices@Base 0.3.0
-noise_device_manager_get_pre_existing_mounts@Base 0.3.0
-noise_device_manager_get_type@Base 0.3.0
-noise_device_manager_mount_changed@Base 0.3.0
-noise_device_manager_mount_pre_unmount@Base 0.3.0
-noise_device_manager_set_device_preferences@Base 0.3.0
-noise_device_only_use_custom_view@Base 0.3.0
-noise_device_preferences_construct@Base 0.3.0
-noise_device_preferences_get_audiobook_playlist@Base 0.3.0
-noise_device_preferences_get_id@Base 0.3.0
-noise_device_preferences_get_last_sync_time@Base 0.3.0
-noise_device_preferences_get_music_playlist@Base 0.3.0
-noise_device_preferences_get_podcast_playlist@Base 0.3.0
-noise_device_preferences_get_sync_all_audiobooks@Base 0.3.0
-noise_device_preferences_get_sync_all_music@Base 0.3.0
-noise_device_preferences_get_sync_all_podcasts@Base 0.3.0
-noise_device_preferences_get_sync_audiobooks@Base 0.3.0
-noise_device_preferences_get_sync_music@Base 0.3.0
-noise_device_preferences_get_sync_podcasts@Base 0.3.0
-noise_device_preferences_get_sync_when_mounted@Base 0.3.0
-noise_device_preferences_get_type@Base 0.3.0
-noise_device_preferences_new@Base 0.3.0
-noise_device_preferences_set_audiobook_playlist@Base 0.3.0
-noise_device_preferences_set_id@Base 0.3.0
-noise_device_preferences_set_last_sync_time@Base 0.3.0
-noise_device_preferences_set_music_playlist@Base 0.3.0
-noise_device_preferences_set_podcast_playlist@Base 0.3.0
-noise_device_preferences_set_sync_all_audiobooks@Base 0.3.0
-noise_device_preferences_set_sync_all_music@Base 0.3.0
-noise_device_preferences_set_sync_all_podcasts@Base 0.3.0
-noise_device_preferences_set_sync_audiobooks@Base 0.3.0
-noise_device_preferences_set_sync_music@Base 0.3.0
-noise_device_preferences_set_sync_podcasts@Base 0.3.0
-noise_device_preferences_set_sync_when_mounted@Base 0.3.0
-noise_device_read_only@Base 0.3.0
-noise_device_setDisplayName@Base 0.3.0
-noise_device_set_icon@Base 0.3.0
-noise_device_set_mount@Base 0.3.0
-noise_device_start_initialization@Base 0.3.0
-noise_device_synchronize@Base 0.3.0
-noise_device_unmount@Base 0.3.0
-noise_device_will_fit@Base 0.3.0
-noise_device_will_fit_without@Base 0.3.0
-noise_equalizer_construct@Base 0.3.0
-noise_equalizer_get_default_presets@Base 0.3.0
-noise_equalizer_get_type@Base 0.3.0
-noise_equalizer_new@Base 0.3.0
-noise_equalizer_preset_construct@Base 0.3.0
-noise_equalizer_preset_construct_basic@Base 0.3.0
-noise_equalizer_preset_construct_from_string@Base 0.3.0
-noise_equalizer_preset_construct_with_gains@Base 0.3.0
-noise_equalizer_preset_getGain@Base 0.3.0
-noise_equalizer_preset_get_is_default@Base 0.3.0
-noise_equalizer_preset_get_type@Base 0.3.0
-noise_equalizer_preset_new@Base 0.3.0
-noise_equalizer_preset_new_basic@Base 0.3.0
-noise_equalizer_preset_new_from_string@Base 0.3.0
-noise_equalizer_preset_new_with_gains@Base 0.3.0
-noise_equalizer_preset_setGain@Base 0.3.0
-noise_equalizer_preset_set_is_default@Base 0.3.0
-noise_equalizer_preset_to_string@Base 0.3.0
-noise_equalizer_setGain@Base 0.3.0
-noise_file_utils_count_music_files@Base 0.3.0
-noise_file_utils_count_playlists_files@Base 0.3.0
-noise_file_utils_enumerate_files_async@Base 0.3.0
-noise_file_utils_enumerate_files_finish@Base 0.3.0
-noise_file_utils_equal_func@Base 0.3.0
-noise_file_utils_file_enumerator_construct@Base 0.3.0
-noise_file_utils_file_enumerator_enumerate_files_async@Base 0.3.0
-noise_file_utils_file_enumerator_enumerate_files_finish@Base 0.3.0
-noise_file_utils_file_enumerator_get_type@Base 0.3.0
-noise_file_utils_file_enumerator_new@Base 0.3.0
-noise_file_utils_file_enumerator_ref@Base 0.3.0
-noise_file_utils_file_enumerator_unref@Base 0.3.0
-noise_file_utils_get_cache_directory@Base 0.3.0
-noise_file_utils_get_data_directory@Base 0.3.0
-noise_file_utils_get_extension@Base 0.3.0
-noise_file_utils_get_new_destination@Base 0.3.0
-noise_file_utils_get_size_async@Base 0.3.0
-noise_file_utils_get_size_finish@Base 0.3.0
-noise_file_utils_is_directory_async@Base 0.3.0
-noise_file_utils_is_directory_finish@Base 0.3.0
-noise_file_utils_is_valid_content_type@Base 0.3.0
-noise_file_utils_is_valid_playlist_type@Base 0.3.0
-noise_file_utils_param_spec_file_enumerator@Base 0.3.0
-noise_file_utils_query_exists_async@Base 0.3.0
-noise_file_utils_query_exists_finish@Base 0.3.0
-noise_file_utils_query_name_async@Base 0.3.0
-noise_file_utils_query_name_finish@Base 0.3.0
-noise_file_utils_value_get_file_enumerator@Base 0.3.0
-noise_file_utils_value_set_file_enumerator@Base 0.3.0
-noise_file_utils_value_take_file_enumerator@Base 0.3.0
-noise_icon_construct@Base 0.3.0
-noise_icon_get_file@Base 0.3.0
-noise_icon_get_file_name@Base 0.3.0
-noise_icon_get_gicon@Base 0.3.0
-noise_icon_get_icon_info@Base 0.3.0
-noise_icon_get_name@Base 0.3.0
-noise_icon_get_theme@Base 0.3.0
-noise_icon_get_type@Base 0.3.0
-noise_icon_new@Base 0.3.0
-noise_icon_render@Base 0.3.0
-noise_icon_render_at_size@Base 0.3.0
-noise_icon_render_image@Base 0.3.0
-noise_icon_render_image_at_size@Base 0.3.0
-noise_icons_construct@Base 0.3.0
-noise_icons_get_AUDIOBOOK@Base 0.3.0
-noise_icons_get_AUDIO_CD@Base 0.3.0
-noise_icons_get_AUDIO_DEVICE@Base 0.3.0
-noise_icons_get_BAN@Base 0.3.0
-noise_icons_get_DEFAULT_ALBUM_ART@Base 0.3.0
-noise_icons_get_DEFAULT_ALBUM_ART_2@Base 0.3.0
-noise_icons_get_EJECT_SYMBOLIC@Base 0.3.0
-noise_icons_get_EQ_SYMBOLIC@Base 0.3.0
-noise_icons_get_HISTORY@Base 0.3.0
-noise_icons_get_LIST_ADD_SYMBOLIC@Base 0.3.0
-noise_icons_get_LOVE@Base 0.3.0
-noise_icons_get_MUSIC@Base 0.3.0
-noise_icons_get_MUSIC_FOLDER@Base 0.3.0
-noise_icons_get_NETWORK_DEVICE@Base 0.3.0
-noise_icons_get_NOISE@Base 0.3.0
-noise_icons_get_NOT_STARRED@Base 0.3.0
-noise_icons_get_NOT_STARRED_SYMBOLIC@Base 0.3.0
-noise_icons_get_NOW_PLAYING_SYMBOLIC@Base 0.3.0
-noise_icons_get_PANE_HIDE_SYMBOLIC@Base 0.3.0
-noise_icons_get_PANE_SHOW_SYMBOLIC@Base 0.3.0
-noise_icons_get_PLAYLIST@Base 0.3.0
-noise_icons_get_PROCESS_COMPLETED@Base 0.3.0
-noise_icons_get_PROCESS_ERROR@Base 0.3.0
-noise_icons_get_PROCESS_STOP@Base 0.3.0
-noise_icons_get_QUEUE@Base 0.3.0
-noise_icons_get_REFRESH_SYMBOLIC@Base 0.3.0
-noise_icons_get_REPEAT_OFF@Base 0.3.0
-noise_icons_get_REPEAT_ON@Base 0.3.0
-noise_icons_get_REPEAT_ONE@Base 0.3.0
-noise_icons_get_SHUFFLE_OFF@Base 0.3.0
-noise_icons_get_SHUFFLE_ON@Base 0.3.0
-noise_icons_get_SMART_PLAYLIST@Base 0.3.0
-noise_icons_get_STARRED@Base 0.3.0
-noise_icons_get_STARRED_SYMBOLIC@Base 0.3.0
-noise_icons_get_VIEW_COLUMN@Base 0.3.0
-noise_icons_get_VIEW_DETAILS@Base 0.3.0
-noise_icons_get_VIEW_ICONS@Base 0.3.0
-noise_icons_get_VIEW_VIDEO@Base 0.3.0
-noise_icons_get_type@Base 0.3.0
-noise_icons_init@Base 0.3.0
-noise_icons_new@Base 0.3.0
-noise_icons_ref@Base 0.3.0
-noise_icons_render_icon@Base 0.3.0
-noise_icons_render_image@Base 0.3.0
-noise_icons_unref@Base 0.3.0
-noise_libraries_manager@Base 0.3.0
-noise_libraries_manager_add_library@Base 0.3.0
-noise_libraries_manager_construct@Base 0.3.0
-noise_libraries_manager_do_progress_notification_with_timeout@Base 0.3.0
-noise_libraries_manager_get_library_from_index@Base 0.3.0
-noise_libraries_manager_get_type@Base 0.3.0
-noise_libraries_manager_new@Base 0.3.0
-noise_libraries_manager_remove_library@Base 0.3.0
-noise_libraries_manager_search_for_string@Base 0.3.0
-noise_libraries_manager_transfer_medias_async@Base 0.3.0
-noise_libraries_manager_transfer_medias_finish@Base 0.3.0
-noise_libraries_manager_transfer_to_local_library@Base 0.3.0
-noise_library_add_files_to_library@Base 0.3.0
-noise_library_add_media@Base 0.3.0
-noise_library_add_medias@Base 0.3.0
-noise_library_add_playlist@Base 0.3.0
-noise_library_add_smart_playlist@Base 0.3.0
-noise_library_construct@Base 0.3.0
-noise_library_doing_file_operations@Base 0.3.0
-noise_library_find_media@Base 0.3.0
-noise_library_finish_file_operations@Base 0.3.0
-noise_library_get_medias@Base 0.3.0
-noise_library_get_playlists@Base 0.3.0
-noise_library_get_search_result@Base 0.3.0
-noise_library_get_smart_playlists@Base 0.3.0
-noise_library_get_type@Base 0.3.0
-noise_library_initialize_library@Base 0.3.0
-noise_library_media_from_file@Base 0.3.0
-noise_library_media_from_id@Base 0.3.0
-noise_library_media_from_name@Base 0.3.0
-noise_library_media_from_uri@Base 0.3.0
-noise_library_medias_from_ids@Base 0.3.0
-noise_library_medias_from_uris@Base 0.3.0
-noise_library_playlist_count_without_read_only@Base 0.3.0
-noise_library_playlist_from_id@Base 0.3.0
-noise_library_playlist_from_name@Base 0.3.0
-noise_library_remove_media@Base 0.3.0
-noise_library_remove_medias@Base 0.3.0
-noise_library_remove_playlist@Base 0.3.0
-noise_library_remove_smart_playlist@Base 0.3.0
-noise_library_search_medias@Base 0.3.0
-noise_library_smart_playlist_from_id@Base 0.3.0
-noise_library_smart_playlist_from_name@Base 0.3.0
-noise_library_start_file_operations@Base 0.3.0
-noise_library_support_playlists@Base 0.3.0
-noise_library_support_smart_playlists@Base 0.3.0
-noise_library_update_media@Base 0.3.0
-noise_library_update_medias@Base 0.3.0
-noise_library_window_interface_get_type@Base 0.3.0
-noise_library_window_interface_updateInfoLabel@Base 0.3.0
-noise_library_window_interface_update_sensitivities@Base 0.3.0
-noise_library_window_interface_update_sensitivities_finish@Base 0.3.0
-noise_media_construct@Base 0.3.0
-noise_media_construct_from_file@Base 0.3.0
-noise_media_copy@Base 0.3.0
-noise_media_get_album@Base 0.3.0
-noise_media_get_album_artist@Base 0.3.0
-noise_media_get_album_count@Base 0.3.0
-noise_media_get_album_hashkey@Base 0.3.0
-noise_media_get_album_info@Base 0.3.0
-noise_media_get_album_number@Base 0.3.0
-noise_media_get_artist@Base 0.3.0
-noise_media_get_bitrate@Base 0.3.0
-noise_media_get_bpm@Base 0.3.0
-noise_media_get_comment@Base 0.3.0
-noise_media_get_composer@Base 0.3.0
-noise_media_get_date_added@Base 0.3.0
-noise_media_get_display_album@Base 0.3.0
-noise_media_get_display_album_artist@Base 0.3.0
-noise_media_get_display_artist@Base 0.3.0
-noise_media_get_display_composer@Base 0.3.0
-noise_media_get_display_filename@Base 0.3.0
-noise_media_get_display_genre@Base 0.3.0
-noise_media_get_display_location@Base 0.3.0
-noise_media_get_display_title@Base 0.3.0
-noise_media_get_file@Base 0.3.0
-noise_media_get_file_exists@Base 0.3.0
-noise_media_get_file_size@Base 0.3.0
-noise_media_get_genre@Base 0.3.0
-noise_media_get_grouping@Base 0.3.0
-noise_media_get_has_embedded@Base 0.3.0
-noise_media_get_isPreview@Base 0.3.0
-noise_media_get_isTemporary@Base 0.3.0
-noise_media_get_last_modified@Base 0.3.0
-noise_media_get_last_played@Base 0.3.0
-noise_media_get_length@Base 0.3.0
-noise_media_get_location_unknown@Base 0.3.0
-noise_media_get_lyrics@Base 0.3.0
-noise_media_get_mediatype@Base 0.3.0
-noise_media_get_play_count@Base 0.3.0
-noise_media_get_rating@Base 0.3.0
-noise_media_get_resume_pos@Base 0.3.0
-noise_media_get_rowid@Base 0.3.0
-noise_media_get_samplerate@Base 0.3.0
-noise_media_get_showIndicator@Base 0.3.0
-noise_media_get_simple_display_text@Base 0.3.0
-noise_media_get_skip_count@Base 0.3.0
-noise_media_get_title@Base 0.3.0
-noise_media_get_title_markup@Base 0.3.0
-noise_media_get_track@Base 0.3.0
-noise_media_get_track_count@Base 0.3.0
-noise_media_get_type@Base 0.3.0
-noise_media_get_unique_status_image@Base 0.3.0
-noise_media_get_uri@Base 0.3.0
-noise_media_get_year@Base 0.3.0
-noise_media_is_valid_string_field@Base 0.3.0
-noise_media_new@Base 0.3.0
-noise_media_new_from_file@Base 0.3.0
-noise_media_set_album@Base 0.3.0
-noise_media_set_album_artist@Base 0.3.0
-noise_media_set_album_count@Base 0.3.0
-noise_media_set_album_info@Base 0.3.0
-noise_media_set_album_number@Base 0.3.0
-noise_media_set_artist@Base 0.3.0
-noise_media_set_bitrate@Base 0.3.0
-noise_media_set_bpm@Base 0.3.0
-noise_media_set_comment@Base 0.3.0
-noise_media_set_composer@Base 0.3.0
-noise_media_set_date_added@Base 0.3.0
-noise_media_set_file@Base 0.3.0
-noise_media_set_file_size@Base 0.3.0
-noise_media_set_genre@Base 0.3.0
-noise_media_set_grouping@Base 0.3.0
-noise_media_set_has_embedded@Base 0.3.0
-noise_media_set_isPreview@Base 0.3.0
-noise_media_set_isTemporary@Base 0.3.0
-noise_media_set_last_modified@Base 0.3.0
-noise_media_set_last_played@Base 0.3.0
-noise_media_set_length@Base 0.3.0
-noise_media_set_location_unknown@Base 0.3.0
-noise_media_set_lyrics@Base 0.3.0
-noise_media_set_mediatype@Base 0.3.0
-noise_media_set_play_count@Base 0.3.0
-noise_media_set_rating@Base 0.3.0
-noise_media_set_resume_pos@Base 0.3.0
-noise_media_set_rowid@Base 0.3.0
-noise_media_set_samplerate@Base 0.3.0
-noise_media_set_showIndicator@Base 0.3.0
-noise_media_set_skip_count@Base 0.3.0
-noise_media_set_title@Base 0.3.0
-noise_media_set_track@Base 0.3.0
-noise_media_set_track_count@Base 0.3.0
-noise_media_set_unique_status_image@Base 0.3.0
-noise_media_set_uri@Base 0.3.0
-noise_media_set_year@Base 0.3.0
-noise_media_type_get_type@Base 0.3.0
-noise_network_device_finish_initialization@Base 0.3.0
-noise_network_device_getContentType@Base 0.3.0
-noise_network_device_getDisplayName@Base 0.3.0
-noise_network_device_get_audiobooks@Base 0.3.0
-noise_network_device_get_device_type@Base 0.3.0
-noise_network_device_get_fancy_description@Base 0.3.0
-noise_network_device_get_icon@Base 0.3.0
-noise_network_device_get_medias@Base 0.3.0
-noise_network_device_get_path@Base 0.3.0
-noise_network_device_get_playlists@Base 0.3.0
-noise_network_device_get_podcasts@Base 0.3.0
-noise_network_device_get_smart_playlists@Base 0.3.0
-noise_network_device_get_songs@Base 0.3.0
-noise_network_device_get_type@Base 0.3.0
-noise_network_device_setDisplayName@Base 0.3.0
-noise_network_device_set_icon@Base 0.3.0
-noise_network_device_start_initialization@Base 0.3.0
-noise_network_device_supports_audiobooks@Base 0.3.0
-noise_network_device_supports_podcasts@Base 0.3.0
-noise_network_device_unmount@Base 0.3.0
-noise_notification_manager_construct@Base 0.3.0
-noise_notification_manager_doAlertNotification@Base 0.3.0
-noise_notification_manager_doProgressNotification@Base 0.3.0
-noise_notification_manager_doSongNotification@Base 0.3.0
-noise_notification_manager_get_default@Base 0.3.0
-noise_notification_manager_get_type@Base 0.3.0
-noise_notification_manager_new@Base 0.3.0
-noise_notification_manager_showProgressNotification@Base 0.3.0
-noise_notification_manager_showSongNotification@Base 0.3.0
-noise_numeric_compare@Base 0.3.0
-noise_numeric_int_from_float@Base 0.3.0
-noise_numeric_lowest_int_from_float@Base 0.3.0
-noise_numeric_lowest_uint_from_double@Base 0.3.0
-noise_numeric_uint_from_double@Base 0.3.0
-noise_numeric_uint_from_string@Base 0.3.0
-noise_param_spec_compare_func_holder@Base 0.3.0
-noise_param_spec_icons@Base 0.3.0
-noise_param_spec_pixbuf_cache@Base 0.3.0
-noise_param_spec_threads@Base 0.3.0
-noise_pipeline_construct@Base 0.3.0
-noise_pipeline_disableEqualizer@Base 0.3.0
-noise_pipeline_enableEqualizer@Base 0.3.0
-noise_pipeline_get_type@Base 0.3.0
-noise_pipeline_new@Base 0.3.0
-noise_pixbuf_cache_cache_image_async@Base 0.3.0
-noise_pixbuf_cache_cache_image_finish@Base 0.3.0
-noise_pixbuf_cache_cache_image_from_file_async@Base 0.3.0
-noise_pixbuf_cache_cache_image_from_file_finish@Base 0.3.0
-noise_pixbuf_cache_construct@Base 0.3.0
-noise_pixbuf_cache_decache_image@Base 0.3.0
-noise_pixbuf_cache_get_cached_image_file@Base 0.3.0
-noise_pixbuf_cache_get_image@Base 0.3.0
-noise_pixbuf_cache_get_image_async@Base 0.3.0
-noise_pixbuf_cache_get_image_finish@Base 0.3.0
-noise_pixbuf_cache_get_image_format@Base 0.3.0
-noise_pixbuf_cache_get_images@Base 0.3.0
-noise_pixbuf_cache_get_type@Base 0.3.0
-noise_pixbuf_cache_has_image@Base 0.3.0
-noise_pixbuf_cache_new@Base 0.3.0
-noise_pixbuf_cache_ref@Base 0.3.0
-noise_pixbuf_cache_unref@Base 0.3.0
-noise_pixbuf_utils_get_pixbuf_from_file_async@Base 0.3.0
-noise_pixbuf_utils_get_pixbuf_from_file_at_scale_async@Base 0.3.0
-noise_pixbuf_utils_get_pixbuf_from_file_at_scale_finish@Base 0.3.0
-noise_pixbuf_utils_get_pixbuf_from_file_finish@Base 0.3.0
-noise_pixbuf_utils_render_pixbuf_shadow@Base 0.3.0
-noise_pixbuf_utils_save_pixbuf_async@Base 0.3.0
-noise_pixbuf_utils_save_pixbuf_finish@Base 0.3.0
-noise_playback_disable_equalizer@Base 0.3.0
-noise_playback_enable_equalizer@Base 0.3.0
-noise_playback_get_duration@Base 0.3.0
-noise_playback_get_position@Base 0.3.0
-noise_playback_get_supported_uri@Base 0.3.0
-noise_playback_get_type@Base 0.3.0
-noise_playback_get_volume@Base 0.3.0
-noise_playback_pause@Base 0.3.0
-noise_playback_play@Base 0.3.0
-noise_playback_set_equalizer_gain@Base 0.3.0
-noise_playback_set_media@Base 0.3.0
-noise_playback_set_position@Base 0.3.0
-noise_playback_set_state@Base 0.3.0
-noise_playback_set_volume@Base 0.3.0
-noise_playback_update_position@Base 0.3.0
-noise_player_add_playback@Base 0.3.0
-noise_player_get_type@Base 0.3.0
-noise_player_repeat_get_type@Base 0.3.0
-noise_player_shuffle_get_type@Base 0.3.0
-noise_playlist_add_media@Base 0.3.0
-noise_playlist_add_medias@Base 0.3.0
-noise_playlist_clear@Base 0.3.0
-noise_playlist_construct@Base 0.3.0
-noise_playlist_get_medias@Base 0.3.0
-noise_playlist_get_name@Base 0.3.0
-noise_playlist_get_rowid@Base 0.3.0
-noise_playlist_get_type@Base 0.3.0
-noise_playlist_is_empty@Base 0.3.0
-noise_playlist_remove_media@Base 0.3.0
-noise_playlist_remove_medias@Base 0.3.0
-noise_playlist_set_medias@Base 0.3.0
-noise_playlist_set_name@Base 0.3.0
-noise_playlist_set_rowid@Base 0.3.0
-noise_playlists_utils_convert_paths_to_uris@Base 0.3.0
-noise_playlists_utils_export_playlist@Base 0.3.0
-noise_playlists_utils_get_new_playlist_name@Base 0.3.0
-noise_playlists_utils_get_playlist_m3u_file@Base 0.3.0
-noise_playlists_utils_get_playlists_to_import@Base 0.3.0
-noise_playlists_utils_import_from_playlist_file_info@Base 0.3.0
-noise_playlists_utils_parse_index_and_value@Base 0.3.0
-noise_playlists_utils_parse_paths_from_m3u@Base 0.3.0
-noise_playlists_utils_parse_paths_from_pls@Base 0.3.0
-noise_playlists_utils_save_playlist_m3u@Base 0.3.0
-noise_playlists_utils_save_playlist_pls@Base 0.3.0
-noise_playlists_utils_static_playlist_from_smartplaylist@Base 0.3.0
-noise_plugins_interface_construct@Base 0.3.0
-noise_plugins_interface_get_addons_menu@Base 0.3.0
-noise_plugins_interface_get_all_source_view@Base 0.3.0
-noise_plugins_interface_get_argument@Base 0.3.0
-noise_plugins_interface_get_bottombar@Base 0.3.0
-noise_plugins_interface_get_context@Base 0.3.0
-noise_plugins_interface_get_main_menu@Base 0.3.0
-noise_plugins_interface_get_noise_app@Base 0.3.0
-noise_plugins_interface_get_set_name@Base 0.3.0
-noise_plugins_interface_get_sidebar@Base 0.3.0
-noise_plugins_interface_get_toolbar@Base 0.3.0
-noise_plugins_interface_get_type@Base 0.3.0
-noise_plugins_interface_get_window@Base 0.3.0
-noise_plugins_interface_hook_get_type@Base 0.3.0
-noise_plugins_interface_new@Base 0.3.0
-noise_plugins_interface_register_function@Base 0.3.0
-noise_plugins_interface_register_function_arg@Base 0.3.0
-noise_plugins_interface_register_function_signal@Base 0.3.0
-noise_plugins_interface_set_argument@Base 0.3.0
-noise_plugins_interface_set_bottombar@Base 0.3.0
-noise_plugins_interface_set_context@Base 0.3.0
-noise_plugins_interface_set_noise_app@Base 0.3.0
-noise_plugins_interface_set_set_name@Base 0.3.0
-noise_plugins_interface_set_sidebar@Base 0.3.0
-noise_plugins_interface_set_toolbar@Base 0.3.0
-noise_plugins_manager_get_default@Base 0.3.0
-noise_plugins_manager_get_plugin_iface@Base 0.3.0
-noise_plugins_manager_get_type@Base 0.3.0
-noise_plugins_manager_get_view@Base 0.3.0
-noise_plugins_manager_hook_app@Base 0.3.0
-noise_plugins_manager_hook_example@Base 0.3.0
-noise_plugins_manager_set_context@Base 0.3.0
-noise_plugins_manager_set_noise_app@Base 0.3.0
-noise_plugins_manager_set_sidebar@Base 0.3.0
-noise_plugins_manager_set_toolbar@Base 0.3.0
-noise_search_get_rating_from_string@Base 0.3.0
-noise_search_get_valid_search_string@Base 0.3.0
-noise_search_match_fields_to_media@Base 0.3.0
-noise_search_match_string_to_media@Base 0.3.0
-noise_search_search_in_media_list@Base 0.3.0
-noise_settings_equalizer_getPresets@Base 0.3.0
-noise_settings_equalizer_get_auto_switch_preset@Base 0.3.0
-noise_settings_equalizer_get_custom_presets@Base 0.3.0
-noise_settings_equalizer_get_default@Base 0.3.0
-noise_settings_equalizer_get_equalizer_enabled@Base 0.3.0
-noise_settings_equalizer_get_selected_preset@Base 0.3.0
-noise_settings_equalizer_get_type@Base 0.3.0
-noise_settings_equalizer_set_auto_switch_preset@Base 0.3.0
-noise_settings_equalizer_set_custom_presets@Base 0.3.0
-noise_settings_equalizer_set_equalizer_enabled@Base 0.3.0
-noise_settings_equalizer_set_selected_preset@Base 0.3.0
-noise_settings_main_get_close_while_playing@Base 0.3.0
-noise_settings_main_get_copy_imported_music@Base 0.3.0
-noise_settings_main_get_default@Base 0.3.0
-noise_settings_main_get_last_media_playing@Base 0.3.0
-noise_settings_main_get_last_media_position@Base 0.3.0
-noise_settings_main_get_last_playlist_playing@Base 0.3.0
-noise_settings_main_get_minimize_while_playing_shells@Base 0.3.0
-noise_settings_main_get_music_folder@Base 0.3.0
-noise_settings_main_get_music_mount_name@Base 0.3.0
-noise_settings_main_get_path_string@Base 0.3.0
-noise_settings_main_get_plugins_disabled@Base 0.3.0
-noise_settings_main_get_repeat_mode@Base 0.3.0
-noise_settings_main_get_search_string@Base 0.3.0
-noise_settings_main_get_show_notifications@Base 0.3.0
-noise_settings_main_get_shuffle_mode@Base 0.3.0
-noise_settings_main_get_type@Base 0.3.0
-noise_settings_main_get_update_folder_hierarchy@Base 0.3.0
-noise_settings_main_get_write_metadata_to_file@Base 0.3.0
-noise_settings_main_set_close_while_playing@Base 0.3.0
-noise_settings_main_set_copy_imported_music@Base 0.3.0
-noise_settings_main_set_last_media_playing@Base 0.3.0
-noise_settings_main_set_last_media_position@Base 0.3.0
-noise_settings_main_set_last_playlist_playing@Base 0.3.0
-noise_settings_main_set_minimize_while_playing_shells@Base 0.3.0
-noise_settings_main_set_music_folder@Base 0.3.0
-noise_settings_main_set_music_mount_name@Base 0.3.0
-noise_settings_main_set_path_string@Base 0.3.0
-noise_settings_main_set_plugins_disabled@Base 0.3.0
-noise_settings_main_set_repeat_mode@Base 0.3.0
-noise_settings_main_set_search_string@Base 0.3.0
-noise_settings_main_set_show_notifications@Base 0.3.0
-noise_settings_main_set_shuffle_mode@Base 0.3.0
-noise_settings_main_set_update_folder_hierarchy@Base 0.3.0
-noise_settings_main_set_write_metadata_to_file@Base 0.3.0
-noise_settings_repeat_get_type@Base 0.3.0
-noise_settings_saved_state_get_column_browser_enabled@Base 0.3.0
-noise_settings_saved_state_get_column_browser_height@Base 0.3.0
-noise_settings_saved_state_get_column_browser_position@Base 0.3.0
-noise_settings_saved_state_get_column_browser_visible_columns@Base 0.3.0
-noise_settings_saved_state_get_column_browser_width@Base 0.3.0
-noise_settings_saved_state_get_default@Base 0.3.0
-noise_settings_saved_state_get_more_visible@Base 0.3.0
-noise_settings_saved_state_get_more_width@Base 0.3.0
-noise_settings_saved_state_get_show_album_art_in_list_view@Base 0.3.0
-noise_settings_saved_state_get_sidebar_width@Base 0.3.0
-noise_settings_saved_state_get_type@Base 0.3.0
-noise_settings_saved_state_get_view_mode@Base 0.3.0
-noise_settings_saved_state_get_window_height@Base 0.3.0
-noise_settings_saved_state_get_window_state@Base 0.3.0
-noise_settings_saved_state_get_window_width@Base 0.3.0
-noise_settings_saved_state_set_column_browser_enabled@Base 0.3.0
-noise_settings_saved_state_set_column_browser_height@Base 0.3.0
-noise_settings_saved_state_set_column_browser_position@Base 0.3.0
-noise_settings_saved_state_set_column_browser_visible_columns@Base 0.3.0
-noise_settings_saved_state_set_column_browser_width@Base 0.3.0
-noise_settings_saved_state_set_more_visible@Base 0.3.0
-noise_settings_saved_state_set_more_width@Base 0.3.0
-noise_settings_saved_state_set_show_album_art_in_list_view@Base 0.3.0
-noise_settings_saved_state_set_sidebar_width@Base 0.3.0
-noise_settings_saved_state_set_view_mode@Base 0.3.0
-noise_settings_saved_state_set_window_height@Base 0.3.0
-noise_settings_saved_state_set_window_state@Base 0.3.0
-noise_settings_saved_state_set_window_width@Base 0.3.0
-noise_settings_shuffle_get_type@Base 0.3.0
-noise_settings_window_notebook_page_add_full_option@Base 0.3.0
-noise_settings_window_notebook_page_add_option@Base 0.3.0
-noise_settings_window_notebook_page_add_section@Base 0.3.0
-noise_settings_window_notebook_page_construct@Base 0.3.0
-noise_settings_window_notebook_page_get_name@Base 0.3.0
-noise_settings_window_notebook_page_get_type@Base 0.3.0
-noise_settings_window_notebook_page_new@Base 0.3.0
-noise_settings_window_state_get_type@Base 0.3.0
-noise_smart_playlist_add_queries@Base 0.3.0
-noise_smart_playlist_add_query@Base 0.3.0
-noise_smart_playlist_clearQueries@Base 0.3.0
-noise_smart_playlist_conditional_type_get_type@Base 0.3.0
-noise_smart_playlist_construct@Base 0.3.0
-noise_smart_playlist_get_conditional@Base 0.3.0
-noise_smart_playlist_get_limit@Base 0.3.0
-noise_smart_playlist_get_limit_amount@Base 0.3.0
-noise_smart_playlist_get_query_count@Base 0.3.0
-noise_smart_playlist_get_type@Base 0.3.0
-noise_smart_playlist_media_matches_query@Base 0.3.0
-noise_smart_playlist_new@Base 0.3.0
-noise_smart_playlist_queries@Base 0.3.0
-noise_smart_playlist_queries_from_string@Base 0.3.0
-noise_smart_playlist_queries_to_string@Base 0.3.0
-noise_smart_playlist_reanalyze@Base 0.3.0
-noise_smart_playlist_set_conditional@Base 0.3.0
-noise_smart_playlist_set_limit@Base 0.3.0
-noise_smart_playlist_set_limit_amount@Base 0.3.0
-noise_smart_playlist_set_query_count@Base 0.3.0
-noise_smart_playlist_update_medias@Base 0.3.0
-noise_smart_query_comparator_type_get_type@Base 0.3.0
-noise_smart_query_construct@Base 0.3.0
-noise_smart_query_construct_with_info@Base 0.3.0
-noise_smart_query_field_type_get_type@Base 0.3.0
-noise_smart_query_get_comparator@Base 0.3.0
-noise_smart_query_get_field@Base 0.3.0
-noise_smart_query_get_rowid@Base 0.3.0
-noise_smart_query_get_type@Base 0.3.0
-noise_smart_query_get_value@Base 0.3.0
-noise_smart_query_new@Base 0.3.0
-noise_smart_query_new_with_info@Base 0.3.0
-noise_smart_query_set_comparator@Base 0.3.0
-noise_smart_query_set_field@Base 0.3.0
-noise_smart_query_set_rowid@Base 0.3.0
-noise_smart_query_set_value@Base 0.3.0
-noise_static_playlist_construct@Base 0.3.0
-noise_static_playlist_construct_with_info@Base 0.3.0
-noise_static_playlist_get_allow_duplicate@Base 0.3.0
-noise_static_playlist_get_read_only@Base 0.3.0
-noise_static_playlist_get_show_badge@Base 0.3.0
-noise_static_playlist_get_type@Base 0.3.0
-noise_static_playlist_new@Base 0.3.0
-noise_static_playlist_new_with_info@Base 0.3.0
-noise_static_playlist_set_allow_duplicate@Base 0.3.0
-noise_static_playlist_set_read_only@Base 0.3.0
-noise_static_playlist_set_show_badge@Base 0.3.0
-noise_string_base_search_method@Base 0.3.0
-noise_string_canonicalize_for_search@Base 0.3.0
-noise_string_compare@Base 0.3.0
-noise_string_escape@Base 0.3.0
-noise_string_is_empty@Base 0.3.0
-noise_string_is_white_space@Base 0.3.0
-noise_string_locale_to_utf8@Base 0.3.0
-noise_string_strip_char@Base 0.3.0
-noise_string_to_title_case@Base 0.3.0
-noise_threads_add@Base 0.3.0
-noise_threads_get_type@Base 0.3.0
-noise_threads_ref@Base 0.3.0
-noise_threads_unref@Base 0.3.0
-noise_time_utils_miliseconds_to_nanoseconds@Base 0.3.0
-noise_time_utils_nanoseconds_to_miliseconds@Base 0.3.0
-noise_time_utils_pretty_length@Base 0.3.0
-noise_time_utils_pretty_length_from_ms@Base 0.3.0
-noise_time_utils_pretty_length_from_ns@Base 0.3.0
-noise_time_utils_pretty_timestamp_from_time@Base 0.3.0
-noise_time_utils_pretty_timestamp_from_uint@Base 0.3.0
-noise_time_utils_time_string_from_miliseconds@Base 0.3.0
-noise_time_utils_time_string_from_nanoseconds@Base 0.3.0
-noise_time_utils_time_string_from_seconds@Base 0.3.0
-noise_ui_make_window_draggable@Base 0.3.0
-noise_ui_set_tree_view_column_fixed_width@Base 0.3.0
-noise_ui_wrap_alignment@Base 0.3.0
-noise_utils_copy_collection@Base 0.3.0
-noise_utils_flags_set@Base 0.3.0
-noise_utils_get_desktop_shell@Base 0.3.0
-noise_utils_is_cancelled@Base 0.3.0
-noise_value_get_compare_func_holder@Base 0.3.0
-noise_value_get_icons@Base 0.3.0
-noise_value_get_pixbuf_cache@Base 0.3.0
-noise_value_get_threads@Base 0.3.0
-noise_value_set_compare_func_holder@Base 0.3.0
-noise_value_set_icons@Base 0.3.0
-noise_value_set_pixbuf_cache@Base 0.3.0
-noise_value_set_threads@Base 0.3.0
-noise_value_take_compare_func_holder@Base 0.3.0
-noise_value_take_icons@Base 0.3.0
-noise_value_take_pixbuf_cache@Base 0.3.0
-noise_value_take_threads@Base 0.3.0
+libnoise-core.so.0 libnoise-core0 #MINVER#
+ NOISE_MEDIA_CONTENT_TYPES@Base 0.3.0
+ NOISE_PIXBUF_CACHE_IMAGE_TYPES@Base 0.3.0
+ NOISE_PLAYLISTS_CONTENT_TYPES@Base 0.3.0
+  noise_album_add_media@Base 0.3.0
+  noise_album_construct@Base 0.3.0
+  noise_album_construct_from_media@Base 0.3.0
+  noise_album_contains@Base 0.3.0
+  noise_album_get_artist@Base 0.3.0
+  noise_album_get_display_artist@Base 0.3.0
+  noise_album_get_display_name@Base 0.3.0
+  noise_album_get_hashkey@Base 0.3.0
+  noise_album_get_is_empty@Base 0.3.0
+  noise_album_get_media@Base 0.3.0
+  noise_album_get_n_discs@Base 0.3.0
+  noise_album_get_n_media@Base 0.3.0
+  noise_album_get_name@Base 0.3.0
+  noise_album_get_type@Base 0.3.0
+  noise_album_get_year@Base 0.3.0
+  noise_album_is_compatible@Base 0.3.0
+  noise_album_new@Base 0.3.0
+  noise_album_new_from_media@Base 0.3.0
+  noise_album_remove_media@Base 0.3.0
+  noise_album_set_artist@Base 0.3.0
+  noise_album_set_n_discs@Base 0.3.0
+  noise_album_set_name@Base 0.3.0
+  noise_album_set_year@Base 0.3.0
+  noise_album_to_string@Base 0.3.0
+  noise_compare_album_artists@Base 0.3.0
+  noise_compare_albums@Base 0.3.0
+  noise_compare_artists@Base 0.3.0
+  noise_compare_func_holder_construct@Base 0.3.0
+  noise_compare_func_holder_get_type@Base 0.3.0
+  noise_compare_func_holder_new@Base 0.3.0
+  noise_compare_func_holder_ref@Base 0.3.0
+  noise_compare_func_holder_unref@Base 0.3.0
+  noise_compare_genres@Base 0.3.0
+  noise_compare_titles@Base 0.3.0
+  noise_compare_track_numbers@Base 0.3.0
+  noise_default_presets@Base 0.3.0
+  noise_device_delete_doubles@Base 0.3.0
+  noise_device_eject@Base 0.3.0
+  noise_device_finish_initialization@Base 0.3.0
+  noise_device_getContentType@Base 0.3.0
+  noise_device_getDisplayName@Base 0.3.0
+  noise_device_getEmptyDeviceDescription@Base 0.3.0
+  noise_device_getEmptyDeviceTitle@Base 0.3.0
+  noise_device_get_capacity@Base 0.3.0
+  noise_device_get_custom_view@Base 0.3.0
+  noise_device_get_fancy_capacity@Base 0.3.0
+  noise_device_get_fancy_description@Base 0.3.0
+  noise_device_get_free_space@Base 0.3.0
+  noise_device_get_icon@Base 0.3.0
+  noise_device_get_library@Base 0.3.0
+  noise_device_get_mount@Base 0.3.0
+  noise_device_get_preferences@Base 0.3.0
+  noise_device_get_type@Base 0.3.0
+  noise_device_get_unique_identifier@Base 0.3.0
+  noise_device_get_uri@Base 0.3.0
+  noise_device_get_used_space@Base 0.3.0
+  noise_device_manager_add_device_preferences@Base 0.3.0
+  noise_device_manager_device_initialized@Base 0.3.0
+  noise_device_manager_get_available_mounts@Base 0.3.0
+  noise_device_manager_get_default@Base 0.3.0
+  noise_device_manager_get_device_preferences@Base 0.3.0
+  noise_device_manager_get_initialized_devices@Base 0.3.0
+  noise_device_manager_get_pre_existing_mounts@Base 0.3.0
+  noise_device_manager_get_type@Base 0.3.0
+  noise_device_manager_mount_changed@Base 0.3.0
+  noise_device_manager_mount_pre_unmount@Base 0.3.0
+  noise_device_manager_set_device_preferences@Base 0.3.0
+  noise_device_only_use_custom_view@Base 0.3.0
+  noise_device_preferences_construct@Base 0.3.0
+  noise_device_preferences_get_audiobook_playlist@Base 0.3.0
+  noise_device_preferences_get_id@Base 0.3.0
+  noise_device_preferences_get_last_sync_time@Base 0.3.0
+  noise_device_preferences_get_music_playlist@Base 0.3.0
+  noise_device_preferences_get_podcast_playlist@Base 0.3.0
+  noise_device_preferences_get_sync_all_audiobooks@Base 0.3.0
+  noise_device_preferences_get_sync_all_music@Base 0.3.0
+  noise_device_preferences_get_sync_all_podcasts@Base 0.3.0
+  noise_device_preferences_get_sync_audiobooks@Base 0.3.0
+  noise_device_preferences_get_sync_music@Base 0.3.0
+  noise_device_preferences_get_sync_podcasts@Base 0.3.0
+  noise_device_preferences_get_sync_when_mounted@Base 0.3.0
+  noise_device_preferences_get_type@Base 0.3.0
+  noise_device_preferences_new@Base 0.3.0
+  noise_device_preferences_set_audiobook_playlist@Base 0.3.0
+  noise_device_preferences_set_id@Base 0.3.0
+  noise_device_preferences_set_last_sync_time@Base 0.3.0
+  noise_device_preferences_set_music_playlist@Base 0.3.0
+  noise_device_preferences_set_podcast_playlist@Base 0.3.0
+  noise_device_preferences_set_sync_all_audiobooks@Base 0.3.0
+  noise_device_preferences_set_sync_all_music@Base 0.3.0
+  noise_device_preferences_set_sync_all_podcasts@Base 0.3.0
+  noise_device_preferences_set_sync_audiobooks@Base 0.3.0
+  noise_device_preferences_set_sync_music@Base 0.3.0
+  noise_device_preferences_set_sync_podcasts@Base 0.3.0
+  noise_device_preferences_set_sync_when_mounted@Base 0.3.0
+  noise_device_read_only@Base 0.3.0
+  noise_device_setDisplayName@Base 0.3.0
+  noise_device_set_icon@Base 0.3.0
+  noise_device_set_mount@Base 0.3.0
+  noise_device_start_initialization@Base 0.3.0
+  noise_device_synchronize@Base 0.3.0
+  noise_device_unmount@Base 0.3.0
+  noise_device_will_fit@Base 0.3.0
+  noise_device_will_fit_without@Base 0.3.0
+  noise_equalizer_construct@Base 0.3.0
+  noise_equalizer_get_default_presets@Base 0.3.0
+  noise_equalizer_get_type@Base 0.3.0
+  noise_equalizer_new@Base 0.3.0
+  noise_equalizer_preset_construct@Base 0.3.0
+  noise_equalizer_preset_construct_basic@Base 0.3.0
+  noise_equalizer_preset_construct_from_string@Base 0.3.0
+  noise_equalizer_preset_construct_with_gains@Base 0.3.0
+  noise_equalizer_preset_getGain@Base 0.3.0
+  noise_equalizer_preset_get_is_default@Base 0.3.0
+  noise_equalizer_preset_get_type@Base 0.3.0
+  noise_equalizer_preset_new@Base 0.3.0
+  noise_equalizer_preset_new_basic@Base 0.3.0
+  noise_equalizer_preset_new_from_string@Base 0.3.0
+  noise_equalizer_preset_new_with_gains@Base 0.3.0
+  noise_equalizer_preset_setGain@Base 0.3.0
+  noise_equalizer_preset_set_is_default@Base 0.3.0
+  noise_equalizer_preset_to_string@Base 0.3.0
+  noise_equalizer_setGain@Base 0.3.0
+  noise_file_utils_count_music_files@Base 0.3.0
+  noise_file_utils_count_playlists_files@Base 0.3.0
+  noise_file_utils_enumerate_files_async@Base 0.3.0
+  noise_file_utils_enumerate_files_finish@Base 0.3.0
+  noise_file_utils_equal_func@Base 0.3.0
+  noise_file_utils_file_enumerator_construct@Base 0.3.0
+  noise_file_utils_file_enumerator_enumerate_files_async@Base 0.3.0
+  noise_file_utils_file_enumerator_enumerate_files_finish@Base 0.3.0
+  noise_file_utils_file_enumerator_get_type@Base 0.3.0
+  noise_file_utils_file_enumerator_new@Base 0.3.0
+  noise_file_utils_file_enumerator_ref@Base 0.3.0
+  noise_file_utils_file_enumerator_unref@Base 0.3.0
+  noise_file_utils_get_cache_directory@Base 0.3.0
+  noise_file_utils_get_data_directory@Base 0.3.0
+  noise_file_utils_get_extension@Base 0.3.0
+  noise_file_utils_get_new_destination@Base 0.3.0
+  noise_file_utils_get_size_async@Base 0.3.0
+  noise_file_utils_get_size_finish@Base 0.3.0
+  noise_file_utils_is_directory_async@Base 0.3.0
+  noise_file_utils_is_directory_finish@Base 0.3.0
+  noise_file_utils_is_valid_content_type@Base 0.3.0
+  noise_file_utils_is_valid_playlist_type@Base 0.3.0
+  noise_file_utils_param_spec_file_enumerator@Base 0.3.0
+  noise_file_utils_query_exists_async@Base 0.3.0
+  noise_file_utils_query_exists_finish@Base 0.3.0
+  noise_file_utils_query_name_async@Base 0.3.0
+  noise_file_utils_query_name_finish@Base 0.3.0
+  noise_file_utils_value_get_file_enumerator@Base 0.3.0
+  noise_file_utils_value_set_file_enumerator@Base 0.3.0
+  noise_file_utils_value_take_file_enumerator@Base 0.3.0
+  noise_icon_construct@Base 0.3.0
+  noise_icon_get_file@Base 0.3.0
+  noise_icon_get_file_name@Base 0.3.0
+  noise_icon_get_gicon@Base 0.3.0
+  noise_icon_get_icon_info@Base 0.3.0
+  noise_icon_get_name@Base 0.3.0
+  noise_icon_get_theme@Base 0.3.0
+  noise_icon_get_type@Base 0.3.0
+  noise_icon_new@Base 0.3.0
+  noise_icon_render@Base 0.3.0
+  noise_icon_render_at_size@Base 0.3.0
+  noise_icon_render_image@Base 0.3.0
+  noise_icon_render_image_at_size@Base 0.3.0
+  noise_icons_construct@Base 0.3.0
+  noise_icons_get_AUDIOBOOK@Base 0.3.0
+  noise_icons_get_AUDIO_CD@Base 0.3.0
+  noise_icons_get_AUDIO_DEVICE@Base 0.3.0
+  noise_icons_get_BAN@Base 0.3.0
+  noise_icons_get_DEFAULT_ALBUM_ART@Base 0.3.0
+  noise_icons_get_DEFAULT_ALBUM_ART_2@Base 0.3.0
+  noise_icons_get_EJECT_SYMBOLIC@Base 0.3.0
+  noise_icons_get_EQ_SYMBOLIC@Base 0.3.0
+  noise_icons_get_HISTORY@Base 0.3.0
+  noise_icons_get_LIST_ADD_SYMBOLIC@Base 0.3.0
+  noise_icons_get_LOVE@Base 0.3.0
+  noise_icons_get_MUSIC@Base 0.3.0
+  noise_icons_get_MUSIC_FOLDER@Base 0.3.0
+  noise_icons_get_NETWORK_DEVICE@Base 0.3.0
+  noise_icons_get_NOISE@Base 0.3.0
+  noise_icons_get_NOT_STARRED@Base 0.3.0
+  noise_icons_get_NOT_STARRED_SYMBOLIC@Base 0.3.0
+  noise_icons_get_NOW_PLAYING_SYMBOLIC@Base 0.3.0
+  noise_icons_get_PANE_HIDE_SYMBOLIC@Base 0.3.0
+  noise_icons_get_PANE_SHOW_SYMBOLIC@Base 0.3.0
+  noise_icons_get_PLAYLIST@Base 0.3.0
+  noise_icons_get_PROCESS_COMPLETED@Base 0.3.0
+  noise_icons_get_PROCESS_ERROR@Base 0.3.0
+  noise_icons_get_PROCESS_STOP@Base 0.3.0
+  noise_icons_get_QUEUE@Base 0.3.0
+  noise_icons_get_REFRESH_SYMBOLIC@Base 0.3.0
+  noise_icons_get_REPEAT_OFF@Base 0.3.0
+  noise_icons_get_REPEAT_ON@Base 0.3.0
+  noise_icons_get_REPEAT_ONE@Base 0.3.0
+  noise_icons_get_SHUFFLE_OFF@Base 0.3.0
+  noise_icons_get_SHUFFLE_ON@Base 0.3.0
+  noise_icons_get_SMART_PLAYLIST@Base 0.3.0
+  noise_icons_get_STARRED@Base 0.3.0
+  noise_icons_get_STARRED_SYMBOLIC@Base 0.3.0
+  noise_icons_get_VIEW_COLUMN@Base 0.3.0
+  noise_icons_get_VIEW_DETAILS@Base 0.3.0
+  noise_icons_get_VIEW_ICONS@Base 0.3.0
+  noise_icons_get_VIEW_VIDEO@Base 0.3.0
+  noise_icons_get_type@Base 0.3.0
+  noise_icons_init@Base 0.3.0
+  noise_icons_new@Base 0.3.0
+  noise_icons_ref@Base 0.3.0
+  noise_icons_render_icon@Base 0.3.0
+  noise_icons_render_image@Base 0.3.0
+  noise_icons_unref@Base 0.3.0
+  noise_libraries_manager@Base 0.3.0
+  noise_libraries_manager_add_library@Base 0.3.0
+  noise_libraries_manager_construct@Base 0.3.0
+  noise_libraries_manager_do_progress_notification_with_timeout@Base 0.3.0
+  noise_libraries_manager_get_library_from_index@Base 0.3.0
+  noise_libraries_manager_get_type@Base 0.3.0
+  noise_libraries_manager_new@Base 0.3.0
+  noise_libraries_manager_remove_library@Base 0.3.0
+  noise_libraries_manager_search_for_string@Base 0.3.0
+  noise_libraries_manager_transfer_medias_async@Base 0.3.0
+  noise_libraries_manager_transfer_medias_finish@Base 0.3.0
+  noise_libraries_manager_transfer_to_local_library@Base 0.3.0
+  noise_library_add_files_to_library@Base 0.3.0
+  noise_library_add_media@Base 0.3.0
+  noise_library_add_medias@Base 0.3.0
+  noise_library_add_playlist@Base 0.3.0
+  noise_library_add_smart_playlist@Base 0.3.0
+  noise_library_construct@Base 0.3.0
+  noise_library_doing_file_operations@Base 0.3.0
+  noise_library_find_media@Base 0.3.0
+  noise_library_finish_file_operations@Base 0.3.0
+  noise_library_get_medias@Base 0.3.0
+  noise_library_get_playlists@Base 0.3.0
+  noise_library_get_search_result@Base 0.3.0
+  noise_library_get_smart_playlists@Base 0.3.0
+  noise_library_get_type@Base 0.3.0
+  noise_library_initialize_library@Base 0.3.0
+  noise_library_media_from_file@Base 0.3.0
+  noise_library_media_from_id@Base 0.3.0
+  noise_library_media_from_name@Base 0.3.0
+  noise_library_media_from_uri@Base 0.3.0
+  noise_library_medias_from_ids@Base 0.3.0
+  noise_library_medias_from_uris@Base 0.3.0
+  noise_library_playlist_count_without_read_only@Base 0.3.0
+  noise_library_playlist_from_id@Base 0.3.0
+  noise_library_playlist_from_name@Base 0.3.0
+  noise_library_remove_media@Base 0.3.0
+  noise_library_remove_medias@Base 0.3.0
+  noise_library_remove_playlist@Base 0.3.0
+  noise_library_remove_smart_playlist@Base 0.3.0
+  noise_library_search_medias@Base 0.3.0
+  noise_library_smart_playlist_from_id@Base 0.3.0
+  noise_library_smart_playlist_from_name@Base 0.3.0
+  noise_library_start_file_operations@Base 0.3.0
+  noise_library_support_playlists@Base 0.3.0
+  noise_library_support_smart_playlists@Base 0.3.0
+  noise_library_update_media@Base 0.3.0
+  noise_library_update_medias@Base 0.3.0
+  noise_library_window_interface_get_type@Base 0.3.0
+  noise_library_window_interface_updateInfoLabel@Base 0.3.0
+  noise_library_window_interface_update_sensitivities@Base 0.3.0
+  noise_library_window_interface_update_sensitivities_finish@Base 0.3.0
+  noise_media_construct@Base 0.3.0
+  noise_media_construct_from_file@Base 0.3.0
+  noise_media_copy@Base 0.3.0
+  noise_media_get_album@Base 0.3.0
+  noise_media_get_album_artist@Base 0.3.0
+  noise_media_get_album_count@Base 0.3.0
+  noise_media_get_album_hashkey@Base 0.3.0
+  noise_media_get_album_info@Base 0.3.0
+  noise_media_get_album_number@Base 0.3.0
+  noise_media_get_artist@Base 0.3.0
+  noise_media_get_bitrate@Base 0.3.0
+  noise_media_get_bpm@Base 0.3.0
+  noise_media_get_comment@Base 0.3.0
+  noise_media_get_composer@Base 0.3.0
+  noise_media_get_date_added@Base 0.3.0
+  noise_media_get_display_album@Base 0.3.0
+  noise_media_get_display_album_artist@Base 0.3.0
+  noise_media_get_display_artist@Base 0.3.0
+  noise_media_get_display_composer@Base 0.3.0
+  noise_media_get_display_filename@Base 0.3.0
+  noise_media_get_display_genre@Base 0.3.0
+  noise_media_get_display_location@Base 0.3.0
+  noise_media_get_display_title@Base 0.3.0
+  noise_media_get_file@Base 0.3.0
+  noise_media_get_file_exists@Base 0.3.0
+  noise_media_get_file_size@Base 0.3.0
+  noise_media_get_genre@Base 0.3.0
+  noise_media_get_grouping@Base 0.3.0
+  noise_media_get_has_embedded@Base 0.3.0
+  noise_media_get_isPreview@Base 0.3.0
+  noise_media_get_isTemporary@Base 0.3.0
+  noise_media_get_last_modified@Base 0.3.0
+  noise_media_get_last_played@Base 0.3.0
+  noise_media_get_length@Base 0.3.0
+  noise_media_get_location_unknown@Base 0.3.0
+  noise_media_get_lyrics@Base 0.3.0
+  noise_media_get_mediatype@Base 0.3.0
+  noise_media_get_play_count@Base 0.3.0
+  noise_media_get_rating@Base 0.3.0
+  noise_media_get_resume_pos@Base 0.3.0
+  noise_media_get_rowid@Base 0.3.0
+  noise_media_get_samplerate@Base 0.3.0
+  noise_media_get_showIndicator@Base 0.3.0
+  noise_media_get_simple_display_text@Base 0.3.0
+  noise_media_get_skip_count@Base 0.3.0
+  noise_media_get_title@Base 0.3.0
+  noise_media_get_title_markup@Base 0.3.0
+  noise_media_get_track@Base 0.3.0
+  noise_media_get_track_count@Base 0.3.0
+  noise_media_get_type@Base 0.3.0
+  noise_media_get_unique_status_image@Base 0.3.0
+  noise_media_get_uri@Base 0.3.0
+  noise_media_get_year@Base 0.3.0
+  noise_media_is_valid_string_field@Base 0.3.0
+  noise_media_new@Base 0.3.0
+  noise_media_new_from_file@Base 0.3.0
+  noise_media_set_album@Base 0.3.0
+  noise_media_set_album_artist@Base 0.3.0
+  noise_media_set_album_count@Base 0.3.0
+  noise_media_set_album_info@Base 0.3.0
+  noise_media_set_album_number@Base 0.3.0
+  noise_media_set_artist@Base 0.3.0
+  noise_media_set_bitrate@Base 0.3.0
+  noise_media_set_bpm@Base 0.3.0
+  noise_media_set_comment@Base 0.3.0
+  noise_media_set_composer@Base 0.3.0
+  noise_media_set_date_added@Base 0.3.0
+  noise_media_set_file@Base 0.3.0
+  noise_media_set_file_size@Base 0.3.0
+  noise_media_set_genre@Base 0.3.0
+  noise_media_set_grouping@Base 0.3.0
+  noise_media_set_has_embedded@Base 0.3.0
+  noise_media_set_isPreview@Base 0.3.0
+  noise_media_set_isTemporary@Base 0.3.0
+  noise_media_set_last_modified@Base 0.3.0
+  noise_media_set_last_played@Base 0.3.0
+  noise_media_set_length@Base 0.3.0
+  noise_media_set_location_unknown@Base 0.3.0
+  noise_media_set_lyrics@Base 0.3.0
+  noise_media_set_mediatype@Base 0.3.0
+  noise_media_set_play_count@Base 0.3.0
+  noise_media_set_rating@Base 0.3.0
+  noise_media_set_resume_pos@Base 0.3.0
+  noise_media_set_rowid@Base 0.3.0
+  noise_media_set_samplerate@Base 0.3.0
+  noise_media_set_showIndicator@Base 0.3.0
+  noise_media_set_skip_count@Base 0.3.0
+  noise_media_set_title@Base 0.3.0
+  noise_media_set_track@Base 0.3.0
+  noise_media_set_track_count@Base 0.3.0
+  noise_media_set_unique_status_image@Base 0.3.0
+  noise_media_set_uri@Base 0.3.0
+  noise_media_set_year@Base 0.3.0
+  noise_media_type_get_type@Base 0.3.0
+  noise_network_device_finish_initialization@Base 0.3.0
+  noise_network_device_getContentType@Base 0.3.0
+  noise_network_device_getDisplayName@Base 0.3.0
+  noise_network_device_get_audiobooks@Base 0.3.0
+  noise_network_device_get_device_type@Base 0.3.0
+  noise_network_device_get_fancy_description@Base 0.3.0
+  noise_network_device_get_icon@Base 0.3.0
+  noise_network_device_get_medias@Base 0.3.0
+  noise_network_device_get_path@Base 0.3.0
+  noise_network_device_get_playlists@Base 0.3.0
+  noise_network_device_get_podcasts@Base 0.3.0
+  noise_network_device_get_smart_playlists@Base 0.3.0
+  noise_network_device_get_songs@Base 0.3.0
+  noise_network_device_get_type@Base 0.3.0
+  noise_network_device_setDisplayName@Base 0.3.0
+  noise_network_device_set_icon@Base 0.3.0
+  noise_network_device_start_initialization@Base 0.3.0
+  noise_network_device_supports_audiobooks@Base 0.3.0
+  noise_network_device_supports_podcasts@Base 0.3.0
+  noise_network_device_unmount@Base 0.3.0
+  noise_notification_manager_construct@Base 0.3.0
+  noise_notification_manager_doAlertNotification@Base 0.3.0
+  noise_notification_manager_doProgressNotification@Base 0.3.0
+  noise_notification_manager_doSongNotification@Base 0.3.0
+  noise_notification_manager_get_default@Base 0.3.0
+  noise_notification_manager_get_type@Base 0.3.0
+  noise_notification_manager_new@Base 0.3.0
+  noise_notification_manager_showProgressNotification@Base 0.3.0
+  noise_notification_manager_showSongNotification@Base 0.3.0
+  noise_numeric_compare@Base 0.3.0
+  noise_numeric_int_from_float@Base 0.3.0
+  noise_numeric_lowest_int_from_float@Base 0.3.0
+  noise_numeric_lowest_uint_from_double@Base 0.3.0
+  noise_numeric_uint_from_double@Base 0.3.0
+  noise_numeric_uint_from_string@Base 0.3.0
+  noise_param_spec_compare_func_holder@Base 0.3.0
+  noise_param_spec_icons@Base 0.3.0
+  noise_param_spec_pixbuf_cache@Base 0.3.0
+  noise_param_spec_threads@Base 0.3.0
+  noise_pipeline_construct@Base 0.3.0
+  noise_pipeline_disableEqualizer@Base 0.3.0
+  noise_pipeline_enableEqualizer@Base 0.3.0
+  noise_pipeline_get_type@Base 0.3.0
+  noise_pipeline_new@Base 0.3.0
+  noise_pixbuf_cache_cache_image_async@Base 0.3.0
+  noise_pixbuf_cache_cache_image_finish@Base 0.3.0
+  noise_pixbuf_cache_cache_image_from_file_async@Base 0.3.0
+  noise_pixbuf_cache_cache_image_from_file_finish@Base 0.3.0
+  noise_pixbuf_cache_construct@Base 0.3.0
+  noise_pixbuf_cache_decache_image@Base 0.3.0
+  noise_pixbuf_cache_get_cached_image_file@Base 0.3.0
+  noise_pixbuf_cache_get_image@Base 0.3.0
+  noise_pixbuf_cache_get_image_async@Base 0.3.0
+  noise_pixbuf_cache_get_image_finish@Base 0.3.0
+  noise_pixbuf_cache_get_image_format@Base 0.3.0
+  noise_pixbuf_cache_get_images@Base 0.3.0
+  noise_pixbuf_cache_get_type@Base 0.3.0
+  noise_pixbuf_cache_has_image@Base 0.3.0
+  noise_pixbuf_cache_new@Base 0.3.0
+  noise_pixbuf_cache_ref@Base 0.3.0
+  noise_pixbuf_cache_unref@Base 0.3.0
+  noise_pixbuf_utils_get_pixbuf_from_file_async@Base 0.3.0
+  noise_pixbuf_utils_get_pixbuf_from_file_at_scale_async@Base 0.3.0
+  noise_pixbuf_utils_get_pixbuf_from_file_at_scale_finish@Base 0.3.0
+  noise_pixbuf_utils_get_pixbuf_from_file_finish@Base 0.3.0
+  noise_pixbuf_utils_render_pixbuf_shadow@Base 0.3.0
+  noise_pixbuf_utils_save_pixbuf_async@Base 0.3.0
+  noise_pixbuf_utils_save_pixbuf_finish@Base 0.3.0
+  noise_playback_disable_equalizer@Base 0.3.0
+  noise_playback_enable_equalizer@Base 0.3.0
+  noise_playback_get_duration@Base 0.3.0
+  noise_playback_get_position@Base 0.3.0
+  noise_playback_get_supported_uri@Base 0.3.0
+  noise_playback_get_type@Base 0.3.0
+  noise_playback_get_volume@Base 0.3.0
+  noise_playback_pause@Base 0.3.0
+  noise_playback_play@Base 0.3.0
+  noise_playback_set_equalizer_gain@Base 0.3.0
+  noise_playback_set_media@Base 0.3.0
+  noise_playback_set_position@Base 0.3.0
+  noise_playback_set_state@Base 0.3.0
+  noise_playback_set_volume@Base 0.3.0
+  noise_playback_update_position@Base 0.3.0
+  noise_player_add_playback@Base 0.3.0
+  noise_player_get_type@Base 0.3.0
+  noise_player_repeat_get_type@Base 0.3.0
+  noise_player_shuffle_get_type@Base 0.3.0
+  noise_playlist_add_media@Base 0.3.0
+  noise_playlist_add_medias@Base 0.3.0
+  noise_playlist_clear@Base 0.3.0
+  noise_playlist_construct@Base 0.3.0
+  noise_playlist_get_medias@Base 0.3.0
+  noise_playlist_get_name@Base 0.3.0
+  noise_playlist_get_rowid@Base 0.3.0
+  noise_playlist_get_type@Base 0.3.0
+  noise_playlist_is_empty@Base 0.3.0
+  noise_playlist_remove_media@Base 0.3.0
+  noise_playlist_remove_medias@Base 0.3.0
+  noise_playlist_set_medias@Base 0.3.0
+  noise_playlist_set_name@Base 0.3.0
+  noise_playlist_set_rowid@Base 0.3.0
+  noise_playlists_utils_convert_paths_to_uris@Base 0.3.0
+  noise_playlists_utils_export_playlist@Base 0.3.0
+  noise_playlists_utils_get_new_playlist_name@Base 0.3.0
+  noise_playlists_utils_get_playlist_m3u_file@Base 0.3.0
+  noise_playlists_utils_get_playlists_to_import@Base 0.3.0
+  noise_playlists_utils_import_from_playlist_file_info@Base 0.3.0
+  noise_playlists_utils_parse_index_and_value@Base 0.3.0
+  noise_playlists_utils_parse_paths_from_m3u@Base 0.3.0
+  noise_playlists_utils_parse_paths_from_pls@Base 0.3.0
+  noise_playlists_utils_save_playlist_m3u@Base 0.3.0
+  noise_playlists_utils_save_playlist_pls@Base 0.3.0
+  noise_playlists_utils_static_playlist_from_smartplaylist@Base 0.3.0
+  noise_plugins_interface_construct@Base 0.3.0
+  noise_plugins_interface_get_addons_menu@Base 0.3.0
+  noise_plugins_interface_get_all_source_view@Base 0.3.0
+  noise_plugins_interface_get_argument@Base 0.3.0
+  noise_plugins_interface_get_bottombar@Base 0.3.0
+  noise_plugins_interface_get_context@Base 0.3.0
+  noise_plugins_interface_get_main_menu@Base 0.3.0
+  noise_plugins_interface_get_noise_app@Base 0.3.0
+  noise_plugins_interface_get_set_name@Base 0.3.0
+  noise_plugins_interface_get_sidebar@Base 0.3.0
+  noise_plugins_interface_get_toolbar@Base 0.3.0
+  noise_plugins_interface_get_type@Base 0.3.0
+  noise_plugins_interface_get_window@Base 0.3.0
+  noise_plugins_interface_hook_get_type@Base 0.3.0
+  noise_plugins_interface_new@Base 0.3.0
+  noise_plugins_interface_register_function@Base 0.3.0
+  noise_plugins_interface_register_function_arg@Base 0.3.0
+  noise_plugins_interface_register_function_signal@Base 0.3.0
+  noise_plugins_interface_set_argument@Base 0.3.0
+  noise_plugins_interface_set_bottombar@Base 0.3.0
+  noise_plugins_interface_set_context@Base 0.3.0
+  noise_plugins_interface_set_noise_app@Base 0.3.0
+  noise_plugins_interface_set_set_name@Base 0.3.0
+  noise_plugins_interface_set_sidebar@Base 0.3.0
+  noise_plugins_interface_set_toolbar@Base 0.3.0
+  noise_plugins_manager_get_default@Base 0.3.0
+  noise_plugins_manager_get_plugin_iface@Base 0.3.0
+  noise_plugins_manager_get_type@Base 0.3.0
+  noise_plugins_manager_get_view@Base 0.3.0
+  noise_plugins_manager_hook_app@Base 0.3.0
+  noise_plugins_manager_hook_example@Base 0.3.0
+  noise_plugins_manager_set_context@Base 0.3.0
+  noise_plugins_manager_set_noise_app@Base 0.3.0
+  noise_plugins_manager_set_sidebar@Base 0.3.0
+  noise_plugins_manager_set_toolbar@Base 0.3.0
+  noise_search_get_rating_from_string@Base 0.3.0
+  noise_search_get_valid_search_string@Base 0.3.0
+  noise_search_match_fields_to_media@Base 0.3.0
+  noise_search_match_string_to_media@Base 0.3.0
+  noise_search_search_in_media_list@Base 0.3.0
+  noise_settings_equalizer_getPresets@Base 0.3.0
+  noise_settings_equalizer_get_auto_switch_preset@Base 0.3.0
+  noise_settings_equalizer_get_custom_presets@Base 0.3.0
+  noise_settings_equalizer_get_default@Base 0.3.0
+  noise_settings_equalizer_get_equalizer_enabled@Base 0.3.0
+  noise_settings_equalizer_get_selected_preset@Base 0.3.0
+  noise_settings_equalizer_get_type@Base 0.3.0
+  noise_settings_equalizer_set_auto_switch_preset@Base 0.3.0
+  noise_settings_equalizer_set_custom_presets@Base 0.3.0
+  noise_settings_equalizer_set_equalizer_enabled@Base 0.3.0
+  noise_settings_equalizer_set_selected_preset@Base 0.3.0
+  noise_settings_main_get_close_while_playing@Base 0.3.0
+  noise_settings_main_get_copy_imported_music@Base 0.3.0
+  noise_settings_main_get_default@Base 0.3.0
+  noise_settings_main_get_last_media_playing@Base 0.3.0
+  noise_settings_main_get_last_media_position@Base 0.3.0
+  noise_settings_main_get_last_playlist_playing@Base 0.3.0
+  noise_settings_main_get_minimize_while_playing_shells@Base 0.3.0
+  noise_settings_main_get_music_folder@Base 0.3.0
+  noise_settings_main_get_music_mount_name@Base 0.3.0
+  noise_settings_main_get_path_string@Base 0.3.0
+  noise_settings_main_get_plugins_disabled@Base 0.3.0
+  noise_settings_main_get_repeat_mode@Base 0.3.0
+  noise_settings_main_get_search_string@Base 0.3.0
+  noise_settings_main_get_show_notifications@Base 0.3.0
+  noise_settings_main_get_shuffle_mode@Base 0.3.0
+  noise_settings_main_get_type@Base 0.3.0
+  noise_settings_main_get_update_folder_hierarchy@Base 0.3.0
+  noise_settings_main_get_write_metadata_to_file@Base 0.3.0
+  noise_settings_main_set_close_while_playing@Base 0.3.0
+  noise_settings_main_set_copy_imported_music@Base 0.3.0
+  noise_settings_main_set_last_media_playing@Base 0.3.0
+  noise_settings_main_set_last_media_position@Base 0.3.0
+  noise_settings_main_set_last_playlist_playing@Base 0.3.0
+  noise_settings_main_set_minimize_while_playing_shells@Base 0.3.0
+  noise_settings_main_set_music_folder@Base 0.3.0
+  noise_settings_main_set_music_mount_name@Base 0.3.0
+  noise_settings_main_set_path_string@Base 0.3.0
+  noise_settings_main_set_plugins_disabled@Base 0.3.0
+  noise_settings_main_set_repeat_mode@Base 0.3.0
+  noise_settings_main_set_search_string@Base 0.3.0
+  noise_settings_main_set_show_notifications@Base 0.3.0
+  noise_settings_main_set_shuffle_mode@Base 0.3.0
+  noise_settings_main_set_update_folder_hierarchy@Base 0.3.0
+  noise_settings_main_set_write_metadata_to_file@Base 0.3.0
+  noise_settings_repeat_get_type@Base 0.3.0
+  noise_settings_saved_state_get_column_browser_enabled@Base 0.3.0
+  noise_settings_saved_state_get_column_browser_height@Base 0.3.0
+  noise_settings_saved_state_get_column_browser_position@Base 0.3.0
+  noise_settings_saved_state_get_column_browser_visible_columns@Base 0.3.0
+  noise_settings_saved_state_get_column_browser_width@Base 0.3.0
+  noise_settings_saved_state_get_default@Base 0.3.0
+  noise_settings_saved_state_get_more_visible@Base 0.3.0
+  noise_settings_saved_state_get_more_width@Base 0.3.0
+  noise_settings_saved_state_get_show_album_art_in_list_view@Base 0.3.0
+  noise_settings_saved_state_get_sidebar_width@Base 0.3.0
+  noise_settings_saved_state_get_type@Base 0.3.0
+  noise_settings_saved_state_get_view_mode@Base 0.3.0
+  noise_settings_saved_state_get_window_height@Base 0.3.0
+  noise_settings_saved_state_get_window_state@Base 0.3.0
+  noise_settings_saved_state_get_window_width@Base 0.3.0
+  noise_settings_saved_state_set_column_browser_enabled@Base 0.3.0
+  noise_settings_saved_state_set_column_browser_height@Base 0.3.0
+  noise_settings_saved_state_set_column_browser_position@Base 0.3.0
+  noise_settings_saved_state_set_column_browser_visible_columns@Base 0.3.0
+  noise_settings_saved_state_set_column_browser_width@Base 0.3.0
+  noise_settings_saved_state_set_more_visible@Base 0.3.0
+  noise_settings_saved_state_set_more_width@Base 0.3.0
+  noise_settings_saved_state_set_show_album_art_in_list_view@Base 0.3.0
+  noise_settings_saved_state_set_sidebar_width@Base 0.3.0
+  noise_settings_saved_state_set_view_mode@Base 0.3.0
+  noise_settings_saved_state_set_window_height@Base 0.3.0
+  noise_settings_saved_state_set_window_state@Base 0.3.0
+  noise_settings_saved_state_set_window_width@Base 0.3.0
+  noise_settings_shuffle_get_type@Base 0.3.0
+  noise_settings_window_notebook_page_add_full_option@Base 0.3.0
+  noise_settings_window_notebook_page_add_option@Base 0.3.0
+  noise_settings_window_notebook_page_add_section@Base 0.3.0
+  noise_settings_window_notebook_page_construct@Base 0.3.0
+  noise_settings_window_notebook_page_get_name@Base 0.3.0
+  noise_settings_window_notebook_page_get_type@Base 0.3.0
+  noise_settings_window_notebook_page_new@Base 0.3.0
+  noise_settings_window_state_get_type@Base 0.3.0
+  noise_smart_playlist_add_queries@Base 0.3.0
+  noise_smart_playlist_add_query@Base 0.3.0
+  noise_smart_playlist_clearQueries@Base 0.3.0
+  noise_smart_playlist_conditional_type_get_type@Base 0.3.0
+  noise_smart_playlist_construct@Base 0.3.0
+  noise_smart_playlist_get_conditional@Base 0.3.0
+  noise_smart_playlist_get_limit@Base 0.3.0
+  noise_smart_playlist_get_limit_amount@Base 0.3.0
+  noise_smart_playlist_get_query_count@Base 0.3.0
+  noise_smart_playlist_get_type@Base 0.3.0
+  noise_smart_playlist_media_matches_query@Base 0.3.0
+  noise_smart_playlist_new@Base 0.3.0
+  noise_smart_playlist_queries@Base 0.3.0
+  noise_smart_playlist_queries_from_string@Base 0.3.0
+  noise_smart_playlist_queries_to_string@Base 0.3.0
+  noise_smart_playlist_reanalyze@Base 0.3.0
+  noise_smart_playlist_set_conditional@Base 0.3.0
+  noise_smart_playlist_set_limit@Base 0.3.0
+  noise_smart_playlist_set_limit_amount@Base 0.3.0
+  noise_smart_playlist_set_query_count@Base 0.3.0
+  noise_smart_playlist_update_medias@Base 0.3.0
+  noise_smart_query_comparator_type_get_type@Base 0.3.0
+  noise_smart_query_construct@Base 0.3.0
+  noise_smart_query_construct_with_info@Base 0.3.0
+  noise_smart_query_field_type_get_type@Base 0.3.0
+  noise_smart_query_get_comparator@Base 0.3.0
+  noise_smart_query_get_field@Base 0.3.0
+  noise_smart_query_get_rowid@Base 0.3.0
+  noise_smart_query_get_type@Base 0.3.0
+  noise_smart_query_get_value@Base 0.3.0
+  noise_smart_query_new@Base 0.3.0
+  noise_smart_query_new_with_info@Base 0.3.0
+  noise_smart_query_set_comparator@Base 0.3.0
+  noise_smart_query_set_field@Base 0.3.0
+  noise_smart_query_set_rowid@Base 0.3.0
+  noise_smart_query_set_value@Base 0.3.0
+  noise_static_playlist_construct@Base 0.3.0
+  noise_static_playlist_construct_with_info@Base 0.3.0
+  noise_static_playlist_get_allow_duplicate@Base 0.3.0
+  noise_static_playlist_get_read_only@Base 0.3.0
+  noise_static_playlist_get_show_badge@Base 0.3.0
+  noise_static_playlist_get_type@Base 0.3.0
+  noise_static_playlist_new@Base 0.3.0
+  noise_static_playlist_new_with_info@Base 0.3.0
+  noise_static_playlist_set_allow_duplicate@Base 0.3.0
+  noise_static_playlist_set_read_only@Base 0.3.0
+  noise_static_playlist_set_show_badge@Base 0.3.0
+  noise_string_base_search_method@Base 0.3.0
+  noise_string_canonicalize_for_search@Base 0.3.0
+  noise_string_compare@Base 0.3.0
+  noise_string_escape@Base 0.3.0
+  noise_string_is_empty@Base 0.3.0
+  noise_string_is_white_space@Base 0.3.0
+  noise_string_locale_to_utf8@Base 0.3.0
+  noise_string_strip_char@Base 0.3.0
+  noise_string_to_title_case@Base 0.3.0
+  noise_threads_add@Base 0.3.0
+  noise_threads_get_type@Base 0.3.0
+  noise_threads_ref@Base 0.3.0
+  noise_threads_unref@Base 0.3.0
+  noise_time_utils_miliseconds_to_nanoseconds@Base 0.3.0
+  noise_time_utils_nanoseconds_to_miliseconds@Base 0.3.0
+  noise_time_utils_pretty_length@Base 0.3.0
+  noise_time_utils_pretty_length_from_ms@Base 0.3.0
+  noise_time_utils_pretty_length_from_ns@Base 0.3.0
+  noise_time_utils_pretty_timestamp_from_time@Base 0.3.0
+  noise_time_utils_pretty_timestamp_from_uint@Base 0.3.0
+  noise_time_utils_time_string_from_miliseconds@Base 0.3.0
+  noise_time_utils_time_string_from_nanoseconds@Base 0.3.0
+  noise_time_utils_time_string_from_seconds@Base 0.3.0
+  noise_ui_make_window_draggable@Base 0.3.0
+  noise_ui_set_tree_view_column_fixed_width@Base 0.3.0
+  noise_ui_wrap_alignment@Base 0.3.0
+  noise_utils_copy_collection@Base 0.3.0
+  noise_utils_flags_set@Base 0.3.0
+  noise_utils_get_desktop_shell@Base 0.3.0
+  noise_utils_is_cancelled@Base 0.3.0
+  noise_value_get_compare_func_holder@Base 0.3.0
+  noise_value_get_icons@Base 0.3.0
+  noise_value_get_pixbuf_cache@Base 0.3.0
+  noise_value_get_threads@Base 0.3.0
+  noise_value_set_compare_func_holder@Base 0.3.0
+  noise_value_set_icons@Base 0.3.0
+  noise_value_set_pixbuf_cache@Base 0.3.0
+  noise_value_set_threads@Base 0.3.0
+  noise_value_take_compare_func_holder@Base 0.3.0
+  noise_value_take_icons@Base 0.3.0
+  noise_value_take_pixbuf_cache@Base 0.3.0
+  noise_value_take_threads@Base 0.3.0
