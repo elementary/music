@@ -1,0 +1,17 @@
+# The only time a binary or shared library in a Debian package should set RPATH
+# is if it is linked to private shared libraries in the same package.
+# This is the case for Noise - it has a private shared library "core".
+binary-or-shlib-defines-rpath
+
+# This warning is triggered because of the private shared library
+# due to a bug in Debhelper.
+# Refer to http://bugs.debian.org/204975 and http://bugs.debian.org/633853
+# for details.
+pkg-has-shlibs-control-file-but-no-actual-shared-libs
+
+# These warnings are triggered because of a bug in Debhelper that causes it to
+# auto-generate an ldconfig snippet for packages that does not need it.
+# Refer to http://bugs.debian.org/204975 and http://bugs.debian.org/633853
+# for details.
+postinst-has-useless-call-to-ldconfig
+postrm-has-useless-call-to-ldconfig
