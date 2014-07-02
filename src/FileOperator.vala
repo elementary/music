@@ -216,7 +216,7 @@ public class Noise.FileOperator : Object {
             /* if we are supposed to delete the old, make sure there are no items left in folder if we do */
             if (delete_old) {
                 var dummy = new Gee.LinkedList<string> ();
-                var old_folder_items = FileUtils.count_music_files (original.get_parent (), ref dummy);
+                var old_folder_items = FileUtils.count_music_files (original.get_parent (), dummy);
                 // must check for .jpg's as well.
                 
                 if (old_folder_items == 0) {
@@ -238,14 +238,14 @@ public class Noise.FileOperator : Object {
                 var file = File.new_for_uri (s);
                 file.trash ();
                 
-                var old_folder_items = FileUtils.count_music_files (file.get_parent (), ref dummy_list);
+                var old_folder_items = FileUtils.count_music_files (file.get_parent (), dummy_list);
                     
                 //TODO: COPY ALBUM AND IMAGE ARTWORK
                 if (old_folder_items == 0) {
                     debug("going to delete %s because no files are in it\n", file.get_parent ().get_path ());
                     //original.get_parent ().delete ();
                     
-                    var old_folder_parent_items = FileUtils.count_music_files (file.get_parent ().get_parent (), ref dummy_list);
+                    var old_folder_parent_items = FileUtils.count_music_files (file.get_parent ().get_parent (), dummy_list);
                     
                     if(old_folder_parent_items == 0) {
                         debug("going to delete %s because no files are in it\n", file.get_parent ().get_parent ().get_path ());
@@ -284,7 +284,7 @@ public class Noise.FileOperator : Object {
                         import_files (list, ImportType.IMPORT);
                     } else if (info.get_file_type () == FileType.DIRECTORY) {
                         var list = new Gee.LinkedList<string> ();
-                        FileUtils.count_music_files (file, ref list);
+                        FileUtils.count_music_files (file, list);
                         import_files (list, ImportType.IMPORT);
                     }
                 } catch (Error e) {
