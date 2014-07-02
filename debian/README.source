@@ -1,0 +1,7 @@
+noise for Debian
+----------------
+
+There is no stability of ABI/API yet, i.e. ABI breaks for plugins
+will not result in soname bumps until further notice!
+
+ -- Sergey "Shnatsel" Davidoff <sergey@elementaryos.org>  Wed, 02 Jul 2014 21:03:26 +0400
