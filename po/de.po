@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-06-23 11:14+0000\n"
-"Last-Translator: nebalee <nebalee@outlook.com>\n"
+"PO-Revision-Date: 2014-07-02 00:03+0000\n"
+"Last-Translator: Tom Gießmann <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-06-24 06:25+0000\n"
-"X-Generator: Launchpad (build 17065)\n"
+"X-Launchpad-Export-Date: 2014-07-02 06:47+0000\n"
+"X-Generator: Launchpad (build 17082)\n"
 "Language: de\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -59,7 +59,7 @@ msgstr "Speichern"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importiere <b>$NAME</b> von <b>$ARTIST</b> in die Bibliothek …"
+msgstr "<b>$NAME</b> von <b>$ARTIST</b> wird in die Bibliothek importiert …"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
@@ -315,7 +315,7 @@ msgstr "Musik importieren"
 
 #: ../src/LibraryWindow.vala:1121 ../src/LocalLibrary.vala:242
 msgid "<b>Importing</b> music to library…"
-msgstr "Musik in die Bibliothek <b>importieren</b> …"
+msgstr "Musik wird in die Bibliothek <b>importiert</b> …"
 
 #: ../src/FileOperator.vala:351
 msgid "Import Complete"
@@ -331,11 +331,11 @@ msgstr "Dateien in den <b>Musikordner</b> <b>kopieren</b> …"
 
 #: ../src/LocalLibrary.vala:164
 msgid "Importing music from %s…"
-msgstr "Musik aus %s importieren …"
+msgstr "Musik wird aus %s importiert …"
 
 #: ../src/LocalLibrary.vala:203
 msgid "Adding files to library…"
-msgstr "Dateien werden zur Bibliothek hinzugefügt ..."
+msgstr "Dateien werden zur Bibliothek hinzugefügt …"
 
 #: ../src/LocalLibrary.vala:268
 msgid "Rescanning music for changes. This may take a while…"
@@ -457,7 +457,7 @@ msgstr "Wiedergabe beim Schließen fortsetzen:"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
-msgstr "Intelligente Wiedergabeliste"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:49
 #: ../src/Dialogs/SmartPlaylistEditor.vala:57
@@ -522,7 +522,7 @@ msgstr "Album"
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:122
 #: ../src/Dialogs/MediaEditor.vala:192 ../src/Widgets/StatusBar.vala:71
 msgid "Artist"
-msgstr "Interpret"
+msgstr "Künstler"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:262
 msgid "Bitrate"
@@ -718,7 +718,7 @@ msgstr "Album überprüfen"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:192
 msgid "Check Artist"
-msgstr "Interpret überprüfen"
+msgstr "Künstler überprüfen"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:289
 msgid "Cannot Import"
@@ -768,19 +768,19 @@ msgstr "Liedtexte"
 
 #: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:347
 msgid "Editing $NAME by $ARTIST"
-msgstr "$NAME von $ARTIST bearbeiten"
+msgstr "$NAME von $ARTIST wird bearbeitet"
 
 #: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:349
 msgid "Editing %s"
-msgstr "%s bearbeiten"
+msgstr "%s wird bearbeitet"
 
 #: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:352
 msgid "Editing %i songs"
-msgstr "%i Titel bearbeiten"
+msgstr "%i Titel werden bearbeitet"
 
 #: ../src/Dialogs/MediaEditor.vala:193
 msgid "Album Artist"
-msgstr "Album-Interpret"
+msgstr "Albumkünstler"
 
 #: ../src/Dialogs/MediaEditor.vala:199
 msgid "Track"
@@ -861,7 +861,7 @@ msgstr ""
 #: ../src/Objects/AlbumInfo.vala:26 ../plugins/Devices/CDRom/CDPlayer.vala:203
 #: ../plugins/Devices/iPod/iPodStreamer.vala:191
 msgid "Unknown Artist"
-msgstr "Unbekannter Interpret"
+msgstr "Unbekannter Künstler"
 
 #: ../src/DataBase/DataBaseManager.vala:456
 #: ../src/DataBase/DataBaseManager.vala:692
@@ -1096,7 +1096,7 @@ msgstr "Dauer"
 #: ../src/Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr "Interpret"
+msgstr "Künstler"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
@@ -1106,7 +1106,7 @@ msgstr "Album"
 #: ../src/Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr "Album-Interpret"
+msgstr "Albumkünstler"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
@@ -1187,15 +1187,15 @@ msgstr "Keine Genres"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Artists"
-msgstr "Alle Interpreten"
+msgstr "Alle Künstler"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 msgid "All %i Artists"
-msgstr "Alle %i Interpreten"
+msgstr "Alle %i Künstler"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
-msgstr "Keine Interpreten"
+msgstr "Keine Künstler"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Albums"
@@ -1282,7 +1282,7 @@ msgstr "Genres"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:56
 msgid "Artists"
-msgstr "Interpreten"
+msgstr "Künstler"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Albums"
@@ -1545,7 +1545,7 @@ msgstr "Album wiederholen"
 
 #: ../src/Widgets/StatusBar.vala:71
 msgid "Repeat Artist"
-msgstr "Interpret wiederholen"
+msgstr "Künstler wiederholen"
 
 #: ../src/Widgets/StatusBar.vala:72 ../src/Widgets/StatusBar.vala:102
 msgid "All"
@@ -1632,7 +1632,7 @@ msgstr "Audio-Player"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 #: ../plugins/Devices/iPod/iPodLibrary.vala:176
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "<b>$NAME</b> von <b>$ARTIST</b> zu $DEVICE hinzufügen"
+msgstr "<b>$NAME</b> von <b>$ARTIST</b> wird zu $DEVICE hinzugefügt"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:202
@@ -1666,7 +1666,7 @@ msgstr ""
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:362
 #: ../plugins/Devices/iPod/iPodLibrary.vala:601
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Entferne <b>$NAME</b> von <b>$ARTIST</b> von $DEVICE"
+msgstr "<b>$NAME</b> von <b>$ARTIST</b> wird von $DEVICE entfernt"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
 #: ../plugins/Devices/iPod/iPodLibrary.vala:394
