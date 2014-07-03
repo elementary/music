@@ -145,12 +145,12 @@ public class Noise.TreeViewSetup : Object {
         return column;
     }
 
-    public static ListColumn get_column_type (Gtk.TreeViewColumn column) {
+    public static ListColumn? get_column_type (Gtk.TreeViewColumn column) {
         int type = column.get_data<int> (TYPE_DATA_KEY);
 
         if (type < 0) {
             critical ("get_column_type: Column '%s' has no associated type.", column.title); 
-            return_if_reached ();
+            return_val_if_reached (null);
         }
 
         return (ListColumn) type;
