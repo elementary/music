@@ -1176,6 +1176,19 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
 
         if (!library_manager._medias.is_empty || !library_manager._playlists.is_empty) {
+            if (library_manager._medias.is_empty) {
+                debug ("Media library is empty");
+            } else {
+                debug ("Media library is not empty");
+            }
+            if (library_manager._playlists.is_empty) {
+                debug ("No playlists present");
+            } else {
+                debug ("Some playlists exist");
+                foreach (var playlist in library_manager._playlists) {
+                    debug ("Found playlist with name: %s", playlist.name);
+                }
+            }
             var smfc = new SetMusicFolderConfirmation(folder);
             smfc.finished.connect( (cont) => {
                 if(cont) {
