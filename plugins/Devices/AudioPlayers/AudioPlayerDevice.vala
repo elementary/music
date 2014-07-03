@@ -89,7 +89,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             int items = 0;
             foreach (var folder in music_folders) {
                 var music_folder_file = GLib.File.new_for_uri (folder);
-                items += FileUtils.count_music_files (music_folder_file, ref files);
+                items += FileUtils.count_music_files (music_folder_file, files);
             }
 
             debug ("found %d items to import\n", items);

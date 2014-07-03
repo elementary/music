@@ -182,16 +182,14 @@ public class Noise.LocalLibrary : Library {
 
         Threads.add (() => {
             var music_folder_file = File.new_for_path (folder);
-            var files = new Gee.LinkedList<string> ();
+            var files = new Gee.TreeSet<string> ();
 
-            var items = FileUtils.count_music_files (music_folder_file, ref files);
+            var items = FileUtils.count_music_files (music_folder_file, files);
             debug ("found %d items to import\n", items);
 
-            var to_import = remove_duplicate_files (files);
-
-            fo.resetProgress (to_import.size - 1);
+            fo.resetProgress (files.size - 1);
             Timeout.add (100, doProgressNotificationWithTimeout);
-            fo.import_files (to_import, FileOperator.ImportType.SET);
+            fo.import_files (files, FileOperator.ImportType.SET);
 
             Idle.add ((owned) callback);
         });
@@ -209,7 +207,8 @@ public class Noise.LocalLibrary : Library {
         SourceFunc callback = add_files_to_library_async.callback;
 
         Threads.add (() => {
-            var to_import = remove_duplicate_files (files);
+            var to_import = new Gee.TreeSet<string> ();
+            to_import.add_all (files);
 
             fo.resetProgress (to_import.size - 1);
             Timeout.add (100, doProgressNotificationWithTimeout);
@@ -219,22 +218,6 @@ public class Noise.LocalLibrary : Library {
         });
 
         yield;
-    }
-
-    /**
-     * Used to avoid importing already-imported files.
-     */
-    private Gee.Collection<string> remove_duplicate_files (Gee.Collection<string> files) {
-        
-        var to_import = files;
-        foreach (var m in get_medias ()) {
-            if (files.contains (m.uri)) {
-                to_import.remove (m.uri);
-                debug ("-- DUPLICATE FOUND for: %s", m.uri);
-            }
-        }
-
-        return to_import;
     }
 
     public void add_folder_to_library (Gee.Collection<string> folders) {
@@ -248,15 +231,14 @@ public class Noise.LocalLibrary : Library {
         SourceFunc callback = add_folder_to_library_async.callback;
 
         Threads.add (() => {
-            var files = new Gee.LinkedList<string> ();
+            var files = new Gee.TreeSet<string> ();
             foreach (var folder in folders) {
                 var file = File.new_for_path (folder);
-                FileUtils.count_music_files (file, ref files);
+                FileUtils.count_music_files (file, files);
             }
-            var to_import = remove_duplicate_files (files);
-            fo.resetProgress (to_import.size - 1);
+            fo.resetProgress (files.size - 1);
             Timeout.add (100, doProgressNotificationWithTimeout);
-            fo.import_files (to_import, FileOperator.ImportType.IMPORT);
+            fo.import_files (files, FileOperator.ImportType.IMPORT);
 
             Idle.add ((owned) callback);
         });
@@ -274,15 +256,15 @@ public class Noise.LocalLibrary : Library {
     private async void rescan_music_folder_async () {
         SourceFunc callback = rescan_music_folder_async.callback;
 
-        var to_remove = new Gee.LinkedList<Media> ();
-        var to_import = new Gee.LinkedList<string> ();
-        var files = new Gee.LinkedList<string> ();
+        var to_remove = new Gee.TreeSet<Media> ();
+        var to_import = new Gee.TreeSet<string> ();
+        var files = new Gee.TreeSet<string> ();
 
         Threads.add (() => {
 
             // get a list of the current files
             var music_folder_dir = Settings.Main.get_default ().music_folder;
-            FileUtils.count_music_files (File.new_for_path (music_folder_dir), ref files);
+            FileUtils.count_music_files (File.new_for_path (music_folder_dir), files);
             
             foreach (var m in get_medias ()) {
                 if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir))
@@ -292,15 +274,14 @@ public class Noise.LocalLibrary : Library {
                 if (files.contains (m.uri))
                     files.remove (m.uri);
             }
-            debug ("found %d items to import\n", files.size);
 
-            to_import.add_all (remove_duplicate_files (files));
-
-            debug ("Importing %d new songs\n", to_import.size);
             if (!to_import.is_empty) {
+                debug ("Importing %d new songs\n", to_import.size);
                 fo.resetProgress (to_import.size - 1);
                 Timeout.add (100, doProgressNotificationWithTimeout);
                 fo.import_files (to_import, FileOperator.ImportType.RESCAN);
+            } else {
+                debug ("No new songs to import.\n");
             }
 
             if (files.is_empty)

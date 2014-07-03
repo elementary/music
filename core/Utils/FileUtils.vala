@@ -194,7 +194,7 @@ namespace Noise.FileUtils {
         return false;
     }
     
-    public int count_music_files (File music_folder, ref Gee.LinkedList<string> files) {
+    public int count_music_files (File music_folder, Gee.Collection<string> files) {
         FileInfo file_info = null;
         int index = 0;
         try {
@@ -207,7 +207,7 @@ namespace Noise.FileUtils {
                     files.add (file.get_uri ());
                 }
                 else if(file_info.get_file_type() == FileType.DIRECTORY) {
-                    count_music_files (file, ref files);
+                    count_music_files (file, files);
                 }
             }
         }
