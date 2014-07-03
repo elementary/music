@@ -56,7 +56,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public ViewContainer              view_container   { get; private set; }
     public TopDisplay                 topDisplay       { get; private set; }
     public Widgets.ViewSelector       viewSelector     { get; private set; }
-    public Granite.Widgets.SearchBar  searchField      { get; private set; }
+    public Gtk.SearchEntry            searchField      { get; private set; }
     public Widgets.StatusBar          statusbar        { get; private set; }
     private FixedBin                  topDisplayBin;
 
@@ -268,13 +268,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplay              = new TopDisplay ();
         topDisplayBin           = new FixedBin (200, -1, 600, -1);
         viewSelector            = new Widgets.ViewSelector ();
-        searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
+        searchField             = new Gtk.SearchEntry ();
+        searchField.placeholder_text = _("Search Music");
 
 
         topDisplayBin.set_widget (topDisplay, true, false);
-
-        // Set search timeout in ms
-        searchField.pause_delay = 80;
 
         // Tweak view selector's size
         viewSelector.margin_left = 12;
@@ -531,7 +529,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         nextButton.clicked.connect (() => {play_next_media ();});
 
         searchField.activate.connect (searchFieldActivate);
-        searchField.text_changed_pause.connect ((text) => {if (text.length != 1) libraries_manager.search_for_string (text);});
+        searchField.search_changed.connect (() => {if (searchField.text_length != 1) libraries_manager.search_for_string (searchField.get_text ());});
         searchField.text = main_settings.search_string;
         libraries_manager.search_for_string (main_settings.search_string);
 
