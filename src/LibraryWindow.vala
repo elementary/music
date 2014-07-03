@@ -1175,7 +1175,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (folder == "" || (folder == main_settings.music_folder && !library_manager._medias.is_empty))
             return;
 
-        if (!library_manager._medias.is_empty || !library_manager._playlists.is_empty) {
+        if (!library_manager._medias.is_empty || library_manager.playlist_count_without_read_only () > 0) {
             var smfc = new SetMusicFolderConfirmation(folder);
             smfc.finished.connect( (cont) => {
                 if(cont) {
