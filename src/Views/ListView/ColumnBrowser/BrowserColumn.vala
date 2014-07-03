@@ -22,8 +22,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.BrowserColumn : Gtk.ScrolledWindow {
-
+public class Noise.BrowserColumn : Gtk.Grid {
 	public signal void selection_changed (BrowserColumn.Category type, string val);
 	public signal void row_activated (string text);
 	public signal void reset_requested ();
@@ -92,6 +91,24 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 		}
 	}
 
+	private Gtk.Separator separator;
+	public bool show_separator {
+		set {
+			if (separator != null && separator.parent == this) {
+				remove (separator);
+				separator = null;
+			}
+
+			if (value) {
+				separator = new Gtk.Separator (Gtk.Orientation.VERTICAL);
+				separator.hexpand = false;
+				separator.vexpand = true;
+				separator.show ();
+				add (separator);
+			}
+		}
+	}
+
 	public bool first_item_selected { get { return _selected == null; } }
 
 	public Category category { get; construct set; }
@@ -105,11 +122,10 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 	// This will be NULL whenever the first element "All" is selected.
 	private string? _selected;
 
-
-
 	public BrowserColumn (ColumnBrowser miller_parent, Category category) {
 		this.miller_parent = miller_parent;
 		this.category = category;
+		orientation = Gtk.Orientation.HORIZONTAL;
 
 		menu_item = new Gtk.CheckMenuItem.with_label (category.to_string ());
 		this.visible = false;
@@ -122,7 +138,10 @@ public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 
 		view.insert_column_with_attributes (-1, category.to_string (), cell, "text", 0, null);
 
-		add (view);
+		var scrolled = new Gtk.ScrolledWindow (null, null);
+		scrolled.expand = true;
+		scrolled.add (view);
+		add (scrolled);
 
 		view.set_headers_clickable (true);
 
