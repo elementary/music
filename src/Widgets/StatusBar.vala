@@ -69,7 +69,7 @@ namespace Noise.Widgets {
             appendItem (_("Song"), repeat_one_image, _("Repeat Song"));
             appendItem (_("Album"), repeat_on_image, _("Repeat Album"));
             appendItem (_("Artist"), repeat_on_image, _("Repeat Artist"));
-            appendItem (_("All"), repeat_on_image, _("Repeat All"));
+            appendItem (_("All"), repeat_on_image, _("Disable Repeat"));
 
             update_option ();
 
