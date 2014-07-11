@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-07-10 00:34+0000\n"
+"PO-Revision-Date: 2014-07-10 22:55+0000\n"
 "Last-Translator: Leonardo Lemos <leonardolemos@live.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-07-10 07:05+0000\n"
-"X-Generator: Launchpad (build 17100)\n"
+"X-Launchpad-Export-Date: 2014-07-11 06:07+0000\n"
+"X-Generator: Launchpad (build 17111)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:43
@@ -275,7 +275,7 @@ msgstr "Fila"
 
 #: ../src/LibraryWindow.vala:857
 msgid "No songs in Queue"
-msgstr "Nenhuma música na Fila"
+msgstr "Nenhuma música na fila"
 
 #: ../src/LibraryWindow.vala:858
 msgid ""
@@ -284,8 +284,9 @@ msgid ""
 "first before the next song in the currently playing list."
 msgstr ""
 "Para adicionar músicas para a fila, use o <b>clique secundário</b> em um "
-"item e escolha <b>Fila</b>. Quando uma música acaba, as músicas da fila "
-"serão reproduzidas antes da próxima música na atual lista de reprodução."
+"item e escolha <b>Adicionar à fila de reprodução</b>. Quando uma música "
+"acaba, as músicas da fila serão reproduzidas antes da próxima música na "
+"atual lista de reprodução."
 
 #: ../src/LibraryWindow.vala:864 ../src/LocalLibrary.vala:104
 #: ../src/PlaybackManager.vala:97 ../src/DataBase/DataBaseManager.vala:560
@@ -508,7 +509,7 @@ msgstr "itens"
 #: ../src/Dialogs/SmartPlaylistEditor.vala:257
 #: ../src/Widgets/SourceListView.vala:57 ../src/Widgets/SourceListView.vala:71
 msgid "Remove"
-msgstr "Excluir"
+msgstr "Remover"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:260
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:123
@@ -936,12 +937,12 @@ msgid ""
 "choose <b>Add to Playlist</b>."
 msgstr ""
 "Para adicionar novas músicas à lista de reprodução, clique com o <b>botão "
-"direito</b> do mouse em um item e escolha <b>\"Adicionar à Lista de "
-"Reprodução\"</b>"
+"direito</b> do mouse em um item e escolha <b>\"Adicionar à lista de "
+"reprodução\"</b>"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
-msgstr "Editar Lista de Reprodução Inteligente"
+msgstr "Editar lista de reprodução inteligente"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
@@ -1003,7 +1004,7 @@ msgstr "Remover da biblioteca"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:98
 msgid "Remove from Queue"
-msgstr "Remover da Fila"
+msgstr "Remover da fila"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:108
 msgid "Remove from Device"
@@ -1011,15 +1012,15 @@ msgstr "Remover do Dispositivo"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:121
 msgid "Scroll to Current Song"
-msgstr "Rolar para a Música Atual"
+msgstr "Rolar para a música atual"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:124
 msgid "Edit Song Info"
-msgstr "Editar Informação da Música"
+msgstr "Editar informações da música"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:125
 msgid "Show in File Browser"
-msgstr "Mostrar no Gerenciador de Arquivos"
+msgstr "Mostrar no gerenciador de arquivos"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
@@ -1028,11 +1029,11 @@ msgstr "Outras ações"
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr "Enfileirar"
+msgstr "Adicionar à fila de reprodução"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:128
 msgid "Add to Playlist"
-msgstr "Adicionar à Lista de Reprodução"
+msgstr "Adicionar à lista de reprodução"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:130
 #: ../src/Widgets/SourceListView.vala:134
@@ -1774,7 +1775,7 @@ msgid ""
 msgstr ""
 "Não há músicas similares à atual em sua biblioteca. Certifique-se de que "
 "todas as informações da música estão corretas e de que você está conectado à "
-"Internet. Algumas músicas podem não serem encontradas."
+"internet. Algumas músicas podem não ser encontradas."
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
