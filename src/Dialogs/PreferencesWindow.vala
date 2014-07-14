@@ -97,6 +97,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         type_hint = Gdk.WindowTypeHint.DIALOG;
         transient_for = parent_window;
 
+        (get_header_bar () as Gtk.HeaderBar).show_close_button = false;
         get_header_bar ().get_style_context ().remove_class ("header-bar");
 
         main_stack = new Gtk.Stack ();
