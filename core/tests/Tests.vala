@@ -20,14 +20,18 @@
 
  
 void add_file_utils_tests () {
-    Test.add_func ("/FileUtils/count_music_files", () => {
+    Test.add_func ("/FileUtils/is_valid_content_type", () => {
         assert (Noise.FileUtils.count_music_files (File.new_for_path ("../tests/data/count_music_files/"),
                 new Gee.ArrayList<string>()) == 3);
     });
+    
+    Test.add_func ("/FileUtils/count_music_files", () => {
+        assert (Noise.FileUtils.is_valid_content_type ("audio/mpeg", {"audio/mpeg"}));
+    });
 }
 
-void main (string[] args) {
+int main (string[] args) {
     Test.init (ref args);
     add_file_utils_tests ();
-    Test.run ();
+    return Test.run ();
 }

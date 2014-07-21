@@ -17,5 +17,3 @@ link_directories (${CORE_DEPS_LIBRARY_DIRS})
 
 target_link_libraries (${CORE_LIBRARY_NAME}_tests ${CORE_DEPS_LIBRARIES})
 target_link_libraries (${CORE_LIBRARY_NAME}_tests ${CORE_LIBRARY_NAME})
-
-add_test (core ${CORE_LIBRARY_NAME}_tests)

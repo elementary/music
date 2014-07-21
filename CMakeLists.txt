@@ -168,3 +168,8 @@ add_subdirectory (plugins)
 add_subdirectory (po)
 add_subdirectory (data)
 add_subdirectory (images)
+
+
+# Tests
+
+add_test (core core/tests/noise-core_tests)
