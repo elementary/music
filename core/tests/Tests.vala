@@ -18,14 +18,36 @@
  *
  */
 
+
+static bool check_list_element_has_suffix (Gee.Collection<string> list, string suffix) {
+    bool found = false;
+    foreach (var s in list) {
+        found = found || s.has_suffix (suffix);
+    }
+    return found;
+}
  
 void add_file_utils_tests () {
     Test.add_func ("/FileUtils/is_valid_content_type", () => {
+        var files = new Gee.ArrayList<string>();
         assert (Noise.FileUtils.count_music_files (File.new_for_path ("../tests/data/count_music_files/"),
-                new Gee.ArrayList<string>()) == 3);
+                files) == 3);
+        
+        assert (check_list_element_has_suffix(files, "tests/data/count_music_files/file1.mp3"));
+        assert (check_list_element_has_suffix(files, "tests/data/count_music_files/file1.ogg"));
+        assert (check_list_element_has_suffix(files, "tests/data/count_music_files/file1.wav"));
+        assert (files[0].has_prefix("file:///"));
+
+        files.clear();
 
         assert (Noise.FileUtils.count_music_files (File.new_for_path ("../tests/data/count_music_files_subdir/"),
-                new Gee.ArrayList<string>()) == 4);
+                files) == 4);
+        
+        assert (check_list_element_has_suffix(files, "tests/data/count_music_files_subdir/file1.mp3"));
+        assert (check_list_element_has_suffix(files, "tests/data/count_music_files_subdir/file1.ogg"));
+        assert (check_list_element_has_suffix(files, "tests/data/count_music_files_subdir/file1.wav"));
+        assert (check_list_element_has_suffix(files, "tests/data/count_music_files_subdir/sub/file1.mp3"));
+
     });
     
     Test.add_func ("/FileUtils/count_music_files", () => {
