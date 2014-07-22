@@ -45,7 +45,7 @@ namespace Noise.Plugins {
         }
 
         async void log_interaction (Media song, string interpretation) {
-            var time = new DateTime.now_local ().to_unix ();
+            var time = new DateTime.now_local ().to_unix () * 1000;
 
             FileInfo? info = null;
             try {
