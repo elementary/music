@@ -259,11 +259,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         /** Toolbar widgets **/
 
-        previousButton          = new Gtk.Button.from_icon_name ("media-skip-backward", Gtk.IconSize.LARGE_TOOLBAR);
+        previousButton          = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
         previousButton.set_tooltip_text (_("Previous"));
-        playButton              = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
+        playButton              = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
         playButton.set_tooltip_text (_("Play"));
-        nextButton              = new Gtk.Button.from_icon_name ("media-skip-forward", Gtk.IconSize.LARGE_TOOLBAR);
+        nextButton              = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
         nextButton.set_tooltip_text (_("Next"));
         topDisplay              = new TopDisplay ();
         topDisplayBin           = new FixedBin (200, -1, 600, -1);
@@ -748,7 +748,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.change_playlist_category_visibility (have_media);
 
         if(!App.player.media_active || have_media && !App.player.playing)
-            playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR));
+            playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
 
         bool show_top_display = media_active || doing_ops;
         
@@ -1027,7 +1027,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     public virtual void playback_stopped (int was_playing) {
-        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR));
+        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
         //reset some booleans
         tested_for_video = false;
         media_considered_previewed = false;
@@ -1040,13 +1040,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
     
     public virtual void playback_started () {
-        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-pause", Gtk.IconSize.LARGE_TOOLBAR));
+        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
 
         debug ("playback started");
     }
     
     public virtual void playback_paused () {
-        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR));
+        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
 
         debug ("playback paused");
     }
