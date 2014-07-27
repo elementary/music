@@ -579,6 +579,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         else
             notification.icon_name = Icons.NOISE.name;
 
+        notification.set_category ("x-gnome.music");
         notification.set_urgency ((Notify.Urgency) urgency);
 
         try {
