@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-06-29 19:58+0000\n"
-"Last-Translator: Matiss Roberts Treinis <matiss@marolind.com>\n"
+"PO-Revision-Date: 2014-07-26 14:03+0000\n"
+"Last-Translator: Jānis-Marks Gailis <jm-gailis@fai-vianet.fr>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-06-30 06:03+0000\n"
-"X-Generator: Launchpad (build 17077)\n"
+"X-Launchpad-Export-Date: 2014-07-27 06:24+0000\n"
+"X-Generator: Launchpad (build 17131)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:43
@@ -361,19 +361,19 @@ msgstr ""
 #: ../src/Dialogs/NotImportedWindow.vala:71
 #: ../src/Dialogs/RemoveFilesDialog.vala:50
 msgid "Move to Trash"
-msgstr ""
+msgstr "Pārvietot uz miskasti"
 
 #: ../src/Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr ""
+msgstr "Ignorēt"
 
 #: ../src/Dialogs/NotImportedWindow.vala:93
 msgid "del"
-msgstr ""
+msgstr "dzēst"
 
 #: ../src/Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "Faila atrašanās vieta"
 
 #: ../src/Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
@@ -381,7 +381,7 @@ msgstr ""
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
-msgstr ""
+msgstr "Noņemt no %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:61
 msgid "Remove %d Songs From %s?"
@@ -407,11 +407,11 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:94 ../src/Dialogs/MediaEditor.vala:94
 msgid "Close"
-msgstr ""
+msgstr "Aizvērt"
 
 #: ../src/Dialogs/PreferencesWindow.vala:129
 msgid "General"
-msgstr ""
+msgstr "Vispārīgi"
 
 #: ../src/Dialogs/PreferencesWindow.vala:135
 msgid "Music Folder Location:"
@@ -457,12 +457,12 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:50
 #: ../src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "Rules"
-msgstr ""
+msgstr "Noteikumi"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:51
 #: ../src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "Options"
-msgstr ""
+msgstr "Opcijas"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:62
 msgid "Playlist Title"
