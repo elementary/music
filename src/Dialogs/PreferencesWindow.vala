@@ -95,7 +95,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         resizable = false;
         window_position = Gtk.WindowPosition.CENTER;
         type_hint = Gdk.WindowTypeHint.DIALOG;
-        transient_for = parent_window;
 
         (get_header_bar () as Gtk.HeaderBar).show_close_button = false;
         get_header_bar ().get_style_context ().remove_class ("header-bar");
