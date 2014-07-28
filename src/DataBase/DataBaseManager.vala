@@ -139,8 +139,7 @@ public class Noise.DataBaseManager : GLib.Object {
                 s.date_added = (uint)results.fetch_int(23);
                 s.last_played = (uint)results.fetch_int(24);
                 s.last_modified = (uint)results.fetch_int(25);
-                s.mediatype = (MediaType)results.fetch_int(26);
-                s.rowid = results.fetch_int(27);
+                s.rowid = results.fetch_int(26);
                 
                 if (max_id < s.rowid)
                     max_id = s.rowid;
@@ -171,11 +170,10 @@ public class Noise.DataBaseManager : GLib.Object {
             transaction = database.begin_transaction();
             Query query = transaction.prepare ("""INSERT INTO `media` (`uri`, `file_size`, `title`, `artist`, `composer`, `album_artist`,
 `album`, `grouping`, `genre`, `comment`, `lyrics`, `has_embedded`, `year`, `track`, `track_count`, `album_number`, `album_count`,
-`bitrate`, `length`, `samplerate`, `rating`, `playcount`, `skipcount`, `dateadded`, `lastplayed`, `lastmodified`, `mediatype`, `rowid`)
+`bitrate`, `length`, `samplerate`, `rating`, `playcount`, `skipcount`, `dateadded`, `lastplayed`, `lastmodified`, `rowid`)
 VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping,
 :genre, :comment, :lyrics, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate,
-:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :mediatype,
-:rowid);""");
+:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :rowid);""");
 
             foreach (var s in media) {
                 if (s.rowid >= 0 && !s.isTemporary) {
@@ -205,7 +203,6 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
                     query.set_int(":dateadded", (int)s.date_added);
                     query.set_int(":lastplayed", (int)s.last_played);
                     query.set_int(":lastmodified", (int)s.last_modified);
-                    query.set_int(":mediatype", s.mediatype);
                     query.set_int(":rowid", s.rowid);
 
                     query.execute();
@@ -245,7 +242,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
 composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics,
  has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number,
 album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount,
-dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediatype=:mediatype, rowid=:rowid WHERE uri=:uri""");
+dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=:rowid WHERE uri=:uri""");
 
             foreach(Media s in media) {
                 if(s.rowid != -2 && s.rowid > 0) {
@@ -275,7 +272,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
                     query.set_int(":dateadded", (int)s.date_added);
                     query.set_int(":lastplayed", (int)s.last_played);
                     query.set_int(":lastmodified", (int)s.last_modified);
-                    query.set_int(":mediatype", s.mediatype);
                     query.set_int(":rowid", s.rowid);
 
                     query.execute();

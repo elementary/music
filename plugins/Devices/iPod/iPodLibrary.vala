@@ -33,8 +33,6 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     private unowned GPod.iTunesDB db;
     Gee.HashMap<unowned GPod.Track, Noise.Media> medias;
     Gee.LinkedList<Noise.Media> searched_medias;
-    Gee.HashMap<unowned GPod.Track, Noise.Media> podcasts;
-    Gee.HashMap<unowned GPod.Track, Noise.Media> audiobooks;
     Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist> playlists;
     Gee.HashMap<unowned GPod.Playlist, Noise.SmartPlaylist> smart_playlists;
     Device device;
@@ -45,8 +43,6 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         this.db = db;
         this.device = device;
         medias = new Gee.HashMap<unowned GPod.Track, Noise.Media>();
-        podcasts = new Gee.HashMap<unowned GPod.Track, Noise.Media>();
-        audiobooks = new Gee.HashMap<unowned GPod.Track, Noise.Media>();
         playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist>();
         smart_playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.SmartPlaylist>();
         searched_medias = new Gee.LinkedList<Noise.Media>();
@@ -64,31 +60,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
                 unowned GPod.Track t = db.tracks.nth_data (i);
                 var m = iPodMediaHelper.media_from_track (device.get_uri (), t);
                 if (m.file_exists && !this.medias.has (t, m)) {
-                    if (t.mediatype == GPod.MediaType.AUDIO) {
-                        this.medias.set (t, m);
-                    } else if (t.mediatype == GPod.MediaType.PODCAST || t.mediatype == 0x00000006) { // 0x00000006 = video podcast
-                        this.podcasts.set (t, m);
-                    } else if (t.mediatype == GPod.MediaType.AUDIOBOOK || t.mediatype == 12) {
-                        this.audiobooks.set (t, m);
-                    } else if (t.mediatype == GPod.MediaType.MUSICVIDEO) {
-                        warning("musicvideo");
-                    } else if (t.mediatype == GPod.MediaType.TVSHOW) {
-                        warning("tvshow");
-                    } else if (t.mediatype == GPod.MediaType.RINGTONE) {
-                        warning("ringtone");
-                    } else if (t.mediatype == GPod.MediaType.RENTAL) {
-                        warning("rental");
-                    } else if (t.mediatype == GPod.MediaType.ITUNES_EXTRA) {
-                        warning("itunes_extra");
-                    } else if (t.mediatype == GPod.MediaType.MEMO) {
-                        warning("memo");
-                    } else if (t.mediatype == GPod.MediaType.ITUNES_U) {
-                        warning("itunes_u");
-                    } else if (t.mediatype == GPod.MediaType.EPUB_BOOK) {
-                        warning("epub");
-                    } else {
-                        warning ("%u", t.mediatype);
-                    }
+                    this.medias.set (t, m);
                 }
             }
 
@@ -187,14 +159,6 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
 
         unowned GPod.Playlist mpl = db.playlist_mpl();
         mpl.add_track(added, -1);
-        if (added.mediatype == GPod.MediaType.PODCAST) {
-            unowned GPod.Playlist ppl = db.playlist_podcasts();
-            ppl.add_track(added, -1);
-        }
-        /*else if (added.mediatype == GPod.MediaType.AUDIOBOOK) {
-            unowned GPod.Playlist apl = db.playlist_audiobooks();
-            apl.add_track(added, -1);
-        }*/
 
         bool success = false;
         try {
@@ -206,12 +170,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
 
         if (success) {
             Noise.Media on_ipod = iPodMediaHelper.media_from_track (device.get_uri(), added);
-            if (added.mediatype == GPod.MediaType.AUDIO)
-                this.medias.set (added, on_ipod);
-            else if (added.mediatype == GPod.MediaType.PODCAST)
-                this.podcasts.set (added, on_ipod);
-            else if (added.mediatype == GPod.MediaType.AUDIOBOOK)
-                this.audiobooks.set (added, on_ipod);
+            this.medias.set (added, on_ipod);
         } else {
             warning ("Failed to copy track %s to iPod. Removing it from database.\n", added.title);
             remove_media_from_ipod (added);
@@ -417,8 +376,6 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
             }
 
             medias.unset_all (removed);
-            podcasts.unset_all (removed);
-            audiobooks.unset_all (removed);
             if (!operation_cancelled) {
                 libraries_manager.current_operation = _("Finishing sync process…");
                 try {

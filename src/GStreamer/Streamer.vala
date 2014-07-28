@@ -177,26 +177,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
                 if (tag_list.get_tag_size (Gst.Tags.TITLE) > 0) {
                     string title = "";
                     tag_list.get_string (Gst.Tags.TITLE, out title);
-                    
-                    if (App.player.media_info.media.mediatype == 3 && title != "") { // is radio
-                        string[] pieces = title.split("-", 0);
-                        
-                        if (pieces.length >= 2) {
-                            string old_title = App.player.media_info.media.title;
-                            string old_artist = App.player.media_info.media.artist;
-                            App.player.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : _("Unknown Artist");
-                            App.player.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
-                            
-                            if ((old_title != App.player.media_info.media.title || old_artist != App.player.media_info.media.artist) && (App.player.media_info.media != null))
-                                App.main_window.media_played (App.player.media_info.media); // pretend as if media changed
-                        } else {
-                            // if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
-                            NotificationManager.get_default ().doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
-                        }
-                        
-                    }
                 }
-                
             }
             break;
         default:
@@ -205,23 +186,4 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
  
         return true;
     }
-    
-    // no longer used since it would cause bugs
-    /*void about_to_finish() {
-        int i = App.player.getNext(false);
-        Media s = App.library_manager.media_from_id(i);
-        if(s != null && s.mediatype != 3) { // don't do this with radio stations
-            pipe.playbin.uri = s.uri; // probably cdda
-        }
-        else {
-            message ("not doing gapless in streamer because no next song\n");
-        }
-        
-        App.library_manager.next_gapless_id = i;
-        Idle.add( () => {
-            end_of_stream();
-            
-            return false;
-        });
-    }*/
 }

@@ -29,28 +29,15 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-// TODO: DEPRECATE
-public enum Noise.MediaType {
-    UNSPECIFIED,
-    SONG,
-    PODCAST,
-    AUDIOBOOK,
-    STATION
-}
-
 public class Noise.Media : Object {
     /// Used for unknown titles, artists, or album names.
     private static string UNKNOWN = _("Unknown");
 
     public int rowid { get; set; }
-    public MediaType mediatype { get; set; default = MediaType.SONG; }
 
     public string uri {
         owned get { return file.get_uri (); }
-        set { file = File.new_for_uri (value); 
-                if(value.has_prefix("http:/")) {
-                mediatype = MediaType.STATION;
-                album_artist = _("Radio Station");}}
+        set {file = File.new_for_uri (value);}
     }
 
     public uint64 file_size { get; set; default = 0; }
@@ -212,7 +199,6 @@ public class Noise.Media : Object {
     public Media copy () {
         Media rv = new Media (uri);
 
-        rv.mediatype = mediatype;
         rv.file_size = file_size;
         rv.track = track;
         rv.track_count = track_count;

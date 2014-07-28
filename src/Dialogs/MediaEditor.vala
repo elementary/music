@@ -165,8 +165,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
                 sum.bpm = 0;
             if(s.rating != sum.rating)
                 sum.rating = 0;
-            if(s.mediatype != sum.mediatype)
-                sum.mediatype = 0;
             //score = 0;
             //play_count = 0;
             //skip_count = 0;
@@ -200,9 +198,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         fields.set("Disc", new FieldEditor(_("Disc"), sum.album_number.to_string(), new Gtk.SpinButton.with_range(0, 500, 1)));
         fields.set("Year", new FieldEditor(_("Year"), sum.year.to_string(), new Gtk.SpinButton.with_range(0, 9999, 1)));
         fields.set("Rating", new FieldEditor(_("Rating"), sum.rating.to_string(), new Granite.Widgets.Rating(false, Gtk.IconSize.MENU)));
-#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-        fields.set("Media Type", new FieldEditor(_("Media Type"), sum.mediatype.to_string(), new Gtk.ComboBoxText()));
-#endif
 
         var vert = new Gtk.Box (Gtk.Orientation.VERTICAL, 0); // separates editors with buttons and other stuff
         var horiz = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0); // separates text with numerical editors
@@ -222,9 +217,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         numerVert.pack_start(fields.get("Grouping"), false, true, 5);
         numerVert.pack_start(fields.get("Year"), false, true, 5);
         numerVert.pack_start(fields.get("Rating"), false, true, 5);
-#if HAVE_PODCASTS || HAVE_INTERNET_RADIO
-        numerVert.pack_end(fields.get("Media Type"), false, true, 5);
-#endif
         //if(medias.size == 1)
             //numerVert.pack_start(stats, false, true, 5);
 
@@ -368,9 +360,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         fields.get("Rating").set_value(sum.rating.to_string());
         fields.get("Composer").set_value(sum.composer);
         fields.get("Grouping").set_value(sum.grouping);
-#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-        fields.get("Media Type").set_value(sum.mediatype.to_string());
-#endif    
         if(lyricsText == null) {
             var lyrics = createLyricsContent ();
             stack.add_titled (lyrics, "lyrics", _("Lyrics"));
@@ -411,12 +400,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
                 s.year = int.parse(fields.get("Year").get_value());
             if(fields.get("Rating").checked())
                 s.rating = int.parse(fields.get("Rating").get_value());
-
-#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-            if(fields.get("Media Type").checked())
-                s.mediatype = int.parse(fields.get("Media Type").get_value());
-#endif
-                
             // save lyrics
             if(lyricsText != null) {
                 var lyrics = lyricsText.get_buffer().text;
@@ -448,9 +431,6 @@ public class Noise.FieldEditor : Gtk.Box {
     private Gtk.SpinButton spinButton;
     private Granite.Widgets.Rating ratingWidget;
     private Gtk.Image image;
-#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-    private Gtk.ComboBoxText comboBox;
-#endif
     //private DoubleSpinButton doubleSpinButton;
 
     public FieldEditor(string name, string original, Gtk.Widget w) {
@@ -530,21 +510,6 @@ public class Noise.FieldEditor : Gtk.Box {
             
             this.pack_start(ratingWidget, true, true, 0);
         }
-#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-        else if(w is Gtk.ComboBoxText) {
-            check.set_active(original != "0");
-            
-            comboBox = (Gtk.ComboBoxText)w;
-            comboBox.append_text(_("Song"));
-#if HAVE_PODCASTS
-            comboBox.append_text(_("Podcast"));
-#endif
-            comboBox.set_active(int.parse(original));
-            comboBox.changed.connect(comboChanged);
-            
-            this.pack_start(comboBox, true, true, 0);
-        }
-#endif
     }
     
     public void set_check_visible(bool val) {
@@ -578,14 +543,6 @@ public class Noise.FieldEditor : Gtk.Box {
         else
             check.set_active(false);
     }
-#if HAVE_PODCASTS && HAVE_INTERNET_RADIO    
-    public virtual void comboChanged() {
-        if(comboBox.get_active() != int.parse(_original))
-            check.set_active(true);
-        else
-            check.set_active(false);
-    }
-#endif
     
     public bool checked() {
         return check.get_active();
@@ -607,11 +564,6 @@ public class Noise.FieldEditor : Gtk.Box {
         else if(ratingWidget != null) {
             ratingWidget.rating = int.parse (_original);
         }
-#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-        else if(comboBox != null) {
-            comboBox.set_active(int.parse(_original));
-        }
-#endif
     }
     
     public string get_value() {
@@ -630,11 +582,6 @@ public class Noise.FieldEditor : Gtk.Box {
         else if(ratingWidget != null) {
             return ratingWidget.rating.to_string();
         }
-#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-        else if(comboBox != null) {
-            return comboBox.get_active().to_string();
-        }
-#endif
         
         return "";
     }
@@ -655,11 +602,6 @@ public class Noise.FieldEditor : Gtk.Box {
         else if(ratingWidget != null) {
             ratingWidget.rating = int.parse (val);
         }
-#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
-        else if(comboBox != null) {
-            comboBox.set_active(int.parse(val));
-        }
-#endif
     }
 }
 
