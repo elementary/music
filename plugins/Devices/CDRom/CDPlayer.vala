@@ -182,8 +182,7 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
 
             if(newstate != Gst.State.PLAYING)
                 break;
-            
-            
+
             break;
         case Gst.MessageType.TAG:
             Gst.TagList tag_list;
@@ -193,27 +192,8 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
                 if (tag_list.get_tag_size (Gst.Tags.TITLE) > 0) {
                     string title = "";
                     tag_list.get_string (Gst.Tags.TITLE, out title);
-                    
-                    if (App.player.media_info.media.mediatype == 3 && title != "") { // is radio
-                        string[] pieces = title.split("-", 0);
-                        
-                        if (pieces.length >= 2) {
-                            string old_title = App.player.media_info.media.title;
-                            string old_artist = App.player.media_info.media.artist;
-                            App.player.media_info.media.artist = (pieces[0] != null || pieces[0] != "") ? pieces[0].chug().strip() : _("Unknown Artist");
-                            App.player.media_info.media.title = (pieces[1] != null || pieces[1] != "") ? pieces[1].chug().strip() : title;
-                            
-                            if ((old_title != App.player.media_info.media.title || old_artist != App.player.media_info.media.artist) && (App.player.media_info.media != null))
-                                App.main_window.media_played (App.player.media_info.media); // pretend as if media changed
-                        }
-                        else {
-                            // if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
-                            NotificationManager.get_default ().doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
-                        }
-                        
-                    }
+                    NotificationManager.get_default ().doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
                 }
-                
             }
             break;
         default:

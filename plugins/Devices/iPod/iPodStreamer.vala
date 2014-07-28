@@ -160,21 +160,7 @@ public class  Noise.Plugins.iPodStreamer : Noise.Playback, GLib.Object {
                 string title = "";
                 tag_list.get_string (Gst.Tags.TITLE, out title);
                 unowned Media media = App.player.media_info.media;
-                if (media.mediatype == 3 && title != "") { // is radio
-                    string[] pieces = title.split("-", 0);
-                    if (pieces.length >= 2) {
-                        string old_title = media.title;
-                        string old_artist = media.artist;
-                        media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : _("Unknown Artist");
-                        media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
-                        if ((old_title != media.title || old_artist != media.artist) && (media != null))
-                            App.main_window.media_played (media); // pretend as if media changed
-
-                    } else {
-                        // if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
-                        NotificationManager.get_default ().doSongNotification (media.album_artist + "\n" + title);
-                    }
-                }
+                NotificationManager.get_default ().doSongNotification (media.album_artist + "\n" + title);
 
                 break;
             default:

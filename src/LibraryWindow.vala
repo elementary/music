@@ -729,14 +729,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         fileImportMusic.set_sensitive (!doing_ops && folder_set);
 
-        if(doing_ops) {
+        if (doing_ops) {
             topDisplay.show_progressbar ();
-        }
-        else if(media_active && App.player.media_info.media.mediatype == 3) {
-            topDisplay.hide_scale_and_progressbar ();
-        }
-        else {
-            topDisplay.show_scale();
+        } else {
+            topDisplay.show_scale ();
         }
 
         // Play, pause, ...
@@ -1108,7 +1104,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void play_previous_media (bool inhibit_notifications = false) {
-        if(App.player.player.get_position() < 5000000000 || (App.player.media_active && App.player.media_info.media.mediatype == 3)) {
+        if (App.player.player.get_position () < 5000000000) {
             bool play = true;
             var prev = App.player.getPrevious(true);
 

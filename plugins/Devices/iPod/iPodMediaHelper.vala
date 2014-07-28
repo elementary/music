@@ -54,23 +54,6 @@ public class Noise.Plugins.iPodMediaHelper {
         rv.skip_count = track.skipcount;
         rv.length = (uint)track.tracklen;
         rv.file_size = track.size;
-
-        if(track.mediatype == GPod.MediaType.AUDIO)
-            rv.mediatype = MediaType.SONG;
-/*
-        else if(track.mediatype == GPod.MediaType.PODCAST) {
-            rv.mediatype = MediaType.PODCAST;
-            rv.is_video = false;
-        } else if(track.mediatype == 0x00000006) {
-            rv.mediatype = MediaType.PODCAST;
-            rv.is_video = true;
-        } else if(track.mediatype == GPod.MediaType.AUDIOBOOK)
-            rv.mediatype = MediaType.AUDIOBOOK;
-
-        rv.podcast_url = track.podcasturl;
-        rv.is_new_podcast = track.mark_unplayed == 1;
-        rv.podcast_date = (int)track.time_released;
-*/
         rv.resume_pos = (int)track.bookmark_time;
 
         if(rv.artist == "" && rv.album_artist != "")
@@ -111,23 +94,8 @@ public class Noise.Plugins.iPodMediaHelper {
         t.mediatype = GPod.MediaType.AUDIO;
         t.lyrics_flag = 1;
         t.description = m.lyrics;
-
-        if (m.mediatype == MediaType.SONG)
-            t.mediatype = GPod.MediaType.AUDIO;
-/*
-        else if (m.mediatype == MediaType.PODCAST) {
-            if (m.is_video)
-                t.mediatype = 0x00000006;
-            else
-                t.mediatype = GPod.MediaType.PODCAST;
-        }
-        else if (m.mediatype == MediaType.AUDIOBOOK)
-            t.mediatype = GPod.MediaType.AUDIOBOOK;
-*/        
-        //t.podcasturl = m.podcast_url;
         t.mark_unplayed = (m.play_count == 0) ? 1 : 0;
         t.bookmark_time = m.resume_pos;
-        //t.time_released = m.podcast_date;
 
         if (t.artist == "" && (t.albumartist != "" || t.albumartist != null))
             t.artist = t.albumartist;

@@ -32,11 +32,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Gtk.CheckButton sync_music_check;
     Gtk.ComboBox sync_music_combobox;
     Gtk.ListStore music_list;
-#if HAVE_PODCASTS
-    Gtk.CheckButton sync_podcasts_check;
-    Gtk.ComboBox sync_podcasts_combobox;
-    Gtk.ListStore podcast_list;
-#endif
     /*Gtk.CheckButton sync_audiobooks_check;
     Gtk.ComboBox sync_audiobooks_combobox;
     Gtk.ListStore audiobook_list;*/
@@ -98,21 +93,11 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         
         var sync_options_label = new Gtk.Label (_("Sync:"));
         sync_options_label.set_alignment (1, 0.5f);
-        
+
         sync_music_check = new Gtk.CheckButton ();
         sync_music_combobox = new Gtk.ComboBox ();
         music_list = new Gtk.ListStore (3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
-        
-        /*sync_audiobooks_check = new Gtk.CheckButton ();
-        sync_audiobooks_combobox = new Gtk.ComboBox ();
-        audiobook_list = new Gtk.ListStore (3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));*/
-        
-#if HAVE_PODCASTS
-        sync_podcasts_check = new Gtk.CheckButton ();
-        sync_podcasts_combobox = new Gtk.ComboBox ();
-        podcast_list = new Gtk.ListStore (3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
-#endif
-        
+
         device_image = new Gtk.Image.from_gicon (dev.get_icon (), Gtk.IconSize.DIALOG);
         space_widget = new SpaceWidget (dev.get_capacity());
 
@@ -140,18 +125,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         content_grid.attach (sync_options_label,  1, 3, 1, 1);
         content_grid.attach (sync_music_check,    2, 3, 1, 1);
         content_grid.attach (sync_music_combobox, 3, 3, 1, 1);
-        
-#if HAVE_PODCASTS
-        if(dev.supports_podcasts()) {
-            content_grid.attach (sync_podcasts_check,    2, 4, 1, 1);
-            content_grid.attach (sync_podcasts_combobox, 3, 4, 1, 1);
-        }
-#endif
-        
-        /*if(dev.supports_audiobooks()) {
-            audiobookBox.attach(sync_audiobooks, false, false, 0);
-            audiobookBox.attach(sync_audiobooks_combobox, false, false, 0);
-        }*/
         
         /* Add fake label to be centered */
         
@@ -181,9 +154,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         /* set initial values*/
         auto_sync_switch.active = dev.get_preferences ().sync_when_mounted;
         sync_music_check.active = dev.get_preferences ().sync_music;
-#if HAVE_PODCASTS
-        sync_podcasts_check.active = dev.get_preferences ().sync_podcasts;
-#endif
         //syncAudiobooks.active = dev.get_preferences ().sync_audiobooks;
         
         if(dev.get_preferences ().sync_all_music || dev.get_preferences().music_playlist == null)
@@ -197,46 +167,11 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 sync_music_combobox.set_active (0);
             }
         }
-
-#if HAVE_PODCASTS
-        if (dev.get_preferences ().sync_all_podcasts)
-            sync_podcasts_combobox.set_active(0);
-
-        else {
-            bool success = sync_podcasts_combobox.set_active_id(dev.get_preferences().podcast_playlist);
-            if (!success) {
-                //NotificationManager.get_default ().doAlertNotification ("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().podcast_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
-                dev.get_preferences ().podcast_playlist = "";
-                dev.get_preferences ().sync_all_podcasts = true;
-                sync_podcasts_combobox.set_active (0);
-            }
-        }
-#endif
-
-        /*if(dev.get_preferences().sync_all_audiobooks)
-            audiobookDropdown.set_active(0);
-        else {
-            bool success = audiobookDropdown.set_active_id(dev.get_preferences().audiobook_playlist);
-            if(!success) {
-                //NotificationManager.get_default ().doAlertNotification ("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
-                dev.get_preferences().audiobook_playlist = "";
-                dev.get_preferences().sync_all_audiobooks = true;
-                audiobookDropdown.set_active(0);
-            }
-        }*/
         
         /* hop onto signals to save preferences */
         auto_sync_switch.notify["active"].connect (save_preferences);
         sync_music_check.toggled.connect (save_preferences);
-#if HAVE_PODCASTS
-        sync_podcasts_check.toggled.connect (save_preferences);
-#endif
-        //syncAudiobooks.toggled.connect (save_preferences);
         sync_music_combobox.changed.connect (save_preferences);
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.changed.connect (save_preferences);
-#endif
-        //audiobookDropdown.changed.connect (save_preferences);
         
         device_name_entry.changed.connect (device_name_changed);
         space_widget.sync_clicked.connect (sync_clicked);
@@ -254,91 +189,34 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     private void refresh_space_widget () {
         uint64 other_files_size = 0;
         uint64 music_size = 0;
-#if HAVE_PODCASTS
-        uint64 podcast_size = 0;
-#endif
-        //double audiobook_size = 0.0;
 
 
         foreach (var m in dev.get_library ().get_medias ()) {
             if (m != null)
                 music_size += m.file_size;
         }
-#if HAVE_PODCASTS
-        foreach(int i in dev.get_podcasts ()) {
-            podcast_size += lm.media_from_id(i).file_size;
-        }
-#endif
-
-#if HAVE_PODCASTS
-        // Get other used space
-        other_files_size = dev.get_used_space () - music_size - podcast_size;
-#else
         other_files_size = dev.get_used_space () - music_size;
-#endif
-        //foreach(int i in dev.get_audiobooks()) {
-        //    audiobook_size += (double)(lm.media_from_id(i).file_size);
-        //}
         
         space_widget.update_item_size (music_index, music_size);
-#if HAVE_PODCASTS
-        space_widget.update_item_size (podcast_index, podcast_size);
-#endif
         space_widget.update_item_size (files_index, other_files_size);
         //spaceWidget.update_item_size (audiobook_index, audiobook_size);
     }
     
     private void setup_lists() {
         sync_music_combobox.set_model (music_list);
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.set_model (podcast_list);
-#endif
-        //audiobookDropdown.set_model (audiobookList);
-        
         sync_music_combobox.set_id_column (1);
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.set_id_column (1);
-#endif
-        //audiobookDropdown.set_id_column(1);
-        
         sync_music_combobox.set_row_separator_func (rowSeparatorFunc);
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.set_row_separator_func (rowSeparatorFunc);
-#endif
-        //audiobookDropdown.set_row_separator_func(rowSeparatorFunc);
         
         var music_cell = new Gtk.CellRendererPixbuf ();
         sync_music_combobox.pack_start (music_cell, false);
         sync_music_combobox.add_attribute (music_cell, "pixbuf", 2);
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.pack_start (music_cell, false);
-        sync_podcasts_combobox.add_attribute (music_cell, "pixbuf", 2);
-#endif
-        //audiobookDropdown.pack_start (music_cell, false);
-        //audiobookDropdown.add_attribute (music_cell, "pixbuf", 2);
         
         var cell = new Gtk.CellRendererText ();
         cell.ellipsize = Pango.EllipsizeMode.END;
         sync_music_combobox.pack_start (cell, true);
         sync_music_combobox.add_attribute (cell, "text", 1);
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.pack_start (cell, true);
-        sync_podcasts_combobox.add_attribute (cell, "text", 1);
-#endif
-        //audiobookDropdown.pack_start (cell, true);
-        //audiobookDropdown.add_attribute (cell, "text", 1);
-        
         sync_music_combobox.popup.connect (refresh_lists);
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.popup.connect (refresh_lists);
-#endif
-        //audiobookDropdown.popup.connect (refreshLists);
-        
         sync_music_combobox.set_button_sensitivity (Gtk.SensitivityType.ON);
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.set_button_sensitivity (Gtk.SensitivityType.ON);
-#endif
-        //audiobookDropdown.set_button_sensitivity (SensitivityType.ON);
     }
     
     private bool rowSeparatorFunc (Gtk.TreeModel model, Gtk.TreeIter iter) {
@@ -357,31 +235,13 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         
         pref.sync_when_mounted = auto_sync_switch.active;
         pref.sync_music = sync_music_check.active;
-#if HAVE_PODCASTS
-        pref.sync_podcasts = sync_podcasts_check.active;
-#endif
-        //pref.sync_audiobooks = syncAudiobooks.active;
-        
         pref.sync_all_music = sync_music_combobox.get_active () == 0;
-
-#if HAVE_PODCASTS
-        pref.sync_all_podcasts = sync_podcasts_combobox.get_active () == 0;
-#endif
-        //pref.sync_all_audiobooks = audiobookDropdown.get_active () == 0;
         if (sync_music_combobox.get_active ()-2 >= 0)
             pref.music_playlist = playlists.get (sync_music_combobox.get_active ()-2);
         else
             pref.music_playlist = null;
-#if HAVE_PODCASTS
-        pref.podcast_playlist = libraries_manager.local_library.playlist_from_name (sync_podcasts_combobox.get_active_id ());
-#endif
-        //pref.audiobook_playlist = audiobookDropdown.get_active_id ();
         
         sync_music_combobox.sensitive = sync_music_check.active;
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.sensitive = sync_podcasts_check.active;
-#endif
-        //audiobookDropdown.sensitive = syncAudiobooks.active;
         
         ((LocalLibrary)libraries_manager.local_library).dbu.save_device (pref);
     }
@@ -402,117 +262,37 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         
         music_list.clear ();
         
-#if HAVE_PODCASTS
-        string podcastString = sync_podcasts_combobox.get_active_id ();
-        podcast_list.clear ();
-#endif
-        
-        //string audiobookString = audiobookDropdown.get_active_id ();
-        //audiobook_list.clear ();
-        
         Gtk.TreeIter iter;
         
         /* add entire library options */
         music_list.append (out iter);
         music_list.set (iter, 0, null, 1, _("All Music"), 2, Icons.MUSIC.render(Gtk.IconSize.MENU));
-#if HAVE_PODCASTS
-        podcast_list.append (out iter);
-        podcast_list.set (iter, 0, null, 1, _("All Podcasts"), 2, Icons.PODCAST.render(Gtk.IconSize.MENU));
-#endif
-        //audiobook_list.append(out iter);
-        //audiobook_list.set(iter, 0, null, 1, "All Audiobooks");//, 2, Icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
         
         /* add separator */
         music_list.append (out iter);
         music_list.set (iter, 0, null, 1, "<separator_item_unique_name>");
-#if HAVE_PODCASTS
-        podcast_list.append (out iter);
-        podcast_list.set (iter, 0, null, 1, "<separator_item_unique_name>");
-#endif
-        //audiobookList.append(out iter);
-        //audiobookList.set(iter, 0, null, 1, "<separator_item_unique_name>");
         
         /* add all playlists */
         foreach (var p in libraries_manager.local_library.get_smart_playlists ()) {
-            //bool music, podcasts, audiobooks;
-            //test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
-            
-            //if(music) {
-                music_list.append (out iter);
-                music_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
-                playlists.add (p);
-            //}
-#if HAVE_PODCASTS
-            //if(podcasts) {
-                podcast_list.append (out iter);
-                podcast_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
-            //}
-#endif
-            //if(audiobooks) {
-                //audiobook_list.append(out iter);
-                //audiobook_list.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
-            //}
+            music_list.append (out iter);
+            music_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
+            playlists.add (p);
         }
         foreach (var p in libraries_manager.local_library.get_playlists ()) {
-            //bool music, podcasts, audiobooks;
-            //test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
             if (p.read_only == false) {
-            
-            //if(music) {
                 music_list.append(out iter);
                 music_list.set(iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
                 playlists.add (p);
-            //}
-#if HAVE_PODCASTS
-            //if(podcasts) {
-                podcast_list.append(out iter);
-                podcast_list.set(iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
-            //}
-#endif
-            //if(audiobooks) {
-                //audiobook_list.append(out iter);
-                //audiobook_list.set(iter, 0, p, 1, p.name, 2, playlist_pix);
-            //}
             }
         }
         
         if (!sync_music_combobox.set_active_id (musicString))
             sync_music_combobox.set_active(0);
-#if HAVE_PODCASTS
-        if (!sync_podcasts_combobox.set_active_id (podcastString))
-            sync_podcasts_combobox.set_active(0);
-#endif
-        //if(!audiobookDropdown.set_active_id(audiobookString))
-        //    audiobookDropdown.set_active(0);
         
         message ("setting sensitivity\n");
         sync_music_combobox.sensitive = dev.get_preferences().sync_music;
-#if HAVE_PODCASTS
-        sync_podcasts_combobox.sensitive = dev.get_preferences().sync_podcasts;
-#endif
-        //audiobookDropdown.sensitive = dev.get_preferences().sync_audiobooks;
     }
-    
-    /*void test_media_types(Gee.Collection<int> items, out bool music, out bool podcasts, out bool audiobooks) {
-        music = false;
-        podcasts = false;
-        audiobooks = false;
-        
-        if(items.size == 0) {
-            music = true; podcasts = true; audiobooks = true;
-            return;
-        }
-        
-        foreach(int i in items) {
-            if(!music && lm.media_from_id(i).mediatype == 0)
-                music = true;
-            if(!podcasts && lm.media_from_id(i).mediatype == 1)
-                podcasts = true;
-            if(!audiobooks && lm.media_from_id(i).mediatype == 2)
-                audiobooks = true;
-        }
-    }*/
-    
+
     private void sync_finished () {
         refresh_space_widget ();
         space_widget.set_sync_button_sensitive (true);
@@ -525,7 +305,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         if (pref.sync_music) {
             if (pref.sync_all_music) {
                 foreach (var s in libraries_manager.local_library.get_medias ()) {
-                    if (s.mediatype == 0 && !s.isTemporary)
+                    if (s.isTemporary == false)
                         list.add (s);
                 }
             }
@@ -534,7 +314,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 
                 if (p != null) {
                     foreach (var m in p.medias) {
-                        if (m != null && m.mediatype == 0)
+                        if (m != null)
                             list.add (m);
                     }
                 }
@@ -548,60 +328,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 }
             }
         }
-
-#if HAVE_PODCASTS
-        if(pref.sync_podcasts) {
-            if(pref.sync_all_podcasts) {
-                foreach (var s in App.library_manager.media()) {
-                    if (s != null && s.mediatype == 1 && !s.isTemporary)
-                        list.add (s);
-                }
-            }
-            else {
-                GLib.Object p = pref.podcast_playlist;
-                
-                if(p != null) {
-                    foreach(var s in p.medias ()) {
-                        if(s.mediatype == 1 && !s.uri.has_prefix("http:/"))
-                            list.add(i);
-                    }
-                }
-                else {
-                    NotificationManager.get_default ().doAlertNotification (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.podcast_playlist + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
-                    pref.podcast_playlist = "";
-                    pref.sync_all_podcasts = true;
-                    sync_music_combobox.set_active(0);
-                    return;
-                }
-            }
-        }
-#endif
-
-        /*if(pref.sync_audiobooks) {
-            if(pref.sync_all_audiobooks) {
-                foreach(var s in lm.media()) {
-                    if(s.mediatype == 2 && !s.isTemporary)
-                        list.add(s.rowid);
-                }
-            }
-            else {
-                GLib.Object p = pref.audiobook_playlist;
-                
-                if(p != null) {
-                    foreach (var s in p.medias()) {
-                        if(s.mediatype == 2)
-                            list.add(i);
-                    }
-                }
-                else {
-                    NotificationManager.get_default ().doAlertNotification ("Sync Failed", "The playlist named <b>" + pref.audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
-                    pref.audiobook_playlist = "";
-                    pref.sync_all_audiobooks = true;
-                    sync_music_combobox.set_active(0);
-                    return;
-                }
-            }
-        }*/
         
         bool fits = dev.will_fit (list);
         if(!fits) {

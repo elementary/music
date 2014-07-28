@@ -545,9 +545,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         }
 
         change_gains_thread ();
-        
-        if ((m.mediatype == MediaType.PODCAST || m.mediatype == MediaType.AUDIOBOOK || use_resume_pos) && (player == file_player))
-            file_player.set_resume_pos = false;
 
         // actually play the media asap
         
