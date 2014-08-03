@@ -61,6 +61,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private FixedBin                  topDisplayBin;
 
     /* AppMenu items */
+    private Gtk.MenuButton    appMenu;
     private Gtk.Menu          settingsMenu;
     private Gtk.MenuItem      fileImportMusic;
     private Gtk.ImageMenuItem editPreferences;
@@ -244,6 +245,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         /** App menu widgets **/
 
+        appMenu                 = new Gtk.MenuButton ();
         settingsMenu            = new Gtk.Menu ();
         fileImportMusic         = new Gtk.MenuItem.with_label (_("Import to Library…"));
         editPreferences         = new Gtk.ImageMenuItem.from_stock ("preferences-system", null);
@@ -253,6 +255,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         settingsMenu.append (fileImportMusic);
         settingsMenu.append (new Gtk.SeparatorMenuItem ());
         settingsMenu.append (editPreferences);
+        settingsMenu.show_all ();
+        
+        var menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+        appMenu.set_image (menu_icon);
+        appMenu.popup = settingsMenu;
 
         fileImportMusic.activate.connect (fileImportMusicClick);
         editPreferences.activate.connect(editPreferencesClick);
@@ -287,7 +294,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.pack_start (playButton);
         headerbar.pack_start (nextButton);
         headerbar.pack_start (viewSelector);
-        headerbar.pack_end (((Noise.App) GLib.Application.get_default ()).create_appmenu (settingsMenu));
+        headerbar.pack_end (appMenu);
         headerbar.pack_end (searchField);
         headerbar.show_all ();
 
