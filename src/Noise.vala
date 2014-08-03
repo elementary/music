@@ -34,9 +34,11 @@ public class Noise.App : Granite.Application {
      * Translatable launcher (.desktop) strings to be added to template (.pot) file.
      * These strings should reflect any changes in these launcher keys in .desktop file
      */
+    public const string PROGRAM_NAME = "Noise";
     public const string COMMENT = N_("Listen to music");
     public const string GENERIC = N_("Music Player");
     public const string KEYWORDS = N_("Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;");
+    public const string QUICKLIST_ABOUT = N_("About ") + PROGRAM_NAME;
 
     public static PlaybackManager player { get; private set; }
     private LocalLibrary library_manager { get; private set; }
@@ -53,7 +55,7 @@ public class Noise.App : Granite.Application {
         build_version = Build.VERSION;
         build_version_info = Build.VERSION_INFO;
 
-        program_name = "Noise";
+        program_name = PROGRAM_NAME;
         exec_name = "noise";
 
         app_copyright = "2012-2014";
