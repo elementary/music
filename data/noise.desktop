@@ -13,9 +13,8 @@ X-GNOME-Gettext-Domain=noise
 X-GNOME-Keywords=Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;
 X-AppInstall-Keywords=Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;
 X-PulseAudio-Properties=media.role=music
+Actions=AboutDialog;
 
-X-Ayatana-Desktop-Shortcuts=AboutDialog
-
-[AboutDialog Shortcut Group]
-Name=About Music
+[Desktop Action AboutDialog]
 Exec=noise --about
+Name=About Noise
