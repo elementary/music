@@ -30,7 +30,7 @@ static bool check_list_element_has_suffix (Gee.Collection<string> list, string s
 void add_file_utils_tests () {
     Test.add_func ("/FileUtils/count_music_files", () => {
         var files = new Gee.ArrayList<string>();
-        assert (Noise.FileUtils.count_music_files (File.new_for_path ("../tests/data/count_music_files/"),
+        assert (Noise.FileUtils.count_music_files (File.new_for_path (TEST_DATA_FILE + "/data/count_music_files/"),
                 files) == 3);
         
         assert (check_list_element_has_suffix(files, "tests/data/count_music_files/file1.mp3"));

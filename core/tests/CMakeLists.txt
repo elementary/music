@@ -1,5 +1,7 @@
+configure_file (config.vala.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.vala)
 vala_precompile (CORE_VALA_C ${CORE_LIBRARY_NAME}_tests
   Tests.vala
+  ${CMAKE_CURRENT_BINARY_DIR}/config.vala
   PACKAGES
   ${CORE_PACKAGES}
   ${CORE_LIBRARY_NAME}
