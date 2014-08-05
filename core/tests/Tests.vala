@@ -40,7 +40,7 @@ void add_file_utils_tests () {
 
         files.clear();
 
-        assert (Noise.FileUtils.count_music_files (File.new_for_path ("../tests/data/count_music_files_subdir/"),
+        assert (Noise.FileUtils.count_music_files (File.new_for_path (TEST_DATA_FILE + "/data/count_music_files_subdir/"),
                 files) == 4);
         
         assert (check_list_element_has_suffix(files, "tests/data/count_music_files_subdir/file1.mp3"));
