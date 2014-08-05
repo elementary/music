@@ -207,7 +207,7 @@ namespace Noise.FileUtils {
                     files.add (file.get_uri ());
                 }
                 else if(file_info.get_file_type() == FileType.DIRECTORY) {
-                    count_music_files (file, files);
+                    index += count_music_files (file, files);
                 }
             }
         }

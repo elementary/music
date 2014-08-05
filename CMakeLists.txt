@@ -5,6 +5,8 @@ cmake_policy (VERSION 2.8)
 project (noise C)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
+enable_testing()
+
 set (GETTEXT_PACKAGE ${CMAKE_PROJECT_NAME})
 set (RELEASE_NAME "Luna")
 set (VERSION "0.3.0")
@@ -166,3 +168,8 @@ add_subdirectory (plugins)
 add_subdirectory (po)
 add_subdirectory (data)
 add_subdirectory (images)
+
+
+# Tests
+
+add_test (core core/tests/noise-core_tests)
