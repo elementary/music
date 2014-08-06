@@ -85,10 +85,10 @@ public class LastFM.SimilarMedias : Object {
                 Idle.add ( () => {
                     similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
                     similar_retrieved (similarIDs, similarDont);
+                    working = false;
                     return false;
                 });
         
-                working = false;
                 Idle.add ((owned) callback);
             });
 
