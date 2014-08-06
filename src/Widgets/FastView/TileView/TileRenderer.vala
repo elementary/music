@@ -198,7 +198,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         subtitle_text_layout.set_font_description (font_description);
         subtitle_text_layout.set_ellipsize (Pango.EllipsizeMode.END);
         subtitle_text_layout.set_alignment (Pango.Alignment.LEFT);
-        int text_width = pixbuf.width * Pango.SCALE;
+        int text_width = pixbuf != null ? pixbuf.width * Pango.SCALE : 0;
         subtitle_text_layout.set_width (text_width);
 
         ctx.save ();
