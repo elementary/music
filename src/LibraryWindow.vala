@@ -703,10 +703,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void update_playlist_badge (Playlist playlist) {
-        var entry = match_playlist_entry.get (playlist);
-        int media_count = playlist.medias.size;
-        string new_badge = media_count > 0 ? media_count.to_string() : "";
-        entry.badge = new_badge;
+        lock (match_playlist_entry) {
+            var entry = match_playlist_entry.get (playlist);
+            int media_count = playlist.medias.size;
+            string new_badge = media_count > 0 ? media_count.to_string() : "";
+            entry.badge = new_badge;
+        }
     }
 
     /**
