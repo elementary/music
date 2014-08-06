@@ -251,11 +251,11 @@ public class MprisPlayer : GLib.Object {
         changed_properties = null;
         
         try {
-            conn.emit_signal(null,
-                             "/org/mpris/MediaPlayer2", 
-                             "org.freedesktop.DBus.Properties", 
-                             "PropertiesChanged", 
-                             new Variant("(sa{sv}as)", 
+            conn.emit_signal (null,
+                              "/org/mpris/MediaPlayer2", 
+                              "org.freedesktop.DBus.Properties", 
+                              "PropertiesChanged", 
+                              new Variant("(sa{sv}as)", 
                                          INTERFACE_NAME, 
                                          builder, 
                                          invalidated_builder)
