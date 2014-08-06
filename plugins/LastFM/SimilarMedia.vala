@@ -82,11 +82,12 @@ public class LastFM.SimilarMedias : Object {
                 }
                 similarIDs.offer_head (s.rowid);
                 
-                similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
-                similar_retrieved (similarIDs, similarDont);
-        
-                working = false;
-                Idle.add ((owned) callback);
+                Idle.add ( () => {
+                    similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
+                    similar_retrieved (similarIDs, similarDont);
+                    working = false;
+                    return callback();
+                });
             });
 
             yield;
