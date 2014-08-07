@@ -55,7 +55,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         add_page (general_section.page);
 
         Plugins.Manager.get_default ().hook_preferences_window (this);
-
     }
 
 
@@ -85,11 +84,14 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         resizable = false;
         window_position = Gtk.WindowPosition.CENTER;
         type_hint = Gdk.WindowTypeHint.DIALOG;
-        transient_for = parent_window;
+
+        (get_header_bar () as Gtk.HeaderBar).show_close_button = false;
+        get_header_bar ().get_style_context ().remove_class ("header-bar");
 
         main_stack = new Gtk.Stack ();
         main_stackswitcher = new Gtk.StackSwitcher ();
         main_stackswitcher.set_stack (main_stack);
+        main_stackswitcher.halign = Gtk.Align.CENTER;
 
         var close_button = new Gtk.Button.with_label (_("Close"));
         close_button.clicked.connect (() => {this.destroy ();});
@@ -99,11 +101,12 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         button_box.pack_end (close_button);
         button_box.margin_right = 12;
 
-        var main_grid = new Gtk.Grid ();
-        main_grid.attach (main_stack, 0, 0, 1, 1);
-        main_grid.attach (button_box, 0, 1, 1, 1);
+        // Pack everything into the dialog
+        Gtk.Grid main_grid = new Gtk.Grid ();
+        main_grid.attach (main_stackswitcher, 0, 0, 1, 1);
+        main_grid.attach (main_stack, 0, 1, 1, 1);
+        main_grid.attach (button_box, 0, 2, 1, 1);
 
-        ((Gtk.HeaderBar) get_header_bar ()).set_custom_title (main_stackswitcher);
         ((Gtk.Container) get_content_area ()).add (main_grid);
     }
 }
