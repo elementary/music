@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-07-02 00:03+0000\n"
-"Last-Translator: Tom Gießmann <Unknown>\n"
+"PO-Revision-Date: 2014-08-06 19:30+0000\n"
+"Last-Translator: Raphael Isemann <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-07-02 06:47+0000\n"
-"X-Generator: Launchpad (build 17082)\n"
+"X-Launchpad-Export-Date: 2014-08-07 06:19+0000\n"
+"X-Generator: Launchpad (build 17147)\n"
 "Language: de\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -457,7 +457,7 @@ msgstr "Wiedergabe beim Schließen fortsetzen:"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Intelligente Wiedergabelistenbearbeitung"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:49
 #: ../src/Dialogs/SmartPlaylistEditor.vala:57
@@ -1746,7 +1746,7 @@ msgstr "Vorgang abgeschlossen!"
 
 #: ../plugins/LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
-msgstr "Komplette Anmeldung"
+msgstr "Anmeldung abschließen"
 
 #: ../plugins/LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
