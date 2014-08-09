@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-04-15 17:12+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
+"PO-Revision-Date: 2014-08-09 01:28+0000\n"
+"Last-Translator: Musa Amin <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-06-02 06:02+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-08-09 05:38+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 "Language: id\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -51,11 +51,11 @@ msgstr "Batal"
 
 #: ../core/Resources.vala:59
 msgid "Open"
-msgstr ""
+msgstr "Buka"
 
 #: ../core/Resources.vala:60
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -244,15 +244,15 @@ msgstr "Pengaturan"
 
 #: ../src/LibraryWindow.vala:263
 msgid "Previous"
-msgstr ""
+msgstr "Sebelumnya"
 
 #: ../src/LibraryWindow.vala:265
 msgid "Play"
-msgstr ""
+msgstr "Mainkan"
 
 #: ../src/LibraryWindow.vala:267
 msgid "Next"
-msgstr ""
+msgstr "Selanjutnya"
 
 #: ../src/LibraryWindow.vala:271
 msgid "Search Music"
@@ -793,15 +793,15 @@ msgstr "Podcast"
 
 #: ../src/Dialogs/MediaEditor.vala:683
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: ../src/Dialogs/MediaEditor.vala:687
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Statistik</b>"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Apakah Anda ingin menginstal plugin %s?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid ""
@@ -815,7 +815,7 @@ msgstr "Pasang Pengaya"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:52
 msgid "File not found"
-msgstr ""
+msgstr "Berkas tak ditemukan"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:58
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
@@ -836,7 +836,7 @@ msgstr "Hapus Lagu"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:87
 msgid "Find Song"
-msgstr ""
+msgstr "Cari Lagu"
 
 #: ../src/GStreamer/Streamer.vala:187 ../src/Objects/ArtistInfo.vala:27
 #: ../src/Objects/AlbumInfo.vala:26 ../plugins/Devices/CDRom/CDPlayer.vala:203
@@ -1004,7 +1004,7 @@ msgstr "Buka di Peramban Berkas"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Tindakan lain"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1356,7 +1356,7 @@ msgstr "Operasi perangkat dibatalkan dan dihentikan setelah media ini."
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "Ok"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
