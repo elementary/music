@@ -23,8 +23,8 @@ Forwarded: not-needed
 Reviewed-By: Sergey "Shnatsel" Davidoff <sergey@elementaryos.org>
 Last-Update: 2013-06-09
 
---- noise-0.2.orig/src/Noise.vala
-+++ noise-0.2/src/Noise.vala
+--- a/src/Noise.vala
++++ b/src/Noise.vala
 @@ -34,7 +34,7 @@
       * Translatable launcher (.desktop) strings to be added to template (.pot) file.
       * These strings should reflect any changes in these launcher keys in .desktop file
@@ -43,8 +43,8 @@ Last-Update: 2013-06-09
          exec_name = "noise";
  
          app_copyright = "2012-2014";
---- noise-0.2.orig/data/noise.desktop
-+++ noise-0.2/data/noise.desktop
+--- a/data/noise.desktop
++++ b/data/noise.desktop
 @@ -1,6 +1,6 @@
  [Desktop Entry]
  Type=Application
@@ -53,3 +53,10 @@ Last-Update: 2013-06-09
  GenericName=Music Player
  Comment=Listen to music
  Exec=noise %U
+@@ -17,4 +17,4 @@
+ 
+ [Desktop Action AboutDialog]
+ Exec=noise --about
+-Name=About Noise
+\ No newline at end of file
++Name=About Music
