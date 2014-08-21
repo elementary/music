@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-21 15:39-0500\n"
-"PO-Revision-Date: 2014-08-07 14:38+0000\n"
-"Last-Translator: Jörg BUCHMANN <Unknown>\n"
+"PO-Revision-Date: 2014-08-20 10:44+0000\n"
+"Last-Translator: nebalee <nebalee@outlook.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-08 06:51+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-08-21 06:37+0000\n"
+"X-Generator: Launchpad (build 17163)\n"
 "Language: de\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -608,11 +608,11 @@ msgstr "entspricht genau"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:364
 msgid "is at most"
-msgstr "wahrscheinlich"
+msgstr "ist höchstens"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:365
 msgid "is at least"
-msgstr "ist zumindest"
+msgstr "ist mindestens"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:377
 msgid "is within"
