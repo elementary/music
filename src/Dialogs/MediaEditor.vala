@@ -77,10 +77,13 @@ public class Noise.MediaEditor : Gtk.Dialog {
         var stack_switcher = new Gtk.StackSwitcher ();
         stack_switcher.set_stack (stack);
         stack_switcher.halign = Gtk.Align.CENTER;
+        stack_switcher.margin_bottom = 24;
+        stack_switcher.margin_top = 12;
         
         ((Gtk.HeaderBar) get_header_bar ()).set_custom_title (stack_switcher);
+        ((Gtk.HeaderBar) get_header_bar ()).show_close_button = false;
 
-        stack.add_titled (createBasicContent (), "metadata", _("Metadata"));
+        stack.add_titled (createBasicContent (), "metadata", _("Details"));
         if(_medias.size == 1)
             stack.add_titled (createLyricsContent (), "lyrics", _("Lyrics"));
         else
@@ -96,6 +99,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
         var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
         buttons.set_layout (Gtk.ButtonBoxStyle.END);
         buttons.set_spacing (6);
+        buttons.margin_top = 6;
 
         buttons.pack_start (arrows, false, false, 0);
         buttons.pack_end (close_button, false, false, 0);
