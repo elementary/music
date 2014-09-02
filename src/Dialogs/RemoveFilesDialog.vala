@@ -31,6 +31,14 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
     public signal void remove_media(bool response);
 
     public RemoveFilesDialog (Gee.LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
+        Object (use_header_bar: 1);
+
+        var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
+
+        (get_header_bar () as Gtk.HeaderBar).title = app_name;
+        (get_header_bar () as Gtk.HeaderBar).show_close_button = false;
+        get_header_bar ().get_style_context ().remove_class ("header-bar");
+        
         this.set_modal(true);
         this.set_transient_for (App.main_window);
         this.destroy_with_parent = true;
@@ -40,8 +48,6 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
 
         Gtk.Box padding = get_content_area () as Gtk.Box;
         padding.set_orientation (Gtk.Orientation.HORIZONTAL);
-
-        var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
 
         // initialize controls
         Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-warning", Gtk.IconSize.DIALOG);
