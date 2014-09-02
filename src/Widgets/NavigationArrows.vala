@@ -19,8 +19,8 @@
 public class Granite.Widgets.NavigationArrows : Gtk.Box {
     private const string PREVIOUS_ICON = "go-previous";
     private const string NEXT_ICON = "go-next";
-    private const string PREVIOUS_ICON_SYMBOLIC = "go-previous-symbolic";
-    private const string NEXT_ICON_SYMBOLIC = "go-next-symbolic";
+    private const string PREVIOUS_ICON_SYMBOLIC = "go-previous";
+    private const string NEXT_ICON_SYMBOLIC = "go-next";
 
     public signal void previous_clicked ();
     public signal void next_clicked ();
