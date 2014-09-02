@@ -872,10 +872,18 @@ msgid "Add music to your library."
 msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Change Music Folder"
+msgid "Import Music"
 msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr ""
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Change Music Folder"
+msgstr ""
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
 msgstr ""
 
@@ -1503,7 +1511,7 @@ msgid "All"
 msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:72
-msgid "Repeat All"
+msgid "Disable Repeat"
 msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:101

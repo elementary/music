@@ -50,6 +50,10 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         welcome_screen = new Granite.Widgets.Welcome (_("Get Some Tunes"),
             _("Add music to your library."/*" with one of the methods below."*/));
 
+        var import_music_icon = Icons.IMPORT.render (Gtk.IconSize.DIALOG, null);
+        welcome_screen.append_with_pixbuf (import_music_icon, _("Import Music"),
+            _("Import music from a source into your library."));
+
         var music_folder_icon = Icons.MUSIC_FOLDER.render (Gtk.IconSize.DIALOG, null);
         welcome_screen.append_with_pixbuf (music_folder_icon, _("Change Music Folder"),
             _("Load music from a folder, a network or an external disk."));
@@ -120,6 +124,8 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
     private void welcome_screen_activated (int index) {
         if (index == 0) {
+            App.main_window.fileImportMusicClick ();
+        } else if (index == 1) {
             if (!library.doing_file_operations ()) {
                 var file_chooser = new Gtk.FileChooserDialog (_("Select Music Folder"), App.main_window,
                                                               Gtk.FileChooserAction.SELECT_FOLDER,
