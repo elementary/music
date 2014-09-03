@@ -249,8 +249,11 @@ public class Noise.MediaEditor : Gtk.Dialog {
         text_scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         
         text_scroll.add(lyricsText);
+
+        var frame = new Gtk.Frame (null);
+        frame.add (text_scroll);
         
-        lyricsContent.pack_start(text_scroll, true, true, 0);
+        lyricsContent.pack_start(frame, true, true, 0);
         lyricsContent.pack_start(lyricsInfobarLabel, false, true, 5);
         
         lyricsText.set_size_request(400, -1);
