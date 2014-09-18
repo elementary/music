@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-09 16:02-0500\n"
+"POT-Creation-Date: 2014-09-17 15:56-0500\n"
 "PO-Revision-Date: 2014-08-02 19:29+0000\n"
 "Last-Translator: Jim Spentzos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-10 07:44+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:03+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -265,7 +265,7 @@ msgstr "Προτιμήσεις"
 msgid "Previous"
 msgstr "Προηγούμενο"
 
-#: ../src/LibraryWindow.vala:272
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
 msgstr "Αναπαραγωγή"
 
@@ -323,6 +323,10 @@ msgstr ""
 "λίστα του ιστορικού.\n"
 "Μπορείτε να χρησιμοποιήσετε αυτή τη λίστα για να δείτε όλα τα τραγούδια που "
 "έχουν αναπαραχθεί στην τρέχουσα συνεδρία."
+
+#: ../src/LibraryWindow.vala:1048
+msgid "Pause"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:1134
 msgid "Import Music"

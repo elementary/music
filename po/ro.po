@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-09 16:02-0500\n"
+"POT-Creation-Date: 2014-09-17 15:56-0500\n"
 "PO-Revision-Date: 2014-04-15 17:13+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2014-09-10 07:46+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:04+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: ro\n"
 
@@ -269,7 +269,7 @@ msgstr "Preferințe"
 msgid "Previous"
 msgstr ""
 
-#: ../src/LibraryWindow.vala:272
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
 msgstr ""
 
@@ -324,6 +324,10 @@ msgstr ""
 "După redarea parțială a piesei, este adaugată în lista cu istoric.\n"
 "Poți să folosești această listă pentru a vizualiza toate piesele redate în "
 "sesiunea curentă."
+
+#: ../src/LibraryWindow.vala:1048
+msgid "Pause"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:1134
 msgid "Import Music"

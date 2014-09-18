@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-09 16:02-0500\n"
+"POT-Creation-Date: 2014-09-17 15:56-0500\n"
 "PO-Revision-Date: 2012-12-09 12:14+0000\n"
 "Last-Translator: Minh Danh <r00t3rvn@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-10 07:46+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:05+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: vi\n"
 
@@ -263,7 +263,7 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: ../src/LibraryWindow.vala:272
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
 msgstr ""
 
@@ -311,6 +311,10 @@ msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
 "current session."
+msgstr ""
+
+#: ../src/LibraryWindow.vala:1048
+msgid "Pause"
 msgstr ""
 
 #: ../src/LibraryWindow.vala:1134

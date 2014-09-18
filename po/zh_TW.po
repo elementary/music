@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-09 16:02-0500\n"
+"POT-Creation-Date: 2014-09-17 15:56-0500\n"
 "PO-Revision-Date: 2014-06-23 01:15+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: \n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-10 07:47+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:06+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -259,7 +259,7 @@ msgstr "偏好設定"
 msgid "Previous"
 msgstr "上一首"
 
-#: ../src/LibraryWindow.vala:272
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
 msgstr "播放"
 
@@ -311,6 +311,10 @@ msgid ""
 msgstr ""
 "當一首歌的一部份已開始播放後，它會被加入歷史清單中。\n"
 "您可以用該清單來查看您本次作業階段中已播放過的歌曲。"
+
+#: ../src/LibraryWindow.vala:1048
+msgid "Pause"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:1134
 msgid "Import Music"

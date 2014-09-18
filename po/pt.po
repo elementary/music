@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-09 16:02-0500\n"
+"POT-Creation-Date: 2014-09-17 15:56-0500\n"
 "PO-Revision-Date: 2014-05-11 16:46+0000\n"
 "Last-Translator: Pedro Monteiro <Unknown>\n"
 "Language-Team: Portuguese\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-10 07:45+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:04+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -262,7 +262,7 @@ msgstr "Preferências"
 msgid "Previous"
 msgstr "Anterior"
 
-#: ../src/LibraryWindow.vala:272
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
 msgstr "Reproduzir"
 
@@ -319,6 +319,10 @@ msgstr ""
 "histórico.\n"
 "Pode utilizar esta lista para consultar todas as faixas que foram "
 "reproduzidas durante a sessão."
+
+#: ../src/LibraryWindow.vala:1048
+msgid "Pause"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:1134
 msgid "Import Music"

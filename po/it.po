@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-09 16:02-0500\n"
+"POT-Creation-Date: 2014-09-17 15:56-0500\n"
 "PO-Revision-Date: 2014-09-01 20:02+0000\n"
 "Last-Translator: Andrea Pivetta <vanpivix@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-10 07:45+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:04+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -263,7 +263,7 @@ msgstr "Preferenze"
 msgid "Previous"
 msgstr "Precedente"
 
-#: ../src/LibraryWindow.vala:272
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
 msgstr "Riproduci"
 
@@ -320,6 +320,10 @@ msgstr ""
 "alla cronologia.\n"
 "È possibile utilizzare questo elenco per visualizzare tutte le canzoni che "
 "sono state ascoltate durante la sessione corrente."
+
+#: ../src/LibraryWindow.vala:1048
+msgid "Pause"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:1134
 msgid "Import Music"
