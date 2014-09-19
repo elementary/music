@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 15:56-0500\n"
-"PO-Revision-Date: 2014-09-09 21:27+0000\n"
+"PO-Revision-Date: 2014-09-18 16:30+0000\n"
 "Last-Translator: Artem Anufrij <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-18 07:03+0000\n"
+"X-Launchpad-Export-Date: 2014-09-19 07:59+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: de\n"
 
@@ -325,7 +325,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #: ../src/LibraryWindow.vala:1134
 msgid "Import Music"
@@ -1676,19 +1676,19 @@ msgstr "<b>%s</b> synchronisieren …"
 #: ../plugins/Devices/iPod/iPodLibrary.vala:637
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:256
 msgid "Finishing sync process…"
-msgstr "Synchronisierung beenden …"
+msgstr "Synchronisierung wird beendet …"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:232
 #: ../plugins/Devices/iPod/iPodLibrary.vala:392
 #: ../plugins/Devices/iPod/iPodLibrary.vala:657
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:259
 msgid "Cancelling Sync…"
-msgstr "Synchronisierung abbrechen …"
+msgstr "Synchronisierung wird abgebrochen …"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:342
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
 msgid "Removing from <b>%s</b>…"
-msgstr "Von <b>%s</b> entfernen…"
+msgstr "Es wird von <b>%s</b> entfernt …"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:535
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:362
