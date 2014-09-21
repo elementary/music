@@ -1045,13 +1045,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     
     public virtual void playback_started () {
         playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-
+        playButton.set_tooltip_text (_("Pause"));
         debug ("playback started");
     }
     
     public virtual void playback_paused () {
         playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-
+        playButton.set_tooltip_text (_("Play"));
         debug ("playback paused");
     }
     
