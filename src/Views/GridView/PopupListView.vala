@@ -26,7 +26,8 @@ public class Noise.PopupListView : Window {
     public const int MIN_SIZE = 400;
 
     ViewWrapper view_wrapper;
-
+    
+    Gtk.Button new_cover;
     Gtk.Label album_label;
     Gtk.Label artist_label;
     Granite.Widgets.Rating rating;
@@ -75,6 +76,14 @@ public class Noise.PopupListView : Window {
         destroy_with_parent = true;
         skip_taskbar_hint = true;
 
+        // change cover button
+        new_cover = new Gtk.Button.from_icon_name ("insert-image", Gtk.IconSize.MENU);
+        new_cover.set_tooltip_text (_("Change album cover"));
+        new_cover.hexpand = album_change_cover.vexpand = false;
+        new_cover.halign = Gtk.Align.END;
+        new_cover.set_relief(Gtk.ReliefStyle.NONE);
+        new_cover.margin = 12;
+        
         // album artist/album labels
         album_label = new Gtk.Label ("");
         artist_label = new Gtk.Label ("");
@@ -108,18 +117,22 @@ public class Noise.PopupListView : Window {
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
         // customize rating
         rating.star_spacing = 16;
-        rating.margin_top = rating.margin_bottom = 16;
+        rating.margin_top = 16;
+
+        // Change Cover
+        
 
         // Add everything
         var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 #if !USE_GRANITE_DECORATED_WINDOW
         vbox.pack_start (close, false, false, 0);
-#endif
+#endif        
         vbox.pack_start (album_label, false, true, 0);
         vbox.pack_start (artist_label, false, true, 0);
         vbox.pack_start (list_view_scrolled, true, true, 0);
-        vbox.pack_start(rating, false, true, 0);
-
+        vbox.pack_start (rating, false, true, 0);
+        vbox.pack_start (new_cover, false, false, 0);
+        
         add(vbox);
 
         rating.rating_changed.connect(rating_changed);
@@ -246,6 +259,11 @@ public class Noise.PopupListView : Window {
                 }
             }
         }
+    }
+    
+    private void set_album_cover()
+    {
+    
     }
 
     /**
