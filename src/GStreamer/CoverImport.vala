@@ -30,6 +30,10 @@ public class Noise.CoverImport : GLib.Object {
     private Gee.LinkedList<Media> original_queue;
 
     private bool cancelled;
+    
+    private bool custom_import = false;
+    private Media custom_media = null;
+    private string custom_cover;
 
     public CoverImport () {
         uri_queue = new Gee.LinkedList<Media> ();
@@ -78,6 +82,31 @@ public class Noise.CoverImport : GLib.Object {
                 }
             }
         }
+    }
+    
+    public async void import_custom_file (Media media, string new_cover) {
+        custom_import = true;
+        custom_cover = new_cover;
+        custom_media = media;
+        
+        if (d == null) {
+            try {
+                d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
+            } catch (Error err) {
+                critical ("Could not create Gst discoverer object: %s", err.message);
+            }
+
+            d.discovered.connect (import_media);
+            d.finished.connect (() => {
+                d.stop ();
+                custom_import = false;
+                debug ("custom import finished");
+            });
+        } else {
+            d.stop ();
+        }
+        d.start ();
+        d.discover_uri_async (media.uri);
     }
 
     public void cancel_operations () {
@@ -161,8 +190,17 @@ public class Noise.CoverImport : GLib.Object {
             break;
         }
 
+        debug("gstreamer_discovery_successful: %s", gstreamer_discovery_successful.to_string());
+
         if (gstreamer_discovery_successful) {
-            var m = libraries_manager.local_library.media_from_uri (uri);
+            Media m = null;
+            
+            if(custom_import) {
+                m = custom_media;
+            }
+            else {
+                m = libraries_manager.local_library.media_from_uri (uri);
+            }
 
             // Get cover art
             if (m != null)
@@ -173,13 +211,23 @@ public class Noise.CoverImport : GLib.Object {
 
     private async void import_art_async (Media m, Gst.PbUtils.DiscovererInfo info) {
         var cache = CoverartCache.instance;
-        if (cache.has_image (m))
+        if (cache.has_image (m) && !custom_import)
             return;
 
         debug ("Importing cover art for: %s", info.get_uri ());
 
-        var pix = get_image (info.get_tags ());
+        Gdk.Pixbuf pix = null;
 
+        if(!custom_import)
+            pix = get_image (info.get_tags ());
+        else {
+            try {
+                pix = new Gdk.Pixbuf.from_file (custom_cover);
+            } catch (Error err) {
+                warning ("Could not get image from file [%s]: %s", custom_cover, err.message);
+            }
+        }
+        
         if (pix != null)
             yield cache.cache_image_async (m, pix);
         else

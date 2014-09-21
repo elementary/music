@@ -79,10 +79,11 @@ public class Noise.PopupListView : Window {
         // change cover button
         new_cover = new Gtk.Button.from_icon_name ("insert-image", Gtk.IconSize.MENU);
         new_cover.set_tooltip_text (_("Change album cover"));
-        new_cover.hexpand = album_change_cover.vexpand = false;
+        new_cover.hexpand = new_cover.vexpand = false;
         new_cover.halign = Gtk.Align.END;
         new_cover.set_relief(Gtk.ReliefStyle.NONE);
         new_cover.margin = 12;
+        new_cover.clicked.connect( () => { this.set_new_cover(); });
         
         // album artist/album labels
         album_label = new Gtk.Label ("");
@@ -261,9 +262,25 @@ public class Noise.PopupListView : Window {
         }
     }
     
-    private void set_album_cover()
+    private void set_new_cover()
     {
-    
+        var file = new Gtk.FileChooserDialog (_("Open"), this, Gtk.FileChooserAction.OPEN,
+            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
+
+        var image_filter = new Gtk.FileFilter ();
+        image_filter.set_filter_name (_("Image files"));
+        image_filter.add_mime_type ("image/*");
+
+        file.add_filter (image_filter);
+
+        if (file.run () == Gtk.ResponseType.ACCEPT) {
+            debug (file.get_uri ());
+            var medias_to_discover = new Gee.LinkedList<Media> ();
+            medias_to_discover.add_all (media_list);
+            App.main_window.library_manager.fo.cover_importer.import_custom_file (medias_to_discover.first (), file.get_filename ());
+        }
+        
+        file.destroy ();
     }
 
     /**

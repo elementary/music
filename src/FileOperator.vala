@@ -35,7 +35,7 @@ public class Noise.FileOperator : Object {
     public signal void rescan_cancelled ();
 
     public GStreamerTagger tagger;
-    CoverImport cover_importer;
+    public CoverImport cover_importer;
     
     bool inThread = false;
     Gee.LinkedList<Media> toSave;
