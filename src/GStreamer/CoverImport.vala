@@ -22,7 +22,6 @@
  */
 
 public class Noise.CoverImport : GLib.Object {
-    public signal void import_finished ();
     public signal void set_custom_cover_finished(Gdk.Pixbuf pix);
     
     private const int DISCOVER_SET_SIZE = 50;
@@ -33,7 +32,6 @@ public class Noise.CoverImport : GLib.Object {
     private Gee.LinkedList<Media> original_queue;
 
     private bool cancelled;
-    private bool import_is_performed;
 
     private Media custom_media = null;
     private string custom_cover;
@@ -41,7 +39,6 @@ public class Noise.CoverImport : GLib.Object {
     public CoverImport () {
         uri_queue = new Gee.LinkedList<Media> ();
         original_queue = new Gee.LinkedList<Media> ();
-        this.import_finished.connect(() => { import_is_performed = false; });
     }
 
     private void initialize_discoverer () {
@@ -65,18 +62,15 @@ public class Noise.CoverImport : GLib.Object {
             d.stop ();
             libraries_manager.local_library.media_imported (original_queue);
             original_queue.clear ();
-            import_finished ();
         } else if (custom_media != null) {
             debug ("custom import finished");
             d.stop ();
             custom_media = null;
-            import_finished ();
         } else if (uri_queue.size == 0) {
             debug ("queue finished");
             d.stop ();
             libraries_manager.local_library.media_imported (original_queue);
             original_queue.clear ();
-            import_finished ();
         } else {
             import_next_file_set.begin ();
         }
@@ -110,13 +104,8 @@ public class Noise.CoverImport : GLib.Object {
         cancelled = true;
     }
 
-    public bool is_import_performed () {
-        return import_is_performed;
-    }
-
     public void discoverer_import_media (Gee.Collection<Media> medias) {
         cancelled = false;
-        import_is_performed = true;
         var medias_to_discover = new Gee.LinkedList<Media> ();
         medias_to_discover.add_all (medias);
         var albums_to_process = new Gee.LinkedList<Album> ();
