@@ -36,7 +36,6 @@ public class Noise.PopupListView : Window {
     Granite.Widgets.Rating rating;
     GenericList list_view;
 
-    Album selected_album;
     Gee.Collection<Media> media_list;
 
     public PopupListView (GridView grid_view) {
@@ -168,8 +167,7 @@ public class Noise.PopupListView : Window {
         media_list = new Gee.LinkedList<Media> ();
         list_view.set_media (media_list);
 
-        selected_album = null;
-       // album_cover = new Gtk.Image();
+        album_cover.set_from_pixbuf (CoverartCache.instance.get_cover(new Media("")));
 
         // Reset size request
         set_size (MIN_SIZE);
@@ -189,7 +187,7 @@ public class Noise.PopupListView : Window {
 
     public void set_album (Album album) {
         reset ();
-        selected_album = album;
+
         lock(media_list) {
 
             string name = album.get_display_name ();
@@ -306,13 +304,9 @@ public class Noise.PopupListView : Window {
         file.add_filter (image_filter);
 
         if (file.run () == Gtk.ResponseType.ACCEPT) {
-            debug (file.get_uri ());
-            var medias_to_discover = new Gee.LinkedList<Media> ();
-            medias_to_discover.add_all (media_list);
-            
             CoverImport cover_importer = App.main_window.library_manager.fo.cover_importer;
             cover_importer.set_custom_cover_finished.connect(show_album_cover);
-            cover_importer.import_custom_file (medias_to_discover.first (), file.get_filename ());
+            cover_importer.import_custom_file (media_list.to_array()[0], file.get_filename ());
         }
         
         file.destroy ();
