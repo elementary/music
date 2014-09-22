@@ -23,17 +23,20 @@ public class Noise.PopupListView : Granite.Widgets.DecoratedWindow {
 public class Noise.PopupListView : Window {
 #endif
 
-    public const int MIN_SIZE = 400;
+    public const int MIN_SIZE = 480;
 
     ViewWrapper view_wrapper;
-    
-    Gtk.Button new_cover;
+    Gtk.Image album_cover;
     Gtk.Label album_label;
     Gtk.Label artist_label;
+    
+    Gtk.Menu cover_action_menu;
+    Gtk.MenuItem cover_set_new;
+    
     Granite.Widgets.Rating rating;
-
     GenericList list_view;
 
+    Album selected_album;
     Gee.Collection<Media> media_list;
 
     public PopupListView (GridView grid_view) {
@@ -72,18 +75,26 @@ public class Noise.PopupListView : Window {
         this.view_wrapper = grid_view.parent_view_wrapper;
         
         set_transient_for (App.main_window);
-        App.main_window.close_subwindows.connect (() => {this.hide_on_delete ();});
+        App.main_window.close_subwindows.connect (() => { this.hide_on_delete (); });
         destroy_with_parent = true;
         skip_taskbar_hint = true;
-
-        // change cover button
-        new_cover = new Gtk.Button.from_icon_name ("insert-image", Gtk.IconSize.MENU);
-        new_cover.set_tooltip_text (_("Change album cover"));
-        new_cover.hexpand = new_cover.vexpand = false;
-        new_cover.halign = Gtk.Align.END;
-        new_cover.set_relief(Gtk.ReliefStyle.NONE);
-        new_cover.margin = 12;
-        new_cover.clicked.connect( () => { this.set_new_cover(); });
+        
+        // cover        
+        album_cover = new Gtk.Image();
+        album_cover.margin_left = album_cover.margin_bottom = 12;
+        
+        Gtk.EventBox cover_event_box = new Gtk.EventBox();
+        cover_event_box.add(album_cover);
+        
+        cover_action_menu = new Gtk.Menu ();        
+      
+        cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
+        cover_set_new.activate.connect (() => { this.set_new_cover(); });
+        
+        cover_action_menu.append (cover_set_new);
+        cover_action_menu.show_all();
+        
+        cover_event_box.button_press_event.connect(show_cover_context_menu);
         
         // album artist/album labels
         album_label = new Gtk.Label ("");
@@ -118,21 +129,25 @@ public class Noise.PopupListView : Window {
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
         // customize rating
         rating.star_spacing = 16;
-        rating.margin_top = 16;
-
-        // Change Cover
-        
+        rating.margin_top = rating.margin_bottom = 16;
 
         // Add everything
+        var header = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+        var artist = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
         var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+        
 #if !USE_GRANITE_DECORATED_WINDOW
         vbox.pack_start (close, false, false, 0);
 #endif        
-        vbox.pack_start (album_label, false, true, 0);
-        vbox.pack_start (artist_label, false, true, 0);
+        artist.pack_start (artist_label, false, true, 0);
+        artist.pack_start (album_label, false, true, 0);
+        
+        header.pack_start (cover_event_box, false, false);
+        header.pack_start (artist, true, false);
+        
+        vbox.pack_start (header, false, false, 0);        
         vbox.pack_start (list_view_scrolled, true, true, 0);
         vbox.pack_start (rating, false, true, 0);
-        vbox.pack_start (new_cover, false, false, 0);
         
         add(vbox);
 
@@ -153,8 +168,18 @@ public class Noise.PopupListView : Window {
         media_list = new Gee.LinkedList<Media> ();
         list_view.set_media (media_list);
 
+        selected_album = null;
+       // album_cover = new Gtk.Image();
+
         // Reset size request
         set_size (MIN_SIZE);
+    }
+
+    public bool show_cover_context_menu(Gtk.Widget sender, Gdk.EventButton evt) {
+        if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3)
+            cover_action_menu.popup(null, null, null, evt.button, evt.time);
+        
+        return true;
     }
 
     public void set_parent_wrapper (ViewWrapper parent_wrapper) {
@@ -164,7 +189,7 @@ public class Noise.PopupListView : Window {
 
     public void set_album (Album album) {
         reset ();
-
+        selected_album = album;
         lock(media_list) {
 
             string name = album.get_display_name ();
@@ -173,6 +198,8 @@ public class Noise.PopupListView : Window {
             string title_format = C_("Title format used on Album View Popup: $ALBUM by $ARTIST", "%s by %s");
             set_title (title_format.printf (name, artist));
             
+            
+            show_album_cover(CoverartCache.instance.get_album_cover (album));
             album_label.set_label (name);
             artist_label.set_label (artist);
             
@@ -186,7 +213,6 @@ public class Noise.PopupListView : Window {
 
             // Search again to match the view wrapper's search
             list_view.do_search (App.main_window.searchField.text);
-
         }
 
         if (list_view.get_realized ())
@@ -195,6 +221,12 @@ public class Noise.PopupListView : Window {
         // Set rating
         update_album_rating ();
         view_wrapper.library.media_updated.connect (update_album_rating);
+    }
+
+    void show_album_cover(Gdk.Pixbuf pixbuf)
+    {
+        var cover_art_with_shadow = PixbufUtils.render_pixbuf_shadow (pixbuf);
+        album_cover.set_from_pixbuf (cover_art_with_shadow);    
     }
 
     void update_album_rating () {
@@ -277,7 +309,10 @@ public class Noise.PopupListView : Window {
             debug (file.get_uri ());
             var medias_to_discover = new Gee.LinkedList<Media> ();
             medias_to_discover.add_all (media_list);
-            App.main_window.library_manager.fo.cover_importer.import_custom_file (medias_to_discover.first (), file.get_filename ());
+            
+            CoverImport cover_importer = App.main_window.library_manager.fo.cover_importer;
+            cover_importer.set_custom_cover_finished.connect(show_album_cover);
+            cover_importer.import_custom_file (medias_to_discover.first (), file.get_filename ());
         }
         
         file.destroy ();

@@ -22,6 +22,9 @@
  */
 
 public class Noise.CoverImport : GLib.Object {
+    public signal void import_finished ();
+    public signal void set_custom_cover_finished(Gdk.Pixbuf pix);
+    
     private const int DISCOVER_SET_SIZE = 50;
     private const int DISCOVERER_TIMEOUT_MS = 10;
 
@@ -30,14 +33,30 @@ public class Noise.CoverImport : GLib.Object {
     private Gee.LinkedList<Media> original_queue;
 
     private bool cancelled;
-    
-    private bool custom_import = false;
+    private bool import_is_performed;
+
     private Media custom_media = null;
     private string custom_cover;
 
     public CoverImport () {
         uri_queue = new Gee.LinkedList<Media> ();
         original_queue = new Gee.LinkedList<Media> ();
+        this.import_finished.connect(() => { import_is_performed = false; });
+    }
+
+    private void initialize_discoverer () {
+        if (d == null) {
+            try {
+                d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
+            } catch (Error err) {
+                critical ("Could not create Gst discoverer object: %s", err.message);
+            }
+            d.discovered.connect (import_media);
+            d.finished.connect (file_set_finished);
+        } else {
+            d.stop ();
+        }
+        d.start ();
     }
 
     private void file_set_finished () {
@@ -46,31 +65,26 @@ public class Noise.CoverImport : GLib.Object {
             d.stop ();
             libraries_manager.local_library.media_imported (original_queue);
             original_queue.clear ();
+            import_finished ();
+        } else if (custom_media != null) {
+            debug ("custom import finished");
+            d.stop ();
+            custom_media = null;
+            import_finished ();
         } else if (uri_queue.size == 0) {
             debug ("queue finished");
             d.stop ();
             libraries_manager.local_library.media_imported (original_queue);
             original_queue.clear ();
+            import_finished ();
         } else {
             import_next_file_set.begin ();
         }
     }
 
     private async void import_next_file_set () {
-        if (d == null) {
-            try {
-                d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
-            } catch (Error err) {
-                critical ("Could not create Gst discoverer object: %s", err.message);
-            }
-
-            d.discovered.connect (import_media);
-            d.finished.connect (file_set_finished);
-        } else {
-            d.stop ();
-        }
-        d.start ();
-
+        this.initialize_discoverer ();
+        
         for (int i = 0; i < DISCOVER_SET_SIZE; i++) {
             bool not_found = true;
             string uri = null;
@@ -84,28 +98,11 @@ public class Noise.CoverImport : GLib.Object {
         }
     }
     
-    public async void import_custom_file (Media media, string new_cover) {
-        custom_import = true;
+    public async void import_custom_file (Media media, string new_cover) {        
         custom_cover = new_cover;
         custom_media = media;
         
-        if (d == null) {
-            try {
-                d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
-            } catch (Error err) {
-                critical ("Could not create Gst discoverer object: %s", err.message);
-            }
-
-            d.discovered.connect (import_media);
-            d.finished.connect (() => {
-                d.stop ();
-                custom_import = false;
-                debug ("custom import finished");
-            });
-        } else {
-            d.stop ();
-        }
-        d.start ();
+        this.initialize_discoverer ();
         d.discover_uri_async (media.uri);
     }
 
@@ -113,8 +110,13 @@ public class Noise.CoverImport : GLib.Object {
         cancelled = true;
     }
 
+    public bool is_import_performed () {
+        return import_is_performed;
+    }
+
     public void discoverer_import_media (Gee.Collection<Media> medias) {
         cancelled = false;
+        import_is_performed = true;
         var medias_to_discover = new Gee.LinkedList<Media> ();
         medias_to_discover.add_all (medias);
         var albums_to_process = new Gee.LinkedList<Album> ();
@@ -190,12 +192,10 @@ public class Noise.CoverImport : GLib.Object {
             break;
         }
 
-        debug("gstreamer_discovery_successful: %s", gstreamer_discovery_successful.to_string());
-
         if (gstreamer_discovery_successful) {
             Media m = null;
             
-            if(custom_import) {
+            if(custom_media != null) {
                 m = custom_media;
             }
             else {
@@ -211,14 +211,14 @@ public class Noise.CoverImport : GLib.Object {
 
     private async void import_art_async (Media m, Gst.PbUtils.DiscovererInfo info) {
         var cache = CoverartCache.instance;
-        if (cache.has_image (m) && !custom_import)
+        if (cache.has_image (m) && custom_media == null)
             return;
 
         debug ("Importing cover art for: %s", info.get_uri ());
 
         Gdk.Pixbuf pix = null;
 
-        if(!custom_import)
+        if(custom_media == null)
             pix = get_image (info.get_tags ());
         else {
             try {
@@ -228,8 +228,12 @@ public class Noise.CoverImport : GLib.Object {
             }
         }
         
-        if (pix != null)
+        if (pix != null) {
+            if(custom_media != null)
+                cache.changed.connect (() => { set_custom_cover_finished(cache.get_image(m)); });
+                
             yield cache.cache_image_async (m, pix);
+        }
         else
             debug ("Could not find embedded image for '%s'", info.get_uri ());
             
