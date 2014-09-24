@@ -21,9 +21,7 @@
  *              Corentin Noël <tintou@mailoo.org>
  */
 
-public class Noise.CoverImport : GLib.Object {
-    public signal void set_custom_cover_finished(Gdk.Pixbuf pix);
-    
+public class Noise.CoverImport : GLib.Object {    
     private const int DISCOVER_SET_SIZE = 50;
     private const int DISCOVERER_TIMEOUT_MS = 10;
 
@@ -32,9 +30,6 @@ public class Noise.CoverImport : GLib.Object {
     private Gee.LinkedList<Media> original_queue;
 
     private bool cancelled;
-
-    private Media custom_media = null;
-    private string custom_cover;
 
     public CoverImport () {
         uri_queue = new Gee.LinkedList<Media> ();
@@ -62,10 +57,6 @@ public class Noise.CoverImport : GLib.Object {
             d.stop ();
             libraries_manager.local_library.media_imported (original_queue);
             original_queue.clear ();
-        } else if (custom_media != null) {
-            debug ("custom import finished");
-            d.stop ();
-            custom_media = null;
         } else if (uri_queue.size == 0) {
             debug ("queue finished");
             d.stop ();
@@ -91,15 +82,7 @@ public class Noise.CoverImport : GLib.Object {
             }
         }
     }
-    
-    public async void import_custom_file (Media media, string new_cover) {        
-        custom_cover = new_cover;
-        custom_media = media;
-        
-        this.initialize_discoverer ();
-        d.discover_uri_async (media.uri);
-    }
-
+   
     public void cancel_operations () {
         cancelled = true;
     }
@@ -182,15 +165,8 @@ public class Noise.CoverImport : GLib.Object {
         }
 
         if (gstreamer_discovery_successful) {
-            Media m = null;
+            Media m = libraries_manager.local_library.media_from_uri (uri);
             
-            if(custom_media != null) {
-                m = custom_media;
-            }
-            else {
-                m = libraries_manager.local_library.media_from_uri (uri);
-            }
-
             // Get cover art
             if (m != null)
                 yield import_art_async (m, info);
@@ -200,29 +176,15 @@ public class Noise.CoverImport : GLib.Object {
 
     private async void import_art_async (Media m, Gst.PbUtils.DiscovererInfo info) {
         var cache = CoverartCache.instance;
-        if (cache.has_image (m) && custom_media == null)
+        if (cache.has_image (m))
             return;
 
         debug ("Importing cover art for: %s", info.get_uri ());
 
-        Gdk.Pixbuf pix = null;
-
-        if(custom_media == null)
-            pix = get_image (info.get_tags ());
-        else {
-            try {
-                pix = new Gdk.Pixbuf.from_file (custom_cover);
-            } catch (Error err) {
-                warning ("Could not get image from file [%s]: %s", custom_cover, err.message);
-            }
-        }
+        Gdk.Pixbuf pix = get_image (info.get_tags ());     
         
-        if (pix != null) {
-            if(custom_media != null)
-                cache.changed.connect (() => { set_custom_cover_finished(cache.get_image(m)); });
-                
+        if (pix != null) 
             yield cache.cache_image_async (m, pix);
-        }
         else
             debug ("Could not find embedded image for '%s'", info.get_uri ());
             

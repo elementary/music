@@ -37,7 +37,7 @@ public class Noise.PopupListView : Window {
     GenericList list_view;
 
     Gee.Collection<Media> media_list;
-
+    
     public PopupListView (GridView grid_view) {
 #if USE_GRANITE_DECORATED_WINDOW
         base ("", "album-list-view", "album-list-view");
@@ -187,7 +187,7 @@ public class Noise.PopupListView : Window {
 
     public void set_album (Album album) {
         reset ();
-
+        
         lock(media_list) {
 
             string name = album.get_display_name ();
@@ -304,9 +304,12 @@ public class Noise.PopupListView : Window {
         file.add_filter (image_filter);
 
         if (file.run () == Gtk.ResponseType.ACCEPT) {
-            CoverImport cover_importer = App.main_window.library_manager.fo.cover_importer;
-            cover_importer.set_custom_cover_finished.connect(show_album_cover);
-            cover_importer.import_custom_file (media_list.to_array()[0], file.get_filename ());
+            Gdk.Pixbuf pix = new Gdk.Pixbuf.from_file (file.get_filename ());
+            
+            CoverartCache cache =  CoverartCache.instance;
+            
+            cache.changed.connect(() => { show_album_cover (cache.get_cover(media_list.to_array()[0])); });
+            cache.cache_image_async (media_list.to_array()[0], pix);
         }
         
         file.destroy ();
