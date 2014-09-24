@@ -304,12 +304,18 @@ public class Noise.PopupListView : Window {
         file.add_filter (image_filter);
 
         if (file.run () == Gtk.ResponseType.ACCEPT) {
-            Gdk.Pixbuf pix = new Gdk.Pixbuf.from_file (file.get_filename ());
+            Gdk.Pixbuf pix = null;
+            try {
+                pix = new Gdk.Pixbuf.from_file (file.get_filename ());
+            } catch (Error err) {
+                debug ("Set new cover failed: %s", err.message); 
+            }
             
-            CoverartCache cache =  CoverartCache.instance;
-            
-            cache.changed.connect(() => { show_album_cover (cache.get_cover(media_list.to_array()[0])); });
-            cache.cache_image_async (media_list.to_array()[0], pix);
+            if (pix != null) {
+                CoverartCache cache =  CoverartCache.instance;
+                cache.changed.connect(() => { show_album_cover (cache.get_cover(media_list.to_array()[0])); });
+                cache.cache_image_async (media_list.to_array()[0], pix);
+            }
         }
         
         file.destroy ();

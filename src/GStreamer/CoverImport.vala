@@ -165,7 +165,7 @@ public class Noise.CoverImport : GLib.Object {
         }
 
         if (gstreamer_discovery_successful) {
-            Media m = libraries_manager.local_library.media_from_uri (uri);
+            var m = libraries_manager.local_library.media_from_uri (uri);
             
             // Get cover art
             if (m != null)
@@ -181,7 +181,7 @@ public class Noise.CoverImport : GLib.Object {
 
         debug ("Importing cover art for: %s", info.get_uri ());
 
-        Gdk.Pixbuf pix = get_image (info.get_tags ());     
+        var pix = get_image (info.get_tags ());     
         
         if (pix != null) 
             yield cache.cache_image_async (m, pix);
