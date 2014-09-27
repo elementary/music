@@ -17,13 +17,9 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-#if USE_GRANITE_DECORATED_WINDOW
-public class Noise.PopupListView : Granite.Widgets.DecoratedWindow {
-#else
-public class Noise.PopupListView : Window {
-#endif
+public class Noise.PopupListView : Gtk.Dialog {
 
-    public const int MIN_SIZE = 400;
+    public const int MIN_SIZE = 500;
 
     ViewWrapper view_wrapper;
 
@@ -36,37 +32,11 @@ public class Noise.PopupListView : Window {
     Gee.Collection<Media> media_list;
 
     public PopupListView (GridView grid_view) {
-#if USE_GRANITE_DECORATED_WINDOW
-        base ("", "album-list-view", "album-list-view");
-
-        // Don't destroy the window
-        this.delete_event.connect (hide_on_delete);
-
-        // Hide titlebar (we want to set a title, but not showing it!)
-        this.show_title = false;
-        // We have to fullscreen it otherwise it's not shown on fullscreen mode
-        fullscreen ();
-#else
         window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 
         // window stuff
-        decorated = false;
         has_resize_grip = false;
         resizable = false;
-
-        // close button
-        var close = new Gtk.Button ();
-        get_style_context ().add_class ("album-list-view");
-        close.get_style_context().add_class("close-button");
-        close.set_image (Icons.render_image ("window-close-symbolic", Gtk.IconSize.MENU));
-        close.hexpand = close.vexpand = false;
-        close.halign = Gtk.Align.START;
-        close.set_relief(Gtk.ReliefStyle.NONE);
-        close.clicked.connect( () =>  { this.hide(); });
-
-        /* Make window draggable */
-        UI.make_window_draggable (this);
-#endif
 
         this.view_wrapper = grid_view.parent_view_wrapper;
         
@@ -79,8 +49,7 @@ public class Noise.PopupListView : Window {
         album_label = new Gtk.Label ("");
         artist_label = new Gtk.Label ("");
 
-        // Apply special style: Level-2 header
-        Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, album_label);
+        album_label.get_style_context ().add_class ("h2"); 
 
         album_label.ellipsize = Pango.EllipsizeMode.END;
         artist_label.ellipsize = Pango.EllipsizeMode.END;
@@ -111,16 +80,11 @@ public class Noise.PopupListView : Window {
         rating.margin_top = rating.margin_bottom = 16;
 
         // Add everything
-        var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-#if !USE_GRANITE_DECORATED_WINDOW
-        vbox.pack_start (close, false, false, 0);
-#endif
-        vbox.pack_start (album_label, false, true, 0);
-        vbox.pack_start (artist_label, false, true, 0);
-        vbox.pack_start (list_view_scrolled, true, true, 0);
-        vbox.pack_start(rating, false, true, 0);
-
-        add(vbox);
+        Gtk.Box content = get_content_area () as Gtk.Box;
+        content.pack_start (album_label, false, true, 0);
+        content.pack_start (artist_label, false, true, 0);
+        content.pack_start (list_view_scrolled, true, true, 0);
+        content.pack_start(rating, false, true, 0);
 
         rating.rating_changed.connect(rating_changed);
     }
