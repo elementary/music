@@ -32,6 +32,7 @@ public class Noise.PopupListView : Gtk.Dialog {
     Gee.Collection<Media> media_list;
 
     public PopupListView (GridView grid_view) {
+        this.delete_event.connect (hide_on_delete);
         window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 
         // window stuff
