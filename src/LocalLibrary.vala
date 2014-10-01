@@ -242,14 +242,12 @@ public class Noise.LocalLibrary : Library {
                     files.remove (m.uri);
             }
 
-            if(!files.is_empty)
-            {
+            if(!files.is_empty) {
                 fo.resetProgress (files.size - 1);
                 Timeout.add (100, doProgressNotificationWithTimeout);
                 fo.import_files (files, FileOperator.ImportType.IMPORT);
             }
-            else
-            {
+            else {
                 debug ("No new songs to import.\n");
                 finish_file_operations ();
                 App.main_window.show_notification (_("All music files are already in your library"), _("No files were imported.").printf (((Noise.App) GLib.Application.get_default ()).get_name ()));
