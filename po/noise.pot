@@ -1712,7 +1712,6 @@ msgstr ""
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:386
 msgid "An error occured during the Import of this CD"
 msgstr ""
-<<<<<<< TREE
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
@@ -1773,5 +1772,4 @@ msgstr ""
 
 #: ../plugins/LastFM/SimilarMedia.vala:42
 msgid "Similar"
-msgstr ""=======
->>>>>>> MERGE-SOURCE
+msgstr ""
