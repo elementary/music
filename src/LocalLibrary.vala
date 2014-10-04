@@ -242,7 +242,7 @@ public class Noise.LocalLibrary : Library {
                     files.remove (m.uri);
             }
 
-            if(!files.is_empty) {
+            if (!files.is_empty) {
                 fo.resetProgress (files.size - 1);
                 Timeout.add (100, doProgressNotificationWithTimeout);
                 fo.import_files (files, FileOperator.ImportType.IMPORT);
