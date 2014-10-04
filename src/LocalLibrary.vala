@@ -249,7 +249,7 @@ public class Noise.LocalLibrary : Library {
             } else {
                 debug ("No new songs to import.\n");
                 finish_file_operations ();
-                App.main_window.show_notification (_("All music files are already in your library"), _("No files were imported.").printf (((Noise.App) GLib.Application.get_default ()).get_name ()));
+                App.main_window.show_notification (_("All music files are already in your library"), _("No files were imported."));
             }
 
             Idle.add ((owned) callback);
