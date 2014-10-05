@@ -1127,7 +1127,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             topDisplay.change_value (Gtk.ScrollType.NONE, 0);
     }
 
-    public virtual void fileImportMusicClick() {
+    public virtual void fileImportMusicClick () {
         if(!library_manager.doing_file_operations()) {
 
             var folders = new Gee.ArrayList<string> ();
@@ -1394,4 +1394,5 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         return base.configure_event (event);
     }
+
 }

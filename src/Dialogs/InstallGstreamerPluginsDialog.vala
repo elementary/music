@@ -25,6 +25,14 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
     string detail;
 
     public InstallGstreamerPluginsDialog (Gst.Message message) {
+        Object (use_header_bar: 1);
+
+        var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
+
+        (get_header_bar () as Gtk.HeaderBar).title = app_name;
+        (get_header_bar () as Gtk.HeaderBar).show_close_button = false;
+        get_header_bar ().get_style_context ().remove_class ("header-bar");
+
         this.message = message;
         this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 
