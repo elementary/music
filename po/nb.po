@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-17 15:56-0500\n"
-"PO-Revision-Date: 2014-09-11 11:46+0000\n"
-"Last-Translator: Beren <berencamlost@msn.com>\n"
+"POT-Creation-Date: 2014-10-05 00:29-0500\n"
+"PO-Revision-Date: 2014-10-04 18:01+0000\n"
+"Last-Translator: ProsjektX <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-18 07:04+0000\n"
+"X-Launchpad-Export-Date: 2014-10-05 06:22+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: nb\n"
 
@@ -40,8 +40,8 @@ msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME av $ARTIST på $ALBUM"
 
 #: ../core/Resources.vala:97
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:70
+#: ../src/Dialogs/FileNotFoundDialog.vala:94
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -254,7 +254,7 @@ msgstr "Om "
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
-msgstr "Eksporter til samling"
+msgstr "Importer til bibliotek..."
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:82
 msgid "Preferences"
@@ -322,9 +322,10 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #: ../src/LibraryWindow.vala:1134
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
 msgstr "Importer musikk"
 
@@ -336,7 +337,7 @@ msgstr "<b>Importerer</b> musikk til bibliotek…"
 msgid "Details"
 msgstr "Detaljer"
 
-#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:369
+#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
 msgstr "Tekster"
 
@@ -344,15 +345,15 @@ msgstr "Tekster"
 msgid "Close"
 msgstr "Lukk"
 
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:343
+#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:346
 msgid "Editing $NAME by $ARTIST"
 msgstr "Redigerer $NAME av $ARTIST"
 
-#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:345
+#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:348
 msgid "Editing %s"
 msgstr "Redigerer %s"
 
-#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:348
+#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:351
 msgid "Editing %i songs"
 msgstr "Redigerer %i sanger"
 
@@ -380,7 +381,7 @@ msgstr "Albumartist"
 msgid "Album"
 msgstr "Album"
 
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Genre"
 msgstr "Sjanger"
@@ -390,7 +391,7 @@ msgstr "Sjanger"
 msgid "Composer"
 msgstr "Komponist"
 
-#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Grouping"
 msgstr "Gruppering"
@@ -418,15 +419,15 @@ msgstr "År"
 msgid "Rating"
 msgstr "Vurdering"
 
-#: ../src/Dialogs/MediaEditor.vala:291
+#: ../src/Dialogs/MediaEditor.vala:294
 msgid "Lyrics not found for %s"
 msgstr "Tekster ikke funnet for %s"
 
-#: ../src/Dialogs/MediaEditor.vala:629
+#: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
 msgstr "Nullstill"
 
-#: ../src/Dialogs/MediaEditor.vala:633
+#: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
 msgstr "<b>Statistikk</b>"
 
@@ -440,11 +441,11 @@ msgstr "Generelt"
 
 #: ../src/Dialogs/PreferencesWindow.vala:138
 msgid "Music Folder Location:"
-msgstr "Music Mappe Sted:"
+msgstr "Plassering av musikkmappe:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:146
 msgid "Library Management:"
-msgstr "Bibliotekhandsaming:"
+msgstr "Biblioteksadministrasjon:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:153
 msgid "Keep Music folder organized:"
@@ -468,13 +469,13 @@ msgstr "Varslinger:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:174
 msgid "Continue playback when closed:"
-msgstr "Fortsett avspilling ved lukking:"
+msgstr "Fortsett avspilling når lukket:"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
 msgstr "Vil du installere %s-tillegget?\n"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
@@ -482,7 +483,7 @@ msgstr ""
 "\n"
 "Denne sangen kan ikke spilles. %s er påkrevd for avspilling."
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
 msgstr "Installer programtillegg"
 
@@ -555,32 +556,32 @@ msgstr ""
 "Noise gjør allerede filoperasjoner. Vennligst vent til de ferdig å importere "
 "fra%d"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:52
+#: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
 msgstr "Fant ikke fil"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:58
+#: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Musikkfilen for <b>%s</b> av <b>%s</b> ble ikke funnet."
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:61
+#: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
 msgstr "%i musikkfiler kunne ikke bli funnet?"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:84
+#: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
 msgstr "Rescan Bibliotek"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
+#: ../src/Dialogs/FileNotFoundDialog.vala:93
 #: ../src/Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove Song"
 msgstr "Fjern sang"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
 msgstr "Finn sang"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:123
+#: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 msgid "Choose Music Folder"
 msgstr "Velg musikkmappe"
@@ -778,7 +779,7 @@ msgid "Move all corrupted files to trash"
 msgstr "Flytt alle korrupte filer til papirkurv"
 
 #: ../src/Dialogs/NotImportedWindow.vala:65
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
 msgstr "Flytt til papirkurv"
 
@@ -798,19 +799,19 @@ msgstr "Filplassering"
 msgid "Select individual files to move to trash:"
 msgstr "Velg individuelle filer for flytting til papirkurv"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
+#: ../src/Dialogs/RemoveFilesDialog.vala:57
 msgid "Remove from %s"
 msgstr "Fjern fra %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
+#: ../src/Dialogs/RemoveFilesDialog.vala:67
 msgid "Remove %d Songs From %s?"
 msgstr "Fjern %d sanger fra %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
+#: ../src/Dialogs/RemoveFilesDialog.vala:70
 msgid "Remove \"%s\" From %s?"
 msgstr "Fjern ''%s'' fra %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
+#: ../src/Dialogs/RemoveFilesDialog.vala:79
 msgid ""
 "This will remove the song from your library and from any device that "
 "automatically syncs with %s."
@@ -832,25 +833,29 @@ msgstr "Få tak i musikk"
 msgid "Add music to your library."
 msgstr "Legg til musikk i din ansamling"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr ""
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
 msgstr "Bytt musikkmappe"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
 msgstr "Last musikk fra mappe"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import your Music"
 msgstr "Importer Music"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import all your Music from %s into your library."
 msgstr "Importer all musikken din fra%s til biblioteket."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:124
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Select Music Folder"
 msgstr "Velg musikkmappe"
 
@@ -1114,11 +1119,11 @@ msgstr "Bla til gjeldende sang"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:124
 msgid "Edit Song Info"
-msgstr "Endre sang informasjon"
+msgstr "Endre sanginformasjon"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:125
 msgid "Show in File Browser"
-msgstr "Vis i filleseren"
+msgstr "Vis i filbehandleren"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
@@ -1213,7 +1218,7 @@ msgstr "Album artist"
 #: ../src/Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr "komponist"
+msgstr "Komponist"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
@@ -1293,7 +1298,7 @@ msgstr "Synkroniser:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:106
 msgid "Other Files"
-msgstr "andre filer"
+msgstr "Andre filer"
 
 #: ../src/Views/DeviceSummaryWidget.vala:108
 msgid "Podcasts"
@@ -1316,13 +1321,13 @@ msgstr ""
 #: ../src/Views/DeviceSummaryWidget.vala:334
 #: ../src/Views/DeviceSummaryWidget.vala:337
 msgid "Cannot Sync"
-msgstr "kan ikke synkronisere"
+msgstr "Kan ikke synkronisere"
 
 #: ../src/Views/DeviceSummaryWidget.vala:334
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Kan ikke synkronisere med de valgte instillingene. For lite diskplass."
+"Kan ikke synkronisere med de valgte innstillingene. For lite diskplass"
 
 #: ../src/Views/DeviceSummaryWidget.vala:337
 msgid "Device is already doing an operation."
@@ -1378,11 +1383,19 @@ msgstr "Importerer musikk fra %s…"
 msgid "Adding files to library…"
 msgstr "Legger filer til bibliotek…"
 
-#: ../src/LocalLibrary.vala:250
+#: ../src/LocalLibrary.vala:252
+msgid "All music files are already in your library"
+msgstr ""
+
+#: ../src/LocalLibrary.vala:252
+msgid "No files were imported."
+msgstr ""
+
+#: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "Søker på nytt etter musikk for endringer. Dette kan ta en stund ..."
 
-#: ../src/LocalLibrary.vala:327
+#: ../src/LocalLibrary.vala:339
 msgid "Added to your queue:"
 msgstr "Lagt til i køen:"
 
