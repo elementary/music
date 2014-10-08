@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-17 15:56-0500\n"
+"POT-Creation-Date: 2014-10-05 00:29-0500\n"
 "PO-Revision-Date: 2014-06-25 19:21+0000\n"
 "Last-Translator: Halland Blekinge <Unknown>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-18 07:03+0000\n"
+"X-Launchpad-Export-Date: 2014-10-06 06:47+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: da\n"
 
@@ -40,8 +40,8 @@ msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME af $ARTIST på $ALBUM"
 
 #: ../core/Resources.vala:97
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:70
+#: ../src/Dialogs/FileNotFoundDialog.vala:94
 msgid "Cancel"
 msgstr "Annullér"
 
@@ -326,6 +326,7 @@ msgid "Pause"
 msgstr ""
 
 #: ../src/LibraryWindow.vala:1134
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
 msgstr "Importér musik"
 
@@ -337,7 +338,7 @@ msgstr "<b>Importerer</b> musik til bibliotek…"
 msgid "Details"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:369
+#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
 msgstr "Lyrik"
 
@@ -345,15 +346,15 @@ msgstr "Lyrik"
 msgid "Close"
 msgstr "Luk"
 
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:343
+#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:346
 msgid "Editing $NAME by $ARTIST"
 msgstr "Ændrer $NAME af $ARTIST"
 
-#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:345
+#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:348
 msgid "Editing %s"
 msgstr "Redigerer %s"
 
-#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:348
+#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:351
 msgid "Editing %i songs"
 msgstr "Redigerer %i sange"
 
@@ -381,7 +382,7 @@ msgstr "Albumkunstner"
 msgid "Album"
 msgstr "Album"
 
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Genre"
 msgstr "Genre"
@@ -391,7 +392,7 @@ msgstr "Genre"
 msgid "Composer"
 msgstr "Komponist"
 
-#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Grouping"
 msgstr "Gruppering"
@@ -419,15 +420,15 @@ msgstr "År"
 msgid "Rating"
 msgstr "Bedømmelse"
 
-#: ../src/Dialogs/MediaEditor.vala:291
+#: ../src/Dialogs/MediaEditor.vala:294
 msgid "Lyrics not found for %s"
 msgstr "Sangtekster blev ikke fundet for %s"
 
-#: ../src/Dialogs/MediaEditor.vala:629
+#: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:633
+#: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
 msgstr "<b>Statistikker</b>"
 
@@ -471,17 +472,17 @@ msgstr "Notifikationer:"
 msgid "Continue playback when closed:"
 msgstr "Fortsæt afspilning når vinduet lukkes:"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
 msgstr ""
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
 msgstr "Installér udvidelse"
 
@@ -554,32 +555,32 @@ msgstr ""
 "Noise er allerede i gang med en fil-operation.  Vent venligst til "
 "importering fra %d er færdig"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:52
+#: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
 msgstr ""
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:58
+#: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:61
+#: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
 msgstr ""
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:84
+#: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
 msgstr "Genskan bibliotek"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
+#: ../src/Dialogs/FileNotFoundDialog.vala:93
 #: ../src/Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove Song"
 msgstr "Fjern sang"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
 msgstr ""
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:123
+#: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 msgid "Choose Music Folder"
 msgstr "Vælg musik mappe"
@@ -777,7 +778,7 @@ msgid "Move all corrupted files to trash"
 msgstr "Flyt alle korrupte filer til  papirkurven"
 
 #: ../src/Dialogs/NotImportedWindow.vala:65
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
 msgstr "Flyt til papirkurv"
 
@@ -797,19 +798,19 @@ msgstr "Filplacering"
 msgid "Select individual files to move to trash:"
 msgstr "Vælg individuelle filer at flytte til papirkurven:"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
+#: ../src/Dialogs/RemoveFilesDialog.vala:57
 msgid "Remove from %s"
 msgstr "Fjern fra %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
+#: ../src/Dialogs/RemoveFilesDialog.vala:67
 msgid "Remove %d Songs From %s?"
 msgstr "Fjern %d sange fra %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
+#: ../src/Dialogs/RemoveFilesDialog.vala:70
 msgid "Remove \"%s\" From %s?"
 msgstr "Fjern \"%s\" fra %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
+#: ../src/Dialogs/RemoveFilesDialog.vala:79
 msgid ""
 "This will remove the song from your library and from any device that "
 "automatically syncs with %s."
@@ -831,25 +832,29 @@ msgstr "Få nogle melodier"
 msgid "Add music to your library."
 msgstr "Tilføj musik til dit bibliotek."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr ""
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
 msgstr "Skift Musikmappe."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
 msgstr "Åbn musik fra en mappe, netværk eller ekstern disk."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import your Music"
 msgstr "Importer dit Musik"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import all your Music from %s into your library."
 msgstr "Importer al din musik fra %s til dit bibliotek."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:124
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Select Music Folder"
 msgstr "Vælg Musikmappe"
 
@@ -1389,11 +1394,19 @@ msgstr "Importerer musik fra %s..."
 msgid "Adding files to library…"
 msgstr "Tilføjer filer til bibliotek..."
 
-#: ../src/LocalLibrary.vala:250
+#: ../src/LocalLibrary.vala:252
+msgid "All music files are already in your library"
+msgstr ""
+
+#: ../src/LocalLibrary.vala:252
+msgid "No files were imported."
+msgstr ""
+
+#: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "Genskanner musik for at finde ændringer. Dette kan tage lidt tid..."
 
-#: ../src/LocalLibrary.vala:327
+#: ../src/LocalLibrary.vala:339
 msgid "Added to your queue:"
 msgstr "Tilføjet til din kø:"
 

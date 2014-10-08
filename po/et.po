@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-17 15:56-0500\n"
-"PO-Revision-Date: 2014-08-13 10:22+0000\n"
+"POT-Creation-Date: 2014-10-05 00:29-0500\n"
+"PO-Revision-Date: 2014-09-21 07:42+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-18 07:03+0000\n"
+"X-Launchpad-Export-Date: 2014-10-06 06:47+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: et\n"
 
@@ -40,8 +40,8 @@ msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME - $ARTIST - $ALBUM"
 
 #: ../core/Resources.vala:97
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:70
+#: ../src/Dialogs/FileNotFoundDialog.vala:94
 msgid "Cancel"
 msgstr "Loobu"
 
@@ -251,7 +251,7 @@ msgstr ""
 
 #: ../src/Noise.vala:41
 msgid "About "
-msgstr ""
+msgstr "Rakendusest... "
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -323,9 +323,10 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Paus"
 
 #: ../src/LibraryWindow.vala:1134
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
 msgstr "Muusika importimine"
 
@@ -335,9 +336,9 @@ msgstr "Muusika <b>importimine</b> kogumikku..."
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
-msgstr ""
+msgstr "Üksikasjad"
 
-#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:369
+#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
 msgstr "Laulusõnad"
 
@@ -345,15 +346,15 @@ msgstr "Laulusõnad"
 msgid "Close"
 msgstr "Sulge"
 
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:343
+#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:346
 msgid "Editing $NAME by $ARTIST"
 msgstr "$NAME - $ARTIST"
 
-#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:345
+#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:348
 msgid "Editing %s"
 msgstr "%s"
 
-#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:348
+#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:351
 msgid "Editing %i songs"
 msgstr "%i laulu muutmine"
 
@@ -381,7 +382,7 @@ msgstr "Albumi artist:"
 msgid "Album"
 msgstr "Album:"
 
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Genre"
 msgstr "Stiil:"
@@ -391,7 +392,7 @@ msgstr "Stiil:"
 msgid "Composer"
 msgstr "Helilooja:"
 
-#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Grouping"
 msgstr "Grupeering:"
@@ -419,15 +420,15 @@ msgstr "Ilmumisaasta:"
 msgid "Rating"
 msgstr "Hinnang:"
 
-#: ../src/Dialogs/MediaEditor.vala:291
+#: ../src/Dialogs/MediaEditor.vala:294
 msgid "Lyrics not found for %s"
 msgstr "%s laulusõnu ei leitud"
 
-#: ../src/Dialogs/MediaEditor.vala:629
+#: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
 msgstr "Lähtesta"
 
-#: ../src/Dialogs/MediaEditor.vala:633
+#: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
 msgstr "<b>Andmed</b>"
 
@@ -471,11 +472,11 @@ msgstr "Märguanded:"
 msgid "Continue playback when closed:"
 msgstr "Sulgemisel esitamise jätkamine:"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
 msgstr "Oled kindel, et soovid paigaldada plugina %s?\n"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
@@ -483,7 +484,7 @@ msgstr ""
 "\n"
 "Seda laulu pole võimalik esitada, sul puudub vajaminev plugin - %s."
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
 msgstr "Paigalda"
 
@@ -556,32 +557,32 @@ msgstr ""
 "Noise'is on juba toimingud pooleli. Palun oota, kuni importimine asukohast "
 "%d saab valmis"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:52
+#: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
 msgstr "Faili ei leitud"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:58
+#: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Muusika faili <b>%s</b> jaoks ei leitud."
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:61
+#: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
 msgstr "%i muusika faili ei leitud?"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:84
+#: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
 msgstr "Kogumiku uuendamine"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
+#: ../src/Dialogs/FileNotFoundDialog.vala:93
 #: ../src/Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove Song"
 msgstr "Eemalda laul"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
 msgstr "Leia laul"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:123
+#: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 msgid "Choose Music Folder"
 msgstr "Muusika kausta valimine"
@@ -780,7 +781,7 @@ msgid "Move all corrupted files to trash"
 msgstr "Pane kõik vigased failid prügikasti"
 
 #: ../src/Dialogs/NotImportedWindow.vala:65
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
 msgstr "Pane prügikasti"
 
@@ -800,19 +801,19 @@ msgstr "Faili asukoht"
 msgid "Select individual files to move to trash:"
 msgstr "Vali üksikud failid, mida prügikasti visata:"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
+#: ../src/Dialogs/RemoveFilesDialog.vala:57
 msgid "Remove from %s"
 msgstr "Eemalda asukohast %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
+#: ../src/Dialogs/RemoveFilesDialog.vala:67
 msgid "Remove %d Songs From %s?"
 msgstr "Eemaldada %d laulu %s'ist?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
+#: ../src/Dialogs/RemoveFilesDialog.vala:70
 msgid "Remove \"%s\" From %s?"
 msgstr "Eemaldada \"%s\" %s'ist?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
+#: ../src/Dialogs/RemoveFilesDialog.vala:79
 msgid ""
 "This will remove the song from your library and from any device that "
 "automatically syncs with %s."
@@ -834,25 +835,29 @@ msgstr "Ühtegi laulu pole saadaval"
 msgid "Add music to your library."
 msgstr "Lisa muusikat oma kogumikku"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr ""
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
 msgstr "Muuda muusika kausta asukohta"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
 msgstr "Muusika importimine kaustast, võrgust või väliselt kettalt"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import your Music"
 msgstr "Muusika importimine"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import all your Music from %s into your library."
 msgstr "Muusika importimine asukohast %s muusika kogumikku."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:124
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Select Music Folder"
 msgstr "Muusika kausta valimine"
 
@@ -1379,11 +1384,19 @@ msgstr "Muusika importimine asukohast %s..."
 msgid "Adding files to library…"
 msgstr "Muusika lisamine kogumikku..."
 
-#: ../src/LocalLibrary.vala:250
+#: ../src/LocalLibrary.vala:252
+msgid "All music files are already in your library"
+msgstr ""
+
+#: ../src/LocalLibrary.vala:252
+msgid "No files were imported."
+msgstr ""
+
+#: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "Laulude nimekirja uuendatakse, see võtab natuke aega..."
 
-#: ../src/LocalLibrary.vala:327
+#: ../src/LocalLibrary.vala:339
 msgid "Added to your queue:"
 msgstr "Lisati järjekorda:"
 
@@ -1516,7 +1529,7 @@ msgstr "Sees"
 
 #: ../src/Widgets/StatusBar.vala:72
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Keela kordusesitus"
 
 #: ../src/Widgets/StatusBar.vala:101
 msgid "Enable Shuffle"

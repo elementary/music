@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-17 15:56-0500\n"
+"POT-Creation-Date: 2014-10-05 00:29-0500\n"
 "PO-Revision-Date: 2014-09-17 21:39+0000\n"
 "Last-Translator: Leonardo Lemos <leonardolemos@live.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-09-18 07:05+0000\n"
+"X-Launchpad-Export-Date: 2014-10-06 06:49+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -39,8 +39,8 @@ msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME por $ARTIST em $ALBUM"
 
 #: ../core/Resources.vala:97
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:70
+#: ../src/Dialogs/FileNotFoundDialog.vala:94
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -327,6 +327,7 @@ msgid "Pause"
 msgstr "Pausar"
 
 #: ../src/LibraryWindow.vala:1134
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
 msgstr "Importar músicas"
 
@@ -338,7 +339,7 @@ msgstr "<b>Importando</b> músicas para a biblioteca..."
 msgid "Details"
 msgstr "Detalhes"
 
-#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:369
+#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
 msgstr "Letras"
 
@@ -346,15 +347,15 @@ msgstr "Letras"
 msgid "Close"
 msgstr "Fechar"
 
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:343
+#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:346
 msgid "Editing $NAME by $ARTIST"
 msgstr "Editando $NAME por $ARTIST"
 
-#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:345
+#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:348
 msgid "Editing %s"
 msgstr "Editando %s"
 
-#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:348
+#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:351
 msgid "Editing %i songs"
 msgstr "Editando %i músicas"
 
@@ -382,7 +383,7 @@ msgstr "Artista do álbum"
 msgid "Album"
 msgstr "Álbum"
 
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Genre"
 msgstr "Gênero"
@@ -392,7 +393,7 @@ msgstr "Gênero"
 msgid "Composer"
 msgstr "Compositor"
 
-#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Grouping"
 msgstr "Agrupamento"
@@ -420,15 +421,15 @@ msgstr "Ano"
 msgid "Rating"
 msgstr "Classificação"
 
-#: ../src/Dialogs/MediaEditor.vala:291
+#: ../src/Dialogs/MediaEditor.vala:294
 msgid "Lyrics not found for %s"
 msgstr "A letra para %s não foi encontrada"
 
-#: ../src/Dialogs/MediaEditor.vala:629
+#: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
 msgstr "Redefinir"
 
-#: ../src/Dialogs/MediaEditor.vala:633
+#: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
 msgstr "<b>Estatísticas</b>"
 
@@ -472,11 +473,11 @@ msgstr "Notificações:"
 msgid "Continue playback when closed:"
 msgstr "Continuar reproduzindo quando fechado:"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
 msgstr "Você gostaria de instalar o plugin %s?\n"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
@@ -485,7 +486,7 @@ msgstr ""
 "Essa música não pôde ser reproduzida. Ela precisa do plugin %s para ser "
 "reproduzida."
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
 msgstr "Instalar plugin"
 
@@ -558,33 +559,33 @@ msgstr ""
 "Noise já está fazendo operações com arquivos. Por favor, aguarde até que "
 "essas acabem de importar de %d"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:52
+#: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
 msgstr "Arquivo não encontrado"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:58
+#: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
 "O arquivo de música para <b>%s</b> por <b>%s</b> não pôde ser encontrado."
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:61
+#: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
 msgstr "%i arquivos de música não puderam ser encontrados?"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:84
+#: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
 msgstr "Escanear bibioteca novamente"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
+#: ../src/Dialogs/FileNotFoundDialog.vala:93
 #: ../src/Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove Song"
 msgstr "Remover Música"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
 msgstr "Achar música"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:123
+#: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 msgid "Choose Music Folder"
 msgstr "Escolha a pasta de músicas"
@@ -783,7 +784,7 @@ msgid "Move all corrupted files to trash"
 msgstr "Mover todos os arquivos corrompidos para o lixo"
 
 #: ../src/Dialogs/NotImportedWindow.vala:65
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
 msgstr "Mover para o lixo"
 
@@ -803,19 +804,19 @@ msgstr "Local do arquivo"
 msgid "Select individual files to move to trash:"
 msgstr "Selecione arquivos específicos para exclusão:"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
+#: ../src/Dialogs/RemoveFilesDialog.vala:57
 msgid "Remove from %s"
 msgstr "Remover de %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
+#: ../src/Dialogs/RemoveFilesDialog.vala:67
 msgid "Remove %d Songs From %s?"
 msgstr "Remover %d músicas de %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
+#: ../src/Dialogs/RemoveFilesDialog.vala:70
 msgid "Remove \"%s\" From %s?"
 msgstr "Remover \"%s\" De %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
+#: ../src/Dialogs/RemoveFilesDialog.vala:79
 msgid ""
 "This will remove the song from your library and from any device that "
 "automatically syncs with %s."
@@ -837,25 +838,29 @@ msgstr "Obter algumas músicas"
 msgid "Add music to your library."
 msgstr "Adicionar músicas à sua biblioteca."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr ""
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
 msgstr "Mudar a Pasta de Música"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
 msgstr "Carregar música de uma pasta, rede ou um disco externo."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import your Music"
 msgstr "Importar suas músicas"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import all your Music from %s into your library."
 msgstr "Importar todas as suas músicas de %s para a sua biblioteca."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:124
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Select Music Folder"
 msgstr "Selecionar pasta de músicas"
 
@@ -1387,13 +1392,21 @@ msgstr "Importando música de %s…"
 msgid "Adding files to library…"
 msgstr "Adicionando arquivos à biblioteca..."
 
-#: ../src/LocalLibrary.vala:250
+#: ../src/LocalLibrary.vala:252
+msgid "All music files are already in your library"
+msgstr ""
+
+#: ../src/LocalLibrary.vala:252
+msgid "No files were imported."
+msgstr ""
+
+#: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
 "Escaneando músicas novamente para verificar mudanças. Isso pode demorar um "
 "pouco."
 
-#: ../src/LocalLibrary.vala:327
+#: ../src/LocalLibrary.vala:339
 msgid "Added to your queue:"
 msgstr "Adicionado para a sua fila:"
 

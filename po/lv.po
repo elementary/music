@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-17 15:56-0500\n"
-"PO-Revision-Date: 2014-07-26 14:03+0000\n"
-"Last-Translator: Jānis-Marks Gailis <jm-gailis@fai-vianet.fr>\n"
+"POT-Creation-Date: 2014-10-05 00:29-0500\n"
+"PO-Revision-Date: 2014-09-24 18:49+0000\n"
+"Last-Translator: Armands Skolmeisters "
+"<armands.skolmeisters@arseniuss.id.lv>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-09-18 07:04+0000\n"
+"X-Launchpad-Export-Date: 2014-10-06 06:48+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -39,8 +40,8 @@ msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME no $ARTIST kas atrodas $ALBUM"
 
 #: ../core/Resources.vala:97
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:70
+#: ../src/Dialogs/FileNotFoundDialog.vala:94
 msgid "Cancel"
 msgstr "Atcelt"
 
@@ -253,7 +254,7 @@ msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 
 #: ../src/Noise.vala:41
 msgid "About "
-msgstr ""
+msgstr "Par "
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -319,9 +320,10 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Apturēt"
 
 #: ../src/LibraryWindow.vala:1134
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
 msgstr "Importēt skaņdarbus"
 
@@ -331,105 +333,105 @@ msgstr "<b>Importē</b> skaņdarbu bibliotēkā..."
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
-msgstr ""
+msgstr "Detaļas"
 
-#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:369
+#: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
-msgstr ""
+msgstr "Dziesmu vārdi"
 
 #: ../src/Dialogs/MediaEditor.vala:97 ../src/Dialogs/PreferencesWindow.vala:96
 msgid "Close"
 msgstr "Aizvērt"
 
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:343
+#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:346
 msgid "Editing $NAME by $ARTIST"
-msgstr ""
+msgstr "Labot $NAME pēc $ARTIST"
 
-#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:345
+#: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:348
 msgid "Editing %s"
-msgstr ""
+msgstr "Rediģē %s"
 
-#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:348
+#: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:351
 msgid "Editing %i songs"
-msgstr ""
+msgstr "Rediģē %i dziesmas"
 
 #: ../src/Dialogs/MediaEditor.vala:193
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
 #: ../src/Dialogs/SmartPlaylistEditor.vala:275
 msgid "Title"
-msgstr ""
+msgstr "Nosaukums"
 
 #: ../src/Dialogs/MediaEditor.vala:194
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:122
 #: ../src/Dialogs/SmartPlaylistEditor.vala:262
 #: ../src/Widgets/StatusBar.vala:71
 msgid "Artist"
-msgstr ""
+msgstr "Izpildītājs"
 
 #: ../src/Dialogs/MediaEditor.vala:195
 msgid "Album Artist"
-msgstr ""
+msgstr "Albuma izpildītājs"
 
 #: ../src/Dialogs/MediaEditor.vala:196
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:123
 #: ../src/Dialogs/SmartPlaylistEditor.vala:261
 #: ../src/Widgets/StatusBar.vala:70
 msgid "Album"
-msgstr ""
+msgstr "Albums"
 
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Genre"
-msgstr ""
+msgstr "Žanrs"
 
 #: ../src/Dialogs/MediaEditor.vala:198
 #: ../src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Composer"
-msgstr ""
+msgstr "Komponists"
 
-#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Grouping"
-msgstr ""
+msgstr "Grupēšana"
 
 #: ../src/Dialogs/MediaEditor.vala:200
 #: ../src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Comment"
-msgstr ""
+msgstr "Komentārs"
 
 #: ../src/Dialogs/MediaEditor.vala:201
 msgid "Track"
-msgstr ""
+msgstr "Celiņš"
 
 #: ../src/Dialogs/MediaEditor.vala:202
 msgid "Disc"
-msgstr ""
+msgstr "Disks"
 
 #: ../src/Dialogs/MediaEditor.vala:203
 #: ../src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Year"
-msgstr ""
+msgstr "Gads"
 
 #: ../src/Dialogs/MediaEditor.vala:204
 #: ../src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Rating"
-msgstr ""
+msgstr "Vērtējums"
 
-#: ../src/Dialogs/MediaEditor.vala:291
+#: ../src/Dialogs/MediaEditor.vala:294
 msgid "Lyrics not found for %s"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:629
+#: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:633
+#: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
 msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Atzīmēt mūzikas mapi..."
 
 #: ../src/Dialogs/PreferencesWindow.vala:132
 msgid "General"
@@ -437,23 +439,23 @@ msgstr "Vispārīgi"
 
 #: ../src/Dialogs/PreferencesWindow.vala:138
 msgid "Music Folder Location:"
-msgstr ""
+msgstr "Mūzikas mapes vieta:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:146
 msgid "Library Management:"
-msgstr ""
+msgstr "Bibliotēkas pārvaldīšana:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:153
 msgid "Keep Music folder organized:"
-msgstr ""
+msgstr "Turēt mūzikas mapi organizētu:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:157
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Rakstīt metadatus datnēs:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:161
 msgid "Copy imported files to Library:"
-msgstr ""
+msgstr "Kopēt importētās datnes bibliotēkā:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:163
 msgid "Desktop Integration:"
@@ -461,29 +463,31 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:169
 msgid "Notifications:"
-msgstr ""
+msgstr "Paziņojumi:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:174
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Turpināt izpildīt, kad aizvērts:"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:43
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Vai vēlaties instalēt spraudni %s?\n"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"Šo dziesmu nevar atskaņot. Tam ir nepieciešams spraudnis %s."
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
-msgstr ""
+msgstr "Instalēt spraudni"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:55
 msgid "Import from Device"
-msgstr ""
+msgstr "Importēt no ierīces"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import media from %s"
@@ -502,27 +506,27 @@ msgstr ""
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:79
 #: ../plugins/Devices/CDRom/CDView.vala:90
 msgid "Import"
-msgstr ""
+msgstr "Importēt"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:80
 msgid "Don't Import"
-msgstr ""
+msgstr "Neimportēt"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:88
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "Importēt %i vienības no %s"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:92
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Importēt %s no %s"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:172
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Atzīmējiet katru mediju datni, ko importēt:"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:190
 msgid "Check Item"
@@ -538,73 +542,77 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:289
 msgid "Cannot Import"
-msgstr ""
+msgstr "Nevar importēt"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:289
 msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %d"
 msgstr ""
+"Noise jau veic datņu operācijas. Lūdzu sagaidiet līdz tiks pabeigta "
+"importēšana no %d"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:52
+#: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
-msgstr ""
+msgstr "Datne nav atrasta"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:58
+#: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:61
+#: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i mūzikas datnes netika atrastas."
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:84
+#: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
-msgstr ""
+msgstr "Pārskanēt bibliotēku"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
+#: ../src/Dialogs/FileNotFoundDialog.vala:93
 #: ../src/Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove Song"
 msgstr "Dzēst skaņdarbu"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
-msgstr ""
+msgstr "Atrast dziesmu"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:123
+#: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "Izvēlēties mūzikas mapi"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
 msgid "Export Playlists"
-msgstr ""
+msgstr "Eksportēt atskaņošanas sarakstu"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
 msgid "Set Music Folder"
-msgstr ""
+msgstr "Iestatīt mūzikas mapi"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "Vai iestatīt mūzikas mapi?"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Vai tiešām vēlaties mainīt mūzikas mapi uz %s? Šī darbība pārstatīs "
+"bibliotēku un noņems atskaņošanas sarakstus."
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
-msgstr ""
+msgstr "Importēt medijus bibliotēkā"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:58
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Turpināt sinhronizēšanu"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:59
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Apturēt sinhronizēšanu"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:66
 msgid ""
@@ -614,11 +622,11 @@ msgstr ""
 
 #: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "Sinhronizēšana noņems %i vienības no %s"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:75
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "Sinhronizēšana noņems 1 vienību no %s"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:38
 msgid "Smart Playlist Editor"
@@ -627,7 +635,7 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:49
 #: ../src/Dialogs/SmartPlaylistEditor.vala:57
 msgid "Name of Playlist"
-msgstr ""
+msgstr "Atskaņošanas saraksta nosaukums"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:50
 #: ../src/Dialogs/SmartPlaylistEditor.vala:58
@@ -641,35 +649,35 @@ msgstr "Opcijas"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Playlist Title"
-msgstr ""
+msgstr "Atskaņošanas saraksta virsraksts"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:69
 msgid "Match"
-msgstr ""
+msgstr "Atbilst"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:71
 msgid "any"
-msgstr ""
+msgstr "jebkurš"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:72
 msgid "all"
-msgstr ""
+msgstr "viss"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:77
 msgid "of the following:"
-msgstr ""
+msgstr "no sekojošajiem:"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Add"
-msgstr ""
+msgstr "Pievienot"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
-msgstr ""
+msgstr "Ierobežot līdz"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:96
 msgid "items"
-msgstr ""
+msgstr "vienumi"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:258
 #: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
@@ -678,28 +686,28 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Bitrate"
-msgstr ""
+msgstr "Bitātrums"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Date Added"
-msgstr ""
+msgstr "Pievienošanas datums"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Date Released"
-msgstr ""
+msgstr "Izlaišanas datums"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Last Played"
-msgstr ""
+msgstr "Pēdējoreiz atskaņots"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:271
 #: ../src/Dialogs/SmartPlaylistEditor.vala:401
 msgid "Length"
-msgstr ""
+msgstr "Ilgums"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "Playcount"
-msgstr ""
+msgstr "Atskaņošanu skaits"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "Skipcount"
@@ -707,20 +715,20 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:337
 msgid "is"
-msgstr ""
+msgstr "ir"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:338
 msgid "contains"
-msgstr ""
+msgstr "satur"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:339
 msgid "does not contain"
-msgstr ""
+msgstr "nesatur"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:364
 #: ../src/Dialogs/SmartPlaylistEditor.vala:377
 msgid "is exactly"
-msgstr ""
+msgstr "ir tieši"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:365
 msgid "is at most"
@@ -736,19 +744,19 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:379
 msgid "is before"
-msgstr ""
+msgstr "ir pirms"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:402
 msgid "seconds"
-msgstr ""
+msgstr "sekundes"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:405
 msgid "days ago"
-msgstr ""
+msgstr "pirms dienām"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:408
 msgid "kbps"
-msgstr ""
+msgstr "kb/s"
 
 #: ../src/Dialogs/NotImportedWindow.vala:58
 #: ../src/Dialogs/NotImportedWindow.vala:70
@@ -764,7 +772,7 @@ msgid "Move all corrupted files to trash"
 msgstr ""
 
 #: ../src/Dialogs/NotImportedWindow.vala:65
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
 msgstr "Pārvietot uz miskasti"
 
@@ -784,19 +792,19 @@ msgstr "Faila atrašanās vieta"
 msgid "Select individual files to move to trash:"
 msgstr ""
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
+#: ../src/Dialogs/RemoveFilesDialog.vala:57
 msgid "Remove from %s"
 msgstr "Noņemt no %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
+#: ../src/Dialogs/RemoveFilesDialog.vala:67
 msgid "Remove %d Songs From %s?"
 msgstr ""
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
+#: ../src/Dialogs/RemoveFilesDialog.vala:70
 msgid "Remove \"%s\" From %s?"
 msgstr ""
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
+#: ../src/Dialogs/RemoveFilesDialog.vala:79
 msgid ""
 "This will remove the song from your library and from any device that "
 "automatically syncs with %s."
@@ -814,25 +822,29 @@ msgstr "Iegūt kādu skaņdarbu"
 msgid "Add music to your library."
 msgstr "Pievienot skaņdarbus bibliotēkai."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr ""
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
 msgstr "Mainīt audio direktoriju"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
 msgstr "Ielādēt skaņdarbus no direktorijas, tīkla vai ārējā diska."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import your Music"
 msgstr "Importēt manu mūziku"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:100
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:116
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:104
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import all your Music from %s into your library."
 msgstr "Importēt visus skaņdarbus no %s skaņdarbu bibliotēkā"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:124
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Select Music Folder"
 msgstr "Izvēlēties skaņdarbu direktoriju"
 
@@ -900,7 +912,7 @@ msgstr "Ierīces darbība ir apturēta un tiks pārtraukta pēc šī mēdija."
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "Labi"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
@@ -1107,7 +1119,7 @@ msgstr "Radīt failu pārlūkā"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Citas darbības"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1365,22 +1377,30 @@ msgstr "Importē skaņdarbus no %s…"
 msgid "Adding files to library…"
 msgstr "Pievienot datnes bibliotēkai"
 
-#: ../src/LocalLibrary.vala:250
+#: ../src/LocalLibrary.vala:252
+msgid "All music files are already in your library"
+msgstr ""
+
+#: ../src/LocalLibrary.vala:252
+msgid "No files were imported."
+msgstr ""
+
+#: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "Skenē izmaiņas mūzikas bibliotēkā. Tas var aizņemt kādu brīdi..."
 
-#: ../src/LocalLibrary.vala:327
+#: ../src/LocalLibrary.vala:339
 msgid "Added to your queue:"
 msgstr "Pievienots atskaņošanas rindai:"
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
-msgstr ""
+msgstr "Pārsaukt"
 
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr ""
+msgstr "Eksportēt..."
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
@@ -1388,45 +1408,45 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
-msgstr ""
+msgstr "Saglabāt kā atskaņošanas sarakstu"
 
 #: ../src/Widgets/SourceListView.vala:156
 msgid "Eject"
-msgstr ""
+msgstr "Izgrūst"
 
 #: ../src/Widgets/SourceListView.vala:161
 #: ../src/Widgets/SourceListView.vala:201
 msgid "New Playlist"
-msgstr ""
+msgstr "Jauns atskaņošanas saraksts"
 
 #: ../src/Widgets/SourceListView.vala:166
 #: ../src/Widgets/SourceListView.vala:202
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "Jauns gudrais atskaņošanas saraksts"
 
 #: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
 msgid "Sync"
-msgstr ""
+msgstr "Sinhronizēšana"
 
 #: ../src/Widgets/SourceListView.vala:203
 msgid "Import Playlists"
-msgstr ""
+msgstr "Importēt atskaņošanas sarakstu"
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
-msgstr ""
+msgstr "Bibliotēka"
 
 #: ../src/Widgets/SourceListView.vala:314
 msgid "Devices"
-msgstr ""
+msgstr "Ierīces"
 
 #: ../src/Widgets/SourceListView.vala:315
 msgid "Network"
-msgstr ""
+msgstr "Tīkls"
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
 msgid "Playlists"
-msgstr ""
+msgstr "Atskaņošanas saraksti"
 
 #: ../src/Widgets/PresetList.vala:48
 msgid "Delete Current"
@@ -1434,7 +1454,7 @@ msgstr ""
 
 #: ../src/Widgets/SpaceWidget.vala:266
 msgid "Free"
-msgstr ""
+msgstr "Brīvs"
 
 #: ../src/Widgets/SpaceWidget.vala:383
 msgid "Using %s of %s (%.2f%)"
@@ -1466,75 +1486,75 @@ msgstr ""
 
 #: ../src/Widgets/ViewSelector.vala:72
 msgid "View as List"
-msgstr ""
+msgstr "Skatīt kā sarakstu"
 
 #: ../src/Widgets/ViewSelector.vala:76
 msgid "View in Columns"
-msgstr ""
+msgstr "Skatīt kolonnās"
 
 #: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:101
 msgid "Off"
-msgstr ""
+msgstr "Izslēgt"
 
 #: ../src/Widgets/StatusBar.vala:68
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Ieslēgt atkārtošanu"
 
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Song"
-msgstr ""
+msgstr "Dziesma"
 
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Repeat Song"
-msgstr ""
+msgstr "Atkārtot dziesmu"
 
 #: ../src/Widgets/StatusBar.vala:70
 msgid "Repeat Album"
-msgstr ""
+msgstr "Atkārtot albumu"
 
 #: ../src/Widgets/StatusBar.vala:71
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Atkārtot izpildītāju"
 
 #: ../src/Widgets/StatusBar.vala:72 ../src/Widgets/StatusBar.vala:102
 msgid "All"
-msgstr ""
+msgstr "Visi"
 
 #: ../src/Widgets/StatusBar.vala:72
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Izslēgt atkārtošanu"
 
 #: ../src/Widgets/StatusBar.vala:101
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Ieslēgt jaukšanu"
 
 #: ../src/Widgets/StatusBar.vala:102
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Izslēgt jaukšanu"
 
 #: ../src/Widgets/StatusBar.vala:135 ../src/Widgets/StatusBar.vala:146
 msgid "Add Playlist"
-msgstr ""
+msgstr "Pievienot atskaņošanas sarakstu"
 
 #: ../src/Widgets/StatusBar.vala:147
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Pievienot gudro atskaņošanas sarakstu"
 
 #: ../src/Widgets/StatusBar.vala:197
 msgid "Hide"
-msgstr ""
+msgstr "Slēpt"
 
 #: ../src/Widgets/StatusBar.vala:197
 msgid "Show Info Panel"
-msgstr ""
+msgstr "Rādīt informācijas panelī"
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Show"
-msgstr ""
+msgstr "Rādīt"
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Hide Info Panel"
-msgstr ""
+msgstr "Paslēgt informācijas panelī"
 
 #: ../src/Objects/LyricFetcher.vala:155
 msgid "Lyrics fetched from www.lyricsmania.com"
@@ -1542,11 +1562,11 @@ msgstr ""
 
 #: ../src/Objects/TrackInfo.vala:25
 msgid "Unknown Track"
-msgstr ""
+msgstr "Nezināms celiņš"
 
 #: ../src/Objects/AlbumInfo.vala:25
 msgid "Unknown Album"
-msgstr ""
+msgstr "Nezināms albums"
 
 #: ../src/Objects/AlbumInfo.vala:26 ../src/Objects/ArtistInfo.vala:27
 msgid "Unknown Artist"
@@ -1554,7 +1574,7 @@ msgstr "Nezināms izpildītājs"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
-msgstr ""
+msgstr "medijs"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:45
 msgid "Similar Media"
@@ -1562,7 +1582,7 @@ msgstr ""
 
 #: ../plugins/LastFM/LastFM.vala:71
 msgid "No similar songs found"
-msgstr ""
+msgstr "Līdzīgas dziesmas netika atrastas"
 
 #: ../plugins/LastFM/LastFM.vala:71
 msgid ""
@@ -1573,7 +1593,7 @@ msgstr ""
 
 #: ../plugins/LastFM/SimilarMedia.vala:42
 msgid "Similar"
-msgstr ""
+msgstr "Līdzīgs"
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
@@ -1589,7 +1609,7 @@ msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:33
 msgid "Success!"
-msgstr ""
+msgstr "Veiksmīgi!"
 
 #: ../plugins/LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
@@ -1597,7 +1617,7 @@ msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: ../plugins/LastFM/PreferencesSection.vala:48
 msgid "Last.fm Integration"
@@ -1616,12 +1636,12 @@ msgstr ""
 #: ../plugins/Devices/iPod/iPodDevice.vala:70
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
 msgid "Empty device!"
-msgstr ""
+msgstr "Tukša ierīce!"
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:74
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:117
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "Šī ierīce nesatur nevienu mūzikas datni."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:148
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
@@ -1640,14 +1660,14 @@ msgstr ""
 #: ../plugins/Devices/iPod/iPodLibrary.vala:637
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:256
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Pabeidz sinhronizēšanas procesu..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:232
 #: ../plugins/Devices/iPod/iPodLibrary.vala:392
 #: ../plugins/Devices/iPod/iPodLibrary.vala:657
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:259
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Aptur sinhronizēšanu..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:342
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
@@ -1664,19 +1684,19 @@ msgstr ""
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:263
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:264
 msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
+msgstr "Ierīcē nav pietiekoši daudz atmiņas, lai pabeigtu sinhronizēšanu..."
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:161
 msgid "Android Phone"
-msgstr ""
+msgstr "Android tālrunis"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:163
 msgid "Audio Player"
-msgstr ""
+msgstr "Audio atskaņotājs"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Kļūda"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
@@ -1707,15 +1727,15 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:357
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "Dziesmu importēšana no CD diska ir pabeigta."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:357
 msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
+msgstr "%i dziesmu importēšana no CD diska ir pabeigta."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:362
 msgid "Importing track %i: %s"
-msgstr ""
+msgstr "Importē celiņu %i: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:367
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1723,7 +1743,7 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:386
 msgid "An error occured during the Import of this CD"
-msgstr ""
+msgstr "Kļūda mēģinot importēt CD disku"
 
 #~ msgid "Radio Station"
 #~ msgstr "Radio stacija"

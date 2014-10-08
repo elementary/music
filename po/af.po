@@ -1,28 +1,27 @@
-# Hindi translation for beat-box
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
-# This file is distributed under the same license as the beat-box package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# Afrikaans translation for noise
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the noise package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: noise\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-05 00:29-0500\n"
-"PO-Revision-Date: 2014-05-20 13:30+0000\n"
-"Last-Translator: Vivek Kumar <vivek.vk03@gmail.com>\n"
-"Language-Team: Hindi <hi@li.org>\n"
+"PO-Revision-Date: 2014-10-06 18:41+0000\n"
+"Last-Translator: Deavmi <deavmi@gmail.com>\n"
+"Language-Team: Afrikaans <af@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:47+0000\n"
+"X-Launchpad-Export-Date: 2014-10-07 06:50+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
-"Language: hi\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
 msgid "Unknown"
-msgstr "अज्ञात"
+msgstr "Onbekend"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:177
@@ -43,7 +42,7 @@ msgstr ""
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:70
 #: ../src/Dialogs/FileNotFoundDialog.vala:94
 msgid "Cancel"
-msgstr "रद्द करें"
+msgstr ""
 
 #: ../core/Resources.vala:98
 msgid "Open"
@@ -51,7 +50,7 @@ msgstr ""
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr ""
+msgstr "Stoor"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
@@ -59,15 +58,15 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:77
 msgid "Classical"
-msgstr "शास्त्रीय"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Club"
-msgstr ""
+msgstr "Klub"
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Dance"
-msgstr "नृत्य"
+msgstr "Dans"
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Full Bass"
@@ -83,7 +82,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
-msgstr "हेडफोन"
+msgstr "Oorfone"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Large Hall"
@@ -95,11 +94,11 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Party"
-msgstr "पार्टी"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Pop"
-msgstr ""
+msgstr "Pop"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Reggae"
@@ -111,7 +110,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:90
 msgid "Soft"
-msgstr ""
+msgstr "Sag"
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Ska"
@@ -123,7 +122,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:93
 msgid "Techno"
-msgstr ""
+msgstr "Tegno"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -132,8 +131,8 @@ msgstr ""
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekonde"
+msgstr[1] "%d sekondes"
 
 #: ../core/Utils/TimeUtils.vala:52 ../core/Utils/TimeUtils.vala:83
 msgid "%u minute"
@@ -144,8 +143,8 @@ msgstr[1] ""
 #: ../core/Utils/TimeUtils.vala:56
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekonde"
+msgstr[1] "%d sekondes"
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:58
@@ -156,14 +155,14 @@ msgstr ""
 #: ../core/Utils/TimeUtils.vala:77
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u dag"
+msgstr[1] "%u dae"
 
 #: ../core/Utils/TimeUtils.vala:80
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u uur"
+msgstr[1] "%u ure"
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:91
@@ -197,11 +196,11 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: ../core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr ""
+msgstr "Nuwe speellys"
 
 #: ../core/Utils/PlaylistsUtils.vala:246
 msgid "%s (%i)"
@@ -209,7 +208,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr ""
+msgstr "Eksporteer speellys"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
@@ -221,7 +220,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr ""
+msgstr "Speellys"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
@@ -237,11 +236,11 @@ msgstr ""
 
 #: ../src/Noise.vala:38
 msgid "Listen to music"
-msgstr ""
+msgstr "Luister na musiek"
 
 #: ../src/Noise.vala:39
 msgid "Music Player"
-msgstr ""
+msgstr "Musiekspeler"
 
 #: ../src/Noise.vala:40
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
@@ -257,19 +256,19 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:82
 msgid "Preferences"
-msgstr "पसंद"
+msgstr "Voorkeure"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "Voorige"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
-msgstr ""
+msgstr "Speel"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Volgende"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
@@ -278,13 +277,13 @@ msgstr ""
 #: ../src/LibraryWindow.vala:687 ../src/LibraryWindow.vala:825
 #: ../src/Views/DeviceSummaryWidget.vala:107
 msgid "Music"
-msgstr "संगीत"
+msgstr "Musiek"
 
 #: ../src/LibraryWindow.vala:880 ../src/DataBase/DataBaseManager.vala:556
 #: ../src/LocalLibrary.vala:104 ../src/PlaybackManager.vala:99
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Wagtou"
 
 #: ../src/LibraryWindow.vala:883
 msgid "No songs in Queue"
@@ -300,7 +299,7 @@ msgstr ""
 #: ../src/LibraryWindow.vala:890 ../src/DataBase/DataBaseManager.vala:556
 #: ../src/LocalLibrary.vala:104 ../src/PlaybackManager.vala:97
 msgid "History"
-msgstr "इतिहास"
+msgstr "Geskiedenis"
 
 #: ../src/LibraryWindow.vala:893
 msgid "No songs in History"
@@ -315,12 +314,12 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Pouse"
 
 #: ../src/LibraryWindow.vala:1134
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
-msgstr "संगीत आयात करें"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:1154 ../src/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -328,15 +327,15 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
-msgstr ""
+msgstr "Besonderhede"
 
 #: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
-msgstr ""
+msgstr "Lirieke"
 
 #: ../src/Dialogs/MediaEditor.vala:97 ../src/Dialogs/PreferencesWindow.vala:96
 msgid "Close"
-msgstr ""
+msgstr "Toemaak"
 
 #: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:346
 msgid "Editing $NAME by $ARTIST"
@@ -344,59 +343,59 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:348
 msgid "Editing %s"
-msgstr ""
+msgstr "Redigeer %s"
 
 #: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:351
 msgid "Editing %i songs"
-msgstr ""
+msgstr "Redigeer %i liedjies"
 
 #: ../src/Dialogs/MediaEditor.vala:193
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
 #: ../src/Dialogs/SmartPlaylistEditor.vala:275
 msgid "Title"
-msgstr "शीर्षक"
+msgstr "Titel"
 
 #: ../src/Dialogs/MediaEditor.vala:194
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:122
 #: ../src/Dialogs/SmartPlaylistEditor.vala:262
 #: ../src/Widgets/StatusBar.vala:71
 msgid "Artist"
-msgstr "संगीतकार"
+msgstr "Kunstenaar"
 
 #: ../src/Dialogs/MediaEditor.vala:195
 msgid "Album Artist"
-msgstr ""
+msgstr "Album Kunstenaar"
 
 #: ../src/Dialogs/MediaEditor.vala:196
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:123
 #: ../src/Dialogs/SmartPlaylistEditor.vala:261
 #: ../src/Widgets/StatusBar.vala:70
 msgid "Album"
-msgstr "एल्बम"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Genre"
-msgstr "शैली"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:198
 #: ../src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Composer"
-msgstr ""
+msgstr "Komponis"
 
 #: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Grouping"
-msgstr ""
+msgstr "Groepering"
 
 #: ../src/Dialogs/MediaEditor.vala:200
 #: ../src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Comment"
-msgstr ""
+msgstr "Kommentaar"
 
 #: ../src/Dialogs/MediaEditor.vala:201
 msgid "Track"
-msgstr "गाना"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:202
 msgid "Disc"
@@ -405,7 +404,7 @@ msgstr ""
 #: ../src/Dialogs/MediaEditor.vala:203
 #: ../src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Year"
-msgstr "वर्ष"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:204
 #: ../src/Dialogs/SmartPlaylistEditor.vala:273
@@ -480,7 +479,7 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:55
 msgid "Import from Device"
-msgstr "उपकरण से आयात करें"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import media from %s"
@@ -499,11 +498,11 @@ msgstr ""
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:79
 #: ../plugins/Devices/CDRom/CDView.vala:90
 msgid "Import"
-msgstr "आयात करें"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:80
 msgid "Don't Import"
-msgstr "आयात न करें"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:88
 msgid "Import %i items from %s"
@@ -527,11 +526,11 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:191
 msgid "Check Album"
-msgstr "एल्बम को जाँचें"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:192
 msgid "Check Artist"
-msgstr "संगीतकार को जाँचें"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:289
 msgid "Cannot Import"
@@ -571,19 +570,19 @@ msgstr ""
 #: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 msgid "Choose Music Folder"
-msgstr "संगीत फोल्डर को चुनिएँ"
+msgstr ""
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
 msgid "Export Playlists"
-msgstr "पोडकास्ट निर्यात करें"
+msgstr ""
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
 msgid "Set Music Folder"
-msgstr "संगीत फोल्डर को सेट करे"
+msgstr ""
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
 msgid "Set Music Folder?"
-msgstr "इसे संगीत फोल्डर बनाएँ?"
+msgstr ""
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
 msgid ""
@@ -624,21 +623,21 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:49
 #: ../src/Dialogs/SmartPlaylistEditor.vala:57
 msgid "Name of Playlist"
-msgstr "प्लेलिस्ट का नाम"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:50
 #: ../src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "Rules"
-msgstr "नियम"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:51
 #: ../src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "Options"
-msgstr "पसंद"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Playlist Title"
-msgstr "प्लेलिस्ट का शीर्षक"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:69
 msgid "Match"
@@ -654,7 +653,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:77
 msgid "of the following:"
-msgstr "इन में से"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Add"
@@ -662,7 +661,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
-msgstr "तक सीमित करें"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:96
 msgid "items"
@@ -671,15 +670,15 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:258
 #: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
 msgid "Remove"
-msgstr "हटाएँ"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Bitrate"
-msgstr "बिटरेट"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Date Added"
-msgstr "जोड़ने की तारीख"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Date Released"
@@ -687,12 +686,12 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Last Played"
-msgstr "पिछली बार बजाया गया"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:271
 #: ../src/Dialogs/SmartPlaylistEditor.vala:401
 msgid "Length"
-msgstr "लंबाई"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "Playcount"
@@ -704,15 +703,15 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:337
 msgid "is"
-msgstr "है"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:338
 msgid "contains"
-msgstr "में हैं"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:339
 msgid "does not contain"
-msgstr "में नहीं हैं"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:364
 #: ../src/Dialogs/SmartPlaylistEditor.vala:377
@@ -737,7 +736,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:402
 msgid "seconds"
-msgstr "सेकंड"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:405
 msgid "days ago"
@@ -805,7 +804,7 @@ msgstr[1] ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:50
 msgid "Get Some Tunes"
-msgstr "गाने पाइए"
+msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
@@ -1112,7 +1111,7 @@ msgstr ""
 #: ../src/Views/ListView/Lists/MusicListView.vala:130
 #: ../src/Widgets/SourceListView.vala:148
 msgid "Import to Library"
-msgstr "लाइब्ररी में आयात करें"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:214
 msgid "New Playlist…"
@@ -1273,7 +1272,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:108
 msgid "Podcasts"
-msgstr "पोडकास्ट"
+msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:269
 msgid "All Music"
@@ -1334,7 +1333,7 @@ msgstr ""
 
 #: ../src/FileOperator.vala:347
 msgid "Import Complete"
-msgstr "आयात पूर्ण"
+msgstr ""
 
 #: ../src/FileOperator.vala:347
 msgid "%s has imported your library."
@@ -1383,21 +1382,21 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
-msgstr "प्लेलिस्ट में बनाएँ"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:156
 msgid "Eject"
-msgstr "निकालें"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:161
 #: ../src/Widgets/SourceListView.vala:201
 msgid "New Playlist"
-msgstr "नया प्लेलिस्ट"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:166
 #: ../src/Widgets/SourceListView.vala:202
 msgid "New Smart Playlist"
-msgstr "नया बुध्दिमान प्लेलिस्ट"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
 msgid "Sync"
@@ -1409,19 +1408,19 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
-msgstr "लाइब्ररी"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:314
 msgid "Devices"
-msgstr "उपकरण"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:315
 msgid "Network"
-msgstr "प्रसार"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
 msgid "Playlists"
-msgstr "प्लेलिस्ट"
+msgstr ""
 
 #: ../src/Widgets/PresetList.vala:48
 msgid "Delete Current"
@@ -1469,7 +1468,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:101
 msgid "Off"
-msgstr "बंद"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:68
 msgid "Enable Repeat"
@@ -1477,7 +1476,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Song"
-msgstr "गाना"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Repeat Song"
@@ -1493,7 +1492,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:72 ../src/Widgets/StatusBar.vala:102
 msgid "All"
-msgstr "सभी"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:72
 msgid "Disable Repeat"
@@ -1517,7 +1516,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:197
 msgid "Hide"
-msgstr "छिपाएँ"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:197
 msgid "Show Info Panel"
@@ -1525,7 +1524,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Show"
-msgstr "दिखाएँ"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Hide Info Panel"
@@ -1541,11 +1540,11 @@ msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:25
 msgid "Unknown Album"
-msgstr "अज्ञात एल्बम"
+msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:26 ../src/Objects/ArtistInfo.vala:27
 msgid "Unknown Artist"
-msgstr "अज्ञात संगीतकार"
+msgstr ""
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
@@ -1557,7 +1556,7 @@ msgstr ""
 
 #: ../plugins/LastFM/LastFM.vala:71
 msgid "No similar songs found"
-msgstr "कोई समान गाने नहीं मिले"
+msgstr ""
 
 #: ../plugins/LastFM/LastFM.vala:71
 msgid ""
@@ -1568,7 +1567,7 @@ msgstr ""
 
 #: ../plugins/LastFM/SimilarMedia.vala:42
 msgid "Similar"
-msgstr "समान"
+msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
@@ -1687,15 +1686,13 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid "Could not find Music Folder"
-msgstr "संगीत फोल्डर नहीं मिला"
+msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
-"कृपया सुनिश्चित करें कि अपने संगीत फ़ोल्डर सुलभ और सीडी आयात करने से पहले "
-"माउन्ट किया गया है."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:256
 msgid ""
@@ -1721,52 +1718,3 @@ msgstr ""
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:386
 msgid "An error occured during the Import of this CD"
 msgstr ""
-
-#~ msgid "Download new Episodes"
-#~ msgstr "नए कार्यक्रम डाउनलोड करें"
-
-#~ msgid "Edit"
-#~ msgstr "संपादित करें"
-
-#~ msgid "Export..."
-#~ msgstr "निर्यात करें..."
-
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgid "Done"
-#~ msgstr "हो गया"
-
-#~ msgid "Podcast"
-#~ msgstr "पोडकास्ट"
-
-#~ msgid "is not"
-#~ msgstr "नहीं है"
-
-#~ msgid "Locate"
-#~ msgstr "ढूँडें"
-
-#~ msgid "Change your music folder."
-#~ msgstr "अपने संगीत फोल्डर को बदलिएँ"
-
-#~ msgid "Queue"
-#~ msgstr "कतार"
-
-#~ msgid " by "
-#~ msgstr " द्वारा "
-
-#~ msgid " on "
-#~ msgstr " पर "
-
-#, c-format
-#~ msgid "<b>Importing</b> music from <b>%s</b> to library."
-#~ msgstr "<b>%s</b> से लाइब्ररी में संगीत <b>आयात</b> कर रहा है."
-
-#~ msgid "Import songs from audio CD"
-#~ msgstr "संगीत CD से आयात करें"
-
-#~ msgid "Import media from device"
-#~ msgstr "उपकरण से गाने आयात करें"
-
-#~ msgid "CD Import Complete"
-#~ msgstr "सीडी आयात पूर्ण"

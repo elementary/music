@@ -17,13 +17,9 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-#if USE_GRANITE_DECORATED_WINDOW
-public class Noise.PopupListView : Granite.Widgets.DecoratedWindow {
-#else
-public class Noise.PopupListView : Window {
-#endif
+public class Noise.PopupListView : Gtk.Dialog {
 
-    public const int MIN_SIZE = 480;
+    public const int MIN_SIZE = 500;
 
     ViewWrapper view_wrapper;
     Gtk.Image album_cover;
@@ -39,37 +35,12 @@ public class Noise.PopupListView : Window {
     Gee.Collection<Media> media_list;
     
     public PopupListView (GridView grid_view) {
-#if USE_GRANITE_DECORATED_WINDOW
-        base ("", "album-list-view", "album-list-view");
-
-        // Don't destroy the window
         this.delete_event.connect (hide_on_delete);
-
-        // Hide titlebar (we want to set a title, but not showing it!)
-        this.show_title = false;
-        // We have to fullscreen it otherwise it's not shown on fullscreen mode
-        fullscreen ();
-#else
         window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 
         // window stuff
-        decorated = false;
         has_resize_grip = false;
         resizable = false;
-
-        // close button
-        var close = new Gtk.Button ();
-        get_style_context ().add_class ("album-list-view");
-        close.get_style_context().add_class("close-button");
-        close.set_image (Icons.render_image ("window-close-symbolic", Gtk.IconSize.MENU));
-        close.hexpand = close.vexpand = false;
-        close.halign = Gtk.Align.START;
-        close.set_relief(Gtk.ReliefStyle.NONE);
-        close.clicked.connect( () =>  { this.hide(); });
-
-        /* Make window draggable */
-        UI.make_window_draggable (this);
-#endif
 
         this.view_wrapper = grid_view.parent_view_wrapper;
         
@@ -79,28 +50,27 @@ public class Noise.PopupListView : Window {
         skip_taskbar_hint = true;
         
         // cover        
-        album_cover = new Gtk.Image();
+        album_cover = new Gtk.Image ();
         album_cover.margin_left = album_cover.margin_bottom = 12;
         
-        Gtk.EventBox cover_event_box = new Gtk.EventBox();
-        cover_event_box.add(album_cover);
+        Gtk.EventBox cover_event_box = new Gtk.EventBox ();
+        cover_event_box.add (album_cover);
         
-        cover_action_menu = new Gtk.Menu ();        
+        cover_action_menu = new Gtk.Menu ();
       
         cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
         cover_set_new.activate.connect (() => { this.set_new_cover(); });
         
         cover_action_menu.append (cover_set_new);
-        cover_action_menu.show_all();
+        cover_action_menu.show_all ();
         
-        cover_event_box.button_press_event.connect(show_cover_context_menu);
+        cover_event_box.button_press_event.connect (show_cover_context_menu);
         
         // album artist/album labels
         album_label = new Gtk.Label ("");
         artist_label = new Gtk.Label ("");
 
-        // Apply special style: Level-2 header
-        Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, album_label);
+        album_label.get_style_context ().add_class ("h2"); 
 
         album_label.ellipsize = Pango.EllipsizeMode.END;
         artist_label.ellipsize = Pango.EllipsizeMode.END;
@@ -131,26 +101,21 @@ public class Noise.PopupListView : Window {
         rating.margin_top = rating.margin_bottom = 16;
 
         // Add everything
-        var header = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-        var artist = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-        var vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-        
-#if !USE_GRANITE_DECORATED_WINDOW
-        vbox.pack_start (close, false, false, 0);
-#endif        
+        Gtk.Box content = get_content_area () as Gtk.Box;
+        Gtk.Box header = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        Gtk.Box artist = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+
         artist.pack_start (artist_label, false, true, 0);
         artist.pack_start (album_label, false, true, 0);
-        
-        header.pack_start (cover_event_box, false, false);
-        header.pack_start (artist, true, false);
-        
-        vbox.pack_start (header, false, false, 0);        
-        vbox.pack_start (list_view_scrolled, true, true, 0);
-        vbox.pack_start (rating, false, true, 0);
-        
-        add(vbox);
 
-        rating.rating_changed.connect(rating_changed);
+        header.pack_start (cover_event_box, false, false);
+        header.pack_start (artist, true, false);        
+
+        content.pack_start (header, false, true, 0);
+        content.pack_start (list_view_scrolled, true, true, 0);
+        content.pack_start (rating, false, true, 0);
+
+        rating.rating_changed.connect (rating_changed);
     }
 
     /**
@@ -167,7 +132,7 @@ public class Noise.PopupListView : Window {
         media_list = new Gee.LinkedList<Media> ();
         list_view.set_media (media_list);
 
-        album_cover.set_from_pixbuf (CoverartCache.instance.get_cover(new Media("")));
+        album_cover.set_from_pixbuf (CoverartCache.instance.get_cover (new Media ("")));
 
         // Reset size request
         set_size (MIN_SIZE);
@@ -175,7 +140,7 @@ public class Noise.PopupListView : Window {
 
     public bool show_cover_context_menu(Gtk.Widget sender, Gdk.EventButton evt) {
         if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3)
-            cover_action_menu.popup(null, null, null, evt.button, evt.time);
+            cover_action_menu.popup (null, null, null, evt.button, evt.time);
         
         return true;
     }
@@ -188,7 +153,7 @@ public class Noise.PopupListView : Window {
     public void set_album (Album album) {
         reset ();
         
-        lock(media_list) {
+        lock (media_list) {
 
             string name = album.get_display_name ();
             string artist = album.get_display_artist ();
@@ -197,7 +162,7 @@ public class Noise.PopupListView : Window {
             set_title (title_format.printf (name, artist));
             
             
-            show_album_cover(CoverartCache.instance.get_album_cover (album));
+            show_album_cover (CoverartCache.instance.get_album_cover (album));
             album_label.set_label (name);
             artist_label.set_label (artist);
             
@@ -221,16 +186,16 @@ public class Noise.PopupListView : Window {
         view_wrapper.library.media_updated.connect (update_album_rating);
     }
 
-    void show_album_cover(Gdk.Pixbuf pixbuf)
+    void show_album_cover (Gdk.Pixbuf pixbuf)
     {
         var cover_art_with_shadow = PixbufUtils.render_pixbuf_shadow (pixbuf);
-        album_cover.set_from_pixbuf (cover_art_with_shadow);    
+        album_cover.set_from_pixbuf (cover_art_with_shadow);
     }
 
     void update_album_rating () {
         // We don't want to set the overall_rating as each media's rating.
         // See rating_changed() in case you want to figure out what would happen.
-        rating.rating_changed.disconnect(rating_changed);
+        rating.rating_changed.disconnect (rating_changed);
 
         // Use average rating for the album
         int total_rating = 0, n_media = 0;
@@ -252,7 +217,7 @@ public class Noise.PopupListView : Window {
 
     void rating_changed (int new_rating) {
         var updated = new Gee.LinkedList<Media> ();
-        lock(media_list) {
+        lock (media_list) {
 
             foreach (var media in media_list) {
                 if (media == null)
@@ -292,7 +257,7 @@ public class Noise.PopupListView : Window {
         }
     }
     
-    private void set_new_cover()
+    private void set_new_cover ()
     {
         var file = new Gtk.FileChooserDialog (_("Open"), this, Gtk.FileChooserAction.OPEN,
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
@@ -313,8 +278,8 @@ public class Noise.PopupListView : Window {
             
             if (pix != null) {
                 CoverartCache cache =  CoverartCache.instance;
-                cache.changed.connect(() => { show_album_cover (cache.get_cover(media_list.to_array()[0])); });
-                cache.cache_image_async (media_list.to_array()[0], pix);
+                cache.changed.connect (() => { show_album_cover (cache.get_cover (media_list.to_array () [0])); });
+                cache.cache_image_async (media_list.to_array () [0], pix);
             }
         }
         
