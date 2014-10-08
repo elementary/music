@@ -138,7 +138,7 @@ public class Noise.PopupListView : Gtk.Dialog {
         set_size (MIN_SIZE);
     }
 
-    public bool show_cover_context_menu(Gtk.Widget sender, Gdk.EventButton evt) {
+    public bool show_cover_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
         if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3)
             cover_action_menu.popup (null, null, null, evt.button, evt.time);
         
