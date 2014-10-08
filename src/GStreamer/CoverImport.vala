@@ -21,7 +21,7 @@
  *              Corentin Noël <tintou@mailoo.org>
  */
 
-public class Noise.CoverImport : GLib.Object {
+public class Noise.CoverImport : GLib.Object {    
     private const int DISCOVER_SET_SIZE = 50;
     private const int DISCOVERER_TIMEOUT_MS = 10;
 
@@ -34,6 +34,21 @@ public class Noise.CoverImport : GLib.Object {
     public CoverImport () {
         uri_queue = new Gee.LinkedList<Media> ();
         original_queue = new Gee.LinkedList<Media> ();
+    }
+
+    private void initialize_discoverer () {
+        if (d == null) {
+            try {
+                d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
+            } catch (Error err) {
+                critical ("Could not create Gst discoverer object: %s", err.message);
+            }
+            d.discovered.connect (import_media);
+            d.finished.connect (file_set_finished);
+        } else {
+            d.stop ();
+        }
+        d.start ();
     }
 
     private void file_set_finished () {
@@ -53,20 +68,8 @@ public class Noise.CoverImport : GLib.Object {
     }
 
     private async void import_next_file_set () {
-        if (d == null) {
-            try {
-                d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
-            } catch (Error err) {
-                critical ("Could not create Gst discoverer object: %s", err.message);
-            }
-
-            d.discovered.connect (import_media);
-            d.finished.connect (file_set_finished);
-        } else {
-            d.stop ();
-        }
-        d.start ();
-
+        this.initialize_discoverer ();
+        
         for (int i = 0; i < DISCOVER_SET_SIZE; i++) {
             bool not_found = true;
             string uri = null;
@@ -79,7 +82,7 @@ public class Noise.CoverImport : GLib.Object {
             }
         }
     }
-
+   
     public void cancel_operations () {
         cancelled = true;
     }
@@ -163,7 +166,7 @@ public class Noise.CoverImport : GLib.Object {
 
         if (gstreamer_discovery_successful) {
             var m = libraries_manager.local_library.media_from_uri (uri);
-
+            
             // Get cover art
             if (m != null)
                 yield import_art_async (m, info);
@@ -178,9 +181,9 @@ public class Noise.CoverImport : GLib.Object {
 
         debug ("Importing cover art for: %s", info.get_uri ());
 
-        var pix = get_image (info.get_tags ());
-
-        if (pix != null)
+        var pix = get_image (info.get_tags ());     
+        
+        if (pix != null) 
             yield cache.cache_image_async (m, pix);
         else
             debug ("Could not find embedded image for '%s'", info.get_uri ());
