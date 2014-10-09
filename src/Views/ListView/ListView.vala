@@ -406,7 +406,13 @@ public class Noise.ListView : ContentView, Gtk.Box {
                 }
             }
         } else {
-            foreach (var m in table.get_values ()) {
+            /* 
+             * Please don't change back to a foreach implementation
+             * until fully understand the proper behavior
+             * since this change produces the bug 1346678
+             * Leave this "for loop" for now.                   */
+            for (int i = 0; i < table.size (); ++i) {
+                var m = table.get (i);
                 if (m != null) {
                     if (obey_column_browser && !column_browser.match_media (m))
                         continue;
