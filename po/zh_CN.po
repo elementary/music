@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-05 00:29-0500\n"
-"PO-Revision-Date: 2014-09-29 09:03+0000\n"
+"PO-Revision-Date: 2014-10-10 02:27+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:49+0000\n"
+"X-Launchpad-Export-Date: 2014-10-11 05:01+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -812,7 +812,7 @@ msgstr "添加音乐到您的资料库。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "向您的库中导入音乐源。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
@@ -1349,11 +1349,11 @@ msgstr "正在添加文件到库中..."
 
 #: ../src/LocalLibrary.vala:252
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "所有音乐文件已存在于库中"
 
 #: ../src/LocalLibrary.vala:252
 msgid "No files were imported."
-msgstr ""
+msgstr "未导入任何文件。"
 
 #: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
