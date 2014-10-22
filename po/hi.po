@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-05 00:29-0500\n"
-"PO-Revision-Date: 2014-05-20 13:30+0000\n"
-"Last-Translator: Vivek Kumar <vivek.vk03@gmail.com>\n"
+"PO-Revision-Date: 2014-10-21 14:06+0000\n"
+"Last-Translator: Saurabh <Unknown>\n"
 "Language-Team: Hindi <hi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:47+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-10-22 06:04+0000\n"
+"X-Generator: Launchpad (build 17203)\n"
 "Language: hi\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -47,7 +47,7 @@ msgstr "रद्द करें"
 
 #: ../core/Resources.vala:98
 msgid "Open"
-msgstr ""
+msgstr "खोलें"
 
 #: ../core/Resources.vala:99
 msgid "Save"
@@ -63,7 +63,7 @@ msgstr "शास्त्रीय"
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Club"
-msgstr ""
+msgstr "क्लब"
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Dance"
@@ -99,7 +99,7 @@ msgstr "पार्टी"
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Pop"
-msgstr ""
+msgstr "पॉप"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Reggae"
@@ -107,7 +107,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Rock"
-msgstr ""
+msgstr "रॉक"
 
 #: ../core/GStreamer/Equalizer.vala:90
 msgid "Soft"
@@ -123,7 +123,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:93
 msgid "Techno"
-msgstr ""
+msgstr "टेक्नो"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -201,7 +201,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr ""
+msgstr "नया गीत-सूची"
 
 #: ../core/Utils/PlaylistsUtils.vala:246
 msgid "%s (%i)"
@@ -221,7 +221,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr ""
+msgstr "गीत-सूची"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
@@ -269,7 +269,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "अगला"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
