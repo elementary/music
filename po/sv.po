@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-05 00:29-0500\n"
-"PO-Revision-Date: 2014-04-15 17:14+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
+"PO-Revision-Date: 2014-11-01 16:39+0000\n"
+"Last-Translator: Jonas Mindemark <fonclbrisch@gmail.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:49+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-02 06:08+0000\n"
+"X-Generator: Launchpad (build 17211)\n"
 "X-Poedit-Language: Swedish\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -47,11 +47,11 @@ msgstr "Avbryt"
 
 #: ../core/Resources.vala:98
 msgid "Open"
-msgstr ""
+msgstr "Öppna"
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
@@ -261,7 +261,7 @@ msgstr "Inställningar"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "Föregående"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
@@ -269,7 +269,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
@@ -424,7 +424,7 @@ msgstr "Sångtext hittades inte för %s"
 
 #: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
-msgstr ""
+msgstr "Återställ"
 
 #: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
@@ -472,13 +472,15 @@ msgstr ""
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Vill du installera insticksmodulen %s?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"Den här låten kan inte spelas. Insticksmodulen %s krävs för uppspelning."
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
@@ -559,11 +561,11 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "Ljudfilen för <b>%s</b> av <b>%s</b> kan inte hittas."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i ljudfiler kan inte hittas?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
@@ -576,7 +578,7 @@ msgstr "Ta bort låt"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
-msgstr ""
+msgstr "Hitta låt"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
@@ -891,7 +893,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Uppdaterar spellista. Vänligen vänta."
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
@@ -919,7 +921,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
