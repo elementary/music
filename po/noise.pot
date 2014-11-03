@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-05 00:29-0500\n"
+"POT-Creation-Date: 2014-11-03 12:13-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../core/Resources.vala:98
+#: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
 msgstr ""
 
@@ -247,7 +247,11 @@ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
 
 #: ../src/Noise.vala:41
-msgid "About "
+msgid "About Noise"
+msgstr ""
+
+#: ../src/Noise.vala:42
+msgid "About Music"
 msgstr ""
 
 #: ../src/LibraryWindow.vala:250
@@ -878,9 +882,25 @@ msgid_plural "%u albums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/Views/GridView/PopupListView.vala:159
+#: ../src/Views/GridView/PopupListView.vala:61
+msgid "Set new album cover"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Open"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:264
+msgid "Image files"
 msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
