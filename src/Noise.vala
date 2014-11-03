@@ -38,7 +38,8 @@ public class Noise.App : Granite.Application {
     public const string COMMENT = N_("Listen to music");
     public const string GENERIC = N_("Music Player");
     public const string KEYWORDS = N_("Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;");
-    public const string QUICKLIST_ABOUT = N_("About ") + PROGRAM_NAME;
+    public const string ABOUT_NOISE = N_("About Noise");
+    public const string ABOUT_MUSIC = N_("About Music");
 
     public static PlaybackManager player { get; private set; }
     private LocalLibrary library_manager { get; private set; }
