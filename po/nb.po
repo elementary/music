@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-05 00:29-0500\n"
+"POT-Creation-Date: 2014-11-03 12:13-0600\n"
 "PO-Revision-Date: 2014-10-05 08:12+0000\n"
 "Last-Translator: ProsjektX <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:48+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-04 06:54+0000\n"
+"X-Generator: Launchpad (build 17211)\n"
 "Language: nb\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -45,7 +45,7 @@ msgstr "$NAME av $ARTIST på $ALBUM"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../core/Resources.vala:98
+#: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
 msgstr "Åpne"
 
@@ -249,8 +249,12 @@ msgstr ""
 "Noise;Audio;Spiller;MP3;iPod;Spill;Spilleliste;Media;CD;Telefon;Sanger;"
 
 #: ../src/Noise.vala:41
-msgid "About "
-msgstr "Om "
+msgid "About Noise"
+msgstr ""
+
+#: ../src/Noise.vala:42
+msgid "About Music"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -907,10 +911,26 @@ msgid_plural "%u albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albumer"
 
-#: ../src/Views/GridView/PopupListView.vala:159
+#: ../src/Views/GridView/PopupListView.vala:61
+msgid "Set new album cover"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
 msgstr "%s av %s"
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Open"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:264
+msgid "Image files"
+msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
@@ -2161,3 +2181,43 @@ msgstr "Det oppstod en feil under importeringen av denne CD"
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "Henter lignende sanger"
+
+#~ msgid "Import songs from audio CD"
+#~ msgstr "Importer sanger fra audio CD"
+
+#~ msgid "Complete login"
+#~ msgstr "Fullfør innlogging"
+
+#~ msgid "Import media from device"
+#~ msgstr "Importer media fra enhet"
+
+#~ msgid "Copy files to music folder when added to library"
+#~ msgstr "Kopier filer til musikkmappa når de legges til biblioteket"
+
+#~ msgid "Automatically download new podcast episodes"
+#~ msgstr "Last automatisk ned nye podcast-episoder"
+
+#~ msgid "Keep music folder organized"
+#~ msgstr "Hold musikkmappa organisert"
+
+#, c-format
+#~ msgid "%i items"
+#~ msgstr "%i  elementer"
+
+#~ msgid "1 item"
+#~ msgstr "1 element"
+
+#~ msgid "Click on the button to edit playlist rules"
+#~ msgstr "Klikk på knappen for å redigere regler for spilleliste"
+
+#~ msgid "Unsuccessful. Click to try again."
+#~ msgstr "Mislyktes. Klikk for å prøve igjen"
+
+#~ msgid "Enable Scrobbling"
+#~ msgstr "Aktiver deling av sanginformasjon"
+
+#~ msgid "Click to redo the Last.fm Login Process"
+#~ msgstr "Klikk for å logge inn på Last.fm på nytt"
+
+#~ msgid "Scrobbling already Enabled"
+#~ msgstr "Deling av sanginformasjon allerede aktivert"

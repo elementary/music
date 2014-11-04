@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-05 00:29-0500\n"
+"POT-Creation-Date: 2014-11-03 12:13-0600\n"
 "PO-Revision-Date: 2012-07-09 13:04+0000\n"
 "Last-Translator: zypeh <ciboy2011@gmail.com>\n"
 "Language-Team: \n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:49+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-04 06:55+0000\n"
+"X-Generator: Launchpad (build 17211)\n"
 "Language: \n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../core/Resources.vala:98
+#: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
 msgstr ""
 
@@ -248,7 +248,11 @@ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
 
 #: ../src/Noise.vala:41
-msgid "About "
+msgid "About Noise"
+msgstr ""
+
+#: ../src/Noise.vala:42
+msgid "About Music"
 msgstr ""
 
 #: ../src/LibraryWindow.vala:250
@@ -879,9 +883,25 @@ msgid_plural "%u albums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/Views/GridView/PopupListView.vala:159
+#: ../src/Views/GridView/PopupListView.vala:61
+msgid "Set new album cover"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Open"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:264
+msgid "Image files"
 msgstr ""
 
 #: ../src/Views/DeviceView.vala:39

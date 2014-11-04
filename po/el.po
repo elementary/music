@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-05 00:29-0500\n"
+"POT-Creation-Date: 2014-11-03 12:13-0600\n"
 "PO-Revision-Date: 2014-08-02 19:29+0000\n"
 "Last-Translator: Jim Spentzos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-10-06 06:47+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-04 06:53+0000\n"
+"X-Generator: Launchpad (build 17211)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -44,7 +44,7 @@ msgstr "$NAME από τον/την $ARTIST στο $ALBUM"
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: ../core/Resources.vala:98
+#: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
 msgstr "Άνοιγμα"
 
@@ -250,7 +250,11 @@ msgstr ""
 "ύδια;"
 
 #: ../src/Noise.vala:41
-msgid "About "
+msgid "About Noise"
+msgstr ""
+
+#: ../src/Noise.vala:42
+msgid "About Music"
 msgstr ""
 
 #: ../src/LibraryWindow.vala:250
@@ -915,10 +919,26 @@ msgid_plural "%u albums"
 msgstr[0] "%u άλμπουμ"
 msgstr[1] "%u άλμπουμ"
 
-#: ../src/Views/GridView/PopupListView.vala:159
+#: ../src/Views/GridView/PopupListView.vala:61
+msgid "Set new album cover"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
 msgstr "%s από %s"
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Open"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:264
+msgid "Image files"
+msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"

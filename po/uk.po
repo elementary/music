@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-05 00:29-0500\n"
+"POT-Creation-Date: 2014-11-03 12:13-0600\n"
 "PO-Revision-Date: 2014-10-20 20:07+0000\n"
 "Last-Translator: Andy Karaushu <Karandriy@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-10-21 06:42+0000\n"
-"X-Generator: Launchpad (build 17203)\n"
+"X-Launchpad-Export-Date: 2014-11-04 06:55+0000\n"
+"X-Generator: Launchpad (build 17211)\n"
 "Language: uk\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -46,7 +46,7 @@ msgstr "$NAME виконує $ARTIST в $ALBUM"
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: ../core/Resources.vala:98
+#: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
 msgstr "Відкрити"
 
@@ -256,8 +256,12 @@ msgstr ""
 "відтворення;Плейлист;Медіа;Media;CD;Телефон;Пісні;Музика;"
 
 #: ../src/Noise.vala:41
-msgid "About "
-msgstr "Про програму "
+msgid "About Noise"
+msgstr ""
+
+#: ../src/Noise.vala:42
+msgid "About Music"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -917,10 +921,26 @@ msgstr[0] "%u альбом"
 msgstr[1] "%u альбоми"
 msgstr[2] "%u альбомів"
 
-#: ../src/Views/GridView/PopupListView.vala:159
+#: ../src/Views/GridView/PopupListView.vala:61
+msgid "Set new album cover"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
 msgstr "%s, виконує %s"
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Open"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:264
+msgid "Image files"
+msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"

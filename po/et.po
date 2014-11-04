@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-05 00:29-0500\n"
+"POT-Creation-Date: 2014-11-03 12:13-0600\n"
 "PO-Revision-Date: 2014-10-23 13:38+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-10-24 06:29+0000\n"
-"X-Generator: Launchpad (build 17203)\n"
+"X-Launchpad-Export-Date: 2014-11-04 06:52+0000\n"
+"X-Generator: Launchpad (build 17211)\n"
 "Language: et\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -45,7 +45,7 @@ msgstr "$NAME - $ARTIST - $ALBUM"
 msgid "Cancel"
 msgstr "Loobu"
 
-#: ../core/Resources.vala:98
+#: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
 msgstr "Ava"
 
@@ -250,8 +250,12 @@ msgstr ""
 "Meedia;Esitusloend;Muusika;Mobla;Mobiiltelefon;Laulud"
 
 #: ../src/Noise.vala:41
-msgid "About "
-msgstr "Rakendusest... "
+msgid "About Noise"
+msgstr ""
+
+#: ../src/Noise.vala:42
+msgid "About Music"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -909,10 +913,26 @@ msgid_plural "%u albums"
 msgstr[0] "%u album"
 msgstr[1] "%u albumit"
 
-#: ../src/Views/GridView/PopupListView.vala:159
+#: ../src/Views/GridView/PopupListView.vala:61
+msgid "Set new album cover"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
 msgstr "%s - %s"
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:261
+msgid "_Open"
+msgstr ""
+
+#: ../src/Views/GridView/PopupListView.vala:264
+msgid "Image files"
+msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
