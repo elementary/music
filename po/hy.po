@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-11-03 10:11+0000\n"
+"PO-Revision-Date: 2014-11-06 07:33+0000\n"
 "Last-Translator: Vahan Harutyunyan <Unknown>\n"
 "Language-Team: Armenian <hy@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-11-04 06:51+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-11-07 06:45+0000\n"
+"X-Generator: Launchpad (build 17231)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -243,11 +243,11 @@ msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
-msgstr ""
+msgstr "Noise-ի մասին"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr ""
+msgstr "Music-ի մասին"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -444,11 +444,11 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:157
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Գրել մետատվյալները ֆայլում՝"
 
 #: ../src/Dialogs/PreferencesWindow.vala:161
 msgid "Copy imported files to Library:"
-msgstr ""
+msgstr "Պատճենել ներբեռնված ֆայլերը գրադարանում"
 
 #: ../src/Dialogs/PreferencesWindow.vala:163
 msgid "Desktop Integration:"
@@ -464,13 +464,16 @@ msgstr ""
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Դուք ցանկանու՞մ եք տեղադրել %s փլագինը:\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"Այս երգը չի կարող նվագարկվել: Այս երգի նվագարկման համար անհրաժեշտ է %s "
+"փլագինը:"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
@@ -478,30 +481,32 @@ msgstr "Տեղադրել փլագինը"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:55
 msgid "Import from Device"
-msgstr ""
+msgstr "Ներբեռնել սարքից"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import media from %s"
-msgstr ""
+msgstr "Ներբեռնել մեդիան %s-ից"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:73
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Հետևյալ ֆայլերը գտնվել են %s-ում, սակայն առկա չեն գրադարանում: Ստուգեք բոլոր "
+"ֆայլերը, որոնք ցանկանում եք ներբեռնել:"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:74
 msgid "Import all media"
-msgstr ""
+msgstr "Ներբեռնալ ամբողջ մեդիան"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:79
 #: ../plugins/Devices/CDRom/CDView.vala:90
 msgid "Import"
-msgstr ""
+msgstr "Ներբեռնել"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:80
 msgid "Don't Import"
-msgstr ""
+msgstr "Չներբեռնել"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:88
 msgid "Import %i items from %s"
@@ -509,7 +514,7 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:92
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Ներբեռնել %s-ը %s-ից"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
 msgid "ID"
@@ -517,7 +522,7 @@ msgstr "ID"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:172
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Ներբեռնման համար ընտրել անհատական մեդիա ՝"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:190
 msgid "Check Item"
@@ -533,7 +538,7 @@ msgstr "Ստուգել կատարողին"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:289
 msgid "Cannot Import"
-msgstr ""
+msgstr "Հնարավոր չէ ներբեռնել"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:289
 msgid ""
@@ -547,11 +552,11 @@ msgstr "Ֆայլը չի գտնվել"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "<b>%s</b>-ի երաժշտական ֆայը <b>%s</b>-ի կատարմամբ չի գտնվել:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i երաժշտական ֆայլերը հնարավեր չէ՞ գտնել:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
@@ -573,7 +578,7 @@ msgstr "Ընտրել երաժշտության թղթապանակը"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
 msgid "Export Playlists"
-msgstr ""
+msgstr "Արտաբեռնել երգացանկերը"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
 msgid "Set Music Folder"
@@ -591,15 +596,15 @@ msgstr ""
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
-msgstr ""
+msgstr "Ներբեռնել մեդիան գրադարանում"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:58
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Շարունակել սինխրոնիզացիան"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:59
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Դադարեցնել սինխրոնիզացիան"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:66
 msgid ""
@@ -685,7 +690,7 @@ msgstr "Թողարկման օրը"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Last Played"
-msgstr ""
+msgstr "Վերջին նվագարկվածը"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:271
 #: ../src/Dialogs/SmartPlaylistEditor.vala:401
