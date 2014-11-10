@@ -1,4 +1,4 @@
-# Armenian translation for noise
+# Serbian Latin translation for noise
 # Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the noise package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
@@ -8,121 +8,122 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-11-09 18:15+0000\n"
-"Last-Translator: Vahan Harutyunyan <Unknown>\n"
-"Language-Team: Armenian <hy@li.org>\n"
+"PO-Revision-Date: 2014-11-09 15:22+0000\n"
+"Last-Translator: emil <m_il@hotmail.com>\n"
+"Language-Team: Serbian Latin <sr@latin@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Launchpad-Export-Date: 2014-11-10 06:03+0000\n"
 "X-Generator: Launchpad (build 17231)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
 msgid "Unknown"
-msgstr "Անհայտ"
+msgstr "Nepoznato"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:177
 msgid "$NAME on $ALBUM"
-msgstr "$NAME-ը $ALBUM-ում"
+msgstr ""
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: ../core/Media.vala:180
 msgid "$NAME by $ARTIST"
-msgstr "$NAME-ը կատարում է $ARTIST-ը"
+msgstr ""
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:186
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME կատարում է $ARTIST $ALBUM-ում"
+msgstr ""
 
 #: ../core/Resources.vala:97
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:70
 #: ../src/Dialogs/FileNotFoundDialog.vala:94
 msgid "Cancel"
-msgstr "Չեղյալ համարել"
+msgstr "Otkaži"
 
 #: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
-msgstr "Բացել"
+msgstr "Otvori"
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr "Պահել"
+msgstr "Sačuvaj"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
-msgstr "Հարթ"
+msgstr "Ravno"
 
 #: ../core/GStreamer/Equalizer.vala:77
 msgid "Classical"
-msgstr "Դասական"
+msgstr "Klasični"
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Club"
-msgstr "Քլաբ"
+msgstr "Klubski"
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Dance"
-msgstr "Պարային երաժշտություն"
+msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Full Bass"
-msgstr "Բասերի ուժեղացում"
+msgstr "Pojačan bas"
 
 #: ../core/GStreamer/Equalizer.vala:81
 msgid "Full Treble"
-msgstr "Բարձր հաճախականությունների ուժեղացում"
+msgstr "Pojačan visokotonac"
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Full Bass + Treble"
-msgstr "Բասերի և բարձր հաճախականությունների ուժեղացում"
+msgstr "Pojačan bas i visokotonac"
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
-msgstr "Ականջակալներ"
+msgstr "Slušalice"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Large Hall"
-msgstr "Մեծ դահլիճ"
+msgstr "Velika sala"
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Live"
-msgstr "Կենդանի երաժշտություն"
+msgstr "Uživo"
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Party"
-msgstr ""
+msgstr "Žurka"
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Pop"
-msgstr "Փոփ"
+msgstr "Pop"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Reggae"
-msgstr "Ռեգգի"
+msgstr "Rege"
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Rock"
-msgstr "Ռոք"
+msgstr "Rok"
 
 #: ../core/GStreamer/Equalizer.vala:90
 msgid "Soft"
-msgstr "Փափուկ երաշժտություն"
+msgstr "Umekšan"
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Ska"
-msgstr "Սկա"
+msgstr "Ska"
 
 #: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft Rock"
-msgstr "Փափուկ ռոք"
+msgstr "Umekšan rok"
 
 #: ../core/GStreamer/Equalizer.vala:93
 msgid "Techno"
-msgstr "Տեխնո"
+msgstr "Tehno"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -131,95 +132,99 @@ msgstr ""
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d վայրկյան"
+msgstr[0] "%d sekund"
 
 #: ../core/Utils/TimeUtils.vala:52 ../core/Utils/TimeUtils.vala:83
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] "% րոպե"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../core/Utils/TimeUtils.vala:56
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] "%u վայրկյան"
+msgstr[0] ""
+msgstr[1] ""
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:58
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr "%s և %s"
+msgstr "%s i %s"
 
 #: ../core/Utils/TimeUtils.vala:77
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] "%u օր"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../core/Utils/TimeUtils.vala:80
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] "%u ժամ"
+msgstr[0] ""
+msgstr[1] ""
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:91
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr "%s, %s և %s"
+msgstr ""
 
 #. / days and hours
 #: ../core/Utils/TimeUtils.vala:94
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr "%s և %s"
+msgstr ""
 
 #. / days and minutes
 #: ../core/Utils/TimeUtils.vala:99
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr "%s և %s"
+msgstr ""
 
 #. / hours and minutes
 #: ../core/Utils/TimeUtils.vala:108
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr "%s և %s"
+msgstr ""
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
 #: ../core/Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
-msgstr "%m/%e/%Y %l:%M %p"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr "%s (%d)"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr "Նոր երգացանկ"
+msgstr "Nova lista"
 
 #: ../core/Utils/PlaylistsUtils.vala:246
 msgid "%s (%i)"
-msgstr "%s (%i)"
+msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr "Արտաբեռնել երգացանկը"
+msgstr "Izvezi listu"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG 3.0 (*.m3u)-ի ընդլայնված տարբերակը"
+msgstr "MPEG verzija 3.0 prošireno (*.m3u)"
 
 #: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Šoutkast lista verzija 2.0 (*.pls)"
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr "Երգացանկ"
+msgstr "Lista"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
-msgstr "Ներբեռնել %s"
+msgstr "Uvezi %s"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
@@ -227,66 +232,66 @@ msgstr ""
 
 #: ../core/Utils/FileUtils.vala:280
 msgid " (%d)"
-msgstr " (%d)"
+msgstr ""
 
 #: ../src/Noise.vala:38
 msgid "Listen to music"
-msgstr "Լսել երաժշտություն"
+msgstr ""
 
 #: ../src/Noise.vala:39
 msgid "Music Player"
-msgstr "Նվագարկիչ"
+msgstr ""
 
 #: ../src/Noise.vala:40
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
-msgstr "Noise-ի մասին"
+msgstr ""
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr "Music-ի մասին"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
-msgstr "Նեռբեռնել գրադարանում․․․"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:82
 msgid "Preferences"
-msgstr "Նախապատվություններ"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr "Նախորդը"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
-msgstr "Նվագարկել"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr "Հաջորդը"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
-msgstr "Փնտրել երաժշտություն"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:687 ../src/LibraryWindow.vala:825
 #: ../src/Views/DeviceSummaryWidget.vala:107
 msgid "Music"
-msgstr "Երաժշտություն"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:880 ../src/DataBase/DataBaseManager.vala:556
 #: ../src/LocalLibrary.vala:104 ../src/PlaybackManager.vala:99
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "Հերթ"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:883
 msgid "No songs in Queue"
-msgstr "Հերթում երգեր առկա չեն"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:884
 msgid ""
@@ -298,11 +303,11 @@ msgstr ""
 #: ../src/LibraryWindow.vala:890 ../src/DataBase/DataBaseManager.vala:556
 #: ../src/LocalLibrary.vala:104 ../src/PlaybackManager.vala:97
 msgid "History"
-msgstr "Պատմություն"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:893
 msgid "No songs in History"
-msgstr "Պատմությունում երգեր առկա չեն"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:894
 msgid ""
@@ -313,12 +318,12 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr "Դադար"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:1134
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
-msgstr "Ներբեռնել երաժշտություն"
+msgstr ""
 
 #: ../src/LibraryWindow.vala:1154 ../src/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -326,7 +331,7 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
-msgstr "Մանրամասներ"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
@@ -334,7 +339,7 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:97 ../src/Dialogs/PreferencesWindow.vala:96
 msgid "Close"
-msgstr "Փակել"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:346
 msgid "Editing $NAME by $ARTIST"
@@ -342,73 +347,73 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:348
 msgid "Editing %s"
-msgstr "Խմբագրել %s-ը"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:351
 msgid "Editing %i songs"
-msgstr "Խմբագրել %i երգերը"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:193
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
 #: ../src/Dialogs/SmartPlaylistEditor.vala:275
 msgid "Title"
-msgstr "Վերնագիր"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:194
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:122
 #: ../src/Dialogs/SmartPlaylistEditor.vala:262
 #: ../src/Widgets/StatusBar.vala:71
 msgid "Artist"
-msgstr "Կատարող"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:195
 msgid "Album Artist"
-msgstr "Ալբոմի կատարողը"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:196
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:123
 #: ../src/Dialogs/SmartPlaylistEditor.vala:261
 #: ../src/Widgets/StatusBar.vala:70
 msgid "Album"
-msgstr "Ալբոմ"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Genre"
-msgstr "Ոճ"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:198
 #: ../src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Composer"
-msgstr "Կոմպոզիտոր"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:199 ../src/Dialogs/MediaEditor.vala:466
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Grouping"
-msgstr "Խումբ"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:200
 #: ../src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Comment"
-msgstr "Մեկնաբանություն"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:201
 msgid "Track"
-msgstr "Կոմպոզիցիա"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:202
 msgid "Disc"
-msgstr "Դիսկ"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:203
 #: ../src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Year"
-msgstr "Տարի"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:204
 #: ../src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Rating"
-msgstr "Վարկանիշ"
+msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:294
 msgid "Lyrics not found for %s"
@@ -420,15 +425,15 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
-msgstr "<b>վիճակագրություն</b>"
+msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Ընտրել երաժշտության թղթապանակը"
+msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:132
 msgid "General"
-msgstr "Ընդհանուր"
+msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:138
 msgid "Music Folder Location:"
@@ -436,7 +441,7 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:146
 msgid "Library Management:"
-msgstr "Գրադարանի կառավարում"
+msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:153
 msgid "Keep Music folder organized:"
@@ -444,11 +449,11 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:157
 msgid "Write metadata to file:"
-msgstr "Գրել մետատվյալները ֆայլում՝"
+msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:161
 msgid "Copy imported files to Library:"
-msgstr "Պատճենել ներբեռնված ֆայլերը գրադարանում"
+msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:163
 msgid "Desktop Integration:"
@@ -456,7 +461,7 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:169
 msgid "Notifications:"
-msgstr "Ծանուցումներ՝"
+msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:174
 msgid "Continue playback when closed:"
@@ -464,49 +469,44 @@ msgstr ""
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
-msgstr "Դուք ցանկանու՞մ եք տեղադրել %s փլագինը:\n"
+msgstr ""
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"\n"
-"Այս երգը չի կարող նվագարկվել: Այս երգի նվագարկման համար անհրաժեշտ է %s "
-"փլագինը:"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
-msgstr "Տեղադրել փլագինը"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:55
 msgid "Import from Device"
-msgstr "Ներբեռնել սարքից"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import media from %s"
-msgstr "Ներբեռնել մեդիան %s-ից"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:73
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
-"Հետևյալ ֆայլերը գտնվել են %s-ում, սակայն առկա չեն գրադարանում: Ստուգեք բոլոր "
-"ֆայլերը, որոնք ցանկանում եք ներբեռնել:"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:74
 msgid "Import all media"
-msgstr "Ներբեռնալ ամբողջ մեդիան"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:79
 #: ../plugins/Devices/CDRom/CDView.vala:90
 msgid "Import"
-msgstr "Ներբեռնել"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:80
 msgid "Don't Import"
-msgstr "Չներբեռնել"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:88
 msgid "Import %i items from %s"
@@ -514,15 +514,15 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:92
 msgid "Import %s from %s"
-msgstr "Ներբեռնել %s-ը %s-ից"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:172
 msgid "Select individual media to import:"
-msgstr "Ներբեռնման համար ընտրել անհատական մեդիա ՝"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:190
 msgid "Check Item"
@@ -530,15 +530,15 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:191
 msgid "Check Album"
-msgstr "Ստուգել ալբոմը"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:192
 msgid "Check Artist"
-msgstr "Ստուգել կատարողին"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:289
 msgid "Cannot Import"
-msgstr "Հնարավոր չէ ներբեռնել"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:289
 msgid ""
@@ -548,37 +548,37 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
-msgstr "Ֆայլը չի գտնվել"
+msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "<b>%s</b>-ի երաժշտական ֆայը <b>%s</b>-ի կատարմամբ չի գտնվել:"
+msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
-msgstr "%i երաժշտական ֆայլերը հնարավեր չէ՞ գտնել:"
+msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
-msgstr "Ընթացիկ գրադարան"
+msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:93
 #: ../src/Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove Song"
-msgstr "Հեռացնել երգը"
+msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
-msgstr "Գտնել երգը"
+msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 msgid "Choose Music Folder"
-msgstr "Ընտրել երաժշտության թղթապանակը"
+msgstr ""
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
 msgid "Export Playlists"
-msgstr "Արտաբեռնել երգացանկերը"
+msgstr ""
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
 msgid "Set Music Folder"
@@ -596,15 +596,15 @@ msgstr ""
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
-msgstr "Ներբեռնել մեդիան գրադարանում"
+msgstr ""
 
 #: ../src/Dialogs/SyncWarningDialog.vala:58
 msgid "Continue Syncing"
-msgstr "Շարունակել սինխրոնիզացիան"
+msgstr ""
 
 #: ../src/Dialogs/SyncWarningDialog.vala:59
 msgid "Stop Syncing"
-msgstr "Դադարեցնել սինխրոնիզացիան"
+msgstr ""
 
 #: ../src/Dialogs/SyncWarningDialog.vala:66
 msgid ""
@@ -627,21 +627,21 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:49
 #: ../src/Dialogs/SmartPlaylistEditor.vala:57
 msgid "Name of Playlist"
-msgstr "Երգացանկի անունը"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:50
 #: ../src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "Rules"
-msgstr "Կանոններ"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:51
 #: ../src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "Options"
-msgstr "Տարբերակներ"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Playlist Title"
-msgstr "Երգացանկի վերնագիրը"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:69
 msgid "Match"
@@ -649,11 +649,11 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:71
 msgid "any"
-msgstr "որևէ"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:72
 msgid "all"
-msgstr "բոլորը"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:77
 msgid "of the following:"
@@ -661,7 +661,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Add"
-msgstr "Ավելացնել"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
@@ -674,7 +674,7 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:258
 #: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
 msgid "Remove"
-msgstr "Հեռացնել"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Bitrate"
@@ -682,20 +682,20 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Date Added"
-msgstr "Ավելացման օրը"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Date Released"
-msgstr "Թողարկման օրը"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Last Played"
-msgstr "Վերջին նվագարկվածը"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:271
 #: ../src/Dialogs/SmartPlaylistEditor.vala:401
 msgid "Length"
-msgstr "Երկարություն"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "Playcount"
@@ -711,11 +711,11 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:338
 msgid "contains"
-msgstr "պարունակում է"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:339
 msgid "does not contain"
-msgstr "չի պարունակում"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:364
 #: ../src/Dialogs/SmartPlaylistEditor.vala:377
@@ -740,15 +740,15 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:402
 msgid "seconds"
-msgstr "վայրկյաններ"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:405
 msgid "days ago"
-msgstr "օրեր առաջ"
+msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:408
 msgid "kbps"
-msgstr "kbps"
+msgstr ""
 
 #: ../src/Dialogs/NotImportedWindow.vala:58
 #: ../src/Dialogs/NotImportedWindow.vala:70
@@ -766,11 +766,11 @@ msgstr ""
 #: ../src/Dialogs/NotImportedWindow.vala:65
 #: ../src/Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr "Տեղափոխել արկղի մեջ"
+msgstr ""
 
 #: ../src/Dialogs/NotImportedWindow.vala:66
 msgid "Ignore"
-msgstr "Անտեսել"
+msgstr ""
 
 #: ../src/Dialogs/NotImportedWindow.vala:87
 msgid "del"
@@ -790,11 +790,11 @@ msgstr ""
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:67
 msgid "Remove %d Songs From %s?"
-msgstr "Հեռացնե՞լ %d երգերը %s-ից:"
+msgstr ""
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:70
 msgid "Remove \"%s\" From %s?"
-msgstr "Հեռացնե՞լ %s-ը %s-ից:"
+msgstr ""
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:79
 msgid ""
@@ -812,7 +812,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr "Ավելացնել երաժշտություն գրադարանին:"
+msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
@@ -820,7 +820,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
-msgstr "Փոխել երաժշտության թղթապանակը"
+msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
@@ -838,17 +838,17 @@ msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Select Music Folder"
-msgstr "Ընտրել երաժշտության թղթապանակը"
+msgstr ""
 
 #: ../src/Views/Wrappers/ViewWrapper.vala:446
 msgid "No media"
-msgstr "Մեդիա առկա չէ"
+msgstr ""
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 msgid "No Songs"
-msgstr "Երգեր առկա չեն"
+msgstr ""
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
@@ -874,7 +874,7 @@ msgstr ""
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
-msgstr "Ալբոմներ չեն գտնվել:"
+msgstr ""
 
 #: ../src/Views/GridView/GridView.vala:146
 msgid "%u album"
@@ -913,7 +913,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
@@ -928,11 +928,11 @@ msgstr ""
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
+msgstr ""
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
-msgstr "Երգեր չեն հայտնաբերվել:"
+msgstr ""
 
 #: ../src/Views/ListView/ListView.vala:366
 msgid "%i track"
@@ -949,100 +949,100 @@ msgstr[1] ""
 #: ../src/Views/ListView/ListView.vala:376
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
-msgstr "%s, %s"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
-msgstr "Բոլոր ոճերը"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 msgid "All %i Genres"
-msgstr "Բոլոր %i ոճերը"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
 msgid "No Genres"
-msgstr "Ոճեր չկան"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Artists"
-msgstr "Բոլոր կատարողները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 msgid "All %i Artists"
-msgstr "Բոլոր %i կատարողները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
-msgstr "Կատարողներ չկան"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Albums"
-msgstr "Բոլոր ալբոմները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 msgid "All %i Albums"
-msgstr "Բոլոր %i ալբոմները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Albums"
-msgstr "Ալբոմներ չկան"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Years"
-msgstr "Բոլոր տարիները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 msgid "All %i Years"
-msgstr "Բոլոր %i տարիները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Years"
-msgstr "Տարիներ չկան"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Ratings"
-msgstr "Բոլոր վարկանիշները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Ratings"
-msgstr "Վարկանիշներ չկան"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Groupings"
-msgstr "Բոլոր խմբերը"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 msgid "All %i Groupings"
-msgstr "Բոլոր %i խմբերը"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Groupings"
-msgstr "Խմբեր չկան"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Composers"
-msgstr "Բոլոր կոմպոզիտորները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "All %i Composers"
-msgstr "Բոլոր %i կոմպոզիտորները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Composers"
-msgstr "Կոմպոզիտորներ չկան"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
 #: ../src/Widgets/PresetList.vala:47
 msgid "Automatic"
-msgstr "Ավտոմատ"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
-msgstr "Ձախ կողմը"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
 msgid "On Top"
-msgstr "Վերևրում"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:401
 msgid "Unrated"
@@ -1056,52 +1056,52 @@ msgstr[1] ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
 msgid "Genres"
-msgstr "Ոճեր"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
 msgid "Artists"
-msgstr "Կատարողները"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
 msgid "Albums"
-msgstr "Ալբոմներ"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
 msgid "Years"
-msgstr "Տարիներ"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
 msgid "Ratings"
-msgstr "Վարկանիշներ"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
 msgid "Composers"
-msgstr "Կոմպոզիտորներ"
+msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Groupings"
-msgstr "Խմբեր"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:226
 msgid "%i kbps"
-msgstr "%i kbps"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:251
 #: ../src/Views/ListView/Lists/MusicListView.vala:703
 msgid "Never"
-msgstr "Երբեք"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:91
 msgid "Remove from Library"
-msgstr "Հեռացնել գրադարանից"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:98
 msgid "Remove from Queue"
-msgstr "Հեռացնել հերթից"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:108
 msgid "Remove from Device"
-msgstr "Հեռացնել սարքից"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:121
 msgid "Scroll to Current Song"
@@ -1109,7 +1109,7 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:124
 msgid "Edit Song Info"
-msgstr "Խմբագրել երգի մասին տեղեկատվությունը"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:125
 msgid "Show in File Browser"
@@ -1117,16 +1117,16 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr "այլ գործողություններ"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr "Հերթ"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:128
 msgid "Add to Playlist"
-msgstr "Ավելացնել երգացանկում"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:130
 #: ../src/Widgets/SourceListView.vala:148
@@ -1135,7 +1135,7 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:214
 msgid "New Playlist…"
-msgstr "Նոր երգացանկ..."
+msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:258
 msgid "Import %i of %i selected songs"
@@ -1149,7 +1149,7 @@ msgstr[1] ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:688
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr ""
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1173,57 +1173,57 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
 msgid "#"
-msgstr "#"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
 msgid "Track"
-msgstr "Կոմպոզիցիա"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
-msgstr "Վերնագիր"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
 msgid "Length"
-msgstr "Երկարություն"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr "Կատարող"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
-msgstr "Ալբոմ"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr "Ալբոմի կատարողը"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr "Կոմպոզիտոր"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
 msgid "Genre"
-msgstr "Ոճ"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
-msgstr "Տարի"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
 msgid "Grouping"
-msgstr "Խումբ"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:91
 msgctxt "List column title"
@@ -1233,7 +1233,7 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:94
 msgctxt "List column title"
 msgid "Rating"
-msgstr "Վարկանիշ"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:97
 msgctxt "List column title"
@@ -1248,35 +1248,35 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:103
 msgctxt "List column title"
 msgid "Date Added"
-msgstr "Ավելացման օրը"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:106
 msgctxt "List column title"
 msgid "Last Played"
-msgstr "Վերջին նվագարկվածը"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr "BPM"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr "Տեղակայություն"
+msgstr ""
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
 msgid "File Size"
-msgstr "Ֆայլի չափը"
+msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:81
 msgid "Device Name:"
-msgstr "Սարքի անունը՝"
+msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:85
 msgid "Device Name"
-msgstr "Սարքի անունը"
+msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:87
 msgid "Automatically sync when plugged in:"
@@ -1288,7 +1288,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:106
 msgid "Other Files"
-msgstr "Այլ ֆայլեր"
+msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:108
 msgid "Podcasts"
@@ -1296,7 +1296,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:269
 msgid "All Music"
-msgstr "Ամբողջ երաժշտությունը"
+msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Sync Failed"
@@ -1365,19 +1365,19 @@ msgstr ""
 
 #: ../src/LocalLibrary.vala:164
 msgid "Importing music from %s…"
-msgstr "Երաժշտության ներբեռնում %s֊ից․․․"
+msgstr ""
 
 #: ../src/LocalLibrary.vala:201
 msgid "Adding files to library…"
-msgstr "Ֆայլերն ավելացվում են գրադարանում․․․"
+msgstr ""
 
 #: ../src/LocalLibrary.vala:252
 msgid "All music files are already in your library"
-msgstr "Բոլոր երաժշտական ֆայլերը գտնվում են Ձեր գրադարանում"
+msgstr ""
 
 #: ../src/LocalLibrary.vala:252
 msgid "No files were imported."
-msgstr "Ֆայլեր չեն ներբեռնվել։"
+msgstr ""
 
 #: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
@@ -1385,33 +1385,33 @@ msgstr ""
 
 #: ../src/LocalLibrary.vala:339
 msgid "Added to your queue:"
-msgstr "Ավելացվել են Ձեր հերթում՝"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
-msgstr "Վերանվանել"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr "Արտաբեռնել․․․"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr "Խմբագրել․․․"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
-msgstr "Պահել ինչպես երգացանկ․․․"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:156
 msgid "Eject"
-msgstr "Հանել"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:161
 #: ../src/Widgets/SourceListView.vala:201
 msgid "New Playlist"
-msgstr "Նոր երգացանկ"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:166
 #: ../src/Widgets/SourceListView.vala:202
@@ -1424,31 +1424,31 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:203
 msgid "Import Playlists"
-msgstr "Ներբեռնել երգացանկերը"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
-msgstr "Գրադարան"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:314
 msgid "Devices"
-msgstr "Սարքեր"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:315
 msgid "Network"
-msgstr "Ցանց"
+msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
 msgid "Playlists"
-msgstr "Երգացանկեր"
+msgstr ""
 
 #: ../src/Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr "Ջնջել ընթացիկը"
+msgstr ""
 
 #: ../src/Widgets/SpaceWidget.vala:266
 msgid "Free"
-msgstr "Անվճար"
+msgstr ""
 
 #: ../src/Widgets/SpaceWidget.vala:383
 msgid "Using %s of %s (%.2f%)"
@@ -1476,11 +1476,11 @@ msgstr ""
 
 #: ../src/Widgets/ViewSelector.vala:68
 msgid "View as Albums"
-msgstr "Ցույց տալ ալբոմներով"
+msgstr ""
 
 #: ../src/Widgets/ViewSelector.vala:72
 msgid "View as List"
-msgstr "Ցույց տալ որպես ցուցակ"
+msgstr ""
 
 #: ../src/Widgets/ViewSelector.vala:76
 msgid "View in Columns"
@@ -1488,35 +1488,35 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:101
 msgid "Off"
-msgstr "Անջատված"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:68
 msgid "Enable Repeat"
-msgstr "Միանել կրկնումը"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Song"
-msgstr "Երգ"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Repeat Song"
-msgstr "Կրկնել երգը"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:70
 msgid "Repeat Album"
-msgstr "Կրկնել ալբոմը"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:71
 msgid "Repeat Artist"
-msgstr "Կրկնել կատարողը"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:72 ../src/Widgets/StatusBar.vala:102
 msgid "All"
-msgstr "Բոլորը"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:72
 msgid "Disable Repeat"
-msgstr "Անջատել կրկնումը"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:101
 msgid "Enable Shuffle"
@@ -1528,7 +1528,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:135 ../src/Widgets/StatusBar.vala:146
 msgid "Add Playlist"
-msgstr "Ավելացնել երրգացանկ"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:147
 msgid "Add Smart Playlist"
@@ -1536,7 +1536,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:197
 msgid "Hide"
-msgstr "Թաքցնել"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:197
 msgid "Show Info Panel"
@@ -1544,7 +1544,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Show"
-msgstr "Ցույց տալ"
+msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Hide Info Panel"
@@ -1556,27 +1556,27 @@ msgstr ""
 
 #: ../src/Objects/TrackInfo.vala:25
 msgid "Unknown Track"
-msgstr "Անհայտ կատարում"
+msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:25
 msgid "Unknown Album"
-msgstr "Անհայտ ալբոմ"
+msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:26 ../src/Objects/ArtistInfo.vala:27
 msgid "Unknown Artist"
-msgstr "Անհայտ կատարող"
+msgstr ""
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
-msgstr "մեդիա"
+msgstr ""
 
 #: ../plugins/LastFM/SimilarMediaView.vala:45
 msgid "Similar Media"
-msgstr "Նմանատիպ մեդիա"
+msgstr ""
 
 #: ../plugins/LastFM/LastFM.vala:71
 msgid "No similar songs found"
-msgstr "Նմանատիպ երգեր չեն հայտնաբերվել"
+msgstr ""
 
 #: ../plugins/LastFM/LastFM.vala:71
 msgid ""
@@ -1587,7 +1587,7 @@ msgstr ""
 
 #: ../plugins/LastFM/SimilarMedia.vala:42
 msgid "Similar"
-msgstr "Նմանատիպ"
+msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
@@ -1603,7 +1603,7 @@ msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:33
 msgid "Success!"
-msgstr "Հաջողվեց!"
+msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:34
 msgid "Complete Login"
@@ -1611,11 +1611,11 @@ msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
-msgstr "Last.fm"
+msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:48
 msgid "Last.fm Integration"
-msgstr "Last.fm֊ի ինտեգրացում"
+msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
@@ -1630,12 +1630,12 @@ msgstr ""
 #: ../plugins/Devices/iPod/iPodDevice.vala:70
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
 msgid "Empty device!"
-msgstr "Դատարկ սարք"
+msgstr ""
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:74
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:117
 msgid "This device does not contain any music."
-msgstr "Տվյալ սարքում երաժշտություն առկա չէ։"
+msgstr ""
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:148
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
@@ -1654,7 +1654,7 @@ msgstr ""
 #: ../plugins/Devices/iPod/iPodLibrary.vala:637
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:256
 msgid "Finishing sync process…"
-msgstr "Սինխրոնիզացման գործընթացը ավարտվում է․․․"
+msgstr ""
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:232
 #: ../plugins/Devices/iPod/iPodLibrary.vala:392
@@ -1678,11 +1678,11 @@ msgstr ""
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:263
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:264
 msgid "There is not enough space on Device to complete the Sync…"
-msgstr "Սարքի վրա բավարար տարածք առկա չէ սինխրոնիացիան ավարտելու համար․․․"
+msgstr ""
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:161
 msgid "Android Phone"
-msgstr "Android հեռախոս"
+msgstr ""
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:163
 msgid "Audio Player"
@@ -1690,7 +1690,7 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr "Սխալ է տեղի ունեցել"
+msgstr ""
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
@@ -1706,7 +1706,7 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid "Could not find Music Folder"
-msgstr "Երաժշտության թղթապանակը չի գտնվել"
+msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid ""
