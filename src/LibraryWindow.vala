@@ -142,6 +142,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 added_to_play_count = true;
         }
 
+        #if HAVE_LIBNOTIFY
+        if (!Notify.is_initted ()) {
+            if (!Notify.init (((Noise.App) GLib.Application.get_default ()).get_id ())) {
+                warning ("Could not init libnotify");
+            }
+        }
+        #endif
+
         /*if(!File.new_for_path(settings.getMusicFolder()).query_exists() && settings.getMusicFolder() != "") {
             doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using Noise.");
         }*/
@@ -566,13 +574,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         if (urgency == -1)
             urgency = Notify.Urgency.NORMAL;
-
-        if (!Notify.is_initted ()) {
-            if (!Notify.init (((Noise.App) GLib.Application.get_default ()).get_id ())) {
-                warning ("Could not init libnotify");
-                return;
-            }
-        }
 
         if (notification == null) {
             notification = new Notify.Notification (primary_text, secondary_text, "");
@@ -1348,6 +1349,29 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 close_subwindows ();
                 iconify (); // i.e. minimize
             } else {
+
+                #if HAVE_LIBNOTIFY 
+                if (main_settings.show_notifications){
+                        string summary = (_("Attention."));
+                        string body = (_("Noise is still playing a song.\n Click to show Noise again."));
+                        string icon = "dialog-information";
+                        this.notification = new Notify.Notification (summary, body, icon);
+                        notification.add_action ("default", (_("Show Noise")), (notification,action)=>{
+                            try {
+                                notification.close ();
+                            } catch (Error e) {
+                                debug ("Error: %s", e.message);
+                            }
+                            show();
+                        });
+                        try {
+                            notification.show();
+                        } catch (Error e) {
+                            error ("Error: %s", e.message);
+                        }
+                }
+                #endif
+
                 close_subwindows ();
                 hide ();
             }
