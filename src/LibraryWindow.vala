@@ -564,6 +564,34 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      */
 #if HAVE_LIBNOTIFY
     private Notify.Notification? notification = null;
+
+    /**
+     * Set A Default Notification Action.
+     * If the main windows is closed, but a song is still playing,
+     * Noise is built with libnotify and the notifications are active
+     * an notification to reopen the main window is issued.
+     */
+    private void set_default_notification () {
+        if (main_settings.show_notifications){
+            string summary = (_("Attention."));
+            string body = (_("Noise is still playing a song.\n Click to show Noise again."));
+            string icon = "dialog-information";
+            this.notification = new Notify.Notification (summary, body, icon);
+            notification.add_action ("default", (_("Show Noise")), (notification, action) => {
+                try {
+                    notification.close ();
+                } catch (Error e) {
+                    debug ("Error: %s", e.message);
+                }
+                show();
+            });
+            try {
+                notification.show();
+            } catch (Error e) {
+                error ("Error: %s", e.message);
+            }
+        }
+    }
 #endif
 
     public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, int urgency = -1) {
@@ -1349,29 +1377,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 close_subwindows ();
                 iconify (); // i.e. minimize
             } else {
-
-                #if HAVE_LIBNOTIFY 
-                if (main_settings.show_notifications){
-                        string summary = (_("Attention."));
-                        string body = (_("Noise is still playing a song.\n Click to show Noise again."));
-                        string icon = "dialog-information";
-                        this.notification = new Notify.Notification (summary, body, icon);
-                        notification.add_action ("default", (_("Show Noise")), (notification,action)=>{
-                            try {
-                                notification.close ();
-                            } catch (Error e) {
-                                debug ("Error: %s", e.message);
-                            }
-                            show();
-                        });
-                        try {
-                            notification.show();
-                        } catch (Error e) {
-                            error ("Error: %s", e.message);
-                        }
-                }
+                #if HAVE_LIBNOTIFY
+                    set_default_notification();
                 #endif
-
                 close_subwindows ();
                 hide ();
             }
