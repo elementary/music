@@ -566,10 +566,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Notify.Notification? notification = null;
 
     /**
-     * Set A Default Notification Action.
-     * If the main windows is closed, but a song is still playing,
-     * Noise is built with libnotify and the notifications are active
-     * an notification to reopen the main window is issued.
+     * Set a Default Notification Action.
+     * If the main windows is closed but a song is still playing, and
+     * Noise is built with libnotify, and the notifications are active
+     * a notification to reopen the main window is issued.
      */
     private void set_default_notification () {
         if (main_settings.show_notifications){
