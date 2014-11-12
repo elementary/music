@@ -586,7 +586,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 show();
             });
             try {
-                notification.show();
+                notification.show ();
             } catch (Error e) {
                 error ("Error: %s", e.message);
             }
@@ -1378,7 +1378,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 iconify (); // i.e. minimize
             } else {
                 #if HAVE_LIBNOTIFY
-                    set_default_notification();
+                    set_default_notification ();
                 #endif
                 close_subwindows ();
                 hide ();
