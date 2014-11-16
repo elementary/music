@@ -574,7 +574,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private void set_default_notification () {
         if (main_settings.show_notifications) {
             string summary = (_("Attention."));
-            string body = (_("Noise is still playing a song.\n Click to show Noise again."));
+            string body = (_("Noise is still playing a song.\n Click to restore Noise's window."));
             string icon = "dialog-information";
             this.notification = new Notify.Notification (summary, body, icon);
             notification.add_action ("default", (_("Show Noise")), (notification, action) => {
