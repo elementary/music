@@ -11,6 +11,7 @@ MimeType=x-content/audio-player;x-content/audio-cdda;application/ogg;application
 StartupNotify=true
 X-GNOME-Gettext-Domain=noise
 X-GNOME-Keywords=Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;
+X-GNOME-UsesNotifications=true
 X-AppInstall-Keywords=Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;
 X-PulseAudio-Properties=media.role=music
 Actions=AboutDialog;
