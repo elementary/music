@@ -123,10 +123,6 @@ private class Noise.Preferences.GeneralPage {
     private Gtk.Switch hide_on_close_switch;
     public Noise.SettingsWindow.NoteBook_Page page;
 
-#if HAVE_LIBNOTIFY
-    private Gtk.Switch show_notifications_switch;
-#endif
-
     public GeneralPage (Gtk.FileChooserButton library_filechooser) {
 
         page = new Noise.SettingsWindow.NoteBook_Page (_("General"));
@@ -162,12 +158,6 @@ private class Noise.Preferences.GeneralPage {
         
         label = new Gtk.Label (_("Desktop Integration:"));
         page.add_section (label, ref row);
-        
-#if HAVE_LIBNOTIFY
-        show_notifications_switch = new Gtk.Switch ();
-        main_settings.schema.bind("show-notifications", show_notifications_switch, "active", SettingsBindFlags.DEFAULT);
-        page.add_option (new Gtk.Label (_("Notifications:")), show_notifications_switch, ref row);
-#endif
 
         hide_on_close_switch = new Gtk.Switch ();
         main_settings.schema.bind("close-while-playing", hide_on_close_switch, "active", SettingsBindFlags.INVERT_BOOLEAN);
