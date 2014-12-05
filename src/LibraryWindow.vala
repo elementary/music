@@ -567,29 +567,28 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     /**
      * Set a Default Notification Action.
-     * If the main windows is closed but a song is still playing, and
-     * Noise is built with libnotify, and the notifications are active
-     * a notification to reopen the main window is issued.
+     * If the main windows is closed but a song is still playing and
+     * Noise is built with libnotify a notification to reopen the main
+     * window is issued.
      */
     private void set_default_notification () {
-        if (main_settings.show_notifications) {
-            string summary = (_("Attention."));
-            string body = (_("Noise is still playing a song.\n Click to restore Noise's window."));
-            string icon = "dialog-information";
-            this.notification = new Notify.Notification (summary, body, icon);
-            notification.add_action ("default", (_("Show Noise")), (notification, action) => {
-                try {
-                    notification.close ();
-                } catch (Error e) {
-                    debug ("Error: %s", e.message);
-                }
-                show();
-            });
+        string summary = (_("Attention."));
+        string song_info = ("%s ~ %s").printf (App.player.media_info.media.artist, App.player.media_info.media.title);
+        string body = (_("Noise is still playing a song.\n")) + song_info;
+        string icon = "dialog-information";
+        this.notification = new Notify.Notification (summary, body, icon);
+        notification.add_action ("default", (_("Show Noise")), (notification, action) => {
             try {
-                notification.show ();
+                notification.close ();
             } catch (Error e) {
                 error ("Error: %s", e.message);
             }
+            this.show ();
+        });
+        try {
+            notification.show ();
+        } catch (Error e) {
+            error ("Error: %s", e.message);
         }
     }
 #endif
