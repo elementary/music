@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-04-15 17:04+0000\n"
-"Last-Translator: Marek Suchánek <suchm@seznam.cz>\n"
+"PO-Revision-Date: 2014-12-05 14:54+0000\n"
+"Last-Translator: RoBman79 <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-11-04 06:52+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-12-06 06:29+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "Language: cs\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -47,11 +47,11 @@ msgstr "Zrušit"
 
 #: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
-msgstr ""
+msgstr "Otevřít"
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
@@ -127,7 +127,7 @@ msgstr "Techno"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "Importuji <b>$NAME</b> od <b>$ARTIST</b> do knihovny…"
 
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
@@ -254,15 +254,15 @@ msgstr ""
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
-msgstr ""
+msgstr "O programu Hudba"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr ""
+msgstr "O programu Hudba"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
-msgstr ""
+msgstr "Importovat do knihovny…"
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:82
 msgid "Preferences"
@@ -270,15 +270,15 @@ msgstr "Předvolby"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "Předchozí"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
-msgstr ""
+msgstr "Přehrát"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Následující"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
@@ -330,7 +330,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Pozastavit"
 
 #: ../src/LibraryWindow.vala:1134
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
@@ -339,11 +339,11 @@ msgstr "Importovat hudbu"
 
 #: ../src/LibraryWindow.vala:1154 ../src/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Importuji</b> hudbu do knihovny…"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
@@ -433,15 +433,15 @@ msgstr "Nebyl nalezen žádný text pro skladbu %s"
 
 #: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
-msgstr ""
+msgstr "Obnovit"
 
 #: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Statistika</b>"
 
 #: ../src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Vybrat složku s hudbou..."
 
 #: ../src/Dialogs/PreferencesWindow.vala:132
 msgid "General"
@@ -473,21 +473,23 @@ msgstr "Integrace s prostředím:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:169
 msgid "Notifications:"
-msgstr ""
+msgstr "Notifikace"
 
 #: ../src/Dialogs/PreferencesWindow.vala:174
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Pokračovat v přehrávání při zavření"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Přejete si nainstalovat plugin %s?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"Tuto skladbu nelze přehrát. Pro přehrání je vyžadován plugin %s."
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
@@ -564,15 +566,15 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
-msgstr ""
+msgstr "Soubor nebyl nalezen"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "Soubor skladby  <b>%s</b> od <b>%s</b> nebyl nalezen."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i souborů skladeb nebylo nalezeno?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
@@ -585,7 +587,7 @@ msgstr "Odstranit skladbu"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
-msgstr ""
+msgstr "Vyhledat skladbu"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
@@ -839,19 +841,19 @@ msgstr "Zaplňte hudbou"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "Přidat hudbu do knihovny."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Přidat hudbu do knihovny."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
-msgstr ""
+msgstr "Změnit složku s hudbou"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
-msgstr ""
+msgstr "Přidat hudbu z adresáře, ze sítě nebo externího disku."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:104
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:120
@@ -902,7 +904,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Aktualizace seznamu skladeb. Prosím čekejte."
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
@@ -917,7 +919,7 @@ msgstr[2] "%u alb"
 
 #: ../src/Views/GridView/PopupListView.vala:61
 msgid "Set new album cover"
-msgstr ""
+msgstr "Nastavit nový obrázek alba."
 
 #: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -926,11 +928,11 @@ msgstr "%s od %s"
 
 #: ../src/Views/GridView/PopupListView.vala:261
 msgid "_Cancel"
-msgstr ""
+msgstr "_Zrušit"
 
 #: ../src/Views/GridView/PopupListView.vala:261
 msgid "_Open"
-msgstr ""
+msgstr "_Otevřít"
 
 #: ../src/Views/GridView/PopupListView.vala:264
 msgid "Image files"
@@ -938,7 +940,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
-msgstr ""
+msgstr "Probíhá rušení..."
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Device operation has been cancelled and will stop after this media."
@@ -946,7 +948,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
@@ -1153,7 +1155,7 @@ msgstr "Zobrazit ve správci souborů"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Další akce"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1171,7 +1173,7 @@ msgstr "Importovat do knihovny"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:214
 msgid "New Playlist…"
-msgstr ""
+msgstr "Nový seznam skladeb…"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:258
 msgid "Import %i of %i selected songs"
@@ -1180,8 +1182,9 @@ msgstr "Importovat %i z %i vybraných skladeb"
 #: ../src/Views/ListView/Lists/MusicListView.vala:260
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Importovat %i skladbu"
+msgstr[1] "Importovat %i skladby"
+msgstr[2] "Importovat %i skladeb"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:688
 msgid "1234 kbps"
@@ -1358,7 +1361,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:337
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "Zařízení již provádí operaci"
 
 #: ../src/DataBase/DataBaseManager.vala:452
 #: ../src/DataBase/DataBaseManager.vala:688
@@ -1400,44 +1403,44 @@ msgstr "%s bylo importováno do vaší knihovny"
 
 #: ../src/FileOperator.vala:362
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "<b>Kopírování</b> souborů do <b>adresáře s hudbou</b>…"
 
 #: ../src/LocalLibrary.vala:164
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Přidávání hudby z %s..."
 
 #: ../src/LocalLibrary.vala:201
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Přidávání souborů do knihovny ..."
 
 #: ../src/LocalLibrary.vala:252
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "Všechny soubory skladeb jsou již ve vaší knihovně"
 
 #: ../src/LocalLibrary.vala:252
 msgid "No files were imported."
-msgstr ""
+msgstr "Nebyly přidány žádné soubory."
 
 #: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "Vyhledávání změn ve sbírce. Toto může chvíli trvat..."
 
 #: ../src/LocalLibrary.vala:339
 msgid "Added to your queue:"
-msgstr ""
+msgstr "Přidáno do fronty:"
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
-msgstr ""
+msgstr "Přejmenovat"
 
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr ""
+msgstr "Exportovat..."
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr ""
+msgstr "Upravit…"
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
@@ -1591,7 +1594,7 @@ msgstr "Skrýt informační panel"
 
 #: ../src/Objects/LyricFetcher.vala:155
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
+msgstr "Text stažen z www.lyricsmania.com"
 
 #: ../src/Objects/TrackInfo.vala:25
 msgid "Unknown Track"
@@ -1623,6 +1626,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Ve vaší sbírce nejsou žádné podobné skladby. Ujistěte se, že informace o "
+"vašich skladbách jsou správné, a že jste připojeni k internetu. Pro některé "
+"skladby nemusí existovat žádné podobné."
 
 #: ../plugins/LastFM/SimilarMedia.vala:42
 msgid "Similar"
@@ -1630,7 +1636,7 @@ msgstr "Podobné"
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
-msgstr ""
+msgstr "Udělit %s oprávnění"
 
 #: ../plugins/LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
@@ -1665,6 +1671,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"Pro integraci s Last.fm musíte udělit %s povolení. Toto stačí provést pouze "
+"jednou."
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:70
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
@@ -1686,54 +1694,54 @@ msgstr "Přidávání <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:202
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Synchronizace <b>% s </ b> ..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:220
 #: ../plugins/Devices/iPod/iPodLibrary.vala:380
 #: ../plugins/Devices/iPod/iPodLibrary.vala:637
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:256
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Dokončuji synchronizaci…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:232
 #: ../plugins/Devices/iPod/iPodLibrary.vala:392
 #: ../plugins/Devices/iPod/iPodLibrary.vala:657
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:259
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Ruším synchronizaci…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:342
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "Odstraňování z <b>%s </ b> ..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:535
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:362
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "Odstraňování <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:667
 #: ../plugins/Devices/iPod/iPodLibrary.vala:668
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:263
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:264
 msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
+msgstr "V zařízení není dostatek místa pro dokončení synchronizace…"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:161
 msgid "Android Phone"
-msgstr ""
+msgstr "Telefon s Androidem"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:163
 msgid "Audio Player"
-msgstr ""
+msgstr "Hudební přehrávač"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Vyskytla se chyba"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Při načítání Zvukového CD se vyskytla chyba."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:94
 msgid "Audio CD Invalid"
@@ -1741,7 +1749,7 @@ msgstr "Neplatné CD"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:98
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "Obsah tohoto Zvukového CD nelze přečíst"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid "Could not find Music Folder"
@@ -1759,14 +1767,15 @@ msgstr ""
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"Aplikace na CD nenalezla žádné skladby. Žádné skladby nemohly být importovány"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:357
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "Import skladby ze Zvukového CD byl dokončen."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:357
 msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
+msgstr "Import %i skladeb ze Zvukového CD byl dokončen."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:362
 msgid "Importing track %i: %s"
