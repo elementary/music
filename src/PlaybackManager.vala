@@ -332,7 +332,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             } else {
                 foreach (Media s in library.get_medias ())
                     addToCurrent (s);
-                
+                if( _current_shuffled.is_empty )
+                    reshuffle (); //to initialize _current_shuffled
                 _current_shuffled_index = 0;
                 set_shuffle_mode (Noise.Settings.Shuffle.ALL);
                 rv = _current_shuffled.get (0);
@@ -406,7 +407,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 rv = _current_shuffled.get (_current_shuffled_index);
             } else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current_shuffled.get(_current_shuffled_index);
-            } else if(_current_shuffled_index == 0) {// consider repeat options
+            } else if(_current_shuffled_index == 0 && _current_shuffled.size != 0) {// consider repeat options
                 if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
                     _current_shuffled_index = _current_shuffled.size - 1;
                 else {
@@ -430,7 +431,10 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             } else {
                 foreach(Media s in library.get_medias ())
                     addToCurrent(s);
-                
+
+                if( _current_shuffled.is_empty )
+                    reshuffle (); //to initialize _current_shuffled
+
                 _current_shuffled_index = _current_shuffled.size - 1;
                 rv = _current_shuffled.get(_current_shuffled_index);
             }
