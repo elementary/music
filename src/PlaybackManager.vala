@@ -429,7 +429,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 
                 rv = _current_shuffled.get(_current_shuffled_index);
             } else {
-
                 _current_shuffled_index = _current_shuffled.size - 1;
                 rv = _current_shuffled.get(_current_shuffled_index);
             }
