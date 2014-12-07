@@ -593,7 +593,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             try {
                 notification.close ();
             } catch (Error e) {
-                error ("Error: %s", e.message);
+                error ("Could not close notification: %s", e.message);
             }
             this.show ();
         });
