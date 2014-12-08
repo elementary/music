@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-06-25 19:21+0000\n"
-"Last-Translator: Halland Blekinge <Unknown>\n"
+"PO-Revision-Date: 2014-12-07 18:38+0000\n"
+"Last-Translator: Mickas Jensen <qrank@live.dk>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-11-04 06:52+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-12-08 06:33+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "Language: da\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -47,11 +47,11 @@ msgstr "Annullér"
 
 #: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
-msgstr ""
+msgstr "Åbn"
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr ""
+msgstr "Gem"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
@@ -250,11 +250,11 @@ msgstr ""
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
-msgstr ""
+msgstr "Om Noise"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr ""
+msgstr "Om Musik"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -270,11 +270,11 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
-msgstr ""
+msgstr "Afspil"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Næste"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
@@ -430,7 +430,7 @@ msgstr "Sangtekster blev ikke fundet for %s"
 
 #: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
-msgstr ""
+msgstr "Nulstil"
 
 #: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
@@ -478,7 +478,7 @@ msgstr "Fortsæt afspilning når vinduet lukkes:"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Ønsker du at installere dette plugin %s?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
@@ -561,7 +561,7 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
-msgstr ""
+msgstr "Filen blev ikke fundet"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
@@ -941,7 +941,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
@@ -1145,7 +1145,7 @@ msgstr "Vis i filbrowser"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Andre handlinger"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"

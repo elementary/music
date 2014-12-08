@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-04-15 17:14+0000\n"
-"Last-Translator: Sadık Atalay <seaflames@gmail.com>\n"
+"PO-Revision-Date: 2014-12-07 09:42+0000\n"
+"Last-Translator: Halit Alptekin <diqit4ll@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-11-04 06:55+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-12-08 06:34+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "Language: tr\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -51,7 +51,7 @@ msgstr ""
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
@@ -79,7 +79,7 @@ msgstr "Tam Tiz"
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Full Bass + Treble"
-msgstr "Tam Bass + Tiz"
+msgstr "Tam Bas + Tiz"
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
@@ -127,22 +127,25 @@ msgstr "Tekno"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "<b>$ARTIST</b> tarafından <b>$NAME</b> içeri aktarılıyor…"
 
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d saniye"
+msgstr[1] "%d saniye"
 
 #: ../core/Utils/TimeUtils.vala:52 ../core/Utils/TimeUtils.vala:83
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u dakika"
+msgstr[1] "%u dakika"
 
 #: ../core/Utils/TimeUtils.vala:56
 msgid "%u second"
 msgid_plural "%u seconds"
 msgstr[0] "%u saniye"
+msgstr[1] "%u saniye"
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:58
@@ -154,11 +157,13 @@ msgstr "%s ve %s"
 msgid "%u day"
 msgid_plural "%u days"
 msgstr[0] "%u gün"
+msgstr[1] "%u gün"
 
 #: ../core/Utils/TimeUtils.vala:80
 msgid "%u hour"
 msgid_plural "%u hours"
 msgstr[0] "%u saat"
+msgstr[1] "%u saat"
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:91
@@ -192,7 +197,7 @@ msgstr "%m/%e/%Y %l:%M %p"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: ../core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
@@ -200,11 +205,11 @@ msgstr "Yeni çalma listesi"
 
 #: ../core/Utils/PlaylistsUtils.vala:246
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr "Çalma Listesini Aktar"
+msgstr "Çalma Listesini Dışa Aktar"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
@@ -228,7 +233,7 @@ msgstr "Tanımlanamayan çalma listesi dosyası.İçe aktarma başarısız oldu.
 
 #: ../core/Utils/FileUtils.vala:280
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #: ../src/Noise.vala:38
 msgid "Listen to music"
@@ -252,7 +257,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
-msgstr ""
+msgstr "Kütüphaneye Ekle"
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:82
 msgid "Preferences"
@@ -260,15 +265,15 @@ msgstr "Tercihler"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "Önceki"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
-msgstr ""
+msgstr "Oynat"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Sonraki"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
@@ -321,7 +326,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Duraklat"
 
 #: ../src/LibraryWindow.vala:1134
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
@@ -330,11 +335,11 @@ msgstr "Müzik aktar"
 
 #: ../src/LibraryWindow.vala:1154 ../src/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "Müzik kütüphaneye <b>aktarılıyor</b>..."
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
-msgstr ""
+msgstr "Ayrıntılar"
 
 #: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
@@ -424,15 +429,15 @@ msgstr "%s için Şarkı Sözleri bulunamadı"
 
 #: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
-msgstr ""
+msgstr "Sıfırla"
 
 #: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "İstatistikler"
 
 #: ../src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Müzik Klasörünü Seç..."
 
 #: ../src/Dialogs/PreferencesWindow.vala:132
 msgid "General"
@@ -464,21 +469,23 @@ msgstr "Masaüstü Bütünleşmesi:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:169
 msgid "Notifications:"
-msgstr ""
+msgstr "Bildirimler:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:174
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Kapatıldığında oynatmaya devam et:"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "%s eklentisini yüklemek ister misiniz ?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"Parça çalınamıyor. Parçayı çalmak için %s eklentisi gerekli."
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
@@ -555,7 +562,7 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
-msgstr ""
+msgstr "Dosya bulunamadı"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
@@ -563,7 +570,7 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i müzik dosyası bulunamadı?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
@@ -576,7 +583,7 @@ msgstr "Şarkıyı Sil"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
-msgstr ""
+msgstr "Parçayı Bul"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
@@ -815,8 +822,9 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
-"Bu işlem şarkıyı kütüphanenizden ve %s ile otomatik olarak senkronize edilen "
-"tüm cihazlardan kaldıracaktır."
+msgstr[1] ""
+"Bu işlem şarkıları kütüphanenizden ve %s ile otomatik olarak senkronize "
+"edilen tüm cihazlardan kaldıracaktır."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:50
 msgid "Get Some Tunes"
@@ -824,7 +832,7 @@ msgstr "Müziklerinizi Bulun"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "Kütüphanene müzik ekle"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
@@ -832,11 +840,11 @@ msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
-msgstr ""
+msgstr "Müzik Klasörünü Değiştir"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
-msgstr ""
+msgstr "Klasörden,ağdan veya harici bir diskten müzik yükle."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:104
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:120
@@ -1376,7 +1384,7 @@ msgstr "%s kütüphanenize eklendi."
 
 #: ../src/FileOperator.vala:362
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "Dosyalar <b>Müzik Klasörüne</b> <b>kopyalanıyor</b>…"
 
 #: ../src/LocalLibrary.vala:164
 msgid "Importing music from %s…"
@@ -2146,9 +2154,6 @@ msgstr "Bu CD'nin İçe Aktarımı sırasında bir hata oluştu"
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "%s den %s e benzer şarkılar bulunuyor"
 
-#~ msgid "Radio Station"
-#~ msgstr "Radio İstasyonu"
-
 #~ msgid "Skips"
 #~ msgstr "Atlamalar"
 
@@ -2162,3 +2167,6 @@ msgstr "Bu CD'nin İçe Aktarımı sırasında bir hata oluştu"
 #, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "Görünüşe göre %s müziğinizi bulamadı"
+
+#~ msgid "Radio Station"
+#~ msgstr "Radyo İstasyonu"
