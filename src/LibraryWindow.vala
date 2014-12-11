@@ -759,9 +759,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (show_top_display) {
             headerbar.set_custom_title (topDisplayBin);
             topDisplay.set_scale_sensitivity (media_active);
+            headerbar.set_title ( ("%s - %s -").printf( App.player.media_info.media.title,
+                App.player.media_info.media.artist,((Noise.App) GLib.Application.get_default ()).get_name ()));
             topDisplayBin.show_all ();
         } else {
-            headerbar.set_title ("");
+            headerbar.set_title (((Noise.App) GLib.Application.get_default ()).get_name ());
         }
 
         bool show_info_panel = Settings.SavedState.get_default ().more_visible && info_panel.can_show_up;
