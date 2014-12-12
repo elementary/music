@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-04-15 17:13+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
+"PO-Revision-Date: 2014-12-11 09:38+0000\n"
+"Last-Translator: needhelp007 <iempie3@hotmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-11-04 06:52+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-12-12 06:29+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 "Language: nl\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -47,11 +47,11 @@ msgstr "Annuleren"
 
 #: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr ""
+msgstr "Opslaan"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
@@ -95,7 +95,7 @@ msgstr "Live"
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Party"
-msgstr "Party"
+msgstr "Feest"
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Pop"
@@ -111,7 +111,7 @@ msgstr "Rock"
 
 #: ../core/GStreamer/Equalizer.vala:90
 msgid "Soft"
-msgstr "Soft"
+msgstr "Zacht"
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Ska"
@@ -251,11 +251,11 @@ msgstr ""
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
-msgstr ""
+msgstr "Over Noise"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr ""
+msgstr "Over Muziek"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -267,15 +267,15 @@ msgstr "Voorkeuren"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "Vorige"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
-msgstr ""
+msgstr "Afspelen"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Volgende"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
@@ -329,7 +329,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Pauze"
 
 #: ../src/LibraryWindow.vala:1134
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
@@ -342,7 +342,7 @@ msgstr "<b>Importeren</b> van muziek naar bibliotheek..."
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
 #: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
@@ -432,11 +432,11 @@ msgstr "Songtekst niet gevonden voor %s"
 
 #: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Statistieken</b>"
 
 #: ../src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
@@ -472,21 +472,24 @@ msgstr "Desktopintegratie"
 
 #: ../src/Dialogs/PreferencesWindow.vala:169
 msgid "Notifications:"
-msgstr ""
+msgstr "Notificaties"
 
 #: ../src/Dialogs/PreferencesWindow.vala:174
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Blijf afspelen op achtergrond:"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Wilt u de %s plugin installeren?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"Dit nummer kan niet worden afgespeeld. De %s plugin is nodig om deze af te "
+"spelen."
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
@@ -563,15 +566,16 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
-msgstr ""
+msgstr "Bestand niet gevonden"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
+"Het muziek bestand voor <b>%s</b> door <b>%s</b> kan niet worden gevonden."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i muziekbestanden konden niet worden gevonden?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
@@ -584,7 +588,7 @@ msgstr "Verwijder nummer"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
-msgstr ""
+msgstr "Zoek nummer"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
@@ -842,7 +846,7 @@ msgstr "Voeg muziek toe aan je bibliotheek."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Importeer een nummer van een bron naar uw bibliotheek."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
@@ -902,7 +906,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Afspeellijst wordt bijgewerkt. Een moment geduld."
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
@@ -916,7 +920,7 @@ msgstr[1] "%u albums"
 
 #: ../src/Views/GridView/PopupListView.vala:61
 msgid "Set new album cover"
-msgstr ""
+msgstr "Nieuwe albumillustratie kiezen"
 
 #: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -925,7 +929,7 @@ msgstr "%s door %s"
 
 #: ../src/Views/GridView/PopupListView.vala:261
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annuleer"
 
 #: ../src/Views/GridView/PopupListView.vala:261
 msgid "_Open"
@@ -933,7 +937,7 @@ msgstr ""
 
 #: ../src/Views/GridView/PopupListView.vala:264
 msgid "Image files"
-msgstr ""
+msgstr "Afbeeldingsbestanden"
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
@@ -945,7 +949,7 @@ msgstr "Apparaat bewerking is geannuleerd en stopt na deze media."
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "Ok"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
@@ -1151,7 +1155,7 @@ msgstr "Laat zien in bestandsbrowser"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Andere acties"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1411,11 +1415,11 @@ msgstr "Bestanden toevoegen aan bibliotheek..."
 
 #: ../src/LocalLibrary.vala:252
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "Alle muziekbestanden bevinden zich reeds in uw bibliotheek"
 
 #: ../src/LocalLibrary.vala:252
 msgid "No files were imported."
-msgstr ""
+msgstr "Er zijn geen bestanden geïmporteerd"
 
 #: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
