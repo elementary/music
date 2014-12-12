@@ -761,7 +761,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             topDisplay.set_scale_sensitivity (media_active);
             string? media_title = App.player.media_info.media.title;
             string? media_artist = App.player.media_info.media.artist;
-            if (media_title != null && media_artist != null && media_title.length >0 && media_artist.length >0)
+            if (media_title != null && media_artist != null && media_title.length > 0 && media_artist.length > 0)
                 headerbar.set_title ( "%s - %s - %s".printf (media_title, media_artist,
                     ((Noise.App) GLib.Application.get_default ()).get_name ()));
             else
