@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-04-15 17:13+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
+"PO-Revision-Date: 2014-12-23 20:13+0000\n"
+"Last-Translator: MarkoD <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2014-11-04 06:54+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2014-12-24 06:47+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 "Language: sl\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -48,11 +48,11 @@ msgstr "Prekliči"
 
 #: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
-msgstr ""
+msgstr "Odpri"
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr ""
+msgstr "Shrani"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
@@ -260,11 +260,11 @@ msgstr ""
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
-msgstr ""
+msgstr "O Noise"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr ""
+msgstr "O Music"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -276,15 +276,15 @@ msgstr "Možnosti"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "Predhodna skladba"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
-msgstr ""
+msgstr "Predvajaj"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Naslednja skladba"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
@@ -335,7 +335,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Premor"
 
 #: ../src/LibraryWindow.vala:1134
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
@@ -348,7 +348,7 @@ msgstr "<b>Uvažanje</b> glasbe v knjižnico …"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
@@ -438,11 +438,11 @@ msgstr "Besedila niso najdena  za %s"
 
 #: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
-msgstr ""
+msgstr "Ponastavi"
 
 #: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Statistika</b>"
 
 #: ../src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
@@ -478,21 +478,23 @@ msgstr "Podpora namizju:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:169
 msgid "Notifications:"
-msgstr ""
+msgstr "Obvestila:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:174
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Nadaljuj s predvajanjem ko je okno zaprto:"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Ali želite namestiti dodatek %s?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"Te skladbe ni mogoče igrati, potrebujete dodatek %s."
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
@@ -569,15 +571,15 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
-msgstr ""
+msgstr "Datoteke ni mogoče najti"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "Glasbena datoteka za <b>%s</b> od <b>%s</b> ni bila najdena."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i datotek ni bilo mogoče najti?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
@@ -590,7 +592,7 @@ msgstr "Odstrani skladbo"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
-msgstr ""
+msgstr "Najdi skladbo"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
@@ -851,7 +853,7 @@ msgstr "Dodajte glasbo v vašo knjižnico."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Uvozi glasbo v knjižnico"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
@@ -911,7 +913,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Seznam predvajanja se posodablja. Prosimo počakajte."
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
@@ -927,7 +929,7 @@ msgstr[3] "%u albumi"
 
 #: ../src/Views/GridView/PopupListView.vala:61
 msgid "Set new album cover"
-msgstr ""
+msgstr "Nastavi novo naslovnico albuma"
 
 #: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -936,15 +938,15 @@ msgstr "%s od %s"
 
 #: ../src/Views/GridView/PopupListView.vala:261
 msgid "_Cancel"
-msgstr ""
+msgstr "_Prekliči"
 
 #: ../src/Views/GridView/PopupListView.vala:261
 msgid "_Open"
-msgstr ""
+msgstr "_Odpri"
 
 #: ../src/Views/GridView/PopupListView.vala:264
 msgid "Image files"
-msgstr ""
+msgstr "Slikovne datoteke"
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
@@ -957,7 +959,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "V redu"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
@@ -1167,7 +1169,7 @@ msgstr "Pokaži v pregledovalniku datotek"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Druga dejanja"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1429,11 +1431,11 @@ msgstr "Dodajanje datotek v knjižnico ..."
 
 #: ../src/LocalLibrary.vala:252
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "Vse glasbene datoteke so že v vaši knjižnici"
 
 #: ../src/LocalLibrary.vala:252
 msgid "No files were imported."
-msgstr ""
+msgstr "Nobena datoteka ni bila uvožena."
 
 #: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
@@ -1651,7 +1653,7 @@ msgstr "Podobno"
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
-msgstr ""
+msgstr "Odobrite pravice programu %s"
 
 #: ../plugins/LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
@@ -1686,6 +1688,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"Da omogočite integracijo z Last.fm, morate programu %s podati pravice. To "
+"morate narediti samo enkrat."
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:70
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-12-05 14:54+0000\n"
-"Last-Translator: RoBman79 <Unknown>\n"
+"PO-Revision-Date: 2014-12-23 17:41+0000\n"
+"Last-Translator: Tomo Moto <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-12-06 06:29+0000\n"
-"X-Generator: Launchpad (build 17274)\n"
+"X-Launchpad-Export-Date: 2014-12-24 06:47+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 "Language: cs\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -202,7 +202,7 @@ msgstr "%e.%m.%Y %k:%M"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: ../core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
@@ -210,7 +210,7 @@ msgstr "Nový seznam skladeb"
 
 #: ../core/Utils/PlaylistsUtils.vala:246
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
@@ -238,7 +238,7 @@ msgstr "Nerozpoznatelný seznam skladeb. Import se nezdařil."
 
 #: ../core/Utils/FileUtils.vala:280
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #: ../src/Noise.vala:38
 msgid "Listen to music"
@@ -251,6 +251,7 @@ msgstr "Hudební přehrávač"
 #: ../src/Noise.vala:40
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
+"Noise;Audio;Přehrávač;MP3;iPod;Přehrát;Seznam skladeb;Média;CD;Phone;Skladby;"
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
@@ -936,7 +937,7 @@ msgstr "_Otevřít"
 
 #: ../src/Views/GridView/PopupListView.vala:264
 msgid "Image files"
-msgstr ""
+msgstr "Soubory obrázků"
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
@@ -944,7 +945,7 @@ msgstr "Probíhá rušení..."
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "Operace v zařízení byla zrušena a bude ukončena po tomto médiu."
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
@@ -1199,7 +1200,7 @@ msgstr "1234 kbps"
 #. / by the column's title header.
 #: ../src/Views/ListView/Lists/MusicListView.vala:768
 msgid "Sample List String"
-msgstr ""
+msgstr "Vzorový textový řetězec"
 
 #: ../src/Views/ListView/Lists/GenericList.vala:116
 msgid "Autosize Columns"
@@ -1644,7 +1645,7 @@ msgstr "Nedokončeno. Klikněte pro opakování."
 
 #: ../plugins/LastFM/PreferencesSection.vala:32
 msgid "Scrobbling Already Enabled"
-msgstr ""
+msgstr "Scrobbling je již povolen"
 
 #: ../plugins/LastFM/PreferencesSection.vala:33
 msgid "Success!"
