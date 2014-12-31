@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-11-13 09:21+0000\n"
-"Last-Translator: UweS <Unknown>\n"
+"PO-Revision-Date: 2014-12-30 16:26+0000\n"
+"Last-Translator: Tobias Bannert <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-11-14 06:27+0000\n"
-"X-Generator: Launchpad (build 17241)\n"
+"X-Launchpad-Export-Date: 2014-12-31 06:27+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 "Language: de\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -774,7 +774,7 @@ msgstr "Tag(en)"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:408
 msgid "kbps"
-msgstr "kbps"
+msgstr "kbit/s"
 
 #: ../src/Dialogs/NotImportedWindow.vala:58
 #: ../src/Dialogs/NotImportedWindow.vala:70
@@ -1129,7 +1129,7 @@ msgstr "Gruppierungen"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:226
 msgid "%i kbps"
-msgstr "%i kbps"
+msgstr "%i kbit/s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:251
 #: ../src/Views/ListView/Lists/MusicListView.vala:703
@@ -1194,7 +1194,7 @@ msgstr[1] "Importieren von %i Musiktiteln"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:688
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 kbit/s"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
