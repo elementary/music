@@ -34,9 +34,9 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
     private Library library;
 
     public SmartPlaylistEditor (SmartPlaylist? sp = null, Library library) {
-        Object (use_header_bar: 1);
         this.title = _("Smart Playlist Editor");
         this.library = library;
+        this.deletable = false;
         
         if (sp == null) {
             is_new = true;
