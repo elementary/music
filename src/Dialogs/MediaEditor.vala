@@ -56,7 +56,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
     public signal void medias_saved (Gee.LinkedList<int> medias);
     
     public MediaEditor (Gee.LinkedList<int> allMedias, Gee.LinkedList<int> medias, Library library) {
-        Object (use_header_bar: 1);
         this.library = library;
         this.window_position = Gtk.WindowPosition.CENTER;
         this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -64,6 +63,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
         this.set_transient_for(App.main_window);
         this.destroy_with_parent = true;
         this.resizable = false;
+        this.deletable = false;
         
         this.set_size_request (520, -1);
 
@@ -79,9 +79,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         stack_switcher.halign = Gtk.Align.CENTER;
         stack_switcher.margin_bottom = 24;
         stack_switcher.margin_top = 12;
-        
-        ((Gtk.HeaderBar) get_header_bar ()).set_custom_title (stack_switcher);
-        ((Gtk.HeaderBar) get_header_bar ()).show_close_button = false;
 
         stack.add_titled (createBasicContent (), "metadata", _("Details"));
         if(_medias.size == 1)

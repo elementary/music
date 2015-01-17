@@ -35,13 +35,7 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
     Gtk.Button rescanLibrary;
 
     public FileNotFoundDialog (Gee.LinkedList<Media> media_list) {
-        Object (use_header_bar: 1);
-
         var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
-
-        (get_header_bar () as Gtk.HeaderBar).title = app_name;
-        (get_header_bar () as Gtk.HeaderBar).show_close_button = false;
-        get_header_bar ().get_style_context ().remove_class ("header-bar");
 
         this.media_list = media_list;
 
@@ -50,6 +44,7 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
         this.destroy_with_parent = true;
         this.border_width = 6;
         resizable = false;
+        deletable = false;
 
         var content = get_content_area () as Gtk.Box;
 

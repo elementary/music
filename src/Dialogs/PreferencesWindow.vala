@@ -39,7 +39,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
     private int index = 0;
 
     public PreferencesWindow (LibraryWindow lw) {
-        Object (use_header_bar: 1);
         build_ui (lw);
 
         lw.add_preference_page.connect ((page) => {add_page (page);});
@@ -82,11 +81,9 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         title = _("Preferences");
         set_size_request (MIN_WIDTH, MIN_HEIGHT);
         resizable = false;
+        deletable = false;
         window_position = Gtk.WindowPosition.CENTER;
         type_hint = Gdk.WindowTypeHint.DIALOG;
-
-        (get_header_bar () as Gtk.HeaderBar).show_close_button = false;
-        get_header_bar ().get_style_context ().remove_class ("header-bar");
 
         main_stack = new Gtk.Stack ();
         main_stackswitcher = new Gtk.StackSwitcher ();

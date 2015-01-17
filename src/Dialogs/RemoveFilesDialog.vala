@@ -31,18 +31,13 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
     public signal void remove_media(bool response);
 
     public RemoveFilesDialog (Gee.LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
-        Object (use_header_bar: 1);
-
         var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
 
-        (get_header_bar () as Gtk.HeaderBar).title = app_name;
-        (get_header_bar () as Gtk.HeaderBar).show_close_button = false;
-        get_header_bar ().get_style_context ().remove_class ("header-bar");
-        
         this.set_modal(true);
         this.set_transient_for (App.main_window);
         this.destroy_with_parent = true;
         resizable = false;
+        deletable = false;
 
         content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
 
