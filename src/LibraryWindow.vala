@@ -595,8 +595,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             } catch (GLib.Error err) {
                 error ("Could not close notification: %s", err.message);
             }
-            this.hide ();
-            this.present_with_time (Gdk.CURRENT_TIME);
+
+            this.present_with_time ((uint32)GLib.get_monotonic_time ());
         });
 
         try {
