@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-10-21 14:06+0000\n"
-"Last-Translator: Saurabh <Unknown>\n"
+"PO-Revision-Date: 2015-01-30 08:59+0000\n"
+"Last-Translator: Anubhab <chakraborty.anubhab@gmail.com>\n"
 "Language-Team: Hindi <hi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-11-04 06:53+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2015-01-31 06:13+0000\n"
+"X-Generator: Launchpad (build 17306)\n"
 "Language: hi\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -103,7 +103,7 @@ msgstr "पॉप"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Reggae"
-msgstr ""
+msgstr "रेग्गे"
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Rock"
@@ -115,7 +115,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Ska"
-msgstr ""
+msgstr "स्का"
 
 #: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft Rock"
@@ -132,62 +132,62 @@ msgstr ""
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d सेकेंड"
+msgstr[1] "%d सेकेंड"
 
 #: ../core/Utils/TimeUtils.vala:52 ../core/Utils/TimeUtils.vala:83
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "मिनट"
+msgstr[1] "मिनटों"
 
 #: ../core/Utils/TimeUtils.vala:56
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u सेकेंड"
+msgstr[1] "%u सेकेंड"
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:58
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s और %s"
 
 #: ../core/Utils/TimeUtils.vala:77
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "दिन"
+msgstr[1] "दिनों"
 
 #: ../core/Utils/TimeUtils.vala:80
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "घंटा"
+msgstr[1] "घंटे"
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:91
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s और %s"
 
 #. / days and hours
 #: ../core/Utils/TimeUtils.vala:94
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s और %s"
 
 #. / days and minutes
 #: ../core/Utils/TimeUtils.vala:99
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s और %s"
 
 #. / hours and minutes
 #: ../core/Utils/TimeUtils.vala:108
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s और %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
