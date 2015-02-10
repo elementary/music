@@ -589,6 +589,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         notification.set_category ("x-gnome.music");
         notification.set_urgency ((Notify.Urgency) urgency);
 
+        notification.add_action ("default", "Show Noise", (notification, action) => {
+            try {
+                notification.close ();
+            } catch (GLib.Error err) {
+                error ("Could not close notification: %s", err.message);
+            }
+
+            this.present_with_time ((uint32)GLib.get_monotonic_time ());
+        });
+
         try {
             notification.show ();
         } catch (GLib.Error err) {
