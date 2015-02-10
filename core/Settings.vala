@@ -67,7 +67,6 @@ namespace Noise.Settings {
         public bool write_metadata_to_file { get; set; }
         public bool copy_imported_music { get; set; }
         public bool close_while_playing { get; set; }
-        public bool show_notifications { get; set; }
         public int last_media_playing { get; set; }
         public int last_playlist_playing { get; set; }
         public int last_media_position { get; set; }

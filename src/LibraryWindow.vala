@@ -561,7 +561,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, int urgency = -1) {
 #if HAVE_LIBNOTIFY
         // Don't show notifications if the window is active
-        if (!main_settings.show_notifications || this.is_active)
+        if (this.is_active)
             return;
 
         if (urgency == -1)
