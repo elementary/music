@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2012-11-03 16:51+0000\n"
-"Last-Translator: Julien Spautz <spautz.julien@gmail.com>\n"
+"PO-Revision-Date: 2015-02-12 16:48+0000\n"
+"Last-Translator: Yvo Marques <macghivo@gmail.com>\n"
 "Language-Team: Luxembourgish <lb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-11-04 06:53+0000\n"
-"X-Generator: Launchpad (build 17211)\n"
+"X-Launchpad-Export-Date: 2015-02-13 06:47+0000\n"
+"X-Generator: Launchpad (build 17336)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -46,11 +46,11 @@ msgstr "Ofbriechen"
 
 #: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
-msgstr ""
+msgstr "Opmaachen"
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr ""
+msgstr "Späicheren"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
@@ -208,7 +208,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr ""
+msgstr "Playlescht exportéieren"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
@@ -220,7 +220,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr ""
+msgstr "Playlescht"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
@@ -248,15 +248,15 @@ msgstr ""
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
-msgstr ""
+msgstr "Iwer Noise"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr ""
+msgstr "Iwer Musek"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
-msgstr ""
+msgstr "Vun der Librairie importéieren...."
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:82
 msgid "Preferences"
@@ -264,15 +264,15 @@ msgstr "Astellungen"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "Fierderun"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
-msgstr ""
+msgstr "Ofspillen"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Nächsten"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
@@ -281,17 +281,17 @@ msgstr ""
 #: ../src/LibraryWindow.vala:687 ../src/LibraryWindow.vala:825
 #: ../src/Views/DeviceSummaryWidget.vala:107
 msgid "Music"
-msgstr ""
+msgstr "Musek"
 
 #: ../src/LibraryWindow.vala:880 ../src/DataBase/DataBaseManager.vala:556
 #: ../src/LocalLibrary.vala:104 ../src/PlaybackManager.vala:99
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Lëscht"
 
 #: ../src/LibraryWindow.vala:883
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Keng Titelen an der Lëscht"
 
 #: ../src/LibraryWindow.vala:884
 msgid ""
@@ -303,7 +303,7 @@ msgstr ""
 #: ../src/LibraryWindow.vala:890 ../src/DataBase/DataBaseManager.vala:556
 #: ../src/LocalLibrary.vala:104 ../src/PlaybackManager.vala:97
 msgid "History"
-msgstr ""
+msgstr "Verlaf"
 
 #: ../src/LibraryWindow.vala:893
 msgid "No songs in History"
@@ -318,12 +318,12 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Paus"
 
 #: ../src/LibraryWindow.vala:1134
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
-msgstr ""
+msgstr "Musek importéierten"
 
 #: ../src/LibraryWindow.vala:1154 ../src/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -331,7 +331,7 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
-msgstr ""
+msgstr "Detailer"
 
 #: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
@@ -339,7 +339,7 @@ msgstr "Liddtext"
 
 #: ../src/Dialogs/MediaEditor.vala:97 ../src/Dialogs/PreferencesWindow.vala:96
 msgid "Close"
-msgstr ""
+msgstr "Zoumaachen"
 
 #: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:346
 msgid "Editing $NAME by $ARTIST"
@@ -403,7 +403,7 @@ msgstr "Nr."
 
 #: ../src/Dialogs/MediaEditor.vala:202
 msgid "Disc"
-msgstr "Disque"
+msgstr "Disk"
 
 #: ../src/Dialogs/MediaEditor.vala:203
 #: ../src/Dialogs/SmartPlaylistEditor.vala:276
