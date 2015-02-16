@@ -23,14 +23,14 @@
 
 public class Noise.MusicViewWrapper : ViewWrapper {
     
-    public MusicViewWrapper (TreeViewSetup? tvs = null, Library library) {
+    public MusicViewWrapper (TreeViewSetup? tvs = null, Library library, TopDisplay topDisplay) {
         base (Hint.MUSIC, library);
-        build_async.begin (tvs);
+        build_async.begin (tvs, topDisplay);
     }
 
     private Gee.HashMap<unowned Device, int> _devices;
 
-    private async void build_async (TreeViewSetup? tvs = null) {
+    private async void build_async (TreeViewSetup? tvs = null, TopDisplay topDisplay) {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
         // Add grid view
@@ -45,6 +45,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         else
             music_setup = tvs;
         list_view = new ListView (this, music_setup, true);
+        topDisplay.set_list_view(list_view.list_view);
 
         // Welcome screen
         welcome_screen = new Granite.Widgets.Welcome (_("Get Some Tunes"),
