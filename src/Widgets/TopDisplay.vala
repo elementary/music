@@ -28,6 +28,7 @@ public class Noise.TopDisplay : Gtk.Grid {
     Gtk.Scale scale;
     Gtk.ProgressBar progressbar;
     Gtk.Button cancelButton;
+    MusicListView list_view;
 
     private bool is_seeking = false;
     private uint timeout_id = 0;
@@ -62,7 +63,21 @@ public class Noise.TopDisplay : Gtk.Grid {
         label.set_justify (Gtk.Justification.CENTER);
         label.set_single_line_mode (false);
         label.ellipsize = Pango.EllipsizeMode.END;
-        
+        var label_eventbox = new Gtk.EventBox ();
+        label_eventbox.add (label);
+
+        label_eventbox.button_press_event.connect ((e) => {
+            if (e.button == Gdk.BUTTON_SECONDARY) {
+                var current = new GLib.List<Media> ();
+                if (App.player.media_info.media != null)
+                    current.append (App.player.media_info.media);
+                list_view.popup_media_menu (current);
+                return true;
+            }
+
+            return false;
+        });
+
         cancelButton.set_image (Icons.PROCESS_STOP.render_image (Gtk.IconSize.MENU));
         cancelButton.set_relief (Gtk.ReliefStyle.NONE);
         cancelButton.halign = cancelButton.valign = Gtk.Align.CENTER;
@@ -71,7 +86,7 @@ public class Noise.TopDisplay : Gtk.Grid {
 
         // all but cancel
         var info = new Gtk.Grid ();
-        info.attach (label, 0, 0, 1, 1);
+        info.attach (label_eventbox, 0, 0, 1, 1);
         info.attach (progressbar, 0, 1, 1, 1);
         info.attach (scale_grid, 0, 1, 1, 1);
         
@@ -109,7 +124,11 @@ public class Noise.TopDisplay : Gtk.Grid {
         });
         libraries_manager.local_library.media_updated.connect(media_updated);
     }
-    
+
+    public void set_list_view (MusicListView list_view) {
+        this.list_view = list_view;
+    }
+
     /** label functions **/
     public void set_label_text(string text) {
         label.set_text(text);

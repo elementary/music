@@ -692,7 +692,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             match_tvs.set (library_manager.p_music, music_tvs);
         }
         // Add Music Library View
-        var music_view_wrapper = new MusicViewWrapper (music_tvs, library_manager);
+        var music_view_wrapper = new MusicViewWrapper (music_tvs, library_manager, topDisplay);
         int view_number = view_container.add_view (music_view_wrapper);
         var entry = source_list_view.add_item  (view_number, _("Music"), ViewWrapper.Hint.MUSIC, Icons.MUSIC.gicon);
         match_playlist_entry.set (library_manager.p_music, entry);
