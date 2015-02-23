@@ -152,7 +152,7 @@ endif ()
 
 find_package (Vala REQUIRED)
 include (ValaVersion)
-ensure_vala_version ("0.23.2" MINIMUM)
+ensure_vala_version ("0.26" MINIMUM)
 include (ValaPrecompile)
 
 set (DEPS_LIBRARIES ${DEPS_LIBRARIES} -lm)

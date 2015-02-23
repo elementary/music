@@ -25,8 +25,6 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
     string detail;
 
     public InstallGstreamerPluginsDialog (Gst.Message message) {
-        var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
-
         this.message = message;
         this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 

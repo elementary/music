@@ -51,14 +51,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.Button       playButton;
     private Gtk.Button       nextButton;
 
-    public Granite.Widgets.ThinPaned  main_hpaned      { get; private set; }
-    public SourceListView             source_list_view { get; private set; }
-    public ViewContainer              view_container   { get; private set; }
-    public TopDisplay                 topDisplay       { get; private set; }
-    public Widgets.ViewSelector       viewSelector     { get; private set; }
-    public Gtk.SearchEntry            searchField      { get; private set; }
-    public Widgets.StatusBar          statusbar        { get; private set; }
-    private FixedBin                  topDisplayBin;
+    public Gtk.Paned main_hpaned { get; private set; }
+    public SourceListView source_list_view { get; private set; }
+    public ViewContainer view_container { get; private set; }
+    public TopDisplay topDisplay { get; private set; }
+    public Widgets.ViewSelector viewSelector { get; private set; }
+    public Gtk.SearchEntry searchField { get; private set; }
+    public Widgets.StatusBar statusbar { get; private set; }
+    private FixedBin topDisplayBin;
 
     /* AppMenu items */
     private Gtk.MenuButton    appMenu;
@@ -312,7 +312,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         /** Main layout **/
 
         verticalBox           = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        main_hpaned           = new Granite.Widgets.ThinPaned ();
+        main_hpaned           = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         view_container_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         view_container        = new ViewContainer ();
         source_list_view      = new SourceListView ();
