@@ -277,7 +277,7 @@ public class Noise.PopupListView : Gtk.Dialog {
             if (pix != null) {
                 CoverartCache cache =  CoverartCache.instance;
                 cache.changed.connect (() => { show_album_cover (cache.get_cover (media_list.to_array () [0])); });
-                cache.cache_image_async (media_list.to_array () [0], pix);
+                cache.cache_image_async.begin (media_list.to_array () [0], pix);
             }
         }
         

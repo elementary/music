@@ -92,7 +92,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
             return;
 
         if (! ( (SequenceIter<string>) iter.user_data).is_end ())
-            val = Sequence<string>.get (((SequenceIter<string>) iter.user_data));
+            val =((SequenceIter<string>) iter.user_data).get ();
     }
 
     /** Sets iter to point to the first child of parent. **/
@@ -196,7 +196,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 
     /* Updates the "All" item */
     private void update_first_item () {
-        Sequence<string>.set ( (SequenceIter<string>)first_iter.user_data, get_first_item_text (n_items));
+        ((SequenceIter<string>)first_iter.user_data).set (get_first_item_text (n_items));
     }
 
 
@@ -283,7 +283,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
                 return;
             else if (col == 0) {
                 string val = args.arg ();
-                Sequence<string>.set ( (SequenceIter<string>)iter.user_data, val);
+                ((SequenceIter<string>)iter.user_data).set (val);
             }
         }
     }
@@ -292,8 +292,9 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
         if (iter.stamp != this.stamp)
             return;
 
-        var path = new TreePath.from_string ( ( (SequenceIter)iter.user_data).get_position ().to_string ());
-        Sequence<string>.remove ( (SequenceIter<string>)iter.user_data);
+        var sequence_iter = (SequenceIter<string>)iter.user_data;
+        var path = new TreePath.from_string (sequence_iter.get_position ().to_string ());
+        sequence_iter.remove ();
         row_deleted (path);
     }
 
@@ -354,9 +355,9 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
             }
             else {
                 if (category == BrowserColumn.Category.ARTIST || category == BrowserColumn.Category.ALBUM)
-                    rv = String.compare (Sequence<string>.get (a), Sequence<string>.get (b));
+                    rv = String.compare (a.get (), b.get ());
                 else
-                    rv = String.compare (Sequence<string>.get (a), Sequence<string>.get (b));
+                    rv = String.compare (a.get (), b.get ());
             }
         }
 

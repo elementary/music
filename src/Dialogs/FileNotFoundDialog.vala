@@ -35,8 +35,6 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
     Gtk.Button rescanLibrary;
 
     public FileNotFoundDialog (Gee.LinkedList<Media> media_list) {
-        var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
-
         this.media_list = media_list;
 
         this.set_modal (true);

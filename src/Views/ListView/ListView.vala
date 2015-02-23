@@ -24,7 +24,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     public signal void reordered ();
 
     // Wrapper for the list view and miller columns
-    private Granite.Widgets.ThinPaned browser_hpane; // for left mode
+    private Gtk.Paned browser_hpane; // for left mode
     private Gtk.Paned browser_vpane; // for top mode
 
     public ColumnBrowser column_browser { get; private set; }
@@ -100,7 +100,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         view_wrapper.library.search_finished.connect (() => {this.list_view.research_needed = true;});
 
         if (has_column_browser) {
-            browser_hpane = new Granite.Widgets.ThinPaned ();
+            browser_hpane = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
             browser_vpane = new Gtk.Paned (Gtk.Orientation.VERTICAL);
 
             // Fix theming
