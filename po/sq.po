@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-02-21 13:16+0000\n"
+"PO-Revision-Date: 2015-02-22 17:34+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-22 05:29+0000\n"
+"X-Launchpad-Export-Date: 2015-02-23 05:29+0000\n"
 "X-Generator: Launchpad (build 17355)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -26,17 +26,17 @@ msgstr "I panjohur"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:177
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$NAME në $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: ../core/Media.vala:180
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$NAME e $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:186
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$NAME e $ARTIST në $ALBUM"
 
 #: ../core/Resources.vala:97
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:70
@@ -58,7 +58,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:77
 msgid "Classical"
-msgstr ""
+msgstr "Klasike"
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Club"
@@ -82,7 +82,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
-msgstr ""
+msgstr "Kufje"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Large Hall"
@@ -126,13 +126,13 @@ msgstr ""
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "Duke importuar <b>$NAME</b> të <b>$ARTIST</b> në librari…"
 
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekond"
+msgstr[1] "%d sekonda"
 
 #: ../core/Utils/TimeUtils.vala:52 ../core/Utils/TimeUtils.vala:83
 msgid "%u minute"
@@ -192,7 +192,7 @@ msgstr "%s dhe %s"
 #. / for more details.
 #: ../core/Utils/TimeUtils.vala:167
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%e/%m/%Y %l:%M %p"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
@@ -236,7 +236,7 @@ msgstr " (%d)"
 
 #: ../src/Noise.vala:38
 msgid "Listen to music"
-msgstr ""
+msgstr "Dëgjo muzikë"
 
 #: ../src/Noise.vala:39
 msgid "Music Player"
@@ -248,7 +248,7 @@ msgstr ""
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
-msgstr ""
+msgstr "Rreth Noise"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
@@ -256,7 +256,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
-msgstr ""
+msgstr "Importo në librari..."
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:82
 msgid "Preferences"
@@ -276,7 +276,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
-msgstr ""
+msgstr "Kërko muzikë"
 
 #: ../src/LibraryWindow.vala:687 ../src/LibraryWindow.vala:825
 #: ../src/Views/DeviceSummaryWidget.vala:107
@@ -307,7 +307,7 @@ msgstr "Kronologjia"
 
 #: ../src/LibraryWindow.vala:893
 msgid "No songs in History"
-msgstr ""
+msgstr "Asnjë këngë në kronologji"
 
 #: ../src/LibraryWindow.vala:894
 msgid ""
@@ -323,11 +323,11 @@ msgstr ""
 #: ../src/LibraryWindow.vala:1134
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
-msgstr ""
+msgstr "Importo muzikë"
 
 #: ../src/LibraryWindow.vala:1154 ../src/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Duke importuar</b> muzikën në librari…"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Details"
@@ -343,15 +343,15 @@ msgstr "Mbyll"
 
 #: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:346
 msgid "Editing $NAME by $ARTIST"
-msgstr ""
+msgstr "Ndrysho $NAME të $ARTIST"
 
 #: ../src/Dialogs/MediaEditor.vala:184 ../src/Dialogs/MediaEditor.vala:348
 msgid "Editing %s"
-msgstr ""
+msgstr "Duke ndryshuar %s"
 
 #: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:351
 msgid "Editing %i songs"
-msgstr ""
+msgstr "Duke ndryshuar %i këngë"
 
 #: ../src/Dialogs/MediaEditor.vala:193
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
@@ -395,7 +395,7 @@ msgstr ""
 #: ../src/Dialogs/MediaEditor.vala:200
 #: ../src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Comment"
-msgstr ""
+msgstr "Koment"
 
 #: ../src/Dialogs/MediaEditor.vala:201
 msgid "Track"
@@ -403,7 +403,7 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:202
 msgid "Disc"
-msgstr ""
+msgstr "Disk"
 
 #: ../src/Dialogs/MediaEditor.vala:203
 #: ../src/Dialogs/SmartPlaylistEditor.vala:276
@@ -417,7 +417,7 @@ msgstr "Vlerësimi"
 
 #: ../src/Dialogs/MediaEditor.vala:294
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Teksti i \"%s\" nuk u gjet"
 
 #: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
@@ -425,19 +425,19 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
-msgstr ""
+msgstr "<b>Statistikat</b>"
 
 #: ../src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Përzgjidh dosjen e muzikës..."
 
 #: ../src/Dialogs/PreferencesWindow.vala:132
 msgid "General"
-msgstr ""
+msgstr "Të përgjithshme"
 
 #: ../src/Dialogs/PreferencesWindow.vala:138
 msgid "Music Folder Location:"
-msgstr ""
+msgstr "Vendndodhja e dosjes së muzikës:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:146
 msgid "Library Management:"
@@ -453,7 +453,7 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:161
 msgid "Copy imported files to Library:"
-msgstr ""
+msgstr "Kopjo skedarët e importuar në librari:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:163
 msgid "Desktop Integration:"
@@ -461,7 +461,7 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:169
 msgid "Notifications:"
-msgstr ""
+msgstr "Njoftimet:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:174
 msgid "Continue playback when closed:"
@@ -482,11 +482,11 @@ msgstr ""
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:71
 msgid "Install Plugin"
-msgstr ""
+msgstr "Instalo prapashtesën"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:55
 msgid "Import from Device"
-msgstr ""
+msgstr "Importo nga pajisja"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import media from %s"
@@ -497,6 +497,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Skedarët e mëtejshëm u gjetën në %s, por nuk janë në librarinë tënde. "
+"Kontrollo të gjithë skedarët që dëshiron të importosh."
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:74
 msgid "Import all media"
@@ -509,7 +511,7 @@ msgstr "Importo"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:80
 msgid "Don't Import"
-msgstr ""
+msgstr "Mos importo"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:88
 msgid "Import %i items from %s"
@@ -517,7 +519,7 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:92
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Importo %s nga %s"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
 msgid "ID"
@@ -548,6 +550,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %d"
 msgstr ""
+"Noise po bën veprime të tjera mbi skedarët. Të lutem prit sa ata të mbarojnë "
+"importimin nga %d"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:60
 msgid "File not found"
@@ -555,11 +559,11 @@ msgstr "Skedari nuk u gjet"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "Skedari muzikor për <b>%s</b> by <b>%s</b> nuk u gjet."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i skedarë muzikor nuk u gjetën?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:92
 msgid "Rescan Library"
@@ -568,16 +572,16 @@ msgstr ""
 #: ../src/Dialogs/FileNotFoundDialog.vala:93
 #: ../src/Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove Song"
-msgstr ""
+msgstr "Hiq këngë"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:95
 msgid "Find Song"
-msgstr ""
+msgstr "Gjej këngë"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:131
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "Zgjidh dosjen e muzikës"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
 msgid "Export Playlists"
