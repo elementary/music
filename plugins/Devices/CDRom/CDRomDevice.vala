@@ -242,7 +242,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         
         // do checks to make sure we can go on
         if(!GLib.File.new_for_path (Settings.Main.get_default ().music_folder).query_exists ()) {
-            NotificationManager.get_default ().doAlertNotification (_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted before importing the CD."));
+            NotificationManager.get_default ().show_alert (_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted before importing the CD."));
             return false;
         }
         
@@ -271,7 +271,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 
         _is_transferring = true;
 
-        Timeout.add (500, () => {NotificationManager.get_default ().doProgressNotification (current_operation, current_song_progress);return false;});
+        Timeout.add (500, () => {NotificationManager.get_default ().update_progress (current_operation, current_song_progress);return false;});
 
         user_cancelled = false;
 

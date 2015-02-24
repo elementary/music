@@ -36,7 +36,6 @@
  * the visual representation of this class
  */
 public class Noise.LocalLibrary : Library {
-    
     public LibraryWindow lw { get { return App.main_window; } }
     public DataBaseUpdater dbu;
     public FileOperator fo;
@@ -67,17 +66,14 @@ public class Noise.LocalLibrary : Library {
         _searched_medias = new Gee.LinkedList<Media> ();
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;
-        
+
         this.dbu = new DataBaseUpdater ();
         this.fo = new FileOperator ();
-
     }
-    
+
     public override void initialize_library () {
         var dbm = DataBaseManager.get_default ();
         fo.connect_to_manager ();
-        fo.fo_progress.connect (dbProgress);
-        dbm.db_progress.connect (dbProgress);
         // Load all media from database
         lock (_medias) {
             foreach (var m in dbm.load_media ()) {
@@ -110,8 +106,8 @@ public class Noise.LocalLibrary : Library {
                 }
             }
         }
-        DeviceManager.get_default ().set_device_preferences (dbm.load_devices ());
 
+        DeviceManager.get_default ().set_device_preferences (dbm.load_devices ());
         load_media_art_cache.begin ();
     }
 
@@ -126,13 +122,9 @@ public class Noise.LocalLibrary : Library {
     }
 
     /************ Library/Collection management stuff ************/
-    public virtual void dbProgress (string? message, double progress) {
-        NotificationManager.get_default ().doProgressNotification (message, progress);
-    }
-
     public bool doProgressNotificationWithTimeout () {
         if (_doing_file_operations) {
-            NotificationManager.get_default ().doProgressNotification (null, (double) fo.index / (double) fo.item_count);
+            NotificationManager.get_default ().update_progress (null, (double) fo.index / (double) fo.item_count);
         }
 
         if (fo.index < fo.item_count && _doing_file_operations)
@@ -203,7 +195,6 @@ public class Noise.LocalLibrary : Library {
     }
 
     public void add_folder_to_library (Gee.Collection<string> folders) {
-
         if (start_file_operations (_("<b>Importing</b> music to library…"))) {
             add_folder_to_library_async.begin (folders);
         }
@@ -675,25 +666,21 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void remove_medias (Gee.Collection<Media> to_remove, bool trash) {
-        var removeURIs = new Gee.LinkedList<string> ();
         var toRemove = new Gee.LinkedList<Media> ();
         toRemove.add_all (to_remove);
 
         foreach (var s in toRemove) {
-            removeURIs.add (s.uri);
-
             if (s == App.player.media_info.media)
                 App.player.stop_playback ();
         }
 
-        dbu.removeItem.begin (removeURIs);
-
         if (trash)
-            fo.remove_media (removeURIs);
+            fo.remove_media (toRemove);
 
         // Emit signal before actually removing the media because otherwise
         // media_from_id () and media_from_ids () wouldn't work.
         media_removed (toRemove);
+        dbu.removeItem.begin (toRemove);
 
         lock (_medias) {
             foreach (Media s in toRemove) {
@@ -708,6 +695,7 @@ public class Noise.LocalLibrary : Library {
         }
 
         update_smart_playlists_async.begin (toRemove);
+        DataBaseManager.get_default ().remove_media (toRemove);
         search_finished ();
     }
 
@@ -727,7 +715,7 @@ public class Noise.LocalLibrary : Library {
         if (_doing_file_operations)
             return false;
 
-        NotificationManager.get_default ().doProgressNotification (message, 0.0);
+        NotificationManager.get_default ().update_progress (message, 0.0);
         _doing_file_operations = true;
         App.main_window.update_sensitivities.begin ();
         file_operations_started ();
@@ -740,14 +728,11 @@ public class Noise.LocalLibrary : Library {
 
     public override void finish_file_operations () {
         _doing_file_operations = false;
-        debug ("file operations finished or cancelled\n");
+        debug ("file operations finished or cancelled");
 
         fo.index = fo.item_count +1;
+        NotificationManager.get_default ().update_progress (null, 1);
         file_operations_done ();
         update_media_art_cache.begin ();
-        Timeout.add(3000, () => {
-            NotificationManager.get_default ().showSongNotification ();
-            return false;
-        });
     }
 }

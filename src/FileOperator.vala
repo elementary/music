@@ -30,7 +30,6 @@
  */
 
 public class Noise.FileOperator : Object {
-    public signal void fo_progress (string? message, double progress);
     public signal void import_cancelled ();
     public signal void rescan_cancelled ();
 
@@ -117,7 +116,8 @@ public class Noise.FileOperator : Object {
         index = 0;
         item_count = items;
     }
-    
+
+    // TODO: Rewrite it using GStreamer's TagSetter
     public async void save_media (Gee.Collection<Media> to_save) {
         var copy = new Gee.TreeSet<Media> ();
         copy.add_all (to_save);
@@ -131,19 +131,14 @@ public class Noise.FileOperator : Object {
                 tag_file = new TagLib.File (File.new_for_uri (s.uri).get_path ());
 
                 if (tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
-                    try {
-                        tag_file.tag.title = s.title;
-                        tag_file.tag.artist = s.artist;
-                        tag_file.tag.album = s.album;
-                        tag_file.tag.genre = s.genre;
-                        tag_file.tag.comment = s.comment;
-                        tag_file.tag.year = s.year;
-                        tag_file.tag.track  = s.track;
-                        
-                        tag_file.save ();
-                    } finally {
-                        
-                    }
+                    tag_file.tag.title = s.title;
+                    tag_file.tag.artist = s.artist;
+                    tag_file.tag.album = s.album;
+                    tag_file.tag.genre = s.genre;
+                    tag_file.tag.comment = s.comment;
+                    tag_file.tag.year = s.year;
+                    tag_file.tag.track  = s.track;
+                    tag_file.save ();
                 } else {
                     debug ("Could not save %s.\n", s.uri);
                 }
@@ -159,23 +154,21 @@ public class Noise.FileOperator : Object {
             File dest = FileUtils.get_new_destination (s);
             if (dest == null)
                 return true;
-            
+
             File original = File.new_for_uri (s.uri);
-            
             /* copy the file over */
             bool success = false;
             if (!delete_old) {
-                debug ("Copying %s to %s\n", s.uri, dest.get_uri ());
+                debug ("Copying %s to %s", s.uri, dest.get_uri ());
                 success = original.copy (dest, FileCopyFlags.NONE, null, null);
             } else {
-                debug("Moving %s to %s\n", s.uri, dest.get_uri ());
+                debug("Moving %s to %s", s.uri, dest.get_uri ());
                 success = original.move (dest, FileCopyFlags.NONE, null, null);
             }
-            
+
             if (success) {
-                debug ("success copying file\n");
+                debug ("success copying file");
                 s.uri = dest.get_uri ();
-                
                 // wait to update media when out of thread
                 if (emit_update) {
                     Idle.add ( () => {
@@ -186,13 +179,13 @@ public class Noise.FileOperator : Object {
                 warning("Failure: Could not copy imported media %s to media folder %s", s.uri, dest.get_path());
                 return false;
             }
-            
+
             /* if we are supposed to delete the old, make sure there are no items left in folder if we do */
             if (delete_old) {
                 var dummy = new Gee.LinkedList<string> ();
                 var old_folder_items = FileUtils.count_music_files (original.get_parent (), dummy);
                 // must check for .jpg's as well.
-                
+
                 if (old_folder_items == 0) {
                     message ("going to delete %s because no files are in it\n", original.get_parent ().get_path ());
                     original.get_parent ().delete ();
@@ -204,33 +197,29 @@ public class Noise.FileOperator : Object {
         }
         return true;
     }
-    
-    public void remove_media (Gee.Collection<string> toRemove) {
+
+    public void remove_media (Gee.Collection<Media> toRemove) {
         var dummy_list = new Gee.LinkedList<string> ();
-        foreach (string s in toRemove) {
+        foreach (var s in toRemove) {
             try {
-                var file = File.new_for_uri (s);
+                var file = File.new_for_uri (s.uri);
                 file.trash ();
-                
                 var old_folder_items = FileUtils.count_music_files (file.get_parent (), dummy_list);
-                    
                 //TODO: COPY ALBUM AND IMAGE ARTWORK
                 if (old_folder_items == 0) {
                     debug("going to delete %s because no files are in it\n", file.get_parent ().get_path ());
                     //original.get_parent ().delete ();
-                    
                     var old_folder_parent_items = FileUtils.count_music_files (file.get_parent ().get_parent (), dummy_list);
-                    
                     if(old_folder_parent_items == 0) {
                         debug("going to delete %s because no files are in it\n", file.get_parent ().get_parent ().get_path ());
                     }
                 }
             } catch (GLib.Error err) {
-                warning ("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s, err.message);
+                warning ("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s.uri, err.message);
             }
         }
     }
-    
+
     private void file_monitored_changed (GLib.File file, GLib.File? other_file, GLib.FileMonitorEvent event_type) {
         switch (event_type) {
             case GLib.FileMonitorEvent.DELETED:
@@ -244,10 +233,12 @@ public class Noise.FileOperator : Object {
                         if (m.uri.has_prefix (file.get_uri ()))
                             medias_to_remove.add (m);
                     }
+
                     libraries_manager.local_library.remove_medias (medias_to_remove, false);
                     monitor.cancel ();
                     monitors.unset (file.get_uri ());
                 }
+
                 break;
             case GLib.FileMonitorEvent.CREATED:
                 try {
@@ -264,6 +255,7 @@ public class Noise.FileOperator : Object {
                 } catch (Error e) {
                     critical (e.message);
                 }
+
                 break;
             case GLib.FileMonitorEvent.MOVED:
                 var media = libraries_manager.local_library.media_from_file (file);
@@ -280,7 +272,6 @@ public class Noise.FileOperator : Object {
     public void import_files (Gee.Collection<string> files, ImportType type) {
         import_type = type;
         queue_size += files.size;
-        
         if (files.size == 0) {
             queue_finished ();
         } else {
@@ -297,7 +288,7 @@ public class Noise.FileOperator : Object {
             queue_finished ();
         }
     }
-    
+
     void import_error (string file) {
         index++;
         import_errors.add (file);
@@ -312,9 +303,10 @@ public class Noise.FileOperator : Object {
             NotImportedWindow nim = new NotImportedWindow (import_errors, Settings.Main.get_default ().music_folder);
             nim.show ();
         }
+
         if (all_new_imports.size > 0)
             App.main_window.show_notification (_("Import Complete"), _("%s has imported your library.").printf (((Noise.App) GLib.Application.get_default ()).get_name ()));
-        
+
         if (import_type == ImportType.PLAYLIST) {
             var to_add = new Gee.LinkedList<int> ();
             foreach (var s in all_new_imports)
@@ -323,11 +315,10 @@ public class Noise.FileOperator : Object {
             new_playlist.name = PlaylistsUtils.get_new_playlist_name (libraries_manager.local_library.get_playlists (), new_playlist.name);
             libraries_manager.local_library.add_playlist (new_playlist);
         }
-        
+
         // if doing import and copy to music folder is enabled, do copy here
         if ((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && Settings.Main.get_default ().copy_imported_music) {
-            fo_progress(_("<b>Copying</b> files to <b>Music Folder</b>…"), 0.0);
-            
+            NotificationManager.get_default ().update_progress (_("<b>Copying</b> files to <b>Music Folder</b>…"), 0.0);
             copy_imports_async.begin ();
         } else {
             libraries_manager.local_library.finish_file_operations ();

@@ -123,7 +123,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
             CoverartCache.instance.changed.connect (load_cover);
             load_cover ();
             if ((!String.is_empty (cd_playlist.medias.get(0).artist, true) || !String.is_empty (cd_playlist.medias.get(0).album_artist, true)) && !String.is_empty (cd_playlist.medias.get(0).album, true))
-            NotificationManager.get_default ().searchCover (cd_playlist.medias.get(0));
+            NotificationManager.get_default ().search_cover (cd_playlist.medias.get(0));
         }
         show_all ();
     }

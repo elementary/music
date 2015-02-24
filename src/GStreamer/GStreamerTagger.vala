@@ -25,12 +25,11 @@ public class Noise.GStreamerTagger : Object {
     private const int DISCOVERER_TIMEOUT = 5;
 
     public signal void media_imported (Media m);
-    public signal void import_error (string file_uri);
+    public signal void import_error (string file_uri, Error error);
     public signal void queue_finished ();
 
     private Gst.PbUtils.Discoverer d;
     private Gee.LinkedList<string> uri_queue = new Gee.LinkedList<string> ();
-
     private Cancellable cancellable = new GLib.Cancellable ();
 
     public GStreamerTagger (GLib.Cancellable? cancellable = null) {
@@ -80,10 +79,7 @@ public class Noise.GStreamerTagger : Object {
     }
 
     private void import_media (Gst.PbUtils.DiscovererInfo info, Error err) {
-        Media? m = null;
-
         string uri = info.get_uri ();
-
         bool gstreamer_discovery_successful = false;
 
         switch (info.get_result ()) {
@@ -118,198 +114,134 @@ public class Noise.GStreamerTagger : Object {
             break;
         }
 
-        if (gstreamer_discovery_successful) {
-            debug ("Importing with GStreamer: %s", uri);
+        if (!gstreamer_discovery_successful) {
+            import_error (uri, err);
+            return;
+        }
 
-            m = new Media (uri);
+        var m = new Media (uri);
+        // Get length in nanoseconds. We use the tag length as fallback
+        uint64 duration = info.get_duration ();
 
-            // Get length in nanoseconds. We use the tag length as fallback
-            uint64 duration = info.get_duration ();
+        // Try to do the best we can: if only tags are null, only skip these.
+        // The other data should still be imported.
+        unowned Gst.TagList? tags = info.get_tags ();
 
-            // Try to do the best we can: if only tags are null, only skip these.
-            // The other data should still be imported.
-            unowned Gst.TagList? tags = info.get_tags ();
+        if (tags != null) {
 
-            if (tags != null) {
+            string title;
+            if (tags.get_string (Gst.Tags.TITLE, out title))
+                m.title = title;
 
-                string title;
-                if (tags.get_string (Gst.Tags.TITLE, out title))
-                    m.title = title;
+            string artist;
+            if (tags.get_string (Gst.Tags.ARTIST, out artist))
+                m.artist = artist;
 
-                string artist;
-                if (tags.get_string (Gst.Tags.ARTIST, out artist))
-                    m.artist = artist;
+            string composer;
+            if (tags.get_string (Gst.Tags.COMPOSER, out composer))
+                m.composer = composer;
 
-                string composer;
-                if (tags.get_string (Gst.Tags.COMPOSER, out composer))
-                    m.composer = composer;
+            string album_artist;
+            if (tags.get_string (Gst.Tags.ALBUM_ARTIST, out album_artist))
+                m.album_artist = album_artist;
 
-                string album_artist;
-                if (tags.get_string (Gst.Tags.ALBUM_ARTIST, out album_artist))
-                    m.album_artist = album_artist;
+            string album;
+            if (tags.get_string (Gst.Tags.ALBUM, out album))
+                m.album = album;
 
-                string album;
-                if (tags.get_string (Gst.Tags.ALBUM, out album))
-                    m.album = album;
+            string grouping;
+            if (tags.get_string (Gst.Tags.GROUPING, out grouping))
+                m.grouping = grouping;
 
-                string grouping;
-                if (tags.get_string (Gst.Tags.GROUPING, out grouping))
-                    m.grouping = grouping;
+            string genre;
+            if (tags.get_string (Gst.Tags.GENRE, out genre))
+                m.genre = genre;
 
-                string genre;
-                if (tags.get_string (Gst.Tags.GENRE, out genre))
-                    m.genre = genre;
+            string comment;
+            if (tags.get_string (Gst.Tags.COMMENT, out comment))
+                m.comment = comment;
 
-                string comment;
-                if (tags.get_string (Gst.Tags.COMMENT, out comment))
-                    m.comment = comment;
+            string lyrics;
+            if (tags.get_string (Gst.Tags.LYRICS, out lyrics))
+                m.lyrics = lyrics;
 
-                string lyrics;
-                if (tags.get_string (Gst.Tags.LYRICS, out lyrics))
-                    m.lyrics = lyrics;
+            uint track_number;
+            if (tags.get_uint (Gst.Tags.TRACK_NUMBER, out track_number))
+                m.track = track_number;
 
-                uint track_number;
-                if (tags.get_uint (Gst.Tags.TRACK_NUMBER, out track_number))
-                    m.track = track_number;
+            uint track_count;
+            if (tags.get_uint (Gst.Tags.TRACK_COUNT, out track_count))
+                m.track_count = track_count;
 
-                uint track_count;
-                if (tags.get_uint (Gst.Tags.TRACK_COUNT, out track_count))
-                    m.track_count = track_count;
+            uint album_number;
+            if (tags.get_uint (Gst.Tags.ALBUM_VOLUME_NUMBER, out album_number))
+                m.album_number = album_number;
 
-                uint album_number;
-                if (tags.get_uint (Gst.Tags.ALBUM_VOLUME_NUMBER, out album_number))
-                    m.album_number = album_number;
+            uint album_count;
+            if (tags.get_uint (Gst.Tags.ALBUM_VOLUME_COUNT, out album_count))
+                m.album_count = album_count;
 
-                uint album_count;
-                if (tags.get_uint (Gst.Tags.ALBUM_VOLUME_COUNT, out album_count))
-                    m.album_count = album_count;
+            uint bitrate;
+            if (tags.get_uint (Gst.Tags.BITRATE, out bitrate))
+                m.bitrate = bitrate / 1000;
 
-                uint bitrate;
-                if (tags.get_uint (Gst.Tags.BITRATE, out bitrate))
-                    m.bitrate = bitrate / 1000;
+            uint rating;
+            if (tags.get_uint (Gst.Tags.USER_RATING, out rating))
+                m.rating = rating; // Noise.Media will clamp the value
 
-                uint rating;
-                if (tags.get_uint (Gst.Tags.USER_RATING, out rating))
-                    m.rating = rating; // Noise.Media will clamp the value
-
-                // Get the year, try datetime first, otherwise try date
-                // NOTE: date might be superfluous, it was the original method,
-                //       but doesn't seem to be used.
-                Gst.DateTime? datetime;
-                if (tags.get_date_time (Gst.Tags.DATE_TIME, out datetime)) {
-                    // Don't let the assumption that @datetime is non-null deceive you.
-                    // This is sometimes null even though get_date() returned true!
-                    if (datetime != null) {
-                        m.year = datetime.get_year ();
-                    } else {
-                        Date? date;
-                        if (tags.get_date (Gst.Tags.DATE, out date)) {
-                            // Don't let the assumption that @date is non-null deceive you.
-                            // This is sometimes null even though get_date() returned true!
-                            if (date != null) {
-                                m.year = date.get_year ();
-                            }
+            // Get the year, try datetime first, otherwise try date
+            // NOTE: date might be superfluous, it was the original method,
+            //       but doesn't seem to be used.
+            Gst.DateTime? datetime;
+            if (tags.get_date_time (Gst.Tags.DATE_TIME, out datetime)) {
+                // Don't let the assumption that @datetime is non-null deceive you.
+                // This is sometimes null even though get_date() returned true!
+                if (datetime != null) {
+                    m.year = datetime.get_year ();
+                } else {
+                    Date? date;
+                    if (tags.get_date (Gst.Tags.DATE, out date)) {
+                        // Don't let the assumption that @date is non-null deceive you.
+                        // This is sometimes null even though get_date() returned true!
+                        if (date != null) {
+                            m.year = date.get_year ();
                         }
                     }
                 }
-
-                double bpm;
-                if (tags.get_double (Gst.Tags.BEATS_PER_MINUTE, out bpm))
-                    m.bpm = (uint) bpm.clamp (0, bpm);
-
-                if (duration == 0)
-                    if (!tags.get_uint64 (Gst.Tags.DURATION, out duration))
-                        duration = 0;
             }
 
-            m.length = TimeUtils.nanoseconds_to_miliseconds (duration);
+            double bpm;
+            if (tags.get_double (Gst.Tags.BEATS_PER_MINUTE, out bpm))
+                m.bpm = (uint) bpm.clamp (0, bpm);
 
-            foreach (var stream_info in info.get_audio_streams ()) {
-                var audio_stream = stream_info as Gst.PbUtils.DiscovererAudioInfo;
-                if (audio_stream == null)
-                    continue;
-
-                if (m.samplerate == 0) {
-                    debug ("Getting sample rate from stream info");
-                    m.samplerate = audio_stream.get_sample_rate ();
-                    debug ("Sample rate = %s", m.samplerate.to_string ());
-                }
-
-                if (m.bitrate == 0) {
-                    debug ("Getting bitrate from stream info");
-                    m.bitrate = audio_stream.get_bitrate ();
-                    debug ("Bitrate = %s", m.bitrate.to_string ());
-                }
-
-                break;
-           }
-
+            if (duration == 0)
+                if (!tags.get_uint64 (Gst.Tags.DURATION, out duration))
+                    duration = 0;
         }
 
-        // Use taglib as fallback if GStreamer fails
-        // XXX: Why using taglib when we are playing them with GStreamer…
-        /*if (m == null && uri != null)
-            m = taglib_import_media (uri);*/
+        m.length = TimeUtils.nanoseconds_to_miliseconds (duration);
+        foreach (var stream_info in info.get_audio_streams ()) {
+            var audio_stream = stream_info as Gst.PbUtils.DiscovererAudioInfo;
+            if (audio_stream == null)
+                continue;
 
-        if (m != null) {
-            // Get file size
-            m.file_size = FileUtils.get_size (m.file);
-            m.date_added = (int) time_t ();
-            media_imported (m);
-        } else {
-            import_error (uri);
+            if (m.samplerate == 0) {
+                debug ("Getting sample rate from stream info");
+                m.samplerate = audio_stream.get_sample_rate ();
+                debug ("Sample rate = %s", m.samplerate.to_string ());
+            }
+
+            if (m.bitrate == 0) {
+                debug ("Getting bitrate from stream info");
+                m.bitrate = audio_stream.get_bitrate ();
+                debug ("Bitrate = %s", m.bitrate.to_string ());
+            }
+
+            break;
         }
+
+        m.file_size = FileUtils.get_size (m.file);
+        m.date_added = (int) time_t ();
+        media_imported (m);
     }
-
-    public Media? taglib_import_media (string uri) {
-        debug ("Importing with TabLib: %s", uri);
-
-        string? filename = null;
-        try {
-            filename = Filename.from_uri (uri);
-        } catch (Error err) {
-            warning ("Could not convert URI to filename: %s", err.message);
-            filename = File.new_for_uri (uri).get_path ();
-        }
-
-        //var tag_file = new TagLib.File (uri.replace ("file://",""));
-        var tag_file = new TagLib.File (filename);
-
-        if (tag_file != null && tag_file.is_valid ()) {
-            var s = new Media (uri);
-
-            unowned TagLib.Tag? tag = tag_file.tag;
-            bool has_tag = tag != null;
-            if (has_tag) {
-                s.title = tag.title;
-                s.artist = tag.artist;
-                s.album = tag.album;
-                s.genre = tag.genre;
-                s.comment = tag.comment;
-                s.year = tag.year;
-                s.track = tag.track;
-            } else {
-                warning ("Got NULL TagLib tags.");
-            }
-
-            unowned TagLib.AudioProperties? audioproperties = tag_file.audioproperties;
-            bool has_audio_properties = audioproperties != null;
-            if (has_audio_properties) {
-                s.bitrate = audioproperties.bitrate;
-                s.length = (uint) (audioproperties.length * Numeric.MILI_INV);
-                s.samplerate = audioproperties.samplerate;
-            } else {
-                warning ("Got NULL TagLib audio properties.");
-            }
-
-            // We want to return null if nothing was found.
-            if (has_tag || has_audio_properties)
-                return s;
-        }
-
-        warning ("TagLib could not import '%s'", uri);
-        return null;
-    }
-
-
 }

@@ -42,7 +42,7 @@ public class Noise.DataBaseUpdater : Object {
         var dbm = DataBaseManager.get_default ();
         for (Object? next = to_remove.poll (); next != null; next = to_remove.poll ()) {
             if (next is Gee.LinkedList) {
-                dbm.remove_media (next as Gee.LinkedList<string>);
+                dbm.remove_media (next as Gee.LinkedList<Media>);
             } else if (next is StaticPlaylist) {
                 dbm.remove_playlist (next as StaticPlaylist);
                 dbm.remove_columns_state (next as StaticPlaylist, null);

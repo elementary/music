@@ -20,53 +20,73 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class Noise.TopDisplay : Gtk.Grid {
-    Gtk.Label label;
-    Gtk.Grid scale_grid;
+public class Noise.TopDisplay : Gtk.Stack {
+    MusicListView list_view;
+
+    Gtk.Grid empty_grid;
+
+    // Time Grid
+    Gtk.EventBox time_eventbox;
+    Gtk.Grid time_grid;
+    Gtk.Label track_label;
     Gtk.Label leftTime;
     Gtk.Label rightTime;
     Gtk.Scale scale;
+
+    // Action Grid
+    Gtk.Grid action_grid;
+    Gtk.Label action_label;
     Gtk.ProgressBar progressbar;
     Gtk.Button cancelButton;
-    MusicListView list_view;
 
     private bool is_seeking = false;
     private uint timeout_id = 0;
-    
-    public signal void scale_value_changed (Gtk.ScrollType scroll, double val);
-    
-    public TopDisplay() {
-        width_request = 400;
-        column_spacing = 6;
 
-        label = new Gtk.Label ("");
-        label.hexpand = true;
+    public signal void scale_value_changed (Gtk.ScrollType scroll, double val);
+
+    public TopDisplay () {
+        transition_type = Gtk.StackTransitionType.CROSSFADE;
+
+        time_grid = new Gtk.Grid ();
+        time_grid.column_spacing = 6;
+        track_label = new Gtk.Label ("");
+        track_label.hexpand = true;
+        track_label.justify = Gtk.Justification.CENTER;
+        track_label.single_line_mode = false;
+        track_label.ellipsize = Pango.EllipsizeMode.END;
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 1000);
+        scale.hexpand = true;
+        scale.draw_value = false;
+        scale.can_focus = false;
         scale.hexpand = true;
         leftTime = new Gtk.Label ("0:00");
         rightTime = new Gtk.Label ("0:00");
+        time_grid.attach (track_label, 0, 0, 3, 1);
+        time_grid.attach (leftTime, 0, 1, 1, 1);
+        time_grid.attach (scale, 1, 1, 1, 1);
+        time_grid.attach (rightTime, 2, 1, 1, 1);
+        time_eventbox = new Gtk.EventBox ();
+        time_eventbox.add (time_grid);
+
+        action_grid = new Gtk.Grid ();
+        action_grid.column_spacing = 6;
+        action_grid.row_spacing = 6;
+        action_label = new Gtk.Label ("");
+        action_label.hexpand = true;
+        action_label.justify = Gtk.Justification.CENTER;
+        action_label.single_line_mode = false;
+        action_label.ellipsize = Pango.EllipsizeMode.END;
         progressbar = new Gtk.ProgressBar ();
-        cancelButton = new Gtk.Button ();
-        
-        scale_grid = new Gtk.Grid ();
+        progressbar.fraction = 1;
+        cancelButton = new Gtk.Button.from_icon_name (Icons.PROCESS_STOP.name, Gtk.IconSize.MENU);
+        cancelButton.halign = cancelButton.valign = Gtk.Align.CENTER;
+        cancelButton.vexpand = true;
+        cancelButton.tooltip_text = _(STRING_CANCEL);
+        action_grid.attach (action_label, 0, 0, 1, 1);
+        action_grid.attach (progressbar, 0, 1, 1, 1);
+        action_grid.attach (cancelButton, 1, 0, 1, 2);
 
-        leftTime.margin_right = rightTime.margin_left = 3;
-
-        scale_grid.attach (leftTime, 0, 0, 1, 1);
-        scale_grid.attach (scale, 1, 0, 1, 1);
-        scale_grid.attach (rightTime, 2, 0, 1, 1);
-        
-        scale.set_draw_value (false);
-        scale.can_focus = false;
-        scale.hexpand = true;
-        
-        label.set_justify (Gtk.Justification.CENTER);
-        label.set_single_line_mode (false);
-        label.ellipsize = Pango.EllipsizeMode.END;
-        var label_eventbox = new Gtk.EventBox ();
-        label_eventbox.add (label);
-
-        label_eventbox.button_press_event.connect ((e) => {
+        time_eventbox.button_press_event.connect ((e) => {
             if (e.button == Gdk.BUTTON_SECONDARY) {
                 var current = new GLib.List<Media> ();
                 if (App.player.media_info.media != null)
@@ -78,22 +98,17 @@ public class Noise.TopDisplay : Gtk.Grid {
             return false;
         });
 
-        cancelButton.set_image (Icons.PROCESS_STOP.render_image (Gtk.IconSize.MENU));
-        cancelButton.set_relief (Gtk.ReliefStyle.NONE);
-        cancelButton.halign = cancelButton.valign = Gtk.Align.CENTER;
+        empty_grid = new Gtk.Grid ();
 
-        cancelButton.set_tooltip_text (_(STRING_CANCEL));
+        add_named (action_grid, "action");
+        add_named (time_eventbox, "time");
+        add_named (empty_grid, "empty");
+        show_all ();
+        set_visible_child (empty_grid);
 
-        // all but cancel
-        var info = new Gtk.Grid ();
-        info.attach (label_eventbox, 0, 0, 1, 1);
-        info.attach (progressbar, 0, 1, 1, 1);
-        info.attach (scale_grid, 0, 1, 1, 1);
-        
-        attach (info, 0, 0, 1, 1);
-        attach (cancelButton, 1, 0, 1, 1);
-        
-        cancelButton.clicked.connect (cancel_clicked);
+        cancelButton.clicked.connect (() => {
+            NotificationManager.get_default ().progress_canceled ();
+        });
 
         scale.button_press_event.connect (scale_button_press);
         scale.button_release_event.connect (scale_button_release);
@@ -101,90 +116,59 @@ public class Noise.TopDisplay : Gtk.Grid {
         scale.change_value.connect (change_value);
 
         App.player.player.current_position_update.connect (player_position_update);
-        
+
         App.player.changing_player.connect (() => {
             App.player.player.current_position_update.disconnect (player_position_update);
         });
-        
+
         App.player.player_changed.connect (() => {
             App.player.player.current_position_update.connect (player_position_update);
         });
-        
-        var notification_manager = NotificationManager.get_default ();
-        notification_manager.progressNotification.connect ((message, progress) => {
-            if (message != null && progress >= 0.0 && progress <= 1.0)
-                set_label_markup (message);
 
+        var notification_manager = NotificationManager.get_default ();
+        notification_manager.update_progress.connect ((message, progress) => {
             set_progress_value (progress);
-        });
-        
-        notification_manager.songNotification.connect ((message) => {
             if (message != null)
-                this.set_label_markup (message);
+                action_label.set_markup (message);
         });
-        libraries_manager.local_library.media_updated.connect(media_updated);
+
+        notification_manager.update_track.connect ((message) => {
+            track_label.set_markup (message);
+        });
+
+        libraries_manager.local_library.media_updated.connect (media_updated);
+    }
+
+    public override void get_preferred_width (out int minimum_width, out int natural_width) {
+        base.get_preferred_width (out minimum_width, out natural_width);
+        minimum_width = 200;
+        if (natural_width < 600)
+            natural_width = 600;
     }
 
     public void set_list_view (MusicListView list_view) {
         this.list_view = list_view;
     }
 
-    /** label functions **/
-    public void set_label_text(string text) {
-        label.set_text(text);
-    }
-    
-    public void set_label_markup(string markup) {
-        label.set_markup(markup);
-    }
-    
-    public string get_label_text() {
-        return label.get_text();
-    }
-    
-    public void set_label_showing (bool val) {
-        label.set_visible (val);
-    }
-    
-    /** progressbar functions **/
-    public void set_scale_sensitivity (bool val) {
-        scale.set_sensitive(val);
-        scale.set_visible(val);
-        leftTime.set_visible(val);
-        rightTime.set_visible(val);
-    }
-    
     // automatically shows/hides progress bar/scale based on progress's value
     public void set_progress_value (double progress) {
-        if(progress >= 0.0 && progress < 1.0) {
-            if(!progressbar.visible) {
-                show_progressbar();
-                set_label_showing(true);
-            }
-            
-            progressbar.set_fraction(progress);
-        }
-        else {
-            if(!scale.visible) {
-                show_scale();
-            }
-        }
+        progressbar.fraction = progress;
+        update_view ();
     }
-    
-    /** scale functions **/
-    public void set_scale_range(double min, double max) {
-        scale.set_range (min, max);
+
+    public void set_max_time (double max) {
+        scale.set_range (0, max);
     }
-    
-    public void set_scale_value (double val) {
+
+    public void set_current_time (double val) {
         scale.set_value (val);
     }
-    
+
     public double get_scale_value () {
         return scale.get_value ();
     }
-    
-    public virtual bool scale_button_press(Gdk.EventButton event) {
+
+    public virtual bool scale_button_press (Gdk.EventButton event) {
         if (event.type != Gdk.EventType.BUTTON_PRESS) {
             return true;
         }
@@ -195,24 +179,21 @@ public class Noise.TopDisplay : Gtk.Grid {
 
         return false;
     }
-    
+
     public virtual bool scale_button_release (Gdk.EventButton event) {
         is_seeking = false;
-
         change_value (Gtk.ScrollType.NONE, get_current_time ());
-        
         return false;
     }
 
     public double get_current_time () {
         Gtk.Allocation extents;
         double point_x = 0;
-        double point_y = 0;
         Gdk.ModifierType mask;
         unowned Gdk.Display display = Gdk.Display.get_default ();
         unowned Gdk.Window scale_window = scale.get_window ();
         unowned Gdk.DeviceManager device_manager = display.get_device_manager ();
-        scale_window.get_device_position_double (device_manager.get_client_pointer (), out point_x, out point_y, out mask);
+        scale_window.get_device_position_double (device_manager.get_client_pointer (), out point_x, null, out mask);
         scale.get_allocation (out extents);
         point_x = point_x - extents.x;
         if (point_x < 0)
@@ -222,7 +203,7 @@ public class Noise.TopDisplay : Gtk.Grid {
         // calculate percentage to go to based on location
         return (double)point_x / (double)extents.width * scale.get_adjustment().upper;
     }
-    
+
     public virtual void value_changed () {
         if (!scale.visible)
             return;
@@ -240,87 +221,72 @@ public class Noise.TopDisplay : Gtk.Grid {
         //make pretty remaining time
         rightTime.set_text (TimeUtils.pretty_length_from_ms (media_duration_secs - elapsed_secs));
     }
-    
+
     public virtual bool change_value (Gtk.ScrollType scroll, double val) {
         App.player.player.current_position_update.disconnect(player_position_update);
         scale.set_value(val);
         scale_value_changed(scroll, val);
 
         if (timeout_id > 0)
-                Source.remove (timeout_id);
- 
+            Source.remove (timeout_id);
+
         timeout_id = Timeout.add (300, () => {
-            if( !is_seeking ) {
+            if (!is_seeking) {
                 App.player.player.set_position((int64) TimeUtils.miliseconds_to_nanoseconds ((uint) val));
                 App.player.player.current_position_update.connect(player_position_update);
             }
-            return Source.remove (timeout_id);
+
+            return false;
         });
-        
+
         return false;
     }
-    
-    /** other functions **/
-    public void show_scale() {
-        scale_grid.set_no_show_all (false);
-        scale_grid.show_all ();
 
-        progressbar.set_no_show_all (true);
-        progressbar.hide ();
-                
-        cancelButton.set_no_show_all (true);
-        cancelButton.hide ();
-    }
-    
-    public void show_progressbar() {
-        scale_grid.set_no_show_all (true);
-        scale_grid.hide();
-
-        progressbar.set_no_show_all (false);
-        progressbar.show_all ();
-                
-        cancelButton.set_no_show_all (false);
-        cancelButton.show_all ();
-    }
-
-    public void hide_scale_and_progressbar() {
-        scale_grid.set_no_show_all (true);
-        scale_grid.hide();
-
-        progressbar.set_no_show_all (true);
-        progressbar.hide ();
-                
-        cancelButton.set_no_show_all (true);
-        cancelButton.hide ();
-    }
-    
     public virtual void player_position_update (int64 position) {
         if (App.player.media_info.media != null) {
-            set_scale_value ((double) TimeUtils.nanoseconds_to_miliseconds (position));
+            scale.set_value ((double) TimeUtils.nanoseconds_to_miliseconds (position));
         }
     }
 
-    public void cancel_clicked() {
-        NotificationManager.get_default ().progress_canceled ();
+    private void media_updated (Gee.Collection<int> ids) {
+        if (App.player.media_active && ids.contains (App.player.media_info.media.rowid)) {
+            update_current_media ();
+        }
+    }
+
+    private void update_current_media () {
+        var notification_manager = NotificationManager.get_default ();
+        if (!App.player.media_active)
+            return;
+
+        // Set the title
+        var m = App.player.media_info.media;
+        if (m == null)
+            return;
+
+        notification_manager.update_track (m.get_title_markup ());
+        set_max_time ((double) m.length);
+        set_visible_child (time_eventbox);
+    }
+
+    private void update_view () {
+        if (progressbar.fraction >= 0.0 && progressbar.fraction < 1.0) {
+            set_visible_child (action_grid);
+        } else if (App.player.media_active) {
+            set_visible_child (time_eventbox);
+        } else {
+            set_visible_child (empty_grid);
+        }
     }
 
     public void set_media (Media current_media) {
-        set_scale_range (0.0, (double)(current_media.length));
-    }
-
-    void media_updated (Gee.Collection<int> ids) {
-        if (App.player.media_info == null)
-            return;
-
-        var current_media = App.player.media_info.media;
-
-        if (current_media == null)
-            return;
-
-        // update current media
-        foreach (var id in ids) {
-            if (id == current_media.rowid)
-                set_media (current_media);
+        update_current_media ();
+        // If the media changes while an action is goind, show it for 5 seconds then come back to the action.
+        if (progressbar.fraction >= 0.0 && progressbar.fraction < 1.0) {
+            Timeout.add (300, () => {
+                update_view ();
+                return false;
+            });
         }
     }
 }

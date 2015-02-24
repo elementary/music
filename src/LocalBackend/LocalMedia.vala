@@ -42,15 +42,6 @@ public class Noise.LocalMedia : Noise.Media {
         }
     }
 
-    // TODO: evaluate if there's real need for these fields
-    public override bool location_unknown { get; set; default = false; }
-    public override bool has_embedded { get; set; default = false; }
-
-    // XXX: these don't really belong here. It seems they only help to
-    //      ease client-side stuff, and will be removed in the future
-    public override GLib.Icon unique_status_image { get; set; }
-    public override bool showIndicator { get; set; default = false; }
-
     /**
      * Metadata Fields
      */
@@ -125,8 +116,26 @@ public class Noise.LocalMedia : Noise.Media {
             common_string_setter ("album", value, ref _album);
         }
     }
-    public override uint album_number { get; set; default = 1; }
-    public override uint album_count { get; set; default = 1; }
+    private uint? _album_number = null;
+    public override uint album_number {
+        get {
+            common_uint_getter ("album_number", ref _album_number);
+            return _album_number;
+        }
+        set {
+            common_uint_setter ("album_number", value, ref _album_number);
+        }
+    }
+    private uint? _album_count = null;
+    public override uint album_count {
+        get {
+            common_uint_getter ("album_count", ref _album_count);
+            return _album_count;
+        }
+        set {
+            common_uint_setter ("album_count", value, ref _album_count);
+        }
+    }
     public override unowned Album album_info { get; set; default = null; }
     private string _grouping = null;
     public override string grouping {
@@ -223,11 +232,56 @@ public class Noise.LocalMedia : Noise.Media {
     /**
      * Internal stats
      */
-    public override uint play_count { get; set; default = 0; }
-    public override uint skip_count { get; set; default = 0; }
-    public override uint date_added { get; set; default = 0; }
-    public override uint last_played { get; set; default = 0; }
-    public override uint last_modified { get; set; default = 0; }
+    public uint? _play_count = null;
+    public override uint play_count {
+        get {
+            common_uint_getter ("playcount", ref _play_count);
+            return _play_count;
+        }
+        set {
+            common_uint_setter ("playcount", value, ref _play_count);
+        }
+    }
+    public uint? _skip_count = null;
+    public override uint skip_count {
+        get {
+            common_uint_getter ("skipcount", ref _skip_count);
+            return _skip_count;
+        }
+        set {
+            common_uint_setter ("skipcount", value, ref _skip_count);
+        }
+    }
+    public uint? _date_added = null;
+    public override uint date_added {
+        get {
+            common_uint_getter ("dateadded", ref _date_added);
+            return _date_added;
+        }
+        set {
+            common_uint_setter ("dateadded", value, ref _date_added);
+        }
+    }
+    public uint? _last_played = null;
+    public override uint last_played {
+        get {
+            common_uint_getter ("lastplayed", ref _last_played);
+            return _last_played;
+        }
+        set {
+            common_uint_setter ("lastplayed", value, ref _last_played);
+        }
+    }
+    public uint? _last_modified = null;
+    public override uint last_modified {
+        get {
+            common_uint_getter ("lastmodified", ref _last_modified);
+            return _last_modified;
+        }
+        set {
+            common_uint_setter ("lastmodified", value, ref _last_modified);
+        }
+    }
 
     public override int resume_pos { get; set; default = 0; }
 

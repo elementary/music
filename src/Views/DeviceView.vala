@@ -36,7 +36,7 @@ public class Noise.DeviceView : Gtk.Grid {
         
         ulong connector = NotificationManager.get_default ().progress_canceled.connect ( () => {
             if (d.get_library ().doing_file_operations ()) {
-                NotificationManager.get_default ().doAlertNotification (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
+                NotificationManager.get_default ().show_alert (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
             }
         });
         d.device_unmounted.connect ( () => {
@@ -98,7 +98,7 @@ public class Noise.DeviceView : Gtk.Grid {
                 TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog (d, not_found);
                 tfdd.show ();
             } else {
-                NotificationManager.get_default ().doAlertNotification (_("No External Songs"), _("There were no songs found on this device that are not in your library."));
+                NotificationManager.get_default ().show_alert (_("No External Songs"), _("There were no songs found on this device that are not in your library."));
             }
         }
     }

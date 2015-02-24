@@ -192,7 +192,7 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
                 if (tag_list.get_tag_size (Gst.Tags.TITLE) > 0) {
                     string title = "";
                     tag_list.get_string (Gst.Tags.TITLE, out title);
-                    NotificationManager.get_default ().doSongNotification (App.player.media_info.media.album_artist + "\n" + title);
+                    NotificationManager.get_default ().update_track (App.player.media_info.media.album_artist + "\n" + title);
                 }
             }
             break;

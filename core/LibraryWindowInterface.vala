@@ -29,7 +29,6 @@
  */
 
 public interface Noise.LibraryWindowInterface : Object {
-    public abstract void updateInfoLabel ();
     public abstract async void update_sensitivities ();
     public signal void add_preference_page (Noise.SettingsWindow.NoteBook_Page widget);
     public signal void source_list_added (GLib.Object o, int view_number);

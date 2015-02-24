@@ -23,9 +23,6 @@
 using SQLHeavy;
 
 public class Noise.DataBaseManager : GLib.Object {
-
-    public signal void db_progress (string? message, double progress);
-
     public SQLHeavy.Database database;
     private Transaction transaction; // the current sql transaction
 
@@ -183,14 +180,14 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         return tree_set;
     }
 
-    public void remove_media (Gee.Collection<string> media) {
+    public void remove_media (Gee.Collection<Media> media) {
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("DELETE FROM `media` WHERE uri=:uri");
+            Query query = transaction.prepare ("DELETE FROM `media` WHERE rowid=:rowid");
 
             foreach (var m in media) {
-                query.set_string (":uri", m);
+                query.set_int (":rowid", m.rowid);
                 query.execute ();
             }
 

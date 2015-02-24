@@ -26,7 +26,6 @@ set(CLIENT_SOURCE
     Widgets/StatusBar.vala
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
-    Widgets/FixedBin.vala
     Widgets/ViewSelector.vala
     Widgets/EqualizerPopover.vala
     Widgets/FastView/TileView/ImageUtils.vala
