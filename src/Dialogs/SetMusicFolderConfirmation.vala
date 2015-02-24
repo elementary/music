@@ -20,7 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class Noise.SetMusicFolderConfirmation : Gtk.Window {
+public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
     string folder_path;
 
     private Gtk.Grid content;
@@ -39,16 +39,17 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Window {
 
         // set the size based on saved gconf settings
         //this.window_position = WindowPosition.CENTER;
-        this.type_hint = Gdk.WindowTypeHint.DIALOG;
         this.set_modal (true);
         this.set_transient_for (App.main_window);
         this.destroy_with_parent = true;
+        this.deletable = false;
 
         //set_default_size(250, -1);
         resizable = false;
 
         content = new Gtk.Grid ();
         content.margin = 12;
+        content.margin_bottom = 0;
         content.column_spacing = 12;
         content.row_spacing = 6;
 
@@ -96,10 +97,10 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Window {
         cancel.clicked.connect(cancel_clicked);
         ok.clicked.connect(ok_clicked);
 
-        add (content);
-        show_all();
+        get_content_area ().add (content);
+        show_all ();
 
-        is_working.hide();
+        is_working.hide ();
     }
 
     public void savePlaylistsClicked() {
