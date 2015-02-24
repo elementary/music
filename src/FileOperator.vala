@@ -35,21 +35,15 @@ public class Noise.FileOperator : Object {
     public signal void rescan_cancelled ();
 
     public GStreamerTagger tagger;
+    public Cancellable cancellable;
     CoverImport cover_importer;
-    
-    bool inThread = false;
-    Gee.LinkedList<Media> toSave;
     
     public int index;
     public int item_count;
     int queue_size = 0;
     
-    public bool cancelled = false; // set to true if user cancels
-    bool cancelSent = false; // needed to not send cancel signal twice (in recursive function)
-    
     ImportType import_type;
     StaticPlaylist new_playlist;
-    Gee.LinkedList<Media> new_imports;
     Gee.LinkedList<Media> all_new_imports;
     Gee.LinkedList<string> import_errors;
     Gee.HashMap<string, GLib.FileMonitor> monitors;
@@ -63,14 +57,13 @@ public class Noise.FileOperator : Object {
     
     public FileOperator () {
         TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
-        
-        toSave = new Gee.LinkedList<Media> ();
-        new_imports = new Gee.LinkedList<Media> ();
+
+        cancellable = new GLib.Cancellable ();
         all_new_imports = new Gee.LinkedList<Media> ();
         import_errors = new Gee.LinkedList<string> ();
         monitors = new Gee.HashMap<string, GLib.FileMonitor> (null, null);
-        tagger = new GStreamerTagger ();
-        cover_importer = new CoverImport ();
+        tagger = new GStreamerTagger (cancellable);
+        cover_importer = new CoverImport (cancellable);
         
         tagger.media_imported.connect (media_imported);
         tagger.import_error.connect (import_error);
@@ -107,8 +100,7 @@ public class Noise.FileOperator : Object {
                     list_recursive_directory (file, ref dirs);
                 }
             }
-        }
-        catch(Error err) {
+        } catch (Error err) {
             warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
         }
 
@@ -116,45 +108,28 @@ public class Noise.FileOperator : Object {
     }
     
     public void connect_to_manager () {
-        NotificationManager.get_default ().progress_canceled.connect ( () => { 
-            cancelled = true;
-            tagger.cancel_operations ();
-        } );
+        NotificationManager.get_default ().progress_canceled.connect (() => {
+            cancellable.cancel ();
+        });
     }
 
     public void resetProgress (int items) {
         index = 0;
         item_count = items;
-        cancelled = false;
-        cancelSent = false;
     }
     
-    public void save_media (Gee.Collection<Media> to_save) {
-        foreach (Media s in to_save) {
-            if (!s.isTemporary && !s.isPreview && File.new_for_uri (s.uri).get_path ().has_prefix (Settings.Main.get_default ().music_folder))
-                toSave.offer (s);
-        }
-        
-        if (!inThread) {
-            inThread = true;
-            Threads.add (save_media_thread);
-        }
-    }
+    public async void save_media (Gee.Collection<Media> to_save) {
+        var copy = new Gee.TreeSet<Media> ();
+        copy.add_all (to_save);
+        var main_settings = Settings.Main.get_default ();
+        foreach (Media s in copy) {
+            if (s.isTemporary || s.isPreview || File.new_for_uri (s.uri).get_path ().has_prefix (main_settings.music_folder) == false)
+                continue;
 
-    public void save_media_thread () {
-        while(true) {
-            Media s = toSave.poll ();
-            
-            if (s == null) {
-                inThread = false;
-                return;
-            }
-            
-            var main_settings = Settings.Main.get_default ();
             if (main_settings.write_metadata_to_file) {
                 TagLib.File tag_file;
                 tag_file = new TagLib.File (File.new_for_uri (s.uri).get_path ());
-                
+
                 if (tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
                     try {
                         tag_file.tag.title = s.title;
@@ -173,13 +148,12 @@ public class Noise.FileOperator : Object {
                     debug ("Could not save %s.\n", s.uri);
                 }
             }
-            
+
             if (main_settings.update_folder_hierarchy)
                 update_file_hierarchy (s, true, false);
         }
     }
-    
-    
+
     public bool update_file_hierarchy (Media s, bool delete_old, bool emit_update) {
         try {
             File dest = FileUtils.get_new_destination (s);
@@ -298,17 +272,14 @@ public class Noise.FileOperator : Object {
                 break;
         }
     }
-    
+
     public string get_extension (string name) {
         return name.slice (name.last_index_of (".", 0), name.length);
     }
-    
+
     public void import_files (Gee.Collection<string> files, ImportType type) {
-        all_new_imports.clear ();
-        new_imports.clear ();
-        import_errors.clear ();
         import_type = type;
-        queue_size = files.size;
+        queue_size += files.size;
         
         if (files.size == 0) {
             queue_finished ();
@@ -318,35 +289,31 @@ public class Noise.FileOperator : Object {
     }
     
     void media_imported (Media m) {
-        new_imports.add (m);
         all_new_imports.add (m);
-        ++index;
-        
+        libraries_manager.local_library.add_media (m);
+
+        index++;
         if (index == queue_size) {
             queue_finished ();
         }
-        libraries_manager.local_library.add_medias (new_imports);
-        new_imports.clear ();
     }
     
     void import_error (string file) {
-        ++index;
-        import_errors.add(file);
+        index++;
+        import_errors.add (file);
         if (index == queue_size) {
-            queue_finished();
+            queue_finished ();
         }
     }
-    
+
     void queue_finished () {
-        cover_importer.discoverer_import_media (all_new_imports);
+        queue_size = 0;
         if (import_errors.size > 0) {
             NotImportedWindow nim = new NotImportedWindow (import_errors, Settings.Main.get_default ().music_folder);
             nim.show ();
         }
         if (all_new_imports.size > 0)
             App.main_window.show_notification (_("Import Complete"), _("%s has imported your library.").printf (((Noise.App) GLib.Application.get_default ()).get_name ()));
-        libraries_manager.local_library.add_medias (new_imports);
-        new_imports.clear ();
         
         if (import_type == ImportType.PLAYLIST) {
             var to_add = new Gee.LinkedList<int> ();
@@ -358,22 +325,25 @@ public class Noise.FileOperator : Object {
         }
         
         // if doing import and copy to music folder is enabled, do copy here
-        if((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && Settings.Main.get_default ().copy_imported_music) {
+        if ((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && Settings.Main.get_default ().copy_imported_music) {
             fo_progress(_("<b>Copying</b> files to <b>Music Folder</b>…"), 0.0);
             
-            Threads.add (copy_imports_thread);
+            copy_imports_async.begin ();
+        } else {
+            libraries_manager.local_library.finish_file_operations ();
         }
-        else {
-            libraries_manager.local_library.finish_file_operations();
-        }
-        
+
+        //cover_importer.discoverer_import_media (all_new_imports);
+        all_new_imports.clear ();
+        import_errors.clear ();
+        cancellable.reset ();
     }
     
-    public void copy_imports_thread () {
+    public async void copy_imports_async () {
         resetProgress (all_new_imports.size);
 
         foreach (Media s in all_new_imports) {
-            if (!cancelled) {
+            if (!cancellable.is_cancelled ()) {
                 //current_operation = "<b>Copying " + s.title + "</b> to <b>Music Folder</b>";
                 update_file_hierarchy (s, false, false);
             }

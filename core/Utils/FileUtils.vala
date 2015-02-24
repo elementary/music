@@ -120,6 +120,20 @@ namespace Noise.FileUtils {
         return size;
     }
 
+    public uint64 get_size (File file, Cancellable? cancellable = null) {
+        uint64 size = 0;
+        try {
+            var info = file.query_info (FileAttribute.STANDARD_SIZE,
+                                                    FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
+                                                    cancellable);
+            size = info.get_attribute_uint64 (FileAttribute.STANDARD_SIZE);
+        } catch (Error err) {
+            warning ("Could not get size of '%s': %s", file.get_uri (), err.message);
+        }
+
+        return size;
+    }
+
     /**
      * Checks whether //dir// is a directory.
      * Does not follow symbolic links.

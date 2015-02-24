@@ -70,24 +70,19 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     public void finish_initialization() {
         NotificationManager.get_default ().progress_canceled.connect(cancel_transfer);
         
-        finish_initialization_thread.begin ();
+        finish_initialization_async.begin ();
     }
     
-    async void finish_initialization_thread() {
-        Threads.add (() => {
-            medias = CDDA.getMediaList (mount.get_default_location ());
-            if(medias.size > 0) {
-                setDisplayName(medias.get(0).album);
-            }
-            
-            Idle.add( () => {
-                initialized(this);
-                
-                return false;
-            });
+    async void finish_initialization_async () {
+        medias = CDDA.getMediaList (mount.get_default_location ());
+        if(medias.size > 0) {
+            setDisplayName(medias.get(0).album);
+        }
+
+        Idle.add (() => {
+            initialized (this);
+            return false;
         });
-        
-        yield;
     }
     
     public string getEmptyDeviceTitle() {

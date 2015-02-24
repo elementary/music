@@ -184,54 +184,49 @@ public class Noise.SmartPlaylist : Playlist {
     }*/
 
     public void reanalyze () {
-
         analyse_list_async.begin (medias_library);
     }
 
     async void analyse_list_async (Gee.Collection<Media> given_library) {
         var added = new Gee.LinkedList<Media> ();
         var removed = new Gee.LinkedList<Media> ();
-        
+
         lock (medias_library) {
-            Threads.add (() => {
-                foreach (var m in given_library) {
-                    if (m == null)
-                        continue;
+            foreach (var m in given_library) {
+                if (m == null)
+                    continue;
 
-                    int match_count = 0; //if OR must be greater than 0. if AND must = queries.size.
+                int match_count = 0; //if OR must be greater than 0. if AND must = queries.size.
 
-                    foreach (var q in _queries) {
-                        if (media_matches_query (q, m))
-                            match_count++;
+                foreach (var q in _queries) {
+                    if (media_matches_query (q, m))
+                        match_count++;
+                }
+                
+                if(((conditional == ConditionalType.ALL && match_count == _queries.size) || 
+                    (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
+                    if (!medias.contains (m)) {
+                        added.add (m);
+                        medias.add (m);
                     }
-                    
-                    if(((conditional == ConditionalType.ALL && match_count == _queries.size) || 
-                        (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
-                        if (!medias.contains (m)) {
-                            added.add (m);
-                            medias.add (m);
-                        }
-                    } else if (medias.contains (m)) {
-                        // a media which was part of the previous set no longer matches
-                        // the query, and it must be removed
-                        medias.remove (m);
-                        removed.add (m);
-                    }
-
-                    if (limit && limit_amount <= medias.size)
-                        break;
+                } else if (medias.contains (m)) {
+                    // a media which was part of the previous set no longer matches
+                    // the query, and it must be removed
+                    medias.remove (m);
+                    removed.add (m);
                 }
 
-                Idle.add( () => {
-                    // Emit signal to let views know about the change
-                    media_added (added);
-                    media_removed (removed);
-                    return false;
-                });
+                if (limit && limit_amount <= medias.size)
+                    break;
+            }
+
+            Idle.add( () => {
+                // Emit signal to let views know about the change
+                media_added (added);
+                media_removed (removed);
+                return false;
             });
         }
-
-        yield;
     }
 
     public bool media_matches_query(SmartQuery q, Media s) {

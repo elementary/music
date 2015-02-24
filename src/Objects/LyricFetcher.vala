@@ -23,20 +23,6 @@
 public class Noise.LyricFetcher : Object {
 
     public async string fetch_lyrics_async (Media m) {
-        SourceFunc cb = fetch_lyrics_async.callback;
-        string lyrics = "";
-
-        Threads.add ( () => {
-            lyrics = fetch_lyrics (m);
-            Idle.add ((owned) cb);
-        });
-
-        yield;
-
-        return lyrics;
-    }
-
-    private string fetch_lyrics (Media m) {
         var source = new LyricsManiaFetcher ();
         return source.fetch_lyrics (m.title, m.album_artist, m.artist);
     }

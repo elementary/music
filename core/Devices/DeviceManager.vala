@@ -64,14 +64,14 @@ public class Noise.DeviceManager : GLib.Object {
         vm.mount_pre_unmount.connect (mount_pre_unmount);
         vm.mount_removed.connect ((mount) => {mounts_availables.remove (mount); mount_removed (mount);});
         vm.volume_added.connect (volume_added);
-        Threads.add (get_pre_existing_mounts);
+        get_pre_existing_mounts.begin ();
     }
 
     public void set_device_preferences (Gee.Collection<DevicePreferences> device_preferences) {
         this.device_preferences.add_all (device_preferences);
     }
 
-    public void get_pre_existing_mounts () {
+    public async void get_pre_existing_mounts () {
         var mounts = new Gee.LinkedList<Mount> ();
         var volumes = new Gee.LinkedList<Volume> ();
 

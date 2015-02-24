@@ -22,7 +22,6 @@
  */
 
 public class Noise.GStreamerTagger : Object {
-    private const int DISCOVER_SET_SIZE = 20;
     private const int DISCOVERER_TIMEOUT_MS = 10;
 
     public signal void media_imported (Media m);
@@ -30,73 +29,57 @@ public class Noise.GStreamerTagger : Object {
     public signal void queue_finished ();
 
     private Gst.PbUtils.Discoverer d;
-    private Gee.LinkedList<string> uri_queue;
+    private Gee.LinkedList<string> uri_queue = new Gee.LinkedList<string> ();
 
-    private bool cancelled;
+    private Cancellable cancellable = new GLib.Cancellable ();
 
-    public GStreamerTagger () {
-        uri_queue = new Gee.LinkedList<string> ();
+    public GStreamerTagger (GLib.Cancellable? cancellable = null) {
+        this.cancellable = cancellable;
+        if (this.cancellable == null)
+            this.cancellable = new Cancellable ();
+
+        try {
+            d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
+            d.discovered.connect (import_media);
+            d.finished.connect (file_set_finished);
+        } catch (Error err) {
+            critical ("Could not create Gst discoverer object: %s", err.message);
+        }
     }
 
     private void file_set_finished () {
-        if (cancelled) {
+        if (cancellable.is_cancelled ()) {
             debug ("import cancelled");
             d.stop ();
             queue_finished ();
-        }
-        else if (uri_queue.size == 0) {
+        } else if (uri_queue.size == 0) {
             debug ("queue finished");
             d.stop ();
             queue_finished ();
-        }
-        else {
-            import_next_file_set.begin ();
-        }
-    }
-
-    private async void import_next_file_set () {
-        if (d == null) {
-            try {
-                d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
-            } catch (Error err) {
-                critical ("Could not create Gst discoverer object: %s", err.message);
-            }
-
-            d.discovered.connect (import_media);
-            d.finished.connect (file_set_finished);
         } else {
-            d.stop ();
-        }
-        d.start ();
-
-        for (int i = 0; i < DISCOVER_SET_SIZE; i++) {
-            bool not_found = true;
-            string uri = null;
-            while (uri == null && !uri_queue.is_empty) {
-                uri = uri_queue.poll_head ();
-                if (uri != null) {
-                    d.discover_uri_async (uri);
-                    not_found = false;
-                }
-            }
+            import_next_file_set ();
         }
     }
 
-    public void cancel_operations () {
-        cancelled = true;
+    private void import_next_file_set () {
+        for (string uri = uri_queue.poll_head (); uri != null; uri = uri_queue.poll_head ()) {
+            d.discover_uri_async (uri);
+        }
     }
 
     public void discoverer_import_media (Gee.Collection<string> uris) {
-        cancelled = false;
         lock (uri_queue) {
-            uri_queue.clear ();
             uri_queue.add_all (uris);
         }
-        
-        import_next_file_set.begin ();
+
+        d.start ();
+        new Thread<void*> (null, () => {
+            import_next_file_set ();
+            return null;
+        });
     }
 
-    private async void import_media (Gst.PbUtils.DiscovererInfo info, Error err) {
+    private void import_media (Gst.PbUtils.DiscovererInfo info, Error err) {
         Media? m = null;
 
         string uri = info.get_uri ();
@@ -269,21 +252,11 @@ public class Noise.GStreamerTagger : Object {
 
         if (m != null) {
             // Get file size
-            m.file_size = yield FileUtils.get_size_async (m.file);
+            m.file_size = FileUtils.get_size (m.file);
             m.date_added = (int) time_t ();
-
-            // For thread-safety reasons, we report the new import from the
-            // main context's thread
-            Idle.add_full (Priority.HIGH_IDLE, () => {
-                media_imported (m);
-                return false;
-            });
+            media_imported (m);
         } else {
-            // Got import error
-            Idle.add_full (Priority.HIGH_IDLE, () => {
-                import_error (uri);
-                return false;
-            });
+            import_error (uri);
         }
     }
 

@@ -46,7 +46,6 @@ public class Noise.LocalLibrary : Library {
     public Gee.LinkedList<SmartPlaylist> _smart_playlists;
     public Gee.LinkedList<Media> _medias;
     public Gee.LinkedList<Media> _searched_medias;
-    public int medias_rowid = 0;
     public int playlists_rowid = 0;
     
     public StaticPlaylist p_music;
@@ -85,7 +84,6 @@ public class Noise.LocalLibrary : Library {
                 _medias.add (m);
             }
         }
-        medias_rowid = dbm.max_id + 1;
 
         // Load smart playlists from database
         lock (_smart_playlists) {
@@ -178,23 +176,15 @@ public class Noise.LocalLibrary : Library {
     }
 
     private async void set_music_folder_thread (string folder) {
-        SourceFunc callback = set_music_folder_thread.callback;
+        var music_folder_file = File.new_for_path (folder);
+        var files = new Gee.TreeSet<string> ();
 
-        Threads.add (() => {
-            var music_folder_file = File.new_for_path (folder);
-            var files = new Gee.TreeSet<string> ();
+        var items = FileUtils.count_music_files (music_folder_file, files);
+        debug ("found %d items to import\n", items);
 
-            var items = FileUtils.count_music_files (music_folder_file, files);
-            debug ("found %d items to import\n", items);
-
-            fo.resetProgress (files.size - 1);
-            Timeout.add (100, doProgressNotificationWithTimeout);
-            fo.import_files (files, FileOperator.ImportType.SET);
-
-            Idle.add ((owned) callback);
-        });
-
-        yield;
+        fo.resetProgress (files.size - 1);
+        Timeout.add (100, doProgressNotificationWithTimeout);
+        fo.import_files (files, FileOperator.ImportType.SET);
     }
 
     public override void add_files_to_library (Gee.Collection<string> files) {
@@ -204,20 +194,12 @@ public class Noise.LocalLibrary : Library {
     }
 
     private async void add_files_to_library_async (Gee.Collection<string> files) {
-        SourceFunc callback = add_files_to_library_async.callback;
+        var to_import = new Gee.TreeSet<string> ();
+        to_import.add_all (files);
 
-        Threads.add (() => {
-            var to_import = new Gee.TreeSet<string> ();
-            to_import.add_all (files);
-
-            fo.resetProgress (to_import.size - 1);
-            Timeout.add (100, doProgressNotificationWithTimeout);
-            fo.import_files (to_import, FileOperator.ImportType.IMPORT);
-
-            Idle.add ((owned) callback);
-        });
-
-        yield;
+        fo.resetProgress (to_import.size - 1);
+        Timeout.add (100, doProgressNotificationWithTimeout);
+        fo.import_files (to_import, FileOperator.ImportType.IMPORT);
     }
 
     public void add_folder_to_library (Gee.Collection<string> folders) {
@@ -228,34 +210,26 @@ public class Noise.LocalLibrary : Library {
     }
 
     private async void add_folder_to_library_async (Gee.Collection<string> folders) {
-        SourceFunc callback = add_folder_to_library_async.callback;
+        var files = new Gee.TreeSet<string> ();
+        foreach (var folder in folders) {
+            var file = File.new_for_path (folder);
+            FileUtils.count_music_files (file, files);
+        }
 
-        Threads.add (() => {
-            var files = new Gee.TreeSet<string> ();
-            foreach (var folder in folders) {
-                var file = File.new_for_path (folder);
-                FileUtils.count_music_files (file, files);
-            }
+        foreach (var m in get_medias ()) {
+            if (files.contains (m.uri))
+                files.remove (m.uri);
+        }
 
-            foreach (var m in get_medias ()) {
-                if (files.contains (m.uri))
-                    files.remove (m.uri);
-            }
-
-            if (!files.is_empty) {
-                fo.resetProgress (files.size - 1);
-                Timeout.add (100, doProgressNotificationWithTimeout);
-                fo.import_files (files, FileOperator.ImportType.IMPORT);
-            } else {
-                debug ("No new songs to import.\n");
-                finish_file_operations ();
-                App.main_window.show_notification (_("All music files are already in your library"), _("No files were imported."));
-            }
-
-            Idle.add ((owned) callback);
-        });
-
-        yield;
+        if (!files.is_empty) {
+            fo.resetProgress (files.size - 1);
+            Timeout.add (100, doProgressNotificationWithTimeout);
+            fo.import_files (files, FileOperator.ImportType.IMPORT);
+        } else {
+            debug ("No new songs to import.\n");
+            finish_file_operations ();
+            App.main_window.show_notification (_("All music files are already in your library"), _("No files were imported."));
+        }
     }
 
     public void rescan_music_folder () {
@@ -266,47 +240,38 @@ public class Noise.LocalLibrary : Library {
     }
 
     private async void rescan_music_folder_async () {
-        SourceFunc callback = rescan_music_folder_async.callback;
-
         var to_remove = new Gee.TreeSet<Media> ();
         var to_import = new Gee.TreeSet<string> ();
         var files = new Gee.TreeSet<string> ();
 
-        Threads.add (() => {
+        // get a list of the current files
+        var music_folder_dir = Settings.Main.get_default ().music_folder;
+        FileUtils.count_music_files (File.new_for_path (music_folder_dir), files);
+        
+        foreach (var m in get_medias ()) {
+            if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir))
 
-            // get a list of the current files
-            var music_folder_dir = Settings.Main.get_default ().music_folder;
-            FileUtils.count_music_files (File.new_for_path (music_folder_dir), files);
-            
-            foreach (var m in get_medias ()) {
-                if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir))
-
-                if (!File.new_for_uri (m.uri).query_exists ())
-                    to_remove.add (m);
-                if (files.contains (m.uri))
-                    files.remove (m.uri);
-            }
-
-            if (!to_import.is_empty) {
-                debug ("Importing %d new songs\n", to_import.size);
-                fo.resetProgress (to_import.size - 1);
-                Timeout.add (100, doProgressNotificationWithTimeout);
-                fo.import_files (to_import, FileOperator.ImportType.RESCAN);
-            } else {
-                debug ("No new songs to import.\n");
-            }
-
-            if (files.is_empty)
-                finish_file_operations ();
-
-            Idle.add ((owned) callback);
-        });
-
-        if (!fo.cancelled) {
-            remove_medias (to_remove, false);
+            if (!File.new_for_uri (m.uri).query_exists ())
+                to_remove.add (m);
+            if (files.contains (m.uri))
+                files.remove (m.uri);
         }
 
-        yield;
+        if (!to_import.is_empty) {
+            debug ("Importing %d new songs\n", to_import.size);
+            fo.resetProgress (to_import.size - 1);
+            Timeout.add (100, doProgressNotificationWithTimeout);
+            fo.import_files (to_import, FileOperator.ImportType.RESCAN);
+        } else {
+            debug ("No new songs to import.\n");
+        }
+
+        if (files.is_empty)
+            finish_file_operations ();
+
+        if (!fo.cancellable.is_cancelled ()) {
+            remove_medias (to_remove, false);
+        }
     }
 
     public void play_files (File[] files) {
@@ -452,17 +417,9 @@ public class Noise.LocalLibrary : Library {
     }
 
     public async void save_smart_playlists () {
-        SourceFunc callback = save_smart_playlists.callback;
-
-        Threads.add (() => {
-            lock (_smart_playlists) {
-                DataBaseManager.get_default ().save_smart_playlists (get_smart_playlists ());
-            }
-
-            Idle.add ((owned) callback);
-        });
-
-        yield;
+        lock (_smart_playlists) {
+            DataBaseManager.get_default ().save_smart_playlists (get_smart_playlists ());
+        }
     }
 
     public override void add_smart_playlist (SmartPlaylist p) {
@@ -547,9 +504,6 @@ public class Noise.LocalLibrary : Library {
     }
 
     private async void update_smart_playlists_async (Gee.Collection<Media> media) {
-        Idle.add (update_smart_playlists_async.callback);
-        yield;
-
         lock (_smart_playlists) {
             foreach (var p in get_smart_playlists ()) {
                 lock (_medias) {
@@ -585,26 +539,9 @@ public class Noise.LocalLibrary : Library {
 
         /* now do background work. even if updateMeta is true, so must user preferences */
         if (updateMeta)
-            fo.save_media (updated);
-
-        foreach (Media s in updated)
-            dbu.update_media.begin (s);
+            fo.save_media.begin (updated);
 
         update_smart_playlists_async.begin (updated);
-    }
-
-    public async void save_media () {
-        SourceFunc callback = save_media.callback;
-        
-        Threads.add (() => {
-            lock (_medias) {
-                DataBaseManager.get_default ().update_media (_medias);
-            }
-            
-            Idle.add ((owned) callback);
-        });
-        
-        yield;
     }
     
     /**
@@ -703,35 +640,30 @@ public class Noise.LocalLibrary : Library {
         var media = new Gee.LinkedList<Media> ();
         media.add_all (new_media);
 
-        foreach (var s in media) {
-            s.rowid = medias_rowid;
-            medias_rowid++;
-            _medias.add (s);
-        }
-        media_added (media);
-
-        DataBaseManager.get_default ().add_media (media);
-        update_smart_playlists_async.begin (media);
+        var local_media = DataBaseManager.get_default ().add_media (media);
+        update_smart_playlists_async.begin (local_media);
+        _medias.add_all (local_media);
+        media_added (local_media);
         
         // Update search results
-            if (App.main_window.searchField.text == "") {
-                _searched_medias.add_all (new_media);
-            } else {
-                
-                int parsed_rating;
-                string parsed_search_string;
-                String.base_search_method (App.main_window.searchField.text, out parsed_rating, out parsed_search_string);
-                bool rating_search = parsed_rating > 0;
-                
-                foreach (var m in new_media) {
-                    if (rating_search) {
-                        if (m.rating == (uint) parsed_rating)
-                            _searched_medias.add (m);
-                    } else if (Search.match_string_to_media (m, parsed_search_string)) {
+        if (App.main_window.searchField.text == "") {
+            _searched_medias.add_all (local_media);
+        } else {
+            
+            int parsed_rating;
+            string parsed_search_string;
+            String.base_search_method (App.main_window.searchField.text, out parsed_rating, out parsed_search_string);
+            bool rating_search = parsed_rating > 0;
+            
+            foreach (var m in local_media) {
+                if (rating_search) {
+                    if (m.rating == (uint) parsed_rating)
                         _searched_medias.add (m);
-                    }
+                } else if (Search.match_string_to_media (m, parsed_search_string)) {
+                    _searched_medias.add (m);
                 }
             }
+        }
         
         search_finished ();
     }
