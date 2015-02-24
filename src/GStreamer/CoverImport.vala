@@ -22,7 +22,7 @@
  */
 
 public class Noise.CoverImport : GLib.Object {
-    private const int DISCOVERER_TIMEOUT_MS = 10;
+    private const int DISCOVERER_TIMEOUT = 5;
 
     private Gst.PbUtils.Discoverer d = null;
     private Gee.LinkedList<Media> uri_queue;
@@ -35,7 +35,7 @@ public class Noise.CoverImport : GLib.Object {
         uri_queue = new Gee.LinkedList<Media> ();
         original_queue = new Gee.LinkedList<Media> ();
         try {
-            d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
+            d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (DISCOVERER_TIMEOUT * Gst.SECOND));
             d.discovered.connect (import_media);
             d.finished.connect (file_set_finished);
         } catch (Error err) {

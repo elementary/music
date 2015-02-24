@@ -22,7 +22,7 @@
  */
 
 public class Noise.GStreamerTagger : Object {
-    private const int DISCOVERER_TIMEOUT_MS = 10;
+    private const int DISCOVERER_TIMEOUT = 5;
 
     public signal void media_imported (Media m);
     public signal void import_error (string file_uri);
@@ -39,7 +39,7 @@ public class Noise.GStreamerTagger : Object {
             this.cancellable = new Cancellable ();
 
         try {
-            d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (10 * Gst.SECOND));
+            d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (DISCOVERER_TIMEOUT * Gst.SECOND));
             d.discovered.connect (import_media);
             d.finished.connect (file_set_finished);
         } catch (Error err) {
@@ -247,8 +247,9 @@ public class Noise.GStreamerTagger : Object {
         }
 
         // Use taglib as fallback if GStreamer fails
-        if (m == null && uri != null)
-            m = taglib_import_media (uri);
+        // XXX: Why using taglib when we are playing them with GStreamer…
+        /*if (m == null && uri != null)
+            m = taglib_import_media (uri);*/
 
         if (m != null) {
             // Get file size
