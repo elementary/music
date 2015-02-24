@@ -40,13 +40,13 @@ public class Noise.LocalLibrary : Library {
     public DataBaseUpdater dbu;
     public FileOperator fo;
     public GStreamerTagger tagger;
-    
+
     public Gee.LinkedList<StaticPlaylist> _playlists;
     public Gee.LinkedList<SmartPlaylist> _smart_playlists;
     public Gee.LinkedList<Media> _medias;
     public Gee.LinkedList<Media> _searched_medias;
     public int playlists_rowid = 0;
-    
+
     public StaticPlaylist p_music;
 
     public bool main_directory_set {
@@ -249,12 +249,12 @@ public class Noise.LocalLibrary : Library {
         }
 
         if (!to_import.is_empty) {
-            debug ("Importing %d new songs\n", to_import.size);
+            debug ("Importing %d new songs", to_import.size);
             fo.resetProgress (to_import.size - 1);
             Timeout.add (100, doProgressNotificationWithTimeout);
             fo.import_files (to_import, FileOperator.ImportType.RESCAN);
         } else {
-            debug ("No new songs to import.\n");
+            debug ("No new songs to import.");
         }
 
         if (files.is_empty)
@@ -275,16 +275,17 @@ public class Noise.LocalLibrary : Library {
         foreach (var file in files) {
             files_list.add (file.get_uri ());
         }
+
         tagger.discoverer_import_media (files_list);
     }
-    
+
     private void media_opened_imported (Media m) {
         m.isTemporary = true;
         open_media_list.add (m);
         if (!_opening_file)
             media_opened_finished ();
     }
-    
+
     private void media_opened_finished () {
         App.player.queue_media (open_media_list);
         if (open_media_list.size > 0) {
@@ -308,13 +309,15 @@ public class Noise.LocalLibrary : Library {
             }
         }
     }
-    
-    /************************ StaticPlaylist stuff ******************/
+
+    /*
+     * StaticPlaylist stuff
+     */
 
     public override bool support_playlists () {
         return true;
     }
-    
+
     public override Gee.Collection<StaticPlaylist> get_playlists () {
         return _playlists;
     }
@@ -327,6 +330,7 @@ public class Noise.LocalLibrary : Library {
                 }
             }
         }
+
         return null;
     }
 
@@ -341,6 +345,7 @@ public class Noise.LocalLibrary : Library {
                 }
             }
         }
+
         return null;
     }
 
@@ -373,12 +378,14 @@ public class Noise.LocalLibrary : Library {
         dbu.save_playlist (p, old_name);
     }
 
-    /**************** Smart playlists ****************/
-    
+    /*
+     * Smart playlists
+     */
+
     public override bool support_smart_playlists () {
         return true;
     }
-    
+
     public override Gee.Collection<SmartPlaylist> get_smart_playlists () {
         return _smart_playlists;
     }
@@ -390,12 +397,12 @@ public class Noise.LocalLibrary : Library {
                     return p;
                 }
             }
-         }
+        }
+
         return null;
     }
 
     public override SmartPlaylist? smart_playlist_from_name (string name) {
-
         lock (_smart_playlists) {
             foreach (var p in get_smart_playlists ()) {
                 if (p.name == name) {
@@ -414,13 +421,12 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void add_smart_playlist (SmartPlaylist p) {
-        
         lock (_smart_playlists) {
             _smart_playlists.add (p);
         }
+
         p.rowid = playlists_rowid;
         playlists_rowid++;
-
         DataBaseManager.get_default ().save_smart_playlist (p);
         p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
         smartplaylist_added (p);
@@ -453,12 +459,11 @@ public class Noise.LocalLibrary : Library {
                 search_finished ();
                 return;
             }
-            
+
             int parsed_rating;
             string parsed_search_string;
             String.base_search_method (search, out parsed_rating, out parsed_search_string);
             bool rating_search = parsed_rating > 0;
-            
             lock (_medias) {
                 foreach (var m in _medias) {
                     if (rating_search) {
@@ -470,27 +475,26 @@ public class Noise.LocalLibrary : Library {
                 }
             }
         }
+
         search_finished ();
     }
-    
+
     public override Gee.Collection<Media> get_search_result () {
         return _searched_medias;
     }
-    
+
     public void clear_medias () {
         message ("-- Clearing medias");
 
         // We really only want to clear the songs that are permanent and on the file system
         // Dont clear podcasts that link to a url, device media, temporary media, previews, songs
         var unset = new Gee.LinkedList<Media> ();
-
         foreach (var s in _medias) {
             if (!s.isTemporary && !s.isPreview)
                 unset.add (s);
         }
 
         remove_medias (unset, false);
-
         debug ("--- MEDIAS CLEARED ---");
     }
 
@@ -511,7 +515,6 @@ public class Noise.LocalLibrary : Library {
     public override void update_media (Media s, bool updateMeta, bool record_time) {
         var one = new Gee.LinkedList<Media> ();
         one.add (s);
-
         update_medias (one, updateMeta, record_time);
     }
 
@@ -526,21 +529,19 @@ public class Noise.LocalLibrary : Library {
 
         debug ("%d media updated", updated.size);
         media_updated (updated);
-
-
         /* now do background work. even if updateMeta is true, so must user preferences */
         if (updateMeta)
             fo.save_media.begin (updated);
 
         update_smart_playlists_async.begin (updated);
     }
-    
+
     /**
      * Used extensively. All other media data stores a media rowid, and then
      * use this to retrieve the media. This is for memory saving and
      * consistency
      */
-     
+
     public override Media? media_from_id (int id) {
         lock (_medias) {
             foreach (var m in _medias) {
@@ -548,6 +549,7 @@ public class Noise.LocalLibrary : Library {
                     return m;
             }
         }
+
         return null;
     }
 
@@ -561,6 +563,7 @@ public class Noise.LocalLibrary : Library {
                 }
             }
         }
+
         return found;
     }
 
@@ -588,7 +591,6 @@ public class Noise.LocalLibrary : Library {
 
     public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
         var media_collection = new Gee.LinkedList<Media> ();
-
         lock (_medias) {
             foreach (var m in _medias) {
                 if (ids.contains (m.rowid))
@@ -603,7 +605,6 @@ public class Noise.LocalLibrary : Library {
 
     public override Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris) {
         var media_collection = new Gee.LinkedList<Media> ();
-
         lock (_medias) {
             foreach (var m in _medias) {
                 if (uris.contains (m.uri))
@@ -620,6 +621,7 @@ public class Noise.LocalLibrary : Library {
         var coll = new Gee.LinkedList<Media> ();
         coll.add (s);
         add_medias (coll);
+        coll.clear ();
     }
 
     public override void add_medias (Gee.Collection<Media> new_media) {
@@ -632,20 +634,19 @@ public class Noise.LocalLibrary : Library {
         media.add_all (new_media);
 
         var local_media = DataBaseManager.get_default ().add_media (media);
+        media.clear ();
         update_smart_playlists_async.begin (local_media);
         _medias.add_all (local_media);
         media_added (local_media);
-        
+
         // Update search results
         if (App.main_window.searchField.text == "") {
             _searched_medias.add_all (local_media);
         } else {
-            
             int parsed_rating;
             string parsed_search_string;
             String.base_search_method (App.main_window.searchField.text, out parsed_rating, out parsed_search_string);
             bool rating_search = parsed_rating > 0;
-            
             foreach (var m in local_media) {
                 if (rating_search) {
                     if (m.rating == (uint) parsed_rating)
@@ -655,7 +656,7 @@ public class Noise.LocalLibrary : Library {
                 }
             }
         }
-        
+
         search_finished ();
     }
 
@@ -668,7 +669,6 @@ public class Noise.LocalLibrary : Library {
     public override void remove_medias (Gee.Collection<Media> to_remove, bool trash) {
         var toRemove = new Gee.LinkedList<Media> ();
         toRemove.add_all (to_remove);
-
         foreach (var s in toRemove) {
             if (s == App.player.media_info.media)
                 App.player.stop_playback ();
@@ -708,6 +708,7 @@ public class Noise.LocalLibrary : Library {
                 medias_to_sync.add_all (device.get_preferences ().music_playlist.medias);
             }
         }
+
         return medias_to_sync;
     }
 

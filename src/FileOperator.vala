@@ -36,11 +36,11 @@ public class Noise.FileOperator : Object {
     public GStreamerTagger tagger;
     public Cancellable cancellable;
     CoverImport cover_importer;
-    
+
     public int index;
     public int item_count;
     int queue_size = 0;
-    
+
     ImportType import_type;
     StaticPlaylist new_playlist;
     Gee.LinkedList<Media> all_new_imports;
@@ -53,7 +53,7 @@ public class Noise.FileOperator : Object {
         PLAYLIST,
         IMPORT
     }
-    
+
     public FileOperator () {
         TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
 
@@ -63,12 +63,12 @@ public class Noise.FileOperator : Object {
         monitors = new Gee.HashMap<string, GLib.FileMonitor> (null, null);
         tagger = new GStreamerTagger (cancellable);
         cover_importer = new CoverImport (cancellable);
-        
+
         tagger.media_imported.connect (media_imported);
         tagger.import_error.connect (import_error);
         tagger.queue_finished.connect (queue_finished);
         // Use right encoding
-        
+
         var music_folder = Settings.Main.get_default ().music_folder;
         var file = GLib.File.new_for_path (music_folder);
         var dirs = new Gee.LinkedList<string> ();
@@ -85,7 +85,7 @@ public class Noise.FileOperator : Object {
             }
         }
     }
-    
+
     public int list_recursive_directory (File music_folder, ref Gee.LinkedList<string> dirs) {
         FileInfo file_info = null;
         int index = 0;
@@ -105,7 +105,7 @@ public class Noise.FileOperator : Object {
 
         return index;
     }
-    
+
     public void connect_to_manager () {
         NotificationManager.get_default ().progress_canceled.connect (() => {
             cancellable.cancel ();
@@ -195,6 +195,7 @@ public class Noise.FileOperator : Object {
             warning ("Could not copy imported media %s to media folder: %s\n", s.uri, err.message);
             return false;
         }
+
         return true;
     }
 
@@ -278,7 +279,7 @@ public class Noise.FileOperator : Object {
             tagger.discoverer_import_media (files);
         }
     }
-    
+
     void media_imported (Media m) {
         all_new_imports.add (m);
         libraries_manager.local_library.add_media (m);
@@ -329,23 +330,18 @@ public class Noise.FileOperator : Object {
         import_errors.clear ();
         cancellable.reset ();
     }
-    
+
     public async void copy_imports_async () {
         resetProgress (all_new_imports.size);
-
         foreach (Media s in all_new_imports) {
             if (!cancellable.is_cancelled ()) {
                 //current_operation = "<b>Copying " + s.title + "</b> to <b>Music Folder</b>";
                 update_file_hierarchy (s, false, false);
             }
-            
+
             ++index;
         }
-        
-        Idle.add ( () => {
-            libraries_manager.local_library.finish_file_operations ();
-            
-            return false;
-        });
+
+        libraries_manager.local_library.finish_file_operations ();
     }
 }

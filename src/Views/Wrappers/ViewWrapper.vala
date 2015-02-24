@@ -446,67 +446,29 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         embedded_alert.set_alert (_("No media"), "", null, true, Gtk.MessageType.INFO);
     }
 
-    private int compute_update_priority () {
-        int priority = 0;
-
-        priority = (is_current_wrapper) ? Priority.HIGH_IDLE + 30 : Priority.DEFAULT_IDLE;
-
-        // Populate playlists in order
-        priority += relative_id;
-
-        // lower priority
-        if (hint == Hint.SMART_PLAYLIST || hint == Hint.PLAYLIST || hint == Hint.READ_ONLY_PLAYLIST)
-            priority += 10;
-
-        if (priority > VIEW_CONSTRUCT_PRIORITY)
-            priority = VIEW_CONSTRUCT_PRIORITY + 1;
-
-        return priority;
-    }
-
     public async void set_media_async (Gee.Collection<Media> new_media) {
-        Idle.add_full (compute_update_priority (), () => {
-            if (!widgets_ready)
-                return true;
-            set_media (new_media);
-            Idle.add (set_media_async.callback);
-            return false;
-        });
-        yield;
+        if (!widgets_ready)
+            return;
+        set_media (new_media);
     }
 
     public async void add_media_async (Gee.Collection<Media> to_add) {
-        Idle.add_full (compute_update_priority (), () => {
-            if (!widgets_ready)
-                return true;
-            add_media (to_add);
-            update_visible_media ();
-            Idle.add (add_media_async.callback);
-            return false;
-        });
-        yield;
+        if (!widgets_ready)
+            return;
+        add_media (to_add);
+        update_visible_media ();
     }
 
     public async void remove_media_async (Gee.Collection<Media> to_remove) {
-        Idle.add_full (compute_update_priority (), () => {
-            if (!widgets_ready)
-                return true;
-            remove_media (to_remove);
-            Idle.add (remove_media_async.callback);
-            return false;
-        });
-        yield;
+        if (!widgets_ready)
+            return;
+        remove_media (to_remove);
     }
 
     public async void update_media_async (Gee.Collection<Media> to_update) {
-        Idle.add_full (compute_update_priority (), () => {
-            if (!widgets_ready)
-                return true;
-            update_media (to_update);
-            Idle.add (update_media_async.callback);
-            return false;
-        });
-        yield;
+        if (!widgets_ready)
+            return;
+        update_media (to_update);
     }
 
     private void set_media (Gee.Collection<Media> new_media) {

@@ -589,7 +589,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         });
     }
 
-    public void* change_gains_thread () {
+    public void change_gains_thread () {
         var equalizer_settings = Settings.Equalizer.get_default ();
         if (equalizer_settings.equalizer_enabled) {
             bool automatic_enabled = equalizer_settings.auto_switch_preset;
@@ -608,7 +608,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                         for(int i = 0; i < 10; ++i)
                             player.set_equalizer_gain(i, p.getGain(i));
                     
-                        return null;
+                        return;
                     }
                 }
             }
@@ -626,7 +626,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                         for(int i = 0; i < 10; ++i)
                             player.set_equalizer_gain(i, p.getGain(i));
                     
-                        return null;
+                        return;
                     }
                 }
             }
@@ -635,7 +635,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         for (int i = 0; i < 10; ++i)
             player.set_equalizer_gain(i, 0);
         
-        return null;
+        return;
     }
 
     public void stop_playback () {

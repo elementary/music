@@ -629,9 +629,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private async void notify_current_media_async () {
-        Idle.add (notify_current_media_async.callback);
-        yield;
-
         if (App.player.media_info != null && App.player.media_info.media != null)
             yield show_notification_from_media_async (App.player.media_info.media);
     }
@@ -724,9 +721,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
 
         update_sensitivities_pending = true;
-        Idle.add_full (Priority.HIGH_IDLE + 30, update_sensitivities.callback);
-        yield;
-
         update_sensitivities_sync ();
         update_sensitivities_pending = false;
     }
@@ -989,7 +983,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         Timeout.add (3000, () => {
             if (App.player.media_info.media != null && App.player.media_info.media == m) {
-                update_media_info (App.player.media_info.media);
+                new Thread<void*> (null, () => {
+                    update_media_info (App.player.media_info.media);
+                    return null;
+                });
             }
             
             return false;

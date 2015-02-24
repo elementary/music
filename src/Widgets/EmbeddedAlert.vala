@@ -209,7 +209,6 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         this.action_button_box.spacing = 6;
 
         this.content_grid = new Gtk.Grid ();
-
         this.content_grid.attach (this.image_box, 1, 1, 1, 3);
         this.content_grid.attach (this.primary_text_label, 2, 1, 1, 1);
         this.content_grid.attach_next_to (this.secondary_text_label, this.primary_text_label,

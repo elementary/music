@@ -178,10 +178,7 @@ public abstract class Noise.MediaArtCache<T> {
         if (notify_queued)
             return;
 
-        Idle.add_full (Priority.LOW, () => {
-            changed ();
-            notify_queued = false;
-            return false;
-        });
+        changed ();
+        notify_queued = false;
     }
 }

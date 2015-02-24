@@ -262,10 +262,10 @@ public class LastFM.Core : Object {
         }
         if (m == null)
             return;
-        update_nowplaying_async.begin (m);
+        update_nowplaying_async (m);
     }
     
-    private async void update_nowplaying_async (Noise.Media m) {
+    private void update_nowplaying_async (Noise.Media m) {
         debug ("Sound send as now_playing");
 
         var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + API + "&api_sig=" + generate_trackupdatenowplaying_signature(m.artist, m.title) + "&artist=" + GLib.Uri.escape_string (m.artist) + "&method=track.updateNowPlaying&sk=" + lastfm_settings.session_key + "&track=" + GLib.Uri.escape_string (m.title);

@@ -63,11 +63,11 @@ public class LastFM.SimilarMedias : Object {
         if (!working) {
             working = true;
             
-            similar_async.begin (s);
+            similar_async (s);
         }
     }
     
-    public async void similar_async (Noise.Media s) {
+    public void similar_async (Noise.Media s) {
         debug ("In the similar thread");
         var similarIDs = new Gee.LinkedList<int> ();
         var similarDont = new Gee.LinkedList<Noise.Media> ();
@@ -78,12 +78,9 @@ public class LastFM.SimilarMedias : Object {
         }
         similarIDs.offer_head (s.rowid);
         
-        Idle.add (() => {
-            similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
-            similar_retrieved (similarIDs, similarDont);
-            working = false;
-            return false;
-        });
+        similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
+        similar_retrieved (similarIDs, similarDont);
+        working = false;
     }
     
     /** Gets similar medias
