@@ -47,7 +47,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
         set_media_async.begin (library.get_medias ());
     }
 
-    private void import_request (Gee.LinkedList<Media> to_import) {
+    private void import_request (Gee.Collection<Media> to_import) {
         if (!library.doing_file_operations()) {
             libraries_manager.transfer_to_local_library (to_import);
         }

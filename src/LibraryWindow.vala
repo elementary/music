@@ -1087,7 +1087,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public virtual void fileImportMusicClick () {
         if(!library_manager.doing_file_operations()) {
 
-            var folders = new Gee.ArrayList<string> ();
+            var folders = new Gee.TreeSet<string> ();
             var file_chooser = new Gtk.FileChooserDialog (_("Import Music"), this,
                                       Gtk.FileChooserAction.SELECT_FOLDER,
                                       _(STRING_CANCEL), Gtk.ResponseType.CANCEL,
@@ -1179,7 +1179,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
             // add to the already played list
             if(!App.player.history_playlist.medias.contains (App.player.media_info.media)) {
-                var temp_media = new Gee.LinkedList<Media>();
+                var temp_media = new Gee.TreeSet<Media>();
                 temp_media.add (App.player.media_info.media);
                 App.player.history_playlist.add_medias (temp_media);
             }
@@ -1229,7 +1229,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (dragging_from_music)
             return;
 
-        var files_dragged = new Gee.LinkedList<string> ();
+        var files_dragged = new Gee.TreeSet<string> ();
 
         debug("dragged\n");
 

@@ -98,7 +98,7 @@ namespace Noise.FileUtils {
         if (yield is_directory_async (file_or_dir, cancellable)) {
             yield enumerate_files_async (file_or_dir, null, true, out files, cancellable);
         } else {
-            files = new Gee.LinkedList<File> ();
+            files = new Gee.TreeSet<File> ();
             files.add (file_or_dir);
         }
 
@@ -343,7 +343,7 @@ namespace Noise.FileUtils {
             this.types = types;
             this.cancellable = cancellable;
 
-            files = new Gee.LinkedList<File> ();
+            files = new Gee.TreeSet<File> ();
             yield enumerate_files_internal_async (folder, files, recursive);
             return file_count;
         }

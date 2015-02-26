@@ -28,8 +28,8 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     private int stamp; // all iters must match this
     
     /* data storage variables */
-    Gee.HashMap<int, Object> rows; // internal id -> user specified object
-    List<Type> columns;
+    Gee.HashMap<int, Object> rows = new Gee.HashMap<int, Object> (null, null); // internal id -> user specified object
+    Gee.LinkedList<Type> columns = new Gee.LinkedList<Type> ();
     
     private int sort_column_id;
     private Gtk.SortType sort_direction;
@@ -41,18 +41,17 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     public signal void reorder_requested (int column, Gtk.SortType direction);
 
     /** Initialize data storage, columns, etc. **/
-    public FastModel (List<Type> column_types) {
-        columns = column_types.copy();
-        rows = new Gee.HashMap<int, Object> (null, null);
-        
+    public FastModel (Gee.Collection<Type> column_types) {
+        columns.add_all (column_types);
+
         sort_column_id = -2;
         sort_direction = Gtk.SortType.ASCENDING;
-        
+
         stamp = (int) GLib.Random.next_int();
     }
 
     public Type get_column_type (int col) {
-        return columns.nth_data (col);
+        return columns.get (col);
     }
 
     public Gtk.TreeModelFlags get_flags () {
@@ -74,7 +73,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public int get_n_columns () {
-        return (int) columns.length ();
+        return (int) columns.size;
     }
 
     public Gtk.TreePath? get_path (Gtk.TreeIter iter) {
@@ -191,12 +190,9 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
      * @objects Must be a consecutive ordered hash table with indexes 
      * 0-n where n is size of the hashtable (no gaps).
     **/
-    public void set_table (HashTable<int, Object> table) {
+    public void set_table (Gee.HashMap<int, Object> table) {
         rows.clear ();
-
-        table.foreach ((key, val) => {
-            rows.set (key, val);
-        });
+        rows.set_all (table);
 
         Gtk.TreeIter iter;
         for (bool valid = get_iter_first (out iter); valid; valid = iter_next (ref iter)) {

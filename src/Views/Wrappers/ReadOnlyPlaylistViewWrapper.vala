@@ -88,6 +88,6 @@ public class Noise.ReadOnlyPlaylistViewWrapper : ViewWrapper {
     }
 
     private async void on_playlist_cleared () {
-        yield set_media_async (new Gee.LinkedList<Media> ());
+        yield set_media_async (new Gee.TreeSet<Media> ());
     }
 }

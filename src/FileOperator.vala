@@ -43,8 +43,8 @@ public class Noise.FileOperator : Object {
 
     ImportType import_type;
     StaticPlaylist new_playlist;
-    Gee.LinkedList<Media> all_new_imports;
-    Gee.LinkedList<string> import_errors;
+    Gee.TreeSet<Media> all_new_imports;
+    Gee.TreeSet<string> import_errors;
     Gee.HashMap<string, GLib.FileMonitor> monitors;
 
     public enum ImportType  {
@@ -58,8 +58,8 @@ public class Noise.FileOperator : Object {
         TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
 
         cancellable = new GLib.Cancellable ();
-        all_new_imports = new Gee.LinkedList<Media> ();
-        import_errors = new Gee.LinkedList<string> ();
+        all_new_imports = new Gee.TreeSet<Media> ();
+        import_errors = new Gee.TreeSet<string> ();
         monitors = new Gee.HashMap<string, GLib.FileMonitor> (null, null);
         tagger = new GStreamerTagger (cancellable);
         cover_importer = new CoverImport (cancellable);
@@ -71,7 +71,7 @@ public class Noise.FileOperator : Object {
 
         var music_folder = Settings.Main.get_default ().music_folder;
         var file = GLib.File.new_for_path (music_folder);
-        var dirs = new Gee.LinkedList<string> ();
+        var dirs = new Gee.TreeSet<string> ();
         dirs.add (music_folder);
         list_recursive_directory (file, ref dirs);
         foreach (var dir in dirs) {
@@ -86,7 +86,7 @@ public class Noise.FileOperator : Object {
         }
     }
 
-    public int list_recursive_directory (File music_folder, ref Gee.LinkedList<string> dirs) {
+    public int list_recursive_directory (File music_folder, ref Gee.TreeSet<string> dirs) {
         FileInfo file_info = null;
         int index = 0;
         try {
@@ -182,7 +182,7 @@ public class Noise.FileOperator : Object {
 
             /* if we are supposed to delete the old, make sure there are no items left in folder if we do */
             if (delete_old) {
-                var dummy = new Gee.LinkedList<string> ();
+                var dummy = new Gee.TreeSet<string> ();
                 var old_folder_items = FileUtils.count_music_files (original.get_parent (), dummy);
                 // must check for .jpg's as well.
 
@@ -200,7 +200,7 @@ public class Noise.FileOperator : Object {
     }
 
     public void remove_media (Gee.Collection<Media> toRemove) {
-        var dummy_list = new Gee.LinkedList<string> ();
+        var dummy_list = new Gee.TreeSet<string> ();
         foreach (var s in toRemove) {
             try {
                 var file = File.new_for_uri (s.uri);
@@ -229,7 +229,7 @@ public class Noise.FileOperator : Object {
                     libraries_manager.local_library.remove_media (media, false);
                 var monitor = monitors.get (file.get_uri ());
                 if (monitor != null) {
-                    var medias_to_remove = new Gee.LinkedList<Noise.Media> ();
+                    var medias_to_remove = new Gee.TreeSet<Noise.Media> ();
                     foreach (var m in libraries_manager.local_library.get_medias ()) {
                         if (m.uri.has_prefix (file.get_uri ()))
                             medias_to_remove.add (m);
@@ -245,11 +245,11 @@ public class Noise.FileOperator : Object {
                 try {
                     var info = file.query_info (FileAttribute.STANDARD_TYPE + "," + GLib.FileAttribute.STANDARD_CONTENT_TYPE, GLib.FileQueryInfoFlags.NONE);
                     if (info.get_file_type () == FileType.REGULAR && FileUtils.is_valid_content_type (info.get_content_type ())) {
-                        var list = new Gee.LinkedList<string> ();
+                        var list = new Gee.TreeSet<string> ();
                         list.add (file.get_uri ());
                         import_files (list, ImportType.IMPORT);
                     } else if (info.get_file_type () == FileType.DIRECTORY) {
-                        var list = new Gee.LinkedList<string> ();
+                        var list = new Gee.TreeSet<string> ();
                         FileUtils.count_music_files (file, list);
                         import_files (list, ImportType.IMPORT);
                     }

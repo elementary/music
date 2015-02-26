@@ -22,7 +22,6 @@
 
 public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Device dev;
-    private Gee.LinkedList<unowned Playlist> playlists { get; set; }
     
     Gtk.Grid main_grid;
     
@@ -50,7 +49,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     }
     
     public void build_ui () {
-        playlists = new Gee.LinkedList<unowned Playlist> ();
         main_grid = new Gtk.Grid ();
 
         /* Content view styling */
@@ -228,10 +226,13 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         pref.sync_when_mounted = auto_sync_switch.active;
         pref.sync_music = sync_music_check.active;
         pref.sync_all_music = sync_music_combobox.get_active () == 0;
-        if (sync_music_combobox.get_active ()-2 >= 0)
-            pref.music_playlist = playlists.get (sync_music_combobox.get_active ()-2);
-        else
-            pref.music_playlist = null;
+        Gtk.TreeIter iter;
+        if (sync_music_combobox.get_active ()-2 >= 0) {
+            sync_music_combobox.get_active_iter (out iter);
+            GLib.Value value;
+            music_list.get_value (iter, 0, out value);
+            pref.music_playlist = (Noise.Playlist)value.dup_object ();
+        }
 
         sync_music_combobox.sensitive = sync_music_check.active;
 
@@ -245,16 +246,16 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     public void refresh_lists () {
         message ("refreshing lists\n");
 
-        string musicString = "";
+        Gtk.TreeIter iter;
+        Playlist selected_playlist = null;
         if (sync_music_combobox.get_active ()-2 >= 0) {
-            musicString = playlists.get (sync_music_combobox.get_active ()-2).name;
+            sync_music_combobox.get_active_iter (out iter);
+            GLib.Value value;
+            music_list.get_value (iter, 0, out value);
+            selected_playlist = (Noise.Playlist)value.dup_object ();
         }
 
-        playlists.clear ();
-
         music_list.clear ();
-
-        Gtk.TreeIter iter;
 
         /* add entire library options */
         music_list.append (out iter);
@@ -268,18 +269,22 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         foreach (var p in libraries_manager.local_library.get_smart_playlists ()) {
             music_list.append (out iter);
             music_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
-            playlists.add (p);
+            if (selected_playlist == p) {
+                sync_music_combobox.set_active_iter (iter);
+            }
         }
 
         foreach (var p in libraries_manager.local_library.get_playlists ()) {
             if (p.read_only == false) {
-                music_list.append(out iter);
-                music_list.set(iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
-                playlists.add (p);
+                music_list.append (out iter);
+                music_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
+                if (selected_playlist == p) {
+                    sync_music_combobox.set_active_iter (iter);
+                }
             }
         }
 
-        if (!sync_music_combobox.set_active_id (musicString))
+        if (selected_playlist == null)
             sync_music_combobox.set_active(0);
 
         message ("setting sensitivity\n");
@@ -292,7 +297,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     }
     
     public void sync_clicked () {
-        var list = new Gee.LinkedList<Media>();
+        var list = new Gee.TreeSet<Media>();
         var pref = dev.get_preferences ();
 
         if (pref.sync_music) {
@@ -326,9 +331,9 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         } else if(dev.get_library ().doing_file_operations ()) {
             NotificationManager.get_default ().show_alert (_("Cannot Sync"), _("Device is already doing an operation."));
         } else {
-            var found = new Gee.LinkedList<int>();
-            var not_found = new Gee.LinkedList<Media>();
-            libraries_manager.local_library.media_from_name (dev.get_library ().get_medias(), ref found, ref not_found);
+            var found = new Gee.TreeSet<int>();
+            var not_found = new Gee.TreeSet<Media>();
+            libraries_manager.local_library.media_from_name (dev.get_library ().get_medias(), found, not_found);
             
             if(not_found.size > 0) { // hand control over to SWD
                 SyncWarningDialog swd = new SyncWarningDialog(dev, list, not_found);

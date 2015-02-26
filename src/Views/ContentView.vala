@@ -23,7 +23,7 @@ public interface Noise.ContentView : Gtk.Widget {
     /**
      * Used for device syncing.
      */
-    public signal void import_requested (Gee.LinkedList<Media> to_import);
+    public signal void import_requested (Gee.Collection<Media> to_import);
 
     public abstract ViewWrapper.Hint get_hint ();
 

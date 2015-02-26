@@ -39,10 +39,10 @@ public class Noise.DeviceManager : GLib.Object {
     public signal void mount_added (Mount mount);
     public signal void mount_removed (Mount mount);
 
-    private Gee.ArrayList<DevicePreferences> device_preferences;
-    private Gee.ArrayList<unowned Device> initialized_devices;
-    private Gee.ArrayList<unowned Mount> mounts_availables;
-    private Gee.ArrayList<Playlist> local_playlists;
+    private Gee.TreeSet<DevicePreferences> device_preferences;
+    private Gee.TreeSet<unowned Device> initialized_devices;
+    private Gee.TreeSet<unowned Mount> mounts_availables;
+    private Gee.TreeSet<Playlist> local_playlists;
 
     private static DeviceManager? device_manager = null;
 
@@ -53,10 +53,10 @@ public class Noise.DeviceManager : GLib.Object {
     }
 
     private DeviceManager () {
-        device_preferences = new Gee.ArrayList<DevicePreferences> ();
-        initialized_devices = new Gee.ArrayList<unowned Device> ();
-        mounts_availables = new Gee.ArrayList<unowned Mount> ();
-        local_playlists = new Gee.ArrayList<Playlist> ();
+        device_preferences = new Gee.TreeSet<DevicePreferences> ();
+        initialized_devices = new Gee.TreeSet<unowned Device> ();
+        mounts_availables = new Gee.TreeSet<unowned Mount> ();
+        local_playlists = new Gee.TreeSet<Playlist> ();
 
         vm = VolumeMonitor.get ();
         vm.mount_added.connect ((mount) => {mounts_availables.add (mount); mount_added (mount);});
@@ -72,8 +72,8 @@ public class Noise.DeviceManager : GLib.Object {
     }
 
     public async void get_pre_existing_mounts () {
-        var mounts = new Gee.LinkedList<Mount> ();
-        var volumes = new Gee.LinkedList<Volume> ();
+        var mounts = new Gee.TreeSet<Mount> ();
+        var volumes = new Gee.TreeSet<Volume> ();
 
         foreach (var m in vm.get_mounts ()) {
             mounts.add (m);
@@ -127,11 +127,11 @@ public class Noise.DeviceManager : GLib.Object {
         return null;
     }
 
-    public Gee.ArrayList<unowned Device> get_initialized_devices () {
+    public Gee.Collection<unowned Device> get_initialized_devices () {
         return initialized_devices;
     }
 
-    public Gee.ArrayList<unowned Mount> get_available_mounts () {
+    public Gee.Collection<unowned Mount> get_available_mounts () {
         return mounts_availables;
     }
 

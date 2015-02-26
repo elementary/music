@@ -460,7 +460,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
                 }
             }
         }
-        var items = new Gee.LinkedList<SourceListItem> ();
+        var items = new Gee.TreeSet<SourceListItem> ();
         foreach (var device in devices_category.children) {
             if (device is SourceListExpandableItem) {
                 enumerate_children_items ((SourceListExpandableItem)device, ref items);
@@ -475,8 +475,8 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     // removes the device from menu
-    public Gee.LinkedList<int> remove_device (int page_number) {
-        var pages = new Gee.LinkedList<int>();
+    public Gee.Collection<int> remove_device (int page_number) {
+        var pages = new Gee.TreeSet<int>();
         foreach (var device in devices_category.children) {
             if (device is SourceListExpandableItem) {
                 if (page_number == ((SourceListExpandableItem)device).page_number) {
@@ -501,7 +501,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         return -1;
     }
     
-    public void enumerate_children_pages (SourceListExpandableItem exp_item, ref Gee.LinkedList<int> pages) {
+    public void enumerate_children_pages (SourceListExpandableItem exp_item, ref Gee.TreeSet<int> pages) {
         foreach (var views in ((SourceListExpandableItem)exp_item).children) {
             if (views is SourceListExpandableItem) {
                 pages.add (((SourceListExpandableItem)views).page_number);
@@ -512,7 +512,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         }
     }
     
-    public void enumerate_children_items (SourceListExpandableItem exp_item, ref Gee.LinkedList<SourceListItem> pages) {
+    public void enumerate_children_items (SourceListExpandableItem exp_item, ref Gee.TreeSet<SourceListItem> pages) {
         foreach (var views in ((SourceListExpandableItem)exp_item).children) {
             if (views is SourceListExpandableItem) {
                 enumerate_children_items ((SourceListExpandableItem)views, ref pages);
@@ -532,7 +532,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
                 }
             }
         }
-        var items = new Gee.LinkedList<SourceListItem> ();
+        var items = new Gee.TreeSet<SourceListItem> ();
         foreach (var device in devices_category.children) {
             if (device is SourceListExpandableItem) {
                 enumerate_children_items ((SourceListExpandableItem)device, ref items);

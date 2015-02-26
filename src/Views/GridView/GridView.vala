@@ -79,7 +79,7 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public Gee.Collection<Media> get_visible_media () {
-        var all_visible_media = new Gee.LinkedList<Media> ();
+        var all_visible_media = new Gee.TreeSet<Media> ();
 
         foreach (var album in get_visible_albums ()) {
             var album_media = album.get_media ();
@@ -90,7 +90,7 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public Gee.Collection<Media> get_media () {
-        var all_media = new Gee.LinkedList<Media> ();
+        var all_media = new Gee.TreeSet<Media> ();
 
         foreach (var album in get_albums ()) {
             var album_media = album.get_media ();
@@ -101,7 +101,7 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public Gee.Collection<Album> get_visible_albums () {
-        var album_list = new Gee.LinkedList<Album> ();
+        var album_list = new Gee.TreeSet<Album> ();
         foreach (var o in get_visible_objects ()) {
             var album = o as Album;
             if (album != null)
@@ -112,7 +112,7 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public Gee.Collection<Album> get_albums () {
-        var album_list = new Gee.LinkedList<Album> ();
+        var album_list = new Gee.TreeSet<Album> ();
         foreach (var o in get_objects ()) {
             var album = o as Album;
             if (album != null)
@@ -152,10 +152,10 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public void update_media (Gee.Collection<Media> media) {
-        var medias_to_update = new Gee.LinkedList<Media> ();
+        var medias_to_update = new Gee.TreeSet<Media> ();
         medias_to_update.add_all (media);
-        var medias_to_add = new Gee.LinkedList<Media> ();
-        var albums_to_remove = new Gee.HashSet<Album> ();
+        var medias_to_add = new Gee.TreeSet<Media> ();
+        var albums_to_remove = new Gee.TreeSet<Album> ();
         foreach (var m in medias_to_update) {
             if (m == null)
                 continue;
@@ -188,9 +188,9 @@ public class Noise.GridView : ContentView, GridLayout {
 
     // Check for already existing albums, only add the missing ones.
     public void add_media (Gee.Collection<Media> media) {
-        var medias_to_add = new Gee.LinkedList<Media> ();
+        var medias_to_add = new Gee.TreeSet<Media> ();
         medias_to_add.add_all (media);
-        var albums_to_append = new Gee.LinkedList<Album> ();
+        var albums_to_append = new Gee.TreeSet<Album> ();
         lock (album_info) {
             foreach (var m in medias_to_add) {
                 if (m == null)
@@ -228,7 +228,7 @@ public class Noise.GridView : ContentView, GridLayout {
      * the album because it still contains a song (song3).
      */
     public void remove_media (Gee.Collection<Media> to_remove) {
-        var albums_to_remove = new Gee.HashSet<Album> ();
+        var albums_to_remove = new Gee.TreeSet<Album> ();
         foreach (var m in to_remove) {
             if (m == null)
                 continue;

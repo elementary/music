@@ -114,7 +114,7 @@ namespace Noise.Settings {
         }
 
         public Gee.Collection<Noise.EqualizerPreset> getPresets () {
-            var presets_data = new Gee.LinkedList<string> ();
+            var presets_data = new Gee.TreeSet<string> ();
             
             if (custom_presets != null) {
                 for (int i = 0; i < custom_presets.length; i++) {
@@ -122,13 +122,13 @@ namespace Noise.Settings {
                 }
             }
             
-            var rv = new Gee.LinkedList<Noise.EqualizerPreset>();
+            var rv = new Gee.TreeSet<Noise.EqualizerPreset>();
             
             foreach (var preset_str in presets_data) {
                 rv.add (new Noise.EqualizerPreset.from_string (preset_str));
             }
             
-            return rv;
+            return rv.read_only_view;
         }
     }
 

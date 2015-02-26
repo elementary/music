@@ -95,8 +95,8 @@ public class Noise.FastGrid : Widgets.TileView {
     }
 
     // If a GLib.Object is in objects but not in table, will just ignore
-    public void remove_objects (Gee.HashSet<Object> objects) {
-        var to_remove = new Gee.LinkedList<Object> ();
+    public void remove_objects (Gee.Collection<Object> objects) {
+        var to_remove = new Gee.TreeSet<Object> ();
         to_remove.add_all (objects);
 
         table.foreach_remove ((key, val) => {

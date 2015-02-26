@@ -41,23 +41,6 @@ namespace Noise.Utils {
     }
 
     /**
-     * Creates a copy of a collection.
-     *
-     * Unlike the copies returned by Gee collection's read_only_view accesors,
-     * the returned collection can be safely iterated even if the original collection
-     * changes.
-     *
-     * @param orig Collection to copy.
-     * @return a fresh copy of //orig// that can be safely iterated.
-     */
-    public inline Gee.Collection<T> copy_collection<T> (Gee.Collection<T> orig) {
-        var copy = new Gee.LinkedList<T> ();
-        foreach (var item in orig)
-            copy.add (item);
-        return copy;
-    }
-
-    /**
      * Checks whether the set of flags specified by //to_check// are set in //flags//.
      *
      * @param flags Set of flags to check.

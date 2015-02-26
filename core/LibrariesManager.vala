@@ -103,7 +103,7 @@ public class Noise.LibrariesManager : GLib.Object {
         Timeout.add(500, do_progress_notification_with_timeout);
         
         int total = list.size;
-        var copied_list = new Gee.ArrayList<Media> ();
+        var copied_list = new Gee.TreeSet<Media> ();
         
         foreach(var m in list) {
             

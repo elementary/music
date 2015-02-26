@@ -40,7 +40,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         
         if (sp == null) {
             is_new = true;
-            this.sp = new SmartPlaylist (library.get_medias ());
+            this.sp = new SmartPlaylist (library);
         } else {
             this.sp = sp;
         }
@@ -144,7 +144,8 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
     public void load_smart_playlist () {
         
         show_all ();
-        foreach (SmartQuery q in sp.queries ()) {
+        var sp_queries = sp.get_queries ();
+        foreach (SmartQuery q in sp_queries) {
             var editor_query = new SmartPlaylistEditorQuery (q);
             editor_query.removed.connect (() => {queries_list.remove (editor_query);});
             queries_grid.attach (editor_query.grid, 0, row, 1, 1);
@@ -154,7 +155,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         }
         
         queries_grid.attach (adding_button, 0, row, 1, 1);
-        if(sp.queries ().size == 0) {
+        if (sp_queries.size == 0) {
             add_row ();
         }
         foreach(SmartPlaylistEditorQuery speq in queries_list) {
@@ -206,7 +207,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
     }
     
     public virtual void save_click () {
-        sp.clearQueries ();
+        sp.clear_queries ();
         var queries = new Gee.LinkedList<SmartQuery> ();
         foreach (SmartPlaylistEditorQuery speq in queries_list) {
             queries.add (speq.get_query ());

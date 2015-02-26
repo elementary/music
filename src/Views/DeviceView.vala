@@ -90,9 +90,9 @@ public class Noise.DeviceView : Gtk.Grid {
         // ask the user if they want to import medias from device that they don't have in their library (if any)
         // this should be same as MusicViewWrapper
         if (!libraries_manager.local_library.doing_file_operations () && Settings.Main.get_default ().music_folder != "") {
-            var found = new Gee.LinkedList<int> ();
-            var not_found = new Gee.LinkedList<Media> ();
-            libraries_manager.local_library.media_from_name (d.get_library ().get_medias (), ref found, ref not_found);
+            var found = new Gee.TreeSet<int> ();
+            var not_found = new Gee.TreeSet<Media> ();
+            libraries_manager.local_library.media_from_name (d.get_library ().get_medias (), found, not_found);
             
             if (not_found.size > 0) {
                 TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog (d, not_found);

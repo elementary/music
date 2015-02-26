@@ -41,8 +41,8 @@ public class Noise.DataBaseUpdater : Object {
     private void update_db_sync () {
         var dbm = DataBaseManager.get_default ();
         for (Object? next = to_remove.poll (); next != null; next = to_remove.poll ()) {
-            if (next is Gee.LinkedList) {
-                dbm.remove_media (next as Gee.LinkedList<Media>);
+            if (next is Gee.Collection) {
+                dbm.remove_media (next as Gee.Collection<Media>);
             } else if (next is StaticPlaylist) {
                 dbm.remove_playlist (next as StaticPlaylist);
                 dbm.remove_columns_state (next as StaticPlaylist, null);
@@ -55,7 +55,7 @@ public class Noise.DataBaseUpdater : Object {
     }
 
     private bool on_close_ui_save () {
-        var playlists_and_queue = new Gee.LinkedList<StaticPlaylist> ();
+        var playlists_and_queue = new Gee.TreeSet<StaticPlaylist> ();
         playlists_and_queue.add_all (libraries_manager.local_library.get_playlists ());
 
         playlists_and_queue.add (((LocalLibrary)libraries_manager.local_library).p_music);

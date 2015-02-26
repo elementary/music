@@ -74,7 +74,7 @@ public class LastFM.SimilarMedias : Object {
         
         getSimilarTracks (s.title, s.artist);
         lock (similar_medias) {
-            Noise.libraries_manager.local_library.media_from_name (similar_medias, ref similarIDs, ref similarDont);
+            Noise.libraries_manager.local_library.media_from_name (similar_medias, similarIDs, similarDont);
         }
         similarIDs.offer_head (s.rowid);
         

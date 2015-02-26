@@ -30,7 +30,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
 
     public signal void remove_media(bool response);
 
-    public RemoveFilesDialog (Gee.LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
+    public RemoveFilesDialog (Gee.Collection<Media> to_remove, ViewWrapper.Hint media_type) {
         var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();
 
         this.set_modal(true);
@@ -61,7 +61,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         if (multiple_media) {
             title_text = _("Remove %d Songs From %s?").printf (to_remove.size, app_name);
         } else {
-            Media m = to_remove.get(0);
+            Media m = to_remove.to_array ()[0];
             title_text = _("Remove \"%s\" From %s?").printf (m.get_display_title (), app_name);
         }
 

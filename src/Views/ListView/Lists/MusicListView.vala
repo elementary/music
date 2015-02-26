@@ -23,14 +23,11 @@
 
 public class Noise.ContractMenuItem : Gtk.MenuItem {
     private Granite.Services.Contract contract;
-    private Gee.List<Media> medias = new Gee.LinkedList<Media> ();
+    private Gee.TreeSet<Media> medias = new Gee.TreeSet<Media> ();
 
-    public ContractMenuItem (Granite.Services.Contract contract, GLib.List<Noise.Media> medias) {
+    public ContractMenuItem (Granite.Services.Contract contract, Gee.Collection<Noise.Media> medias) {
         this.contract = contract;
-
-        foreach (var m in medias)
-            this.medias.add (m);
-
+        this.medias.add_all (medias);
         label = contract.get_display_name ();
     }
 
@@ -182,23 +179,7 @@ public class Noise.MusicListView : GenericList {
         update_sensitivities ();
     }
 
-#if 0
-    private void rearrangeColumns(LinkedList<string> correctOrder) {
-        move_column_after(get_column(6), get_column(7));
-        //debug("correctOrder.length = %d, get_columns.length() = %d\n", correctOrder.size, (int)get_columns().length());
-        /* iterate through get_columns and if a column is not in the
-         * same location as correctOrder, move it there.
-        */
-        for(int index = 0; index < get_columns().length(); ++index) {
-            //debug("on index %d column %s originally moving to %d\n", index, get_column(index).title, correctOrder.index_of(get_column(index).title));
-            if(get_column(index).title != correctOrder.get(index)) {
-                move_column_after(get_column(index), get_column(correctOrder.index_of(get_column(index).title)));
-            }
-        }
-    }
-#endif
-
-    public void popup_media_menu (GLib.List<Media> selection) {
+    public void popup_media_menu (Gee.Collection<Media> selection) {
         // Create add-to-playlist menu
         var addToPlaylistMenu = new Gtk.Menu ();
 
@@ -220,10 +201,7 @@ public class Noise.MusicListView : GenericList {
             addToPlaylistMenu.append (playlist_item);
 
             playlist_item.activate.connect (() => {
-                var to_add = new Gee.LinkedList<Media> ();
-                foreach (var m in selection)
-                    to_add.add (m);
-                playlist.add_medias (to_add);
+                playlist.add_medias (selection.read_only_view);
             });
         }
 
@@ -270,7 +248,7 @@ public class Noise.MusicListView : GenericList {
 
         try {
             var files = new Gee.HashSet<File> (); //for automatic deduplication
-            debug ("Number of selected medias obtained by MusicListView class: %u\n", selection.length ());
+            debug ("Number of selected medias obtained by MusicListView class: %u\n", selection.size);
             foreach (var media in selection) {
                 if (media.file.query_exists ()) {
                     files.add (media.file);
@@ -385,7 +363,12 @@ public class Noise.MusicListView : GenericList {
         if (sort_id < 0)
             sort_id = ListColumn.ARTIST;
 
-        tvs.set_columns (get_columns ());
+        var cols = new Gee.TreeSet<Gtk.TreeViewColumn> ();
+        foreach (var column in get_columns ()) {
+            cols.add (column);
+        }
+
+        tvs.set_columns (cols);
         tvs.sort_column_id = sort_id;
         tvs.sort_direction = sort_dir;
     }
@@ -393,7 +376,7 @@ public class Noise.MusicListView : GenericList {
     /** media menu popup clicks **/
     void mediaMenuEditClicked () {
         var to_edit = new Gee.LinkedList<int> ();
-        var to_edit_med = new Gee.LinkedList<Media> ();
+        var to_edit_med = new Gee.TreeSet<Media> ();
 
         foreach (Media m in get_selected_medias ()) {
             to_edit.add (m.rowid);
@@ -412,8 +395,8 @@ public class Noise.MusicListView : GenericList {
             FileNotFoundDialog fnfd = new FileNotFoundDialog (to_edit_med);
             fnfd.present ();
         } else {
-            var list = new Gee.LinkedList<int> ();
-            for(int i = 0; i < get_visible_table ().size (); ++i) {
+            var list = new Gee.TreeSet<int> ();
+            for(int i = 0; i < get_visible_table ().size; ++i) {
                 list.add (get_object_from_index (i).rowid);
             }
             MediaEditor se = new MediaEditor (list, to_edit, parent_wrapper.library);
@@ -421,8 +404,8 @@ public class Noise.MusicListView : GenericList {
         }
     }
 
-    protected virtual void mediaEditorSaved (Gee.LinkedList<int> medias) {
-        Gee.LinkedList<Media> toUpdate = new Gee.LinkedList<Media> ();
+    protected virtual void mediaEditorSaved (Gee.Collection<int> medias) {
+        var toUpdate = new Gee.TreeSet<Media> ();
         toUpdate.add_all (parent_wrapper.library.medias_from_ids (medias));
 
         // could have edited rating, so record_time is true
@@ -447,75 +430,50 @@ public class Noise.MusicListView : GenericList {
     }
 
     protected virtual void mediaMenuQueueClicked () {
-        var to_queue = new Gee.LinkedList<Media> ();
-
-        foreach (Media m in get_selected_medias ()) {
-            to_queue.add (m);
-        }
-
-        App.player.queue_media (to_queue);
+        App.player.queue_media (get_selected_medias ().read_only_view);
     }
 
     protected virtual void mediaMenuNewPlaylistClicked () {
         var p = new StaticPlaylist ();
-
-        var to_add = new Gee.LinkedList<Media> ();
-        foreach (Media m in get_selected_medias ()) {
-            to_add.add (m);
-        }
-        p.add_medias (to_add);
+        p.add_medias (get_selected_medias ().read_only_view);
         p.name = PlaylistsUtils.get_new_playlist_name (parent_wrapper.library.get_playlists ());
         parent_wrapper.library.add_playlist (p);
     }
 
     protected void mediaRateMediaClicked () {
-        var los = new Gee.LinkedList<Media> ();
         int new_rating = mediaRateMedia.rating_value;
-
-        foreach (Media m in get_selected_medias ()) {
+        var selected = get_selected_medias ().read_only_view;
+        foreach (Media m in selected) {
             m.rating = new_rating;
-            los.add (m);
         }
-        parent_wrapper.library.update_medias (los, false, true);
+        parent_wrapper.library.update_medias (selected, false, true);
     }
 
     protected override void mediaRemoveClicked () {
-        var to_remove = new Gee.LinkedList<Media> ();
-
-        foreach (Media m in get_selected_medias ()) {
-            to_remove.add (m);
-        }
-
         if (get_hint () == ViewWrapper.Hint.MUSIC) {
-            var dialog = new RemoveFilesDialog (to_remove, get_hint());
+            var dialog = new RemoveFilesDialog (get_selected_medias ().read_only_view, get_hint());
             dialog.remove_media.connect ( (delete_files) => {
-                parent_wrapper.library.remove_medias (to_remove, delete_files);
+                parent_wrapper.library.remove_medias (get_selected_medias ().read_only_view, delete_files);
             });
         } else if (get_hint () == ViewWrapper.Hint.DEVICE_AUDIO) {
             DeviceViewWrapper dvw = (DeviceViewWrapper)parent_wrapper;
-            dvw.library.remove_medias (to_remove, true);
+            dvw.library.remove_medias (get_selected_medias ().read_only_view, true);
         } else if (get_hint () == ViewWrapper.Hint.PLAYLIST) {
-            parent_wrapper.library.playlist_from_id (relative_id).remove_medias (to_remove);
+            parent_wrapper.library.playlist_from_id (relative_id).remove_medias (get_selected_medias ().read_only_view);
         } else if (get_hint () == ViewWrapper.Hint.READ_ONLY_PLAYLIST && is_queue == true) {
-            parent_wrapper.library.playlist_from_id (relative_id).remove_medias (to_remove);
+            parent_wrapper.library.playlist_from_id (relative_id).remove_medias (get_selected_medias ().read_only_view);
         }
     }
 
     void importToLibraryClicked () {
-        var to_import = new Gee.LinkedList<Media> ();
-
-        foreach (Media m in get_selected_medias ()) {
-            to_import.add (m);
-        }
-
-        import_requested (to_import);
+        import_requested (get_selected_medias ().read_only_view);
     }
 
     protected virtual void onDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
         foreach (Media m in get_selected_medias ()) {
-            debug ("adding %s\n", m.uri);
+            debug ("adding %s", m.uri);
             uris += (m.uri);
         }
 

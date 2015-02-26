@@ -210,7 +210,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
 
     public static void set_properties_from_smart_playlist (GPod.Playlist rv, Noise.SmartPlaylist sp) {
         message ("playlist is %s\n", sp.name);
-        foreach (var sq in sp.queries ()) {
+        foreach (var sq in sp.get_queries ()) {
             rv.splr_add_new(-1);
             unowned GPod.SPLRule? rule = rv.splrules.rules.nth_data(rv.splrules.rules.length() - 1);
             message ("adding rule\n");

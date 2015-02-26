@@ -592,6 +592,40 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
 
     /** SMART PLAYLISTS **/
 
+    private static const string QUERY_SEPARATOR = "<query_sep>";
+    private static const string VALUE_SEPARATOR = "<val_sep>";
+
+    /** temp_playlist should be in format of #,#,#,#,#, **/
+    public static Gee.LinkedList<SmartQuery> queries_from_string (string q) {
+        string[] queries_in_string = q.split(QUERY_SEPARATOR, 0);
+        int index;
+
+        var queries = new Gee.LinkedList<SmartQuery> ();
+        for(index = 0; index < queries_in_string.length - 1; index++) {
+            string[] pieces_of_query = queries_in_string[index].split(VALUE_SEPARATOR, 3);
+            pieces_of_query.resize (3);
+
+            SmartQuery sq = new SmartQuery();
+            sq.field = (SmartQuery.FieldType)int.parse(pieces_of_query[0]);
+            sq.comparator = (SmartQuery.ComparatorType)int.parse(pieces_of_query[1]);
+            sq.value = pieces_of_query[2];
+
+            queries.add (sq);
+        }
+
+        return queries;
+    }
+
+    // FIXME: This is an implementation detail and should not be present in the core.
+    public static string queries_to_string (Gee.Collection<SmartQuery> queries) {
+        string rv = "";
+        foreach (SmartQuery q in queries) {
+            rv += ((int)q.field).to_string () + VALUE_SEPARATOR + ((int)q.comparator).to_string() + VALUE_SEPARATOR + q.value + QUERY_SEPARATOR;
+        }
+
+        return rv;
+    }
+
     public void add_default_smart_playlists () {
         assert (database != null);
         try {
@@ -665,11 +699,11 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
-                SmartPlaylist p = new SmartPlaylist(libraries_manager.local_library.get_medias ());
+                SmartPlaylist p = new SmartPlaylist (libraries_manager.local_library);
 
                 p.name = results.fetch_string(0);
                 p.conditional = (SmartPlaylist.ConditionalType)results.fetch_int(1);
-                p.queries_from_string(results.fetch_string(2));
+                p.add_queries (queries_from_string(results.fetch_string (2)));
                 p.limit = ( results.fetch_string(3) == "1") ? true : false;
                 p.limit_amount = results.fetch_int(4);
 
@@ -693,7 +727,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
             foreach(SmartPlaylist s in smarts) {
                 query.set_string(":name", s.name);
                 query.set_int(":and_or", (int)s.conditional);
-                query.set_string(":queries", s.queries_to_string());
+                query.set_string(":queries", queries_to_string (s.get_queries ()));
                 query.set_int(":limit", ( s.limit ) ? 1 : 0);
                 query.set_int(":limit_amount", s.limit_amount);
 
@@ -701,8 +735,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
             }
 
             transaction.commit();
-        }
-        catch(SQLHeavy.Error err) {
+        } catch (SQLHeavy.Error err) {
             warning ("Could not save smart playlists: %s \n", err.message);
         }
     }
@@ -712,24 +745,24 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         if (old_name == null) {
             remove_smart_playlist (p);
         } else {
-            var sp = new SmartPlaylist (new Gee.LinkedList<Media>());
+            var sp = new SmartPlaylist (libraries_manager.local_library);
             sp.name = old_name;
             remove_smart_playlist (sp);
         }
+
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
 
             query.set_string(":name", p.name);
             query.set_int(":and_or", (int)p.conditional);
-            query.set_string(":queries", p.queries_to_string());
+            query.set_string(":queries", queries_to_string (p.get_queries ()));
             query.set_int(":limit", ( p.limit ) ? 1 : 0);
             query.set_int(":limit_amount", p.limit_amount);
 
             query.execute();
             transaction.commit();
-        }
-        catch(SQLHeavy.Error err) {
+        } catch(SQLHeavy.Error err) {
             warning ("Could not update smart playlist: %s \n", err.message);
         }
     }
@@ -744,8 +777,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
             query.execute();
 
             transaction.commit();
-        }
-        catch (SQLHeavy.Error err) {
+        } catch (SQLHeavy.Error err) {
             warning ("Could not remove smart playlist from db: %s\n", err.message);
         }
     }
@@ -787,8 +819,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
 
                 rv.add (dp);
             }
-        }
-        catch (SQLHeavy.Error err) {
+        } catch (SQLHeavy.Error err) {
             warning ("Could not load devices from db: %s\n", err.message);
         }
 
@@ -837,8 +868,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
             }
 
             transaction.commit();
-        }
-        catch(SQLHeavy.Error err) {
+        } catch (SQLHeavy.Error err) {
             warning ("Could not save devices: %s\n", err.message);
         }
     }
