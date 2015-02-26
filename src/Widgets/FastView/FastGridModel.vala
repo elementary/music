@@ -6,7 +6,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	int stamp; // all iters must match this
 	
 	/* data storage variables */
-	HashTable<int, GLib.Object> rows; // internal id -> user specified object
+	Gee.HashMap<int, GLib.Object> rows; // internal id -> user specified object
 	
 	/* user specific function for get_value() */
 	public delegate Value? ValueReturnFunc (int row, int column, GLib.Object o);
@@ -14,7 +14,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	
 	/** Initialize data storage, columns, etc. **/
 	public FastGridModel () {
-		rows = new HashTable<int, GLib.Object>(null, null);
+		rows = new Gee.HashMap<int, GLib.Object>();
 		
 		stamp = (int)GLib.Random.next_int();
 	}
@@ -39,7 +39,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	public bool get_iter (out Gtk.TreeIter iter, Gtk.TreePath path) {
 		iter = Gtk.TreeIter();
 		int path_index = path.get_indices()[0];
-		if(rows.size() == 0 || path_index < 0 || path_index >= rows.size() || rows.get(path_index) == null)
+		if(rows.size == 0 || path_index < 0 || path_index >= rows.size || rows.get(path_index) == null)
 			return false;
 
 		iter.stamp = this.stamp;
@@ -63,7 +63,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 			return;
 
 		int row = (int)iter.user_data;
-		if(!(row >= rows.size())) {
+		if(!(row >= rows.size)) {
 			var object = rows.get(row);
 			var val_tmp = value_func(row, column, object);
 			if (val_tmp != null)
@@ -83,7 +83,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 
 	public int iter_n_children (Gtk.TreeIter? iter) {
 		if(iter == null)
-			return (int)rows.size();
+			return rows.size;
 
 		return 0;
 	}
@@ -94,7 +94,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 
 		iter.user_data = (void*)(((int)iter.user_data) + 1);
 
-		if(((int)iter.user_data) >= rows.size())
+		if(((int)iter.user_data) >= rows.size)
 			return false;
 
 		return true;
@@ -103,7 +103,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	public bool iter_nth_child (out Gtk.TreeIter iter, Gtk.TreeIter? parent, int n) {
 		iter = Gtk.TreeIter();
 
-		if(n < 0 || n >= rows.size() || parent != null)
+		if(n < 0 || n >= rows.size || parent != null)
 			return false;
 
 		iter.stamp = this.stamp;
@@ -121,8 +121,8 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	public void append (out Gtk.TreeIter iter) {
 		iter = Gtk.TreeIter();
 		
-		Gtk.TreePath path = new Gtk.TreePath.from_string(((int)rows.size()).to_string());
-		rows.set((int)rows.size(), new GLib.Object());
+		Gtk.TreePath path = new Gtk.TreePath.from_string((rows.size).to_string());
+		rows.set(rows.size, new GLib.Object());
 		iter.stamp = this.stamp;
 		iter.user_data = (void*)rows.size;
 		
@@ -134,7 +134,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 			return;
 
 		var path = new Gtk.TreePath.from_string(((int)iter.user_data).to_string());
-		rows.remove((int)iter.user_data);
+		rows.unset ((int)iter.user_data);
 		row_deleted(path);
 		
 		// TODO: swap all indices > this iter's index down to maintain that
@@ -159,12 +159,9 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	 * @objects Must be a consecutive ordered hash table with indexes 
 	 * 0-n where n is size of the hashtable (no gaps).
 	**/
-	public void set_table (HashTable<int, GLib.Object> table) {
-		rows.remove_all();
-
-        table.foreach ((key, val) => {
-            rows.set (key, val);
-        });
+	public void set_table (Gee.HashMap<int, GLib.Object> table) {
+		rows.clear ();
+		rows.set_all (table);
 
         Gtk.TreeIter iter;
         for (bool valid = get_iter_first (out iter); valid; valid = iter_next (ref iter)) {

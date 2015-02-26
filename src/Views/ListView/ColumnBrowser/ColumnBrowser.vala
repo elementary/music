@@ -73,12 +73,12 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         }
     }
 
-    public List<BrowserColumn.Category> visible_columns {
+    public Gee.TreeSet<BrowserColumn.Category> visible_columns {
         owned get {
-            var visible_columns = new List<BrowserColumn.Category> ();
+            var visible_columns = new Gee.TreeSet<BrowserColumn.Category> ();
             foreach (var column in columns) {
                 if (column.visible)
-                    visible_columns.append (column.category);
+                    visible_columns.add (column.category);
             }
             return visible_columns;
         }
@@ -114,7 +114,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
     public bool initialized { get { return media == null || search_results == null; } }
 
-    public Gee.TreeSet<unowned BrowserColumn> columns { get; private set; }
+    public Gee.TreeSet<BrowserColumn> columns { get; private set; }
 
     // All the media. We search within this media collection
     private Gee.TreeSet<Media> media = new Gee.TreeSet<Media> ();
@@ -131,7 +131,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
     public ColumnBrowser (ViewWrapper view_wrapper, BrowserColumn.Category[] categories) {
         this.orientation = Gtk.Orientation.HORIZONTAL;
         this.view_wrapper = view_wrapper;
-        columns = new Gee.TreeSet<unowned BrowserColumn> ();
+        columns = new Gee.TreeSet<BrowserColumn> ();
         column_chooser_menu = new Gtk.Menu ();
 
         // Inserting columns
@@ -437,7 +437,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
     }
 
     private void update_column_separators () {
-        uint n_visible_columns = this.visible_columns.length ();
+        uint n_visible_columns = this.visible_columns.size;
 
         // Get the last (i.e. right-most) visible column
         var first_col = BrowserColumn.Category.first ();

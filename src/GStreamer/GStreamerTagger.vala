@@ -61,8 +61,10 @@ public class Noise.GStreamerTagger : Object {
     }
 
     private void import_next_file_set () {
-        for (string uri = uri_queue.poll_head (); uri != null; uri = uri_queue.poll_head ()) {
-            d.discover_uri_async (uri);
+        lock (uri_queue) {
+            for (string uri = uri_queue.poll_head (); uri != null; uri = uri_queue.poll_head ()) {
+                d.discover_uri_async (uri);
+            }
         }
     }
 
@@ -79,6 +81,16 @@ public class Noise.GStreamerTagger : Object {
     }
 
     private void import_media (Gst.PbUtils.DiscovererInfo info, Error err) {
+        if (cancellable.is_cancelled ()) {
+            d.stop ();
+            lock (uri_queue) {
+                uri_queue.clear ();
+            }
+
+            queue_finished ();
+            return;
+        }
+
         string uri = info.get_uri ();
         bool gstreamer_discovery_successful = false;
 

@@ -50,11 +50,11 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
 
     private void restore_saved_state () {
         // Read visible columns from settings
-        var visible_categories = new List<BrowserColumn.Category> ();
+        var visible_categories = new Gee.TreeSet<BrowserColumn.Category> ();
 
         var saved_state = Settings.SavedState.get_default ();
         foreach (var col_n in saved_state.column_browser_visible_columns) {
-            visible_categories.append ((BrowserColumn.Category)int.parse (col_n));
+            visible_categories.add ((BrowserColumn.Category)int.parse (col_n));
         }
 
         visible_columns = visible_categories;

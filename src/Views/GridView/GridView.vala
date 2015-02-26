@@ -101,25 +101,11 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public Gee.Collection<Album> get_visible_albums () {
-        var album_list = new Gee.TreeSet<Album> ();
-        foreach (var o in get_visible_objects ()) {
-            var album = o as Album;
-            if (album != null)
-                album_list.add (album);
-        }
-
-        return album_list;
+        return (Gee.Collection<Album>)get_visible_objects ();
     }
 
     public Gee.Collection<Album> get_albums () {
-        var album_list = new Gee.TreeSet<Album> ();
-        foreach (var o in get_objects ()) {
-            var album = o as Album;
-            if (album != null)
-                album_list.add (album);
-        }
-
-        return album_list;
+        return (Gee.Collection<Album>)get_objects ();
     }
 
     public void refilter (string? search) {
@@ -127,7 +113,7 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public string get_statusbar_text () {
-        uint total_items = get_visible_objects ().length ();
+        uint total_items = get_visible_objects ().size;
 
         if (total_items < 1)
             return "";
@@ -353,16 +339,14 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
 
-    protected override void search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
+    protected override void search_func (string search, Gee.HashMap<int, Object> table, Gee.HashMap<int, Object> showing) {
         message_visible = false;
         var result = parent_view_wrapper.library.get_search_result ();
         int show_index = 0;
 
         if (result.size != parent_view_wrapper.library.get_medias ().size) {
-            for (int i = 0; i < table.size (); i++) {
-                var album = table.get (i) as Album;
-                if (album == null)
-                    continue;
+            foreach (var o in table) {
+                var album = o as Album;
 
                 // Search in the album's media. After the first match found, we break
                 // the loop because we know the album has (at least) one of the items
@@ -378,11 +362,8 @@ public class Noise.GridView : ContentView, GridLayout {
                 }
             }
         } else {
-            for (int i = 0; i < table.size (); i++) {
-                var album = table.get (i) as Album;
-                if (album == null)
-                    continue;
-
+            foreach (var o in table) {
+                var album = o as Album;
                 // Search in the album's media. After the first match found, we break
                 // the loop because we know the album has (at least) one of the items
                 // we want. Real search is done later by the popup list after an album
@@ -397,7 +378,7 @@ public class Noise.GridView : ContentView, GridLayout {
         }
 
         // If nothing will be shown, display the "no albums found" message.
-        if (showing.size () < 1) {
+        if (showing.size < 1) {
             message_visible = true;
         }
     }

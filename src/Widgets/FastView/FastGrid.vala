@@ -30,20 +30,20 @@ public class Noise.FastGrid : Widgets.TileView {
     }
 
     FastGridModel fm;
-    HashTable<int, GLib.Object> table; // is not the same object as showing.
-    HashTable<int, GLib.Object> showing; // should never point to table.
+    Gee.HashMap<int, GLib.Object> table; // is not the same object as showing.
+    Gee.HashMap<int, GLib.Object> showing; // should never point to table.
 
     /* sortable stuff */
     public delegate int SortCompareFunc (GLib.Object a, GLib.Object b);
     private unowned SortCompareFunc compare_func;
 
-    public delegate void ViewSearchFunc (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing);
+    public delegate void ViewSearchFunc (string search, Gee.HashMap<int, Object> table, Gee.HashMap<int, Object> showing);
     private unowned ViewSearchFunc search_func;
     public bool research_needed = false;
 
     public FastGrid () {
-        table = new HashTable<int, GLib.Object> (null, null);
-        showing = new HashTable<int, GLib.Object> (null, null);
+        table = new Gee.HashMap<int, GLib.Object> ();
+        showing = new Gee.HashMap<int, GLib.Object> ();
         fm = new FastGridModel ();
 
         set_table (table, true);
@@ -60,13 +60,13 @@ public class Noise.FastGrid : Widgets.TileView {
     }
 
     /** Should not be manipulated by client */
-    public HashTable<int, GLib.Object> get_table () {
-        return table;
+    public Gee.Map<int, GLib.Object> get_table () {
+        return table.read_only_view;
     }
 
     /** Should not be manipulated by client */
-    public HashTable<int, GLib.Object> get_visible_table () {
-        return showing;
+    public Gee.Map<int, GLib.Object> get_visible_table () {
+        return showing.read_only_view;
     }
 
     public int get_index_from_iter (Gtk.TreeIter iter) {
@@ -81,12 +81,9 @@ public class Noise.FastGrid : Widgets.TileView {
         fm.set_value_func (func);
     }
 
-    public void set_table (HashTable<int, GLib.Object> table, bool do_resort) {
-        this.table.remove_all ();
-        table.foreach ((key, val) => {
-            if (val != null)
-                this.table.insert (key, val);
-        });
+    public void set_table (Gee.HashMap<int, GLib.Object> table, bool do_resort) {
+        this.table.clear ();
+        this.table.set_all (table);
 
         if (do_resort)
             resort (); // this also calls search
@@ -96,14 +93,13 @@ public class Noise.FastGrid : Widgets.TileView {
 
     // If a GLib.Object is in objects but not in table, will just ignore
     public void remove_objects (Gee.Collection<Object> objects) {
-        var to_remove = new Gee.TreeSet<Object> ();
-        to_remove.add_all (objects);
+        var to_remove = new Gee.HashMap<int, Object> ();
+        foreach (var entry in table.entries) {
+            if (objects.contains (entry.value))
+                to_remove.set (entry.key, entry.value);
+        }
 
-        table.foreach_remove ((key, val) => {
-            if (to_remove.contains (val))
-                return true;
-            return false;
-        });
+        table.unset_all (to_remove);
 
         do_search (null);
     }
@@ -112,7 +108,7 @@ public class Noise.FastGrid : Widgets.TileView {
     public void add_objects (Gee.Collection<Object> objects) {
         // skip calling set_table and just do it ourselves (faster)
         foreach (var o in objects)
-            table.replace ((int)table.size (), o);
+            table.set (table.size, o);
 
         // resort the new songs in. this will also call do_search
         resort ();
@@ -123,20 +119,20 @@ public class Noise.FastGrid : Widgets.TileView {
             return;
 
         research_needed = false;
-        var old_size = showing.size ();
+        var old_size = showing.size;
 
-        showing.remove_all ();
-        search_func (search ?? "", table, ref showing);
+        showing.clear ();
+        search_func (search ?? "", table, showing);
 
-        if (showing.size () == old_size) {
+        if (showing.size == old_size) {
             fm.set_table (showing);
             queue_draw ();
         } else if (old_size == 0) { // if first population, just do normal
             set_model (null);
             fm.set_table (showing);
             set_model (fm);
-        } else if (old_size > showing.size ()) { // removing
-            while (fm.iter_n_children (null) > showing.size ()) {
+        } else if (old_size > showing.size) { // removing
+            while (fm.iter_n_children (null) > showing.size) {
                 Gtk.TreeIter iter;
                 fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
                 fm.remove (iter);
@@ -144,10 +140,10 @@ public class Noise.FastGrid : Widgets.TileView {
             
             fm.set_table (showing);
             queue_draw ();
-        } else if (showing.size () > old_size) { // adding
+        } else if (showing.size > old_size) { // adding
             Gtk.TreeIter iter;
             
-            while (fm.iter_n_children (null) < showing.size ()) {
+            while (fm.iter_n_children (null) < showing.size) {
                 fm.append (out iter);
             }
             
@@ -169,7 +165,7 @@ public class Noise.FastGrid : Widgets.TileView {
     }
     
     public void resort () {
-        quicksort (0, (int) (table.size () - 1));
+        quicksort (0, table.size - 1);
         do_search (null);
     }
     
