@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-02-22 17:34+0000\n"
+"PO-Revision-Date: 2015-02-25 18:04+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-24 05:39+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-02-26 05:43+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -240,11 +240,12 @@ msgstr "Dëgjo muzikë"
 
 #: ../src/Noise.vala:39
 msgid "Music Player"
-msgstr ""
+msgstr "Riprodhues muzikor"
 
 #: ../src/Noise.vala:40
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
+"Noise;Audio,Riprodhues;MP3;iPod;Riprodho;Playlist;Media;CD;Telefon;Këngë;"
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
@@ -264,7 +265,7 @@ msgstr "Parapëlqimet"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "E meparshmja"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1054
 msgid "Play"
@@ -272,7 +273,7 @@ msgstr "Riprodho"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Pasuese"
 
 #: ../src/LibraryWindow.vala:279
 msgid "Search Music"
@@ -281,7 +282,7 @@ msgstr "Kërko muzikë"
 #: ../src/LibraryWindow.vala:687 ../src/LibraryWindow.vala:825
 #: ../src/Views/DeviceSummaryWidget.vala:107
 msgid "Music"
-msgstr ""
+msgstr "Muzika"
 
 #: ../src/LibraryWindow.vala:880 ../src/DataBase/DataBaseManager.vala:556
 #: ../src/LocalLibrary.vala:104 ../src/PlaybackManager.vala:99
@@ -291,7 +292,7 @@ msgstr "Radha"
 
 #: ../src/LibraryWindow.vala:883
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Asnjë këngë në radhë"
 
 #: ../src/LibraryWindow.vala:884
 msgid ""
@@ -702,7 +703,7 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:271
 #: ../src/Dialogs/SmartPlaylistEditor.vala:401
 msgid "Length"
-msgstr "Gjatësia"
+msgstr "Zgjatja"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "Playcount"
@@ -768,16 +769,16 @@ msgstr ""
 
 #: ../src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Zhvendos të gjithë skedarët e dëmtuar në kosh"
 
 #: ../src/Dialogs/NotImportedWindow.vala:65
 #: ../src/Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "Zhvendos në kosh"
 
 #: ../src/Dialogs/NotImportedWindow.vala:66
 msgid "Ignore"
-msgstr ""
+msgstr "Shpërfill"
 
 #: ../src/Dialogs/NotImportedWindow.vala:87
 msgid "del"
@@ -793,7 +794,7 @@ msgstr ""
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:57
 msgid "Remove from %s"
-msgstr ""
+msgstr "Hiq nga %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:67
 msgid "Remove %d Songs From %s?"
@@ -819,7 +820,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Add music to your library."
-msgstr ""
+msgstr "Shto muzikë në librarinë tënde."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
@@ -827,7 +828,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
-msgstr ""
+msgstr "Ndrysho dosjen e muzikës"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
@@ -956,63 +957,63 @@ msgstr[1] ""
 #: ../src/Views/ListView/ListView.vala:376
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
-msgstr ""
+msgstr "%s, %s"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
-msgstr ""
+msgstr "Të gjitha rrymat"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 msgid "All %i Genres"
-msgstr ""
+msgstr "Të gjitha %i rrymat"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
 msgid "No Genres"
-msgstr ""
+msgstr "Asnjë rrymë"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Artists"
-msgstr ""
+msgstr "Të gjithë artistët"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 msgid "All %i Artists"
-msgstr ""
+msgstr "Të gjithë %i artistët"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
-msgstr ""
+msgstr "Asnjë artist"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Albums"
-msgstr ""
+msgstr "Të gjithë albumet"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 msgid "All %i Albums"
-msgstr ""
+msgstr "Të gjithë %i albumet"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Albums"
-msgstr ""
+msgstr "Asnjë album"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Years"
-msgstr ""
+msgstr "Të gjithë vitet"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 msgid "All %i Years"
-msgstr ""
+msgstr "Të gjithë %i vitet"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Years"
-msgstr ""
+msgstr "Asnjë vit"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Ratings"
-msgstr ""
+msgstr "Të gjithë vlerësimet"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Ratings"
-msgstr ""
+msgstr "Asnjë vlerësim"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Groupings"
@@ -1028,7 +1029,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Composers"
-msgstr ""
+msgstr "Të gjithë kompozitorët"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "All %i Composers"
@@ -1036,7 +1037,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Composers"
-msgstr ""
+msgstr "Asnjë kompozitor"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
 #: ../src/Widgets/PresetList.vala:47
@@ -1063,27 +1064,27 @@ msgstr[1] ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
 msgid "Genres"
-msgstr ""
+msgstr "Rrymat"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
 msgid "Artists"
-msgstr ""
+msgstr "Artistët"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
 msgid "Albums"
-msgstr ""
+msgstr "Albumet"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
 msgid "Years"
-msgstr ""
+msgstr "Vitet"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
 msgid "Ratings"
-msgstr ""
+msgstr "Vlerësimet"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
 msgid "Composers"
-msgstr ""
+msgstr "Kompozitorët"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Groupings"
@@ -1091,24 +1092,24 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:226
 msgid "%i kbps"
-msgstr ""
+msgstr "%i kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:251
 #: ../src/Views/ListView/Lists/MusicListView.vala:703
 msgid "Never"
-msgstr ""
+msgstr "Kurrë"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:91
 msgid "Remove from Library"
-msgstr ""
+msgstr "Hiq nga libraria"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:98
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Hiqe nga radha"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:108
 msgid "Remove from Device"
-msgstr ""
+msgstr "Hiq nga pajisja"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:121
 msgid "Scroll to Current Song"
@@ -1116,7 +1117,7 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:124
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Ndrysho informacionet e këngës"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:125
 msgid "Show in File Browser"
@@ -1124,12 +1125,12 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Veprime të tjera"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "Shtoje në radhë"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:128
 msgid "Add to Playlist"
@@ -1138,7 +1139,7 @@ msgstr ""
 #: ../src/Views/ListView/Lists/MusicListView.vala:130
 #: ../src/Widgets/SourceListView.vala:148
 msgid "Import to Library"
-msgstr ""
+msgstr "Importo në librari"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:214
 msgid "New Playlist…"
@@ -1156,7 +1157,7 @@ msgstr[1] ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:688
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1180,7 +1181,7 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:58
 msgctxt "List column title"
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:61
 msgctxt "List column title"
@@ -1190,42 +1191,42 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:64
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "Titulli"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:67
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "Zgjatja"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "Artisti"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "Albumi"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "Artisti i albumit"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "Kompozitori"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
 msgid "Genre"
-msgstr ""
+msgstr "Rryma"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "Viti"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
@@ -1255,17 +1256,17 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:103
 msgctxt "List column title"
 msgid "Date Added"
-msgstr ""
+msgstr "Data e shtimit"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:106
 msgctxt "List column title"
 msgid "Last Played"
-msgstr ""
+msgstr "Riprodhimi i fundit"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:109
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:112
 msgctxt "List column title (file location)"
@@ -1275,15 +1276,15 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:115
 msgctxt "List column title"
 msgid "File Size"
-msgstr ""
+msgstr "Madhësia e skedarit"
 
 #: ../src/Views/DeviceSummaryWidget.vala:81
 msgid "Device Name:"
-msgstr ""
+msgstr "Emri i pajisjes:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:85
 msgid "Device Name"
-msgstr ""
+msgstr "Emri i pajisjes"
 
 #: ../src/Views/DeviceSummaryWidget.vala:87
 msgid "Automatically sync when plugged in:"
@@ -1295,7 +1296,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:106
 msgid "Other Files"
-msgstr ""
+msgstr "Skedarë të tjerë"
 
 #: ../src/Views/DeviceSummaryWidget.vala:108
 msgid "Podcasts"
@@ -1326,7 +1327,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:337
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "Pajisja është e zënë."
 
 #: ../src/DataBase/DataBaseManager.vala:452
 #: ../src/DataBase/DataBaseManager.vala:688
@@ -1336,7 +1337,7 @@ msgstr ""
 #: ../src/DataBase/DataBaseManager.vala:459
 #: ../src/DataBase/DataBaseManager.vala:695
 msgid "Recently Added"
-msgstr ""
+msgstr "Të shtuara së fundmi"
 
 #: ../src/DataBase/DataBaseManager.vala:475
 #: ../src/DataBase/DataBaseManager.vala:711
@@ -1346,21 +1347,21 @@ msgstr ""
 #: ../src/DataBase/DataBaseManager.vala:482
 #: ../src/DataBase/DataBaseManager.vala:718
 msgid "Never Played"
-msgstr ""
+msgstr "Të riprodhuara kurrë"
 
 #: ../src/DataBase/DataBaseManager.vala:489
 #: ../src/DataBase/DataBaseManager.vala:725
 msgid "Over Played"
-msgstr ""
+msgstr "Të riprodhuara tepër"
 
 #: ../src/DataBase/DataBaseManager.vala:496
 #: ../src/DataBase/DataBaseManager.vala:732
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Jo të riprodhuara së fundmi"
 
 #: ../src/FileOperator.vala:347
 msgid "Import Complete"
-msgstr ""
+msgstr "Importimi mbaroi"
 
 #: ../src/FileOperator.vala:347
 msgid "%s has imported your library."
@@ -1376,7 +1377,7 @@ msgstr ""
 
 #: ../src/LocalLibrary.vala:201
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Duke shtuar skedarët librarisë"
 
 #: ../src/LocalLibrary.vala:252
 msgid "All music files are already in your library"
@@ -1384,7 +1385,7 @@ msgstr ""
 
 #: ../src/LocalLibrary.vala:252
 msgid "No files were imported."
-msgstr ""
+msgstr "Asnjë skedar nuk u importua."
 
 #: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
@@ -1392,20 +1393,20 @@ msgstr ""
 
 #: ../src/LocalLibrary.vala:339
 msgid "Added to your queue:"
-msgstr ""
+msgstr "Të shtuar në radhën tënde:"
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
-msgstr ""
+msgstr "Riemëro"
 
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr ""
+msgstr "Eksporto..."
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr ""
+msgstr "Ndrysho..."
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
@@ -1435,15 +1436,15 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
-msgstr ""
+msgstr "Libraria"
 
 #: ../src/Widgets/SourceListView.vala:314
 msgid "Devices"
-msgstr ""
+msgstr "Pajisjet"
 
 #: ../src/Widgets/SourceListView.vala:315
 msgid "Network"
-msgstr ""
+msgstr "Rrjeti"
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
 msgid "Playlists"
@@ -1507,15 +1508,15 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Repeat Song"
-msgstr ""
+msgstr "Përsërite këngen"
 
 #: ../src/Widgets/StatusBar.vala:70
 msgid "Repeat Album"
-msgstr ""
+msgstr "Përsërit albumin"
 
 #: ../src/Widgets/StatusBar.vala:71
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Përsërit artistin"
 
 #: ../src/Widgets/StatusBar.vala:72 ../src/Widgets/StatusBar.vala:102
 msgid "All"
@@ -1543,7 +1544,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:197
 msgid "Hide"
-msgstr ""
+msgstr "Fshih"
 
 #: ../src/Widgets/StatusBar.vala:197
 msgid "Show Info Panel"
@@ -1551,7 +1552,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Show"
-msgstr ""
+msgstr "Shfaq"
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Hide Info Panel"
@@ -1567,11 +1568,11 @@ msgstr ""
 
 #: ../src/Objects/AlbumInfo.vala:25
 msgid "Unknown Album"
-msgstr ""
+msgstr "Album i panjohur"
 
 #: ../src/Objects/AlbumInfo.vala:26 ../src/Objects/ArtistInfo.vala:27
 msgid "Unknown Artist"
-msgstr ""
+msgstr "Artist i panjohur"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
@@ -1583,7 +1584,7 @@ msgstr ""
 
 #: ../plugins/LastFM/LastFM.vala:71
 msgid "No similar songs found"
-msgstr ""
+msgstr "Nuk u gjetën këngë të ngjashme"
 
 #: ../plugins/LastFM/LastFM.vala:71
 msgid ""
@@ -1618,11 +1619,11 @@ msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: ../plugins/LastFM/PreferencesSection.vala:48
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Integrimi me Last.fm"
 
 #: ../plugins/LastFM/PreferencesSection.vala:55
 msgid "Click to redo the Last.fm login process"
@@ -1637,12 +1638,12 @@ msgstr ""
 #: ../plugins/Devices/iPod/iPodDevice.vala:70
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
 msgid "Empty device!"
-msgstr ""
+msgstr "Pajisje bosh!"
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:74
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:117
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "Kjo pajisje nuk përmban ndonjë këngë."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:148
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
@@ -1689,7 +1690,7 @@ msgstr ""
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:161
 msgid "Android Phone"
-msgstr ""
+msgstr "Celular Android"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:163
 msgid "Audio Player"
@@ -1697,7 +1698,7 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Ndodhi një gabim"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
