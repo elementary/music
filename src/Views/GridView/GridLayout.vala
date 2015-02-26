@@ -56,7 +56,7 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
         icon_view.do_search (search);
     }
 
-    protected void remove_objects (Gee.HashSet<Object> objects) {
+    protected void remove_objects (Gee.Collection<Object> objects) {
         icon_view.remove_objects (objects);
     }
 

@@ -68,7 +68,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
         Gtk.drag_dest_set (welcome_screen, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.COPY);
         welcome_screen.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
-            var files = new Gee.ArrayList<string> ();
+            var files = new Gee.TreeSet<string> ();
             for (var i=0; i < sel.get_uris ().length; i++) {
                 File f = File.new_for_uri (sel.get_uris()[i]);
                 string path = f.get_uri ();

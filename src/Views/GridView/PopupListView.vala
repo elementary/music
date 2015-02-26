@@ -32,7 +32,7 @@ public class Noise.PopupListView : Gtk.Dialog {
     Granite.Widgets.Rating rating;
     GenericList list_view;
 
-    Gee.Collection<Media> media_list;
+    Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
     
     public PopupListView (GridView grid_view) {
         this.delete_event.connect (hide_on_delete);
@@ -129,7 +129,7 @@ public class Noise.PopupListView : Gtk.Dialog {
 
         // clear treeview and media list
         list_view.get_selection ().unselect_all (); // Unselect rows
-        media_list = new Gee.LinkedList<Media> ();
+        media_list.clear ();
         list_view.set_media (media_list);
 
         album_cover.set_from_pixbuf (CoverartCache.instance.get_cover (new Media ("")));
@@ -231,7 +231,7 @@ public class Noise.PopupListView : Gtk.Dialog {
         view_wrapper.library.update_medias (updated, false, true);
     }
 
-    private void view_search_func (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing) {
+    private void view_search_func (string search, Gee.HashMap<int, Media> table, Gee.HashMap<int, Media> showing) {
         int parsed_rating;
         string parsed_search_string;
 
@@ -243,15 +243,12 @@ public class Noise.PopupListView : Gtk.Dialog {
         // because it wil be refreshed after this search based on the new 'showing' table
         // (populated by this method).
         int show_index = 0;
-        for (int i = 0; i < table.size (); ++i) {
-            var m = table.get (i) as Media;
-            if (m != null) {
-                if (rating_search) {
-                    if (m.rating == (uint) parsed_rating)
-                        showing.set (show_index++, m);
-                } else if (Search.match_string_to_media (m, parsed_search_string)) {
+        foreach (var m in table) {
+            if (rating_search) {
+                if (m.rating == (uint) parsed_rating)
                     showing.set (show_index++, m);
-                }
+            } else if (Search.match_string_to_media (m, parsed_search_string)) {
+                showing.set (show_index++, m);
             }
         }
     }

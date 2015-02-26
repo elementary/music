@@ -26,7 +26,7 @@
 using Gtk;
 
 public class Noise.TransferFromDeviceDialog : Window {
-    Gee.LinkedList<Media> medias;
+    Gee.TreeSet<Media> medias = new Gee.TreeSet<Media> ();
     Device d;
 
     //for padding around notebook mostly
@@ -44,13 +44,11 @@ public class Noise.TransferFromDeviceDialog : Window {
     Gtk.MenuItem selectAlbum;
     Gtk.MenuItem selectArtist;
 
-    Gee.LinkedList<Media> to_transfer;
+    Gee.TreeSet<Media> to_transfer = new Gee.TreeSet<Media> ();
 
-    public TransferFromDeviceDialog(Device d, Gee.LinkedList<Media> medias) {
-        this.medias = medias;
+    public TransferFromDeviceDialog(Device d, Gee.Collection<Media> _medias) {
+        this.medias.add_all (_medias);
         this.d = d;
-
-        to_transfer = new Gee.LinkedList<Media>();
 
         this.set_title(_("Import from Device"));
 
@@ -88,7 +86,7 @@ public class Noise.TransferFromDeviceDialog : Window {
             title_text = _("Import %i items from %s").printf (medias.size, d.getDisplayName ());
         }
         else {
-            var m = medias.get (0);
+            var m = this.medias.first ();
             title_text = _("Import %s from %s").printf (m.title, d.getDisplayName ());
         }
 
@@ -286,7 +284,7 @@ public class Noise.TransferFromDeviceDialog : Window {
         mediasModel.foreach(createTransferList);
 
         if(libraries_manager.local_library.doing_file_operations()) {
-            NotificationManager.get_default ().doAlertNotification (_("Cannot Import"), _("Noise is already doing file operations. Please wait until those finish to import from %d").printf( d.getDisplayName()));
+            NotificationManager.get_default ().show_alert (_("Cannot Import"), _("Noise is already doing file operations. Please wait until those finish to import from %d").printf( d.getDisplayName()));
         } else {
             libraries_manager.transfer_to_local_library (to_transfer);
             this.destroy();

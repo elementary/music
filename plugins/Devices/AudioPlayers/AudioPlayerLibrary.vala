@@ -204,80 +204,74 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         is_doing_file_operations = true;
         Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
         if (playlist == null)
-            sync_medias_thread.begin (libraries_manager.local_library.get_medias ());
+            sync_medias_async.begin (libraries_manager.local_library.get_medias ());
         else
-            sync_medias_thread.begin (playlist.medias);
+            sync_medias_async.begin (playlist.medias);
         return;
     }
     
-    public async void sync_medias_thread (Gee.Collection<Noise.Media> songs) {
+    public async void sync_medias_async (Gee.Collection<Noise.Media> songs) {
+        var medias_to_remove = new Gee.LinkedList<Noise.Media> ();
+        medias_to_remove.add_all (device.delete_doubles (medias, songs));
         
-        Threads.add (() => {
-            
-            var medias_to_remove = new Gee.LinkedList<Noise.Media> ();
-            medias_to_remove.add_all (device.delete_doubles (medias, songs));
-            
-            var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
-            medias_to_sync.add_all (device.delete_doubles (songs, medias));
-            
-            int total_medias = medias_to_remove.size + medias_to_sync.size;
-            
-            int sub_index = 0;
-            if (total_medias > 0) {
-                if (device.will_fit_without (medias_to_sync, medias_to_remove)) {
-                    foreach(var m in medias_to_remove) {
-                        if(!operation_cancelled) {
-                            remove_media(m, true);
-                        }
-                        ++sub_index;
-                        libraries_manager.progress = (double)(sub_index/total_medias);
-                    }
-                    sub_index = 0;
-                    imported_files = new Gee.LinkedList<string> ();
-                    foreach(var m in medias_to_sync) {
-                        if(!operation_cancelled) {
-                            add_media (m);
-                        }
-                        ++sub_index;
-                        libraries_manager.progress = (double)(sub_index/total_medias);
-                    }
-                    tagger.discoverer_import_media (imported_files);
-                    
+        var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
+        medias_to_sync.add_all (device.delete_doubles (songs, medias));
+        
+        int total_medias = medias_to_remove.size + medias_to_sync.size;
+        
+        int sub_index = 0;
+        if (total_medias > 0) {
+            if (device.will_fit_without (medias_to_sync, medias_to_remove)) {
+                foreach(var m in medias_to_remove) {
                     if(!operation_cancelled) {
-                        // sync playlists
-                        /* TODO: add support for podcasts & playlists
-                        if (pref.sync_all_music == true) {
-                            sync_playlists();
-                        }
-                        if (pref.sync_all_podcasts == true) {
-                            sync_podcasts();
-                        }*/
-                        
-                        libraries_manager.current_operation = _("Finishing sync process…");
-                        
-                    } else {
-                        libraries_manager.current_operation = _("Cancelling Sync…");
-                        libraries_manager.progress = 1;
+                        remove_media(m, true);
                     }
-                } else {
-                        device.infobar_message (_("There is not enough space on Device to complete the Sync…"), Gtk.MessageType.INFO);
-                        libraries_manager.current_operation = _("There is not enough space on Device to complete the Sync…");
+                    ++sub_index;
+                    libraries_manager.progress = (double)(sub_index/total_medias);
                 }
+                sub_index = 0;
+                imported_files = new Gee.LinkedList<string> ();
+                foreach(var m in medias_to_sync) {
+                    if(!operation_cancelled) {
+                        add_media (m);
+                    }
+                    ++sub_index;
+                    libraries_manager.progress = (double)(sub_index/total_medias);
+                }
+                tagger.discoverer_import_media (imported_files);
+                
+                if(!operation_cancelled) {
+                    // sync playlists
+                    /* TODO: add support for podcasts & playlists
+                    if (pref.sync_all_music == true) {
+                        sync_playlists();
+                    }
+                    if (pref.sync_all_podcasts == true) {
+                        sync_podcasts();
+                    }*/
+                    
+                    libraries_manager.current_operation = _("Finishing sync process…");
+                    
+                } else {
+                    libraries_manager.current_operation = _("Cancelling Sync…");
+                    libraries_manager.progress = 1;
+                }
+            } else {
+                    device.infobar_message (_("There is not enough space on Device to complete the Sync…"), Gtk.MessageType.INFO);
+                    libraries_manager.current_operation = _("There is not enough space on Device to complete the Sync…");
             }
+        }
 
-            Idle.add( () => {
-                libraries_manager.progress = 1;
-                device.get_preferences().last_sync_time = (int)time_t();
-                is_doing_file_operations = false;
-                
-                file_operations_done ();
-                operation_cancelled = false;
-                
-                return false;
-            });
+        Idle.add( () => {
+            libraries_manager.progress = 1;
+            device.get_preferences().last_sync_time = (int)time_t();
+            is_doing_file_operations = false;
+            
+            file_operations_done ();
+            operation_cancelled = false;
+            
+            return false;
         });
-
-        yield;
     }
     
     public override Media? media_from_id (int id) {

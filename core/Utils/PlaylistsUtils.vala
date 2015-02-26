@@ -194,11 +194,12 @@ namespace Noise.PlaylistsUtils {
         map.set(index, val);
     }
     
-    private Gee.LinkedList<string> convert_paths_to_uris (Gee.Collection<string> paths) {
-        var uris = new Gee.LinkedList<string> ();
+    private Gee.Collection<string> convert_paths_to_uris (Gee.Collection<string> paths) {
+        var uris = new Gee.TreeSet<string> ();
         foreach (var path in paths) {
             uris.add (File.new_for_path (path).get_uri ());
         }
+
         return uris;
     }
     
@@ -258,7 +259,6 @@ namespace Noise.PlaylistsUtils {
 
     public StaticPlaylist static_playlist_from_smartplaylist (SmartPlaylist sp) {
         var p = new StaticPlaylist();
-        sp.reanalyze ();
         p.add_medias (sp.medias);
         p.name = sp.name;
         return p;

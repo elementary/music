@@ -54,55 +54,52 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             
         });
         
-        finish_initialization_thread.begin ();
+        finish_initialization_async.begin ();
     }
     public bool start_initialization() {
         return true;
     }
-    private async void finish_initialization_thread() {
-        Threads.add (() => {
-            if (is_androphone) {
-                music_folders.add (mount.get_root ().get_uri () + "/Music/");
-                
-            } else {
-                var file = GLib.File.new_for_uri(mount.get_root ().get_uri () + "/.is_audio_player");
-                try {
-                    if(file.query_exists() == true){
-                        var dis = new DataInputStream (file.read ());
-                        string line;
-                        // Read lines until end of file (null) is reached
-                        while ((line = dis.read_line (null)) != null) {
-                            if (line.contains ("audio_folders=")) {
-                                string folders_unparsed = line.split ("audio_folders=", 2)[1];
-                                foreach (var folder in folders_unparsed.split (",")) {
-                                    folder = folder.replace (" ", "");
-                                    music_folders.add (mount.get_root ().get_uri () + "/" + folder);
-                                }
+    private async void finish_initialization_async() {
+        if (is_androphone) {
+            music_folders.add (mount.get_root ().get_uri () + "/Music/");
+            
+        } else {
+            var file = GLib.File.new_for_uri(mount.get_root ().get_uri () + "/.is_audio_player");
+            try {
+                if(file.query_exists() == true){
+                    var dis = new DataInputStream (file.read ());
+                    string line;
+                    // Read lines until end of file (null) is reached
+                    while ((line = dis.read_line (null)) != null) {
+                        if (line.contains ("audio_folders=")) {
+                            string folders_unparsed = line.split ("audio_folders=", 2)[1];
+                            foreach (var folder in folders_unparsed.split (",")) {
+                                folder = folder.replace (" ", "");
+                                music_folders.add (mount.get_root ().get_uri () + "/" + folder);
                             }
                         }
                     }
-                } catch (Error e) {
-                    stderr.printf ("Error: %s\n", e.message);
                 }
+            } catch (Error e) {
+                stderr.printf ("Error: %s\n", e.message);
             }
-            Gee.LinkedList<string> files = new Gee.LinkedList<string> ();
-            int items = 0;
-            foreach (var folder in music_folders) {
-                var music_folder_file = GLib.File.new_for_uri (folder);
-                items += FileUtils.count_music_files (music_folder_file, files);
-            }
+        }
+        Gee.LinkedList<string> files = new Gee.LinkedList<string> ();
+        int items = 0;
+        foreach (var folder in music_folders) {
+            var music_folder_file = GLib.File.new_for_uri (folder);
+            items += FileUtils.count_music_files (music_folder_file, files);
+        }
 
-            debug ("found %d items to import\n", items);
-            library.tagger.discoverer_import_media (files);
-            if (files.size == 0)
-                library.queue_finished ();
-            Idle.add( () => {
-                
-                return false;
-            });
+        debug ("found %d items to import\n", items);
+        library.tagger.discoverer_import_media (files);
+        if (files.size == 0)
+            library.queue_finished ();
+
+        Idle.add( () => {
+            
+            return false;
         });
-
-        yield;
     }
     
     public Library get_library() {

@@ -2,7 +2,6 @@ set(CLIENT_SOURCE
     main.vala
     Noise.vala
     LibraryWindow.vala
-    LocalLibrary.vala
     PlaybackManager.vala
     FileOperator.vala
     Objects/LyricFetcher.vala
@@ -13,6 +12,8 @@ set(CLIENT_SOURCE
     Objects/MediaArtCache.vala
     Objects/CoverartCache.vala
     Objects/MediaKeyListener.vala
+    LocalBackend/LocalLibrary.vala
+    LocalBackend/LocalMedia.vala
     Widgets/NavigationArrows.vala
     Widgets/SmartAlbumRenderer.vala
     Widgets/TopDisplay.vala
@@ -25,7 +26,6 @@ set(CLIENT_SOURCE
     Widgets/StatusBar.vala
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
-    Widgets/FixedBin.vala
     Widgets/ViewSelector.vala
     Widgets/EqualizerPopover.vala
     Widgets/FastView/TileView/ImageUtils.vala

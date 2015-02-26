@@ -27,13 +27,14 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
     
     private string url { get; set; default=""; }
     
-    private Gee.ArrayList<LastFM.Tag> _tags = new Gee.ArrayList<LastFM.Tag>();
+    private Gee.TreeSet<LastFM.Tag> _tags = new Gee.TreeSet<LastFM.Tag>();
     
     private LastFM.Tag tagToAdd;
     
     //public signal void album_info_retrieved(LastFM.AlbumInfo info);
     
     public AlbumInfo() {
+        
     }
     
     public AlbumInfo.with_info(string artist, string album) {
@@ -156,12 +157,12 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
         _tags.add(new LastFM.Tag.with_string(t));
     }
     
-    public Gee.ArrayList<LastFM.Tag> tags() {
+    public Gee.Collection<LastFM.Tag> tags() {
         return _tags;
     }
     
-    public Gee.ArrayList<string> tagStrings() {
-        var tags = new Gee.ArrayList<string>();
+    public Gee.Collection<string> tagStrings() {
+        var tags = new Gee.TreeSet<string>();
         
         foreach(LastFM.Tag t in _tags) {
             tags.add(t.tag);

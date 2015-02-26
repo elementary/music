@@ -99,9 +99,8 @@ public abstract class Noise.Library : GLib.Object {
         return i;
     }
 
-    public void media_from_name (Gee.Collection<Media> tests, ref Gee.LinkedList<int> found, ref Gee.LinkedList<Media> not_found) {
-        var local_test = tests;
-        foreach (Media test in local_test) {
+    public void media_from_name (Gee.Collection<Media> tests, Gee.Collection<int> found, Gee.Collection<Media> not_found) {
+        foreach (Media test in tests) {
             var media_found = find_media (test);
             if (media_found != null) {
                 found.add (media_found.rowid);

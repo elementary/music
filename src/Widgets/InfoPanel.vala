@@ -44,7 +44,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
         App.player.media_played.connect_after (on_media_updated);
         libraries_manager.local_library.media_updated.connect_after (on_media_updated);
-        NotificationManager.get_default ().songNotification.connect (on_media_updated);
+        NotificationManager.get_default ().update_track.connect (on_media_updated);
         CoverartCache.instance.changed.connect_after (update_cover_art);
     }
     

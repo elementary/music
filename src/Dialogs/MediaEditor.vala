@@ -38,8 +38,8 @@
 public class Noise.MediaEditor : Gtk.Dialog {
     LyricFetcher lf;
     
-    Gee.LinkedList<int> _allMedias;
-    Gee.LinkedList<int> _medias;
+    Gee.LinkedList<int> _allMedias = new Gee.LinkedList<int> ();
+    Gee.LinkedList<int> _medias = new Gee.LinkedList<int> ();
     
     //for padding around notebook mostly
     Gtk.Stack stack;
@@ -53,9 +53,9 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Gtk.Label lyricsInfobarLabel;
     private Library library;
     
-    public signal void medias_saved (Gee.LinkedList<int> medias);
+    public signal void medias_saved (Gee.Collection<int> medias);
     
-    public MediaEditor (Gee.LinkedList<int> allMedias, Gee.LinkedList<int> medias, Library library) {
+    public MediaEditor (Gee.Collection<int> allMedias, Gee.Collection<int> medias, Library library) {
         this.library = library;
         this.window_position = Gtk.WindowPosition.CENTER;
         this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -69,8 +69,8 @@ public class Noise.MediaEditor : Gtk.Dialog {
 
         lf = new LyricFetcher();
         
-        _allMedias = allMedias;
-        _medias = medias;
+        _allMedias.add_all (allMedias);
+        _medias.add_all (medias);
         
         stack = new Gtk.Stack ();
         

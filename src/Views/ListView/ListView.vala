@@ -39,7 +39,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     private bool obey_column_browser = false;
 
     public uint n_media {
-        get { return list_view.get_table ().size (); }
+        get { return list_view.get_table ().size; }
     }
 
     // UI Properties
@@ -259,22 +259,14 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public Gee.Collection<Media> get_media () {
-        var media_list = new Gee.LinkedList<Media> ();
-        foreach (var m in list_view.get_table ().get_values ()) {
-            if (m != null)
-                media_list.add ((Media) m);
-        }
-
+        var media_list = new Gee.TreeSet<Media> ();
+        media_list.add_all (list_view.get_table ().values);
         return media_list;
     }
 
     public Gee.Collection<Media> get_visible_media () {
-        var media_list = new Gee.LinkedList<Media> ();
-        foreach (var m in list_view.get_visible_table ().get_values ()) {
-            if (m != null)
-                media_list.add ((Media) m);
-        }
-
+        var media_list = new Gee.TreeSet<Media> ();
+        media_list.add_all (list_view.get_visible_table ().values);
         return media_list;
     }
 
@@ -384,7 +376,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         return status_text;
     }
 
-    private void view_search_func (string search, HashTable<int, Media> table, ref HashTable<int, Media> showing) {
+    private void view_search_func (string search, Gee.HashMap<int, Media> table, Gee.HashMap<int, Media> showing) {
         list_text_overlay.message_visible = false;
         var result = view_wrapper.library.get_search_result ();
 
@@ -400,15 +392,12 @@ public class Noise.ListView : ContentView, Gtk.Box {
              * until you fully understand the proper behavior
              * since this change produces the bug 1346678
              * Leave this "for loop" for now.                   */
-            for (int i = 0; i < table.size (); ++i) {
-                var m = table.get (i);
-                if ( m != null) {
-                    if (obey_column_browser && !column_browser.match_media (m))
-                        continue;
+            foreach (var m in table) {
+                if (obey_column_browser && !column_browser.match_media (m))
+                    continue;
 
-                    if (result.contains (m)) {
-                        showing.set (show_index++, m);
-                    }
+                if (result.contains (m)) {
+                    showing.set (show_index++, m);
                 }
             }
         } else {
@@ -417,19 +406,16 @@ public class Noise.ListView : ContentView, Gtk.Box {
              * until you fully understand the proper behavior
              * since this change produces the bug 1346678
              * Leave this "for loop" for now.                   */
-            for (int i = 0; i < table.size (); ++i) {
-                var m = table.get (i);
-                if (m != null) {
-                    if (obey_column_browser && !column_browser.match_media (m))
-                        continue;
+            foreach (var m in table) {
+                if (obey_column_browser && !column_browser.match_media (m))
+                    continue;
 
-                    showing.set (show_index++, m);
-                }
+                showing.set (show_index++, m);
             }
         }
 
         // If nothing will be shown, display the "no media found" message.
-        if (showing.size () < 1) {
+        if (showing.size < 1) {
             list_text_overlay.message_visible = true;
         }
     }

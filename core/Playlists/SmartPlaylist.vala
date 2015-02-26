@@ -31,210 +31,112 @@
 
 public class Noise.SmartPlaylist : Playlist {
 
-    public static const string QUERY_SEPARATOR = "<query_sep>";
-    public static const string VALUE_SEPARATOR = "<val_sep>";
-
     public enum ConditionalType {
         ALL = true,
         ANY = false
     }
 
     public ConditionalType conditional { get; set; default = ConditionalType.ALL; }
-    public Gee.ArrayList<SmartQuery> _queries;
+    public Gee.TreeSet<SmartQuery> queries;
     public int query_count { get; set; default = 0; }
-    
+
     public bool limit { get; set; default = false; }
     public int limit_amount { get; set; default = 50; }
-    
-    private Gee.Collection<Media> medias_library;
-    
-    public SmartPlaylist(Gee.Collection<Media> library) {
-        _queries = new Gee.ArrayList<SmartQuery>();
+
+    private Noise.Library library;
+
+    /*
+     * A SmartPlaylist should be linked to only one library.
+     */
+    public SmartPlaylist (Noise.Library library) {
+        this.library = library;
+        queries = new Gee.TreeSet<SmartQuery>();
         medias = new Gee.LinkedList<Media> ();
-        medias_library = library;
         icon = Icons.SMART_PLAYLIST.gicon;
-    }
+        library.media_added.connect ((medias) => {
+            analyse_list (medias);
+        });
 
-    public void clearQueries() {
-        query_count = 0;
-        _queries.clear();
-        updated ();
-    }
+        library.media_updated.connect ((medias) => {
+            analyse_list (medias);
+        });
 
-    public Gee.ArrayList<SmartQuery> queries() {
-        return _queries;
-    }
-
-    public void add_query(SmartQuery s) {
-        query_count++;
-        _queries.add(s);
-        analyse_list_async.begin (medias_library);
-        updated ();
-    }
-
-    public void add_queries(Gee.Collection<SmartQuery> queries) {
-        query_count = query_count + queries.size;
-        _queries.add_all (queries);
-        analyse_list_async.begin (medias_library);
-        updated ();
-    }
-
-    public void update_medias (Gee.Collection<Media> medias) {
-        var added_medias = new Gee.LinkedList<Media> ();
-        
-        foreach (var media in medias) {
-            if (media != null && medias_library.contains (media)) {
-                added_medias.add (media);
+        library.media_removed.connect ((medias) => {
+            var removed = new Gee.LinkedList<Media> ();
+            foreach (var m in medias) {
+                if (this.medias.contains (m)) {
+                    this.medias.remove (m);
+                    removed.add (m);
+                }
             }
-            if ((limit && limit_amount > medias.size) || !limit) {
-                analyse_list_async.begin (added_medias);
-            }
-        }
+
+            media_removed (removed);
+        });
     }
+
+    /*
+     * Common Playlist Functions.
+     */
 
     public override void add_media (Media m) {
-        var added_media = new Gee.LinkedList<Media> ();
-        
-        if (m != null && !medias_library.contains (m)) {
-            medias_library.add (m);
-            added_media.add (m);
-        }
-        if ((limit && limit_amount > medias.size) || !limit) {
-            analyse_list_async.begin (added_media);
-        }
+        warning ("Trying to force the media addition to a smart playlist!");
     }
 
     public override void add_medias (Gee.Collection<Media> to_add) {
-        var added_media = new Gee.LinkedList<Media> ();
-        
-        foreach (var m in to_add) {
-            if (m != null && !medias_library.contains (m)) {
-                medias_library.add (m);
-                added_media.add (m);
-            }
-        }
-        if ((limit && limit_amount > medias.size) || !limit) {
-            analyse_list_async.begin (added_media);
-        }
+        warning ("Trying to force the media addition to a smart playlist!");
     }
 
     public override void remove_media (Media to_remove) {
-        if (to_remove != null && medias.contains (to_remove)) {
-            var removed_media = new Gee.LinkedList<Media> ();
-            removed_media.add (to_remove);
-            medias.remove (to_remove);
-            media_removed (removed_media);
-        }
-        if (medias_library.contains (to_remove))
-            medias_library.remove (to_remove);
+        warning ("Trying to force the media removal from a smart playlist!");
     }
 
     public override void remove_medias (Gee.Collection<Media> to_remove) {
-        var removed_media = new Gee.LinkedList<Media> ();
-        foreach (var m in to_remove) {
-            if (m != null && medias.contains (m)) {
-                removed_media.add (m);
-                medias.remove (m);
-            }
-            if (medias_library.contains (m))
-                medias_library.remove (m);
-        }
-        media_removed (removed_media);
+        warning ("Trying to force the media removal from a smart playlist!");
     }
 
-    /** temp_playlist should be in format of #,#,#,#,#, **/
-    public void queries_from_string(string q) {
-        string[] queries_in_string = q.split(QUERY_SEPARATOR, 0);
-        
-        int index;
-        
-        var queries = new Gee.LinkedList<SmartQuery> ();
-        for(index = 0; index < queries_in_string.length - 1; index++) {
-            string[] pieces_of_query = queries_in_string[index].split(VALUE_SEPARATOR, 3);
-            pieces_of_query.resize (3);
-            
-            SmartQuery sq = new SmartQuery();
-            sq.field = (SmartQuery.FieldType)int.parse(pieces_of_query[0]);
-            sq.comparator = (SmartQuery.ComparatorType)int.parse(pieces_of_query[1]);
-            sq.value = pieces_of_query[2];
-            
-            queries.add (sq);
-        }
-        add_queries (queries);
+    public virtual void analyse_all () {
+        analyse_list (library.get_medias ());
     }
 
-    public string queries_to_string() {
-        string rv = "";
-        
-        foreach(SmartQuery q in queries()) {
-            rv += ((int)q.field).to_string() + VALUE_SEPARATOR + ((int)q.comparator).to_string() + VALUE_SEPARATOR + q.value + QUERY_SEPARATOR;
-        }
-        
-        return rv;
+    /*
+     * Special functions of a Smart Playlist.
+     */
+
+    public virtual void clear_queries () {
+        query_count = 0;
+        queries.clear ();
+        updated ();
     }
 
-    /*public Gee.Collection<Media> analyze_ids (LibraryManager lm, Gee.Collection<int> ids) {
-        var to_analyze = new Gee.LinkedList<Media> ();
-        foreach (var id in ids) {
-            var m = lm.media_from_id (id);
-            if (m != null)
-                to_analyze.add (m);
-        }
-        return analyze (lm, to_analyze);
-    }*/
-
-    public void reanalyze () {
-
-        analyse_list_async.begin (medias_library);
+    public virtual Gee.Collection<SmartQuery> get_queries () {
+        return queries.read_only_view;
     }
 
-    async void analyse_list_async (Gee.Collection<Media> given_library) {
-        var added = new Gee.LinkedList<Media> ();
-        var removed = new Gee.LinkedList<Media> ();
-        
-        lock (medias_library) {
-            Threads.add (() => {
-                foreach (var m in given_library) {
-                    if (m == null)
-                        continue;
-
-                    int match_count = 0; //if OR must be greater than 0. if AND must = queries.size.
-
-                    foreach (var q in _queries) {
-                        if (media_matches_query (q, m))
-                            match_count++;
-                    }
-                    
-                    if(((conditional == ConditionalType.ALL && match_count == _queries.size) || 
-                        (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
-                        if (!medias.contains (m)) {
-                            added.add (m);
-                            medias.add (m);
-                        }
-                    } else if (medias.contains (m)) {
-                        // a media which was part of the previous set no longer matches
-                        // the query, and it must be removed
-                        medias.remove (m);
-                        removed.add (m);
-                    }
-
-                    if (limit && limit_amount <= medias.size)
-                        break;
-                }
-
-                Idle.add( () => {
-                    // Emit signal to let views know about the change
-                    media_added (added);
-                    media_removed (removed);
-                    return false;
-                });
-            });
-        }
-
-        yield;
+    public virtual void add_query (SmartQuery s) {
+        query_count++;
+        queries.add (s);
+        analyse_all ();
+        updated ();
     }
 
-    public bool media_matches_query(SmartQuery q, Media s) {
+    public virtual void add_queries (Gee.Collection<SmartQuery> queries) {
+        query_count = query_count + queries.size;
+        this.queries.add_all (queries);
+        analyse_all ();
+        updated ();
+    }
+
+    // FIXME: Clearing a Smart Playlist ???
+    public override void clear() {
+        medias.clear ();
+        cleared ();
+    }
+
+    /*
+     * Smart Playlist Helpers
+     */
+
+    public static bool media_matches_query (SmartQuery q, Media s) {
         switch (q.field) {
             case Noise.SmartQuery.FieldType.ALBUM :
                 if(q.comparator == SmartQuery.ComparatorType.IS)
@@ -392,9 +294,47 @@ public class Noise.SmartPlaylist : Playlist {
         return false;
     }
 
-    public override void clear() {
-        medias.clear ();
-        medias_library.clear ();
-        cleared ();
+    private void analyse_list (Gee.Collection<Media> given_library) {
+        new Thread<void*> (null, () => {
+            var added = new Gee.TreeSet<Media> ();
+            var removed = new Gee.TreeSet<Media> ();
+
+            foreach (var m in given_library) {
+                if (m == null)
+                    continue;
+
+                int match_count = 0; //if OR must be greater than 0. if AND must = queries.size.
+
+                foreach (var q in queries) {
+                    if (media_matches_query (q, m))
+                        match_count++;
+                }
+
+                if(((conditional == ConditionalType.ALL && match_count == queries.size) || 
+                    (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
+                    if (!medias.contains (m)) {
+                        added.add (m);
+                        medias.add (m);
+                    }
+                } else if (medias.contains (m)) {
+                    // a media which was part of the previous set no longer matches
+                    // the query, and it must be removed
+                    medias.remove (m);
+                    removed.add (m);
+                }
+
+                if (limit && limit_amount <= medias.size)
+                    break;
+            }
+
+            Idle.add( () => {
+                // Emit signal to let views know about the change
+                media_added (added);
+                media_removed (removed);
+                return false;
+            });
+
+            return null;
+        });
     }
 }

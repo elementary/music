@@ -583,14 +583,14 @@ public class MprisPlaylists : GLib.Object {
 
     public MprisPlaylist?[] GetPlaylists(uint index, uint maxcount, string playlist_ordering, bool reversed) {
         debug("Get Playlist called with index %u and maxcount %u\n", index, maxcount);
-        var playlists = new GLib.List<Noise.Playlist>();
+        var playlists = new Gee.LinkedList<Noise.Playlist>();
 
-        foreach(var p in Noise.libraries_manager.local_library.get_playlists ()) {
-            playlists.append(p);
-        }
-
-        if (reversed) {
-            playlists.reverse();
+        foreach (var p in Noise.libraries_manager.local_library.get_playlists ()) {
+            if (reversed) {
+                playlists.offer_tail (p);
+            } else {
+                playlists.offer_head (p);
+            }
         }
 
         int i = 0;

@@ -30,12 +30,12 @@
  */
 
 public class Noise.FileNotFoundDialog : Gtk.Dialog {
-    Gee.LinkedList<Media> media_list;
+    Gee.LinkedList<Media> media_list = new Gee.LinkedList<Media> ();
 
     Gtk.Button rescanLibrary;
 
-    public FileNotFoundDialog (Gee.LinkedList<Media> media_list) {
-        this.media_list = media_list;
+    public FileNotFoundDialog (Gee.Collection<Media> _media_list) {
+        this.media_list.add_all (_media_list);
 
         this.set_modal (true);
         this.set_transient_for (App.main_window);

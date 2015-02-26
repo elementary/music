@@ -98,7 +98,7 @@ namespace Noise.FileUtils {
         if (yield is_directory_async (file_or_dir, cancellable)) {
             yield enumerate_files_async (file_or_dir, null, true, out files, cancellable);
         } else {
-            files = new Gee.LinkedList<File> ();
+            files = new Gee.TreeSet<File> ();
             files.add (file_or_dir);
         }
 
@@ -115,6 +115,20 @@ namespace Noise.FileUtils {
             } catch (Error err) {
                 warning ("Could not get size of '%s': %s", file.get_uri (), err.message);
             }
+        }
+
+        return size;
+    }
+
+    public uint64 get_size (File file, Cancellable? cancellable = null) {
+        uint64 size = 0;
+        try {
+            var info = file.query_info (FileAttribute.STANDARD_SIZE,
+                                                    FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
+                                                    cancellable);
+            size = info.get_attribute_uint64 (FileAttribute.STANDARD_SIZE);
+        } catch (Error err) {
+            warning ("Could not get size of '%s': %s", file.get_uri (), err.message);
         }
 
         return size;
@@ -329,7 +343,7 @@ namespace Noise.FileUtils {
             this.types = types;
             this.cancellable = cancellable;
 
-            files = new Gee.LinkedList<File> ();
+            files = new Gee.TreeSet<File> ();
             yield enumerate_files_internal_async (folder, files, recursive);
             return file_count;
         }

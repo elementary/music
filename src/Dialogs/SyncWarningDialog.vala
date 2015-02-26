@@ -22,8 +22,8 @@
 
 public class Noise.SyncWarningDialog : Gtk.Window {
     Device d;
-    Gee.LinkedList<Media> to_sync;
-    Gee.LinkedList<Media> to_remove;
+    Gee.TreeSet<Media> to_sync = new Gee.TreeSet<Media> ();
+    Gee.TreeSet<Media> to_remove = new Gee.TreeSet<Media> ();
     
     private Gtk.Box content;
     private Gtk.Box padding;
@@ -32,10 +32,10 @@ public class Noise.SyncWarningDialog : Gtk.Window {
     Gtk.Button sync;
     Gtk.Button cancel;
     
-    public SyncWarningDialog(Device d, Gee.LinkedList<Media> to_sync, Gee.LinkedList<Media> removed) {
+    public SyncWarningDialog(Device d, Gee.Collection<Media> to_sync, Gee.Collection<Media> removed) {
         this.d = d;
-        this.to_sync = to_sync;
-        this.to_remove = removed;
+        this.to_sync.add_all (to_sync);
+        this.to_remove.add_all (removed);
 
         // set the size based on saved gconf settings
         //this.window_position = WindowPosition.CENTER;

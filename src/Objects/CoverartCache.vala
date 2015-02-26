@@ -120,7 +120,8 @@ public class Noise.CoverartCache : MediaArtCache<Media> {
         // track of all the keys we've explored in order to lookup images only once
         // for every equivalent media.
         var used_keys_set = new Gee.HashSet<string> ();
-        var copy = Utils.copy_collection<Media> (media);
+        var copy = new Gee.TreeSet<Media> ();
+        copy.add_all (media);
 
         foreach (var m in copy) {
             string key = get_key (m);
@@ -141,7 +142,8 @@ public class Noise.CoverartCache : MediaArtCache<Media> {
         // track of all the keys we've explored in order to lookup images only once
         // for every equivalent media.
         var used_keys_set = new Gee.HashSet<string> ();
-        var copy = Utils.copy_collection<Media> (media);
+        var copy = new Gee.TreeSet<Media> ();
+        copy.add_all (media);
 
         foreach (var m in copy) {
             string key = get_key (m);

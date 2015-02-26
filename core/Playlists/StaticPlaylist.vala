@@ -40,7 +40,7 @@ public class Noise.StaticPlaylist : Playlist {
         icon = Icons.PLAYLIST.gicon;
     }
 
-    public StaticPlaylist.with_info(int rowid, string name) {
+    public StaticPlaylist.with_info (int rowid, string name) {
         this.rowid = rowid;
         this.name = name;
         medias = new Gee.LinkedList<Media>();

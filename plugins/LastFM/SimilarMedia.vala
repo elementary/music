@@ -63,34 +63,24 @@ public class LastFM.SimilarMedias : Object {
         if (!working) {
             working = true;
             
-            similar_thread.begin (s);
+            similar_async (s);
         }
     }
     
-    public async void similar_thread (Noise.Media s) {
+    public void similar_async (Noise.Media s) {
+        debug ("In the similar thread");
+        var similarIDs = new Gee.LinkedList<int> ();
+        var similarDont = new Gee.LinkedList<Noise.Media> ();
         
-            SourceFunc callback = similar_thread.callback;
-
-            Noise.Threads.add (() => {
-                debug ("In the similar thread");
-                var similarIDs = new Gee.LinkedList<int> ();
-                var similarDont = new Gee.LinkedList<Noise.Media> ();
-                
-                getSimilarTracks (s.title, s.artist);
-                lock (similar_medias) {
-                    Noise.libraries_manager.local_library.media_from_name (similar_medias, ref similarIDs, ref similarDont);
-                }
-                similarIDs.offer_head (s.rowid);
-                
-                Idle.add ( () => {
-                    similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
-                    similar_retrieved (similarIDs, similarDont);
-                    working = false;
-                    return callback();
-                });
-            });
-
-            yield;
+        getSimilarTracks (s.title, s.artist);
+        lock (similar_medias) {
+            Noise.libraries_manager.local_library.media_from_name (similar_medias, similarIDs, similarDont);
+        }
+        similarIDs.offer_head (s.rowid);
+        
+        similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
+        similar_retrieved (similarIDs, similarDont);
+        working = false;
     }
     
     /** Gets similar medias

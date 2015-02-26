@@ -94,73 +94,69 @@ public class Noise.LibrariesManager : GLib.Object {
     }
     
     public async void transfer_medias_async (Gee.Collection<Noise.Media> list) {
-        Threads.add (() => {
-            if(list == null || list.size == 0)
-                return;
+        if(list == null || list.size == 0)
+            return;
+        
+        int index = 0;
+        
+        progress = 0;
+        Timeout.add(500, do_progress_notification_with_timeout);
+        
+        int total = list.size;
+        var copied_list = new Gee.TreeSet<Media> ();
+        
+        foreach(var m in list) {
             
-            int index = 0;
-            
-            progress = 0;
-            Timeout.add(500, do_progress_notification_with_timeout);
-            
-            int total = list.size;
-            var copied_list = new Gee.ArrayList<Media> ();
-            
-            foreach(var m in list) {
-                
-                if(File.new_for_uri(m.uri).query_exists()) {
-                    try {
-                        File dest = FileUtils.get_new_destination(m);
-                        if(dest == null)
-                            break;
-                        
-                        /* copy the file over */
-                        bool success = false;
-                        success = m.file.copy (dest, FileCopyFlags.NONE, null, null);
-                        
-                        if(success) {
-                            Noise.Media copy = m.copy();
-                            debug("success copying file\n");
-                            copy.uri = dest.get_uri();
-                            copy.rowid = 0;
-                            copy.isTemporary = false;
-                            copy.date_added = (int)time_t();
-                            copied_list.add (copy);
-                        }
-                        else {
-                            warning("Failure: Could not copy imported media %s to media folder %s", m.uri, dest.get_path());
-                            break;
-                        }
+            if(File.new_for_uri(m.uri).query_exists()) {
+                try {
+                    File dest = FileUtils.get_new_destination(m);
+                    if(dest == null)
+                        break;
+                    
+                    /* copy the file over */
+                    bool success = false;
+                    success = m.file.copy (dest, FileCopyFlags.NONE, null, null);
+                    
+                    if(success) {
+                        Noise.Media copy = m.copy();
+                        debug("success copying file\n");
+                        copy.uri = dest.get_uri();
+                        copy.rowid = 0;
+                        copy.isTemporary = false;
+                        copy.date_added = (int)time_t();
+                        copied_list.add (copy);
                     }
-                    catch(Error err) {
-                        warning("Could not copy imported media %s to media folder: %s\n", m.uri, err.message);
+                    else {
+                        warning("Failure: Could not copy imported media %s to media folder %s", m.uri, dest.get_path());
                         break;
                     }
-                    
-                    current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
-                    current_operation = current_operation.replace ("$NAME", m.get_display_title ());
-                    current_operation = current_operation.replace ("$ARTIST", m.get_display_artist ());
-                } else {
-                    message ("Skipped transferring media %s. Either already in library, or has invalid file path.\n", m.get_display_title ());
                 }
-                index++;
-                progress = (double)index/total;
+                catch(Error err) {
+                    warning("Could not copy imported media %s to media folder: %s\n", m.uri, err.message);
+                    break;
+                }
+                
+                current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
+                current_operation = current_operation.replace ("$NAME", m.get_display_title ());
+                current_operation = current_operation.replace ("$ARTIST", m.get_display_artist ());
+            } else {
+                message ("Skipped transferring media %s. Either already in library, or has invalid file path.\n", m.get_display_title ());
             }
-            
-            progress = 1;
-            
-            Idle.add( () => {
-                local_library.add_medias (copied_list);
-                return false;
-            });
+            index++;
+            progress = (double)index/total;
+        }
+        
+        progress = 1;
+        
+        Idle.add( () => {
+            local_library.add_medias (copied_list);
+            return false;
         });
-
-        yield;
     }
     
     public bool do_progress_notification_with_timeout () {
         
-        NotificationManager.get_default ().doProgressNotification (current_operation.replace("&", "&amp;"), progress);
+        NotificationManager.get_default ().update_progress (current_operation.replace("&", "&amp;"), progress);
         
         if (progress < 1) {
             return true;

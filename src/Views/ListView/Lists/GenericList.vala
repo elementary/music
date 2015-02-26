@@ -19,7 +19,7 @@
 
 public abstract class Noise.GenericList : FastView {
 
-    public signal void import_requested (Gee.LinkedList<Media> to_import);
+    public signal void import_requested (Gee.Collection<Media> to_import);
 
     //for header column chooser
     protected Gtk.Menu column_chooser_menu;
@@ -39,9 +39,9 @@ public abstract class Noise.GenericList : FastView {
     protected CellDataFunctionHelper cell_data_helper;
 
     public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-        var types = new GLib.List<Type> ();
+        var types = new Gee.LinkedList<Type> ();
         foreach (var type in ListColumn.get_all ())
-            types.append (type.get_data_type ());
+            types.add (type.get_data_type ());
 
         base (types);
 
@@ -151,11 +151,11 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void set_media (Gee.Collection<Media> to_add) {
-        var new_table = new HashTable<int, unowned Media> (null, null);
+        var new_table = new Gee.HashMap<int,Noise.Media> (null, null);
 
         foreach (Media m in to_add) {
             if (m != null)
-                new_table.set ((int) new_table.size (), m);
+                new_table.set (new_table.size, m);
         }
 
         // set table and resort
@@ -170,12 +170,12 @@ public abstract class Noise.GenericList : FastView {
         foreach (var m in to_remove)
             to_remove_set.add (m);
 
-        var new_table = new HashTable<int, Media> (null, null);
-        for (int i = 0; i < table.size (); ++i) {
+        var new_table = new Gee.HashMap<int,Noise.Media> (null, null);
+        for (int i = 0; i < table.size; ++i) {
             var m = table.get (i) as Media;
             // create a new table. if not in to_remove, and is in table, add it.
             if (m != null && !to_remove_set.contains (m))
-                new_table.set ((int)new_table.size (), m);
+                new_table.set (new_table.size, m);
         }
 
         // no need to resort, just removing
@@ -184,19 +184,15 @@ public abstract class Noise.GenericList : FastView {
 
     public void add_media (Gee.Collection<Media> to_add) {
         // Check for duplicates
-        var existing = new Gee.LinkedList<Media> ();
-        foreach (var m in table.get_values ())
-            existing.add (m);
-
-        var new_media = new Gee.LinkedList<Media> ();
+        var new_media = new Gee.TreeSet<Media> ();
         foreach (var m in to_add) {
-            if (!existing.contains (m))
+            if (!table.values.contains (m))
                 new_media.add (m);
         }
 
         // skip calling set_table and just do it ourselves (faster)
         foreach (var m in new_media)
-            table.set ((int) table.size (), m);
+            table.set (table.size, m);
 
         // resort the new songs in. this will also call do_search
         resort ();
@@ -248,7 +244,7 @@ public abstract class Noise.GenericList : FastView {
 
         m.rating = new_rating;
 
-        var to_update = new Gee.LinkedList<Media> ();
+        var to_update = new Gee.TreeSet<Media> ();
         to_update.add (m);
         parent_wrapper.library.update_medias (to_update, true, true);
     }
@@ -321,7 +317,7 @@ public abstract class Noise.GenericList : FastView {
 
         App.player.clearCurrent ();
         var vis_table = get_visible_table ();
-        for (int i = 0; i < vis_table.size (); ++i) {
+        for (int i = 0; i < vis_table.size; ++i) {
             var test = vis_table.get (i) as Media;
             App.player.addToCurrent (test);
 
@@ -333,13 +329,13 @@ public abstract class Noise.GenericList : FastView {
         media_played.begin (App.player.media_info.media);
     }
 
-    protected GLib.List<Media> get_selected_medias () {
-        var rv = new GLib.List<Media> ();
+    protected Gee.Collection<Media> get_selected_medias () {
+        var rv = new Gee.TreeSet<Media> ();
         Gtk.TreeModel temp;
 
         foreach (Gtk.TreePath path in get_selection ().get_selected_rows (out temp)) {
             var m = get_media_from_index (int.parse (path.to_string ()));
-            rv.append (m);
+            rv.add (m);
         }
 
         return rv;
@@ -353,7 +349,7 @@ public abstract class Noise.GenericList : FastView {
         if (App.player.media_info.media == null)
             return;
 
-        for (int i = 0; i < get_visible_table ().size (); ++i) {
+        for (int i = 0; i < get_visible_table ().size; ++i) {
             var m = get_media_from_index (i);
 
             if (m == App.player.media_info.media) {

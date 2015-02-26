@@ -209,7 +209,6 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         this.action_button_box.spacing = 6;
 
         this.content_grid = new Gtk.Grid ();
-
         this.content_grid.attach (this.image_box, 1, 1, 1, 3);
         this.content_grid.attach (this.primary_text_label, 2, 1, 1, 1);
         this.content_grid.attach_next_to (this.secondary_text_label, this.primary_text_label,
@@ -220,16 +219,17 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         content_grid.halign = content_grid.valign = Gtk.Align.CENTER;
         content_grid.margin = MARGIN;
 
-        // Use a fixedbin widget so that we're always in control of the size
-        var size_wrapper = new FixedBin (-1, -1, MAX_WIDTH, -1);
-        size_wrapper.set_widget (content_grid);
-
-        this.add (size_wrapper);
+        this.add (content_grid);
 
         // INIT WIDGETS. We use these setters to avoid code duplication
         this.image_size = 64;
         this.working = false;
         this.set_alert ("", "", null, false);
+    }
+
+    public override void get_preferred_width (out int minimum_width, out int natural_width) {
+        base.get_preferred_width (out minimum_width, out natural_width);
+        natural_width = MAX_WIDTH;
     }
 
     /** PUBLIC API **/

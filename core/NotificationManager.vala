@@ -29,50 +29,20 @@
  */
 
 public class Noise.NotificationManager : Object {
-
-    public signal void alertNotification (string title, string message);
-    public signal void progressNotification (string? message, double progress);
+    public signal void show_alert (string title, string message);
+    public signal void update_progress (string? message, double progress);
     public signal void progress_canceled ();
-    public signal void songNotification (string message);
-    public signal void searchCover (Media m);
-
-    string current_title_string;
-    double progress;
-    string current_action_string;
+    public signal void update_track (string message);
+    public signal void search_cover (Media m);
 
     private static NotificationManager? notification_manager = null;
-
     public static NotificationManager get_default () {
         if (notification_manager == null)
             notification_manager = new NotificationManager ();
         return notification_manager;
     }
 
-    public NotificationManager () {
+    private NotificationManager () {
     
     }
-
-    public virtual void doProgressNotification (string? message, double progress) {
-        current_action_string = message;
-        this.progress = progress;
-        progressNotification (message, progress);
-    }
-
-    public virtual void doSongNotification (string? message) {
-        current_title_string = message;
-        songNotification (message);
-    }
-
-    public virtual void doAlertNotification (string title, string message) {
-        alertNotification (title, message);
-    }
-
-    public virtual void showProgressNotification () {
-        progressNotification (current_action_string, progress);
-    }
-
-    public virtual void showSongNotification () {
-        songNotification (current_title_string);
-    }
-
 }

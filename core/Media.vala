@@ -28,61 +28,61 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
-
 public class Noise.Media : Object {
+
     /// Used for unknown titles, artists, or album names.
-    private static string UNKNOWN = _("Unknown");
+    protected static string UNKNOWN = _("Unknown");
 
     public int rowid { get; set; }
 
-    public string uri {
+    public virtual string uri {
         owned get { return file.get_uri (); }
         set {file = File.new_for_uri (value);}
     }
 
-    public uint64 file_size { get; set; default = 0; }
-    public bool file_exists { get { return this.file.query_exists (); } }
+    public virtual uint64 file_size { get; set; default = 0; }
+    public virtual bool file_exists { get { return this.file.query_exists (); } }
 
-    public File file { get; set; }
+    public virtual File file { get; set; }
 
-    public bool isPreview { get; set; default = false; }
-    public bool isTemporary { get; set; default = false; }
+    public virtual bool isPreview { get; set; default = false; }
+    public virtual bool isTemporary { get; set; default = false; }
     
     // TODO: evaluate if there's real need for these fields
-    public bool location_unknown { get; set; default = false; }
-    public bool has_embedded { get; set; default = false; }
+    public virtual bool location_unknown { get; set; default = false; }
+    public virtual bool has_embedded { get; set; default = false; }
 
     // XXX: these don't really belong here. It seems they only help to
     //      ease client-side stuff, and will be removed in the future
-    public GLib.Icon unique_status_image { get; set; }
-    public bool showIndicator { get; set; default = false; }
+    public virtual GLib.Icon unique_status_image { get; set; }
+    public virtual bool showIndicator { get; set; default = false; }
 
     /**
      * Metadata Fields
      */
-    public string title { get; set; default = ""; }
-    public uint track { get; set; default = 0; }
-    public uint track_count { get; set; default = 0; }
-    public string composer { get; set; default = ""; }
-    public string artist { get; set; default = ""; }
-    public string album_artist { get; set; default = ""; }
-    public string album { get; set; default = ""; }
-    public uint album_number { get; set; default = 1; }
-    public uint album_count { get; set; default = 1; }
-    public unowned Album album_info { get; set; default = null; }
-    public string grouping { get; set; default = ""; }
-    public string genre { get; set; default = ""; }
-    public string comment { get; set; default = ""; }
-    public string lyrics { get; set; default = ""; }
-    public uint year { get; set; default = 0; }
-    public uint bitrate { get; set; default = 0; }
-    public uint bpm { get; set; default = 0; }
-    public uint samplerate { get; set; default = 0; }
+    public virtual string title { get; set; default = ""; }
+    public virtual uint track { get; set; default = 0; }
+    public virtual uint track_count { get; set; default = 0; }
+    public virtual string composer { get; set; default = ""; }
+    public virtual string artist { get; set; default = ""; }
+    public virtual string album_artist { get; set; default = ""; }
+    public virtual string album { get; set; default = ""; }
+    public virtual uint album_number { get; set; default = 1; }
+    public virtual uint album_count { get; set; default = 1; }
+    public virtual unowned Album album_info { get; set; default = null; }
+    public virtual string grouping { get; set; default = ""; }
+    public virtual string genre { get; set; default = ""; }
+    public virtual string comment { get; set; default = ""; }
+    public virtual string lyrics { get; set; default = ""; }
+    public virtual uint year { get; set; default = 0; }
+    public virtual uint bitrate { get; set; default = 0; }
+    public virtual uint bpm { get; set; default = 0; }
+    public virtual uint samplerate { get; set; default = 0; }
 
-    public uint length { get; set; default = 0; } // duration in miliseconds
+    public virtual uint length { get; set; default = 0; } // duration in miliseconds
 
-    private uint _rating;
-    public uint rating {
+    protected uint _rating;
+    public virtual uint rating {
         get { return _rating; }
         set { _rating = value.clamp (0, 5); }
     }
@@ -90,13 +90,13 @@ public class Noise.Media : Object {
     /**
      * Internal stats
      */
-    public uint play_count { get; set; default = 0; }
-    public uint skip_count { get; set; default = 0; }
-    public uint date_added { get; set; default = 0; }
-    public uint last_played { get; set; default = 0; }
-    public uint last_modified { get; set; default = 0; }
+    public virtual uint play_count { get; set; default = 0; }
+    public virtual uint skip_count { get; set; default = 0; }
+    public virtual uint date_added { get; set; default = 0; }
+    public virtual uint last_played { get; set; default = 0; }
+    public virtual uint last_modified { get; set; default = 0; }
 
-    public int resume_pos { get; set; default = 0; }
+    public virtual int resume_pos { get; set; default = 0; }
 
     public inline string get_display_filename () {
         string? filename = String.locale_to_utf8 (file.get_basename () ?? UNKNOWN);

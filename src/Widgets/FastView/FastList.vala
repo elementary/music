@@ -25,9 +25,9 @@ public class Noise.FastView : Gtk.TreeView {
 #endif
     public static const int OPTIMAL_COLUMN = -2;
     FastModel fm;
-    List<Type> columns;
-    protected HashTable<int, Media> table; // is not the same object as showing.
-    protected HashTable<int, Media> showing; // should never point to table.
+    Gee.LinkedList<Type> columns = new Gee.LinkedList<Type> ();
+    protected Gee.HashMap<int, Media> table = new Gee.HashMap<int, Media> (); // is not the same object as showing.
+    protected Gee.HashMap<int, Media> showing = new Gee.HashMap<int, Media>(); // should never point to table.
 
     /* sortable stuff */
     public delegate int SortCompareFunc (int sort_column_id,
@@ -41,17 +41,15 @@ public class Noise.FastView : Gtk.TreeView {
     private unowned SortCompareFunc compare_func;
     
     // search stuff
-    public delegate void ViewSearchFunc (string search, HashTable<int, Media> table, ref HashTable<int, Media> showing);
+    public delegate void ViewSearchFunc (string search, Gee.HashMap<int, Media> table, Gee.HashMap<int, Media> showing);
     private unowned ViewSearchFunc search_func;
     
     public signal void rows_reordered ();
     
-    public FastView (List<Type> types) {
-        columns = types.copy();
-        table = new HashTable<int, Media>(null, null);
-        showing = new HashTable<int, Media>(null, null);
-        fm = new FastModel(types);
-        
+    public FastView (Gee.Collection<Type> types) {
+        columns.add_all (types);
+        fm = new FastModel (types);
+
         sort_column_id = OPTIMAL_COLUMN;
         sort_direction = Gtk.SortType.ASCENDING;
         
@@ -62,13 +60,13 @@ public class Noise.FastView : Gtk.TreeView {
     }
     
     /** Should not be manipulated by client */
-    public unowned HashTable<int, Media> get_table() {
-        return table;
+    public Gee.Map<int, Media> get_table () {
+        return table.read_only_view;
     }
     
     /** Should not be manipulated by client */
-    public unowned HashTable<int, Media> get_visible_table() {
-        return showing;
+    public Gee.Map<int, Media> get_visible_table () {
+        return showing.read_only_view;
     }
     
     public static int get_index_from_iter(Gtk.TreeIter iter) {
@@ -83,8 +81,9 @@ public class Noise.FastView : Gtk.TreeView {
         fm.set_value_func(func);
     }
 
-    public void set_table (HashTable<int, Media> table, bool do_resort) {
-        this.table = table;
+    public void set_table (Gee.HashMap<int, Media> table, bool do_resort) {
+        this.table.clear ();
+        this.table.set_all (table);
         
         if (do_resort)
             resort (); // this also calls search
@@ -101,20 +100,20 @@ public class Noise.FastView : Gtk.TreeView {
             return;
 
         research_needed = false;
-        var old_size = showing.size();
+        var old_size = showing.size;
 
-        showing.remove_all();
-        search_func (search ?? "", table, ref showing);
+        showing.clear ();
+        search_func (search ?? "", table, showing);
 
-        if(showing.size() == old_size) {
+        if(showing.size == old_size) {
             fm.set_table(showing);
             queue_draw();
         } else if(old_size == 0) { // if first population, just do normal
             set_model(null);
             fm.set_table(showing);
             set_model(fm);
-        } else if(old_size > showing.size()) { // removing
-            while(fm.iter_n_children(null) > showing.size()) {
+        } else if(old_size > showing.size) { // removing
+            while(fm.iter_n_children(null) > showing.size) {
                 Gtk.TreeIter iter;
                 fm.iter_nth_child(out iter, null, fm.iter_n_children(null) - 1);
                 fm.remove(iter);
@@ -122,10 +121,10 @@ public class Noise.FastView : Gtk.TreeView {
             
             fm.set_table(showing);
             queue_draw();
-        } else if(showing.size() > old_size) { // adding
+        } else if(showing.size > old_size) { // adding
             Gtk.TreeIter iter;
             
-            while(fm.iter_n_children(null) < showing.size()) {
+            while(fm.iter_n_children(null) < showing.size) {
                 fm.append(out iter);
             }
             
@@ -161,11 +160,11 @@ public class Noise.FastView : Gtk.TreeView {
 
 #if HAVE_BUILTIN_SHUFFLE        
         if(column != SHUFFLE_COLUMN_ID)
-            quicksort(0, (int)(table.size() - 1));
+            quicksort(0, (int)(table.size - 1));
         else
             shuffle ();
 #else
-        quicksort (0, (int)table.size() - 1);
+        quicksort (0, (int)table.size - 1);
 #endif
         research_needed = true;
         do_search (null);
@@ -178,7 +177,7 @@ public class Noise.FastView : Gtk.TreeView {
 #if HAVE_BUILTIN_SHUFFLE
         if(sort_column_id != SHUFFLE_COLUMN_ID)
 #endif
-            quicksort(0, (int)(table.size() - 1));
+            quicksort(0, (int)(table.size - 1));
         
         
         research_needed = true;
@@ -220,7 +219,7 @@ public class Noise.FastView : Gtk.TreeView {
     protected void shuffle() {
         sort_column_id = SHUFFLE_COLUMN_ID;
         
-        int m = (int)table.size();
+        int m = table.size;
         int i;
         
         // While there remain elements to shuffle

@@ -19,14 +19,10 @@
 
 public class Noise.DataBaseUpdater : Object {
 
-    private Gee.LinkedList<Media> media_updates;
     private Gee.LinkedList<Object> to_remove;
-
-    private bool in_update_thread = false;
 
     public DataBaseUpdater () {
 
-        media_updates = new Gee.LinkedList<Media> ();
         to_remove = new Gee.LinkedList<Object> ();
 
         // Save on a regular basis and before exit
@@ -36,89 +32,30 @@ public class Noise.DataBaseUpdater : Object {
     }
 
     public async void removeItem (Object item) {
-        lock (to_remove) {
-            if (!to_remove.contains (item))
-                to_remove.offer (item);
-        }
+        if (!to_remove.contains (item))
+            to_remove.offer (item);
 
-        yield update_db_async ();
-    }
-
-    public async void update_media (Media s) {
-        lock (media_updates) {
-            if (!media_updates.contains (s))
-                media_updates.offer (s);
-        }
-
-        yield update_db_async ();
-    }
-
-    private async void update_db_async () {
-        // If many updates are being queued, we want to delay this as much as
-        // possible in order to use the same thread. For data safety reasons,
-        // we also want the main loop to trigger the update instead of the same
-        // thread which invoked the public method (remove_item, update_media, etc. )
-        Idle.add (update_db_async.callback);
-        yield;
-
-        // If an update thread is already running, just return, as the update
-        // will be handled there.
-        if (in_update_thread)
-            return;
-
-        message ("-- Starting database update.");
-
-        in_update_thread = true;
-
-        Threads.add (() => {
-            update_db_sync ();
-            Idle.add (update_db_async.callback);
-        });
-
-        yield;
-
-        in_update_thread = false;
-        message ("-- Finished database update.");
+        update_db_sync ();
     }
 
     private void update_db_sync () {
-        bool operation_done = false;
-
-        do {
-            operation_done = false;
-            
-            var dbm = DataBaseManager.get_default ();
-            lock (media_updates) {
-                if (media_updates.size > 0) {
-                    dbm.update_media (media_updates);
-                    media_updates.clear ();
-                    operation_done = true;
-                }
-            }
-
-            lock (to_remove) {
-                Object? next = to_remove.poll ();
-
-                if (next != null) {
-                    if (next is Gee.LinkedList) {
-                        dbm.remove_media (next as Gee.LinkedList<string>);
-                    } else if (next is StaticPlaylist) {
-                        dbm.remove_playlist (next as StaticPlaylist);
-                        dbm.remove_columns_state (next as StaticPlaylist, null);
-                    } else if (next is SmartPlaylist) {
-                        dbm.remove_smart_playlist (next as SmartPlaylist);
-                        dbm.remove_columns_state (null, next as SmartPlaylist);
-                    } else
-                        assert_not_reached ();
-
-                    operation_done = true;
-                }
-            }
-        } while (operation_done);
+        var dbm = DataBaseManager.get_default ();
+        for (Object? next = to_remove.poll (); next != null; next = to_remove.poll ()) {
+            if (next is Gee.Collection) {
+                dbm.remove_media (next as Gee.Collection<Media>);
+            } else if (next is StaticPlaylist) {
+                dbm.remove_playlist (next as StaticPlaylist);
+                dbm.remove_columns_state (next as StaticPlaylist, null);
+            } else if (next is SmartPlaylist) {
+                dbm.remove_smart_playlist (next as SmartPlaylist);
+                dbm.remove_columns_state (null, next as SmartPlaylist);
+            } else
+                assert_not_reached ();
+        }
     }
 
     private bool on_close_ui_save () {
-        var playlists_and_queue = new Gee.LinkedList<StaticPlaylist> ();
+        var playlists_and_queue = new Gee.TreeSet<StaticPlaylist> ();
         playlists_and_queue.add_all (libraries_manager.local_library.get_playlists ());
 
         playlists_and_queue.add (((LocalLibrary)libraries_manager.local_library).p_music);

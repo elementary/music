@@ -159,9 +159,6 @@ public class  Noise.Plugins.iPodStreamer : Noise.Playback, GLib.Object {
 
                 string title = "";
                 tag_list.get_string (Gst.Tags.TITLE, out title);
-                unowned Media media = App.player.media_info.media;
-                NotificationManager.get_default ().doSongNotification (media.album_artist + "\n" + title);
-
                 break;
             default:
                 break;

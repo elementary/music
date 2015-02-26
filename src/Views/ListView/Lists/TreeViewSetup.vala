@@ -28,7 +28,7 @@ public class Noise.TreeViewSetup : Object {
     public Gtk.SortType sort_direction { get; set; default = Gtk.SortType.ASCENDING; }
 
     private ViewWrapper.Hint hint;
-    private Gee.LinkedList<Gtk.TreeViewColumn> columns = new Gee.LinkedList<Gtk.TreeViewColumn> ();
+    private Gee.TreeSet<Gtk.TreeViewColumn> columns = new Gee.TreeSet<Gtk.TreeViewColumn> ();
 
     public TreeViewSetup (int sort_col, Gtk.SortType sort_dir, ViewWrapper.Hint hint) {
         set_hint (hint);
@@ -52,17 +52,13 @@ public class Noise.TreeViewSetup : Object {
         sort_direction = dir == ASCENDING_STRING ? Gtk.SortType.ASCENDING : Gtk.SortType.DESCENDING;
     }
 
-    public List<Gtk.TreeViewColumn> get_columns () {
+    public Gee.Collection<Gtk.TreeViewColumn> get_columns () {
         if (columns.size < 1 || columns.size != ListColumn.N_COLUMNS) {
             debug ("Creating a new TreeViewSetup for %s", get_hint ().to_string ());
             create_default_columns ();
         }
 
-        var rv = new List<Gtk.TreeViewColumn> ();
-        foreach (var tvc in columns)
-            rv.append (tvc);
-
-        return rv;
+        return columns.read_only_view;
     }
 
     /**
@@ -71,10 +67,9 @@ public class Noise.TreeViewSetup : Object {
      * Each column must have been created using create_column(), or bad things
      * will happen. E.g. columns_to_string() will not work.
      */
-    public void set_columns (List<Gtk.TreeViewColumn> cols) {
+    public void set_columns (Gee.Collection<Gtk.TreeViewColumn> cols) {
         columns.clear ();
-        foreach (var tvc in cols)
-            columns.add (tvc);
+        columns.add_all (cols);
     }
 
     /**
@@ -89,7 +84,7 @@ public class Noise.TreeViewSetup : Object {
      */
     public bool import_columns (string cols) {
         string[] col_strings = cols.split (COLUMN_SEP_STRING, 0);
-        var new_columns = new List<Gtk.TreeViewColumn> ();
+        var new_columns = new Gee.TreeSet<Gtk.TreeViewColumn> ();
 
         // the '-1' because col_strings has blank column at end
         for (int index = 0; index < col_strings.length - 1; ++index) {
@@ -101,7 +96,7 @@ public class Noise.TreeViewSetup : Object {
             if (visible_val != 1 && visible_val != 0)
                 return false;
 
-            new_columns.append (create_column (type, visible_val == 1));
+            new_columns.add (create_column (type, visible_val == 1));
         }
 
         set_columns (new_columns);

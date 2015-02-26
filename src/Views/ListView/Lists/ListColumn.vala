@@ -241,10 +241,10 @@ public enum Noise.ListColumn {
         assert_not_reached ();
     }
 
-    public static List<ListColumn> get_all () {
-        var list = new List<ListColumn> ();
+    public static Gee.Collection<ListColumn> get_all () {
+        var list = new Gee.LinkedList<ListColumn> ();
         for (int i = 0; i < N_COLUMNS; i++)
-            list.append ((ListColumn) i);
+            list.add ((ListColumn) i);
         return list;
     }
 }

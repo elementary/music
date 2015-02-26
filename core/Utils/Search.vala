@@ -56,7 +56,7 @@ namespace Noise.Search {
                                       int rating = -1,
                                       Cancellable? cancellable = null)
     {
-        results = new Gee.LinkedList<Media> ();
+        results = new Gee.TreeSet<Media> ();
 
         foreach (var media in to_search) {
             if (Utils.is_cancelled (cancellable))

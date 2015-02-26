@@ -38,7 +38,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public signal void current_cleared ();
 
     public signal void queue_cleared  ();
-    public signal void media_queued   (Gee.Collection<Media> queued);
+    public signal void media_queued (Gee.Collection<Media> queued);
 
     public signal void media_played (Media played_media);
     public signal void playback_stopped (int was_playing);
@@ -47,7 +47,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public signal void changing_player ();
     public signal void player_changed ();
 
-    private Gee.LinkedList<unowned Noise.Playback> playbacks = new Gee.LinkedList<unowned Noise.Playback> ();
+    private Gee.TreeSet<unowned Noise.Playback> playbacks = new Gee.TreeSet<unowned Noise.Playback> ();
 
     // id, media of current media.
     private Gee.HashMap<int, Media> _current = new Gee.HashMap<int, Media>();
@@ -131,13 +131,13 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         unqueue_media (library.medias_from_ids (ids));        
     }
 
-    public Media peek_queue() {
-        return queue_playlist.medias.peek_head();
+    public Media peek_queue () {
+        return queue_playlist.medias.peek_head ();
     }
     
     public Media poll_queue() {
         var m = queue_playlist.medias.poll_head ();
-        var unqueued = new Gee.LinkedList<Media> ();
+        var unqueued = new Gee.TreeSet<Media> ();
         unqueued.add (m);
         queue_playlist.media_removed (unqueued);
         return m;
@@ -190,14 +190,14 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
     
     public Media mediaFromCurrentIndex (int index_in_current) {
-        if(Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.OFF)
+        if (Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.OFF)
             return _current.get (index_in_current);
         else
             return _current_shuffled.get (index_in_current);
     }
     
     public Gee.Collection<Media> current_media () {
-        if(Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.OFF)
+        if (Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.OFF)
             return _current_shuffled.values;
         else
             return _current.values;
@@ -589,7 +589,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         });
     }
 
-    public void* change_gains_thread () {
+    public void change_gains_thread () {
         var equalizer_settings = Settings.Equalizer.get_default ();
         if (equalizer_settings.equalizer_enabled) {
             bool automatic_enabled = equalizer_settings.auto_switch_preset;
@@ -608,7 +608,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                         for(int i = 0; i < 10; ++i)
                             player.set_equalizer_gain(i, p.getGain(i));
                     
-                        return null;
+                        return;
                     }
                 }
             }
@@ -626,7 +626,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                         for(int i = 0; i < 10; ++i)
                             player.set_equalizer_gain(i, p.getGain(i));
                     
-                        return null;
+                        return;
                     }
                 }
             }
@@ -635,7 +635,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         for (int i = 0; i < 10; ++i)
             player.set_equalizer_gain(i, 0);
         
-        return null;
+        return;
     }
 
     public void stop_playback () {

@@ -42,7 +42,6 @@ set (CORE_SOURCE
   Utils/CompareFunctionHolder.vala
   Utils/Utils.vala
   Utils/PlaylistsUtils.vala
-  Utils/Threads.vala
   Utils/Icon.vala
   Utils/Icons.vala
   Utils/Search.vala

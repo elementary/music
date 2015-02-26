@@ -23,15 +23,11 @@
 using SQLHeavy;
 
 public class Noise.DataBaseManager : GLib.Object {
-
-    public signal void db_progress (string? message, double progress);
-
-    private SQLHeavy.Database database;
+    public SQLHeavy.Database database;
     private Transaction transaction; // the current sql transaction
 
     private int index = 0;
     private int item_count = 0;
-    public int max_id = 0;
 
     private static DataBaseManager? dbm = null;
 
@@ -60,7 +56,7 @@ public class Noise.DataBaseManager : GLib.Object {
                 error ("Could not create data directory: %s", err.message);
         }
 
-        string database_path = Path.build_filename (database_dir.get_path (), "database_0_2_0.db");
+        string database_path = Path.build_filename (database_dir.get_path (), "database_0_3_0.db");
         var database_file = File.new_for_path (database_path);
 
         bool new_db = !database_file.query_exists ();
@@ -105,46 +101,15 @@ public class Noise.DataBaseManager : GLib.Object {
     /**
      * Loads media from db
      */
-    public Gee.ArrayList<Media> load_media () {
+    public Gee.TreeSet<LocalMedia> load_media () {
         assert (database != null);
-        var rv = new Gee.ArrayList<Media>();
+        var rv = new Gee.TreeSet<LocalMedia>();
 
         try {
-            Query query = new Query (database, "SELECT * FROM `media`");
-
+            Query query = new Query (database, "SELECT `rowid` FROM `media`");
             for (var results = query.execute (); !results.finished; results.next()) {
-                var s = new Media (results.fetch_string (0));
-                s.file_size = (uint)results.fetch_int(1);
-                s.title = results.fetch_string(2);
-                s.artist = results.fetch_string(3);
-                s.composer = results.fetch_string(4);
-                s.album_artist = results.fetch_string(5);
-                s.album = results.fetch_string(6);
-                s.grouping = results.fetch_string(7);
-                s.genre = results.fetch_string(8);
-                s.comment = results.fetch_string(9);
-                s.lyrics = results.fetch_string(10);
-                s.has_embedded = (results.fetch_int(11) == 1);
-                s.year = (uint)results.fetch_int(12);
-                s.track = (uint)results.fetch_int(13);
-                s.track_count = (uint)results.fetch_int(14);
-                s.album_number = (uint)results.fetch_int(15);
-                s.album_count = (uint)results.fetch_int(16);
-                s.bitrate = (uint)results.fetch_int(17);
-                s.length = (uint)results.fetch_int(18);
-                s.samplerate = (uint)results.fetch_int(19);
-                s.rating = (uint)results.fetch_int(20);
-                s.play_count = (uint)results.fetch_int(21);
-                s.skip_count = (uint)results.fetch_int(22);
-                s.date_added = (uint)results.fetch_int(23);
-                s.last_played = (uint)results.fetch_int(24);
-                s.last_modified = (uint)results.fetch_int(25);
-                s.rowid = results.fetch_int(26);
-                
-                if (max_id < s.rowid)
-                    max_id = s.rowid;
-
-                rv.add(s);
+                var m = new LocalMedia (results.fetch_int ());
+                rv.add (m);
             }
         }
         catch (SQLHeavy.Error err) {
@@ -164,19 +129,19 @@ public class Noise.DataBaseManager : GLib.Object {
         }
     }
 
-    public void add_media (Gee.Collection<Media> media) {
+    public Gee.TreeSet<LocalMedia> add_media (Gee.Collection<Media> media) {
         assert (database != null);
+        var tree_set = new Gee.TreeSet<LocalMedia> ();
         try {
-            transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `media` (`uri`, `file_size`, `title`, `artist`, `composer`, `album_artist`,
+            Query query = new Query (database, """INSERT INTO `media` (`uri`, `file_size`, `title`, `artist`, `composer`, `album_artist`,
 `album`, `grouping`, `genre`, `comment`, `lyrics`, `has_embedded`, `year`, `track`, `track_count`, `album_number`, `album_count`,
-`bitrate`, `length`, `samplerate`, `rating`, `playcount`, `skipcount`, `dateadded`, `lastplayed`, `lastmodified`, `rowid`)
+`bitrate`, `length`, `samplerate`, `rating`, `playcount`, `skipcount`, `dateadded`, `lastplayed`, `lastmodified`)
 VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping,
 :genre, :comment, :lyrics, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate,
-:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :rowid);""");
+:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified);""");
 
             foreach (var s in media) {
-                if (s.rowid >= 0 && !s.isTemporary) {
+                if (!s.isTemporary) {
                     query.set_string(":uri", s.uri);
                     query.set_int(":file_size", (int)s.file_size);
                     query.set_string(":title", s.title);
@@ -203,27 +168,26 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
                     query.set_int(":dateadded", (int)s.date_added);
                     query.set_int(":lastplayed", (int)s.last_played);
                     query.set_int(":lastmodified", (int)s.last_modified);
-                    query.set_int(":rowid", s.rowid);
-
-                    query.execute();
+                    query.execute ();
+                    var local_media = new LocalMedia ((int)database.last_insert_id);
+                    tree_set.add (local_media);
                 }
             }
-
-            transaction.commit();
         }
         catch (SQLHeavy.Error err) {
             warning ("Could not save media: %s \n", err.message);
         }
+        return tree_set;
     }
 
-    public void remove_media (Gee.Collection<string> media) {
+    public void remove_media (Gee.Collection<Media> media) {
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("DELETE FROM `media` WHERE uri=:uri");
+            Query query = transaction.prepare ("DELETE FROM `media` WHERE rowid=:rowid");
 
             foreach (var m in media) {
-                query.set_string (":uri", m);
+                query.set_int (":rowid", m.rowid);
                 query.execute ();
             }
 
@@ -231,57 +195,6 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         }
         catch (SQLHeavy.Error err) {
             warning ("Could not remove media from db: %s\n", err.message);
-        }
-    }
-
-    public void update_media (Gee.Collection<Media> media) {
-        assert (database != null);
-        try {
-            transaction = database.begin_transaction();
-            Query query = transaction.prepare("""UPDATE `media` SET file_size=:file_size, title=:title, artist=:artist,
-composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics,
- has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number,
-album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount,
-dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=:rowid WHERE uri=:uri""");
-
-            foreach(Media s in media) {
-                if(s.rowid != -2 && s.rowid > 0) {
-                    query.set_string(":uri", s.uri);
-                    query.set_int(":file_size", (int)s.file_size);
-                    query.set_string(":title", s.title);
-                    query.set_string(":artist", s.artist);
-                    query.set_string(":composer", s.composer);
-                    query.set_string(":album_artist", s.album_artist);
-                    query.set_string(":album", s.album);
-                    query.set_string(":grouping", s.grouping);
-                    query.set_string(":genre", s.genre);
-                    query.set_string(":comment", s.comment);
-                    query.set_string(":lyrics", s.lyrics);
-                    query.set_int(":has_embedded", s.has_embedded ? 1 : 0);
-                    query.set_int(":year", (int)s.year);
-                    query.set_int(":track", (int)s.track);
-                    query.set_int(":track_count", (int)s.track_count);
-                    query.set_int(":album_number", (int)s.album_number);
-                    query.set_int(":album_count", (int)s.album_count);
-                    query.set_int(":bitrate", (int)s.bitrate);
-                    query.set_int(":length", (int)s.length);
-                    query.set_int(":samplerate", (int)s.samplerate);
-                    query.set_int(":rating", (int)s.rating);
-                    query.set_int(":playcount", (int)s.play_count);
-                    query.set_int(":skipcount", (int)s.skip_count);
-                    query.set_int(":dateadded", (int)s.date_added);
-                    query.set_int(":lastplayed", (int)s.last_played);
-                    query.set_int(":lastmodified", (int)s.last_modified);
-                    query.set_int(":rowid", s.rowid);
-
-                    query.execute();
-                }
-            }
-
-            transaction.commit();
-        }
-        catch(SQLHeavy.Error err) {
-            warning ("Could not update media: %s \n", err.message);
         }
     }
 
@@ -679,6 +592,40 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=
 
     /** SMART PLAYLISTS **/
 
+    private static const string QUERY_SEPARATOR = "<query_sep>";
+    private static const string VALUE_SEPARATOR = "<val_sep>";
+
+    /** temp_playlist should be in format of #,#,#,#,#, **/
+    public static Gee.LinkedList<SmartQuery> queries_from_string (string q) {
+        string[] queries_in_string = q.split(QUERY_SEPARATOR, 0);
+        int index;
+
+        var queries = new Gee.LinkedList<SmartQuery> ();
+        for(index = 0; index < queries_in_string.length - 1; index++) {
+            string[] pieces_of_query = queries_in_string[index].split(VALUE_SEPARATOR, 3);
+            pieces_of_query.resize (3);
+
+            SmartQuery sq = new SmartQuery();
+            sq.field = (SmartQuery.FieldType)int.parse(pieces_of_query[0]);
+            sq.comparator = (SmartQuery.ComparatorType)int.parse(pieces_of_query[1]);
+            sq.value = pieces_of_query[2];
+
+            queries.add (sq);
+        }
+
+        return queries;
+    }
+
+    // FIXME: This is an implementation detail and should not be present in the core.
+    public static string queries_to_string (Gee.Collection<SmartQuery> queries) {
+        string rv = "";
+        foreach (SmartQuery q in queries) {
+            rv += ((int)q.field).to_string () + VALUE_SEPARATOR + ((int)q.comparator).to_string() + VALUE_SEPARATOR + q.value + QUERY_SEPARATOR;
+        }
+
+        return rv;
+    }
+
     public void add_default_smart_playlists () {
         assert (database != null);
         try {
@@ -752,11 +699,11 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=
             Query query = new Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
-                SmartPlaylist p = new SmartPlaylist(libraries_manager.local_library.get_medias ());
+                SmartPlaylist p = new SmartPlaylist (libraries_manager.local_library);
 
                 p.name = results.fetch_string(0);
                 p.conditional = (SmartPlaylist.ConditionalType)results.fetch_int(1);
-                p.queries_from_string(results.fetch_string(2));
+                p.add_queries (queries_from_string(results.fetch_string (2)));
                 p.limit = ( results.fetch_string(3) == "1") ? true : false;
                 p.limit_amount = results.fetch_int(4);
 
@@ -780,7 +727,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=
             foreach(SmartPlaylist s in smarts) {
                 query.set_string(":name", s.name);
                 query.set_int(":and_or", (int)s.conditional);
-                query.set_string(":queries", s.queries_to_string());
+                query.set_string(":queries", queries_to_string (s.get_queries ()));
                 query.set_int(":limit", ( s.limit ) ? 1 : 0);
                 query.set_int(":limit_amount", s.limit_amount);
 
@@ -788,8 +735,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=
             }
 
             transaction.commit();
-        }
-        catch(SQLHeavy.Error err) {
+        } catch (SQLHeavy.Error err) {
             warning ("Could not save smart playlists: %s \n", err.message);
         }
     }
@@ -799,24 +745,24 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=
         if (old_name == null) {
             remove_smart_playlist (p);
         } else {
-            var sp = new SmartPlaylist (new Gee.LinkedList<Media>());
+            var sp = new SmartPlaylist (libraries_manager.local_library);
             sp.name = old_name;
             remove_smart_playlist (sp);
         }
+
         try {
             transaction = database.begin_transaction();
             Query query = transaction.prepare("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
 
             query.set_string(":name", p.name);
             query.set_int(":and_or", (int)p.conditional);
-            query.set_string(":queries", p.queries_to_string());
+            query.set_string(":queries", queries_to_string (p.get_queries ()));
             query.set_int(":limit", ( p.limit ) ? 1 : 0);
             query.set_int(":limit_amount", p.limit_amount);
 
             query.execute();
             transaction.commit();
-        }
-        catch(SQLHeavy.Error err) {
+        } catch(SQLHeavy.Error err) {
             warning ("Could not update smart playlist: %s \n", err.message);
         }
     }
@@ -831,8 +777,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=
             query.execute();
 
             transaction.commit();
-        }
-        catch (SQLHeavy.Error err) {
+        } catch (SQLHeavy.Error err) {
             warning ("Could not remove smart playlist from db: %s\n", err.message);
         }
     }
@@ -874,8 +819,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=
 
                 rv.add (dp);
             }
-        }
-        catch (SQLHeavy.Error err) {
+        } catch (SQLHeavy.Error err) {
             warning ("Could not load devices from db: %s\n", err.message);
         }
 
@@ -924,8 +868,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, rowid=
             }
 
             transaction.commit();
-        }
-        catch(SQLHeavy.Error err) {
+        } catch (SQLHeavy.Error err) {
             warning ("Could not save devices: %s\n", err.message);
         }
     }

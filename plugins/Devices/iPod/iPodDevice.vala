@@ -63,7 +63,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
 
     public void finish_initialization () {
-        library.finish_initialization_thread.begin ();
+        library.finish_initialization_async.begin ();
     }
 
     public string getEmptyDeviceTitle () {
