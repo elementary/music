@@ -40,11 +40,17 @@ public class Noise.TopDisplay : Gtk.Stack {
     Gtk.Button cancelButton;
 
     private bool is_seeking = false;
-    private uint timeout_id = 0;
+    private uint change_timeout_id = 0;
+    private uint progress_timeout_id = 0;
 
     public signal void scale_value_changed (Gtk.ScrollType scroll, double val);
 
     public TopDisplay () {
+        
+    }
+
+    construct {
+        /* GUI */
         transition_type = Gtk.StackTransitionType.CROSSFADE;
 
         time_grid = new Gtk.Grid ();
@@ -105,6 +111,8 @@ public class Noise.TopDisplay : Gtk.Stack {
         add_named (empty_grid, "empty");
         show_all ();
         set_visible_child (empty_grid);
+
+        /* signals */
 
         cancelButton.clicked.connect (() => {
             NotificationManager.get_default ().progress_canceled ();
@@ -227,15 +235,16 @@ public class Noise.TopDisplay : Gtk.Stack {
         scale.set_value(val);
         scale_value_changed(scroll, val);
 
-        if (timeout_id > 0)
-            Source.remove (timeout_id);
+        if (change_timeout_id > 0)
+            Source.remove (change_timeout_id);
 
-        timeout_id = Timeout.add (300, () => {
+        change_timeout_id = Timeout.add (300, () => {
             if (!is_seeking) {
                 App.player.player.set_position((int64) TimeUtils.miliseconds_to_nanoseconds ((uint) val));
                 App.player.player.current_position_update.connect(player_position_update);
             }
 
+            change_timeout_id = 0;
             return false;
         });
 
@@ -245,6 +254,18 @@ public class Noise.TopDisplay : Gtk.Stack {
     public virtual void player_position_update (int64 position) {
         if (App.player.media_info.media != null) {
             scale.set_value ((double) TimeUtils.nanoseconds_to_miliseconds (position));
+        }
+    }
+
+    public void set_media (Media current_media) {
+        update_current_media ();
+        // If the media changes while an action is goind, show it for 5 seconds then come back to the action.
+        if (progressbar.fraction >= 0.0 && progressbar.fraction < 1.0) {
+            progress_timeout_id = Timeout.add (300, () => {
+                update_view ();
+                progress_timeout_id = 0;
+                return false;
+            });
         }
     }
 
@@ -276,17 +297,6 @@ public class Noise.TopDisplay : Gtk.Stack {
             set_visible_child (time_eventbox);
         } else {
             set_visible_child (empty_grid);
-        }
-    }
-
-    public void set_media (Media current_media) {
-        update_current_media ();
-        // If the media changes while an action is goind, show it for 5 seconds then come back to the action.
-        if (progressbar.fraction >= 0.0 && progressbar.fraction < 1.0) {
-            Timeout.add (300, () => {
-                update_view ();
-                return false;
-            });
         }
     }
 }

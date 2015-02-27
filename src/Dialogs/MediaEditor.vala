@@ -86,7 +86,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
         else
             lyricsText = null;
 
-        var arrows = new Granite.Widgets.NavigationArrows ();
+        var arrows = new Noise.Widgets.NavigationArrows ();
 
         save_button = new Gtk.Button.with_label (_(STRING_SAVE));
         save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);

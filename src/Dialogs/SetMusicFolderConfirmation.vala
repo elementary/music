@@ -21,9 +21,11 @@
  */
 
 public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
+    public signal void finished (bool response);
+
     string folder_path;
 
-    private Gtk.Grid content;
+    Gtk.Grid content;
 
     Gtk.Button savePlaylists;
     Gtk.Button ok;
@@ -32,19 +34,16 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
     Gtk.Image is_finished;
     Gtk.Spinner is_working;
 
-    public signal void finished(bool response);
-
-    public SetMusicFolderConfirmation(string path) {
+    public SetMusicFolderConfirmation (string path) {
         folder_path = path;
 
         // set the size based on saved gconf settings
-        //this.window_position = WindowPosition.CENTER;
+        this.window_position = Gtk.WindowPosition.CENTER;
         this.set_modal (true);
         this.set_transient_for (App.main_window);
         this.destroy_with_parent = true;
         this.deletable = false;
 
-        //set_default_size(250, -1);
         resizable = false;
 
         content = new Gtk.Grid ();
@@ -71,19 +70,19 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
         info.set_markup (_("Are you sure you want to set the music folder to %s? This will reset your library and remove your playlists.").printf ("<b>" + String.escape (path) + "</b>"));
 
         // save playlist hbox
-        var playlistBox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 6);
-        playlistBox.pack_start(savePlaylists, true, true, 0);
-        playlistBox.pack_end(is_finished, false, false, 0);
-        playlistBox.pack_end(is_working, false, false, 0);
+        var playlistBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+        playlistBox.pack_start (savePlaylists, true, true, 0);
+        playlistBox.pack_end (is_finished, false, false, 0);
+        playlistBox.pack_end (is_working, false, false, 0);
 
-        var bottomButtons = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-        bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
-        bottomButtons.pack_start(playlistBox, false, false, 0);
-        bottomButtons.pack_end(cancel, false, false, 0);
-        bottomButtons.pack_end(ok, false, false, 0);
-        bottomButtons.set_spacing(10);
+        var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        bottomButtons.layout_style = Gtk.ButtonBoxStyle.END;
+        bottomButtons.spacing = 12;
+        bottomButtons.pack_start (playlistBox, false, false, 0);
+        bottomButtons.pack_end (cancel, false, false, 0);
+        bottomButtons.pack_end (ok, false, false, 0);
 
-        ((Gtk.ButtonBox)bottomButtons).set_child_secondary(playlistBox, true);
+        ((Gtk.ButtonBox)bottomButtons).set_child_secondary (playlistBox, true);
 
         content.attach (warning, 0, 0, 1, 2);
         content.attach (title, 1, 0, 1, 1);
@@ -91,11 +90,11 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
         content.attach (bottomButtons, 0, 2, 2, 1);
 
         var local_library = libraries_manager.local_library;
-        savePlaylists.set_sensitive(!local_library.get_medias ().is_empty && local_library.playlist_count_without_read_only () > 0);
+        savePlaylists.set_sensitive (!local_library.get_medias ().is_empty && local_library.playlist_count_without_read_only () > 0);
 
-        savePlaylists.clicked.connect(savePlaylistsClicked);
-        cancel.clicked.connect(cancel_clicked);
-        ok.clicked.connect(ok_clicked);
+        savePlaylists.clicked.connect (savePlaylistsClicked);
+        cancel.clicked.connect (cancel_clicked);
+        ok.clicked.connect (ok_clicked);
 
         get_content_area ().add (content);
         show_all ();
@@ -103,48 +102,44 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
         is_working.hide ();
     }
 
-    public void savePlaylistsClicked() {
+    public void savePlaylistsClicked () {
         string folder = "";
         var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,
                                   Gtk.FileChooserAction.SELECT_FOLDER,
                                   _(STRING_CANCEL), Gtk.ResponseType.CANCEL,
                                   _(STRING_OPEN), Gtk.ResponseType.ACCEPT);
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-            folder = file_chooser.get_filename();
+            folder = file_chooser.get_filename ();
         }
 
         file_chooser.destroy ();
 
-        if(folder != "") {
-            is_working.show();
-            is_finished.hide();
+        if (folder != "") {
+            is_working.show ();
+            is_finished.hide ();
 
             // foreach playlist in lm.playlists(), save to (p.name).m3u
             var success = true;
-            foreach(var p in libraries_manager.local_library.get_playlists()) {
-                if(!Noise.PlaylistsUtils.save_playlist_m3u(p, folder, ""))
+            foreach (var p in libraries_manager.local_library.get_playlists ()) {
+                if (!Noise.PlaylistsUtils.save_playlist_m3u(p, folder, ""))
                     success = false;
             }
 
-            is_working.hide();
-            is_finished.show();
-
+            is_working.hide ();
+            is_finished.show ();
             var process_completed_icon = Icons.PROCESS_COMPLETED.render (Gtk.IconSize.MENU);
             var process_error_icon = Icons.PROCESS_ERROR.render (Gtk.IconSize.MENU);
-
-            is_finished.set_from_pixbuf(success ? process_completed_icon : process_error_icon);
+            is_finished.set_from_pixbuf (success ? process_completed_icon : process_error_icon);
         }
     }
 
-    public void cancel_clicked() {
-        finished(false);
-
-        this.destroy();
+    public void cancel_clicked () {
+        finished (false);
+        this.destroy ();
     }
 
-    public void ok_clicked() {
-        finished(true);
-
-        this.destroy();
+    public void ok_clicked () {
+        finished (true);
+        this.destroy ();
     }
 }

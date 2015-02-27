@@ -21,14 +21,13 @@
  */
 
 public class Noise.RemoveFilesDialog : Gtk.Dialog {
+    public signal void remove_media(bool response);
 
     private Gtk.Box content;
 
     private Gtk.Button remove_button;
     private Gtk.Button trash_button;
     private Gtk.Button cancel_button;
-
-    public signal void remove_media(bool response);
 
     public RemoveFilesDialog (Gee.Collection<Media> to_remove, ViewWrapper.Hint media_type) {
         var app_name = ((Noise.App) GLib.Application.get_default ()).get_name ();

@@ -58,9 +58,6 @@ public class Noise.Album : Object {
     private Gee.HashSet<Media> media = new Gee.HashSet<Media> ();
 
     ~Album () {
-        foreach (var m in media) {
-            m.album_info = null;
-        }
         media.clear ();
     }
 

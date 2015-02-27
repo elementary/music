@@ -16,12 +16,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-public class Granite.Widgets.NavigationArrows : Gtk.Box {
-    private const string PREVIOUS_ICON = "go-previous";
-    private const string NEXT_ICON = "go-next";
-    private const string PREVIOUS_ICON_SYMBOLIC = "go-previous-symbolic";
-    private const string NEXT_ICON_SYMBOLIC = "go-next-symbolic";
-
+public class Noise.Widgets.NavigationArrows : Gtk.Box {
     public signal void previous_clicked ();
     public signal void next_clicked ();
 
@@ -38,38 +33,29 @@ public class Granite.Widgets.NavigationArrows : Gtk.Box {
     private Gtk.Button previous_button;
     private Gtk.Button next_button;
 
+    public NavigationArrows () {
+        
+    }
 
-    public NavigationArrows (bool symbolic = true) {
+    construct {
         orientation = Gtk.Orientation.HORIZONTAL;
-        homogeneous = true;
         spacing = 0;
-
+        homogeneous = true;
         can_focus = false;
 
-        previous_button = new Gtk.Button ();
-        var previous_icon_name = symbolic ? PREVIOUS_ICON_SYMBOLIC : PREVIOUS_ICON;
-        var previous_image = new Gtk.Image.from_icon_name (previous_icon_name, Gtk.IconSize.MENU);
-        previous_button.set_image (previous_image);
-
-        previous_button.clicked.connect ( () => {
+        previous_button = new Gtk.Button.from_icon_name ("go-previous-symbolic", Gtk.IconSize.BUTTON);
+        previous_button.clicked.connect (() => {
             previous_clicked ();
         });
 
-        next_button = new Gtk.Button ();
-        var next_icon_name = symbolic ? NEXT_ICON_SYMBOLIC : NEXT_ICON;
-        var next_image = new Gtk.Image.from_icon_name (next_icon_name, Gtk.IconSize.MENU);
-        next_button.set_image (next_image);
-
+        next_button = new Gtk.Button.from_icon_name ("go-next-symbolic", Gtk.IconSize.BUTTON);
         next_button.clicked.connect ( () => {
             next_clicked ();
         });
 
         add (previous_button);
         add (next_button);
-
-        var style = get_style_context ();
-        style.add_class (Gtk.STYLE_CLASS_LINKED);
-        style.add_class ("raised"); // Needed for toolbars
+        get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
 
         show_all ();
     }

@@ -1118,7 +1118,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public void editPreferencesClick() {
         if (preferences == null)
-            preferences = new PreferencesWindow(this);
+            preferences = new PreferencesWindow ();
         preferences.show_all ();
         preferences.run ();
         preferences = null;
