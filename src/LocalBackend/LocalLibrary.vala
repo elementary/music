@@ -56,7 +56,6 @@ public class Noise.LocalLibrary : Library {
     private Gee.TreeSet<Media> open_media_list;
 
     private bool _doing_file_operations = false;
-    private bool _opening_file = false;
 
     public LocalLibrary () {
         libraries_manager.local_library = this;
@@ -269,22 +268,29 @@ public class Noise.LocalLibrary : Library {
     }
 
     public void play_files (File[] files) {
-        _opening_file = true;
         tagger.media_imported.connect (media_opened_imported);
-        tagger.queue_finished.connect (() => {_opening_file = false;});
-        var files_list = new Gee.LinkedList<string> ();
+        tagger.queue_finished.connect (media_opened_finished);
+        var files_list = new Gee.TreeSet<string> ();
         foreach (var file in files) {
             files_list.add (file.get_uri ());
         }
 
-        tagger.discoverer_import_media (files_list);
+        var found = medias_from_uris (files_list);
+        foreach (var m in found) {
+            files_list.remove (m.uri);
+        }
+
+        open_media_list.add_all (found);
+        if (files_list.is_empty) {
+            media_opened_finished ();
+        } else {
+            tagger.discoverer_import_media (files_list);
+        }
     }
 
     private void media_opened_imported (Media m) {
         m.isTemporary = true;
         open_media_list.add (m);
-        if (!_opening_file)
-            media_opened_finished ();
     }
 
     private void media_opened_finished () {
@@ -297,12 +303,17 @@ public class Noise.LocalLibrary : Library {
                 string primary_text = _("Added to your queue:");
 
                 var secondary_text = new StringBuilder ();
-                var first = open_media_list.first ();
-                secondary_text.append (first.get_display_title ());
-                secondary_text.append ("\n");
-                secondary_text.append (first.get_display_artist ());
+                Gdk.Pixbuf? pixbuf = null;
+                if (open_media_list.size == 1) {
+                    var first = open_media_list.first ();
+                    pixbuf = CoverartCache.instance.get_original_cover (first).scale_simple (128, 128, Gdk.InterpType.HYPER);
+                    secondary_text.append (first.get_display_title ());
+                    secondary_text.append ("\n");
+                    secondary_text.append (first.get_display_artist ());
+                } else {
+                    secondary_text.append (ngettext ("%d Track", "%d Tracks", open_media_list.size).printf (open_media_list.size));
+                }
 
-                Gdk.Pixbuf? pixbuf = CoverartCache.instance.get_original_cover (first).scale_simple (128, 128, Gdk.InterpType.HYPER);
 #if HAVE_LIBNOTIFY
                 App.main_window.show_notification (primary_text, secondary_text.str, pixbuf, Notify.Urgency.LOW);
 #else

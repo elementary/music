@@ -28,7 +28,7 @@ public class Noise.TreeViewSetup : Object {
     public Gtk.SortType sort_direction { get; set; default = Gtk.SortType.ASCENDING; }
 
     private ViewWrapper.Hint hint;
-    private Gee.TreeSet<Gtk.TreeViewColumn> columns = new Gee.TreeSet<Gtk.TreeViewColumn> ();
+    private Gee.LinkedList<Gtk.TreeViewColumn> columns = new Gee.LinkedList<Gtk.TreeViewColumn> ();
 
     public TreeViewSetup (int sort_col, Gtk.SortType sort_dir, ViewWrapper.Hint hint) {
         set_hint (hint);
