@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-02-26 16:43+0000\n"
+"PO-Revision-Date: 2015-02-28 01:31+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-27 05:45+0000\n"
+"X-Launchpad-Export-Date: 2015-02-28 06:02+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -200,7 +200,7 @@ msgstr "%s (%d)"
 
 #: ../core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr ""
+msgstr "Listë riprodhimi e re"
 
 #: ../core/Utils/PlaylistsUtils.vala:246
 msgid "%s (%i)"
@@ -208,7 +208,7 @@ msgstr "%s (%i)"
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr ""
+msgstr "Ekporto listën e riprodhimit"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
@@ -220,7 +220,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr ""
+msgstr "Lista e riprodhimit"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
@@ -516,7 +516,7 @@ msgstr "Mos importo"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:88
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "Importo %i elemente nga %s"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:92
 msgid "Import %s from %s"
@@ -586,7 +586,7 @@ msgstr "Zgjidh dosjen e muzikës"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
 msgid "Export Playlists"
-msgstr ""
+msgstr "Eksporto listat e riprodhimit"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
 msgid "Set Music Folder"
@@ -635,7 +635,7 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:49
 #: ../src/Dialogs/SmartPlaylistEditor.vala:57
 msgid "Name of Playlist"
-msgstr ""
+msgstr "Emri i listës së riprodhimit"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:50
 #: ../src/Dialogs/SmartPlaylistEditor.vala:58
@@ -649,7 +649,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Playlist Title"
-msgstr ""
+msgstr "Titulli i listës së riprodhimit"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:69
 msgid "Match"
@@ -878,7 +878,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Duke përditësuar listën e riprodhimit. Ju lutem prisni."
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
@@ -1134,7 +1134,7 @@ msgstr "Shtoje në radhë"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:128
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Shto në një listë riprodhimi"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:130
 #: ../src/Widgets/SourceListView.vala:148
@@ -1143,7 +1143,7 @@ msgstr "Importo në librari"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:214
 msgid "New Playlist…"
-msgstr ""
+msgstr "Listë riprodhimi e re..."
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:258
 msgid "Import %i of %i selected songs"
@@ -1419,7 +1419,7 @@ msgstr ""
 #: ../src/Widgets/SourceListView.vala:161
 #: ../src/Widgets/SourceListView.vala:201
 msgid "New Playlist"
-msgstr ""
+msgstr "Listë riprodhimi e re"
 
 #: ../src/Widgets/SourceListView.vala:166
 #: ../src/Widgets/SourceListView.vala:202
@@ -1432,7 +1432,7 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:203
 msgid "Import Playlists"
-msgstr ""
+msgstr "Importo lista riprodhimi"
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
@@ -1448,7 +1448,7 @@ msgstr "Rrjeti"
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
 msgid "Playlists"
-msgstr ""
+msgstr "Lista riprodhimi"
 
 #: ../src/Widgets/PresetList.vala:48
 msgid "Delete Current"
@@ -1536,7 +1536,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:135 ../src/Widgets/StatusBar.vala:146
 msgid "Add Playlist"
-msgstr ""
+msgstr "Shto listë riprodhimi"
 
 #: ../src/Widgets/StatusBar.vala:147
 msgid "Add Smart Playlist"
