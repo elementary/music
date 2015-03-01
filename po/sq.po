@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-02-28 01:31+0000\n"
+"PO-Revision-Date: 2015-02-28 13:09+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-28 06:02+0000\n"
+"X-Launchpad-Export-Date: 2015-03-01 05:25+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -106,23 +106,23 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Rock"
-msgstr ""
+msgstr "Rock"
 
 #: ../core/GStreamer/Equalizer.vala:90
 msgid "Soft"
-msgstr ""
+msgstr "E lehtë"
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Ska"
-msgstr ""
+msgstr "Ska"
 
 #: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft Rock"
-msgstr ""
+msgstr "Rock i lehtë"
 
 #: ../core/GStreamer/Equalizer.vala:93
 msgid "Techno"
-msgstr ""
+msgstr "Techno"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -228,7 +228,7 @@ msgstr "Importo %s"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Listë riprodhimi e panjohur. Importimi dështoi."
 
 #: ../core/Utils/FileUtils.vala:280
 msgid " (%d)"
@@ -300,6 +300,10 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Për të shtuar një këngë në radhë, përdor <b>klikimin e djathtë</b> mbi një "
+"element dhe zgjidh <b>Shtoje në radhë</b>. Kur një këngë mbaron, këngët në "
+"radhë do të riprodhohen para këngës pasardhëse në listën aktuale të "
+"riprodhimit."
 
 #: ../src/LibraryWindow.vala:890 ../src/DataBase/DataBaseManager.vala:556
 #: ../src/LocalLibrary.vala:104 ../src/PlaybackManager.vala:97
@@ -316,6 +320,10 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Pasi një pjesë e një këngë riprodhohet, ajo shtohet në listën e "
+"kronologjisë.\n"
+"Mund të përdorësh këtë listë për të parë të gjitha këngët që janë riprodhuar "
+"gjatë seancës aktuale."
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
@@ -336,7 +344,7 @@ msgstr "Detaje"
 
 #: ../src/Dialogs/MediaEditor.vala:88 ../src/Dialogs/MediaEditor.vala:372
 msgid "Lyrics"
-msgstr ""
+msgstr "Teksti"
 
 #: ../src/Dialogs/MediaEditor.vala:97 ../src/Dialogs/PreferencesWindow.vala:96
 msgid "Close"
@@ -422,7 +430,7 @@ msgstr "Teksti i \"%s\" nuk u gjet"
 
 #: ../src/Dialogs/MediaEditor.vala:632
 msgid "Reset"
-msgstr ""
+msgstr "Rivendos"
 
 #: ../src/Dialogs/MediaEditor.vala:636
 msgid "<b>Stats</b>"
@@ -442,7 +450,7 @@ msgstr "Vendndodhja e dosjes së muzikës:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:146
 msgid "Library Management:"
-msgstr ""
+msgstr "Menaxhimi i librarisë:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:153
 msgid "Keep Music folder organized:"
@@ -601,6 +609,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"A je i sigurt që do të vendosësh dosjen e muzikës në %s? Kjo do të rivendosë "
+"librarinë tënde dhe do të heqë listat tuaja të riprodhimit."
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
@@ -645,7 +655,7 @@ msgstr "Rregullat"
 #: ../src/Dialogs/SmartPlaylistEditor.vala:51
 #: ../src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "Options"
-msgstr ""
+msgstr "Mundësitë"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Playlist Title"
@@ -653,7 +663,7 @@ msgstr "Titulli i listës së riprodhimit"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:69
 msgid "Match"
-msgstr ""
+msgstr "Përputhet me"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:71
 msgid "any"
@@ -665,7 +675,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:77
 msgid "of the following:"
-msgstr ""
+msgstr "nga sa vijojnë:"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Add"
@@ -673,11 +683,11 @@ msgstr "Shto"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
-msgstr ""
+msgstr "Kufizoje me"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:96
 msgid "items"
-msgstr ""
+msgstr "elemente"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:258
 #: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
@@ -856,13 +866,16 @@ msgstr ""
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 msgid "No Songs"
-msgstr ""
+msgstr "Asnjë këngë"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Për të shtuar ndonjë këngë në këtë listë riprodhimi, përdor <b>klikimin e "
+"djathtë</b> mbi një element dhe zgjidh <b> Shtoje në një listë "
+"riprodhimi</b>."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
@@ -875,6 +888,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Kjo listë riprodhimi do të mbushet vetvetishëm me këngë që përputhem me "
+"rregullat e saja. Për të ndryshuar këto rregulla, përdor <b>klikimin e "
+"djathtë</b> mbi të në shiritin anësor dhe kliko <b>Ndrysho</b>. Ose, mund të "
+"klikosh mbi butonin e mëposhtëm."
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
@@ -931,6 +948,7 @@ msgstr ""
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
+"Nuk u gjetën këngë në këtë pajisje që nuk janë tashmë në librarinë tënde."
 
 #: ../src/Views/ContentView.vala:21
 msgctxt ""
@@ -940,7 +958,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
-msgstr ""
+msgstr "Nuk u gjet asnjë këngë."
 
 #: ../src/Views/ListView/ListView.vala:366
 msgid "%i track"
@@ -1134,7 +1152,7 @@ msgstr "Shtoje në radhë"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:128
 msgid "Add to Playlist"
-msgstr "Shto në një listë riprodhimi"
+msgstr "Shtoje në një listë riprodhimi"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:130
 #: ../src/Widgets/SourceListView.vala:148
@@ -1332,7 +1350,7 @@ msgstr "Pajisja është e zënë."
 #: ../src/DataBase/DataBaseManager.vala:452
 #: ../src/DataBase/DataBaseManager.vala:688
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Këngët e preferuara"
 
 #: ../src/DataBase/DataBaseManager.vala:459
 #: ../src/DataBase/DataBaseManager.vala:695
@@ -1342,7 +1360,7 @@ msgstr "Të shtuara së fundmi"
 #: ../src/DataBase/DataBaseManager.vala:475
 #: ../src/DataBase/DataBaseManager.vala:711
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Të preferuar së fundmi"
 
 #: ../src/DataBase/DataBaseManager.vala:482
 #: ../src/DataBase/DataBaseManager.vala:718
@@ -1592,14 +1610,17 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Nuk ka ndonjë këngë të ngjashme me këngën aktuale në librarinë tënde. "
+"Sigurohu që informacionet e të gjitha këngëve janë të sakta dhe që të jeni "
+"të lidhur me internet. Disa këngë mund të mos kenë përputhje."
 
 #: ../plugins/LastFM/SimilarMedia.vala:42
 msgid "Similar"
-msgstr ""
+msgstr "Të ngjashme"
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
-msgstr ""
+msgstr "Jepi lejen programit %s"
 
 #: ../plugins/LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
@@ -1634,6 +1655,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"Për të lejuar integrimin me Last.fm, duhet të japësh lejen programit %s. Kjo "
+"nevojitet vetëm një herë."
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:70
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
@@ -1726,6 +1749,8 @@ msgstr ""
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"Programi nuk mundi të gjejë ndonjë këngë në CD. Asnjë këngë nuk mund të "
+"importohet"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:357
 msgid "Importation of a song from Audio CD finished."
