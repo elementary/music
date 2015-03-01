@@ -18,18 +18,13 @@
  */
 
 public class Noise.SimilarMediasWidget : Gtk.Grid {
-
     public LastFM.Core lfm;
-    
+
     private Gtk.ScrolledWindow scroll;
-    
     private LoveBanButtons love_ban_buttons;
-    private Noise.MediaInfo media_info;
-    
     private SimilarMediasView ssv;
-    
     bool similars_fetched;
-    
+
     public SimilarMediasWidget (LastFM.Core core) {
         ssv = new SimilarMediasView();
         lfm = core;
@@ -57,11 +52,6 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         scroll.add (ssv);
         scroll.set_hexpand (true);
         scroll.set_vexpand (true);
-        
-        media_info = new MediaInfo();
-        media_info.track = new TrackInfo();
-        media_info.artist = new ArtistInfo();
-        media_info.album = new AlbumInfo();
 
         this.attach (love_ban_buttons, 0, 0, 1, 1);
         this.attach (scroll, 0, 1, 1, 1);
@@ -107,11 +97,11 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
     }
     
     private void love_ban_buttons_changed () {
-        if (App.player.media_info == null || App.player.media_info.media == null)
+        if (App.player.current_media == null)
             return;
 
-        var title = App.player.media_info.media.title;
-        var artist = App.player.media_info.media.artist;
+        var title = App.player.current_media.title;
+        var artist = App.player.current_media.artist;
 
         if (love_ban_buttons.mode == LoveBanButtons.Mode.LOVE)
             lfm.loveTrack (title, artist);

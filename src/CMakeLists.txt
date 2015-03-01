@@ -5,10 +5,6 @@ set(CLIENT_SOURCE
     PlaybackManager.vala
     FileOperator.vala
     Objects/LyricFetcher.vala
-    Objects/MediaInfo.vala
-    Objects/AlbumInfo.vala
-    Objects/ArtistInfo.vala
-    Objects/TrackInfo.vala
     Objects/MediaArtCache.vala
     Objects/CoverartCache.vala
     Objects/MediaKeyListener.vala

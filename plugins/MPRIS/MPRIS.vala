@@ -160,7 +160,7 @@ public class MprisPlayer : GLib.Object {
     }
 
     private void refresh_current_media () {
-        var current_media = Noise.App.player.media_info.media;
+        var current_media = Noise.App.player.current_media;
         if (current_media != null)
             on_media_played (current_media);
     }
@@ -185,7 +185,7 @@ public class MprisPlayer : GLib.Object {
     }
 
     private void on_media_played (Noise.Media? s) {
-        if (s != Noise.App.player.media_info.media)
+        if (s != Noise.App.player.current_media)
             return;
 
         update_metadata (s);
@@ -285,7 +285,7 @@ public class MprisPlayer : GLib.Object {
         owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
             if(Noise.App.player.playing)
                 return "Playing";
-            else if(!Noise.App.player.playing && Noise.App.player.media_info.media == null)
+            else if(!Noise.App.player.playing && Noise.App.player.current_media == null)
                 return "Stopped";
             else if(!Noise.App.player.playing)
                 return "Paused";
@@ -359,7 +359,7 @@ public class MprisPlayer : GLib.Object {
     
     public HashTable<string,Variant>? Metadata { //a{sv}
         owned get {
-            update_metadata (Noise.App.player.media_info.media);
+            update_metadata (Noise.App.player.current_media);
             return _metadata;
         }
     }

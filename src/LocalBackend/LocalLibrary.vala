@@ -679,7 +679,7 @@ public class Noise.LocalLibrary : Library {
         var toRemove = new Gee.TreeSet<Media> ();
         toRemove.add_all (to_remove);
         foreach (var s in toRemove) {
-            if (s == App.player.media_info.media)
+            if (s == App.player.current_media)
                 App.player.stop_playback ();
         }
 

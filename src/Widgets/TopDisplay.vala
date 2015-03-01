@@ -95,8 +95,8 @@ public class Noise.TopDisplay : Gtk.Stack {
         time_eventbox.button_press_event.connect ((e) => {
             if (e.button == Gdk.BUTTON_SECONDARY) {
                 var current = new Gee.TreeSet<Media> ();
-                if (App.player.media_info.media != null)
-                    current.add (App.player.media_info.media);
+                if (App.player.current_media != null)
+                    current.add (App.player.current_media);
                 list_view.popup_media_menu (current);
                 return true;
             }
@@ -224,7 +224,7 @@ public class Noise.TopDisplay : Gtk.Stack {
         uint elapsed_secs = (uint)val;
         leftTime.set_text (TimeUtils.pretty_length_from_ms (elapsed_secs));
 
-        uint media_duration_secs = (uint)App.player.media_info.media.length;
+        uint media_duration_secs = (uint)App.player.current_media.length;
 
         //make pretty remaining time
         rightTime.set_text (TimeUtils.pretty_length_from_ms (media_duration_secs - elapsed_secs));
@@ -252,7 +252,7 @@ public class Noise.TopDisplay : Gtk.Stack {
     }
 
     public virtual void player_position_update (int64 position) {
-        if (App.player.media_info.media != null) {
+        if (App.player.current_media != null) {
             scale.set_value ((double) TimeUtils.nanoseconds_to_miliseconds (position));
         }
     }
@@ -270,18 +270,18 @@ public class Noise.TopDisplay : Gtk.Stack {
     }
 
     private void media_updated (Gee.Collection<int> ids) {
-        if (App.player.media_active && ids.contains (App.player.media_info.media.rowid)) {
+        if (App.player.current_media != null && ids.contains (App.player.current_media.rowid)) {
             update_current_media ();
         }
     }
 
     private void update_current_media () {
         var notification_manager = NotificationManager.get_default ();
-        if (!App.player.media_active)
+        if (App.player.current_media == null)
             return;
 
         // Set the title
-        var m = App.player.media_info.media;
+        var m = App.player.current_media;
         if (m == null)
             return;
 
@@ -293,7 +293,7 @@ public class Noise.TopDisplay : Gtk.Stack {
     private void update_view () {
         if (progressbar.fraction >= 0.0 && progressbar.fraction < 1.0) {
             set_visible_child (action_grid);
-        } else if (App.player.media_active) {
+        } else if (App.player.current_media != null) {
             set_visible_child (time_eventbox);
         } else {
             set_visible_child (empty_grid);

@@ -167,7 +167,7 @@ public enum Noise.ListColumn {
         switch (this) {
             case ICON:
                 GLib.Icon? icon;
-                var currently_playing = App.player.media_info.media;
+                var currently_playing = App.player.current_media;
 
                 if (m == currently_playing && currently_playing != null)
                     icon = Icons.NOW_PLAYING_SYMBOLIC.gicon;

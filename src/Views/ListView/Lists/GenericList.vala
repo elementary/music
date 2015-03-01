@@ -303,7 +303,7 @@ public abstract class Noise.GenericList : FastView {
         if (m != null)
             to_set = m;
         else
-            to_set = App.player.media_info.media;
+            to_set = App.player.current_media;
 
         is_current_list = true;
         Settings.Main.get_default ().last_playlist_playing = relative_id;
@@ -319,7 +319,7 @@ public abstract class Noise.GenericList : FastView {
             }
         }
 
-        media_played.begin (App.player.media_info.media);
+        media_played.begin (App.player.current_media);
     }
 
     protected Gee.Collection<Media> get_selected_medias () {
@@ -339,13 +339,13 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void scroll_to_current_media (bool unfilter_if_not_found) {
-        if (App.player.media_info.media == null)
+        if (App.player.current_media == null)
             return;
 
         for (int i = 0; i < get_visible_table ().size; ++i) {
             var m = get_media_from_index (i);
 
-            if (m == App.player.media_info.media) {
+            if (m == App.player.current_media) {
                 var path = new Gtk.TreePath.from_indices (i, -1);
 
                 // Only scroll to the middle (true) if the cell *is not within the visible range*;
@@ -386,7 +386,7 @@ public abstract class Noise.GenericList : FastView {
             for (int i = 0; i < whole_table.size (); ++i) {
                 var m = whole_table.get (i) as Media;
 
-                if (m.rowid == App.player.media_info.media.rowid) {
+                if (m.rowid == App.player.current_media.rowid) {
                     // Undo search and filter
                     parent_wrapper.clear_filters ();
 

@@ -223,24 +223,11 @@ public class LastFM.Core : Object {
     }
 
     private async void fetch_album_info_async (Noise.Media media) {
-        if (media == null)
-            return;
-
-        string album_artist_s = media.album_artist;
-        string album_s = media.album;
-
-        if (album_artist_s == "")
-            album_artist_s = media.artist;
-
         // This does the fetching to internet. may take a few seconds
-        var album = new LastFM.AlbumInfo.with_info (album_artist_s, album_s);
-
-        if (album == null)
-            return;
+        var album = new LastFM.AlbumInfo (media);
 
         /* If we found an album art, and we don't have one yet, save it to file **/
         var coverart_cache = Noise.CoverartCache.instance;
-
         if (coverart_cache.has_image (media))
             return;
 
@@ -295,7 +282,7 @@ public class LastFM.Core : Object {
             debug ("Last.FM user not logged in\n");
             return;
         }
-        if (!Noise.App.player.media_active)
+        if (Noise.App.player.current_media == null)
             return;
         if (m == null)
             return;
@@ -332,7 +319,7 @@ public class LastFM.Core : Object {
     }
 
     public void fetchCurrentSimilarSongs () {
-        similarMedias.queryForSimilar (Noise.App.player.media_info.media);
+        similarMedias.queryForSimilar (Noise.App.player.current_media);
     }
 
     void similar_retrieved_signal (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Media> similarDont) {

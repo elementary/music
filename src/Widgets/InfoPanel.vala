@@ -23,8 +23,8 @@
 public class Noise.InfoPanel : Gtk.EventBox {
     public signal void to_update();
 
-    public unowned Media current_media { get { return App.player.media_info.media; } }
-    public bool can_show_up { get { return App.player.media_active; } }
+    public unowned Media current_media { get { return App.player.current_media; } }
+    public bool can_show_up { get { return App.player.current_media != null; } }
 
     private Gtk.Label title;
     private Gtk.Label artist;

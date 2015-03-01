@@ -41,11 +41,11 @@ public class  Noise.Plugins.iPodStreamer : Noise.Playback, GLib.Object {
     }
 
     public bool update_position () {
-        if (set_resume_pos || (App.player.media_info != null && App.player.media_info.media != null && get_position() >= (int64)(App.player.media_info.media.resume_pos - 1) * 1000000000)) {
+        if (set_resume_pos || (App.player.current_media != null && get_position() >= (int64)(App.player.current_media.resume_pos - 1) * 1000000000)) {
             set_resume_pos = true;
             current_position_update (get_position ());
-        } else if (App.player.media_info != null && App.player.media_info.media != null) {
-            pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.media_info.media.resume_pos * 1000000000);
+        } else if (App.player.current_media != null) {
+            pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
         }
 
         return true;
@@ -72,8 +72,8 @@ public class  Noise.Plugins.iPodStreamer : Noise.Playback, GLib.Object {
         debug ("set uri to %s\n", uri);
         pipe.playbin.set_property ("uri", uri.replace("#", "%23"));
         set_state (Gst.State.PLAYING);
-        debug ("setURI seeking to %d\n", App.player.media_info.media.resume_pos);
-        pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.media_info.media.resume_pos * 1000000000);
+        debug ("setURI seeking to %d\n", App.player.current_media.resume_pos);
+        pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
         play ();
     }
 

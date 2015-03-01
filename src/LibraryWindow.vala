@@ -136,7 +136,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 media_considered_previewed = true;
             if(main_settings.last_media_position > 30)
                 media_considered_played = true;
-            if(App.player.media_active && (double)(main_settings.last_media_position/(double)App.player.media_info.media.length) > 0.90)
+            if(App.player.current_media != null && (double)(main_settings.last_media_position/(double)App.player.current_media.length) > 0.90)
                 added_to_play_count = true;
         }
 
@@ -630,8 +630,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private async void notify_current_media_async () {
-        if (App.player.media_info != null && App.player.media_info.media != null)
-            yield show_notification_from_media_async (App.player.media_info.media);
+        if (App.player.current_media != null)
+            yield show_notification_from_media_async (App.player.current_media);
     }
 
 
@@ -731,12 +731,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool folder_set = library_manager.main_directory_set;
         bool have_media = library_manager.get_medias ().size > 0;
         bool doing_ops = library_manager.doing_file_operations ();
-        bool media_active = App.player.media_active;
+        bool media_active = App.player.current_media != null;
 
         fileImportMusic.set_sensitive (!doing_ops && folder_set);
 
         // Play, pause, ...
-        bool media_available = App.player.current_media ().size > 0;
+        bool media_available = App.player.get_current_media_list ().size > 0;
         previousButton.set_sensitive (media_active || media_available);
         playButton.set_sensitive (media_active || media_available);
         nextButton.set_sensitive (media_active || media_available);
@@ -744,7 +744,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
 
-        if(!App.player.media_active || have_media && !App.player.playing)
+        if(!media_active || have_media && !App.player.playing)
             playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
 
         bool show_info_panel = Settings.SavedState.get_default ().more_visible && info_panel.can_show_up;
@@ -971,7 +971,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      */
     public void media_played (Media m) {
         //reset the media position
-        topDisplay.set_media (App.player.media_info.media);
+        topDisplay.set_media (App.player.current_media);
 
         //reset some booleans
         tested_for_video = false;
@@ -983,9 +983,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities.begin ();
 
         Timeout.add (3000, () => {
-            if (App.player.media_info.media != null && App.player.media_info.media == m) {
+            if (App.player.current_media != null && App.player.current_media == m) {
                 new Thread<void*> (null, () => {
-                    update_media_info (App.player.media_info.media);
+                    update_media_info (App.player.current_media);
                     return null;
                 });
             }
@@ -1021,7 +1021,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void play_media (bool inhibit_notifications = false) {
-        if(!App.player.media_active) {
+        if(App.player.current_media == null) {
             debug("No media is currently playing. Starting from the top\n");
 
             App.player.getNext (true);
@@ -1043,10 +1043,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public virtual void play_next_media (bool inhibit_notifications = false) {
         // if not 90% done, skip it
         if(!added_to_play_count) {
-            App.player.media_info.media.skip_count++;
+            App.player.current_media.skip_count++;
 
             // don't update, it will be updated eventually
-            //library_manager.update_media_item (App.player.media_info.media, false, false);
+            //library_manager.update_media_item (App.player.current_media, false, false);
         }
 
         Media? m = null;
@@ -1150,63 +1150,63 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void error_occured () {
-        if(App.player.media_active) {
+        if(App.player.current_media != null) {
             play_media ();
         }
     }
 
     public virtual void current_position_update (int64 position) {
-        if (!App.player.media_active)
+        if (App.player.current_media == null)
             return;
 
         double sec = ((double)position/1000000000);
-        double media_length = ((double)App.player.media_info.media.length/1000);
+        double media_length = ((double)App.player.current_media.length/1000);
 
         if(App.player.file_player.set_resume_pos)
-            App.player.media_info.media.resume_pos = (int)sec;
+            App.player.current_media.resume_pos = (int)sec;
 
         // at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
         if(sec > 3 && !media_considered_previewed) {
             media_considered_previewed = true;
-            update_media_info (App.player.media_info.media);
+            update_media_info (App.player.current_media);
         }
 
         //at 30 seconds in, we consider the media as played
         if(sec > 30 && !media_considered_played) {
             media_considered_played = true;
-            App.player.media_info.media.last_played = (int)time_t();
+            App.player.current_media.last_played = (int)time_t();
 
-            library_manager.update_media (App.player.media_info.media, false, false);
+            library_manager.update_media (App.player.current_media, false, false);
 
             // add to the already played list
-            if(!App.player.history_playlist.medias.contains (App.player.media_info.media)) {
+            if(!App.player.history_playlist.medias.contains (App.player.current_media)) {
                 var temp_media = new Gee.TreeSet<Media>();
-                temp_media.add (App.player.media_info.media);
+                temp_media.add (App.player.current_media);
                 App.player.history_playlist.add_medias (temp_media);
             }
 
 #if HAVE_ZEITGEIST
             var event = new Zeitgeist.Event.full (Zeitgeist.ZG_ACCESS_EVENT,
                                                    Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://%s".printf (App.instance.get_desktop_file_name ()),
-                                                   new Zeitgeist.Subject.full(App.player.media_info.media.uri,
+                                                   new Zeitgeist.Subject.full(App.player.current_media.uri,
                                                                                Zeitgeist.NFO_AUDIO,
                                                                                Zeitgeist.NFO_FILE_DATA_OBJECT,
                                                                                "text/plain", "",
-                                                                               App.player.media_info.media.title, ""));
+                                                                               App.player.current_media.title, ""));
             new Zeitgeist.Log ().insert_events_no_reply(event);
 #endif
         }
 
         if((sec/media_length > 0.50) && (media_half_played_sended == false)) {
-            media_half_played (App.player.media_info.media);
+            media_half_played (App.player.current_media);
             media_half_played_sended = true;
         }
 
         // at 80% done with media, add 1 to play count
         if(sec/media_length > 0.80 && !added_to_play_count) {
             added_to_play_count = true;
-            App.player.media_info.media.play_count++;
-            library_manager.update_media (App.player.media_info.media, false, false);
+            App.player.current_media.play_count++;
+            library_manager.update_media (App.player.current_media, false, false);
         }
     }
 
@@ -1256,9 +1256,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Save media position and info
         main_settings.last_media_position = (int)((double)App.player.player.get_position
         ()/Numeric.NANO_INV);
-        if(App.player.media_active) {
-            App.player.media_info.media.resume_pos = (int)((double)App.player.player.get_position()/Numeric.NANO_INV);
-            library_manager.update_media (App.player.media_info.media, false, false);
+        if(App.player.current_media != null) {
+            App.player.current_media.resume_pos = (int)((double)App.player.player.get_position()/Numeric.NANO_INV);
+            library_manager.update_media (App.player.current_media, false, false);
         }
         App.player.player.pause();
 
@@ -1293,7 +1293,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * This doesn't apply to calls to App.instance.quit ()
      */
     public override bool delete_event (Gdk.EventAny event) {
-        bool playing = App.player.media_active && App.player.playing;
+        bool playing = App.player.current_media != null && App.player.playing;
 
         // if playing a song, don't allow closing
         if (!main_settings.close_while_playing && playing) {
