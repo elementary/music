@@ -183,15 +183,8 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void add_media (Gee.Collection<Media> to_add) {
-        // Check for duplicates
-        var new_media = new Gee.TreeSet<Media> ();
-        foreach (var m in to_add) {
-            if (!table.values.contains (m))
-                new_media.add (m);
-        }
-
         // skip calling set_table and just do it ourselves (faster)
-        foreach (var m in new_media)
+        foreach (var m in to_add)
             table.set (table.size, m);
 
         // resort the new songs in. this will also call do_search
@@ -330,7 +323,7 @@ public abstract class Noise.GenericList : FastView {
     }
 
     protected Gee.Collection<Media> get_selected_medias () {
-        var rv = new Gee.TreeSet<Media> ();
+        var rv = new Gee.ArrayQueue<Media> ();
         Gtk.TreeModel temp;
 
         foreach (Gtk.TreePath path in get_selection ().get_selected_rows (out temp)) {

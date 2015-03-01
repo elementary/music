@@ -321,6 +321,8 @@ public class Noise.LocalLibrary : Library {
 #endif
             }
         }
+
+        open_media_list.clear ();
     }
 
     /*

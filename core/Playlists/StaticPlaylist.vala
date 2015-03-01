@@ -34,40 +34,38 @@ public class Noise.StaticPlaylist : Playlist {
     public bool show_badge { get; set; default=false;}
     public bool allow_duplicate { get; set; default=false;}
 
-    public StaticPlaylist() {
+    public StaticPlaylist () {
         name = "";
-        medias = new Gee.LinkedList<Media>();
+        medias = new Gee.ArrayQueue<Media>();
         icon = Icons.PLAYLIST.gicon;
     }
 
     public StaticPlaylist.with_info (int rowid, string name) {
+        base ();
         this.rowid = rowid;
         this.name = name;
-        medias = new Gee.LinkedList<Media>();
-        icon = Icons.PLAYLIST.gicon;
     }
 
     public override void add_media (Media m) {
         var added_media = new Gee.LinkedList<Media> ();
-        
-        if (m != null && (allow_duplicate == true || !medias.contains (m))) {
+        if (allow_duplicate || medias.contains (m) == false) {
             medias.add (m);
             added_media.add (m);
             media_added (added_media);
         }
+
         updated ();
     }
 
     public override void add_medias (Gee.Collection<Media> to_add) {
         var added_media = new Gee.LinkedList<Media> ();
-        
         foreach (Media m in to_add) {
-            if (m != null && (allow_duplicate == true || !medias.contains (m))) {
+            if (allow_duplicate || medias.contains (m) == false) {
                 medias.add (m);
                 added_media.add (m);
             }
         }
-        
+
         updated ();
         media_added (added_media);
     }
@@ -79,6 +77,7 @@ public class Noise.StaticPlaylist : Playlist {
             medias.remove (to_remove);
             media_removed (removed_media);
         }
+
         updated ();
     }
 
@@ -90,6 +89,7 @@ public class Noise.StaticPlaylist : Playlist {
                 medias.remove (m);
             }
         }
+
         updated ();
         media_removed (removed_media);
     }

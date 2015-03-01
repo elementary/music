@@ -259,13 +259,13 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public Gee.Collection<Media> get_media () {
-        var media_list = new Gee.LinkedList<Media> ();
+        var media_list = new Gee.ArrayQueue<Media> ();
         media_list.add_all (list_view.get_table ().values);
         return media_list;
     }
 
     public Gee.Collection<Media> get_visible_media () {
-        var media_list = new Gee.LinkedList<Media> ();
+        var media_list = new Gee.ArrayQueue<Media> ();
         media_list.add_all (list_view.get_visible_table ().values);
         return media_list;
     }

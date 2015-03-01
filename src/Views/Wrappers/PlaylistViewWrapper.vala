@@ -126,7 +126,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
     }
 
     private async void on_playlist_cleared () {
-        yield set_media_async (new Gee.TreeSet<Media> ());
+        yield set_media_async (new Gee.ArrayQueue<Media> ());
     }
 }
 

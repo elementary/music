@@ -117,11 +117,11 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
     public Gee.TreeSet<BrowserColumn> columns { get; private set; }
 
     // All the media. We search within this media collection
-    private Gee.TreeSet<Media> media = new Gee.TreeSet<Media> ();
+    private Gee.LinkedList<Media> media = new Gee.LinkedList<Media> ();
 
     // Filtered media results (media that matches the current set of filters).
     // We provide the data. No need to search again outside
-    private Gee.Collection<Media> search_results = new Gee.TreeSet<Media> ();
+    private Gee.Collection<Media> search_results = new Gee.LinkedList<Media> ();
 
     private Gtk.Menu column_chooser_menu;
     private Gtk.RadioMenuItem top_menu_item;

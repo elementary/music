@@ -30,7 +30,7 @@
  
 public abstract class Noise.Playlist : Object {
     public signal void request_play ();
-    public virtual Gee.LinkedList<Media> medias { get; set; }
+    public virtual Gee.ArrayQueue<Media> medias { get; set; }
 
     public int rowid { get; set; }
     public GLib.Icon icon;
