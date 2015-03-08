@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-02-25 15:26+0000\n"
+"PO-Revision-Date: 2015-03-07 13:40+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-02-26 05:43+0000\n"
-"X-Generator: Launchpad (build 17361)\n"
+"X-Launchpad-Export-Date: 2015-03-08 05:23+0000\n"
+"X-Generator: Launchpad (build 17383)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -223,7 +223,7 @@ msgstr "导入 %s"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
-msgstr "未整理的播放列表文件。导入失败。"
+msgstr "播放列表文件无法识别。导入失败。"
 
 #: ../core/Utils/FileUtils.vala:280
 msgid " (%d)"
@@ -253,7 +253,7 @@ msgstr "关于音乐"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
-msgstr "导入到库中..."
+msgstr "导入..."
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:82
 msgid "Preferences"
@@ -436,11 +436,11 @@ msgstr "常规"
 
 #: ../src/Dialogs/PreferencesWindow.vala:138
 msgid "Music Folder Location:"
-msgstr "音乐文件夹地址："
+msgstr "音乐目录："
 
 #: ../src/Dialogs/PreferencesWindow.vala:146
 msgid "Library Management:"
-msgstr "库管理："
+msgstr "音乐管理："
 
 #: ../src/Dialogs/PreferencesWindow.vala:153
 msgid "Keep Music folder organized:"
@@ -448,11 +448,11 @@ msgstr "保持音乐文件夹有序："
 
 #: ../src/Dialogs/PreferencesWindow.vala:157
 msgid "Write metadata to file:"
-msgstr "将元数据写入文件："
+msgstr "将元数据写入文件中："
 
 #: ../src/Dialogs/PreferencesWindow.vala:161
 msgid "Copy imported files to Library:"
-msgstr "复制已导入文件到库："
+msgstr "导入时复制文件到库："
 
 #: ../src/Dialogs/PreferencesWindow.vala:163
 msgid "Desktop Integration:"
@@ -464,7 +464,7 @@ msgstr "通知："
 
 #: ../src/Dialogs/PreferencesWindow.vala:174
 msgid "Continue playback when closed:"
-msgstr "关闭后继续播放："
+msgstr "关闭时后台继续播放："
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Would you like to install the %s plugin?\n"
@@ -708,7 +708,7 @@ msgstr "跳过次数"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:337
 msgid "is"
-msgstr "是"
+msgstr "为"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:338
 msgid "contains"
@@ -721,23 +721,23 @@ msgstr "不包含"
 #: ../src/Dialogs/SmartPlaylistEditor.vala:364
 #: ../src/Dialogs/SmartPlaylistEditor.vala:377
 msgid "is exactly"
-msgstr "准确为"
+msgstr "恰好"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:365
 msgid "is at most"
-msgstr "大多数"
+msgstr "低于"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:366
 msgid "is at least"
-msgstr "至少"
+msgstr "高于"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:378
 msgid "is within"
-msgstr "在其中"
+msgstr "晚于"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:379
 msgid "is before"
-msgstr "先于"
+msgstr "早于"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:402
 msgid "seconds"
@@ -1102,7 +1102,7 @@ msgstr "从设备移除"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:121
 msgid "Scroll to Current Song"
-msgstr "滚动到当前歌曲"
+msgstr "跳转到当前歌曲"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:124
 msgid "Edit Song Info"
@@ -1114,12 +1114,12 @@ msgstr "在文件浏览器中显示"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr "其它动作"
+msgstr "其它选项"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr "队列"
+msgstr "加入队列"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:128
 msgid "Add to Playlist"
@@ -1480,7 +1480,7 @@ msgstr "列表视图"
 
 #: ../src/Widgets/ViewSelector.vala:76
 msgid "View in Columns"
-msgstr "直栏显示"
+msgstr "分栏视图"
 
 #: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:101
 msgid "Off"
@@ -1524,7 +1524,7 @@ msgstr "禁用随机播放"
 
 #: ../src/Widgets/StatusBar.vala:135 ../src/Widgets/StatusBar.vala:146
 msgid "Add Playlist"
-msgstr "添加播放列表"
+msgstr "添加普通播放列表"
 
 #: ../src/Widgets/StatusBar.vala:147
 msgid "Add Smart Playlist"
@@ -1621,7 +1621,7 @@ msgstr "点击重启Last.fm登陆操作"
 msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
-msgstr "要与 Last.fm 同步，您必须给予 %s 授权。此操作您只需执行一次。"
+msgstr "要与 Last.fm 同步，您必须授予 %s 权限。此操作只需执行一次。"
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:70
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
