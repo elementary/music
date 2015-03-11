@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-01-09 21:55+0000\n"
-"Last-Translator: Olivier Vopat <olivier.vopat@gmail.com>\n"
+"PO-Revision-Date: 2015-03-10 10:58+0000\n"
+"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-02-24 05:39+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-03-11 05:36+0000\n"
+"X-Generator: Launchpad (build 17389)\n"
 "Language: \n"
 
 #: ../src/Views/ListView/ListView.vala:368
@@ -261,7 +261,7 @@ msgstr "À propos de Noise"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr "À propos de Music"
+msgstr "À propos de Musique"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -454,7 +454,7 @@ msgstr "Général"
 
 #: ../src/Dialogs/PreferencesWindow.vala:138
 msgid "Music Folder Location:"
-msgstr "Emplacement du dossier musique :"
+msgstr "Emplacement du dossier musique :"
 
 #: ../src/Dialogs/PreferencesWindow.vala:146
 msgid "Library Management:"
@@ -462,7 +462,7 @@ msgstr "Gestion de la bibliothèque :"
 
 #: ../src/Dialogs/PreferencesWindow.vala:153
 msgid "Keep Music folder organized:"
-msgstr "Réorganiser le dossier Musique :"
+msgstr "Réorganiser le dossier Musique :"
 
 #: ../src/Dialogs/PreferencesWindow.vala:157
 msgid "Write metadata to file:"
@@ -1343,8 +1343,8 @@ msgstr "Echec de la synchronisation"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"La liste musical %s est utilisée pour synchroniser le périphérique %s, mais "
-"n'a pas pu être trouvée."
+"La liste de lecture %s est utilisée pour synchroniser le périphérique %s, "
+"mais n'a pas pu être trouvée."
 
 #: ../src/Views/DeviceSummaryWidget.vala:334
 #: ../src/Views/DeviceSummaryWidget.vala:337
