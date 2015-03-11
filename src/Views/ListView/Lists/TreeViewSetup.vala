@@ -84,7 +84,7 @@ public class Noise.TreeViewSetup : Object {
      */
     public bool import_columns (string cols) {
         string[] col_strings = cols.split (COLUMN_SEP_STRING, 0);
-        var new_columns = new Gee.TreeSet<Gtk.TreeViewColumn> ();
+        var new_columns = new Gee.TreeSet<Gtk.TreeViewColumn> (column_compare_func);
 
         // the '-1' because col_strings has blank column at end
         for (int index = 0; index < col_strings.length - 1; ++index) {
@@ -211,5 +211,13 @@ public class Noise.TreeViewSetup : Object {
 
     private void append_new_column (ListColumn column, bool initially_visible = true) {
         columns.add (create_column (column, initially_visible));
+    }
+
+    private int column_compare_func (Gtk.TreeViewColumn column_a, Gtk.TreeViewColumn column_b) {
+        int a = (int) get_column_type (column_a);
+        int b = (int) get_column_type (column_b);
+
+        // return negative value if a<b;zero if a=b;positive value if a>b
+        return (int) (a > b) - (int) (a < b);
     }
 }
