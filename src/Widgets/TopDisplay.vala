@@ -46,7 +46,7 @@ public class Noise.TopDisplay : Gtk.Stack {
     public signal void scale_value_changed (Gtk.ScrollType scroll, double val);
 
     public TopDisplay () {
-        
+        this.get_style_context ().add_class ("seek-bar");
     }
 
     construct {
