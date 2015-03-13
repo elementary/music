@@ -53,7 +53,7 @@ namespace Noise.PixbufUtils {
         Gdk.Pixbuf? image = null;
         var filestream = yield file.read_async (Priority.HIGH, c);
 
-        if (filestream != null);
+        if (filestream != null)
             image = new Gdk.Pixbuf.from_stream_at_scale (filestream, width, height,
                                                          preserve_aspect_ratio, c);
 

@@ -72,7 +72,7 @@ public class Noise.TransferFromDeviceDialog : Window {
         transferAll = new Gtk.CheckButton.with_label (_("Import all media"));
         mediasScroll = new Gtk.ScrolledWindow (null, null);
         mediasView = new Gtk.TreeView ();
-        mediasModel = new ListStore(5, typeof(bool), typeof(int), typeof(string), typeof(string), typeof(string));
+        mediasModel = new Gtk.ListStore(5, typeof(bool), typeof(int), typeof(string), typeof(string), typeof(string));
         mediasView.set_model(mediasModel);
         transfer = new Button.with_label(_("Import"));
         Button cancel = new Button.with_label(_("Don't Import"));

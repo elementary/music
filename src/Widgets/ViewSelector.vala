@@ -86,7 +86,7 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
             int new_mode = mode_button.selected;
             if (new_mode <= 2) // only consider first 3 items
                 selected = (Mode)new_mode;
-            else if (mode_button.sensitive);
+            else if (mode_button.sensitive)
                 selected = mode; // restore last valid mode
         });
     }
