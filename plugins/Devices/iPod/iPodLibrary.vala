@@ -536,12 +536,12 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
                     }
 
                     foreach (unowned GPod.Playlist p in db.playlists) {
-                        if (p.contains_track (t));
+                        if (p.contains_track (t))
                             p.remove_track (t);
                     }
 
                     foreach (unowned GPod.Playlist p in db.playlists) {
-                        if (p.contains_track (t));
+                        if (p.contains_track (t))
                             p.remove_track (t);
                     }
 
