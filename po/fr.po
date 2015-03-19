@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-03-10 10:58+0000\n"
+"PO-Revision-Date: 2015-03-18 11:08+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-03-11 05:36+0000\n"
-"X-Generator: Launchpad (build 17389)\n"
+"X-Launchpad-Export-Date: 2015-03-19 05:28+0000\n"
+"X-Generator: Launchpad (build 17403)\n"
 "Language: \n"
 
 #: ../src/Views/ListView/ListView.vala:368
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] "%u chanson"
-msgstr[1] "%u chansons"
+msgstr[0] "%u musique"
+msgstr[1] "%u musiques"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -368,7 +368,7 @@ msgstr "Modification de %s"
 
 #: ../src/Dialogs/MediaEditor.vala:187 ../src/Dialogs/MediaEditor.vala:351
 msgid "Editing %i songs"
-msgstr "Modification de %i chansons"
+msgstr "Modification de %i musiques"
 
 #: ../src/Dialogs/MediaEditor.vala:193
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
@@ -1537,11 +1537,11 @@ msgstr "Activer la lecture en boucle"
 
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Song"
-msgstr "Chanson"
+msgstr "Musique"
 
 #: ../src/Widgets/StatusBar.vala:69
 msgid "Repeat Song"
-msgstr "Répéter la chanson"
+msgstr "Répéter la musique"
 
 #: ../src/Widgets/StatusBar.vala:70
 msgid "Repeat Album"
