@@ -59,11 +59,11 @@ public class Noise.App : Granite.Application {
         program_name = PROGRAM_NAME;
         exec_name = "noise";
 
-        app_copyright = "2012-2014";
+        app_copyright = "2012-2015";
         application_id = "org.pantheon.noise";
         app_icon = "multimedia-audio-player";
         app_launcher = "noise.desktop";
-        app_years = "2012-2014";
+        app_years = "2012-2015";
 
         main_url = "https://launchpad.net/noise";
         bug_url = "https://bugs.launchpad.net/noise/+filebug";
