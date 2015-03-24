@@ -61,9 +61,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     // TODO: REWRITE IT USING THE LIBRARY
     public Library library { get { return libraries_manager.local_library; } }
 
-    public int _played_index = 0;//if user press back, this goes back 1 until it hits 0. as new media play, this goes with it
-    public int _current_index;
-    public int _current_shuffled_index;
+    private int _current_index;
+    private int _current_shuffled_index;
 
     public bool playing { get; private set; default = false; }
     private double saved_volume = 1;
@@ -254,9 +253,12 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             //and set that int i as one of those this is confusing just a sort
             //_current_shuffled.set(0, current_media.rowid);
             for(int i = 1;i < _current.size; ++i) {
-                int random = GLib.Random.int_range(0, temp.size);
-                
-                //if(temp.get(random) != current_media.rowid) {
+                int n_media = temp.size;
+                if (n_media == 0)
+                    break;
+
+                int random = n_media <= 1 ? 0 : Random.int_range (0, n_media - 1);
+
                 if(current_media != null && temp.get(random) == current_media) {
                     _current_shuffled.set(0, current_media);
                     --i;
