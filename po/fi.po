@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-01-27 10:28+0000\n"
-"Last-Translator: Jiri Grönroos <Unknown>\n"
+"PO-Revision-Date: 2015-03-23 12:38+0000\n"
+"Last-Translator: Eetu Aalto <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-03-19 05:28+0000\n"
-"X-Generator: Launchpad (build 17403)\n"
+"X-Launchpad-Export-Date: 2015-03-24 06:05+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -522,11 +522,11 @@ msgstr "Älä tuo"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:88
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "Tuo %i kohdetta sijainnista %s"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:92
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Tuo %s kohteesta %s"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
 msgid "ID"
@@ -803,7 +803,7 @@ msgstr "Valitse yksittäiset roskakoriin siirrettävät tiedostot:"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:57
 msgid "Remove from %s"
-msgstr ""
+msgstr "Poista kohteesta %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:67
 msgid "Remove %d Songs From %s?"
@@ -811,7 +811,7 @@ msgstr ""
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:70
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "Poistetaanko \"%s\" kohteesta %s?"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:79
 msgid ""
