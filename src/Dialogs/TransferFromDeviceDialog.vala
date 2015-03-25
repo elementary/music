@@ -77,9 +77,6 @@ public class Noise.TransferFromDeviceDialog : Window {
         transfer = new Button.with_label(_("Import"));
         Button cancel = new Button.with_label(_("Don't Import"));
 
-        // pretty up labels
-        title.xalign = 0.0f;
-
         // be a bit explicit to make translations better
         string title_text = "";
         if (medias.size > 1) {
@@ -94,7 +91,6 @@ public class Noise.TransferFromDeviceDialog : Window {
         var title_string = MARKUP_TEMPLATE.printf (String.escape (title_text));
         title.set_markup (title_string);
 
-        info.xalign = 0.0f;
         info.set_line_wrap(true);
 
         /* add cellrenderers to columns and columns to treeview */

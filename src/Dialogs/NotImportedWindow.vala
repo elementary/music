@@ -50,11 +50,9 @@ public class Noise.NotImportedWindow : Gtk.Dialog {
         // initialize controls
         var warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
         var title = new Gtk.Label (_("Unable to import %d items from %s").printf (files.size, music_folder));
-        title.xalign = 0.0f;
         title.hexpand = true;
         title.set_markup ("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text (_("Unable to import %d items from %s").printf (files.size, music_folder), -1) + "</span>");
         var info = new Gtk.Label (_("%s was unable to import %d items. The files may be damaged.").printf (((Noise.App) GLib.Application.get_default ()).get_name (), files.size));
-        info.xalign = 0.0f;
         info.set_line_wrap (false);
         var trashAll = new Gtk.CheckButton.with_label (_("Move all corrupted files to trash"));
         trashAll.yalign = 0.5f;
