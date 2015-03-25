@@ -57,6 +57,10 @@ public class Noise.SyncWarningDialog : Gtk.Window {
         importMedias = new Gtk.Button.with_label(_("Import media to Library"));
         sync = new Gtk.Button.with_label(_("Continue Syncing"));
         cancel = new Gtk.Button.with_label(_("Stop Syncing"));
+        
+        // pretty up labels
+        title.halign = Gtk.Align.START;
+        info.halign = Gtk.Align.START;
 
         info.set_line_wrap (true);
         var info_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + String.escape (d.getDisplayName ()) + "</b>");
