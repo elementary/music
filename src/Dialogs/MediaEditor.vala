@@ -448,7 +448,7 @@ public class Noise.FieldEditor : Gtk.Box {
         nameBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         
         label.justify = Gtk.Justification.LEFT;
-        label.xalign = 0.0f;
+        label.halign = Gtk.Align.START;
         label.set_markup("<b>" + _name + "</b>");
         
         nameBox.pack_start(check, false, false, 0);
@@ -629,11 +629,11 @@ public class Noise.StatsDisplay : Gtk.Box {
         reset = new Gtk.Button.with_label(_("Reset"));
         
         header.justify = Gtk.Justification.LEFT;
-        header.xalign = 0.0f;
+        header.halign = Gtk.Align.START;
         header.set_markup(_("<b>Stats</b>"));
         
         info.justify = Gtk.Justification.LEFT;
-        info.xalign = 0.0f;
+        info.halign = Gtk.Align.START;
         
         setInfoText();
         

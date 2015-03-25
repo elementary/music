@@ -50,9 +50,9 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         var options_label = new Gtk.Label (_("Options"));
 
         /* make them look good */
-        name_label.xalign = 0.0f;
-        rules_label.xalign = 0.0f;
-        options_label.xalign = 0.0f;
+        name_label.halign = Gtk.Align.START;
+        rules_label.halign = Gtk.Align.START;
+        options_label.halign = Gtk.Align.START;
         name_label.set_markup ("<b>" + Markup.escape_text (_("Name of Playlist"), -1) + "</b>");
         rules_label.set_markup ("<b>" + Markup.escape_text (_("Rules"), -1) + "</b>");
         options_label.set_markup ("<b>" + Markup.escape_text (_("Options"), -1) + "</b>");

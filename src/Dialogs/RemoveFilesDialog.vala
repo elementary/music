@@ -54,7 +54,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         bool multiple_media = to_remove.size > 1;
 
         // set title text
-        title.xalign = 0.0f;
+        title.halign = Gtk.Align.START;
         string title_text = "";
 
         if (multiple_media) {
@@ -67,7 +67,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (title_text) + "</span>");
 
         // set info text
-        info.xalign = 0.0f;
+        info.halign = Gtk.Align.START;
         info.set_line_wrap (true);
         int n = to_remove.size;
         string info_text = ngettext ("This will remove the song from your library and from any device that automatically syncs with %s.",
