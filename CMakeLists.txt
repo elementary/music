@@ -9,7 +9,7 @@ enable_testing()
 
 set (GETTEXT_PACKAGE ${CMAKE_PROJECT_NAME})
 set (RELEASE_NAME "Luna")
-set (VERSION "0.3.0")
+set (VERSION "0.3.1")
 set (VERSION_INFO "Stable Release")
 
 include (GNUInstallDirs)
