@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-11-17 17:06+0000\n"
+"PO-Revision-Date: 2015-04-07 13:49+0000\n"
 "Last-Translator: Ivan Vrljić <vrlja92@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
+"X-Launchpad-Export-Date: 2015-04-08 05:31+0000\n"
 "X-Generator: Launchpad (build 17413)\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1083,7 +1083,7 @@ msgstr "Na vrhu"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:401
 msgid "Unrated"
-msgstr "Neocjenjeno"
+msgstr "Neocijenjeno"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:403
 msgid "%i Star"
@@ -1821,3 +1821,217 @@ msgstr "Dogodila se greška prilikom uvoza sa CD-a"
 
 #~ msgid "Required GStreamer plugin not installed"
 #~ msgstr "Zahtjevani Gstreamer priključak nije instaliran"
+
+#, c-format
+#~ msgid "%s is already doing an import"
+#~ msgstr "%s se već uvozi"
+
+#, c-format
+#~ msgid "Importing music from %s..."
+#~ msgstr "Uvezi glazbu iz %s..."
+
+#~ msgid "Adding files to library..."
+#~ msgstr "Dodavanje datoteka u biblioteku..."
+
+#~ msgid "No songs on CD"
+#~ msgstr "Nema pjesama na CDu"
+
+#~ msgid "Rescanning music for changes. This may take a while..."
+#~ msgstr "Pretraživanje promjena u biblioteci glazbe. Ovo može potrajati..."
+
+#, c-format
+#~ msgid "Adding music from %s to library..."
+#~ msgstr "Dodavanje glazbe iz %s u biblioteku..."
+
+#, c-format
+#~ msgid "%s has finished importing %i songs from Audio CD."
+#~ msgstr "%s je dovršio uvoz %i pjesama sa Audio CD-a"
+
+#~ msgid "Equalizer"
+#~ msgstr "Ekvalizator"
+
+#~ msgid "Import Stations"
+#~ msgstr "Uvezi stanice"
+
+#~ msgid "Edit"
+#~ msgstr "Uredi"
+
+#~ msgid "Export..."
+#~ msgstr "Izvoz..."
+
+#~ msgid "CD Import Complete"
+#~ msgstr "Uvoz sa CD-a dovršen"
+
+#~ msgid "Done"
+#~ msgstr "Završeno"
+
+#~ msgid "Metadata"
+#~ msgstr "Meta podaci"
+
+#~ msgid "Media Type"
+#~ msgstr "Vrsta medija"
+
+#~ msgid "Do Nothing"
+#~ msgstr "Ne čini ništa"
+
+#~ msgid "Try again"
+#~ msgstr "Pokušaj ponovno"
+
+#~ msgid "Music Folder"
+#~ msgstr "Glazbena mapa"
+
+#~ msgid "Music Folder Location"
+#~ msgstr "Lokacija glazbene mape"
+
+#~ msgid "Library Management"
+#~ msgstr "Upravljanje bibliotekom"
+
+#~ msgid "Copy files to music folder when added to library"
+#~ msgstr "Kopiraj datoteke u glazbenu mapu kod dodavanja u biblioteku"
+
+#~ msgid "Keep music folder organized"
+#~ msgstr "Održavaj glazbenu mapu organiziranom"
+
+#~ msgid "Write metadata to file"
+#~ msgstr "Zapiši meta podatke na datoteku"
+
+#~ msgid "is not"
+#~ msgstr "nije"
+
+#, c-format
+#~ msgid "The name %s is already in use"
+#~ msgstr "Ime %s se već koristi"
+
+#~ msgid "Locate Media"
+#~ msgstr "Lociraj medij"
+
+#~ msgid "Remove Media"
+#~ msgstr "Ukloni medij"
+
+#~ msgid "All the songs in this device are already in your library."
+#~ msgstr "Sve pjesme na ovom uređaju su već u biblioteci."
+
+#~ msgid "Import songs from audio CD"
+#~ msgstr "Uvezi pjesme sa Audio CD-a"
+
+#~ msgid "Station"
+#~ msgstr "Stanica"
+
+#, c-format
+#~ msgid "Remove %d %s from %s?"
+#~ msgstr "Ukloni %d %s iz %s?"
+
+#~ msgid "Import media from device"
+#~ msgstr "Uvezi medije sa uređaja"
+
+#~ msgid "Change your music folder."
+#~ msgstr "Promjenite svoju glazbenu mapu"
+
+#~ msgid "1 album"
+#~ msgstr "1 album"
+
+#, c-format
+#~ msgid "%i items"
+#~ msgstr "%i stavki"
+
+#~ msgid "1 item"
+#~ msgstr "1 stavka"
+
+#, c-format
+#~ msgid "%i songs"
+#~ msgstr "%i pjesama"
+
+#~ msgid "1 song"
+#~ msgstr "1 pjesma"
+
+#, c-format
+#~ msgid "Similar to %s"
+#~ msgstr "Slično %s"
+
+#~ msgid "Cancelling Sync"
+#~ msgstr "Otkazivanje sinkronizacije"
+
+#~ msgid "Cancelling Import"
+#~ msgstr "Otkazivanje uvoza"
+
+#~ msgid "Name"
+#~ msgstr "Naziv"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Category"
+#~ msgstr "Kategorija"
+
+#~ msgid "#"
+#~ msgstr "Br."
+
+#~ msgid "BPM"
+#~ msgstr "BPM"
+
+#~ msgid "Import this song"
+#~ msgstr "Uvezi ovu pjesmu"
+
+#, c-format
+#~ msgid "Import %i songs"
+#~ msgstr "Uvezi %i pjesama"
+
+#~ msgid "1 Star"
+#~ msgstr "1 zvijezda"
+
+#~ msgid "Device is already being synced."
+#~ msgstr "Uređaj se već sinkronizira."
+
+#, c-format
+#~ msgid "%s Stars"
+#~ msgstr "%s zvijezda"
+
+#~ msgid "Recently Played"
+#~ msgstr "Nedavno izvođeno"
+
+#~ msgid "1 day"
+#~ msgstr "1 dan"
+
+#, c-format
+#~ msgid "<b>Importing</b> music from <b>%s</b> to library."
+#~ msgstr "<b>Uvoženje</b>glazbe iz <b>%s</b> u biblioteku."
+
+#, c-format
+#~ msgid "%s seconds"
+#~ msgstr "%s sekundi"
+
+#~ msgid "1 second"
+#~ msgstr "1 sekunda"
+
+#, c-format
+#~ msgid "%i days"
+#~ msgstr "%i dana"
+
+#, c-format
+#~ msgid "%i hours"
+#~ msgstr "%i sati"
+
+#~ msgid "1 minute"
+#~ msgstr "1 minuta"
+
+#~ msgid "1 hour"
+#~ msgstr "1 sat"
+
+#, c-format
+#~ msgid "%i minutes"
+#~ msgstr "%i minuta"
+
+#, c-format
+#~ msgid "%s and %s"
+#~ msgstr "%s i %s"
+
+#, c-format
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s, %s i %s"
+
+#~ msgid "1 track"
+#~ msgstr "1 zapis"
+
+#, c-format
+#~ msgid "%i tracks"
+#~ msgstr "%i zapisa"
