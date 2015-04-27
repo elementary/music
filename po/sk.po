@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-11-27 15:47+0000\n"
+"PO-Revision-Date: 2015-04-26 09:06+0000\n"
 "Last-Translator: Wigg Person <wiggperson@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-04-27 05:19+0000\n"
+"X-Generator: Launchpad (build 17430)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -745,7 +745,7 @@ msgstr "je presne"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:365
 msgid "is at most"
-msgstr ""
+msgstr "je najviac"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:366
 msgid "is at least"
@@ -753,7 +753,7 @@ msgstr "je najmenej"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:378
 msgid "is within"
-msgstr ""
+msgstr "je v rámci"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:379
 msgid "is before"
@@ -765,7 +765,7 @@ msgstr "sekúnd"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:405
 msgid "days ago"
-msgstr ""
+msgstr "dní dozadu"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:408
 msgid "kbps"
@@ -854,7 +854,7 @@ msgstr ""
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:104
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import your Music"
-msgstr ""
+msgstr "Importovať vašu hudbu"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:104
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:120
@@ -1772,18 +1772,6 @@ msgstr ""
 
 #~ msgid "Radio Station"
 #~ msgstr "Rádiové stanice"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u položiek, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minút"
-
-#~ msgid "%d days"
-#~ msgstr "%d dní"
-
-#~ msgid "%d hours"
-#~ msgstr "hodiny: %d"
 
 #~ msgid "All Podcasts"
 #~ msgstr "Všetky podcasty"
