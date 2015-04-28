@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-03-08 10:21+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"PO-Revision-Date: 2015-04-27 12:25+0000\n"
+"Last-Translator: Jesse Alter <Unknown>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-04-28 05:26+0000\n"
+"X-Generator: Launchpad (build 17453)\n"
 "Language: eo\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -83,7 +83,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
-msgstr ""
+msgstr "Kapaŭskultiloj"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Large Hall"
@@ -115,7 +115,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Ska"
-msgstr ""
+msgstr "Skao"
 
 #: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft Rock"
@@ -642,7 +642,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Playlist Title"
-msgstr ""
+msgstr "Titolo de ludlisto"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:69
 msgid "Match"
@@ -1194,12 +1194,12 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:70
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "Artisto"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:73
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "Albumo"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:76
 msgctxt "List column title"
@@ -1209,7 +1209,7 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:79
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "Komponisto"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:82
 msgctxt "List column title"
@@ -1219,7 +1219,7 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:85
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "Jaro"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:88
 msgctxt "List column title"
@@ -1612,7 +1612,7 @@ msgstr ""
 
 #: ../plugins/LastFM/PreferencesSection.vala:43
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: ../plugins/LastFM/PreferencesSection.vala:48
 msgid "Last.fm Integration"
@@ -1769,9 +1769,6 @@ msgstr ""
 
 #~ msgid "Unknown Title"
 #~ msgstr "Nekonata titolo"
-
-#~ msgid "Repeat All"
-#~ msgstr "Ripeti ĉion"
 
 #~ msgid "Done"
 #~ msgstr "Farita"
