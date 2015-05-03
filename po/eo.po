@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-04-27 12:25+0000\n"
+"PO-Revision-Date: 2015-05-02 18:54+0000\n"
 "Last-Translator: Jesse Alter <Unknown>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-28 05:26+0000\n"
-"X-Generator: Launchpad (build 17453)\n"
+"X-Launchpad-Export-Date: 2015-05-03 05:56+0000\n"
+"X-Generator: Launchpad (build 17474)\n"
 "Language: eo\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -103,7 +103,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Reggae"
-msgstr ""
+msgstr "Regeo"
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Rock"
@@ -758,7 +758,7 @@ msgstr "Maleble importi %d erojn de %s"
 
 #: ../src/Dialogs/NotImportedWindow.vala:59
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
+msgstr "%s maleblis importi %d erojn. La dosieroj povas esti difektitaj."
 
 #: ../src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
@@ -950,7 +950,7 @@ msgstr[1] ""
 #: ../src/Views/ListView/ListView.vala:376
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
-msgstr ""
+msgstr "%s, %s"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1395,11 +1395,11 @@ msgstr ""
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr ""
+msgstr "Eksporti..."
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr ""
+msgstr "Redakti..."
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
