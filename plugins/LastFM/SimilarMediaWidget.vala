@@ -32,7 +32,6 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         similars_fetched = false;
         
         // Last.fm
-        lfm.logged_in.connect (logged_in_to_lastfm);
         lfm.similar_retrieved.connect (similar_retrieved);
         
         App.main_window.update_media_info.connect ((m) => {
@@ -66,8 +65,7 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
     }
     
     private void update_visibilities() {
-        var lastfm_settings = new LastFM.Settings ();
-        var lastfm_elements_visible = lastfm_settings.session_key != ""; // XXX also check for conectivity state!
+        var lastfm_elements_visible = LastFM.Core.get_default ().is_initialized;
 
         love_ban_buttons.set_no_show_all (!lastfm_elements_visible);
         love_ban_buttons.set_visible (lastfm_elements_visible);
@@ -91,11 +89,7 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         
         update_visibilities ();
     }
-    
-    private void logged_in_to_lastfm() {
-        update_visibilities();
-    }
-    
+
     private void love_ban_buttons_changed () {
         if (App.player.current_media == null)
             return;
@@ -107,15 +101,5 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
             lfm.loveTrack (title, artist);
         else if (love_ban_buttons.mode == LoveBanButtons.Mode.BAN)
             lfm.banTrack (title, artist);
-//        else
-//            lfm.removeLoveBan (title, artist); // XXX TODO need to implement this method 
     }
-
-/* TODO: update love_ban_button's mode according to the state of the current song. Remember
-        to disconnect the love_ban_buttons_changed() handler or we'll be sending that information
-        over again.
-    public virtual void media_played(Media m) {
-        
-    }
-*/
 }
