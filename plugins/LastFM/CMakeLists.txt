@@ -1,4 +1,4 @@
-pkg_check_modules(LASTFM_DEPS libxml-2.0 json-glib-1.0 libsoup-2.4)
+pkg_check_modules(LASTFM_DEPS json-glib-1.0 libsoup-2.4 libaccounts-glib libgsignon-glib)
 
 if (LASTFM_DEPS_FOUND)
 
@@ -13,19 +13,17 @@ set(TARGET_NAME lastfm)
 vala_precompile(LAST_FM_VALA_C ${TARGET_NAME}
     LastFM.vala
     Core.vala
-    Settings.vala
-    AlbumInfo.vala
     Tag.vala
     SimilarMedia.vala
     SimilarMediaView.vala
     SimilarMediaWidget.vala
-    PreferencesSection.vala
     LoveBanButtons.vala
 PACKAGES
     ${DEPS_PACKAGES}
-    libxml-2.0
     json-glib-1.0
     libsoup-2.4
+    libaccounts-glib
+    libgsignon-glib
 OPTIONS
     ${GLOBAL_VALAC_OPTIONS}
 )
@@ -40,8 +38,7 @@ install(FILES lastfm.plugin DESTINATION ${PLUGIN_DIR}/LastFM/)
 # location of the fallback icon theme
 set(FALLBACK_THEME_DIR ${ICON_DIR}/hicolor)
 install(FILES icons/playlist-similar.svg DESTINATION ${FALLBACK_THEME_DIR}/16x16/mimetypes)
-
-add_subdirectory(schemas)
+install(FILES noise-lastfm.application DESTINATION ${CMAKE_INSTALL_PREFIX}/share/accounts/applications/)
 
 else ()
 

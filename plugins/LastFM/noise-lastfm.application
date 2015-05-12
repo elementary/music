@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="noise-lastfm">
+  <description>Music</description>
+  <desktop-entry>noise.desktop</desktop-entry>
+  <translations>noise</translations>
+  <service-types>
+    <service-type id="scrobbling">
+    </service-type>
+  </service-types>
+</application>
