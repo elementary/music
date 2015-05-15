@@ -62,11 +62,11 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
              body_string = (_("%i music files could not be found?").printf (media_list.size));
         }
 
-        var info = new Granite.Widgets.WrapLabel (("<span weight=\"bold\" size=\"larger\">%s</span>").printf
+        var info = new Gtk.Label (("<span weight=\"bold\" size=\"larger\">%s</span>").printf
             (String.escape (title_string)) + "\n\n" + ("%s").printf (body_string)
         );
 
-        info.m_wrap_width = 350;
+        info.set_halign (Gtk.Align.START);
         info.set_selectable (true);
         info.set_use_markup (true);
 

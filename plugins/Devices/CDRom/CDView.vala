@@ -136,8 +136,9 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         }
     }
     
-    public Granite.Widgets.WrapLabel create_title_label (string title) {
-        var label = new Granite.Widgets.WrapLabel (title);
+    public Gtk.Label create_title_label (string title) {
+        var label = new Gtk.Label (title);
+        label.set_halign (Gtk.Align.START);
         label.set_justify(Gtk.Justification.LEFT);
         label.set_alignment(0, 0);
         label.set_hexpand (true);

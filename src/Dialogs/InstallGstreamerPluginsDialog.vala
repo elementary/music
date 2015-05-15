@@ -40,13 +40,13 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
         var question = new Gtk.Image.from_icon_name ("dialog-question", Gtk.IconSize.DIALOG);
         question.yalign = 0;
 
-        var info = new Granite.Widgets.WrapLabel ("<span weight=\"bold\" size=\"larger\">" +
+        var info = new Gtk.Label ("<span weight=\"bold\" size=\"larger\">" +
             _("Would you like to install the %s plugin?\n").printf (String.escape (detail)) +
             "</span>" + _("\nThis song cannot be played. The %s plugin is required to play the song.").printf ("<b>" +
             String.escape (detail) + "</b>")
         );
 
-        info.m_wrap_width = 350;
+        info.set_halign (Gtk.Align.START);
         info.set_selectable (true);
         info.set_use_markup (true);
 
