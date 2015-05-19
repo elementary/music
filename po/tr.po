@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-02-11 18:50+0000\n"
-"Last-Translator: Hamza <info@hckrtech.com>\n"
+"PO-Revision-Date: 2015-05-18 17:44+0000\n"
+"Last-Translator: Mustafa Yılmaz <apshalasha@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-05-19 05:32+0000\n"
+"X-Generator: Launchpad (build 17508)\n"
 "Language: tr\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -47,7 +47,7 @@ msgstr "Vazgeç"
 
 #: ../core/Resources.vala:98 ../src/Views/GridView/PopupListView.vala:260
 msgid "Open"
-msgstr ""
+msgstr "Aç"
 
 #: ../core/Resources.vala:99
 msgid "Save"
@@ -83,7 +83,7 @@ msgstr "Tam Bas + Tiz"
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
-msgstr "Kulaklıklar"
+msgstr "Kulaklık"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Large Hall"
@@ -246,6 +246,7 @@ msgstr "Müzikçalar"
 #: ../src/Noise.vala:40
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
+"Noise;Ses;Oynatıcı;MP3;iPod;Çal;Çalma Listesi;Medya;CD;Telefon;Şarkılar;"
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
@@ -253,7 +254,7 @@ msgstr "Noise Hakkında"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr ""
+msgstr "Müzik Hakkında"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -566,7 +567,7 @@ msgstr "Dosya bulunamadı"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:66
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "<b>%s</b> tarafından <b>%s</b> için müzik dosyası bulunamadı."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:69
 msgid "%i music files could not be found?"
@@ -822,6 +823,8 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
+"Bu işlem şarkıyı kütüphanenizden ve %s ile otomatik olarak senkronize edilen "
+"tüm cihazlardan kaldıracaktır."
 msgstr[1] ""
 "Bu işlem şarkıları kütüphanenizden ve %s ile otomatik olarak senkronize "
 "edilen tüm cihazlardan kaldıracaktır."
@@ -836,7 +839,7 @@ msgstr "Kütüphanene müzik ekle"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Bir kaynaktan kütüphanenize müzik aktarın"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
@@ -896,7 +899,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:40
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Çalma listesi güncelleniyor. Lütfen bekleyin."
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
@@ -910,7 +913,7 @@ msgstr[1] "%u albüm"
 
 #: ../src/Views/GridView/PopupListView.vala:61
 msgid "Set new album cover"
-msgstr ""
+msgstr "Yeni albüm kapağı ayarla"
 
 #: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -919,27 +922,27 @@ msgstr "%s tarafından %s"
 
 #: ../src/Views/GridView/PopupListView.vala:261
 msgid "_Cancel"
-msgstr ""
+msgstr "_İptal"
 
 #: ../src/Views/GridView/PopupListView.vala:261
 msgid "_Open"
-msgstr ""
+msgstr "_Aç"
 
 #: ../src/Views/GridView/PopupListView.vala:264
 msgid "Image files"
-msgstr ""
+msgstr "Resim dosyaları"
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Cancelling…"
-msgstr ""
+msgstr "İptal ediliyor..."
 
 #: ../src/Views/DeviceView.vala:39
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "İşlem iptal edildi ve bu medya dosyasından sonra durdurulacak."
 
 #: ../src/Views/DeviceView.vala:60
 msgid "OK"
-msgstr ""
+msgstr "Tamam"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
@@ -1143,7 +1146,7 @@ msgstr "Dosya gezgininde göster"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:126
 msgid "Other actions"
-msgstr ""
+msgstr "Diğer eylemler"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:127
 msgctxt "Action item (verb)"
@@ -1161,7 +1164,7 @@ msgstr "Kütüphaneye medya ekle"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:214
 msgid "New Playlist…"
-msgstr ""
+msgstr "Yeni Çalma Listesi..."
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:258
 msgid "Import %i of %i selected songs"
@@ -1347,7 +1350,7 @@ msgstr "Seçili ayarlarla aygıt senkronize edilemiyor. Yetersiz disk alanı"
 
 #: ../src/Views/DeviceSummaryWidget.vala:337
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "Cihaz zaten bir işlem gerçekleştiriyor."
 
 #: ../src/DataBase/DataBaseManager.vala:452
 #: ../src/DataBase/DataBaseManager.vala:688
@@ -1393,40 +1396,41 @@ msgstr "Dosyalar <b>Müzik Klasörüne</b> <b>kopyalanıyor</b>…"
 
 #: ../src/LocalLibrary.vala:164
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "%s kaynağından müzik içe aktarılıyor..."
 
 #: ../src/LocalLibrary.vala:201
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Dosyalar kütüphaneye ekleniyor..."
 
 #: ../src/LocalLibrary.vala:252
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "Tüm müzik dosyaları  zaten kütüphanizde"
 
 #: ../src/LocalLibrary.vala:252
 msgid "No files were imported."
-msgstr ""
+msgstr "Dosyalar alınamadı."
 
 #: ../src/LocalLibrary.vala:262
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
+"Müzik değişiklikler için yeniden taranıyor. Bu biraz zaman alabilir..."
 
 #: ../src/LocalLibrary.vala:339
 msgid "Added to your queue:"
-msgstr ""
+msgstr "Kuyruğa eklenenler:"
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
-msgstr ""
+msgstr "Yeniden Adlandır"
 
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr ""
+msgstr "Dışarı aktar..."
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr ""
+msgstr "Düzenle..."
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
@@ -1580,7 +1584,7 @@ msgstr "Bilgi Panelini Gizle"
 
 #: ../src/Objects/LyricFetcher.vala:155
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
+msgstr "Şarkı sözleri www.lyricsmania.com'dan aktarıldı."
 
 #: ../src/Objects/TrackInfo.vala:25
 msgid "Unknown Track"
@@ -1612,6 +1616,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Kütüphanenizde bu şarkıya benzer hiçbir şarkı yok. Şarkı bilgilerinin doğru "
+"olduğundan ve internete bağlı olduğunuzdan emin olun. Bazı şarkıların eşleri "
+"bulunamayabilir."
 
 #: ../plugins/LastFM/SimilarMedia.vala:42
 msgid "Similar"
@@ -1619,7 +1626,7 @@ msgstr "Benzer"
 
 #: ../plugins/LastFM/PreferencesSection.vala:30
 msgid "Give %s Permission"
-msgstr ""
+msgstr "%s'e Yetki Ver"
 
 #: ../plugins/LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
@@ -1654,6 +1661,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"Last.fm eşitlenmesine izin verilmesi için %s 'e yetki vermelisin. Bu işleme "
+"tek sefer ihtiyacın olacak."
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:70
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
@@ -1675,54 +1684,55 @@ msgstr "<b>$ARTIST</b> tarafından <b>$NAME</b  $DEVICE a Ekleniyor"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:202
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Eşitleniyor <b>%s</b>…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:220
 #: ../plugins/Devices/iPod/iPodLibrary.vala:380
 #: ../plugins/Devices/iPod/iPodLibrary.vala:637
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:256
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Eşitleme işlemi bitiriliyor..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:232
 #: ../plugins/Devices/iPod/iPodLibrary.vala:392
 #: ../plugins/Devices/iPod/iPodLibrary.vala:657
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:259
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Eşitleme iptal ediliyor..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:342
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "<b>%s</b>'dan kaldırılıyor…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:535
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:362
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr ""
+"<b>$ARTIST</b> tarafından <b>$NAME</b>, $DEVICE adlı cihazdan kaldırılıyor."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:667
 #: ../plugins/Devices/iPod/iPodLibrary.vala:668
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:263
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:264
 msgid "There is not enough space on Device to complete the Sync…"
-msgstr ""
+msgstr "Aygıtta eşitlemeyi tamamlamak için yeterli alan yok..."
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:161
 msgid "Android Phone"
-msgstr ""
+msgstr "Android Telefon"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:163
 msgid "Audio Player"
-msgstr ""
+msgstr "Müzik Çalar"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Bir Hata  Oluştu"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Bu Ses CD'si yüklenirken bir hata oluştu."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:94
 msgid "Audio CD Invalid"
@@ -1730,7 +1740,7 @@ msgstr "Bilinmeyen ses CD'si"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:98
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "Ses CD'sinin içeriği okunamıyor"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid "Could not find Music Folder"
@@ -1747,15 +1757,15 @@ msgstr ""
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:256
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
+msgstr "Uygulama CD'de şarkı bulamadı.  Şarkı aktarılamıyor"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:357
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "Ses CD'sinden şarkının aktarılması sona erdi."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:357
 msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
+msgstr "Ses CD'sinden %i şarkının aktarılması sona erdi."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:362
 msgid "Importing track %i: %s"
@@ -1919,15 +1929,6 @@ msgstr "Bu CD'nin İçe Aktarımı sırasında bir hata oluştu"
 
 #~ msgid "Remove Media"
 #~ msgstr "Medyayı sil"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d dakika"
-
-#~ msgid "%d hours"
-#~ msgstr "%d saat"
-
-#~ msgid "%d days"
-#~ msgstr "%d gün"
 
 #~ msgid "1 album"
 #~ msgstr "%1 albüm"
@@ -2097,9 +2098,6 @@ msgstr "Bu CD'nin İçe Aktarımı sırasında bir hata oluştu"
 #~ msgid "Change your music folder."
 #~ msgstr "Müzik dizinini değiştir."
 
-#~ msgid "Repeat All"
-#~ msgstr "Tümünü Tekrar Çal"
-
 #~ msgid "Write metadata to file"
 #~ msgstr "Dosyaya medadata yaz"
 
@@ -2123,9 +2121,6 @@ msgstr "Bu CD'nin İçe Aktarımı sırasında bir hata oluştu"
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
 #~ "%s tarafından %s için müzik dosyası bulunamadı. Ne yapmak istersiniz?"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u öğe, %s, %s"
 
 #, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
