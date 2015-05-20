@@ -393,10 +393,12 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         
         var main_settings = Settings.Main.get_default ();
         if(main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
-            if (_current_shuffled.is_empty)
+            if (_current_shuffled.is_empty) {
                 foreach (Media s in library.get_medias ())
                     addToCurrent (s);    //first initialize the current selection the reshuffle it
                 reshuffle ();
+            }
+
             _playing_queued_song = false;
             
             if(current_media == null) {
