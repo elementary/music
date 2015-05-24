@@ -571,11 +571,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         Timeout.add(1000, () => {
             if (m != null && current_media == m) {
                 // potentially fix media length
-                uint player_duration_s = (uint)(player.get_duration() / Numeric.NANO_INV);
+                uint player_duration_s = (uint)(player.get_duration() / TimeUtils.NANO_INV);
                 if (player_duration_s > 1) {
-                    int delta_s = (int)player_duration_s - (int)(m.length / Numeric.MILI_INV);
+                    int delta_s = (int)player_duration_s - (int)(m.length / TimeUtils.MILI_INV);
                     if (Math.fabs ((double)delta_s) > 3) {
-                        m.length = (uint)(player_duration_s * Numeric.MILI_INV);
+                        m.length = (uint)(player_duration_s * TimeUtils.MILI_INV);
                         library.update_media (m, false, false);
                     }
                 }

@@ -40,12 +40,12 @@ public class Noise.GridView : ContentView, GridLayout {
     /**
      * Hash map containing a set of albums identified by their album key.
      */
-    private Gee.HashMap<string, Album> album_info;
+    private Gee.HashMap<uint, Album> album_info;
 
     public GridView (ViewWrapper view_wrapper) {
         base (view_wrapper);
 
-        album_info = new Gee.HashMap<string, Album> ();
+        album_info = new Gee.HashMap<uint, Album> ();
 
         setup_focus ();
 
@@ -330,7 +330,7 @@ public class Noise.GridView : ContentView, GridLayout {
         int order = String.compare (album_a.get_display_artist (), album_b.get_display_artist ());
 
         if (order == 0)
-            order = Numeric.compare (album_a.year, album_b.year);
+            order = Compare.standard_unsigned (album_a.year, album_b.year);
 
         if (order == 0)
             order = String.compare (album_a.get_display_name (), album_b.get_display_name ());

@@ -42,7 +42,6 @@
  * - Keep albums organized by library manager
  */
 public class Noise.Album : Object {
-
     public string name { get; set; default = ""; }
     public string artist { get; set; default = ""; }
 
@@ -67,6 +66,10 @@ public class Noise.Album : Object {
      * This is a temporary workaround used by the Grid View and will be
      * deprecated after the TODO list is completed.
      */
+    public Album (string name, string artist) {
+        this.name = name;
+        this.artist = artist;
+    }
     public Album.from_media (Media m) {
         name = m.album;
         artist = m.album_artist;
@@ -82,13 +85,6 @@ public class Noise.Album : Object {
 
     public bool is_empty {
         get { return n_media < 1; }
-    }
-
-    public string to_string () {
-        var builder = new StringBuilder ();
-        builder.append (name);
-        builder.append (artist);
-        return builder.str;
     }
 
     public inline string get_display_name () {
@@ -120,8 +116,11 @@ public class Noise.Album : Object {
         m.album_info = this;
     }
 
-    public string get_hashkey () {
-        return "%s|%s".printf (name, artist);
+    public uint get_hashkey () {
+        var builder = new StringBuilder ();
+        builder.append (name);
+        builder.append (artist);
+        return builder.str.hash ();
     }
 
     /**

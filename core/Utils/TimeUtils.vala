@@ -29,6 +29,8 @@
  */
 
 namespace Noise.TimeUtils {
+    public const uint64 NANO_INV = 1000000000;
+    public const uint64 MILI_INV = 1000;
 
     public const uint SECONDS_PER_MINUTE = 60;
     public const uint SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE;
@@ -39,18 +41,20 @@ namespace Noise.TimeUtils {
      * "%i days, %i hours and %i minutes", "%i seconds", "%i minutes and %i seconds",
      * or similar.
      */
-    public inline string time_string_from_seconds (uint seconds) {
-        if (seconds < SECONDS_PER_MINUTE)
+    public inline string time_string_from_seconds (uint given_seconds) {
+        uint days = given_seconds / 86400;
+        uint hours = (given_seconds - days * 86400) / 3600;
+        uint minutes = (given_seconds - days * 86400 - hours * 3600) / 60;
+        uint seconds = given_seconds - days * 86400 - hours * 3600 - minutes * 60;
+
+        if (given_seconds < SECONDS_PER_MINUTE)
             return ngettext ("%d second", "%d seconds", seconds).printf (seconds);
 
         string days_string = "", hours_string = "", minutes_string = "", seconds_string = "";
-        uint days = 0, hours = 0, minutes = 0;
 
         // If less than one hour, show minutes + seconds
-        if (seconds < SECONDS_PER_HOUR) {
-            minutes = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_MINUTE);
+        if (given_seconds < SECONDS_PER_HOUR) {
             minutes_string = ngettext ("%u minute", "%u minutes", minutes).printf (minutes);
-            seconds -= minutes * SECONDS_PER_MINUTE;
 
             if (seconds > 0) {
                 seconds_string = ngettext ("%u second", "%u seconds", seconds).printf (seconds);
@@ -60,18 +64,6 @@ namespace Noise.TimeUtils {
 
             return minutes_string;
         }
-
-        // calculate days
-        days = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_DAY);
-        seconds -= days * SECONDS_PER_DAY;
-
-        // calculate remaining hours
-        hours = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_HOUR);
-        seconds -= hours * SECONDS_PER_HOUR;
-
-        // calculate remaining minutes. Now the best (and not the lowest)
-        // approximation is desired
-        minutes = Numeric.uint_from_double (seconds / SECONDS_PER_MINUTE);
 
         if (days > 0)
             days_string = ngettext ("%u day", "%u days", days).printf (days);
@@ -120,11 +112,11 @@ namespace Noise.TimeUtils {
     }
 
     public inline string time_string_from_miliseconds (uint64 miliseconds) {
-        return time_string_from_seconds ((uint)(miliseconds / Numeric.MILI_INV));
+        return time_string_from_seconds ((uint)(miliseconds / MILI_INV));
     }
 
     public inline string time_string_from_nanoseconds (uint64 nanoseconds) {
-        return time_string_from_seconds ((uint)(nanoseconds / Numeric.NANO_INV));
+        return time_string_from_seconds ((uint)(nanoseconds / NANO_INV));
     }
 
     /**
@@ -132,15 +124,15 @@ namespace Noise.TimeUtils {
      */
     public inline string pretty_length (uint seconds) {
         if (seconds < SECONDS_PER_HOUR) {
-            uint minutes = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_MINUTE);
-            seconds -= minutes * SECONDS_PER_MINUTE;
+            uint minutes = seconds / 60;
+            seconds -= minutes * 60;
             return "%u:%02u".printf (minutes, seconds);
         }
 
-        uint hours = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_HOUR);
-        seconds -= hours * SECONDS_PER_HOUR;
-        uint minutes = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_MINUTE);
-        seconds -= minutes * SECONDS_PER_MINUTE;
+        uint hours = seconds / 3600;
+        seconds -= hours * 3600;
+        uint minutes = seconds / 60;
+        seconds -= minutes * 60;
         return "%u:%02u:%02u".printf (hours, minutes, seconds);
     }
 
@@ -148,14 +140,14 @@ namespace Noise.TimeUtils {
      * Receives the number of miliseconds and returns a string with format MM:SS
      */
     public inline string pretty_length_from_ms (uint64 mseconds) {
-        return pretty_length ((uint)(mseconds / Numeric.MILI_INV));
+        return pretty_length ((uint)(mseconds / MILI_INV));
     }
 
     /**
      * Receives the number of nanoseconds and returns a string with format MM:SS
      */
     public inline string pretty_length_from_ns (uint64 nseconds) {
-        return pretty_length ((uint)(nseconds / Numeric.NANO_INV));
+        return pretty_length ((uint)(nseconds / NANO_INV));
     }
 
     /**
@@ -181,10 +173,10 @@ namespace Noise.TimeUtils {
      * The method does its best to avoid losing precision.
      */
     public inline uint nanoseconds_to_miliseconds (uint64 nanoseconds) {
-        return (uint) (nanoseconds * Numeric.MILI_INV  / Numeric.NANO_INV);
+        return (uint) (nanoseconds * MILI_INV / NANO_INV);
     }
 
     public inline uint64 miliseconds_to_nanoseconds (uint miliseconds) {
-        return (uint64) miliseconds * Numeric.NANO_INV / Numeric.MILI_INV;
+        return (uint64) miliseconds * NANO_INV / MILI_INV;
     }
 }

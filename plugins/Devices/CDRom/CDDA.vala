@@ -93,7 +93,7 @@ public class Noise.CDDA : Object {
                 debug ("  - TRACK_DURATION: %s secs\n", length.to_string ());
 
 				s.track = index;
-				s.length = (uint) (length * Numeric.MILI_INV); // no need to check, it's our best guess either way
+                s.length = (uint) (length * TimeUtils.MILI_INV); // no need to check, it's our best guess either way
 
 				if (Media.is_valid_string_field (title))
 					s.title = title;

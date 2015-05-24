@@ -288,7 +288,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                     case BrowserColumn.Category.YEAR:
                         // the year column contains only numbers, or "" in case the first
                         // item is selected, so its parsing will be OK all the time.
-                        year = String.is_empty (selected, false) ? -1 : (int) Numeric.uint_from_string (selected);
+                        year = String.is_empty (selected, false) ? -1 : (int) String.uint_from_string (selected);
                     break;
 
                     case BrowserColumn.Category.RATING:
@@ -305,7 +305,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                         //
                         // Please note that these strings are usually localized.
                         // Avoid changing uint_from_string()'s behavior at all cost.
-                        rating = String.is_empty (selected, false) ? -1 : (int) Numeric.uint_from_string (selected);
+                        rating = String.is_empty (selected, false) ? -1 : (int) String.uint_from_string (selected);
                     break;
                     
                     default:

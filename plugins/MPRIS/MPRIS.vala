@@ -204,7 +204,7 @@ public class MprisPlayer : GLib.Object {
         _metadata = new HashTable<string, Variant> (null, null);
 
         _metadata.insert("mpris:trackid", get_track_id (s));
-        _metadata.insert("mpris:length", Noise.App.player.player.get_duration () / Noise.Numeric.MILI_INV);
+        _metadata.insert("mpris:length", Noise.App.player.player.get_duration () / Noise.TimeUtils.MILI_INV);
 
         var art_file = Noise.CoverartCache.instance.get_cached_image_file (s);
         _metadata.insert("mpris:artUrl", art_file != null ? art_file.get_uri () : default_image_url);
@@ -375,7 +375,7 @@ public class MprisPlayer : GLib.Object {
     
     public int64 Position {
         get {
-            return (Noise.App.player.player.get_position()/(int64)Noise.Numeric.MILI_INV);
+            return (Noise.App.player.player.get_position()/(int64)Noise.TimeUtils.MILI_INV);
         }
     }
     
@@ -466,7 +466,7 @@ public class MprisPlayer : GLib.Object {
         if (Position < 0)
             Position = 0;
 
-        if (Position < Noise.App.player.player.get_duration () / Noise.Numeric.MILI_INV) {
+        if (Position < Noise.App.player.player.get_duration () / Noise.TimeUtils.MILI_INV) {
             SetPosition ("", Position);
             Seeked (Position);
         } else if (CanGoNext) {
@@ -475,7 +475,7 @@ public class MprisPlayer : GLib.Object {
     }
     
     public void SetPosition(string dobj, int64 Position) {
-        Noise.App.player.player.set_position(Position * (int64)Noise.Numeric.MILI_INV);
+        Noise.App.player.player.set_position(Position * (int64)Noise.TimeUtils.MILI_INV);
     }
     
     public void OpenUri(string Uri) {

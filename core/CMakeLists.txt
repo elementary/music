@@ -37,7 +37,6 @@ set (CORE_SOURCE
   Utils/FileUtils.vala
   Utils/TimeUtils.vala
   Utils/String.vala
-  Utils/Numeric.vala
   Utils/UI.vala
   Utils/CompareFunctionHolder.vala
   Utils/Utils.vala

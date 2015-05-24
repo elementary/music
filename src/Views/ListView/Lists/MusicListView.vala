@@ -491,25 +491,25 @@ public class Noise.MusicListView : GenericList {
 
         switch (column) {
             case ListColumn.NUMBER: // We assume there are no two indentical numbers for this case
-                order = a_pos - b_pos;
+                order = Compare.standard (a_pos, b_pos);
             break;
 
             case ListColumn.TITLE:
-                order = Noise.Compare.titles (media_a, media_b);
+                order = Compare.titles (media_a, media_b);
             break;
 
             case ListColumn.LENGTH:
-                order = Numeric.compare (media_a.length, media_b.length);
+                order = Compare.standard_unsigned (media_a.length, media_b.length);
                 if (order == 0)
-                    Noise.Compare.titles (media_a, media_b);
+                    Compare.titles (media_a, media_b);
             break;
 
             case ListColumn.ARTIST:
-                order = Noise.Compare.artists (media_a, media_b);
+                order = Compare.artists (media_a, media_b);
             break;
 
             case ListColumn.ALBUM:
-                order = Noise.Compare.albums (media_a, media_b);
+                order = Compare.albums (media_a, media_b);
             break;
 
 
@@ -518,7 +518,7 @@ public class Noise.MusicListView : GenericList {
             // equivalent to sorting by album_artists.
             case ListColumn.TRACK:
             case ListColumn.ALBUM_ARTIST:
-                order = Noise.Compare.album_artists (media_a, media_b);
+                order = Compare.album_artists (media_a, media_b);
             break;
 
             case ListColumn.COMPOSER:
@@ -529,43 +529,43 @@ public class Noise.MusicListView : GenericList {
                 order = String.compare (media_a.grouping, media_b.grouping);
             break;
             case ListColumn.GENRE:
-                order = Noise.Compare.genres (media_a, media_b);
+                order = Compare.genres (media_a, media_b);
             break;
 
             case ListColumn.YEAR:
-                order = Numeric.compare (media_a.year, media_b.year);
+                order = Compare.standard_unsigned (media_a.year, media_b.year);
             break;
 
             case ListColumn.BITRATE:
-                order = Numeric.compare (media_a.bitrate, media_b.bitrate);
+                order = Compare.standard_unsigned (media_a.bitrate, media_b.bitrate);
             break;
 
             case ListColumn.RATING:
-                order = Numeric.compare (media_a.rating, media_b.rating);
+                order = Compare.standard_unsigned (media_a.rating, media_b.rating);
             break;
 
             case ListColumn.PLAY_COUNT:
-                order = Numeric.compare (media_a.play_count, media_b.play_count);
+                order = Compare.standard_unsigned (media_a.play_count, media_b.play_count);
             break;
 
             case ListColumn.SKIP_COUNT:
-                order = Numeric.compare (media_a.skip_count, media_b.skip_count);
+                order = Compare.standard_unsigned (media_a.skip_count, media_b.skip_count);
             break;
 
             case ListColumn.DATE_ADDED:
-                order = Numeric.compare (media_a.date_added, media_b.date_added);
+                order = Compare.standard_unsigned (media_a.date_added, media_b.date_added);
             break;
 
             case ListColumn.LAST_PLAYED:
-                order = Numeric.compare (media_a.last_played, media_b.last_played);
+                order = Compare.standard_unsigned (media_a.last_played, media_b.last_played);
             break;
 
             case ListColumn.BPM:
-                order = Numeric.compare (media_a.bpm, media_b.bpm);
+                order = Compare.standard_unsigned (media_a.bpm, media_b.bpm);
             break;
 
             case ListColumn.FILE_SIZE:
-                order = Numeric.compare ((int64) media_a.file_size, (int64) media_b.file_size);
+                order = Compare.standard_64 ((int64) media_a.file_size, (int64) media_b.file_size);
             break;
 
             case ListColumn.FILE_LOCATION:

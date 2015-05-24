@@ -54,7 +54,7 @@ namespace Noise.Compare {
         int order = String.compare (a.get_display_artist (), b.get_display_artist ());
         // secondarily compare by year
         if (order == 0)
-            order = Numeric.compare(a.year, b.year);
+            order = standard_unsigned (a.year, b.year);
         if (order == 0)
             order = albums (a, b);
         return order;
@@ -70,15 +70,25 @@ namespace Noise.Compare {
     public inline int albums (Media a, Media b) {
         int order = String.compare (a.get_display_album (), b.get_display_album ());
         if (order == 0)
-            order = Numeric.compare (a.album_number, b.album_number);
+            order = standard_unsigned (a.album_number, b.album_number);
         if (order == 0)
             order = track_numbers (a, b);
         return order;
     }
 
     public inline int track_numbers (Media a, Media b) {
-        return Numeric.compare (a.track, b.track);
+        return standard_unsigned (a.track, b.track);
     }
 
+    public inline int standard (int a, int b) {
+        return (int) (a > b) - (int) (a < b);
+    }
 
+    public inline int standard_unsigned (uint a, uint b) {
+        return (int) (a > b) - (int) (a < b);
+    }
+
+    public inline int standard_64 (int64 a, int64 b) {
+        return (int) (a > b) - (int) (a < b);
+    }
 }

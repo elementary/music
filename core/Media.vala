@@ -152,11 +152,14 @@ public class Noise.Media : Object {
         return !String.is_empty (text, true);
     }
 
-    public string get_album_hashkey () {
+    public uint get_album_hashkey () {
+        var builder = new StringBuilder ();
+        builder.append (album);
         if (is_valid_string_field (album_artist))
-            return "%s|%s".printf (album, album_artist);
+            builder.append (album_artist);
         else
-            return "%s|%s".printf (album, artist);
+            builder.append (artist);
+        return builder.str.hash ();
     }
     /**
      * It's called simple because it simply checks if the string is empty,

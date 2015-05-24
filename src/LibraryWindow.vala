@@ -1255,9 +1255,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private void on_quit () {
         // Save media position and info
         main_settings.last_media_position = (int)((double)App.player.player.get_position
-        ()/Numeric.NANO_INV);
+        ()/TimeUtils.NANO_INV);
         if(App.player.current_media != null) {
-            App.player.current_media.resume_pos = (int)((double)App.player.player.get_position()/Numeric.NANO_INV);
+            App.player.current_media.resume_pos = (int)((double)App.player.player.get_position()/TimeUtils.NANO_INV);
             library_manager.update_media (App.player.current_media, false, false);
         }
         App.player.player.pause();
