@@ -335,8 +335,7 @@ public class Noise.FileOperator : Object {
         resetProgress (all_new_imports.size);
         foreach (Media s in all_new_imports) {
             if (!cancellable.is_cancelled ()) {
-                //current_operation = "<b>Copying " + s.title + "</b> to <b>Music Folder</b>";
-                update_file_hierarchy (s, false, false);
+                update_file_hierarchy (s, false, true);
             }
 
             ++index;
