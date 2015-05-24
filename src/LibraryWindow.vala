@@ -191,6 +191,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
                     break;
                 case Gdk.Key.f:
+                    searchField.grab_focus ();
                     return false;
                 case Gdk.Key.q:
                 case Gdk.Key.w:
