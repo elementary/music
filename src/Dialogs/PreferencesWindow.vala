@@ -65,14 +65,20 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         index++;
 
         section.show_all ();
+        var children_number = main_stack.get_children ().length ();
+        main_stackswitcher.no_show_all = children_number <= 1;
+        main_stackswitcher.visible = children_number > 1;
 
         return index;
     }
 
-    public void remove_section (int index) {
-        var section = sections.get (index);
+    public void remove_section (int _index) {
+        var section = sections.get (_index);
         section.destroy ();
-        sections.unset (index);
+        sections.unset (_index);
+        var children_number = main_stack.get_children ().length ();
+        main_stackswitcher.no_show_all = children_number <= 1;
+        main_stackswitcher.visible = children_number > 1;
     }
 
     private void build_ui () {
