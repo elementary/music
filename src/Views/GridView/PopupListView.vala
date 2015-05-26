@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012-2015 Noise Developers (https://launchpad.net/noise)
  *
  * This software is licensed under the GNU General Public License
  * (version 2 or later). See the COPYING file in this distribution.
@@ -18,46 +18,43 @@
  */
 
 public class Noise.PopupListView : Gtk.Dialog {
-
     public const int MIN_SIZE = 500;
 
     ViewWrapper view_wrapper;
     Gtk.Image album_cover;
     Gtk.Label album_label;
     Gtk.Label artist_label;
-    
+
     Gtk.Menu cover_action_menu;
     Gtk.MenuItem cover_set_new;
-    
+
     Granite.Widgets.Rating rating;
     GenericList list_view;
 
     Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
-    
-    public PopupListView (GridView grid_view) {
-        this.delete_event.connect (hide_on_delete);
-        window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 
+    public PopupListView (GridView grid_view) {
         // window stuff
         has_resize_grip = false;
         resizable = false;
-
-        this.view_wrapper = grid_view.parent_view_wrapper;
-        
-        set_transient_for (App.main_window);
-        App.main_window.close_subwindows.connect (() => { this.hide_on_delete (); });
         destroy_with_parent = true;
         skip_taskbar_hint = true;
-        
-        // cover        
+        set_transient_for (App.main_window);
+        window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
+
+        this.view_wrapper = grid_view.parent_view_wrapper;
+
+        this.delete_event.connect (hide_on_delete);
+        App.main_window.close_subwindows.connect (() => { this.hide_on_delete (); });
+
+        // cover
         album_cover = new Gtk.Image ();
         album_cover.margin_left = album_cover.margin_bottom = 12;
-        
+
         Gtk.EventBox cover_event_box = new Gtk.EventBox ();
         cover_event_box.add (album_cover);
-        
+
         cover_action_menu = new Gtk.Menu ();
-      
         cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
         cover_set_new.activate.connect (() => { this.set_new_cover(); });
         
@@ -65,55 +62,51 @@ public class Noise.PopupListView : Gtk.Dialog {
         cover_action_menu.show_all ();
         
         cover_event_box.button_press_event.connect (show_cover_context_menu);
-        
+
         // album artist/album labels
-        album_label = new Gtk.Label ("");
-        artist_label = new Gtk.Label ("");
-
-        album_label.get_style_context ().add_class ("h2"); 
-
-        album_label.ellipsize = Pango.EllipsizeMode.END;
-        artist_label.ellipsize = Pango.EllipsizeMode.END;
-
-        album_label.set_line_wrap (false);
-        artist_label.set_line_wrap (false);
-        
-        album_label.set_max_width_chars (30);
+        artist_label = new Gtk.Label (null);
+        artist_label.hexpand = true;
+        artist_label.get_style_context ().add_class ("h1"); 
+        artist_label.wrap = true;
+        artist_label.margin_end = 12;
+        artist_label.valign = Gtk.Align.END;
         artist_label.set_max_width_chars (30);
 
-        album_label.margin_left = album_label.margin_right = 12;
-        artist_label.margin_bottom = 12;
+        album_label = new Gtk.Label (null);
+        album_label.hexpand = true;
+        album_label.get_style_context ().add_class ("h2"); 
+        album_label.wrap = true;
+        album_label.margin_end = 12;
+        album_label.valign = Gtk.Align.START;
+        album_label.set_max_width_chars (30);
 
         // Music List
         var tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
         list_view = new MusicListView (view_wrapper, tvs);
         list_view.set_search_func (view_search_func);
-
         list_view.expand = true;
-        
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
         list_view_scrolled.add (list_view);
 
         // Rating widget
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
         // customize rating
-        rating.star_spacing = 16;
-        rating.margin_top = rating.margin_bottom = 16;
+        rating.star_spacing = 12;
+        rating.margin_top = 12;
+        rating.margin_bottom = 6;
 
         // Add everything
-        Gtk.Box content = get_content_area () as Gtk.Box;
-        Gtk.Box header = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        Gtk.Box artist = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        var content = get_content_area () as Gtk.Box;
+        var grid = new Gtk.Grid ();
+        grid.row_spacing = 6;
+        grid.column_spacing = 12;
 
-        artist.pack_start (artist_label, false, true, 0);
-        artist.pack_start (album_label, false, true, 0);
-
-        header.pack_start (cover_event_box, false, false);
-        header.pack_start (artist, true, false);        
-
-        content.pack_start (header, false, true, 0);
-        content.pack_start (list_view_scrolled, true, true, 0);
-        content.pack_start (rating, false, true, 0);
+        grid.attach (cover_event_box, 0, 0, 1, 2);
+        grid.attach (artist_label, 1, 0, 1, 1);
+        grid.attach (album_label, 1, 1, 1, 1);
+        grid.attach (list_view_scrolled, 0, 2, 2, 1);
+        grid.attach (rating, 0, 3, 2, 1);
+        content.add (grid);
 
         rating.rating_changed.connect (rating_changed);
     }
@@ -152,16 +145,13 @@ public class Noise.PopupListView : Gtk.Dialog {
 
     public void set_album (Album album) {
         reset ();
-        
         lock (media_list) {
-
             string name = album.get_display_name ();
             string artist = album.get_display_artist ();
 
             string title_format = C_("Title format used on Album View Popup: $ALBUM by $ARTIST", "%s by %s");
             set_title (title_format.printf (name, artist));
-            
-            
+
             show_album_cover (CoverartCache.instance.get_album_cover (album));
             album_label.set_label (name);
             artist_label.set_label (artist);
