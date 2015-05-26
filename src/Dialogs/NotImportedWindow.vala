@@ -90,7 +90,7 @@ public class Noise.NotImportedWindow : Gtk.Dialog {
         foreach (string file in files) {
             Gtk.TreeIter item;
             filesModel.append (out item);
-            filesModel.set (item, 0, false, 1, file.replace (music_folder, ""));
+            filesModel.set (item, 0, false, 1, Uri.unescape_string (file.replace ("file://" + music_folder, "")));
         }
 
         var files_scrolled = new Gtk.ScrolledWindow (null, null);
