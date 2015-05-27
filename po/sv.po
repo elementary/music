@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-04-12 09:08+0000\n"
+"PO-Revision-Date: 2015-05-26 16:26+0000\n"
 "Last-Translator: Mikael Nyberg <mikanybe@gmail.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-13 05:34+0000\n"
-"X-Generator: Launchpad (build 17423)\n"
+"X-Launchpad-Export-Date: 2015-05-27 05:27+0000\n"
+"X-Generator: Launchpad (build 17514)\n"
 "X-Poedit-Language: Swedish\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -838,7 +838,7 @@ msgstr "Lägg till musik till ditt bibliotek"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr "Importera musik från källan till ditt bibliotek."
+msgstr "Importera musik från en källa till ditt bibliotek."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
@@ -1996,18 +1996,9 @@ msgstr "Ett fel uppstod under importen av denna cd"
 #~ msgid "Import %i songs"
 #~ msgstr "Importera %i låtar"
 
-#~ msgid "%d minutes"
-#~ msgstr "%d minuter"
-
 #, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s kan inte hitta din musik"
-
-#~ msgid "%d days"
-#~ msgstr "%d dagar"
-
-#~ msgid "%d hours"
-#~ msgstr "%d timmar"
 
 #, c-format
 #~ msgid "Finding songs similar to %s by %s"
@@ -2068,9 +2059,6 @@ msgstr "Ett fel uppstod under importen av denna cd"
 #~ msgstr ""
 #~ "Det här kommer att radera %s från ditt bibliotek och från alla enheter som "
 #~ "automatiskt synkroniseras med %s."
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u objekt, %s, %s"
 
 #, c-format
 #~ msgid "The name %s is already in use"
@@ -2186,9 +2174,6 @@ msgstr "Ett fel uppstod under importen av denna cd"
 #, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dagar"
-
-#~ msgid "Repeat All"
-#~ msgstr "Upprepa alla"
 
 #~ msgid "Show Equalizer"
 #~ msgstr "Visa equalizer"
