@@ -35,15 +35,17 @@ public class Noise.StaticPlaylist : Playlist {
     public bool allow_duplicate { get; set; default=false;}
 
     public StaticPlaylist () {
-        name = "";
-        medias = new Gee.ArrayQueue<Media>();
-        icon = new ThemedIcon ("playlist");
+        
     }
 
     public StaticPlaylist.with_info (int rowid, string name) {
-        base ();
         this.rowid = rowid;
         this.name = name;
+    }
+
+    construct {
+        medias = new Gee.ArrayQueue<Media>();
+        icon = new ThemedIcon ("playlist");
     }
 
     public override void add_media (Media m) {

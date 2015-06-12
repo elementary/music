@@ -30,7 +30,6 @@
  */
 
 public class Noise.SmartPlaylist : Playlist {
-
     public enum ConditionalType {
         ALL = true,
         ANY = false
@@ -50,9 +49,6 @@ public class Noise.SmartPlaylist : Playlist {
      */
     public SmartPlaylist (Noise.Library library) {
         this.library = library;
-        queries = new Gee.TreeSet<SmartQuery>();
-        medias = new Gee.ArrayQueue<Media> ();
-        icon = new ThemedIcon ("playlist-automatic");
         library.media_added.connect ((medias) => {
             analyse_list (medias);
         });
@@ -72,6 +68,12 @@ public class Noise.SmartPlaylist : Playlist {
 
             media_removed (removed);
         });
+    }
+
+    construct {
+        medias = new Gee.ArrayQueue<Media> ();
+        icon = new ThemedIcon ("playlist-automatic");
+        queries = new Gee.TreeSet<SmartQuery>();
     }
 
     /*
@@ -220,40 +222,39 @@ public class Noise.SmartPlaylist : Playlist {
                 break;
             case Noise.SmartQuery.FieldType.YEAR:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return int.parse(q.value) == s.year;
+                    return int.parse (q.value) == s.year;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
-                    return (s.year <= int.parse(q.value));
+                    return (s.year <= int.parse (q.value));
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
-                    return (s.year >= int.parse(q.value));
+                    return (s.year >= int.parse (q.value));
                 break;
             case Noise.SmartQuery.FieldType.LENGTH:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return int.parse(q.value) == s.length;
+                    return int.parse (q.value) == s.length;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
-                    return (s.length <= int.parse(q.value));
+                    return (s.length <= int.parse (q.value));
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
-                    return (s.length >= int.parse(q.value));
+                    return (s.length >= int.parse (q.value));
                 break;
             case Noise.SmartQuery.FieldType.RATING:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return int.parse(q.value) == s.rating;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
-                    return (s.rating <= int.parse(q.value));
+                    return (s.rating <= int.parse (q.value));
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
-                    return (s.rating >= int.parse(q.value));
+                    return (s.rating >= int.parse (q.value));
                 break;
             case Noise.SmartQuery.FieldType.DATE_ADDED:
-                var now = new DateTime.now_local();
-                var played = new DateTime.from_unix_local(s.date_added);
-                played = played.add_days(int.parse(q.value));
+                var now = new DateTime.now_local ();
+                var played = new DateTime.from_unix_local (s.date_added);
+                played = played.add_days (int.parse (q.value));
             
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return (now.get_day_of_year() == played.get_day_of_year() && now.get_year() == played.get_year());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_WITHIN) {
-                    return played.compare(now) > 0;
-                }
-                else if(q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
-                    return now.compare(played) > 0;
+                if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) {
+                    return (now.get_day_of_year () == played.get_day_of_year () && now.get_year () == played.get_year ());
+                } else if (q.comparator == SmartQuery.ComparatorType.IS_WITHIN) {
+                    return played.compare (now) > 0;
+                } else if (q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
+                    return now.compare (played) > 0;
                 }
                 break;
             case Noise.SmartQuery.FieldType.DATE_RELEASED:
@@ -275,18 +276,17 @@ public class Noise.SmartPlaylist : Playlist {
             case Noise.SmartQuery.FieldType.LAST_PLAYED:
                 if(s.last_played == 0)
                     return false;
-            
+
                 var now = new DateTime.now_local();
-                var played = new DateTime.from_unix_local(s.last_played);
-                played = played.add_days(int.parse(q.value));
-            
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return (now.get_day_of_year() == played.get_day_of_year() && now.get_year() == played.get_year());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_WITHIN) {
-                    return played.compare(now) > 0;
-                }
-                else if(q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
-                    return now.compare(played) > 0;
+                var played = new DateTime.from_unix_local (s.last_played);
+                played = played.add_days (int.parse (q.value));
+
+                if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) {
+                    return (now.get_day_of_year () == played.get_day_of_year () && now.get_year () == played.get_year ());
+                } else if (q.comparator == SmartQuery.ComparatorType.IS_WITHIN) {
+                    return played.compare (now) > 0;
+                } else if (q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
+                    return now.compare (played) > 0;
                 }
                 break;
         }

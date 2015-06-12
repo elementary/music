@@ -30,7 +30,6 @@
  */
 
 public class Noise.SmartQuery : Object {
-    
     public enum ComparatorType {
         IS,
         IS_NOT,
@@ -42,7 +41,7 @@ public class Noise.SmartQuery : Object {
         IS_WITHIN,
         IS_BEFORE
     }
-    
+
     public enum FieldType {
         ALBUM,
         ARTIST,
@@ -61,16 +60,16 @@ public class Noise.SmartQuery : Object {
         TITLE,
         YEAR
     }
-    
+
     public int rowid { get; set; default = 0; }
     public FieldType field { get; set; default = FieldType.ALBUM; }
     public ComparatorType comparator { get; set; default = ComparatorType.IS; }
     public string value { get; set; default = ""; } //internally this often holds numbers, but that's ok.
-    
+
     public SmartQuery () {
         
     }
-    
+
     public SmartQuery.with_info (FieldType field, ComparatorType comparator, string value) {
         this.field = field;
         this.comparator = comparator;
