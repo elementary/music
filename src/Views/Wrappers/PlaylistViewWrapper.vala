@@ -24,6 +24,9 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
     public int playlist_id { get; construct set; default = -1; }
     public TreeViewSetup tvs;
     public signal void button_clicked (int playlist_id);
+    private Gtk.Action[] actions = null;
+    private string message_head;
+    private string message_body;
 
     public PlaylistViewWrapper (int playlist_id, ViewWrapper.Hint hint, TreeViewSetup? tvs = null, Library library) {
         base (hint, library);
@@ -50,20 +53,45 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
         // Do initial population. Further additions and removals will be handled
         // by the handlers connected below through connect_data_signals()
-        if (hint == Hint.SMART_PLAYLIST) {
-            // this sets the media indirectly through the signal handlers connected above
-            yield set_media_async (library.smart_playlist_from_id (playlist_id).medias);
-        } else if (hint == Hint.PLAYLIST) {
-            yield set_media_async (library.playlist_from_id (playlist_id).medias);
-        } else {
-            assert_not_reached ();
-        }
+        switch (hint) {
+            case Hint.READ_ONLY_PLAYLIST:
+                message_head = _("No Songs");
+                message_body = _("Updating playlist. Please wait.");
+                yield set_media_async (library.playlist_from_id (playlist_id).medias);
+                break;
+            case Hint.PLAYLIST:
+                message_head = _("No Songs");
+                message_body = _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>.");
+                yield set_media_async (library.playlist_from_id (playlist_id).medias);
+                break;
+            case Hint.SMART_PLAYLIST:
+                var action = new Gtk.Action ("smart-playlist-rules-edit",
+                                             _("Edit Smart Playlist"),
+                                             null,
+                                             null);
+                // Connect to the 'activate' signal
+                action.activate.connect ( () => {
+                    button_clicked (playlist_id);
+                    //lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
+                });
 
+                actions = new Gtk.Action[1];
+                actions[0] = action;
+
+                message_head = _("No Songs");
+                message_body = _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below.");
+                yield set_media_async (library.smart_playlist_from_id (playlist_id).medias);
+                break;
+
+            default:
+                assert_not_reached ();
+        }
         connect_data_signals ();
     }
 
     private void connect_data_signals () {
         switch (hint) {
+            case Hint.READ_ONLY_PLAYLIST:
             case Hint.PLAYLIST:
                 var p = library.playlist_from_id (playlist_id);
 
@@ -87,34 +115,22 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                     p.request_play.connect (() => {App.player.clearCurrent(); play_first_media (true);App.player.getNext(true);});
                 }
             break;
-            
+
             default:
                 assert_not_reached ();
         }
+    }
+
+    public void set_no_media_alert_message (string head, string body) {
+        message_head = head;
+        message_body = body;
     }
 
     protected override void set_no_media_alert () {
         // show alert if there's no media
         assert (has_embedded_alert);
 
-        if (hint == Hint.PLAYLIST) {
-            embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Gtk.MessageType.INFO);
-        } else if (hint == Hint.SMART_PLAYLIST) {
-            var action = new Gtk.Action ("smart-playlist-rules-edit",
-                                         _("Edit Smart Playlist"),
-                                         null,
-                                         null);
-            // Connect to the 'activate' signal
-            action.activate.connect ( () => {
-                button_clicked (playlist_id);
-                //lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
-            });
-
-            var actions = new Gtk.Action[1];
-            actions[0] = action;
-
-            embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."), actions, true, Gtk.MessageType.INFO);
-        }
+        embedded_alert.set_alert (message_head, message_body, actions, true, Gtk.MessageType.INFO);
     }
 
     private async void on_playlist_media_added (Gee.Collection<Media> to_add) {

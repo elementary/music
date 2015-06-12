@@ -23,8 +23,6 @@ public class Noise.ViewContainer : Gtk.Stack {
 
     public ViewContainer () {
         expand = true;
-        halign = valign = Gtk.Align.FILL;
-
         match_views = new Gee.HashMap<int, unowned Gtk.Widget>();
     }
 

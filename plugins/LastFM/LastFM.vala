@@ -97,8 +97,8 @@ namespace Noise.Plugins {
 
         private void source_list_added (GLib.Object o, int view_number) {
             if (o == LastFM.Core.get_default ().get_similar_playlist ()) {
-                var view = (Noise.ReadOnlyPlaylistViewWrapper) App.main_window.view_container.get_view (view_number);
-                view.set_no_media_alert_message (_("No similar songs found"), _("There are no songs similar to the current song in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.") , Gtk.MessageType.INFO);
+                var view = (Noise.PlaylistViewWrapper) App.main_window.view_container.get_view (view_number);
+                view.set_no_media_alert_message (_("No similar songs found"), _("There are no songs similar to the current song in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches."));
             }
         }
 

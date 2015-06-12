@@ -433,32 +433,32 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         source_list_view.playlist_save_clicked.connect ( (page_number) => {
             var view = view_container.get_view (page_number);
-            if (view is ReadOnlyPlaylistViewWrapper) {
-                var playlistview = (ReadOnlyPlaylistViewWrapper)view;
+            if (view is PlaylistViewWrapper) {
+                var playlistview = (PlaylistViewWrapper)view;
+                if (playlistview.hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST)
+                    return;
                 var playlist = library_manager.playlist_from_id (playlistview.playlist_id);
                 if (playlist != null) {
-                    var new_playlist = new StaticPlaylist();
+                    var new_playlist = new StaticPlaylist ();
                     new_playlist.name = PlaylistsUtils.get_new_playlist_name (library_manager.get_playlists (), playlist.name);
                     new_playlist.add_medias (playlist.medias);
-                    library_manager.add_playlist(new_playlist);
+                    library_manager.add_playlist (new_playlist);
                 }
             }
         });
         
         source_list_view.playlist_export_clicked.connect ( (page_number) => {
             var view = view_container.get_view (page_number);
-            if (view is ReadOnlyPlaylistViewWrapper) {
-                var playlistview = (ReadOnlyPlaylistViewWrapper)view;
-                var playlist = ((ViewWrapper)view).library.playlist_from_id (playlistview.playlist_id);
-                if (playlist != null) {
-                    PlaylistsUtils.export_playlist (playlist);
-                }
-            } else if (view is PlaylistViewWrapper) {
+            if (view is PlaylistViewWrapper) {
                 var playlistview = (PlaylistViewWrapper)view;
-                if (playlistview.hint == ViewWrapper.Hint.PLAYLIST) {
-                    PlaylistsUtils.export_playlist (((ViewWrapper)view).library.playlist_from_id (playlistview.playlist_id));
-                } else if (playlistview.hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-                    PlaylistsUtils.export_playlist (((ViewWrapper)view).library.smart_playlist_from_id (playlistview.playlist_id));
+                switch (playlistview.hint) {
+                    case ViewWrapper.Hint.PLAYLIST:
+                    case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+                        PlaylistsUtils.export_playlist (((ViewWrapper)view).library.playlist_from_id (playlistview.playlist_id));
+                        break;
+                    case ViewWrapper.Hint.SMART_PLAYLIST:
+                        PlaylistsUtils.export_playlist (((ViewWrapper)view).library.smart_playlist_from_id (playlistview.playlist_id));
+                        break;
                 }
             }
         });
@@ -845,26 +845,26 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.PLAYLIST, p.icon, null, into_expandable);
         } else {
             if (p.name == C_("Name of the playlist", "Queue")) {
-                var queue_view = new ReadOnlyPlaylistViewWrapper (App.player.queue_playlist.rowid, 
-                                        match_tvs.get (App.player.queue_playlist), true, library);
+                var queue_view = new PlaylistViewWrapper (App.player.queue_playlist.rowid, ViewWrapper.Hint.READ_ONLY_PLAYLIST, 
+                                        match_tvs.get (App.player.queue_playlist), library);
                 queue_view.set_no_media_alert_message (_("No songs in Queue"), 
-                        _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), Gtk.MessageType.INFO);
+                        _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."));
                 view_number = view_container.add_view (queue_view);
                 entry = source_list_view.add_item  (view_number, App.player.queue_playlist.name,
                                                     ViewWrapper.Hint.READ_ONLY_PLAYLIST, new ThemedIcon ("playlist-queue"));
                 update_badge_on_playlist_update (p, entry);
                 App.player.queue_media (p.medias);
             } else if (p.name == _("History")) {
-                var history_view = new ReadOnlyPlaylistViewWrapper (App.player.history_playlist.rowid, 
-                                                match_tvs.get(App.player.history_playlist), false, library);
+                var history_view = new PlaylistViewWrapper (App.player.history_playlist.rowid, ViewWrapper.Hint.READ_ONLY_PLAYLIST, 
+                                                match_tvs.get(App.player.history_playlist), library);
                 history_view.set_no_media_alert_message (_("No songs in History"), 
-                        _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), Gtk.MessageType.INFO);
+                        _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."));
                 view_number = view_container.add_view (history_view);
                 entry = source_list_view.add_item  (view_number, App.player.history_playlist.name,
                                                     ViewWrapper.Hint.READ_ONLY_PLAYLIST, new ThemedIcon ("document-open-recent"));
                 App.player.history_playlist.add_medias (p.medias);
             } else {
-                var view = new ReadOnlyPlaylistViewWrapper (p.rowid, match_tvs.get(p), false, library);
+                var view = new PlaylistViewWrapper (p.rowid, ViewWrapper.Hint.READ_ONLY_PLAYLIST, match_tvs.get(p), library);
                 view_number = view_container.add_view (view);
                 entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, p.icon, null, into_expandable);
                 if (p.show_badge == true) {

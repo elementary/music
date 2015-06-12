@@ -63,16 +63,12 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem importToLibrary;
     Gtk.MenuItem mediaScrollToCurrent;
     Gtk.MenuItem mediaScrollToCurrentSeparator;
-    bool is_queue = false;
-    bool read_only = false;
 
     /**
      * for sort_id use 0+ for normal, -1 for auto, -2 for none
      */
-    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool? is_queue = false, bool? read_only = false) {
+    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         base (view_wrapper, tvs);
-        this.is_queue = is_queue;
-        this.read_only = read_only;
 
         // This is vital
         set_value_func (view_value_func);
@@ -91,7 +87,7 @@ public class Noise.MusicListView : GenericList {
             importToLibrary.set_visible(false);
         } else if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
             importToLibrary.set_visible(false);
-            if (is_queue == true) {
+            if (this.get_relative_id () == App.player.queue_playlist.rowid) {
                 mediaRemove.set_label(_("Remove from Queue"));
                 mediaMenuQueue.set_visible(false);
             } else {
@@ -138,6 +134,7 @@ public class Noise.MusicListView : GenericList {
             mediaActionMenu.append(mediaScrollToCurrentSeparator);
         }
 
+        var read_only = get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
         if (read_only == false) {
             mediaActionMenu.append(mediaEditMedia);
         }
@@ -154,13 +151,10 @@ public class Noise.MusicListView : GenericList {
             mediaActionMenu.append(mediaMenuAddToPlaylist);
         }
 
-        if (hint != ViewWrapper.Hint.SMART_PLAYLIST && hint != ViewWrapper.Hint.ALBUM_LIST) {
-            if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-                if (is_queue == true)
-                    mediaActionMenu.append (new Gtk.SeparatorMenuItem ());
-            } else {
+        if (hint != ViewWrapper.Hint.SMART_PLAYLIST &&
+            hint != ViewWrapper.Hint.ALBUM_LIST &&
+            hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
                 mediaActionMenu.append (new Gtk.SeparatorMenuItem ());
-            }
         }
 
         mediaActionMenu.append(mediaRemove);
@@ -460,7 +454,7 @@ public class Noise.MusicListView : GenericList {
             dvw.library.remove_medias (get_selected_medias ().read_only_view, true);
         } else if (get_hint () == ViewWrapper.Hint.PLAYLIST) {
             parent_wrapper.library.playlist_from_id (relative_id).remove_medias (get_selected_medias ().read_only_view);
-        } else if (get_hint () == ViewWrapper.Hint.READ_ONLY_PLAYLIST && is_queue == true) {
+        } else if (get_hint () == ViewWrapper.Hint.READ_ONLY_PLAYLIST && this.get_relative_id () == App.player.queue_playlist.rowid) {
             parent_wrapper.library.playlist_from_id (relative_id).remove_medias (get_selected_medias ().read_only_view);
         }
     }

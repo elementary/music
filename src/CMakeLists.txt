@@ -41,7 +41,6 @@ set(CLIENT_SOURCE
     Views/Wrappers/MusicViewWrapper.vala
     Views/Wrappers/DeviceViewWrapper.vala
     Views/Wrappers/PlaylistViewWrapper.vala
-    Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala
     Views/DeviceView.vala
     Views/DeviceSummaryWidget.vala
     Views/ContentView.vala
