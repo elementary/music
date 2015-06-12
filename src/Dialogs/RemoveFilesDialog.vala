@@ -49,7 +49,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         Gtk.Label info = new Gtk.Label ("");
         trash_button = new Gtk.Button.with_label (_("Move to Trash"));
         remove_button = new Gtk.Button.with_label (_("Remove from %s").printf (app_name));
-        cancel_button = new Gtk.Button.with_label (_(STRING_CANCEL));
+        cancel_button = new Gtk.Button.with_label (_("Cancel"));
 
         bool multiple_media = to_remove.size > 1;
 

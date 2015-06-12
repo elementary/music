@@ -94,9 +94,6 @@ namespace Noise {
     };
 
     public const string MUSIC_PLAYLIST = "autosaved_music";
-    public const string STRING_CANCEL = _("Cancel");
-    public const string STRING_OPEN = _("Open");
-    public const string STRING_SAVE = _("Save");
 
     public LibrariesManager libraries_manager;
 }

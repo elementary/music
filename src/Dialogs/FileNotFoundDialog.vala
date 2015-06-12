@@ -123,8 +123,8 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
         string file = "";
         var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,
                                                       Gtk.FileChooserAction.OPEN,
-                                                      _(STRING_CANCEL), Gtk.ResponseType.CANCEL,
-                                                      _(STRING_OPEN), Gtk.ResponseType.ACCEPT);
+                                                      _("Cancel"), Gtk.ResponseType.CANCEL,
+                                                      _("Open"), Gtk.ResponseType.ACCEPT);
 
         // try and help user by setting a sane default folder
         var invalid_file = File.new_for_uri (libraries_manager.local_library.media_from_id (media_id).uri);

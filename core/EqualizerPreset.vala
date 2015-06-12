@@ -32,22 +32,22 @@
 
 public class Noise.EqualizerPreset : Object {
 
-	public string name = "";
-	public Gee.ArrayList<int> gains = new Gee.ArrayList<int> ();
+    public string name = "";
+    public Gee.ArrayList<int> gains = new Gee.ArrayList<int> ();
 
-	public bool is_default { get; set; default = false; }
+    public bool is_default { get; set; default = false; }
 
-	public EqualizerPreset.basic (string name) {
-		this.name = name;
-		for (int i = 0; i < 10; ++i)
-			this.gains.add (0);
-	}
+    public EqualizerPreset.basic (string name) {
+        this.name = name;
+        for (int i = 0; i < 10; ++i)
+            this.gains.add (0);
+    }
 
-	public EqualizerPreset.with_gains (string name, int[] items) {
-		this.name = name;
-		for(int i = 0; i < 10; ++i)
-			this.gains.add (items[i]);
-	}
+    public EqualizerPreset.with_gains (string name, int[] items) {
+        this.name = name;
+        for(int i = 0; i < 10; ++i)
+            this.gains.add (items[i]);
+    }
 
     public EqualizerPreset.from_string (string data) {
         var vals = data.split ("/", 0);
@@ -62,21 +62,21 @@ public class Noise.EqualizerPreset : Object {
         if (name != null && name != "") {
             str_preset = name;
             for (int i = 0; i < 10; ++i)
-    				str_preset += "/" + getGain (i).to_string ();
+                    str_preset += "/" + getGain (i).to_string ();
         }
 
         return str_preset;
     }
 
-	public void setGain (int index, int val) {
-		if(index > 9)
-			return;
-		
-		gains.set (index, val);
-	}
-	
-	public int getGain (int index) {
-		return gains.get (index);
-	}
+    public void setGain (int index, int val) {
+        if(index > 9)
+            return;
+
+        gains.set (index, val);
+    }
+
+    public int getGain (int index) {
+        return gains.get (index);
+    }
 }
 

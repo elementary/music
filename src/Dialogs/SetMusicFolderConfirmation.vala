@@ -58,7 +58,7 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
         Gtk.Label info = new Gtk.Label("");
         savePlaylists = new Gtk.Button.with_label(_("Export Playlists"));
         ok = new Gtk.Button.with_label(_("Set Music Folder"));
-        cancel = new Gtk.Button.with_label (_(STRING_CANCEL));
+        cancel = new Gtk.Button.with_label (_("Cancel"));
         is_finished = new Gtk.Image();
         is_working = new Gtk.Spinner();
 
@@ -106,8 +106,8 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
         string folder = "";
         var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,
                                   Gtk.FileChooserAction.SELECT_FOLDER,
-                                  _(STRING_CANCEL), Gtk.ResponseType.CANCEL,
-                                  _(STRING_OPEN), Gtk.ResponseType.ACCEPT);
+                                  _("Cancel"), Gtk.ResponseType.CANCEL,
+                                  _("Open"), Gtk.ResponseType.ACCEPT);
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             folder = file_chooser.get_filename ();
         }

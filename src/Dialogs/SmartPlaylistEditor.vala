@@ -113,9 +113,9 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         /* add the Save button on bottom */
         var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
         button_box.spacing = 6;
-        save_button = new Gtk.Button.with_label (_(STRING_SAVE));
+        save_button = new Gtk.Button.with_label (_("Save"));
         save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-        var close_button = new Gtk.Button.with_label (_(STRING_CANCEL));
+        var close_button = new Gtk.Button.with_label (_("Cancel"));
         button_box.set_layout (Gtk.ButtonBoxStyle.END);
         button_box.pack_end (close_button, false, false, 0);
         button_box.pack_end (save_button, false, false, 0);

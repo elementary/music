@@ -88,7 +88,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
 
         var arrows = new Noise.Widgets.NavigationArrows ();
 
-        save_button = new Gtk.Button.with_label (_(STRING_SAVE));
+        save_button = new Gtk.Button.with_label (_("Save"));
         save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         close_button  = new Gtk.Button.with_label (_("Close"));
