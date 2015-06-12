@@ -60,16 +60,12 @@ namespace Noise.Widgets {
     private class RepeatChooser : SimpleOptionChooser {
 
         public RepeatChooser () {
-            var repeat_on_image = Icons.REPEAT_ON.render_image (Gtk.IconSize.MENU);
-            var repeat_one_image = Icons.REPEAT_ONE.render_image (Gtk.IconSize.MENU);
-            var repeat_off_image = Icons.REPEAT_OFF.render_image (Gtk.IconSize.MENU);
-
             // MUST follow the exact same order of Noise.Player.Repeat
-            appendItem (_("Off"), repeat_off_image, _("Enable Repeat"));
-            appendItem (_("Song"), repeat_one_image, _("Repeat Song"));
-            appendItem (_("Album"), repeat_on_image, _("Repeat Album"));
-            appendItem (_("Artist"), repeat_on_image, _("Repeat Artist"));
-            appendItem (_("All"), repeat_on_image, _("Disable Repeat"));
+            appendItem (_("Off"), new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.MENU), _("Enable Repeat"));
+            appendItem (_("Song"), new Gtk.Image.from_icon_name ("media-playlist-repeat-one-symbolic", Gtk.IconSize.MENU), _("Repeat Song"));
+            appendItem (_("Album"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Repeat Album"));
+            appendItem (_("Artist"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Repeat Artist"));
+            appendItem (_("All"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Disable Repeat"));
 
             update_option ();
 
@@ -95,11 +91,8 @@ namespace Noise.Widgets {
     private class ShuffleChooser : SimpleOptionChooser {
 
         public ShuffleChooser () {
-            var shuffle_on_image   = Icons.SHUFFLE_ON.render_image (Gtk.IconSize.MENU);
-            var shuffle_off_image  = Icons.SHUFFLE_OFF.render_image (Gtk.IconSize.MENU);
-
-            appendItem (_("Off"), shuffle_off_image, _("Enable Shuffle"));
-            appendItem (_("All"), shuffle_on_image, _("Disable Shuffle"));
+            appendItem (_("Off"), new Gtk.Image.from_icon_name ("media-playlist-no-shuffle-symbolic", Gtk.IconSize.MENU), _("Enable Shuffle"));
+            appendItem (_("All"), new Gtk.Image.from_icon_name ("media-playlist-shuffle-symbolic", Gtk.IconSize.MENU), _("Disable Shuffle"));
 
             update_mode ();
 
@@ -141,7 +134,7 @@ namespace Noise.Widgets {
             above_child = true;
 #endif
 
-            add (Icons.LIST_ADD_SYMBOLIC.render_image (Gtk.IconSize.MENU));
+            add (new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU));
 
             var add_pl_menuitem = new Gtk.MenuItem.with_label (_("Add Playlist"));
             var add_spl_menuitem = new Gtk.MenuItem.with_label (_("Add Smart Playlist"));
@@ -184,15 +177,15 @@ namespace Noise.Widgets {
     private class EqualizerChooser : Gtk.MenuButton {
         public EqualizerChooser () {
             popover = new EqualizerPopover ();
-            add (Icons.EQ_SYMBOLIC.render_image (Gtk.IconSize.MENU));
+            add (new Gtk.Image.from_icon_name ("media-eq-symbolic", Gtk.IconSize.MENU));
         }
     }
 
     private class InfoPanelChooser : SimpleOptionChooser {
 
         public InfoPanelChooser () {
-            var info_panel_show = Icons.PANE_SHOW_SYMBOLIC.render_image (Gtk.IconSize.MENU);
-            var info_panel_hide = Icons.PANE_HIDE_SYMBOLIC.render_image (Gtk.IconSize.MENU);
+            var info_panel_show = new Gtk.Image.from_icon_name ("pane-show-symbolic", Gtk.IconSize.MENU);
+            var info_panel_hide = new Gtk.Image.from_icon_name ("pane-hide-symbolic", Gtk.IconSize.MENU);
 
             appendItem (_("Hide"), info_panel_show, _("Show Info Panel"));
             appendItem (_("Show"), info_panel_hide, _("Hide Info Panel"));

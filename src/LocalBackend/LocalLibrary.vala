@@ -36,16 +36,16 @@
  * the visual representation of this class
  */
 public class Noise.LocalLibrary : Library {
-    public LibraryWindow lw { get { return App.main_window; } }
     public DataBaseUpdater dbu;
-    public FileOperator fo;
-    public GStreamerTagger tagger;
 
-    public Gee.TreeSet<StaticPlaylist> _playlists;
-    public Gee.TreeSet<SmartPlaylist> _smart_playlists;
-    public Gee.TreeSet<Media> _medias;
-    public Gee.TreeSet<Media> _searched_medias;
-    public int playlists_rowid = 0;
+    private FileOperator fo;
+    private GStreamerTagger tagger;
+
+    private Gee.TreeSet<StaticPlaylist> _playlists;
+    private Gee.TreeSet<SmartPlaylist> _smart_playlists;
+    private Gee.TreeSet<Media> _medias;
+    private Gee.TreeSet<Media> _searched_medias;
+    private int playlists_rowid = 0;
 
     public StaticPlaylist p_music;
 

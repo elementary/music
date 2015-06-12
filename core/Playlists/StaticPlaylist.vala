@@ -37,7 +37,7 @@ public class Noise.StaticPlaylist : Playlist {
     public StaticPlaylist () {
         name = "";
         medias = new Gee.ArrayQueue<Media>();
-        icon = Icons.PLAYLIST.gicon;
+        icon = new ThemedIcon ("playlist");
     }
 
     public StaticPlaylist.with_info (int rowid, string name) {

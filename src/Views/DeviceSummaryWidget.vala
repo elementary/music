@@ -91,7 +91,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         sync_music_check = new Gtk.CheckButton ();
         sync_music_combobox = new Gtk.ComboBox ();
-        music_list = new Gtk.ListStore (3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
+        music_list = new Gtk.ListStore (3, typeof (GLib.Object), typeof (string), typeof (string));
 
         device_image = new Gtk.Image.from_gicon (dev.get_icon (), Gtk.IconSize.DIALOG);
         space_widget = new SpaceWidget (dev.get_capacity());
@@ -199,8 +199,10 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_combobox.set_row_separator_func (rowSeparatorFunc);
 
         var music_cell = new Gtk.CellRendererPixbuf ();
+        music_cell.stock_size = Gtk.IconSize.MENU;
         sync_music_combobox.pack_start (music_cell, false);
-        sync_music_combobox.add_attribute (music_cell, "pixbuf", 2);
+        sync_music_combobox.add_attribute (music_cell, "gicon", 2);
+        
 
         var cell = new Gtk.CellRendererText ();
         cell.ellipsize = Pango.EllipsizeMode.END;
@@ -259,7 +261,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         /* add entire library options */
         music_list.append (out iter);
-        music_list.set (iter, 0, null, 1, _("All Music"), 2, Icons.MUSIC.render(Gtk.IconSize.MENU));
+        music_list.set (iter, 0, null, 1, _("All Music"), 2, new ThemedIcon ("library-music"));
 
         /* add separator */
         music_list.append (out iter);
@@ -268,7 +270,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         /* add all playlists */
         foreach (var p in libraries_manager.local_library.get_smart_playlists ()) {
             music_list.append (out iter);
-            music_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
+            music_list.set (iter, 0, p, 1, p.name, 2, p.icon);
             if (selected_playlist == p) {
                 sync_music_combobox.set_active_iter (iter);
             }
@@ -277,7 +279,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         foreach (var p in libraries_manager.local_library.get_playlists ()) {
             if (p.read_only == false) {
                 music_list.append (out iter);
-                music_list.set (iter, 0, p, 1, p.name, 2, Icons.render_icon (p.icon.to_string (), Gtk.IconSize.MENU, null));
+                music_list.set (iter, 0, p, 1, p.name, 2, p.icon);
                 if (selected_playlist == p) {
                     sync_music_combobox.set_active_iter (iter);
                 }

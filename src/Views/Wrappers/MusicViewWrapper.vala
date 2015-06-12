@@ -51,12 +51,10 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         welcome_screen = new Granite.Widgets.Welcome (_("Get Some Tunes"),
             _("Add music to your library."/*" with one of the methods below."*/));
 
-        var import_music_icon = Icons.IMPORT.render (Gtk.IconSize.DIALOG, null);
-        welcome_screen.append_with_pixbuf (import_music_icon, _("Import Music"),
+        welcome_screen.append ("document-import", _("Import Music"),
             _("Import music from a source into your library."));
 
-        var music_folder_icon = Icons.MUSIC_FOLDER.render (Gtk.IconSize.DIALOG, null);
-        welcome_screen.append_with_pixbuf (music_folder_icon, _("Change Music Folder"),
+        welcome_screen.append ("folder-music", _("Change Music Folder"),
             _("Load music from a folder, a network or an external disk."));
 
         welcome_screen.activated.connect (welcome_screen_activated);

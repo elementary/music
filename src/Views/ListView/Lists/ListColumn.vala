@@ -170,7 +170,7 @@ public enum Noise.ListColumn {
                 var currently_playing = App.player.current_media;
 
                 if (m == currently_playing && currently_playing != null)
-                    icon = Icons.NOW_PLAYING_SYMBOLIC.gicon;
+                    icon = new ThemedIcon ("audio-volume-high-symbolic");
                 else
                     icon = m.unique_status_image;
 

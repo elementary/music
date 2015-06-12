@@ -260,7 +260,7 @@ public class Noise.MusicListView : GenericList {
                 } else {
                     warning ("File %s does not exist, ignoring it", media.uri);
                     //indicate that the file doesn't exist in the UI
-                    media.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU);
+                    media.unique_status_image = new ThemedIcon ("process-error-symbolic");
                     media.location_unknown = true;
                 }
             }
@@ -391,7 +391,7 @@ public class Noise.MusicListView : GenericList {
         string music_folder_uri = File.new_for_path (Settings.Main.get_default ().music_folder).get_uri ();
         if (to_edit.size == 1 && !File.new_for_uri (parent_wrapper.library.media_from_id (id).uri).query_exists () && 
                     parent_wrapper.library.media_from_id(id).uri.has_prefix(music_folder_uri)) {
-            parent_wrapper.library.media_from_id (id).unique_status_image = Icons.PROCESS_ERROR.render (Gtk.IconSize.MENU);
+            parent_wrapper.library.media_from_id (id).unique_status_image = new ThemedIcon ("process-error-symbolic");
             FileNotFoundDialog fnfd = new FileNotFoundDialog (to_edit_med);
             fnfd.present ();
         } else {

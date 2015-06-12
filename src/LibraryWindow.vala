@@ -224,8 +224,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 break;
         }
 
-        this.set_title (((Noise.App) GLib.Application.get_default ()).get_name ());
-        this.set_icon (Icons.NOISE.render_at_size (64));
+        this.title = ((Noise.App) GLib.Application.get_default ()).get_name ();
+        this.icon_name = "multimedia-audio-player";
 
         // set up drag dest stuff
         /*
@@ -580,7 +580,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (pixbuf != null)
             notification.set_image_from_pixbuf (pixbuf);
         else
-            notification.icon_name = Icons.NOISE.name;
+            notification.icon_name = "multimedia-audio-player";
 
         notification.set_category ("x-gnome.music");
         notification.set_urgency ((Notify.Urgency) urgency);
@@ -687,7 +687,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Add Music Library View
         var music_view_wrapper = new MusicViewWrapper (music_tvs, library_manager, topDisplay);
         int view_number = view_container.add_view (music_view_wrapper);
-        var entry = source_list_view.add_item  (view_number, _("Music"), ViewWrapper.Hint.MUSIC, Icons.MUSIC.gicon);
+        var entry = source_list_view.add_item (view_number, _("Music"), ViewWrapper.Hint.MUSIC, new ThemedIcon ("library-music"));
         match_playlist_entry.set (library_manager.p_music, entry);
         match_playlists.set (library_manager.p_music, view_number);
 
@@ -782,14 +782,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             if(d.only_use_custom_view()) {
                 message("new custom device (probably a CD) added with %d songs.\n", d.get_library ().get_medias().size);
 
-                entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon, null, d);
+                entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), new ThemedIcon ("media-eject-symbolic"), null, d);
             } else {
                 debug ("adding device view with %d\n", d.get_library ().get_medias().size);
                 var music_view_wrapper = new DeviceViewWrapper(new TreeViewSetup(ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d, d.get_library ());
                 
                 int subview_number = view_container.add_view (music_view_wrapper);
-                entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), Icons.EJECT_SYMBOLIC.gicon, null, d);
-                source_list_view.add_item (subview_number, _("Music"), ViewWrapper.Hint.DEVICE_AUDIO, Icons.MUSIC.gicon, null, entry as SourceListExpandableItem, d);
+                entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), new ThemedIcon ("media-eject-symbolic"), null, d);
+                source_list_view.add_item (subview_number, _("Music"), ViewWrapper.Hint.DEVICE_AUDIO, new ThemedIcon ("library-music"), null, entry as SourceListExpandableItem, d);
                 if (d.get_library ().support_playlists () == true) {
                     foreach (var p in d.get_library ().get_playlists ()) {
                         create_playlist_source_list (p, (SourceListExpandableItem)entry, d.get_library ());
@@ -851,7 +851,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                         _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), Gtk.MessageType.INFO);
                 view_number = view_container.add_view (queue_view);
                 entry = source_list_view.add_item  (view_number, App.player.queue_playlist.name,
-                                                    ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.QUEUE.gicon);
+                                                    ViewWrapper.Hint.READ_ONLY_PLAYLIST, new ThemedIcon ("playlist-queue"));
                 update_badge_on_playlist_update (p, entry);
                 App.player.queue_media (p.medias);
             } else if (p.name == _("History")) {
@@ -861,7 +861,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                         _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), Gtk.MessageType.INFO);
                 view_number = view_container.add_view (history_view);
                 entry = source_list_view.add_item  (view_number, App.player.history_playlist.name,
-                                                    ViewWrapper.Hint.READ_ONLY_PLAYLIST, Icons.HISTORY.gicon);
+                                                    ViewWrapper.Hint.READ_ONLY_PLAYLIST, new ThemedIcon ("document-open-recent"));
                 App.player.history_playlist.add_medias (p.medias);
             } else {
                 var view = new ReadOnlyPlaylistViewWrapper (p.rowid, match_tvs.get(p), false, library);
@@ -1130,10 +1130,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
 
         // If different folder chosen or we have no songs anyways, do set.
-        if (folder == "" || (folder == main_settings.music_folder && !library_manager._medias.is_empty))
+        if (folder == "" || (folder == main_settings.music_folder && !library_manager.get_medias ().is_empty))
             return;
 
-        if (!library_manager._medias.is_empty || library_manager.playlist_count_without_read_only () > 0) {
+        if (!library_manager.get_medias ().is_empty || library_manager.playlist_count_without_read_only () > 0) {
             var smfc = new SetMusicFolderConfirmation(folder);
             smfc.finished.connect( (cont) => {
                 if(cont) {

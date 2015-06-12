@@ -37,45 +37,11 @@ public class Noise.Icons {
 
     public static Icon DEFAULT_ALBUM_ART { get; private set; default = new Icon ("albumart"); }
     public static Icon DEFAULT_ALBUM_ART_2 { get; private set; default = new Icon ("albumart_2"); }
-    public static Icon MUSIC_FOLDER { get; private set; default = new Icon ("folder-music"); }
-    public static Icon IMPORT { get; private set; default = new Icon ("document-import"); }
-    public static Icon HISTORY { get; private set; default = new Icon ("document-open-recent"); }
-    public static Icon QUEUE { get; private set; default = new Icon ("playlist-queue"); }
-    public static Icon NOISE { get; private set; default = new Icon ("multimedia-audio-player"); }
-    public static Icon MUSIC { get; private set; default = new Icon ("library-music"); }
-    public static Icon AUDIO_CD { get; private set; default = new Icon ("media-cdrom-audio"); }
-    public static Icon AUDIO_DEVICE { get; private set; default = new Icon ("multimedia-player"); }
     // FIXME: have a real icon for audiobooks
-    public static Icon GENERIC_AUDIO { get; private set; default = new Icon ("audio-x-generic"); }
-    public static Icon NETWORK_DEVICE { get; private set; default = new Icon ("monitor"); }
-    public static Icon PLAYLIST { get; private set; default = new Icon ("playlist"); }
-    public static Icon SMART_PLAYLIST { get; private set; default = new Icon ("playlist-automatic"); }
     public static Icon STARRED { get; private set; default = new Icon ("starred"); }
     public static Icon NOT_STARRED { get; private set; default = new Icon ("non-starred"); }
-    public static Icon LOVE { get; private set; default = new Icon ("love"); }
-    public static Icon BAN { get; private set; default = new Icon ("ban"); }
-
-    public static Icon PANE_SHOW_SYMBOLIC { get; private set; default = new Icon ("pane-show-symbolic"); }
-    public static Icon PANE_HIDE_SYMBOLIC { get; private set; default = new Icon ("pane-hide-symbolic"); }
-    public static Icon EQ_SYMBOLIC { get; private set; default = new Icon ("media-eq-symbolic"); }
-    public static Icon EJECT_SYMBOLIC { get; private set; default = new Icon ("media-eject-symbolic"); }
-    public static Icon NOW_PLAYING_SYMBOLIC { get; private set; default = new Icon ("audio-volume-high-symbolic"); }
     public static Icon STARRED_SYMBOLIC { get; private set; default = new Icon ("starred-symbolic"); }
     public static Icon NOT_STARRED_SYMBOLIC { get; private set; default = new Icon ("non-starred-symbolic"); }
-    public static Icon PROCESS_COMPLETED { get; private set; default = new Icon ("process-completed-symbolic"); }
-    public static Icon PROCESS_ERROR { get; private set; default = new Icon ("process-error-symbolic"); }
-    public static Icon PROCESS_STOP { get; private set; default = new Icon ("process-stop-symbolic"); }
-    public static Icon REPEAT_ON { get; private set; default = new Icon ("media-playlist-repeat-symbolic"); }
-    public static Icon REPEAT_ONE { get; private set; default = new Icon ("media-playlist-repeat-one-symbolic"); }
-    public static Icon REPEAT_OFF { get; private set; default = new Icon ("media-playlist-no-repeat-symbolic"); }
-    public static Icon SHUFFLE_ON { get; private set; default = new Icon ("media-playlist-shuffle-symbolic"); }
-    public static Icon SHUFFLE_OFF { get; private set; default = new Icon ("media-playlist-no-shuffle-symbolic"); }
-    public static Icon VIEW_COLUMN { get; private set; default = new Icon ("view-column-symbolic"); }
-    public static Icon VIEW_DETAILS { get; private set; default = new Icon ("view-list-symbolic"); }
-    public static Icon VIEW_ICONS { get; private set; default = new Icon ("view-grid-symbolic"); }
-    public static Icon VIEW_VIDEO { get; private set; default = new Icon ("view-video-symbolic"); }
-    public static Icon LIST_ADD_SYMBOLIC { get; private set; default = new Icon ("list-add-symbolic"); }
-    public static Icon REFRESH_SYMBOLIC { get; private set; default = new Icon ("view-refresh-symbolic"); }
 
     /**
      * This is needed until vala really supports initialization of static members.

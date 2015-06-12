@@ -316,7 +316,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         copied_list.add (lib_copy);
         
         // update media in cdrom list to show as completed
-        s.unique_status_image = Icons.PROCESS_COMPLETED.gicon;
+        s.unique_status_image = new ThemedIcon ("process-completed-symbolic");
 
         if(GLib.File.new_for_uri(lib_copy.uri).query_exists()) {
             try {

@@ -522,14 +522,14 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             }
         }
         if (found == false) {
-            m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU);
+            m.unique_status_image = new ThemedIcon ("process-error-symbolic");
             getNext(true);
             return;
         }
         
         // check that the file exists
         if (! m.file.query_exists ()) {
-            m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU);
+            m.unique_status_image = new ThemedIcon ("process-error-symbolic");
             m.location_unknown = true;
             //App.main_window.media_not_found(id);
             getNext(true);

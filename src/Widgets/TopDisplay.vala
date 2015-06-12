@@ -84,7 +84,7 @@ public class Noise.TopDisplay : Gtk.Stack {
         action_label.ellipsize = Pango.EllipsizeMode.END;
         progressbar = new Gtk.ProgressBar ();
         progressbar.fraction = 1;
-        cancelButton = new Gtk.Button.from_icon_name (Icons.PROCESS_STOP.name, Gtk.IconSize.MENU);
+        cancelButton = new Gtk.Button.from_icon_name ("process-stop-symbolic", Gtk.IconSize.MENU);
         cancelButton.halign = cancelButton.valign = Gtk.Align.CENTER;
         cancelButton.vexpand = true;
         cancelButton.tooltip_text = _(STRING_CANCEL);

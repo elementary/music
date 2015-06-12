@@ -159,25 +159,16 @@ public class Noise.CDRipper : GLib.Object {
     
     public void ripMedia (uint track, Noise.Media s) {
         var f = FileUtils.get_new_destination (s);
-        
+
         sink.set_state (Gst.State.NULL);
         sink.set ("location", f.get_path ());
         src.set ("track", track);
         if (current_media != null)
-            current_media.unique_status_image = Icons.PROCESS_COMPLETED.render (Gtk.IconSize.MENU);
+            current_media.unique_status_image = new ThemedIcon ("process-completed-symbolic");
         track_index++;
         current_media = s;
-        current_media.unique_status_image = Icons.REFRESH_SYMBOLIC.render (Gtk.IconSize.MENU);
-        
-        
-        /*Iterator<Gst.Element> tagger = ((Gst.Bin)converter).iterate_all_by_interface (typeof (TagSetter));
-        tagger.foreach ( (el) => {
-            
-            ((Gst.TagSetter)el).add_tags (Gst.TagMergeMode.REPLACE_ALL,
-                                        Gst.TAG_ENCODER, "Noise");
-            
-        });*/
-        
+        current_media.unique_status_image = new ThemedIcon ("view-refresh-symbolic");
+
         pipeline.set_state (Gst.State.PLAYING);
     }
 }

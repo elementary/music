@@ -52,7 +52,7 @@ public class Noise.SmartPlaylist : Playlist {
         this.library = library;
         queries = new Gee.TreeSet<SmartQuery>();
         medias = new Gee.ArrayQueue<Media> ();
-        icon = Icons.SMART_PLAYLIST.gicon;
+        icon = new ThemedIcon ("playlist-automatic");
         library.media_added.connect ((medias) => {
             analyse_list (medias);
         });

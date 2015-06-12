@@ -82,13 +82,13 @@ public class Noise.LoveBanButtons : Gtk.ButtonBox {
         love_button.can_focus = false;
         love_button.hexpand = false;
         love_button.halign = Gtk.Align.END;
-        love_button.set_image (Noise.Icons.LOVE.render_image (Gtk.IconSize.MENU));
+        love_button.set_image (new Gtk.Image.from_icon_name ("love", Gtk.IconSize.MENU));
 
         ban_button = new Gtk.ToggleButton ();
         ban_button.can_focus = false;
         ban_button.hexpand = false;
         ban_button.halign = Gtk.Align.START;
-        ban_button.set_image (Noise.Icons.BAN.render_image (Gtk.IconSize.MENU));
+        ban_button.set_image (new Gtk.Image.from_icon_name ("ban", Gtk.IconSize.MENU));
 
         love_button.set_size_request (ITEM_WIDTH, -1);
         ban_button.set_size_request (ITEM_WIDTH, -1);

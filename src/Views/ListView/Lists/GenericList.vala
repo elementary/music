@@ -437,7 +437,7 @@ public abstract class Noise.GenericList : FastView {
         int selected_rows = get_selection ().count_selected_rows ();
 
         if (selected_rows > 0)
-            Gtk.drag_source_set_icon_gicon (this, Icons.GENERIC_AUDIO.gicon);
+            Gtk.drag_source_set_icon_name (this, "audio-x-generic");
     }
 
     void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {

@@ -127,9 +127,7 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
 
             is_working.hide ();
             is_finished.show ();
-            var process_completed_icon = Icons.PROCESS_COMPLETED.render (Gtk.IconSize.MENU);
-            var process_error_icon = Icons.PROCESS_ERROR.render (Gtk.IconSize.MENU);
-            is_finished.set_from_pixbuf (success ? process_completed_icon : process_error_icon);
+            is_finished.set_from_icon_name (success ? "process-completed-symbolic" : "process-error-symbolic", Gtk.IconSize.MENU);
         }
     }
 
