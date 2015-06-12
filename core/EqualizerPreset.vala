@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012-2015 Noise Developers (https://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -27,7 +27,7 @@
  *
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Victor Eduardo <victoreduardm@gmail.com>
- *              Corentin Noël <tintou@mailoo.org>
+ *              Corentin Noël <corentin@elementary.io>
  */
 
 public class Noise.EqualizerPreset : Object {

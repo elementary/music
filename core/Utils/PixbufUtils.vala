@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
-/*
- * Copyright (c) 2012 Noise Developers
+/*-
+ * Copyright (c) 2012-2015 Noise Developers (https://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License as
