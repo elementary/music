@@ -24,9 +24,6 @@ public abstract class Noise.GenericList : FastView {
     //for header column chooser
     protected Gtk.Menu column_chooser_menu;
     private Gtk.MenuItem autosize_menu_item;
-#if HAVE_SMART_ALBUM_COLUMN
-    private Gtk.CheckMenuItem smart_album_art_menu_item;
-#endif
 
     protected ViewWrapper parent_wrapper;
 
@@ -59,11 +56,7 @@ public abstract class Noise.GenericList : FastView {
         set_headers_clickable (true);
         set_headers_visible (tvs.get_hint () != ViewWrapper.Hint.ALBUM_LIST);
         set_fixed_height_mode (true);
-#if HAVE_SMART_ALBUM_COLUMN
-        set_rules_hint (!CellDataFunctionHelper.smart_album_art_enabled);
-#else
         set_rules_hint (true);
-#endif
         set_reorderable (false);
 
         add_columns ();
@@ -118,20 +111,6 @@ public abstract class Noise.GenericList : FastView {
 
             column_chooser_menu.append (autosize_menu_item);
             column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
-
-#if HAVE_SMART_ALBUM_COLUMN
-            smart_album_art_menu_item = new Gtk.CheckMenuItem.with_label (_("Display Album Art"));
-            column_chooser_menu.append (smart_album_art_menu_item);
-            column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
-
-            smart_album_art_menu_item.active = CellDataFunctionHelper.smart_album_art_enabled;
-
-            smart_album_art_menu_item.toggled.connect (() => {
-                CellDataFunctionHelper.smart_album_art_enabled = smart_album_art_menu_item.active;
-                 set_rules_hint (!CellDataFunctionHelper.smart_album_art_enabled);
-                queue_draw ();
-            });
-#endif
 
             column_chooser_menu.show_all ();
         }

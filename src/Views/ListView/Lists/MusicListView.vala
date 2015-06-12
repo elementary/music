@@ -696,16 +696,7 @@ public class Noise.MusicListView : GenericList {
                 test_strings += "9999";
             break;
 
-#if HAVE_SMART_ALBUM_COLUMN
             case ListColumn.ALBUM:
-                renderer = new SmartAlbumRenderer ();
-                tvc.set_cell_data_func (renderer, cell_data_helper.album_art_func);
-                // XXX set_row_separator_func (cell_data_helper.row_separator_func);
-            break;
-# else
-            case ListColumn.ALBUM:
-# endif
-
             case ListColumn.TITLE:
             case ListColumn.ARTIST:
             case ListColumn.ALBUM_ARTIST:

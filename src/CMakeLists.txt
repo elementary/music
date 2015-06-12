@@ -11,7 +11,6 @@ set(CLIENT_SOURCE
     LocalBackend/LocalLibrary.vala
     LocalBackend/LocalMedia.vala
     Widgets/NavigationArrows.vala
-    Widgets/SmartAlbumRenderer.vala
     Widgets/TopDisplay.vala
     Widgets/InfoPanel.vala
     Widgets/EmbeddedAlert.vala
@@ -75,7 +74,6 @@ set(CLIENT_SOURCE
 set (CLIENT_VALAC_OPTIONS
   ${GLOBAL_VALAC_OPTIONS}
   #--define=HAVE_ADD_PLAYLIST_AS_BUTTON
-  #--define=HAVE_SMART_ALBUM_COLUMN
   #--define=ENABLE_EXPERIMENTAL
 )
 
