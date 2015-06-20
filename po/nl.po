@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: nl\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1929,9 +1929,6 @@ msgstr "Er is een fout opgetreden tijdens het importeren van deze CD"
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Muziek uit %s aan het toevoegen aan bibliotheek..."
 
-#~ msgid "Repeat All"
-#~ msgstr "Alles Herhalen"
-
 #~ msgid "Show Equalizer"
 #~ msgstr "Toon Equalizer"
 
@@ -2079,18 +2076,6 @@ msgstr "Er is een fout opgetreden tijdens het importeren van deze CD"
 #, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s kan jouw muziek niet vinden."
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u items, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minuten"
-
-#~ msgid "%d days"
-#~ msgstr "%d dagen"
-
-#~ msgid "%d hours"
-#~ msgstr "%d uren"
 
 #~ msgid "Cancelling Sync"
 #~ msgstr "Synchronisatie annuleren"

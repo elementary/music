@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: nn\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1941,12 +1941,6 @@ msgstr "Det oppstod ein feil under importeringa av denne CDen"
 #~ msgid "Device is already being synced."
 #~ msgstr "Enheiten vert allereie synkronisert"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u element, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minutt"
-
 #, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Leitar etter liknande songar på %s av %s"
@@ -1971,12 +1965,6 @@ msgstr "Det oppstod ein feil under importeringa av denne CDen"
 #, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s finn ikkje musikken din."
-
-#~ msgid "%d days"
-#~ msgstr "%d dagar"
-
-#~ msgid "%d hours"
-#~ msgstr "%d timar"
 
 #, c-format
 #~ msgid ""
@@ -2034,9 +2022,6 @@ msgstr "Det oppstod ein feil under importeringa av denne CDen"
 #, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Namnet %s er allereie i bruk"
-
-#~ msgid "Repeat All"
-#~ msgstr "Gjenta alt"
 
 #~ msgid "No songs on CD"
 #~ msgstr "Ingen songar på plata"

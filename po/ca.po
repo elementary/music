@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: ca\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1927,18 +1927,6 @@ msgstr "S'ha produït un error en importar aquest CD"
 #~ msgid "Device is already being synced."
 #~ msgstr "El dispositiu s'està sincronitzant."
 
-#~ msgid "%d minutes"
-#~ msgstr "%d minuts"
-
-#~ msgid "%d days"
-#~ msgstr "%d dies"
-
-#~ msgid "%d hours"
-#~ msgstr "%d hores"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u elements, %s, %s"
-
 #, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i àlbums"
@@ -2193,9 +2181,6 @@ msgstr "S'ha produït un error en importar aquest CD"
 
 #~ msgid "1 item"
 #~ msgstr "1 element"
-
-#~ msgid "Repeat All"
-#~ msgstr "Repeteix tot"
 
 #~ msgid "Locate Media"
 #~ msgstr "Troba elements multimèdia"

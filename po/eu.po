@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: eu\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1886,20 +1886,8 @@ msgstr "Errore bat gertatu da CD hau inportatzean"
 #~ msgid "Remove Media"
 #~ msgstr "Kendu edukia"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u elementu, %s, %s"
-
 #~ msgid "Station"
 #~ msgstr "Katea"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minutu"
-
-#~ msgid "%d days"
-#~ msgstr "%d egun"
-
-#~ msgid "%d hours"
-#~ msgstr "%d ordu"
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Inportatu kantak audio CDtik"
@@ -2046,9 +2034,6 @@ msgstr "Errore bat gertatu da CD hau inportatzean"
 #, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Musika gehitzen %s(e)tik liburutegira..."
-
-#~ msgid "Repeat All"
-#~ msgstr "Errepikatu denak"
 
 #~ msgid "Library Management"
 #~ msgstr "Liburutegi-kudeaketa"

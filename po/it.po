@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -2088,18 +2088,6 @@ msgstr "C'è stato un errore durante l'importazione di questo CD"
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s e %s"
 
-#~ msgid "%d minutes"
-#~ msgstr "%d minuti"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u elementi, %s, %s"
-
-#~ msgid "%d days"
-#~ msgstr "%d giorni"
-
-#~ msgid "%d hours"
-#~ msgstr "%d ore"
-
 #, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Importazione musica da %s..."
@@ -2116,9 +2104,6 @@ msgstr "C'è stato un errore durante l'importazione di questo CD"
 
 #~ msgid "Hide Equalizer"
 #~ msgstr "Nascondi equalizzatore"
-
-#~ msgid "Repeat All"
-#~ msgstr "Ripeti tutto"
 
 #~ msgid "Show Equalizer"
 #~ msgstr "Mostra equalizzatore"

@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -1819,9 +1819,6 @@ msgstr "Προέκυψε ένα σφάλμα κατά την εισαγωγή τ
 #~ msgstr ""
 #~ "Επανασάρωση μουσικής για αλλαγές. Αυτό μπορεί να διαρκέσει για λίγο..."
 
-#~ msgid "Repeat All"
-#~ msgstr "Επανάληψη όλων"
-
 #~ msgid "Show Equalizer"
 #~ msgstr "Εμφάνιση ισοσταθμιστή"
 
@@ -1869,15 +1866,6 @@ msgstr "Προέκυψε ένα σφάλμα κατά την εισαγωγή τ
 #, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s από %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d λεπτά"
-
-#~ msgid "%d days"
-#~ msgstr "%d ημέρες"
-
-#~ msgid "%d hours"
-#~ msgstr "%d ώρες"
 
 #~ msgid "Change your music folder."
 #~ msgstr "Αλλαγή του φάκελου μουσικής."
@@ -1931,9 +1919,6 @@ msgstr "Προέκυψε ένα σφάλμα κατά την εισαγωγή τ
 
 #~ msgid "Rescan Music Folder"
 #~ msgstr "Νέα σάρωση φακέλου μουσικής"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u αντικείμενα, %s, %s"
 
 #~ msgid ""
 #~ "The plugin for media type %s is not installed.\n"

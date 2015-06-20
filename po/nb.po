@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: nb\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1913,9 +1913,6 @@ msgstr "Det oppstod en feil under importeringen av denne CD"
 #~ msgid "Audiobook"
 #~ msgstr "Lydbok"
 
-#~ msgid "Repeat All"
-#~ msgstr "Gjenta alle"
-
 #~ msgid "Show Equalizer"
 #~ msgstr "Vis Equalizer"
 
@@ -1969,18 +1966,6 @@ msgstr "Det oppstod en feil under importeringen av denne CD"
 #, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s av %s"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u element, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minutter"
-
-#~ msgid "%d days"
-#~ msgstr "%d dager"
-
-#~ msgid "%d hours"
-#~ msgstr "% d timer"
 
 #~ msgid "Cancelling Import"
 #~ msgstr "Avbryter importeringen"

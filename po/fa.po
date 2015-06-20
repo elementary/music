@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: \n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1795,18 +1795,6 @@ msgstr "در هنگام واردات این سی‌دی خطایی رخداد"
 #~ msgid "Change your music folder."
 #~ msgstr "تغییر پوشه موسیقی شما."
 
-#~ msgid "%d minutes"
-#~ msgstr "%d دقیقه"
-
-#~ msgid "%d hours"
-#~ msgstr "%d ساعت"
-
-#~ msgid "%d days"
-#~ msgstr "%d روز"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u مورد، %s، %s"
-
 #~ msgid "Cancelling Sync"
 #~ msgstr "لغو هماهنگ‌سازی"
 
@@ -1819,9 +1807,6 @@ msgstr "در هنگام واردات این سی‌دی خطایی رخداد"
 #~ msgid ""
 #~ "Import from device has been cancelled. Operation will stop after this media."
 #~ msgstr "وارد کردن از دستگاه لغو شد. فرآیند پس از این رسانه متوقف خواهد شد."
-
-#~ msgid "Repeat All"
-#~ msgstr "بازپخش همه"
 
 #~ msgid "Show Equalizer"
 #~ msgstr "نمایش نماهنگ"

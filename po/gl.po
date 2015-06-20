@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: gl\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1823,9 +1823,6 @@ msgstr "Produciuse un erro durante a importación deste CD"
 #~ msgid "Hide Equalizer"
 #~ msgstr "Agochar o ecualizador"
 
-#~ msgid "Repeat All"
-#~ msgstr "Repetir todo"
-
 #~ msgid "Adding files to library..."
 #~ msgstr "Engadindo ficheiros á fonoteca..."
 
@@ -1883,18 +1880,6 @@ msgstr "Produciuse un erro durante a importación deste CD"
 
 #~ msgid "Cancelling Sync"
 #~ msgstr "Cancelando a sincronización"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u elementos, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minutos"
-
-#~ msgid "%d days"
-#~ msgstr "%d días"
-
-#~ msgid "%d hours"
-#~ msgstr "%d horas"
 
 #~ msgid "Locate"
 #~ msgstr "Localizar"

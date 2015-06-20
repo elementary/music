@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: sl\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1943,18 +1943,6 @@ msgstr "Med uvažanjem tega CD-ja se je pojavila napaka"
 #~ msgid "Import %i songs"
 #~ msgstr "Uvoz %i pesmi"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u predmetov, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minut"
-
-#~ msgid "%d days"
-#~ msgstr "%d dni"
-
-#~ msgid "%d hours"
-#~ msgstr "%d ur"
-
 #~ msgid "Fetching similar songs"
 #~ msgstr "Pridobivanje podobnih pesmi"
 
@@ -2042,9 +2030,6 @@ msgstr "Med uvažanjem tega CD-ja se je pojavila napaka"
 
 #~ msgid "Radio Station"
 #~ msgstr "Radijska postaja"
-
-#~ msgid "Repeat All"
-#~ msgstr "Ponovi vse"
 
 #~ msgid "Equalizer"
 #~ msgstr "Izenačevalnik"

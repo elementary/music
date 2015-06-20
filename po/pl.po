@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: \n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -2078,15 +2078,6 @@ msgstr "Wystąpił błąd podczas importowania utworów z płyty CD"
 #~ msgid "Fetching similar songs"
 #~ msgstr "Pobieranie podobnych utworów"
 
-#~ msgid "%d minutes"
-#~ msgstr "%d minut"
-
-#~ msgid "%d days"
-#~ msgstr "%d dni"
-
-#~ msgid "%d hours"
-#~ msgstr "%d godzin"
-
 #, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dni"
@@ -2125,9 +2116,6 @@ msgstr "Wystąpił błąd podczas importowania utworów z płyty CD"
 
 #~ msgid "Import Stations"
 #~ msgstr "Zaimportuj stacje"
-
-#~ msgid "Repeat All"
-#~ msgstr "Przełącza powtarzanie wszystkich nagrań"
 
 #~ msgid "Show Equalizer"
 #~ msgstr "Wyświetla korektor dźwięku"
@@ -2200,9 +2188,6 @@ msgstr "Wystąpił błąd podczas importowania utworów z płyty CD"
 #, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s w wykonaniu %s"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u elementów, %s, %s"
 
 #, c-format
 #~ msgid "%s can't seem to find your music."

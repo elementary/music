@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: da\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1871,15 +1871,6 @@ msgstr "Der opstod en fejl under importering af denne CD"
 #~ msgid "Device is already being synced."
 #~ msgstr "Enheden er allerede i gang med at synkronisere"
 
-#~ msgid "%d minutes"
-#~ msgstr "%d minutter"
-
-#~ msgid "%d days"
-#~ msgstr "%d dage"
-
-#~ msgid "%d hours"
-#~ msgstr "%d timer"
-
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Importér sange fra lyd CD"
 
@@ -2012,9 +2003,6 @@ msgstr "Der opstod en fejl under importering af denne CD"
 
 #~ msgid "Import this song"
 #~ msgstr "Importér denne sang"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u elementer, %s, %s"
 
 #, c-format
 #~ msgid "Import %i songs"
@@ -2193,9 +2181,6 @@ msgstr "Der opstod en fejl under importering af denne CD"
 
 #~ msgid " on "
 #~ msgstr " på "
-
-#~ msgid "Repeat All"
-#~ msgstr "Gentag Alt"
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Aktiver Scrobbling"

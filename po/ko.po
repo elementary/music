@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -1763,9 +1763,6 @@ msgstr "CD를 가져오는 도중 오류가 발생했습니다"
 #~ msgid "Hide Equalizer"
 #~ msgstr "이퀄라이저 감추기"
 
-#~ msgid "Repeat All"
-#~ msgstr "모두 반복하기"
-
 #~ msgid "Edit"
 #~ msgstr "편집"
 
@@ -1817,18 +1814,6 @@ msgstr "CD를 가져오는 도중 오류가 발생했습니다"
 
 #~ msgid "Rescan Music Folder"
 #~ msgstr "음악 폴더 다시 검색"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u 항목들, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d 분"
-
-#~ msgid "%d days"
-#~ msgstr "%d일"
-
-#~ msgid "%d hours"
-#~ msgstr "%d 시간"
 
 #~ msgid "Please make sure that your music folder is accessible and mounted."
 #~ msgstr "음악 폴더에 접근할 수 있는지와 마운트 했는지를 확인해주십시오."

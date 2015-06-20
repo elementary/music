@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: es\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -2136,18 +2136,6 @@ msgstr "Ocurrió un error durante la importación del CD"
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Buscando canciones similares a %s por %s"
 
-#~ msgid "%d minutes"
-#~ msgstr "%d minutos"
-
-#~ msgid "%d days"
-#~ msgstr "%d días"
-
-#~ msgid "%d hours"
-#~ msgstr "%d horas"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u elementos, %s, %s"
-
 #~ msgid "Required GStreamer plugin not installed"
 #~ msgstr "El conector de GStreamer requerido no está instalado"
 
@@ -2214,9 +2202,6 @@ msgstr "Ocurrió un error durante la importación del CD"
 
 #~ msgid "Unsuccessful. Click to try again."
 #~ msgstr "Sin éxito. Pulse para intentar nuevamente."
-
-#~ msgid "Repeat All"
-#~ msgstr "Repetir todo"
 
 #~ msgid "Hide Equalizer"
 #~ msgstr "Ocultar ecualizador"

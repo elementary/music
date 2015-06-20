@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-04-12 05:48+0000\n"
-"X-Generator: Launchpad (build 17423)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -1791,23 +1791,8 @@ msgstr "Dogodila se greška prilikom uvoza sa CD-a"
 #~ msgid "Radio Station"
 #~ msgstr "Radio postaja"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u stavke, %s, %s"
-
-#~ msgid "Repeat All"
-#~ msgstr "Ponovi sve"
-
 #~ msgid "Rescan Music Folder"
 #~ msgstr "Ponovo pretraži glazbenu mapu"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minuta"
-
-#~ msgid "%d days"
-#~ msgstr "%d dana"
-
-#~ msgid "%d hours"
-#~ msgstr "%d sati"
 
 #~ msgid "All Podcasts"
 #~ msgstr "Svi podcasti"

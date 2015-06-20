@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -2190,18 +2190,6 @@ msgstr "An error occured during the Import of this CD"
 #~ msgid "Cancelling Import"
 #~ msgstr "Cancelling Import"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u items, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minutes"
-
-#~ msgid "%d days"
-#~ msgstr "%d days"
-
-#~ msgid "%d hours"
-#~ msgstr "%d hours"
-
 #, c-format
 #~ msgid ""
 #~ "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -2215,6 +2203,3 @@ msgstr "An error occured during the Import of this CD"
 #, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Lyrics not found for '%s' by '%s'"
-
-#~ msgid "Repeat All"
-#~ msgstr "Repeat All"

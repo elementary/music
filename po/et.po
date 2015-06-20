@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: et\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1793,12 +1793,6 @@ msgstr "CD-lt importimine pole võimalik"
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s ja %s"
 
-#~ msgid "%d minutes"
-#~ msgstr "%d minutit"
-
-#~ msgid "%d hours"
-#~ msgstr "%d tundi"
-
 #~ msgid "Hide Equalizer"
 #~ msgstr "Peida ekvalaiser"
 
@@ -1933,9 +1927,6 @@ msgstr "CD-lt importimine pole võimalik"
 #~ "Selles vaates otsib %s automaatselt sinu mängitavatele lauludele sarnaseid "
 #~ "laule. Seejärel saad sa neid kuulata või hiljem esitusloenditesse lisada."
 
-#~ msgid "%d days"
-#~ msgstr "%d päeva"
-
 #~ msgid "Do Nothing"
 #~ msgstr "Ära tee midagi"
 
@@ -1958,9 +1949,6 @@ msgstr "CD-lt importimine pole võimalik"
 #~ msgid "All Podcasts"
 #~ msgstr "Kõik taskuhäälingud"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u kirjet, %s, %s"
-
 #~ msgid ""
 #~ "Import from device has been cancelled. Operation will stop after this media."
 #~ msgstr ""
@@ -1982,9 +1970,6 @@ msgstr "CD-lt importimine pole võimalik"
 
 #~ msgid "Remove Media"
 #~ msgstr "Meedia eemaldamine"
-
-#~ msgid "Repeat All"
-#~ msgstr "Kordusesitus sees"
 
 #~ msgid "Show Equalizer"
 #~ msgstr "Ekvalaiser"

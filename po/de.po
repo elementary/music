@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: de\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -2114,18 +2114,6 @@ msgstr "Während des CD-Imports trat ein fehler auf"
 #~ "wiedergeben, oder zur späteren Verwendung in einer Wiedergabeliste "
 #~ "abspeichern."
 
-#~ msgid "%d minutes"
-#~ msgstr "%d Minuten"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u Titel, %s, %s"
-
-#~ msgid "%d days"
-#~ msgstr "%d Tage"
-
-#~ msgid "%d hours"
-#~ msgstr "%d Stunden"
-
 #, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s importiert bereits etwas"
@@ -2240,9 +2228,6 @@ msgstr "Während des CD-Imports trat ein fehler auf"
 
 #~ msgid "Automatically download new podcast episodes"
 #~ msgstr "Automatisch neue Podcast Episoden herunterladen"
-
-#~ msgid "Repeat All"
-#~ msgstr "Alle wiederholen"
 
 #~ msgid "Locate"
 #~ msgstr "Ordner für Musik-Bibliothek festlegen"

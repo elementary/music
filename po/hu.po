@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: hu\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -2010,18 +2010,6 @@ msgstr "Hiba történt a CD-ről való importálás közben"
 #~ msgid "Plays"
 #~ msgstr "Lejátszások"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u elem, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d perc"
-
-#~ msgid "%d days"
-#~ msgstr "%d nap"
-
-#~ msgid "%d hours"
-#~ msgstr "%d óra"
-
 #, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Hasonló ehhez: %s"
@@ -2128,9 +2116,6 @@ msgstr "Hiba történt a CD-ről való importálás közben"
 #~ msgstr ""
 #~ "A(z) %s médiatípushoz való bővítmény nincs telepítve.\n"
 #~ "Mit szeretne tenni?"
-
-#~ msgid "Repeat All"
-#~ msgstr "Minden ismétlése"
 
 #~ msgid "Queue"
 #~ msgstr "Lejátszási sor"

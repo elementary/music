@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:28+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -2112,21 +2112,6 @@ msgstr "该 CD 导入期间发生错误"
 #, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s，%s 和 %s"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u 项，%s，%s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d 分钟"
-
-#~ msgid "%d days"
-#~ msgstr "%d 天"
-
-#~ msgid "%d hours"
-#~ msgstr "%d 小时"
-
-#~ msgid "Repeat All"
-#~ msgstr "重播全部"
 
 #, c-format
 #~ msgid ""

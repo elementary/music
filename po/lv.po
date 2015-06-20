@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -1770,18 +1770,6 @@ msgstr "Kļūda mēģinot importēt CD disku"
 
 #~ msgid "Rescan Music Folder"
 #~ msgstr "Pārbaudīt izmaiņas fonotēkā"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u ieraksti, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minūtes"
-
-#~ msgid "%d days"
-#~ msgstr "%d dienas"
-
-#~ msgid "%d hours"
-#~ msgstr "%d stundas"
 
 #~ msgid "All Podcasts"
 #~ msgstr "Visi podkāsti"

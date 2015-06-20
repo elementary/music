@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: ar\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1801,9 +1801,6 @@ msgstr ""
 #~ msgid "Export..."
 #~ msgstr "تصدير..."
 
-#~ msgid "Repeat All"
-#~ msgstr "تكرار الكل"
-
 #~ msgid "Equalizer"
 #~ msgstr "موازن الصوت"
 
@@ -1838,15 +1835,6 @@ msgstr ""
 #~ msgid "%s by %s"
 #~ msgstr "%s ل%s"
 
-#~ msgid "%d minutes"
-#~ msgstr "%d دقيقة"
-
-#~ msgid "%d hours"
-#~ msgstr "ساعات %d"
-
-#~ msgid "%d days"
-#~ msgstr "أيام %d"
-
 #~ msgid "Change your music folder."
 #~ msgstr "غيّر مجلد الموسيقى."
 
@@ -1871,6 +1859,3 @@ msgstr ""
 #, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s لا يمكن عثور على الموسيقى الخاصة بك."
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u البنود، %s, %s"

@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -1936,18 +1936,6 @@ msgstr "Ocorreu um erro ao importar este CD"
 #~ msgid "%s by %s"
 #~ msgstr "%s de %s"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u itens, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minutos"
-
-#~ msgid "%d days"
-#~ msgstr "%d dias"
-
-#~ msgid "%d hours"
-#~ msgstr "%d horas"
-
 #, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i álbuns"
@@ -2112,9 +2100,6 @@ msgstr "Ocorreu um erro ao importar este CD"
 #, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s e %s"
-
-#~ msgid "Repeat All"
-#~ msgstr "Repetir tudo"
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Ativar Scrobbling"

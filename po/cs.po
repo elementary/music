@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: cs\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1882,9 +1882,6 @@ msgstr "Během importování na CD se vyskytla chyba"
 #~ msgid "Hide Equalizer"
 #~ msgstr "Skrýt ekvalizér"
 
-#~ msgid "Repeat All"
-#~ msgstr "Opakovat vše"
-
 #~ msgid "Metadata"
 #~ msgstr "Metadata"
 
@@ -1961,18 +1958,6 @@ msgstr "Během importování na CD se vyskytla chyba"
 #, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s od %s"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u soubory, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minut"
-
-#~ msgid "%d days"
-#~ msgstr "%d dnů"
-
-#~ msgid "%d hours"
-#~ msgstr "%d hodin"
 
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Všechny skladby na tomto zařízení jsou momentálně ve vaší knihovně."

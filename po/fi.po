@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -2016,18 +2016,6 @@ msgstr "Tämän CD:n tuonnin aikana tapahtui virhe"
 #~ "%s ei löytänyt kappaleita CD-levyltä, joten kappaleita ei ole mahdollista "
 #~ "tuoda"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u kohdetta, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minuuttia"
-
-#~ msgid "%d days"
-#~ msgstr "%d päivää"
-
-#~ msgid "%d hours"
-#~ msgstr "%d tuntia"
-
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Kaikki tällä laitteella olevat kappaleet ovat jo kirjastossa."
 
@@ -2067,9 +2055,6 @@ msgstr "Tämän CD:n tuonnin aikana tapahtui virhe"
 
 #~ msgid "Could not find media file"
 #~ msgstr "Mediatiedostoa ei löytynyt"
-
-#~ msgid "Repeat All"
-#~ msgstr "Toista kaikki"
 
 #~ msgid "Keep music folder organized"
 #~ msgstr "Pidä musiikkikansio organisoituna"

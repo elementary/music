@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: \n"
 
 #: ../src/Views/ListView/ListView.vala:368
@@ -2196,18 +2196,6 @@ msgstr "Une erreur est survenue lors de l'importation du CD."
 #~ "connecté à internet. Malgré tout, certaines musiques n'obtiennent aucun "
 #~ "résultat."
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u objets, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minutes"
-
-#~ msgid "%d days"
-#~ msgstr "%d jours"
-
-#~ msgid "%d hours"
-#~ msgstr "%d heures"
-
 #, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s est déjà en importation"
@@ -2238,9 +2226,6 @@ msgstr "Une erreur est survenue lors de l'importation du CD."
 #~ msgstr ""
 #~ "Veuillez patienter pendant que l'opération précédente se termine avant de "
 #~ "définir votre dossier musique"
-
-#~ msgid "Repeat All"
-#~ msgstr "Tout répéter"
 
 #~ msgid "Radio Station"
 #~ msgstr "Station radio"

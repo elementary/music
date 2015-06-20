@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:26+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: bg\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -2212,18 +2212,6 @@ msgstr "Грешка е станала при внасянето на този �
 #~ "Музикалният файл за %s на %s не можа да бъде намерен. Какво желаете да "
 #~ "направите?"
 
-#~ msgid "Repeat All"
-#~ msgstr "Повтаряне на всички"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d минути"
-
-#~ msgid "%d days"
-#~ msgstr "%d дни"
-
-#~ msgid "%d hours"
-#~ msgstr "%d часа"
-
 #, c-format
 #~ msgid ""
 #~ "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -2233,6 +2221,3 @@ msgstr "Грешка е станала при внасянето на този �
 #~ "%s не можа да намери песни подобни на %s на %s във вашата библиотека. "
 #~ "Уверете се, че цялата информация за песента е вярна, и че сте свързани с "
 #~ "интернет. Някои песни може да нямат подобни."
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u предмета, %s, %s"

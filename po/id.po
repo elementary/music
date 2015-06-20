@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:24+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: id\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -2168,9 +2168,6 @@ msgstr "Kesalahan terjadi ketika mengimpor ke CD"
 #~ msgid "Required GStreamer plugin not installed"
 #~ msgstr "Pengaya GStreamer tak terpasang"
 
-#~ msgid "%d minutes"
-#~ msgstr "%d menit"
-
 #, c-format
 #~ msgid ""
 #~ "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -2181,12 +2178,6 @@ msgstr "Kesalahan terjadi ketika mengimpor ke CD"
 #~ "Pastikan semua informasi lagu sudah benar dan anda tersambung dengan "
 #~ "internet. Beberapa lagu mungkin jadi tidak memiliki padanan."
 
-#~ msgid "%d hours"
-#~ msgstr "%d jam"
-
-#~ msgid "%d days"
-#~ msgstr "%d hari"
-
 #, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
@@ -2194,9 +2185,6 @@ msgstr "Kesalahan terjadi ketika mengimpor ke CD"
 #~ msgstr ""
 #~ "Proses ini akan menghapus %s dari pustakan dan dari semua perangkat yang "
 #~ "sudah disingkronisasi otomatis dengan %s."
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u item, %s, %s"
 
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Memindai ulang perubahan. Mungkin makan waktu..."
@@ -2210,6 +2198,3 @@ msgstr "Kesalahan terjadi ketika mengimpor ke CD"
 
 #~ msgid "Add Podcast"
 #~ msgstr "Tambah Podcast"
-
-#~ msgid "Repeat All"
-#~ msgstr "Putar Ulang Semua"

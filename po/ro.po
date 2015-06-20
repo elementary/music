@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: ro\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1877,9 +1877,6 @@ msgstr "A avut loc o eroare în timpul importării acestui CD"
 #~ msgid "Radio Station"
 #~ msgstr "Stație Radio"
 
-#~ msgid "Repeat All"
-#~ msgstr "Repetă tot"
-
 #~ msgid "Show Equalizer"
 #~ msgstr "Arată \"Egalizatorul\""
 
@@ -1937,21 +1934,9 @@ msgstr "A avut loc o eroare în timpul importării acestui CD"
 #~ msgid "Cancelling Import"
 #~ msgstr "Anulează Importarea"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u articole, %s, %s"
-
 #, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s nu găsesc această piesă."
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minute"
-
-#~ msgid "%d days"
-#~ msgstr "%d zile"
-
-#~ msgid "%d hours"
-#~ msgstr "%d ore"
 
 #~ msgid "Import this song"
 #~ msgstr "Importă această piesă"

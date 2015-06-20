@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: uk\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -1943,9 +1943,6 @@ msgstr "Виникла помилка при імпортуванні з дис�
 #~ msgid "Not Imported Files"
 #~ msgstr "Не імпортовані файли"
 
-#~ msgid "Repeat All"
-#~ msgstr "Повторити все"
-
 #~ msgid "Done"
 #~ msgstr "Виконано"
 
@@ -2056,18 +2053,6 @@ msgstr "Виникла помилка при імпортуванні з дис�
 #, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s за %s"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u елементів, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d хвилин"
-
-#~ msgid "%d days"
-#~ msgstr "%d днів"
-
-#~ msgid "%d hours"
-#~ msgstr "%d годин"
 
 #, c-format
 #~ msgid "%i albums"

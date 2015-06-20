@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:28+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: \n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -2130,18 +2130,6 @@ msgstr "An error occured during the Import of this CD"
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "All the songs in this device are already in your library."
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u items, %s, %s"
-
-#~ msgid "%d minutes"
-#~ msgstr "%d minutes"
-
-#~ msgid "%d days"
-#~ msgstr "%d days"
-
-#~ msgid "%d hours"
-#~ msgstr "%d hours"
-
 #, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
@@ -2206,6 +2194,3 @@ msgstr "An error occured during the Import of this CD"
 
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i media files could not be found. What would you like to do?"
-
-#~ msgid "Repeat All"
-#~ msgstr "Repeat All"

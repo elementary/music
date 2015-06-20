@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -2156,18 +2156,6 @@ msgstr "Houve um erro durante a importação deste CD"
 #~ "A sincronização com o dispositivo foi cancelada. A operação irá ser "
 #~ "cancelada depois dessa mídia."
 
-#~ msgid "%d minutes"
-#~ msgstr "%d minutos"
-
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u itens, %s, %s"
-
-#~ msgid "%d days"
-#~ msgstr "%d dias"
-
-#~ msgid "%d hours"
-#~ msgstr "%d horas"
-
 #~ msgid "Similar Song View"
 #~ msgstr "Visualizar Músicas Similares"
 
@@ -2221,9 +2209,6 @@ msgstr "Houve um erro durante a importação deste CD"
 
 #~ msgid "Download new Episodes"
 #~ msgstr "Baixar novos episódios"
-
-#~ msgid "Repeat All"
-#~ msgstr "Repetir tudo"
 
 #~ msgid "Hide Equalizer"
 #~ msgstr "Esconder equalizador"

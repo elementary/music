@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:25+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:28+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -1792,15 +1792,6 @@ msgstr "匯入這張 CD 時遭遇錯誤"
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "從 %3$s 移除 %1$d %2$s 嗎？"
 
-#~ msgid "%d minutes"
-#~ msgstr "%d 分鐘"
-
-#~ msgid "%d days"
-#~ msgstr "%d 天"
-
-#~ msgid "%d hours"
-#~ msgstr "%d 小時"
-
 #~ msgid "Import songs from audio CD"
 #~ msgstr "從音訊 CD 匯入歌曲"
 
@@ -2009,9 +2000,6 @@ msgstr "匯入這張 CD 時遭遇錯誤"
 #~ msgid "%s by %s"
 #~ msgstr "%s (%s)"
 
-#~ msgid "%u items, %s, %s"
-#~ msgstr "%u 項，%s，%s"
-
 #, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s 似乎找不到您的音樂。"
@@ -2126,9 +2114,6 @@ msgstr "匯入這張 CD 時遭遇錯誤"
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "擷取類似的歌曲"
-
-#~ msgid "Repeat All"
-#~ msgstr "重複全部"
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "啟用歌曲記錄"
