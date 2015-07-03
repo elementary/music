@@ -538,7 +538,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         debug ("DONE WITH USER INTERFACE");
 
-        int last_playing_id = main_settings.last_media_playing;
+        int64 last_playing_id = main_settings.last_media_playing;
 
         if (last_playing_id > 0) {
             var last_playing_media = library_manager.media_from_id (last_playing_id);
@@ -659,7 +659,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.add_playlist (App.player.queue_playlist);
         library_manager.add_playlist (App.player.history_playlist);
         
-        match_tvs.set_all (DataBaseManager.get_default ().load_columns_state ());
+        //match_tvs.set_all (DataBaseManager.get_default ().load_columns_state ());
         
         foreach (SmartPlaylist p in library_manager.get_smart_playlists()) {
             add_smartplaylist (p);
@@ -996,7 +996,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
 
-    public virtual void playback_stopped (int was_playing) {
+    public virtual void playback_stopped (int64 was_playing) {
         playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
         //reset some booleans
         tested_for_video = false;

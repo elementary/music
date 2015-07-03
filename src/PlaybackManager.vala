@@ -41,7 +41,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public signal void media_queued (Gee.Collection<Media> queued);
 
     public signal void media_played (Media played_media);
-    public signal void playback_stopped (int was_playing);
+    public signal void playback_stopped (int64 was_playing);
     public signal void playback_started ();
     public signal void playback_paused ();
     public signal void changing_player ();
@@ -480,7 +480,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
 
     public void playMedia (Media m, bool use_resume_pos) {
-        int old_id = -1;
+        int64 old_id = -1;
 
         // save previous media's id
         if (current_media != null)
@@ -639,7 +639,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         player.pause ();
         playing = false;
         
-        int was_playing = 0;
+        int64 was_playing = 0;
         if (current_media != null)
             was_playing = current_media.rowid;
         

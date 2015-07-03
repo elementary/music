@@ -232,7 +232,7 @@ public class MprisPlayer : GLib.Object {
     }
 
     private ObjectPath get_track_id (Noise.Media m) {
-        return new ObjectPath ("/org/pantheon/noise/Track/%d".printf (m.rowid));
+        return new ObjectPath ("/org/pantheon/noise/Track/%lld".printf (m.rowid));
     }
 
     private bool send_property_change() {

@@ -369,7 +369,7 @@ public class Noise.MusicListView : GenericList {
 
     /** media menu popup clicks **/
     void mediaMenuEditClicked () {
-        var to_edit = new Gee.LinkedList<int> ();
+        var to_edit = new Gee.LinkedList<int64?> ();
         var to_edit_med = new Gee.TreeSet<Media> ();
 
         foreach (Media m in get_selected_medias ()) {
@@ -381,7 +381,7 @@ public class Noise.MusicListView : GenericList {
         if (to_edit.size == 0)
             return;
 
-        int id = to_edit.get (0);
+        int64 id = to_edit.get (0);
         string music_folder_uri = File.new_for_path (Settings.Main.get_default ().music_folder).get_uri ();
         if (to_edit.size == 1 && !File.new_for_uri (parent_wrapper.library.media_from_id (id).uri).query_exists () && 
                     parent_wrapper.library.media_from_id(id).uri.has_prefix(music_folder_uri)) {
@@ -389,7 +389,7 @@ public class Noise.MusicListView : GenericList {
             FileNotFoundDialog fnfd = new FileNotFoundDialog (to_edit_med);
             fnfd.present ();
         } else {
-            var list = new Gee.TreeSet<int> ();
+            var list = new Gee.TreeSet<int64?> ();
             for(int i = 0; i < get_visible_table ().size; ++i) {
                 list.add (get_object_from_index (i).rowid);
             }

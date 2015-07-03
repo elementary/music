@@ -10,6 +10,8 @@ set(CLIENT_SOURCE
     Objects/MediaKeyListener.vala
     LocalBackend/LocalLibrary.vala
     LocalBackend/LocalMedia.vala
+    LocalBackend/LocalSmartPlaylist.vala
+    LocalBackend/LocalStaticPlaylist.vala
     Widgets/NavigationArrows.vala
     Widgets/TopDisplay.vala
     Widgets/InfoPanel.vala
@@ -30,8 +32,6 @@ set(CLIENT_SOURCE
     Widgets/FastView/FastGridModel.vala
     Widgets/FastView/FastList.vala
     Widgets/FastView/FastListModel.vala
-    DataBase/DataBaseManager.vala
-    DataBase/DataBaseUpdater.vala
     DataBase/Tables.vala
     GStreamer/GStreamerTagger.vala
     GStreamer/Streamer.vala

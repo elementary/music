@@ -66,9 +66,9 @@ public abstract class Noise.Library : GLib.Object {
     public abstract Media? find_media (Media to_find);
     public abstract Media? media_from_file (File file);
     public abstract Media? media_from_uri (string uri);
-    public abstract Media? media_from_id (int id);
+    public abstract Media? media_from_id (int64 id);
     public abstract Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris);
-    public abstract Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids);
+    public abstract Gee.Collection<Media> medias_from_ids (Gee.Collection<int64?> ids);
     public abstract void update_media (Media s, bool updateMeta, bool record_time);
     public abstract void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time);
     public abstract void remove_media (Media s, bool trash);
@@ -76,14 +76,14 @@ public abstract class Noise.Library : GLib.Object {
     
     public abstract bool support_smart_playlists ();
     public abstract void add_smart_playlist (SmartPlaylist p);
-    public abstract void remove_smart_playlist (int id);
-    public abstract SmartPlaylist? smart_playlist_from_id (int id);
+    public abstract void remove_smart_playlist (int64 id);
+    public abstract SmartPlaylist? smart_playlist_from_id (int64 id);
     public abstract SmartPlaylist? smart_playlist_from_name (string name);
     
     public abstract bool support_playlists ();
     public abstract void add_playlist (StaticPlaylist p);
-    public abstract void remove_playlist (int id);
-    public abstract StaticPlaylist? playlist_from_id (int id);
+    public abstract void remove_playlist (int64 id);
+    public abstract StaticPlaylist? playlist_from_id (int64 id);
     public abstract StaticPlaylist? playlist_from_name (string name);
     
     public abstract bool start_file_operations (string? message);
@@ -99,7 +99,7 @@ public abstract class Noise.Library : GLib.Object {
         return i;
     }
 
-    public void media_from_name (Gee.Collection<Media> tests, Gee.Collection<int> found, Gee.Collection<Media> not_found) {
+    public void media_from_name (Gee.Collection<Media> tests, Gee.Collection<int64?> found, Gee.Collection<Media> not_found) {
         foreach (Media test in tests) {
             var media_found = find_media (test);
             if (media_found != null) {

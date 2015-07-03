@@ -18,6 +18,7 @@
 
 int main (string[] args) {
     Gtk.init (ref args);
+    Gda.init ();
 
     try {
         Gst.init_check (ref args);

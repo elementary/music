@@ -21,14 +21,14 @@
  */
 
 public class Noise.PlaylistViewWrapper : ViewWrapper {
-    public int playlist_id { get; construct set; default = -1; }
+    public int64 playlist_id { get; construct set; default = -1; }
     public TreeViewSetup tvs;
-    public signal void button_clicked (int playlist_id);
+    public signal void button_clicked (int64 playlist_id);
     private Gtk.Action[] actions = null;
     private string message_head;
     private string message_body;
 
-    public PlaylistViewWrapper (int playlist_id, ViewWrapper.Hint hint, TreeViewSetup? tvs = null, Library library) {
+    public PlaylistViewWrapper (int64 playlist_id, ViewWrapper.Hint hint, TreeViewSetup? tvs = null, Library library) {
         base (hint, library);
         if (tvs == null)
             this.tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, hint);

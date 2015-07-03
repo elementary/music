@@ -238,7 +238,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         sync_music_combobox.sensitive = sync_music_check.active;
 
-        ((LocalLibrary)libraries_manager.local_library).dbu.save_device (pref);
+        //((LocalLibrary)libraries_manager.local_library).dbu.save_device (pref);
     }
 
     public bool all_medias_selected () {

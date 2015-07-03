@@ -274,7 +274,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         });
     }
     
-    public override Media? media_from_id (int id) {
+    public override Media? media_from_id (int64 id) {
         lock (medias) {
             foreach (var m in medias) {
                 if (m.rowid == id) {
@@ -284,7 +284,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         }
         return null;
     }
-    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
+    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int64?> ids) {
         var media_collection = new Gee.LinkedList<Media> ();
 
         lock (medias) {
@@ -406,10 +406,10 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     public override void add_smart_playlist (SmartPlaylist p) {
     
     }
-    public override void remove_smart_playlist (int id) {
+    public override void remove_smart_playlist (int64 id) {
     
     }
-    public override SmartPlaylist? smart_playlist_from_id (int id) {
+    public override SmartPlaylist? smart_playlist_from_id (int64 id) {
         return null;
     }
     public override SmartPlaylist? smart_playlist_from_name (string name) {
@@ -429,14 +429,18 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         p.media_removed.connect(() => {keep_playlist_synchronized (p);});
         p.updated.connect ((old_name) => {remove_playlist_from_name (old_name); keep_playlist_synchronized (p);});
     }
-    public override void remove_playlist (int id) {
+    public override void remove_playlist (int64 id) {
         if (id < get_playlists ().size) {
             var array_v = new Gee.ArrayList<StaticPlaylist> ();
             array_v.add_all (playlists);
-            var p = array_v.get (id);
-            remove_playlist_from_name (p.name);
-            playlist_removed (p);
-            playlists.remove (p);
+            foreach (var p in array_v) {
+                if (p.rowid == id) {
+                    remove_playlist_from_name (p.name);
+                    playlist_removed (p);
+                    playlists.remove (p);
+                    return;
+                }
+            }
         }
     }
     
@@ -475,11 +479,14 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         }
     }
     
-    public override StaticPlaylist? playlist_from_id (int id) {
+    public override StaticPlaylist? playlist_from_id (int64 id) {
         if (id < get_playlists ().size) {
             var array = new Gee.ArrayList<StaticPlaylist> ();
             array.add_all (get_playlists ());
-            return array.get (id);
+            foreach (var playlist in array) {
+                if (playlist.rowid == id)
+                    return playlist;
+            }
         }
         return null;
     }

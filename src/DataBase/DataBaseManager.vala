@@ -20,17 +20,11 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using SQLHeavy;
-
 public class Noise.DataBaseManager : GLib.Object {
-    public SQLHeavy.Database database;
-    private Transaction transaction; // the current sql transaction
-
-    private int index = 0;
-    private int item_count = 0;
+    private Gda.Connection connection;
+    private Gda.SqlParser parser;
 
     private static DataBaseManager? dbm = null;
-
     public static DataBaseManager get_default () {
         if (dbm == null)
             dbm = new DataBaseManager ();
@@ -44,35 +38,24 @@ public class Noise.DataBaseManager : GLib.Object {
 
     /** Creates/Reads the database file and folder **/
     private void init_database () {
-        assert (database == null);
 
         var database_dir = FileUtils.get_data_directory ();
-
         try {
             database_dir.make_directory_with_parents (null);
-        }
-        catch (GLib.Error err) {
-            if (!(err is IOError.EXISTS))
+        } catch (GLib.Error err) {
+            if (err is IOError.EXISTS == false)
                 error ("Could not create data directory: %s", err.message);
         }
 
-        string database_path = Path.build_filename (database_dir.get_path (), "database_0_3_0.db");
-        var database_file = File.new_for_path (database_path);
-
-        bool new_db = !database_file.query_exists ();
+        bool new_db = !database_dir.get_child ("database_0_3_0.db").query_exists ();
 
         try {
-            const SQLHeavy.FileMode flags = SQLHeavy.FileMode.READ
-                                            | SQLHeavy.FileMode.WRITE
-                                            | SQLHeavy.FileMode.CREATE;
-            database = new SQLHeavy.Database (database_file.get_path (), flags);
-        }
-        catch (SQLHeavy.Error err) {
-            error ("Could not read/create database file: %s", err.message);
+            connection = new Gda.Connection.from_string ("SQLite", "DB_DIR=%s;DB_NAME=database_0_3_0".printf (database_dir.get_path ()), null, Gda.ConnectionOptions.NONE);
+        } catch (Error e) {
+            error (e.message);
         }
 
-        // Disable synchronized commits for performance reasons
-        database.synchronous = SQLHeavy.SynchronousMode.OFF;
+        parser = connection.create_parser ();
 
         load_table (Database.Tables.PLAYLISTS);
         load_table (Database.Tables.SMART_PLAYLISTS);
@@ -86,97 +69,99 @@ public class Noise.DataBaseManager : GLib.Object {
 
     private void load_table (string table) {
         try {
-            database.execute (table);
+            var statement = parser.parse_string (table, null);
+            connection.statement_execute_non_select (statement, null, null);
+        } catch (Error e) {
+            critical (e.message);
         }
-        catch (SQLHeavy.Error err) {
-            warning ("Error while executing %s: %s", table, err.message);
-        }
-    }
-
-    public void resetProgress (int items) {
-        index = 0;
-        item_count = items;
     }
 
     /**
      * Loads media from db
      */
     public Gee.TreeSet<LocalMedia> load_media () {
-        assert (database != null);
         var rv = new Gee.TreeSet<LocalMedia>();
-
         try {
-            Query query = new Query (database, "SELECT `rowid` FROM `media`");
-            for (var results = query.execute (); !results.finished; results.next()) {
-                var m = new LocalMedia (results.fetch_int ());
+            var statement = parser.parse_string ("SELECT rowid FROM media", null);
+            var data_model = connection.statement_execute_select (statement, null);
+            var rows = data_model.get_n_rows ();
+            var rowid_column = data_model.get_column_index ("rowid");
+            for (int i = 0; i < rows; i++) {
+                var rowid_value = data_model.get_value_at (rowid_column, i);
+                var m = new LocalMedia (rowid_value.get_int ());
                 rv.add (m);
             }
-        }
-        catch (SQLHeavy.Error err) {
-            warning ("Could not load media from db: %s\n", err.message);
+        } catch (Error e) {
+            warning (e.message);
         }
 
         return rv;
     }
 
     public void clear_media () {
-        assert (database != null);
         try {
-            database.execute ("DELETE FROM `media`");
-        }
-        catch(SQLHeavy.Error err) {
-            warning ("Could not clear media: %s \n", err.message);
+            var statement = parser.parse_string ("DELETE FROM media", null);
+            connection.statement_execute_non_select (statement, null, null);
+        } catch (Error e) {
+            critical (e.message);
         }
     }
 
     public Gee.TreeSet<LocalMedia> add_media (Gee.Collection<Media> media) {
         assert (database != null);
         var tree_set = new Gee.TreeSet<LocalMedia> ();
+        var col_names = get_media_columns ();
         try {
-            Query query = new Query (database, """INSERT INTO `media` (`uri`, `file_size`, `title`, `artist`, `composer`, `album_artist`,
-`album`, `grouping`, `genre`, `comment`, `lyrics`, `has_embedded`, `year`, `track`, `track_count`, `album_number`, `album_count`,
-`bitrate`, `length`, `samplerate`, `rating`, `playcount`, `skipcount`, `dateadded`, `lastplayed`, `lastmodified`)
+            var sql = """INSERT INTO media (uri, file_size, title, artist, composer, album_artist,
+album, grouping, genre, comment, lyrics, has_embedded, year, track, track_count, album_number, album_count,
+bitrate, length, samplerate, rating, playcount, skipcount, dateadded, lastplayed, lastmodified)
 VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping,
 :genre, :comment, :lyrics, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate,
-:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified);""");
-
+:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified);""";
+            Gda.Set parameters;
+            var statement = connection.parse_sql_string (sql, out parameters);
+            Gda.Set last_insert_row;
             foreach (var s in media) {
                 if (!s.isTemporary) {
-                    query.set_string(":uri", s.uri);
-                    query.set_int(":file_size", (int)s.file_size);
-                    query.set_string(":title", s.title);
-                    query.set_string(":artist", s.artist);
-                    query.set_string(":composer", s.composer);
-                    query.set_string(":album_artist", s.album_artist);
-                    query.set_string(":album", s.album);
-                    query.set_string(":grouping", s.grouping);
-                    query.set_string(":genre", s.genre);
-                    query.set_string(":comment", s.comment);
-                    query.set_string(":lyrics", s.lyrics);
-                    query.set_int(":has_embedded", s.has_embedded ? 1 : 0);
-                    query.set_int(":year", (int)s.year);
-                    query.set_int(":track", (int)s.track);
-                    query.set_int(":track_count", (int)s.track_count);
-                    query.set_int(":album_number", (int)s.album_number);
-                    query.set_int(":album_count", (int)s.album_count);
-                    query.set_int(":bitrate", (int)s.bitrate);
-                    query.set_int(":length", (int)s.length);
-                    query.set_int(":samplerate", (int)s.samplerate);
-                    query.set_int(":rating", (int)s.rating);
-                    query.set_int(":playcount", (int)s.play_count);
-                    query.set_int(":skipcount", (int)s.skip_count);
-                    query.set_int(":dateadded", (int)s.date_added);
-                    query.set_int(":lastplayed", (int)s.last_played);
-                    query.set_int(":lastmodified", (int)s.last_modified);
-                    query.execute ();
-                    var local_media = new LocalMedia ((int)database.last_insert_id);
+                    parameters.get_holder ("uri").set_value (make_string_value (s.uri));
+                    parameters.get_holder ("title").set_value (make_string_value (s.title));
+                    parameters.get_holder ("artist").set_value (make_string_value (s.artist));
+                    parameters.get_holder ("composer").set_value (make_string_value (s.composer));
+                    parameters.get_holder ("album_artist").set_value (make_string_value (s.album_artist));
+                    parameters.get_holder ("album").set_value (make_string_value (s.album));
+                    parameters.get_holder ("grouping").set_value (make_string_value (s.grouping));
+                    parameters.get_holder ("genre").set_value (make_string_value (s.genre));
+                    parameters.get_holder ("comment").set_value (make_string_value (s.comment));
+                    parameters.get_holder ("lyrics").set_value (make_string_value (s.lyrics));
+
+                    parameters.get_holder ("has_embedded").set_value (make_bool_value (s.has_embedded));
+
+                    parameters.get_holder ("file_size").set_value (make_uint64_value (s.file_size));
+
+                    parameters.get_holder ("year").set_value (make_uint_value (s.year));
+                    parameters.get_holder ("track").set_value (make_uint_value (s.track));
+                    parameters.get_holder ("track_count").set_value (make_uint_value (s.track_count));
+                    parameters.get_holder ("year").set_value (make_uint_value (s.year));
+                    parameters.get_holder ("album_number").set_value (make_uint_value (s.album_number));
+                    parameters.get_holder ("album_count").set_value (make_uint_value (s.album_count));
+                    parameters.get_holder ("bitrate").set_value (make_uint_value (s.bitrate));
+                    parameters.get_holder ("length").set_value (make_uint_value (s.length));
+                    parameters.get_holder ("samplerate").set_value (make_uint_value (s.samplerate));
+                    parameters.get_holder ("rating").set_value (make_uint_value (s.rating));
+                    parameters.get_holder ("playcount").set_value (make_uint_value (s.play_count));
+                    parameters.get_holder ("skipcount").set_value (make_uint_value (s.skip_count));
+                    parameters.get_holder ("dateadded").set_value (make_uint_value (s.date_added));
+                    parameters.get_holder ("lastplayed").set_value (make_uint_value (s.last_played));
+                    parameters.get_holder ("lastmodified").set_value (make_uint_value (s.last_modified));
+                    connection.statement_execute_non_select (statement, parameters, out last_insert_row);
+                    var local_media = new LocalMedia (last_insert_row.get_holder_value ("rowid").get_int ());
                     tree_set.add (local_media);
                 }
             }
+        } catch (Error e) {
+            warning ("Could not save media: %s", e.message);
         }
-        catch (SQLHeavy.Error err) {
-            warning ("Could not save media: %s \n", err.message);
-        }
+
         return tree_set;
     }
 
@@ -184,7 +169,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("DELETE FROM `media` WHERE rowid=:rowid");
+            var query = transaction.prepare ("DELETE FROM media WHERE rowid=:rowid");
 
             foreach (var m in media) {
                 query.set_int (":rowid", m.rowid);
@@ -204,12 +189,11 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
      */
     public Gee.HashMap<Playlist, TreeViewSetup> load_columns_state () {
         debug ("load columns");
-        assert (database != null);
         var rv = new Gee.HashMap<Playlist, TreeViewSetup>();
 
-        try {
-            string script = "SELECT * FROM `columns`";
-            Query query = new Query(database, script);
+        /*try {
+            string script = "SELECT * FROM columns";
+            var query = new SQLHeavy.Query (database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 if (results.fetch_int(0) == 0) {
@@ -229,18 +213,18 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         }
         catch (SQLHeavy.Error err) {
             warning ("Could not load columns from db: %s\n", err.message);
-        }
+        }*/
 
         return rv;
     }
 
     public void save_columns_state (Gee.Collection<StaticPlaylist>? playlists = null, Gee.Collection<SmartPlaylist>? smart_playlists = null) {
         debug ("save columns");
-        assert (database != null);
+        /*assert (database != null);
         try {
-            database.execute("DELETE FROM `columns`");
+            database.execute("DELETE FROM columns");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+            var query = transaction.prepare ("""INSERT INTO columns (is_smart, name, sort_column_id, sort_direction, columns) 
                                                 VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);""");
 
             if (playlists != null) {
@@ -277,12 +261,12 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         }
         catch(SQLHeavy.Error err) {
             warning ("Could not save playlists: %s \n", err.message);
-        }
+        }*/
     }
 
     public void add_columns_state (StaticPlaylist? p = null, SmartPlaylist? sp = null) {
         debug ("add columns");
-        assert (database != null);
+        /*assert (database != null);
         
         string name = "";
         int is_smart = 0;
@@ -304,7 +288,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
 
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+            var query = transaction.prepare ("""INSERT INTO columns (is_smart, name, sort_column_id, sort_direction, columns) 
                                                 VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);""");
             
             query.set_int    (":is_smart", is_smart);
@@ -318,12 +302,12 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         }
         catch(SQLHeavy.Error err) {
             warning ("Could not add columns: %s \n", err.message);
-        }
+        }*/
     }
 
     public void remove_columns_state (StaticPlaylist? p = null, SmartPlaylist? sp = null) {
         debug ("remove columns");
-        assert (database != null);
+        /*assert (database != null);
         
         string name = "";
         if (sp == null) {
@@ -339,7 +323,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         }
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""DELETE FROM `columns` WHERE name=:name""");
+            var query = transaction.prepare("""DELETE FROM columns WHERE name=:name""");
 
             query.set_string(":name", name);
             query.execute();
@@ -348,7 +332,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         }
         catch (SQLHeavy.Error err) {
             warning ("Could not remove column from db: %s\n", err.message);
-        }
+        }*/
     }
 
     public void add_default_columns () {
@@ -358,7 +342,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
             TreeViewSetup tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
             
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `columns` (`is_smart`, `name`, `sort_column_id`, `sort_direction`, `columns`) 
+            var query = transaction.prepare ("""INSERT INTO columns (is_smart, name, sort_column_id, sort_direction, columns) 
                                                 VALUES (:is_smart, :name, :sort_column_id, :sort_direction, :columns);""");
 
             query.set_int    (":is_smart", 1);
@@ -374,15 +358,6 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
             query.set_string (":sort_direction", tvs.sort_direction_to_string ());
             query.set_string (":columns", tvs.columns_to_string ());
             query.execute ();
-
-            /*
-            query.set_int    (":is_smart", 1);
-            query.set_string (":name", _("Recently Played"));
-            query.set_int    (":sort_column_id", ListColumn.LAST_PLAYED);
-            query.set_string (":sort_direction", tvs.sort_direction_to_string ());
-            query.set_string (":columns", tvs.columns_to_string ());
-            query.execute ();
-            */
 
             query.set_int    (":is_smart", 1);
             query.set_string (":name", _("Recent Favorites"));
@@ -431,8 +406,8 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         assert (database != null);
 
         try {
-            string script = "SELECT * FROM `playlists`";
-            Query query = new Query(database, script);
+            string script = "SELECT * FROM playlists";
+            var query = new SQLHeavy.Query (database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 var p = new StaticPlaylist.with_info(0, results.fetch_string(0));
@@ -461,9 +436,9 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
     public void save_playlists (Gee.Collection<StaticPlaylist> playlists) {
         assert (database != null);
         try {
-            database.execute("DELETE FROM `playlists`");
+            database.execute("DELETE FROM playlists");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
+            var query = transaction.prepare ("INSERT INTO playlists (name, media) VALUES (:name, :media);");
 
             foreach (var p in playlists) {
                 if (p.read_only == false || p.name == C_("Name of the playlist", "Queue") || p.name == _("History")) {
@@ -500,7 +475,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
                 remove_playlist (pl);
             }
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `media`) VALUES (:name, :media);");
+            var query = transaction.prepare ("INSERT INTO playlists (name, media) VALUES (:name, :media);");
 
             string rv = "";
             
@@ -533,7 +508,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
 
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `media`)
+            var query = transaction.prepare ("""INSERT INTO playlists (name, media)
                                                 VALUES (:name, :media);""");
 
             query.set_string(":name", p.name);
@@ -553,7 +528,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
     /*public void update_playlists(LinkedList<StaticPlaylist> playlists) {
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("UPDATE `playlists` SET name=:name, media=:media, sort_column_id=:sort_column_id, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
+            var query = transaction.prepare("UPDATE playlists SET name=:name, media=:media, sort_column_id=:sort_column_id, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
 
             foreach (var p in playlists) {
                 query.set_string(":name", p.name);
@@ -578,7 +553,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
             return;
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""DELETE FROM `playlists` WHERE name=:name""");
+            var query = transaction.prepare("""DELETE FROM playlists WHERE name=:name""");
 
             query.set_string(":name", p.name);
             query.execute();
@@ -630,7 +605,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
+            var query = transaction.prepare ("""INSERT INTO smart_playlists (name, and_or, queries, limit, limit_amount) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
 
             query.set_string(":name", _("Favorite Songs"));
             query.set_int(":and_or", 1);
@@ -695,8 +670,8 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         assert (database != null);
 
         try {
-            string script = "SELECT * FROM `smart_playlists`";
-            Query query = new Query(database, script);
+            string script = "SELECT * FROM smart_playlists";
+            var query = new SQLHeavy.Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 SmartPlaylist p = new SmartPlaylist (libraries_manager.local_library);
@@ -720,9 +695,9 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
     public void save_smart_playlists(Gee.Collection<SmartPlaylist> smarts) {
         assert (database != null);
         try {
-            database.execute("DELETE FROM `smart_playlists`");
+            database.execute("DELETE FROM smart_playlists");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
+            var query = transaction.prepare ("INSERT INTO smart_playlists (name, and_or, queries, limit, limit_amount) VALUES (:name, :and_or, :queries, :limit, :limit_amount);");
 
             foreach(SmartPlaylist s in smarts) {
                 query.set_string(":name", s.name);
@@ -752,7 +727,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
 
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, `limit`, `limit_amount`) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
+            var query = transaction.prepare("""INSERT INTO smart_playlists (name, and_or, queries, limit, limit_amount) VALUES (:name, :and_or, :queries, :limit, :limit_amount);""");
 
             query.set_string(":name", p.name);
             query.set_int(":and_or", (int)p.conditional);
@@ -771,7 +746,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""DELETE FROM `smart_playlists` WHERE name=:name""");
+            var query = transaction.prepare("""DELETE FROM smart_playlists WHERE name=:name""");
 
             query.set_string(":name", p.name);
             query.execute();
@@ -787,8 +762,8 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         var rv = new Gee.ArrayList<DevicePreferences>();
 
         try {
-            string script = """SELECT rowid,* FROM `devices`""";
-            Query query = new Query(database, script);
+            string script = """SELECT rowid,* FROM devices""";
+            var query = new SQLHeavy.Query(database, script);
 
             for (var results = query.execute(); !results.finished; results.next() ) {
                 DevicePreferences dp = new DevicePreferences(results.fetch_string(1));
@@ -829,11 +804,11 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
     public void save_devices(Gee.Collection<DevicePreferences> devices) {
         assert (database != null);
         try {
-            database.execute("DELETE FROM `devices`");
+            database.execute("DELETE FROM devices");
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
-            `sync_podcasts`, `sync_audiobooks`, `sync_all_music`, `sync_all_podcasts`, `sync_all_audiobooks`, `music_playlist`,
-            `podcast_playlist`, `audiobook_playlist`, `last_sync_time`) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
+            var query = transaction.prepare("""INSERT INTO devices (unique_id, sync_when_mounted, sync_music,
+            sync_podcasts, sync_audiobooks, sync_all_music, sync_all_podcasts, sync_all_audiobooks, music_playlist,
+            podcast_playlist, audiobook_playlist, last_sync_time) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
             :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);""");
 
             foreach(DevicePreferences dp in devices) {
@@ -878,9 +853,9 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         try {
             remove_device (dp);
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""INSERT INTO `devices` (`unique_id`, `sync_when_mounted`, `sync_music`,
-            `sync_podcasts`, `sync_audiobooks`, `sync_all_music`, `sync_all_podcasts`, `sync_all_audiobooks`, `music_playlist`,
-            `podcast_playlist`, `audiobook_playlist`, `last_sync_time`) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
+            var query = transaction.prepare("""INSERT INTO devices (unique_id, sync_when_mounted, sync_music,
+            sync_podcasts, sync_audiobooks, sync_all_music, sync_all_podcasts, sync_all_audiobooks, music_playlist,
+            podcast_playlist, audiobook_playlist, last_sync_time) VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks,
             :sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);""");
 
             query.set_string(":unique_id", dp.id);
@@ -923,7 +898,7 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         assert (database != null);
         try {
             transaction = database.begin_transaction();
-            Query query = transaction.prepare("""DELETE FROM `devices` WHERE unique_id=:unique_id""");
+            var query = transaction.prepare("""DELETE FROM devices WHERE unique_id=:unique_id""");
 
             query.set_string(":unique_id", device.id);
             query.execute();
@@ -933,5 +908,29 @@ VALUES (:uri, :file_size, :title, :artist, :composer, :album_artist, :album, :gr
         catch (SQLHeavy.Error err) {
             warning ("Could not remove smart playlist from db: %s\n", err.message);
         }
+    }
+
+    /*
+     * Utility functions
+     */
+
+    private static Value make_string_value (string str) {
+        var val = Value (typeof(string));
+        val.set_string (str);
+    }
+
+    private static Value make_bool_value (bool bl) {
+        var val = Value (typeof(bool));
+        val.set_boolean (bl);
+    }
+
+    private static Value make_uint_value (uint val) {
+        var val = Value (typeof(uint));
+        val.set_uint (val);
+    }
+
+    private static Value make_uint64_value (uint64 val) {
+        var val = Value (typeof(uint64));
+        val.set_uint64 (val);
     }
 }

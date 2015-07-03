@@ -242,11 +242,11 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         });
     }
 
-    public override Media? media_from_id (int id) {
+    public override Media? media_from_id (int64 id) {
         return null;
     }
 
-    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
+    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int64?> ids) {
         var media_collection = new Gee.LinkedList<Media> ();
         lock (medias) {
             foreach (var m in medias.values) {
@@ -406,11 +406,11 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         return false;
     }
 
-    public override void remove_smart_playlist (int id) {
+    public override void remove_smart_playlist (int64 id) {
         
     }
 
-    public override SmartPlaylist? smart_playlist_from_id (int id) {
+    public override SmartPlaylist? smart_playlist_from_id (int64 id) {
         return null;
     }
 
@@ -439,24 +439,27 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         p.media_removed.connect((list) => {keep_playlist_synchronized (p, list, false);});
     }
 
-    public override void remove_playlist (int id) {
-        if (id < get_playlists ().size) {
-            var array = new Gee.ArrayList<unowned GPod.Playlist> ();
-            array.add_all (playlists.keys);
-            var array_v = new Gee.ArrayList<StaticPlaylist> ();
-            array_v.add_all (playlists.values);
-            playlist_removed (array_v.get (id));
-            playlists.unset (array.get (id));
-            db.start_sync ();
-            array.get (id).remove ();
-            try {
-                db.write ();
-            } catch (Error err) {
-                critical ("Error when writing iPod database. iPod contents may be incorrect: %s", err.message);
+    public override void remove_playlist (int64 id) {
+        unowned GPod.Playlist to_unset = null;
+        foreach (var entry in playlists.entries) {
+            if (entry.value.rowid == id) {
+                playlist_removed (entry.value);
+                to_unset = entry.key;
             }
-
-            db.stop_sync ();
         }
+
+        if (to_unset != null)
+            playlists.unset (to_unset);
+
+        db.start_sync ();
+        to_unset.remove ();
+        try {
+            db.write ();
+        } catch (Error err) {
+            critical ("Error when writing iPod database. iPod contents may be incorrect: %s", err.message);
+        }
+
+        db.stop_sync ();
     }
 
     private void keep_playlist_synchronized (StaticPlaylist p, Gee.Collection<Media> m, bool to_add) {
@@ -488,12 +491,13 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         db.stop_sync ();
     }
 
-    public override StaticPlaylist? playlist_from_id (int id) {
-        if (id < get_playlists ().size) {
-            var array = new Gee.ArrayList<StaticPlaylist> ();
-            array.add_all (get_playlists ());
-            return array.get (id);
+    public override StaticPlaylist? playlist_from_id (int64 id) {
+        foreach (var p in playlists.values) {
+            if (p.rowid == id) {
+                return p;
+            }
         }
+
         return null;
     }
 

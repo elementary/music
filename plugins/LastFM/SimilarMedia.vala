@@ -31,7 +31,7 @@ public class LastFM.SimilarMedias : Object {
     public Noise.StaticPlaylist similar_playlist;
     private Gee.LinkedList<Noise.Media> similar_medias;
 
-    public signal void similar_retrieved (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
+    public signal void similar_retrieved (Gee.LinkedList<int64?> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
 
     public class SimilarMedias () {
         working = false;
@@ -67,7 +67,7 @@ public class LastFM.SimilarMedias : Object {
     
     public void similar_async (Noise.Media s) {
         debug ("In the similar thread");
-        var similarIDs = new Gee.LinkedList<int> ();
+        var similarIDs = new Gee.LinkedList<int64?> ();
         var similarDont = new Gee.LinkedList<Noise.Media> ();
         
         similar_medias.add_all (Core.get_default ().getSimilarTracks (s.title, s.artist));

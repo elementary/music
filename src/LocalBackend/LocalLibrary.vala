@@ -36,8 +36,6 @@
  * the visual representation of this class
  */
 public class Noise.LocalLibrary : Library {
-    public DataBaseUpdater dbu;
-
     private FileOperator fo;
     private GStreamerTagger tagger;
 
@@ -45,7 +43,6 @@ public class Noise.LocalLibrary : Library {
     private Gee.TreeSet<SmartPlaylist> _smart_playlists;
     private Gee.TreeSet<Media> _medias;
     private Gee.TreeSet<Media> _searched_medias;
-    private int playlists_rowid = 0;
 
     public StaticPlaylist p_music;
 
@@ -54,8 +51,10 @@ public class Noise.LocalLibrary : Library {
     }
 
     private Gee.TreeSet<Media> open_media_list;
-
     private bool _doing_file_operations = false;
+
+    private Gda.Connection connection;
+    private Gda.SqlParser parser;
 
     public LocalLibrary () {
         libraries_manager.local_library = this;
@@ -68,15 +67,14 @@ public class Noise.LocalLibrary : Library {
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;
 
-        this.dbu = new DataBaseUpdater ();
         this.fo = new FileOperator ();
     }
 
     public override void initialize_library () {
-        var dbm = DataBaseManager.get_default ();
+        init_database ();
         fo.connect_to_manager ();
         // Load all media from database
-        lock (_medias) {
+        /*lock (_medias) {
             foreach (var m in dbm.load_media ()) {
                 _medias.add (m);
             }
@@ -108,10 +106,59 @@ public class Noise.LocalLibrary : Library {
             }
         }
 
-        DeviceManager.get_default ().set_device_preferences (dbm.load_devices ());
+        DeviceManager.get_default ().set_device_preferences (dbm.load_devices ());*/
         load_media_art_cache.begin ();
     }
 
+    /*
+     * Database interaction
+     */
+    private void init_database () {
+        var database_dir = FileUtils.get_data_directory ();
+        try {
+            database_dir.make_directory_with_parents (null);
+        } catch (GLib.Error err) {
+            if (err is IOError.EXISTS == false)
+                error ("Could not create data directory: %s", err.message);
+        }
+
+        bool new_db = !database_dir.get_child ("database_0_3_0.db").query_exists ();
+
+        try {
+            connection = new Gda.Connection.from_string ("SQLite", "DB_DIR=%s;DB_NAME=database_0_3_0".printf (database_dir.get_path ()), null, Gda.ConnectionOptions.NONE);
+            connection.open ();
+        } catch (Error e) {
+            error (e.message);
+        }
+
+        parser = connection.create_parser ();
+
+        load_table (Database.Tables.PLAYLISTS);
+        load_table (Database.Tables.SMART_PLAYLISTS);
+        load_table (Database.Tables.COLUMNS);
+        load_table (Database.Tables.MEDIA);
+        load_table (Database.Tables.DEVICES);
+
+        if (new_db)
+            add_default_smart_playlists ();
+    }
+
+    private void load_table (string table) {
+        try {
+            var statement = parser.parse_string (table, null);
+            connection.statement_execute_non_select (statement, null, null);
+        } catch (Error e) {
+            critical (e.message);
+        }
+    }
+
+    private void load_local_media () {
+        
+    }
+
+    /*
+     * Media art utilities.
+     */
     private async void load_media_art_cache () {
         lock (_medias) {
             yield CoverartCache.instance.load_for_media_async (get_medias ());
@@ -135,7 +182,7 @@ public class Noise.LocalLibrary : Library {
     }
     
     public void remove_all_static_playlists () {
-        var list = new Gee.TreeSet<int> ();
+        var list = new Gee.TreeSet<int64?> ();
         lock (_playlists) {
             foreach (var p in _playlists) {
                 if (p.read_only == false)
@@ -339,7 +386,7 @@ public class Noise.LocalLibrary : Library {
         return result;
     }
 
-    public override StaticPlaylist? playlist_from_id (int id) {
+    public override StaticPlaylist? playlist_from_id (int64 id) {
         lock (_playlists) {
             foreach (var p in get_playlists ()) {
                 if (p.rowid == id) {
@@ -367,32 +414,55 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void add_playlist (StaticPlaylist p) {
-        lock (_playlists) {
-            _playlists.add (p);
+        string rv = "";
+        foreach (var m in p.medias) {
+            if (rv == "") {
+                rv = "%lld".printf (m.rowid);
+            } else {
+                rv += ";%lld".printf (m.rowid);
+            }
         }
-        p.rowid = playlists_rowid;
-        playlists_rowid++;
-        p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
-        DataBaseManager.get_default ().add_playlist (p);
-        playlist_added (p);
-        debug ("playlist %s added",p.name);
+
+        try {
+            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
+            builder.set_table ("playlists");
+            builder.add_field_value_as_gvalue ("name", Database.make_string_value (p.name));
+            builder.add_field_value_as_gvalue ("media", Database.make_string_value (rv));
+            var statement = builder.get_statement ();
+            Gda.Set last_insert_row;
+            var result = connection.statement_execute_non_select (statement, null, out last_insert_row);
+            var local_p = new LocalStaticPlaylist (connection);
+            if (last_insert_row != null) {
+                local_p.rowid = last_insert_row.get_holder_value (Database.Playlists.ROWID).get_int64 ();
+            }
+
+            lock (_playlists) {
+                _playlists.add (local_p);
+            }
+
+            playlist_added (local_p);
+            debug ("playlist %s added", local_p.name);
+        } catch (Error e) {
+            critical (e.message);
+        }
     }
 
-    public override void remove_playlist (int id) {
+    public override void remove_playlist (int64 id) {
         lock (_playlists) {
             foreach (var playlist in get_playlists ()) {
                 if (playlist.rowid == id) {
                     _playlists.remove (playlist);
-                    dbu.removeItem.begin (playlist);
                     playlist_removed (playlist);
                     break;
                 }
             }
-        }
-    }
 
-    public void playlist_updated (StaticPlaylist p, string? old_name = null) {
-        dbu.save_playlist (p, old_name);
+            try {
+                connection.delete_row_from_table ("playlists", "rowid", Database.make_int64_value (id));
+            } catch (Error e) {
+                critical (e.message);
+            }
+        }
     }
 
     /*
@@ -409,7 +479,7 @@ public class Noise.LocalLibrary : Library {
         return result;
     }
 
-    public override SmartPlaylist? smart_playlist_from_id (int id) {
+    public override SmartPlaylist? smart_playlist_from_id (int64 id) {
         lock (_smart_playlists) {
             foreach (var p in get_smart_playlists ()) {
                 if (p.rowid == id) {
@@ -433,39 +503,110 @@ public class Noise.LocalLibrary : Library {
         return null;
     }
 
-    public async void save_smart_playlists () {
-        lock (_smart_playlists) {
-            DataBaseManager.get_default ().save_smart_playlists (get_smart_playlists ());
-        }
-    }
-
     public override void add_smart_playlist (SmartPlaylist p) {
-        lock (_smart_playlists) {
-            _smart_playlists.add (p);
-        }
+        try {
+            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
+            builder.set_table ("smart_playlists");
+            builder.add_field_value_as_gvalue ("name", Database.make_string_value (p.name));
+            var statement = builder.get_statement ();
+            Gda.Set last_insert_row;
+            connection.statement_execute_non_select (statement, null, out last_insert_row);
+            if (last_insert_row != null) {
+                var local_sp = new LocalSmartPlaylist (connection);
+                local_sp.rowid = last_insert_row.get_holder_value (Database.SmartPlaylists.ROWID).get_int64 ();
+                local_sp.conditional = p.conditional;
+                local_sp.limit = p.limit;
+                local_sp.limit_amount = p.limit_amount;
+                local_sp.add_queries (p.get_queries ());
 
-        p.rowid = playlists_rowid;
-        playlists_rowid++;
-        DataBaseManager.get_default ().save_smart_playlist (p);
-        p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
-        smartplaylist_added (p);
+                lock (_smart_playlists) {
+                    _smart_playlists.add (local_sp);
+                }
+
+                smartplaylist_added (local_sp);
+            }
+        } catch (Error e) {
+            critical (e.message);
+        }
     }
 
-    public override void remove_smart_playlist (int id) {
+    public override void remove_smart_playlist (int64 id) {
         lock (_smart_playlists) {
             foreach (var p in get_smart_playlists ()) {
                 if (p.rowid == id) {
                     _smart_playlists.remove (p);
                     smartplaylist_removed (p);
-                    dbu.removeItem.begin (p);
                     break;
                 }
             }
         }
+
+        try {
+            connection.delete_row_from_table ("smart_playlists", "rowid", Database.make_int64_value (id));
+        } catch (Error e) {
+            critical (e.message);
+        }
     }
 
-    public void smart_playlist_updated (SmartPlaylist p, string? old_name = null) {
-        dbu.save_smart_playlist (p, old_name);
+    public void add_default_smart_playlists () {
+        try {
+            var col_names = new GLib.SList<string> ();
+            col_names.append ("name");
+            col_names.append ("queries");
+            col_names.append ("and_or");
+            col_names.append ("limited");
+            col_names.append ("limit_amount");
+
+            var values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Favorite Songs")));
+            values.append (Database.make_string_value ("11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>12<val_sep>6<val_sep>3"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v ("smart_playlists", col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Recently Added")));
+            values.append (Database.make_string_value ("5<val_sep>7<val_sep>7"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v ("smart_playlists", col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Recent Favorites")));
+            values.append (Database.make_string_value ("11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>9<val_sep>7<val_sep>7"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v ("smart_playlists", col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Never Played")));
+            values.append (Database.make_string_value ("11<val_sep>0<val_sep>0"));
+            values.append (Database.make_int_value (0));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v ("smart_playlists", col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Over Played")));
+            values.append (Database.make_string_value ("11<val_sep>4<val_sep>10"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v ("smart_playlists", col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Not Recently Played")));
+            values.append (Database.make_string_value ("9<val_sep>8<val_sep>7"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v ("smart_playlists", col_names, values);
+        } catch (Error e) {
+            critical ("Could not initialize smart playlists: %s", e.message);
+        }
     }
 
     /******************** Media stuff ******************/
@@ -553,7 +694,7 @@ public class Noise.LocalLibrary : Library {
      * consistency
      */
 
-    public override Media? media_from_id (int id) {
+    public override Media? media_from_id (int64 id) {
         lock (_medias) {
             foreach (var m in _medias) {
                 if (m.rowid == id)
@@ -600,7 +741,7 @@ public class Noise.LocalLibrary : Library {
         return null;
     }
 
-    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
+    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int64?> ids) {
         var media_collection = new Gee.TreeSet<Media> ();
         lock (_medias) {
             foreach (var m in _medias) {
@@ -636,7 +777,7 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void add_medias (Gee.Collection<Media> new_media) {
-        if (new_media.size < 1) // happens more often than you would think
+        if (new_media.is_empty) // happens more often than you would think
             return;
 
         // make a copy of the media list so that it doesn't get modified before
@@ -644,7 +785,55 @@ public class Noise.LocalLibrary : Library {
         var media = new Gee.TreeSet<Media> ();
         media.add_all (new_media);
 
-        var local_media = DataBaseManager.get_default ().add_media (media);
+        var local_media = new Gee.TreeSet<LocalMedia> ();
+        foreach (var m in media) {
+            try {
+                var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
+                builder.set_table ("media");
+                builder.add_field_value_as_gvalue ("uri", Database.make_string_value (m.uri));
+                var statement = builder.get_statement ();
+                Gda.Set last_insert_row;
+                connection.statement_execute_non_select (statement, null, out last_insert_row);
+                if (last_insert_row != null) {
+                    var rowid = last_insert_row.get_holder_value (Database.Media.ROWID).get_int64 ();
+                    var local_m = new LocalMedia (rowid, connection);
+                    local_m.file_size = m.file_size;
+                    local_m.track = m.track;
+                    local_m.track_count = m.track_count;
+                    local_m.album_number = m.album_number;
+                    local_m.album_count = m.album_count;
+                    local_m.title = m.title;
+                    local_m.artist = m.artist;
+                    local_m.composer = m.composer;
+                    local_m.album_artist = m.album_artist;
+                    local_m.album = m.album;
+                    local_m.genre = m.genre;
+                    local_m.grouping = m.grouping;
+                    local_m.comment = m.comment;
+                    local_m.year = m.year;
+                    local_m.bitrate = m.bitrate;
+                    local_m.length = m.length;
+                    local_m.samplerate = m.samplerate;
+                    local_m.bpm = m.bpm;
+                    local_m.rating = m.rating;
+                    local_m.play_count = m.play_count;
+                    local_m.skip_count = m.skip_count;
+                    local_m.date_added = m.date_added;
+                    local_m.last_played = m.last_played;
+                    local_m.lyrics = m.lyrics; 
+                    local_m.isPreview = m.isPreview;
+                    local_m.isTemporary = m.isTemporary;
+                    local_m.last_modified = m.last_modified;
+                    local_m.showIndicator = m.showIndicator;
+                    local_m.unique_status_image = m.unique_status_image;
+                    local_m.location_unknown = m.location_unknown;
+                    local_media.add (local_m);
+                }
+            } catch (Error e) {
+                warning ("Could not save media: %s", e.message);
+            }
+        }
+
         _medias.add_all (local_media);
         media_added (local_media.read_only_view);
 
@@ -678,10 +867,8 @@ public class Noise.LocalLibrary : Library {
     public override void remove_medias (Gee.Collection<Media> to_remove, bool trash) {
         var toRemove = new Gee.TreeSet<Media> ();
         toRemove.add_all (to_remove);
-        foreach (var s in toRemove) {
-            if (s == App.player.current_media)
-                App.player.stop_playback ();
-        }
+        if (App.player.current_media in toRemove)
+            App.player.stop_playback ();
 
         if (trash)
             fo.remove_media (toRemove);
@@ -689,7 +876,6 @@ public class Noise.LocalLibrary : Library {
         // Emit signal before actually removing the media because otherwise
         // media_from_id () and media_from_ids () wouldn't work.
         media_removed (toRemove.read_only_view);
-        dbu.removeItem.begin (toRemove);
 
         lock (_medias) {
             foreach (Media s in toRemove) {
@@ -703,7 +889,14 @@ public class Noise.LocalLibrary : Library {
                 p.remove_medias (toRemove);
         }
 
-        DataBaseManager.get_default ().remove_media (toRemove);
+        foreach (var m in toRemove) {
+            try {
+                connection.delete_row_from_table ("media", "rowid", Database.make_int64_value (m.rowid));
+            } catch (Error e) {
+                critical (e.message);
+            }
+        }
+
         search_finished ();
     }
 

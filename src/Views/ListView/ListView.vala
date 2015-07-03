@@ -254,7 +254,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         return list_view.get_hint ();
     }
 
-    public int get_relative_id () {
+    public int64 get_relative_id () {
         return list_view.get_relative_id ();
     }
 

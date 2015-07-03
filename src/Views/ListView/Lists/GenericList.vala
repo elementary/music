@@ -28,7 +28,7 @@ public abstract class Noise.GenericList : FastView {
     protected ViewWrapper parent_wrapper;
 
     protected TreeViewSetup tvs;
-    protected int relative_id;
+    protected int64 relative_id;
     protected bool is_current_list;
 
     protected bool dragging;
@@ -390,11 +390,11 @@ public abstract class Noise.GenericList : FastView {
         return tvs.get_hint ();
     }
 
-    public void set_relative_id (int id) {
+    public void set_relative_id (int64 id) {
         this.relative_id = id;
     }
 
-    public int get_relative_id () {
+    public int64 get_relative_id () {
         return relative_id;
     }
 
