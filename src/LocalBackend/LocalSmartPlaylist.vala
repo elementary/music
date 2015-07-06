@@ -31,12 +31,53 @@
 public class Noise.LocalSmartPlaylist : SmartPlaylist {
     private static const string QUERY_SEPARATOR = "<query_sep>";
     private static const string VALUE_SEPARATOR = "<val_sep>";
-
     private Gda.Connection connection;
 
-    public LocalSmartPlaylist (Gda.Connection connection) {
-        this.connection = connection;
+    /**
+     * Metadata Fields
+     */
+    private string _name = null;
+    public override string name {
+        get {
+            try {
+                if (_name != null)
+                    return _name;
+
+                var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+                sql.select_add_target (Database.SmartPlaylists.TABLE_NAME, null);
+                sql.add_field_value_id (sql.add_id ("name"), 0);
+                var id_field = sql.add_id ("rowid");
+                var id_param = sql.add_expr_value (null, Database.make_int64_value (rowid));
+                var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
+                sql.set_where (id_cond);
+                var data_model = connection.statement_execute_select (sql.get_statement (), null);
+                _name = data_model.get_value_at (data_model.get_column_index ("name"), 0).dup_string ();
+                return _name;
+            } catch (Error e) {
+                critical ("Could not query field name: %s", e.message);
+                return "";
+            }
+        }
+        set {
+            try {
+                var rowid_value = GLib.Value (typeof (int64));
+                rowid_value.set_int64 (rowid);
+                var col_names = new GLib.SList<string> ();
+                col_names.append ("name");
+                var values = new GLib.SList<GLib.Value?> ();
+                values.append (Database.make_string_value (value));
+                connection.update_row_in_table_v (Database.SmartPlaylists.TABLE_NAME, "rowid", rowid_value, col_names, values);
+                _name = value;
+            } catch (Error e) {
+                critical ("Could not set field name: %s", e.message);
+            }
+        }
+    }
+
+    public LocalSmartPlaylist (int64 rowid, Gda.Connection connection) {
         base (libraries_manager.local_library);
+        this.connection = connection;
+        this.rowid = rowid;
     }
 
     construct {
@@ -74,7 +115,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
         values.append (Database.make_bool_value (limit));
         values.append (Database.make_int_value (limit_amount));
         try {
-            connection.update_row_in_table_v ("playlists", "rowid", rowid_value, col_names, values);
+            connection.update_row_in_table_v (Database.SmartPlaylists.TABLE_NAME, "rowid", rowid_value, col_names, values);
         } catch (Error e) {
             critical (e.message);
         }
@@ -109,6 +150,67 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
             sq.value = pieces_of_query[2];
 
             queries.add (sq);
+        }
+    }
+
+    public static void add_defaults (Gda.Connection connection) {
+        try {
+            var col_names = new GLib.SList<string> ();
+            col_names.append ("name");
+            col_names.append ("queries");
+            col_names.append ("and_or");
+            col_names.append ("limited");
+            col_names.append ("limit_amount");
+
+            var values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Favorite Songs")));
+            values.append (Database.make_string_value ("11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>12<val_sep>6<val_sep>3"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Recently Added")));
+            values.append (Database.make_string_value ("5<val_sep>7<val_sep>7"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Recent Favorites")));
+            values.append (Database.make_string_value ("11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>9<val_sep>7<val_sep>7"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Never Played")));
+            values.append (Database.make_string_value ("11<val_sep>0<val_sep>0"));
+            values.append (Database.make_int_value (0));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Over Played")));
+            values.append (Database.make_string_value ("11<val_sep>4<val_sep>10"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
+
+            values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_string_value (_("Not Recently Played")));
+            values.append (Database.make_string_value ("9<val_sep>8<val_sep>7"));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (1));
+            values.append (Database.make_int_value (50));
+            connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
+        } catch (Error e) {
+            critical ("Could not initialize smart playlists: %s", e.message);
         }
     }
 }

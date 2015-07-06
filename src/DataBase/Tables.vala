@@ -56,6 +56,7 @@ namespace Noise.Database {
      * Update those constants when you change the order of columns.
      */
     namespace Playlists {
+        public static const string TABLE_NAME = "playlists";
         public static const string NAME = "+0";
         public static const string MEDIA = "+1";
         public static const string SORT_COLUMN_ID = "+2";
@@ -65,6 +66,7 @@ namespace Noise.Database {
     }
 
     namespace SmartPlaylists {
+        public static const string TABLE_NAME = "smart_playlists";
         public static const string NAME = "+0";
         public static const string AND_OR = "+1";
         public static const string QUERIES = "+2";
@@ -74,6 +76,7 @@ namespace Noise.Database {
     }
 
     namespace Media {
+        public static const string TABLE_NAME = "media";
         public static const string URI = "+0";
         public static const string FILE_SIZE = "+1";
         public static const string TITLE = "+2";

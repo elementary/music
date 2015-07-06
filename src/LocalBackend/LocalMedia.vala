@@ -313,6 +313,80 @@ public class Noise.LocalMedia : Noise.Media {
         }
     }
 
+    // To use this method, the rowid should exist in the database.
+    public LocalMedia.from_media (Gda.Connection connection, Media m) {
+        try {
+            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
+            builder.set_table (Database.Media.TABLE_NAME);
+            builder.add_field_value_as_gvalue ("uri", Database.make_string_value (m.uri));
+            Gda.Set last_insert_row;
+            connection.statement_execute_non_select (builder.get_statement (), null, out last_insert_row);
+            var _rowid = last_insert_row.get_holder_value (Database.Media.ROWID).get_int64 ();
+            Object (rowid: _rowid);
+            this.connection = connection;
+            var col_names = new GLib.SList<string> ();
+            col_names.append ("file_size");
+            col_names.append ("title");
+            col_names.append ("artist");
+            col_names.append ("composer");
+            col_names.append ("album_artist");
+            col_names.append ("album");
+            col_names.append ("grouping");
+            col_names.append ("genre");
+            col_names.append ("comment");
+            col_names.append ("lyrics");
+            col_names.append ("has_embedded");
+            col_names.append ("year");
+            col_names.append ("track");
+            col_names.append ("track_count");
+            col_names.append ("album_number");
+            col_names.append ("album_count");
+            col_names.append ("bitrate");
+            col_names.append ("length");
+            col_names.append ("samplerate");
+            col_names.append ("rating");
+            col_names.append ("playcount");
+            col_names.append ("skipcount");
+            col_names.append ("dateadded");
+            col_names.append ("lastplayed");
+            col_names.append ("lastmodified");
+            var values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_uint64_value (m.file_size));
+            values.append (Database.make_string_value (m.title));
+            values.append (Database.make_string_value (m.artist));
+            values.append (Database.make_string_value (m.composer));
+            values.append (Database.make_string_value (m.album_artist));
+            values.append (Database.make_string_value (m.album));
+            values.append (Database.make_string_value (m.grouping));
+            values.append (Database.make_string_value (m.genre));
+            values.append (Database.make_string_value (m.comment));
+            values.append (Database.make_string_value (m.lyrics));
+            values.append (Database.make_bool_value (m.has_embedded));
+            values.append (Database.make_uint_value (m.year));
+            values.append (Database.make_uint_value (m.track));
+            values.append (Database.make_uint_value (m.track_count));
+            values.append (Database.make_uint_value (m.album_number));
+            values.append (Database.make_uint_value (m.album_count));
+            values.append (Database.make_uint_value (m.bitrate));
+            values.append (Database.make_uint_value (m.length));
+            values.append (Database.make_uint_value (m.samplerate));
+            values.append (Database.make_uint_value (m.rating));
+            values.append (Database.make_uint_value (m.play_count));
+            values.append (Database.make_uint_value (m.skip_count));
+            values.append (Database.make_uint_value (m.date_added));
+            values.append (Database.make_uint_value (m.last_played));
+            values.append (Database.make_uint_value (m.last_modified));
+            connection.update_row_in_table_v (Database.Media.TABLE_NAME, "rowid", last_insert_row.get_holder_value (Database.Media.ROWID), col_names, values);
+        } catch (Error e) {
+            warning ("Could not save media: %s", e.message);
+        }
+
+        var query = query_field ("uri");
+        if (query != null) {
+            uri = query.dup_string ();
+        }
+    }
+
     /*
      * These functions allows the LocalMedia to interact with the database.
      */
@@ -335,7 +409,7 @@ public class Noise.LocalMedia : Noise.Media {
             col_names.append (field);
             var values = new GLib.SList<GLib.Value?> ();
             values.append (value);
-            connection.update_row_in_table_v ("media", "rowid", rowid_value, col_names, values);
+            connection.update_row_in_table_v (Database.Media.TABLE_NAME, "rowid", rowid_value, col_names, values);
         } catch (Error e) {
             warning ("Could not set field %s: %s", field, e.message);
         }
@@ -350,7 +424,7 @@ public class Noise.LocalMedia : Noise.Media {
 
         var query = query_field (field);
         if (query != null) {
-            temp = (uint64)query.get_int64 ();
+            temp = (uint64)query.get_int ();
             return temp;
         } else
             return 0;
@@ -369,7 +443,7 @@ public class Noise.LocalMedia : Noise.Media {
 
         var query = query_field (field);
         if (query != null) {
-            temp = (uint)query.get_int64 ();
+            temp = query.get_int ();
             return temp;
         } else
             return 0;
