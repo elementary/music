@@ -145,4 +145,34 @@ namespace Noise.Database {
         return val;
     }
 
+    private static GLib.Value? query_field (int64 rowid, Gda.Connection connection, string table, string field) {
+        try {
+            var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+            sql.select_add_target (table, null);
+            sql.add_field_value_id (sql.add_id (field), 0);
+            var id_field = sql.add_id ("rowid");
+            var id_param = sql.add_expr_value (null, Database.make_int64_value (rowid));
+            var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
+            sql.set_where (id_cond);
+            var data_model = connection.statement_execute_select (sql.get_statement (), null);
+            return data_model.get_value_at (data_model.get_column_index (field), 0);
+        } catch (Error e) {
+            critical ("Could not query field %s: %s", field, e.message);
+            return null;
+        }
+    }
+
+    private static void set_field (int64 rowid, Gda.Connection connection, string table, string field, GLib.Value value) {
+        try {
+            var rowid_value = GLib.Value (typeof (int64));
+            rowid_value.set_int64 (rowid);
+            var col_names = new GLib.SList<string> ();
+            col_names.append (field);
+            var values = new GLib.SList<GLib.Value?> ();
+            values.append (value);
+            connection.update_row_in_table_v (table, "rowid", rowid_value, col_names, values);
+        } catch (Error e) {
+            critical ("Could not set field %s: %s", field, e.message);
+        }
+    }
 }

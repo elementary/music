@@ -307,7 +307,7 @@ public class Noise.LocalMedia : Noise.Media {
     public LocalMedia (int64 rowid, Gda.Connection connection) {
         Object (rowid: rowid);
         this.connection = connection;
-        var query = query_field ("uri");
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, "uri");
         if (query != null) {
             uri = query.dup_string ();
         }
@@ -381,37 +381,9 @@ public class Noise.LocalMedia : Noise.Media {
             warning ("Could not save media: %s", e.message);
         }
 
-        var query = query_field ("uri");
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, "uri");
         if (query != null) {
             uri = query.dup_string ();
-        }
-    }
-
-    /*
-     * These functions allows the LocalMedia to interact with the database.
-     */
-
-    private GLib.Value? query_field (string field) {
-        try {
-            var data_model = connection.execute_select_command ("SELECT %s FROM media WHERE rowid=%lld".printf (field, rowid));
-            return data_model.get_value_at (data_model.get_column_index (field), 0);
-        } catch (Error e) {
-            warning ("Could not query field %s: %s", field, e.message);
-            return null;
-        }
-    }
-
-    private async void set_field (string field, GLib.Value value) {
-        try {
-            var rowid_value = GLib.Value (typeof (int64));
-            rowid_value.set_int64 (rowid);
-            var col_names = new GLib.SList<string> ();
-            col_names.append (field);
-            var values = new GLib.SList<GLib.Value?> ();
-            values.append (value);
-            connection.update_row_in_table_v (Database.Media.TABLE_NAME, "rowid", rowid_value, col_names, values);
-        } catch (Error e) {
-            warning ("Could not set field %s: %s", field, e.message);
         }
     }
 
@@ -422,7 +394,7 @@ public class Noise.LocalMedia : Noise.Media {
         if (temp != null)
             return temp;
 
-        var query = query_field (field);
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, field);
         if (query != null) {
             temp = (uint64)query.get_int ();
             return temp;
@@ -434,14 +406,14 @@ public class Noise.LocalMedia : Noise.Media {
         temp = value;
         var val = GLib.Value (typeof (uint64));
         val.set_uint64 (value);
-        set_field.begin (field, val);
+        Database.set_field (rowid, connection, Database.Media.TABLE_NAME, field, val);
     }
 
     private uint common_uint_getter (string field, ref uint? temp) {
         if (temp != null)
             return temp;
 
-        var query = query_field (field);
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, field);
         if (query != null) {
             temp = query.get_int ();
             return temp;
@@ -453,14 +425,14 @@ public class Noise.LocalMedia : Noise.Media {
         temp = value;
         var val = GLib.Value (typeof (uint));
         val.set_uint (value);
-        set_field.begin (field, val);
+        Database.set_field (rowid, connection, Database.Media.TABLE_NAME, field, val);
     }
 
     private string common_string_getter (string field, ref string? temp) {
         if (temp != null)
             return temp;
 
-        var query = query_field (field);
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, field);
         if (query != null) {
             temp = query.dup_string ();
             return _composer;
@@ -472,7 +444,7 @@ public class Noise.LocalMedia : Noise.Media {
         temp = value;
         var val = GLib.Value (typeof (string));
         val.set_string (value);
-        set_field.begin (field, val);
+        Database.set_field (rowid, connection, Database.Media.TABLE_NAME, field, val);
     }
 
 }

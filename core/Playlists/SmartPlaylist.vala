@@ -35,12 +35,12 @@ public class Noise.SmartPlaylist : Playlist {
         ANY = false
     }
 
-    public ConditionalType conditional { get; set; default = ConditionalType.ALL; }
+    public virtual ConditionalType conditional { get; set; default = ConditionalType.ALL; }
     public Gee.TreeSet<SmartQuery> queries;
     public int query_count { get; set; default = 0; }
 
-    public bool limit { get; set; default = false; }
-    public int limit_amount { get; set; default = 50; }
+    public virtual bool limit { get; set; default = false; }
+    public virtual uint limit_amount { get; set; default = 50; }
 
     private Noise.Library library;
 

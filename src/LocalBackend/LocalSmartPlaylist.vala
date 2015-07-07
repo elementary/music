@@ -39,38 +39,44 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
     private string _name = null;
     public override string name {
         get {
-            try {
-                if (_name != null)
-                    return _name;
-
-                var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
-                sql.select_add_target (Database.SmartPlaylists.TABLE_NAME, null);
-                sql.add_field_value_id (sql.add_id ("name"), 0);
-                var id_field = sql.add_id ("rowid");
-                var id_param = sql.add_expr_value (null, Database.make_int64_value (rowid));
-                var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
-                sql.set_where (id_cond);
-                var data_model = connection.statement_execute_select (sql.get_statement (), null);
-                _name = data_model.get_value_at (data_model.get_column_index ("name"), 0).dup_string ();
+            if (_name != null)
                 return _name;
-            } catch (Error e) {
-                critical ("Could not query field name: %s", e.message);
-                return "";
-            }
+
+            _name = Database.query_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "name").dup_string ();
+            return _name;
         }
         set {
-            try {
-                var rowid_value = GLib.Value (typeof (int64));
-                rowid_value.set_int64 (rowid);
-                var col_names = new GLib.SList<string> ();
-                col_names.append ("name");
-                var values = new GLib.SList<GLib.Value?> ();
-                values.append (Database.make_string_value (value));
-                connection.update_row_in_table_v (Database.SmartPlaylists.TABLE_NAME, "rowid", rowid_value, col_names, values);
-                _name = value;
-            } catch (Error e) {
-                critical ("Could not set field name: %s", e.message);
-            }
+            _name = value;
+            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "name", Database.make_string_value (value));
+        }
+    }
+
+
+    public override SmartPlaylist.ConditionalType conditional {
+        get {
+            return (SmartPlaylist.ConditionalType) Database.query_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "and_or").get_int ();
+        }
+        set {
+            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "and_or", Database.make_int_value (value));
+        }
+    }
+
+    public override uint limit_amount {
+        get {
+            return (uint)Database.query_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "limit_amount").get_int ();
+        }
+        set {
+            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "limit_amount", Database.make_uint_value (value));
+        }
+    }
+
+    public override bool limit {
+        get {
+            var val = Database.query_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "limited");
+            return (bool)val.get_int ();
+        }
+        set {
+            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "limited", Database.make_bool_value (value));
         }
     }
 
@@ -78,47 +84,28 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
         base (libraries_manager.local_library);
         this.connection = connection;
         this.rowid = rowid;
+        var queries_str = Database.query_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries").get_string ();
+        queries_from_string (queries_str);
     }
 
-    construct {
-        media_added.connect ((media) => {
-            update_database ();
-        });
+    //TODO: override this to search directly into the database.
+    /*public override void analyse_all () {
+        
+    }*/
 
-        media_removed.connect ((media) => {
-            update_database ();
-        });
-
-        updated.connect ((old_name) => {
-            update_database ();
-        });
-
-        cleared.connect (() => {
-            update_database ();
-        });
+    public override void clear_queries () {
+        base.clear_queries ();
+        Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries", Database.make_string_value (""));
     }
 
-    private void update_database () {
-        var rowid_value = GLib.Value (typeof (int64));
-        rowid_value.set_int64 (rowid);
-        var col_names = new GLib.SList<string> ();
-        col_names.append ("name");
-        col_names.append ("and_or");
-        col_names.append ("queries");
-        col_names.append ("limited");
-        col_names.append ("limit_amount");
+    public override void add_query (SmartQuery s) {
+        base.add_query (s);
+        Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries", Database.make_string_value (queries_to_string ()));
+    }
 
-        var values = new GLib.SList<Value ?> ();
-        values.append (Database.make_string_value (name));
-        values.append (Database.make_int_value ((int)conditional));
-        values.append (Database.make_string_value (queries_to_string ()));
-        values.append (Database.make_bool_value (limit));
-        values.append (Database.make_int_value (limit_amount));
-        try {
-            connection.update_row_in_table_v (Database.SmartPlaylists.TABLE_NAME, "rowid", rowid_value, col_names, values);
-        } catch (Error e) {
-            critical (e.message);
-        }
+    public override void add_queries (Gee.Collection<SmartQuery> queries) {
+        base.add_queries (queries);
+        Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries", Database.make_string_value (queries_to_string ()));
     }
 
     private string queries_to_string () {
