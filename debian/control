@@ -23,7 +23,7 @@ Build-Depends: cmake (>= 2.8),
                libsoup2.4-dev (>= 2.25.2),
                libsqlheavy-dev (>= 0.1.1-2),
                libtagc0-dev (>= 1.6.3),
-               libzeitgeist-dev,
+               libzeitgeist-2.0-dev,
                quilt,
                valac (>= 0.26)
 Standards-Version: 3.9.5
