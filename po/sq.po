@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-06-30 14:53+0000\n"
+"PO-Revision-Date: 2015-07-12 13:44+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-07-01 05:46+0000\n"
-"X-Generator: Launchpad (build 17578)\n"
+"X-Launchpad-Export-Date: 2015-07-13 05:29+0000\n"
+"X-Generator: Launchpad (build 17620)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -327,7 +327,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:1048
 msgid "Pause"
-msgstr ""
+msgstr "Pusho"
 
 #: ../src/LibraryWindow.vala:1134
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
@@ -750,7 +750,7 @@ msgstr "është të paktën"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:378
 msgid "is within"
-msgstr ""
+msgstr "është brenda"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:379
 msgid "is before"
@@ -771,7 +771,7 @@ msgstr "kbps"
 #: ../src/Dialogs/NotImportedWindow.vala:58
 #: ../src/Dialogs/NotImportedWindow.vala:70
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "E pamundur të importohen %d elementet nga %s"
 
 #: ../src/Dialogs/NotImportedWindow.vala:59
 msgid "%s was unable to import %d items. The files may be damaged."
@@ -809,11 +809,11 @@ msgstr "Hiq nga %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:67
 msgid "Remove %d Songs From %s?"
-msgstr ""
+msgstr "Të hiqen %d këngë nga %s?"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:70
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "Të hiqet \"%s\" nga %s?"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:79
 msgid ""
@@ -835,7 +835,7 @@ msgstr "Shto muzikë në librarinë tënde."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Importo muzikë nga një burim në librarinë tënde."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
@@ -848,7 +848,7 @@ msgstr "Ngarko muzikë nga një dosje, një rrjet ose nga një disk i jashtëm."
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:104
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import your Music"
-msgstr ""
+msgstr "Importo muzikën tënde"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:104
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:120
@@ -857,7 +857,7 @@ msgstr "Importo të gjithë muzikën tënde nga %s në librarinë tënde."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Select Music Folder"
-msgstr ""
+msgstr "Përzgjidh dosjen e muzikës"
 
 #: ../src/Views/Wrappers/ViewWrapper.vala:446
 msgid "No media"
@@ -915,7 +915,7 @@ msgstr ""
 #: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr ""
+msgstr "%s i %s"
 
 #: ../src/Views/GridView/PopupListView.vala:261
 msgid "_Cancel"
@@ -943,7 +943,7 @@ msgstr "OK"
 
 #: ../src/Views/DeviceView.vala:101
 msgid "No External Songs"
-msgstr ""
+msgstr "Asnjë këngë e jashtme"
 
 #: ../src/Views/DeviceView.vala:101
 msgid ""
@@ -1061,19 +1061,19 @@ msgstr "Asnjë kompozitor"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:150
 #: ../src/Widgets/PresetList.vala:47
 msgid "Automatic"
-msgstr ""
+msgstr "Automatike"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:152
 msgid "On Left"
-msgstr ""
+msgstr "Majtas"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:154
 msgid "On Top"
-msgstr ""
+msgstr "Lart"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:401
 msgid "Unrated"
-msgstr ""
+msgstr "E pavlerësuar"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:403
 msgid "%i Star"
@@ -1120,7 +1120,7 @@ msgstr "Kurrë"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:91
 msgid "Remove from Library"
-msgstr "Hiq nga libraria"
+msgstr "Hiqe nga libraria"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:98
 msgid "Remove from Queue"
@@ -1171,8 +1171,8 @@ msgstr ""
 #: ../src/Views/ListView/Lists/MusicListView.vala:260
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Importo %i këngë"
+msgstr[1] "Importo %i këngë"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:688
 msgid "1234 kbps"
@@ -1365,7 +1365,7 @@ msgstr "Të shtuara së fundmi"
 #: ../src/DataBase/DataBaseManager.vala:475
 #: ../src/DataBase/DataBaseManager.vala:711
 msgid "Recent Favorites"
-msgstr "Të preferuar së fundmi"
+msgstr "Të preferuara së fundmi"
 
 #: ../src/DataBase/DataBaseManager.vala:482
 #: ../src/DataBase/DataBaseManager.vala:718
@@ -1571,7 +1571,7 @@ msgstr "Fshih"
 
 #: ../src/Widgets/StatusBar.vala:197
 msgid "Show Info Panel"
-msgstr ""
+msgstr "Shfaq panelin informativ"
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Show"
@@ -1579,7 +1579,7 @@ msgstr "Shfaq"
 
 #: ../src/Widgets/StatusBar.vala:198
 msgid "Hide Info Panel"
-msgstr ""
+msgstr "Fshih panelin informativ"
 
 #: ../src/Objects/LyricFetcher.vala:155
 msgid "Lyrics fetched from www.lyricsmania.com"
@@ -1683,7 +1683,7 @@ msgstr "Duke shtuar <b>$NAME</b> të <b>$ARTIST</b> në $DEVICE"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:202
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Duke sinkronizuar <b>%s</b>…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:220
 #: ../plugins/Devices/iPod/iPodLibrary.vala:380
@@ -1702,12 +1702,12 @@ msgstr "Duke anuluar sinkronizimin…"
 #: ../plugins/Devices/iPod/iPodLibrary.vala:342
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:393
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "Duke hequr nga <b>%s</b>…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:535
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:362
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "Duke hequr <b>$NAME</b> e <b>$ARTIST</b> nga $DEVICE"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:667
 #: ../plugins/Devices/iPod/iPodLibrary.vala:668
@@ -1731,19 +1731,19 @@ msgstr "Ndodhi një gabim"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Ndodhi një gabim gjatë ngarkimit të këtij CD Audio."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:94
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "CD Audio i pavlefshëm"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:98
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "E pamundur të lexohet përmbajtja e këtij CD Audio"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "Dosja e muzikës nuk u gjet"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid ""
@@ -1760,11 +1760,11 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:357
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "Importimi i një kënge nga CD Audio përfundoi."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:357
 msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
+msgstr "Importimi i %i këngëve nga CD Audio përfundoi."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:362
 msgid "Importing track %i: %s"
@@ -1772,7 +1772,7 @@ msgstr "Duke importuar këngën %i: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:367
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
+msgstr "Importimi i CD-së do të <b>anulohet</b> mbas importimit aktual"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:386
 msgid "An error occured during the Import of this CD"
