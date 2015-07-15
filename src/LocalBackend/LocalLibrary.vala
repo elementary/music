@@ -56,6 +56,8 @@ public class Noise.LocalLibrary : Library {
     private Gda.Connection connection;
     private Gda.SqlParser parser;
 
+    private static const string DB_FILE = "database_0_3_1";
+
     public LocalLibrary () {
         libraries_manager.local_library = this;
         _playlists = new Gee.TreeSet<StaticPlaylist> ();
@@ -137,10 +139,18 @@ public class Noise.LocalLibrary : Library {
                 error ("Could not create data directory: %s", err.message);
         }
 
-        bool new_db = !database_dir.get_child ("database_0_3_0.db").query_exists ();
+        var db_file = database_dir.get_child (DB_FILE + ".db");
+        bool new_db = !db_file.query_exists ();
+        if (new_db) {
+            try {
+                db_file.create (FileCreateFlags.PRIVATE);
+            } catch (Error e) {
+                critical ("Error: %s", e.message);
+            }
+        }
 
         try {
-            connection = new Gda.Connection.from_string ("SQLite", "DB_DIR=%s;DB_NAME=database_0_3_0".printf (database_dir.get_path ()), null, Gda.ConnectionOptions.NONE);
+            connection = new Gda.Connection.from_string ("SQLite", "DB_DIR=%s;DB_NAME=%s".printf (database_dir.get_path (), DB_FILE), null, Gda.ConnectionOptions.NONE);
             connection.open ();
         } catch (Error e) {
             error (e.message);
@@ -148,14 +158,14 @@ public class Noise.LocalLibrary : Library {
 
         parser = connection.create_parser ();
 
-        load_table (Database.Tables.PLAYLISTS);
-        load_table (Database.Tables.SMART_PLAYLISTS);
-        load_table (Database.Tables.COLUMNS);
-        load_table (Database.Tables.MEDIA);
-        load_table (Database.Tables.DEVICES);
-
-        if (new_db)
+        if (new_db) {
+            load_table (Database.Tables.PLAYLISTS);
+            load_table (Database.Tables.SMART_PLAYLISTS);
+            load_table (Database.Tables.COLUMNS);
+            load_table (Database.Tables.MEDIA);
+            load_table (Database.Tables.DEVICES);
             LocalSmartPlaylist.add_defaults (connection);
+        }
     }
 
     private void load_table (string table) {
