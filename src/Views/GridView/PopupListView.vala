@@ -222,12 +222,12 @@ public class Noise.PopupListView : Gtk.Dialog {
     }
 
     private void view_search_func (string search, Gee.HashMap<int, Media> table, Gee.HashMap<int, Media> showing) {
-        int parsed_rating;
+        uint parsed_rating;
         string parsed_search_string;
 
         String.base_search_method (search, out parsed_rating, out parsed_search_string);
 
-        bool rating_search = parsed_rating > 0;
+        bool rating_search = parsed_rating != 0;
 
         // If an external refiltering is going on, we cannot obey the column browser filter
         // because it wil be refreshed after this search based on the new 'showing' table

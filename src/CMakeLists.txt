@@ -12,6 +12,7 @@ set(CLIENT_SOURCE
     LocalBackend/LocalMedia.vala
     LocalBackend/LocalSmartPlaylist.vala
     LocalBackend/LocalStaticPlaylist.vala
+    LocalBackend/DevicePreferences.vala
     Widgets/NavigationArrows.vala
     Widgets/TopDisplay.vala
     Widgets/InfoPanel.vala

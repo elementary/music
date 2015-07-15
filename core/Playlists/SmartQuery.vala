@@ -64,13 +64,13 @@ public class Noise.SmartQuery : Object {
     public int rowid { get; set; default = 0; }
     public FieldType field { get; set; default = FieldType.ALBUM; }
     public ComparatorType comparator { get; set; default = ComparatorType.IS; }
-    public string value { get; set; default = ""; } //internally this often holds numbers, but that's ok.
+    public GLib.Value value { get; set; default = GLib.Value (typeof (string)); }
 
     public SmartQuery () {
         
     }
 
-    public SmartQuery.with_info (FieldType field, ComparatorType comparator, string value) {
+    public SmartQuery.with_info (FieldType field, ComparatorType comparator, GLib.Value value) {
         this.field = field;
         this.comparator = comparator;
         this.value = value;

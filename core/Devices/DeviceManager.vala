@@ -39,7 +39,6 @@ public class Noise.DeviceManager : GLib.Object {
     public signal void mount_added (Mount mount);
     public signal void mount_removed (Mount mount);
 
-    private Gee.TreeSet<DevicePreferences> device_preferences;
     private Gee.TreeSet<unowned Device> initialized_devices;
     private Gee.TreeSet<unowned Mount> mounts_availables;
     private Gee.TreeSet<Playlist> local_playlists;
@@ -53,7 +52,6 @@ public class Noise.DeviceManager : GLib.Object {
     }
 
     private DeviceManager () {
-        device_preferences = new Gee.TreeSet<DevicePreferences> ();
         initialized_devices = new Gee.TreeSet<unowned Device> ();
         mounts_availables = new Gee.TreeSet<unowned Mount> ();
         local_playlists = new Gee.TreeSet<Playlist> ();
@@ -65,10 +63,6 @@ public class Noise.DeviceManager : GLib.Object {
         vm.mount_removed.connect ((mount) => {mounts_availables.remove (mount); mount_removed (mount);});
         vm.volume_added.connect (volume_added);
         get_pre_existing_mounts.begin ();
-    }
-
-    public void set_device_preferences (Gee.Collection<DevicePreferences> device_preferences) {
-        this.device_preferences.add_all (device_preferences);
     }
 
     public async void get_pre_existing_mounts () {
@@ -118,26 +112,11 @@ public class Noise.DeviceManager : GLib.Object {
         //message ("mount_preunmount:%s\n", mount.get_uuid());
     }
 
-    public DevicePreferences? get_device_preferences (string id) {
-        foreach (var device in device_preferences) {
-            if (device.id == id)
-                return device;
-        }
-
-        return null;
-    }
-
     public Gee.Collection<unowned Device> get_initialized_devices () {
         return initialized_devices;
     }
 
     public Gee.Collection<unowned Mount> get_available_mounts () {
         return mounts_availables;
-    }
-
-    public void add_device_preferences (DevicePreferences dp) {
-        lock (device_preferences) {
-            device_preferences.add (dp);
-        }
     }
 }

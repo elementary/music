@@ -58,11 +58,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         cdplayer = new CDPlayer (mount);
         Noise.App.player.add_playback (cdplayer);
     }
-    
-    public Noise.DevicePreferences get_preferences() {
-        return new Noise.DevicePreferences(get_unique_identifier());
-    }
-    
+
     public bool start_initialization() {
         return true;
     }

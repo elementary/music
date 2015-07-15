@@ -27,13 +27,12 @@ public class Noise.DeviceView : Gtk.Grid {
     Gtk.InfoBar infobar;
     Gtk.Label infobar_label;
     
-    public DeviceView (Device d) {
+    public DeviceView (Noise.Device device, DevicePreferences preferences) {
         this.orientation = Gtk.Orientation.VERTICAL;
+        this.d = device;
 
-        this.d = d;
+        buildUI (preferences);
 
-        buildUI ();
-        
         ulong connector = NotificationManager.get_default ().progress_canceled.connect ( () => {
             if (d.get_library ().doing_file_operations ()) {
                 NotificationManager.get_default ().show_alert (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
@@ -44,11 +43,11 @@ public class Noise.DeviceView : Gtk.Grid {
             d.disconnect (connector);
         });
         
-        if (d.get_preferences ().sync_when_mounted)
+        if (preferences.sync_when_mounted)
             syncClicked ();
     }
-    
-    void buildUI () {
+
+    void buildUI (DevicePreferences preferences) {
         
         /* create infobar */
         
@@ -61,7 +60,7 @@ public class Noise.DeviceView : Gtk.Grid {
         infobar.response.connect ( (self, response) => {
             infobar.hide ();
         });
-        summary = new DeviceSummaryWidget (d);
+        summary = new DeviceSummaryWidget (d, preferences);
         
         attach (infobar, 0, 0, 1, 1);
         if (d.get_custom_view () != null) {

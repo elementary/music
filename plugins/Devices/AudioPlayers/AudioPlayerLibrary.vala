@@ -110,7 +110,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
                 return;
             }
             
-            int parsed_rating;
+            uint parsed_rating;
             string parsed_search_string;
             String.base_search_method (search, out parsed_rating, out parsed_search_string);
             bool rating_search = parsed_rating > 0;
@@ -118,7 +118,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             lock (medias) {
                 foreach (var m in medias) {
                     if (rating_search) {
-                        if (m.rating == (uint) parsed_rating)
+                        if (m.rating == parsed_rating)
                             searched_medias.add (m);
                     } else if (Search.match_string_to_media (m, parsed_search_string)) {
                         searched_medias.add (m);
@@ -185,95 +185,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         }
         return;
     }
-    
-    public void sync_medias () {
-        if(doing_file_operations ()) {
-            warning("Tried to add when already syncing\n");
-            return;
-        }
-        Playlist playlist = null;
-        if (device.get_preferences().sync_all_music == false) {
-            playlist = device.get_preferences().music_playlist;
-            if (playlist == null)
-                return;
-        }
-        
-        
-        libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.getDisplayName ());
-        
-        is_doing_file_operations = true;
-        Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
-        if (playlist == null)
-            sync_medias_async.begin (libraries_manager.local_library.get_medias ());
-        else
-            sync_medias_async.begin (playlist.medias);
-        return;
-    }
-    
-    public async void sync_medias_async (Gee.Collection<Noise.Media> songs) {
-        var medias_to_remove = new Gee.LinkedList<Noise.Media> ();
-        medias_to_remove.add_all (device.delete_doubles (medias, songs));
-        
-        var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
-        medias_to_sync.add_all (device.delete_doubles (songs, medias));
-        
-        int total_medias = medias_to_remove.size + medias_to_sync.size;
-        
-        int sub_index = 0;
-        if (total_medias > 0) {
-            if (device.will_fit_without (medias_to_sync, medias_to_remove)) {
-                foreach(var m in medias_to_remove) {
-                    if(!operation_cancelled) {
-                        remove_media(m, true);
-                    }
-                    ++sub_index;
-                    libraries_manager.progress = (double)(sub_index/total_medias);
-                }
-                sub_index = 0;
-                imported_files = new Gee.LinkedList<string> ();
-                foreach(var m in medias_to_sync) {
-                    if(!operation_cancelled) {
-                        add_media (m);
-                    }
-                    ++sub_index;
-                    libraries_manager.progress = (double)(sub_index/total_medias);
-                }
-                tagger.discoverer_import_media (imported_files);
-                
-                if(!operation_cancelled) {
-                    // sync playlists
-                    /* TODO: add support for podcasts & playlists
-                    if (pref.sync_all_music == true) {
-                        sync_playlists();
-                    }
-                    if (pref.sync_all_podcasts == true) {
-                        sync_podcasts();
-                    }*/
-                    
-                    libraries_manager.current_operation = _("Finishing sync process…");
-                    
-                } else {
-                    libraries_manager.current_operation = _("Cancelling Sync…");
-                    libraries_manager.progress = 1;
-                }
-            } else {
-                    device.infobar_message (_("There is not enough space on Device to complete the Sync…"), Gtk.MessageType.INFO);
-                    libraries_manager.current_operation = _("There is not enough space on Device to complete the Sync…");
-            }
-        }
 
-        Idle.add( () => {
-            libraries_manager.progress = 1;
-            device.get_preferences().last_sync_time = (int)time_t();
-            is_doing_file_operations = false;
-            
-            file_operations_done ();
-            operation_cancelled = false;
-            
-            return false;
-        });
-    }
-    
     public override Media? media_from_id (int64 id) {
         lock (medias) {
             foreach (var m in medias) {
@@ -284,6 +196,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         }
         return null;
     }
+
     public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int64?> ids) {
         var media_collection = new Gee.LinkedList<Media> ();
 

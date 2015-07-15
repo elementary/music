@@ -21,7 +21,6 @@
  */
 
 public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
-    Noise.DevicePreferences pref;
     GPod.iTunesDB db;
     public Mount mount;
     GLib.Icon icon;
@@ -32,17 +31,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     public iPodDevice (Mount mount) {
         this.mount = mount;
         is_new = mount.get_default_location ().get_parse_name ().has_prefix ("afc://");
-        var device_manager = DeviceManager.get_default ();
-        pref = device_manager.get_device_preferences (get_unique_identifier ());
         icon = new Icon (is_new ? "phone" : "multimedia-player").gicon;
-        if (pref == null) {
-            pref = new Noise.DevicePreferences (get_unique_identifier ());
-            device_manager.add_device_preferences (pref);
-        }
-    }
-
-    public Noise.DevicePreferences get_preferences () {
-        return pref;
     }
 
     public bool start_initialization () {

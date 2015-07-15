@@ -55,8 +55,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     //list of id's yet to be played while on shuffle
     private Gee.HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
 
-    public StaticPlaylist queue_playlist = new StaticPlaylist ();
-    public StaticPlaylist history_playlist = new StaticPlaylist ();
+    public StaticPlaylist queue_playlist;
+    public StaticPlaylist history_playlist;
 
     // TODO: REWRITE IT USING THE LIBRARY
     public Library library { get { return libraries_manager.local_library; } }
@@ -88,11 +88,19 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         file_player = new Streamer ();
         playbacks.add (file_player);
         player = file_player;
+    }
+
+    construct {
+        history_playlist = new StaticPlaylist ();
         history_playlist.name = _("History");
         history_playlist.read_only = true;
+        history_playlist.icon = new ThemedIcon ("playlist-queue");
+        queue_playlist = new StaticPlaylist ();
         queue_playlist.name = C_("Name of the playlist", "Queue");
         queue_playlist.read_only = true;
         queue_playlist.allow_duplicate = true;
+        queue_playlist.show_badge = true;
+        queue_playlist.icon = new ThemedIcon ("document-open-recent");
     }
 
     public void add_playback (Noise.Playback playback) {

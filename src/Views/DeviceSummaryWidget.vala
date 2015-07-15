@@ -22,6 +22,7 @@
 
 public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Device dev;
+    DevicePreferences preferences;
     
     Gtk.Grid main_grid;
     
@@ -31,20 +32,16 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Gtk.CheckButton sync_music_check;
     Gtk.ComboBox sync_music_combobox;
     Gtk.ListStore music_list;
-    /*Gtk.CheckButton sync_audiobooks_check;
-    Gtk.ComboBox sync_audiobooks_combobox;
-    Gtk.ListStore audiobook_list;*/
     
     Gtk.Image device_image;
     SpaceWidget space_widget;
     
     int files_index;
     int music_index;
-    int podcast_index;
-    //int audiobook_index;
     
-    public DeviceSummaryWidget (Device d) {
+    public DeviceSummaryWidget (Device d, DevicePreferences preferences) {
         this.dev = d;
+        this.preferences = preferences;
         build_ui ();
     }
     
@@ -100,8 +97,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         files_index = space_widget.add_item (_("Other Files"), 0, SpaceWidget.ItemColor.GREEN);
         music_index = space_widget.add_item (_("Music"), 0, SpaceWidget.ItemColor.BLUE);
-        podcast_index = space_widget.add_item (_("Podcasts"), 0, SpaceWidget.ItemColor.PURPLE);
-        //audiobook_index = space_widget.add_item (_("Audiobooks"), 0, SpaceWidget.ItemColor.GREEN);
 
         refresh_space_widget ();
 
@@ -146,18 +141,17 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         refresh_lists();
 
         /* set initial values*/
-        auto_sync_switch.active = dev.get_preferences ().sync_when_mounted;
-        sync_music_check.active = dev.get_preferences ().sync_music;
-        //syncAudiobooks.active = dev.get_preferences ().sync_audiobooks;
+        auto_sync_switch.active = preferences.sync_when_mounted;
+        sync_music_check.active = preferences.sync_music;
 
-        if(dev.get_preferences ().sync_all_music || dev.get_preferences().music_playlist == null)
+        if(preferences.sync_all_music || preferences.music_playlist == null)
             sync_music_combobox.set_active (0);
         else {
-            bool success = sync_music_combobox.set_active_id (dev.get_preferences().music_playlist.name);
+            bool success = sync_music_combobox.set_active_id (preferences.music_playlist.name);
             if (!success) {
-                //NotificationManager.get_default ().show_alert ("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
-                dev.get_preferences ().music_playlist = null;
-                dev.get_preferences ().sync_all_music = true;
+                //NotificationManager.get_default ().show_alert ("Missing Sync Playlist", "The playlist named <b>" + preferences.music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+                preferences.music_playlist = null;
+                preferences.sync_all_music = true;
                 sync_music_combobox.set_active (0);
             }
         }
@@ -190,7 +184,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         space_widget.update_item_size (music_index, music_size);
         space_widget.update_item_size (files_index, other_files_size);
-        //spaceWidget.update_item_size (audiobook_index, audiobook_size);
     }
 
     private void setup_lists() {
@@ -223,22 +216,18 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     }
 
     private void save_preferences () {
-        var pref = dev.get_preferences ();
-
-        pref.sync_when_mounted = auto_sync_switch.active;
-        pref.sync_music = sync_music_check.active;
-        pref.sync_all_music = sync_music_combobox.get_active () == 0;
+        preferences.sync_when_mounted = auto_sync_switch.active;
+        preferences.sync_music = sync_music_check.active;
+        preferences.sync_all_music = sync_music_combobox.get_active () == 0;
         Gtk.TreeIter iter;
         if (sync_music_combobox.get_active ()-2 >= 0) {
             sync_music_combobox.get_active_iter (out iter);
             GLib.Value value;
             music_list.get_value (iter, 0, out value);
-            pref.music_playlist = (Noise.Playlist)value.dup_object ();
+            preferences.music_playlist = (Noise.Playlist)value.dup_object ();
         }
 
         sync_music_combobox.sensitive = sync_music_check.active;
-
-        //((LocalLibrary)libraries_manager.local_library).dbu.save_device (pref);
     }
 
     public bool all_medias_selected () {
@@ -290,7 +279,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             sync_music_combobox.set_active(0);
 
         message ("setting sensitivity\n");
-        sync_music_combobox.sensitive = dev.get_preferences().sync_music;
+        sync_music_combobox.sensitive = preferences.sync_music;
     }
 
     private void sync_finished () {
@@ -300,16 +289,15 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     
     public void sync_clicked () {
         var list = new Gee.TreeSet<Media>();
-        var pref = dev.get_preferences ();
 
-        if (pref.sync_music) {
-            if (pref.sync_all_music) {
+        if (preferences.sync_music) {
+            if (preferences.sync_all_music) {
                 foreach (var s in libraries_manager.local_library.get_medias ()) {
                     if (s.isTemporary == false)
                         list.add (s);
                 }
             } else {
-                var p = pref.music_playlist;
+                var p = preferences.music_playlist;
                 
                 if (p != null) {
                     foreach (var m in p.medias) {
@@ -317,10 +305,10 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                             list.add (m);
                     }
                 } else {
-                    NotificationManager.get_default ().show_alert (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.music_playlist.name + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
+                    NotificationManager.get_default ().show_alert (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + preferences.music_playlist.name + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
                     
-                    pref.music_playlist = null;
-                    pref.sync_all_music = true;
+                    preferences.music_playlist = null;
+                    preferences.sync_all_music = true;
                     sync_music_combobox.set_active(0);
                     return;
                 }

@@ -122,7 +122,6 @@ public class Noise.LocalLibrary : Library {
             critical ("Could not query playlists: %s", e.message);
         }
 
-        /*DeviceManager.get_default ().set_device_preferences (dbm.load_devices ());*/
         load_media_art_cache.begin ();
     }
 
@@ -568,14 +567,14 @@ public class Noise.LocalLibrary : Library {
                 return;
             }
 
-            int parsed_rating;
+            uint parsed_rating;
             string parsed_search_string;
             String.base_search_method (search, out parsed_rating, out parsed_search_string);
             bool rating_search = parsed_rating > 0;
             lock (_medias) {
                 foreach (var m in _medias.values) {
                     if (rating_search) {
-                        if (m.rating == (uint) parsed_rating)
+                        if (m.rating == parsed_rating)
                             _searched_medias.add (m);
                     } else if (Search.match_string_to_media (m, parsed_search_string)) {
                         _searched_medias.add (m);
@@ -737,13 +736,13 @@ public class Noise.LocalLibrary : Library {
         if (App.main_window.searchField.text == "") {
             _searched_medias.add_all (local_media.values);
         } else {
-            int parsed_rating;
+            uint parsed_rating;
             string parsed_search_string;
             String.base_search_method (App.main_window.searchField.text, out parsed_rating, out parsed_search_string);
             bool rating_search = parsed_rating > 0;
             foreach (var m in local_media.values) {
                 if (rating_search) {
-                    if (m.rating == (uint) parsed_rating)
+                    if (m.rating == parsed_rating)
                         _searched_medias.add (m);
                 } else if (Search.match_string_to_media (m, parsed_search_string)) {
                     _searched_medias.add (m);
@@ -798,11 +797,12 @@ public class Noise.LocalLibrary : Library {
 
     public Gee.TreeSet<Noise.Media> answer_to_device_sync (Device device) {
         var medias_to_sync = new Gee.TreeSet<Noise.Media> ();
-        if (device.get_preferences ().sync_music == true) {
-            if (device.get_preferences ().sync_all_music == true) {
+        var prefs = get_preferences_for_device (device);
+        if (prefs.sync_music == true) {
+            if (prefs.sync_all_music == true) {
                 medias_to_sync.add_all (get_medias ());
             } else {
-                medias_to_sync.add_all (device.get_preferences ().music_playlist.medias);
+                medias_to_sync.add_all (prefs.music_playlist.medias);
             }
         }
 
@@ -832,5 +832,17 @@ public class Noise.LocalLibrary : Library {
         NotificationManager.get_default ().update_progress (null, 1);
         file_operations_done ();
         update_media_art_cache.begin ();
+    }
+
+    Gee.HashMap<string, DevicePreferences> preferences = new Gee.HashMap<string, DevicePreferences> ((Gee.HashDataFunc)GLib.str_hash, (Gee.EqualDataFunc)GLib.str_equal);
+    public DevicePreferences get_preferences_for_device (Device d) {
+        var key = d.get_unique_identifier ();
+        if (preferences.has_key (key)) {
+            return preferences.get (key);
+        } else {
+            var pref = new DevicePreferences (d, connection);
+            preferences.set (key, pref);
+            return pref;
+        }
     }
 }

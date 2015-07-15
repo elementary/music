@@ -115,57 +115,57 @@ public class Noise.Plugins.iPodPlaylistHelper {
         message("adding rule\n");
         if (q.field == SmartQuery.FieldType.ALBUM) { // strings
             rule.field = GPod.SPLField.ALBUM;
-            rule.@string = q.value;
+            rule.@string = q.value.get_string ();
         } else if (q.field == SmartQuery.FieldType.ARTIST) {
             rule.field = GPod.SPLField.ARTIST;
-            rule.@string = q.value;
+            rule.@string = q.value.get_string ();
         } else if (q.field == SmartQuery.FieldType.COMPOSER) {
             rule.field = GPod.SPLField.COMPOSER;
-            rule.@string = q.value;
+            rule.@string = q.value.get_string ();
         } else if (q.field == SmartQuery.FieldType.COMMENT) {
             rule.field = GPod.SPLField.COMMENT;
-            rule.@string = q.value;
+            rule.@string = q.value.get_string ();
         } else if (q.field == SmartQuery.FieldType.GENRE) {
             rule.field = GPod.SPLField.GENRE;
-            rule.@string = q.value;
+            rule.@string = q.value.get_string ();
         } else if (q.field == SmartQuery.FieldType.GROUPING) {
             rule.field = GPod.SPLField.GROUPING;
-            rule.@string = q.value;
+            rule.@string = q.value.get_string ();
         } else if (q.field == SmartQuery.FieldType.TITLE) {
             rule.field = GPod.SPLField.SONG_NAME;
-            rule.@string = q.value;
+            rule.@string = q.value.get_string ();
         } else if (q.field == SmartQuery.FieldType.BITRATE) { // ints
             rule.field = GPod.SPLField.BITRATE;
-            rule.fromvalue = uint64.parse (q.value);
-            rule.tovalue = uint64.parse (q.value);
+            rule.fromvalue = (uint64)q.value.get_int ();
+            rule.tovalue = (uint64)q.value.get_int ();
         } else if (q.field == SmartQuery.FieldType.PLAYCOUNT) {
             rule.field = GPod.SPLField.PLAYCOUNT;
-            rule.fromvalue = uint64.parse (q.value);
-            rule.tovalue = uint64.parse (q.value);
+            rule.fromvalue =(uint64)q.value.get_int ();
+            rule.tovalue = (uint64)q.value.get_int ();
         } else if (q.field == SmartQuery.FieldType.SKIPCOUNT) {
             rule.field = GPod.SPLField.SKIPCOUNT;
-            rule.fromvalue = uint64.parse (q.value);
-            rule.tovalue = uint64.parse (q.value);
+            rule.fromvalue = (uint64)q.value.get_int ();
+            rule.tovalue = (uint64)q.value.get_int ();
         } else if (q.field == SmartQuery.FieldType.YEAR) {
             rule.field = GPod.SPLField.YEAR;
-            rule.fromvalue = uint64.parse (q.value);
-            rule.tovalue = uint64.parse (q.value);
+            rule.fromvalue = (uint64)q.value.get_int ();
+            rule.tovalue = (uint64)q.value.get_int ();
         } else if (q.field == SmartQuery.FieldType.LENGTH) {
             rule.field = GPod.SPLField.TIME;
-            rule.fromvalue = uint64.parse (q.value) * 1000;
-            rule.tovalue = uint64.parse (q.value) * 1000;
+            rule.fromvalue = (uint64)q.value.get_int () * 1000;
+            rule.tovalue = (uint64)q.value.get_int () * 1000;
         } else if (q.field == SmartQuery.FieldType.RATING) {
             rule.field = GPod.SPLField.RATING;
-            rule.fromvalue = uint64.parse (q.value) * 20;
-            rule.tovalue = uint64.parse (q.value) * 20;
+            rule.fromvalue = (uint64)q.value.get_int () * 20;
+            rule.tovalue = (uint64)q.value.get_int () * 20;
         } else if (q.field == SmartQuery.FieldType.DATE_ADDED) {
             rule.field = GPod.SPLField.DATE_ADDED;
-            rule.fromvalue = uint64.parse (q.value) * 1000;
-            rule.tovalue = uint64.parse (q.value) * 1000;
+            rule.fromvalue = (uint64)q.value.get_int () * 1000;
+            rule.tovalue = (uint64)q.value.get_int () * 1000;
         } else if (q.field == SmartQuery.FieldType.LAST_PLAYED) {
             rule.field = GPod.SPLField.LAST_PLAYED;
-            rule.fromvalue = uint64.parse (q.value) * 20;
-            rule.tovalue = uint64.parse (q.value) * 20;
+            rule.fromvalue = (uint64)q.value.get_int () * 20;
+            rule.tovalue = (uint64)q.value.get_int () * 20;
         } else if (q.field == SmartQuery.FieldType.DATE_RELEASED) {
             // no equivalant
         }
@@ -220,85 +220,85 @@ public class Noise.Plugins.iPodPlaylistHelper {
             switch (field) {
             case SmartQuery.FieldType.ALBUM:
                 rule.field = GPod.SPLField.ALBUM;
-                rule.@string = value;
+                rule.@string = value.get_string ();
                 break;
             case SmartQuery.FieldType.ARTIST:
                 rule.field = GPod.SPLField.ARTIST;
-                rule.@string = value;
+                rule.@string = value.get_string ();
                 break;
             case SmartQuery.FieldType.COMPOSER:
                 rule.field = GPod.SPLField.COMPOSER;
-                rule.@string = value;
+                rule.@string = value.get_string ();
                 break;
             case SmartQuery.FieldType.COMMENT:
                 rule.field = GPod.SPLField.COMMENT;
-                rule.@string = value;
+                rule.@string = value.get_string ();
                 break;
             case SmartQuery.FieldType.GENRE:
                 rule.field = GPod.SPLField.GENRE;
-                rule.@string = value;
+                rule.@string = value.get_string ();
                 break;
             case SmartQuery.FieldType.GROUPING:
                 rule.field = GPod.SPLField.GROUPING;
-                rule.@string = value;
+                rule.@string = value.get_string ();
                 break;
             case SmartQuery.FieldType.TITLE:
                 rule.field = GPod.SPLField.SONG_NAME;
-                rule.@string = value;
+                rule.@string = value.get_string ();
                 break;
             case SmartQuery.FieldType.BITRATE:
                 rule.field = GPod.SPLField.BITRATE;
-                rule.fromvalue = uint64.parse (value);
-                rule.tovalue = uint64.parse (value);
+                rule.fromvalue = (uint64)value.get_int ();
+                rule.tovalue = (uint64)value.get_int ();
                 rule.tounits = 1;
                 rule.fromunits = 1;
                 break;
             case SmartQuery.FieldType.PLAYCOUNT:
                 rule.field = GPod.SPLField.PLAYCOUNT;
-                rule.fromvalue = uint64.parse (value);
-                rule.tovalue = uint64.parse (value);
+                rule.fromvalue = (uint64)value.get_int ();
+                rule.tovalue = (uint64)value.get_int ();
                 rule.tounits = 1;
                 rule.fromunits = 1;
                 break;
             case SmartQuery.FieldType.SKIPCOUNT:
                 rule.field = GPod.SPLField.SKIPCOUNT;
-                rule.fromvalue = uint64.parse (value);
-                rule.tovalue = uint64.parse (value);
+                rule.fromvalue = (uint64)value.get_int ();
+                rule.tovalue = (uint64)value.get_int ();
                 rule.tounits = 1;
                 break;
             case SmartQuery.FieldType.YEAR:
                 rule.field = GPod.SPLField.YEAR;
-                rule.fromvalue = uint64.parse (value);
-                rule.tovalue = uint64.parse (value);
+                rule.fromvalue = (uint64)value.get_int ();
+                rule.tovalue = (uint64)value.get_int ();
                 rule.tounits = 1;
                 rule.fromunits = 1;
                 break;
             case SmartQuery.FieldType.LENGTH:
                 rule.field = GPod.SPLField.TIME;
-                rule.fromvalue = uint64.parse (value) * 1000;
-                rule.tovalue = uint64.parse (value) * 1000;
+                rule.fromvalue = (uint64)value.get_int () * 1000;
+                rule.tovalue = (uint64)value.get_int () * 1000;
                 rule.tounits = 1;
                 rule.fromunits = 1;
                 break;
             case SmartQuery.FieldType.RATING:
-                message("rating rule is %s\n", value);
+                message("rating rule is %d\n", value.get_int ());
                 rule.field = GPod.SPLField.RATING;
-                rule.fromvalue = uint64.parse (value) * 20;
-                rule.tovalue = uint64.parse (value) * 20;
+                rule.fromvalue = (uint64)value.get_int () * 20;
+                rule.tovalue = (uint64)value.get_int () * 20;
                 rule.tounits = 1;//20;
                 rule.fromunits = 1;//20;
                 break;
             case SmartQuery.FieldType.DATE_ADDED:
                 rule.field = GPod.SPLField.DATE_ADDED;
-                rule.fromvalue = uint64.parse (value) * 60 * 60 * 24;
-                rule.tovalue = uint64.parse (value) * 60 * 60 * 24;
+                rule.fromvalue = (uint64)value.get_int () * 60 * 60 * 24;
+                rule.tovalue = (uint64)value.get_int () * 60 * 60 * 24;
                 rule.tounits = 1;//60 * 60 * 24;
                 rule.fromunits = 1;//60 * 60 * 24;
                 break;
             case SmartQuery.FieldType.LAST_PLAYED:
                 rule.field = GPod.SPLField.LAST_PLAYED;
-                rule.fromvalue = uint64.parse (value) * 60 * 60 * 24;
-                rule.tovalue = uint64.parse (value) * 60 * 60 * 24;
+                rule.fromvalue = (uint64)value.get_int () * 60 * 60 * 24;
+                rule.tovalue = (uint64)value.get_int () * 60 * 60 * 24;
                 rule.tounits = 1;//60 * 60 * 24;
                 rule.fromunits = 1;//60 * 60 * 24;
                 break;

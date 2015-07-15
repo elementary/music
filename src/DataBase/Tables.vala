@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012-2015 Noise Developers (https://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -46,9 +46,8 @@ namespace Noise.Database {
             lastmodified INT, rowid INTEGER PRIMARY KEY AUTOINCREMENT)""";
 
         public const string DEVICES = """CREATE TABLE IF NOT EXISTS devices (unique_id TEXT,
-            sync_when_mounted INT, sync_music INT, sync_podcasts INT, sync_audiobooks INT,
-            sync_all_music INT, sync_all_podcasts INT, sync_all_audiobooks INT, music_playlist STRING,
-            podcast_playlist STRING, audiobook_playlist STRING, last_sync_time INT)""";
+            sync_when_mounted INT, sync_music INT, sync_all_music INT, music_playlist STRING,
+            last_sync_time INT)""";
     }
 
     /*
@@ -104,6 +103,16 @@ namespace Noise.Database {
         public static const string LASTPLAYED = "+24";
         public static const string LASTMODIFIED = "+25";
         public static const string ROWID = "+26";
+    }
+
+    namespace Devices {
+        public static const string TABLE_NAME = "devices";
+        public static const string UNIQUE_ID = "+0";
+        public static const string SYNC_WHEN_MOUNTED = "+1";
+        public static const string SYNC_MUSIC = "+2";
+        public static const string SYNC_ALL_MUSIC = "+3";
+        public static const string MUSIC_PLAYLIST = "+4";
+        public static const string LAST_SYNC_TIME = "+5";
     }
 
     /*

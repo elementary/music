@@ -90,7 +90,29 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
     //TODO: override this to search directly into the database.
     /*public override void analyse_all () {
-        
+        if (queries.is_empty) {
+            var meds = library.get_media ();
+            medias.add_all (meds);
+            media_added (meds);
+            return;
+        }
+
+        foreach (var q in queries) {
+            try {
+                var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+                sql.select_add_target (table, null);
+                sql.add_field_value_id (sql.add_id (field), 0);
+                var id_field = sql.add_id ("rowid");
+                var id_param = sql.add_expr_value (null, Database.make_int64_value (rowid));
+                var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
+                sql.set_where (id_cond);
+                var data_model = connection.statement_execute_select (sql.get_statement (), null);
+                return data_model.get_value_at (data_model.get_column_index (field), 0);
+            } catch (Error e) {
+                critical ("Could not query field %s: %s", field, e.message);
+                return null;
+            }
+        }
     }*/
 
     public override void clear_queries () {
@@ -111,7 +133,9 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
     private string queries_to_string () {
         string rv = "";
         foreach (SmartQuery q in queries) {
-            string query_str = ((int)q.field).to_string () + VALUE_SEPARATOR + ((int)q.comparator).to_string() + VALUE_SEPARATOR + q.value;
+            var str_val = Value (typeof (string));
+            q.value.transform (ref str_val);
+            string query_str = ((int)q.field).to_string () + VALUE_SEPARATOR + ((int)q.comparator).to_string () + VALUE_SEPARATOR + str_val.get_string ();
             if (rv == "") {
                 rv = query_str;
             } else {
@@ -134,7 +158,24 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
             SmartQuery sq = new SmartQuery();
             sq.field = (SmartQuery.FieldType)int.parse (pieces_of_query[0]);
             sq.comparator = (SmartQuery.ComparatorType)int.parse (pieces_of_query[1]);
-            sq.value = pieces_of_query[2];
+            switch (sq.field) {
+                case SmartQuery.FieldType.ALBUM:
+                case SmartQuery.FieldType.ARTIST:
+                case SmartQuery.FieldType.COMPOSER:
+                case SmartQuery.FieldType.COMMENT:
+                case SmartQuery.FieldType.GENRE:
+                case SmartQuery.FieldType.GROUPING:
+                case SmartQuery.FieldType.TITLE:
+                    var val = Value (typeof (string));
+                    val.set_string (pieces_of_query[2]);
+                    sq.value = val;
+                    break;
+                default:
+                    var val = Value (typeof (int));
+                    val.set_int (int.parse (pieces_of_query[2]));
+                    sq.value = val;
+                    break;
+            }
 
             queries.add (sq);
         }
@@ -183,7 +224,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
             values = new GLib.SList<GLib.Value?> ();
             values.append (Database.make_string_value (_("Over Played")));
-            values.append (Database.make_string_value ("11<val_sep>4<val_sep>10"));
+            values.append (Database.make_string_value ("11<val_sep>6<val_sep>10"));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (50));

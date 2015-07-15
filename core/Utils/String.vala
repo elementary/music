@@ -178,7 +178,7 @@ namespace Noise.String {
      * @param parsed_search_string location where the canonicalized version of the
      * search string is stored. Should be passed to the methods in Noise.Search.
      */
-    public static void base_search_method (string search, out int parsed_rating,
+    public static void base_search_method (string search, out uint parsed_rating,
                                            out string parsed_search_string)
     {
         parsed_rating = Search.get_rating_from_string (search.strip ());

@@ -281,11 +281,11 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         comparator_combobox.set_active ((int)q.comparator);
 
         if (needs_value (q.field)) {
-            value_entry.text = q.value;
+            value_entry.text = q.value.get_string ();
         } else if (q.field == SmartQuery.FieldType.RATING) {
-            _valueRating.rating = int.parse (q.value);
+            _valueRating.rating = q.value.get_int ();
         } else {
-            _valueNumerical.set_value (int.parse (q.value));
+            _valueNumerical.set_value (q.value.get_int ());
         }
 
         _units = new Gtk.Label ("");
@@ -313,11 +313,11 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         rv.field = (SmartQuery.FieldType)field_combobox.get_active ();
         rv.comparator = comparators.get (comparator_combobox.get_active ());
         if (needs_value ((SmartQuery.FieldType)field_combobox.get_active ()))
-            rv.value = value_entry.text;
+            rv.value.set_string (value_entry.text);
         else if (field_combobox.get_active () == SmartQuery.FieldType.RATING)
-            rv.value = _valueRating.rating.to_string ();
+            rv.value.set_int (_valueRating.rating);
         else
-            rv.value = _valueNumerical.value.to_string ();
+            rv.value.set_int ((int)_valueNumerical.value);
 
         return rv;
     }

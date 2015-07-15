@@ -24,13 +24,11 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
 
     Mount mount;
     GLib.Icon icon;
-    Noise.DevicePreferences pref;
     bool is_androphone = false;
     Gee.LinkedList<string> music_folders;
-    
+
     private AudioPlayerLibrary library;
-    
-    
+
     public AudioPlayerDevice(Mount mount, bool is_androphone) {
         this.mount = mount;
         this.is_androphone = is_androphone;
@@ -38,17 +36,8 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         library = new AudioPlayerLibrary (this);
         libraries_manager.add_library (library);
         icon = new Icon (is_androphone ? "phone" : "music-player").gicon;
-        var device_manager = DeviceManager.get_default ();
-        pref = device_manager.get_device_preferences (get_unique_identifier());
-        if(pref == null) {
-            pref = new Noise.DevicePreferences (get_unique_identifier());
-            device_manager.add_device_preferences (pref);
-        }
     }
-    
-    public Noise.DevicePreferences get_preferences() {
-        return pref;
-    }
+
     public void finish_initialization() {
         device_unmounted.connect( () => {
             
@@ -231,7 +220,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     }
     
     public void synchronize () {
-        library.sync_medias ();
+        
     }
     
     public bool only_use_custom_view () {
