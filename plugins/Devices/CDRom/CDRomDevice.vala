@@ -48,7 +48,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     
     public CDRomDevice(Mount mount) {
         this.mount = mount;
-        this.icon = new Icon ("media-cdrom-audio").gicon;
+        this.icon = new GLib.ThemedIcon ("media-cdrom-audio");
         this.display_name = mount.get_name();
         
         list = new Gee.LinkedList<Noise.Media>();

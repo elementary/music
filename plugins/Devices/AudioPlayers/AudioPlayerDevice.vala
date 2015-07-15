@@ -35,7 +35,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         music_folders = new Gee.LinkedList<string> ();
         library = new AudioPlayerLibrary (this);
         libraries_manager.add_library (library);
-        icon = new Icon (is_androphone ? "phone" : "music-player").gicon;
+        icon = new GLib.ThemedIcon (is_androphone ? "phone" : "music-player");
     }
 
     public void finish_initialization() {

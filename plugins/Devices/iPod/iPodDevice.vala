@@ -31,7 +31,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     public iPodDevice (Mount mount) {
         this.mount = mount;
         is_new = mount.get_default_location ().get_parse_name ().has_prefix ("afc://");
-        icon = new Icon (is_new ? "phone" : "multimedia-player").gicon;
+        icon = new GLib.ThemedIcon (is_new ? "phone" : "multimedia-player");
     }
 
     public bool start_initialization () {

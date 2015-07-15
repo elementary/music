@@ -88,7 +88,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         sync_music_check = new Gtk.CheckButton ();
         sync_music_combobox = new Gtk.ComboBox ();
-        music_list = new Gtk.ListStore (3, typeof (GLib.Object), typeof (string), typeof (string));
+        music_list = new Gtk.ListStore (3, typeof (GLib.Object), typeof (string), typeof (GLib.Icon));
 
         device_image = new Gtk.Image.from_gicon (dev.get_icon (), Gtk.IconSize.DIALOG);
         space_widget = new SpaceWidget (dev.get_capacity());

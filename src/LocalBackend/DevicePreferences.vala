@@ -78,7 +78,12 @@ public class Noise.DevicePreferences : GLib.Object {
 
     public Playlist? music_playlist {
         owned get {
-            string playlist_string = query_field ("music_playlist").get_string ();
+            var result = query_field ("music_playlist");
+            if (result.type () == typeof (Gda.Null)) {
+                return null;
+            }
+
+            string playlist_string = result.get_string ();
             if (playlist_string == ""|| playlist_string == null)
                 return null;
             if ("p" in playlist_string) {
@@ -88,7 +93,6 @@ public class Noise.DevicePreferences : GLib.Object {
                 playlist_string = playlist_string.replace ("s", "");
                 return Noise.libraries_manager.local_library.smart_playlist_from_id (int64.parse (playlist_string));
             }
-
         }
         set {
             string playlist_string = "";
@@ -109,13 +113,29 @@ public class Noise.DevicePreferences : GLib.Object {
     public DevicePreferences (Noise.Device device, Gda.Connection connection) {
         this.id = device.get_unique_identifier ();
         this.connection = connection;
+        if (query_field ("sync_music") == null) {
+            try {
+                var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
+                builder.set_table (Database.Devices.TABLE_NAME);
+                builder.add_field_value_as_gvalue ("unique_id", Database.make_string_value (id));
+                connection.statement_execute_non_select (builder.get_statement (), null, null);
+            } catch (Error e) {
+                warning ("Could not save media: %s", e.message);
+            }
+        }
     }
 
     private uint common_uint_getter (string field, ref uint? temp) {
         if (temp != null)
             return temp;
 
-        temp = (uint)query_field (field).get_int ();
+        var result = query_field (field);
+        if (result.type () == typeof (Gda.Null)) {
+            temp = 0;
+            return temp;
+        }
+
+        temp = (uint)result.get_int ();
         return temp;
     }
 
@@ -128,7 +148,13 @@ public class Noise.DevicePreferences : GLib.Object {
         if (temp != null)
             return temp;
 
-        temp = query_field (field).get_int () == 1;
+        var result = query_field (field);
+        if (result.type () == typeof (Gda.Null)) {
+            temp = false;
+            return temp;
+        }
+
+        temp = result.get_int () == 1;
         return temp;
     }
 
