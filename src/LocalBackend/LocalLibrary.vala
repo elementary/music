@@ -62,7 +62,8 @@ public class Noise.LocalLibrary : Library {
         libraries_manager.local_library = this;
         _playlists = new Gee.TreeSet<StaticPlaylist> ();
         _smart_playlists = new Gee.TreeSet<SmartPlaylist> ();
-        _medias = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash, (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
+        _medias = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
+                                                  (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
         _searched_medias = new Gee.TreeSet<Media> ();
         tagger = new GStreamerTagger();
         open_media_list = new Gee.TreeSet<Media> ();
@@ -77,51 +78,24 @@ public class Noise.LocalLibrary : Library {
         fo.connect_to_manager ();
 
         // Load all media from database
-        try {
-            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
-            builder.select_add_target (Database.Media.TABLE_NAME, null);
-            builder.select_add_field ("rowid", null, null);
-            var data_model = connection.statement_execute_select (builder.get_statement (), null);
-            for (int i = 0; i < data_model.get_n_rows (); i++) {
-                var rowid = data_model.get_value_at (data_model.get_column_index ("rowid"), i);
-                var m = new LocalMedia (rowid.get_int64 (), connection);
-                _medias.set (m.rowid, m);
-            }
-        } catch (Error e) {
-            // TODO: Expose errors to the user !
-            critical ("Could not query media: %s", e.message);
+        var media_ids = get_rowids_from_table (Database.Media.TABLE_NAME);
+        foreach (var media_id in media_ids) {
+            var m = new LocalMedia (media_id, connection);
+            _medias.set (m.rowid, m);
         }
 
         // Load all smart playlists from database
-        try {
-            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
-            builder.select_add_target (Database.SmartPlaylists.TABLE_NAME, null);
-            builder.select_add_field ("rowid", null, null);
-            var data_model = connection.statement_execute_select (builder.get_statement (), null);
-            for (int i = 0; i < data_model.get_n_rows (); i++) {
-                var rowid = data_model.get_value_at (data_model.get_column_index ("rowid"), i);
-                var p = new LocalSmartPlaylist (rowid.get_int64 (), connection);
-                _smart_playlists.add (p);
-            }
-        } catch (Error e) {
-            // TODO: Expose errors to the user !
-            critical ("Could not query smart playlists: %s", e.message);
+        var sp_ids = get_rowids_from_table (Database.SmartPlaylists.TABLE_NAME);
+        foreach (var sp_id in sp_ids) {
+            var sp = new LocalSmartPlaylist (sp_id, connection);
+            _smart_playlists.add (sp);
         }
 
         // Load all static playlists from database
-        try {
-            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
-            builder.select_add_target (Database.Playlists.TABLE_NAME, null);
-            builder.select_add_field ("rowid", null, null);
-            var data_model = connection.statement_execute_select (builder.get_statement (), null);
-            for (int i = 0; i < data_model.get_n_rows (); i++) {
-                var rowid = data_model.get_value_at (data_model.get_column_index ("rowid"), i);
-                var p = new LocalStaticPlaylist (rowid.get_int64 (), connection);
-                _playlists.add (p);
-            }
-        } catch (Error e) {
-            // TODO: Expose errors to the user !
-            critical ("Could not query playlists: %s", e.message);
+        var p_ids = get_rowids_from_table (Database.Playlists.TABLE_NAME);
+        foreach (var p_id in p_ids) {
+            var p = new LocalStaticPlaylist (p_id, connection);
+            _playlists.add (p);
         }
 
         load_media_art_cache.begin ();
@@ -451,7 +425,7 @@ public class Noise.LocalLibrary : Library {
             builder.add_field_value_as_gvalue ("media", Database.make_string_value (rv));
             var statement = builder.get_statement ();
             Gda.Set last_insert_row;
-            var result = connection.statement_execute_non_select (statement, null, out last_insert_row);
+            connection.statement_execute_non_select (statement, null, out last_insert_row);
             var local_p = new LocalStaticPlaylist (last_insert_row.get_holder_value (Database.Playlists.ROWID).get_int64 (), connection);
 
             lock (_playlists) {
@@ -695,7 +669,6 @@ public class Noise.LocalLibrary : Library {
         var media_collection = new Gee.TreeSet<Media> ();
         foreach (var id in ids) {
             var m = _medias.get (id);
-            warning ("%lld", id);
             if (m != null) {
                 media_collection.add (m);
             }
@@ -854,5 +827,24 @@ public class Noise.LocalLibrary : Library {
             preferences.set (key, pref);
             return pref;
         }
+    }
+
+    private Gee.Collection<int64?> get_rowids_from_table (string table_name) {
+        var ids = new Gee.TreeSet<int64?> ();
+        try {
+            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+            builder.select_add_target (table_name, null);
+            builder.select_add_field ("rowid", null, null);
+            var data_model = connection.statement_execute_select (builder.get_statement (), null);
+            for (int i = 0; i < data_model.get_n_rows (); i++) {
+                var rowid = data_model.get_value_at (data_model.get_column_index ("rowid"), i);
+                ids.add (rowid.get_int64 ());
+            }
+        } catch (Error e) {
+            // TODO: Expose errors to the user !
+            critical ("Could not query table %s : %s", table_name, e.message);
+        }
+
+        return ids;
     }
 }

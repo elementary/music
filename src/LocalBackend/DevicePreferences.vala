@@ -84,7 +84,7 @@ public class Noise.DevicePreferences : GLib.Object {
             }
 
             string playlist_string = result.get_string ();
-            if (playlist_string == ""|| playlist_string == null)
+            if (playlist_string == "" || playlist_string == null)
                 return null;
             if ("p" in playlist_string) {
                 playlist_string = playlist_string.replace ("p", "");

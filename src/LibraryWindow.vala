@@ -523,6 +523,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                             show_playlist_view (libraries_manager.local_library.smart_playlist_from_id (parent.relative_id));
                             break;
                     }
+
+                    break;
                 }
 
                 show_playlist_view (library_manager.p_music);
@@ -659,6 +661,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void load_playlists () {
         debug ("Loading playlists");
+        // TODO: replace it when the column state management is back.
         //match_tvs.set_all (DataBaseManager.get_default ().load_columns_state ());
         
         foreach (SmartPlaylist p in library_manager.get_smart_playlists()) {
@@ -782,7 +785,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             var dv = new DeviceView (d, pref);
             int view_number = view_container.add_view (dv);
             match_devices.set (d.get_unique_identifier (), view_number);
-            if(d.only_use_custom_view ()) {
+            if (d.only_use_custom_view ()) {
                 message("new custom device (probably a CD) added with %d songs.\n", d.get_library ().get_medias().size);
 
                 entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), new ThemedIcon ("media-eject-symbolic"), null, d);
