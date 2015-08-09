@@ -95,6 +95,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         history_playlist.name = _("History");
         history_playlist.read_only = true;
         history_playlist.icon = new ThemedIcon ("playlist-queue");
+        history_playlist.allow_duplicate = true;
         queue_playlist = new StaticPlaylist ();
         queue_playlist.name = C_("Name of the playlist", "Queue");
         queue_playlist.read_only = true;
@@ -576,8 +577,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             poll_queue();
         
         /* if same media 1 second later... */
-        Timeout.add(1000, () => {
+        Timeout.add (1000, () => {
             if (m != null && current_media == m) {
+                history_playlist.add_media (m);
                 // potentially fix media length
                 uint player_duration_s = (uint)(player.get_duration() / TimeUtils.NANO_INV);
                 if (player_duration_s > 1) {
@@ -590,7 +592,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             }
             
             return false;
-            
         });
     }
 
