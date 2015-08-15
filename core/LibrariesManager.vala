@@ -29,21 +29,25 @@
  */
 
 public class Noise.LibrariesManager : GLib.Object {
-    
+    /**
+     * Headless playlists are playlists that are not linked to a library.
+     */
+    public signal void add_headless_playlist (StaticPlaylist playlist);
+
     public signal void library_removed (Library library);
     public signal void library_added (Library library);
-    
+
     public signal void cancel_transfer ();
     public signal void operation_terminated ();
-    
+
     public double progress;
     public string current_operation;
     private string old_search = null;
-    
+
     private Gee.HashMap<Library, int> libraries;
     private int current_index = 0;
     public Library local_library;
-    
+
     public LibrariesManager () {
         libraries = new Gee.HashMap<Library, int> ();
     }

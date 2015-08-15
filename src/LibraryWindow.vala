@@ -126,6 +126,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         match_playlist_entry = new Gee.HashMap<unowned Playlist, SourceListEntry> ();
         match_tvs = new Gee.HashMap<Playlist, TreeViewSetup> ();
 
+        libraries_manager.add_headless_playlist.connect ((playlist) => {
+            add_playlist (playlist);
+        });
 
         // init some booleans
         if (this.library_manager.get_medias ().size > 0) {
@@ -672,8 +675,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             add_playlist (p);
         }
 
-        add_playlist (App.player.queue_playlist);
-        add_playlist (App.player.history_playlist);
+        libraries_manager.add_headless_playlist (App.player.queue_playlist);
+        libraries_manager.add_headless_playlist (App.player.history_playlist);
 
         TreeViewSetup? music_tvs = null;
         foreach (var entry in match_tvs.entries) {
