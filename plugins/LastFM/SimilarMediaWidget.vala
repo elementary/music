@@ -35,14 +35,12 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         lfm.similar_retrieved.connect (similar_retrieved);
         
         App.main_window.update_media_info.connect ((m) => {
-            lfm.fetchCurrentSimilarSongs();
-            lfm.fetch_album_info (m);
+            lfm.fetchCurrentSimilarSongs ();
         });
         App.player.changing_player.connect ((m) => {
             similars_fetched = false;
             update_visibilities ();
         });
-        NotificationManager.get_default ().search_cover.connect ((m) => { lfm.fetch_album_info (m);});
         
         love_ban_buttons = new LoveBanButtons ();
         // put treeview inside scrolled window

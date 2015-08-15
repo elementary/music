@@ -88,11 +88,13 @@ set (DEPS_PACKAGES
   ${CORE_PACKAGES} # this is needed until we provide a ${CORE_LIBRARY_NAME}.deps file
   libgda-5.0
   taglib_c
+  zeitgeist-2.0
 )
 
 set (DEPS_PKG
   libgda-5.0
   taglib_c
+  zeitgeist-2.0
 )
 
 find_package (PkgConfig)

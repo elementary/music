@@ -56,7 +56,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     private Gee.HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
 
     public StaticPlaylist queue_playlist;
-    public StaticPlaylist history_playlist;
+    public HistoryPlaylist history_playlist;
 
     // TODO: REWRITE IT USING THE LIBRARY
     public Library library { get { return libraries_manager.local_library; } }
@@ -91,11 +91,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
     construct {
-        history_playlist = new StaticPlaylist ();
-        history_playlist.name = _("History");
-        history_playlist.read_only = true;
-        history_playlist.icon = new ThemedIcon ("playlist-queue");
-        history_playlist.allow_duplicate = true;
+        history_playlist = new HistoryPlaylist ();
         queue_playlist = new StaticPlaylist ();
         queue_playlist.name = C_("Name of the playlist", "Queue");
         queue_playlist.read_only = true;
@@ -145,22 +141,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         queue_playlist.media_removed (unqueued);
         return m;
     }
-
-    /*
-     * Already Played Stuff
-     */
-    public void reset_already_played() {
-        history_playlist.clear();
-    }
-
-    /*public void add_already_played (Media m) {
-        if(!_already_played.contains (m)) {
-            _already_played.offer_tail (m);
-            var media = new Gee.LinkedList<Media>();
-            media.add (m);
-            history_playlist.add_media (media);
-        }
-    }*/
 
     /*
      * Current medialist stuff

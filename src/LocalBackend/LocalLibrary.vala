@@ -202,7 +202,6 @@ public class Noise.LocalLibrary : Library {
 
             App.player.unqueue_media (_medias.values);
 
-            App.player.reset_already_played ();
             // FIXME: these are library window's internals. Shouldn't be here
             App.main_window.update_sensitivities.begin ();
             App.player.stop_playback ();

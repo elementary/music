@@ -26,59 +26,52 @@
 public class LastFM.SimilarMedias : Object {
     public static const int MAX_FETCHED = 20;
 
-    bool working;
-
-    public Noise.StaticPlaylist similar_playlist;
-    private Gee.LinkedList<Noise.Media> similar_medias;
-
     public signal void similar_retrieved (Gee.LinkedList<int64?> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
 
+    public Noise.StaticPlaylist similar_playlist;
+    private GLib.Cancellable cancellable;
+
     public class SimilarMedias () {
-        working = false;
-        similar_medias = new Gee.LinkedList<Noise.Media> ();
+        cancellable = new GLib.Cancellable ();
         similar_playlist = new Noise.StaticPlaylist ();
         similar_playlist.name = _("Similar");
         similar_playlist.read_only = true;
         similar_playlist.show_badge = true;
-        try {
-            similar_playlist.icon = GLib.Icon.new_for_string ("playlist-similar");
-        } catch (GLib.Error e) {
-            critical (e.message);
-        }
-        
+        similar_playlist.icon = new GLib.ThemedIcon ("playlist-similar");
+
         Noise.App.player.changing_player.connect ((m)=>{
-            lock (similar_medias) {
-                similar_medias.clear ();
-            }
             lock (similar_playlist) {
                 similar_playlist.clear ();
             }
         });
     }
-    
-    public virtual void queryForSimilar (Noise.Media s) {
-        
-        if (!working) {
-            working = true;
-            
-            similar_async (s);
+
+    public virtual void query_for_similar (Noise.Media s) {
+        if (cancellable.is_cancelled () == false) {
+            cancellable.cancel ();
         }
+
+        similar_async.begin (s);
     }
     
-    public void similar_async (Noise.Media s) {
+    public async void similar_async (Noise.Media s) {
         debug ("In the similar thread");
+        cancellable.reset ();
+        var similar_medias = yield Core.get_default ().get_similar_tracks (s.title, s.artist, cancellable);
+        if (cancellable.is_cancelled ())
+            return;
+
         var similarIDs = new Gee.LinkedList<int64?> ();
         var similarDont = new Gee.LinkedList<Noise.Media> ();
-        
-        similar_medias.add_all (Core.get_default ().getSimilarTracks (s.title, s.artist));
-        lock (similar_medias) {
-            Noise.libraries_manager.local_library.media_from_name (similar_medias, similarIDs, similarDont);
-        }
+        Noise.libraries_manager.local_library.media_from_name (similar_medias, similarIDs, similarDont);
+        if (cancellable.is_cancelled ())
+            return;
+
         similarIDs.offer_head (s.rowid);
-        
-        similar_playlist.add_medias (Noise.libraries_manager.local_library.medias_from_ids (similarIDs));
+        var found_medias = Noise.libraries_manager.local_library.medias_from_ids (similarIDs);
+        found_medias.remove (s);
+        similar_playlist.add_medias (found_medias);
         similar_retrieved (similarIDs, similarDont);
-        working = false;
     }
     
 }

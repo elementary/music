@@ -8,6 +8,7 @@ set(CLIENT_SOURCE
     Objects/MediaArtCache.vala
     Objects/CoverartCache.vala
     Objects/MediaKeyListener.vala
+    Objects/HistoryPlaylist.vala
     LocalBackend/LocalLibrary.vala
     LocalBackend/LocalMedia.vala
     LocalBackend/LocalSmartPlaylist.vala
