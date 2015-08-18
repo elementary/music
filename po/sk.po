@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-04-26 09:06+0000\n"
-"Last-Translator: Wigg Person <wiggperson@gmail.com>\n"
+"PO-Revision-Date: 2015-08-17 13:59+0000\n"
+"Last-Translator: pyler <pyler.inbox@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
-"X-Generator: Launchpad (build 17572)\n"
+"X-Launchpad-Export-Date: 2015-08-18 05:53+0000\n"
+"X-Generator: Launchpad (build 17690)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -841,15 +841,15 @@ msgstr "Pridať hudbu do knižnice."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Importovať hudbu zo zdroja do vašej knižnice."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
-msgstr ""
+msgstr "Zmeniť priečinok hudby"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Load music from a folder, a network or an external disk."
-msgstr ""
+msgstr "Načítať hudbu z priečinka, sieťového alebo externého disku."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:104
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:120
@@ -859,21 +859,21 @@ msgstr "Importovať vašu hudbu"
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:104
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:120
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "Importovať všetku vašu hudbu z %s do vašej knižnice."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Select Music Folder"
-msgstr ""
+msgstr "Vybrať priečinok hudbu"
 
 #: ../src/Views/Wrappers/ViewWrapper.vala:446
 msgid "No media"
-msgstr ""
+msgstr "Žiadne médiá"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:116
 #: ../src/Views/Wrappers/ReadOnlyPlaylistViewWrapper.vala:39
 msgid "No Songs"
-msgstr ""
+msgstr "Žiadne piesne"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:101
 msgid ""
