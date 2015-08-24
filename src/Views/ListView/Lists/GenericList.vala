@@ -21,6 +21,7 @@ public abstract class Noise.GenericList : FastView {
 
     public signal void import_requested (Gee.Collection<Media> to_import);
 
+    public Playlist? playlist { get; set; default = null; }
     //for header column chooser
     protected Gtk.Menu column_chooser_menu;
     private Gtk.MenuItem autosize_menu_item;
@@ -28,7 +29,6 @@ public abstract class Noise.GenericList : FastView {
     protected ViewWrapper parent_wrapper;
 
     protected TreeViewSetup tvs;
-    protected int64 relative_id;
     protected bool is_current_list;
 
     protected bool dragging;
@@ -93,7 +93,7 @@ public abstract class Noise.GenericList : FastView {
 
     public void set_parent_wrapper (ViewWrapper parent) {
         this.parent_wrapper = parent;
-        this.relative_id = parent_wrapper.relative_id;
+        this.playlist = parent_wrapper.playlist;
     }
 
     protected void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {
@@ -285,7 +285,18 @@ public abstract class Noise.GenericList : FastView {
             to_set = App.player.current_media;
 
         is_current_list = true;
-        Settings.Main.get_default ().last_playlist_playing = relative_id;
+        var main_settings = Settings.Main.get_default ();
+        if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
+            main_settings.last_playlist_playing = "";
+        } else if (playlist is SmartPlaylist) {
+            main_settings.last_playlist_playing = "s%lld".printf (playlist.rowid);
+        } else {
+            if (((StaticPlaylist)playlist).read_only == false) {
+                main_settings.last_playlist_playing = "p%lld".printf (playlist.rowid);
+            } else {
+                main_settings.last_playlist_playing = "";
+            }
+        }
 
         App.player.clearCurrent ();
         var vis_table = get_visible_table ();
@@ -388,14 +399,6 @@ public abstract class Noise.GenericList : FastView {
 
     public ViewWrapper.Hint get_hint () {
         return tvs.get_hint ();
-    }
-
-    public void set_relative_id (int64 id) {
-        this.relative_id = id;
-    }
-
-    public int64 get_relative_id () {
-        return relative_id;
     }
 
     public bool get_is_current_list () {

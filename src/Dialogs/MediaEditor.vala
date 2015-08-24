@@ -38,8 +38,8 @@
 public class Noise.MediaEditor : Gtk.Dialog {
     LyricFetcher lf;
     
-    Gee.LinkedList<int> _allMedias = new Gee.LinkedList<int> ();
-    Gee.LinkedList<int> _medias = new Gee.LinkedList<int> ();
+    Gee.LinkedList<int64?> _allMedias = new Gee.LinkedList<int64?> ();
+    Gee.LinkedList<int64?> _medias = new Gee.LinkedList<int64?> ();
     
     //for padding around notebook mostly
     Gtk.Stack stack;
@@ -53,9 +53,9 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Gtk.Label lyricsInfobarLabel;
     private Library library;
     
-    public signal void medias_saved (Gee.Collection<int> medias);
+    public signal void medias_saved (Gee.Collection<int64?> medias);
     
-    public MediaEditor (Gee.Collection<int> allMedias, Gee.Collection<int> medias, Library library) {
+    public MediaEditor (Gee.Collection<int64?> allMedias, Gee.Collection<int64?> medias, Library library) {
         this.library = library;
         this.window_position = Gtk.WindowPosition.CENTER;
         this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -64,16 +64,16 @@ public class Noise.MediaEditor : Gtk.Dialog {
         this.destroy_with_parent = true;
         this.resizable = false;
         this.deletable = false;
-        
+
         this.set_size_request (520, -1);
 
         lf = new LyricFetcher();
-        
+
         _allMedias.add_all (allMedias);
         _medias.add_all (medias);
-        
+
         stack = new Gtk.Stack ();
-        
+
         var stack_switcher = new Gtk.StackSwitcher ();
         stack_switcher.set_stack (stack);
         stack_switcher.halign = Gtk.Align.CENTER;
@@ -104,8 +104,9 @@ public class Noise.MediaEditor : Gtk.Dialog {
         buttons.set_child_secondary (arrows, true);
 
         var main_grid = new Gtk.Grid ();
-        main_grid.attach (stack, 0, 0, 1, 1);
-        main_grid.attach (buttons, 0, 1, 1, 1);
+        main_grid.attach (stack_switcher, 0, 0, 1, 1);
+        main_grid.attach (stack, 0, 1, 1, 1);
+        main_grid.attach (buttons, 0, 2, 1, 1);
 
         var content = get_content_area () as Gtk.Container;
         content.margin_left = content.margin_right = 12;
@@ -133,7 +134,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
         Media sum = library.media_from_id(_medias.get(0)).copy();
         
         /** find what these media have what common, and keep those values **/
-        foreach(int i in _medias) {
+        foreach (int64 i in _medias) {
             Media s = library.media_from_id(i);
             
             if(s.track != sum.track)
@@ -294,13 +295,12 @@ public class Noise.MediaEditor : Gtk.Dialog {
         });
     }
 
-    
     public void previousClicked() {
         save_medias();
         
         // now fetch the next media on current_view
-        int i = 0; // will hold next media to edit
-        int indexOfCurrentFirst = _allMedias.index_of(_medias.get(0));
+        int64 i = 0; // will hold next media to edit
+        int indexOfCurrentFirst = _allMedias.index_of(_medias.first ());
         
         if(indexOfCurrentFirst == 0)
             i = _allMedias.get(_allMedias.size - 1);
@@ -308,7 +308,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
             i = _allMedias.get(indexOfCurrentFirst - 1);
         
         // now fetch the previous media on current_view
-        var newMedias = new Gee.LinkedList<int>();
+        var newMedias = new Gee.LinkedList<int64?> ();
         newMedias.add(i);
         
         change_media(newMedias);
@@ -318,21 +318,21 @@ public class Noise.MediaEditor : Gtk.Dialog {
         save_medias();
         
         // now fetch the next media on current_view
-        int i = 0; // will hold next media to edit
+        int64 i = 0; // will hold next media to edit
         int indexOfCurrentLast = _allMedias.index_of(_medias.get(_medias.size - 1));
         
         if(indexOfCurrentLast == _allMedias.size - 1)
-            i = _allMedias.get(0);
+            i = _allMedias.first ();
         else
             i = _allMedias.get(indexOfCurrentLast + 1);
         
-        var newMedias = new Gee.LinkedList<int>();
+        var newMedias = new Gee.LinkedList<int64?>();
         newMedias.add(i);
         
         change_media(newMedias);
     }
     
-    public void change_media(Gee.LinkedList<int> newMedias) {
+    public void change_media(Gee.LinkedList<int64?> newMedias) {
         _medias = newMedias;
         
         Media sum = library.media_from_id(newMedias.get(0));
@@ -376,8 +376,8 @@ public class Noise.MediaEditor : Gtk.Dialog {
     }
     
     public void save_medias() {
-        foreach(int i in _medias) {
-            Media s = library.media_from_id(i);
+        foreach (int64 i in _medias) {
+            Media s = library.media_from_id (i);
             
             if(fields.get("Title").checked())
                 s.title = fields.get("Title").get_value();

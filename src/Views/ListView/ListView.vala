@@ -254,8 +254,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
         return list_view.get_hint ();
     }
 
-    public int64 get_relative_id () {
-        return list_view.get_relative_id ();
+    public Playlist get_playlist () {
+        return list_view.playlist;
     }
 
     public Gee.Collection<Media> get_media () {

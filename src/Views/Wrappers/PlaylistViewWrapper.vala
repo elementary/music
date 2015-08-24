@@ -21,10 +21,8 @@
  */
 
 public class Noise.PlaylistViewWrapper : ViewWrapper {
-    public int64 playlist_id { get; construct set; default = -1; }
-    private Playlist playlist;
     public TreeViewSetup tvs;
-    public signal void button_clicked (int64 playlist_id);
+    public signal void button_clicked (Playlist p);
     private Gtk.Action[] actions = null;
     private string message_head;
     private string message_body;
@@ -37,9 +35,6 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
             this.tvs = tvs;
 
         this.playlist = playlist;
-        playlist_id = playlist.rowid;
-        relative_id = playlist.rowid;
-
 
         list_view = new ListView (this, this.tvs);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
@@ -64,9 +59,8 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                                              null,
                                              null);
                 // Connect to the 'activate' signal
-                action.activate.connect ( () => {
-                    button_clicked (playlist.rowid);
-                    //lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
+                action.activate.connect (() => {
+                    button_clicked (playlist);
                 });
 
                 actions = new Gtk.Action[1];

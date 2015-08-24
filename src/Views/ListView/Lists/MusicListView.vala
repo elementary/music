@@ -87,7 +87,7 @@ public class Noise.MusicListView : GenericList {
             importToLibrary.set_visible(false);
         } else if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
             importToLibrary.set_visible(false);
-            if (this.get_relative_id () == App.player.queue_playlist.rowid) {
+            if (playlist == App.player.queue_playlist) {
                 mediaRemove.set_label(_("Remove from Queue"));
                 mediaMenuQueue.set_visible(false);
             } else {
@@ -185,7 +185,7 @@ public class Noise.MusicListView : GenericList {
         }
         foreach (var playlist in parent_wrapper.library.get_playlists ()) {
             // Don't include this playlist in the list of available options
-            if (playlist.rowid == this.get_relative_id ())
+            if (playlist == this.playlist)
                 continue;
                 
             if (playlist.read_only == true)
@@ -453,9 +453,9 @@ public class Noise.MusicListView : GenericList {
             DeviceViewWrapper dvw = (DeviceViewWrapper)parent_wrapper;
             dvw.library.remove_medias (get_selected_medias ().read_only_view, true);
         } else if (get_hint () == ViewWrapper.Hint.PLAYLIST) {
-            parent_wrapper.library.playlist_from_id (relative_id).remove_medias (get_selected_medias ().read_only_view);
-        } else if (get_hint () == ViewWrapper.Hint.READ_ONLY_PLAYLIST && this.get_relative_id () == App.player.queue_playlist.rowid) {
-            parent_wrapper.library.playlist_from_id (relative_id).remove_medias (get_selected_medias ().read_only_view);
+            playlist.remove_medias (get_selected_medias ().read_only_view);
+        } else if (get_hint () == ViewWrapper.Hint.READ_ONLY_PLAYLIST && playlist == App.player.queue_playlist) {
+            playlist.remove_medias (get_selected_medias ().read_only_view);
         }
     }
 

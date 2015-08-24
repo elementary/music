@@ -109,7 +109,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public int index { get { return App.main_window.view_container.get_view_index (this); } }
 
-    public int64 relative_id { get; protected set; default = -1; }
+    public Playlist? playlist = null;
 
     public int media_count {
         get { return (int) list_view.n_media; }

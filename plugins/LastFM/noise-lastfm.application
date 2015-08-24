@@ -3,6 +3,11 @@
   <description>Music</description>
   <desktop-entry>noise.desktop</desktop-entry>
   <translations>noise</translations>
+  <services>
+    <service id="lastfm-scrobble">
+      <description>Scrobble all your music</description>
+    </service>
+  </services>
   <service-types>
     <service-type id="scrobbling">
     </service-type>
