@@ -70,7 +70,7 @@ public class Noise.LocalStaticPlaylist : StaticPlaylist {
         var col_names = new GLib.SList<string> ();
         col_names.append ("name");
         col_names.append ("media");
-        var values = new GLib.SList<Value ?> ();
+        var values = new GLib.SList<Value?> ();
         var sb = new StringBuilder ();
         foreach (var m in medias) {
             if (sb.len != 0)

@@ -39,7 +39,6 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
         name = _("History");
         read_only = true;
         icon = new ThemedIcon ("playlist-queue");
-        allow_duplicate = true;
         log = Zeitgeist.Log.get_default ();
     }
 
@@ -113,7 +112,9 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
                     if (m == null)
                         return;
 
-                    new_medias.add (m);
+                    if (allow_duplicate || (medias.contains (m) == false && new_medias.contains (m) == false)) {
+                        new_medias.add (m);
+                    }
                 });
             }
 
