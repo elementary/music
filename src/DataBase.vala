@@ -126,43 +126,43 @@ namespace Noise.Database {
     /*
      * Helper functions.
      */
-    private static Value make_string_value (string str) {
+    public static Value make_string_value (string str) {
         var val = Value (typeof(string));
         val.set_string (str);
         return val;
     }
 
-    private static Value make_bool_value (bool bl) {
+    public static Value make_bool_value (bool bl) {
         var val = Value (typeof(bool));
         val.set_boolean (bl);
         return val;
     }
 
-    private static Value make_uint_value (uint u) {
+    public static Value make_uint_value (uint u) {
         var val = Value (typeof(uint));
         val.set_uint (u);
         return val;
     }
 
-    private static Value make_int_value (int u) {
+    public static Value make_int_value (int u) {
         var val = Value (typeof(int));
         val.set_int (u);
         return val;
     }
 
-    private static Value make_int64_value (int64 u) {
+    public static Value make_int64_value (int64 u) {
         var val = Value (typeof(int64));
         val.set_int64 (u);
         return val;
     }
 
-    private static Value make_uint64_value (uint64 u) {
+    public static Value make_uint64_value (uint64 u) {
         var val = Value (typeof(uint64));
         val.set_uint64 (u);
         return val;
     }
 
-    private static GLib.Value? query_field (int64 rowid, Gda.Connection connection, string table, string field) {
+    public static GLib.Value? query_field (int64 rowid, Gda.Connection connection, string table, string field) {
         try {
             var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
             sql.select_add_target (table, null);
@@ -179,7 +179,7 @@ namespace Noise.Database {
         }
     }
 
-    private static void set_field (int64 rowid, Gda.Connection connection, string table, string field, GLib.Value value) {
+    public static void set_field (int64 rowid, Gda.Connection connection, string table, string field, GLib.Value value) {
         try {
             var rowid_value = GLib.Value (typeof (int64));
             rowid_value.set_int64 (rowid);
@@ -191,5 +191,101 @@ namespace Noise.Database {
         } catch (Error e) {
             critical ("Could not set field %s: %s", field, e.message);
         }
+    }
+
+    public static Gda.SqlBuilderId process_smart_query (Gda.SqlBuilder builder, SmartQuery sq) {
+        Value value = Value (sq.value.type ());
+        sq.value.copy (ref value);
+        string field;
+        switch (sq.field) {
+            case SmartQuery.FieldType.ALBUM:
+                field = "album";
+                break;
+            case SmartQuery.FieldType.ARTIST:
+                field = "artist";
+                break;
+            case SmartQuery.FieldType.BITRATE:
+                field = "bitrate";
+                break;
+            case SmartQuery.FieldType.COMMENT:
+                field = "comment";
+                break;
+            case SmartQuery.FieldType.COMPOSER:
+                field = "composer";
+                break;
+            case SmartQuery.FieldType.DATE_ADDED:
+                // We need the current timestamp because this field is relative.
+                value = Value (typeof (int));
+                value.set_int ((int)time_t ());
+                field = "dateadded";
+                break;
+            case SmartQuery.FieldType.GENRE:
+                field = "genre";
+                break;
+            case SmartQuery.FieldType.GROUPING:
+                field = "grouping";
+                break;
+            case SmartQuery.FieldType.LAST_PLAYED:
+                // We need the current timestamp because this field is relative.
+                value = Value (typeof (int));
+                value.set_int ((int)time_t ());
+                field = "lastplayed";
+                break;
+            case SmartQuery.FieldType.LENGTH:
+                field = "length";
+                break;
+            case SmartQuery.FieldType.PLAYCOUNT:
+                field = "playcount";
+                break;
+            case SmartQuery.FieldType.RATING:
+                field = "rating";
+                break;
+            case SmartQuery.FieldType.SKIPCOUNT:
+                field = "skipcount";
+                break;
+            case SmartQuery.FieldType.YEAR:
+                field = "year";
+                break;
+            case SmartQuery.FieldType.TITLE:
+            default:
+                field = "title";
+                break;
+        }
+
+        Gda.SqlOperatorType sql_operator_type;
+        switch (sq.comparator) {
+            case SmartQuery.ComparatorType.IS_NOT:
+                sql_operator_type = Gda.SqlOperatorType.NOT;
+                break;
+            case SmartQuery.ComparatorType.CONTAINS:
+                sql_operator_type = Gda.SqlOperatorType.IN;
+                break;
+            case SmartQuery.ComparatorType.NOT_CONTAINS:
+                sql_operator_type = Gda.SqlOperatorType.NOTIN;
+                break;
+            case SmartQuery.ComparatorType.IS_EXACTLY:
+                sql_operator_type = Gda.SqlOperatorType.EQ;
+                break;
+            case SmartQuery.ComparatorType.IS_AT_MOST:
+                sql_operator_type = Gda.SqlOperatorType.LEQ;
+                break;
+            case SmartQuery.ComparatorType.IS_AT_LEAST:
+                sql_operator_type = Gda.SqlOperatorType.GEQ;
+                break;
+            case SmartQuery.ComparatorType.IS_WITHIN:
+                sql_operator_type = Gda.SqlOperatorType.LEQ;
+                break;
+            case SmartQuery.ComparatorType.IS_BEFORE:
+                sql_operator_type = Gda.SqlOperatorType.GEQ;
+                break;
+            case SmartQuery.ComparatorType.IS:
+            default:
+                sql_operator_type = Gda.SqlOperatorType.EQ;
+                break;
+        }
+
+        var id_field = builder.add_id (field);
+        var id_value = builder.add_expr_value (null, value);
+        return builder.add_cond (sql_operator_type, id_field, id_value, 0);
     }
 }

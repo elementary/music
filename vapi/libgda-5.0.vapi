@@ -912,6 +912,7 @@ namespace Gda {
 		public SqlBuilder (Gda.SqlStatementType stmt_type);
 		public Gda.SqlBuilderId add_case_v (Gda.SqlBuilderId test_expr, Gda.SqlBuilderId else_expr, [CCode (array_length_cname = "args_size", array_length_pos = 4.1)] Gda.SqlBuilderId[] when_array, [CCode (array_length_cname = "args_size", array_length_pos = 4.1)] Gda.SqlBuilderId[] then_array);
 		public Gda.SqlBuilderId add_cond (Gda.SqlOperatorType op, Gda.SqlBuilderId op1, Gda.SqlBuilderId op2, Gda.SqlBuilderId op3);
+		public Gda.SqlBuilderId add_cond_v (Gda.SqlOperatorType op, [CCode (array_length_cname = "op_ids_size", array_length_pos = 4.1)]Gda.SqlBuilderId[] op_ids);
 		public Gda.SqlBuilderId add_expr_value (Gda.DataHandler? dh, GLib.Value? value);
 		public Gda.SqlBuilderId add_field_id (string field_name, string? table_name);
 		public void add_field_value_as_gvalue (string field_name, GLib.Value? value);

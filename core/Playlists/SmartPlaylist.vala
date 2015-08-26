@@ -42,7 +42,7 @@ public class Noise.SmartPlaylist : Playlist {
     public virtual bool limit { get; set; default = false; }
     public virtual uint limit_amount { get; set; default = 50; }
 
-    private Noise.Library library;
+    protected Noise.Library library;
 
     /*
      * A SmartPlaylist should be linked to only one library.
@@ -256,22 +256,6 @@ public class Noise.SmartPlaylist : Playlist {
                 } else if (q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
                     return now.compare (played) > 0;
                 }
-                break;
-            case Noise.SmartQuery.FieldType.DATE_RELEASED:
-/*
-                var now = new DateTime.now_local();
-                var released = new DateTime.from_unix_local(s.podcast_date);
-                released = released.add_days(int.parse(q.value));
-            
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return (now.get_day_of_year() == released.get_day_of_year() && now.get_year() == released.get_year());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_WITHIN) {
-                    return released.compare(now) > 0;
-                }
-                else if(q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
-                    return now.compare(released) > 0;
-                }
-*/
                 break;
             case Noise.SmartQuery.FieldType.LAST_PLAYED:
                 if(s.last_played == 0)

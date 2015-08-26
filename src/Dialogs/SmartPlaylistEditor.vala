@@ -208,9 +208,10 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
 
     public virtual void save_click () {
         sp.clear_queries ();
-        var queries = new Gee.LinkedList<SmartQuery> ();
+        var queries = new Gee.TreeSet<SmartQuery> ();
         foreach (SmartPlaylistEditorQuery speq in queries_list) {
-            queries.add (speq.get_query ());
+            var query = speq.get_query ();
+            queries.add (query);
         }
 
         sp.add_queries (queries);
@@ -265,7 +266,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         field_combobox.append_text (_("Comment"));
         field_combobox.append_text (_("Composer"));
         field_combobox.append_text (_("Date Added"));
-        field_combobox.append_text (_("Date Released"));
         field_combobox.append_text (_("Genre"));
         field_combobox.append_text (_("Grouping"));
         field_combobox.append_text (_("Last Played"));
@@ -308,16 +308,23 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
     }
 
     public SmartQuery get_query () {
-        SmartQuery rv = new SmartQuery ();
+        var rv = new SmartQuery ();
 
         rv.field = (SmartQuery.FieldType)field_combobox.get_active ();
         rv.comparator = comparators.get (comparator_combobox.get_active ());
-        if (needs_value ((SmartQuery.FieldType)field_combobox.get_active ()))
-            rv.value.set_string (value_entry.text);
-        else if (field_combobox.get_active () == SmartQuery.FieldType.RATING)
-            rv.value.set_int (_valueRating.rating);
-        else
-            rv.value.set_int ((int)_valueNumerical.value);
+        if (needs_value ((SmartQuery.FieldType)field_combobox.get_active ())) {
+            var value = Value (typeof (string));
+            value.set_string (value_entry.text);
+            rv.value = value;
+        } else if (field_combobox.get_active () == SmartQuery.FieldType.RATING) {
+            var value = Value (typeof (int));
+            value.set_int (_valueRating.rating);
+            rv.value = value;
+        } else {
+            var value = Value (typeof (int));
+            value.set_int ((int)_valueNumerical.value);
+            rv.value = value;
+        }
 
         return rv;
     }
@@ -437,7 +444,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
     }
 
     public bool is_date (SmartQuery.FieldType compared) {
-        return (compared == SmartQuery.FieldType.LAST_PLAYED || compared == SmartQuery.FieldType.DATE_ADDED
-                || compared == SmartQuery.FieldType.DATE_RELEASED);
+        return (compared == SmartQuery.FieldType.LAST_PLAYED || compared == SmartQuery.FieldType.DATE_ADDED);
     }
 }

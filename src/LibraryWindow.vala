@@ -1167,7 +1167,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         //at 30 seconds in, we consider the media as played
         if(sec > 30 && !media_considered_played) {
             media_considered_played = true;
-            App.player.current_media.last_played = (int)time_t();
+            App.player.current_media.last_played = (int)time_t ();
 
             library_manager.update_media (App.player.current_media, false, false);
 

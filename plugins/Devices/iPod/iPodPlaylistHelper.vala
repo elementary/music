@@ -166,8 +166,6 @@ public class Noise.Plugins.iPodPlaylistHelper {
             rule.field = GPod.SPLField.LAST_PLAYED;
             rule.fromvalue = (uint64)q.value.get_int () * 20;
             rule.tovalue = (uint64)q.value.get_int () * 20;
-        } else if (q.field == SmartQuery.FieldType.DATE_RELEASED) {
-            // no equivalant
         }
 /*
         else if (q.field == SmartQuery.FieldType.MEDIA_TYPE) {
@@ -302,26 +300,6 @@ public class Noise.Plugins.iPodPlaylistHelper {
                 rule.tounits = 1;//60 * 60 * 24;
                 rule.fromunits = 1;//60 * 60 * 24;
                 break;
-            case SmartQuery.FieldType.DATE_RELEASED:
-                // no equivelant
-                break;
-/*
-            case SmartQuery.FieldType.MEDIA_TYPE:
-                rule.field = GPod.SPLField.VIDEO_KIND;
-                if (value == "0") {
-                    message ("must be song\n");
-                    rule.fromvalue = 0x00000001;
-                    rule.tovalue = 0x00000001;;
-                } else if (value == "1") {
-                    rule.fromvalue = 0x00000006;
-                    rule.tovalue = 0x00000006;
-                    message ("must be podcast\n");
-                } else if (value == "2") {
-                    rule.fromvalue = 0x00000008;
-                    rule.tovalue = 0x00000008;
-                }
-                break;
-*/            
             }
 
             // set action type

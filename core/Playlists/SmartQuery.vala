@@ -49,7 +49,6 @@ public class Noise.SmartQuery : Object {
         COMMENT,
         COMPOSER,
         DATE_ADDED,
-        DATE_RELEASED,
         GENRE,
         GROUPING,
         LAST_PLAYED,
@@ -64,7 +63,7 @@ public class Noise.SmartQuery : Object {
     public int rowid { get; set; default = 0; }
     public FieldType field { get; set; default = FieldType.ALBUM; }
     public ComparatorType comparator { get; set; default = ComparatorType.IS; }
-    public GLib.Value value { get; set; default = GLib.Value (typeof (string)); }
+    public GLib.Value value { get; set; default = GLib.Value (typeof (int)); }
 
     public SmartQuery () {
         

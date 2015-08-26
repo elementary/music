@@ -88,32 +88,48 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
         queries_from_string (queries_str);
     }
 
-    //TODO: override this to search directly into the database.
-    /*public override void analyse_all () {
+    public override void analyse_all () {
         if (queries.is_empty) {
-            var meds = library.get_media ();
+            var meds = library.get_medias ();
             medias.add_all (meds);
             media_added (meds);
             return;
         }
 
-        foreach (var q in queries) {
-            try {
-                var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
-                sql.select_add_target (table, null);
-                sql.add_field_value_id (sql.add_id (field), 0);
-                var id_field = sql.add_id ("rowid");
-                var id_param = sql.add_expr_value (null, Database.make_int64_value (rowid));
-                var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
-                sql.set_where (id_cond);
-                var data_model = connection.statement_execute_select (sql.get_statement (), null);
-                return data_model.get_value_at (data_model.get_column_index (field), 0);
-            } catch (Error e) {
-                critical ("Could not query field %s: %s", field, e.message);
-                return null;
+        var rowids = new Gee.TreeSet<int64?> ();
+        try {
+            var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+            sql.select_add_target (Database.Media.TABLE_NAME, null);
+            sql.select_add_field ("rowid", null, null);
+            Gda.SqlBuilderId[] ids = null;
+            foreach (var q in queries) {
+                ids += Database.process_smart_query (sql, q);
             }
+
+            var sql_operator_type = Gda.SqlOperatorType.AND;
+            if (conditional == ConditionalType.ANY) {
+                sql_operator_type = Gda.SqlOperatorType.OR;
+            }
+
+            var id_cond = sql.add_cond_v (sql_operator_type, ids);
+            sql.set_where (id_cond);
+
+            var statm = sql.get_statement ();
+            var data_model = connection.statement_execute_select (statm, null);
+            var data_model_iter = data_model.create_iter ();
+            data_model_iter.move_to_row (-1);
+            while (data_model_iter.move_next ()) {
+                unowned Value? val = data_model_iter.get_value_at (0);
+                rowids.add (val.get_int64 ());
+            }
+
+            var meds = library.medias_from_ids (rowids);
+            medias.add_all (meds);
+            media_added (meds);
+        } catch (Error e) {
+            critical ("Could not query media for smart playlist %s: %s", name, e.message);
         }
-    }*/
+    }
 
     public override void clear_queries () {
         base.clear_queries ();
@@ -131,23 +147,29 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
     }
 
     private string queries_to_string () {
-        string rv = "";
+        var sb = new GLib.StringBuilder ();
         foreach (SmartQuery q in queries) {
-            var str_val = Value (typeof (string));
-            q.value.transform (ref str_val);
-            string query_str = ((int)q.field).to_string () + VALUE_SEPARATOR + ((int)q.comparator).to_string () + VALUE_SEPARATOR + str_val.get_string ();
-            if (rv == "") {
-                rv = query_str;
+            if (sb.len != 0) {
+                sb.append (QUERY_SEPARATOR);
+            }
+
+            sb.append_printf ("%d", (int) q.field);
+            sb.append (VALUE_SEPARATOR);
+            sb.append_printf ("%d", (int) q.comparator);
+            sb.append (VALUE_SEPARATOR);
+            if (q.value.type () == typeof (string)) {
+                sb.append (q.value.get_string ());
             } else {
-                rv += QUERY_SEPARATOR + query_str;
+                sb.append_printf ("%d", q.value.get_int ());
             }
         }
 
-        return rv;
+        return sb.str;
     }
 
     public void queries_from_string (string q) {
         string[] queries_in_string = q.split(QUERY_SEPARATOR, 0);
+        var new_queries = new Gee.TreeSet<SmartQuery> ();
         foreach (var query_string in queries_in_string) {
             if (query_string == "")
                 continue;
@@ -177,8 +199,10 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
                     break;
             }
 
-            queries.add (sq);
+            new_queries.add (sq);
         }
+
+        add_queries (new_queries);
     }
 
     public static void add_defaults (Gda.Connection connection) {
@@ -192,7 +216,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
             var values = new GLib.SList<GLib.Value?> ();
             values.append (Database.make_string_value (_("Favorite Songs")));
-            values.append (Database.make_string_value ("11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>12<val_sep>6<val_sep>3"));
+            values.append (Database.make_string_value ("10<val_sep>2<val_sep>4<query_sep>12<val_sep>0<val_sep>0<query_sep>11<val_sep>6<val_sep>3"));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (50));
@@ -208,7 +232,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
             values = new GLib.SList<GLib.Value?> ();
             values.append (Database.make_string_value (_("Recent Favorites")));
-            values.append (Database.make_string_value ("11<val_sep>2<val_sep>4<query_sep>13<val_sep>0<val_sep>0<query_sep>9<val_sep>7<val_sep>7"));
+            values.append (Database.make_string_value ("10<val_sep>2<val_sep>4<query_sep>12<val_sep>0<val_sep>0<query_sep>8<val_sep>7<val_sep>7"));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (50));
@@ -216,7 +240,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
             values = new GLib.SList<GLib.Value?> ();
             values.append (Database.make_string_value (_("Never Played")));
-            values.append (Database.make_string_value ("11<val_sep>0<val_sep>0"));
+            values.append (Database.make_string_value ("10<val_sep>0<val_sep>0"));
             values.append (Database.make_int_value (0));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (50));
@@ -224,7 +248,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
             values = new GLib.SList<GLib.Value?> ();
             values.append (Database.make_string_value (_("Over Played")));
-            values.append (Database.make_string_value ("11<val_sep>6<val_sep>10"));
+            values.append (Database.make_string_value ("10<val_sep>6<val_sep>10"));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (50));
@@ -232,7 +256,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
             values = new GLib.SList<GLib.Value?> ();
             values.append (Database.make_string_value (_("Not Recently Played")));
-            values.append (Database.make_string_value ("9<val_sep>8<val_sep>7"));
+            values.append (Database.make_string_value ("8<val_sep>8<val_sep>7"));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (1));
             values.append (Database.make_int_value (50));

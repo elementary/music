@@ -71,17 +71,16 @@ public class Noise.LocalStaticPlaylist : StaticPlaylist {
         col_names.append ("name");
         col_names.append ("media");
         var values = new GLib.SList<Value ?> ();
-        string rv = "";
+        var sb = new StringBuilder ();
         foreach (var m in medias) {
-            if (rv == "") {
-                rv = "%lld".printf (m.rowid);
-            } else {
-                rv += ";%lld".printf (m.rowid);
-            }
+            if (sb.len != 0)
+                sb.append_c (';');
+
+            sb.append_printf ("%lld", m.rowid);
         }
 
         values.append (Database.make_string_value (name));
-        values.append (Database.make_string_value (rv));
+        values.append (Database.make_string_value (sb.str));
         try {
             connection.update_row_in_table_v (Database.Playlists.TABLE_NAME, "rowid", rowid_value, col_names, values);
         } catch (Error e) {
