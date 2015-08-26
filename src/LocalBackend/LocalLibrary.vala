@@ -53,7 +53,7 @@ public class Noise.LocalLibrary : Library {
     private Gee.TreeSet<Media> open_media_list;
     private bool _doing_file_operations = false;
 
-    private Gda.Connection connection;
+    public Gda.Connection connection { public get; private set; }
     private Gda.SqlParser parser;
 
     private static const string DB_FILE = "database_0_3_1";

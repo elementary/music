@@ -81,7 +81,7 @@ public class Noise.PopupListView : Gtk.Dialog {
         album_label.set_max_width_chars (30);
 
         // Music List
-        var tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
+        var tvs = new TreeViewSetup (ViewWrapper.Hint.ALBUM_LIST);
         list_view = new MusicListView (view_wrapper, tvs);
         list_view.set_search_func (view_search_func);
         list_view.expand = true;

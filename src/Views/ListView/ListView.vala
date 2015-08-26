@@ -251,7 +251,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
      */
 
     public ViewWrapper.Hint get_hint () {
-        return list_view.get_hint ();
+        return list_view.hint;
     }
 
     public Playlist get_playlist () {
@@ -278,8 +278,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         }
     }
 
-    // TODO: Since is_initial is deprecated and not used, update the external code to stop using it
-    public void set_as_current_list (int media_id, bool is_initial = false) {
+    public void set_as_current_list (int media_id) {
         list_view.set_as_current_list (view_wrapper.library.media_from_id (media_id));
     }
 

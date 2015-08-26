@@ -22,6 +22,7 @@
  * New column types must be appended at the end in order to ensure backwards
  * compatibility with older TreeViewSetup representations.
  */
+
 public enum Noise.ListColumn {
     ICON = 0,
     NUMBER,

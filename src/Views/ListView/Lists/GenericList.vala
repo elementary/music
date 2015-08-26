@@ -22,6 +22,15 @@ public abstract class Noise.GenericList : FastView {
     public signal void import_requested (Gee.Collection<Media> to_import);
 
     public Playlist? playlist { get; set; default = null; }
+    public ViewWrapper.Hint hint {
+        get {
+            return tvs.hint;
+        }
+        set {
+            tvs.hint = value;
+        }
+    }
+
     //for header column chooser
     protected Gtk.Menu column_chooser_menu;
     private Gtk.MenuItem autosize_menu_item;
@@ -54,7 +63,7 @@ public abstract class Noise.GenericList : FastView {
         enable_search = false; // we don't want the built-in search
 
         set_headers_clickable (true);
-        set_headers_visible (tvs.get_hint () != ViewWrapper.Hint.ALBUM_LIST);
+        set_headers_visible (hint != ViewWrapper.Hint.ALBUM_LIST);
         set_fixed_height_mode (true);
         set_rules_hint (true);
         set_reorderable (false);
@@ -100,7 +109,7 @@ public abstract class Noise.GenericList : FastView {
         if (type == ListColumn.TITLE || type == ListColumn.ICON)
             return;
 
-        if (get_hint () == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER)
+        if (hint == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER)
             return;
 
         if (column_chooser_menu == null) {
@@ -172,12 +181,6 @@ public abstract class Noise.GenericList : FastView {
 
     public abstract void update_sensitivities ();
 
-    /** TreeViewColumn header functions. Has to do with sorting and
-     * remembering column widths/sort column/sort direction between
-     * sessions.
-    **/
-    protected abstract void updateTreeViewSetup ();
-
     protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column,
                                           Gtk.CellRendererText renderer, string[] strings, int padding)
     {
@@ -231,18 +234,12 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void on_rows_reordered () {
-        updateTreeViewSetup ();
         scroll_to_current_media (false);
         if (is_current_list)
             set_as_current_list ();
     }
 
     public override void row_activated (Gtk.TreePath path, Gtk.TreeViewColumn column) {
-        /*if (tvs.get_hint () == ViewWrapper.Hint.DEVICE_AUDIO || tvs.get_hint () == ViewWrapper.Hint.DEVICE_PODCAST) {
-            lw.doAlert (_("Playing not Supported"), _("Due to issues with playing songs on certain iOS devices, playing songs off devices is currently not supported."));
-            return;
-        }*/
-
         var m = get_media_from_index (int.parse (path.to_string ()));
 
         // We need to first set this as the current list
@@ -393,13 +390,6 @@ public abstract class Noise.GenericList : FastView {
     /***************************************
      * Simple setters and getters
      * *************************************/
-    public void set_hint (ViewWrapper.Hint hint) {
-        tvs.set_hint (hint);
-    }
-
-    public ViewWrapper.Hint get_hint () {
-        return tvs.get_hint ();
-    }
 
     public bool get_is_current_list () {
         return is_current_list;

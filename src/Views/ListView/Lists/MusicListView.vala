@@ -80,12 +80,12 @@ public class Noise.MusicListView : GenericList {
     public override void update_sensitivities() {
         mediaActionMenu.show_all();
 
-        if(get_hint() == ViewWrapper.Hint.MUSIC) {
+        if (hint == ViewWrapper.Hint.MUSIC) {
             mediaRemove.set_label(_("Remove from Library"));
             importToLibrary.set_visible(false);
-        } else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
+        } else if (hint == ViewWrapper.Hint.PLAYLIST) {
             importToLibrary.set_visible(false);
-        } else if(get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
+        } else if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
             importToLibrary.set_visible(false);
             if (playlist == App.player.queue_playlist) {
                 mediaRemove.set_label(_("Remove from Queue"));
@@ -93,10 +93,10 @@ public class Noise.MusicListView : GenericList {
             } else {
                 mediaRemove.set_visible(false);
             }
-        } else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
+        } else if (hint == ViewWrapper.Hint.SMART_PLAYLIST) {
             mediaRemove.set_visible(false);
             importToLibrary.set_visible(false);
-        } else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
+        } else if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
             mediaEditMedia.set_visible(false);
             mediaRemove.set_label(_("Remove from Device"));
             if (parent_wrapper.library.support_playlists () == false) {
@@ -126,15 +126,13 @@ public class Noise.MusicListView : GenericList {
         mediaActionMenu = new Gtk.Menu ();
         mediaActionMenu.attach_to_widget (this, null);
 
-        var hint = tvs.get_hint ();
-
         if(hint != ViewWrapper.Hint.ALBUM_LIST) {
             //mediaActionMenu.append(browseSame);
             mediaActionMenu.append(mediaScrollToCurrent);
             mediaActionMenu.append(mediaScrollToCurrentSeparator);
         }
 
-        var read_only = get_hint() == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
+        var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
         if (read_only == false) {
             mediaActionMenu.append(mediaEditMedia);
         }
@@ -346,27 +344,6 @@ public class Noise.MusicListView : GenericList {
         }
     }
 
-    protected override void updateTreeViewSetup() {
-        if (tvs == null || get_hint () == ViewWrapper.Hint.ALBUM_LIST)
-            return;
-
-        int sort_id;
-        Gtk.SortType sort_dir;
-        get_sort_column_id (out sort_id, out sort_dir);
-
-        if (sort_id < 0)
-            sort_id = ListColumn.ARTIST;
-
-        var cols = new Gee.TreeSet<Gtk.TreeViewColumn> ();
-        foreach (var column in get_columns ()) {
-            cols.add (column);
-        }
-
-        tvs.set_columns (cols);
-        tvs.sort_column_id = sort_id;
-        tvs.sort_direction = sort_dir;
-    }
-
     /** media menu popup clicks **/
     void mediaMenuEditClicked () {
         var to_edit = new Gee.LinkedList<int64?> ();
@@ -404,10 +381,6 @@ public class Noise.MusicListView : GenericList {
 
         // could have edited rating, so record_time is true
         parent_wrapper.library.update_medias (toUpdate, true, true);
-
-        if (get_hint () == ViewWrapper.Hint.SMART_PLAYLIST) {
-            // make sure these medias still belongs here
-        }
     }
 
     protected void mediaFileBrowseClicked () {
@@ -444,17 +417,17 @@ public class Noise.MusicListView : GenericList {
     }
 
     protected override void mediaRemoveClicked () {
-        if (get_hint () == ViewWrapper.Hint.MUSIC) {
-            var dialog = new RemoveFilesDialog (get_selected_medias ().read_only_view, get_hint());
+        if (hint == ViewWrapper.Hint.MUSIC) {
+            var dialog = new RemoveFilesDialog (get_selected_medias ().read_only_view, hint);
             dialog.remove_media.connect ( (delete_files) => {
                 parent_wrapper.library.remove_medias (get_selected_medias ().read_only_view, delete_files);
             });
-        } else if (get_hint () == ViewWrapper.Hint.DEVICE_AUDIO) {
+        } else if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
             DeviceViewWrapper dvw = (DeviceViewWrapper)parent_wrapper;
             dvw.library.remove_medias (get_selected_medias ().read_only_view, true);
-        } else if (get_hint () == ViewWrapper.Hint.PLAYLIST) {
+        } else if (hint == ViewWrapper.Hint.PLAYLIST) {
             playlist.remove_medias (get_selected_medias ().read_only_view);
-        } else if (get_hint () == ViewWrapper.Hint.READ_ONLY_PLAYLIST && playlist == App.player.queue_playlist) {
+        } else if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST && playlist == App.player.queue_playlist) {
             playlist.remove_medias (get_selected_medias ().read_only_view);
         }
     }

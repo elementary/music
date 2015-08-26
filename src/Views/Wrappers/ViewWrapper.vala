@@ -275,7 +275,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("play_first_media [%s]", hint.to_string());
 
-        list_view.set_as_current_list (1, true);
+        list_view.set_as_current_list (1);
         var m = App.player.mediaFromCurrentIndex (0);
 
         if (m == null)

@@ -27,12 +27,9 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
     private string message_head;
     private string message_body;
 
-    public PlaylistViewWrapper (Playlist playlist, ViewWrapper.Hint hint, TreeViewSetup? tvs = null, Library library) {
+    public PlaylistViewWrapper (Playlist playlist, ViewWrapper.Hint hint, TreeViewSetup tvs, Library library) {
         base (hint, library);
-        if (tvs == null)
-            this.tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, hint);
-        else
-            this.tvs = tvs;
+        this.tvs = tvs;
 
         this.playlist = playlist;
 

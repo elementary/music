@@ -34,12 +34,12 @@ namespace Noise.Database {
         public const string SMART_PLAYLISTS = """CREATE TABLE IF NOT EXISTS smart_playlists (name TEXT,
             and_or INT, queries TEXT, limited INT, limit_amount INT, rowid INTEGER PRIMARY KEY AUTOINCREMENT)""";
 
-        public const string COLUMNS = """CREATE TABLE IF NOT EXISTS columns (is_smart INT, name TEXT,
-            sort_column_id INT, sort_direction TEXT, columns TEXT)""";
+        public const string COLUMNS = """CREATE TABLE IF NOT EXISTS columns (unique_id TEXT, sort_column_id INT,
+            sort_direction INT, columns TEXT)""";
 
         public const string MEDIA = """CREATE TABLE IF NOT EXISTS media (uri TEXT, file_size INT,
             title TEXT, artist TEXT, composer TEXT, album_artist TEXT, album TEXT,
-            grouping TEXT, genre TEXT,comment TEXT, lyrics TEXT, has_embedded INT,
+            grouping TEXT, genre TEXT, comment TEXT, lyrics TEXT, has_embedded INT,
             year INT, track INT, track_count INT, album_number INT,
             album_count INT, bitrate INT, length INT, samplerate INT, rating INT,
             playcount INT, skipcount INT, dateadded INT, lastplayed INT,
@@ -113,6 +113,14 @@ namespace Noise.Database {
         public static const string SYNC_ALL_MUSIC = "+3";
         public static const string MUSIC_PLAYLIST = "+4";
         public static const string LAST_SYNC_TIME = "+5";
+    }
+
+    namespace Columns {
+        public static const string TABLE_NAME = "columns";
+        public static const string UNIQUE_ID = "+0";
+        public static const string SORT_COLUMN_ID = "+1";
+        public static const string SORT_DIRECTION = "+2";
+        public static const string COLUMNS = "+3";
     }
 
     /*

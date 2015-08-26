@@ -78,7 +78,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gee.HashMap<unowned Playlist, int> match_playlists;
     private Gee.HashMap<string, int> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
-    private Gee.HashMap<Playlist, TreeViewSetup> match_tvs;
 
     public LibraryWindow () {
         headerbar = new Gtk.HeaderBar ();
@@ -124,7 +123,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         match_playlists = new Gee.HashMap<unowned Playlist, int> ();
         match_devices = new Gee.HashMap<string, int> ();
         match_playlist_entry = new Gee.HashMap<unowned Playlist, SourceListEntry> ();
-        match_tvs = new Gee.HashMap<Playlist, TreeViewSetup> ();
 
         libraries_manager.add_headless_playlist.connect ((playlist) => {
             add_playlist (playlist);
@@ -663,9 +661,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void load_playlists () {
         debug ("Loading playlists");
-        // TODO: replace it when the column state management is back.
-        //match_tvs.set_all (DataBaseManager.get_default ().load_columns_state ());
-        
+
         foreach (SmartPlaylist p in library_manager.get_smart_playlists()) {
             add_smartplaylist (p);
         }
@@ -677,21 +673,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         libraries_manager.add_headless_playlist (App.player.queue_playlist);
         libraries_manager.add_headless_playlist (App.player.history_playlist);
 
-        TreeViewSetup? music_tvs = null;
-        foreach (var entry in match_tvs.entries) {
-            if (entry.key.name == MUSIC_PLAYLIST) {
-                music_tvs = entry.value;
-                music_tvs.set_hint (ViewWrapper.Hint.MUSIC);
-                break;
-            }
-        }
-        if (music_tvs == null) {
-            music_tvs = new TreeViewSetup (ListColumn.ARTIST,
-                                             Gtk.SortType.ASCENDING,
-                                             ViewWrapper.Hint.MUSIC);
-            match_tvs.set (library_manager.p_music, music_tvs);
-        }
         // Add Music Library View
+        var music_tvs = new TreeViewSetup (ViewWrapper.Hint.MUSIC, "library:main", library_manager.connection);
         var music_view_wrapper = new MusicViewWrapper (music_tvs, library_manager, topDisplay);
         int view_number = view_container.add_view (music_view_wrapper);
         var entry = source_list_view.add_item (view_number, _("Music"), ViewWrapper.Hint.MUSIC, new ThemedIcon ("library-music"));
@@ -793,7 +776,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), new ThemedIcon ("media-eject-symbolic"), null, d);
             } else {
                 debug ("adding device view with %d\n", d.get_library ().get_medias().size);
-                var music_view_wrapper = new DeviceViewWrapper(new TreeViewSetup(ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d, d.get_library ());
+                var tvs = new TreeViewSetup (ViewWrapper.Hint.DEVICE_AUDIO);
+                var music_view_wrapper = new DeviceViewWrapper(tvs, d, d.get_library ());
                 
                 int subview_number = view_container.add_view (music_view_wrapper);
                 entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), new ThemedIcon ("media-eject-symbolic"), null, d);
@@ -833,10 +817,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library.add_playlist(playlist);
     }
 
-    public TreeViewSetup? get_treeviewsetup_from_playlist (Playlist p) {
-        return match_tvs.get (p);
-    }
-
     public void show_playlist_view (Playlist p) {
         if (match_playlists.has_key (p)) {
             source_list_view.selected = match_playlist_entry.get (p);
@@ -845,26 +825,34 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void create_playlist_source_list (StaticPlaylist p, SourceListExpandableItem? into_expandable = null, Library? library = library_manager) {
-        SourceListEntry? entry;
-        int view_number;
-        if (p.read_only == false) {
-            var view = new PlaylistViewWrapper (p, ViewWrapper.Hint.PLAYLIST, null, library);
-            view_number = view_container.add_view (view);
-            entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.PLAYLIST, p.icon, null, into_expandable);
-        } else {
-            var view = new PlaylistViewWrapper (p, ViewWrapper.Hint.READ_ONLY_PLAYLIST, match_tvs.get (p), library);
-            if (p == App.player.queue_playlist) {
-                view.set_no_media_alert_message (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."));
-                App.player.queue_media (p.medias);
-            } else if (p == App.player.history_playlist) {
-                view.set_no_media_alert_message (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."));
-            }
-            view_number = view_container.add_view (view);
-            entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.READ_ONLY_PLAYLIST, p.icon, null, into_expandable);
+        ViewWrapper.Hint hint = ViewWrapper.Hint.PLAYLIST;
+        if (p.read_only == true) {
+            hint = ViewWrapper.Hint.READ_ONLY_PLAYLIST;
+        }
 
-            if (p.show_badge == true) {
-                update_badge_on_playlist_update (p, entry);
-            }
+        TreeViewSetup? tvs = null;
+        if (p is LocalStaticPlaylist) {
+            tvs = new TreeViewSetup (hint, "library:p%lld".printf (p.rowid), library_manager.connection);
+        } else if (p == App.player.queue_playlist) {
+            tvs = new TreeViewSetup (hint, "library:queue", library_manager.connection);
+        } else if (p == App.player.history_playlist) {
+            tvs = new TreeViewSetup (hint, "library:history", library_manager.connection);
+        } else {
+            tvs = new TreeViewSetup (hint);
+        }
+
+        var view = new PlaylistViewWrapper (p, hint, tvs, library);
+        var view_number = view_container.add_view (view);
+        var entry = source_list_view.add_item (view_number, p.name, hint, p.icon, null, into_expandable);
+        if (p.show_badge == true) {
+            update_badge_on_playlist_update (p, entry);
+        }
+
+        if (p == App.player.queue_playlist) {
+            view.set_no_media_alert_message (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."));
+            App.player.queue_media (p.medias);
+        } else if (p == App.player.history_playlist) {
+            view.set_no_media_alert_message (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."));
         }
 
         match_playlist_entry.set (p, entry);
@@ -921,25 +909,32 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void create_smartplaylist_source_list (SmartPlaylist p, SourceListExpandableItem? into_expandable = null, Library? library = library_manager) {
-        SourceListEntry? entry;
-        int view_number;
-        
-        var view = new PlaylistViewWrapper (p, ViewWrapper.Hint.SMART_PLAYLIST, match_tvs.get(p), library_manager);
+        TreeViewSetup? tvs = null;
+        if (p is LocalSmartPlaylist) {
+            tvs = new TreeViewSetup (ViewWrapper.Hint.SMART_PLAYLIST, "library:s%lld".printf (p.rowid), library_manager.connection);
+        } else {
+            tvs = new TreeViewSetup (ViewWrapper.Hint.SMART_PLAYLIST);
+        }
+
+        var view = new PlaylistViewWrapper (p, ViewWrapper.Hint.SMART_PLAYLIST, tvs, library_manager);
         view.button_clicked.connect ((playlist) => {
             if (playlist is SmartPlaylist) {
                 show_smart_playlist_dialog ((SmartPlaylist) playlist);
             }
         });
-        view_number = view_container.add_view (view);
-        entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.SMART_PLAYLIST, p.icon);
+
+        var view_number = view_container.add_view (view);
+        var entry = source_list_view.add_item  (view_number, p.name, ViewWrapper.Hint.SMART_PLAYLIST, p.icon);
         p.updated.connect ((old_name) => {
             if (old_name != null)
                 source_list_view.change_playlist_name (match_playlists.get(p), p.name);
         });
+
         lock (match_playlists) {
             match_playlist_entry.set (p, entry);
             match_playlists.set (p, view_number);
         }
+
         if (newly_created_playlist == true) {
             newly_created_playlist = false;
             show_playlist_view (p);

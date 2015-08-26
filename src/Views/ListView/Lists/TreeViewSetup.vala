@@ -24,37 +24,66 @@ public class Noise.TreeViewSetup : Object {
     private const string VALUE_SEP_STRING = "<v_sep>";
     private const string TYPE_DATA_KEY = "setup-list-column-type";
 
-    public int sort_column_id { get; set; default = 0; }
+    public ListColumn sort_column_id { get; set; default = ListColumn.ARTIST; }
     public Gtk.SortType sort_direction { get; set; default = Gtk.SortType.ASCENDING; }
+    public ViewWrapper.Hint hint { get; set; }
 
-    private ViewWrapper.Hint hint;
+    private Gda.Connection? connection = null;
+    private string? uid = null;
     private Gee.LinkedList<Gtk.TreeViewColumn> columns = new Gee.LinkedList<Gtk.TreeViewColumn> ();
 
-    public TreeViewSetup (int sort_col, Gtk.SortType sort_dir, ViewWrapper.Hint hint) {
-        set_hint (hint);
-        sort_column_id = sort_col;
-        sort_direction = sort_dir;
-    }
-
-    public ViewWrapper.Hint get_hint () {
-        return hint;
-    }
-
-    public void set_hint (ViewWrapper.Hint hint) {
+    public TreeViewSetup (ViewWrapper.Hint hint, string? uid = null, Gda.Connection? connection = null) {
         this.hint = hint;
-    }
+        this.uid = uid;
+        this.connection = connection;
+        switch (hint) {
+            case ViewWrapper.Hint.PLAYLIST:
+            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+            case ViewWrapper.Hint.SMART_PLAYLIST:
+                sort_column_id = ListColumn.NUMBER;
+                break;
+        }
 
-    public string sort_direction_to_string () {
-        return sort_direction == Gtk.SortType.ASCENDING ? ASCENDING_STRING : DESCENDING_STRING;
-    }
+        if (uid != null) {
+            if (query_field ("sort_column_id") == null) {
+                try {
+                    var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
+                    builder.set_table (Database.Columns.TABLE_NAME);
+                    builder.add_field_value_as_gvalue ("unique_id", Database.make_string_value (uid));
+                    connection.statement_execute_non_select (builder.get_statement (), null, null);
+                } catch (Error e) {
+                    warning ("Could not save treeviewsetup: %s", e.message);
+                }
+            } else {
+                var direction = query_field ("sort_direction");
+                if (direction != null && direction.type () != typeof (Gda.Null)) {
+                    sort_direction = (Gtk.SortType) direction.get_int ();
+                }
 
-    public void set_sort_direction_from_string (string dir) {
-        sort_direction = dir == ASCENDING_STRING ? Gtk.SortType.ASCENDING : Gtk.SortType.DESCENDING;
+                var direction_column = query_field ("sort_column_id");
+                if (direction_column != null && direction_column.type () != typeof (Gda.Null)) {
+                    sort_column_id = (ListColumn) direction_column.get_int ();
+                }
+
+                var columns_var = query_field ("columns");
+                if (columns_var != null && columns_var.type () != typeof (Gda.Null)) {
+                    import_columns (columns_var.get_string ());
+                }
+            }
+
+            notify["sort-direction"].connect (() => {
+                set_field ("sort_direction", Database.make_int_value ((int) sort_direction));
+            });
+
+            notify["sort-column-id"].connect (() => {
+                set_field ("sort_column_id", Database.make_int_value ((int) sort_column_id));
+            });
+        }
     }
 
     public Gee.Collection<Gtk.TreeViewColumn> get_columns () {
         if (columns.size < 1 || columns.size != ListColumn.N_COLUMNS) {
-            debug ("Creating a new TreeViewSetup for %s", get_hint ().to_string ());
+            debug ("Creating a new TreeViewSetup for %s", hint.to_string ());
             create_default_columns ();
         }
 
@@ -137,6 +166,18 @@ public class Noise.TreeViewSetup : Object {
         set_column_type (column, type);
         column.title = type.to_string ();
         column.visible = visible;
+        if (type == sort_column_id) {
+            column.set_sort_order (sort_direction);
+        }
+
+        column.notify["visible"].connect (() => {
+            set_field ("columns", Database.make_string_value (columns_to_string ()));
+        });
+
+        column.clicked.connect (() => {
+            sort_direction = column.get_sort_order ();
+            sort_column_id = get_column_type (column);
+        });
         return column;
     }
 
@@ -219,5 +260,38 @@ public class Noise.TreeViewSetup : Object {
 
         // return negative value if a<b;zero if a=b;positive value if a>b
         return (int) (a > b) - (int) (a < b);
+    }
+
+    /*
+     * Database management
+     */
+
+    private GLib.Value? query_field (string field) {
+        try {
+            var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+            sql.select_add_target (Database.Columns.TABLE_NAME, null);
+            sql.add_field_value_id (sql.add_id (field), 0);
+            var id_field = sql.add_id ("unique_id");
+            var id_param = sql.add_expr_value (null, Database.make_string_value (uid));
+            var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
+            sql.set_where (id_cond);
+            var data_model = connection.statement_execute_select (sql.get_statement (), null);
+            return data_model.get_value_at (data_model.get_column_index (field), 0);
+        } catch (Error e) {
+            critical ("Could not query field %s: %s", field, e.message);
+            return null;
+        }
+    }
+
+    private void set_field (string field, GLib.Value value) {
+        try {
+            var col_names = new GLib.SList<string> ();
+            col_names.append (field);
+            var values = new GLib.SList<GLib.Value?> ();
+            values.append (value);
+            connection.update_row_in_table_v (Database.Columns.TABLE_NAME, "unique_id", Database.make_string_value (uid), col_names, values);
+        } catch (Error e) {
+            critical ("Could not set field %s: %s", field, e.message);
+        }
     }
 }

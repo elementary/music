@@ -38,12 +38,12 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
         // Add list view and column browser
         TreeViewSetup music_setup;
-        if (tvs == null)
-            music_setup = new TreeViewSetup (ListColumn.ARTIST,
-                                             Gtk.SortType.ASCENDING,
-                                             ViewWrapper.Hint.MUSIC);
-        else
+        if (tvs == null) {
+            music_setup = new TreeViewSetup (ViewWrapper.Hint.MUSIC);
+        } else {
             music_setup = tvs;
+        }
+
         list_view = new ListView (this, music_setup, true);
         topDisplay.set_list_view(list_view.list_view);
 
