@@ -289,13 +289,13 @@ public class Noise.ListView : ContentView, Gtk.Box {
     public void add_media (Gee.Collection<Media> to_add) {
         list_view.add_media (to_add);
         this.list_view.research_needed = true;
-        refilter (null);
+        refilter ();
     }
 
     public void remove_media (Gee.Collection<Media> to_remove) {
         list_view.remove_media (to_remove);
         this.list_view.research_needed = true;
-        refilter (null);
+        refilter ();
     }
 
     public void set_media (Gee.Collection<Media> media) {
@@ -311,10 +311,10 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public void update_media (Gee.Collection<Media> media) {
-        refilter (null);
+        refilter ();
     }
 
-    public void refilter (string? search) {
+    public void refilter () {
         // We set 'obey_column_browser' to 'false' because otherwise refilter () would
         // filter the visible media based on the browser's current filter, and then re-populate
         // the browser using that same media. We don't want that to happen, because it would
@@ -326,7 +326,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         // We can safely do this because the browser is smart enough to keep its current
         // selection/filter as long as the new media contains properties matching the criteria.
         obey_column_browser = false;
-        list_view.do_search (search);
+        list_view.do_search ();
         obey_column_browser = true;
 
         if (has_column_browser)

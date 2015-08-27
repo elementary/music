@@ -542,31 +542,62 @@ public class Noise.LocalLibrary : Library {
     /******************** Media stuff ******************/
     
     public override void search_medias (string search) {
-        lock (_searched_medias) {
-            _searched_medias.clear ();
-            if (search == "") {
+        if (search == "") {
+            lock (_searched_medias) {
+                _searched_medias.clear ();
                 _searched_medias.add_all (_medias.values);
-                search_finished ();
-                return;
             }
+            search_finished ();
+            return;
+        }
 
-            uint parsed_rating;
-            string parsed_search_string;
-            String.base_search_method (search, out parsed_rating, out parsed_search_string);
-            bool rating_search = parsed_rating > 0;
-            lock (_medias) {
-                foreach (var m in _medias.values) {
-                    if (rating_search) {
-                        if (m.rating == parsed_rating)
-                            _searched_medias.add (m);
-                    } else if (Search.match_string_to_media (m, parsed_search_string)) {
-                        _searched_medias.add (m);
-                    }
+        uint parsed_rating;
+        string parsed_search_string;
+        String.base_search_method (search, out parsed_rating, out parsed_search_string);
+        bool rating_search = parsed_rating > 0;
+        if (parsed_rating > 0) {
+            
+        } else {
+            try {
+                var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+                sql.select_add_target (Database.Media.TABLE_NAME, null);
+                sql.select_add_field ("rowid", null, null);
+                Gda.SqlBuilderId[] ids = null;
+
+                string[] fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment"};
+                foreach (var field in fields) {
+                    var id_field = sql.add_id (field);
+                    var id_value = sql.add_expr_value (null, Database.make_string_value ("%"+search+"%"));
+                    ids += sql.add_cond (Gda.SqlOperatorType.LIKE, id_field, id_value, 0);
                 }
+
+                var id_cond = sql.add_cond_v (Gda.SqlOperatorType.OR, ids);
+                sql.set_where (id_cond);
+
+                var statm = sql.get_statement ();
+                var data_model = connection.statement_execute_select (statm, null);
+                var data_model_iter = data_model.create_iter ();
+                data_model_iter.move_to_row (-1);
+                var rowids = new Gee.TreeSet<int64?> ();
+                while (data_model_iter.move_next ()) {
+                    unowned Value? val = data_model_iter.get_value_at (0);
+                    rowids.add (val.get_int64 ());
+                }
+
+                var meds = medias_from_ids (rowids);
+                lock (_searched_medias) {
+                    _searched_medias.clear ();
+                    _searched_medias.add_all (meds);
+                }
+            } catch (Error e) {
+                critical ("Could not search for %s: %s", search, e.message);
             }
         }
 
-        search_finished ();
+        Idle.add (() => {
+            search_finished ();
+            return GLib.Source.REMOVE;
+        });
     }
 
     public override Gee.Collection<Media> get_search_result () {

@@ -181,10 +181,13 @@ namespace Noise.String {
     public static void base_search_method (string search, out uint parsed_rating,
                                            out string parsed_search_string)
     {
-        parsed_rating = Search.get_rating_from_string (search.strip ());
+        var result = Search.get_rating_from_string (search.strip ());
 
-        if (parsed_rating > 0)
+        if (result != null) {
             parsed_rating = parsed_rating.clamp (1, 5);
+        } else {
+            parsed_rating = 0;
+        }
 
         parsed_search_string = Search.get_valid_search_string (search);
     }

@@ -425,17 +425,15 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             return;
         debug ("UPDATING VISIBLE MEDIA [%s]", hint.to_string ());
 
-        string to_search = App.main_window.searchField.text;
-
         if (has_list_view) {
             lock (list_view) {
-                list_view.refilter (to_search);
+                list_view.refilter ();
             }
         }
 
         if (has_grid_view) {
             lock (grid_view) {
-                grid_view.refilter (to_search);
+                grid_view.refilter ();
             }
         }
 

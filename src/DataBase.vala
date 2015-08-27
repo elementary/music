@@ -258,10 +258,9 @@ namespace Noise.Database {
                 sql_operator_type = Gda.SqlOperatorType.NOT;
                 break;
             case SmartQuery.ComparatorType.CONTAINS:
-                sql_operator_type = Gda.SqlOperatorType.IN;
-                break;
             case SmartQuery.ComparatorType.NOT_CONTAINS:
-                sql_operator_type = Gda.SqlOperatorType.NOTIN;
+                value = make_string_value ("%" + value.get_string () + "%");
+                sql_operator_type = Gda.SqlOperatorType.LIKE;
                 break;
             case SmartQuery.ComparatorType.IS_EXACTLY:
                 sql_operator_type = Gda.SqlOperatorType.EQ;
@@ -280,12 +279,17 @@ namespace Noise.Database {
                 break;
             case SmartQuery.ComparatorType.IS:
             default:
-                sql_operator_type = Gda.SqlOperatorType.EQ;
+                sql_operator_type = Gda.SqlOperatorType.LIKE;
                 break;
         }
 
         var id_field = builder.add_id (field);
         var id_value = builder.add_expr_value (null, value);
-        return builder.add_cond (sql_operator_type, id_field, id_value, 0);
+        if (sq.comparator == SmartQuery.ComparatorType.NOT_CONTAINS) {
+            var cond = builder.add_cond (sql_operator_type, id_field, id_value, 0);;
+            return builder.add_cond (Gda.SqlOperatorType.NOT, cond, 0, 0);
+        } else {
+            return builder.add_cond (sql_operator_type, id_field, id_value, 0);
+        }
     }
 }

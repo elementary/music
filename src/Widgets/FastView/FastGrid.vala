@@ -37,7 +37,7 @@ public class Noise.FastGrid : Widgets.TileView {
     public delegate int SortCompareFunc (GLib.Object a, GLib.Object b);
     private unowned SortCompareFunc compare_func;
 
-    public delegate void ViewSearchFunc (string search, Gee.HashMap<int, Object> table, Gee.HashMap<int, Object> showing);
+    public delegate void ViewSearchFunc (Gee.HashMap<int, Object> showing);
     private unowned ViewSearchFunc search_func;
     public bool research_needed = false;
 
@@ -88,7 +88,7 @@ public class Noise.FastGrid : Widgets.TileView {
         if (do_resort)
             resort (); // this also calls search
         else
-            do_search (null);
+            do_search ();
     }
 
     // If a GLib.Object is in objects but not in table, will just ignore
@@ -101,7 +101,7 @@ public class Noise.FastGrid : Widgets.TileView {
 
         table.unset_all (to_remove);
 
-        do_search (null);
+        do_search ();
     }
 
     // Does NOT check for duplicates
@@ -114,7 +114,7 @@ public class Noise.FastGrid : Widgets.TileView {
         resort ();
     }
     
-    public void do_search (string? search) {
+    public void do_search () {
         if (search_func == null || research_needed == false)
             return;
 
@@ -122,7 +122,7 @@ public class Noise.FastGrid : Widgets.TileView {
         var old_size = showing.size;
 
         showing.clear ();
-        search_func (search ?? "", table, showing);
+        search_func (showing);
 
         if (showing.size == old_size) {
             fm.set_table (showing);
@@ -166,7 +166,7 @@ public class Noise.FastGrid : Widgets.TileView {
     
     public void resort () {
         quicksort (0, table.size - 1);
-        do_search (null);
+        do_search ();
     }
     
     void swap (int a, int b) {

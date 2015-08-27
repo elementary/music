@@ -46,7 +46,7 @@ public interface Noise.ContentView : Gtk.Widget {
      *
      * @param search Search string; pass null to use the previous search string.
      */
-    public abstract void refilter (string? search);
+    public abstract void refilter ();
 
     public abstract void set_media (Gee.Collection<Media> new_media);
     public abstract void add_media (Gee.Collection<Media> to_add);

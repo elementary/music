@@ -541,16 +541,17 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         searchField.activate.connect (searchFieldActivate);
         searchField.search_changed.connect (() => {if (searchField.text_length != 1) libraries_manager.search_for_string (searchField.get_text ());});
         searchField.text = main_settings.search_string;
-        libraries_manager.search_for_string (main_settings.search_string);
 
         debug ("DONE WITH USER INTERFACE");
 
         int64 last_playing_id = main_settings.last_media_playing;
-        if (last_playing_id > 0) {
+        if (last_playing_id >= 0) {
             var last_playing_media = library_manager.media_from_id (last_playing_id);
-            if (last_playing_media != null && last_playing_media.file.query_exists ())
+            if (last_playing_media != null && last_playing_media.file.query_exists ()) {
                 App.player.playMedia (last_playing_media, true);
+            }
         }
+        libraries_manager.search_for_string (Settings.Main.get_default ().search_string);
     }
 
     /**

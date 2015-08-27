@@ -121,6 +121,9 @@ namespace Noise.Search {
                 return null;
         }
 
+        if (rating == 0)
+            return null;
+
         return rating;
     }
 
