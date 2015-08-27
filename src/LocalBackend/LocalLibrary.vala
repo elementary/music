@@ -555,10 +555,33 @@ public class Noise.LocalLibrary : Library {
         string parsed_search_string;
         String.base_search_method (search, out parsed_rating, out parsed_search_string);
         bool rating_search = parsed_rating > 0;
-        if (parsed_rating > 0) {
-            
-        } else {
-            try {
+        // If we search for a special rating, don't search for something else.
+        try {
+            if (parsed_rating > 0) {
+                var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+                sql.select_add_target (Database.Media.TABLE_NAME, null);
+                sql.select_add_field ("rowid", null, null);
+                var id_field = sql.add_id ("rating");
+                var id_value = sql.add_expr_value (null, Database.make_uint_value (parsed_rating));
+                var id_cond = sql.add_cond (Gda.SqlOperatorType.GEQ, id_field, id_value, 0);
+                sql.set_where (id_cond);
+
+                var statm = sql.get_statement ();
+                var data_model = connection.statement_execute_select (statm, null);
+                var data_model_iter = data_model.create_iter ();
+                data_model_iter.move_to_row (-1);
+                var rowids = new Gee.TreeSet<int64?> ();
+                while (data_model_iter.move_next ()) {
+                    unowned Value? val = data_model_iter.get_value_at (0);
+                    rowids.add (val.get_int64 ());
+                }
+
+                var meds = medias_from_ids (rowids);
+                lock (_searched_medias) {
+                    _searched_medias.clear ();
+                    _searched_medias.add_all (meds);
+                }
+            } else {
                 var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
                 sql.select_add_target (Database.Media.TABLE_NAME, null);
                 sql.select_add_field ("rowid", null, null);
@@ -589,9 +612,9 @@ public class Noise.LocalLibrary : Library {
                     _searched_medias.clear ();
                     _searched_medias.add_all (meds);
                 }
-            } catch (Error e) {
-                critical ("Could not search for %s: %s", search, e.message);
             }
+        } catch (Error e) {
+            critical ("Could not search for %s: %s", search, e.message);
         }
 
         Idle.add (() => {
