@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2014-12-06 18:31+0000\n"
-"Last-Translator: George Chalkitis <chalkitisge@gmail.com>\n"
+"PO-Revision-Date: 2015-08-31 17:32+0000\n"
+"Last-Translator: iakovos athanasiadhs <liam21iakovos@gmail.com>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
-"X-Generator: Launchpad (build 17572)\n"
+"X-Launchpad-Export-Date: 2015-09-01 05:31+0000\n"
+"X-Generator: Launchpad (build 17690)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -251,11 +251,11 @@ msgstr ""
 
 #: ../src/Noise.vala:41
 msgid "About Noise"
-msgstr ""
+msgstr "Σχετικά με το Noise"
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr ""
+msgstr "Σχετικά με το Music"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -846,7 +846,7 @@ msgstr "Προσθέστε μουσική στη βιβλιοθήκη σας."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Εισαγωγή μουσικής από μια πηγή στη βιβλιοθήκη σας."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Change Music Folder"
@@ -921,7 +921,7 @@ msgstr[1] "%u άλμπουμ"
 
 #: ../src/Views/GridView/PopupListView.vala:61
 msgid "Set new album cover"
-msgstr ""
+msgstr "Ορίστε νέο εξώφυλλο για το άλμπουμ"
 
 #: ../src/Views/GridView/PopupListView.vala:161
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -1416,7 +1416,7 @@ msgstr "Προσθήκη αρχείων στη βιβλιοθήκη..."
 
 #: ../src/LocalLibrary.vala:252
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "Όλα τα αρχεία μουσικής βρίσκονται ήδη στη βιβλιοθήκη σας"
 
 #: ../src/LocalLibrary.vala:252
 msgid "No files were imported."
