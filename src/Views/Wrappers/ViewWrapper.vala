@@ -109,7 +109,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public int index { get { return App.main_window.view_container.get_view_index (this); } }
 
-    public int relative_id { get; protected set; default = -1; }
+    public Playlist? playlist = null;
 
     public int media_count {
         get { return (int) list_view.n_media; }
@@ -275,7 +275,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("play_first_media [%s]", hint.to_string());
 
-        list_view.set_as_current_list (1, true);
+        list_view.set_as_current_list (1);
         var m = App.player.mediaFromCurrentIndex (0);
 
         if (m == null)
@@ -425,17 +425,15 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             return;
         debug ("UPDATING VISIBLE MEDIA [%s]", hint.to_string ());
 
-        string to_search = App.main_window.searchField.text;
-
         if (has_list_view) {
             lock (list_view) {
-                list_view.refilter (to_search);
+                list_view.refilter ();
             }
         }
 
         if (has_grid_view) {
             lock (grid_view) {
-                grid_view.refilter (to_search);
+                grid_view.refilter ();
             }
         }
 

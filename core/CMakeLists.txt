@@ -29,7 +29,6 @@ set (CORE_SOURCE
   Devices/Device.vala
   Devices/NetworkDevice.vala
   Devices/DeviceManager.vala
-  Devices/DevicePreferences.vala
   Playlists/Playlist.vala
   Playlists/StaticPlaylist.vala
   Playlists/SmartPlaylist.vala

@@ -269,7 +269,7 @@ public class Noise.TopDisplay : Gtk.Stack {
         }
     }
 
-    private void media_updated (Gee.Collection<int> ids) {
+    private void media_updated (Gee.Collection<int64?> ids) {
         if (App.player.current_media != null && ids.contains (App.player.current_media.rowid)) {
             update_current_media ();
         }

@@ -86,7 +86,7 @@ namespace Noise.Plugins {
                     var core = LastFM.Core.get_default ();
                     core.initialize (client_id, client_secret, token);
                     App.main_window.source_list_added.connect (source_list_added);
-                    libraries_manager.local_library.add_playlist (core.get_similar_playlist ());
+                    libraries_manager.add_headless_playlist (core.get_similar_playlist ());
                     similar_media_widget = new Noise.SimilarMediasWidget (core);
                     added_view = true;
                 } catch (Error e) {

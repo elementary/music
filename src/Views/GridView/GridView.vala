@@ -108,8 +108,8 @@ public class Noise.GridView : ContentView, GridLayout {
         return (Gee.Collection<Album>)get_objects ();
     }
 
-    public void refilter (string? search) {
-        do_search (search);
+    public void refilter () {
+        do_search ();
     }
 
     public string get_statusbar_text () {
@@ -339,42 +339,16 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
 
-    protected override void search_func (string search, Gee.HashMap<int, Object> table, Gee.HashMap<int, Object> showing) {
+    protected override void search_func (Gee.HashMap<int, Object> showing) {
         message_visible = false;
         var result = parent_view_wrapper.library.get_search_result ();
-        int show_index = 0;
+        var albums = new Gee.TreeSet<Album> ();
+        foreach (var m in result) {
+            albums.add (m.album_info);
+        }
 
-        if (result.size != parent_view_wrapper.library.get_medias ().size) {
-            foreach (var o in table) {
-                var album = o as Album;
-
-                // Search in the album's media. After the first match found, we break
-                // the loop because we know the album has (at least) one of the items
-                // we want. Real search is done later by the popup list after an album
-                // is selected.
-                foreach (var m in album.get_media ()) {
-                    if (m != null) {
-                        if (result.contains (m)) {
-                            showing.set (show_index++, album);
-                            break;
-                        }
-                    }
-                }
-            }
-        } else {
-            foreach (var o in table) {
-                var album = o as Album;
-                // Search in the album's media. After the first match found, we break
-                // the loop because we know the album has (at least) one of the items
-                // we want. Real search is done later by the popup list after an album
-                // is selected.
-                foreach (var m in album.get_media ()) {
-                    if (m != null) {
-                        showing.set (show_index++, album);
-                        break;
-                    }
-                }
-            }
+        foreach (var album in albums) {
+            showing.set (showing.size, album);
         }
 
         // If nothing will be shown, display the "no albums found" message.

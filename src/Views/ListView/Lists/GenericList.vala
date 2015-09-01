@@ -21,6 +21,16 @@ public abstract class Noise.GenericList : FastView {
 
     public signal void import_requested (Gee.Collection<Media> to_import);
 
+    public Playlist? playlist { get; set; default = null; }
+    public ViewWrapper.Hint hint {
+        get {
+            return tvs.hint;
+        }
+        set {
+            tvs.hint = value;
+        }
+    }
+
     //for header column chooser
     protected Gtk.Menu column_chooser_menu;
     private Gtk.MenuItem autosize_menu_item;
@@ -28,7 +38,6 @@ public abstract class Noise.GenericList : FastView {
     protected ViewWrapper parent_wrapper;
 
     protected TreeViewSetup tvs;
-    protected int relative_id;
     protected bool is_current_list;
 
     protected bool dragging;
@@ -54,7 +63,7 @@ public abstract class Noise.GenericList : FastView {
         enable_search = false; // we don't want the built-in search
 
         set_headers_clickable (true);
-        set_headers_visible (tvs.get_hint () != ViewWrapper.Hint.ALBUM_LIST);
+        set_headers_visible (hint != ViewWrapper.Hint.ALBUM_LIST);
         set_fixed_height_mode (true);
         set_rules_hint (true);
         set_reorderable (false);
@@ -93,14 +102,14 @@ public abstract class Noise.GenericList : FastView {
 
     public void set_parent_wrapper (ViewWrapper parent) {
         this.parent_wrapper = parent;
-        this.relative_id = parent_wrapper.relative_id;
+        this.playlist = parent_wrapper.playlist;
     }
 
     protected void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {
         if (type == ListColumn.TITLE || type == ListColumn.ICON)
             return;
 
-        if (get_hint () == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER)
+        if (hint == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER)
             return;
 
         if (column_chooser_menu == null) {
@@ -172,12 +181,6 @@ public abstract class Noise.GenericList : FastView {
 
     public abstract void update_sensitivities ();
 
-    /** TreeViewColumn header functions. Has to do with sorting and
-     * remembering column widths/sort column/sort direction between
-     * sessions.
-    **/
-    protected abstract void updateTreeViewSetup ();
-
     protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column,
                                           Gtk.CellRendererText renderer, string[] strings, int padding)
     {
@@ -231,18 +234,12 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void on_rows_reordered () {
-        updateTreeViewSetup ();
         scroll_to_current_media (false);
         if (is_current_list)
             set_as_current_list ();
     }
 
     public override void row_activated (Gtk.TreePath path, Gtk.TreeViewColumn column) {
-        /*if (tvs.get_hint () == ViewWrapper.Hint.DEVICE_AUDIO || tvs.get_hint () == ViewWrapper.Hint.DEVICE_PODCAST) {
-            lw.doAlert (_("Playing not Supported"), _("Due to issues with playing songs on certain iOS devices, playing songs off devices is currently not supported."));
-            return;
-        }*/
-
         var m = get_media_from_index (int.parse (path.to_string ()));
 
         // We need to first set this as the current list
@@ -285,7 +282,18 @@ public abstract class Noise.GenericList : FastView {
             to_set = App.player.current_media;
 
         is_current_list = true;
-        Settings.Main.get_default ().last_playlist_playing = relative_id;
+        var main_settings = Settings.Main.get_default ();
+        if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
+            main_settings.last_playlist_playing = "";
+        } else if (playlist is SmartPlaylist) {
+            main_settings.last_playlist_playing = "s%lld".printf (playlist.rowid);
+        } else {
+            if (((StaticPlaylist)playlist).read_only == false) {
+                main_settings.last_playlist_playing = "p%lld".printf (playlist.rowid);
+            } else {
+                main_settings.last_playlist_playing = "";
+            }
+        }
 
         App.player.clearCurrent ();
         var vis_table = get_visible_table ();
@@ -382,21 +390,6 @@ public abstract class Noise.GenericList : FastView {
     /***************************************
      * Simple setters and getters
      * *************************************/
-    public void set_hint (ViewWrapper.Hint hint) {
-        tvs.set_hint (hint);
-    }
-
-    public ViewWrapper.Hint get_hint () {
-        return tvs.get_hint ();
-    }
-
-    public void set_relative_id (int id) {
-        this.relative_id = id;
-    }
-
-    public int get_relative_id () {
-        return relative_id;
-    }
 
     public bool get_is_current_list () {
         return is_current_list;

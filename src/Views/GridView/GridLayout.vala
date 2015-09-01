@@ -40,7 +40,7 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
     protected abstract void item_activated (Object? object);
     protected abstract Value? val_func (int row, int column, Object o);
     protected abstract int compare_func (Object a, Object b);
-    protected abstract void search_func (string search, Gee.HashMap<int, Object> table, Gee.HashMap<int, Object> showing);
+    protected abstract void search_func (Gee.HashMap<int, Object> showing);
     protected abstract Gee.Collection<Media> get_selected_media (Object obj);
     protected abstract Gdk.Pixbuf? get_pixbuf (Object o);
 
@@ -52,8 +52,8 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
         icon_view.add_objects (objects);
     }
 
-    protected void do_search (string? search) {
-        icon_view.do_search (search);
+    protected void do_search () {
+        icon_view.do_search ();
     }
 
     protected void remove_objects (Gee.Collection<Object> objects) {

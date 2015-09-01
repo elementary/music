@@ -251,11 +251,11 @@ public class Noise.ListView : ContentView, Gtk.Box {
      */
 
     public ViewWrapper.Hint get_hint () {
-        return list_view.get_hint ();
+        return list_view.hint;
     }
 
-    public int get_relative_id () {
-        return list_view.get_relative_id ();
+    public Playlist get_playlist () {
+        return list_view.playlist;
     }
 
     public Gee.Collection<Media> get_media () {
@@ -278,8 +278,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         }
     }
 
-    // TODO: Since is_initial is deprecated and not used, update the external code to stop using it
-    public void set_as_current_list (int media_id, bool is_initial = false) {
+    public void set_as_current_list (int media_id) {
         list_view.set_as_current_list (view_wrapper.library.media_from_id (media_id));
     }
 
@@ -290,13 +289,13 @@ public class Noise.ListView : ContentView, Gtk.Box {
     public void add_media (Gee.Collection<Media> to_add) {
         list_view.add_media (to_add);
         this.list_view.research_needed = true;
-        refilter (null);
+        refilter ();
     }
 
     public void remove_media (Gee.Collection<Media> to_remove) {
         list_view.remove_media (to_remove);
         this.list_view.research_needed = true;
-        refilter (null);
+        refilter ();
     }
 
     public void set_media (Gee.Collection<Media> media) {
@@ -312,10 +311,10 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public void update_media (Gee.Collection<Media> media) {
-        refilter (null);
+        refilter ();
     }
 
-    public void refilter (string? search) {
+    public void refilter () {
         // We set 'obey_column_browser' to 'false' because otherwise refilter () would
         // filter the visible media based on the browser's current filter, and then re-populate
         // the browser using that same media. We don't want that to happen, because it would
@@ -327,7 +326,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         // We can safely do this because the browser is smart enough to keep its current
         // selection/filter as long as the new media contains properties matching the criteria.
         obey_column_browser = false;
-        list_view.do_search (search);
+        list_view.do_search ();
         obey_column_browser = true;
 
         if (has_column_browser)

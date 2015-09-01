@@ -51,12 +51,12 @@
       <summary>List of desktop shells for which the player's window will be minimized instead of hidden when the close-while-playing option is set to false.</summary>
       <description>For the Pantheon and GNOME desktop shells, the player's window is simply minimized due to the lack of a minimize button; the window is hidden for all the rest of desktop shells, unless they are added to this key. In fact, any dock-based shell should be part of this key, except those that lack a sound menu or in which the dock space is often limited (e.g. Unity). See the description of close-while-playing for more information.</description>
     </key>
-    <key type="i" name="last-playlist-playing">
-      <default>-1</default>
-      <summary>ID of last playlist playing</summary>
-      <description>ID of last playlist playing</description>
+    <key type="s" name="last-playlist-playing">
+      <default>''</default>
+      <summary>'s' for smart playlist or 'p' for static playlist + ID of last playlist playing</summary>
+      <description>'s' for smart playlist or 'p' for static playlist + ID of last playlist playing</description>
     </key>
-    <key type="i" name="last-media-playing">
+    <key type="x" name="last-media-playing">
       <default>0</default>
       <summary>ID of last media playing</summary>
       <description>ID of last media playing</description>

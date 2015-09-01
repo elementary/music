@@ -35,14 +35,14 @@ public class Noise.SmartPlaylist : Playlist {
         ANY = false
     }
 
-    public ConditionalType conditional { get; set; default = ConditionalType.ALL; }
+    public virtual ConditionalType conditional { get; set; default = ConditionalType.ALL; }
     public Gee.TreeSet<SmartQuery> queries;
     public int query_count { get; set; default = 0; }
 
-    public bool limit { get; set; default = false; }
-    public int limit_amount { get; set; default = 50; }
+    public virtual bool limit { get; set; default = false; }
+    public virtual uint limit_amount { get; set; default = 50; }
 
-    private Noise.Library library;
+    protected Noise.Library library;
 
     /*
      * A SmartPlaylist should be linked to only one library.
@@ -142,112 +142,112 @@ public class Noise.SmartPlaylist : Playlist {
         switch (q.field) {
             case Noise.SmartQuery.FieldType.ALBUM :
                 if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.down() == s.album.down();
+                    return q.value.get_string ().down () == s.album.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.down() in s.album.down());
+                    return (q.value.get_string ().down() in s.album.down());
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.down() in s.album.down());
+                    return !(q.value.get_string ().down() in s.album.down());
                 break;
             case Noise.SmartQuery.FieldType.ARTIST:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.down() == s.artist.down();
+                    return q.value.get_string ().down() == s.artist.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.down() in s.artist.down());
+                    return (q.value.get_string ().down() in s.artist.down());
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.down() in s.artist.down());
+                    return !(q.value.get_string ().down() in s.artist.down());
                 break;
             case Noise.SmartQuery.FieldType.COMPOSER:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.down() == s.composer.down();
+                    return q.value.get_string ().down() == s.composer.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.down() in s.composer.down());
+                    return (q.value.get_string ().down() in s.composer.down());
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.down() in s.composer.down());
+                    return !(q.value.get_string ().down() in s.composer.down());
                 break;
             case Noise.SmartQuery.FieldType.COMMENT:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.down() == s.comment.down();
+                    return q.value.get_string ().down() == s.comment.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.down() in s.comment.down());
+                    return (q.value.get_string ().down() in s.comment.down());
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.down() in s.comment.down());
+                    return !(q.value.get_string ().down() in s.comment.down());
                 break;
             case Noise.SmartQuery.FieldType.GENRE:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.down() == s.genre.down();
+                    return q.value.get_string ().down() == s.genre.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.down() in s.genre.down());
+                    return (q.value.get_string ().down() in s.genre.down());
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.down() in s.genre.down());
+                    return !(q.value.get_string ().down() in s.genre.down());
                 break;
             case Noise.SmartQuery.FieldType.GROUPING:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.down() == s.grouping.down();
+                    return q.value.get_string ().down() == s.grouping.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.down() in s.grouping.down());
+                    return (q.value.get_string ().down() in s.grouping.down());
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.down() in s.grouping.down());
+                    return !(q.value.get_string ().down() in s.grouping.down());
                 break;
             case Noise.SmartQuery.FieldType.TITLE:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.down() == s.title.down();
+                    return q.value.get_string ().down() == s.title.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.down() in s.title.down());
+                    return (q.value.get_string ().down() in s.title.down());
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.down() in s.title.down());
+                    return !(q.value.get_string ().down() in s.title.down());
                 break;
             case Noise.SmartQuery.FieldType.BITRATE:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return int.parse(q.value) == s.bitrate;
+                    return q.value.get_int () == s.bitrate;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
-                    return (s.bitrate <= int.parse(q.value));
+                    return (s.bitrate <= q.value.get_int ());
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
-                    return (s.bitrate >= int.parse(q.value));
+                    return (s.bitrate >= q.value.get_int ());
                 break;
             case Noise.SmartQuery.FieldType.PLAYCOUNT:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return int.parse(q.value) == s.play_count;
+                    return q.value.get_int () == s.play_count;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
-                    return (s.play_count <= int.parse(q.value));
+                    return (s.play_count <= q.value.get_int ());
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
-                    return (s.play_count >= int.parse(q.value));
+                    return (s.play_count >= q.value.get_int ());
                 break;
             case Noise.SmartQuery.FieldType.SKIPCOUNT:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return int.parse(q.value) == s.skip_count;
+                    return q.value.get_int () == s.skip_count;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
-                    return (s.skip_count <= int.parse(q.value));
+                    return (s.skip_count <= q.value.get_int ());
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
-                    return (s.skip_count >= int.parse(q.value));
+                    return (s.skip_count >= q.value.get_int ());
                 break;
             case Noise.SmartQuery.FieldType.YEAR:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return int.parse (q.value) == s.year;
+                    return q.value.get_int () == s.year;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
-                    return (s.year <= int.parse (q.value));
+                    return (s.year <= q.value.get_int ());
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
-                    return (s.year >= int.parse (q.value));
+                    return (s.year >= q.value.get_int ());
                 break;
             case Noise.SmartQuery.FieldType.LENGTH:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return int.parse (q.value) == s.length;
+                    return q.value.get_int () == s.length;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
-                    return (s.length <= int.parse (q.value));
+                    return (s.length <= q.value.get_int ());
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
-                    return (s.length >= int.parse (q.value));
+                    return (s.length >= q.value.get_int ());
                 break;
             case Noise.SmartQuery.FieldType.RATING:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return int.parse(q.value) == s.rating;
+                    return q.value.get_int () == s.rating;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
-                    return (s.rating <= int.parse (q.value));
+                    return (s.rating <= q.value.get_int ());
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
-                    return (s.rating >= int.parse (q.value));
+                    return (s.rating >= q.value.get_int ());
                 break;
             case Noise.SmartQuery.FieldType.DATE_ADDED:
                 var now = new DateTime.now_local ();
                 var played = new DateTime.from_unix_local (s.date_added);
-                played = played.add_days (int.parse (q.value));
+                played = played.add_days (q.value.get_int ());
             
                 if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) {
                     return (now.get_day_of_year () == played.get_day_of_year () && now.get_year () == played.get_year ());
@@ -257,29 +257,13 @@ public class Noise.SmartPlaylist : Playlist {
                     return now.compare (played) > 0;
                 }
                 break;
-            case Noise.SmartQuery.FieldType.DATE_RELEASED:
-/*
-                var now = new DateTime.now_local();
-                var released = new DateTime.from_unix_local(s.podcast_date);
-                released = released.add_days(int.parse(q.value));
-            
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
-                    return (now.get_day_of_year() == released.get_day_of_year() && now.get_year() == released.get_year());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_WITHIN) {
-                    return released.compare(now) > 0;
-                }
-                else if(q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
-                    return now.compare(released) > 0;
-                }
-*/
-                break;
             case Noise.SmartQuery.FieldType.LAST_PLAYED:
                 if(s.last_played == 0)
                     return false;
 
                 var now = new DateTime.now_local();
                 var played = new DateTime.from_unix_local (s.last_played);
-                played = played.add_days (int.parse (q.value));
+                played = played.add_days (q.value.get_int ());
 
                 if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) {
                     return (now.get_day_of_year () == played.get_day_of_year () && now.get_year () == played.get_year ());

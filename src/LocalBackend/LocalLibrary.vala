@@ -36,16 +36,13 @@
  * the visual representation of this class
  */
 public class Noise.LocalLibrary : Library {
-    public DataBaseUpdater dbu;
-
     private FileOperator fo;
     private GStreamerTagger tagger;
 
     private Gee.TreeSet<StaticPlaylist> _playlists;
     private Gee.TreeSet<SmartPlaylist> _smart_playlists;
-    private Gee.TreeSet<Media> _medias;
+    private Gee.HashMap<int64?, Media> _medias;
     private Gee.TreeSet<Media> _searched_medias;
-    private int playlists_rowid = 0;
 
     public StaticPlaylist p_music;
 
@@ -54,64 +51,109 @@ public class Noise.LocalLibrary : Library {
     }
 
     private Gee.TreeSet<Media> open_media_list;
-
     private bool _doing_file_operations = false;
+
+    public Gda.Connection connection { public get; private set; }
+    private Gda.SqlParser parser;
+
+    private static const string DB_FILE = "database_0_3_1";
 
     public LocalLibrary () {
         libraries_manager.local_library = this;
         _playlists = new Gee.TreeSet<StaticPlaylist> ();
         _smart_playlists = new Gee.TreeSet<SmartPlaylist> ();
-        _medias = new Gee.TreeSet<Media> ();
+        _medias = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
+                                                  (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
         _searched_medias = new Gee.TreeSet<Media> ();
         tagger = new GStreamerTagger();
         open_media_list = new Gee.TreeSet<Media> ();
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;
 
-        this.dbu = new DataBaseUpdater ();
         this.fo = new FileOperator ();
     }
 
     public override void initialize_library () {
-        var dbm = DataBaseManager.get_default ();
+        init_database ();
         fo.connect_to_manager ();
+
         // Load all media from database
-        lock (_medias) {
-            foreach (var m in dbm.load_media ()) {
-                _medias.add (m);
-            }
+        var media_ids = get_rowids_from_table (Database.Media.TABLE_NAME);
+        foreach (var media_id in media_ids) {
+            var m = new LocalMedia (media_id, connection);
+            _medias.set (m.rowid, m);
         }
 
-        // Load smart playlists from database
-        lock (_smart_playlists) {
-            foreach (var p in dbm.load_smart_playlists ()) {
-                _smart_playlists.add (p);
-                p.rowid = playlists_rowid;
-                playlists_rowid++;
-                p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
-            }
+        // Load all smart playlists from database
+        var sp_ids = get_rowids_from_table (Database.SmartPlaylists.TABLE_NAME);
+        foreach (var sp_id in sp_ids) {
+            var sp = new LocalSmartPlaylist (sp_id, connection);
+            _smart_playlists.add (sp);
         }
 
         // Load all static playlists from database
-
-        lock (_playlists) {
-            foreach (var p in dbm.load_playlists ()) {
-                if (p.name == C_("Name of the playlist", "Queue") || p.name == _("History")) {
-                    continue;
-                } else if (p.name != MUSIC_PLAYLIST) {
-                    _playlists.add (p);
-                    p.rowid = playlists_rowid;
-                    playlists_rowid++;
-                    p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
-                    continue;
-                }
-            }
+        var p_ids = get_rowids_from_table (Database.Playlists.TABLE_NAME);
+        foreach (var p_id in p_ids) {
+            var p = new LocalStaticPlaylist (p_id, connection);
+            _playlists.add (p);
         }
 
-        DeviceManager.get_default ().set_device_preferences (dbm.load_devices ());
         load_media_art_cache.begin ();
     }
 
+    /*
+     * Database interaction
+     */
+    private void init_database () {
+        var database_dir = FileUtils.get_data_directory ();
+        try {
+            database_dir.make_directory_with_parents (null);
+        } catch (GLib.Error err) {
+            if (err is IOError.EXISTS == false)
+                error ("Could not create data directory: %s", err.message);
+        }
+
+        var db_file = database_dir.get_child (DB_FILE + ".db");
+        bool new_db = !db_file.query_exists ();
+        if (new_db) {
+            try {
+                db_file.create (FileCreateFlags.PRIVATE);
+            } catch (Error e) {
+                critical ("Error: %s", e.message);
+            }
+        }
+
+        try {
+            connection = new Gda.Connection.from_string ("SQLite", "DB_DIR=%s;DB_NAME=%s".printf (database_dir.get_path (), DB_FILE), null, Gda.ConnectionOptions.NONE);
+            connection.open ();
+        } catch (Error e) {
+            error (e.message);
+        }
+
+        parser = connection.create_parser ();
+
+        if (new_db) {
+            load_table (Database.Tables.PLAYLISTS);
+            load_table (Database.Tables.SMART_PLAYLISTS);
+            load_table (Database.Tables.COLUMNS);
+            load_table (Database.Tables.MEDIA);
+            load_table (Database.Tables.DEVICES);
+            LocalSmartPlaylist.add_defaults (connection);
+        }
+    }
+
+    private void load_table (string table) {
+        try {
+            var statement = parser.parse_string (table, null);
+            connection.statement_execute_non_select (statement, null, null);
+        } catch (Error e) {
+            critical (e.message);
+        }
+    }
+
+    /*
+     * Media art utilities.
+     */
     private async void load_media_art_cache () {
         lock (_medias) {
             yield CoverartCache.instance.load_for_media_async (get_medias ());
@@ -135,7 +177,7 @@ public class Noise.LocalLibrary : Library {
     }
     
     public void remove_all_static_playlists () {
-        var list = new Gee.TreeSet<int> ();
+        var list = new Gee.TreeSet<int64?> ();
         lock (_playlists) {
             foreach (var p in _playlists) {
                 if (p.read_only == false)
@@ -158,9 +200,8 @@ public class Noise.LocalLibrary : Library {
 
             clear_medias ();
 
-            App.player.unqueue_media (_medias);
+            App.player.unqueue_media (_medias.values);
 
-            App.player.reset_already_played ();
             // FIXME: these are library window's internals. Shouldn't be here
             App.main_window.update_sensitivities.begin ();
             App.player.stop_playback ();
@@ -339,7 +380,7 @@ public class Noise.LocalLibrary : Library {
         return result;
     }
 
-    public override StaticPlaylist? playlist_from_id (int id) {
+    public override StaticPlaylist? playlist_from_id (int64 id) {
         lock (_playlists) {
             foreach (var p in get_playlists ()) {
                 if (p.rowid == id) {
@@ -367,32 +408,52 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void add_playlist (StaticPlaylist p) {
-        lock (_playlists) {
-            _playlists.add (p);
+        string rv = "";
+        foreach (var m in p.medias) {
+            if (rv == "") {
+                rv = "%lld".printf (m.rowid);
+            } else {
+                rv += ";%lld".printf (m.rowid);
+            }
         }
-        p.rowid = playlists_rowid;
-        playlists_rowid++;
-        p.updated.connect ((old_name) => {playlist_updated (p, old_name);});
-        DataBaseManager.get_default ().add_playlist (p);
-        playlist_added (p);
-        debug ("playlist %s added",p.name);
+
+        try {
+            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
+            builder.set_table (Database.Playlists.TABLE_NAME);
+            builder.add_field_value_as_gvalue ("name", Database.make_string_value (p.name));
+            builder.add_field_value_as_gvalue ("media", Database.make_string_value (rv));
+            var statement = builder.get_statement ();
+            Gda.Set last_insert_row;
+            connection.statement_execute_non_select (statement, null, out last_insert_row);
+            var local_p = new LocalStaticPlaylist (last_insert_row.get_holder_value (Database.Playlists.ROWID).get_int64 (), connection);
+
+            lock (_playlists) {
+                _playlists.add (local_p);
+            }
+
+            playlist_added (local_p);
+            debug ("playlist %s added", local_p.name);
+        } catch (Error e) {
+            critical (e.message);
+        }
     }
 
-    public override void remove_playlist (int id) {
+    public override void remove_playlist (int64 id) {
         lock (_playlists) {
             foreach (var playlist in get_playlists ()) {
                 if (playlist.rowid == id) {
                     _playlists.remove (playlist);
-                    dbu.removeItem.begin (playlist);
                     playlist_removed (playlist);
                     break;
                 }
             }
-        }
-    }
 
-    public void playlist_updated (StaticPlaylist p, string? old_name = null) {
-        dbu.save_playlist (p, old_name);
+            try {
+                connection.delete_row_from_table (Database.Playlists.TABLE_NAME, "rowid", Database.make_int64_value (id));
+            } catch (Error e) {
+                critical (e.message);
+            }
+        }
     }
 
     /*
@@ -409,7 +470,7 @@ public class Noise.LocalLibrary : Library {
         return result;
     }
 
-    public override SmartPlaylist? smart_playlist_from_id (int id) {
+    public override SmartPlaylist? smart_playlist_from_id (int64 id) {
         lock (_smart_playlists) {
             foreach (var p in get_smart_playlists ()) {
                 if (p.rowid == id) {
@@ -433,69 +494,133 @@ public class Noise.LocalLibrary : Library {
         return null;
     }
 
-    public async void save_smart_playlists () {
-        lock (_smart_playlists) {
-            DataBaseManager.get_default ().save_smart_playlists (get_smart_playlists ());
-        }
-    }
-
     public override void add_smart_playlist (SmartPlaylist p) {
-        lock (_smart_playlists) {
-            _smart_playlists.add (p);
-        }
+        try {
+            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
+            builder.set_table (Database.SmartPlaylists.TABLE_NAME);
+            builder.add_field_value_as_gvalue ("name", Database.make_string_value (p.name));
+            var statement = builder.get_statement ();
+            Gda.Set last_insert_row;
+            connection.statement_execute_non_select (statement, null, out last_insert_row);
+            if (last_insert_row != null) {
+                var local_sp = new LocalSmartPlaylist (last_insert_row.get_holder_value (Database.SmartPlaylists.ROWID).get_int64 (), connection);
+                local_sp.conditional = p.conditional;
+                local_sp.limit = p.limit;
+                local_sp.limit_amount = p.limit_amount;
+                local_sp.add_queries (p.get_queries ());
 
-        p.rowid = playlists_rowid;
-        playlists_rowid++;
-        DataBaseManager.get_default ().save_smart_playlist (p);
-        p.updated.connect ((old_name) => {smart_playlist_updated (p, old_name);});
-        smartplaylist_added (p);
+                lock (_smart_playlists) {
+                    _smart_playlists.add (local_sp);
+                }
+
+                smartplaylist_added (local_sp);
+            }
+        } catch (Error e) {
+            critical (e.message);
+        }
     }
 
-    public override void remove_smart_playlist (int id) {
+    public override void remove_smart_playlist (int64 id) {
         lock (_smart_playlists) {
             foreach (var p in get_smart_playlists ()) {
                 if (p.rowid == id) {
                     _smart_playlists.remove (p);
                     smartplaylist_removed (p);
-                    dbu.removeItem.begin (p);
                     break;
                 }
             }
         }
+
+        try {
+            connection.delete_row_from_table (Database.SmartPlaylists.TABLE_NAME, "rowid", Database.make_int64_value (id));
+        } catch (Error e) {
+            critical (e.message);
+        }
     }
 
-    public void smart_playlist_updated (SmartPlaylist p, string? old_name = null) {
-        dbu.save_smart_playlist (p, old_name);
-    }
 
     /******************** Media stuff ******************/
     
     public override void search_medias (string search) {
-        lock (_searched_medias) {
-            _searched_medias.clear ();
-            if (search == "") {
-                _searched_medias.add_all (_medias);
-                search_finished ();
-                return;
+        if (search == "") {
+            lock (_searched_medias) {
+                _searched_medias.clear ();
+                _searched_medias.add_all (_medias.values);
             }
-
-            int parsed_rating;
-            string parsed_search_string;
-            String.base_search_method (search, out parsed_rating, out parsed_search_string);
-            bool rating_search = parsed_rating > 0;
-            lock (_medias) {
-                foreach (var m in _medias) {
-                    if (rating_search) {
-                        if (m.rating == (uint) parsed_rating)
-                            _searched_medias.add (m);
-                    } else if (Search.match_string_to_media (m, parsed_search_string)) {
-                        _searched_medias.add (m);
-                    }
-                }
-            }
+            search_finished ();
+            return;
         }
 
-        search_finished ();
+        uint parsed_rating;
+        string parsed_search_string;
+        String.base_search_method (search, out parsed_rating, out parsed_search_string);
+        bool rating_search = parsed_rating > 0;
+        // If we search for a special rating, don't search for something else.
+        try {
+            if (parsed_rating > 0) {
+                var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+                sql.select_add_target (Database.Media.TABLE_NAME, null);
+                sql.select_add_field ("rowid", null, null);
+                var id_field = sql.add_id ("rating");
+                var id_value = sql.add_expr_value (null, Database.make_uint_value (parsed_rating));
+                var id_cond = sql.add_cond (Gda.SqlOperatorType.GEQ, id_field, id_value, 0);
+                sql.set_where (id_cond);
+
+                var statm = sql.get_statement ();
+                var data_model = connection.statement_execute_select (statm, null);
+                var data_model_iter = data_model.create_iter ();
+                data_model_iter.move_to_row (-1);
+                var rowids = new Gee.TreeSet<int64?> ();
+                while (data_model_iter.move_next ()) {
+                    unowned Value? val = data_model_iter.get_value_at (0);
+                    rowids.add (val.get_int64 ());
+                }
+
+                var meds = medias_from_ids (rowids);
+                lock (_searched_medias) {
+                    _searched_medias.clear ();
+                    _searched_medias.add_all (meds);
+                }
+            } else {
+                var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+                sql.select_add_target (Database.Media.TABLE_NAME, null);
+                sql.select_add_field ("rowid", null, null);
+                Gda.SqlBuilderId[] ids = null;
+
+                string[] fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment"};
+                foreach (var field in fields) {
+                    var id_field = sql.add_id (field);
+                    var id_value = sql.add_expr_value (null, Database.make_string_value ("%"+search+"%"));
+                    ids += sql.add_cond (Gda.SqlOperatorType.LIKE, id_field, id_value, 0);
+                }
+
+                var id_cond = sql.add_cond_v (Gda.SqlOperatorType.OR, ids);
+                sql.set_where (id_cond);
+
+                var statm = sql.get_statement ();
+                var data_model = connection.statement_execute_select (statm, null);
+                var data_model_iter = data_model.create_iter ();
+                data_model_iter.move_to_row (-1);
+                var rowids = new Gee.TreeSet<int64?> ();
+                while (data_model_iter.move_next ()) {
+                    unowned Value? val = data_model_iter.get_value_at (0);
+                    rowids.add (val.get_int64 ());
+                }
+
+                var meds = medias_from_ids (rowids);
+                lock (_searched_medias) {
+                    _searched_medias.clear ();
+                    _searched_medias.add_all (meds);
+                }
+            }
+        } catch (Error e) {
+            critical ("Could not search for %s: %s", search, e.message);
+        }
+
+        Idle.add (() => {
+            search_finished ();
+            return GLib.Source.REMOVE;
+        });
     }
 
     public override Gee.Collection<Media> get_search_result () {
@@ -510,7 +635,7 @@ public class Noise.LocalLibrary : Library {
         // We really only want to clear the songs that are permanent and on the file system
         // Dont clear podcasts that link to a url, device media, temporary media, previews, songs
         var unset = new Gee.LinkedList<Media> ();
-        foreach (var s in _medias) {
+        foreach (var s in _medias.values) {
             if (!s.isTemporary && !s.isPreview)
                 unset.add (s);
         }
@@ -521,7 +646,7 @@ public class Noise.LocalLibrary : Library {
 
     public override Gee.Collection<Media> get_medias () {
         var result = new Gee.TreeSet<Media> ();
-        result.add_all (_medias);
+        result.add_all (_medias.values);
         return result;
     }
 
@@ -553,21 +678,14 @@ public class Noise.LocalLibrary : Library {
      * consistency
      */
 
-    public override Media? media_from_id (int id) {
-        lock (_medias) {
-            foreach (var m in _medias) {
-                if (m.rowid == id)
-                    return m;
-            }
-        }
-
-        return null;
+    public override Media? media_from_id (int64 id) {
+        return _medias.get (id);
     }
 
     public override Media? find_media (Media to_find) {
         Media? found = null;
         lock (_medias) {
-            foreach (var m in _medias) {
+            foreach (var m in _medias.values) {
                 if (to_find.title.down () == m.title.down () && to_find.artist.down () == m.artist.down ()) {
                     found = m;
                     break;
@@ -580,7 +698,7 @@ public class Noise.LocalLibrary : Library {
 
     public override Media? media_from_file (File file) {
         lock (_medias) {
-            foreach (var m in _medias) {
+            foreach (var m in _medias.values) {
                 if (m != null && m.file.equal (file))
                     return m;
             }
@@ -591,7 +709,7 @@ public class Noise.LocalLibrary : Library {
 
     public override Media? media_from_uri (string uri) {
         lock (_medias) {
-            foreach (var m in _medias) {
+            foreach (var m in _medias.values) {
                 if (m != null && m.uri == uri)
                     return m;
             }
@@ -600,15 +718,12 @@ public class Noise.LocalLibrary : Library {
         return null;
     }
 
-    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int> ids) {
+    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int64?> ids) {
         var media_collection = new Gee.TreeSet<Media> ();
-        lock (_medias) {
-            foreach (var m in _medias) {
-                if (ids.contains (m.rowid))
-                    media_collection.add (m);
-
-                if (media_collection.size == ids.size)
-                    break;
+        foreach (var id in ids) {
+            var m = _medias.get (id);
+            if (m != null) {
+                media_collection.add (m);
             }
         }
 
@@ -618,7 +733,7 @@ public class Noise.LocalLibrary : Library {
     public override Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris) {
         var media_collection = new Gee.LinkedList<Media> ();
         lock (_medias) {
-            foreach (var m in _medias) {
+            foreach (var m in _medias.values) {
                 if (uris.contains (m.uri))
                     media_collection.add (m);
                 if (media_collection.size == uris.size)
@@ -636,7 +751,7 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void add_medias (Gee.Collection<Media> new_media) {
-        if (new_media.size < 1) // happens more often than you would think
+        if (new_media.is_empty) // happens more often than you would think
             return;
 
         // make a copy of the media list so that it doesn't get modified before
@@ -644,21 +759,26 @@ public class Noise.LocalLibrary : Library {
         var media = new Gee.TreeSet<Media> ();
         media.add_all (new_media);
 
-        var local_media = DataBaseManager.get_default ().add_media (media);
-        _medias.add_all (local_media);
-        media_added (local_media.read_only_view);
+        var local_media = new Gee.HashMap<int64?, LocalMedia> ();
+        foreach (var m in media) {
+            var local_m = new LocalMedia.from_media (connection, m);
+            local_media.set (local_m.rowid, local_m);
+        }
+
+        _medias.set_all (local_media);
+        media_added (local_media.values.read_only_view);
 
         // Update search results
         if (App.main_window.searchField.text == "") {
-            _searched_medias.add_all (local_media);
+            _searched_medias.add_all (local_media.values);
         } else {
-            int parsed_rating;
+            uint parsed_rating;
             string parsed_search_string;
             String.base_search_method (App.main_window.searchField.text, out parsed_rating, out parsed_search_string);
             bool rating_search = parsed_rating > 0;
-            foreach (var m in local_media) {
+            foreach (var m in local_media.values) {
                 if (rating_search) {
-                    if (m.rating == (uint) parsed_rating)
+                    if (m.rating == parsed_rating)
                         _searched_medias.add (m);
                 } else if (Search.match_string_to_media (m, parsed_search_string)) {
                     _searched_medias.add (m);
@@ -678,10 +798,8 @@ public class Noise.LocalLibrary : Library {
     public override void remove_medias (Gee.Collection<Media> to_remove, bool trash) {
         var toRemove = new Gee.TreeSet<Media> ();
         toRemove.add_all (to_remove);
-        foreach (var s in toRemove) {
-            if (s == App.player.current_media)
-                App.player.stop_playback ();
-        }
+        if (App.player.current_media in toRemove)
+            App.player.stop_playback ();
 
         if (trash)
             fo.remove_media (toRemove);
@@ -689,12 +807,11 @@ public class Noise.LocalLibrary : Library {
         // Emit signal before actually removing the media because otherwise
         // media_from_id () and media_from_ids () wouldn't work.
         media_removed (toRemove.read_only_view);
-        dbu.removeItem.begin (toRemove);
 
         lock (_medias) {
             foreach (Media s in toRemove) {
                 _searched_medias.remove (s);
-                _medias.remove (s);
+                _medias.unset (s.rowid);
             }
         }
 
@@ -703,17 +820,25 @@ public class Noise.LocalLibrary : Library {
                 p.remove_medias (toRemove);
         }
 
-        DataBaseManager.get_default ().remove_media (toRemove);
+        foreach (var m in toRemove) {
+            try {
+                connection.delete_row_from_table (Database.Media.TABLE_NAME, "rowid", Database.make_int64_value (m.rowid));
+            } catch (Error e) {
+                critical (e.message);
+            }
+        }
+
         search_finished ();
     }
 
     public Gee.TreeSet<Noise.Media> answer_to_device_sync (Device device) {
         var medias_to_sync = new Gee.TreeSet<Noise.Media> ();
-        if (device.get_preferences ().sync_music == true) {
-            if (device.get_preferences ().sync_all_music == true) {
+        var prefs = get_preferences_for_device (device);
+        if (prefs.sync_music == true) {
+            if (prefs.sync_all_music == true) {
                 medias_to_sync.add_all (get_medias ());
             } else {
-                medias_to_sync.add_all (device.get_preferences ().music_playlist.medias);
+                medias_to_sync.add_all (prefs.music_playlist.medias);
             }
         }
 
@@ -743,5 +868,36 @@ public class Noise.LocalLibrary : Library {
         NotificationManager.get_default ().update_progress (null, 1);
         file_operations_done ();
         update_media_art_cache.begin ();
+    }
+
+    Gee.HashMap<string, DevicePreferences> preferences = new Gee.HashMap<string, DevicePreferences> ((Gee.HashDataFunc)GLib.str_hash, (Gee.EqualDataFunc)GLib.str_equal);
+    public DevicePreferences get_preferences_for_device (Device d) {
+        var key = d.get_unique_identifier ();
+        if (preferences.has_key (key)) {
+            return preferences.get (key);
+        } else {
+            var pref = new DevicePreferences (d, connection);
+            preferences.set (key, pref);
+            return pref;
+        }
+    }
+
+    private Gee.Collection<int64?> get_rowids_from_table (string table_name) {
+        var ids = new Gee.TreeSet<int64?> ();
+        try {
+            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+            builder.select_add_target (table_name, null);
+            builder.select_add_field ("rowid", null, null);
+            var data_model = connection.statement_execute_select (builder.get_statement (), null);
+            for (int i = 0; i < data_model.get_n_rows (); i++) {
+                var rowid = data_model.get_value_at (data_model.get_column_index ("rowid"), i);
+                ids.add (rowid.get_int64 ());
+            }
+        } catch (Error e) {
+            // TODO: Expose errors to the user !
+            critical ("Could not query table %s : %s", table_name, e.message);
+        }
+
+        return ids;
     }
 }

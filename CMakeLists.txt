@@ -86,11 +86,15 @@ set (CORE_PKG
 set (DEPS_PACKAGES
   ${CORE_LIBRARY_NAME}
   ${CORE_PACKAGES} # this is needed until we provide a ${CORE_LIBRARY_NAME}.deps file
+  libgda-5.0
   taglib_c
+  zeitgeist-2.0
 )
 
 set (DEPS_PKG
+  libgda-5.0
   taglib_c
+  zeitgeist-2.0
 )
 
 find_package (PkgConfig)
@@ -111,26 +115,6 @@ set (GLOBAL_VALAC_OPTIONS
   --vapidir=${CMAKE_BINARY_DIR}/src
   ${BASIC_VALAC_OPTIONS}
 )
-
-#
-# SQLHeavy: Use version 0.2 if it is available; otherwise, fall back to 0.1
-#
-pkg_check_modules (SQLHEAVY2 QUIET sqlheavy-0.2)
-if (SQLHEAVY2_FOUND)
-  message ("-- Will use sqlheavy-0.2")
-  set (DEPS_PACKAGES ${DEPS_PACKAGES} sqlheavy-0.2)
-  set (SQLHEAVY_CFLAGS ${SQLHEAVY2_CFLAGS})
-  set (SQLHEAVY_LIBRARY_DIRS ${SQLHEAVY2_LIBRARY_DIRS})
-  set (SQLHEAVY_LIBRARIES ${SQLHEAVY2_LIBRARIES})
-else ()
-  message ("-- Will use sqlheavy-0.1")
-  pkg_check_modules (SQLHEAVY REQUIRED sqlheavy-0.1)
-  set (DEPS_PACKAGES ${DEPS_PACKAGES} sqlheavy-0.1)
-endif ()
-
-set (DEPS_CFLAGS ${DEPS_CFLAGS} ${SQLHEAVY_CFLAGS})
-set (DEPS_LIBRARIES ${DEPS_LIBRARIES} ${SQLHEAVY_LIBRARIES})
-set (DEPS_LIBRARY_DIRS ${DEPS_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS})
 
 #
 # Libnotify

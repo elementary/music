@@ -309,7 +309,7 @@ public class Noise.FileOperator : Object {
             App.main_window.show_notification (_("Import Complete"), _("%s has imported your library.").printf (((Noise.App) GLib.Application.get_default ()).get_name ()));
 
         if (import_type == ImportType.PLAYLIST) {
-            var to_add = new Gee.LinkedList<int> ();
+            var to_add = new Gee.LinkedList<int64?> ();
             foreach (var s in all_new_imports)
                 to_add.add (s.rowid);
             new_playlist.add_medias (to_add);

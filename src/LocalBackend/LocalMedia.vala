@@ -29,8 +29,6 @@
  */
 
 public class Noise.LocalMedia : Noise.Media {
-    private SQLHeavy.Database database = Noise.DataBaseManager.get_default ().database;
-
     private uint64? _file_size = null;
     public override uint64 file_size {
         get {
@@ -66,6 +64,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("track", value, ref _track);
         }
     }
+
     private uint? _track_count = null;
     public override uint track_count {
         get {
@@ -76,6 +75,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("track_count", value, ref _track_count);
         }
     }
+
     private string _composer = null;
     public override string composer {
         get {
@@ -86,6 +86,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_string_setter ("composer", value, ref _composer);
         }
     }
+
     private string _artist = null;
     public override string artist {
         get {
@@ -96,6 +97,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_string_setter ("artist", value, ref _artist);
         }
     }
+
     private string _album_artist = null;
     public override string album_artist {
         get {
@@ -106,6 +108,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_string_setter ("album_artist", value, ref _album_artist);
         }
     }
+
     private string _album = null;
     public override string album {
         get {
@@ -116,6 +119,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_string_setter ("album", value, ref _album);
         }
     }
+
     private uint? _album_number = null;
     public override uint album_number {
         get {
@@ -126,6 +130,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("album_number", value, ref _album_number);
         }
     }
+
     private uint? _album_count = null;
     public override uint album_count {
         get {
@@ -136,6 +141,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("album_count", value, ref _album_count);
         }
     }
+
     public override unowned Album album_info { get; set; default = null; }
     private string _grouping = null;
     public override string grouping {
@@ -147,6 +153,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_string_setter ("grouping", value, ref _grouping);
         }
     }
+
     private string _genre = null;
     public override string genre {
         get {
@@ -157,6 +164,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_string_setter ("genre", value, ref _genre);
         }
     }
+
     private string _comment = null;
     public override string comment {
         get {
@@ -167,6 +175,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_string_setter ("comment", value, ref _comment);
         }
     }
+
     private string _lyrics = null;
     public override string lyrics {
         get {
@@ -177,6 +186,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_string_setter ("lyrics", value, ref _lyrics);
         }
     }
+
     public uint? _year = null;
     public override uint year {
         get {
@@ -187,6 +197,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("year", value, ref _year);
         }
     }
+
     public uint? _bitrate = null;
     public override uint bitrate {
         get {
@@ -197,6 +208,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("bitrate", value, ref _bitrate);
         }
     }
+
     public uint? _samplerate = null;
     public override uint samplerate {
         get {
@@ -242,6 +254,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("playcount", value, ref _play_count);
         }
     }
+
     public uint? _skip_count = null;
     public override uint skip_count {
         get {
@@ -252,6 +265,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("skipcount", value, ref _skip_count);
         }
     }
+
     public uint? _date_added = null;
     public override uint date_added {
         get {
@@ -262,6 +276,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("dateadded", value, ref _date_added);
         }
     }
+
     public uint? _last_played = null;
     public override uint last_played {
         get {
@@ -272,6 +287,7 @@ public class Noise.LocalMedia : Noise.Media {
             common_uint_setter ("lastplayed", value, ref _last_played);
         }
     }
+
     public uint? _last_modified = null;
     public override uint last_modified {
         get {
@@ -285,12 +301,89 @@ public class Noise.LocalMedia : Noise.Media {
 
     public override int resume_pos { get; set; default = 0; }
 
-    public LocalMedia (int rowid) {
-        base ("");
-        this.rowid = rowid;
-        var query = query_field ("uri");
+    private Gda.Connection connection;
+
+    // To use this method, the rowid should exist in the database.
+    public LocalMedia (int64 rowid, Gda.Connection connection) {
+        Object (rowid: rowid);
+        this.connection = connection;
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, "uri");
         if (query != null) {
-            this.uri = query.dup_string ();
+            uri = query.dup_string ();
+        }
+    }
+
+    // To use this method, the rowid should exist in the database.
+    public LocalMedia.from_media (Gda.Connection connection, Media m) {
+        try {
+            var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
+            builder.set_table (Database.Media.TABLE_NAME);
+            builder.add_field_value_as_gvalue ("uri", Database.make_string_value (m.uri));
+            Gda.Set last_insert_row;
+            connection.statement_execute_non_select (builder.get_statement (), null, out last_insert_row);
+            var _rowid = last_insert_row.get_holder_value (Database.Media.ROWID).get_int64 ();
+            Object (rowid: _rowid);
+            this.connection = connection;
+            var col_names = new GLib.SList<string> ();
+            col_names.append ("file_size");
+            col_names.append ("title");
+            col_names.append ("artist");
+            col_names.append ("composer");
+            col_names.append ("album_artist");
+            col_names.append ("album");
+            col_names.append ("grouping");
+            col_names.append ("genre");
+            col_names.append ("comment");
+            col_names.append ("lyrics");
+            col_names.append ("has_embedded");
+            col_names.append ("year");
+            col_names.append ("track");
+            col_names.append ("track_count");
+            col_names.append ("album_number");
+            col_names.append ("album_count");
+            col_names.append ("bitrate");
+            col_names.append ("length");
+            col_names.append ("samplerate");
+            col_names.append ("rating");
+            col_names.append ("playcount");
+            col_names.append ("skipcount");
+            col_names.append ("dateadded");
+            col_names.append ("lastplayed");
+            col_names.append ("lastmodified");
+            var values = new GLib.SList<GLib.Value?> ();
+            values.append (Database.make_uint64_value (m.file_size));
+            values.append (Database.make_string_value (m.title));
+            values.append (Database.make_string_value (m.artist));
+            values.append (Database.make_string_value (m.composer));
+            values.append (Database.make_string_value (m.album_artist));
+            values.append (Database.make_string_value (m.album));
+            values.append (Database.make_string_value (m.grouping));
+            values.append (Database.make_string_value (m.genre));
+            values.append (Database.make_string_value (m.comment));
+            values.append (Database.make_string_value (m.lyrics));
+            values.append (Database.make_bool_value (m.has_embedded));
+            values.append (Database.make_uint_value (m.year));
+            values.append (Database.make_uint_value (m.track));
+            values.append (Database.make_uint_value (m.track_count));
+            values.append (Database.make_uint_value (m.album_number));
+            values.append (Database.make_uint_value (m.album_count));
+            values.append (Database.make_uint_value (m.bitrate));
+            values.append (Database.make_uint_value (m.length));
+            values.append (Database.make_uint_value (m.samplerate));
+            values.append (Database.make_uint_value (m.rating));
+            values.append (Database.make_uint_value (m.play_count));
+            values.append (Database.make_uint_value (m.skip_count));
+            values.append (Database.make_uint_value (m.date_added));
+            values.append (Database.make_uint_value (m.last_played));
+            values.append (Database.make_uint_value (m.last_modified));
+            connection.update_row_in_table_v (Database.Media.TABLE_NAME, "rowid", last_insert_row.get_holder_value (Database.Media.ROWID), col_names, values);
+        } catch (Error e) {
+            warning ("Could not save media: %s", e.message);
+        }
+
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, "uri");
+        if (query != null) {
+            uri = query.dup_string ();
         }
     }
 
@@ -301,9 +394,9 @@ public class Noise.LocalMedia : Noise.Media {
         if (temp != null)
             return temp;
 
-        var query = query_field (field);
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, field);
         if (query != null) {
-            temp = (uint64)query.get_int64 ();
+            temp = (uint64)query.get_int ();
             return temp;
         } else
             return 0;
@@ -313,16 +406,16 @@ public class Noise.LocalMedia : Noise.Media {
         temp = value;
         var val = GLib.Value (typeof (uint64));
         val.set_uint64 (value);
-        set_field.begin (field, val);
+        Database.set_field (rowid, connection, Database.Media.TABLE_NAME, field, val);
     }
 
     private uint common_uint_getter (string field, ref uint? temp) {
         if (temp != null)
             return temp;
 
-        var query = query_field (field);
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, field);
         if (query != null) {
-            temp = (uint)query.get_int64 ();
+            temp = query.get_int ();
             return temp;
         } else
             return 0;
@@ -332,14 +425,14 @@ public class Noise.LocalMedia : Noise.Media {
         temp = value;
         var val = GLib.Value (typeof (uint));
         val.set_uint (value);
-        set_field.begin (field, val);
+        Database.set_field (rowid, connection, Database.Media.TABLE_NAME, field, val);
     }
 
     private string common_string_getter (string field, ref string? temp) {
         if (temp != null)
             return temp;
 
-        var query = query_field (field);
+        var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, field);
         if (query != null) {
             temp = query.dup_string ();
             return _composer;
@@ -351,53 +444,7 @@ public class Noise.LocalMedia : Noise.Media {
         temp = value;
         var val = GLib.Value (typeof (string));
         val.set_string (value);
-        set_field.begin (field, val);
+        Database.set_field (rowid, connection, Database.Media.TABLE_NAME, field, val);
     }
 
-    /*
-     * These functions allows the LocalMedia to interact with the database.
-     */
-
-    private GLib.Value? query_field (string field) {
-        assert (database != null);
-        try {
-            var query = new SQLHeavy.Query (database, "SELECT `%s` FROM `media` WHERE rowid=:rowid".printf (field));
-            query.set_int (":rowid", rowid);
-            var result = query.execute ();
-            var val = result.fetch ();
-            if (val.type () != typeof (void*))
-                return val;
-            else
-                return null;
-        } catch (SQLHeavy.Error err) {
-            warning ("Could not query field %s: %s", field, err.message);
-            return null;
-        }
-    }
-
-    private async void set_field (string field, GLib.Value value) {
-        assert (database != null);
-        try {
-            var query = new SQLHeavy.Query (database, "UPDATE `media` SET %s=:value WHERE rowid=:rowid".printf (field));
-            query.set_int (":rowid", rowid);
-            var type = value.type ();
-            if (type == typeof (string)) {
-                query.set_string (":value", value.get_string ());
-            } else if (type == typeof (int)) {
-                query.set_int (":value", value.get_int ());
-            } else if (type == typeof (uint)) {
-                query.set_int (":value", (int)value.get_uint ());
-            } else if (type == typeof (uint64)) {
-                query.set_int64 (":value", (int64)value.get_uint64 ());
-            } else if (type == typeof (bool)) {
-                query.set_int (":value", value.get_boolean () ? 1 : 0);
-            } else {
-                return;
-            }
-
-            query.execute ();
-        } catch (SQLHeavy.Error err) {
-            warning ("Could not query field %s: %s", field, err.message);
-        }
-    }
 }

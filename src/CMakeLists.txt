@@ -8,8 +8,12 @@ set(CLIENT_SOURCE
     Objects/MediaArtCache.vala
     Objects/CoverartCache.vala
     Objects/MediaKeyListener.vala
+    Objects/HistoryPlaylist.vala
     LocalBackend/LocalLibrary.vala
     LocalBackend/LocalMedia.vala
+    LocalBackend/LocalSmartPlaylist.vala
+    LocalBackend/LocalStaticPlaylist.vala
+    LocalBackend/DevicePreferences.vala
     Widgets/NavigationArrows.vala
     Widgets/TopDisplay.vala
     Widgets/InfoPanel.vala
@@ -30,9 +34,7 @@ set(CLIENT_SOURCE
     Widgets/FastView/FastGridModel.vala
     Widgets/FastView/FastList.vala
     Widgets/FastView/FastListModel.vala
-    DataBase/DataBaseManager.vala
-    DataBase/DataBaseUpdater.vala
-    DataBase/Tables.vala
+    DataBase.vala
     GStreamer/GStreamerTagger.vala
     GStreamer/Streamer.vala
     GStreamer/CoverImport.vala

@@ -21,31 +21,19 @@
  */
 
 public class Noise.PlaylistViewWrapper : ViewWrapper {
-    public int playlist_id { get; construct set; default = -1; }
     public TreeViewSetup tvs;
-    public signal void button_clicked (int playlist_id);
+    public signal void button_clicked (Playlist p);
     private Gtk.Action[] actions = null;
     private string message_head;
     private string message_body;
 
-    public PlaylistViewWrapper (int playlist_id, ViewWrapper.Hint hint, TreeViewSetup? tvs = null, Library library) {
+    public PlaylistViewWrapper (Playlist playlist, ViewWrapper.Hint hint, TreeViewSetup tvs, Library library) {
         base (hint, library);
-        if (tvs == null)
-            this.tvs = new TreeViewSetup(ListColumn.NUMBER, Gtk.SortType.ASCENDING, hint);
-        else
-            this.tvs = tvs;
+        this.tvs = tvs;
 
-        this.playlist_id = playlist_id;
-        relative_id = playlist_id;
+        this.playlist = playlist;
 
-        build_async.begin ();
-    }
-
-    private async void build_async () {
-        Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
-        yield;
-
-        list_view = new ListView (this, tvs);
+        list_view = new ListView (this, this.tvs);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
         // Refresh view layout
@@ -57,12 +45,10 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
             case Hint.READ_ONLY_PLAYLIST:
                 message_head = _("No Songs");
                 message_body = _("Updating playlist. Please wait.");
-                yield set_media_async (library.playlist_from_id (playlist_id).medias);
                 break;
             case Hint.PLAYLIST:
                 message_head = _("No Songs");
                 message_body = _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>.");
-                yield set_media_async (library.playlist_from_id (playlist_id).medias);
                 break;
             case Hint.SMART_PLAYLIST:
                 var action = new Gtk.Action ("smart-playlist-rules-edit",
@@ -70,9 +56,8 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                                              null,
                                              null);
                 // Connect to the 'activate' signal
-                action.activate.connect ( () => {
-                    button_clicked (playlist_id);
-                    //lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
+                action.activate.connect (() => {
+                    button_clicked (playlist);
                 });
 
                 actions = new Gtk.Action[1];
@@ -80,12 +65,13 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
                 message_head = _("No Songs");
                 message_body = _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below.");
-                yield set_media_async (library.smart_playlist_from_id (playlist_id).medias);
                 break;
 
             default:
                 assert_not_reached ();
         }
+
+        set_media_async.begin (playlist.medias);
         connect_data_signals ();
     }
 
@@ -93,7 +79,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         switch (hint) {
             case Hint.READ_ONLY_PLAYLIST:
             case Hint.PLAYLIST:
-                var p = library.playlist_from_id (playlist_id);
+                var p = (StaticPlaylist)playlist;
 
                 // Connect to playlist signals
                 if (p != null) {
@@ -105,7 +91,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
             break;
             
             case Hint.SMART_PLAYLIST:
-                var p = library.smart_playlist_from_id (playlist_id);
+                var p = (SmartPlaylist)playlist;
 
                 // Connect to smart playlist signals
                 if (p != null) {

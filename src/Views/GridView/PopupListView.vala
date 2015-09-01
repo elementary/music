@@ -81,7 +81,7 @@ public class Noise.PopupListView : Gtk.Dialog {
         album_label.set_max_width_chars (30);
 
         // Music List
-        var tvs = new TreeViewSetup (ListColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
+        var tvs = new TreeViewSetup (ViewWrapper.Hint.ALBUM_LIST);
         list_view = new MusicListView (view_wrapper, tvs);
         list_view.set_search_func (view_search_func);
         list_view.expand = true;
@@ -222,12 +222,12 @@ public class Noise.PopupListView : Gtk.Dialog {
     }
 
     private void view_search_func (string search, Gee.HashMap<int, Media> table, Gee.HashMap<int, Media> showing) {
-        int parsed_rating;
+        uint parsed_rating;
         string parsed_search_string;
 
         String.base_search_method (search, out parsed_rating, out parsed_search_string);
 
-        bool rating_search = parsed_rating > 0;
+        bool rating_search = parsed_rating != 0;
 
         // If an external refiltering is going on, we cannot obey the column browser filter
         // because it wil be refreshed after this search based on the new 'showing' table

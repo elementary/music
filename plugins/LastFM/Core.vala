@@ -45,11 +45,15 @@ public class LastFM.Core : Object {
         return core;
     }
 
+    private GLib.Cancellable fetch_cancellable;
+
     private Core () {
-        similarMedias = new LastFM.SimilarMedias();
+        fetch_cancellable = new GLib.Cancellable ();
+        similarMedias = new LastFM.SimilarMedias ();
         Noise.App.main_window.update_media_info.connect ((media) => {postNowPlaying (media);});
         Noise.App.main_window.media_half_played.connect ((media) => {postScrobbleTrack (media);});
         Noise.libraries_manager.local_library.media_imported.connect ((medias) => {fetch_albums_slowly.begin (medias);});
+        Noise.NotificationManager.get_default ().search_cover.connect ((m) => { get_album_infos.begin (m, fetch_cancellable);});
         similarMedias.similar_retrieved.connect(similar_retrieved_signal);
     }
 
@@ -126,19 +130,8 @@ public class LastFM.Core : Object {
                     albums.add (album_s);
                 if (!album_artist.contains (album_artist_s))
                     album_artist.add (album_artist_s);
-                fetch_album_info (media);
+                get_album_infos.begin (media, fetch_cancellable);
             }
-        }
-    }
-
-    public void fetch_album_info (Noise.Media media) {
-        try {
-            new Thread<void*>.try (null, () => {
-                get_album_infos (media);
-                return null;
-            });
-        } catch (GLib.Error err) {
-            warning ("ERROR: Could not create thread to have fun: %s", err.message);
         }
     }
 
@@ -188,7 +181,7 @@ public class LastFM.Core : Object {
     }
 
     public void fetchCurrentSimilarSongs () {
-        similarMedias.queryForSimilar (Noise.App.player.current_media);
+        similarMedias.query_for_similar (Noise.App.player.current_media);
     }
 
     private void similar_retrieved_signal (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Media> similarDont) {
@@ -201,7 +194,7 @@ public class LastFM.Core : Object {
      * @param title The title of media to get similar to
      * @return The media that are similar
      */
-    public Gee.TreeSet<Noise.Media> getSimilarTracks(string title, string artist) {
+    public async Gee.TreeSet<Noise.Media> get_similar_tracks (string title, string artist, GLib.Cancellable cancellable) {
         var returned_medias = new Gee.TreeSet<Noise.Media> ();
         
         var uri = new Soup.URI (API_URL);
@@ -211,38 +204,42 @@ public class LastFM.Core : Object {
                                    "track", title,
                                    "format", "json");
         var session = new Soup.Session ();
-        var uri_request = session.request_uri (uri);
+        try {
+            var uri_request = session.request_uri (uri);
 
-        /* send the HTTP request */
-        var stream = uri_request.send ();
-        var parser = new Json.Parser ();
-        parser.load_from_stream (stream);
-        weak Json.Object parser_object = parser.get_root ().get_object ();
-        if (parser_object == null || parser_object.has_member ("similartracks") == false)
-            return returned_medias;
+            /* send the HTTP request */
+            var stream = yield uri_request.send_async (cancellable);
+            var parser = new Json.Parser ();
+            parser.load_from_stream (stream);
+            weak Json.Object parser_object = parser.get_root ().get_object ();
+            if (parser_object == null || parser_object.has_member ("similartracks") == false)
+                return returned_medias;
 
-        weak Json.Object similartracks = parser_object.get_object_member ("similartracks");
-        if (similartracks.has_member ("track") && similartracks.get_member ("track").get_node_type () == Json.NodeType.ARRAY) {
-            List<unowned Json.Node> similar_tracks_values = similartracks.get_array_member ("track").get_elements ();
-            foreach (unowned Json.Node element in similar_tracks_values) {
-                weak Json.Object track_object = element.get_object ();
-                var similar_to_add = new Noise.Media ("");
-                returned_medias.add (similar_to_add);
-                similar_to_add.title = track_object.get_string_member ("name");
-                if (track_object.has_member ("url"))
-                    similar_to_add.comment = track_object.get_string_member ("url");
-                if (track_object.has_member ("artist")) {
-                    weak Json.Object artist_object = track_object.get_object_member ("artist");
-                    if (artist_object.has_member ("name"))
-                        similar_to_add.artist = artist_object.get_string_member ("name");
+            weak Json.Object similartracks = parser_object.get_object_member ("similartracks");
+            if (similartracks.has_member ("track") && similartracks.get_member ("track").get_node_type () == Json.NodeType.ARRAY) {
+                List<unowned Json.Node> similar_tracks_values = similartracks.get_array_member ("track").get_elements ();
+                foreach (unowned Json.Node element in similar_tracks_values) {
+                    weak Json.Object track_object = element.get_object ();
+                    var similar_to_add = new Noise.Media ("");
+                    returned_medias.add (similar_to_add);
+                    similar_to_add.title = track_object.get_string_member ("name");
+                    if (track_object.has_member ("url"))
+                        similar_to_add.comment = track_object.get_string_member ("url");
+                    if (track_object.has_member ("artist")) {
+                        weak Json.Object artist_object = track_object.get_object_member ("artist");
+                        if (artist_object.has_member ("name"))
+                            similar_to_add.artist = artist_object.get_string_member ("name");
+                    }
                 }
             }
+        } catch (Error e) {
+            critical (e.message);
         }
 
         return returned_medias;
     }
 
-    public void get_album_infos (Noise.Media m) {
+    public async void get_album_infos (Noise.Media m, Cancellable cancellable) {
         var uri = new Soup.URI (API_URL);
         uri.set_query_from_fields ("method", "album.getinfo",
                                    "api_key", api_key,
@@ -250,48 +247,52 @@ public class LastFM.Core : Object {
                                    "album", m.album,
                                    "format", "json");
         var session = new Soup.Session ();
-        var uri_request = session.request_uri (uri);
+        try {
+            var uri_request = session.request_uri (uri);
 
-        /* send the HTTP request */
-        var stream = uri_request.send ();
-        var parser = new Json.Parser ();
-        parser.load_from_stream (stream);
-        weak Json.Object parser_object = parser.get_root ().get_object ();
-        if (parser_object == null || parser_object.has_member ("album") == false)
-            return;
+            /* send the HTTP request */
+            var stream = yield uri_request.send_async (cancellable);
+            var parser = new Json.Parser ();
+            parser.load_from_stream (stream);
+            weak Json.Object parser_object = parser.get_root ().get_object ();
+            if (parser_object == null || parser_object.has_member ("album") == false)
+                return;
 
-        weak Json.Object album_object = parser_object.get_member ("album").get_object ();
-        if (album_object.has_member ("image") && album_object.get_member ("image").get_node_type () == Json.NodeType.ARRAY) {
-            List<unowned Json.Node> image_values = album_object.get_array_member ("image").get_elements ();
-            string image_url = "";
-            string image_size = "";
-            foreach (unowned Json.Node element in image_values) {
-                weak Json.Object image_object = element.get_object ();
-                unowned string new_size = image_object.get_string_member ("size");
-                if (new_size == "mega" ||
-                    (new_size == "extralarge" && image_size != "mega") ||
-                    (new_size == "large" && image_size != "mega" && image_size != "extralarge")) {
-                    image_url = image_object.get_string_member ("#text").dup ();
-                    image_size = new_size.dup ();
+            weak Json.Object album_object = parser_object.get_member ("album").get_object ();
+            if (album_object.has_member ("image") && album_object.get_member ("image").get_node_type () == Json.NodeType.ARRAY) {
+                List<unowned Json.Node> image_values = album_object.get_array_member ("image").get_elements ();
+                string image_url = "";
+                string image_size = "";
+                foreach (unowned Json.Node element in image_values) {
+                    weak Json.Object image_object = element.get_object ();
+                    unowned string new_size = image_object.get_string_member ("size");
+                    if (new_size == "mega" ||
+                        (new_size == "extralarge" && image_size != "mega") ||
+                        (new_size == "large" && image_size != "mega" && image_size != "extralarge")) {
+                        image_url = image_object.get_string_member ("#text").dup ();
+                        image_size = new_size.dup ();
+                    }
+                }
+
+                var coverart_cache = Noise.CoverartCache.instance;
+                if (image_url != "" && coverart_cache.has_image (m) == false) {
+
+                    debug ("Caching last.fm image from URL: %s", image_url);
+                    var image_file = File.new_for_uri (image_url);
+                    coverart_cache.cache_image_from_file_async.begin (m, image_file);
                 }
             }
 
-            var coverart_cache = Noise.CoverartCache.instance;
-            if (image_url != "" && coverart_cache.has_image (m) == false) {
-
-                debug ("Caching last.fm image from URL: %s", image_url);
-                var image_file = File.new_for_uri (image_url);
-                coverart_cache.cache_image_from_file_async.begin (m, image_file);
+            if (album_object.has_member ("releasedate") && m.year == 0) {
+                var releasedate = album_object.get_string_member ("releasedate");
+                var date = Date ();
+                date.set_parse (releasedate);
+                if (date.valid ()) {
+                    m.year = date.get_year ();
+                }
             }
-        }
-
-        if (album_object.has_member ("releasedate") && m.year == 0) {
-            var releasedate = album_object.get_string_member ("releasedate");
-            var date = Date ();
-            date.set_parse (releasedate);
-            if (date.valid ()) {
-                m.year = date.get_year ();
-            }
+        } catch (Error e) {
+            critical (e.message);
         }
     }
 

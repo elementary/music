@@ -109,18 +109,22 @@ namespace Noise.Search {
      *   "  "
      *   "**a"
      */
-    public inline int get_rating_from_string (string rating_string)
-        ensures (result != 0 || result == -1)
+    public inline uint? get_rating_from_string (string rating_string)
+        ensures (result != 0)
     {
-        int i;
+        int i = 0;
         unichar c;
+        uint rating;
 
-        for (i = 0; rating_string.get_next_char (ref i, out c);) {
+        for (rating = 0; rating_string.get_next_char (ref i, out c); rating++) {
             if (c != '*')
-                return -1;
+                return null;
         }
 
-        return i > 0 ? i : -1;
+        if (rating == 0)
+            return null;
+
+        return rating;
     }
 
     public inline bool match_string_to_media (Media m, string search) {

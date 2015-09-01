@@ -34,8 +34,7 @@ public interface Noise.Device : GLib.Object {
     public signal void initialized (Device d);
     public signal void device_unmounted ();
     public signal void infobar_message (string message, Gtk.MessageType type);
-    
-    public abstract DevicePreferences get_preferences();
+
     public abstract bool start_initialization();
     public abstract void finish_initialization();
     public abstract string getContentType();
@@ -113,9 +112,9 @@ public interface Noise.Device : GLib.Object {
             return get_capacity () > (list_size - without_size);
         }
     }
-    
-    public string get_unique_identifier() {
-        Mount? m = get_mount();
+
+    public virtual string get_unique_identifier () {
+        Mount? m = get_mount ();
         if (m != null) {
             string uuid = m.get_uuid();
             File root = m.get_root();

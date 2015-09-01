@@ -44,7 +44,7 @@ public class Noise.CellDataFunctionHelper {
         if (renderer.visible) {
             Value icon;
             model.get_value (iter, ListColumn.ICON, out icon); // ICON column is same for all
-            image_renderer.gicon = icon as GLib.Icon;
+            image_renderer.gicon = icon.get_object () as GLib.Icon;
         }
     }
 

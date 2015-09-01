@@ -118,7 +118,7 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
 
     void locate_media_clicked () {
         Media m = media_list.get (0);
-        int media_id = m.rowid;
+        int64 media_id = m.rowid;
 
         string file = "";
         var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,

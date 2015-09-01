@@ -41,7 +41,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public signal void media_queued (Gee.Collection<Media> queued);
 
     public signal void media_played (Media played_media);
-    public signal void playback_stopped (int was_playing);
+    public signal void playback_stopped (int64 was_playing);
     public signal void playback_started ();
     public signal void playback_paused ();
     public signal void changing_player ();
@@ -55,8 +55,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     //list of id's yet to be played while on shuffle
     private Gee.HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
 
-    public StaticPlaylist queue_playlist = new StaticPlaylist ();
-    public StaticPlaylist history_playlist = new StaticPlaylist ();
+    public StaticPlaylist queue_playlist;
+    public HistoryPlaylist history_playlist;
 
     // TODO: REWRITE IT USING THE LIBRARY
     public Library library { get { return libraries_manager.local_library; } }
@@ -88,11 +88,16 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         file_player = new Streamer ();
         playbacks.add (file_player);
         player = file_player;
-        history_playlist.name = _("History");
-        history_playlist.read_only = true;
+    }
+
+    construct {
+        history_playlist = new HistoryPlaylist ();
+        queue_playlist = new StaticPlaylist ();
         queue_playlist.name = C_("Name of the playlist", "Queue");
         queue_playlist.read_only = true;
         queue_playlist.allow_duplicate = true;
+        queue_playlist.show_badge = true;
+        queue_playlist.icon = new ThemedIcon ("document-open-recent");
     }
 
     public void add_playback (Noise.Playback playback) {
@@ -136,22 +141,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         queue_playlist.media_removed (unqueued);
         return m;
     }
-
-    /*
-     * Already Played Stuff
-     */
-    public void reset_already_played() {
-        history_playlist.clear();
-    }
-
-    /*public void add_already_played (Media m) {
-        if(!_already_played.contains (m)) {
-            _already_played.offer_tail (m);
-            var media = new Gee.LinkedList<Media>();
-            media.add (m);
-            history_playlist.add_media (media);
-        }
-    }*/
 
     /*
      * Current medialist stuff
@@ -480,7 +469,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
 
     public void playMedia (Media m, bool use_resume_pos) {
-        int old_id = -1;
+        int64 old_id = -1;
 
         // save previous media's id
         if (current_media != null)
@@ -568,8 +557,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             poll_queue();
         
         /* if same media 1 second later... */
-        Timeout.add(1000, () => {
+        Timeout.add (1000, () => {
             if (m != null && current_media == m) {
+                history_playlist.add_media (m);
                 // potentially fix media length
                 uint player_duration_s = (uint)(player.get_duration() / TimeUtils.NANO_INV);
                 if (player_duration_s > 1) {
@@ -582,7 +572,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             }
             
             return false;
-            
         });
     }
 
@@ -639,7 +628,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         player.pause ();
         playing = false;
         
-        int was_playing = 0;
+        int64 was_playing = 0;
         if (current_media != null)
             was_playing = current_media.rowid;
         
