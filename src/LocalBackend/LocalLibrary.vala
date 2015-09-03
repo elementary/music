@@ -86,6 +86,11 @@ public class Noise.LocalLibrary : Library {
 
         // Load all smart playlists from database
         var sp_ids = get_rowids_from_table (Database.SmartPlaylists.TABLE_NAME);
+        if (sp_ids.is_empty) {
+            LocalSmartPlaylist.add_defaults (connection);
+            sp_ids = get_rowids_from_table (Database.SmartPlaylists.TABLE_NAME);
+        }
+
         foreach (var sp_id in sp_ids) {
             var sp = new LocalSmartPlaylist (sp_id, connection);
             _smart_playlists.add (sp);
@@ -132,14 +137,11 @@ public class Noise.LocalLibrary : Library {
 
         parser = connection.create_parser ();
 
-        if (new_db) {
-            load_table (Database.Tables.PLAYLISTS);
-            load_table (Database.Tables.SMART_PLAYLISTS);
-            load_table (Database.Tables.COLUMNS);
-            load_table (Database.Tables.MEDIA);
-            load_table (Database.Tables.DEVICES);
-            LocalSmartPlaylist.add_defaults (connection);
-        }
+        load_table (Database.Tables.PLAYLISTS);
+        load_table (Database.Tables.SMART_PLAYLISTS);
+        load_table (Database.Tables.COLUMNS);
+        load_table (Database.Tables.MEDIA);
+        load_table (Database.Tables.DEVICES);
     }
 
     private void load_table (string table) {

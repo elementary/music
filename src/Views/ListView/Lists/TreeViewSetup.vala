@@ -45,7 +45,7 @@ public class Noise.TreeViewSetup : Object {
         }
 
         if (uid != null) {
-            if (query_field ("sort_column_id") == null) {
+            if (exists () == false) {
                 try {
                     var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
                     builder.set_table (Database.Columns.TABLE_NAME);
@@ -265,6 +265,27 @@ public class Noise.TreeViewSetup : Object {
     /*
      * Database management
      */
+
+    private bool exists () {
+        try {
+            var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
+            sql.select_add_target (Database.Columns.TABLE_NAME, null);
+            sql.add_field_value_id (sql.add_id ("*"), 0);
+            var id_field = sql.add_id ("unique_id");
+            var id_param = sql.add_expr_value (null, Database.make_string_value (uid));
+            var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
+            sql.set_where (id_cond);
+            var data_model = connection.statement_execute_select (sql.get_statement (), null);
+            if (data_model.get_value_at (data_model.get_column_index ("unique_id"), 0) == null) {
+                return false;
+            }
+
+            return true;
+        } catch (Error e) {
+            debug ("Column %lld doesn't exist, a new one will be created", uid);
+            return false;
+        }
+    }
 
     private GLib.Value? query_field (string field) {
         try {
