@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 12:13-0600\n"
-"PO-Revision-Date: 2015-01-30 08:59+0000\n"
-"Last-Translator: Anubhab <chakraborty.anubhab@gmail.com>\n"
+"PO-Revision-Date: 2015-09-05 09:51+0000\n"
+"Last-Translator: Akshay Shekher <voldyman666@gmail.com>\n"
 "Language-Team: Hindi <hi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-20 05:27+0000\n"
-"X-Generator: Launchpad (build 17572)\n"
+"X-Launchpad-Export-Date: 2015-09-06 05:53+0000\n"
+"X-Generator: Launchpad (build 17706)\n"
 "Language: hi\n"
 
 #. / Used for unknown titles, artists, or album names.
@@ -27,17 +27,17 @@ msgstr "अज्ञात"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:177
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$ALBUM में $NAME"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: ../core/Media.vala:180
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$ARTIST से $NAME"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:186
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$ALBUM में $ARTIST से $NAME"
 
 #: ../core/Resources.vala:97
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:70
@@ -51,11 +51,11 @@ msgstr "खोलें"
 
 #: ../core/Resources.vala:99
 msgid "Save"
-msgstr ""
+msgstr "सहेजें"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Flat"
-msgstr ""
+msgstr "सपाट"
 
 #: ../core/GStreamer/Equalizer.vala:77
 msgid "Classical"
@@ -71,15 +71,15 @@ msgstr "नृत्य"
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Full Bass"
-msgstr ""
+msgstr "पूर्ण बास"
 
 #: ../core/GStreamer/Equalizer.vala:81
 msgid "Full Treble"
-msgstr ""
+msgstr "पूर्ण तिगुना"
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "पूर्ण बास + तिगुना"
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Headphones"
@@ -87,11 +87,11 @@ msgstr "हेडफोन"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Large Hall"
-msgstr ""
+msgstr "बड़े हॉल"
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Live"
-msgstr ""
+msgstr "लाइव"
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Party"
@@ -111,7 +111,7 @@ msgstr "रॉक"
 
 #: ../core/GStreamer/Equalizer.vala:90
 msgid "Soft"
-msgstr ""
+msgstr "सॉफ्ट"
 
 #: ../core/GStreamer/Equalizer.vala:91
 msgid "Ska"
@@ -119,7 +119,7 @@ msgstr "स्का"
 
 #: ../core/GStreamer/Equalizer.vala:92
 msgid "Soft Rock"
-msgstr ""
+msgstr "सॉफ्ट रोक"
 
 #: ../core/GStreamer/Equalizer.vala:93
 msgid "Techno"
@@ -127,7 +127,7 @@ msgstr "टेक्नो"
 
 #: ../core/LibrariesManager.vala:140
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "<b>$ARTIST</b> से <b>$NAME</b> का आयात"
 
 #: ../core/Utils/TimeUtils.vala:44
 msgid "%d second"
@@ -138,7 +138,7 @@ msgstr[1] "%d सेकेंड"
 #: ../core/Utils/TimeUtils.vala:52 ../core/Utils/TimeUtils.vala:83
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] "मिनट"
+msgstr[0] "%u मिनट"
 msgstr[1] "मिनटों"
 
 #: ../core/Utils/TimeUtils.vala:56
