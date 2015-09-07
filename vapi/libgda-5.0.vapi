@@ -755,6 +755,7 @@ namespace Gda {
 		public bool perform_drop_database (string? provider) throws GLib.Error;
 		public bool perform_drop_table () throws GLib.Error;
 		public static Gda.ServerOperation prepare_create_database (string provider, string? db_name) throws GLib.Error;
+		public static Gda.ServerOperation prepare_create_table (Gda.Connection cnc, string table_name, GLib.Error error, ...);
 		public static Gda.ServerOperation prepare_drop_database (string provider, string? db_name) throws GLib.Error;
 		public static Gda.ServerOperation prepare_drop_table (Gda.Connection cnc, string table_name) throws GLib.Error;
 		[NoWrapper]

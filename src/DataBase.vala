@@ -27,29 +27,6 @@
  */
 
 namespace Noise.Database {
-    namespace Tables {
-        public const string PLAYLISTS = """CREATE TABLE IF NOT EXISTS playlists (name TEXT, media TEXT,
-            sort_column_id INT, sort_direction TEXT, columns TEXT, rowid INTEGER PRIMARY KEY AUTOINCREMENT)""";
-
-        public const string SMART_PLAYLISTS = """CREATE TABLE IF NOT EXISTS smart_playlists (name TEXT,
-            and_or INT, queries TEXT, limited INT, limit_amount INT, rowid INTEGER PRIMARY KEY AUTOINCREMENT)""";
-
-        public const string COLUMNS = """CREATE TABLE IF NOT EXISTS columns (unique_id TEXT, sort_column_id INT,
-            sort_direction INT, columns TEXT)""";
-
-        public const string MEDIA = """CREATE TABLE IF NOT EXISTS media (uri TEXT, file_size INT,
-            title TEXT, artist TEXT, composer TEXT, album_artist TEXT, album TEXT,
-            grouping TEXT, genre TEXT, comment TEXT, lyrics TEXT, has_embedded INT,
-            year INT, track INT, track_count INT, album_number INT,
-            album_count INT, bitrate INT, length INT, samplerate INT, rating INT,
-            playcount INT, skipcount INT, dateadded INT, lastplayed INT,
-            lastmodified INT, rowid INTEGER PRIMARY KEY AUTOINCREMENT)""";
-
-        public const string DEVICES = """CREATE TABLE IF NOT EXISTS devices (unique_id TEXT,
-            sync_when_mounted INT, sync_music INT, sync_all_music INT, music_playlist STRING,
-            last_sync_time INT)""";
-    }
-
     /*
      * NOTE:
      * Update those constants when you change the order of columns.
@@ -58,10 +35,7 @@ namespace Noise.Database {
         public static const string TABLE_NAME = "playlists";
         public static const string NAME = "+0";
         public static const string MEDIA = "+1";
-        public static const string SORT_COLUMN_ID = "+2";
-        public static const string SORT_DIRECTION = "+3";
-        public static const string COLUMNS = "+4";
-        public static const string ROWID = "+5";
+        public static const string ROWID = "+2";
     }
 
     namespace SmartPlaylists {
@@ -290,6 +264,142 @@ namespace Noise.Database {
             return builder.add_cond (Gda.SqlOperatorType.NOT, cond, 0, 0);
         } else {
             return builder.add_cond (sql_operator_type, id_field, id_value, 0);
+        }
+    }
+
+    public static void create_tables (Gda.Connection connection) {
+        Error e = null;
+
+        /*
+         * Creating the playlists table
+         */
+        var operation = Gda.ServerOperation.prepare_create_table (connection, "playlists", e,
+                                                                      "name", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "media", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG);
+        if (e != null) {
+            critical (e.message);
+        } else {
+            try {
+                operation.perform_create_table ();
+            } catch (Error e) {
+                // e.code == 1 is when the table already exists.
+                if (e.code != 1) {
+                    critical (e.message);
+                }
+            }
+        }
+
+        /*
+         * Creating the smart_playlists table
+         */
+        operation = Gda.ServerOperation.prepare_create_table (connection, "smart_playlists", e,
+                                                                      "name", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "and_or", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "queries", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "limited", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "limit_amount", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG);
+        if (e != null) {
+            critical (e.message);
+        } else {
+            try {
+                operation.perform_create_table ();
+            } catch (Error e) {
+                // e.code == 1 is when the table already exists.
+                if (e.code != 1) {
+                    critical (e.message);
+                }
+            }
+        }
+
+        /*
+         * Creating the columns table
+         */
+        operation = Gda.ServerOperation.prepare_create_table (connection, "columns", e,
+                                                                      "unique_id", typeof (string), Gda.ServerOperationCreateTableFlag.UNIQUE_FLAG,
+                                                                      "sort_column_id", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "sort_direction", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "columns", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG);
+        if (e != null) {
+            critical (e.message);
+        } else {
+            try {
+                operation.perform_create_table ();
+            } catch (Error e) {
+                // e.code == 1 is when the table already exists.
+                if (e.code != 1) {
+                    critical (e.message);
+                }
+            }
+        }
+
+        /*
+         * Creating the media table
+         */
+        operation = Gda.ServerOperation.prepare_create_table (connection, "media", e,
+                                                                      "uri", typeof (string), Gda.ServerOperationCreateTableFlag.UNIQUE_FLAG,
+                                                                      "file_size", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "title", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "artist", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "composer", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "album_artist", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "album", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "grouping", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "genre", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "comment", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "lyrics", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "has_embedded", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "year", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "track", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "track_count", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "album_number", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "album_count", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "bitrate", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "length", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "samplerate", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "rating", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "playcount", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "skipcount", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "dateadded", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "lastplayed", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "lastmodified", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG);
+        if (e != null) {
+            critical (e.message);
+        } else {
+            try {
+                operation.perform_create_table ();
+            } catch (Error e) {
+                // e.code == 1 is when the table already exists.
+                if (e.code != 1) {
+                    critical (e.message);
+                }
+            }
+        }
+
+        /*
+         * Creating the devices table
+         */
+        operation = Gda.ServerOperation.prepare_create_table (connection, "devices", e,
+                                                                      "unique_id", typeof (string), Gda.ServerOperationCreateTableFlag.UNIQUE_FLAG,
+                                                                      "sync_when_mounted", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "sync_music", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "sync_all_music", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "music_playlist", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+                                                                      "last_sync_time", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG);
+        if (e != null) {
+            critical (e.message);
+        } else {
+            try {
+                operation.perform_create_table ();
+            } catch (Error e) {
+                // e.code == 1 is when the table already exists.
+                if (e.code != 1) {
+                    critical (e.message);
+                }
+            }
         }
     }
 }
