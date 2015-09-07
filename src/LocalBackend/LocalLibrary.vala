@@ -54,7 +54,6 @@ public class Noise.LocalLibrary : Library {
     private bool _doing_file_operations = false;
 
     public Gda.Connection connection { public get; private set; }
-    private Gda.SqlParser parser;
 
     private static const string DB_FILE = "database_0_3_1";
 
@@ -135,22 +134,7 @@ public class Noise.LocalLibrary : Library {
             error (e.message);
         }
 
-        parser = connection.create_parser ();
-
-        load_table (Database.Tables.PLAYLISTS);
-        load_table (Database.Tables.SMART_PLAYLISTS);
-        load_table (Database.Tables.COLUMNS);
-        load_table (Database.Tables.MEDIA);
-        load_table (Database.Tables.DEVICES);
-    }
-
-    private void load_table (string table) {
-        try {
-            var statement = parser.parse_string (table, null);
-            connection.statement_execute_non_select (statement, null, null);
-        } catch (Error e) {
-            critical (e.message);
-        }
+        Database.create_tables (connection);
     }
 
     /*
