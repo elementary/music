@@ -108,6 +108,10 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
             var events = yield log.find_events (timerange, event_templates, Zeitgeist.StorageState.ANY, 0, Zeitgeist.ResultType.MOST_RECENT_EVENTS, null);
             foreach (var event in events) {
                 event.subjects.foreach ((subject) => {
+
+                    if (new_medias.size >= 1000)
+                        return;
+
                     var m = libraries_manager.local_library.media_from_uri (subject.uri);
                     if (m == null)
                         return;
