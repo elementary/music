@@ -30,6 +30,7 @@
 
 public class Noise.HistoryPlaylist : StaticPlaylist {
     Zeitgeist.Log log;
+    const int HISTORY_LIMIT = 100;
 
     public HistoryPlaylist () {
         get_history.begin ();
@@ -109,7 +110,7 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
             foreach (var event in events) {
                 event.subjects.foreach ((subject) => {
 
-                    if (new_medias.size >= 1000)
+                    if (new_medias.size >= HISTORY_LIMIT)
                         return;
 
                     var m = libraries_manager.local_library.media_from_uri (subject.uri);
@@ -120,6 +121,9 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
                         new_medias.add (m);
                     }
                 });
+
+                if (new_medias.size >= HISTORY_LIMIT)
+                    break;
             }
 
             var media = new_medias.poll_tail ();
