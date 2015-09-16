@@ -21,7 +21,6 @@
  */
 
 public class Noise.PresetList : Gtk.ComboBox {
-
 	public signal void preset_selected(EqualizerPreset p);
 	public signal void automatic_preset_chosen();
 	public signal void delete_preset_chosen();
