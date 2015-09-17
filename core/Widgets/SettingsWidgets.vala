@@ -59,7 +59,7 @@ namespace Noise.SettingsWindow {
          */
         
         public void add_section (Gtk.Label name, ref int row) {
-            name.set_markup (name.get_text ());
+            name.set_text (name.get_text ());
             name.get_style_context ().add_class ("h4");
             name.halign = Gtk.Align.START;
             attach (name, 0, row, 1, 1);
