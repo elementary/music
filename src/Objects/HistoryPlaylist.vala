@@ -108,8 +108,8 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
         try {
             var events = yield log.find_events (timerange, event_templates, Zeitgeist.StorageState.ANY, 0, Zeitgeist.ResultType.MOST_RECENT_EVENTS, null);
             foreach (var event in events) {
-                for (int i = 0;i < event.subjects.length; i++) {
-                    Zeitgeist.Subject subject = event.subjects.get(i);
+                for (int i = 0; i < event.subjects.length; i++) {
+                    Zeitgeist.Subject subject = event.subjects.get (i);
 
                     var m = libraries_manager.local_library.media_from_uri (subject.uri);
                     if (m == null)
@@ -119,12 +119,14 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
                         new_medias.add (m);
                     }
 
-                    if (new_medias.size >= HISTORY_LIMIT)
+                    if (new_medias.size >= HISTORY_LIMIT) {
                         break;
+                    }
                 }
 
-                if (new_medias.size >= HISTORY_LIMIT)
+                if (new_medias.size >= HISTORY_LIMIT) {
                     break;
+                }
             }
 
             var media = new_medias.poll_tail ();
