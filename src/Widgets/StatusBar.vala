@@ -176,8 +176,17 @@ namespace Noise.Widgets {
 
     private class EqualizerChooser : Gtk.MenuButton {
         public EqualizerChooser () {
-            popover = new EqualizerPopover ();
+            var eq_popover = new EqualizerPopover ();
+            eq_popover.preset_changed.connect (update_tooltip);
+            eq_popover.init ();
+
+            popover = eq_popover;
             add (new Gtk.Image.from_icon_name ("media-eq-symbolic", Gtk.IconSize.MENU));
+        }
+
+        private void update_tooltip (string eq_preset_name) {
+            /// Do not remove '%s'. It's a placeholder for selected equalizer preset name.
+            tooltip_markup = _("Equalizer: %s").printf ("<b>" + String.escape (eq_preset_name) + "</b>");
         }
     }
 
