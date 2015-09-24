@@ -30,6 +30,7 @@
 
 public class Noise.HistoryPlaylist : StaticPlaylist {
     Zeitgeist.Log log;
+    const int HISTORY_LIMIT = 100;
 
     public HistoryPlaylist () {
         get_history.begin ();
@@ -107,15 +108,21 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
         try {
             var events = yield log.find_events (timerange, event_templates, Zeitgeist.StorageState.ANY, 0, Zeitgeist.ResultType.MOST_RECENT_EVENTS, null);
             foreach (var event in events) {
-                event.subjects.foreach ((subject) => {
+                for (int i = 0; new_medias.size < HISTORY_LIMIT && i < event.subjects.length; i++) {
+                    Zeitgeist.Subject subject = event.subjects.get (i);
+
                     var m = libraries_manager.local_library.media_from_uri (subject.uri);
                     if (m == null)
-                        return;
+                        continue;
 
                     if (allow_duplicate || (medias.contains (m) == false && new_medias.contains (m) == false)) {
                         new_medias.add (m);
                     }
-                });
+                }
+
+                if (new_medias.size >= HISTORY_LIMIT) {
+                    break;
+                }
             }
 
             var media = new_medias.poll_tail ();
