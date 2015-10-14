@@ -29,12 +29,6 @@
  */
 
 namespace Noise.Settings {
-    public bool privacy_mode_enabled () {
-        var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
-        return privacy_settings.get_boolean ("remember-app-usage") ||
-               privacy_settings.get_boolean ("remember-recent-files");
-    }
-
     public class SavedState : Granite.Services.Settings {
 
         public int window_width { get; set; }
@@ -88,6 +82,12 @@ namespace Noise.Settings {
             if (main_settings == null)
                 main_settings = new Main ();
             return main_settings;
+        }
+
+        public bool privacy_mode_enabled () {
+            var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
+            return privacy_settings.get_boolean ("remember-app-usage") ||
+                   privacy_settings.get_boolean ("remember-recent-files");
         }
 
         private Main ()  {

@@ -1236,7 +1236,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void on_quit () {
-        if (!Settings.privacy_mode_enabled ()) {
+        if (!main_settings.privacy_mode_enabled ()) {
                 // Save media position and info
                 main_settings.last_media_position = (int)((double)App.player.player.get_position
                 ()/TimeUtils.NANO_INV);
