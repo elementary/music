@@ -1237,13 +1237,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void on_quit () {
         if (!main_settings.privacy_mode_enabled ()) {
-                // Save media position and info
-                main_settings.last_media_position = (int)((double)App.player.player.get_position
-                ()/TimeUtils.NANO_INV);
-                if(App.player.current_media != null) {
-                    App.player.current_media.resume_pos = (int)((double)App.player.player.get_position()/TimeUtils.NANO_INV);
-                    library_manager.update_media (App.player.current_media, false, false);
-                }
+            // Save media position and info
+            main_settings.last_media_position = (int)((double)App.player.player.get_position
+            ()/TimeUtils.NANO_INV);
+            if(App.player.current_media != null) {
+                App.player.current_media.resume_pos = (int)((double)App.player.player.get_position()/TimeUtils.NANO_INV);
+                library_manager.update_media (App.player.current_media, false, false);
+            }
         }
         App.player.player.pause();
 
@@ -1252,7 +1252,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         saved_state.view_mode = viewSelector.selected;
 
         // Search
-        main_settings.search_string = searchField.text;
+        if (!main_settings.privacy_mode_enabled ())
+            main_settings.search_string = searchField.text;
         
         // Save info pane (context pane) width
         saved_state.more_width = info_panel.get_allocated_width ();
