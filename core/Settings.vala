@@ -29,7 +29,6 @@
  */
 
 namespace Noise.Settings {
-
     public class SavedState : Granite.Services.Settings {
 
         public int window_width { get; set; }
@@ -85,6 +84,12 @@ namespace Noise.Settings {
             return main_settings;
         }
 
+        public bool privacy_mode_enabled () {
+            var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
+            return privacy_settings.get_boolean ("remember-app-usage") ||
+                   privacy_settings.get_boolean ("remember-recent-files");
+        }
+
         private Main ()  {
             base ("org.pantheon.noise.settings");
             if (music_folder == "") {
@@ -115,19 +120,19 @@ namespace Noise.Settings {
 
         public Gee.Collection<Noise.EqualizerPreset> getPresets () {
             var presets_data = new Gee.TreeSet<string> ();
-            
+
             if (custom_presets != null) {
                 for (int i = 0; i < custom_presets.length; i++) {
                     presets_data.add (custom_presets[i]);
                 }
             }
-            
+
             var rv = new Gee.TreeSet<Noise.EqualizerPreset>();
-            
+
             foreach (var preset_str in presets_data) {
                 rv.add (new Noise.EqualizerPreset.from_string (preset_str));
             }
-            
+
             return rv.read_only_view;
         }
     }
