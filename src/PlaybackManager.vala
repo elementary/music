@@ -546,8 +546,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             player.pause ();
         
         //update settings
-        if (m.rowid >= 0)
+        if (m.rowid >= 0 && !Settings.Main.get_default ().privacy_mode_enabled ()) {
             Settings.Main.get_default ().last_media_playing = m.rowid;
+        }
         
         if (m != null)
             media_played (m);
@@ -632,7 +633,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         if (current_media != null)
             was_playing = current_media.rowid;
         
-        Settings.Main.get_default ().last_media_playing = 0;
+        if (!Settings.Main.get_default ().privacy_mode_enabled ()) {
+            Settings.Main.get_default ().last_media_playing = 0;
+        }
         current_media = null;
         
         playback_stopped (was_playing);
