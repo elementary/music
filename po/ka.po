@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-09-14 21:37-0500\n"
-"PO-Revision-Date: 2012-11-18 21:01+0000\n"
+"PO-Revision-Date: 2015-11-17 17:28+0000\n"
 "Last-Translator: Beqa Arabuli <arabulibeqa@yahoo.com>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-10-30 05:27+0000\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Launchpad-Export-Date: 2015-11-18 05:25+0000\n"
+"X-Generator: Launchpad (build 17847)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -333,7 +333,7 @@ msgstr ""
 #: ../src/LibraryWindow.vala:681 ../src/LibraryWindow.vala:785
 #: ../src/Views/DeviceSummaryWidget.vala:99
 msgid "Music"
-msgstr ""
+msgstr "მუსიკა"
 
 #: ../src/LibraryWindow.vala:853
 msgid "No songs in Queue"
@@ -364,7 +364,7 @@ msgstr ""
 #: ../src/LibraryWindow.vala:1086
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
-msgstr ""
+msgstr "მუსიკის შემოტანა"
 
 #: ../src/FileOperator.vala:309
 msgid "Import Complete"
@@ -380,11 +380,11 @@ msgstr ""
 
 #: ../src/Noise.vala:38
 msgid "Listen to music"
-msgstr ""
+msgstr "მოუსმინეთ მუსიკას"
 
 #: ../src/Noise.vala:39
 msgid "Music Player"
-msgstr ""
+msgstr "მუსიკის დამკვრელი"
 
 #: ../src/Noise.vala:40
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
@@ -396,7 +396,7 @@ msgstr ""
 
 #: ../src/Noise.vala:42
 msgid "About Music"
-msgstr ""
+msgstr "მუსიკის შესახებ"
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
@@ -788,7 +788,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:253
 msgid "All Music"
-msgstr ""
+msgstr "ყველა მუსიკა"
 
 #: ../src/Views/DeviceSummaryWidget.vala:308
 msgid "Sync Failed"
