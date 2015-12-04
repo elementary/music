@@ -40,6 +40,7 @@ public class Noise.App : Granite.Application {
     public const string KEYWORDS = N_("Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;");
     public const string ABOUT_NOISE = N_("About Noise");
     public const string ABOUT_MUSIC = N_("About Music");
+    public const string ABOUT_TRANSLATORS = N_("translator-credits");
 
     public static PlaybackManager player { get; private set; }
     private LocalLibrary library_manager { get; private set; }
@@ -74,6 +75,7 @@ public class Noise.App : Granite.Application {
                          "Scott Ringwelski <sgringwe@mtu.edu>", null};
 
         about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
+        about_translators = ABOUT_TRANSLATORS;
     }
 
     public override void open (File[] files, string hint) {
