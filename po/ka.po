@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-09-14 21:37-0500\n"
-"PO-Revision-Date: 2015-12-03 17:03+0000\n"
+"PO-Revision-Date: 2015-12-09 16:01+0000\n"
 "Last-Translator: Beqa Arabuli <arabulibeqa@yahoo.com>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-12-04 05:34+0000\n"
-"X-Generator: Launchpad (build 17862)\n"
+"X-Launchpad-Export-Date: 2015-12-11 05:48+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -247,7 +247,7 @@ msgstr "%m/%e/%Y %l:%M %p"
 
 #: ../src/LocalBackend/LocalLibrary.vala:184
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "მიმდინარეობს მუსიკის შემოტანა %s-დან..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
@@ -384,7 +384,7 @@ msgstr "%s შემოტანილია თქვენს ბიბლი�
 
 #: ../src/FileOperator.vala:322
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "მიმდინარეობს ფაილების <b>კოპირება</b> <b>მუსიკის საქაღალდეში<b>..."
 
 #: ../src/Noise.vala:38
 msgid "Listen to music"
@@ -816,7 +816,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "მოწყობილობა უკვე ანცხორციელებს ოპერაციას."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
@@ -826,7 +826,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "დასაკრავი სია ნახლდება. გთხოვთ მოიცადოთ."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid ""
@@ -848,7 +848,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/ViewWrapper.vala:444
 msgid "No media"
-msgstr ""
+msgstr "მედია არაა"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
@@ -860,7 +860,7 @@ msgstr "დაამატეთ მუსიკა თქვენს ბიბ
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "წყაროდან მუსიკის შემოტანა თქვენს ბიბლიოთეკაში."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Change Music Folder"
@@ -868,7 +868,7 @@ msgstr "მუსიკის საქაღალდის შეცვლა"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Load music from a folder, a network or an external disk."
-msgstr ""
+msgstr "ჩატვირთეთ მუსიკა საქღალდიდან, ქსელიდან ან გარე დისკიდან."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
