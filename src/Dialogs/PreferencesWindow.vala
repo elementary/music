@@ -134,7 +134,7 @@ private class Noise.Preferences.GeneralPage {
         
         // Music Folder Location
         
-        var label = new Gtk.Label (_("Music Folder Location:"));
+        var label = new Gtk.Label (_("Music Folder Location"));
         page.add_section (label, ref row);
         
         var spacer = new Gtk.Label ("");
@@ -142,7 +142,7 @@ private class Noise.Preferences.GeneralPage {
 
         page.add_full_option (library_filechooser, ref row);
         
-        label = new Gtk.Label (_("Library Management:"));
+        label = new Gtk.Label (_("Library Management"));
         page.add_section (label, ref row);
         
         var main_settings = Settings.Main.get_default ();
@@ -159,7 +159,7 @@ private class Noise.Preferences.GeneralPage {
         main_settings.schema.bind("copy-imported-music", copy_imported_music_switch, "active", SettingsBindFlags.DEFAULT);
         page.add_option (new Gtk.Label (_("Copy imported files to Library:")), copy_imported_music_switch, ref row);
         
-        label = new Gtk.Label (_("Desktop Integration:"));
+        label = new Gtk.Label (_("Desktop Integration"));
         page.add_section (label, ref row);
 
         hide_on_close_switch = new Gtk.Switch ();
