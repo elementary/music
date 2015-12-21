@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-12-19 15:35+0100\n"
-"PO-Revision-Date: 2015-12-18 20:12+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2015-12-20 14:54+0000\n"
+"Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-12-20 06:01+0000\n"
+"X-Launchpad-Export-Date: 2015-12-21 05:26+0000\n"
 "X-Generator: Launchpad (build 17865)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -361,6 +361,7 @@ msgstr ""
 "  Angelo Rako https://launchpad.net/~anrako\n"
 "  Bennici Piercarlo https://launchpad.net/~piercarlo-bennici-"
 "deactivatedaccount-deactivatedaccount\n"
+"  Daniel Fore https://launchpad.net/~danrabbit\n"
 "  Daniele \"OpenNingia\" Simonetti https://launchpad.net/~oppifjellet\n"
 "  Devid Antonio Filoni https://launchpad.net/~d.filoni\n"
 "  Fabio Gaudenzi https://launchpad.net/~bafio-fruges-c\n"
@@ -1044,7 +1045,7 @@ msgstr "Aggiungi playlist Intelligente"
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Equalizzatore: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
@@ -1200,7 +1201,7 @@ msgstr "Copia i file importati nella libreria:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Integrazione con il desktop"
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
