@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-12-19 15:35+0100\n"
-"PO-Revision-Date: 2015-12-25 04:02+0000\n"
+"PO-Revision-Date: 2016-01-02 15:49+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-12-26 05:25+0000\n"
+"X-Launchpad-Export-Date: 2016-01-03 05:25+0000\n"
 "X-Generator: Launchpad (build 17865)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -149,7 +149,7 @@ msgstr "播放列表文件无法识别。导入失败。"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "正在导入 <b>$NAME</b> (艺人 <b>$ARTIST</b>) 到库中…"
+msgstr "正在导入 <b>$NAME</b> (艺人 <b>$ARTIST</b>) …"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -359,7 +359,7 @@ msgstr "导入完成"
 
 #: ../src/FileOperator.vala:309
 msgid "%s has imported your library."
-msgstr "%s 已经导入您的库。"
+msgstr "%s 已导入您的媒体库中。"
 
 #: ../src/FileOperator.vala:322
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -371,15 +371,15 @@ msgstr "正在导出 %s 中的音乐..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "正在添加文件到库中..."
+msgstr "正在添加文件到媒体库..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:227
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>正在导入</b>音乐到库…"
+msgstr "<b> 正在导入 </b> 音乐到媒体库…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:251
 msgid "All music files are already in your library"
-msgstr "所有音乐文件已存在于库中"
+msgstr "所有音乐文件已在媒体库中"
 
 #: ../src/LocalBackend/LocalLibrary.vala:251
 msgid "No files were imported."
@@ -443,7 +443,7 @@ msgstr "永不"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:84
 msgid "Remove from Library"
-msgstr "从库中移除"
+msgstr "从媒体库移除"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:91
 msgid "Remove from Queue"
@@ -486,7 +486,7 @@ msgstr "移除歌曲"
 #: ../src/Views/ListView/Lists/MusicListView.vala:123
 #: ../src/Widgets/SourceListView.vala:148
 msgid "Import to Library"
-msgstr "导入到库中"
+msgstr "导入到媒体库"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:178
 msgid "New Playlist…"
@@ -825,19 +825,19 @@ msgstr "获取曲目"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:52
 msgid "Add music to your library."
-msgstr "添加音乐到您的资料库。"
+msgstr "添加音乐到您的媒体库。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr "向您的库中导入音乐源。"
+msgstr "选择来源、导入音乐到媒体库。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Change Music Folder"
-msgstr "更改音乐文件夹"
+msgstr "更改目录"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Load music from a folder, a network or an external disk."
-msgstr "从文件夹、网络或外置硬盘内导入文件。"
+msgstr "从文件夹、网络或外置硬盘导入音乐。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
@@ -847,7 +847,7 @@ msgstr "导入您的音乐"
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
 msgid "Import all your Music from %s into your library."
-msgstr "将 %s 中的音乐导入到库中。"
+msgstr "将 %s 中的所有音乐导入到媒体库。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:129
 msgid "Select Music Folder"
@@ -937,7 +937,7 @@ msgstr "关闭"
 
 #: ../src/Widgets/StatusBar.vala:64
 msgid "Enable Repeat"
-msgstr "启用重复"
+msgstr "重复播放"
 
 #: ../src/Widgets/StatusBar.vala:65
 msgid "Song"
@@ -979,11 +979,11 @@ msgstr "禁用重复"
 
 #: ../src/Widgets/StatusBar.vala:94
 msgid "Enable Shuffle"
-msgstr "启用随机播放"
+msgstr "随机播放"
 
 #: ../src/Widgets/StatusBar.vala:95
 msgid "Disable Shuffle"
-msgstr "禁用随机播放"
+msgstr "禁用随机"
 
 #: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
 msgid "Add Playlist"
@@ -1080,7 +1080,7 @@ msgstr "导入播放列表"
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
-msgstr "库"
+msgstr "媒体库"
 
 #: ../src/Widgets/SourceListView.vala:314
 msgid "Devices"
@@ -1136,7 +1136,7 @@ msgstr "音乐文件夹位置"
 
 #: ../src/Dialogs/PreferencesWindow.vala:145
 msgid "Library Management"
-msgstr "库管理"
+msgstr "音乐管理"
 
 #: ../src/Dialogs/PreferencesWindow.vala:152
 msgid "Keep Music folder organized:"
@@ -1377,7 +1377,7 @@ msgstr "从 %s 导入媒体"
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
-msgstr "在 %s 发现下列文件，但它们未在您的库中。勾选所有您要导入的文件。"
+msgstr "在 %s 发现下列文件，但它们未在您的媒体库中。勾选所有您要导入的文件。"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import all media"
@@ -1562,7 +1562,7 @@ msgstr "设置音乐文件夹？"
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
-msgstr "您确定要设置音乐文件夹为 %s 吗？这将重设您的库并移除您的播放列表。"
+msgstr "您确定要设置音乐文件夹为 %s 吗？这将重置媒体库并移除您的播放列表。"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
@@ -1672,7 +1672,7 @@ msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
-msgstr "库中无与当前歌曲类似的歌曲。确保全部歌曲信息正确且已连接到网络。部分歌曲可能无法匹配。"
+msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信息正确并已连接到网络。部分歌曲可能无法匹配。"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
