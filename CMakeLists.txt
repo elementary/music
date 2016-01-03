@@ -34,6 +34,12 @@ include (CPack)
 add_custom_target (dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 
 option (BUILD_SHARED_LIBS "Switch between shared and static libraries" ON)
+option (BUILD_FOR_ELEMENTARY "Noise name will be replaced by Music" ON)
+
+set (APP_NAME "Noise")
+if (BUILD_FOR_ELEMENTARY)
+    set (APP_NAME "Music")
+endif ()
 
 if (BUILD_SHARED_LIBS)
   message ("-- Shared libraries enabled")
