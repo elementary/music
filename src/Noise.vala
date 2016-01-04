@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012-2016 elementary LLC. (https://elementary.io)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -29,19 +29,6 @@
  */
 
 public class Noise.App : Granite.Application {
-
-    /**
-     * Translatable launcher (.desktop) strings to be added to template (.pot) file.
-     * These strings should reflect any changes in these launcher keys in .desktop file
-     */
-    public const string PROGRAM_NAME = "Noise";
-    public const string COMMENT = N_("Listen to music");
-    public const string GENERIC = N_("Music Player");
-    public const string KEYWORDS = N_("Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;");
-    public const string ABOUT_NOISE = N_("About Noise");
-    public const string ABOUT_MUSIC = N_("About Music");
-    public const string ABOUT_TRANSLATORS = N_("translator-credits");
-
     public static PlaybackManager player { get; private set; }
     private LocalLibrary library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
@@ -57,25 +44,25 @@ public class Noise.App : Granite.Application {
         build_version = Build.VERSION;
         build_version_info = Build.VERSION_INFO;
 
-        program_name = PROGRAM_NAME;
+        program_name = _(Build.APP_NAME);
         exec_name = "noise";
 
-        app_copyright = "2012-2015";
+        app_copyright = "2012-2016";
         application_id = "org.pantheon.noise";
         app_icon = "multimedia-audio-player";
         app_launcher = "noise.desktop";
-        app_years = "2012-2015";
+        app_years = "2012-2016";
 
         main_url = "https://launchpad.net/noise";
         bug_url = "https://bugs.launchpad.net/noise/+filebug";
         help_url = "http://elementaryos.org/answers/+/noise/all/newest";
         translate_url = "https://translations.launchpad.net/noise";
 
-        about_authors = {"Corentin Noël <tintou@mailoo.org>",
+        about_authors = {"Corentin Noël <corentin@elementary.io>",
                          "Scott Ringwelski <sgringwe@mtu.edu>", null};
 
-        about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
-        about_translators = ABOUT_TRANSLATORS;
+        about_artists = {"Daniel Foré <daniel@elementary.io>", null};
+        about_translators = _("translator-credits");
     }
 
     public override void open (File[] files, string hint) {

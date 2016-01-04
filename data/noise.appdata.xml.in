@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015 elementary, LLC <contact@elementary.io> -->
+<component type="desktop">
+  <id>noise.desktop</id>
+  <metadata_license>CC0</metadata_license>
+  <project_group>elementary</project_group>
+  <project_license>GPL-3.0+</project_license>
+  <_name>Music</_name>
+  <icon type="stock">multimedia-audio-player</icon>
+  <_summary>The official elementary music player</_summary>
+  <_description>
+    <p>
+      Music is a fast and beautiful audio player with a focus on
+      music and libraries. It handles external devices, CDs, and
+      album art.
+    </p>
+  </_description>
+  <url type="homepage">http://elementary.io/</url>
+  <updatecontact>contact_at_elementary.io</updatecontact>
+</component>
