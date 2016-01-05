@@ -33,6 +33,9 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
 
         list_view.import_requested.connect (import_request);
 
+        library.media_added.connect (add_media_async);
+        library.media_removed.connect (remove_media_async);
+        library.media_updated.connect (update_media_async);
         set_device (d);
     }
 
