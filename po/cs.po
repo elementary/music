@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-19 15:35+0100\n"
+"POT-Creation-Date: 2016-01-04 11:14+0100\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-12-22 04:56+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-01-05 05:26+0000\n"
+"X-Generator: Launchpad (build 17876)\n"
 "Language: cs\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -111,22 +111,20 @@ msgid "Export Playlist"
 msgstr "Exportovat seznam skladeb"
 
 #: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
-#: ../src/LibraryWindow.vala:1088
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:131
-#: ../src/Widgets/TopDisplay.vala:90
-#: ../src/Dialogs/SmartPlaylistEditor.vala:118
+#: ../src/Widgets/TopDisplay.vala:90 ../src/LibraryWindow.vala:1088
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/RemoveFilesDialog.vala:52
 #: ../src/Dialogs/FileNotFoundDialog.vala:87
 #: ../src/Dialogs/FileNotFoundDialog.vala:126
-#: ../src/Dialogs/RemoveFilesDialog.vala:52
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
+#: ../src/Dialogs/SmartPlaylistEditor.vala:118
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: ../core/Utils/PlaylistsUtils.vala:277
+#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:91
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
-#: ../src/Dialogs/MediaEditor.vala:91
 msgid "Save"
 msgstr "Uložit"
 
@@ -146,9 +144,9 @@ msgstr "Seznam skladeb"
 msgid "Import %s"
 msgstr "Importovat %s"
 
-#: ../core/Utils/PlaylistsUtils.vala:371 ../src/LibraryWindow.vala:1089
+#: ../core/Utils/PlaylistsUtils.vala:371
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:133
-#: ../src/Views/GridView/PopupListView.vala:247
+#: ../src/Views/GridView/PopupListView.vala:247 ../src/LibraryWindow.vala:1089
 #: ../src/Dialogs/FileNotFoundDialog.vala:127
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
 msgid "Open"
@@ -157,30 +155,6 @@ msgstr "Otevřít"
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Nerozpoznatelný seznam skladeb. Import se nezdařil."
-
-#: ../core/LibrariesManager.vala:143
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importuji <b>$NAME</b> od <b>$ARTIST</b> do knihovny…"
-
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:34
-msgid "Unknown"
-msgstr "Neznámý"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME z alba $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME od hudebníka $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME od $ARTIST z $ALBUM"
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
@@ -254,204 +228,209 @@ msgstr "Měkký Rock"
 msgid "Techno"
 msgstr "Techno"
 
+#: ../core/LibrariesManager.vala:143
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "Importuji <b>$NAME</b> od <b>$ARTIST</b> do knihovny…"
+
+#. / Used for unknown titles, artists, or album names.
+#: ../core/Media.vala:34
+msgid "Unknown"
+msgstr "Neznámý"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME z alba $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: ../core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME od hudebníka $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME od $ARTIST z $ALBUM"
+
 #: ../src/PlaybackManager.vala:96
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Fronta"
 
-#: ../src/Objects/LyricFetcher.vala:141
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Text stažen z www.lyricsmania.com"
+#: ../src/Views/DeviceView.vala:38
+msgid "Cancelling…"
+msgstr "Probíhá rušení..."
 
-#: ../src/Objects/HistoryPlaylist.vala:40
-msgid "History"
-msgstr "Historie"
+#: ../src/Views/DeviceView.vala:38
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "Operace v zařízení byla zrušena a bude ukončena po tomto médiu."
 
-#: ../src/LibraryWindow.vala:250
-msgid "Import to Library…"
-msgstr "Importovat do knihovny…"
+#: ../src/Views/DeviceView.vala:59
+msgid "OK"
+msgstr "OK"
 
-#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
-msgid "Preferences"
-msgstr "Předvolby"
+#: ../src/Views/DeviceView.vala:100
+msgid "No External Songs"
+msgstr "Žádné externí skladby"
 
-#: ../src/LibraryWindow.vala:270
-msgid "Previous"
-msgstr "Předchozí"
+#: ../src/Views/DeviceView.vala:100
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr "Na zařízení nenalezeny žádné skladby, které by nebyly v knihovně."
 
-#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1013
-msgid "Play"
-msgstr "Přehrát"
+#: ../src/Views/DeviceSummaryWidget.vala:73
+msgid "Device Name:"
+msgstr "Název zařízení:"
 
-#: ../src/LibraryWindow.vala:274
-msgid "Next"
-msgstr "Následující"
+#: ../src/Views/DeviceSummaryWidget.vala:77
+msgid "Device Name"
+msgstr "Název zařízení"
 
-#: ../src/LibraryWindow.vala:278
-msgid "Search Music"
-msgstr "Najít hudbu"
+#: ../src/Views/DeviceSummaryWidget.vala:79
+msgid "Automatically sync when plugged in:"
+msgstr "Automaticky synchronizovat, když zapojeno:"
 
-#: ../src/LibraryWindow.vala:681 ../src/LibraryWindow.vala:785
-#: ../src/Views/DeviceSummaryWidget.vala:99
+#: ../src/Views/DeviceSummaryWidget.vala:86
+msgid "Sync:"
+msgstr "Synchronizovat:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:98
+msgid "Other Files"
+msgstr "Ostatní soubory"
+
+#: ../src/Views/DeviceSummaryWidget.vala:99 ../src/LibraryWindow.vala:681
+#: ../src/LibraryWindow.vala:785
 msgid "Music"
 msgstr "Hudba"
 
-#: ../src/LibraryWindow.vala:853
-msgid "No songs in Queue"
-msgstr "Ve frontě nejsou skladby"
+#: ../src/Views/DeviceSummaryWidget.vala:253
+msgid "All Music"
+msgstr "Všechna hudba"
 
-#: ../src/LibraryWindow.vala:853
+#: ../src/Views/DeviceSummaryWidget.vala:308
+msgid "Sync Failed"
+msgstr "Synchronizace selhala"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
 msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
+"The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Pro přidání písní do fronty klikněte <b>pravým tlačítkem</b> na položku a "
-"vyberte <b>Fronta</b>. Až píseň skončí, budou nejprve přehrány písně ve "
-"frontě, před další písní v právě přehrávaném seznamu."
+"Playlist %s se používá k synchronizaci se zařízením %s, ale nebyl nalezen."
 
-#: ../src/LibraryWindow.vala:856
-msgid "No songs in History"
-msgstr "V historii nejsou žádné skladby"
+#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Cannot Sync"
+msgstr "Nelze synchronizovat"
 
-#: ../src/LibraryWindow.vala:856
+#: ../src/Views/DeviceSummaryWidget.vala:320
 msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
+"Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Píseň bude po přehrání její části přidána do seznamu historie.\n"
-"Tento seznam můžete použít jako přehled všech písní, které jste přehráli "
-"během aktuálního spuštění."
+"Nelze synchronizovat zařízení s vybraným nastavením synchronizace. Na disku "
+"není dostatek místa."
 
-#: ../src/LibraryWindow.vala:1007
-msgid "Pause"
-msgstr "Pozastavit"
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "Zařízení již provádí operaci"
 
-#: ../src/LibraryWindow.vala:1086
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
+msgid "No Songs"
+msgstr "Žádné skladby"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
+msgid "Updating playlist. Please wait."
+msgstr "Aktualizace seznamu skladeb. Prosím čekejte."
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+"K přidání do seznamu skladeb klikněte <b>pravým tlačítkem</b> na soubor a "
+"stiskněte <b>Přidat do seznamu skladeb</b>."
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid "Edit Smart Playlist"
+msgstr "Upravit chytrý seznam skladeb"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"Tento seznam skladeb se automaticky naplní písněmi, které odpovídají jeho "
+"pravidlům. Pro změnu těchto pravidel na ně klikněte <b>pravým tlačítkem</b> "
+"a pak na <b>Upravit</b>. Případně můžete kliknout na tlačítko níže."
+
+#: ../src/Views/Wrappers/ViewWrapper.vala:444
+msgid "No media"
+msgstr "Žádné médium"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Get Some Tunes"
+msgstr "Zaplňte hudbou"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
+msgid "Add music to your library."
+msgstr "Přidat hudbu do knihovny."
+
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+#: ../src/LibraryWindow.vala:1086
 msgid "Import Music"
 msgstr "Importovat hudbu"
 
-#: ../src/Noise.vala:38
-msgid "Listen to music"
-msgstr "Poslech hudby"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr "Přidat hudbu do knihovny."
 
-#: ../src/Noise.vala:39
-msgid "Music Player"
-msgstr "Hudební přehrávač"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Change Music Folder"
+msgstr "Změnit složku s hudbou"
 
-#: ../src/Noise.vala:40
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;Audio;Přehrávač;MP3;iPod;Přehrát;Seznam skladeb;Média;CD;Phone;Skladby;"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Přidat hudbu z adresáře, ze sítě nebo externího disku."
 
-#: ../src/Noise.vala:41
-msgid "About Noise"
-msgstr "O programu Hudba"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import your Music"
+msgstr "Importujte si hudbu"
 
-#: ../src/Noise.vala:42
-msgid "About Music"
-msgstr "O programu Hudba"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import all your Music from %s into your library."
+msgstr "Importujte si do knihovny všechnu hudbu z %s"
 
-#: ../src/Noise.vala:43
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Daniel Fore https://launchpad.net/~danrabbit\n"
-"  Hlobil Vaclav https://launchpad.net/~vaclav-hlobil\n"
-"  Honza Lafek https://launchpad.net/~hlafek99\n"
-"  Jakub Cabal https://launchpad.net/~jakubcabal\n"
-"  Jakub Jezbera https://launchpad.net/~kubajezbera\n"
-"  Jan Hrdina https://launchpad.net/~jan-hrdina\n"
-"  Long Do Hai https://launchpad.net/~mailbox-b\n"
-"  Marek Doležel https://launchpad.net/~marekdolezel\n"
-"  Marek Suchánek https://launchpad.net/~suchm\n"
-"  Martin Bárta https://launchpad.net/~martin-bartama\n"
-"  RoBman79 https://launchpad.net/~robman79\n"
-"  Tomo Moto https://launchpad.net/~tomasivanek\n"
-"  Victor Martinez https://launchpad.net/~victored\n"
-"  bašoun https://launchpad.net/~hanslik-david"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
+msgid "Select Music Folder"
+msgstr "Vyberte složku s hudbou"
 
-#: ../src/FileOperator.vala:309
-msgid "Import Complete"
-msgstr "Import dokončen"
+#: ../src/Views/ListView/ListView.vala:86
+msgid "No Songs Found."
+msgstr "Nebyly nalezeny žádné skladby."
 
-#: ../src/FileOperator.vala:309
-msgid "%s has imported your library."
-msgstr "%s bylo importováno do vaší knihovny"
+#: ../src/Views/ListView/ListView.vala:357
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i stopa"
+msgstr[1] "%i stopy"
+msgstr[2] "%i stop"
 
-#: ../src/FileOperator.vala:322
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kopírování</b> souborů do <b>adresáře s hudbou</b>…"
+#: ../src/Views/ListView/ListView.vala:359
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u skladba"
+msgstr[1] "%u skladby"
+msgstr[2] "%u skladeb"
 
-#: ../src/LocalBackend/LocalLibrary.vala:184
-msgid "Importing music from %s…"
-msgstr "Přidávání hudby z %s..."
-
-#: ../src/LocalBackend/LocalLibrary.vala:212
-msgid "Adding files to library…"
-msgstr "Přidávání souborů do knihovny ..."
-
-#: ../src/LocalBackend/LocalLibrary.vala:227
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Importuji</b> hudbu do knihovny…"
-
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "All music files are already in your library"
-msgstr "Všechny soubory skladeb jsou již ve vaší knihovně"
-
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "No files were imported."
-msgstr "Nebyly přidány žádné soubory."
-
-#: ../src/LocalBackend/LocalLibrary.vala:256
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Vyhledávání změn ve sbírce. Toto může chvíli trvat..."
-
-#: ../src/LocalBackend/LocalLibrary.vala:330
-msgid "Added to your queue:"
-msgstr "Přidáno do fronty:"
-
-#: ../src/LocalBackend/LocalLibrary.vala:341
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "Oblíbené skladby"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "Naposledy přidané"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "Nedávno oblíbené"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "Ještě neposlechnuté"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "Přehrané"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "Poslední dobou nehráno"
-
-#: ../src/Views/ContentView.vala:21
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
-
-#: ../src/Views/ListView/Lists/GenericList.vala:118
-msgid "Autosize Columns"
-msgstr "Automaticky přizpůsobit sloupce"
+#: ../src/Views/ListView/ListView.vala:367
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%i kbps"
@@ -462,82 +441,9 @@ msgstr "%i kbps"
 msgid "Never"
 msgstr "Nikdy"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:84
-msgid "Remove from Library"
-msgstr "Odstranit z knihovny"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:91
-msgid "Remove from Queue"
-msgstr "Odstranit z fronty"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:101
-msgid "Remove from Device"
-msgstr "Odstranit ze zařízení"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:114
-msgid "Scroll to Current Song"
-msgstr "Přejít na aktuální skladby"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:117
-msgid "Edit Song Info"
-msgstr "Upravit informace o skladbě"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:118
-msgid "Show in File Browser"
-msgstr "Zobrazit ve správci souborů"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:119
-msgid "Other actions"
-msgstr "Další akce"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:120
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Fronta"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:121
-msgid "Add to Playlist"
-msgstr "Přidat do seznamu skladeb"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:122
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-msgid "Remove Song"
-msgstr "Odstranit skladbu"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:123
-#: ../src/Widgets/SourceListView.vala:148
-msgid "Import to Library"
-msgstr "Importovat do knihovny"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:178
-msgid "New Playlist…"
-msgstr "Nový seznam skladeb…"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:218
-msgid "Import %i of %i selected songs"
-msgstr "Importovat %i z %i vybraných skladeb"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:220
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Importovat %i skladbu"
-msgstr[1] "Importovat %i skladby"
-msgstr[2] "Importovat %i skladeb"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:612
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: ../src/Views/ListView/Lists/MusicListView.vala:683
-msgid "Sample List String"
-msgstr "Vzorový textový řetězec"
+#: ../src/Views/ListView/Lists/GenericList.vala:118
+msgid "Autosize Columns"
+msgstr "Automaticky přizpůsobit sloupce"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
@@ -639,6 +545,135 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr "Velikost souboru"
 
+#: ../src/Views/ListView/Lists/MusicListView.vala:84
+msgid "Remove from Library"
+msgstr "Odstranit z knihovny"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:91
+msgid "Remove from Queue"
+msgstr "Odstranit z fronty"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:101
+msgid "Remove from Device"
+msgstr "Odstranit ze zařízení"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:114
+msgid "Scroll to Current Song"
+msgstr "Přejít na aktuální skladby"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:117
+msgid "Edit Song Info"
+msgstr "Upravit informace o skladbě"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:118
+msgid "Show in File Browser"
+msgstr "Zobrazit ve správci souborů"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:119
+msgid "Other actions"
+msgstr "Další akce"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:120
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Fronta"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:121
+msgid "Add to Playlist"
+msgstr "Přidat do seznamu skladeb"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:122
+#: ../src/Dialogs/FileNotFoundDialog.vala:86
+msgid "Remove Song"
+msgstr "Odstranit skladbu"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:123
+#: ../src/Widgets/SourceListView.vala:148
+msgid "Import to Library"
+msgstr "Importovat do knihovny"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:178
+msgid "New Playlist…"
+msgstr "Nový seznam skladeb…"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:218
+msgid "Import %i of %i selected songs"
+msgstr "Importovat %i z %i vybraných skladeb"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:220
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "Importovat %i skladbu"
+msgstr[1] "Importovat %i skladby"
+msgstr[2] "Importovat %i skladeb"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:612
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: ../src/Views/ListView/Lists/MusicListView.vala:683
+msgid "Sample List String"
+msgstr "Vzorový textový řetězec"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
+msgid "Genres"
+msgstr "Žánry"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
+msgid "Artists"
+msgstr "Interpreti"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Albums"
+msgstr "Alba"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Years"
+msgstr "Let"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Ratings"
+msgstr "Hodnocení"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Composers"
+msgstr "Skladatelé"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Groupings"
+msgstr "Seskupení"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
+#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
+msgid "Automatic"
+msgstr "Automaticky"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
+msgid "On Left"
+msgstr "Nalevo"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+msgid "On Top"
+msgstr "Nahoře"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "Nehodnoceno"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i hvězda"
+msgstr[1] "%i hvězdy"
+msgstr[2] "%i hvězd"
+
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
 msgstr "Všechny žánry"
@@ -719,233 +754,11 @@ msgstr "Všech %i skladatelů"
 msgid "No Composers"
 msgstr "Žádní skladatelé"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
-msgid "Automatic"
-msgstr "Automaticky"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
-msgid "On Left"
-msgstr "Nalevo"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
-msgid "On Top"
-msgstr "Nahoře"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Nehodnoceno"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i hvězda"
-msgstr[1] "%i hvězdy"
-msgstr[2] "%i hvězd"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
-msgid "Genres"
-msgstr "Žánry"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
-msgid "Artists"
-msgstr "Interpreti"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Albums"
-msgstr "Alba"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Years"
-msgstr "Let"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Ratings"
-msgstr "Hodnocení"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Composers"
-msgstr "Skladatelé"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Groupings"
-msgstr "Seskupení"
-
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "Nebyly nalezeny žádné skladby."
-
-#: ../src/Views/ListView/ListView.vala:357
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i stopa"
-msgstr[1] "%i stopy"
-msgstr[2] "%i stop"
-
-#: ../src/Views/ListView/ListView.vala:359
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u skladba"
-msgstr[1] "%u skladby"
-msgstr[2] "%u skladeb"
-
-#: ../src/Views/ListView/ListView.vala:367
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Cancelling…"
-msgstr "Probíhá rušení..."
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "Operace v zařízení byla zrušena a bude ukončena po tomto médiu."
-
-#: ../src/Views/DeviceView.vala:59
-msgid "OK"
-msgstr "OK"
-
-#: ../src/Views/DeviceView.vala:100
-msgid "No External Songs"
-msgstr "Žádné externí skladby"
-
-#: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr "Na zařízení nenalezeny žádné skladby, které by nebyly v knihovně."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
-msgid "No Songs"
-msgstr "Žádné skladby"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
-msgid "Updating playlist. Please wait."
-msgstr "Aktualizace seznamu skladeb. Prosím čekejte."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"K přidání do seznamu skladeb klikněte <b>pravým tlačítkem</b> na soubor a "
-"stiskněte <b>Přidat do seznamu skladeb</b>."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid "Edit Smart Playlist"
-msgstr "Upravit chytrý seznam skladeb"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"Tento seznam skladeb se automaticky naplní písněmi, které odpovídají jeho "
-"pravidlům. Pro změnu těchto pravidel na ně klikněte <b>pravým tlačítkem</b> "
-"a pak na <b>Upravit</b>. Případně můžete kliknout na tlačítko níže."
-
-#: ../src/Views/Wrappers/ViewWrapper.vala:444
-msgid "No media"
-msgstr "Žádné médium"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Get Some Tunes"
-msgstr "Zaplňte hudbou"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
-msgid "Add music to your library."
-msgstr "Přidat hudbu do knihovny."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Import music from a source into your library."
-msgstr "Přidat hudbu do knihovny."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Change Music Folder"
-msgstr "Změnit složku s hudbou"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Přidat hudbu z adresáře, ze sítě nebo externího disku."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import your Music"
-msgstr "Importujte si hudbu"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import all your Music from %s into your library."
-msgstr "Importujte si do knihovny všechnu hudbu z %s"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
-msgid "Select Music Folder"
-msgstr "Vyberte složku s hudbou"
-
-#: ../src/Views/DeviceSummaryWidget.vala:73
-msgid "Device Name:"
-msgstr "Název zařízení:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:77
-msgid "Device Name"
-msgstr "Název zařízení"
-
-#: ../src/Views/DeviceSummaryWidget.vala:79
-msgid "Automatically sync when plugged in:"
-msgstr "Automaticky synchronizovat, když zapojeno:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Sync:"
-msgstr "Synchronizovat:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Other Files"
-msgstr "Ostatní soubory"
-
-#: ../src/Views/DeviceSummaryWidget.vala:253
-msgid "All Music"
-msgstr "Všechna hudba"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid "Sync Failed"
-msgstr "Synchronizace selhala"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Playlist %s se používá k synchronizaci se zařízením %s, ale nebyl nalezen."
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Cannot Sync"
-msgstr "Nelze synchronizovat"
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Nelze synchronizovat zařízení s vybraným nastavením synchronizace. Na disku "
-"není dostatek místa."
-
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Zařízení již provádí operaci"
-
-#: ../src/Views/GridView/GridView.vala:54
-msgid "No Albums Found."
-msgstr "Nebyla nalezena žádná alba."
-
-#: ../src/Views/GridView/GridView.vala:132
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-msgstr[1] "%u alba"
-msgstr[2] "%u alb"
+#: ../src/Views/ContentView.vala:21
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
 
 #: ../src/Views/GridView/PopupListView.vala:58
 msgid "Set new album cover"
@@ -968,6 +781,81 @@ msgstr "_Otevřít"
 msgid "Image files"
 msgstr "Soubory obrázků"
 
+#: ../src/Views/GridView/GridView.vala:54
+msgid "No Albums Found."
+msgstr "Nebyla nalezena žádná alba."
+
+#: ../src/Views/GridView/GridView.vala:132
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+msgstr[1] "%u alba"
+msgstr[2] "%u alb"
+
+#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
+msgid "Rename"
+msgstr "Přejmenovat"
+
+#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
+#: ../src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Remove"
+msgstr "Odebrat"
+
+#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
+#: ../src/Widgets/SourceListView.vala:90
+msgid "Export…"
+msgstr "Exportovat..."
+
+#: ../src/Widgets/SourceListView.vala:73
+msgid "Edit…"
+msgstr "Upravit…"
+
+#: ../src/Widgets/SourceListView.vala:88
+msgid "Save as Playlist"
+msgstr "Uložit jako seznam skladeb"
+
+#: ../src/Widgets/SourceListView.vala:156
+msgid "Eject"
+msgstr "Odpojit"
+
+#: ../src/Widgets/SourceListView.vala:161
+#: ../src/Widgets/SourceListView.vala:201
+msgid "New Playlist"
+msgstr "Nový seznam skladeb"
+
+#: ../src/Widgets/SourceListView.vala:166
+#: ../src/Widgets/SourceListView.vala:202
+msgid "New Smart Playlist"
+msgstr "Nový chytrý seznam skladeb"
+
+#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
+msgid "Sync"
+msgstr "Synchronizovat"
+
+#: ../src/Widgets/SourceListView.vala:203
+msgid "Import Playlists"
+msgstr "Importovat seznamy skladeb"
+
+#: ../src/Widgets/SourceListView.vala:313
+msgid "Library"
+msgstr "Knihovna"
+
+#: ../src/Widgets/SourceListView.vala:314
+msgid "Devices"
+msgstr "Zařízení"
+
+#: ../src/Widgets/SourceListView.vala:315
+msgid "Network"
+msgstr "Síť"
+
+#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
+msgid "Playlists"
+msgstr "Seznamy skladeb"
+
+#: ../src/Widgets/PresetList.vala:47
+msgid "Delete Current"
+msgstr "Odstranit aktuální"
+
 #: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
 #: ../src/Widgets/EqualizerPopover.vala:339
 msgid "Off"
@@ -985,10 +873,9 @@ msgstr "Skladba"
 msgid "Repeat Song"
 msgstr "Opakovat skladbu"
 
-#: ../src/Widgets/StatusBar.vala:66
-#: ../src/Dialogs/SmartPlaylistEditor.vala:263
+#: ../src/Widgets/StatusBar.vala:66 ../src/Dialogs/MediaEditor.vala:194
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
-#: ../src/Dialogs/MediaEditor.vala:194
+#: ../src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Album"
 msgstr "Album"
 
@@ -996,10 +883,9 @@ msgstr "Album"
 msgid "Repeat Album"
 msgstr "Opakovat album"
 
-#: ../src/Widgets/StatusBar.vala:67
-#: ../src/Dialogs/SmartPlaylistEditor.vala:264
+#: ../src/Widgets/StatusBar.vala:67 ../src/Dialogs/MediaEditor.vala:192
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
-#: ../src/Dialogs/MediaEditor.vala:192
+#: ../src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Artist"
 msgstr "Interpret"
 
@@ -1052,90 +938,6 @@ msgstr "Zobrazit"
 msgid "Hide Info Panel"
 msgstr "Skrýt informační panel"
 
-#: ../src/Widgets/SpaceWidget.vala:237 ../src/Widgets/SourceListView.vala:171
-msgid "Sync"
-msgstr "Synchronizovat"
-
-#: ../src/Widgets/SpaceWidget.vala:266
-msgid "Free"
-msgstr "Volno"
-
-#: ../src/Widgets/SpaceWidget.vala:383
-msgid "Using %s of %s (%.2f%)"
-msgstr "Používá se %s z %s (%.2f%)"
-
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "Zobrazit jako alba"
-
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "Zobrazit jako seznam"
-
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "Zobrazit ve sloupcích"
-
-#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
-msgid "Rename"
-msgstr "Přejmenovat"
-
-#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Remove"
-msgstr "Odebrat"
-
-#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
-#: ../src/Widgets/SourceListView.vala:90
-msgid "Export…"
-msgstr "Exportovat..."
-
-#: ../src/Widgets/SourceListView.vala:73
-msgid "Edit…"
-msgstr "Upravit…"
-
-#: ../src/Widgets/SourceListView.vala:88
-msgid "Save as Playlist"
-msgstr "Uložit jako seznam skladeb"
-
-#: ../src/Widgets/SourceListView.vala:156
-msgid "Eject"
-msgstr "Odpojit"
-
-#: ../src/Widgets/SourceListView.vala:161
-#: ../src/Widgets/SourceListView.vala:201
-msgid "New Playlist"
-msgstr "Nový seznam skladeb"
-
-#: ../src/Widgets/SourceListView.vala:166
-#: ../src/Widgets/SourceListView.vala:202
-msgid "New Smart Playlist"
-msgstr "Nový chytrý seznam skladeb"
-
-#: ../src/Widgets/SourceListView.vala:203
-msgid "Import Playlists"
-msgstr "Importovat seznamy skladeb"
-
-#: ../src/Widgets/SourceListView.vala:313
-msgid "Library"
-msgstr "Knihovna"
-
-#: ../src/Widgets/SourceListView.vala:314
-msgid "Devices"
-msgstr "Zařízení"
-
-#: ../src/Widgets/SourceListView.vala:315
-msgid "Network"
-msgstr "Síť"
-
-#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
-msgid "Playlists"
-msgstr "Seznamy skladeb"
-
-#: ../src/Widgets/PresetList.vala:47
-msgid "Delete Current"
-msgstr "Odstranit aktuální"
-
 #: ../src/Widgets/EqualizerPopover.vala:163
 msgid "Save preset"
 msgstr "Uložit předvolbu"
@@ -1156,202 +958,290 @@ msgstr "Vlastní předvolba"
 msgid "Custom Preset %i"
 msgstr "Vlatní předvolba %i"
 
-#: ../src/Dialogs/PreferencesWindow.vala:46
-msgid "Select Music Folder…"
-msgstr "Vybrat složku s hudbou..."
+#: ../src/Widgets/ViewSelector.vala:68
+msgid "View as Albums"
+msgstr "Zobrazit jako alba"
 
-#: ../src/Dialogs/PreferencesWindow.vala:99 ../src/Dialogs/MediaEditor.vala:94
+#: ../src/Widgets/ViewSelector.vala:72
+msgid "View as List"
+msgstr "Zobrazit jako seznam"
+
+#: ../src/Widgets/ViewSelector.vala:76
+msgid "View in Columns"
+msgstr "Zobrazit ve sloupcích"
+
+#: ../src/Widgets/SpaceWidget.vala:266
+msgid "Free"
+msgstr "Volno"
+
+#: ../src/Widgets/SpaceWidget.vala:383
+msgid "Using %s of %s (%.2f%)"
+msgstr "Používá se %s z %s (%.2f%)"
+
+#: ../src/LibraryWindow.vala:250
+msgid "Import to Library…"
+msgstr "Importovat do knihovny…"
+
+#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: ../src/LibraryWindow.vala:270
+msgid "Previous"
+msgstr "Předchozí"
+
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1013
+msgid "Play"
+msgstr "Přehrát"
+
+#: ../src/LibraryWindow.vala:274
+msgid "Next"
+msgstr "Následující"
+
+#: ../src/LibraryWindow.vala:278
+msgid "Search Music"
+msgstr "Najít hudbu"
+
+#: ../src/LibraryWindow.vala:853
+msgid "No songs in Queue"
+msgstr "Ve frontě nejsou skladby"
+
+#: ../src/LibraryWindow.vala:853
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Pro přidání písní do fronty klikněte <b>pravým tlačítkem</b> na položku a "
+"vyberte <b>Fronta</b>. Až píseň skončí, budou nejprve přehrány písně ve "
+"frontě, před další písní v právě přehrávaném seznamu."
+
+#: ../src/LibraryWindow.vala:856
+msgid "No songs in History"
+msgstr "V historii nejsou žádné skladby"
+
+#: ../src/LibraryWindow.vala:856
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Píseň bude po přehrání její části přidána do seznamu historie.\n"
+"Tento seznam můžete použít jako přehled všech písní, které jste přehráli "
+"během aktuálního spuštění."
+
+#: ../src/LibraryWindow.vala:1007
+msgid "Pause"
+msgstr "Pozastavit"
+
+#: ../src/LocalBackend/LocalLibrary.vala:184
+msgid "Importing music from %s…"
+msgstr "Přidávání hudby z %s..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:212
+msgid "Adding files to library…"
+msgstr "Přidávání souborů do knihovny ..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:227
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>Importuji</b> hudbu do knihovny…"
+
+#: ../src/LocalBackend/LocalLibrary.vala:251
+msgid "All music files are already in your library"
+msgstr "Všechny soubory skladeb jsou již ve vaší knihovně"
+
+#: ../src/LocalBackend/LocalLibrary.vala:251
+msgid "No files were imported."
+msgstr "Nebyly přidány žádné soubory."
+
+#: ../src/LocalBackend/LocalLibrary.vala:256
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "Vyhledávání změn ve sbírce. Toto může chvíli trvat..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:330
+msgid "Added to your queue:"
+msgstr "Přidáno do fronty:"
+
+#: ../src/LocalBackend/LocalLibrary.vala:341
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
+msgid "Favorite Songs"
+msgstr "Oblíbené skladby"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
+msgid "Recently Added"
+msgstr "Naposledy přidané"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
+msgid "Recent Favorites"
+msgstr "Nedávno oblíbené"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
+msgid "Never Played"
+msgstr "Ještě neposlechnuté"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
+msgid "Over Played"
+msgstr "Přehrané"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
+msgid "Not Recently Played"
+msgstr "Poslední dobou nehráno"
+
+#: ../src/Objects/LyricFetcher.vala:141
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "Text stažen z www.lyricsmania.com"
+
+#: ../src/Objects/HistoryPlaylist.vala:40
+msgid "History"
+msgstr "Historie"
+
+#: ../src/Noise.vala:65
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Daniel Fore https://launchpad.net/~danrabbit\n"
+"  Hlobil Vaclav https://launchpad.net/~vaclav-hlobil\n"
+"  Honza Lafek https://launchpad.net/~hlafek99\n"
+"  Jakub Cabal https://launchpad.net/~jakubcabal\n"
+"  Jakub Jezbera https://launchpad.net/~kubajezbera\n"
+"  Jan Hrdina https://launchpad.net/~jan-hrdina\n"
+"  Long Do Hai https://launchpad.net/~mailbox-b\n"
+"  Marek Doležel https://launchpad.net/~marekdolezel\n"
+"  Marek Suchánek https://launchpad.net/~suchm\n"
+"  Martin Bárta https://launchpad.net/~martin-bartama\n"
+"  RoBman79 https://launchpad.net/~robman79\n"
+"  Tomo Moto https://launchpad.net/~tomasivanek\n"
+"  Victor Martinez https://launchpad.net/~victored\n"
+"  bašoun https://launchpad.net/~hanslik-david"
+
+#: ../src/FileOperator.vala:309
+msgid "Import Complete"
+msgstr "Import dokončen"
+
+#: ../src/FileOperator.vala:309
+msgid "%s has imported your library."
+msgstr "%s bylo importováno do vaší knihovny"
+
+#: ../src/FileOperator.vala:322
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>Kopírování</b> souborů do <b>adresáře s hudbou</b>…"
+
+#: ../src/Dialogs/MediaEditor.vala:83
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:369
+msgid "Lyrics"
+msgstr "Text písně"
+
+#: ../src/Dialogs/MediaEditor.vala:94 ../src/Dialogs/PreferencesWindow.vala:99
 msgid "Close"
 msgstr "Zavřít"
 
-#: ../src/Dialogs/PreferencesWindow.vala:131
-msgid "General"
-msgstr "Hlavní"
+#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:343
+msgid "Editing $NAME by $ARTIST"
+msgstr "Úprava $NAME od $ARTIST"
 
-#: ../src/Dialogs/PreferencesWindow.vala:137
-msgid "Music Folder Location"
-msgstr "Umístění složky s hudbou"
+#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:345
+msgid "Editing %s"
+msgstr "Úprava %s"
 
-#: ../src/Dialogs/PreferencesWindow.vala:145
-msgid "Library Management"
-msgstr "Řízení knihovny"
+#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:348
+msgid "Editing %i songs"
+msgstr "Úprava %i písní"
 
-#: ../src/Dialogs/PreferencesWindow.vala:152
-msgid "Keep Music folder organized:"
-msgstr "Udržovat organizaci složky s hudbou:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:156
-msgid "Write metadata to file:"
-msgstr "Zapisovat do souborů metadata:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:160
-msgid "Copy imported files to Library:"
-msgstr "Kopírovat importované soubory do knihovny:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:162
-msgid "Desktop Integration"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:167
-msgid "Continue playback when closed:"
-msgstr "Pokračovat v přehrávání při zavření"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:36
-msgid "Smart Playlist Editor"
-msgstr "Editor chytrých seznamů skladeb"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:48
-#: ../src/Dialogs/SmartPlaylistEditor.vala:56
-msgid "Name of Playlist"
-msgstr "Název seznamu skladeb"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:49
-#: ../src/Dialogs/SmartPlaylistEditor.vala:57
-msgid "Rules"
-msgstr "Pravidla"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:50
-#: ../src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "Options"
-msgstr "Možnosti"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:62
-msgid "Playlist Title"
-msgstr "Název playlistu"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:68
-msgid "Match"
-msgstr "Shoda"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:70
-msgid "any"
-msgstr "nějaký"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:71
-msgid "all"
-msgstr "vše"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:77
-msgid "of the following:"
-msgstr "z následujících:"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:89
-msgid "Add"
-msgstr "Přidat"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Omezit na"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "položek"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Bitrate"
-msgstr "Datový tok"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:266
-#: ../src/Dialogs/MediaEditor.vala:198
-msgid "Comment"
-msgstr "Kometář"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:267
-#: ../src/Dialogs/MediaEditor.vala:196
-msgid "Composer"
-msgstr "Skladatel"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:268
-msgid "Date Added"
-msgstr "Datum přidání"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:269
-#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:463
-msgid "Genre"
-msgstr "Žánr"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:270
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
-msgid "Grouping"
-msgstr "Seskupení"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Last Played"
-msgstr "Naposledy přehráno"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:272
-#: ../src/Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Délka"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Playcount"
-msgstr "Počet přehrání"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:274
-#: ../src/Dialogs/MediaEditor.vala:202
-msgid "Rating"
-msgstr "Hodnocení"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:275
-msgid "Skipcount"
-msgstr "Počet přeskočení"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:276
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
 #: ../src/Dialogs/MediaEditor.vala:191
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
+#: ../src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Title"
 msgstr "Název"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:277
+#: ../src/Dialogs/MediaEditor.vala:193
+msgid "Album Artist"
+msgstr "Interpret alba"
+
+#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Genre"
+msgstr "Žánr"
+
+#: ../src/Dialogs/MediaEditor.vala:196
+#: ../src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Composer"
+msgstr "Skladatel"
+
+#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Grouping"
+msgstr "Seskupení"
+
+#: ../src/Dialogs/MediaEditor.vala:198
+#: ../src/Dialogs/SmartPlaylistEditor.vala:266
+msgid "Comment"
+msgstr "Kometář"
+
+#: ../src/Dialogs/MediaEditor.vala:199
+msgid "Track"
+msgstr "Stopa"
+
+#: ../src/Dialogs/MediaEditor.vala:200
+msgid "Disc"
+msgstr "Disk"
+
 #: ../src/Dialogs/MediaEditor.vala:201
+#: ../src/Dialogs/SmartPlaylistEditor.vala:277
 msgid "Year"
 msgstr "Rok"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:341
-msgid "is"
-msgstr "je"
+#: ../src/Dialogs/MediaEditor.vala:202
+#: ../src/Dialogs/SmartPlaylistEditor.vala:274
+msgid "Rating"
+msgstr "Hodnocení"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:342
-msgid "contains"
-msgstr "obsahuje"
+#: ../src/Dialogs/MediaEditor.vala:292
+msgid "Lyrics not found for %s"
+msgstr "Nebyl nalezen žádný text pro skladbu %s"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:343
-msgid "does not contain"
-msgstr "neobsahuje"
+#: ../src/Dialogs/MediaEditor.vala:629
+msgid "Reset"
+msgstr "Obnovit"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:369
-#: ../src/Dialogs/SmartPlaylistEditor.vala:383
-msgid "is exactly"
-msgstr "je přesně"
+#: ../src/Dialogs/MediaEditor.vala:633
+msgid "<b>Stats</b>"
+msgstr "<b>Statistika</b>"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:370
-msgid "is at most"
-msgstr "je nejvíce"
+#: ../src/Dialogs/SyncWarningDialog.vala:57
+msgid "Import media to Library"
+msgstr "Importovat média do knihovny"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:371
-msgid "is at least"
-msgstr "je nejméně"
+#: ../src/Dialogs/SyncWarningDialog.vala:58
+msgid "Continue Syncing"
+msgstr "Pokračovat v synchronizaci"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:384
-msgid "is within"
-msgstr "je nanejvýš"
+#: ../src/Dialogs/SyncWarningDialog.vala:59
+msgid "Stop Syncing"
+msgstr "Zastavit synchronizaci"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:385
-msgid "is before"
-msgstr "je nejméně"
+#: ../src/Dialogs/SyncWarningDialog.vala:66
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Budete-li pokračovat v synchronizaci, smaže média z %s, jelikož chybí na "
+"seznamu synchronizace. Chcete si je nejprve importovat do knihovny?"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "vteřin"
+#: ../src/Dialogs/SyncWarningDialog.vala:72
+msgid "Sync will remove %i items from %s"
+msgstr "Synchronizace smaže %i položek z %s"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "dní zpátky"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "kbps"
-msgstr "kb/s"
+#: ../src/Dialogs/SyncWarningDialog.vala:75
+msgid "Sync will remove 1 item from %s"
+msgstr "Synchronizace smaže jednu položku z %s"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid "Would you like to install the %s plugin?\n"
@@ -1369,39 +1259,64 @@ msgstr ""
 msgid "Install Plugin"
 msgstr "Nainstalovat plugin"
 
-#: ../src/Dialogs/NotImportedWindow.vala:52
-#: ../src/Dialogs/NotImportedWindow.vala:55
-msgid "Unable to import %d items from %s"
-msgstr "Nemohu importovat %d soubory z %s"
-
-#: ../src/Dialogs/NotImportedWindow.vala:56
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s nelze importovat %d soubory. Soubory jsou možná poškozeny."
-
-#: ../src/Dialogs/NotImportedWindow.vala:59
-msgid "Move all corrupted files to trash"
-msgstr "Přesunout všechny poškozené soubory do koše"
-
-#: ../src/Dialogs/NotImportedWindow.vala:64
 #: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/NotImportedWindow.vala:64
 msgid "Move to Trash"
 msgstr "Přesunout soubory do koše"
 
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "Ignore"
-msgstr "Ignorovat"
+#: ../src/Dialogs/RemoveFilesDialog.vala:51
+msgid "Remove from %s"
+msgstr "Odstranit z %s"
 
-#: ../src/Dialogs/NotImportedWindow.vala:81
-msgid "del"
-msgstr "smazat"
+#: ../src/Dialogs/RemoveFilesDialog.vala:61
+msgid "Remove %d Songs From %s?"
+msgstr "Odebrat %d písní z %s?"
 
-#: ../src/Dialogs/NotImportedWindow.vala:86
-msgid "File Location"
-msgstr "Umístění souboru"
+#: ../src/Dialogs/RemoveFilesDialog.vala:64
+msgid "Remove \"%s\" From %s?"
+msgstr "Odstranit ''%s'' z %s?"
 
-#: ../src/Dialogs/NotImportedWindow.vala:101
-msgid "Select individual files to move to trash:"
-msgstr "Vybrat jednotlivé soubory k přesunutí do koše"
+#: ../src/Dialogs/RemoveFilesDialog.vala:73
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+"Tím odeberete skladbu z knihovny a ze všech zařízení, které se automaticky "
+"synchronizují s %s."
+msgstr[1] ""
+"Tím odeberete skladby z knihovny a ze všech zařízení, které se automaticky "
+"synchronizují s %s."
+msgstr[2] ""
+"Tím odeberete skladby z knihovny a ze všech zařízení, které se automaticky "
+"synchronizují s %s."
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:53
+msgid "File not found"
+msgstr "Soubor nebyl nalezen"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:59
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr "Soubor skladby  <b>%s</b> od <b>%s</b> nebyl nalezen."
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:62
+msgid "%i music files could not be found?"
+msgstr "%i souborů skladeb nebylo nalezeno?"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:85
+msgid "Rescan Library"
+msgstr "Aktualizovat knihovnu"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:88
+msgid "Find Song"
+msgstr "Vyhledat skladbu"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:124
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
+msgid "Choose Music Folder"
+msgstr "Vybrat složku s hudbou"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:53
 msgid "Import from Device"
@@ -1472,132 +1387,6 @@ msgstr ""
 "Noise již provádí souborové operace. Pro import z %d prosím počkejte, až "
 "budou dokončeny."
 
-#: ../src/Dialogs/MediaEditor.vala:83
-msgid "Details"
-msgstr "Podrobnosti"
-
-#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:369
-msgid "Lyrics"
-msgstr "Text písně"
-
-#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:343
-msgid "Editing $NAME by $ARTIST"
-msgstr "Úprava $NAME od $ARTIST"
-
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:345
-msgid "Editing %s"
-msgstr "Úprava %s"
-
-#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:348
-msgid "Editing %i songs"
-msgstr "Úprava %i písní"
-
-#: ../src/Dialogs/MediaEditor.vala:193
-msgid "Album Artist"
-msgstr "Interpret alba"
-
-#: ../src/Dialogs/MediaEditor.vala:199
-msgid "Track"
-msgstr "Stopa"
-
-#: ../src/Dialogs/MediaEditor.vala:200
-msgid "Disc"
-msgstr "Disk"
-
-#: ../src/Dialogs/MediaEditor.vala:292
-msgid "Lyrics not found for %s"
-msgstr "Nebyl nalezen žádný text pro skladbu %s"
-
-#: ../src/Dialogs/MediaEditor.vala:629
-msgid "Reset"
-msgstr "Obnovit"
-
-#: ../src/Dialogs/MediaEditor.vala:633
-msgid "<b>Stats</b>"
-msgstr "<b>Statistika</b>"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:57
-msgid "Import media to Library"
-msgstr "Importovat média do knihovny"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:58
-msgid "Continue Syncing"
-msgstr "Pokračovat v synchronizaci"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:59
-msgid "Stop Syncing"
-msgstr "Zastavit synchronizaci"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:66
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Budete-li pokračovat v synchronizaci, smaže média z %s, jelikož chybí na "
-"seznamu synchronizace. Chcete si je nejprve importovat do knihovny?"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:72
-msgid "Sync will remove %i items from %s"
-msgstr "Synchronizace smaže %i položek z %s"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:75
-msgid "Sync will remove 1 item from %s"
-msgstr "Synchronizace smaže jednu položku z %s"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:53
-msgid "File not found"
-msgstr "Soubor nebyl nalezen"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:59
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "Soubor skladby  <b>%s</b> od <b>%s</b> nebyl nalezen."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:62
-msgid "%i music files could not be found?"
-msgstr "%i souborů skladeb nebylo nalezeno?"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
-msgid "Rescan Library"
-msgstr "Aktualizovat knihovnu"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:88
-msgid "Find Song"
-msgstr "Vyhledat skladbu"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:124
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
-msgid "Choose Music Folder"
-msgstr "Vybrat složku s hudbou"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
-msgid "Remove from %s"
-msgstr "Odstranit z %s"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
-msgid "Remove %d Songs From %s?"
-msgstr "Odebrat %d písní z %s?"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
-msgid "Remove \"%s\" From %s?"
-msgstr "Odstranit ''%s'' z %s?"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
-msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
-msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
-msgstr[0] ""
-"Tím odeberete skladbu z knihovny a ze všech zařízení, které se automaticky "
-"synchronizují s %s."
-msgstr[1] ""
-"Tím odeberete skladby z knihovny a ze všech zařízení, které se automaticky "
-"synchronizují s %s."
-msgstr[2] ""
-"Tím odeberete skladby z knihovny a ze všech zařízení, které se automaticky "
-"synchronizují s %s."
-
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
 msgid "Export Playlists"
 msgstr "Exportovat seznamy skladeb"
@@ -1618,43 +1407,231 @@ msgstr ""
 "Opravdu chcete nastavit jako hudební složku %s? Pokud tak učiníte, smaže se "
 "importovaná knihovna a playlisty."
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
+#: ../src/Dialogs/SmartPlaylistEditor.vala:36
+msgid "Smart Playlist Editor"
+msgstr "Editor chytrých seznamů skladeb"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:48
+#: ../src/Dialogs/SmartPlaylistEditor.vala:56
+msgid "Name of Playlist"
+msgstr "Název seznamu skladeb"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:49
+#: ../src/Dialogs/SmartPlaylistEditor.vala:57
+msgid "Rules"
+msgstr "Pravidla"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:50
+#: ../src/Dialogs/SmartPlaylistEditor.vala:58
+msgid "Options"
+msgstr "Možnosti"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:62
+msgid "Playlist Title"
+msgstr "Název playlistu"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:68
+msgid "Match"
+msgstr "Shoda"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:70
+msgid "any"
+msgstr "nějaký"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:71
+msgid "all"
+msgstr "vše"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:77
+msgid "of the following:"
+msgstr "z následujících:"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:89
+msgid "Add"
+msgstr "Přidat"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr "Omezit na"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr "položek"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Bitrate"
+msgstr "Datový tok"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:268
+msgid "Date Added"
+msgstr "Datum přidání"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Last Played"
+msgstr "Naposledy přehráno"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:272
+#: ../src/Dialogs/SmartPlaylistEditor.vala:406
+msgid "Length"
+msgstr "Délka"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:273
+msgid "Playcount"
+msgstr "Počet přehrání"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:275
+msgid "Skipcount"
+msgstr "Počet přeskočení"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:341
+msgid "is"
+msgstr "je"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:342
+msgid "contains"
+msgstr "obsahuje"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:343
+msgid "does not contain"
+msgstr "neobsahuje"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:369
+#: ../src/Dialogs/SmartPlaylistEditor.vala:383
+msgid "is exactly"
+msgstr "je přesně"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:370
+msgid "is at most"
+msgstr "je nejvíce"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:371
+msgid "is at least"
+msgstr "je nejméně"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:384
+msgid "is within"
+msgstr "je nanejvýš"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:385
+msgid "is before"
+msgstr "je nejméně"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:407
+msgid "seconds"
+msgstr "vteřin"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:410
+msgid "days ago"
+msgstr "dní zpátky"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:413
+msgid "kbps"
+msgstr "kb/s"
+
+#: ../src/Dialogs/PreferencesWindow.vala:46
+msgid "Select Music Folder…"
+msgstr "Vybrat složku s hudbou..."
+
+#: ../src/Dialogs/PreferencesWindow.vala:131
+msgid "General"
+msgstr "Hlavní"
+
+#: ../src/Dialogs/PreferencesWindow.vala:137
+msgid "Music Folder Location"
+msgstr "Umístění složky s hudbou"
+
+#: ../src/Dialogs/PreferencesWindow.vala:145
+msgid "Library Management"
+msgstr "Řízení knihovny"
+
+#: ../src/Dialogs/PreferencesWindow.vala:152
+msgid "Keep Music folder organized:"
+msgstr "Udržovat organizaci složky s hudbou:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:156
+msgid "Write metadata to file:"
+msgstr "Zapisovat do souborů metadata:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:160
+msgid "Copy imported files to Library:"
+msgstr "Kopírovat importované soubory do knihovny:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:162
+msgid "Desktop Integration"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:167
+msgid "Continue playback when closed:"
+msgstr "Pokračovat v přehrávání při zavření"
+
+#: ../src/Dialogs/NotImportedWindow.vala:52
+#: ../src/Dialogs/NotImportedWindow.vala:55
+msgid "Unable to import %d items from %s"
+msgstr "Nemohu importovat %d soubory z %s"
+
+#: ../src/Dialogs/NotImportedWindow.vala:56
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s nelze importovat %d soubory. Soubory jsou možná poškozeny."
+
+#: ../src/Dialogs/NotImportedWindow.vala:59
+msgid "Move all corrupted files to trash"
+msgstr "Přesunout všechny poškozené soubory do koše"
+
+#: ../src/Dialogs/NotImportedWindow.vala:66
+msgid "Ignore"
+msgstr "Ignorovat"
+
+#: ../src/Dialogs/NotImportedWindow.vala:81
+msgid "del"
+msgstr "smazat"
+
+#: ../src/Dialogs/NotImportedWindow.vala:86
+msgid "File Location"
+msgstr "Umístění souboru"
+
+#: ../src/Dialogs/NotImportedWindow.vala:101
+msgid "Select individual files to move to trash:"
+msgstr "Vybrat jednotlivé soubory k přesunutí do koše"
+
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 msgid "Empty device!"
 msgstr "Prázdné zařízení!"
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
 #: ../plugins/Devices/iPod/iPodDevice.vala:63
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
 msgid "This device does not contain any music."
 msgstr "Toto zařízení neobsahuje žádnou hudbu."
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
-msgid "Android Phone"
-msgstr "Telefon s Androidem"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
-msgid "Audio Player"
-msgstr "Hudební přehrávač"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 #: ../plugins/Devices/iPod/iPodLibrary.vala:144
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "Přidávání <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/iPod/iPodLibrary.vala:192
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 msgid "Syncing <b>%s</b>…"
 msgstr "Synchronizace <b>% s </ b> ..."
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
-#: ../plugins/Devices/iPod/iPodLibrary.vala:526
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Odstraňování <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
+#: ../plugins/Devices/iPod/iPodLibrary.vala:214
+#: ../plugins/Devices/iPod/iPodLibrary.vala:370
+msgid "Finishing sync process…"
+msgstr "Dokončuji synchronizaci…"
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
+#: ../plugins/Devices/iPod/iPodLibrary.vala:226
+#: ../plugins/Devices/iPod/iPodLibrary.vala:382
+msgid "Cancelling Sync…"
+msgstr "Ruším synchronizaci…"
+
 #: ../plugins/Devices/iPod/iPodLibrary.vala:333
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 msgid "Removing from <b>%s</b>…"
 msgstr "Odstraňování z <b>%s </ b> ..."
+
+#: ../plugins/Devices/iPod/iPodLibrary.vala:526
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "Odstraňování <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
@@ -1710,15 +1687,21 @@ msgstr "CD importování bude <b>ukončen</b> po probíhajícím importování."
 msgid "An error occured during the Import of this CD"
 msgstr "Během importování na CD se vyskytla chyba"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:214
-#: ../plugins/Devices/iPod/iPodLibrary.vala:370
-msgid "Finishing sync process…"
-msgstr "Dokončuji synchronizaci…"
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
+msgid "Android Phone"
+msgstr "Telefon s Androidem"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:226
-#: ../plugins/Devices/iPod/iPodLibrary.vala:382
-msgid "Cancelling Sync…"
-msgstr "Ruším synchronizaci…"
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
+msgid "Audio Player"
+msgstr "Hudební přehrávač"
+
+#: ../plugins/LastFM/SimilarMediaView.vala:41
+msgid "media"
+msgstr "média"
+
+#: ../plugins/LastFM/SimilarMediaView.vala:47
+msgid "Similar Media"
+msgstr "Podobná média"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
@@ -1733,14 +1716,6 @@ msgstr ""
 "Ve vaší sbírce nejsou žádné podobné skladby. Ujistěte se, že informace o "
 "vašich skladbách jsou správné, a že jste připojeni k internetu. Pro některé "
 "skladby nemusí existovat žádné podobné."
-
-#: ../plugins/LastFM/SimilarMediaView.vala:41
-msgid "media"
-msgstr "média"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:47
-msgid "Similar Media"
-msgstr "Podobná média"
 
 #: ../plugins/LastFM/SimilarMedia.vala:37
 msgid "Similar"
@@ -2061,6 +2036,12 @@ msgstr "Podobné"
 #~ msgid "Library Management:"
 #~ msgstr "Správa knihovny:"
 
+#~ msgid "Listen to music"
+#~ msgstr "Poslech hudby"
+
+#~ msgid "Music Player"
+#~ msgstr "Hudební přehrávač"
+
 #~ msgid "Music Folder Location:"
 #~ msgstr "Umístění složky s hudbou:"
 
@@ -2112,6 +2093,10 @@ msgstr "Podobné"
 #~ msgid "There is not enough space on Device to complete the Sync…"
 #~ msgstr "V zařízení není dostatek místa pro dokončení synchronizace…"
 
+#~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#~ msgstr ""
+#~ "Noise;Audio;Přehrávač;MP3;iPod;Přehrát;Seznam skladeb;Média;CD;Phone;Skladby;"
+
 #~ msgid "Scrobbling Already Enabled"
 #~ msgstr "Scrobbling je již povolen"
 
@@ -2120,6 +2105,12 @@ msgstr "Podobné"
 
 #~ msgid "Notifications:"
 #~ msgstr "Notifikace"
+
+#~ msgid "About Noise"
+#~ msgstr "O programu Hudba"
+
+#~ msgid "About Music"
+#~ msgstr "O programu Hudba"
 
 #~ msgid ""
 #~ "To allow for Last.fm integration, you must give permission to %s. You only "

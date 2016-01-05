@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-19 15:35+0100\n"
+"POT-Creation-Date: 2016-01-04 11:14+0100\n"
 "PO-Revision-Date: 2015-12-21 13:47+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-12-22 04:57+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-01-05 05:27+0000\n"
+"X-Generator: Launchpad (build 17876)\n"
 "Language: id\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -101,22 +101,20 @@ msgid "Export Playlist"
 msgstr "Ekspor Daftar Putar"
 
 #: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
-#: ../src/LibraryWindow.vala:1088
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:131
-#: ../src/Widgets/TopDisplay.vala:90
-#: ../src/Dialogs/SmartPlaylistEditor.vala:118
+#: ../src/Widgets/TopDisplay.vala:90 ../src/LibraryWindow.vala:1088
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/RemoveFilesDialog.vala:52
 #: ../src/Dialogs/FileNotFoundDialog.vala:87
 #: ../src/Dialogs/FileNotFoundDialog.vala:126
-#: ../src/Dialogs/RemoveFilesDialog.vala:52
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
+#: ../src/Dialogs/SmartPlaylistEditor.vala:118
 msgid "Cancel"
 msgstr "Batal"
 
-#: ../core/Utils/PlaylistsUtils.vala:277
+#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:91
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
-#: ../src/Dialogs/MediaEditor.vala:91
 msgid "Save"
 msgstr "Simpan"
 
@@ -136,9 +134,9 @@ msgstr "Daftar Putar"
 msgid "Import %s"
 msgstr "Impor %s"
 
-#: ../core/Utils/PlaylistsUtils.vala:371 ../src/LibraryWindow.vala:1089
+#: ../core/Utils/PlaylistsUtils.vala:371
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:133
-#: ../src/Views/GridView/PopupListView.vala:247
+#: ../src/Views/GridView/PopupListView.vala:247 ../src/LibraryWindow.vala:1089
 #: ../src/Dialogs/FileNotFoundDialog.vala:127
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
 msgid "Open"
@@ -147,30 +145,6 @@ msgstr "Buka"
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Berkas daftar putar tidak dapat dikenali. Impor gagal."
-
-#: ../core/LibrariesManager.vala:143
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Mengimpor <b>$NAME</b> oleh <b>$ARTIST</b> ke pustaka…"
-
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:34
-msgid "Unknown"
-msgstr "Tak Dikenal"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME dalam $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME oleh $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME oleh $ARTIST dalam $ALBUM"
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
@@ -244,202 +218,209 @@ msgstr "Rock Lembut"
 msgid "Techno"
 msgstr "Tekno"
 
+#: ../core/LibrariesManager.vala:143
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "Mengimpor <b>$NAME</b> oleh <b>$ARTIST</b> ke pustaka…"
+
+#. / Used for unknown titles, artists, or album names.
+#: ../core/Media.vala:34
+msgid "Unknown"
+msgstr "Tak Dikenal"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME dalam $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: ../core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME oleh $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME oleh $ARTIST dalam $ALBUM"
+
 #: ../src/PlaybackManager.vala:96
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Antrian"
 
-#: ../src/Objects/LyricFetcher.vala:141
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Lirik diambil dari www.lyricsmania.com"
+#: ../src/Views/DeviceView.vala:38
+msgid "Cancelling…"
+msgstr "Membatalkan..."
 
-#: ../src/Objects/HistoryPlaylist.vala:40
-msgid "History"
-msgstr "Riwayat"
+#: ../src/Views/DeviceView.vala:38
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "Operasi perangkat dibatalkan dan dihentikan setelah media ini."
 
-#: ../src/LibraryWindow.vala:250
-msgid "Import to Library…"
-msgstr "Impor ke Pustaka"
+#: ../src/Views/DeviceView.vala:59
+msgid "OK"
+msgstr "Ok"
 
-#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
-msgid "Preferences"
-msgstr "Pengaturan"
+#: ../src/Views/DeviceView.vala:100
+msgid "No External Songs"
+msgstr "Tidak Ada Lagu Eksternal"
 
-#: ../src/LibraryWindow.vala:270
-msgid "Previous"
-msgstr "Sebelumnya"
+#: ../src/Views/DeviceView.vala:100
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr ""
+"Ada lagu-lagu yang ditemukan pada perangkat yang tidak ada dalam pustaka "
+"Anda."
 
-#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1013
-msgid "Play"
-msgstr "Mainkan"
+#: ../src/Views/DeviceSummaryWidget.vala:73
+msgid "Device Name:"
+msgstr "Nama Perangkat:"
 
-#: ../src/LibraryWindow.vala:274
-msgid "Next"
-msgstr "Selanjutnya"
+#: ../src/Views/DeviceSummaryWidget.vala:77
+msgid "Device Name"
+msgstr "Nama Perangkat"
 
-#: ../src/LibraryWindow.vala:278
-msgid "Search Music"
-msgstr "Cari Musik"
+#: ../src/Views/DeviceSummaryWidget.vala:79
+msgid "Automatically sync when plugged in:"
+msgstr "Sinkronkan otomatis ketika terpasang:"
 
-#: ../src/LibraryWindow.vala:681 ../src/LibraryWindow.vala:785
-#: ../src/Views/DeviceSummaryWidget.vala:99
+#: ../src/Views/DeviceSummaryWidget.vala:86
+msgid "Sync:"
+msgstr "Singkronisasi:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:98
+msgid "Other Files"
+msgstr "Berkas lain"
+
+#: ../src/Views/DeviceSummaryWidget.vala:99 ../src/LibraryWindow.vala:681
+#: ../src/LibraryWindow.vala:785
 msgid "Music"
 msgstr "Musik"
 
-#: ../src/LibraryWindow.vala:853
-msgid "No songs in Queue"
-msgstr "Tidak ada lagu di antrian"
+#: ../src/Views/DeviceSummaryWidget.vala:253
+msgid "All Music"
+msgstr "Semua Musik"
 
-#: ../src/LibraryWindow.vala:853
+#: ../src/Views/DeviceSummaryWidget.vala:308
+msgid "Sync Failed"
+msgstr "Sinkronisasi Gagal"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
 msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
+"The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Untuk menambahkan lagu ke antrian, gunakan <b>klik kanan</b> di lagu yang "
-"diinginkan lalu pilih <b>Antrian</b>. Ketika lagu selesai diputar, lagu "
-"dalam antrian akan diputar dahulu sebelum memutar lagu-lagu di daftar putar."
+"Daftar Putar dengan nama %s digunakan untuk singkronisasi perangkat %s, "
+"tetapi tidak dapat ditemukan."
 
-#: ../src/LibraryWindow.vala:856
-msgid "No songs in History"
-msgstr "Tidak ada lagu di Riwayat"
+#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Cannot Sync"
+msgstr "Tidak Dapat Mensinkroniasi"
 
-#: ../src/LibraryWindow.vala:856
+#: ../src/Views/DeviceSummaryWidget.vala:320
 msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
+"Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Lagu yang sudah diputar akan ditambahkan ke Riwayat.\n"
-"Anda dapat melihat semua lagu yang telah Anda putar di sesi ini."
+"Tidak dapat mensinkronisasi perangkat dengan pengaturan sinkronisasi ini. "
+"Tidak cukup tempat di disk"
 
-#: ../src/LibraryWindow.vala:1007
-msgid "Pause"
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "Perangkat siap melakukan operasi."
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
+msgid "No Songs"
+msgstr "Tidak ada lagu"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
+msgid "Updating playlist. Please wait."
+msgstr "Memperbarui playlist. Harap tunggu."
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
 msgstr ""
+"Untuk menambahkan lagu ini ke daftar putar, gunakan <b>klik kanan</b> di "
+"lagu yang diinginkan lalu pilih <Tambah ke Daftar Putar</b>."
 
-#: ../src/LibraryWindow.vala:1086
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid "Edit Smart Playlist"
+msgstr "Sunting Daftar Putar Pintar"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"Daftar putar ini akan dipopulasi secara otomatis dengan lagu-lagu yang "
+"sesuai dengan aturan. Untuk mengubah aturan-aturan ini,  <b>klik kanan</b>  "
+"Daftar Putar di sisi kiri  dan klik <b>Sunting</b>. Selain itu anda juga "
+"dapat mengaksesnya dengan mengeklik tombol di bawah ini."
+
+#: ../src/Views/Wrappers/ViewWrapper.vala:444
+msgid "No media"
+msgstr "Tak ada media"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Get Some Tunes"
+msgstr "Ambil Sejumlah Nada"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
+msgid "Add music to your library."
+msgstr "Tambahkan musik ke dalam Pustaka"
+
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+#: ../src/LibraryWindow.vala:1086
 msgid "Import Music"
 msgstr "Impor Musik"
 
-#: ../src/Noise.vala:38
-msgid "Listen to music"
-msgstr "Dengarkan music"
-
-#: ../src/Noise.vala:39
-msgid "Music Player"
-msgstr "Pemutar Musik"
-
-#: ../src/Noise.vala:40
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr "Noise;Audio;Player;MP3;IPod;Player;CD;Songs;Lagu;Musik;"
-
-#: ../src/Noise.vala:41
-msgid "About Noise"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
 msgstr ""
 
-#: ../src/Noise.vala:42
-msgid "About Music"
-msgstr ""
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Change Music Folder"
+msgstr "Ganti Folder Musik"
 
-#: ../src/Noise.vala:43
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Affif Mukhlashin https://launchpad.net/~bluemeda\n"
-"  Alfie Ilhamsyah https://launchpad.net/~reikanou-issen\n"
-"  Dani Pratomo https://launchpad.net/~daneepee\n"
-"  Daniel Fore https://launchpad.net/~danrabbit\n"
-"  Fadli https://launchpad.net/~kr0071\n"
-"  Ficky Ichsan Hendrawan https://launchpad.net/~fickyichsan\n"
-"  Jeffry https://launchpad.net/~jeffry-a\n"
-"  Musa Amin https://launchpad.net/~musaamin\n"
-"  Risman Rangga Pratama https://launchpad.net/~imanrp\n"
-"  Surya Handika Putratama https://launchpad.net/~ubunteroz\n"
-"  Theodore Leebrant https://launchpad.net/~theodoreleebrant\n"
-"  Victor Martinez https://launchpad.net/~victored\n"
-"  Viko Adi Rahmawan https://launchpad.net/~vikoadi\n"
-"  dadanhrn https://launchpad.net/~dadanhrn"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Tambahkan musik dari folder, jaringan atau disk eksternal"
 
-#: ../src/FileOperator.vala:309
-msgid "Import Complete"
-msgstr "Impor Selesai"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import your Music"
+msgstr "Impor Musikmu"
 
-#: ../src/FileOperator.vala:309
-msgid "%s has imported your library."
-msgstr "%s telah diimpor ke Pustaka."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import all your Music from %s into your library."
+msgstr "Impor semua Musikmu dari %s ke Pustaka."
 
-#: ../src/FileOperator.vala:322
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Menyalin</b> berkas ke <b>Folder Musik</b>..."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
+msgid "Select Music Folder"
+msgstr "Pilih Folder Musik"
 
-#: ../src/LocalBackend/LocalLibrary.vala:184
-msgid "Importing music from %s…"
-msgstr "Mengimpor musik dari %s…"
+#: ../src/Views/ListView/ListView.vala:86
+msgid "No Songs Found."
+msgstr "Tak Ada Lagu yang Ditemukan."
 
-#: ../src/LocalBackend/LocalLibrary.vala:212
-msgid "Adding files to library…"
-msgstr "Menambah berkas ke pustaka…"
+#: ../src/Views/ListView/ListView.vala:357
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i lagu"
 
-#: ../src/LocalBackend/LocalLibrary.vala:227
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>mengimpor</b> musik ke library..."
+#: ../src/Views/ListView/ListView.vala:359
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u lagu"
 
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "All music files are already in your library"
-msgstr ""
-
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "No files were imported."
-msgstr ""
-
-#: ../src/LocalBackend/LocalLibrary.vala:256
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Memindai perubahan musik. Ini membutuhkan beberapa waktu..."
-
-#: ../src/LocalBackend/LocalLibrary.vala:330
-msgid "Added to your queue:"
-msgstr "Telah ditambahkan pada antrian:"
-
-#: ../src/LocalBackend/LocalLibrary.vala:341
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "Lagu kesukaan"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "Terakhir Ditambahkan"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "Terakhir disukai"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "Belum pernah dimainkan"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "Dimainkan berulang-ulang"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "Selain yang baru dimainkan"
-
-#: ../src/Views/ContentView.vala:21
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
-
-#: ../src/Views/ListView/Lists/GenericList.vala:118
-msgid "Autosize Columns"
-msgstr "Ukuran Kolom Otomatis"
+#: ../src/Views/ListView/ListView.vala:367
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%i kbps"
@@ -450,80 +431,9 @@ msgstr "%i kbps"
 msgid "Never"
 msgstr "Tak pernah"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:84
-msgid "Remove from Library"
-msgstr "Hapus dari Pustaka"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:91
-msgid "Remove from Queue"
-msgstr "Hapus dari Antrian."
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:101
-msgid "Remove from Device"
-msgstr "Hapus dari Perangkat"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:114
-msgid "Scroll to Current Song"
-msgstr "Tunjukkan Lagu yang dimainkan"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:117
-msgid "Edit Song Info"
-msgstr "Ubah Info Lagu"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:118
-msgid "Show in File Browser"
-msgstr "Buka di Peramban Berkas"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:119
-msgid "Other actions"
-msgstr "Tindakan lain"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:120
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Tambah ke Antrian"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:121
-msgid "Add to Playlist"
-msgstr "Tambah ke Daftar Putar"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:122
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-msgid "Remove Song"
-msgstr "Hapus Lagu"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:123
-#: ../src/Widgets/SourceListView.vala:148
-msgid "Import to Library"
-msgstr "Impor folder ke Pustaka"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:178
-msgid "New Playlist…"
-msgstr "Daftarputar baru…"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:218
-msgid "Import %i of %i selected songs"
-msgstr "Impor %i dari %i berkas yang terpilih."
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:220
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "impor %i song"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:612
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: ../src/Views/ListView/Lists/MusicListView.vala:683
-msgid "Sample List String"
-msgstr "12345678901234567890"
+#: ../src/Views/ListView/Lists/GenericList.vala:118
+msgid "Autosize Columns"
+msgstr "Ukuran Kolom Otomatis"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
@@ -625,6 +535,131 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr "Ukuran Berkas"
 
+#: ../src/Views/ListView/Lists/MusicListView.vala:84
+msgid "Remove from Library"
+msgstr "Hapus dari Pustaka"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:91
+msgid "Remove from Queue"
+msgstr "Hapus dari Antrian."
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:101
+msgid "Remove from Device"
+msgstr "Hapus dari Perangkat"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:114
+msgid "Scroll to Current Song"
+msgstr "Tunjukkan Lagu yang dimainkan"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:117
+msgid "Edit Song Info"
+msgstr "Ubah Info Lagu"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:118
+msgid "Show in File Browser"
+msgstr "Buka di Peramban Berkas"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:119
+msgid "Other actions"
+msgstr "Tindakan lain"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:120
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Tambah ke Antrian"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:121
+msgid "Add to Playlist"
+msgstr "Tambah ke Daftar Putar"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:122
+#: ../src/Dialogs/FileNotFoundDialog.vala:86
+msgid "Remove Song"
+msgstr "Hapus Lagu"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:123
+#: ../src/Widgets/SourceListView.vala:148
+msgid "Import to Library"
+msgstr "Impor folder ke Pustaka"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:178
+msgid "New Playlist…"
+msgstr "Daftarputar baru…"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:218
+msgid "Import %i of %i selected songs"
+msgstr "Impor %i dari %i berkas yang terpilih."
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:220
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "impor %i song"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:612
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: ../src/Views/ListView/Lists/MusicListView.vala:683
+msgid "Sample List String"
+msgstr "12345678901234567890"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
+msgid "Genres"
+msgstr "Aliran"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
+msgid "Artists"
+msgstr "Artis"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Albums"
+msgstr "Album"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Years"
+msgstr "Tahun"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Ratings"
+msgstr "Nilai"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Composers"
+msgstr "Komposer"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Groupings"
+msgstr "Pengelompokan"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
+#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
+msgid "Automatic"
+msgstr "Otomatis"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
+msgid "On Left"
+msgstr "Di Kiri"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+msgid "On Top"
+msgstr "Di Atas"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "Tanpa peringkat"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i bintang"
+
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
 msgstr "Semua Aliran"
@@ -705,229 +740,11 @@ msgstr "Semua %i Komposer"
 msgid "No Composers"
 msgstr "Tanpa Komposer"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
-msgid "Automatic"
-msgstr "Otomatis"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
-msgid "On Left"
-msgstr "Di Kiri"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
-msgid "On Top"
-msgstr "Di Atas"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Tanpa peringkat"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i bintang"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
-msgid "Genres"
-msgstr "Aliran"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
-msgid "Artists"
-msgstr "Artis"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Albums"
-msgstr "Album"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Years"
-msgstr "Tahun"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Ratings"
-msgstr "Nilai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Composers"
-msgstr "Komposer"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Groupings"
-msgstr "Pengelompokan"
-
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "Tak Ada Lagu yang Ditemukan."
-
-#: ../src/Views/ListView/ListView.vala:357
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i lagu"
-
-#: ../src/Views/ListView/ListView.vala:359
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u lagu"
-
-#: ../src/Views/ListView/ListView.vala:367
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Cancelling…"
-msgstr "Membatalkan..."
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "Operasi perangkat dibatalkan dan dihentikan setelah media ini."
-
-#: ../src/Views/DeviceView.vala:59
-msgid "OK"
-msgstr "Ok"
-
-#: ../src/Views/DeviceView.vala:100
-msgid "No External Songs"
-msgstr "Tidak Ada Lagu Eksternal"
-
-#: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr ""
-"Ada lagu-lagu yang ditemukan pada perangkat yang tidak ada dalam pustaka "
-"Anda."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
-msgid "No Songs"
-msgstr "Tidak ada lagu"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
-msgid "Updating playlist. Please wait."
-msgstr "Memperbarui playlist. Harap tunggu."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Untuk menambahkan lagu ini ke daftar putar, gunakan <b>klik kanan</b> di "
-"lagu yang diinginkan lalu pilih <Tambah ke Daftar Putar</b>."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid "Edit Smart Playlist"
-msgstr "Sunting Daftar Putar Pintar"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"Daftar putar ini akan dipopulasi secara otomatis dengan lagu-lagu yang "
-"sesuai dengan aturan. Untuk mengubah aturan-aturan ini,  <b>klik kanan</b>  "
-"Daftar Putar di sisi kiri  dan klik <b>Sunting</b>. Selain itu anda juga "
-"dapat mengaksesnya dengan mengeklik tombol di bawah ini."
-
-#: ../src/Views/Wrappers/ViewWrapper.vala:444
-msgid "No media"
-msgstr "Tak ada media"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Get Some Tunes"
-msgstr "Ambil Sejumlah Nada"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
-msgid "Add music to your library."
-msgstr "Tambahkan musik ke dalam Pustaka"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Import music from a source into your library."
-msgstr ""
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Change Music Folder"
-msgstr "Ganti Folder Musik"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Tambahkan musik dari folder, jaringan atau disk eksternal"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import your Music"
-msgstr "Impor Musikmu"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import all your Music from %s into your library."
-msgstr "Impor semua Musikmu dari %s ke Pustaka."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
-msgid "Select Music Folder"
-msgstr "Pilih Folder Musik"
-
-#: ../src/Views/DeviceSummaryWidget.vala:73
-msgid "Device Name:"
-msgstr "Nama Perangkat:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:77
-msgid "Device Name"
-msgstr "Nama Perangkat"
-
-#: ../src/Views/DeviceSummaryWidget.vala:79
-msgid "Automatically sync when plugged in:"
-msgstr "Sinkronkan otomatis ketika terpasang:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Sync:"
-msgstr "Singkronisasi:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Other Files"
-msgstr "Berkas lain"
-
-#: ../src/Views/DeviceSummaryWidget.vala:253
-msgid "All Music"
-msgstr "Semua Musik"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid "Sync Failed"
-msgstr "Sinkronisasi Gagal"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Daftar Putar dengan nama %s digunakan untuk singkronisasi perangkat %s, "
-"tetapi tidak dapat ditemukan."
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Cannot Sync"
-msgstr "Tidak Dapat Mensinkroniasi"
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Tidak dapat mensinkronisasi perangkat dengan pengaturan sinkronisasi ini. "
-"Tidak cukup tempat di disk"
-
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Perangkat siap melakukan operasi."
-
-#: ../src/Views/GridView/GridView.vala:54
-msgid "No Albums Found."
-msgstr "Tak Ada Album yang Ditemukan"
-
-#: ../src/Views/GridView/GridView.vala:132
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
+#: ../src/Views/ContentView.vala:21
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
 
 #: ../src/Views/GridView/PopupListView.vala:58
 msgid "Set new album cover"
@@ -950,6 +767,79 @@ msgstr ""
 msgid "Image files"
 msgstr ""
 
+#: ../src/Views/GridView/GridView.vala:54
+msgid "No Albums Found."
+msgstr "Tak Ada Album yang Ditemukan"
+
+#: ../src/Views/GridView/GridView.vala:132
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u album"
+
+#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
+msgid "Rename"
+msgstr "Ubah nama"
+
+#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
+#: ../src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Remove"
+msgstr "Singkirkan"
+
+#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
+#: ../src/Widgets/SourceListView.vala:90
+msgid "Export…"
+msgstr "Ekspor..."
+
+#: ../src/Widgets/SourceListView.vala:73
+msgid "Edit…"
+msgstr "Sunting..."
+
+#: ../src/Widgets/SourceListView.vala:88
+msgid "Save as Playlist"
+msgstr "Simpan sebagai Daftar Putar"
+
+#: ../src/Widgets/SourceListView.vala:156
+msgid "Eject"
+msgstr "Keluarkan Media"
+
+#: ../src/Widgets/SourceListView.vala:161
+#: ../src/Widgets/SourceListView.vala:201
+msgid "New Playlist"
+msgstr "Daftar Putar Baru"
+
+#: ../src/Widgets/SourceListView.vala:166
+#: ../src/Widgets/SourceListView.vala:202
+msgid "New Smart Playlist"
+msgstr "Daftar Putar pintar baru"
+
+#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
+msgid "Sync"
+msgstr "Sinkronisasi"
+
+#: ../src/Widgets/SourceListView.vala:203
+msgid "Import Playlists"
+msgstr "Mengimpor Daftar Putar"
+
+#: ../src/Widgets/SourceListView.vala:313
+msgid "Library"
+msgstr "Pustaka"
+
+#: ../src/Widgets/SourceListView.vala:314
+msgid "Devices"
+msgstr "Perangkat"
+
+#: ../src/Widgets/SourceListView.vala:315
+msgid "Network"
+msgstr "Jaringan"
+
+#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
+msgid "Playlists"
+msgstr "Daftar Putar"
+
+#: ../src/Widgets/PresetList.vala:47
+msgid "Delete Current"
+msgstr "Hapus Ini"
+
 #: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
 #: ../src/Widgets/EqualizerPopover.vala:339
 msgid "Off"
@@ -967,10 +857,9 @@ msgstr "Lagu"
 msgid "Repeat Song"
 msgstr "Putar Ulang Lagu"
 
-#: ../src/Widgets/StatusBar.vala:66
-#: ../src/Dialogs/SmartPlaylistEditor.vala:263
+#: ../src/Widgets/StatusBar.vala:66 ../src/Dialogs/MediaEditor.vala:194
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
-#: ../src/Dialogs/MediaEditor.vala:194
+#: ../src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Album"
 msgstr "Album"
 
@@ -978,10 +867,9 @@ msgstr "Album"
 msgid "Repeat Album"
 msgstr "Putar Ulang Album"
 
-#: ../src/Widgets/StatusBar.vala:67
-#: ../src/Dialogs/SmartPlaylistEditor.vala:264
+#: ../src/Widgets/StatusBar.vala:67 ../src/Dialogs/MediaEditor.vala:192
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
-#: ../src/Dialogs/MediaEditor.vala:192
+#: ../src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Artist"
 msgstr "Artis"
 
@@ -1034,90 +922,6 @@ msgstr "Tampilkan"
 msgid "Hide Info Panel"
 msgstr "Sembunyikan Panel Info"
 
-#: ../src/Widgets/SpaceWidget.vala:237 ../src/Widgets/SourceListView.vala:171
-msgid "Sync"
-msgstr "Sinkronisasi"
-
-#: ../src/Widgets/SpaceWidget.vala:266
-msgid "Free"
-msgstr "Bebas"
-
-#: ../src/Widgets/SpaceWidget.vala:383
-msgid "Using %s of %s (%.2f%)"
-msgstr "Menggunakan %s dari %s (%.2f%)"
-
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "Tampilkan sebagai album"
-
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "Tampilkan sebagai daftar"
-
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "Tampilkan sebagai kolom"
-
-#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
-msgid "Rename"
-msgstr "Ubah nama"
-
-#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Remove"
-msgstr "Singkirkan"
-
-#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
-#: ../src/Widgets/SourceListView.vala:90
-msgid "Export…"
-msgstr "Ekspor..."
-
-#: ../src/Widgets/SourceListView.vala:73
-msgid "Edit…"
-msgstr "Sunting..."
-
-#: ../src/Widgets/SourceListView.vala:88
-msgid "Save as Playlist"
-msgstr "Simpan sebagai Daftar Putar"
-
-#: ../src/Widgets/SourceListView.vala:156
-msgid "Eject"
-msgstr "Keluarkan Media"
-
-#: ../src/Widgets/SourceListView.vala:161
-#: ../src/Widgets/SourceListView.vala:201
-msgid "New Playlist"
-msgstr "Daftar Putar Baru"
-
-#: ../src/Widgets/SourceListView.vala:166
-#: ../src/Widgets/SourceListView.vala:202
-msgid "New Smart Playlist"
-msgstr "Daftar Putar pintar baru"
-
-#: ../src/Widgets/SourceListView.vala:203
-msgid "Import Playlists"
-msgstr "Mengimpor Daftar Putar"
-
-#: ../src/Widgets/SourceListView.vala:313
-msgid "Library"
-msgstr "Pustaka"
-
-#: ../src/Widgets/SourceListView.vala:314
-msgid "Devices"
-msgstr "Perangkat"
-
-#: ../src/Widgets/SourceListView.vala:315
-msgid "Network"
-msgstr "Jaringan"
-
-#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
-msgid "Playlists"
-msgstr "Daftar Putar"
-
-#: ../src/Widgets/PresetList.vala:47
-msgid "Delete Current"
-msgstr "Hapus Ini"
-
 #: ../src/Widgets/EqualizerPopover.vala:163
 msgid "Save preset"
 msgstr "Simpan set awal"
@@ -1138,202 +942,290 @@ msgstr "Set Awal Sesuka"
 msgid "Custom Preset %i"
 msgstr "Set Awal Sesuka %i"
 
-#: ../src/Dialogs/PreferencesWindow.vala:46
-msgid "Select Music Folder…"
-msgstr "Pilih Folder Musik..."
+#: ../src/Widgets/ViewSelector.vala:68
+msgid "View as Albums"
+msgstr "Tampilkan sebagai album"
 
-#: ../src/Dialogs/PreferencesWindow.vala:99 ../src/Dialogs/MediaEditor.vala:94
+#: ../src/Widgets/ViewSelector.vala:72
+msgid "View as List"
+msgstr "Tampilkan sebagai daftar"
+
+#: ../src/Widgets/ViewSelector.vala:76
+msgid "View in Columns"
+msgstr "Tampilkan sebagai kolom"
+
+#: ../src/Widgets/SpaceWidget.vala:266
+msgid "Free"
+msgstr "Bebas"
+
+#: ../src/Widgets/SpaceWidget.vala:383
+msgid "Using %s of %s (%.2f%)"
+msgstr "Menggunakan %s dari %s (%.2f%)"
+
+#: ../src/LibraryWindow.vala:250
+msgid "Import to Library…"
+msgstr "Impor ke Pustaka"
+
+#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
+msgid "Preferences"
+msgstr "Pengaturan"
+
+#: ../src/LibraryWindow.vala:270
+msgid "Previous"
+msgstr "Sebelumnya"
+
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1013
+msgid "Play"
+msgstr "Mainkan"
+
+#: ../src/LibraryWindow.vala:274
+msgid "Next"
+msgstr "Selanjutnya"
+
+#: ../src/LibraryWindow.vala:278
+msgid "Search Music"
+msgstr "Cari Musik"
+
+#: ../src/LibraryWindow.vala:853
+msgid "No songs in Queue"
+msgstr "Tidak ada lagu di antrian"
+
+#: ../src/LibraryWindow.vala:853
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Untuk menambahkan lagu ke antrian, gunakan <b>klik kanan</b> di lagu yang "
+"diinginkan lalu pilih <b>Antrian</b>. Ketika lagu selesai diputar, lagu "
+"dalam antrian akan diputar dahulu sebelum memutar lagu-lagu di daftar putar."
+
+#: ../src/LibraryWindow.vala:856
+msgid "No songs in History"
+msgstr "Tidak ada lagu di Riwayat"
+
+#: ../src/LibraryWindow.vala:856
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Lagu yang sudah diputar akan ditambahkan ke Riwayat.\n"
+"Anda dapat melihat semua lagu yang telah Anda putar di sesi ini."
+
+#: ../src/LibraryWindow.vala:1007
+msgid "Pause"
+msgstr ""
+
+#: ../src/LocalBackend/LocalLibrary.vala:184
+msgid "Importing music from %s…"
+msgstr "Mengimpor musik dari %s…"
+
+#: ../src/LocalBackend/LocalLibrary.vala:212
+msgid "Adding files to library…"
+msgstr "Menambah berkas ke pustaka…"
+
+#: ../src/LocalBackend/LocalLibrary.vala:227
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>mengimpor</b> musik ke library..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:251
+msgid "All music files are already in your library"
+msgstr ""
+
+#: ../src/LocalBackend/LocalLibrary.vala:251
+msgid "No files were imported."
+msgstr ""
+
+#: ../src/LocalBackend/LocalLibrary.vala:256
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "Memindai perubahan musik. Ini membutuhkan beberapa waktu..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:330
+msgid "Added to your queue:"
+msgstr "Telah ditambahkan pada antrian:"
+
+#: ../src/LocalBackend/LocalLibrary.vala:341
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
+msgid "Favorite Songs"
+msgstr "Lagu kesukaan"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
+msgid "Recently Added"
+msgstr "Terakhir Ditambahkan"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
+msgid "Recent Favorites"
+msgstr "Terakhir disukai"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
+msgid "Never Played"
+msgstr "Belum pernah dimainkan"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
+msgid "Over Played"
+msgstr "Dimainkan berulang-ulang"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
+msgid "Not Recently Played"
+msgstr "Selain yang baru dimainkan"
+
+#: ../src/Objects/LyricFetcher.vala:141
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "Lirik diambil dari www.lyricsmania.com"
+
+#: ../src/Objects/HistoryPlaylist.vala:40
+msgid "History"
+msgstr "Riwayat"
+
+#: ../src/Noise.vala:65
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Affif Mukhlashin https://launchpad.net/~bluemeda\n"
+"  Alfie Ilhamsyah https://launchpad.net/~reikanou-issen\n"
+"  Dani Pratomo https://launchpad.net/~daneepee\n"
+"  Daniel Fore https://launchpad.net/~danrabbit\n"
+"  Fadli https://launchpad.net/~kr0071\n"
+"  Ficky Ichsan Hendrawan https://launchpad.net/~fickyichsan\n"
+"  Jeffry https://launchpad.net/~jeffry-a\n"
+"  Musa Amin https://launchpad.net/~musaamin\n"
+"  Risman Rangga Pratama https://launchpad.net/~imanrp\n"
+"  Surya Handika Putratama https://launchpad.net/~ubunteroz\n"
+"  Theodore Leebrant https://launchpad.net/~theodoreleebrant\n"
+"  Victor Martinez https://launchpad.net/~victored\n"
+"  Viko Adi Rahmawan https://launchpad.net/~vikoadi\n"
+"  dadanhrn https://launchpad.net/~dadanhrn"
+
+#: ../src/FileOperator.vala:309
+msgid "Import Complete"
+msgstr "Impor Selesai"
+
+#: ../src/FileOperator.vala:309
+msgid "%s has imported your library."
+msgstr "%s telah diimpor ke Pustaka."
+
+#: ../src/FileOperator.vala:322
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>Menyalin</b> berkas ke <b>Folder Musik</b>..."
+
+#: ../src/Dialogs/MediaEditor.vala:83
+msgid "Details"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:369
+msgid "Lyrics"
+msgstr "Lirik"
+
+#: ../src/Dialogs/MediaEditor.vala:94 ../src/Dialogs/PreferencesWindow.vala:99
 msgid "Close"
 msgstr "Tutup"
 
-#: ../src/Dialogs/PreferencesWindow.vala:131
-msgid "General"
-msgstr "Umum"
+#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:343
+msgid "Editing $NAME by $ARTIST"
+msgstr "Menyunting $NAME oleh $ARTIST"
 
-#: ../src/Dialogs/PreferencesWindow.vala:137
-msgid "Music Folder Location"
-msgstr "Lokasi folder musik"
+#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:345
+msgid "Editing %s"
+msgstr "Mengubah %s"
 
-#: ../src/Dialogs/PreferencesWindow.vala:145
-msgid "Library Management"
-msgstr "Pengaturan Pustaka"
+#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:348
+msgid "Editing %i songs"
+msgstr "Mengubah %i lagu"
 
-#: ../src/Dialogs/PreferencesWindow.vala:152
-msgid "Keep Music folder organized:"
-msgstr "Atur berkas di folder musik:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:156
-msgid "Write metadata to file:"
-msgstr "Tulis metadata ke dalam berkas:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:160
-msgid "Copy imported files to Library:"
-msgstr "Salin berkas yang diimpor ke Pustaka:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:162
-msgid "Desktop Integration"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:167
-msgid "Continue playback when closed:"
-msgstr "Tetap mainkan ketika tertutup"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:36
-msgid "Smart Playlist Editor"
-msgstr "Pengubah Daftar Putar Pintar"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:48
-#: ../src/Dialogs/SmartPlaylistEditor.vala:56
-msgid "Name of Playlist"
-msgstr "Nama Daftar Putar"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:49
-#: ../src/Dialogs/SmartPlaylistEditor.vala:57
-msgid "Rules"
-msgstr "Peraturan"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:50
-#: ../src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "Options"
-msgstr "Pilihan"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:62
-msgid "Playlist Title"
-msgstr "Nama Daftar Putar"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:68
-msgid "Match"
-msgstr "Cocokkan"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:70
-msgid "any"
-msgstr "sembarang"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:71
-msgid "all"
-msgstr "semua"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:77
-msgid "of the following:"
-msgstr "dari hal-hal berikut"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:89
-msgid "Add"
-msgstr "Tambahkan"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Batasi sampai"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "item"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Bitrate"
-msgstr "Bitrate"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:266
-#: ../src/Dialogs/MediaEditor.vala:198
-msgid "Comment"
-msgstr "Komentar"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:267
-#: ../src/Dialogs/MediaEditor.vala:196
-msgid "Composer"
-msgstr "Komposer"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:268
-msgid "Date Added"
-msgstr "Tanggal Ditambahkan"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:269
-#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:463
-msgid "Genre"
-msgstr "Aliran"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:270
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
-msgid "Grouping"
-msgstr "Pengelompokan"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Last Played"
-msgstr "Terakhir Diputar"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:272
-#: ../src/Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Panjang"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Playcount"
-msgstr "Jumlah putar"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:274
-#: ../src/Dialogs/MediaEditor.vala:202
-msgid "Rating"
-msgstr "Peringkat"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:275
-msgid "Skipcount"
-msgstr "jumlah diskip"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:276
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
 #: ../src/Dialogs/MediaEditor.vala:191
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
+#: ../src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Title"
 msgstr "Judul"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:277
+#: ../src/Dialogs/MediaEditor.vala:193
+msgid "Album Artist"
+msgstr "Artis Album"
+
+#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Genre"
+msgstr "Aliran"
+
+#: ../src/Dialogs/MediaEditor.vala:196
+#: ../src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Composer"
+msgstr "Komposer"
+
+#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
+#: ../src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Grouping"
+msgstr "Pengelompokan"
+
+#: ../src/Dialogs/MediaEditor.vala:198
+#: ../src/Dialogs/SmartPlaylistEditor.vala:266
+msgid "Comment"
+msgstr "Komentar"
+
+#: ../src/Dialogs/MediaEditor.vala:199
+msgid "Track"
+msgstr "Track"
+
+#: ../src/Dialogs/MediaEditor.vala:200
+msgid "Disc"
+msgstr "Cakram"
+
 #: ../src/Dialogs/MediaEditor.vala:201
+#: ../src/Dialogs/SmartPlaylistEditor.vala:277
 msgid "Year"
 msgstr "Tahun"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:341
-msgid "is"
-msgstr "adalah"
+#: ../src/Dialogs/MediaEditor.vala:202
+#: ../src/Dialogs/SmartPlaylistEditor.vala:274
+msgid "Rating"
+msgstr "Peringkat"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:342
-msgid "contains"
-msgstr "mengandung"
+#: ../src/Dialogs/MediaEditor.vala:292
+msgid "Lyrics not found for %s"
+msgstr "lirik tak ditemukan untuk %s"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:343
-msgid "does not contain"
-msgstr "tidak mengandung"
+#: ../src/Dialogs/MediaEditor.vala:629
+msgid "Reset"
+msgstr "Reset"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:369
-#: ../src/Dialogs/SmartPlaylistEditor.vala:383
-msgid "is exactly"
-msgstr "Tepatnya"
+#: ../src/Dialogs/MediaEditor.vala:633
+msgid "<b>Stats</b>"
+msgstr "<b>Statistik</b>"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:370
-msgid "is at most"
-msgstr "paling banyak"
+#: ../src/Dialogs/SyncWarningDialog.vala:57
+msgid "Import media to Library"
+msgstr "Tambah media ke Pustaka"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:371
-msgid "is at least"
-msgstr "paling sedikit"
+#: ../src/Dialogs/SyncWarningDialog.vala:58
+msgid "Continue Syncing"
+msgstr "Lanjutkan Sinkronisasi"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:384
-msgid "is within"
-msgstr "di antara"
+#: ../src/Dialogs/SyncWarningDialog.vala:59
+msgid "Stop Syncing"
+msgstr "Hentikan Sinkronisasi"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:385
-msgid "is before"
-msgstr "sebelum"
+#: ../src/Dialogs/SyncWarningDialog.vala:66
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Jika sinkronisasi diteruskan, semua media akan dihapus dari %s karena tidak "
+"ada di daftar singkronisasi. Apakah anda ingin mengimpornya ke pustaka "
+"terlebih dahulu?"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "detik"
+#: ../src/Dialogs/SyncWarningDialog.vala:72
+msgid "Sync will remove %i items from %s"
+msgstr "Sinkronisasi akan menghapus %i item dari %s"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "hari yang lalu"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "kbps"
-msgstr "kbps"
+#: ../src/Dialogs/SyncWarningDialog.vala:75
+msgid "Sync will remove 1 item from %s"
+msgstr "Singkronisasi akan menghapus 1 item dari %s"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid "Would you like to install the %s plugin?\n"
@@ -1351,39 +1243,59 @@ msgstr ""
 msgid "Install Plugin"
 msgstr "Pasang Pengaya"
 
-#: ../src/Dialogs/NotImportedWindow.vala:52
-#: ../src/Dialogs/NotImportedWindow.vala:55
-msgid "Unable to import %d items from %s"
-msgstr "Tak dapat mengimpor %d item dari %s"
-
-#: ../src/Dialogs/NotImportedWindow.vala:56
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s tak dapat mengimpor %d item. Mungkin berkas rusak."
-
-#: ../src/Dialogs/NotImportedWindow.vala:59
-msgid "Move all corrupted files to trash"
-msgstr "Buang semua berkas rusak ke tempat sampah"
-
-#: ../src/Dialogs/NotImportedWindow.vala:64
 #: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/NotImportedWindow.vala:64
 msgid "Move to Trash"
 msgstr "Pindah ke Tong Sampah"
 
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "Ignore"
-msgstr "Abaikan"
+#: ../src/Dialogs/RemoveFilesDialog.vala:51
+msgid "Remove from %s"
+msgstr "Hapus dari %s"
 
-#: ../src/Dialogs/NotImportedWindow.vala:81
-msgid "del"
-msgstr "hapus"
+#: ../src/Dialogs/RemoveFilesDialog.vala:61
+msgid "Remove %d Songs From %s?"
+msgstr "Menghapus %d lagu dari %s"
 
-#: ../src/Dialogs/NotImportedWindow.vala:86
-msgid "File Location"
-msgstr "Lokasi Berkas"
+#: ../src/Dialogs/RemoveFilesDialog.vala:64
+msgid "Remove \"%s\" From %s?"
+msgstr "Hapus \"%s\" Dari %s?"
 
-#: ../src/Dialogs/NotImportedWindow.vala:101
-msgid "Select individual files to move to trash:"
-msgstr "Pilih berkas satu-satu untuk dipindah ke tong sampah:"
+#: ../src/Dialogs/RemoveFilesDialog.vala:73
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+"Ini akan menghapus lagu dari pustakamu dan dari perangkat lain yang "
+"disingkronisasikan dengan %s"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:53
+msgid "File not found"
+msgstr "Berkas tak ditemukan"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:59
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr ""
+"File musik untuk <b>% s </ b> oleh <b>% s </ b> tidak dapat ditemukan."
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:62
+msgid "%i music files could not be found?"
+msgstr "%i Berkas tidak dapat ditemukan."
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:85
+msgid "Rescan Library"
+msgstr "Periksa ulang Pustaka"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:88
+msgid "Find Song"
+msgstr "Cari Lagu"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:124
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
+msgid "Choose Music Folder"
+msgstr "Pilih Folder Musik"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:53
 msgid "Import from Device"
@@ -1454,128 +1366,6 @@ msgstr ""
 "Noise sedang melakukan operasi berkas. Mohon tunggu hingga selesai mengimpor "
 "dari %d"
 
-#: ../src/Dialogs/MediaEditor.vala:83
-msgid "Details"
-msgstr ""
-
-#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:369
-msgid "Lyrics"
-msgstr "Lirik"
-
-#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:343
-msgid "Editing $NAME by $ARTIST"
-msgstr "Menyunting $NAME oleh $ARTIST"
-
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:345
-msgid "Editing %s"
-msgstr "Mengubah %s"
-
-#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:348
-msgid "Editing %i songs"
-msgstr "Mengubah %i lagu"
-
-#: ../src/Dialogs/MediaEditor.vala:193
-msgid "Album Artist"
-msgstr "Artis Album"
-
-#: ../src/Dialogs/MediaEditor.vala:199
-msgid "Track"
-msgstr "Track"
-
-#: ../src/Dialogs/MediaEditor.vala:200
-msgid "Disc"
-msgstr "Cakram"
-
-#: ../src/Dialogs/MediaEditor.vala:292
-msgid "Lyrics not found for %s"
-msgstr "lirik tak ditemukan untuk %s"
-
-#: ../src/Dialogs/MediaEditor.vala:629
-msgid "Reset"
-msgstr "Reset"
-
-#: ../src/Dialogs/MediaEditor.vala:633
-msgid "<b>Stats</b>"
-msgstr "<b>Statistik</b>"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:57
-msgid "Import media to Library"
-msgstr "Tambah media ke Pustaka"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:58
-msgid "Continue Syncing"
-msgstr "Lanjutkan Sinkronisasi"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:59
-msgid "Stop Syncing"
-msgstr "Hentikan Sinkronisasi"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:66
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Jika sinkronisasi diteruskan, semua media akan dihapus dari %s karena tidak "
-"ada di daftar singkronisasi. Apakah anda ingin mengimpornya ke pustaka "
-"terlebih dahulu?"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:72
-msgid "Sync will remove %i items from %s"
-msgstr "Sinkronisasi akan menghapus %i item dari %s"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:75
-msgid "Sync will remove 1 item from %s"
-msgstr "Singkronisasi akan menghapus 1 item dari %s"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:53
-msgid "File not found"
-msgstr "Berkas tak ditemukan"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:59
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
-"File musik untuk <b>% s </ b> oleh <b>% s </ b> tidak dapat ditemukan."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:62
-msgid "%i music files could not be found?"
-msgstr "%i Berkas tidak dapat ditemukan."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
-msgid "Rescan Library"
-msgstr "Periksa ulang Pustaka"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:88
-msgid "Find Song"
-msgstr "Cari Lagu"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:124
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
-msgid "Choose Music Folder"
-msgstr "Pilih Folder Musik"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
-msgid "Remove from %s"
-msgstr "Hapus dari %s"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
-msgid "Remove %d Songs From %s?"
-msgstr "Menghapus %d lagu dari %s"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
-msgid "Remove \"%s\" From %s?"
-msgstr "Hapus \"%s\" Dari %s?"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
-msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
-msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
-msgstr[0] ""
-"Ini akan menghapus lagu dari pustakamu dan dari perangkat lain yang "
-"disingkronisasikan dengan %s"
-
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
 msgid "Export Playlists"
 msgstr "Ekspor Daftar Putar"
@@ -1596,43 +1386,231 @@ msgstr ""
 "Anda yakin untuk menetapkan folder musik ke %s? Pustaka akan diatur ulang "
 "dan daftar putar akan hilang."
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
+#: ../src/Dialogs/SmartPlaylistEditor.vala:36
+msgid "Smart Playlist Editor"
+msgstr "Pengubah Daftar Putar Pintar"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:48
+#: ../src/Dialogs/SmartPlaylistEditor.vala:56
+msgid "Name of Playlist"
+msgstr "Nama Daftar Putar"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:49
+#: ../src/Dialogs/SmartPlaylistEditor.vala:57
+msgid "Rules"
+msgstr "Peraturan"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:50
+#: ../src/Dialogs/SmartPlaylistEditor.vala:58
+msgid "Options"
+msgstr "Pilihan"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:62
+msgid "Playlist Title"
+msgstr "Nama Daftar Putar"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:68
+msgid "Match"
+msgstr "Cocokkan"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:70
+msgid "any"
+msgstr "sembarang"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:71
+msgid "all"
+msgstr "semua"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:77
+msgid "of the following:"
+msgstr "dari hal-hal berikut"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:89
+msgid "Add"
+msgstr "Tambahkan"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr "Batasi sampai"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr "item"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Bitrate"
+msgstr "Bitrate"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:268
+msgid "Date Added"
+msgstr "Tanggal Ditambahkan"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Last Played"
+msgstr "Terakhir Diputar"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:272
+#: ../src/Dialogs/SmartPlaylistEditor.vala:406
+msgid "Length"
+msgstr "Panjang"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:273
+msgid "Playcount"
+msgstr "Jumlah putar"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:275
+msgid "Skipcount"
+msgstr "jumlah diskip"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:341
+msgid "is"
+msgstr "adalah"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:342
+msgid "contains"
+msgstr "mengandung"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:343
+msgid "does not contain"
+msgstr "tidak mengandung"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:369
+#: ../src/Dialogs/SmartPlaylistEditor.vala:383
+msgid "is exactly"
+msgstr "Tepatnya"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:370
+msgid "is at most"
+msgstr "paling banyak"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:371
+msgid "is at least"
+msgstr "paling sedikit"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:384
+msgid "is within"
+msgstr "di antara"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:385
+msgid "is before"
+msgstr "sebelum"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:407
+msgid "seconds"
+msgstr "detik"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:410
+msgid "days ago"
+msgstr "hari yang lalu"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:413
+msgid "kbps"
+msgstr "kbps"
+
+#: ../src/Dialogs/PreferencesWindow.vala:46
+msgid "Select Music Folder…"
+msgstr "Pilih Folder Musik..."
+
+#: ../src/Dialogs/PreferencesWindow.vala:131
+msgid "General"
+msgstr "Umum"
+
+#: ../src/Dialogs/PreferencesWindow.vala:137
+msgid "Music Folder Location"
+msgstr "Lokasi folder musik"
+
+#: ../src/Dialogs/PreferencesWindow.vala:145
+msgid "Library Management"
+msgstr "Pengaturan Pustaka"
+
+#: ../src/Dialogs/PreferencesWindow.vala:152
+msgid "Keep Music folder organized:"
+msgstr "Atur berkas di folder musik:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:156
+msgid "Write metadata to file:"
+msgstr "Tulis metadata ke dalam berkas:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:160
+msgid "Copy imported files to Library:"
+msgstr "Salin berkas yang diimpor ke Pustaka:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:162
+msgid "Desktop Integration"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:167
+msgid "Continue playback when closed:"
+msgstr "Tetap mainkan ketika tertutup"
+
+#: ../src/Dialogs/NotImportedWindow.vala:52
+#: ../src/Dialogs/NotImportedWindow.vala:55
+msgid "Unable to import %d items from %s"
+msgstr "Tak dapat mengimpor %d item dari %s"
+
+#: ../src/Dialogs/NotImportedWindow.vala:56
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s tak dapat mengimpor %d item. Mungkin berkas rusak."
+
+#: ../src/Dialogs/NotImportedWindow.vala:59
+msgid "Move all corrupted files to trash"
+msgstr "Buang semua berkas rusak ke tempat sampah"
+
+#: ../src/Dialogs/NotImportedWindow.vala:66
+msgid "Ignore"
+msgstr "Abaikan"
+
+#: ../src/Dialogs/NotImportedWindow.vala:81
+msgid "del"
+msgstr "hapus"
+
+#: ../src/Dialogs/NotImportedWindow.vala:86
+msgid "File Location"
+msgstr "Lokasi Berkas"
+
+#: ../src/Dialogs/NotImportedWindow.vala:101
+msgid "Select individual files to move to trash:"
+msgstr "Pilih berkas satu-satu untuk dipindah ke tong sampah:"
+
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 msgid "Empty device!"
 msgstr "Perangkat kosong!"
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
 #: ../plugins/Devices/iPod/iPodDevice.vala:63
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
 msgid "This device does not contain any music."
 msgstr "Perangkat tidak berisi musik"
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
-msgid "Android Phone"
-msgstr "Ponsel Android"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
-msgid "Audio Player"
-msgstr "Pemutar Suara"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 #: ../plugins/Devices/iPod/iPodLibrary.vala:144
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "Menambahkan <b>$NAME</b> oleh <b>$ARTIST</b> ke $DEVICE"
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/iPod/iPodLibrary.vala:192
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 msgid "Syncing <b>%s</b>…"
 msgstr "Menyelaraskan <b>%s</b>..."
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
-#: ../plugins/Devices/iPod/iPodLibrary.vala:526
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Menghapus <b>$NAME</b> oleh <b>$ARTIST</b> dari $DEVICE"
+#: ../plugins/Devices/iPod/iPodLibrary.vala:214
+#: ../plugins/Devices/iPod/iPodLibrary.vala:370
+msgid "Finishing sync process…"
+msgstr "Menyelesaikan proses penyelarasan…"
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
+#: ../plugins/Devices/iPod/iPodLibrary.vala:226
+#: ../plugins/Devices/iPod/iPodLibrary.vala:382
+msgid "Cancelling Sync…"
+msgstr "Membataklan Penyelarasan..."
+
 #: ../plugins/Devices/iPod/iPodLibrary.vala:333
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 msgid "Removing from <b>%s</b>…"
 msgstr "Menghapus dari <b>%s</b>..."
+
+#: ../plugins/Devices/iPod/iPodLibrary.vala:526
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "Menghapus <b>$NAME</b> oleh <b>$ARTIST</b> dari $DEVICE"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
@@ -1688,15 +1666,21 @@ msgstr "Impor CD akan <b>dibatalkan</b> setelah impor berikut."
 msgid "An error occured during the Import of this CD"
 msgstr "Kesalahan terjadi ketika mengimpor ke CD"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:214
-#: ../plugins/Devices/iPod/iPodLibrary.vala:370
-msgid "Finishing sync process…"
-msgstr "Menyelesaikan proses penyelarasan…"
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
+msgid "Android Phone"
+msgstr "Ponsel Android"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:226
-#: ../plugins/Devices/iPod/iPodLibrary.vala:382
-msgid "Cancelling Sync…"
-msgstr "Membataklan Penyelarasan..."
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
+msgid "Audio Player"
+msgstr "Pemutar Suara"
+
+#: ../plugins/LastFM/SimilarMediaView.vala:41
+msgid "media"
+msgstr "media"
+
+#: ../plugins/LastFM/SimilarMediaView.vala:47
+msgid "Similar Media"
+msgstr "Lagu yang Mirip"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
@@ -1711,14 +1695,6 @@ msgstr ""
 "Tidak ada lagu yang mirip dengan lagu yang sedang di pustaka Anda. Pastikan "
 "semua info lagu sudah benar dan Anda terhubung ke Internet. Beberapa lagu "
 "mungkin tidak cocok."
-
-#: ../plugins/LastFM/SimilarMediaView.vala:41
-msgid "media"
-msgstr "media"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:47
-msgid "Similar Media"
-msgstr "Lagu yang Mirip"
 
 #: ../plugins/LastFM/SimilarMedia.vala:37
 msgid "Similar"
@@ -2176,6 +2152,12 @@ msgstr "Serupa"
 #~ msgid "Unknown Track"
 #~ msgstr "Trek Tak Dikenal"
 
+#~ msgid "Listen to music"
+#~ msgstr "Dengarkan music"
+
+#~ msgid "Music Player"
+#~ msgstr "Pemutar Musik"
+
 #~ msgid "Library Management:"
 #~ msgstr "Pengaturan Pustaka:"
 
@@ -2209,6 +2191,9 @@ msgstr "Serupa"
 
 #~ msgid "Give %s Permission"
 #~ msgstr "Berikan %s izin"
+
+#~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#~ msgstr "Noise;Audio;Player;MP3;IPod;Player;CD;Songs;Lagu;Musik;"
 
 #~ msgid "Notifications:"
 #~ msgstr "Pemberitahuan"
