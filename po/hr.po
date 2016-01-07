@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2015-12-24 17:12+0000\n"
+"PO-Revision-Date: 2016-01-06 18:43+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-01-05 05:28+0000\n"
+"X-Launchpad-Export-Date: 2016-01-07 05:26+0000\n"
 "X-Generator: Launchpad (build 17876)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -1154,12 +1154,12 @@ msgstr "Naziv"
 
 #: ../src/Dialogs/MediaEditor.vala:193
 msgid "Album Artist"
-msgstr "Izvođač Albuma"
+msgstr "Izvođač albuma"
 
 #: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:463
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Genre"
-msgstr "Vrsta"
+msgstr "Vrsta glazbe"
 
 #: ../src/Dialogs/MediaEditor.vala:196
 #: ../src/Dialogs/SmartPlaylistEditor.vala:267
