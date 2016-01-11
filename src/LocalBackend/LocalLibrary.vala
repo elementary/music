@@ -330,22 +330,21 @@ public class Noise.LocalLibrary : Library {
                 string primary_text = _("Added to your queue:");
 
                 var secondary_text = new StringBuilder ();
-                Gdk.Pixbuf? pixbuf = null;
+                GLib.Icon icon = null;
                 if (open_media_list.size == 1) {
                     var first = open_media_list.first ();
-                    pixbuf = CoverartCache.instance.get_original_cover (first).scale_simple (128, 128, Gdk.InterpType.HYPER);
                     secondary_text.append (first.get_display_title ());
                     secondary_text.append ("\n");
                     secondary_text.append (first.get_display_artist ());
+                    var icon_file = CoverartCache.instance.get_cached_image_file (first);
+                    if (icon_file != null) {
+                        icon = new FileIcon (icon_file);
+                    }
                 } else {
                     secondary_text.append (ngettext ("%d Track", "%d Tracks", open_media_list.size).printf (open_media_list.size));
                 }
 
-#if HAVE_LIBNOTIFY
-                App.main_window.show_notification (primary_text, secondary_text.str, pixbuf, Notify.Urgency.LOW);
-#else
-                App.main_window.show_notification (primary_text, secondary_text.str, pixbuf);
-#endif
+                App.main_window.show_notification (primary_text, secondary_text.str, icon, NotificationPriority.NORMAL, "import");
             }
         }
 
