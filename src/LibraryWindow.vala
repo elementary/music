@@ -557,57 +557,23 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     /**
      * Notifications
      */
-#if HAVE_LIBNOTIFY
-    private Notify.Notification? notification = null;
-#endif
 
-    public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, int urgency = -1) {
-#if HAVE_LIBNOTIFY
+    public void show_notification (string title, string body, GLib.Icon? icon = null, NotificationPriority priority = GLib.NotificationPriority.LOW, string context = "music") {
         // Don't show notifications if the window is active
         if (this.is_active)
             return;
 
-        if (urgency == -1)
-            urgency = Notify.Urgency.NORMAL;
-
-        if (!Notify.is_initted ()) {
-            if (!Notify.init (((Noise.App) GLib.Application.get_default ()).get_id ())) {
-                warning ("Could not init libnotify");
-                return;
-            }
-        }
-
-        if (notification == null) {
-            notification = new Notify.Notification (primary_text, secondary_text, "");
+        var notification = new Notification (title);
+        notification.set_body (body);
+        notification.set_priority (priority);
+        if (icon != null) {
+            notification.set_icon (icon);
         } else {
-            notification.clear_hints ();
-            notification.clear_actions ();
-            notification.update (primary_text, secondary_text, "");
+            notification.set_icon (new ThemedIcon ("multimedia-audio-player"));
         }
-        if (pixbuf != null)
-            notification.set_image_from_pixbuf (pixbuf);
-        else
-            notification.icon_name = "multimedia-audio-player";
 
-        notification.set_category ("x-gnome.music");
-        notification.set_urgency ((Notify.Urgency) urgency);
-
-        notification.add_action ("default", "Show Noise", (notification, action) => {
-            try {
-                notification.close ();
-            } catch (GLib.Error err) {
-                error ("Could not close notification: %s", err.message);
-            }
-
-            this.present_with_time ((uint32)GLib.get_monotonic_time ());
-        });
-
-        try {
-            notification.show ();
-        } catch (GLib.Error err) {
-            warning ("Could not show notification: %s", err.message);
-        }
-#endif
+        notification.set_default_action ("app.present");
+        GLib.Application.get_default ().send_notification (context, notification);
     }
 
     public async void show_notification_from_media_async (Media media) {
@@ -625,15 +591,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         secondary_text.append (media.get_display_artist ());
         secondary_text.append ("\n");
         secondary_text.append (media.get_display_album ());
-
-        Gdk.Pixbuf? pixbuf = CoverartCache.instance.get_original_cover (media).scale_simple (128, 128, Gdk.InterpType.HYPER);
+        GLib.Icon icon = null;
+        var icon_file = CoverartCache.instance.get_cached_image_file (media);
+        if (icon_file != null) {
+            icon = new FileIcon (icon_file);
+        }
 
         if (!notification_cancellable.is_cancelled ()) {
-#if HAVE_LIBNOTIFY
-            show_notification (primary_text, secondary_text.str, pixbuf, Notify.Urgency.LOW);
-#else
-            show_notification (primary_text, secondary_text.str, pixbuf);
-#endif
+            show_notification (primary_text, secondary_text.str, icon);
         }
     }
 

@@ -77,7 +77,7 @@ set (CORE_PACKAGES
 )
 
 set (CORE_PKG
-  glib-2.0>=2.32
+  glib-2.0>=2.39
   gio-2.0
   gee-0.8
   libpeas-1.0
@@ -110,7 +110,7 @@ pkg_check_modules (DEPS REQUIRED ${DEPS_PKG} ${CORE_PKG})
 
 set (BASIC_VALAC_OPTIONS
   --vapidir=${CMAKE_SOURCE_DIR}/vapi
-  --target-glib=2.32
+  --target-glib=2.39
   --thread
   # Remove it when vala bindings are no more experimental (see https://bugzilla.gnome.org/show_bug.cgi?id=719597)
   --enable-experimental
@@ -121,24 +121,6 @@ set (GLOBAL_VALAC_OPTIONS
   --vapidir=${CMAKE_BINARY_DIR}/src
   ${BASIC_VALAC_OPTIONS}
 )
-
-#
-# Libnotify
-#
-pkg_check_modules (LIBNOTIFY QUIET libnotify)
-if (LIBNOTIFY_FOUND)
-  message ("-- libnotify enabled")
-
-  set (GLOBAL_VALAC_OPTIONS ${GLOBAL_VALAC_OPTIONS} --define=HAVE_LIBNOTIFY)
-
-  set (DEPS_PACKAGES ${DEPS_PACKAGES} libnotify)
-
-  set (DEPS_CFLAGS ${DEPS_CFLAGS} ${LIBNOTIFY_CFLAGS})
-  set (DEPS_LIBRARIES ${DEPS_LIBRARIES} ${LIBNOTIFY_LIBRARIES})
-  set (DEPS_LIBRARY_DIRS ${DEPS_LIBRARY_DIRS} ${LIBNOTIFY_LIBRARY_DIRS})
-else ()
-  message ("-- libnotify disabled")
-endif ()
 
 find_package (Vala REQUIRED)
 include (ValaVersion)

@@ -63,6 +63,15 @@ public class Noise.App : Granite.Application {
 
         about_artists = {"Daniel Foré <daniel@elementary.io>", null};
         about_translators = _("translator-credits");
+        
+        var present_action = new SimpleAction ("app.present", null);
+        present_action.activate.connect (() => {
+            if (main_window != null) {
+                main_window.present_with_time ((uint32) GLib.get_monotonic_time ());
+            }
+        });
+
+        this.add_action (present_action);
     }
 
     public override void open (File[] files, string hint) {
@@ -75,7 +84,6 @@ public class Noise.App : Granite.Application {
 
 
     protected override void activate () {
-        
         if (main_window == null) {
             if (DEBUG)
                 Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
