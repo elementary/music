@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-01-11 13:57+0000\n"
+"PO-Revision-Date: 2016-01-12 12:35+0000\n"
 "Last-Translator: Lukáš Papík <stereo839@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2016-01-12 05:33+0000\n"
-"X-Generator: Launchpad (build 17881)\n"
+"X-Launchpad-Export-Date: 2016-01-13 05:43+0000\n"
+"X-Generator: Launchpad (build 17886)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
@@ -417,8 +417,9 @@ msgstr "Skladby sa nenašli."
 #: ../src/Views/ListView/ListView.vala:357
 msgid "%i track"
 msgid_plural "%i tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i stopa"
+msgstr[1] "%i stopa"
+msgstr[2] "%i stopy"
 
 #: ../src/Views/ListView/ListView.vala:359
 msgid "%u song"
@@ -670,8 +671,9 @@ msgstr "Neohodnotená"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%i Star"
 msgid_plural "%i Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Hviezd"
+msgstr[1] "%s Hviezda"
+msgstr[2] "%s Hviezd"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -679,11 +681,11 @@ msgstr "Všetky žánre"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 msgid "All %i Genres"
-msgstr ""
+msgstr "Všetké %i žánry"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
 msgid "No Genres"
-msgstr ""
+msgstr "Žiadne žánry"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Artists"
@@ -691,11 +693,11 @@ msgstr "Všetci interpreti"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 msgid "All %i Artists"
-msgstr ""
+msgstr "Všetci %i umelci"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
-msgstr ""
+msgstr "Žiadni umelci"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Albums"
@@ -703,65 +705,65 @@ msgstr "Všetky albumy"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 msgid "All %i Albums"
-msgstr ""
+msgstr "Všetke %i albumy"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Albums"
-msgstr ""
+msgstr "Žiadne albumy"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Years"
-msgstr ""
+msgstr "Všetke roky"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 msgid "All %i Years"
-msgstr ""
+msgstr "Všetke %i roky"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Years"
-msgstr ""
+msgstr "Žiadne roky"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Ratings"
-msgstr ""
+msgstr "Všetke hodnotenia"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 msgid "No Ratings"
-msgstr ""
+msgstr "Žiadne hodnotenia"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
 msgid "All Groupings"
-msgstr ""
+msgstr "Všetke skupiny"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 msgid "All %i Groupings"
-msgstr ""
+msgstr "Všetke %i skupiny"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Groupings"
-msgstr ""
+msgstr "Žiadne skupiny"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Composers"
-msgstr ""
+msgstr "Všetci skladatelia"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "All %i Composers"
-msgstr ""
+msgstr "Všetci %i skladatelia"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Composers"
-msgstr ""
+msgstr "Žiadni skladatelia"
 
 #: ../src/Views/ContentView.vala:21
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: ../src/Views/GridView/PopupListView.vala:58
 msgid "Set new album cover"
-msgstr ""
+msgstr "Nastaviť nový obal albumu"
 
 #: ../src/Views/GridView/PopupListView.vala:152
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -770,15 +772,15 @@ msgstr "%s podľa %s"
 
 #: ../src/Views/GridView/PopupListView.vala:248
 msgid "_Cancel"
-msgstr ""
+msgstr "_Zrušiť"
 
 #: ../src/Views/GridView/PopupListView.vala:248
 msgid "_Open"
-msgstr ""
+msgstr "_Otvoriť"
 
 #: ../src/Views/GridView/PopupListView.vala:251
 msgid "Image files"
-msgstr ""
+msgstr "Súbory obrázkov"
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
@@ -793,7 +795,7 @@ msgstr[2] "%u albumov"
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
-msgstr ""
+msgstr "Premenovať"
 
 #: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
 #: ../src/Dialogs/SmartPlaylistEditor.vala:260
@@ -803,74 +805,74 @@ msgstr "Odstrániť"
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr ""
+msgstr "Exportovať..."
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr ""
+msgstr "Upraviť..."
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
-msgstr ""
+msgstr "Uložiť ako playlist"
 
 #: ../src/Widgets/SourceListView.vala:156
 msgid "Eject"
-msgstr ""
+msgstr "Vysunúť"
 
 #: ../src/Widgets/SourceListView.vala:161
 #: ../src/Widgets/SourceListView.vala:201
 msgid "New Playlist"
-msgstr ""
+msgstr "Nový zoznam skladieb"
 
 #: ../src/Widgets/SourceListView.vala:166
 #: ../src/Widgets/SourceListView.vala:202
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "Nový chytrý zoznam skladieb"
 
 #: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
 msgid "Sync"
-msgstr ""
+msgstr "Synchronizovať"
 
 #: ../src/Widgets/SourceListView.vala:203
 msgid "Import Playlists"
-msgstr ""
+msgstr "Importovať zoznamy skladieb"
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
-msgstr ""
+msgstr "Knižnica"
 
 #: ../src/Widgets/SourceListView.vala:314
 msgid "Devices"
-msgstr ""
+msgstr "Zariadenia"
 
 #: ../src/Widgets/SourceListView.vala:315
 msgid "Network"
-msgstr ""
+msgstr "Sieť"
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
 msgid "Playlists"
-msgstr ""
+msgstr "Zoznam skladieb"
 
 #: ../src/Widgets/PresetList.vala:47
 msgid "Delete Current"
-msgstr ""
+msgstr "Odstrániť súčasné"
 
 #: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
 #: ../src/Widgets/EqualizerPopover.vala:339
 msgid "Off"
-msgstr ""
+msgstr "Vypnúť"
 
 #: ../src/Widgets/StatusBar.vala:64
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Povoliť opakovanie"
 
 #: ../src/Widgets/StatusBar.vala:65
 msgid "Song"
-msgstr ""
+msgstr "Pieseň"
 
 #: ../src/Widgets/StatusBar.vala:65
 msgid "Repeat Song"
-msgstr ""
+msgstr "Opakovať pieseň"
 
 #: ../src/Widgets/StatusBar.vala:66 ../src/Dialogs/MediaEditor.vala:194
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
@@ -880,7 +882,7 @@ msgstr "Album"
 
 #: ../src/Widgets/StatusBar.vala:66
 msgid "Repeat Album"
-msgstr ""
+msgstr "Opakovať album"
 
 #: ../src/Widgets/StatusBar.vala:67 ../src/Dialogs/MediaEditor.vala:192
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
@@ -890,92 +892,92 @@ msgstr "Interprét"
 
 #: ../src/Widgets/StatusBar.vala:67
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Opakovať umelca"
 
 #: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
 msgid "All"
-msgstr ""
+msgstr "Všetko"
 
 #: ../src/Widgets/StatusBar.vala:68
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Zakázať opakovanie"
 
 #: ../src/Widgets/StatusBar.vala:94
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Povoliť náhodne"
 
 #: ../src/Widgets/StatusBar.vala:95
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Zakázať náhodne"
 
 #: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
 msgid "Add Playlist"
-msgstr ""
+msgstr "Pridať zoznam skladieb"
 
 #: ../src/Widgets/StatusBar.vala:140
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "Pridať inteligentný zoznam skladieb"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Ekvalizér: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
-msgstr ""
+msgstr "Skryť"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Show Info Panel"
-msgstr ""
+msgstr "Zobraziť informačný panel"
 
 #: ../src/Widgets/StatusBar.vala:200
 msgid "Show"
-msgstr ""
+msgstr "Zobraziť"
 
 #: ../src/Widgets/StatusBar.vala:200
 msgid "Hide Info Panel"
-msgstr ""
+msgstr "Skryť informačný panel"
 
 #: ../src/Widgets/EqualizerPopover.vala:163
 msgid "Save preset"
-msgstr ""
+msgstr "Uložiť predvoľbu"
 
 #: ../src/Widgets/EqualizerPopover.vala:426
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (Vlastné)"
 
 #: ../src/Widgets/EqualizerPopover.vala:428
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (Vlastné %i)"
 
 #: ../src/Widgets/EqualizerPopover.vala:431
 msgid "Custom Preset"
-msgstr ""
+msgstr "Vlastné nastavenie"
 
 #: ../src/Widgets/EqualizerPopover.vala:433
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Vlastné nastavenie %i"
 
 #: ../src/Widgets/ViewSelector.vala:68
 msgid "View as Albums"
-msgstr ""
+msgstr "Zobraziť ako album"
 
 #: ../src/Widgets/ViewSelector.vala:72
 msgid "View as List"
-msgstr ""
+msgstr "Zobraziť ako zoznam"
 
 #: ../src/Widgets/ViewSelector.vala:76
 msgid "View in Columns"
-msgstr ""
+msgstr "Zobraziť v stĺpcoch"
 
 #: ../src/Widgets/SpaceWidget.vala:266
 msgid "Free"
-msgstr ""
+msgstr "Zadarmo"
 
 #: ../src/Widgets/SpaceWidget.vala:383
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "Použiť %s z (%.2f%)"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -1035,11 +1037,11 @@ msgstr "Pozastaviť"
 
 #: ../src/LocalBackend/LocalLibrary.vala:184
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Importovať hudbu z %s..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Pridať súbory do knižnice..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:227
 msgid "<b>Importing</b> music to library…"
@@ -1047,53 +1049,54 @@ msgstr "<b>Importujem</b> skladby do knižnice…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:251
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "Všetky piesne už sú vo vašej knižnici"
 
 #: ../src/LocalBackend/LocalLibrary.vala:251
 msgid "No files were imported."
-msgstr ""
+msgstr "Žiadne nové súbory neboli importované"
 
 #: ../src/LocalBackend/LocalLibrary.vala:256
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "Opakované skenovanie hudby pre zmeny. To môže chvíľu trvať ..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:330
 msgid "Added to your queue:"
-msgstr ""
+msgstr "Pridať do radu:"
 
 #: ../src/LocalBackend/LocalLibrary.vala:341
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Stôp"
+msgstr[1] "%d Stopa"
+msgstr[2] "%d Stopy"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Obľúbená pieseň"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:226
 msgid "Recently Added"
-msgstr ""
+msgstr "Nedávno pridané"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:234
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Naposledy obľúbené"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:242
 msgid "Never Played"
-msgstr ""
+msgstr "Nikdy nehrané"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
-msgstr ""
+msgstr "Prehrané"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
-msgstr ""
+msgstr "V poslednej dobe neprehrávané"
 
 #: ../src/Objects/LyricFetcher.vala:141
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
+msgstr "Texty stiahnuté zo www.lyricsmania.com"
 
 #: ../src/Objects/HistoryPlaylist.vala:40
 msgid "History"
@@ -1276,11 +1279,14 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
-"Vymaže pieseň z knižnice a zo zariadenia ktoré sa automaticky synchronizuje "
-"s %s."
+"Tým sa odstráni skladieb z knižnice a z ľubovoľného zariadenia, ktoré "
+"automaticky synchronizuje s% s."
 msgstr[1] ""
-"Vymaže piesne z knižnice a zo zariadenia ktoré sa automaticky synchronizuje "
-"s %s."
+"Tým sa odstráni skladba z knižnice a z ľubovoľného zariadenia, ktoré "
+"automaticky synchronizuje s% s."
+msgstr[2] ""
+"Tým sa odstránia skladby z knižnice a z ľubovoľného zariadenia, ktoré "
+"automaticky synchronizuje s% s."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
@@ -1527,11 +1533,11 @@ msgstr "Všeobecné"
 
 #: ../src/Dialogs/PreferencesWindow.vala:137
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Lokácia hudobného priečinku"
 
 #: ../src/Dialogs/PreferencesWindow.vala:145
 msgid "Library Management"
-msgstr ""
+msgstr "Správa knižníc"
 
 #: ../src/Dialogs/PreferencesWindow.vala:152
 msgid "Keep Music folder organized:"
@@ -1547,7 +1553,7 @@ msgstr "Kopírovať importované súbory do knižnice:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Integrácia s pracovným prostredím"
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
@@ -1561,6 +1567,7 @@ msgstr "Nie je možné importovať %d položiek z %s"
 #: ../src/Dialogs/NotImportedWindow.vala:56
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
+"%s sa nepodarilo importovať %d položiek. Tieto súbory môžu byť poškodené."
 
 #: ../src/Dialogs/NotImportedWindow.vala:59
 msgid "Move all corrupted files to trash"
@@ -1572,7 +1579,7 @@ msgstr "Ignorovať"
 
 #: ../src/Dialogs/NotImportedWindow.vala:81
 msgid "del"
-msgstr ""
+msgstr "Vymazať"
 
 #: ../src/Dialogs/NotImportedWindow.vala:86
 msgid "File Location"
@@ -1585,113 +1592,117 @@ msgstr "Vybrať jednotlivé súbory na presun do koša"
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 msgid "Empty device!"
-msgstr ""
+msgstr "Prázdne zariadenie!"
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:63
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "Toto zariadenie neobsahuje žiadnu hudbu."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:144
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "Pridávanie <b>$MENO</b> od <b>$UMELEC</b> do $ZARIADENIA"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:192
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Synchronizácia <b>%s</b>..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:214
 #: ../plugins/Devices/iPod/iPodLibrary.vala:370
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Dokončovanie synchronizácie..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:226
 #: ../plugins/Devices/iPod/iPodLibrary.vala:382
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Rušenie synchronizácie..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:333
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "Odstraňovanie z <b>%s</b>..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:526
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "Odstraňovanie <b>$MENO</b> od <b>$UMELEC</b> z $ZARIADENIE"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Nastala chyba"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Nastala chyba behom čítania z Audio CD."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:85
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "Neplatné Audio CD"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:89
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "Nemožné prečítať obsah tohoto Audio CD"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:241
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "Nedal sa nájsť priečinok s hudbou"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:241
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"Prosím uistite sa že hudobný priečinok je prístupný a pripojený pred "
+"importovaním z CD."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"Aplikácia nemohla nájsť žiadnu pieseň na tomto CD. žiadne piesne neboli "
+"importované"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "Importovanie piesní z Audio CD dokončené."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
+msgstr "Importovanie %s piesni z Audio CD dokončené."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %i: %s"
-msgstr ""
+msgstr "Importovanie stopy %i: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
+msgstr "Importovanie CD bude <b>zrušené</b> po súčasnom importe."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:377
 msgid "An error occured during the Import of this CD"
-msgstr ""
+msgstr "Nastala chyba behom importovania tohoto CD"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
 msgid "Android Phone"
-msgstr ""
+msgstr "Android telefon"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
 msgid "Audio Player"
-msgstr ""
+msgstr "Zvukový prehrávač"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
-msgstr ""
+msgstr "médiá"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:47
 msgid "Similar Media"
-msgstr ""
+msgstr "Podobné média"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
-msgstr ""
+msgstr "žiadne podobné piesne neboli nájdené"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid ""
@@ -1699,10 +1710,13 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Nie sú žiadne podobné piesne vo vašej knižnici. Uistite sa že všetky piesne "
+"majú správne informácie a ste pripojený k internetu. Niektoré piesne nemusia "
+"odpovedať."
 
 #: ../plugins/LastFM/SimilarMedia.vala:37
 msgid "Similar"
-msgstr ""
+msgstr "Podobné"
 
 #~ msgid "Radio Station"
 #~ msgstr "Rádiové stanice"
