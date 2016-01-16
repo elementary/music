@@ -67,7 +67,7 @@ public class Noise.App : Granite.Application {
 
         main_url = "https://launchpad.net/noise";
         bug_url = "https://bugs.launchpad.net/noise/+filebug";
-        help_url = "https://answers.launchpad.net/noise";
+        help_url = "https://elementary.io/help/noise";
         translate_url = "https://translations.launchpad.net/noise";
 
         about_authors = {"Corentin Noël <tintou@mailoo.org>",
