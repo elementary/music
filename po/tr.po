@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2015-12-21 13:46+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2016-02-01 02:18+0000\n"
+"Last-Translator: Sadık Poyraz <sadikpoyraz01@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-01-05 05:29+0000\n"
-"X-Generator: Launchpad (build 17876)\n"
+"X-Launchpad-Export-Date: 2016-02-01 05:28+0000\n"
+"X-Generator: Launchpad (build 17908)\n"
 "Language: tr\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -910,7 +910,7 @@ msgstr "Akıllı Çalma Listesi Ekle"
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Ekolayzır"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
@@ -1057,8 +1057,8 @@ msgstr "Kuyruğa eklenenler:"
 #: ../src/LocalBackend/LocalLibrary.vala:341
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Parça"
+msgstr[1] "%d Parçalar"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
@@ -1557,7 +1557,7 @@ msgstr "İçe aktarılmış dosyaları Kütüphaneye kopyala:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Masaüstü Entegrasyonu"
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
