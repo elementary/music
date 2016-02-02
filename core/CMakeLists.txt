@@ -48,6 +48,7 @@ set (CORE_SOURCE
   GStreamer/Pipeline.vala
   GStreamer/Equalizer.vala
   GStreamer/Playback.vala
+  Widgets/AlbumImage.vala
   Widgets/SettingsWidgets.vala
 )
 

@@ -28,7 +28,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
     private Gtk.Label title;
     private Gtk.Label artist;
-    private Gtk.Image coverArt;
+    private Noise.Widgets.AlbumImage coverArt;
     private Granite.Widgets.Rating rating;
     private Gtk.Label album;
     private Gtk.Label year_label;
@@ -62,7 +62,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
         title = new Gtk.Label("");
         artist = new Gtk.Label("");
-        coverArt = new Gtk.Image();
+        coverArt = new Widgets.AlbumImage ();
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true); // centered = true
         album = new Gtk.Label("");
         year_label = new Gtk.Label("");
@@ -78,7 +78,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
         content.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
 
         // margins
-        coverArt.halign = title.halign = artist.halign = album.halign = year_label.halign = Gtk.Align.CENTER;
+        title.halign = artist.halign = album.halign = year_label.halign = Gtk.Align.CENTER;
 
         // expand so that the rating can be set within the whole width.
         // The widget centers itself.
@@ -139,8 +139,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
     private void update_cover_art () {
         if (current_media != null) {
             var cover_art = CoverartCache.instance.get_cover (current_media);
-            var cover_art_with_shadow = PixbufUtils.render_pixbuf_shadow (cover_art); 
-            coverArt.set_from_pixbuf (cover_art_with_shadow);
+            coverArt.gicon = cover_art;
         }
     }
     

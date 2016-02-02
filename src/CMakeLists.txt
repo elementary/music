@@ -27,7 +27,6 @@ set(CLIENT_SOURCE
     Widgets/SpaceWidget.vala
     Widgets/ViewSelector.vala
     Widgets/EqualizerPopover.vala
-    Widgets/FastView/TileView/ImageUtils.vala
     Widgets/FastView/TileView/TileRenderer.vala
     Widgets/FastView/TileView/TileView.vala
     Widgets/FastView/FastGrid.vala

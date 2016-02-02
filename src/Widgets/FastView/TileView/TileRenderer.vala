@@ -6,23 +6,24 @@
  */
 
 internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
-    public Gdk.Pixbuf pixbuf { get; set; }
+    public GLib.Icon gicon { get; set; }
     public string title { get; set; }
     public string subtitle { get; set; }
 
-    private const int BRIGHTEN_SHIFT = 0x18;
-    private const int IMAGE_SHADOW_MARGIN = 12;
-    private const int IMAGE_SHADOW_RADIUS = 4;
-    private const double IMAGE_SHADOW_ALPHA = 0.65;
-
-    private int last_image_width = 0;
-    private int last_image_height = 0;
-    private Granite.Drawing.BufferSurface shadow_buffer;
     private Pango.Layout title_text_layout;
     private Pango.Layout subtitle_text_layout;
     private Gtk.Border margin;
     private Gtk.Border padding;
     private Gtk.Border border;
+
+    private Gdk.Pixbuf pixbuf;
+    private int scale = 1;
+
+    public TileRenderer () {
+        notify["gicon"].connect (() => {
+            pixbuf = null;
+        });
+    }
 
     public override void get_size (Gtk.Widget widget, Gdk.Rectangle? cell_area,
                                    out int x_offset, out int y_offset,
@@ -39,6 +40,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
                                               out int minimum_size,
                                               out int natural_size)
     {
+        render_pixbuf (widget);
         update_layout_properties (widget);
 
         int x_padding;
@@ -57,6 +59,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
                                                          out int minimum_height,
                                                          out int natural_height)
     {
+        render_pixbuf (widget);
         update_layout_properties (widget);
 
         int y_padding;
@@ -68,11 +71,10 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
 
         int height = compute_total_image_height ()
                    + title_height + subtitle_height
-                   + margin.top + margin.bottom
+                   + margin.top + 2 * margin.bottom
                    + padding.top + padding.bottom
                    + border.top + border.bottom
-                   + 2 * y_padding
-                   + IMAGE_SHADOW_RADIUS;
+                   + 2 * y_padding;
 
         minimum_height = natural_height = height;
     }
@@ -80,6 +82,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     public override void render (Cairo.Context cr, Gtk.Widget widget, Gdk.Rectangle bg_area,
                                  Gdk.Rectangle cell_area, Gtk.CellRendererState flags)
     {
+        render_pixbuf (widget);
         update_layout_properties (widget);
 
         Gdk.Rectangle aligned_area = get_aligned_area (widget, flags, cell_area);
@@ -89,20 +92,14 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         int width = aligned_area.width;
         int height = aligned_area.height;
 
-        // Apply margin
-        x += margin.right;
-        y += margin.top;
-        width -= margin.left + margin.right;
-        height -= margin.top + margin.bottom;
+        // Apply margin, border width and padding offsets
+        x += margin.left + border.left + padding.left;
+        y += margin.top + border.top + padding.top;
 
-        var ctx = widget.get_style_context ();
+        weak Gtk.StyleContext ctx = widget.get_style_context ();
 
-        // Apply border width and padding offsets
-        x += border.right + padding.right;
-        y += border.top + padding.top;
-
-        width -= border.left + border.right + padding.left + padding.right;
-        height -= border.top + border.bottom + padding.top + padding.bottom;
+        width -= margin.left + margin.right + border.left + border.right + padding.left + padding.right;
+        height -= margin.top + margin.bottom + border.top + border.bottom + padding.top + padding.bottom;
 
         render_image (ctx, cr, ref x, ref y, width, flags);
         render_title (ctx, cr, x, ref y, width);
@@ -114,58 +111,28 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     {
         int image_width = compute_total_image_width ();
         int image_height = compute_total_image_height ();
-        int offset = IMAGE_SHADOW_MARGIN;
-
-        // this cell renderer is not optimized for pixbufs of different dimensions
-        if (shadow_buffer == null || image_width != last_image_width
-         || image_height != last_image_height)
-        {
-            shadow_buffer = new Granite.Drawing.BufferSurface (image_width, image_height);
-
-            var context = shadow_buffer.context;
-            context.rectangle (offset, offset, pixbuf.width, pixbuf.height);
-            context.set_source_rgba (0, 0, 0, IMAGE_SHADOW_ALPHA);
-            context.fill ();
-            shadow_buffer.exponential_blur (IMAGE_SHADOW_RADIUS);
-
-            last_image_width = image_width;
-            last_image_height = image_height;
-        }
 
         x += (width - image_width) / 2;
 
-        cr.set_source_surface (shadow_buffer.surface, x, y);
-        cr.paint ();
-
-        Gdk.Pixbuf image;
-        if (should_brighten_image (flags))
-            image = get_brightened_pixbuf (pixbuf);
-        else
-            image = pixbuf;
-
-        ctx.render_icon (cr, image, x + offset, y + offset);
-
-        if (should_draw_highlight (flags)) {
-            ctx.save ();
-            ctx.add_class (Gtk.STYLE_CLASS_IMAGE);
-            ctx.render_frame (cr, x + offset - border.left,
-                              y + offset - border.top,
-                              pixbuf.width + border.left + border.right,
-                              pixbuf.height + border.top + border.bottom);
-            ctx.restore ();
-        }
+        ctx.save ();
+        ctx.add_class ("album");
+        ctx.render_background (cr, x, y, pixbuf.width, pixbuf.height);
+        ctx.render_icon (cr, pixbuf, x, y);
+        cr.fill_preserve ();
+        ctx.render_frame (cr, x - border.left, y - border.top, pixbuf.width + border.left + border.right, pixbuf.height + border.top + border.bottom);
+        ctx.restore ();
 
         y += image_height;
 
         // move x to the start of the actual image
-        x += (image_width - image.width) / 2;
+        x += (image_width - pixbuf.width) / 2 - margin.left;
     }
 
     private void render_title (Gtk.StyleContext ctx, Cairo.Context cr, int x,
                                ref int y, int width)
     {
         ctx.save ();
-        ctx.add_class ("title-text");
+        ctx.add_class ("h4");
         ctx.render_layout (cr, x, y, title_text_layout);
         ctx.restore ();
 
@@ -186,7 +153,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         var state = ctx.get_state ();
 
         ctx.save ();
-        ctx.add_class (Gtk.STYLE_CLASS_IMAGE);
+        ctx.add_class ("album");
         margin = ctx.get_margin (state);
         padding = ctx.get_padding (state);
         border = ctx.get_border (state);
@@ -202,7 +169,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         subtitle_text_layout.set_width (text_width);
 
         ctx.save ();
-        ctx.add_class ("title-text");
+        ctx.add_class ("h4");
         title_text_layout = widget.create_pango_layout (title);
         ctx.get (state, Gtk.STYLE_PROPERTY_FONT, out font_description);
         title_text_layout.set_font_description (font_description);
@@ -213,28 +180,24 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     }
 
     private int compute_total_image_width () {
-        return pixbuf != null ? pixbuf.width + 2 * IMAGE_SHADOW_MARGIN : 0;
+        return pixbuf != null ? pixbuf.width + margin.left + margin.right : 0;
     }
 
     private int compute_total_image_height () {
-        return pixbuf != null ? pixbuf.height + 2 * IMAGE_SHADOW_MARGIN : 0;
+        return pixbuf != null ? pixbuf.height + margin.top + margin.bottom : 0;
     }
 
-    private static bool should_brighten_image (Gtk.CellRendererState flags) {
-        return (flags & Gtk.CellRendererState.PRELIT) != 0;
-    }
+    private void render_pixbuf (Gtk.Widget widget) {
+        var ctx = widget.get_style_context ();
+        if (pixbuf != null && scale == ctx.get_scale ())
+            return;
 
-    private static bool should_draw_highlight (Gtk.CellRendererState flags) {
-        return (flags & Gtk.CellRendererState.SELECTED) != 0;
-    }
-
-    private static Gdk.Pixbuf? get_brightened_pixbuf (Gdk.Pixbuf pixbuf) {
-        if (pixbuf == null)
-            return null;
-
-        // create a new lightened pixbuf to display
-        var brightened = pixbuf.copy ();
-        ImageUtils.shift_colors (brightened, BRIGHTEN_SHIFT, BRIGHTEN_SHIFT, BRIGHTEN_SHIFT, 0);
-        return brightened;
+        scale = ctx.get_scale ();
+        var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (gicon, 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+        try {
+            pixbuf = icon_info.load_icon ();
+        } catch (Error e) {
+            critical (e.message);
+        }
     }
 }

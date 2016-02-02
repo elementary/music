@@ -26,7 +26,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     Gtk.EventBox main_event_box;
     Gtk.Grid main_grid;
     
-    Gtk.Image album_image;
+    Widgets.AlbumImage album_image;
     
     Gtk.Label title;
     Gtk.Label author;
@@ -56,10 +56,8 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         if ( cd_playlist.is_empty () == false) {
         }
         
-        var default_pix = Icons.DEFAULT_ALBUM_ART.render_at_size (Icons.DEFAULT_ALBUM_ART_SIZE);
-        default_pix = PixbufUtils.render_pixbuf_shadow (default_pix);
-        
-        album_image = new Gtk.Image.from_pixbuf (default_pix);
+        album_image = new Widgets.AlbumImage ();
+        album_image.gicon = new ThemedIcon ("albumart");
         album_image.halign = Gtk.Align.CENTER;
         album_image.valign = Gtk.Align.CENTER;
         album_image.set_alignment(0.5f, 1);
@@ -132,7 +130,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     private void load_cover () {
         var cover_pixbuf = CoverartCache.instance.get_cover (cd_playlist.medias.peek ());
         if (cover_pixbuf != null) {
-            album_image.set_from_pixbuf (cover_pixbuf);
+            album_image.gicon = cover_pixbuf;
         }
     }
     

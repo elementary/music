@@ -22,27 +22,6 @@
  */
 
 namespace Noise.PixbufUtils {
-    /**
-     * @param surface_size size of the new pixbuf. Set a value of 0 to use the pixbuf's default size.
-     **/
-    public Gdk.Pixbuf? render_pixbuf_shadow (Gdk.Pixbuf pixbuf, int shadow_size = 5, double alpha = 0.75) {
-        int width = pixbuf.width;
-        int height = pixbuf.height;
-        int shadow_padding = 2 * shadow_size;
-
-        var buffer_surface = new Granite.Drawing.BufferSurface (width + shadow_padding,
-                                                                height + shadow_padding);
-
-        buffer_surface.context.rectangle (shadow_size, shadow_size, width, height);
-        buffer_surface.context.set_source_rgba (0, 0, 0, alpha);
-        buffer_surface.context.fill ();
-        buffer_surface.fast_blur (2, 3);
-        Gdk.cairo_set_source_pixbuf (buffer_surface.context, pixbuf, shadow_size, shadow_size);
-        buffer_surface.context.paint ();
-
-        return buffer_surface.load_to_pixbuf ();
-    }
-
     public async Gdk.Pixbuf? get_pixbuf_from_file_async (File file, Cancellable? c = null) throws Error {
         return yield get_pixbuf_from_file_at_scale_async (file, -1, -1, false, c);
     }

@@ -21,7 +21,7 @@ public class Noise.PopupListView : Gtk.Dialog {
     public const int MIN_SIZE = 500;
 
     ViewWrapper view_wrapper;
-    Gtk.Image album_cover;
+    Widgets.AlbumImage album_cover;
     Gtk.Label album_label;
     Gtk.Label artist_label;
 
@@ -48,8 +48,8 @@ public class Noise.PopupListView : Gtk.Dialog {
         App.main_window.close_subwindows.connect (() => { this.hide_on_delete (); });
 
         // cover
-        album_cover = new Gtk.Image ();
-        album_cover.margin_left = album_cover.margin_bottom = 12;
+        album_cover = new Widgets.AlbumImage ();
+        album_cover.margin_left = 12;
 
         Gtk.EventBox cover_event_box = new Gtk.EventBox ();
         cover_event_box.add (album_cover);
@@ -125,7 +125,7 @@ public class Noise.PopupListView : Gtk.Dialog {
         media_list.clear ();
         list_view.set_media (media_list);
 
-        album_cover.set_from_pixbuf (CoverartCache.instance.get_cover (new Media ("")));
+        album_cover.gicon = new ThemedIcon ("albumart");
 
         // Reset size request
         set_size (MIN_SIZE);
@@ -177,8 +177,7 @@ public class Noise.PopupListView : Gtk.Dialog {
     }
 
     void show_album_cover (Gdk.Pixbuf pixbuf) {
-        var cover_art_with_shadow = PixbufUtils.render_pixbuf_shadow (pixbuf);
-        album_cover.set_from_pixbuf (cover_art_with_shadow);
+        album_cover.gicon = pixbuf;
     }
 
     void update_album_rating () {
