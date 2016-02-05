@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-01-16 23:18+0000\n"
+"PO-Revision-Date: 2016-02-04 12:34+0000\n"
 "Last-Translator: karm <melo@carmu.com>\n"
 "Language-Team: Interlingua <ia@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-01-17 05:24+0000\n"
-"X-Generator: Launchpad (build 17886)\n"
+"X-Launchpad-Export-Date: 2016-02-05 06:24+0000\n"
+"X-Generator: Launchpad (build 17908)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
@@ -253,7 +253,7 @@ msgstr "Cauda"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Cancelling…"
-msgstr ""
+msgstr "Cancellation..."
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Device operation has been cancelled and will stop after this media."
@@ -265,7 +265,7 @@ msgstr "OK"
 
 #: ../src/Views/DeviceView.vala:100
 msgid "No External Songs"
-msgstr ""
+msgstr "Nulle canto externe"
 
 #: ../src/Views/DeviceView.vala:100
 msgid ""
@@ -274,7 +274,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:73
 msgid "Device Name:"
-msgstr ""
+msgstr "Nomine del dispositivo"
 
 #: ../src/Views/DeviceSummaryWidget.vala:77
 msgid "Device Name"
@@ -290,7 +290,7 @@ msgstr ""
 
 #: ../src/Views/DeviceSummaryWidget.vala:98
 msgid "Other Files"
-msgstr ""
+msgstr "Altere files"
 
 #: ../src/Views/DeviceSummaryWidget.vala:99 ../src/LibraryWindow.vala:681
 #: ../src/LibraryWindow.vala:785
@@ -328,11 +328,11 @@ msgstr ""
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
 msgid "No Songs"
-msgstr ""
+msgstr "Nulle cantos"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Ajornamento del lista de reproduction. Attende per favor."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid ""
@@ -397,7 +397,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
-msgstr ""
+msgstr "Nulle cantos trovate."
 
 #: ../src/Views/ListView/ListView.vala:357
 msgid "%i track"
@@ -414,16 +414,16 @@ msgstr[1] ""
 #: ../src/Views/ListView/ListView.vala:367
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
-msgstr ""
+msgstr "%s, %s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%i kbps"
-msgstr ""
+msgstr "%i kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:627
 msgid "Never"
-msgstr ""
+msgstr "Jammais"
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
 msgid "Autosize Columns"
@@ -432,17 +432,17 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:62
 msgctxt "List column title"
 msgid "Track"
-msgstr ""
+msgstr "Tracia"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:65
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "Titulo"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:68
 msgctxt "List column title"
@@ -452,12 +452,12 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:71
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "Artista"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:74
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:77
 msgctxt "List column title"
@@ -467,32 +467,32 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:80
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "Compositor"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:83
 msgctxt "List column title"
 msgid "Genre"
-msgstr ""
+msgstr "Genere"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:86
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "Anno"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:89
 msgctxt "List column title"
 msgid "Grouping"
-msgstr ""
+msgstr "Gruppar"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:92
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr ""
+msgstr "Frequentia de bit"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:95
 msgctxt "List column title"
 msgid "Rating"
-msgstr ""
+msgstr "Evalutation"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:98
 msgctxt "List column title"
@@ -507,12 +507,12 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:104
 msgctxt "List column title"
 msgid "Date Added"
-msgstr ""
+msgstr "Data addite"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:107
 msgctxt "List column title"
 msgid "Last Played"
-msgstr ""
+msgstr "Ultime reproduction"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:110
 msgctxt "List column title (beats per minute)"
@@ -522,12 +522,12 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:113
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr ""
+msgstr "Position"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:116
 msgctxt "List column title"
 msgid "File Size"
-msgstr ""
+msgstr "Dimension del file"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:84
 msgid "Remove from Library"
@@ -555,21 +555,21 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:119
 msgid "Other actions"
-msgstr ""
+msgstr "Altere actiones"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:120
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "Cauda"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:121
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Adder al lista de reproduction"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:122
 #: ../src/Dialogs/FileNotFoundDialog.vala:86
 msgid "Remove Song"
-msgstr ""
+msgstr "Remover le canto"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:123
 #: ../src/Widgets/SourceListView.vala:148
@@ -592,7 +592,7 @@ msgstr[1] ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:612
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 kbps"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -607,19 +607,19 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
 msgid "Genres"
-msgstr ""
+msgstr "Generes"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
 msgid "Artists"
-msgstr ""
+msgstr "Artistas"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
 msgid "Albums"
-msgstr ""
+msgstr "Albumes"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
 msgid "Years"
-msgstr ""
+msgstr "Annos"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
 msgid "Ratings"
@@ -627,7 +627,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
 msgid "Composers"
-msgstr ""
+msgstr "Compositores"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Groupings"
@@ -636,15 +636,15 @@ msgstr ""
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 #: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
 msgid "Automatic"
-msgstr ""
+msgstr "Automatic"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
 msgid "On Left"
-msgstr ""
+msgstr "A sinistra"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
 msgid "On Top"
-msgstr ""
+msgstr "In le summitate"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
 msgid "Unrated"
@@ -658,7 +658,7 @@ msgstr[1] ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
-msgstr ""
+msgstr "Tote le generes"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 msgid "All %i Genres"
@@ -678,7 +678,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
-msgstr ""
+msgstr "Nulle artistas"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Albums"
@@ -690,11 +690,11 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Albums"
-msgstr ""
+msgstr "Nulle albumes"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Years"
-msgstr ""
+msgstr "Tote le annos"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 msgid "All %i Years"
