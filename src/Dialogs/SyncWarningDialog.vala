@@ -63,7 +63,7 @@ public class Noise.SyncWarningDialog : Gtk.Window {
         info.halign = Gtk.Align.START;
 
         info.set_line_wrap (true);
-        var info_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + String.escape (d.getDisplayName ()) + "</b>");
+        var info_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + Markup.escape_text (d.getDisplayName ()) + "</b>");
         info.set_markup (info_text);
 
         // be a bit explicit to make translations better
@@ -75,8 +75,8 @@ public class Noise.SyncWarningDialog : Gtk.Window {
             title_text = _("Sync will remove 1 item from %s").printf (d.getDisplayName ());
         }
 
-        string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";        
-        var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));        
+        string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";
+        var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));
         title.set_markup (title_string);
 
         importMedias.set_sensitive(!libraries_manager.local_library.doing_file_operations());

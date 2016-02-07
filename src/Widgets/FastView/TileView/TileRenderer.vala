@@ -6,7 +6,7 @@
  */
 
 internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
-    public GLib.Icon gicon { get; set; }
+    public Gdk.Pixbuf pixbuf { get; set; }
     public string title { get; set; }
     public string subtitle { get; set; }
 
@@ -16,13 +16,8 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     private Gtk.Border padding;
     private Gtk.Border border;
 
-    private Gdk.Pixbuf pixbuf;
-    private int scale = 1;
-
     public TileRenderer () {
-        notify["gicon"].connect (() => {
-            pixbuf = null;
-        });
+        
     }
 
     public override void get_size (Gtk.Widget widget, Gdk.Rectangle? cell_area,
@@ -40,7 +35,6 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
                                               out int minimum_size,
                                               out int natural_size)
     {
-        render_pixbuf (widget);
         update_layout_properties (widget);
 
         int x_padding;
@@ -59,7 +53,6 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
                                                          out int minimum_height,
                                                          out int natural_height)
     {
-        render_pixbuf (widget);
         update_layout_properties (widget);
 
         int y_padding;
@@ -82,7 +75,6 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     public override void render (Cairo.Context cr, Gtk.Widget widget, Gdk.Rectangle bg_area,
                                  Gdk.Rectangle cell_area, Gtk.CellRendererState flags)
     {
-        render_pixbuf (widget);
         update_layout_properties (widget);
 
         Gdk.Rectangle aligned_area = get_aligned_area (widget, flags, cell_area);
@@ -185,19 +177,5 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
 
     private int compute_total_image_height () {
         return pixbuf != null ? pixbuf.height + margin.top + margin.bottom : 0;
-    }
-
-    private void render_pixbuf (Gtk.Widget widget) {
-        var ctx = widget.get_style_context ();
-        if (pixbuf != null && scale == ctx.get_scale ())
-            return;
-
-        scale = ctx.get_scale ();
-        var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (gicon, 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
-        try {
-            pixbuf = icon_info.load_icon ();
-        } catch (Error e) {
-            critical (e.message);
-        }
     }
 }

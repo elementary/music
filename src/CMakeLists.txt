@@ -5,8 +5,6 @@ set(CLIENT_SOURCE
     PlaybackManager.vala
     FileOperator.vala
     Objects/LyricFetcher.vala
-    Objects/MediaArtCache.vala
-    Objects/CoverartCache.vala
     Objects/MediaKeyListener.vala
     Objects/HistoryPlaylist.vala
     LocalBackend/LocalLibrary.vala
@@ -35,8 +33,8 @@ set(CLIENT_SOURCE
     Widgets/FastView/FastListModel.vala
     DataBase.vala
     GStreamer/GStreamerTagger.vala
-    GStreamer/Streamer.vala
     GStreamer/CoverImport.vala
+    GStreamer/Streamer.vala
     Views/ViewContainer.vala
     Views/Wrappers/ViewWrapper.vala
     Views/Wrappers/MusicViewWrapper.vala

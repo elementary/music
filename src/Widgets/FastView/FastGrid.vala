@@ -22,7 +22,7 @@
 public class Noise.FastGrid : Widgets.TileView {
 
     public enum Column {
-        PIXBUF,
+        ICON,
         TITLE,
         SUBTITLE,
         TOOLTIP,
@@ -49,7 +49,7 @@ public class Noise.FastGrid : Widgets.TileView {
         set_table (table, true);
         set_model (fm);
 
-        image_column = Column.PIXBUF;
+        image_column = Column.ICON;
         title_column = Column.TITLE;
         subtitle_column = Column.SUBTITLE;
         tooltip_column = Column.TOOLTIP;

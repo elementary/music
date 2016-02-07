@@ -39,13 +39,11 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
 
     public InfoPanel () {
-
         buildUI();
 
         App.player.media_played.connect_after (on_media_updated);
         libraries_manager.local_library.media_updated.connect_after (on_media_updated);
         NotificationManager.get_default ().update_track.connect (on_media_updated);
-        CoverartCache.instance.changed.connect_after (update_cover_art);
     }
     
     public int add_view (Gtk.Widget view) {
@@ -137,9 +135,11 @@ public class Noise.InfoPanel : Gtk.EventBox {
     }
     
     private void update_cover_art () {
-        if (current_media != null) {
-            var cover_art = CoverartCache.instance.get_cover (current_media);
-            coverArt.gicon = cover_art;
+        var cover_icon = current_media.album_info.cover_icon;
+        if (cover_icon != null) {
+            coverArt.gicon = cover_icon;
+        } else {
+            coverArt.gicon = new ThemedIcon ("albumart");
         }
     }
     

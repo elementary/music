@@ -60,8 +60,8 @@ public class Noise.SimilarMediasView : Gtk.TreeView {
             Gtk.TreeIter iter;
             model.append (out iter);
 
-            var title_fixed = String.escape (s.title);
-            var artist_fixed = String.escape (s.artist);
+            var title_fixed = Markup.escape_text (s.title);
+            var artist_fixed = Markup.escape_text (s.artist);
 
             model.set (iter, 0, s, 1, "<b>%s</b>\n%s".printf (title_fixed, artist_fixed));
             ++count;

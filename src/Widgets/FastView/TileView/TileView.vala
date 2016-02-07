@@ -10,7 +10,7 @@ public class Noise.Widgets.TileView : Gtk.IconView {
 
     public int image_column {
         set {
-            add_attribute (cell_renderer, "gicon", value);
+            add_attribute (cell_renderer, "pixbuf", value);
         }
     }
 

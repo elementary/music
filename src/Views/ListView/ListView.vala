@@ -83,7 +83,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
         list_text_overlay = new ViewTextOverlay ();
         list_text_overlay.add (list_scrolled);
-        list_text_overlay.message = String.escape (_("No Songs Found."));
+        list_text_overlay.message = Markup.escape_text (_("No Songs Found."));
 
         list_view.rows_reordered.connect (() => {
             reordered ();

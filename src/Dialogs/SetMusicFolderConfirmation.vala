@@ -64,10 +64,10 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
 
         // pretty up labels
         title.halign = Gtk.Align.START;
-        title.set_markup("<span weight=\"bold\" size=\"larger\">%s</span>".printf(String.escape (_("Set Music Folder?"))));
+        title.set_markup("<span weight=\"bold\" size=\"larger\">%s</span>".printf(Markup.escape_text (_("Set Music Folder?"))));
         info.halign = Gtk.Align.START;
         info.set_line_wrap (true);
-        info.set_markup (_("Are you sure you want to set the music folder to %s? This will reset your library and remove your playlists.").printf ("<b>" + String.escape (path) + "</b>"));
+        info.set_markup (_("Are you sure you want to set the music folder to %s? This will reset your library and remove your playlists.").printf ("<b>" + Markup.escape_text (path) + "</b>"));
 
         // save playlist hbox
         var playlistBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);

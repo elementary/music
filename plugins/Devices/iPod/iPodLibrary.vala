@@ -137,9 +137,16 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
             return;
 
         GPod.Track t = iPodMediaHelper.track_from_media (s);
-        var pix = Noise.CoverartCache.instance.get_original_cover (s);
-        if (pix != null)
-            t.set_thumbnails_from_pixbuf (pix);
+        var icon = s.album_info.cover_icon;
+        if (icon != null) {
+            var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon (icon, 128, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+            try {
+                var pixbuf = icon_info.load_icon ();
+                t.set_thumbnails_from_pixbuf (pixbuf);
+            } catch (Error e) {
+                critical (e.message);
+            }
+        }
 
         string current_operation = _("Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
         current_operation = current_operation.replace ("$NAME", t.title ?? "");

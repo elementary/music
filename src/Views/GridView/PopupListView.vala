@@ -31,6 +31,7 @@ public class Noise.PopupListView : Gtk.Dialog {
     Granite.Widgets.Rating rating;
     GenericList list_view;
 
+    Album album;
     Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
 
     public PopupListView (GridView grid_view) {
@@ -125,16 +126,18 @@ public class Noise.PopupListView : Gtk.Dialog {
         media_list.clear ();
         list_view.set_media (media_list);
 
-        album_cover.gicon = new ThemedIcon ("albumart");
-
         // Reset size request
         set_size (MIN_SIZE);
+
+        if (this.album != null) {
+            album.notify["cover-icon"].disconnect (update_album_cover);
+        }
     }
 
     public bool show_cover_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
         if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3)
             cover_action_menu.popup (null, null, null, evt.button, evt.time);
-        
+
         return true;
     }
 
@@ -145,6 +148,7 @@ public class Noise.PopupListView : Gtk.Dialog {
 
     public void set_album (Album album) {
         reset ();
+        this.album = album;
         lock (media_list) {
             string name = album.get_display_name ();
             string artist = album.get_display_artist ();
@@ -152,10 +156,11 @@ public class Noise.PopupListView : Gtk.Dialog {
             string title_format = C_("Title format used on Album View Popup: $ALBUM by $ARTIST", "%s by %s");
             set_title (title_format.printf (name, artist));
 
-            show_album_cover (CoverartCache.instance.get_album_cover (album));
             album_label.set_label (name);
             artist_label.set_label (artist);
-            
+            update_album_cover ();
+            album.notify["cover-icon"].disconnect (update_album_cover);
+
             // Make a copy. Otherwise the list won't work if some elements are
             // removed from the parent wrapper while the window is showing
             foreach (var m in album.get_media ()) {
@@ -176,8 +181,12 @@ public class Noise.PopupListView : Gtk.Dialog {
         view_wrapper.library.media_updated.connect (update_album_rating);
     }
 
-    void show_album_cover (Gdk.Pixbuf pixbuf) {
-        album_cover.gicon = pixbuf;
+    void update_album_cover () {
+        if (album.cover_icon != null) {
+            album_cover.gicon = album.cover_icon;
+        } else {
+            album_cover.gicon = new ThemedIcon ("albumart");
+        }
     }
 
     void update_album_rating () {
@@ -253,20 +262,9 @@ public class Noise.PopupListView : Gtk.Dialog {
         file.add_filter (image_filter);
 
         if (file.run () == Gtk.ResponseType.ACCEPT) {
-            Gdk.Pixbuf pix = null;
-            try {
-                pix = new Gdk.Pixbuf.from_file (file.get_filename ());
-            } catch (Error err) {
-                debug ("Set new cover failed: %s", err.message); 
-            }
-            
-            if (pix != null) {
-                CoverartCache cache =  CoverartCache.instance;
-                cache.changed.connect (() => { show_album_cover (cache.get_cover (media_list.to_array () [0])); });
-                cache.cache_image_async.begin (media_list.to_array () [0], pix);
-            }
+            album.save_cover_file (file.get_file ());
         }
-        
+
         file.destroy ();
     }
 

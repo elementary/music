@@ -64,7 +64,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
             title_text = _("Remove \"%s\" From %s?").printf (m.get_display_title (), app_name);
         }
 
-        title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (title_text) + "</span>");
+        title.set_markup("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text (title_text) + "</span>");
 
         // set info text
         info.halign = Gtk.Align.START;

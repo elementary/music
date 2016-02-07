@@ -170,25 +170,24 @@ public class Noise.Media : Object {
     }
 
     public string get_title_markup () {
-
         // We don't use the get_display_* for the artist and albums because
         // there's no point in showing "unknown" there. If the info is not available,
         // just skip it.
-         string markup;
-        if (!is_valid_string_field (artist) && is_valid_string_field (album))
+        bool is_valid_artist = is_valid_string_field (artist);
+        bool is_valid_album = is_valid_string_field (album);
+        if (!is_valid_artist && is_valid_album) {
             /// Please keep $NAME and $ALBUM, they will be replaced by their values
-            markup = _("$NAME on $ALBUM").replace ("$ALBUM", "<b>" + String.escape (album) + "</b>").replace ("$NAME", "<b>" + String.escape (get_display_title ()) + "</b>");
-        else if (is_valid_string_field (artist) && !is_valid_string_field (album))
+            return _("$NAME on $ALBUM").replace ("$ALBUM", "<b>" + Markup.escape_text (album) + "</b>").replace ("$NAME", "<b>" + Markup.escape_text (get_display_title ()) + "</b>");
+        } else if (is_valid_artist && !is_valid_album) {
             /// Please keep $NAME and $ARTIST, they will be replaced by their values
-            markup = _("$NAME by $ARTIST").replace ("$ARTIST", "<b>" + String.escape (artist) + "</b>").replace ("$NAME", "<b>" + String.escape (get_display_title ()) + "</b>");
-        else if (!is_valid_string_field (artist) && !is_valid_string_field (album))
+            return _("$NAME by $ARTIST").replace ("$ARTIST", "<b>" + Markup.escape_text (artist) + "</b>").replace ("$NAME", "<b>" + Markup.escape_text (get_display_title ()) + "</b>");
+        } else if (!is_valid_artist && !is_valid_album) {
             /// Please keep $NAME and $ARTIST, they will be replaced by their values
-            markup = "<b>" + String.escape (get_display_title ()) + "</b>";
-        else
+            return "<b>" + Markup.escape_text (get_display_title ()) + "</b>";
+        } else {
             /// Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-            markup = _("$NAME by $ARTIST on $ALBUM").replace ("$ARTIST", "<b>" + String.escape (artist) + "</b>").replace ("$NAME", "<b>" + String.escape (get_display_title ()) + "</b>").replace ("$ALBUM", "<b>" + String.escape (album) + "</b>");
-
-        return markup;
+            return _("$NAME by $ARTIST on $ALBUM").replace ("$ARTIST", "<b>" + Markup.escape_text (artist) + "</b>").replace ("$NAME", "<b>" + Markup.escape_text (get_display_title ()) + "</b>").replace ("$ALBUM", "<b>" + Markup.escape_text (album) + "</b>");
+        }
     }
 
     public Media (string uri) {

@@ -35,7 +35,6 @@ public class Noise.FileOperator : Object {
 
     public GStreamerTagger tagger;
     public Cancellable cancellable;
-    CoverImport cover_importer;
 
     public int index;
     public int item_count;
@@ -62,7 +61,6 @@ public class Noise.FileOperator : Object {
         import_errors = new Gee.TreeSet<string> ();
         monitors = new Gee.HashMap<string, GLib.FileMonitor> (null, null);
         tagger = new GStreamerTagger (cancellable);
-        cover_importer = new CoverImport (cancellable);
 
         tagger.media_imported.connect (media_imported);
         tagger.import_error.connect (import_error);
@@ -325,7 +323,6 @@ public class Noise.FileOperator : Object {
             libraries_manager.local_library.finish_file_operations ();
         }
 
-        //cover_importer.discoverer_import_media (all_new_imports);
         all_new_imports.clear ();
         import_errors.clear ();
         cancellable.reset ();

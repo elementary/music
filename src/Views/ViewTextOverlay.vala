@@ -36,7 +36,7 @@ public class Noise.ViewTextOverlay : Gtk.Overlay {
      * It can contain markup information, and therefore you must escape the real
      * text before assigning it to this property.
      *
-     * @see Noise.String.escape
+     * @see GLib.Markup.escape_text
      */
     public string message {
         get { return message_label.get_label (); }

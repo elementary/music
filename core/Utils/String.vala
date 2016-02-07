@@ -55,15 +55,6 @@ namespace Noise.String {
     }
 
     /**
-     * Escapes the text for use with Markup.
-     *
-     * @return escaped text
-     */
-    public inline string escape (string text) {
-        return Markup.escape_text (text, -1);
-    }
-
-    /**
      * Checks whether a string contains only whitespace.
      *
      * @return //true// if text consists enterely of white space.
