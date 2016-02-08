@@ -20,15 +20,6 @@
  */
 
 public class Noise.FastGrid : Widgets.TileView {
-
-    public enum Column {
-        ICON,
-        TITLE,
-        SUBTITLE,
-        TOOLTIP,
-        N_COLUMNS
-    }
-
     FastGridModel fm;
     Gee.HashMap<int, GLib.Object> table; // is not the same object as showing.
     Gee.HashMap<int, GLib.Object> showing; // should never point to table.
@@ -48,11 +39,6 @@ public class Noise.FastGrid : Widgets.TileView {
 
         set_table (table, true);
         set_model (fm);
-
-        image_column = Column.ICON;
-        title_column = Column.TITLE;
-        subtitle_column = Column.SUBTITLE;
-        tooltip_column = Column.TOOLTIP;
     }
 
     public void set_search_func (ViewSearchFunc func) {
@@ -75,10 +61,6 @@ public class Noise.FastGrid : Widgets.TileView {
 
     public GLib.Object get_object_from_index (int index) {
         return showing.get (index);
-    }
-
-    public void set_value_func (FastGridModel.ValueReturnFunc func) {
-        fm.set_value_func (func);
     }
 
     public void set_table (Gee.HashMap<int, GLib.Object> table, bool do_resort) {

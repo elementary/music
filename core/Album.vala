@@ -42,6 +42,7 @@
  * - Keep albums organized by library manager
  */
 public class Noise.Album : Object {
+    public signal void cover_rendered ();
     public string name { get; set; default = ""; }
     public string artist { get; set; default = ""; }
 
@@ -57,6 +58,8 @@ public class Noise.Album : Object {
     public GLib.Icon? cover_icon { get; set; default = null; }
 
     private Gee.HashSet<Media> media = new Gee.HashSet<Media> ();
+    private Gdk.Pixbuf cover_pixbuf;
+    private int cover_pixbuf_scale = 1;
 
     ~Album () {
         media.clear ();
@@ -76,6 +79,7 @@ public class Noise.Album : Object {
             cover_icon = new FileIcon (cover_file);
         }
     }
+
     public Album.from_media (Media m) {
         name = m.album;
         artist = m.album_artist;
@@ -88,6 +92,12 @@ public class Noise.Album : Object {
         if (cover_file != null) {
             cover_icon = new FileIcon (cover_file);
         }
+    }
+
+    construct {
+        notify["cover-icon"].connect (() => {
+            cover_pixbuf = null;
+        });
     }
 
     public uint n_media {
@@ -142,6 +152,29 @@ public class Noise.Album : Object {
         requires (n_disc <= n_discs)
     {
         return media.read_only_view;
+    }
+
+    public Gdk.Pixbuf? get_cached_cover_pixbuf (int scale) {
+        if (cover_pixbuf != null && cover_pixbuf_scale == scale) {
+            return cover_pixbuf;
+        }
+
+        if (cover_icon == null) {
+            return null;
+        }
+
+        var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (cover_icon, 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+        icon_info.load_icon_async.begin (null, (obj, res) => {
+            try {
+                cover_pixbuf = icon_info.load_icon_async.end (res);
+                cover_pixbuf_scale = scale;
+                cover_rendered ();
+            } catch (Error e) {
+                critical (e.message);
+            }
+        });
+
+        return cover_pixbuf;
     }
 
     public void save_cover_file (GLib.File file) {

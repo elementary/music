@@ -6,30 +6,18 @@
  */
 
 public class Noise.Widgets.TileView : Gtk.IconView {
-    private Gtk.CellRenderer cell_renderer = new TileRenderer ();
-
-    public int image_column {
-        set {
-            add_attribute (cell_renderer, "pixbuf", value);
-        }
-    }
-
-    public int title_column {
-        set {
-            add_attribute (cell_renderer, "title", value);
-        }
-    }
-
-    public int subtitle_column {
-        set {
-            add_attribute (cell_renderer, "subtitle", value);
-        }
-    }
+    private Gtk.CellRenderer cell_renderer;
 
     public TileView () {
+    }
+
+    construct {
+        cell_renderer = new TileRenderer ();
         pack_start (cell_renderer, false);
         AlbumImage.apply_album_style (this);
         activate_on_single_click = true;
+        add_attribute (cell_renderer, "album", 0);
+        tooltip_column = 1;
 
         // padding needs to be 0 for pixel-perfect even spacing
         item_padding = 0;

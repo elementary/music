@@ -8,10 +8,6 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	/* data storage variables */
 	Gee.HashMap<int, GLib.Object> rows; // internal id -> user specified object
 	
-	/* user specific function for get_value() */
-	public delegate Value? ValueReturnFunc (int row, int column, GLib.Object o);
-	private unowned ValueReturnFunc value_func;
-	
 	/** Initialize data storage, columns, etc. **/
 	public FastGridModel () {
 		rows = new Gee.HashMap<int, GLib.Object>();
@@ -20,16 +16,11 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	}
 
 	public Type get_column_type (int col) {
-		if(col == 0)
-			return typeof(Gdk.Pixbuf);
-		else if(col == 1)
-			return typeof(string);
-		else if(col == 2)
-			return typeof(string);
-		else if(col == 3)
-			return typeof(string);
-		else
-			return typeof(GLib.Object);
+		if (col == 1) {
+			return typeof (string);
+		} else {
+			return typeof (Album);
+		}
 	}
 
 	public Gtk.TreeModelFlags get_flags () {
@@ -49,7 +40,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	}
 
 	public int get_n_columns () {
-		return 5;
+		return 2;
 	}
 
 	public Gtk.TreePath? get_path (Gtk.TreeIter iter) {
@@ -64,10 +55,11 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 
 		int row = (int)iter.user_data;
 		if(!(row >= rows.size)) {
-			var object = rows.get(row);
-			var val_tmp = value_func(row, column, object);
-			if (val_tmp != null)
-			    val = val_tmp;
+			val = rows.get(row);
+			if (column == 1) {
+				var album = (Album) val;
+				val = "<span size=\"large\"><b>%s</b></span>\n%s".printf (Markup.escape_text (album.get_display_name ()), Markup.escape_text (album.get_display_artist ()));
+			}
 		}
 	}
 
@@ -167,13 +159,6 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
         for (bool valid = get_iter_first (out iter); valid; valid = iter_next (ref iter)) {
             row_changed (get_path (iter), iter);
         }
-	}
-	
-	/** Crucial. Must be set by user. Allows for this model to be abstract
-	 * by allowing the user to specify the function that returns values
-	 * based on the object (row) and column. **/
-	public void set_value_func (ValueReturnFunc func) {
-		value_func = func;
 	}
 	
 	public void update_row (int index) {

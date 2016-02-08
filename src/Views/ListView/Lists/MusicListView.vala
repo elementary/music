@@ -234,9 +234,7 @@ public class Noise.MusicListView : GenericList {
 
         //remove the previous "Other Actions" submenu and create a new one
         var contractorSubMenu = new Gtk.Menu ();
-        contractorSubMenu.show_all ();
         mediaMenuContractorEntry.submenu = contractorSubMenu;
-        mediaMenuContractorEntry.sensitive = true;
 
         try {
             var files = new Gee.HashSet<File> (); //for automatic deduplication
@@ -262,7 +260,8 @@ public class Noise.MusicListView : GenericList {
                 var menu_item = new ContractMenuItem (contract, selection);
                 contractorSubMenu.append (menu_item);
             }
-            this.queue_draw ();
+
+            mediaMenuContractorEntry.sensitive = contractorSubMenu.get_children ().length () > 0;
             contractorSubMenu.show_all ();
         } catch (Error err) {
             warning ("Failed to obtain Contractor actions: %s", err.message);
