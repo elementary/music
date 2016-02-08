@@ -209,8 +209,6 @@ public class Noise.Plugins.Manager : Object {
 
         /* Let's init the engine */
         engine = Peas.Engine.get_default ();
-        engine.enable_loader ("python");
-        engine.enable_loader ("gjs");
         engine.add_search_path (Build.PLUGIN_DIR, null);
         
         /* Do not load blacklisted plugins */

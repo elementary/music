@@ -81,7 +81,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
             if (view == list_view)
                 return ViewType.LIST;
-            
+
             if (view == embedded_alert) {
                 return ViewType.ALERT;
             }
@@ -103,11 +103,9 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public bool is_current_wrapper {
         get {
-            return (App.main_window.initialization_finished && index == App.main_window.view_container.get_current_index ());
+            return (App.main_window.initialization_finished && App.main_window.view_container.visible_child == this);
         }
     }
-
-    public int index { get { return App.main_window.view_container.get_view_index (this); } }
 
     public Playlist? playlist = null;
 
@@ -146,16 +144,16 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     protected void pack_views () {
         assert (view_container != null);
 
-        if (has_grid_view && !view_container.has_view (grid_view))
+        if (has_grid_view && grid_view.parent != view_container)
             view_container.add_view (grid_view);
 
-        if (has_list_view && !view_container.has_view (list_view))
+        if (has_list_view && list_view.parent != view_container)
             view_container.add_view (list_view);
 
-        if (has_welcome_screen && !view_container.has_view (welcome_screen))
+        if (has_welcome_screen && welcome_screen.parent != view_container)
             view_container.add_view (welcome_screen);
 
-        if (has_embedded_alert && !view_container.has_view (embedded_alert))
+        if (has_embedded_alert && embedded_alert.parent != view_container)
             view_container.add_view (embedded_alert);
 
         widgets_ready = true;

@@ -6,18 +6,21 @@
  */
 
 internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
-    public Gdk.Pixbuf pixbuf { get; set; }
-    public string title { get; set; }
-    public string subtitle { get; set; }
+    public Album album { get; set; }
 
     private Pango.Layout title_text_layout;
     private Pango.Layout subtitle_text_layout;
     private Gtk.Border margin;
     private Gtk.Border padding;
     private Gtk.Border border;
+    private Gdk.Pixbuf pixbuf;
+    private Gdk.Pixbuf fallback_pixbuf;
+    private int fallback_pixbuf_scale = 1;
 
     public TileRenderer () {
-        
+        notify["album"].connect (() => {
+            pixbuf = null;
+        });
     }
 
     public override void get_size (Gtk.Widget widget, Gdk.Rectangle? cell_area,
@@ -142,6 +145,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
 
     private void update_layout_properties (Gtk.Widget widget) {
         var ctx = widget.get_style_context ();
+        render_prixbuf (ctx);
         var state = ctx.get_state ();
 
         ctx.save ();
@@ -151,7 +155,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         border = ctx.get_border (state);
         ctx.restore ();
 
-        subtitle_text_layout = widget.create_pango_layout (subtitle);
+        subtitle_text_layout = widget.create_pango_layout (album.get_display_artist ());
         unowned Pango.FontDescription font_description;
         ctx.get (state, Gtk.STYLE_PROPERTY_FONT, out font_description);
         subtitle_text_layout.set_font_description (font_description);
@@ -162,7 +166,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
 
         ctx.save ();
         ctx.add_class ("h4");
-        title_text_layout = widget.create_pango_layout (title);
+        title_text_layout = widget.create_pango_layout (album.get_display_name ());
         ctx.get (state, Gtk.STYLE_PROPERTY_FONT, out font_description);
         title_text_layout.set_font_description (font_description);
         title_text_layout.set_width (text_width);
@@ -177,5 +181,22 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
 
     private int compute_total_image_height () {
         return pixbuf != null ? pixbuf.height + margin.top + margin.bottom : 0;
+    }
+
+    private void render_prixbuf (Gtk.StyleContext ctx) {
+        var scale = ctx.get_scale ();
+        if (fallback_pixbuf == null || fallback_pixbuf_scale != scale) {
+            var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (new ThemedIcon ("albumart"), 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+            try {
+                fallback_pixbuf = icon_info.load_icon ();
+            } catch (Error e) {
+                critical (e.message);
+            }
+        }
+
+        pixbuf = album.get_cached_cover_pixbuf (scale);
+        if (pixbuf == null) {
+            pixbuf = fallback_pixbuf;
+        }
     }
 }

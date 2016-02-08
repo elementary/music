@@ -38,11 +38,9 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
     }
 
     protected abstract void item_activated (Object? object);
-    protected abstract Value? val_func (int row, int column, Object o);
     protected abstract int compare_func (Object a, Object b);
     protected abstract void search_func (Gee.HashMap<int, Object> showing);
     protected abstract Gee.Collection<Media> get_selected_media (Object obj);
-    protected abstract Gdk.Pixbuf get_pixbuf (Object o);
     protected abstract GLib.Icon? get_icon (Object o);
 
     protected void set_research_needed (bool value) {
@@ -81,7 +79,6 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
 
         icon_view = new FastGrid ();
         icon_view.set_compare_func (compare_func);
-        icon_view.set_value_func (val_func);
 
         icon_view.set_columns (-1);
 

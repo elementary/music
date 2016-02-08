@@ -17,13 +17,10 @@
  */
 
 public class Noise.ViewContainer : Gtk.Stack {
-
-    private Gee.HashMap<int, unowned Gtk.Widget> match_views;
     private int nextview_number { get; set; default=0; }
 
     public ViewContainer () {
         expand = true;
-        match_views = new Gee.HashMap<int, unowned Gtk.Widget>();
     }
 
     /**
@@ -31,11 +28,8 @@ public class Noise.ViewContainer : Gtk.Stack {
      * @return the index of the view in the view container
      */
     public int add_view (Gtk.Widget view) {
-        return_val_if_fail (!has_view (view), -1);
-
         view.expand = true;
         view.visible = true;
-        match_views.set (nextview_number, view);
         add_named (view, nextview_number.to_string ());
 
         return nextview_number++;
@@ -46,41 +40,16 @@ public class Noise.ViewContainer : Gtk.Stack {
      * @return the index of the view in the view container
      */
     public void remove_view (Gtk.Widget view) {
-        foreach (var entry in match_views.entries) {
-            if (entry.value == view) {
-                match_views.unset (entry.key);
-                break;
-            }
-        }
         remove (view);
         view.destroy ();
     }
 
     public Gtk.Widget? get_view (int index) {
-        return match_views.get (index);
+        return get_child_by_name (index.to_string ());
     }
 
     public Gtk.Widget? get_nth_page (int index) {
         return get_view (index);
-    }
-
-    public int get_view_index (Gtk.Widget view) {
-        int index = -1;
-        foreach (var entry in match_views.entries) {
-            if (entry.value == view) {
-                index = entry.key;
-                break;
-            }
-        }
-        return index;
-    }
-
-    public bool has_view (Gtk.Widget view) {
-        return get_view_index (view) >= 0;
-    }
-
-    public bool has_view_index (int index) {
-        return get_view (index) != null;
     }
 
     public int get_current_index () {
@@ -91,9 +60,9 @@ public class Noise.ViewContainer : Gtk.Stack {
         return visible_child;
     }
 
-    public int get_n_pages ()
+    public uint get_n_pages ()
     {
-        return match_views.size;
+        return get_children ().length ();
     }
 
     /**

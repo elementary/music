@@ -82,8 +82,8 @@ public class Noise.InfoPanel : Gtk.EventBox {
         // The widget centers itself.
         rating.halign = Gtk.Align.FILL;
 
-        content.set_row_spacing (6);
-        content.margin = 12;
+        content.row_spacing = 6;
+        content.margin = 6;
         content.attach (coverArt, 0, 0, 1, 1);
         content.attach (title, 0, 1, 1, 1);
         content.attach (rating, 0, 2, 1, 1);
