@@ -184,7 +184,19 @@ public abstract class Noise.GenericList : FastView {
     protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column,
                                           Gtk.CellRendererText renderer, string[] strings, int padding)
     {
-        UI.set_tree_view_column_fixed_width (treeview, column, renderer, strings, padding);
+        int max_width = 0;
+
+        foreach (unowned string str in strings) {
+            renderer.text = str;
+            // XXX should we use minimum size instead?
+            Gtk.Requisition natural_size;
+            renderer.get_preferred_size (treeview, null, out natural_size);
+
+            if (natural_size.width > max_width)
+                max_width = natural_size.width;
+        }
+
+        column.fixed_width = max_width + padding;
     }
 
     private void reset_column_widths () {

@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2013 Noise Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012-2016 elementary LLC.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -25,644 +25,247 @@
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  *
- * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
- *              Corentin Noël <tintou@mailoo.org>
- */
-
-/**
- * TODO: make this dialog edit and handle Media objects and not media rowids.
- *       We need this in order to allow editing temporary tracks (such as Audio
- *       CDs before importing their media to the library).
+ * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
 public class Noise.MediaEditor : Gtk.Dialog {
-    LyricFetcher lf;
-    
-    Gee.LinkedList<int64?> _allMedias = new Gee.LinkedList<int64?> ();
-    Gee.LinkedList<int64?> _medias = new Gee.LinkedList<int64?> ();
-    
-    //for padding around notebook mostly
-    Gtk.Stack stack;
+    private Gtk.Entry title_entry;
+    private Gtk.Entry artist_entry;
+    private Gtk.Entry album_artist_entry;
+    private Gtk.Entry album_entry;
+    private Gtk.Entry genre_entry;
+    private Gtk.Entry composer_entry;
+    private Gtk.Entry grouping_entry;
+    private Gtk.TextView comment_textview;
+    private Gtk.SpinButton track_spinbutton;
+    private Gtk.SpinButton disk_spinbutton;
+    private Gtk.SpinButton year_spinbutton;
+    private Granite.Widgets.Rating rating_widget;
 
-    private Gee.HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
-    private Gtk.TextView lyricsText;
-    
+    private Gtk.Button previous_button;
+    private Gtk.Button next_button;
     private Gtk.Button save_button;
     private Gtk.Button close_button;
-    
-    private Gtk.Label lyricsInfobarLabel;
-    private Library library;
-    
-    public signal void medias_saved (Gee.Collection<int64?> medias);
-    
-    public MediaEditor (Gee.Collection<int64?> allMedias, Gee.Collection<int64?> medias, Library library) {
-        this.library = library;
-        this.window_position = Gtk.WindowPosition.CENTER;
-        this.type_hint = Gdk.WindowTypeHint.DIALOG;
-        this.set_modal(false);
-        this.set_transient_for(App.main_window);
-        this.destroy_with_parent = true;
-        this.resizable = false;
-        this.deletable = false;
 
-        this.set_size_request (520, -1);
+    private Gee.TreeSet<Media> media_list;
+    private Gee.HashMap<int64?, Media> temp_list;
+    private Media current_media;
 
-        lf = new LyricFetcher();
+    public MediaEditor (Gee.TreeSet<Media> given_media) {
+        media_list.add_all (given_media);
+        set_media (media_list.first ());
+    }
 
-        _allMedias.add_all (allMedias);
-        _medias.add_all (medias);
+    construct {
+        media_list = new Gee.TreeSet<Media> ();
+        temp_list = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash, (Gee.EqualDataFunc<int64?>)GLib.int64_equal, null);
 
-        stack = new Gtk.Stack ();
+        transient_for = App.main_window;
+        set_default_geometry (600, 400);
+        var grid = new Gtk.Grid ();
+        grid.expand = true;
+        grid.margin_start = 12;
+        grid.margin_end = 12;
+        grid.column_spacing = 12;
+        grid.row_spacing = 6;
 
-        var stack_switcher = new Gtk.StackSwitcher ();
-        stack_switcher.set_stack (stack);
-        stack_switcher.halign = Gtk.Align.CENTER;
-        stack_switcher.margin_bottom = 24;
-        stack_switcher.margin_top = 12;
+        var title_label = new Gtk.Label (_("Title:"));
+        format_label (title_label);
+        var artist_label = new Gtk.Label (_("Artist:"));
+        format_label (artist_label);
+        var album_artist_label = new Gtk.Label (_("Album Artist:"));
+        format_label (album_artist_label);
+        var album_label = new Gtk.Label (_("Album:"));
+        format_label (album_label);
+        var genre_label = new Gtk.Label (_("Genre:"));
+        format_label (genre_label);
+        var composer_label = new Gtk.Label (_("Composer:"));
+        format_label (composer_label);
+        var grouping_label = new Gtk.Label (_("Grouping:"));
+        format_label (grouping_label);
+        var comment_label = new Gtk.Label (_("Comment:"));
+        format_label (comment_label);
+        var track_label = new Gtk.Label (_("Track:"));
+        format_label (track_label);
+        var disk_label = new Gtk.Label (_("Disk:"));
+        format_label (disk_label);
+        var year_label = new Gtk.Label (_("Year:"));
+        format_label (year_label);
+        var rating_label = new Gtk.Label (_("Rating:"));
+        format_label (rating_label);
 
-        stack.add_titled (createBasicContent (), "metadata", _("Details"));
-        if(_medias.size == 1)
-            stack.add_titled (createLyricsContent (), "lyrics", _("Lyrics"));
-        else
-            lyricsText = null;
+        title_entry = new Gtk.Entry ();
+        artist_entry = new Gtk.Entry ();
+        album_artist_entry = new Gtk.Entry ();
+        album_entry = new Gtk.Entry ();
+        genre_entry = new Gtk.Entry ();
+        composer_entry = new Gtk.Entry ();
+        grouping_entry = new Gtk.Entry ();
+        comment_textview = new Gtk.TextView ();
+        track_spinbutton = new Gtk.SpinButton.with_range (0, 500, 1);
+        disk_spinbutton = new Gtk.SpinButton.with_range (0, 500, 1);
+        var local_time = new DateTime.now_local ();
+        year_spinbutton = new Gtk.SpinButton.with_range (0, local_time.get_year (), 1);
+        rating_widget = new Granite.Widgets.Rating (false, Gtk.IconSize.MENU);
+        rating_widget.hexpand = true;
 
-        var arrows = new Noise.Widgets.NavigationArrows ();
+        var comment_frame = new Gtk.Frame (null);
+        comment_frame.expand = true;
+        comment_frame.add (comment_textview);
+
+        grid.attach (title_label, 0, 0, 1, 1);
+        grid.attach (title_entry, 0, 1, 1, 1);
+        grid.attach (artist_label, 1, 0, 1, 1);
+        grid.attach (artist_entry, 1, 1, 1, 1);
+        grid.attach (album_label, 0, 2, 1, 1);
+        grid.attach (album_entry, 0, 3, 1, 1);
+        grid.attach (album_artist_label, 1, 2, 1, 1);
+        grid.attach (album_artist_entry, 1, 3, 1, 1);
+        grid.attach (composer_label, 0, 4, 1, 1);
+        grid.attach (composer_entry, 0, 5, 1, 1);
+        grid.attach (grouping_label, 1, 4, 1, 1);
+        grid.attach (grouping_entry, 1, 5, 1, 1);
+        grid.attach (genre_label, 0, 6, 1, 1);
+        grid.attach (genre_entry, 0, 7, 1, 1);
+        grid.attach (year_label, 1, 6, 1, 1);
+        grid.attach (year_spinbutton, 1, 7, 1, 1);
+        grid.attach (track_label, 1, 8, 1, 1);
+        grid.attach (track_spinbutton, 1, 9, 1, 1);
+        grid.attach (disk_label, 1, 10, 1, 1);
+        grid.attach (disk_spinbutton, 1, 11, 1, 1);
+        grid.attach (rating_label, 1, 12, 1, 1);
+        grid.attach (rating_widget, 1, 13, 1, 1);
+        grid.attach (comment_label, 0, 8, 1, 1);
+        grid.attach (comment_frame, 0, 9, 1, 5);
+
+        previous_button = new Gtk.Button.from_icon_name ("go-previous-symbolic");
+        next_button = new Gtk.Button.from_icon_name ("go-next-symbolic");
+
+        var arrows_grid = new Gtk.Grid ();
+        arrows_grid.orientation = Gtk.Orientation.HORIZONTAL;
+        arrows_grid.column_homogeneous = true;
+        arrows_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
+        arrows_grid.add (previous_button);
+        arrows_grid.add (next_button);
 
         save_button = new Gtk.Button.with_label (_("Save"));
         save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-
         close_button  = new Gtk.Button.with_label (_("Close"));
 
         var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        buttons.set_layout (Gtk.ButtonBoxStyle.END);
-        buttons.set_spacing (6);
+        buttons.layout_style = Gtk.ButtonBoxStyle.END;
+        buttons.spacing = 6;
         buttons.margin_top = 6;
 
-        buttons.pack_start (arrows, false, false, 0);
+        buttons.pack_start (arrows_grid, false, false, 0);
         buttons.pack_end (close_button, false, false, 0);
         buttons.pack_end (save_button, false, false, 0);
-        buttons.set_child_secondary (arrows, true);
-
-        var main_grid = new Gtk.Grid ();
-        main_grid.attach (stack_switcher, 0, 0, 1, 1);
-        main_grid.attach (stack, 0, 1, 1, 1);
-        main_grid.attach (buttons, 0, 2, 1, 1);
+        buttons.set_child_secondary (arrows_grid, true);
+        buttons.set_child_non_homogeneous (arrows_grid, true);
+        grid.attach (buttons, 0, 14, 2, 1);
 
         var content = get_content_area () as Gtk.Container;
-        content.margin_left = content.margin_right = 12;
-        content.add (main_grid);
+        content.add (grid);
 
-        this.show_all();
-
-        arrows.sensitive = allMedias.size > 1;
-
-        if(_medias.size == 1) {
-            foreach(FieldEditor fe in fields.values)
-                fe.set_check_visible(false);
-                
-            fetch_lyrics.begin (false);
-        }
-
-        arrows.previous_clicked.connect (previousClicked);
-        arrows.next_clicked.connect (nextClicked);
-        save_button.clicked.connect (saveClicked);
-        close_button.clicked.connect (() => {destroy ();});
-    }
-    
-    public Gtk.Box createBasicContent () {
-        fields = new Gee.HashMap<string, FieldEditor>();
-        Media sum = library.media_from_id(_medias.get(0)).copy();
-        
-        /** find what these media have what common, and keep those values **/
-        foreach (int64 i in _medias) {
-            Media s = library.media_from_id(i);
-            
-            if(s.track != sum.track)
-                sum.track = 0;
-            if(s.album_number != sum.album_number)
-                sum.album_number = 0;
-            if(s.title != sum.title)
-                sum.title = "";
-            if(s.artist != sum.artist)
-                sum.artist = "";
-            if(s.album_artist != sum.album_artist)
-                sum.album_artist = "";
-            if(s.album != sum.album)
-                sum.album = "";
-            if(s.genre != sum.genre)
-                sum.genre = "";
-            if(s.comment != sum.comment)
-                sum.comment = "";
-            if(s.year != sum.year)
-                sum.year = 0;
-            if(s.bitrate != sum.bitrate)
-                sum.bitrate = 0;
-            if(s.composer != sum.composer)
-                sum.composer = "";
-            if(s.grouping != sum.grouping)
-                sum.grouping = "";
-            //length = 0;
-            //samplerate = 0;
-            if(s.bpm != sum.bpm)
-                sum.bpm = 0;
-            if(s.rating != sum.rating)
-                sum.rating = 0;
-            //score = 0;
-            //play_count = 0;
-            //skip_count = 0;
-            //date_added = 0;
-            //last_played = 0;
-        }
-
-        // be explicit to make translations better        
-        if(_medias.size == 1) {
-            if (sum.artist != "")
-                title = _("Editing $NAME by $ARTIST").replace ("$NAME", sum.title).replace("$ARTIST", sum.artist);
-            else
-                title = _("Editing %s").printf (sum.title);
-        }
-        else {
-            title = _("Editing %i songs").printf (_medias.size);
-        }
-        
-        if(sum.year == -1)
-            sum.year = Time().year;
-        
-        fields.set("Title", new FieldEditor(_("Title"), sum.title, new Gtk.Entry()));
-        fields.set("Artist", new FieldEditor(_("Artist"), sum.artist, new Gtk.Entry()));
-        fields.set("Album Artist", new FieldEditor(_("Album Artist"), sum.album_artist, new Gtk.Entry()));
-        fields.set("Album", new FieldEditor(_("Album"), sum.album, new Gtk.Entry()));
-        fields.set("Genre", new FieldEditor(_("Genre"), sum.genre, new Gtk.Entry()));
-        fields.set("Composer", new FieldEditor(_("Composer"), sum.composer, new Gtk.Entry()));
-        fields.set("Grouping", new FieldEditor(_("Grouping"), sum.grouping, new Gtk.Entry()));
-        fields.set("Comment", new FieldEditor(_("Comment"), sum.comment, new Gtk.TextView()));
-        fields.set("Track", new FieldEditor(_("Track"), sum.track.to_string(), new Gtk.SpinButton.with_range(0, 500, 1)));
-        fields.set("Disc", new FieldEditor(_("Disc"), sum.album_number.to_string(), new Gtk.SpinButton.with_range(0, 500, 1)));
-        fields.set("Year", new FieldEditor(_("Year"), sum.year.to_string(), new Gtk.SpinButton.with_range(0, 9999, 1)));
-        fields.set("Rating", new FieldEditor(_("Rating"), sum.rating.to_string(), new Granite.Widgets.Rating(false, Gtk.IconSize.MENU)));
-
-        var vert = new Gtk.Box (Gtk.Orientation.VERTICAL, 0); // separates editors with buttons and other stuff
-        var horiz = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0); // separates text with numerical editors
-        var textVert = new Gtk.Box (Gtk.Orientation.VERTICAL, 0); // separates text editors
-        var numerVert = new Gtk.Box (Gtk.Orientation.VERTICAL, 0); // separates numerical editors
-        
-        textVert.pack_start(fields.get("Title"), false, true, 0);
-        textVert.pack_start(fields.get("Artist"), false, true, 5);
-        textVert.pack_start(fields.get("Album Artist"), false, true, 5);
-        textVert.pack_start(fields.get("Composer"), false, true, 5);
-        textVert.pack_start(fields.get("Album"), false, true, 5);
-        textVert.pack_start(fields.get("Comment"), false, true, 5);
-        
-        numerVert.pack_start(fields.get("Track"), false, true, 0);
-        numerVert.pack_start(fields.get("Disc"), false, true, 5);
-        numerVert.pack_start(fields.get("Genre"), false, true, 5);
-        numerVert.pack_start(fields.get("Grouping"), false, true, 5);
-        numerVert.pack_start(fields.get("Year"), false, true, 5);
-        numerVert.pack_start(fields.get("Rating"), false, true, 5);
-        //if(medias.size == 1)
-            //numerVert.pack_start(stats, false, true, 5);
-
-        horiz.pack_start(UI.wrap_alignment (textVert, 0, 30, 0, 0), false, true, 0);
-        horiz.pack_end(numerVert, false, true, 0);
-        vert.pack_start(horiz, true, true, 0);
-
-        return vert;
-    }
-    
-    public Gtk.Box createLyricsContent () {
-        var lyricsContent = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
-        
-        lyricsInfobarLabel = new Gtk.Label("");
-        
-        lyricsInfobarLabel.set_justify(Gtk.Justification.LEFT);
-        lyricsInfobarLabel.set_single_line_mode(true);
-        lyricsInfobarLabel.ellipsize = Pango.EllipsizeMode.END;
-        
-
-        lyricsText = new Gtk.TextView();
-        lyricsText.set_wrap_mode(Gtk.WrapMode.WORD_CHAR);
-        lyricsText.get_buffer().text = library.media_from_id(_medias.get(0)).lyrics;
-
-        var text_scroll = new Gtk.ScrolledWindow(null, null);
-        text_scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
-        
-        text_scroll.add(lyricsText);
-
-        var frame = new Gtk.Frame (null);
-        frame.add (text_scroll);
-        
-        lyricsContent.pack_start(frame, true, true, 0);
-        lyricsContent.pack_start(lyricsInfobarLabel, false, true, 5);
-        
-        lyricsText.set_size_request(400, -1);
-        
-        return lyricsContent;
-    }
-    
-    public async void fetchLyricsClicked() {
-        yield fetch_lyrics (true);
-    }
-    
-    private async void fetch_lyrics (bool overwrite) {
-        lyricsInfobarLabel.hide();
-        Media s = library.media_from_id(_medias.get(0));
-
-        // fetch lyrics here
-        if (!(!String.is_white_space (s.lyrics) && !overwrite)) {
-            s.lyrics = yield lf.fetch_lyrics_async (s);
-
-            var current_media = library.media_from_id (_medias.get(0));
-            if (current_media == s)
-                lyricsFetched (s);
-        }
-    }
-    
-
-    public void lyricsFetched (Media m) {
-        Idle.add ( () => {
-
-            lyricsInfobarLabel.set_text ("");
-            lyricsInfobarLabel.hide();
-
-            if (!String.is_white_space (m.lyrics)) {
-                lyricsText.get_buffer().text = m.lyrics;
-            }
-            else {
-                lyricsInfobarLabel.show_all();
-                lyricsInfobarLabel.set_markup (_("Lyrics not found for %s").printf ("<i>" + Markup.escape_text (m.title) + "</i>"));
-            }
-            return false;
-        });
+        previous_button.clicked.connect (previous_track);
+        next_button.clicked.connect (next_track);
+        close_button.clicked.connect (() => destroy ());
+        save_button.clicked.connect (save_and_exit);
     }
 
-    public void previousClicked() {
-        save_medias();
-        
-        // now fetch the next media on current_view
-        int64 i = 0; // will hold next media to edit
-        int indexOfCurrentFirst = _allMedias.index_of(_medias.first ());
-        
-        if(indexOfCurrentFirst == 0)
-            i = _allMedias.get(_allMedias.size - 1);
-        else
-            i = _allMedias.get(indexOfCurrentFirst - 1);
-        
-        // now fetch the previous media on current_view
-        var newMedias = new Gee.LinkedList<int64?> ();
-        newMedias.add(i);
-        
-        change_media(newMedias);
-    }
-    
-    public void nextClicked() {
-        save_medias();
-        
-        // now fetch the next media on current_view
-        int64 i = 0; // will hold next media to edit
-        int indexOfCurrentLast = _allMedias.index_of(_medias.get(_medias.size - 1));
-        
-        if(indexOfCurrentLast == _allMedias.size - 1)
-            i = _allMedias.first ();
-        else
-            i = _allMedias.get(indexOfCurrentLast + 1);
-        
-        var newMedias = new Gee.LinkedList<int64?>();
-        newMedias.add(i);
-        
-        change_media(newMedias);
-    }
-    
-    public void change_media(Gee.LinkedList<int64?> newMedias) {
-        _medias = newMedias;
-        
-        Media sum = library.media_from_id(newMedias.get(0));
-
-        // be explicit to improve translations
-        if(_medias.size == 1) {
-            if (sum.artist != "")
-                title = _("Editing $NAME by $ARTIST").replace ("$NAME", sum.title).replace("$ARTIST", sum.artist);
-            else
-                title = _("Editing %s").printf (sum.title);
-        }
-        else {
-            title = _("Editing %i songs").printf (_medias.size);
-        }
-
-        /* do not show check boxes for 1 media */
-        foreach(FieldEditor fe in fields.values)
-            fe.set_check_visible(false);
-        
-        fields.get("Title").set_value(sum.title);
-        fields.get("Artist").set_value(sum.artist);
-        fields.get("Album Artist").set_value(sum.album_artist);
-        fields.get("Album").set_value(sum.album);
-        fields.get("Genre").set_value(sum.genre);
-        fields.get("Comment").set_value(sum.comment);
-        fields.get("Track").set_value(sum.track.to_string());
-        fields.get("Disc").set_value(sum.album_number.to_string());
-        fields.get("Year").set_value(sum.year.to_string());
-        fields.get("Rating").set_value(sum.rating.to_string());
-        fields.get("Composer").set_value(sum.composer);
-        fields.get("Grouping").set_value(sum.grouping);
-        if(lyricsText == null) {
-            var lyrics = createLyricsContent ();
-            stack.add_titled (lyrics, "lyrics", _("Lyrics"));
-            lyrics.show_all();
-        }
-
-        lyricsText.get_buffer().text = sum.lyrics;
-
-        fetch_lyrics.begin (false);
-    }
-    
-    public void save_medias() {
-        foreach (int64 i in _medias) {
-            Media s = library.media_from_id (i);
-            
-            if(fields.get("Title").checked())
-                s.title = fields.get("Title").get_value();
-            if(fields.get("Artist").checked())
-                s.artist = fields.get("Artist").get_value();
-            if(fields.get("Album Artist").checked())
-                s.album_artist = fields.get("Album Artist").get_value();
-            if(fields.get("Album").checked())
-                s.album = fields.get("Album").get_value();
-            if(fields.get("Genre").checked())
-                s.genre = fields.get("Genre").get_value();
-            if(fields.get("Composer").checked())
-                s.composer = fields.get("Composer").get_value();
-            if(fields.get("Grouping").checked())
-                s.grouping = fields.get("Grouping").get_value();
-            if(fields.get("Comment").checked())
-                s.comment = fields.get("Comment").get_value();
-                
-            if(fields.get("Track").checked())
-                s.track = int.parse(fields.get("Track").get_value());
-            if(fields.get("Disc").checked())
-                s.album_number = int.parse(fields.get("Disc").get_value());
-            if(fields.get("Year").checked())
-                s.year = int.parse(fields.get("Year").get_value());
-            if(fields.get("Rating").checked())
-                s.rating = int.parse(fields.get("Rating").get_value());
-            // save lyrics
-            if(lyricsText != null) {
-                var lyrics = lyricsText.get_buffer().text;
-                if (!String.is_white_space (lyrics))
-                    s.lyrics = lyrics;
-            }
-        }
-        
-        medias_saved(_medias);
-    }
-    
-    public virtual void saveClicked() {
-        save_medias();
-        
-        this.destroy();
-    }
-}
-
-public class Noise.FieldEditor : Gtk.Box {
-    private string _name;
-    private string _original;
-    
-    private Gtk.Box nameBox;
-    
-    private Gtk.CheckButton check;
-    private Gtk.Label label;
-    private Gtk.Entry entry;
-    private Gtk.TextView textView;
-    private Gtk.SpinButton spinButton;
-    private Granite.Widgets.Rating ratingWidget;
-    private Gtk.Image image;
-    //private DoubleSpinButton doubleSpinButton;
-
-    public FieldEditor(string name, string original, Gtk.Widget w) {
-        _name = name;
-        _original = original;
-        set_orientation (Gtk.Orientation.VERTICAL);
-        this.spacing = 0;
-        
-        check = new Gtk.CheckButton();
-        label = new Gtk.Label(_name);
-        nameBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        
-        label.justify = Gtk.Justification.LEFT;
+    private void format_label (Gtk.Label label) {
         label.halign = Gtk.Align.START;
-        label.set_markup("<b>" + _name + "</b>");
-        
-        nameBox.pack_start(check, false, false, 0);
-        nameBox.pack_start(label, false, true, 0);
-        
-        this.pack_start(nameBox, false, false, 0);
-        
-        if(w is Gtk.Entry && !(w is Gtk.SpinButton)) {
-            check.set_active(original != "");
-            
-            entry = (Gtk.Entry)w;
-            if(name != _("Genre") && name != _("Grouping"))
-                entry.set_size_request(300, -1);
-            else
-                entry.set_size_request(100, -1);
-            
-            entry.set_text(original);
-            entry.changed.connect(entryChanged);
-            this.pack_start(entry, true, true, 0);
-        }
-        else if(w is Gtk.TextView) {
-            check.set_active(original != "");
-            
-            textView = (Gtk.TextView)w;
-            textView.set_size_request(300, 90);
-            textView.set_wrap_mode(Gtk.WrapMode.WORD_CHAR);
-            textView.get_buffer().text = original;
-            
-            var scroll = new Gtk.ScrolledWindow(null, null);
-            scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
-            
-            scroll.add(textView);
-            
-            scroll.set_size_request(300, 100);
-            
-            textView.buffer.changed.connect(textViewChanged);
-            this.pack_start(scroll, true, true, 0);
-        }
-        else if(w is Gtk.SpinButton) {
-            check.set_active(original != "0");
-            
-            spinButton = (Gtk.SpinButton)w;
-            spinButton.set_size_request(100, -1);
-            spinButton.value = check.get_active() ? double.parse(original) : 0.0;
-            spinButton.adjustment.value_changed.connect(spinButtonChanged);
-            this.pack_start(spinButton, true, true, 0);
-        }
-        else if(w is Gtk.Image) {
-            check.set_active(original != "");
-            
-            image = (Gtk.Image)w;
-            image.set_size_request(100, 100);
-            image.set_from_file(original);
-            //callback on file dialogue saved. setup here
-            this.pack_start(image, true, true, 0);
-        }
-        else if(w is Granite.Widgets.Rating) {
-            check.set_active(original != "0");
-            
-            ratingWidget = (Granite.Widgets.Rating)w;
-            ratingWidget.rating = int.parse (original);
-            ratingWidget.rating_changed.connect(ratingChanged);
-            
-            this.pack_start(ratingWidget, true, true, 0);
-        }
+        label.label = "<b>%s</b>".printf (Markup.escape_text (label.label));
+        label.use_markup = true;
     }
-    
-    public void set_check_visible(bool val) {
-        check.set_visible(false);
-    }
-    
-    public virtual void entryChanged() {
-        if(entry.text != _original)
-            check.set_active(true);
-        else
-            check.set_active(false);
-    }
-    
-    public virtual void textViewChanged() {
-        if(textView.get_buffer().text != _original)
-            check.set_active(true);
-        else
-            check.set_active(false);
-    }
-    
-    public virtual void spinButtonChanged() {
-        if(spinButton.value != double.parse(_original))
-            check.set_active(true);
-        else
-            check.set_active(false);
-    }
-    
-    public virtual void ratingChanged(int new_rating) {
-        if(ratingWidget.rating != int.parse(_original))
-            check.set_active(true);
-        else
-            check.set_active(false);
-    }
-    
-    public bool checked() {
-        return check.get_active();
-    }
-    
-    public virtual void resetClicked() {
-        if(entry != null) {
-            entry.text = _original;
-        }
-        else if(textView != null) {
-            textView.get_buffer().text = _original;
-        }
-        else if(spinButton != null) {
-            spinButton.value = double.parse(_original);
-        }
-        else if(image != null) {
-            image.set_from_file(_original);
-        }
-        else if(ratingWidget != null) {
-            ratingWidget.rating = int.parse (_original);
-        }
-    }
-    
-    public string get_value() {
-        if(entry != null) {
-            return entry.text;
-        }
-        else if(textView != null) {
-            return textView.get_buffer().text;
-        }
-        else if(spinButton != null) {
-            return spinButton.value.to_string();
-        }
-        else if(image != null) {
-            return image.file;
-        }
-        else if(ratingWidget != null) {
-            return ratingWidget.rating.to_string();
-        }
-        
-        return "";
-    }
-    
-    public void set_value(string val) {
-        if(entry != null) {
-            entry.text = val;
-        }
-        else if(textView != null) {
-            textView.get_buffer().text = val;
-        }
-        else if(spinButton != null) {
-            spinButton.value = double.parse(val);
-        }
-        else if(image != null) {
-            image.file = val;
-        }
-        else if(ratingWidget != null) {
-            ratingWidget.rating = int.parse (val);
-        }
-    }
-}
 
-public class Noise.StatsDisplay : Gtk.Box {
-    public int plays;
-    public int skips;
-    public int last_played;
-    
-    Gtk.Label header;
-    Gtk.Label info;
-    Gtk.Button reset;
-    
-    public StatsDisplay(int plays, int skips, int last_played) {
-        this.plays = plays;
-        this.skips = skips;
-        this.last_played = last_played;
-        set_orientation (Gtk.Orientation.VERTICAL);
-        
-        header = new Gtk.Label("");
-        info = new Gtk.Label("");
-        reset = new Gtk.Button.with_label(_("Reset"));
-        
-        header.justify = Gtk.Justification.LEFT;
-        header.halign = Gtk.Align.START;
-        header.set_markup(_("<b>Stats</b>"));
-        
-        info.justify = Gtk.Justification.LEFT;
-        info.halign = Gtk.Align.START;
-        
-        setInfoText();
-        
-        pack_start(header, true, false, 0);
-        pack_start(info, true, true, 0);
-        pack_start(reset, true, false, 0);
-        
-        reset.clicked.connect(resetClicked);
+    private void previous_track () {
+        var iterator = (Gee.BidirIterator<Media>) media_list.iterator_at (current_media);
+        if (iterator.has_previous ()) {
+            save_track ();
+            iterator.previous ();
+            set_media (iterator.get ());
+        } else {
+            previous_button.sensitive = false;
+        }
     }
-    
-    public virtual void resetClicked() {
-        plays = 0;
-        skips = 0;
-        last_played = 0;
-        
-        setInfoText();
-        
-        reset.set_sensitive(false);
+
+    private void next_track () {
+        var iterator = media_list.iterator_at (current_media);
+        if (iterator.has_next ()) {
+            save_track ();
+            iterator.next ();
+            set_media (iterator.get ());
+        } else {
+            next_button.sensitive = false;
+        }
     }
-    
-    private void setInfoText() {
-        var t = Time.local(last_played);
-        string pretty_last_played = t.format("%m/%e/%Y %l:%M %p");
-        
-        string text = "";
-        text += "Plays: <span gravity=\"east\">" + plays.to_string() + "</span>\n";
-        text += "Skips: <span gravity=\"east\">" + skips.to_string() + "</span>\n";
-        text += "Last Played: <span gravity=\"east\">" + ((last_played != 0) ? pretty_last_played : "Never") + "</span>";
-        
-        info.set_markup(text);
+
+    private void save_track () {
+        var m = current_media.copy ();
+        m.title = title_entry.text;
+        m.artist = artist_entry.text;
+        m.album_artist = album_artist_entry.text;
+        m.album = album_entry.text;
+        m.genre = genre_entry.text;
+        m.composer = composer_entry.text;
+        m.grouping = grouping_entry.text;
+        m.comment = comment_textview.buffer.text;
+        m.track = (int) track_spinbutton.value;
+        m.album_number = (int) disk_spinbutton.value;
+        m.year = (int) year_spinbutton.value;
+        m.rating = (uint) rating_widget.rating;
+        temp_list.set (current_media.rowid, m);
+    }
+
+    // We create temporary media that will be saved once the save button is clicked.
+    private void save_and_exit () {
+        save_track ();
+        foreach (var m in media_list) {
+            if (temp_list.has_key (m.rowid)) {
+                var copy = temp_list.get (m.rowid);
+                m.title = copy.title;
+                m.artist = copy.artist;
+                m.album_artist = copy.album_artist;
+                m.album = copy.album;
+                m.genre = copy.genre;
+                m.composer = copy.composer;
+                m.grouping = copy.grouping;
+                m.comment = copy.comment;
+                m.track = copy.track;
+                m.album_number = copy.album_number;
+                m.year = copy.year;
+                m.rating = copy.rating;
+            }
+        }
+
+        media_list.clear ();
+        current_media = null;
+        temp_list.clear ();
+        destroy ();
+    }
+
+    private void set_media (Media m) {
+        current_media = m;
+        var considered_media = current_media;
+        if (temp_list.has_key (current_media.rowid)) {
+            considered_media = temp_list.get (current_media.rowid);
+        }
+
+        title_entry.text = considered_media.title;
+        artist_entry.text = considered_media.artist;
+        album_artist_entry.text = considered_media.album_artist;
+        album_entry.text = considered_media.album;
+        genre_entry.text = considered_media.genre;
+        composer_entry.text = considered_media.composer;
+        grouping_entry.text = considered_media.grouping;
+        comment_textview.buffer.text = considered_media.comment;
+        track_spinbutton.value = considered_media.track;
+        disk_spinbutton.value = considered_media.album_number;
+        year_spinbutton.value = considered_media.year;
+        rating_widget.rating = (int) considered_media.rating;
+        var iterator = (Gee.BidirIterator<Media>) media_list.iterator_at (current_media);
+        previous_button.sensitive = iterator.has_previous ();
+        next_button.sensitive = iterator.has_next ();
     }
 }

@@ -739,7 +739,8 @@ public class Noise.LocalLibrary : Library {
         var media = new Gee.TreeSet<Media> ();
         media.add_all (new_media);
 
-        var local_media = new Gee.HashMap<int64?, LocalMedia> ();
+        var local_media = new Gee.HashMap<int64?, LocalMedia> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
+                                                  (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
         foreach (var m in media) {
             var local_m = new LocalMedia.from_media (connection, m);
             local_media.set (local_m.rowid, local_m);
