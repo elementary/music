@@ -119,18 +119,15 @@ public class Noise.Plugins.CDView : Gtk.Grid {
             var m = cd_playlist.medias.peek ();
             author.set_markup (m.get_display_album_artist (true));
             title.set_markup (m.get_display_album ());
-            CoverartCache.instance.changed.connect (load_cover);
             load_cover ();
-            if ((!String.is_empty (m.artist, true) || !String.is_empty (m.album_artist, true)) && !String.is_empty (m.album, true))
-            NotificationManager.get_default ().search_cover (m);
         }
         show_all ();
     }
     
     private void load_cover () {
-        var cover_pixbuf = CoverartCache.instance.get_cover (cd_playlist.medias.peek ());
-        if (cover_pixbuf != null) {
-            album_image.gicon = cover_pixbuf;
+        var cover_icon = cd_playlist.medias.peek ().album_info.cover_icon;
+        if (cover_icon != null) {
+            album_image.gicon = cover_icon;
         }
     }
     

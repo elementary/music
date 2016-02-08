@@ -149,7 +149,6 @@ public class MprisPlayer : GLib.Object {
         Noise.App.player.playback_stopped.connect_after ( () => update_metadata (null) );
 
         Noise.libraries_manager.local_library.media_updated.connect_after (refresh_current_media);
-        Noise.CoverartCache.instance.changed.connect_after (refresh_current_media);
         Noise.App.main_window.playPauseChanged.connect_after (playing_changed);
 
         var default_image = Noise.Icons.DEFAULT_ALBUM_ART_2.get_file ();
@@ -206,7 +205,7 @@ public class MprisPlayer : GLib.Object {
         _metadata.insert("mpris:trackid", get_track_id (s));
         _metadata.insert("mpris:length", Noise.App.player.player.get_duration () / Noise.TimeUtils.MILI_INV);
 
-        var art_file = Noise.CoverartCache.instance.get_cached_image_file (s);
+        var art_file = s.album_info.get_cached_cover_file ();
         _metadata.insert("mpris:artUrl", art_file != null ? art_file.get_uri () : default_image_url);
         _metadata.insert("xesam:trackNumber", (int) s.track);
         _metadata.insert("xesam:title", s.get_display_title ());

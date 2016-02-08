@@ -52,8 +52,7 @@ public class LastFM.Core : Object {
         similarMedias = new LastFM.SimilarMedias ();
         Noise.App.main_window.update_media_info.connect ((media) => {postNowPlaying (media);});
         Noise.App.main_window.media_half_played.connect ((media) => {postScrobbleTrack (media);});
-        Noise.libraries_manager.local_library.media_imported.connect ((medias) => {fetch_albums_slowly.begin (medias);});
-        Noise.NotificationManager.get_default ().search_cover.connect ((m) => { get_album_infos.begin (m, fetch_cancellable);});
+        Noise.libraries_manager.local_library.media_added.connect ((medias) => {fetch_albums_slowly.begin (medias);});
         similarMedias.similar_retrieved.connect(similar_retrieved_signal);
     }
 
@@ -116,21 +115,11 @@ public class LastFM.Core : Object {
      */
 
     public async void fetch_albums_slowly (Gee.Collection<Noise.Media> new_medias) {
-        var albums = new Gee.ArrayList<string> ();
-        var album_artist = new Gee.ArrayList<string> ();
+        var albums = new Gee.TreeSet<Noise.Album> ();
         foreach (var media in new_medias) {
-            string album_artist_s = media.album_artist;
-            string album_s = media.album;
-
-            if (album_artist_s == "")
-                album_artist_s = media.artist;
-
-            if (!albums.contains (album_s) || !album_artist.contains (album_artist_s)) {
-                if (!albums.contains (album_s))
-                    albums.add (album_s);
-                if (!album_artist.contains (album_artist_s))
-                    album_artist.add (album_artist_s);
-                get_album_infos.begin (media, fetch_cancellable);
+            if (!(media.album_info in albums)) {
+                albums.add (media.album_info);
+                get_album_infos.begin (media.album_info, fetch_cancellable);
             }
         }
     }
@@ -239,12 +228,12 @@ public class LastFM.Core : Object {
         return returned_medias;
     }
 
-    public async void get_album_infos (Noise.Media m, Cancellable cancellable) {
+    public async void get_album_infos (Noise.Album album, Cancellable cancellable) {
         var uri = new Soup.URI (API_URL);
         uri.set_query_from_fields ("method", "album.getinfo",
                                    "api_key", api_key,
-                                   "artist", m.artist,
-                                   "album", m.album,
+                                   "artist", album.artist,
+                                   "album", album.name,
                                    "format", "json");
         var session = new Soup.Session ();
         try {
@@ -274,21 +263,18 @@ public class LastFM.Core : Object {
                     }
                 }
 
-                var coverart_cache = Noise.CoverartCache.instance;
-                if (image_url != "" && coverart_cache.has_image (m) == false) {
-
+                if (image_url != "") {
                     debug ("Caching last.fm image from URL: %s", image_url);
-                    var image_file = File.new_for_uri (image_url);
-                    coverart_cache.cache_image_from_file_async.begin (m, image_file);
+                    album.save_cover_file (File.new_for_uri (image_url));
                 }
             }
 
-            if (album_object.has_member ("releasedate") && m.year == 0) {
+            if (album_object.has_member ("releasedate") && album.year == 0) {
                 var releasedate = album_object.get_string_member ("releasedate");
                 var date = Date ();
                 date.set_parse (releasedate);
                 if (date.valid ()) {
-                    m.year = date.get_year ();
+                    album.year = date.get_year ();
                 }
             }
         } catch (Error e) {

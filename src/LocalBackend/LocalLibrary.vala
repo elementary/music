@@ -43,6 +43,7 @@ public class Noise.LocalLibrary : Library {
     private Gee.TreeSet<SmartPlaylist> _smart_playlists;
     private Gee.HashMap<int64?, Media> _medias;
     private Gee.TreeSet<Media> _searched_medias;
+    private Gee.HashMap<uint, Album> album_info;
 
     public StaticPlaylist p_music;
 
@@ -64,6 +65,7 @@ public class Noise.LocalLibrary : Library {
         _medias = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
                                                   (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
         _searched_medias = new Gee.TreeSet<Media> ();
+        album_info = new Gee.HashMap<uint, Album> ();
         tagger = new GStreamerTagger();
         open_media_list = new Gee.TreeSet<Media> ();
         p_music = new StaticPlaylist ();
@@ -81,6 +83,17 @@ public class Noise.LocalLibrary : Library {
         foreach (var media_id in media_ids) {
             var m = new LocalMedia (media_id, connection);
             _medias.set (m.rowid, m);
+            // Append the media into an album.
+            if (m.get_album_hashkey () in album_info.keys) {
+                var album = album_info.get (m.get_album_hashkey ());
+                album.add_media (m);
+            }
+
+            if (m.album_info == null) {
+                var album = new Album.from_media (m);
+                album.add_media (m);
+                album_info.set (album.get_hashkey (), album);
+            }
         }
 
         // Load all smart playlists from database
@@ -101,8 +114,6 @@ public class Noise.LocalLibrary : Library {
             var p = new LocalStaticPlaylist (p_id, connection);
             _playlists.add (p);
         }
-
-        load_media_art_cache.begin ();
     }
 
     /*
@@ -137,19 +148,6 @@ public class Noise.LocalLibrary : Library {
         Database.create_tables (connection);
     }
 
-    /*
-     * Media art utilities.
-     */
-    private async void load_media_art_cache () {
-        lock (_medias) {
-            yield CoverartCache.instance.load_for_media_async (get_medias ());
-        }
-    }
-
-    private async void update_media_art_cache () {
-        yield CoverartCache.instance.fetch_all_cover_art_async (get_medias ());
-    }
-
     /************ Library/Collection management stuff ************/
     public bool doProgressNotificationWithTimeout () {
         if (_doing_file_operations) {
@@ -181,7 +179,7 @@ public class Noise.LocalLibrary : Library {
         m_folder = m_folder.replace ("/media", "");
         m_folder = m_folder.replace (GLib.Environment.get_home_dir ()+ "/", "");
         
-        if (start_file_operations (_("Importing music from %s…").printf ("<b>" + String.escape (m_folder) + "</b>"))) {
+        if (start_file_operations (_("Importing music from %s…").printf ("<b>" + Markup.escape_text (m_folder) + "</b>"))) {
             remove_all_static_playlists ();
 
             clear_medias ();
@@ -336,10 +334,7 @@ public class Noise.LocalLibrary : Library {
                     secondary_text.append (first.get_display_title ());
                     secondary_text.append ("\n");
                     secondary_text.append (first.get_display_artist ());
-                    var icon_file = CoverartCache.instance.get_cached_image_file (first);
-                    if (icon_file != null) {
-                        icon = new FileIcon (icon_file);
-                    }
+                    icon = first.album_info.cover_icon;
                 } else {
                     secondary_text.append (ngettext ("%d Track", "%d Tracks", open_media_list.size).printf (open_media_list.size));
                 }
@@ -748,9 +743,25 @@ public class Noise.LocalLibrary : Library {
         foreach (var m in media) {
             var local_m = new LocalMedia.from_media (connection, m);
             local_media.set (local_m.rowid, local_m);
+            // Append the media into an album.
+            if (local_m.get_album_hashkey () in album_info.keys) {
+                var album = album_info.get (local_m.get_album_hashkey ());
+                album.add_media (local_m);
+            }
+
+            if (local_m.album_info == null) {
+                var album = new Album.from_media (local_m);
+                album.add_media (local_m);
+                album_info.set (album.get_hashkey (), album);
+                if (album.cover_icon == null) {
+                    var cover_import = new CoverImport (album);
+                    cover_import.start ();
+                }
+            }
         }
 
         _medias.set_all (local_media);
+
         media_added (local_media.values.read_only_view);
 
         // Update search results
@@ -852,7 +863,6 @@ public class Noise.LocalLibrary : Library {
         fo.index = fo.item_count +1;
         NotificationManager.get_default ().update_progress (null, 1);
         file_operations_done ();
-        update_media_art_cache.begin ();
     }
 
     Gee.HashMap<string, DevicePreferences> preferences = new Gee.HashMap<string, DevicePreferences> ((Gee.HashDataFunc)GLib.str_hash, (Gee.EqualDataFunc)GLib.str_equal);

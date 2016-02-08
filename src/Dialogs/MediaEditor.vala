@@ -289,7 +289,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
             }
             else {
                 lyricsInfobarLabel.show_all();
-                lyricsInfobarLabel.set_markup (_("Lyrics not found for %s").printf ("<i>" + String.escape (m.title) + "</i>"));
+                lyricsInfobarLabel.set_markup (_("Lyrics not found for %s").printf ("<i>" + Markup.escape_text (m.title) + "</i>"));
             }
             return false;
         });

@@ -54,6 +54,8 @@ public class Noise.Album : Object {
     // store release year, date is overkill and not stored in most tags.
     public uint year { get; set; default = 0; }
 
+    public GLib.Icon? cover_icon { get; set; default = null; }
+
     private Gee.HashSet<Media> media = new Gee.HashSet<Media> ();
 
     ~Album () {
@@ -69,6 +71,10 @@ public class Noise.Album : Object {
     public Album (string name, string artist) {
         this.name = name;
         this.artist = artist;
+        var cover_file = get_cached_cover_file ();
+        if (cover_file != null) {
+            cover_icon = new FileIcon (cover_file);
+        }
     }
     public Album.from_media (Media m) {
         name = m.album;
@@ -77,6 +83,11 @@ public class Noise.Album : Object {
 
         if (String.is_empty (artist, true))
             artist = m.artist;
+
+        var cover_file = get_cached_cover_file ();
+        if (cover_file != null) {
+            cover_icon = new FileIcon (cover_file);
+        }
     }
 
     public uint n_media {
@@ -133,15 +144,64 @@ public class Noise.Album : Object {
         return media.read_only_view;
     }
 
-#if 0
-    /**
-     * Planed for the future (Wrappers for CoverartCache).
-     */
+    public void save_cover_file (GLib.File file) {
+        new Thread<void*> (null, () => {
+            var dest = get_cover_cache ().get_child (get_hashkey ().to_string ());
+            try {
+                file.copy (dest, GLib.FileCopyFlags.OVERWRITE);
+                Idle.add (() => {
+                    cover_icon = new FileIcon (dest);
+                    return false;
+                });
+            } catch (Error e) {
+                critical (e.message);
+            }
 
-    public Gdk.Pixbuf? get_thumbnail () { }
+            return null;
+        });
+    }
 
-    public Gdk.Pixbuf? get_full_sized_image () { }
+    public void save_cover_pixbuf (Gdk.Pixbuf pixbuf) {
+        new Thread<void*> (null, () => {
+            var dest = get_cover_cache ().get_child (get_hashkey ().to_string ());
+            try {
+                var output_stream = dest.create (FileCreateFlags.NONE);
 
-    public File? get_image_file () { }
-#endif
+                uint8[] buffer;
+                pixbuf.save_to_buffer (out buffer, "jpeg");
+
+                output_stream.write (buffer);
+                output_stream.close (null);
+                Idle.add (() => {
+                    cover_icon = new FileIcon (dest);
+                    return false;
+                });
+            } catch (Error e) {
+                critical (e.message);
+            }
+
+            return null;
+        });
+    }
+
+    public GLib.File? get_cached_cover_file () {
+        var cover_file = get_cover_cache ().get_child (get_hashkey ().to_string ());
+        if (cover_file.query_exists ()) {
+            return cover_file;
+        }
+
+        return null;
+    }
+
+    private static GLib.File get_cover_cache () {
+        var cache_dir = FileUtils.get_cache_directory ().get_child ("album-art");
+        try {
+            cache_dir.make_directory_with_parents (null);
+        } catch (GLib.Error err) {
+            if (err is IOError.EXISTS == false)
+                error ("Could not create data directory: %s", err.message);
+        }
+
+        return cache_dir;
+    }
 }

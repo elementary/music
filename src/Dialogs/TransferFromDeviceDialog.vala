@@ -91,7 +91,7 @@ public class Noise.TransferFromDeviceDialog : Window {
         }
 
         string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";		
-        var title_string = MARKUP_TEMPLATE.printf (String.escape (title_text));
+        var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text));
         title.set_markup (title_string);
 
         info.halign = Gtk.Align.START;

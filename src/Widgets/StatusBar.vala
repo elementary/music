@@ -186,7 +186,7 @@ namespace Noise.Widgets {
 
         private void update_tooltip (string eq_preset_name) {
             /// Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-            tooltip_markup = _("Equalizer: %s").printf ("<b>" + String.escape (eq_preset_name) + "</b>");
+            tooltip_markup = _("Equalizer: %s").printf ("<b>" + Markup.escape_text (eq_preset_name) + "</b>");
         }
     }
 

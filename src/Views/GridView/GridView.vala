@@ -37,21 +37,33 @@ public class Noise.GridView : ContentView, GridLayout {
         }
     }
 
-    /**
-     * Hash map containing a set of albums identified by their album key.
-     */
-    private Gee.HashMap<uint, Album> album_info;
+    private Gee.HashMap<GLib.Icon, Gdk.Pixbuf> cover_pixbuf;
+    private Gdk.Pixbuf fallback_pixbuf;
 
     public GridView (ViewWrapper view_wrapper) {
         base (view_wrapper);
-
-        album_info = new Gee.HashMap<uint, Album> ();
+        cover_pixbuf = new Gee.HashMap<GLib.Icon, Gdk.Pixbuf> ();
+        message = Markup.escape_text (_("No Albums Found."));
+        reset_pixbufs ();
+        notify["scale-factor"].connect (() => {
+            reset_pixbufs ();
+            queue_resize ();
+        });
 
         setup_focus ();
+    }
 
-        CoverartCache.instance.changed.connect (queue_draw);
+    public void reset_pixbufs () {
+        cover_pixbuf.clear ();
+        var scale = get_style_context ().get_scale ();
+        var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (new ThemedIcon ("albumart"), 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+        try {
+            fallback_pixbuf = icon_info.load_icon ();
+        } catch (Error e) {
+            critical (e.message);
+        }
 
-        message = String.escape (_("No Albums Found."));
+        queue_draw ();
     }
 
     public void setup_focus () {
@@ -152,9 +164,9 @@ public class Noise.GridView : ContentView, GridLayout {
 
             if (!album.is_compatible (m)) {
                 medias_to_add.add (m);
-                album_info.unset (album.get_hashkey ());
                 album.remove_media (m);
                 if (album.is_empty == true) {
+                    album.notify["cover-icon"].disconnect (queue_draw);
                     albums_to_remove.add (album);
                 }
 
@@ -167,7 +179,6 @@ public class Noise.GridView : ContentView, GridLayout {
     }
 
     public void set_media (Gee.Collection<Media> to_add) {
-        album_info.clear ();
         clear_objects ();
         add_media (to_add);
     }
@@ -177,26 +188,11 @@ public class Noise.GridView : ContentView, GridLayout {
         var medias_to_add = new Gee.TreeSet<Media> ();
         medias_to_add.add_all (media);
         var albums_to_append = new Gee.TreeSet<Album> ();
-        lock (album_info) {
-            foreach (var m in medias_to_add) {
-                if (m == null)
-                    continue;
-
-                if (m.album_info != null)
-                    continue;
-
-                // Check if the song might go into an album.
-                if (m.get_album_hashkey () in album_info.keys) {
-                    var album = album_info.get (m.get_album_hashkey ());
-                    album.add_media (m);
-                }
-
-                if (m.album_info == null) {
-                    var album = new Album.from_media (m);
-                    album.add_media (m);
-                    album_info.set (album.get_hashkey (), album);
-                    albums_to_append.add (album);
-                }
+        var albums = get_albums ();
+        foreach (var m in medias_to_add) {
+            if (!(m.album_info in albums)) {
+                albums_to_append.add (m.album_info);
+                m.album_info.notify["cover-icon"].connect (queue_draw);
             }
         }
 
@@ -224,10 +220,10 @@ public class Noise.GridView : ContentView, GridLayout {
                 continue;
 
             album.remove_media (m);
-            if (album.is_empty == true)
+            if (album.is_empty == true) {
+                album.notify["cover-icon"].disconnect (queue_draw);
                 albums_to_remove.add (album);
-
-            album_info.unset (album.get_hashkey ());
+            }
         }
 
         if (albums_to_remove.size <= 0)
@@ -287,8 +283,9 @@ public class Noise.GridView : ContentView, GridLayout {
         return_val_if_fail (album != null, null);
 
         switch (column) {
-            case FastGrid.Column.PIXBUF:
-                return get_pixbuf (o);
+            case FastGrid.Column.ICON:
+                var icon = get_pixbuf (o);
+                return icon;
 
             case FastGrid.Column.TITLE:
                 return album.get_display_name ();
@@ -299,21 +296,32 @@ public class Noise.GridView : ContentView, GridLayout {
             case FastGrid.Column.TOOLTIP:
                 string name = album.get_display_name ();
                 string artist = album.get_display_artist ();
-                return "<span size=\"large\"><b>%s</b></span>\n%s".printf (String.escape (name), String.escape (artist));
+                return "<span size=\"large\"><b>%s</b></span>\n%s".printf (Markup.escape_text (name), Markup.escape_text (artist));
         }
 
         assert_not_reached ();
     }
 
-    protected override Gdk.Pixbuf? get_pixbuf (Object o) {
+    protected override Gdk.Pixbuf get_pixbuf (Object o) {
         var album = o as Album;
         return_val_if_fail (album != null, null);
+        if (album.cover_icon == null) {
+            return fallback_pixbuf;
+        } else {
+            render_pixbuf (album.cover_icon);
+            var pixbuf = cover_pixbuf.get (album.cover_icon);
+            if (pixbuf == null) {
+                return fallback_pixbuf;
+            } else {
+                return pixbuf;
+            }
+        }
+    }
 
-        // XXX: this is dangerous. Remember to update CoverartCache.get_album_key
-        // to always match the key for the respective media. As explained in
-        // Noise.Album and Noise.CoveartCache, these classes are supposed to
-        // replace the current album-related media fields.
-        return CoverartCache.instance.get_album_cover (album);
+    protected override GLib.Icon? get_icon (Object o) {
+        var album = o as Album;
+        return_val_if_fail (album != null, null);
+        return album.cover_icon;
     }
 
     protected override int compare_func (Object o_a, Object o_b) {
@@ -362,5 +370,25 @@ public class Noise.GridView : ContentView, GridLayout {
         return_val_if_fail (album != null, null);
 
         return album.get_media ();
+    }
+
+    private void render_pixbuf (GLib.Icon icon) {
+        if (cover_pixbuf.has_key (icon)) {
+            return;
+        }
+
+        var ctx = get_style_context ();
+        var scale = ctx.get_scale ();
+
+        var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (icon, 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+        icon_info.load_icon_async.begin (null, (obj, res) => {
+            try {
+                var pixbuf = icon_info.load_icon_async.end (res);
+                cover_pixbuf.set (icon, pixbuf);
+                queue_draw ();
+            } catch (Error e) {
+                critical (e.message);
+            }
+        });
     }
 }

@@ -591,14 +591,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         secondary_text.append (media.get_display_artist ());
         secondary_text.append ("\n");
         secondary_text.append (media.get_display_album ());
-        GLib.Icon icon = null;
-        var icon_file = CoverartCache.instance.get_cached_image_file (media);
-        if (icon_file != null) {
-            icon = new FileIcon (icon_file);
-        }
-
         if (!notification_cancellable.is_cancelled ()) {
-            show_notification (primary_text, secondary_text.str, icon);
+            show_notification (primary_text, secondary_text.str, media.album_info.cover_icon);
         }
     }
 

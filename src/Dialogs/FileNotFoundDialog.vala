@@ -57,13 +57,13 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
             var s = media_list.get (0);
 
             body_string = (_("The music file for <b>%s</b> by <b>%s</b> could not be found.").printf
-                           (s.title.escape (""), s.artist.escape ("")));
+                           (Markup.escape_text (s.title), Markup.escape_text (s.artist)));
         } else {
              body_string = (_("%i music files could not be found?").printf (media_list.size));
         }
 
         var info = new Gtk.Label (("<span weight=\"bold\" size=\"larger\">%s</span>").printf
-            (String.escape (title_string)) + "\n\n" + ("%s").printf (body_string)
+            (Markup.escape_text (title_string)) + "\n\n" + ("%s").printf (body_string)
         );
 
         info.set_halign (Gtk.Align.START);

@@ -42,16 +42,5 @@ namespace Noise.PixbufUtils {
     public async void save_pixbuf_async (Gdk.Pixbuf pixbuf, File dest_file, string image_format,
                                          Cancellable? cancellable = null) throws Error
     {
-        var output_stream = yield dest_file.create_async (FileCreateFlags.NONE, Priority.HIGH,
-                                                          cancellable);
-
-        if (Utils.is_cancelled (cancellable))
-            return;
-
-        uint8[] buffer;
-        pixbuf.save_to_buffer (out buffer, image_format);
-
-        yield output_stream.write_async (buffer, Priority.HIGH, cancellable);
-        output_stream.close (null); // we don't want this to be cancellable
     }
 }

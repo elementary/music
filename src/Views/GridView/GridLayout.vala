@@ -42,7 +42,8 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
     protected abstract int compare_func (Object a, Object b);
     protected abstract void search_func (Gee.HashMap<int, Object> showing);
     protected abstract Gee.Collection<Media> get_selected_media (Object obj);
-    protected abstract Gdk.Pixbuf? get_pixbuf (Object o);
+    protected abstract Gdk.Pixbuf get_pixbuf (Object o);
+    protected abstract GLib.Icon? get_icon (Object o);
 
     protected void set_research_needed (bool value) {
         this.icon_view.research_needed = value;
@@ -106,8 +107,8 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
         if (selected_items.length () > 0)  {
             var path = selected_items.nth_data (0);
             var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
-            var drag_icon = get_pixbuf (obj);
-            Gtk.drag_set_icon_pixbuf (context, drag_icon, 0, 0);
+            var drag_icon = get_icon (obj);
+            Gtk.drag_set_icon_gicon (context, drag_icon, 0, 0);
         }
     }
 

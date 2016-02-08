@@ -41,9 +41,9 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
         question.yalign = 0;
 
         var info = new Gtk.Label ("<span weight=\"bold\" size=\"larger\">" +
-            _("Would you like to install the %s plugin?\n").printf (String.escape (detail)) +
+            _("Would you like to install the %s plugin?\n").printf (Markup.escape_text (detail)) +
             "</span>" + _("\nThis song cannot be played. The %s plugin is required to play the song.").printf ("<b>" +
-            String.escape (detail) + "</b>")
+            Markup.escape_text (detail) + "</b>")
         );
 
         info.set_halign (Gtk.Align.START);

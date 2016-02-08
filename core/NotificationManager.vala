@@ -33,7 +33,6 @@ public class Noise.NotificationManager : Object {
     public signal void update_progress (string? message, double progress);
     public signal void progress_canceled ();
     public signal void update_track (string message);
-    public signal void search_cover (Media m);
 
     private static NotificationManager? notification_manager = null;
     public static NotificationManager get_default () {
