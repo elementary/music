@@ -345,48 +345,28 @@ public class Noise.MusicListView : GenericList {
 
     /** media menu popup clicks **/
     void mediaMenuEditClicked () {
-        var to_edit = new Gee.LinkedList<int64?> ();
         var to_edit_med = new Gee.TreeSet<Media> ();
+        to_edit_med.add_all (get_selected_medias ());
 
-        foreach (Media m in get_selected_medias ()) {
-            to_edit.add (m.rowid);
-            if (to_edit.size == 1)
-                to_edit_med.add (m);
-        }
-
-        if (to_edit.size == 0)
+        if (to_edit_med.is_empty)
             return;
 
-        int64 id = to_edit.get (0);
+        Media first_media = to_edit_med.first ();
         string music_folder_uri = File.new_for_path (Settings.Main.get_default ().music_folder).get_uri ();
-        if (to_edit.size == 1 && !File.new_for_uri (parent_wrapper.library.media_from_id (id).uri).query_exists () && 
-                    parent_wrapper.library.media_from_id(id).uri.has_prefix(music_folder_uri)) {
-            parent_wrapper.library.media_from_id (id).unique_status_image = new ThemedIcon ("process-error-symbolic");
-            FileNotFoundDialog fnfd = new FileNotFoundDialog (to_edit_med);
+        if (to_edit_med.size == 1 && !first_media.file.query_exists () && first_media.uri.has_prefix (music_folder_uri)) {
+            first_media.unique_status_image = new ThemedIcon ("process-error-symbolic");
+            var fnfd = new FileNotFoundDialog (to_edit_med);
             fnfd.present ();
         } else {
-            var list = new Gee.TreeSet<int64?> ();
-            for(int i = 0; i < get_visible_table ().size; ++i) {
-                list.add (get_object_from_index (i).rowid);
-            }
-            MediaEditor se = new MediaEditor (list, to_edit, parent_wrapper.library);
-            se.medias_saved.connect (mediaEditorSaved);
+            var se = new MediaEditor (to_edit_med);
+            se.show_all ();
         }
-    }
-
-    protected virtual void mediaEditorSaved (Gee.Collection<int> medias) {
-        var toUpdate = new Gee.TreeSet<Media> ();
-        toUpdate.add_all (parent_wrapper.library.medias_from_ids (medias));
-
-        // could have edited rating, so record_time is true
-        parent_wrapper.library.update_medias (toUpdate, true, true);
     }
 
     protected void mediaFileBrowseClicked () {
         foreach (Media m in get_selected_medias ()) {
             try {
-                var file = File.new_for_uri (m.uri);
-                Gtk.show_uri (null, file.get_parent ().get_uri (), 0);
+                Gtk.show_uri (null, m.file.get_parent ().get_uri (), Gdk.CURRENT_TIME);
             } catch (Error err) {
                 debug("Could not browse media %s: %s\n", m.uri, err.message);
             }

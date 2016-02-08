@@ -55,33 +55,5 @@ namespace Noise.UI {
             return true;
         });
     }
-
-    /**
-     * Sets a fixed size for a tree view column based on a set of strings to be displayed in the column.
-     *
-     * @param treeview the Gtk.TreeView containing the column
-     * @param column the Gtk.TreeViewColumn to size
-     * @param renderer the Gtk.CellRenderer used in the column
-     * @param strings a set of strings to base the size on
-     * @param padding a small amount of extra padding for the column
-     */
-    public void set_tree_view_column_fixed_width (Gtk.Widget treeview, Gtk.TreeViewColumn column,
-                                                  Gtk.CellRendererText renderer, string[] strings, int padding)
-    {
-	    int max_width = 0;
-
-	    foreach (var str in strings) {
-		    renderer.text = str;
-
-		    // XXX should we use minimum size instead?
-		    Gtk.Requisition natural_size;
-		    renderer.get_preferred_size (treeview, null, out natural_size);
-
-		    if (natural_size.width > max_width)
-			    max_width = natural_size.width;
-	    }
-
-	    column.fixed_width = max_width + padding;
-    }
 }
 
