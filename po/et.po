@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2015-12-21 13:45+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2016-02-10 22:30+0000\n"
+"Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-01-05 05:26+0000\n"
-"X-Generator: Launchpad (build 17876)\n"
+"X-Launchpad-Export-Date: 2016-02-11 06:09+0000\n"
+"X-Generator: Launchpad (build 17923)\n"
 "Language: et\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -910,7 +910,7 @@ msgstr "Loo nutikas esitusloend..."
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Ekvalaiser: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
@@ -1536,7 +1536,7 @@ msgstr "Imporditud failide kopeerimine kogumikku:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Integreerimine töölauaga"
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
