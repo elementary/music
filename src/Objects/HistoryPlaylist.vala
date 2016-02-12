@@ -39,7 +39,7 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
     construct {
         name = _("History");
         read_only = true;
-        icon = new ThemedIcon ("playlist-queue");
+        icon = new ThemedIcon ("document-open-recent");
         log = Zeitgeist.Log.get_default ();
     }
 

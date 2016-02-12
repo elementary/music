@@ -97,7 +97,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         queue_playlist.read_only = true;
         queue_playlist.allow_duplicate = true;
         queue_playlist.show_badge = true;
-        queue_playlist.icon = new ThemedIcon ("document-open-recent");
+        queue_playlist.icon = new ThemedIcon ("playlist-queue");
     }
 
     public void add_playback (Noise.Playback playback) {
