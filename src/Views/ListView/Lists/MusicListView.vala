@@ -112,6 +112,7 @@ public class Noise.MusicListView : GenericList {
         button_release_event.connect(viewClickRelease);
 
         mediaScrollToCurrent = new Gtk.MenuItem.with_label(_("Scroll to Current Song"));
+        mediaScrollToCurrent.sensitive = false;
         mediaScrollToCurrentSeparator = new Gtk.SeparatorMenuItem ();
         mediaTopSeparator = new Gtk.SeparatorMenuItem ();
         mediaEditMedia = new Gtk.MenuItem.with_label(_("Edit Song Info"));
@@ -166,6 +167,14 @@ public class Noise.MusicListView : GenericList {
         mediaRateMedia.activate.connect(mediaRateMediaClicked);
         mediaScrollToCurrent.activate.connect(mediaScrollToCurrentRequested);
 
+        App.player.playback_stopped.connect (() => {
+            mediaScrollToCurrent.sensitive = false;
+        });
+
+        App.player.playback_started.connect (() => {
+            mediaScrollToCurrent.sensitive = true;
+        });
+                
         set_headers_visible (hint != ViewWrapper.Hint.ALBUM_LIST);
 
         update_sensitivities ();
