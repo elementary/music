@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-01-05 05:27+0000\n"
-"X-Generator: Launchpad (build 17876)\n"
+"X-Launchpad-Export-Date: 2016-03-01 05:36+0000\n"
+"X-Generator: Launchpad (build 17925)\n"
 "Language: hu\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -1110,7 +1110,6 @@ msgstr ""
 "  Laszlo Espadas https://launchpad.net/~kardi-web\n"
 "  Mark Lutring https://launchpad.net/~marcus-elitemail\n"
 "  Papp Ferenc https://launchpad.net/~pappfer\n"
-"  Zoltan Faludi https://launchpad.net/~faludiz\n"
 "  emil https://launchpad.net/~m-il-b"
 
 #: ../src/FileOperator.vala:309

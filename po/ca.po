@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-01-05 05:26+0000\n"
-"X-Generator: Launchpad (build 17876)\n"
+"X-Launchpad-Export-Date: 2016-03-01 05:36+0000\n"
+"X-Generator: Launchpad (build 17925)\n"
 "Language: ca\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -1107,6 +1107,7 @@ msgstr ""
 "  Alfredo Hernández https://launchpad.net/~aldomann\n"
 "  Daniel Fore https://launchpad.net/~danrabbit\n"
 "  JoanColl https://launchpad.net/~joancoll\n"
+"  Mario Rodrigo https://launchpad.net/~capitantrueno\n"
 "  Tomeu Canals https://launchpad.net/~tomeuari\n"
 "  Victor Martinez https://launchpad.net/~victored"
 
