@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-01-15 23:29+0000\n"
-"Last-Translator: kingu <comradekingu@gmail.com>\n"
+"PO-Revision-Date: 2016-03-12 15:43+0000\n"
+"Last-Translator: ProsjektX <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-01 05:38+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-13 05:44+0000\n"
+"X-Generator: Launchpad (build 17939)\n"
 "Language: nb\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -911,7 +911,7 @@ msgstr "Ny smart spilleliste"
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Tonekontroll (EQ): %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
