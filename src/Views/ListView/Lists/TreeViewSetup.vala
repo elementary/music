@@ -49,7 +49,7 @@ public class Noise.TreeViewSetup : Object {
                 try {
                     var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
                     builder.set_table (Database.Columns.TABLE_NAME);
-                    builder.add_field_value_as_gvalue ("unique_id", Database.make_string_value (uid));
+                    builder.add_field_value_as_gvalue ("unique_id", uid);
                     connection.statement_execute_non_select (builder.get_statement (), null, null);
                 } catch (Error e) {
                     warning ("Could not save treeviewsetup: %s", e.message);
@@ -72,11 +72,11 @@ public class Noise.TreeViewSetup : Object {
             }
 
             notify["sort-direction"].connect (() => {
-                set_field ("sort_direction", Database.make_int_value ((int) sort_direction));
+                set_field ("sort_direction", (int) sort_direction);
             });
 
             notify["sort-column-id"].connect (() => {
-                set_field ("sort_column_id", Database.make_int_value ((int) sort_column_id));
+                set_field ("sort_column_id", (int) sort_column_id);
             });
         }
     }
@@ -171,7 +171,7 @@ public class Noise.TreeViewSetup : Object {
         }
 
         column.notify["visible"].connect (() => {
-            set_field ("columns", Database.make_string_value (columns_to_string ()));
+            set_field ("columns", columns_to_string ());
         });
 
         column.clicked.connect (() => {
@@ -272,7 +272,7 @@ public class Noise.TreeViewSetup : Object {
             sql.select_add_target (Database.Columns.TABLE_NAME, null);
             sql.add_field_value_id (sql.add_id ("*"), 0);
             var id_field = sql.add_id ("unique_id");
-            var id_param = sql.add_expr_value (null, Database.make_string_value (uid));
+            var id_param = sql.add_expr_value (null, uid);
             var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
             sql.set_where (id_cond);
             var data_model = connection.statement_execute_select (sql.get_statement (), null);
@@ -293,7 +293,7 @@ public class Noise.TreeViewSetup : Object {
             sql.select_add_target (Database.Columns.TABLE_NAME, null);
             sql.add_field_value_id (sql.add_id (field), 0);
             var id_field = sql.add_id ("unique_id");
-            var id_param = sql.add_expr_value (null, Database.make_string_value (uid));
+            var id_param = sql.add_expr_value (null, uid);
             var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
             sql.set_where (id_cond);
             var data_model = connection.statement_execute_select (sql.get_statement (), null);
@@ -310,7 +310,7 @@ public class Noise.TreeViewSetup : Object {
             col_names.append (field);
             var values = new GLib.SList<GLib.Value?> ();
             values.append (value);
-            connection.update_row_in_table_v (Database.Columns.TABLE_NAME, "unique_id", Database.make_string_value (uid), col_names, values);
+            connection.update_row_in_table_v (Database.Columns.TABLE_NAME, "unique_id", uid, col_names, values);
         } catch (Error e) {
             critical ("Could not set field %s: %s", field, e.message);
         }

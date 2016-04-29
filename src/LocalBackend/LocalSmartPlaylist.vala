@@ -47,7 +47,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
         }
         set {
             _name = value;
-            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "name", Database.make_string_value (value));
+            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "name", value);
         }
     }
 
@@ -57,7 +57,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
             return (SmartPlaylist.ConditionalType) Database.query_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "and_or").get_int ();
         }
         set {
-            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "and_or", Database.make_int_value (value));
+            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "and_or", value);
         }
     }
 
@@ -66,7 +66,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
             return (uint)Database.query_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "limit_amount").get_int ();
         }
         set {
-            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "limit_amount", Database.make_uint_value (value));
+            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "limit_amount", value);
         }
     }
 
@@ -76,7 +76,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
             return (bool)val.get_int ();
         }
         set {
-            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "limited", Database.make_bool_value (value));
+            Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "limited", value);
         }
     }
 
@@ -133,17 +133,17 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
     public override void clear_queries () {
         base.clear_queries ();
-        Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries", Database.make_string_value (""));
+        Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries", "");
     }
 
     public override void add_query (SmartQuery s) {
         base.add_query (s);
-        Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries", Database.make_string_value (queries_to_string ()));
+        Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries", queries_to_string ());
     }
 
     public override void add_queries (Gee.Collection<SmartQuery> queries) {
         base.add_queries (queries);
-        Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries", Database.make_string_value (queries_to_string ()));
+        Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "queries", queries_to_string ());
     }
 
     private string queries_to_string () {
@@ -215,51 +215,51 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
             col_names.append ("limit_amount");
 
             var values = new GLib.SList<GLib.Value?> ();
-            values.append (Database.make_string_value (_("Favorite Songs")));
-            values.append (Database.make_string_value ("10<val_sep>2<val_sep>4<query_sep>12<val_sep>0<val_sep>0<query_sep>11<val_sep>6<val_sep>3"));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (50));
+            values.append (_("Favorite Songs"));
+            values.append ("10<val_sep>2<val_sep>4<query_sep>12<val_sep>0<val_sep>0<query_sep>11<val_sep>6<val_sep>3");
+            values.append (1);
+            values.append (1);
+            values.append (50);
             connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
 
             values = new GLib.SList<GLib.Value?> ();
-            values.append (Database.make_string_value (_("Recently Added")));
-            values.append (Database.make_string_value ("5<val_sep>7<val_sep>7"));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (50));
+            values.append (_("Recently Added"));
+            values.append ("5<val_sep>7<val_sep>7");
+            values.append (1);
+            values.append (1);
+            values.append (50);
             connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
 
             values = new GLib.SList<GLib.Value?> ();
-            values.append (Database.make_string_value (_("Recent Favorites")));
-            values.append (Database.make_string_value ("10<val_sep>2<val_sep>4<query_sep>12<val_sep>0<val_sep>0<query_sep>8<val_sep>7<val_sep>7"));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (50));
+            values.append (_("Recent Favorites"));
+            values.append ("10<val_sep>2<val_sep>4<query_sep>12<val_sep>0<val_sep>0<query_sep>8<val_sep>7<val_sep>7");
+            values.append (1);
+            values.append (1);
+            values.append (50);
             connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
 
             values = new GLib.SList<GLib.Value?> ();
-            values.append (Database.make_string_value (_("Never Played")));
-            values.append (Database.make_string_value ("10<val_sep>0<val_sep>0"));
-            values.append (Database.make_int_value (0));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (50));
+            values.append (_("Never Played"));
+            values.append ("10<val_sep>0<val_sep>0");
+            values.append (0);
+            values.append (1);
+            values.append (50);
             connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
 
             values = new GLib.SList<GLib.Value?> ();
-            values.append (Database.make_string_value (_("Over Played")));
-            values.append (Database.make_string_value ("10<val_sep>6<val_sep>10"));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (50));
+            values.append (_("Over Played"));
+            values.append ("10<val_sep>6<val_sep>10");
+            values.append (1);
+            values.append (1);
+            values.append (50);
             connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
 
             values = new GLib.SList<GLib.Value?> ();
-            values.append (Database.make_string_value (_("Not Recently Played")));
-            values.append (Database.make_string_value ("8<val_sep>8<val_sep>7"));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (1));
-            values.append (Database.make_int_value (50));
+            values.append (_("Not Recently Played"));
+            values.append ("8<val_sep>8<val_sep>7");
+            values.append (1);
+            values.append (1);
+            values.append (50);
             connection.insert_row_into_table_v (Database.SmartPlaylists.TABLE_NAME, col_names, values);
         } catch (Error e) {
             critical ("Could not initialize smart playlists: %s", e.message);
