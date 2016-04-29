@@ -400,8 +400,8 @@ public class Noise.LocalLibrary : Library {
         try {
             var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
             builder.set_table (Database.Playlists.TABLE_NAME);
-            builder.add_field_value_as_gvalue ("name", Database.make_string_value (p.name));
-            builder.add_field_value_as_gvalue ("media", Database.make_string_value (rv));
+            builder.add_field_value_as_gvalue ("name", p.name);
+            builder.add_field_value_as_gvalue ("media", rv);
             var statement = builder.get_statement ();
             Gda.Set last_insert_row;
             connection.statement_execute_non_select (statement, null, out last_insert_row);
@@ -429,7 +429,7 @@ public class Noise.LocalLibrary : Library {
             }
 
             try {
-                connection.delete_row_from_table (Database.Playlists.TABLE_NAME, "rowid", Database.make_int64_value (id));
+                connection.delete_row_from_table (Database.Playlists.TABLE_NAME, "rowid", id);
             } catch (Error e) {
                 critical (e.message);
             }
@@ -478,7 +478,7 @@ public class Noise.LocalLibrary : Library {
         try {
             var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
             builder.set_table (Database.SmartPlaylists.TABLE_NAME);
-            builder.add_field_value_as_gvalue ("name", Database.make_string_value (p.name));
+            builder.add_field_value_as_gvalue ("name", p.name);
             var statement = builder.get_statement ();
             Gda.Set last_insert_row;
             connection.statement_execute_non_select (statement, null, out last_insert_row);
@@ -512,7 +512,7 @@ public class Noise.LocalLibrary : Library {
         }
 
         try {
-            connection.delete_row_from_table (Database.SmartPlaylists.TABLE_NAME, "rowid", Database.make_int64_value (id));
+            connection.delete_row_from_table (Database.SmartPlaylists.TABLE_NAME, "rowid", id);
         } catch (Error e) {
             critical (e.message);
         }
@@ -542,7 +542,7 @@ public class Noise.LocalLibrary : Library {
                 sql.select_add_target (Database.Media.TABLE_NAME, null);
                 sql.select_add_field ("rowid", null, null);
                 var id_field = sql.add_id ("rating");
-                var id_value = sql.add_expr_value (null, Database.make_uint_value (parsed_rating));
+                var id_value = sql.add_expr_value (null, parsed_rating);
                 var id_cond = sql.add_cond (Gda.SqlOperatorType.GEQ, id_field, id_value, 0);
                 sql.set_where (id_cond);
 
@@ -570,7 +570,7 @@ public class Noise.LocalLibrary : Library {
                 string[] fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment"};
                 foreach (var field in fields) {
                     var id_field = sql.add_id (field);
-                    var id_value = sql.add_expr_value (null, Database.make_string_value ("%"+search+"%"));
+                    var id_value = sql.add_expr_value (null, "%"+search+"%");
                     ids += sql.add_cond (Gda.SqlOperatorType.LIKE, id_field, id_value, 0);
                 }
 
@@ -819,7 +819,7 @@ public class Noise.LocalLibrary : Library {
 
         foreach (var m in toRemove) {
             try {
-                connection.delete_row_from_table (Database.Media.TABLE_NAME, "rowid", Database.make_int64_value (m.rowid));
+                connection.delete_row_from_table (Database.Media.TABLE_NAME, "rowid", m.rowid);
             } catch (Error e) {
                 critical (e.message);
             }

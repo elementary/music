@@ -97,52 +97,13 @@ namespace Noise.Database {
         public static const string COLUMNS = "+3";
     }
 
-    /*
-     * Helper functions.
-     */
-    public static Value make_string_value (string str) {
-        var val = Value (typeof(string));
-        val.set_string (str);
-        return val;
-    }
-
-    public static Value make_bool_value (bool bl) {
-        var val = Value (typeof(bool));
-        val.set_boolean (bl);
-        return val;
-    }
-
-    public static Value make_uint_value (uint u) {
-        var val = Value (typeof(uint));
-        val.set_uint (u);
-        return val;
-    }
-
-    public static Value make_int_value (int u) {
-        var val = Value (typeof(int));
-        val.set_int (u);
-        return val;
-    }
-
-    public static Value make_int64_value (int64 u) {
-        var val = Value (typeof(int64));
-        val.set_int64 (u);
-        return val;
-    }
-
-    public static Value make_uint64_value (uint64 u) {
-        var val = Value (typeof(uint64));
-        val.set_uint64 (u);
-        return val;
-    }
-
     public static GLib.Value? query_field (int64 rowid, Gda.Connection connection, string table, string field) {
         try {
             var sql = new Gda.SqlBuilder (Gda.SqlStatementType.SELECT);
             sql.select_add_target (table, null);
             sql.add_field_value_id (sql.add_id (field), 0);
             var id_field = sql.add_id ("rowid");
-            var id_param = sql.add_expr_value (null, Database.make_int64_value (rowid));
+            var id_param = sql.add_expr_value (null, rowid);
             var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
             sql.set_where (id_cond);
             var data_model = connection.statement_execute_select (sql.get_statement (), null);
@@ -233,7 +194,7 @@ namespace Noise.Database {
                 break;
             case SmartQuery.ComparatorType.CONTAINS:
             case SmartQuery.ComparatorType.NOT_CONTAINS:
-                value = make_string_value ("%" + value.get_string () + "%");
+                value = "%" + value.get_string () + "%";
                 sql_operator_type = Gda.SqlOperatorType.LIKE;
                 break;
             case SmartQuery.ComparatorType.IS_EXACTLY:

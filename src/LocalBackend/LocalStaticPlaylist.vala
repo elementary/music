@@ -45,7 +45,7 @@ public class Noise.LocalStaticPlaylist : StaticPlaylist {
         }
         set {
             _name = value;
-            Database.set_field (rowid, connection, Database.Playlists.TABLE_NAME, "name", Database.make_string_value (value));
+            Database.set_field (rowid, connection, Database.Playlists.TABLE_NAME, "name", value);
         }
     }
 
@@ -79,8 +79,8 @@ public class Noise.LocalStaticPlaylist : StaticPlaylist {
             sb.append_printf ("%lld", m.rowid);
         }
 
-        values.append (Database.make_string_value (name));
-        values.append (Database.make_string_value (sb.str));
+        values.append (name);
+        values.append (sb.str);
         try {
             connection.update_row_in_table_v (Database.Playlists.TABLE_NAME, "rowid", rowid_value, col_names, values);
         } catch (Error e) {

@@ -104,7 +104,7 @@ public class Noise.DevicePreferences : GLib.Object {
                 }
             }
 
-            set_field ("music_playlist", Database.make_string_value (playlist_string));
+            set_field ("music_playlist", playlist_string);
         }
     }
 
@@ -117,7 +117,7 @@ public class Noise.DevicePreferences : GLib.Object {
             try {
                 var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
                 builder.set_table (Database.Devices.TABLE_NAME);
-                builder.add_field_value_as_gvalue ("unique_id", Database.make_string_value (id));
+                builder.add_field_value_as_gvalue ("unique_id", id);
                 connection.statement_execute_non_select (builder.get_statement (), null, null);
             } catch (Error e) {
                 warning ("Could not save media: %s", e.message);
@@ -141,7 +141,7 @@ public class Noise.DevicePreferences : GLib.Object {
 
     private void common_uint_setter (string field, uint value, ref uint? temp) {
         temp = value;
-        set_field (field, Database.make_uint_value (value));
+        set_field (field, value);
     }
 
     private bool common_bool_getter (string field, ref bool? temp) {
@@ -160,7 +160,7 @@ public class Noise.DevicePreferences : GLib.Object {
 
     private void common_bool_setter (string field, bool value, ref bool? temp) {
         temp = value;
-        set_field (field, Database.make_bool_value (value));
+        set_field (field, value);
     }
 
     private GLib.Value? query_field (string field) {
@@ -169,7 +169,7 @@ public class Noise.DevicePreferences : GLib.Object {
             sql.select_add_target (Database.Devices.TABLE_NAME, null);
             sql.add_field_value_id (sql.add_id (field), 0);
             var id_field = sql.add_id ("unique_id");
-            var id_param = sql.add_expr_value (null, Database.make_string_value (id));
+            var id_param = sql.add_expr_value (null, id);
             var id_cond = sql.add_cond (Gda.SqlOperatorType.EQ, id_field, id_param, 0);
             sql.set_where (id_cond);
             var data_model = connection.statement_execute_select (sql.get_statement (), null);
@@ -186,7 +186,7 @@ public class Noise.DevicePreferences : GLib.Object {
             col_names.append (field);
             var values = new GLib.SList<GLib.Value?> ();
             values.append (value);
-            connection.update_row_in_table_v (Database.Devices.TABLE_NAME, "unique_id", Database.make_string_value (id), col_names, values);
+            connection.update_row_in_table_v (Database.Devices.TABLE_NAME, "unique_id", id, col_names, values);
         } catch (Error e) {
             critical ("Could not set field %s: %s", field, e.message);
         }
