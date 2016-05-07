@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-01 05:37+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-05-07 04:52+0000\n"
+"X-Generator: Launchpad (build 18025)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
@@ -168,15 +168,15 @@ msgstr "Dance"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Full Bass"
-msgstr ""
+msgstr "Basso plen"
 
 #: ../core/GStreamer/Equalizer.vala:77
 msgid "Full Treble"
-msgstr ""
+msgstr "Acuto plen"
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Plen basso + acuto"
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Headphones"
@@ -662,11 +662,11 @@ msgstr "Tote le generes"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
 msgid "All %i Genres"
-msgstr ""
+msgstr "Tote le %i Generes"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
 msgid "No Genres"
-msgstr ""
+msgstr "Nulle generes"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Artists"
@@ -726,21 +726,21 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Composers"
-msgstr ""
+msgstr "Tote le compositores"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "All %i Composers"
-msgstr ""
+msgstr "Tote le %i compositores"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Composers"
-msgstr ""
+msgstr "Nulle compositores"
 
 #: ../src/Views/ContentView.vala:21
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: ../src/Views/GridView/PopupListView.vala:58
 msgid "Set new album cover"
@@ -749,29 +749,29 @@ msgstr ""
 #: ../src/Views/GridView/PopupListView.vala:152
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr ""
+msgstr "%s per %s"
 
 #: ../src/Views/GridView/PopupListView.vala:248
 msgid "_Cancel"
-msgstr ""
+msgstr "_Cancellar"
 
 #: ../src/Views/GridView/PopupListView.vala:248
 msgid "_Open"
-msgstr ""
+msgstr "Aperir (_Open)"
 
 #: ../src/Views/GridView/PopupListView.vala:251
 msgid "Image files"
-msgstr ""
+msgstr "Files de imagine"
 
 #: ../src/Views/GridView/GridView.vala:54
 msgid "No Albums Found."
-msgstr ""
+msgstr "Nulle albumes trovate."
 
 #: ../src/Views/GridView/GridView.vala:132
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u album"
+msgstr[1] "%u albumes"
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
@@ -793,11 +793,11 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
-msgstr ""
+msgstr "Salvar como lista de reproduction"
 
 #: ../src/Widgets/SourceListView.vala:156
 msgid "Eject"
-msgstr ""
+msgstr "Ejectar"
 
 #: ../src/Widgets/SourceListView.vala:161
 #: ../src/Widgets/SourceListView.vala:201
@@ -811,27 +811,27 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
 msgid "Sync"
-msgstr ""
+msgstr "Sync"
 
 #: ../src/Widgets/SourceListView.vala:203
 msgid "Import Playlists"
-msgstr ""
+msgstr "Importar le lista de reproduction"
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
-msgstr ""
+msgstr "Libreria"
 
 #: ../src/Widgets/SourceListView.vala:314
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 #: ../src/Widgets/SourceListView.vala:315
 msgid "Network"
-msgstr ""
+msgstr "Rete"
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
 msgid "Playlists"
-msgstr ""
+msgstr "Listas de reproduction"
 
 #: ../src/Widgets/PresetList.vala:47
 msgid "Delete Current"
@@ -981,7 +981,7 @@ msgstr "Sequente"
 
 #: ../src/LibraryWindow.vala:278
 msgid "Search Music"
-msgstr ""
+msgstr "Cercar musica"
 
 #: ../src/LibraryWindow.vala:853
 msgid "No songs in Queue"
@@ -1207,7 +1207,7 @@ msgstr ""
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "Desira tu installar le plugin %s?\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
 msgid ""
@@ -1217,16 +1217,16 @@ msgstr ""
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
 msgid "Install Plugin"
-msgstr ""
+msgstr "Installar le Plugin"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:50
 #: ../src/Dialogs/NotImportedWindow.vala:64
 msgid "Move to Trash"
-msgstr ""
+msgstr "Mover al immunditia"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
-msgstr ""
+msgstr "Remover ex %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:61
 msgid "Remove %d Songs From %s?"
@@ -1260,7 +1260,7 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:85
 msgid "Rescan Library"
-msgstr ""
+msgstr "Re-scander le libreria"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:88
 msgid "Find Song"
@@ -1316,15 +1316,15 @@ msgstr "Select le medios singule a importar:"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:188
 msgid "Check Item"
-msgstr ""
+msgstr "Controlar le elemento"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:189
 msgid "Check Album"
-msgstr ""
+msgstr "Controlar le Album"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:190
 msgid "Check Artist"
-msgstr ""
+msgstr "Controlar le Artista"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:287
 msgid "Cannot Import"
@@ -1356,7 +1356,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:36
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Editor del lista de reproduction intelligente"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:48
 #: ../src/Dialogs/SmartPlaylistEditor.vala:56
@@ -1383,11 +1383,11 @@ msgstr "Concordantia"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:70
 msgid "any"
-msgstr ""
+msgstr "cata"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:71
 msgid "all"
-msgstr ""
+msgstr "tote"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:77
 msgid "of the following:"
@@ -1399,7 +1399,7 @@ msgstr "Adder"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
-msgstr ""
+msgstr "Limitar a"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:96
 msgid "items"
@@ -1432,7 +1432,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:341
 msgid "is"
-msgstr ""
+msgstr "es"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:342
 msgid "contains"
@@ -1445,7 +1445,7 @@ msgstr "il non contine"
 #: ../src/Dialogs/SmartPlaylistEditor.vala:369
 #: ../src/Dialogs/SmartPlaylistEditor.vala:383
 msgid "is exactly"
-msgstr ""
+msgstr "es exactemente"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:370
 msgid "is at most"
@@ -1473,7 +1473,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:413
 msgid "kbps"
-msgstr ""
+msgstr "kbps"
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
@@ -1526,15 +1526,15 @@ msgstr ""
 
 #: ../src/Dialogs/NotImportedWindow.vala:66
 msgid "Ignore"
-msgstr ""
+msgstr "Ignorar"
 
 #: ../src/Dialogs/NotImportedWindow.vala:81
 msgid "del"
-msgstr ""
+msgstr "deler"
 
 #: ../src/Dialogs/NotImportedWindow.vala:86
 msgid "File Location"
-msgstr ""
+msgstr "Position del file"
 
 #: ../src/Dialogs/NotImportedWindow.vala:101
 msgid "Select individual files to move to trash:"
@@ -1598,7 +1598,7 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:241
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "Impossibile trovar le plica del musica"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:241
 msgid ""
@@ -1641,11 +1641,11 @@ msgstr ""
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
-msgstr ""
+msgstr "medios"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:47
 msgid "Similar Media"
-msgstr ""
+msgstr "Medios simile"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
@@ -1676,3 +1676,54 @@ msgstr ""
 
 #~ msgid "Music Folder Location:"
 #~ msgstr "Location del plica del musica:"
+
+#~ msgid "Notifications:"
+#~ msgstr "Notificationes:"
+
+#~ msgid "Desktop Integration:"
+#~ msgstr "Integration del scriptorio:"
+
+#~ msgid "Unknown Title"
+#~ msgstr "Titulo incognite"
+
+#~ msgid "Unknown Album"
+#~ msgstr "Album incognite"
+
+#~ msgid "Unknown Artist"
+#~ msgstr "Artista incognite"
+
+#~ msgid "Download new Episodes"
+#~ msgstr "Discargar le nove episodios"
+
+#~ msgid "Add Podcast"
+#~ msgstr "Adder podcast"
+
+#~ msgid "Equalizer"
+#~ msgstr "Equalisator"
+
+#~ msgid "Edit"
+#~ msgstr "Rediger"
+
+#~ msgid "Export..."
+#~ msgstr "Exportation..."
+
+#~ msgid "Podcasts"
+#~ msgstr "Podcasts"
+
+#~ msgid "Not Imported Files"
+#~ msgstr "Files non importate"
+
+#~ msgid "Done"
+#~ msgstr "Preste"
+
+#~ msgid "Metadata"
+#~ msgstr "Metadatos"
+
+#~ msgid "Do Nothing"
+#~ msgstr "Facer nihil"
+
+#~ msgid "Try again"
+#~ msgstr "Reprobar"
+
+#~ msgid "Podcast"
+#~ msgstr "Podcast"
