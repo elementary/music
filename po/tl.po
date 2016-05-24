@@ -3,57 +3,57 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-01-04 18:35+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2016-05-23 18:54+0000\n"
+"Last-Translator: yavinfour <anjelo.passionist@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-05-07 04:54+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-05-24 06:19+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d segundo"
+msgstr[1] "%d mga segundo"
 
 #: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u minuto"
+msgstr[1] "%u mga minuto"
 
 #: ../core/Utils/TimeUtils.vala:60
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d segundo"
+msgstr[1] "%d mga segundo"
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:62
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s at %s"
 
 #: ../core/Utils/TimeUtils.vala:69
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u na araw"
+msgstr[1] "%u na araw"
 
 #: ../core/Utils/TimeUtils.vala:72
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u oras"
+msgstr[1] "%u na oras"
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:83
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s and %s"
 
 #. / days and hours
 #: ../core/Utils/TimeUtils.vala:86
@@ -65,19 +65,19 @@ msgstr ""
 #: ../core/Utils/TimeUtils.vala:91
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s at %s"
 
 #. / hours and minutes
 #: ../core/Utils/TimeUtils.vala:100
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s at %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
 #: ../core/Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%m/%e/%Y %l:%M %p"
 
 #: ../core/Utils/FileUtils.vala:294
 msgid " (%d)"
@@ -85,19 +85,19 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: ../core/Utils/PlaylistsUtils.vala:236
 msgid "New playlist"
-msgstr ""
+msgstr "Bagong playlist"
 
 #: ../core/Utils/PlaylistsUtils.vala:247
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr ""
+msgstr "I-export ang Playlist"
 
 #: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:131
@@ -110,28 +110,28 @@ msgstr ""
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
 #: ../src/Dialogs/SmartPlaylistEditor.vala:118
 msgid "Cancel"
-msgstr ""
+msgstr "I-kansela"
 
 #: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:91
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
 msgid "Save"
-msgstr ""
+msgstr "I-save"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG Version 3.0 Extended (*.m3u)"
 
 #: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Shoutcast Playlist Bersyong 2.0 (*.pls)"
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr ""
+msgstr "Listahan ng mga Awit (Playlist)"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
-msgstr ""
+msgstr "I-import ang %s"
 
 #: ../core/Utils/PlaylistsUtils.vala:371
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:133
@@ -139,7 +139,7 @@ msgstr ""
 #: ../src/Dialogs/FileNotFoundDialog.vala:127
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
 msgid "Open"
-msgstr ""
+msgstr "Buksan"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
@@ -147,67 +147,67 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
-msgstr ""
+msgstr "Patag"
 
 #: ../core/GStreamer/Equalizer.vala:73
 msgid "Classical"
-msgstr ""
+msgstr "Klasikal"
 
 #: ../core/GStreamer/Equalizer.vala:74
 msgid "Club"
-msgstr ""
+msgstr "Pangclub"
 
 #: ../core/GStreamer/Equalizer.vala:75
 msgid "Dance"
-msgstr ""
+msgstr "Pangsayaw"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Full Bass"
-msgstr ""
+msgstr "Todo ang Bass"
 
 #: ../core/GStreamer/Equalizer.vala:77
 msgid "Full Treble"
-msgstr ""
+msgstr "Todo ang Treble"
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Todo ang Bass + Treble"
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Headphones"
-msgstr ""
+msgstr "Mga Headphones"
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Large Hall"
-msgstr ""
+msgstr "Malaking Bulwagan"
 
 #: ../core/GStreamer/Equalizer.vala:81
 msgid "Live"
-msgstr ""
+msgstr "Live"
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Party"
-msgstr ""
+msgstr "Pang-Party"
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Pop"
-msgstr ""
+msgstr "Pop"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Reggae"
-msgstr ""
+msgstr "Reggae"
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Rock"
-msgstr ""
+msgstr "Rock"
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Soft"
-msgstr ""
+msgstr "Malambot"
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Ska"
-msgstr ""
+msgstr "Ska"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Soft Rock"
@@ -224,7 +224,7 @@ msgstr ""
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
 msgid "Unknown"
-msgstr ""
+msgstr "Hindi Kilala"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:180
@@ -248,7 +248,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Cancelling…"
-msgstr ""
+msgstr "Kinakansela"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Device operation has been cancelled and will stop after this media."
@@ -1073,6 +1073,8 @@ msgstr ""
 #: ../src/Noise.vala:65
 msgid "translator-credits"
 msgstr ""
+"Launchpad Contributions:\n"
+"  yavinfour https://launchpad.net/~anjelo.delcarmen"
 
 #: ../src/FileOperator.vala:309
 msgid "Import Complete"
