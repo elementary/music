@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-05-24 23:21+0000\n"
+"PO-Revision-Date: 2016-05-26 02:00+0000\n"
 "Last-Translator: yavinfour <anjelo.passionist@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-05-25 06:02+0000\n"
+"X-Launchpad-Export-Date: 2016-05-26 05:39+0000\n"
 "X-Generator: Launchpad (build 18053)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -830,7 +830,7 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
 msgid "Playlists"
-msgstr ""
+msgstr "Mga Playlist"
 
 #: ../src/Widgets/PresetList.vala:47
 msgid "Delete Current"
@@ -847,7 +847,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:65
 msgid "Song"
-msgstr ""
+msgstr "Kanta"
 
 #: ../src/Widgets/StatusBar.vala:65
 msgid "Repeat Song"
@@ -867,7 +867,7 @@ msgstr ""
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
 #: ../src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Artist"
-msgstr ""
+msgstr "Artista"
 
 #: ../src/Widgets/StatusBar.vala:67
 msgid "Repeat Artist"
@@ -875,7 +875,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
 msgid "All"
-msgstr ""
+msgstr "Lahat"
 
 #: ../src/Widgets/StatusBar.vala:68
 msgid "Disable Repeat"
@@ -904,7 +904,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
-msgstr ""
+msgstr "Itago"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Show Info Panel"
@@ -912,7 +912,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:200
 msgid "Show"
-msgstr ""
+msgstr "Ipakita"
 
 #: ../src/Widgets/StatusBar.vala:200
 msgid "Hide Info Panel"
@@ -1560,17 +1560,17 @@ msgstr ""
 #: ../plugins/Devices/iPod/iPodLibrary.vala:214
 #: ../plugins/Devices/iPod/iPodLibrary.vala:370
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "Tinatapos ang proseso ng pag-sync..."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:226
 #: ../plugins/Devices/iPod/iPodLibrary.vala:382
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Kinakansela ang Pagsi-sync"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:333
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "Tinatanggal mula sa <b>%s</b>…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:526
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
@@ -1579,11 +1579,11 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "Nagkaroon ng Error"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "Nagka-error habang niloload ang Audio CD na ito."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:85
 msgid "Audio CD Invalid"
@@ -1591,11 +1591,11 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:89
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "Imposibleng mabasa ang laman ng Audio CD na ito."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:241
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "Hindi makita ang Polder ng Musika"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:241
 msgid ""
@@ -1630,23 +1630,23 @@ msgstr ""
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
 msgid "Android Phone"
-msgstr ""
+msgstr "Teleponong Android"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
 msgid "Audio Player"
-msgstr ""
+msgstr "Player ng mga Tugtugin"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
-msgstr ""
+msgstr "medya"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:47
 msgid "Similar Media"
-msgstr ""
+msgstr "Katulad na Medya"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
-msgstr ""
+msgstr "Walang nakitang mga katulad na kanta"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid ""
@@ -1654,7 +1654,10 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Walang mga kantang katulad sa kasalukuyang kanta mo sa aklatan. Siguraduhing "
+"lahat ng impo ng kanta ay tama at nakakonekta ka sa Internet. May mga kanta "
+"na walang makikitang katugma"
 
 #: ../plugins/LastFM/SimilarMedia.vala:37
 msgid "Similar"
-msgstr ""
+msgstr "Katulad"
