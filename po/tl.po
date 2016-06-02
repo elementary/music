@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-05-26 02:00+0000\n"
+"PO-Revision-Date: 2016-06-01 17:58+0000\n"
 "Last-Translator: yavinfour <anjelo.passionist@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-05-27 05:31+0000\n"
+"X-Launchpad-Export-Date: 2016-06-02 06:14+0000\n"
 "X-Generator: Launchpad (build 18053)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -309,7 +309,7 @@ msgstr ""
 #: ../src/Views/DeviceSummaryWidget.vala:320
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Cannot Sync"
-msgstr ""
+msgstr "Hindi Mai-sync"
 
 #: ../src/Views/DeviceSummaryWidget.vala:320
 msgid ""
@@ -496,7 +496,7 @@ msgstr "Marka"
 #: ../src/Views/ListView/Lists/ListColumn.vala:98
 msgctxt "List column title"
 msgid "Plays"
-msgstr ""
+msgstr "Ilang beses na pinatugtog"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:101
 msgctxt "List column title"
@@ -826,7 +826,7 @@ msgstr "Mga Aparato"
 
 #: ../src/Widgets/SourceListView.vala:315
 msgid "Network"
-msgstr ""
+msgstr "Network"
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
 msgid "Playlists"
@@ -1396,11 +1396,11 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
-msgstr ""
+msgstr "Ilimita sa"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:96
 msgid "items"
-msgstr ""
+msgstr "na mga aytem"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Bitrate"
@@ -1412,12 +1412,12 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Last Played"
-msgstr ""
+msgstr "Huling Pinatugtog"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:272
 #: ../src/Dialogs/SmartPlaylistEditor.vala:406
 msgid "Length"
-msgstr ""
+msgstr "Haba"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Playcount"
@@ -1429,15 +1429,15 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:341
 msgid "is"
-msgstr ""
+msgstr "ay"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:342
 msgid "contains"
-msgstr ""
+msgstr "ay mayroong"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:343
 msgid "does not contain"
-msgstr ""
+msgstr "ay hindi naglalaman ng"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:369
 #: ../src/Dialogs/SmartPlaylistEditor.vala:383
@@ -1462,19 +1462,19 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:407
 msgid "seconds"
-msgstr ""
+msgstr "mga segundo"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:410
 msgid "days ago"
-msgstr ""
+msgstr "na mga araw ang nakaraan"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:413
 msgid "kbps"
-msgstr ""
+msgstr "kbps"
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
-msgstr ""
+msgstr "Pumili ng Polder ng Music"
 
 #: ../src/Dialogs/PreferencesWindow.vala:131
 msgid "General"
