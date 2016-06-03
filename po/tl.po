@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-06-01 17:58+0000\n"
+"PO-Revision-Date: 2016-06-02 17:32+0000\n"
 "Last-Translator: yavinfour <anjelo.passionist@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-06-02 06:14+0000\n"
-"X-Generator: Launchpad (build 18053)\n"
+"X-Launchpad-Export-Date: 2016-06-03 06:10+0000\n"
+"X-Generator: Launchpad (build 18086)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
@@ -211,11 +211,11 @@ msgstr "Ska"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Soft Rock"
-msgstr ""
+msgstr "Soft Rock"
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Techno"
-msgstr ""
+msgstr "Techno"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -229,7 +229,7 @@ msgstr "Hindi Kilala"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:180
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$NAME sa $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: ../core/Media.vala:183
@@ -278,7 +278,7 @@ msgstr "Pangalan ng Aparato:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:79
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "Awtomatikong i-sync kapang nakasaksak:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:86
 msgid "Sync:"
@@ -843,7 +843,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:64
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Paganahin ang Pag-uulit"
 
 #: ../src/Widgets/StatusBar.vala:65
 msgid "Song"
@@ -851,17 +851,17 @@ msgstr "Kanta"
 
 #: ../src/Widgets/StatusBar.vala:65
 msgid "Repeat Song"
-msgstr ""
+msgstr "Ulitin ang kanta"
 
 #: ../src/Widgets/StatusBar.vala:66 ../src/Dialogs/MediaEditor.vala:194
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
 #: ../src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: ../src/Widgets/StatusBar.vala:66
 msgid "Repeat Album"
-msgstr ""
+msgstr "Ulitin ang Album"
 
 #: ../src/Widgets/StatusBar.vala:67 ../src/Dialogs/MediaEditor.vala:192
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
@@ -871,7 +871,7 @@ msgstr "Artista"
 
 #: ../src/Widgets/StatusBar.vala:67
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Ulitin ang Artista"
 
 #: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
 msgid "All"
@@ -879,7 +879,7 @@ msgstr "Lahat"
 
 #: ../src/Widgets/StatusBar.vala:68
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Huwag paganahin ang Paguulit"
 
 #: ../src/Widgets/StatusBar.vala:94
 msgid "Enable Shuffle"
@@ -900,7 +900,7 @@ msgstr ""
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Equalizer: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
@@ -940,11 +940,11 @@ msgstr ""
 
 #: ../src/Widgets/ViewSelector.vala:68
 msgid "View as Albums"
-msgstr ""
+msgstr "Ipakita bilang mga Album"
 
 #: ../src/Widgets/ViewSelector.vala:72
 msgid "View as List"
-msgstr ""
+msgstr "Tignan bilang Listahan"
 
 #: ../src/Widgets/ViewSelector.vala:76
 msgid "View in Columns"
@@ -952,11 +952,11 @@ msgstr ""
 
 #: ../src/Widgets/SpaceWidget.vala:266
 msgid "Free"
-msgstr ""
+msgstr "Natitira"
 
 #: ../src/Widgets/SpaceWidget.vala:383
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "Ginagamit ang %s sa %s (%.2f%)"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -964,23 +964,23 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
 msgid "Preferences"
-msgstr ""
+msgstr "Mga Kagustuhan"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "Nakaraan"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1013
 msgid "Play"
-msgstr ""
+msgstr "Patugtugin"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "Susunod"
 
 #: ../src/LibraryWindow.vala:278
 msgid "Search Music"
-msgstr ""
+msgstr "Maghanap ng Musika"
 
 #: ../src/LibraryWindow.vala:853
 msgid "No songs in Queue"
@@ -995,7 +995,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:856
 msgid "No songs in History"
-msgstr ""
+msgstr "Walang mga kanta sa Kasaysayan"
 
 #: ../src/LibraryWindow.vala:856
 msgid ""
@@ -1014,7 +1014,7 @@ msgstr ""
 
 #: ../src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Nagdadagdag ng mga file papunta sa aklatan..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:227
 msgid "<b>Importing</b> music to library…"
@@ -1022,7 +1022,7 @@ msgstr ""
 
 #: ../src/LocalBackend/LocalLibrary.vala:251
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "Lahat ng mga file na pangmusika ay nasa aklatan mo na"
 
 #: ../src/LocalBackend/LocalLibrary.vala:251
 msgid "No files were imported."
@@ -1031,6 +1031,8 @@ msgstr ""
 #: ../src/LocalBackend/LocalLibrary.vala:256
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
+"Iniiscan muli ang musika kung may mga nagbago. Pwede itong umabot ng ilang "
+"saglit..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:330
 msgid "Added to your queue:"
@@ -1044,19 +1046,19 @@ msgstr[1] ""
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Paboritong mga Kanta"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:226
 msgid "Recently Added"
-msgstr ""
+msgstr "Kasalukuyang Dinagdag"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:234
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Kasalukuyang mga Paborito"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:242
 msgid "Never Played"
-msgstr ""
+msgstr "Hindi pa Napapatugtog"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
@@ -1064,15 +1066,15 @@ msgstr ""
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Hindi pa Kasalukuyan Napapatugtog"
 
 #: ../src/Objects/LyricFetcher.vala:141
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
+msgstr "Ang mga liriko ay kinuha mula sa www.lyricsmania.com"
 
 #: ../src/Objects/HistoryPlaylist.vala:40
 msgid "History"
-msgstr ""
+msgstr "Kasaysayan"
 
 #: ../src/Noise.vala:65
 msgid "translator-credits"
@@ -1094,15 +1096,15 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:83
 msgid "Details"
-msgstr ""
+msgstr "Mga Detalye"
 
 #: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:369
 msgid "Lyrics"
-msgstr ""
+msgstr "Mga Liriko"
 
 #: ../src/Dialogs/MediaEditor.vala:94 ../src/Dialogs/PreferencesWindow.vala:99
 msgid "Close"
-msgstr ""
+msgstr "Isara"
 
 #: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:343
 msgid "Editing $NAME by $ARTIST"
@@ -1120,31 +1122,31 @@ msgstr ""
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:119
 #: ../src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Title"
-msgstr ""
+msgstr "Pamagat"
 
 #: ../src/Dialogs/MediaEditor.vala:193
 msgid "Album Artist"
-msgstr ""
+msgstr "Artista ng Album"
 
 #: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:463
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Genre"
-msgstr ""
+msgstr "Uri ng awit"
 
 #: ../src/Dialogs/MediaEditor.vala:196
 #: ../src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Composer"
-msgstr ""
+msgstr "Nag-compose"
 
 #: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
 #: ../src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Grouping"
-msgstr ""
+msgstr "Pag-grupo"
 
 #: ../src/Dialogs/MediaEditor.vala:198
 #: ../src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Comment"
-msgstr ""
+msgstr "Komento"
 
 #: ../src/Dialogs/MediaEditor.vala:199
 msgid "Track"
@@ -1157,20 +1159,20 @@ msgstr ""
 #: ../src/Dialogs/MediaEditor.vala:201
 #: ../src/Dialogs/SmartPlaylistEditor.vala:277
 msgid "Year"
-msgstr ""
+msgstr "Taon"
 
 #: ../src/Dialogs/MediaEditor.vala:202
 #: ../src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "Rating"
-msgstr ""
+msgstr "Marka"
 
 #: ../src/Dialogs/MediaEditor.vala:292
 msgid "Lyrics not found for %s"
-msgstr ""
+msgstr "Walang mahanap na liriko para sa %s"
 
 #: ../src/Dialogs/MediaEditor.vala:629
 msgid "Reset"
-msgstr ""
+msgstr "Ibalik sa Dati"
 
 #: ../src/Dialogs/MediaEditor.vala:633
 msgid "<b>Stats</b>"
@@ -1182,11 +1184,11 @@ msgstr ""
 
 #: ../src/Dialogs/SyncWarningDialog.vala:58
 msgid "Continue Syncing"
-msgstr ""
+msgstr "ipagpatuloy ang Pagsi-sync"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:59
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Itigil ang Pagsi-sync"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:66
 msgid ""
@@ -1214,16 +1216,16 @@ msgstr ""
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
 msgid "Install Plugin"
-msgstr ""
+msgstr "Mag-install ng Plugin"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:50
 #: ../src/Dialogs/NotImportedWindow.vala:64
 msgid "Move to Trash"
-msgstr ""
+msgstr "Ilipat sa Basura"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
-msgstr ""
+msgstr "Tanggalin mula sa %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:61
 msgid "Remove %d Songs From %s?"
@@ -1257,7 +1259,7 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:85
 msgid "Rescan Library"
-msgstr ""
+msgstr "Iscan Muli ang Aklatan"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:88
 msgid "Find Song"
@@ -1305,7 +1307,7 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:118
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:170
 msgid "Select individual media to import:"
@@ -1368,7 +1370,7 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:50
 #: ../src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "Options"
-msgstr ""
+msgstr "Mga Pagpipilian"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:62
 msgid "Playlist Title"
@@ -1392,7 +1394,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Add"
-msgstr ""
+msgstr "Magdagdag"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
@@ -1408,7 +1410,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Date Added"
-msgstr ""
+msgstr "Petsa ng Pagdagdag"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Last Played"
