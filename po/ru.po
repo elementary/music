@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2015-12-20 14:52+0000\n"
+"PO-Revision-Date: 2016-06-04 05:54+0000\n"
 "Last-Translator: Yuly Nesterov <crow@rikka.io>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-05-07 04:53+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-06-04 05:55+0000\n"
+"X-Generator: Launchpad (build 18086)\n"
+"Language: ru\n"
 
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
@@ -385,19 +386,19 @@ msgstr "Добавьте музыку в вашу фонотеку"
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 #: ../src/LibraryWindow.vala:1086
 msgid "Import Music"
-msgstr "Импортировать музыку"
+msgstr "Импорт музыки"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr "Импорт музыки из источника в вашу библиотеку."
+msgstr "Импортируйте музыку из источника в вашу библиотеку."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Change Music Folder"
-msgstr "Смените папку с музыкой"
+msgstr "Выбор папки с музыкой"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Load music from a folder, a network or an external disk."
-msgstr "Загрузите музыку из папки, сети или внешнего носителя"
+msgstr "Загрузите музыку из папки, сети или внешнего носителя."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
@@ -1630,7 +1631,7 @@ msgstr "Выбор отдельных файлов для перемещения
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 msgid "Empty device!"
-msgstr "Нет файлов в устройстве!"
+msgstr "Пустое устройство!"
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:63
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
@@ -1723,7 +1724,7 @@ msgstr "Произошла ошибка во время импортирован
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
 msgid "Android Phone"
-msgstr "Android Phone"
+msgstr "Телефон на Android"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
 msgid "Audio Player"
