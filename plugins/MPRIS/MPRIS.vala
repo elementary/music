@@ -92,7 +92,7 @@ public class MprisRoot : GLib.Object {
     }
     public string DesktopEntry { 
         owned get {
-            return "noise";
+            return "org.pantheon.noise";
         } 
     }
     
