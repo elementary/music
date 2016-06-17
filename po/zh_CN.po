@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-03-03 14:42+0000\n"
-"Last-Translator: colindemian <dengmengpc@gmail.com>\n"
+"PO-Revision-Date: 2016-06-16 17:41+0000\n"
+"Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-05-07 04:54+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-06-17 05:37+0000\n"
+"X-Generator: Launchpad (build 18097)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
@@ -375,7 +375,7 @@ msgstr "更改目录"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Load music from a folder, a network or an external disk."
-msgstr "从文件夹、网络或外置硬盘导入音乐。"
+msgstr "从目录、网络或硬盘导入音乐。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
@@ -1483,7 +1483,7 @@ msgstr "常规"
 
 #: ../src/Dialogs/PreferencesWindow.vala:137
 msgid "Music Folder Location"
-msgstr "音乐文件夹位置"
+msgstr "音乐目录"
 
 #: ../src/Dialogs/PreferencesWindow.vala:145
 msgid "Library Management"
