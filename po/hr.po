@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-01-06 18:43+0000\n"
+"PO-Revision-Date: 2016-07-04 22:04+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-05-07 04:53+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-07-05 05:51+0000\n"
+"X-Generator: Launchpad (build 18115)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
@@ -230,7 +230,7 @@ msgstr "Tehno"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Uvezi <b>$NAME</b> by <b>$ARTIST</b> u biblioteku…"
+msgstr "Uvozim <b>$NAME</b> od <b>$ARTIST</b> u fonoteku…"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -276,7 +276,8 @@ msgstr "Nema vanjskih pjesmi."
 #: ../src/Views/DeviceView.vala:100
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr "Nije nađeno pjesmi što nisu več u vašoj biblioteci."
+msgstr ""
+"Nema pronađenih pjesama na ovom uređaju koje već nisu u vašoj fonoteci."
 
 #: ../src/Views/DeviceSummaryWidget.vala:73
 msgid "Device Name:"
@@ -374,7 +375,7 @@ msgstr "Nabavi glazbu"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:52
 msgid "Add music to your library."
-msgstr "Dodajte glazbu u vašu biblioteku."
+msgstr "Dodajte glazbu u svoju fonoteku."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 #: ../src/LibraryWindow.vala:1086
@@ -383,7 +384,7 @@ msgstr "Uvezi glazbu"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr "Uvezi glazbu iz izvora u biblioteku"
+msgstr "Uvezite glazbu iz izvora u svoju fonoteku."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Change Music Folder"
@@ -401,7 +402,7 @@ msgstr "Uvezite vašu glazbu"
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
 msgid "Import all your Music from %s into your library."
-msgstr "Uvezite svu vašu glazbu iz %s u vašu biblioteku."
+msgstr "Uvezite svu vašu glazbu iz %s u vašu fonoteku."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:129
 msgid "Select Music Folder"
@@ -545,7 +546,7 @@ msgstr "Veličina datoteke"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:84
 msgid "Remove from Library"
-msgstr "Ukloni iz Biblioteke"
+msgstr "Ukloni iz fonoteke"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:91
 msgid "Remove from Queue"
@@ -588,7 +589,7 @@ msgstr "Ukloni pjesmu"
 #: ../src/Views/ListView/Lists/MusicListView.vala:123
 #: ../src/Widgets/SourceListView.vala:148
 msgid "Import to Library"
-msgstr "Uvezi u zbirku"
+msgstr "Uvezi u fonoteku"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:178
 msgid "New Playlist…"
@@ -836,7 +837,7 @@ msgstr "Važne liste"
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
-msgstr "Bilbioteka"
+msgstr "Fonoteka"
 
 #: ../src/Widgets/SourceListView.vala:314
 msgid "Devices"
@@ -978,7 +979,7 @@ msgstr "Koristim %s od %s (%.2f%)"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
-msgstr "Uvezi u biblioteku..."
+msgstr "Uvezi u fonoteku..."
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
 msgid "Preferences"
@@ -1039,15 +1040,15 @@ msgstr "Uvozim glazbu iz %s..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Dodajem datoteke u biblioteku..."
+msgstr "Dodavanje datoteka u fonoteku..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:227
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>Uvozim</b> glazbu u biblioteku…"
+msgstr "<b>Uvažanje</b> glazbe u fonoteku…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:251
 msgid "All music files are already in your library"
-msgstr "Sve glazbene datoteke su već u vašoj bilblioteci"
+msgstr "Sve glazbene datoteke već su u vašoj fonoteci"
 
 #: ../src/LocalBackend/LocalLibrary.vala:251
 msgid "No files were imported."
@@ -1116,7 +1117,7 @@ msgstr "Import završen"
 
 #: ../src/FileOperator.vala:309
 msgid "%s has imported your library."
-msgstr "%s je učitao vašu glazbu"
+msgstr "%s je uvezao vašu fonoteku."
 
 #: ../src/FileOperator.vala:322
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -1208,7 +1209,7 @@ msgstr "<b>Statistika</b>"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
-msgstr "Ubaci medije u biblioteku"
+msgstr "Uvezi mediju u fonoteku"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:58
 msgid "Continue Syncing"
@@ -1223,8 +1224,8 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Ako nastavite sinkronizaciju, mediji će se ukloniti iz %s jer nisu na "
-"sinkronizacijskoj listi. Želite li ih prije ubaciti u svoju biblioteku?"
+"Ako nastavite usklađivanje, medij će se ukloniti iz %s pošto nije na popisu "
+"usklađivanja. Želite li ga prije uvesti u svoju fonoteku?"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
@@ -1275,11 +1276,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
-"Ovo će ukloniti pjesmu iz vaše biblioteke i svakog uređaja koji se "
-"automatski sinkronizira sa %s."
+"Ovo će ukloniti pjesmu iz vaše fonoteke i svakog uređaja koji se automatski "
+"usklađuje s %s."
 msgstr[1] ""
-"Ovo će ukloniti pjesme iz vaše biblioteke i svakog uređaja koji se "
-"automatski sinkronizira sa %s."
+"Ovo će ukloniti pjesme iz vaše fonoteke i svakog uređaja koji se automatski "
+"usklađuje s %s."
 msgstr[2] ""
 "Ovo će ukloniti pjesme iz vaše biblioteke i svakog uređaja koji se "
 "automatski sinkronizira sa %s."
@@ -1300,7 +1301,7 @@ msgstr "%i glazzbenih datoteka nije pronađeno?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:85
 msgid "Rescan Library"
-msgstr "Ponovno pretraži biblioteku"
+msgstr "Ponovno pretraži fonoteku"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:88
 msgid "Find Song"
@@ -1324,7 +1325,7 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
-"Slijedeće datoteke su pronađene na %a, ali nisu u vašoj biblioteci. Označite "
+"Sljedeće datoteke su pronađene u %a, ali nisu u vašoj fonoteci. Odaberite "
 "sve datoteke koje želite uvesti."
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
@@ -1397,8 +1398,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Sigurno želite postaviti glazbenu mapu na %s? Ovo će resetirati vašu "
-"biblioteku i ukloniti vaše liste."
+"Sigurno želite postaviti glazbenu mapu na %s? Ovo će poništiti vašu fonoteku "
+"i ukloniti vaše popise izvođenja."
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:36
 msgid "Smart Playlist Editor"
@@ -1535,7 +1536,7 @@ msgstr "Lokacija glazbene mape"
 
 #: ../src/Dialogs/PreferencesWindow.vala:145
 msgid "Library Management"
-msgstr "Upravljanje bibliotekom"
+msgstr "Upravljanje fonotekom"
 
 #: ../src/Dialogs/PreferencesWindow.vala:152
 msgid "Keep Music folder organized:"
@@ -1547,7 +1548,7 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:160
 msgid "Copy imported files to Library:"
-msgstr "Kopiraj uvežene datoteke u biblioteku:"
+msgstr "Kopiraj uvezene datoteke u fonoteku:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
@@ -1704,9 +1705,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"Nema sličnih pjesama trenutnoj u vašoj biblioteci. Provjerite jesu li "
-"informacije o pjesni točne te da ste spojeni na internet. Neke od pjesama "
-"nemaju pjesme slične sebi."
+"Nema sličnih pjesama trenutnoj pjesmi u vašoj fonoteci. Provjerite jesu li "
+"sve informacije pjesme točne i imate li pristup internetu. Neke pjesme možda "
+"neće imati podudaranja."
 
 #: ../plugins/LastFM/SimilarMedia.vala:37
 msgid "Similar"
