@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-01-04 11:14+0100\n"
-"PO-Revision-Date: 2016-07-05 13:34+0000\n"
+"PO-Revision-Date: 2016-07-06 10:40+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-07-06 05:34+0000\n"
+"X-Launchpad-Export-Date: 2016-07-07 05:32+0000\n"
 "X-Generator: Launchpad (build 18115)\n"
 
 #: ../core/Utils/TimeUtils.vala:51
@@ -561,7 +561,7 @@ msgstr "Ukloni iz uređaja"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:114
 msgid "Scroll to Current Song"
-msgstr "Pomakni na trenutnu pjesmu"
+msgstr "Idi na trenutnu pjesmu"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:117
 msgid "Edit Song Info"
@@ -569,7 +569,7 @@ msgstr "Uredi informacije pjesme"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:118
 msgid "Show in File Browser"
-msgstr "Pokaži u pregledniku datoteka"
+msgstr "Otvori u pregledniku datoteka"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:119
 msgid "Other actions"
