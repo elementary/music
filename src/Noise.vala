@@ -48,9 +48,9 @@ public class Noise.App : Granite.Application {
         exec_name = "noise";
 
         app_copyright = "2012-2016";
-        application_id = "org.pantheon.noise";
+        application_id = "io.elementary.noise";
         app_icon = "multimedia-audio-player";
-        app_launcher = "org.pantheon.noise.desktop";
+        app_launcher = "io.elementary.noise.desktop";
         app_years = "2012-2016";
 
         main_url = "https://launchpad.net/noise";

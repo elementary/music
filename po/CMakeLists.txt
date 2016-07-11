@@ -8,4 +8,4 @@ add_translations_catalog (${GETTEXT_PACKAGE}
         ${CMAKE_BINARY_DIR}/data/noise.desktop.in
         ${CMAKE_BINARY_DIR}/data/noise-original.desktop.in
     APPDATA_FILES
-        ../data/noise.appdata.xml.in)
+        ../data/io.elementary.noise.appdata.xml.in)
