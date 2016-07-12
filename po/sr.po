@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-01-04 11:14+0100\n"
+"POT-Creation-Date: 2016-07-11 11:39+0200\n"
 "PO-Revision-Date: 2015-12-21 13:46+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -16,145 +16,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-05-07 04:53+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-07-12 06:33+0000\n"
+"X-Generator: Launchpad (build 18115)\n"
 
-#: ../core/Utils/TimeUtils.vala:51
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d секунда"
-msgstr[1] "%d секунде"
-msgstr[2] "%d секунди"
+#: ../core/LibrariesManager.vala:143
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "Увожење <b>$NAME</b> од <b>$ARTIST</b> у библиотеку…"
 
-#: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
-msgid "%u minute"
-msgid_plural "%u minutes"
-msgstr[0] "%u минут"
-msgstr[1] "%u минута"
-msgstr[2] "%u минута"
+#. / Used for unknown titles, artists, or album names.
+#: ../core/Media.vala:34
+msgid "Unknown"
+msgstr "Непознато"
 
-#: ../core/Utils/TimeUtils.vala:60
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u секунда"
-msgstr[1] "%u секунде"
-msgstr[2] "%u секунди"
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME у $ALBUM"
 
-#. / Minutes and seconds
-#: ../core/Utils/TimeUtils.vala:62
-msgctxt "minutes and seconds"
-msgid "%s and %s"
-msgstr "%s и %s"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: ../core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME од $ARTIST"
 
-#: ../core/Utils/TimeUtils.vala:69
-msgid "%u day"
-msgid_plural "%u days"
-msgstr[0] "%u дан"
-msgstr[1] "%u дана"
-msgstr[2] "%u дана"
-
-#: ../core/Utils/TimeUtils.vala:72
-msgid "%u hour"
-msgid_plural "%u hours"
-msgstr[0] "%u сат"
-msgstr[1] "%u сата"
-msgstr[2] "%u сата"
-
-#. / days, hours and minutes
-#: ../core/Utils/TimeUtils.vala:83
-msgctxt "days, hours and minutes"
-msgid "%s, %s and %s"
-msgstr "%s, %s и %s"
-
-#. / days and hours
-#: ../core/Utils/TimeUtils.vala:86
-msgctxt "days and hours"
-msgid "%s and %s"
-msgstr "%s и %s"
-
-#. / days and minutes
-#: ../core/Utils/TimeUtils.vala:91
-msgctxt "days and minutes"
-msgid "%s and %s"
-msgstr "%s и %s"
-
-#. / hours and minutes
-#: ../core/Utils/TimeUtils.vala:100
-msgctxt "hours and minutes"
-msgid "%s and %s"
-msgstr "%s и %s"
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: ../core/Utils/TimeUtils.vala:159
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%e.%m.%Y %l:%M %p"
-
-#: ../core/Utils/FileUtils.vala:294
-msgid " (%d)"
-msgstr " (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:96
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:236
-msgid "New playlist"
-msgstr "Нова листа песама"
-
-#: ../core/Utils/PlaylistsUtils.vala:247
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: ../core/Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "Извези листу"
-
-#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
-#: ../src/Widgets/TopDisplay.vala:90 ../src/LibraryWindow.vala:1088
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
-#: ../src/Dialogs/RemoveFilesDialog.vala:52
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
-#: ../src/Dialogs/FileNotFoundDialog.vala:126
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
-#: ../src/Dialogs/SmartPlaylistEditor.vala:118
-msgid "Cancel"
-msgstr "Откажи"
-
-#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:91
-#: ../src/Dialogs/SmartPlaylistEditor.vala:116
-msgid "Save"
-msgstr ""
-
-#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "Проширено MPEG издање 3.0 (*.m3u)"
-
-#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast листа нумера верзија 2.0"
-
-#: ../core/Utils/PlaylistsUtils.vala:362
-msgid "Playlist"
-msgstr "Листа песама"
-
-#: ../core/Utils/PlaylistsUtils.vala:368
-msgid "Import %s"
-msgstr "Увези %s"
-
-#: ../core/Utils/PlaylistsUtils.vala:371
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
-#: ../src/Views/GridView/PopupListView.vala:247 ../src/LibraryWindow.vala:1089
-#: ../src/Dialogs/FileNotFoundDialog.vala:127
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
-msgid "Open"
-msgstr ""
-
-#: ../core/Utils/PlaylistsUtils.vala:402
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Непрепозната листа нумера. Увоз неуспешан."
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME од $ARTIST у $ALBUM"
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
@@ -228,223 +115,886 @@ msgstr "Лагани рок"
 msgid "Techno"
 msgstr "Техно"
 
-#: ../core/LibrariesManager.vala:143
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Увожење <b>$NAME</b> од <b>$ARTIST</b> у библиотеку…"
+#: ../core/Utils/TimeUtils.vala:51
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунде"
+msgstr[2] "%d секунди"
 
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:34
-msgid "Unknown"
-msgstr "Непознато"
+#: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
+msgid "%u minute"
+msgid_plural "%u minutes"
+msgstr[0] "%u минут"
+msgstr[1] "%u минута"
+msgstr[2] "%u минута"
 
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME у $ALBUM"
+#: ../core/Utils/TimeUtils.vala:60
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] "%u секунда"
+msgstr[1] "%u секунде"
+msgstr[2] "%u секунди"
 
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME од $ARTIST"
+#. / Minutes and seconds
+#: ../core/Utils/TimeUtils.vala:62
+msgctxt "minutes and seconds"
+msgid "%s and %s"
+msgstr "%s и %s"
 
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME од $ARTIST у $ALBUM"
+#: ../core/Utils/TimeUtils.vala:69
+msgid "%u day"
+msgid_plural "%u days"
+msgstr[0] "%u дан"
+msgstr[1] "%u дана"
+msgstr[2] "%u дана"
+
+#: ../core/Utils/TimeUtils.vala:72
+msgid "%u hour"
+msgid_plural "%u hours"
+msgstr[0] "%u сат"
+msgstr[1] "%u сата"
+msgstr[2] "%u сата"
+
+#. / days, hours and minutes
+#: ../core/Utils/TimeUtils.vala:83
+msgctxt "days, hours and minutes"
+msgid "%s, %s and %s"
+msgstr "%s, %s и %s"
+
+#. / days and hours
+#: ../core/Utils/TimeUtils.vala:86
+msgctxt "days and hours"
+msgid "%s and %s"
+msgstr "%s и %s"
+
+#. / days and minutes
+#: ../core/Utils/TimeUtils.vala:91
+msgctxt "days and minutes"
+msgid "%s and %s"
+msgstr "%s и %s"
+
+#. / hours and minutes
+#: ../core/Utils/TimeUtils.vala:100
+msgctxt "hours and minutes"
+msgid "%s and %s"
+msgstr "%s и %s"
+
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
+#: ../core/Utils/TimeUtils.vala:159
+msgid "%m/%e/%Y %l:%M %p"
+msgstr "%e.%m.%Y %l:%M %p"
+
+#: ../core/Utils/PlaylistsUtils.vala:96
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: ../core/Utils/PlaylistsUtils.vala:236
+msgid "New playlist"
+msgstr "Нова листа песама"
+
+#: ../core/Utils/PlaylistsUtils.vala:247
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: ../core/Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr "Извези листу"
+
+#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
+#: ../src/Widgets/TopDisplay.vala:90 ../src/LibraryWindow.vala:1047
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:126
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
+#: ../src/Dialogs/RemoveFilesDialog.vala:52
+#: ../src/Dialogs/SmartPlaylistEditor.vala:118
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
+msgid "Cancel"
+msgstr "Откажи"
+
+#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
+#: ../src/Dialogs/SmartPlaylistEditor.vala:116
+msgid "Save"
+msgstr ""
+
+#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "Проширено MPEG издање 3.0 (*.m3u)"
+
+#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Shoutcast листа нумера верзија 2.0"
+
+#: ../core/Utils/PlaylistsUtils.vala:362
+msgid "Playlist"
+msgstr "Листа песама"
+
+#: ../core/Utils/PlaylistsUtils.vala:368
+msgid "Import %s"
+msgstr "Увези %s"
+
+#: ../core/Utils/PlaylistsUtils.vala:371 ../src/LibraryWindow.vala:1048
+#: ../src/Dialogs/FileNotFoundDialog.vala:127
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
+#: ../src/Views/GridView/PopupListView.vala:255
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
+msgid "Open"
+msgstr ""
+
+#: ../core/Utils/PlaylistsUtils.vala:402
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Непрепозната листа нумера. Увоз неуспешан."
+
+#: ../core/Utils/FileUtils.vala:294
+msgid " (%d)"
+msgstr " (%d)"
 
 #: ../src/PlaybackManager.vala:96
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Ред"
 
-#: ../src/Views/DeviceView.vala:38
-msgid "Cancelling…"
-msgstr "Отказујем…"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "Радња уређаја је отказана и биће заустављен након овог медија."
-
-#: ../src/Views/DeviceView.vala:59
-msgid "OK"
-msgstr "У реду"
-
-#: ../src/Views/DeviceView.vala:100
-msgid "No External Songs"
-msgstr "Нема спољних песама"
-
-#: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr "Нису пронађене песме на овом уређају које немате у вашој библиотеци."
-
-#: ../src/Views/DeviceSummaryWidget.vala:73
-msgid "Device Name:"
-msgstr "Име уређаја:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:77
-msgid "Device Name"
-msgstr "Име уређаја:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:79
-msgid "Automatically sync when plugged in:"
-msgstr "Аутоматски усклади при копчању:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Sync:"
+#: ../src/Widgets/SpaceWidget.vala:237 ../src/Widgets/SourceListView.vala:171
+msgid "Sync"
 msgstr "Усклади"
 
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Other Files"
-msgstr "Остале датотеке"
+#: ../src/Widgets/SpaceWidget.vala:266
+msgid "Free"
+msgstr "Слободно"
 
-#: ../src/Views/DeviceSummaryWidget.vala:99 ../src/LibraryWindow.vala:681
-#: ../src/LibraryWindow.vala:785
+#: ../src/Widgets/SpaceWidget.vala:383
+msgid "Using %s of %s (%.2f%)"
+msgstr ""
+
+#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
+msgid "Automatic"
+msgstr "Аутоматски"
+
+#: ../src/Widgets/PresetList.vala:47
+msgid "Delete Current"
+msgstr "Избриши тренутно"
+
+#: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
+#: ../src/Widgets/EqualizerPopover.vala:339
+msgid "Off"
+msgstr "Искључено"
+
+#: ../src/Widgets/StatusBar.vala:64
+msgid "Enable Repeat"
+msgstr "Омогући понављање"
+
+#: ../src/Widgets/StatusBar.vala:65
+msgid "Song"
+msgstr "Песма"
+
+#: ../src/Widgets/StatusBar.vala:65
+msgid "Repeat Song"
+msgstr "Понављај песму"
+
+#: ../src/Widgets/StatusBar.vala:66
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
+#: ../src/Dialogs/SmartPlaylistEditor.vala:263
+msgid "Album"
+msgstr "Албум"
+
+#: ../src/Widgets/StatusBar.vala:66
+msgid "Repeat Album"
+msgstr "Понављај албум"
+
+#: ../src/Widgets/StatusBar.vala:67
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
+#: ../src/Dialogs/SmartPlaylistEditor.vala:264
+msgid "Artist"
+msgstr "Извођач"
+
+#: ../src/Widgets/StatusBar.vala:67
+msgid "Repeat Artist"
+msgstr "Понављај извођачево"
+
+#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
+msgid "All"
+msgstr "Све"
+
+#: ../src/Widgets/StatusBar.vala:68
+msgid "Disable Repeat"
+msgstr ""
+
+#: ../src/Widgets/StatusBar.vala:94
+msgid "Enable Shuffle"
+msgstr "Омогући мешање"
+
+#: ../src/Widgets/StatusBar.vala:95
+msgid "Disable Shuffle"
+msgstr "Онемогући мешање"
+
+#: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
+msgid "Add Playlist"
+msgstr "Додај нови списак"
+
+#: ../src/Widgets/StatusBar.vala:140
+msgid "Add Smart Playlist"
+msgstr "Додај нови паметан списак"
+
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
+#: ../src/Widgets/StatusBar.vala:189
+msgid "Equalizer: %s"
+msgstr ""
+
+#: ../src/Widgets/StatusBar.vala:199
+msgid "Hide"
+msgstr "Сакриј"
+
+#: ../src/Widgets/StatusBar.vala:199
+msgid "Show Info Panel"
+msgstr "Прикажи окно обавештења"
+
+#: ../src/Widgets/StatusBar.vala:200
+msgid "Show"
+msgstr "Прикажи"
+
+#: ../src/Widgets/StatusBar.vala:200
+msgid "Hide Info Panel"
+msgstr "Сакриј окно обавештења"
+
+#: ../src/Widgets/EqualizerPopover.vala:163
+msgid "Save preset"
+msgstr "Сaчуваj предподешавања"
+
+#: ../src/Widgets/EqualizerPopover.vala:426
+msgid "%s (Custom)"
+msgstr "%s (Произвољно)"
+
+#: ../src/Widgets/EqualizerPopover.vala:428
+msgid "%s (Custom %i)"
+msgstr "%s (Произвољно %i)"
+
+#: ../src/Widgets/EqualizerPopover.vala:431
+msgid "Custom Preset"
+msgstr "Произвољно предподешено"
+
+#: ../src/Widgets/EqualizerPopover.vala:433
+msgid "Custom Preset %i"
+msgstr "Произвољна предподешавања %i"
+
+#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
+msgid "Rename"
+msgstr "Преименуј"
+
+#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
+#: ../src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Remove"
+msgstr "Уклони"
+
+#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
+#: ../src/Widgets/SourceListView.vala:90
+msgid "Export…"
+msgstr "Извоз..."
+
+#: ../src/Widgets/SourceListView.vala:73
+msgid "Edit…"
+msgstr "Уређивање..."
+
+#: ../src/Widgets/SourceListView.vala:88
+msgid "Save as Playlist"
+msgstr "Сачувај као списак за извођење"
+
+#: ../src/Widgets/SourceListView.vala:148
+#: ../src/Views/ListView/Lists/MusicListView.vala:124
+msgid "Import to Library"
+msgstr "Увези у библиотеку"
+
+#: ../src/Widgets/SourceListView.vala:156
+msgid "Eject"
+msgstr "Избаци"
+
+#: ../src/Widgets/SourceListView.vala:161
+#: ../src/Widgets/SourceListView.vala:201
+msgid "New Playlist"
+msgstr "Нови списак песама"
+
+#: ../src/Widgets/SourceListView.vala:166
+#: ../src/Widgets/SourceListView.vala:202
+msgid "New Smart Playlist"
+msgstr "Нови паметни списак песама"
+
+#: ../src/Widgets/SourceListView.vala:203
+msgid "Import Playlists"
+msgstr "Увези списак за извођење"
+
+#: ../src/Widgets/SourceListView.vala:313
+msgid "Library"
+msgstr "Збирка"
+
+#: ../src/Widgets/SourceListView.vala:314
+msgid "Devices"
+msgstr "Уређаји"
+
+#: ../src/Widgets/SourceListView.vala:315
+msgid "Network"
+msgstr "Мрежа"
+
+#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
+msgid "Playlists"
+msgstr "Спискови за извођење"
+
+#: ../src/Widgets/ViewSelector.vala:68
+msgid "View as Albums"
+msgstr "Преглед албума"
+
+#: ../src/Widgets/ViewSelector.vala:72
+msgid "View as List"
+msgstr "Преглед списка"
+
+#: ../src/Widgets/ViewSelector.vala:76
+msgid "View in Columns"
+msgstr "Преглед у ступцима"
+
+#: ../src/Noise.vala:65
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Daniel Fore https://launchpad.net/~danrabbit\n"
+"  Igor https://launchpad.net/~mazezamte\n"
+"  Milena https://launchpad.net/~milenad13\n"
+"  Иван Благојевић https://launchpad.net/~ivanblago\n"
+"  Саша Петровић https://launchpad.net/~salepetronije"
+
+#: ../src/Objects/HistoryPlaylist.vala:40
+msgid "History"
+msgstr "Историјат"
+
+#: ../src/Objects/LyricFetcher.vala:141
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr ""
+
+#: ../src/LibraryWindow.vala:250
+msgid "Import to Library…"
+msgstr "Увезите у библиотеку..."
+
+#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
+msgid "Preferences"
+msgstr "Подешавања"
+
+#: ../src/LibraryWindow.vala:270
+msgid "Previous"
+msgstr ""
+
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:972
+msgid "Play"
+msgstr ""
+
+#: ../src/LibraryWindow.vala:274
+msgid "Next"
+msgstr ""
+
+#: ../src/LibraryWindow.vala:278
+msgid "Search Music"
+msgstr "Претражи музику"
+
+#: ../src/LibraryWindow.vala:640 ../src/LibraryWindow.vala:744
+#: ../src/Views/DeviceSummaryWidget.vala:99
 msgid "Music"
 msgstr "Музика"
 
-#: ../src/Views/DeviceSummaryWidget.vala:253
-msgid "All Music"
-msgstr "Сва музика"
+#: ../src/LibraryWindow.vala:812
+msgid "No songs in Queue"
+msgstr "Нема песама у реду"
 
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid "Sync Failed"
-msgstr "Усклађивање није успело"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
+#: ../src/LibraryWindow.vala:812
 msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
 msgstr ""
-"Листа нумера %s користи се за усклађивање уређаја %s, али га је немогуће "
-"пронаћи."
+"Да додате нумере у ред, користите <b>десни клик</b> на ставку и одаберите "
+"<b>Ред</b>. Када се нумера заврши, поређане нумере биће пустане прве пре "
+"следеће у тренутној листи нумера."
 
-#: ../src/Views/DeviceSummaryWidget.vala:320
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Cannot Sync"
-msgstr "Није могуће ускладити"
+#: ../src/LibraryWindow.vala:815
+msgid "No songs in History"
+msgstr "Нема нумера у историјату"
 
-#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/LibraryWindow.vala:815
 msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
 msgstr ""
-"Није могуће ускладити уређај са одабраним поставкама. Нема довољно простора "
-"на диску"
+"Након дела нумере која је одслушана, додата је у историјат листу.\n"
+"Можете да користите  ову листу  да видите све нумере слушане у овој сесији."
 
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Уређај већ одрађује операцију."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
-msgid "No Songs"
-msgstr "Нема песама"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
-msgid "Updating playlist. Please wait."
+#: ../src/LibraryWindow.vala:966
+msgid "Pause"
 msgstr ""
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Да додате нумеру листи нумера, користите  <b>десни клик</b> на њу и "
-"одаберите <b>Додај у листу нумера</b>."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid "Edit Smart Playlist"
-msgstr "Уреди паметну листу"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"Ова листа нумера ће бити аутоматски популаризована када се нумере ускладе са "
-"њеним правилима. Да промените правила, користите  <b>десни клик</b> на њу у "
-"панелу и кликните на <b>Измени</b>. Опционо, моћете кликнути на дугме испод."
-
-#: ../src/Views/Wrappers/ViewWrapper.vala:444
-msgid "No media"
-msgstr "Нема уређаја"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Get Some Tunes"
-msgstr "Набави неке песме"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
-msgid "Add music to your library."
-msgstr "Додај музику својој библиотеци."
-
+#: ../src/LibraryWindow.vala:1045
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-#: ../src/LibraryWindow.vala:1086
 msgid "Import Music"
 msgstr "Увоз музике"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Import music from a source into your library."
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+msgid "Would you like to install the %s plugin?\n"
 msgstr ""
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Change Music Folder"
-msgstr "Промени музичку фасциклу."
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
+msgid ""
+"\n"
+"This song cannot be played. The %s plugin is required to play the song."
+msgstr ""
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Учитај музику из фасцикле, мреже или спољног диска."
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
+msgid "Install Plugin"
+msgstr "Инсталирајте прикључак"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import your Music"
-msgstr "Увези музику"
+#: ../src/Dialogs/FileNotFoundDialog.vala:53
+msgid "File not found"
+msgstr "Нисам пронашао датотеку"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import all your Music from %s into your library."
-msgstr "Увези сву своју музику из  %s у своју библиотеку."
+#: ../src/Dialogs/FileNotFoundDialog.vala:59
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr ""
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
-msgid "Select Music Folder"
-msgstr "Одабери музичку фасциклу"
+#: ../src/Dialogs/FileNotFoundDialog.vala:62
+msgid "%i music files could not be found?"
+msgstr ""
 
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "Нису пронађене песме."
+#: ../src/Dialogs/FileNotFoundDialog.vala:85
+msgid "Rescan Library"
+msgstr "Учитај збирку поново"
 
-#: ../src/Views/ListView/ListView.vala:357
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i трака"
-msgstr[1] "%i траке"
-msgstr[2] "%i tracks"
+#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Views/ListView/Lists/MusicListView.vala:123
+msgid "Remove Song"
+msgstr "Уклони песму"
 
-#: ../src/Views/ListView/ListView.vala:359
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u песма"
-msgstr[1] "%u песме"
-msgstr[2] "%u песама"
+#: ../src/Dialogs/FileNotFoundDialog.vala:88
+msgid "Find Song"
+msgstr ""
 
-#: ../src/Views/ListView/ListView.vala:367
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
+#: ../src/Dialogs/FileNotFoundDialog.vala:124
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
+msgid "Choose Music Folder"
+msgstr "Одаберите музичку фасциклу"
 
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
-msgid "%i kbps"
-msgstr "%i kb/s"
+#: ../src/Dialogs/PreferencesWindow.vala:46
+msgid "Select Music Folder…"
+msgstr "Одаберите Музичку фасциклу"
 
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: ../src/Views/ListView/Lists/MusicListView.vala:627
-msgid "Never"
-msgstr "Никад"
+#: ../src/Dialogs/PreferencesWindow.vala:99 ../src/Dialogs/MediaEditor.vala:153
+msgid "Close"
+msgstr ""
 
-#: ../src/Views/ListView/Lists/GenericList.vala:118
-msgid "Autosize Columns"
-msgstr "Аутоматска величина колона"
+#: ../src/Dialogs/PreferencesWindow.vala:131
+msgid "General"
+msgstr "Опште"
+
+#: ../src/Dialogs/PreferencesWindow.vala:137
+msgid "Music Folder Location"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:145
+msgid "Library Management"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:152
+msgid "Keep Music folder organized:"
+msgstr "Држи Музичку датотеку организованом"
+
+#: ../src/Dialogs/PreferencesWindow.vala:156
+msgid "Write metadata to file:"
+msgstr "Додај мета податке датотеци:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:160
+msgid "Copy imported files to Library:"
+msgstr "Умножи увежено у библиотеку:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:162
+msgid "Desktop Integration"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:167
+msgid "Continue playback when closed:"
+msgstr ""
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:53
+msgid "Import from Device"
+msgstr "Увоз са уређаја"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:70
+msgid "Import media from %s"
+msgstr "Увоз медија са %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:71
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"Следеће датотеке су пронађене у %s, али нису у вашој библиотеци. Означите "
+"све датотеке које желите да увезете."
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
+msgid "Import all media"
+msgstr "Увезите све медије"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:77
+#: ../plugins/Devices/CDRom/CDView.vala:88
+msgid "Import"
+msgstr "Увоз"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:78
+msgid "Don't Import"
+msgstr "Не увози"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:86
+msgid "Import %i items from %s"
+msgstr "Увези %i ставке из %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:90
+msgid "Import %s from %s"
+msgstr "Увези %s из %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:118
+msgid "ID"
+msgstr "ИД"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
+#: ../src/Dialogs/SmartPlaylistEditor.vala:276
+msgid "Title"
+msgstr "Наслов"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:170
+msgid "Select individual media to import:"
+msgstr "Одаберите појединачно медије за увоз:"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:188
+msgid "Check Item"
+msgstr "Проверите ставку"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:189
+msgid "Check Album"
+msgstr "Проверите албум"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
+msgid "Check Artist"
+msgstr "Провери извођача"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
+msgid "Cannot Import"
+msgstr "Немогуће увожење"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"Музика већ обавља радњу са датотекама. Молим сачекајте да се заврши увожење "
+"из %d"
+
+#: ../src/Dialogs/MediaEditor.vala:72
+msgid "Title:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:74
+msgid "Artist:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:76
+msgid "Album Artist:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:78
+msgid "Album:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:80
+msgid "Genre:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:82
+msgid "Composer:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:84
+msgid "Grouping:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:86
+msgid "Comment:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:88
+msgid "Track:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:90
+msgid "Disk:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:92
+msgid "Year:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:94
+msgid "Rating:"
+msgstr ""
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
+msgid "Export Playlists"
+msgstr "Извези листу"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
+msgid "Set Music Folder"
+msgstr "Постави музичку фасциклу"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
+msgid "Set Music Folder?"
+msgstr "Постави музичку фасциклу?"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Да ли сте сигурни да желите да поставите музичку фасциклу за  %s? Ово ће "
+"ресетовати библиотеку и уклонити ваше листе."
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/NotImportedWindow.vala:64
+msgid "Move to Trash"
+msgstr "Премести у смеће"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:51
+msgid "Remove from %s"
+msgstr "Уклони из %s"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:61
+msgid "Remove %d Songs From %s?"
+msgstr "Уклони %d песме из %s?"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:64
+msgid "Remove \"%s\" From %s?"
+msgstr "Уклини \"%s\" из %s?"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:73
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+"Ово ће уклонити песму из збирке и са свих уређаја који се самостално "
+"усклађују са %s."
+msgstr[1] ""
+"Ово ће уклонити песме из збирке и са свих уређаја који се самостално "
+"усклађују са %s."
+msgstr[2] ""
+"Ово ће уклонити песме из збирке и са свих уређаја који се самостално "
+"усклађују са %s."
+
+#: ../src/Dialogs/SyncWarningDialog.vala:57
+msgid "Import media to Library"
+msgstr ""
+
+#: ../src/Dialogs/SyncWarningDialog.vala:58
+msgid "Continue Syncing"
+msgstr "Настави усклађивање"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:59
+msgid "Stop Syncing"
+msgstr "Заустави усклађивање"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:66
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+
+#: ../src/Dialogs/SyncWarningDialog.vala:72
+msgid "Sync will remove %i items from %s"
+msgstr ""
+
+#: ../src/Dialogs/SyncWarningDialog.vala:75
+msgid "Sync will remove 1 item from %s"
+msgstr ""
+
+#: ../src/Dialogs/NotImportedWindow.vala:52
+#: ../src/Dialogs/NotImportedWindow.vala:55
+msgid "Unable to import %d items from %s"
+msgstr "Немогуће увожење %d ставки из %s"
+
+#: ../src/Dialogs/NotImportedWindow.vala:56
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s немогуће је увожење %d ставки. Датотеке су можда оштећене."
+
+#: ../src/Dialogs/NotImportedWindow.vala:59
+msgid "Move all corrupted files to trash"
+msgstr "Помери све оштећене датотеке у смеће"
+
+#: ../src/Dialogs/NotImportedWindow.vala:66
+msgid "Ignore"
+msgstr "Игнориши"
+
+#: ../src/Dialogs/NotImportedWindow.vala:81
+msgid "del"
+msgstr "брисати"
+
+#: ../src/Dialogs/NotImportedWindow.vala:86
+msgid "File Location"
+msgstr "Путања датотеке"
+
+#: ../src/Dialogs/NotImportedWindow.vala:101
+msgid "Select individual files to move to trash:"
+msgstr "Одаберите поједине датотеке за померању у смеће:"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:36
+msgid "Smart Playlist Editor"
+msgstr "Паметни уређивач листи"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:48
+#: ../src/Dialogs/SmartPlaylistEditor.vala:56
+msgid "Name of Playlist"
+msgstr "Назив листе"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:49
+#: ../src/Dialogs/SmartPlaylistEditor.vala:57
+msgid "Rules"
+msgstr "Правила"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:50
+#: ../src/Dialogs/SmartPlaylistEditor.vala:58
+msgid "Options"
+msgstr "Опције"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:62
+msgid "Playlist Title"
+msgstr "Наслов листе"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:68
+msgid "Match"
+msgstr "Поклапање"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:70
+msgid "any"
+msgstr "било који"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:71
+msgid "all"
+msgstr "све"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:77
+msgid "of the following:"
+msgstr "од следећег:"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:89
+msgid "Add"
+msgstr ""
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr "Ограничи на"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr "ставке"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Bitrate"
+msgstr "Битрата"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:266
+msgid "Comment"
+msgstr "Коментар"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Composer"
+msgstr "Композитор"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:268
+msgid "Date Added"
+msgstr "Датум додавања"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Genre"
+msgstr "Жанр"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Grouping"
+msgstr "Разврставање"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Last Played"
+msgstr "Последње извођено"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:272
+#: ../src/Dialogs/SmartPlaylistEditor.vala:406
+msgid "Length"
+msgstr "Трајање"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:273
+msgid "Playcount"
+msgstr "Број пуштања"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:274
+msgid "Rating"
+msgstr "Оцена"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:275
+msgid "Skipcount"
+msgstr ""
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:277
+msgid "Year"
+msgstr "Година"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:341
+msgid "is"
+msgstr "је"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:342
+msgid "contains"
+msgstr "садржи"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:343
+msgid "does not contain"
+msgstr "не садржи"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:369
+#: ../src/Dialogs/SmartPlaylistEditor.vala:383
+msgid "is exactly"
+msgstr "је тачно"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:370
+msgid "is at most"
+msgstr ""
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:371
+msgid "is at least"
+msgstr ""
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:384
+msgid "is within"
+msgstr ""
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:385
+msgid "is before"
+msgstr "је пре"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:407
+msgid "seconds"
+msgstr "секунди"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:410
+msgid "days ago"
+msgstr "дана раније"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:413
+msgid "kbps"
+msgstr "kbps"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
@@ -546,6 +1096,10 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr "Величина датотеке"
 
+#: ../src/Views/ListView/Lists/GenericList.vala:118
+msgid "Autosize Columns"
+msgstr "Аутоматска величина колона"
+
 #: ../src/Views/ListView/Lists/MusicListView.vala:84
 msgid "Remove from Library"
 msgstr "Уклони из библиотеке"
@@ -562,55 +1116,50 @@ msgstr "Уклони из уређаја"
 msgid "Scroll to Current Song"
 msgstr "Скролуј до тренутне песме"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:117
+#: ../src/Views/ListView/Lists/MusicListView.vala:118
 msgid "Edit Song Info"
 msgstr "Уреди информације песме"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:118
+#: ../src/Views/ListView/Lists/MusicListView.vala:119
 msgid "Show in File Browser"
 msgstr "Прикажи у Прегледачу датотека"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:119
+#: ../src/Views/ListView/Lists/MusicListView.vala:120
 msgid "Other actions"
 msgstr "Остале радње"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:120
+#: ../src/Views/ListView/Lists/MusicListView.vala:121
 msgctxt "Action item (verb)"
 msgid "Queue"
 msgstr "Ред"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:121
+#: ../src/Views/ListView/Lists/MusicListView.vala:122
 msgid "Add to Playlist"
 msgstr "Додај на списак песама"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:122
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-msgid "Remove Song"
-msgstr "Уклони песму"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:123
-#: ../src/Widgets/SourceListView.vala:148
-msgid "Import to Library"
-msgstr "Увези у библиотеку"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:178
+#: ../src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
 msgstr "Нова листа..."
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:218
+#: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
 msgstr "Увези %i од %i одабраних нумера."
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:220
+#: ../src/Views/ListView/Lists/MusicListView.vala:229
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] "Увези %i песму"
 msgstr[1] "Увези %i песме"
 msgstr[2] "Увези %i песама"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:612
+#: ../src/Views/ListView/Lists/MusicListView.vala:600
 msgid "1234 kbps"
 msgstr "1234 kbps"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:615
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
+msgid "Never"
+msgstr "Никад"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -619,9 +1168,32 @@ msgstr "1234 kbps"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: ../src/Views/ListView/Lists/MusicListView.vala:683
+#: ../src/Views/ListView/Lists/MusicListView.vala:671
 msgid "Sample List String"
 msgstr "Узорак листе"
+
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
+msgid "%i kbps"
+msgstr "%i kb/s"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
+msgid "On Left"
+msgstr "На лево"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+msgid "On Top"
+msgstr "На врх"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "Без оцене"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i Звезда"
+msgstr[1] "%i Звезде"
+msgstr[2] "%i Звезда"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
 msgid "Genres"
@@ -650,30 +1222,6 @@ msgstr "Kомпозитори"
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Groupings"
 msgstr "Груписања"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
-msgid "Automatic"
-msgstr "Аутоматски"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
-msgid "On Left"
-msgstr "На лево"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
-msgid "On Top"
-msgstr "На врх"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Без оцене"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i Звезда"
-msgstr[1] "%i Звезде"
-msgstr[2] "%i Звезда"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -755,318 +1303,209 @@ msgstr "Сви %i композитори"
 msgid "No Composers"
 msgstr "Нема композитора"
 
-#: ../src/Views/ContentView.vala:21
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
+#: ../src/Views/ListView/ListView.vala:86
+msgid "No Songs Found."
+msgstr "Нису пронађене песме."
 
-#: ../src/Views/GridView/PopupListView.vala:58
+#: ../src/Views/ListView/ListView.vala:357
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i трака"
+msgstr[1] "%i траке"
+msgstr[2] "%i tracks"
+
+#: ../src/Views/ListView/ListView.vala:359
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u песма"
+msgstr[1] "%u песме"
+msgstr[2] "%u песама"
+
+#: ../src/Views/ListView/ListView.vala:367
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: ../src/Views/GridView/PopupListView.vala:59
 msgid "Set new album cover"
 msgstr ""
 
-#: ../src/Views/GridView/PopupListView.vala:152
+#: ../src/Views/GridView/PopupListView.vala:156
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
 msgstr "%s од %s"
 
-#: ../src/Views/GridView/PopupListView.vala:248
+#: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Cancel"
 msgstr ""
 
-#: ../src/Views/GridView/PopupListView.vala:248
+#: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Open"
 msgstr ""
 
-#: ../src/Views/GridView/PopupListView.vala:251
+#: ../src/Views/GridView/PopupListView.vala:259
 msgid "Image files"
 msgstr ""
 
-#: ../src/Views/GridView/GridView.vala:54
+#: ../src/Views/GridView/GridView.vala:44
 msgid "No Albums Found."
 msgstr "Нису пронађени албуми."
 
-#: ../src/Views/GridView/GridView.vala:132
+#: ../src/Views/GridView/GridView.vala:141
 msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] "%u албум"
 msgstr[1] "%u албума"
 msgstr[2] "%u албума"
 
-#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
-msgid "Rename"
-msgstr "Преименуј"
+#: ../src/Views/DeviceView.vala:38
+msgid "Cancelling…"
+msgstr "Отказујем…"
 
-#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Remove"
-msgstr "Уклони"
+#: ../src/Views/DeviceView.vala:38
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "Радња уређаја је отказана и биће заустављен након овог медија."
 
-#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
-#: ../src/Widgets/SourceListView.vala:90
-msgid "Export…"
-msgstr "Извоз..."
+#: ../src/Views/DeviceView.vala:59
+msgid "OK"
+msgstr "У реду"
 
-#: ../src/Widgets/SourceListView.vala:73
-msgid "Edit…"
-msgstr "Уређивање..."
+#: ../src/Views/DeviceView.vala:100
+msgid "No External Songs"
+msgstr "Нема спољних песама"
 
-#: ../src/Widgets/SourceListView.vala:88
-msgid "Save as Playlist"
-msgstr "Сачувај као списак за извођење"
+#: ../src/Views/DeviceView.vala:100
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr "Нису пронађене песме на овом уређају које немате у вашој библиотеци."
 
-#: ../src/Widgets/SourceListView.vala:156
-msgid "Eject"
-msgstr "Избаци"
+#: ../src/Views/DeviceSummaryWidget.vala:73
+msgid "Device Name:"
+msgstr "Име уређаја:"
 
-#: ../src/Widgets/SourceListView.vala:161
-#: ../src/Widgets/SourceListView.vala:201
-msgid "New Playlist"
-msgstr "Нови списак песама"
+#: ../src/Views/DeviceSummaryWidget.vala:77
+msgid "Device Name"
+msgstr "Име уређаја:"
 
-#: ../src/Widgets/SourceListView.vala:166
-#: ../src/Widgets/SourceListView.vala:202
-msgid "New Smart Playlist"
-msgstr "Нови паметни списак песама"
+#: ../src/Views/DeviceSummaryWidget.vala:79
+msgid "Automatically sync when plugged in:"
+msgstr "Аутоматски усклади при копчању:"
 
-#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
-msgid "Sync"
+#: ../src/Views/DeviceSummaryWidget.vala:86
+msgid "Sync:"
 msgstr "Усклади"
 
-#: ../src/Widgets/SourceListView.vala:203
-msgid "Import Playlists"
-msgstr "Увези списак за извођење"
+#: ../src/Views/DeviceSummaryWidget.vala:98
+msgid "Other Files"
+msgstr "Остале датотеке"
 
-#: ../src/Widgets/SourceListView.vala:313
-msgid "Library"
-msgstr "Збирка"
+#: ../src/Views/DeviceSummaryWidget.vala:253
+msgid "All Music"
+msgstr "Сва музика"
 
-#: ../src/Widgets/SourceListView.vala:314
-msgid "Devices"
-msgstr "Уређаји"
+#: ../src/Views/DeviceSummaryWidget.vala:308
+msgid "Sync Failed"
+msgstr "Усклађивање није успело"
 
-#: ../src/Widgets/SourceListView.vala:315
-msgid "Network"
-msgstr "Мрежа"
-
-#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
-msgid "Playlists"
-msgstr "Спискови за извођење"
-
-#: ../src/Widgets/PresetList.vala:47
-msgid "Delete Current"
-msgstr "Избриши тренутно"
-
-#: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
-#: ../src/Widgets/EqualizerPopover.vala:339
-msgid "Off"
-msgstr "Искључено"
-
-#: ../src/Widgets/StatusBar.vala:64
-msgid "Enable Repeat"
-msgstr "Омогући понављање"
-
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Song"
-msgstr "Песма"
-
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Repeat Song"
-msgstr "Понављај песму"
-
-#: ../src/Widgets/StatusBar.vala:66 ../src/Dialogs/MediaEditor.vala:194
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
-#: ../src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Album"
-msgstr "Албум"
-
-#: ../src/Widgets/StatusBar.vala:66
-msgid "Repeat Album"
-msgstr "Понављај албум"
-
-#: ../src/Widgets/StatusBar.vala:67 ../src/Dialogs/MediaEditor.vala:192
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
-#: ../src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Artist"
-msgstr "Извођач"
-
-#: ../src/Widgets/StatusBar.vala:67
-msgid "Repeat Artist"
-msgstr "Понављај извођачево"
-
-#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
-msgid "All"
-msgstr "Све"
-
-#: ../src/Widgets/StatusBar.vala:68
-msgid "Disable Repeat"
-msgstr ""
-
-#: ../src/Widgets/StatusBar.vala:94
-msgid "Enable Shuffle"
-msgstr "Омогући мешање"
-
-#: ../src/Widgets/StatusBar.vala:95
-msgid "Disable Shuffle"
-msgstr "Онемогући мешање"
-
-#: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
-msgid "Add Playlist"
-msgstr "Додај нови списак"
-
-#: ../src/Widgets/StatusBar.vala:140
-msgid "Add Smart Playlist"
-msgstr "Додај нови паметан списак"
-
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: ../src/Widgets/StatusBar.vala:189
-msgid "Equalizer: %s"
-msgstr ""
-
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Hide"
-msgstr "Сакриј"
-
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Show Info Panel"
-msgstr "Прикажи окно обавештења"
-
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Show"
-msgstr "Прикажи"
-
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Hide Info Panel"
-msgstr "Сакриј окно обавештења"
-
-#: ../src/Widgets/EqualizerPopover.vala:163
-msgid "Save preset"
-msgstr "Сaчуваj предподешавања"
-
-#: ../src/Widgets/EqualizerPopover.vala:426
-msgid "%s (Custom)"
-msgstr "%s (Произвољно)"
-
-#: ../src/Widgets/EqualizerPopover.vala:428
-msgid "%s (Custom %i)"
-msgstr "%s (Произвољно %i)"
-
-#: ../src/Widgets/EqualizerPopover.vala:431
-msgid "Custom Preset"
-msgstr "Произвољно предподешено"
-
-#: ../src/Widgets/EqualizerPopover.vala:433
-msgid "Custom Preset %i"
-msgstr "Произвољна предподешавања %i"
-
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "Преглед албума"
-
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "Преглед списка"
-
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "Преглед у ступцима"
-
-#: ../src/Widgets/SpaceWidget.vala:266
-msgid "Free"
-msgstr "Слободно"
-
-#: ../src/Widgets/SpaceWidget.vala:383
-msgid "Using %s of %s (%.2f%)"
-msgstr ""
-
-#: ../src/LibraryWindow.vala:250
-msgid "Import to Library…"
-msgstr "Увезите у библиотеку..."
-
-#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
-msgid "Preferences"
-msgstr "Подешавања"
-
-#: ../src/LibraryWindow.vala:270
-msgid "Previous"
-msgstr ""
-
-#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1013
-msgid "Play"
-msgstr ""
-
-#: ../src/LibraryWindow.vala:274
-msgid "Next"
-msgstr ""
-
-#: ../src/LibraryWindow.vala:278
-msgid "Search Music"
-msgstr "Претражи музику"
-
-#: ../src/LibraryWindow.vala:853
-msgid "No songs in Queue"
-msgstr "Нема песама у реду"
-
-#: ../src/LibraryWindow.vala:853
+#: ../src/Views/DeviceSummaryWidget.vala:308
 msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
+"The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Да додате нумере у ред, користите <b>десни клик</b> на ставку и одаберите "
-"<b>Ред</b>. Када се нумера заврши, поређане нумере биће пустане прве пре "
-"следеће у тренутној листи нумера."
+"Листа нумера %s користи се за усклађивање уређаја %s, али га је немогуће "
+"пронаћи."
 
-#: ../src/LibraryWindow.vala:856
-msgid "No songs in History"
-msgstr "Нема нумера у историјату"
+#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Cannot Sync"
+msgstr "Није могуће ускладити"
 
-#: ../src/LibraryWindow.vala:856
+#: ../src/Views/DeviceSummaryWidget.vala:320
 msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
+"Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Након дела нумере која је одслушана, додата је у историјат листу.\n"
-"Можете да користите  ову листу  да видите све нумере слушане у овој сесији."
+"Није могуће ускладити уређај са одабраним поставкама. Нема довољно простора "
+"на диску"
 
-#: ../src/LibraryWindow.vala:1007
-msgid "Pause"
-msgstr ""
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "Уређај већ одрађује операцију."
 
-#: ../src/LocalBackend/LocalLibrary.vala:184
-msgid "Importing music from %s…"
-msgstr "Увожење музике из %s…"
+#: ../src/Views/ContentView.vala:21
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
 
-#: ../src/LocalBackend/LocalLibrary.vala:212
-msgid "Adding files to library…"
-msgstr "Додавање датотека библиотеци..."
+#: ../src/Views/Wrappers/ViewWrapper.vala:442
+msgid "No media"
+msgstr "Нема уређаја"
 
-#: ../src/LocalBackend/LocalLibrary.vala:227
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Узоз</b> музике у библиотеку…"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
+msgid "No Songs"
+msgstr "Нема песама"
 
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "All music files are already in your library"
-msgstr ""
-
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "No files were imported."
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
+msgid "Updating playlist. Please wait."
 msgstr ""
 
-#: ../src/LocalBackend/LocalLibrary.vala:256
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Скенирање музике због промена. Ово можда потраје..."
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+"Да додате нумеру листи нумера, користите  <b>десни клик</b> на њу и "
+"одаберите <b>Додај у листу нумера</b>."
 
-#: ../src/LocalBackend/LocalLibrary.vala:330
-msgid "Added to your queue:"
-msgstr "Додато вашем реду:"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid "Edit Smart Playlist"
+msgstr "Уреди паметну листу"
 
-#: ../src/LocalBackend/LocalLibrary.vala:341
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"Ова листа нумера ће бити аутоматски популаризована када се нумере ускладе са "
+"њеним правилима. Да промените правила, користите  <b>десни клик</b> на њу у "
+"панелу и кликните на <b>Измени</b>. Опционо, моћете кликнути на дугме испод."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Get Some Tunes"
+msgstr "Набави неке песме"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
+msgid "Add music to your library."
+msgstr "Додај музику својој библиотеци."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr ""
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Change Music Folder"
+msgstr "Промени музичку фасциклу."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Учитај музику из фасцикле, мреже или спољног диска."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import your Music"
+msgstr "Увези музику"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import all your Music from %s into your library."
+msgstr "Увези сву своју музику из  %s у своју библиотеку."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
+msgid "Select Music Folder"
+msgstr "Одабери музичку фасциклу"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
@@ -1092,493 +1531,74 @@ msgstr "Пречесто пуштане"
 msgid "Not Recently Played"
 msgstr "Није скоро пуштано"
 
-#: ../src/Objects/LyricFetcher.vala:141
-msgid "Lyrics fetched from www.lyricsmania.com"
+#: ../src/LocalBackend/LocalLibrary.vala:182
+msgid "Importing music from %s…"
+msgstr "Увожење музике из %s…"
+
+#: ../src/LocalBackend/LocalLibrary.vala:210
+msgid "Adding files to library…"
+msgstr "Додавање датотека библиотеци..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:225
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>Узоз</b> музике у библиотеку…"
+
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "All music files are already in your library"
 msgstr ""
 
-#: ../src/Objects/HistoryPlaylist.vala:40
-msgid "History"
-msgstr "Историјат"
-
-#: ../src/Noise.vala:65
-msgid "translator-credits"
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "No files were imported."
 msgstr ""
-"Launchpad Contributions:\n"
-"  Daniel Fore https://launchpad.net/~danrabbit\n"
-"  Igor https://launchpad.net/~mazezamte\n"
-"  Milena https://launchpad.net/~milenad13\n"
-"  Иван Благојевић https://launchpad.net/~ivanblago\n"
-"  Саша Петровић https://launchpad.net/~salepetronije"
 
-#: ../src/FileOperator.vala:309
+#: ../src/LocalBackend/LocalLibrary.vala:254
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "Скенирање музике због промена. Ово можда потраје..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:328
+msgid "Added to your queue:"
+msgstr "Додато вашем реду:"
+
+#: ../src/LocalBackend/LocalLibrary.vala:339
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/FileOperator.vala:307
 msgid "Import Complete"
 msgstr "Увоз је завршен"
 
-#: ../src/FileOperator.vala:309
+#: ../src/FileOperator.vala:307
 msgid "%s has imported your library."
 msgstr "%s је увезао вашу библиотеку."
 
-#: ../src/FileOperator.vala:322
+#: ../src/FileOperator.vala:320
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Умножавање</b> датотека у <b>датотеку Музика</b>…"
 
-#: ../src/Dialogs/MediaEditor.vala:83
-msgid "Details"
+#: ../plugins/LastFM/SimilarMediaView.vala:41
+msgid "media"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:369
-msgid "Lyrics"
-msgstr "Стихови"
-
-#: ../src/Dialogs/MediaEditor.vala:94 ../src/Dialogs/PreferencesWindow.vala:99
-msgid "Close"
+#: ../plugins/LastFM/SimilarMediaView.vala:47
+msgid "Similar Media"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:343
-msgid "Editing $NAME by $ARTIST"
-msgstr ""
+#: ../plugins/LastFM/SimilarMedia.vala:37
+msgid "Similar"
+msgstr "Слично"
 
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:345
-msgid "Editing %s"
-msgstr "Уређујем %s"
+#: ../plugins/LastFM/LastFM.vala:101
+msgid "No similar songs found"
+msgstr "Није пронађена слична песма"
 
-#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:348
-msgid "Editing %i songs"
-msgstr ""
-
-#: ../src/Dialogs/MediaEditor.vala:191
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
-#: ../src/Dialogs/SmartPlaylistEditor.vala:276
-msgid "Title"
-msgstr "Наслов"
-
-#: ../src/Dialogs/MediaEditor.vala:193
-msgid "Album Artist"
-msgstr "Извођач албума"
-
-#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:463
-#: ../src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Genre"
-msgstr "Жанр"
-
-#: ../src/Dialogs/MediaEditor.vala:196
-#: ../src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Composer"
-msgstr "Композитор"
-
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
-#: ../src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Grouping"
-msgstr "Разврставање"
-
-#: ../src/Dialogs/MediaEditor.vala:198
-#: ../src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Comment"
-msgstr "Коментар"
-
-#: ../src/Dialogs/MediaEditor.vala:199
-msgid "Track"
-msgstr ""
-
-#: ../src/Dialogs/MediaEditor.vala:200
-msgid "Disc"
-msgstr "Диск"
-
-#: ../src/Dialogs/MediaEditor.vala:201
-#: ../src/Dialogs/SmartPlaylistEditor.vala:277
-msgid "Year"
-msgstr "Година"
-
-#: ../src/Dialogs/MediaEditor.vala:202
-#: ../src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "Rating"
-msgstr "Оцена"
-
-#: ../src/Dialogs/MediaEditor.vala:292
-msgid "Lyrics not found for %s"
-msgstr ""
-
-#: ../src/Dialogs/MediaEditor.vala:629
-msgid "Reset"
-msgstr ""
-
-#: ../src/Dialogs/MediaEditor.vala:633
-msgid "<b>Stats</b>"
-msgstr ""
-
-#: ../src/Dialogs/SyncWarningDialog.vala:57
-msgid "Import media to Library"
-msgstr ""
-
-#: ../src/Dialogs/SyncWarningDialog.vala:58
-msgid "Continue Syncing"
-msgstr "Настави усклађивање"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:59
-msgid "Stop Syncing"
-msgstr "Заустави усклађивање"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:66
+#: ../plugins/LastFM/LastFM.vala:101
 msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
+"There are no songs similar to the current song in your library. Make sure "
+"all song info is correct and you are connected to the Internet. Some songs "
+"may not have matches."
 msgstr ""
-
-#: ../src/Dialogs/SyncWarningDialog.vala:72
-msgid "Sync will remove %i items from %s"
-msgstr ""
-
-#: ../src/Dialogs/SyncWarningDialog.vala:75
-msgid "Sync will remove 1 item from %s"
-msgstr ""
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
-msgid "Would you like to install the %s plugin?\n"
-msgstr ""
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
-msgid ""
-"\n"
-"This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
-msgid "Install Plugin"
-msgstr "Инсталирајте прикључак"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
-#: ../src/Dialogs/NotImportedWindow.vala:64
-msgid "Move to Trash"
-msgstr "Премести у смеће"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
-msgid "Remove from %s"
-msgstr "Уклони из %s"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
-msgid "Remove %d Songs From %s?"
-msgstr "Уклони %d песме из %s?"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
-msgid "Remove \"%s\" From %s?"
-msgstr "Уклини \"%s\" из %s?"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
-msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
-msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
-msgstr[0] ""
-"Ово ће уклонити песму из збирке и са свих уређаја који се самостално "
-"усклађују са %s."
-msgstr[1] ""
-"Ово ће уклонити песме из збирке и са свих уређаја који се самостално "
-"усклађују са %s."
-msgstr[2] ""
-"Ово ће уклонити песме из збирке и са свих уређаја који се самостално "
-"усклађују са %s."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:53
-msgid "File not found"
-msgstr "Нисам пронашао датотеку"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:59
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:62
-msgid "%i music files could not be found?"
-msgstr ""
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
-msgid "Rescan Library"
-msgstr "Учитај збирку поново"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:88
-msgid "Find Song"
-msgstr ""
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:124
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
-msgid "Choose Music Folder"
-msgstr "Одаберите музичку фасциклу"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:53
-msgid "Import from Device"
-msgstr "Увоз са уређаја"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:70
-msgid "Import media from %s"
-msgstr "Увоз медија са %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:71
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Следеће датотеке су пронађене у %s, али нису у вашој библиотеци. Означите "
-"све датотеке које желите да увезете."
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
-msgid "Import all media"
-msgstr "Увезите све медије"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:77
-#: ../plugins/Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr "Увоз"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:78
-msgid "Don't Import"
-msgstr "Не увози"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:86
-msgid "Import %i items from %s"
-msgstr "Увези %i ставке из %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:90
-msgid "Import %s from %s"
-msgstr "Увези %s из %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:118
-msgid "ID"
-msgstr "ИД"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:170
-msgid "Select individual media to import:"
-msgstr "Одаберите појединачно медије за увоз:"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:188
-msgid "Check Item"
-msgstr "Проверите ставку"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:189
-msgid "Check Album"
-msgstr "Проверите албум"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
-msgid "Check Artist"
-msgstr "Провери извођача"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid "Cannot Import"
-msgstr "Немогуће увожење"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-"Музика већ обавља радњу са датотекама. Молим сачекајте да се заврши увожење "
-"из %d"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
-msgid "Export Playlists"
-msgstr "Извези листу"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
-msgid "Set Music Folder"
-msgstr "Постави музичку фасциклу"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
-msgid "Set Music Folder?"
-msgstr "Постави музичку фасциклу?"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Да ли сте сигурни да желите да поставите музичку фасциклу за  %s? Ово ће "
-"ресетовати библиотеку и уклонити ваше листе."
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:36
-msgid "Smart Playlist Editor"
-msgstr "Паметни уређивач листи"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:48
-#: ../src/Dialogs/SmartPlaylistEditor.vala:56
-msgid "Name of Playlist"
-msgstr "Назив листе"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:49
-#: ../src/Dialogs/SmartPlaylistEditor.vala:57
-msgid "Rules"
-msgstr "Правила"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:50
-#: ../src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "Options"
-msgstr "Опције"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:62
-msgid "Playlist Title"
-msgstr "Наслов листе"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:68
-msgid "Match"
-msgstr "Поклапање"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:70
-msgid "any"
-msgstr "било који"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:71
-msgid "all"
-msgstr "све"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:77
-msgid "of the following:"
-msgstr "од следећег:"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:89
-msgid "Add"
-msgstr ""
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Ограничи на"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "ставке"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Bitrate"
-msgstr "Битрата"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:268
-msgid "Date Added"
-msgstr "Датум додавања"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Last Played"
-msgstr "Последње извођено"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:272
-#: ../src/Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Трајање"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Playcount"
-msgstr "Број пуштања"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:275
-msgid "Skipcount"
-msgstr ""
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:341
-msgid "is"
-msgstr "је"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:342
-msgid "contains"
-msgstr "садржи"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:343
-msgid "does not contain"
-msgstr "не садржи"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:369
-#: ../src/Dialogs/SmartPlaylistEditor.vala:383
-msgid "is exactly"
-msgstr "је тачно"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:370
-msgid "is at most"
-msgstr ""
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:371
-msgid "is at least"
-msgstr ""
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:384
-msgid "is within"
-msgstr ""
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:385
-msgid "is before"
-msgstr "је пре"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "секунди"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "дана раније"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "kbps"
-msgstr "kbps"
-
-#: ../src/Dialogs/PreferencesWindow.vala:46
-msgid "Select Music Folder…"
-msgstr "Одаберите Музичку фасциклу"
-
-#: ../src/Dialogs/PreferencesWindow.vala:131
-msgid "General"
-msgstr "Опште"
-
-#: ../src/Dialogs/PreferencesWindow.vala:137
-msgid "Music Folder Location"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:145
-msgid "Library Management"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:152
-msgid "Keep Music folder organized:"
-msgstr "Држи Музичку датотеку организованом"
-
-#: ../src/Dialogs/PreferencesWindow.vala:156
-msgid "Write metadata to file:"
-msgstr "Додај мета податке датотеци:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:160
-msgid "Copy imported files to Library:"
-msgstr "Умножи увежено у библиотеку:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:162
-msgid "Desktop Integration"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:167
-msgid "Continue playback when closed:"
-msgstr ""
-
-#: ../src/Dialogs/NotImportedWindow.vala:52
-#: ../src/Dialogs/NotImportedWindow.vala:55
-msgid "Unable to import %d items from %s"
-msgstr "Немогуће увожење %d ставки из %s"
-
-#: ../src/Dialogs/NotImportedWindow.vala:56
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s немогуће је увожење %d ставки. Датотеке су можда оштећене."
-
-#: ../src/Dialogs/NotImportedWindow.vala:59
-msgid "Move all corrupted files to trash"
-msgstr "Помери све оштећене датотеке у смеће"
-
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "Ignore"
-msgstr "Игнориши"
-
-#: ../src/Dialogs/NotImportedWindow.vala:81
-msgid "del"
-msgstr "брисати"
-
-#: ../src/Dialogs/NotImportedWindow.vala:86
-msgid "File Location"
-msgstr "Путања датотеке"
-
-#: ../src/Dialogs/NotImportedWindow.vala:101
-msgid "Select individual files to move to trash:"
-msgstr "Одаберите поједине датотеке за померању у смеће:"
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
@@ -1590,43 +1610,35 @@ msgstr "Уређај је празан."
 msgid "This device does not contain any music."
 msgstr "Овај уређај не садржи музику."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:144
+#: ../plugins/Devices/iPod/iPodLibrary.vala:151
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "Додајем <b>$NAME</b> од <b>$ARTIST</b> на $DEVICE"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:192
+#: ../plugins/Devices/iPod/iPodLibrary.vala:199
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 msgid "Syncing <b>%s</b>…"
 msgstr "Усклађујем <b>%s</b>…"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:214
-#: ../plugins/Devices/iPod/iPodLibrary.vala:370
+#: ../plugins/Devices/iPod/iPodLibrary.vala:221
+#: ../plugins/Devices/iPod/iPodLibrary.vala:377
 msgid "Finishing sync process…"
 msgstr "Довршавам усклађивање..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:226
-#: ../plugins/Devices/iPod/iPodLibrary.vala:382
+#: ../plugins/Devices/iPod/iPodLibrary.vala:233
+#: ../plugins/Devices/iPod/iPodLibrary.vala:389
 msgid "Cancelling Sync…"
 msgstr "Отказујем усклађивање..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:333
+#: ../plugins/Devices/iPod/iPodLibrary.vala:340
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 msgid "Removing from <b>%s</b>…"
 msgstr "Уклањам са <b>%s</b>…"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:526
+#: ../plugins/Devices/iPod/iPodLibrary.vala:533
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "Уклањам <b>$NAME</b> од <b>$ARTIST</b> са $DEVICE"
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
-msgid "An Error Occured"
-msgstr "Десила се грешка"
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
-msgid "There was an error while loading this Audio CD."
-msgstr "Десила се грешка приликом учитавања звучног ЦД-а."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:85
 msgid "Audio CD Invalid"
@@ -1673,6 +1685,14 @@ msgstr ""
 msgid "An error occured during the Import of this CD"
 msgstr ""
 
+#: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr "Десила се грешка"
+
+#: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr "Десила се грешка приликом учитавања звучног ЦД-а."
+
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
 msgid "Android Phone"
 msgstr "Андроид телефон"
@@ -1680,29 +1700,6 @@ msgstr "Андроид телефон"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
 msgid "Audio Player"
 msgstr "Извођач звука"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:41
-msgid "media"
-msgstr ""
-
-#: ../plugins/LastFM/SimilarMediaView.vala:47
-msgid "Similar Media"
-msgstr ""
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid "No similar songs found"
-msgstr "Није пронађена слична песма"
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-
-#: ../plugins/LastFM/SimilarMedia.vala:37
-msgid "Similar"
-msgstr "Слично"
 
 #~ msgid "Radio Station"
 #~ msgstr "Радио станица"
@@ -1765,8 +1762,20 @@ msgstr "Слично"
 #~ msgid "Date Released"
 #~ msgstr "Датум издавања"
 
+#~ msgid "Lyrics"
+#~ msgstr "Стихови"
+
 #~ msgid "Metadata"
 #~ msgstr "Метаподаци"
+
+#~ msgid "Editing %s"
+#~ msgstr "Уређујем %s"
+
+#~ msgid "Disc"
+#~ msgstr "Диск"
+
+#~ msgid "Album Artist"
+#~ msgstr "Извођач албума"
 
 #~ msgid "Do Nothing"
 #~ msgstr "Не ради ништа"

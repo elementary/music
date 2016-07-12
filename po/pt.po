@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-01-04 11:14+0100\n"
+"POT-Creation-Date: 2016-07-11 11:39+0200\n"
 "PO-Revision-Date: 2016-07-02 00:27+0000\n"
 "Last-Translator: yEdubart <vps1992@live.com.pt>\n"
 "Language-Team: Portuguese\n"
@@ -15,140 +15,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-07-03 05:29+0000\n"
+"X-Launchpad-Export-Date: 2016-07-12 06:33+0000\n"
 "X-Generator: Launchpad (build 18115)\n"
 
-#: ../core/Utils/TimeUtils.vala:51
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d segundo"
-msgstr[1] "%d segundos"
+#: ../core/LibrariesManager.vala:143
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "A importar <b>$NAME</b> de <b>$ARTIST</b> para a coleção..."
 
-#: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
-msgid "%u minute"
-msgid_plural "%u minutes"
-msgstr[0] "%u minuto"
-msgstr[1] "%u minutos"
+#. / Used for unknown titles, artists, or album names.
+#: ../core/Media.vala:34
+msgid "Unknown"
+msgstr "Desconhecido"
 
-#: ../core/Utils/TimeUtils.vala:60
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u segundo"
-msgstr[1] "%u segundos"
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME em $ALBUM"
 
-#. / Minutes and seconds
-#: ../core/Utils/TimeUtils.vala:62
-msgctxt "minutes and seconds"
-msgid "%s and %s"
-msgstr "%s e %s"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: ../core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME de $ARTIST"
 
-#: ../core/Utils/TimeUtils.vala:69
-msgid "%u day"
-msgid_plural "%u days"
-msgstr[0] "%u dia"
-msgstr[1] "%u dias"
-
-#: ../core/Utils/TimeUtils.vala:72
-msgid "%u hour"
-msgid_plural "%u hours"
-msgstr[0] "%u hora"
-msgstr[1] "%u horas"
-
-#. / days, hours and minutes
-#: ../core/Utils/TimeUtils.vala:83
-msgctxt "days, hours and minutes"
-msgid "%s, %s and %s"
-msgstr "%s, %s e %s"
-
-#. / days and hours
-#: ../core/Utils/TimeUtils.vala:86
-msgctxt "days and hours"
-msgid "%s and %s"
-msgstr "%s e %s"
-
-#. / days and minutes
-#: ../core/Utils/TimeUtils.vala:91
-msgctxt "days and minutes"
-msgid "%s and %s"
-msgstr "%s e %s"
-
-#. / hours and minutes
-#: ../core/Utils/TimeUtils.vala:100
-msgctxt "hours and minutes"
-msgid "%s and %s"
-msgstr "%s e %s"
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: ../core/Utils/TimeUtils.vala:159
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%e/%m/%Y %H:%M"
-
-#: ../core/Utils/FileUtils.vala:294
-msgid " (%d)"
-msgstr " (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:96
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:236
-msgid "New playlist"
-msgstr "Nova lista de reprodução"
-
-#: ../core/Utils/PlaylistsUtils.vala:247
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: ../core/Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "Exportar lista de reprodução"
-
-#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
-#: ../src/Widgets/TopDisplay.vala:90 ../src/LibraryWindow.vala:1088
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
-#: ../src/Dialogs/RemoveFilesDialog.vala:52
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
-#: ../src/Dialogs/FileNotFoundDialog.vala:126
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
-#: ../src/Dialogs/SmartPlaylistEditor.vala:118
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:91
-#: ../src/Dialogs/SmartPlaylistEditor.vala:116
-msgid "Save"
-msgstr "Guardar"
-
-#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG Versão 3.0 (*.m3u)"
-
-#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Lista de reprodução Shoutcast versão 2.0 (*.pls)"
-
-#: ../core/Utils/PlaylistsUtils.vala:362
-msgid "Playlist"
-msgstr "Lista de reprodução"
-
-#: ../core/Utils/PlaylistsUtils.vala:368
-msgid "Import %s"
-msgstr "Importar %s"
-
-#: ../core/Utils/PlaylistsUtils.vala:371
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
-#: ../src/Views/GridView/PopupListView.vala:247 ../src/LibraryWindow.vala:1089
-#: ../src/Dialogs/FileNotFoundDialog.vala:127
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
-msgid "Open"
-msgstr "Abrir"
-
-#: ../core/Utils/PlaylistsUtils.vala:402
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Ficheiro não reconhecido. Falha ao importar."
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME de $ARTIST em $ALBUM"
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
@@ -222,222 +114,903 @@ msgstr "Rock calmo"
 msgid "Techno"
 msgstr "Techno"
 
-#: ../core/LibrariesManager.vala:143
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "A importar <b>$NAME</b> de <b>$ARTIST</b> para a coleção..."
+#: ../core/Utils/TimeUtils.vala:51
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d segundo"
+msgstr[1] "%d segundos"
 
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:34
-msgid "Unknown"
-msgstr "Desconhecido"
+#: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
+msgid "%u minute"
+msgid_plural "%u minutes"
+msgstr[0] "%u minuto"
+msgstr[1] "%u minutos"
 
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME em $ALBUM"
+#: ../core/Utils/TimeUtils.vala:60
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] "%u segundo"
+msgstr[1] "%u segundos"
 
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME de $ARTIST"
+#. / Minutes and seconds
+#: ../core/Utils/TimeUtils.vala:62
+msgctxt "minutes and seconds"
+msgid "%s and %s"
+msgstr "%s e %s"
 
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME de $ARTIST em $ALBUM"
+#: ../core/Utils/TimeUtils.vala:69
+msgid "%u day"
+msgid_plural "%u days"
+msgstr[0] "%u dia"
+msgstr[1] "%u dias"
+
+#: ../core/Utils/TimeUtils.vala:72
+msgid "%u hour"
+msgid_plural "%u hours"
+msgstr[0] "%u hora"
+msgstr[1] "%u horas"
+
+#. / days, hours and minutes
+#: ../core/Utils/TimeUtils.vala:83
+msgctxt "days, hours and minutes"
+msgid "%s, %s and %s"
+msgstr "%s, %s e %s"
+
+#. / days and hours
+#: ../core/Utils/TimeUtils.vala:86
+msgctxt "days and hours"
+msgid "%s and %s"
+msgstr "%s e %s"
+
+#. / days and minutes
+#: ../core/Utils/TimeUtils.vala:91
+msgctxt "days and minutes"
+msgid "%s and %s"
+msgstr "%s e %s"
+
+#. / hours and minutes
+#: ../core/Utils/TimeUtils.vala:100
+msgctxt "hours and minutes"
+msgid "%s and %s"
+msgstr "%s e %s"
+
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
+#: ../core/Utils/TimeUtils.vala:159
+msgid "%m/%e/%Y %l:%M %p"
+msgstr "%e/%m/%Y %H:%M"
+
+#: ../core/Utils/PlaylistsUtils.vala:96
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: ../core/Utils/PlaylistsUtils.vala:236
+msgid "New playlist"
+msgstr "Nova lista de reprodução"
+
+#: ../core/Utils/PlaylistsUtils.vala:247
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: ../core/Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr "Exportar lista de reprodução"
+
+#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
+#: ../src/Widgets/TopDisplay.vala:90 ../src/LibraryWindow.vala:1047
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:126
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
+#: ../src/Dialogs/RemoveFilesDialog.vala:52
+#: ../src/Dialogs/SmartPlaylistEditor.vala:118
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
+#: ../src/Dialogs/SmartPlaylistEditor.vala:116
+msgid "Save"
+msgstr "Guardar"
+
+#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG Versão 3.0 (*.m3u)"
+
+#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Lista de reprodução Shoutcast versão 2.0 (*.pls)"
+
+#: ../core/Utils/PlaylistsUtils.vala:362
+msgid "Playlist"
+msgstr "Lista de reprodução"
+
+#: ../core/Utils/PlaylistsUtils.vala:368
+msgid "Import %s"
+msgstr "Importar %s"
+
+#: ../core/Utils/PlaylistsUtils.vala:371 ../src/LibraryWindow.vala:1048
+#: ../src/Dialogs/FileNotFoundDialog.vala:127
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
+#: ../src/Views/GridView/PopupListView.vala:255
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
+msgid "Open"
+msgstr "Abrir"
+
+#: ../core/Utils/PlaylistsUtils.vala:402
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Ficheiro não reconhecido. Falha ao importar."
+
+#: ../core/Utils/FileUtils.vala:294
+msgid " (%d)"
+msgstr " (%d)"
 
 #: ../src/PlaybackManager.vala:96
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Fila de Reprodução"
 
-#: ../src/Views/DeviceView.vala:38
-msgid "Cancelling…"
-msgstr "A cancelar…"
+#: ../src/Widgets/SpaceWidget.vala:237 ../src/Widgets/SourceListView.vala:171
+msgid "Sync"
+msgstr "Sincronizar"
 
-#: ../src/Views/DeviceView.vala:38
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "A operação foi cancelada e irá terminar após este ficheiro."
+#: ../src/Widgets/SpaceWidget.vala:266
+msgid "Free"
+msgstr "Livre"
 
-#: ../src/Views/DeviceView.vala:59
-msgid "OK"
-msgstr "OK"
+#: ../src/Widgets/SpaceWidget.vala:383
+msgid "Using %s of %s (%.2f%)"
+msgstr "A utilizar %s de %s (%.2f%)"
 
-#: ../src/Views/DeviceView.vala:100
-msgid "No External Songs"
-msgstr "Sem faixas externas"
+#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
+msgid "Automatic"
+msgstr "Automático"
 
-#: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr "Todas as faixas deste dispositivo já existem na sua coleção."
+#: ../src/Widgets/PresetList.vala:47
+msgid "Delete Current"
+msgstr "Eliminar atual"
 
-#: ../src/Views/DeviceSummaryWidget.vala:73
-msgid "Device Name:"
-msgstr "Nome do dispositivo:"
+#: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
+#: ../src/Widgets/EqualizerPopover.vala:339
+msgid "Off"
+msgstr "Desligado"
 
-#: ../src/Views/DeviceSummaryWidget.vala:77
-msgid "Device Name"
-msgstr "Nome do dispositivo"
+#: ../src/Widgets/StatusBar.vala:64
+msgid "Enable Repeat"
+msgstr "Ativar repetição"
 
-#: ../src/Views/DeviceSummaryWidget.vala:79
-msgid "Automatically sync when plugged in:"
-msgstr "Sincronizar automaticamente quando inserido:"
+#: ../src/Widgets/StatusBar.vala:65
+msgid "Song"
+msgstr "Faixa"
 
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Sync:"
-msgstr "Sincronizar:"
+#: ../src/Widgets/StatusBar.vala:65
+msgid "Repeat Song"
+msgstr "Repetir faixa"
 
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Other Files"
-msgstr "Outros ficheiros"
+#: ../src/Widgets/StatusBar.vala:66
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
+#: ../src/Dialogs/SmartPlaylistEditor.vala:263
+msgid "Album"
+msgstr "Álbum"
 
-#: ../src/Views/DeviceSummaryWidget.vala:99 ../src/LibraryWindow.vala:681
-#: ../src/LibraryWindow.vala:785
+#: ../src/Widgets/StatusBar.vala:66
+msgid "Repeat Album"
+msgstr "Repetir álbum"
+
+#: ../src/Widgets/StatusBar.vala:67
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
+#: ../src/Dialogs/SmartPlaylistEditor.vala:264
+msgid "Artist"
+msgstr "Artista"
+
+#: ../src/Widgets/StatusBar.vala:67
+msgid "Repeat Artist"
+msgstr "Repetir artista"
+
+#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
+msgid "All"
+msgstr "Tudo"
+
+#: ../src/Widgets/StatusBar.vala:68
+msgid "Disable Repeat"
+msgstr "Desativar repetição"
+
+#: ../src/Widgets/StatusBar.vala:94
+msgid "Enable Shuffle"
+msgstr "Ativar desorganização"
+
+#: ../src/Widgets/StatusBar.vala:95
+msgid "Disable Shuffle"
+msgstr "Desativar desorganização"
+
+#: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
+msgid "Add Playlist"
+msgstr "Adicionar lista de reprodução"
+
+#: ../src/Widgets/StatusBar.vala:140
+msgid "Add Smart Playlist"
+msgstr "Adicionar lista de reprodução inteligente"
+
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
+#: ../src/Widgets/StatusBar.vala:189
+msgid "Equalizer: %s"
+msgstr "Equalizador: %s"
+
+#: ../src/Widgets/StatusBar.vala:199
+msgid "Hide"
+msgstr "Ocultar"
+
+#: ../src/Widgets/StatusBar.vala:199
+msgid "Show Info Panel"
+msgstr "Mostrar painel de informações"
+
+#: ../src/Widgets/StatusBar.vala:200
+msgid "Show"
+msgstr "Mostrar"
+
+#: ../src/Widgets/StatusBar.vala:200
+msgid "Hide Info Panel"
+msgstr "Ocultar painel de informações"
+
+#: ../src/Widgets/EqualizerPopover.vala:163
+msgid "Save preset"
+msgstr "Gravar pré-ajustes"
+
+#: ../src/Widgets/EqualizerPopover.vala:426
+msgid "%s (Custom)"
+msgstr "%s (Personalizar)"
+
+#: ../src/Widgets/EqualizerPopover.vala:428
+msgid "%s (Custom %i)"
+msgstr "%s (Personalizar %i)"
+
+#: ../src/Widgets/EqualizerPopover.vala:431
+msgid "Custom Preset"
+msgstr "Personalizar pré-ajuste"
+
+#: ../src/Widgets/EqualizerPopover.vala:433
+msgid "Custom Preset %i"
+msgstr "Personalizar %i"
+
+#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
+msgid "Rename"
+msgstr "Mudar nome"
+
+#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
+#: ../src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Remove"
+msgstr "Remover"
+
+#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
+#: ../src/Widgets/SourceListView.vala:90
+msgid "Export…"
+msgstr "Exportar..."
+
+#: ../src/Widgets/SourceListView.vala:73
+msgid "Edit…"
+msgstr "Editar…"
+
+#: ../src/Widgets/SourceListView.vala:88
+msgid "Save as Playlist"
+msgstr "Gravar como lista de reprodução"
+
+#: ../src/Widgets/SourceListView.vala:148
+#: ../src/Views/ListView/Lists/MusicListView.vala:124
+msgid "Import to Library"
+msgstr "Importar para a coleção"
+
+#: ../src/Widgets/SourceListView.vala:156
+msgid "Eject"
+msgstr "Ejetar"
+
+#: ../src/Widgets/SourceListView.vala:161
+#: ../src/Widgets/SourceListView.vala:201
+msgid "New Playlist"
+msgstr "Nova lista de reprodução"
+
+#: ../src/Widgets/SourceListView.vala:166
+#: ../src/Widgets/SourceListView.vala:202
+msgid "New Smart Playlist"
+msgstr "Nova lista de reprodução inteligente"
+
+#: ../src/Widgets/SourceListView.vala:203
+msgid "Import Playlists"
+msgstr "Importar listas de reprodução"
+
+#: ../src/Widgets/SourceListView.vala:313
+msgid "Library"
+msgstr "Coleção"
+
+#: ../src/Widgets/SourceListView.vala:314
+msgid "Devices"
+msgstr "Dispositivos"
+
+#: ../src/Widgets/SourceListView.vala:315
+msgid "Network"
+msgstr "Rede"
+
+#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
+msgid "Playlists"
+msgstr "Listas de reprodução"
+
+#: ../src/Widgets/ViewSelector.vala:68
+msgid "View as Albums"
+msgstr "Ver como álbuns"
+
+#: ../src/Widgets/ViewSelector.vala:72
+msgid "View as List"
+msgstr "Ver como lista"
+
+#: ../src/Widgets/ViewSelector.vala:76
+msgid "View in Columns"
+msgstr "Ver em colunas"
+
+#: ../src/Noise.vala:65
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  André Carvalho https://launchpad.net/~andrecarvalhopt\n"
+"  André Filipe https://launchpad.net/~k23-live-gmail\n"
+"  Carlo https://launchpad.net/~carlow3\n"
+"  Christian Sousa https://launchpad.net/~chapadanastrombas\n"
+"  Daniel Fore https://launchpad.net/~danrabbit\n"
+"  Daniel Jorge https://launchpad.net/~daniel-mf-jorge\n"
+"  Eduardo Renesto Estanquiere https://launchpad.net/~edure95\n"
+"  Laurentino https://launchpad.net/~laurentinolopes\n"
+"  Leo Soares https://launchpad.net/~leojrfs\n"
+"  Pacha https://launchpad.net/~pacha56\n"
+"  Paulo Truta https://launchpad.net/~pinheirotruta5\n"
+"  Pedro Monteiro https://launchpad.net/~pedro.monteiro\n"
+"  RDRR https://launchpad.net/~rubendrr\n"
+"  Rafael da Silva Lima https://launchpad.net/~rafael-liverpool\n"
+"  Sérgio Marques https://launchpad.net/~sergio+marques\n"
+"  Tiago Branco https://launchpad.net/~tiagombranco\n"
+"  Victor Martinez https://launchpad.net/~victored\n"
+"  vasco https://launchpad.net/~vasco-m-nunes\n"
+"  wesley tamagi https://launchpad.net/~tama-wes\n"
+"  yEdubart https://launchpad.net/~vps1992"
+
+#: ../src/Objects/HistoryPlaylist.vala:40
+msgid "History"
+msgstr "Histórico"
+
+#: ../src/Objects/LyricFetcher.vala:141
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "Letra da faixa obtida em www.lyricsmania.com"
+
+#: ../src/LibraryWindow.vala:250
+msgid "Import to Library…"
+msgstr "Importar para a coleção..."
+
+#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
+msgid "Preferences"
+msgstr "Preferências"
+
+#: ../src/LibraryWindow.vala:270
+msgid "Previous"
+msgstr "Anterior"
+
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:972
+msgid "Play"
+msgstr "Reproduzir"
+
+#: ../src/LibraryWindow.vala:274
+msgid "Next"
+msgstr "Seguinte"
+
+#: ../src/LibraryWindow.vala:278
+msgid "Search Music"
+msgstr "Procurar faixas"
+
+#: ../src/LibraryWindow.vala:640 ../src/LibraryWindow.vala:744
+#: ../src/Views/DeviceSummaryWidget.vala:99
 msgid "Music"
 msgstr "Música"
 
-#: ../src/Views/DeviceSummaryWidget.vala:253
-msgid "All Music"
-msgstr "Todas as faixas"
+#: ../src/LibraryWindow.vala:812
+msgid "No songs in Queue"
+msgstr "Sem faixas na fila de reprodução"
 
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid "Sync Failed"
-msgstr "Falha na sincronização"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
+#: ../src/LibraryWindow.vala:812
 msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
 msgstr ""
-"A lista de reprodução %s é utilizada para sincronizar com o dispositivo %s "
-"mas não foi encontrada."
+"Para adicionar faixas à fila de reprodução, utilize o <b>botão direito do "
+"rato</b> e escolha <b>Colocar na fila</b>. Assim que uma faixa termine, as "
+"faixas que estiverem na fila serão reproduzidas antes da faixa seguinte da "
+"lista de reprodução."
 
-#: ../src/Views/DeviceSummaryWidget.vala:320
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Cannot Sync"
-msgstr "Não pode sincronizar"
+#: ../src/LibraryWindow.vala:815
+msgid "No songs in History"
+msgstr "Sem faixas no histórico"
 
-#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/LibraryWindow.vala:815
 msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
 msgstr ""
-"Não é possível a sincronização do dispositivo com as definições escolhidas. "
-"Não tem espaço suficiente no disco."
+"Assim que alguma parte de uma faixa seja reproduzida, esta é adicionada ao "
+"histórico.\n"
+"Pode utilizar esta lista para consultar todas as faixas que foram "
+"reproduzidas durante a sessão."
 
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Já está a decorre uma operação."
+#: ../src/LibraryWindow.vala:966
+msgid "Pause"
+msgstr "Pausa"
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
-msgid "No Songs"
-msgstr "Sem faixas"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
-msgid "Updating playlist. Please wait."
-msgstr "A atualizar lista de reprodução. Aguarde."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Para adicionar as faixas à lista de reprodução, utilize o <b>botão direito "
-"do rato</b> e escolha <b>Adicionar à lista de reprodução</b>"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid "Edit Smart Playlist"
-msgstr "Editar lista de reprodução inteligente"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"Esta lista de reprodução será preenchida automaticamente com as faixas que "
-"coincidam com as regras. Para modificar as regras, utilize o <b>botão "
-"direito do rato</b> na barra lateral e escolha <b>Editar</b>. Opcionalmente, "
-"também pode clicar no botão abaixo."
-
-#: ../src/Views/Wrappers/ViewWrapper.vala:444
-msgid "No media"
-msgstr "Sem multimédia"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Get Some Tunes"
-msgstr "Obter músicas"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
-msgid "Add music to your library."
-msgstr "Adicionar música à sua biblioteca"
-
+#: ../src/LibraryWindow.vala:1045
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-#: ../src/LibraryWindow.vala:1086
 msgid "Import Music"
 msgstr "Importar músicas"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Import music from a source into your library."
-msgstr "Importar música de uma fonte para a biblioteca."
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+msgid "Would you like to install the %s plugin?\n"
+msgstr "Deseja instalar o plugin %s?\n"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Change Music Folder"
-msgstr "Trocar Pasta de Música"
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
+msgid ""
+"\n"
+"This song cannot be played. The %s plugin is required to play the song."
+msgstr ""
+"\n"
+"Esta música não pode ser reproduzida. O plugin %s é necessário para "
+"reproduzir a música."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Carregar músicas de uma pasta, rede ou disco externo."
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
+msgid "Install Plugin"
+msgstr "Instalar Plugin"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import your Music"
-msgstr "Importar faixas"
+#: ../src/Dialogs/FileNotFoundDialog.vala:53
+msgid "File not found"
+msgstr "Ficheiro não encontrado"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import all your Music from %s into your library."
-msgstr "Importar todas as faixas de %s para a coleção."
+#: ../src/Dialogs/FileNotFoundDialog.vala:59
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr "O ficheiro da música <b>%s<b> de <b>%s<b> não foi encontrado."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
-msgid "Select Music Folder"
+#: ../src/Dialogs/FileNotFoundDialog.vala:62
+msgid "%i music files could not be found?"
+msgstr "%i ficheiros de música não encontrados?"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:85
+msgid "Rescan Library"
+msgstr "Reanalisar coleção"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Views/ListView/Lists/MusicListView.vala:123
+msgid "Remove Song"
+msgstr "Remover faixa"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:88
+msgid "Find Song"
+msgstr "Procurar Música"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:124
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
+msgid "Choose Music Folder"
 msgstr "Escolha a pasta de músicas"
 
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "Nenhuma faixa encontrada"
+#: ../src/Dialogs/PreferencesWindow.vala:46
+msgid "Select Music Folder…"
+msgstr "Escolha a pasta de músicas..."
 
-#: ../src/Views/ListView/ListView.vala:357
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i faixa"
-msgstr[1] "%i faixas"
+#: ../src/Dialogs/PreferencesWindow.vala:99 ../src/Dialogs/MediaEditor.vala:153
+msgid "Close"
+msgstr "Fechar"
 
-#: ../src/Views/ListView/ListView.vala:359
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u música"
-msgstr[1] "%u músicas"
+#: ../src/Dialogs/PreferencesWindow.vala:131
+msgid "General"
+msgstr "Geral"
 
-#: ../src/Views/ListView/ListView.vala:367
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
+#: ../src/Dialogs/PreferencesWindow.vala:137
+msgid "Music Folder Location"
+msgstr "Localização da pasta de músicas"
 
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
-msgid "%i kbps"
-msgstr "%i kbps"
+#: ../src/Dialogs/PreferencesWindow.vala:145
+msgid "Library Management"
+msgstr "Gestão da coleção"
 
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: ../src/Views/ListView/Lists/MusicListView.vala:627
-msgid "Never"
-msgstr "Nunca"
+#: ../src/Dialogs/PreferencesWindow.vala:152
+msgid "Keep Music folder organized:"
+msgstr "Manter pasta de músicas organizada:"
 
-#: ../src/Views/ListView/Lists/GenericList.vala:118
-msgid "Autosize Columns"
-msgstr "Ajustar colunas automaticamente"
+#: ../src/Dialogs/PreferencesWindow.vala:156
+msgid "Write metadata to file:"
+msgstr "Gravar detalhes no ficheiro:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:160
+msgid "Copy imported files to Library:"
+msgstr "Copiar para a coleção os ficheiros importados:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:162
+msgid "Desktop Integration"
+msgstr "Integração com o ambiente de trabalho"
+
+#: ../src/Dialogs/PreferencesWindow.vala:167
+msgid "Continue playback when closed:"
+msgstr "Continuar reprodução quando fechado"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:53
+msgid "Import from Device"
+msgstr "Importar do dispositivo"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:70
+msgid "Import media from %s"
+msgstr "Importar multimédia de %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:71
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"Os seguintes ficheiros foram encontrados em %s, mas não existem na coleção. "
+"Assinale os ficheiros que pretende importar."
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
+msgid "Import all media"
+msgstr "Importar todos"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:77
+#: ../plugins/Devices/CDRom/CDView.vala:88
+msgid "Import"
+msgstr "Importar"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:78
+msgid "Don't Import"
+msgstr "Não importar"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:86
+msgid "Import %i items from %s"
+msgstr "Importar %i itens de %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:90
+msgid "Import %s from %s"
+msgstr "Importar %s de %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:118
+msgid "ID"
+msgstr "ID"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
+#: ../src/Dialogs/SmartPlaylistEditor.vala:276
+msgid "Title"
+msgstr "Título"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:170
+msgid "Select individual media to import:"
+msgstr "Selecione os ficheiros a importar:"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:188
+msgid "Check Item"
+msgstr "Assinalar item"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:189
+msgid "Check Album"
+msgstr "Assinalar álbum"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
+msgid "Check Artist"
+msgstr "Assinalar artista"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
+msgid "Cannot Import"
+msgstr "Não pode importar"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"O Noise já está a executar operações. Tem que aguardar pelo fim das "
+"operações para poder importar de %d"
+
+#: ../src/Dialogs/MediaEditor.vala:72
+msgid "Title:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:74
+msgid "Artist:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:76
+msgid "Album Artist:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:78
+msgid "Album:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:80
+msgid "Genre:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:82
+msgid "Composer:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:84
+msgid "Grouping:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:86
+msgid "Comment:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:88
+msgid "Track:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:90
+msgid "Disk:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:92
+msgid "Year:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:94
+msgid "Rating:"
+msgstr ""
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
+msgid "Export Playlists"
+msgstr "Exportar listas de reprodução"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
+msgid "Set Music Folder"
+msgstr "Definir pasta de músicas"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
+msgid "Set Music Folder?"
+msgstr "Definir pasta de músicas?"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Tem a certeza de que pretende definir %s como a pasta de músicas? Se o "
+"fizer, vai reiniciar a coleção e remover as listas de reprodução."
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/NotImportedWindow.vala:64
+msgid "Move to Trash"
+msgstr "Mover para o lixo"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:51
+msgid "Remove from %s"
+msgstr "Remover de %s"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:61
+msgid "Remove %d Songs From %s?"
+msgstr "Remover %d faixas de %s?"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:64
+msgid "Remove \"%s\" From %s?"
+msgstr "Remover \"%s\" de %s?"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:73
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+"Vai remover a faixa da coleção e de todos os dispositivos que estejam "
+"sincronizados com %s."
+msgstr[1] ""
+"Vai remover as faixas da coleção e de todos os dispositivos que estejam "
+"sincronizados com %s."
+
+#: ../src/Dialogs/SyncWarningDialog.vala:57
+msgid "Import media to Library"
+msgstr "Importar multimédia para a coleção"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:58
+msgid "Continue Syncing"
+msgstr "Continuar sincronização"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:59
+msgid "Stop Syncing"
+msgstr "Parar sincronização"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:66
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Se continuar a sincronização, os ficheiros serão removidos de %s, uma vez "
+"que não estão incluídos na lista de sincronização. Pretende importar os "
+"ficheiros para a coleção?"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:72
+msgid "Sync will remove %i items from %s"
+msgstr "A sincronização irá remover %i itens de %s"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:75
+msgid "Sync will remove 1 item from %s"
+msgstr "A sincronização irá remover 1 item de %s"
+
+#: ../src/Dialogs/NotImportedWindow.vala:52
+#: ../src/Dialogs/NotImportedWindow.vala:55
+msgid "Unable to import %d items from %s"
+msgstr "Não foi possível importar %d itens de %s"
+
+#: ../src/Dialogs/NotImportedWindow.vala:56
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr ""
+"O %s não conseguiu importar %d itens. Os ficheiros podem estar danificados."
+
+#: ../src/Dialogs/NotImportedWindow.vala:59
+msgid "Move all corrupted files to trash"
+msgstr "Mover todos os ficheiros danificados para o lixo"
+
+#: ../src/Dialogs/NotImportedWindow.vala:66
+msgid "Ignore"
+msgstr "Ignorar"
+
+#: ../src/Dialogs/NotImportedWindow.vala:81
+msgid "del"
+msgstr "eliminar"
+
+#: ../src/Dialogs/NotImportedWindow.vala:86
+msgid "File Location"
+msgstr "Localização do ficheiro"
+
+#: ../src/Dialogs/NotImportedWindow.vala:101
+msgid "Select individual files to move to trash:"
+msgstr "Selecione os ficheiros a mover para o lixo:"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:36
+msgid "Smart Playlist Editor"
+msgstr "Editor de listas de reprodução inteligentes"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:48
+#: ../src/Dialogs/SmartPlaylistEditor.vala:56
+msgid "Name of Playlist"
+msgstr "Nome da lista de reprodução"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:49
+#: ../src/Dialogs/SmartPlaylistEditor.vala:57
+msgid "Rules"
+msgstr "Regras"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:50
+#: ../src/Dialogs/SmartPlaylistEditor.vala:58
+msgid "Options"
+msgstr "Opções"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:62
+msgid "Playlist Title"
+msgstr "Título da lista de reprodução"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:68
+msgid "Match"
+msgstr "Coincide"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:70
+msgid "any"
+msgstr "qualquer"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:71
+msgid "all"
+msgstr "todos"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:77
+msgid "of the following:"
+msgstr "do seguinte:"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:89
+msgid "Add"
+msgstr "Adicionar"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr "Limitar a"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr "itens"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Bitrate"
+msgstr "Taxa de dados"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:266
+msgid "Comment"
+msgstr "Comentário"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Composer"
+msgstr "Compositor"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:268
+msgid "Date Added"
+msgstr "Data de adição"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Genre"
+msgstr "Género"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Grouping"
+msgstr "Grupo"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Last Played"
+msgstr "Última reprodução"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:272
+#: ../src/Dialogs/SmartPlaylistEditor.vala:406
+msgid "Length"
+msgstr "Duração"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:273
+msgid "Playcount"
+msgstr "Reproduções"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:274
+msgid "Rating"
+msgstr "Avaliação"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:275
+msgid "Skipcount"
+msgstr "Ignorada"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:277
+msgid "Year"
+msgstr "Ano"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:341
+msgid "is"
+msgstr "é"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:342
+msgid "contains"
+msgstr "contém"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:343
+msgid "does not contain"
+msgstr "não contém"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:369
+#: ../src/Dialogs/SmartPlaylistEditor.vala:383
+msgid "is exactly"
+msgstr "exatamente"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:370
+msgid "is at most"
+msgstr "no máximo"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:371
+msgid "is at least"
+msgstr "no mínimo"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:384
+msgid "is within"
+msgstr "entre"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:385
+msgid "is before"
+msgstr "está antes"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:407
+msgid "seconds"
+msgstr "segundos"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:410
+msgid "days ago"
+msgstr "dias atrás"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:413
+msgid "kbps"
+msgstr "kbps"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
@@ -539,6 +1112,10 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr "Tamanho do ficheiro"
 
+#: ../src/Views/ListView/Lists/GenericList.vala:118
+msgid "Autosize Columns"
+msgstr "Ajustar colunas automaticamente"
+
 #: ../src/Views/ListView/Lists/MusicListView.vala:84
 msgid "Remove from Library"
 msgstr "Remover da coleção"
@@ -555,54 +1132,49 @@ msgstr "Remover do dispositivo"
 msgid "Scroll to Current Song"
 msgstr "Ir para a faixa em reprodução"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:117
+#: ../src/Views/ListView/Lists/MusicListView.vala:118
 msgid "Edit Song Info"
 msgstr "Editar informações da faixa"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:118
+#: ../src/Views/ListView/Lists/MusicListView.vala:119
 msgid "Show in File Browser"
 msgstr "Mostrar no gestor de ficheiros"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:119
+#: ../src/Views/ListView/Lists/MusicListView.vala:120
 msgid "Other actions"
 msgstr "Outras ações"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:120
+#: ../src/Views/ListView/Lists/MusicListView.vala:121
 msgctxt "Action item (verb)"
 msgid "Queue"
 msgstr "Colocar na fila"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:121
+#: ../src/Views/ListView/Lists/MusicListView.vala:122
 msgid "Add to Playlist"
 msgstr "Adicionar à lista de reprodução"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:122
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-msgid "Remove Song"
-msgstr "Remover faixa"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:123
-#: ../src/Widgets/SourceListView.vala:148
-msgid "Import to Library"
-msgstr "Importar para a coleção"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:178
+#: ../src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
 msgstr "Nova lista de reprodução"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:218
+#: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
 msgstr "Importar %i de %i faixas selecionadas"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:220
+#: ../src/Views/ListView/Lists/MusicListView.vala:229
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] "Importar %i faixa"
 msgstr[1] "Importar %i faixas"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:612
+#: ../src/Views/ListView/Lists/MusicListView.vala:600
 msgid "1234 kbps"
 msgstr "1234 kbps"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:615
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
+msgid "Never"
+msgstr "Nunca"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -611,9 +1183,31 @@ msgstr "1234 kbps"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: ../src/Views/ListView/Lists/MusicListView.vala:683
+#: ../src/Views/ListView/Lists/MusicListView.vala:671
 msgid "Sample List String"
 msgstr "Exemplo de uma String"
+
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
+msgid "%i kbps"
+msgstr "%i kbps"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
+msgid "On Left"
+msgstr "À esquerda"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+msgid "On Top"
+msgstr "Em cima"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "Sem avaliação"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i estrela"
+msgstr[1] "%i estrelas"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
 msgid "Genres"
@@ -642,29 +1236,6 @@ msgstr "Compositores"
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Groupings"
 msgstr "Grupos"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
-msgid "Automatic"
-msgstr "Automático"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
-msgid "On Left"
-msgstr "À esquerda"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
-msgid "On Top"
-msgstr "Em cima"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Sem avaliação"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i estrela"
-msgstr[1] "%i estrelas"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -746,320 +1317,207 @@ msgstr "Todos os %i compositores"
 msgid "No Composers"
 msgstr "Sem compositores"
 
+#: ../src/Views/ListView/ListView.vala:86
+msgid "No Songs Found."
+msgstr "Nenhuma faixa encontrada"
+
+#: ../src/Views/ListView/ListView.vala:357
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i faixa"
+msgstr[1] "%i faixas"
+
+#: ../src/Views/ListView/ListView.vala:359
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u música"
+msgstr[1] "%u músicas"
+
+#: ../src/Views/ListView/ListView.vala:367
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: ../src/Views/GridView/PopupListView.vala:59
+msgid "Set new album cover"
+msgstr "Definir nova capa de álbum"
+
+#: ../src/Views/GridView/PopupListView.vala:156
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s de %s"
+
+#: ../src/Views/GridView/PopupListView.vala:256
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: ../src/Views/GridView/PopupListView.vala:256
+msgid "_Open"
+msgstr "_Abrir"
+
+#: ../src/Views/GridView/PopupListView.vala:259
+msgid "Image files"
+msgstr "Ficheiros de imagem"
+
+#: ../src/Views/GridView/GridView.vala:44
+msgid "No Albums Found."
+msgstr "Nenhum álbum encontrado"
+
+#: ../src/Views/GridView/GridView.vala:141
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u álbum"
+msgstr[1] "%u álbuns"
+
+#: ../src/Views/DeviceView.vala:38
+msgid "Cancelling…"
+msgstr "A cancelar…"
+
+#: ../src/Views/DeviceView.vala:38
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "A operação foi cancelada e irá terminar após este ficheiro."
+
+#: ../src/Views/DeviceView.vala:59
+msgid "OK"
+msgstr "OK"
+
+#: ../src/Views/DeviceView.vala:100
+msgid "No External Songs"
+msgstr "Sem faixas externas"
+
+#: ../src/Views/DeviceView.vala:100
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr "Todas as faixas deste dispositivo já existem na sua coleção."
+
+#: ../src/Views/DeviceSummaryWidget.vala:73
+msgid "Device Name:"
+msgstr "Nome do dispositivo:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:77
+msgid "Device Name"
+msgstr "Nome do dispositivo"
+
+#: ../src/Views/DeviceSummaryWidget.vala:79
+msgid "Automatically sync when plugged in:"
+msgstr "Sincronizar automaticamente quando inserido:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:86
+msgid "Sync:"
+msgstr "Sincronizar:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:98
+msgid "Other Files"
+msgstr "Outros ficheiros"
+
+#: ../src/Views/DeviceSummaryWidget.vala:253
+msgid "All Music"
+msgstr "Todas as faixas"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
+msgid "Sync Failed"
+msgstr "Falha na sincronização"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"A lista de reprodução %s é utilizada para sincronizar com o dispositivo %s "
+"mas não foi encontrada."
+
+#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Cannot Sync"
+msgstr "Não pode sincronizar"
+
+#: ../src/Views/DeviceSummaryWidget.vala:320
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Não é possível a sincronização do dispositivo com as definições escolhidas. "
+"Não tem espaço suficiente no disco."
+
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "Já está a decorre uma operação."
+
 #: ../src/Views/ContentView.vala:21
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
 msgstr "%s, %s, %s"
 
-#: ../src/Views/GridView/PopupListView.vala:58
-msgid "Set new album cover"
-msgstr "Definir nova capa de álbum"
+#: ../src/Views/Wrappers/ViewWrapper.vala:442
+msgid "No media"
+msgstr "Sem multimédia"
 
-#: ../src/Views/GridView/PopupListView.vala:152
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s de %s"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
+msgid "No Songs"
+msgstr "Sem faixas"
 
-#: ../src/Views/GridView/PopupListView.vala:248
-msgid "_Cancel"
-msgstr "_Cancelar"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
+msgid "Updating playlist. Please wait."
+msgstr "A atualizar lista de reprodução. Aguarde."
 
-#: ../src/Views/GridView/PopupListView.vala:248
-msgid "_Open"
-msgstr "_Abrir"
-
-#: ../src/Views/GridView/PopupListView.vala:251
-msgid "Image files"
-msgstr "Ficheiros de imagem"
-
-#: ../src/Views/GridView/GridView.vala:54
-msgid "No Albums Found."
-msgstr "Nenhum álbum encontrado"
-
-#: ../src/Views/GridView/GridView.vala:132
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u álbum"
-msgstr[1] "%u álbuns"
-
-#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
-msgid "Rename"
-msgstr "Mudar nome"
-
-#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Remove"
-msgstr "Remover"
-
-#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
-#: ../src/Widgets/SourceListView.vala:90
-msgid "Export…"
-msgstr "Exportar..."
-
-#: ../src/Widgets/SourceListView.vala:73
-msgid "Edit…"
-msgstr "Editar…"
-
-#: ../src/Widgets/SourceListView.vala:88
-msgid "Save as Playlist"
-msgstr "Gravar como lista de reprodução"
-
-#: ../src/Widgets/SourceListView.vala:156
-msgid "Eject"
-msgstr "Ejetar"
-
-#: ../src/Widgets/SourceListView.vala:161
-#: ../src/Widgets/SourceListView.vala:201
-msgid "New Playlist"
-msgstr "Nova lista de reprodução"
-
-#: ../src/Widgets/SourceListView.vala:166
-#: ../src/Widgets/SourceListView.vala:202
-msgid "New Smart Playlist"
-msgstr "Nova lista de reprodução inteligente"
-
-#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
-msgid "Sync"
-msgstr "Sincronizar"
-
-#: ../src/Widgets/SourceListView.vala:203
-msgid "Import Playlists"
-msgstr "Importar listas de reprodução"
-
-#: ../src/Widgets/SourceListView.vala:313
-msgid "Library"
-msgstr "Coleção"
-
-#: ../src/Widgets/SourceListView.vala:314
-msgid "Devices"
-msgstr "Dispositivos"
-
-#: ../src/Widgets/SourceListView.vala:315
-msgid "Network"
-msgstr "Rede"
-
-#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
-msgid "Playlists"
-msgstr "Listas de reprodução"
-
-#: ../src/Widgets/PresetList.vala:47
-msgid "Delete Current"
-msgstr "Eliminar atual"
-
-#: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
-#: ../src/Widgets/EqualizerPopover.vala:339
-msgid "Off"
-msgstr "Desligado"
-
-#: ../src/Widgets/StatusBar.vala:64
-msgid "Enable Repeat"
-msgstr "Ativar repetição"
-
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Song"
-msgstr "Faixa"
-
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Repeat Song"
-msgstr "Repetir faixa"
-
-#: ../src/Widgets/StatusBar.vala:66 ../src/Dialogs/MediaEditor.vala:194
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
-#: ../src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Album"
-msgstr "Álbum"
-
-#: ../src/Widgets/StatusBar.vala:66
-msgid "Repeat Album"
-msgstr "Repetir álbum"
-
-#: ../src/Widgets/StatusBar.vala:67 ../src/Dialogs/MediaEditor.vala:192
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
-#: ../src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Artist"
-msgstr "Artista"
-
-#: ../src/Widgets/StatusBar.vala:67
-msgid "Repeat Artist"
-msgstr "Repetir artista"
-
-#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
-msgid "All"
-msgstr "Tudo"
-
-#: ../src/Widgets/StatusBar.vala:68
-msgid "Disable Repeat"
-msgstr "Desativar repetição"
-
-#: ../src/Widgets/StatusBar.vala:94
-msgid "Enable Shuffle"
-msgstr "Ativar desorganização"
-
-#: ../src/Widgets/StatusBar.vala:95
-msgid "Disable Shuffle"
-msgstr "Desativar desorganização"
-
-#: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
-msgid "Add Playlist"
-msgstr "Adicionar lista de reprodução"
-
-#: ../src/Widgets/StatusBar.vala:140
-msgid "Add Smart Playlist"
-msgstr "Adicionar lista de reprodução inteligente"
-
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: ../src/Widgets/StatusBar.vala:189
-msgid "Equalizer: %s"
-msgstr "Equalizador: %s"
-
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Hide"
-msgstr "Ocultar"
-
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Show Info Panel"
-msgstr "Mostrar painel de informações"
-
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Show"
-msgstr "Mostrar"
-
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Hide Info Panel"
-msgstr "Ocultar painel de informações"
-
-#: ../src/Widgets/EqualizerPopover.vala:163
-msgid "Save preset"
-msgstr "Gravar pré-ajustes"
-
-#: ../src/Widgets/EqualizerPopover.vala:426
-msgid "%s (Custom)"
-msgstr "%s (Personalizar)"
-
-#: ../src/Widgets/EqualizerPopover.vala:428
-msgid "%s (Custom %i)"
-msgstr "%s (Personalizar %i)"
-
-#: ../src/Widgets/EqualizerPopover.vala:431
-msgid "Custom Preset"
-msgstr "Personalizar pré-ajuste"
-
-#: ../src/Widgets/EqualizerPopover.vala:433
-msgid "Custom Preset %i"
-msgstr "Personalizar %i"
-
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "Ver como álbuns"
-
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "Ver como lista"
-
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "Ver em colunas"
-
-#: ../src/Widgets/SpaceWidget.vala:266
-msgid "Free"
-msgstr "Livre"
-
-#: ../src/Widgets/SpaceWidget.vala:383
-msgid "Using %s of %s (%.2f%)"
-msgstr "A utilizar %s de %s (%.2f%)"
-
-#: ../src/LibraryWindow.vala:250
-msgid "Import to Library…"
-msgstr "Importar para a coleção..."
-
-#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
-msgid "Preferences"
-msgstr "Preferências"
-
-#: ../src/LibraryWindow.vala:270
-msgid "Previous"
-msgstr "Anterior"
-
-#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1013
-msgid "Play"
-msgstr "Reproduzir"
-
-#: ../src/LibraryWindow.vala:274
-msgid "Next"
-msgstr "Seguinte"
-
-#: ../src/LibraryWindow.vala:278
-msgid "Search Music"
-msgstr "Procurar faixas"
-
-#: ../src/LibraryWindow.vala:853
-msgid "No songs in Queue"
-msgstr "Sem faixas na fila de reprodução"
-
-#: ../src/LibraryWindow.vala:853
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
 msgstr ""
-"Para adicionar faixas à fila de reprodução, utilize o <b>botão direito do "
-"rato</b> e escolha <b>Colocar na fila</b>. Assim que uma faixa termine, as "
-"faixas que estiverem na fila serão reproduzidas antes da faixa seguinte da "
-"lista de reprodução."
+"Para adicionar as faixas à lista de reprodução, utilize o <b>botão direito "
+"do rato</b> e escolha <b>Adicionar à lista de reprodução</b>"
 
-#: ../src/LibraryWindow.vala:856
-msgid "No songs in History"
-msgstr "Sem faixas no histórico"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid "Edit Smart Playlist"
+msgstr "Editar lista de reprodução inteligente"
 
-#: ../src/LibraryWindow.vala:856
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
 msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
 msgstr ""
-"Assim que alguma parte de uma faixa seja reproduzida, esta é adicionada ao "
-"histórico.\n"
-"Pode utilizar esta lista para consultar todas as faixas que foram "
-"reproduzidas durante a sessão."
+"Esta lista de reprodução será preenchida automaticamente com as faixas que "
+"coincidam com as regras. Para modificar as regras, utilize o <b>botão "
+"direito do rato</b> na barra lateral e escolha <b>Editar</b>. Opcionalmente, "
+"também pode clicar no botão abaixo."
 
-#: ../src/LibraryWindow.vala:1007
-msgid "Pause"
-msgstr "Pausa"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Get Some Tunes"
+msgstr "Obter músicas"
 
-#: ../src/LocalBackend/LocalLibrary.vala:184
-msgid "Importing music from %s…"
-msgstr "A importar faixas de %s..."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
+msgid "Add music to your library."
+msgstr "Adicionar música à sua biblioteca"
 
-#: ../src/LocalBackend/LocalLibrary.vala:212
-msgid "Adding files to library…"
-msgstr "A adicionar ficheiros à coleção..."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr "Importar música de uma fonte para a biblioteca."
 
-#: ../src/LocalBackend/LocalLibrary.vala:227
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>A importar</b> faixas para a coleção..."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Change Music Folder"
+msgstr "Trocar Pasta de Música"
 
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "All music files are already in your library"
-msgstr "Todas as músicas já se encontram na biblioteca"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Carregar músicas de uma pasta, rede ou disco externo."
 
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "No files were imported."
-msgstr "Nenhum ficheiro importado."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import your Music"
+msgstr "Importar faixas"
 
-#: ../src/LocalBackend/LocalLibrary.vala:256
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "A reanalisar coleção. Pode levar algum tempo..."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import all your Music from %s into your library."
+msgstr "Importar todas as faixas de %s para a coleção."
 
-#: ../src/LocalBackend/LocalLibrary.vala:330
-msgid "Added to your queue:"
-msgstr "Adicionada à fila:"
-
-#: ../src/LocalBackend/LocalLibrary.vala:341
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] "%d Faixa"
-msgstr[1] "%d Faixas"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
+msgid "Select Music Folder"
+msgstr "Escolha a pasta de músicas"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
@@ -1085,512 +1543,77 @@ msgstr "Muito reproduzidas"
 msgid "Not Recently Played"
 msgstr "Não reproduzidas recentemente"
 
-#: ../src/Objects/LyricFetcher.vala:141
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Letra da faixa obtida em www.lyricsmania.com"
+#: ../src/LocalBackend/LocalLibrary.vala:182
+msgid "Importing music from %s…"
+msgstr "A importar faixas de %s..."
 
-#: ../src/Objects/HistoryPlaylist.vala:40
-msgid "History"
-msgstr "Histórico"
+#: ../src/LocalBackend/LocalLibrary.vala:210
+msgid "Adding files to library…"
+msgstr "A adicionar ficheiros à coleção..."
 
-#: ../src/Noise.vala:65
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  André Carvalho https://launchpad.net/~andrecarvalhopt\n"
-"  André Filipe https://launchpad.net/~k23-live-gmail\n"
-"  Carlo https://launchpad.net/~carlow3\n"
-"  Christian Sousa https://launchpad.net/~chapadanastrombas\n"
-"  Daniel Fore https://launchpad.net/~danrabbit\n"
-"  Daniel Jorge https://launchpad.net/~daniel-mf-jorge\n"
-"  Eduardo Renesto Estanquiere https://launchpad.net/~edure95\n"
-"  Laurentino https://launchpad.net/~laurentinolopes\n"
-"  Leo Soares https://launchpad.net/~leojrfs\n"
-"  Pacha https://launchpad.net/~pacha56\n"
-"  Paulo Truta https://launchpad.net/~pinheirotruta5\n"
-"  Pedro Monteiro https://launchpad.net/~pedro.monteiro\n"
-"  RDRR https://launchpad.net/~rubendrr\n"
-"  Rafael da Silva Lima https://launchpad.net/~rafael-liverpool\n"
-"  Sérgio Marques https://launchpad.net/~sergio+marques\n"
-"  Tiago Branco https://launchpad.net/~tiagombranco\n"
-"  Victor Martinez https://launchpad.net/~victored\n"
-"  vasco https://launchpad.net/~vasco-m-nunes\n"
-"  wesley tamagi https://launchpad.net/~tama-wes\n"
-"  yEdubart https://launchpad.net/~vps1992"
+#: ../src/LocalBackend/LocalLibrary.vala:225
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>A importar</b> faixas para a coleção..."
 
-#: ../src/FileOperator.vala:309
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "All music files are already in your library"
+msgstr "Todas as músicas já se encontram na biblioteca"
+
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "No files were imported."
+msgstr "Nenhum ficheiro importado."
+
+#: ../src/LocalBackend/LocalLibrary.vala:254
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "A reanalisar coleção. Pode levar algum tempo..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:328
+msgid "Added to your queue:"
+msgstr "Adicionada à fila:"
+
+#: ../src/LocalBackend/LocalLibrary.vala:339
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] "%d Faixa"
+msgstr[1] "%d Faixas"
+
+#: ../src/FileOperator.vala:307
 msgid "Import Complete"
 msgstr "Importação terminada"
 
-#: ../src/FileOperator.vala:309
+#: ../src/FileOperator.vala:307
 msgid "%s has imported your library."
 msgstr "%s foi importada para a coleção."
 
-#: ../src/FileOperator.vala:322
+#: ../src/FileOperator.vala:320
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>A copiar</b> ficheiros para a <b>pasta de músicas</b>..."
 
-#: ../src/Dialogs/MediaEditor.vala:83
-msgid "Details"
-msgstr "Detalhes"
+#: ../plugins/LastFM/SimilarMediaView.vala:41
+msgid "media"
+msgstr "multimédia"
 
-#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:369
-msgid "Lyrics"
-msgstr "Letras das faixas"
+#: ../plugins/LastFM/SimilarMediaView.vala:47
+msgid "Similar Media"
+msgstr "Multimédia semelhante"
 
-#: ../src/Dialogs/MediaEditor.vala:94 ../src/Dialogs/PreferencesWindow.vala:99
-msgid "Close"
-msgstr "Fechar"
+#: ../plugins/LastFM/SimilarMedia.vala:37
+msgid "Similar"
+msgstr "Semelhantes"
 
-#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:343
-msgid "Editing $NAME by $ARTIST"
-msgstr "A editar $NAME de $ARTIST"
+#: ../plugins/LastFM/LastFM.vala:101
+msgid "No similar songs found"
+msgstr "Não foram encontradas faixas semelhantes"
 
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:345
-msgid "Editing %s"
-msgstr "A editar %s"
-
-#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:348
-msgid "Editing %i songs"
-msgstr "A editar %i faixas"
-
-#: ../src/Dialogs/MediaEditor.vala:191
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
-#: ../src/Dialogs/SmartPlaylistEditor.vala:276
-msgid "Title"
-msgstr "Título"
-
-#: ../src/Dialogs/MediaEditor.vala:193
-msgid "Album Artist"
-msgstr "Artista do álbum"
-
-#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:463
-#: ../src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Genre"
-msgstr "Género"
-
-#: ../src/Dialogs/MediaEditor.vala:196
-#: ../src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Composer"
-msgstr "Compositor"
-
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
-#: ../src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Grouping"
-msgstr "Grupo"
-
-#: ../src/Dialogs/MediaEditor.vala:198
-#: ../src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Comment"
-msgstr "Comentário"
-
-#: ../src/Dialogs/MediaEditor.vala:199
-msgid "Track"
-msgstr "Faixa"
-
-#: ../src/Dialogs/MediaEditor.vala:200
-msgid "Disc"
-msgstr "Disco"
-
-#: ../src/Dialogs/MediaEditor.vala:201
-#: ../src/Dialogs/SmartPlaylistEditor.vala:277
-msgid "Year"
-msgstr "Ano"
-
-#: ../src/Dialogs/MediaEditor.vala:202
-#: ../src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "Rating"
-msgstr "Avaliação"
-
-#: ../src/Dialogs/MediaEditor.vala:292
-msgid "Lyrics not found for %s"
-msgstr "Letra da faixa não encontrada para %s"
-
-#: ../src/Dialogs/MediaEditor.vala:629
-msgid "Reset"
-msgstr "Reiniciar"
-
-#: ../src/Dialogs/MediaEditor.vala:633
-msgid "<b>Stats</b>"
-msgstr "Estatísticas"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:57
-msgid "Import media to Library"
-msgstr "Importar multimédia para a coleção"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:58
-msgid "Continue Syncing"
-msgstr "Continuar sincronização"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:59
-msgid "Stop Syncing"
-msgstr "Parar sincronização"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:66
+#: ../plugins/LastFM/LastFM.vala:101
 msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
+"There are no songs similar to the current song in your library. Make sure "
+"all song info is correct and you are connected to the Internet. Some songs "
+"may not have matches."
 msgstr ""
-"Se continuar a sincronização, os ficheiros serão removidos de %s, uma vez "
-"que não estão incluídos na lista de sincronização. Pretende importar os "
-"ficheiros para a coleção?"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:72
-msgid "Sync will remove %i items from %s"
-msgstr "A sincronização irá remover %i itens de %s"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:75
-msgid "Sync will remove 1 item from %s"
-msgstr "A sincronização irá remover 1 item de %s"
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
-msgid "Would you like to install the %s plugin?\n"
-msgstr "Deseja instalar o plugin %s?\n"
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
-msgid ""
-"\n"
-"This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"\n"
-"Esta música não pode ser reproduzida. O plugin %s é necessário para "
-"reproduzir a música."
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
-msgid "Install Plugin"
-msgstr "Instalar Plugin"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
-#: ../src/Dialogs/NotImportedWindow.vala:64
-msgid "Move to Trash"
-msgstr "Mover para o lixo"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
-msgid "Remove from %s"
-msgstr "Remover de %s"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
-msgid "Remove %d Songs From %s?"
-msgstr "Remover %d faixas de %s?"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
-msgid "Remove \"%s\" From %s?"
-msgstr "Remover \"%s\" de %s?"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
-msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
-msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
-msgstr[0] ""
-"Vai remover a faixa da coleção e de todos os dispositivos que estejam "
-"sincronizados com %s."
-msgstr[1] ""
-"Vai remover as faixas da coleção e de todos os dispositivos que estejam "
-"sincronizados com %s."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:53
-msgid "File not found"
-msgstr "Ficheiro não encontrado"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:59
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "O ficheiro da música <b>%s<b> de <b>%s<b> não foi encontrado."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:62
-msgid "%i music files could not be found?"
-msgstr "%i ficheiros de música não encontrados?"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
-msgid "Rescan Library"
-msgstr "Reanalisar coleção"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:88
-msgid "Find Song"
-msgstr "Procurar Música"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:124
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
-msgid "Choose Music Folder"
-msgstr "Escolha a pasta de músicas"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:53
-msgid "Import from Device"
-msgstr "Importar do dispositivo"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:70
-msgid "Import media from %s"
-msgstr "Importar multimédia de %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:71
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Os seguintes ficheiros foram encontrados em %s, mas não existem na coleção. "
-"Assinale os ficheiros que pretende importar."
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
-msgid "Import all media"
-msgstr "Importar todos"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:77
-#: ../plugins/Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr "Importar"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:78
-msgid "Don't Import"
-msgstr "Não importar"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:86
-msgid "Import %i items from %s"
-msgstr "Importar %i itens de %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:90
-msgid "Import %s from %s"
-msgstr "Importar %s de %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:118
-msgid "ID"
-msgstr "ID"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:170
-msgid "Select individual media to import:"
-msgstr "Selecione os ficheiros a importar:"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:188
-msgid "Check Item"
-msgstr "Assinalar item"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:189
-msgid "Check Album"
-msgstr "Assinalar álbum"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
-msgid "Check Artist"
-msgstr "Assinalar artista"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid "Cannot Import"
-msgstr "Não pode importar"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-"O Noise já está a executar operações. Tem que aguardar pelo fim das "
-"operações para poder importar de %d"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
-msgid "Export Playlists"
-msgstr "Exportar listas de reprodução"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
-msgid "Set Music Folder"
-msgstr "Definir pasta de músicas"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
-msgid "Set Music Folder?"
-msgstr "Definir pasta de músicas?"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Tem a certeza de que pretende definir %s como a pasta de músicas? Se o "
-"fizer, vai reiniciar a coleção e remover as listas de reprodução."
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:36
-msgid "Smart Playlist Editor"
-msgstr "Editor de listas de reprodução inteligentes"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:48
-#: ../src/Dialogs/SmartPlaylistEditor.vala:56
-msgid "Name of Playlist"
-msgstr "Nome da lista de reprodução"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:49
-#: ../src/Dialogs/SmartPlaylistEditor.vala:57
-msgid "Rules"
-msgstr "Regras"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:50
-#: ../src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "Options"
-msgstr "Opções"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:62
-msgid "Playlist Title"
-msgstr "Título da lista de reprodução"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:68
-msgid "Match"
-msgstr "Coincide"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:70
-msgid "any"
-msgstr "qualquer"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:71
-msgid "all"
-msgstr "todos"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:77
-msgid "of the following:"
-msgstr "do seguinte:"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:89
-msgid "Add"
-msgstr "Adicionar"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Limitar a"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "itens"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Bitrate"
-msgstr "Taxa de dados"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:268
-msgid "Date Added"
-msgstr "Data de adição"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Last Played"
-msgstr "Última reprodução"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:272
-#: ../src/Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Duração"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Playcount"
-msgstr "Reproduções"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:275
-msgid "Skipcount"
-msgstr "Ignorada"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:341
-msgid "is"
-msgstr "é"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:342
-msgid "contains"
-msgstr "contém"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:343
-msgid "does not contain"
-msgstr "não contém"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:369
-#: ../src/Dialogs/SmartPlaylistEditor.vala:383
-msgid "is exactly"
-msgstr "exatamente"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:370
-msgid "is at most"
-msgstr "no máximo"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:371
-msgid "is at least"
-msgstr "no mínimo"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:384
-msgid "is within"
-msgstr "entre"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:385
-msgid "is before"
-msgstr "está antes"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "segundos"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "dias atrás"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "kbps"
-msgstr "kbps"
-
-#: ../src/Dialogs/PreferencesWindow.vala:46
-msgid "Select Music Folder…"
-msgstr "Escolha a pasta de músicas..."
-
-#: ../src/Dialogs/PreferencesWindow.vala:131
-msgid "General"
-msgstr "Geral"
-
-#: ../src/Dialogs/PreferencesWindow.vala:137
-msgid "Music Folder Location"
-msgstr "Localização da pasta de músicas"
-
-#: ../src/Dialogs/PreferencesWindow.vala:145
-msgid "Library Management"
-msgstr "Gestão da coleção"
-
-#: ../src/Dialogs/PreferencesWindow.vala:152
-msgid "Keep Music folder organized:"
-msgstr "Manter pasta de músicas organizada:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:156
-msgid "Write metadata to file:"
-msgstr "Gravar detalhes no ficheiro:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:160
-msgid "Copy imported files to Library:"
-msgstr "Copiar para a coleção os ficheiros importados:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:162
-msgid "Desktop Integration"
-msgstr "Integração com o ambiente de trabalho"
-
-#: ../src/Dialogs/PreferencesWindow.vala:167
-msgid "Continue playback when closed:"
-msgstr "Continuar reprodução quando fechado"
-
-#: ../src/Dialogs/NotImportedWindow.vala:52
-#: ../src/Dialogs/NotImportedWindow.vala:55
-msgid "Unable to import %d items from %s"
-msgstr "Não foi possível importar %d itens de %s"
-
-#: ../src/Dialogs/NotImportedWindow.vala:56
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-"O %s não conseguiu importar %d itens. Os ficheiros podem estar danificados."
-
-#: ../src/Dialogs/NotImportedWindow.vala:59
-msgid "Move all corrupted files to trash"
-msgstr "Mover todos os ficheiros danificados para o lixo"
-
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "Ignore"
-msgstr "Ignorar"
-
-#: ../src/Dialogs/NotImportedWindow.vala:81
-msgid "del"
-msgstr "eliminar"
-
-#: ../src/Dialogs/NotImportedWindow.vala:86
-msgid "File Location"
-msgstr "Localização do ficheiro"
-
-#: ../src/Dialogs/NotImportedWindow.vala:101
-msgid "Select individual files to move to trash:"
-msgstr "Selecione os ficheiros a mover para o lixo:"
+"Não há músicas semelhantes à faixa atual na sua coleção. Confirme se os "
+"dados da faixa estão corretos e se possui uma ligação à Internet. Algumas "
+"músicas poderão não ter correspondência."
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
@@ -1602,43 +1625,35 @@ msgstr "Dispositivo vazio"
 msgid "This device does not contain any music."
 msgstr "O dispositivo não possui quaisquer faixas"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:144
+#: ../plugins/Devices/iPod/iPodLibrary.vala:151
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "A adicionar <b>$NAME</b> de <b>$ARTIST</b> em $DEVICE..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:192
+#: ../plugins/Devices/iPod/iPodLibrary.vala:199
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 msgid "Syncing <b>%s</b>…"
 msgstr "A sincronizar <b>%s</b>..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:214
-#: ../plugins/Devices/iPod/iPodLibrary.vala:370
+#: ../plugins/Devices/iPod/iPodLibrary.vala:221
+#: ../plugins/Devices/iPod/iPodLibrary.vala:377
 msgid "Finishing sync process…"
 msgstr "A terminar sincronização..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:226
-#: ../plugins/Devices/iPod/iPodLibrary.vala:382
+#: ../plugins/Devices/iPod/iPodLibrary.vala:233
+#: ../plugins/Devices/iPod/iPodLibrary.vala:389
 msgid "Cancelling Sync…"
 msgstr "A cancelar sincronização..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:333
+#: ../plugins/Devices/iPod/iPodLibrary.vala:340
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 msgid "Removing from <b>%s</b>…"
 msgstr "A remover de <b>%s</b>..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:526
+#: ../plugins/Devices/iPod/iPodLibrary.vala:533
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "A remover <b>$NAME</b> de <b>$ARTIST</b> em $DEVICE..."
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
-msgid "An Error Occured"
-msgstr "Ocorreu um erro"
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
-msgid "There was an error while loading this Audio CD."
-msgstr "Ocorreu um erro ao carregar o CD áudio."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:85
 msgid "Audio CD Invalid"
@@ -1687,6 +1702,14 @@ msgstr "A importação do CD será <b>cancelada</b> após a importação atual."
 msgid "An error occured during the Import of this CD"
 msgstr "Ocorreu um erro ao importar este CD"
 
+#: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr "Ocorreu um erro"
+
+#: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr "Ocorreu um erro ao carregar o CD áudio."
+
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
 msgid "Android Phone"
 msgstr "Telefone Android"
@@ -1694,32 +1717,6 @@ msgstr "Telefone Android"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
 msgid "Audio Player"
 msgstr "Reprodutor de áudio"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:41
-msgid "media"
-msgstr "multimédia"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:47
-msgid "Similar Media"
-msgstr "Multimédia semelhante"
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid "No similar songs found"
-msgstr "Não foram encontradas faixas semelhantes"
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Não há músicas semelhantes à faixa atual na sua coleção. Confirme se os "
-"dados da faixa estão corretos e se possui uma ligação à Internet. Algumas "
-"músicas poderão não ter correspondência."
-
-#: ../plugins/LastFM/SimilarMedia.vala:37
-msgid "Similar"
-msgstr "Semelhantes"
 
 #~ msgid "Edit"
 #~ msgstr "Editar"
@@ -1729,6 +1726,9 @@ msgstr "Semelhantes"
 
 #~ msgid "Podcasts"
 #~ msgstr "Podcasts"
+
+#~ msgid "Track"
+#~ msgstr "Faixa"
 
 #~ msgid "Plays"
 #~ msgstr "Reproduções"
@@ -1768,6 +1768,9 @@ msgstr "Semelhantes"
 
 #~ msgid "Success!"
 #~ msgstr "Sucesso!"
+
+#~ msgid "Disc"
+#~ msgstr "Disco"
 
 #~ msgid "Try again"
 #~ msgstr "Tente novamente"
@@ -1818,6 +1821,9 @@ msgstr "Semelhantes"
 #~ msgid "Add Podcast"
 #~ msgstr "Adicionar podcast"
 
+#~ msgid "Lyrics"
+#~ msgstr "Letras das faixas"
+
 #, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "A editar %s de %s"
@@ -1827,6 +1833,15 @@ msgstr "Semelhantes"
 
 #~ msgid "Do Nothing"
 #~ msgstr "Nada fazer"
+
+#~ msgid "Editing %s"
+#~ msgstr "A editar %s"
+
+#~ msgid "Editing %i songs"
+#~ msgstr "A editar %i faixas"
+
+#~ msgid "Album Artist"
+#~ msgstr "Artista do álbum"
 
 #~ msgid "Media Type"
 #~ msgstr "Tipo de multimédia"
@@ -2112,6 +2127,12 @@ msgstr "Semelhantes"
 #~ msgid "Desktop Integration:"
 #~ msgstr "Integração com a área de trabalho:"
 
+#~ msgid "Editing $NAME by $ARTIST"
+#~ msgstr "A editar $NAME de $ARTIST"
+
+#~ msgid "Lyrics not found for %s"
+#~ msgstr "Letra da faixa não encontrada para %s"
+
 #, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "O nome %s já está a ser utilizado"
@@ -2195,8 +2216,17 @@ msgstr "Semelhantes"
 #~ "O plugin para os ficheiros do tipo %s não está instalado.\n"
 #~ "O que pretende fazer?"
 
+#~ msgid "Reset"
+#~ msgstr "Reiniciar"
+
+#~ msgid "<b>Stats</b>"
+#~ msgstr "Estatísticas"
+
 #~ msgid "Notifications:"
 #~ msgstr "Notificações"
+
+#~ msgid "Details"
+#~ msgstr "Detalhes"
 
 #~ msgid "About Noise"
 #~ msgstr "Sobre Música"

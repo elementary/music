@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-01-04 11:14+0100\n"
+"POT-Creation-Date: 2016-07-11 11:39+0200\n"
 "PO-Revision-Date: 2016-03-01 18:52+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -15,140 +15,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-05-07 04:51+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-07-12 06:31+0000\n"
+"X-Generator: Launchpad (build 18115)\n"
 
-#: ../core/Utils/TimeUtils.vala:51
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d δευτερόλεπτo"
-msgstr[1] "%d δευτερόλεπτα"
+#: ../core/LibrariesManager.vala:143
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr ""
+"Εισαγωγή του <b>$NAME</b> από τον/την <b>$ARTIST</b> στη βιβλιοθήκη..."
 
-#: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
-msgid "%u minute"
-msgid_plural "%u minutes"
-msgstr[0] "%u λεπτό"
-msgstr[1] "%u λεπτά"
+#. / Used for unknown titles, artists, or album names.
+#: ../core/Media.vala:34
+msgid "Unknown"
+msgstr "Άγνωστο"
 
-#: ../core/Utils/TimeUtils.vala:60
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u δευτερόλεπτο"
-msgstr[1] "%u δευτερόλεπτα"
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME στο $ALBUM"
 
-#. / Minutes and seconds
-#: ../core/Utils/TimeUtils.vala:62
-msgctxt "minutes and seconds"
-msgid "%s and %s"
-msgstr "%s και %s"
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: ../core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME από τον/την $ARTIST"
 
-#: ../core/Utils/TimeUtils.vala:69
-msgid "%u day"
-msgid_plural "%u days"
-msgstr[0] "%u μέρα"
-msgstr[1] "%u μέρες"
-
-#: ../core/Utils/TimeUtils.vala:72
-msgid "%u hour"
-msgid_plural "%u hours"
-msgstr[0] "%u ώρα"
-msgstr[1] "%u ώρες"
-
-#. / days, hours and minutes
-#: ../core/Utils/TimeUtils.vala:83
-msgctxt "days, hours and minutes"
-msgid "%s, %s and %s"
-msgstr "%s, %s και %s"
-
-#. / days and hours
-#: ../core/Utils/TimeUtils.vala:86
-msgctxt "days and hours"
-msgid "%s and %s"
-msgstr "%s και %s"
-
-#. / days and minutes
-#: ../core/Utils/TimeUtils.vala:91
-msgctxt "days and minutes"
-msgid "%s and %s"
-msgstr "%s και %s"
-
-#. / hours and minutes
-#: ../core/Utils/TimeUtils.vala:100
-msgctxt "hours and minutes"
-msgid "%s and %s"
-msgstr "%s και %s"
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: ../core/Utils/TimeUtils.vala:159
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%m/%e/%Y %l:%M %p"
-
-#: ../core/Utils/FileUtils.vala:294
-msgid " (%d)"
-msgstr " (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:96
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:236
-msgid "New playlist"
-msgstr "Νέα λίστα αναπαραγωγής"
-
-#: ../core/Utils/PlaylistsUtils.vala:247
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: ../core/Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "Εξαγωγή λίστας αναπαραγωγής"
-
-#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
-#: ../src/Widgets/TopDisplay.vala:90 ../src/LibraryWindow.vala:1088
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
-#: ../src/Dialogs/RemoveFilesDialog.vala:52
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
-#: ../src/Dialogs/FileNotFoundDialog.vala:126
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
-#: ../src/Dialogs/SmartPlaylistEditor.vala:118
-msgid "Cancel"
-msgstr "Ακύρωση"
-
-#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:91
-#: ../src/Dialogs/SmartPlaylistEditor.vala:116
-msgid "Save"
-msgstr "Αποθήκευση"
-
-#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG έκδοση 3.0 εκτεταμένη (*.m3u)"
-
-#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Λίστα Αναπαραγωγής Shoutcast Έκδοση 2.0 (*.pls)"
-
-#: ../core/Utils/PlaylistsUtils.vala:362
-msgid "Playlist"
-msgstr "Λίστα αναπαραγωγής"
-
-#: ../core/Utils/PlaylistsUtils.vala:368
-msgid "Import %s"
-msgstr "Εισαγωγή %s"
-
-#: ../core/Utils/PlaylistsUtils.vala:371
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
-#: ../src/Views/GridView/PopupListView.vala:247 ../src/LibraryWindow.vala:1089
-#: ../src/Dialogs/FileNotFoundDialog.vala:127
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
-msgid "Open"
-msgstr "Άνοιγμα"
-
-#: ../core/Utils/PlaylistsUtils.vala:402
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Μη αναγνωρίσιμο αρχείο λίστας αναπαραγωγής. Αποτυχία εισαγωγής."
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME από τον/την $ARTIST στο $ALBUM"
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
@@ -222,226 +115,899 @@ msgstr "Απαλό Ροκ"
 msgid "Techno"
 msgstr "Τέκνο"
 
-#: ../core/LibrariesManager.vala:143
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
-"Εισαγωγή του <b>$NAME</b> από τον/την <b>$ARTIST</b> στη βιβλιοθήκη..."
+#: ../core/Utils/TimeUtils.vala:51
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d δευτερόλεπτo"
+msgstr[1] "%d δευτερόλεπτα"
 
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:34
-msgid "Unknown"
-msgstr "Άγνωστο"
+#: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
+msgid "%u minute"
+msgid_plural "%u minutes"
+msgstr[0] "%u λεπτό"
+msgstr[1] "%u λεπτά"
 
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME στο $ALBUM"
+#: ../core/Utils/TimeUtils.vala:60
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] "%u δευτερόλεπτο"
+msgstr[1] "%u δευτερόλεπτα"
 
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME από τον/την $ARTIST"
+#. / Minutes and seconds
+#: ../core/Utils/TimeUtils.vala:62
+msgctxt "minutes and seconds"
+msgid "%s and %s"
+msgstr "%s και %s"
 
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME από τον/την $ARTIST στο $ALBUM"
+#: ../core/Utils/TimeUtils.vala:69
+msgid "%u day"
+msgid_plural "%u days"
+msgstr[0] "%u μέρα"
+msgstr[1] "%u μέρες"
+
+#: ../core/Utils/TimeUtils.vala:72
+msgid "%u hour"
+msgid_plural "%u hours"
+msgstr[0] "%u ώρα"
+msgstr[1] "%u ώρες"
+
+#. / days, hours and minutes
+#: ../core/Utils/TimeUtils.vala:83
+msgctxt "days, hours and minutes"
+msgid "%s, %s and %s"
+msgstr "%s, %s και %s"
+
+#. / days and hours
+#: ../core/Utils/TimeUtils.vala:86
+msgctxt "days and hours"
+msgid "%s and %s"
+msgstr "%s και %s"
+
+#. / days and minutes
+#: ../core/Utils/TimeUtils.vala:91
+msgctxt "days and minutes"
+msgid "%s and %s"
+msgstr "%s και %s"
+
+#. / hours and minutes
+#: ../core/Utils/TimeUtils.vala:100
+msgctxt "hours and minutes"
+msgid "%s and %s"
+msgstr "%s και %s"
+
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
+#: ../core/Utils/TimeUtils.vala:159
+msgid "%m/%e/%Y %l:%M %p"
+msgstr "%m/%e/%Y %l:%M %p"
+
+#: ../core/Utils/PlaylistsUtils.vala:96
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: ../core/Utils/PlaylistsUtils.vala:236
+msgid "New playlist"
+msgstr "Νέα λίστα αναπαραγωγής"
+
+#: ../core/Utils/PlaylistsUtils.vala:247
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: ../core/Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr "Εξαγωγή λίστας αναπαραγωγής"
+
+#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
+#: ../src/Widgets/TopDisplay.vala:90 ../src/LibraryWindow.vala:1047
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:126
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
+#: ../src/Dialogs/RemoveFilesDialog.vala:52
+#: ../src/Dialogs/SmartPlaylistEditor.vala:118
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
+#: ../src/Dialogs/SmartPlaylistEditor.vala:116
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG έκδοση 3.0 εκτεταμένη (*.m3u)"
+
+#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Λίστα Αναπαραγωγής Shoutcast Έκδοση 2.0 (*.pls)"
+
+#: ../core/Utils/PlaylistsUtils.vala:362
+msgid "Playlist"
+msgstr "Λίστα αναπαραγωγής"
+
+#: ../core/Utils/PlaylistsUtils.vala:368
+msgid "Import %s"
+msgstr "Εισαγωγή %s"
+
+#: ../core/Utils/PlaylistsUtils.vala:371 ../src/LibraryWindow.vala:1048
+#: ../src/Dialogs/FileNotFoundDialog.vala:127
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
+#: ../src/Views/GridView/PopupListView.vala:255
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: ../core/Utils/PlaylistsUtils.vala:402
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Μη αναγνωρίσιμο αρχείο λίστας αναπαραγωγής. Αποτυχία εισαγωγής."
+
+#: ../core/Utils/FileUtils.vala:294
+msgid " (%d)"
+msgstr " (%d)"
 
 #: ../src/PlaybackManager.vala:96
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Σειρά αναμονής"
 
-#: ../src/Views/DeviceView.vala:38
-msgid "Cancelling…"
-msgstr "Ακύρωση…"
+#: ../src/Widgets/SpaceWidget.vala:237 ../src/Widgets/SourceListView.vala:171
+msgid "Sync"
+msgstr "Συγχρονισμός"
 
-#: ../src/Views/DeviceView.vala:38
-msgid "Device operation has been cancelled and will stop after this media."
+#: ../src/Widgets/SpaceWidget.vala:266
+msgid "Free"
+msgstr "Ελεύθερα"
+
+#: ../src/Widgets/SpaceWidget.vala:383
+msgid "Using %s of %s (%.2f%)"
+msgstr "Χρησιμοποιώντας %s από %s (%.2f%)"
+
+#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
+msgid "Automatic"
+msgstr "Αυτόματα"
+
+#: ../src/Widgets/PresetList.vala:47
+msgid "Delete Current"
+msgstr "Διαγραφή του τρέχοντος"
+
+#: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
+#: ../src/Widgets/EqualizerPopover.vala:339
+msgid "Off"
+msgstr "Απενεργοποίηση"
+
+#: ../src/Widgets/StatusBar.vala:64
+msgid "Enable Repeat"
+msgstr "Ενεργοποίηση επανάληψης"
+
+#: ../src/Widgets/StatusBar.vala:65
+msgid "Song"
+msgstr "Τραγούδι"
+
+#: ../src/Widgets/StatusBar.vala:65
+msgid "Repeat Song"
+msgstr "Επανάληψη τραγουδιού"
+
+#: ../src/Widgets/StatusBar.vala:66
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
+#: ../src/Dialogs/SmartPlaylistEditor.vala:263
+msgid "Album"
+msgstr "Άλμπουμ"
+
+#: ../src/Widgets/StatusBar.vala:66
+msgid "Repeat Album"
+msgstr "Επανάληψη άλμπουμ"
+
+#: ../src/Widgets/StatusBar.vala:67
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
+#: ../src/Dialogs/SmartPlaylistEditor.vala:264
+msgid "Artist"
+msgstr "Καλλιτέχνης"
+
+#: ../src/Widgets/StatusBar.vala:67
+msgid "Repeat Artist"
+msgstr "Επανάληψη καλλιτέχνη"
+
+#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
+msgid "All"
+msgstr "Όλα"
+
+#: ../src/Widgets/StatusBar.vala:68
+msgid "Disable Repeat"
+msgstr "Ακύρωση Επανάληψης"
+
+#: ../src/Widgets/StatusBar.vala:94
+msgid "Enable Shuffle"
+msgstr "Ενεργοποίηση τυχαίας σειράς αναπαραγωγής"
+
+#: ../src/Widgets/StatusBar.vala:95
+msgid "Disable Shuffle"
+msgstr "Απενεργοποίηση τυχαίας σειράς αναπαραγωγής"
+
+#: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
+msgid "Add Playlist"
+msgstr "Προσθήκη λίστας αναπαραγωγής"
+
+#: ../src/Widgets/StatusBar.vala:140
+msgid "Add Smart Playlist"
+msgstr "Προσθήκη έξυπνης λίστας"
+
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
+#: ../src/Widgets/StatusBar.vala:189
+msgid "Equalizer: %s"
 msgstr ""
-"Η λειτουργία της συσκευής έχει ακυρωθεί και θα σταματήσει μετά από αυτό το "
-"πολυμέσο."
 
-#: ../src/Views/DeviceView.vala:59
-msgid "OK"
-msgstr "Εντάξει"
+#: ../src/Widgets/StatusBar.vala:199
+msgid "Hide"
+msgstr "Απόκρυψη"
 
-#: ../src/Views/DeviceView.vala:100
-msgid "No External Songs"
-msgstr "Δεν υπάρχουν εξωτερικά τραγούδια"
+#: ../src/Widgets/StatusBar.vala:199
+msgid "Show Info Panel"
+msgstr "Προβολή πίνακα πληροφοριών"
 
-#: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr "Όλα τα τραγούδια της συσκευής περιλαμβάνονται στη βιβλιοθήκη."
+#: ../src/Widgets/StatusBar.vala:200
+msgid "Show"
+msgstr "Προβολή"
 
-#: ../src/Views/DeviceSummaryWidget.vala:73
-msgid "Device Name:"
-msgstr "Όνομα συσκευής:"
+#: ../src/Widgets/StatusBar.vala:200
+msgid "Hide Info Panel"
+msgstr "Απόκρυψη πίνακα πληροφοριών"
 
-#: ../src/Views/DeviceSummaryWidget.vala:77
-msgid "Device Name"
-msgstr "Όνομα συσκευής"
+#: ../src/Widgets/EqualizerPopover.vala:163
+msgid "Save preset"
+msgstr "Αποθήκευση ρύθμισης"
 
-#: ../src/Views/DeviceSummaryWidget.vala:79
-msgid "Automatically sync when plugged in:"
-msgstr "Αυτόματος συγχρονισμός όταν συνδέεται στον υπολογιστή:"
+#: ../src/Widgets/EqualizerPopover.vala:426
+msgid "%s (Custom)"
+msgstr "%s (Προσαρμοσμένο)"
 
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Sync:"
-msgstr "Συγχρονισμός:"
+#: ../src/Widgets/EqualizerPopover.vala:428
+msgid "%s (Custom %i)"
+msgstr "%s (Προσαρμοσμένο %i)"
 
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Other Files"
-msgstr "Άλλα αρχεία"
+#: ../src/Widgets/EqualizerPopover.vala:431
+msgid "Custom Preset"
+msgstr "Προσαρμοσμένη προεπιλογή"
 
-#: ../src/Views/DeviceSummaryWidget.vala:99 ../src/LibraryWindow.vala:681
-#: ../src/LibraryWindow.vala:785
+#: ../src/Widgets/EqualizerPopover.vala:433
+msgid "Custom Preset %i"
+msgstr "Προσαρμοσμένη προεπιλογή %i"
+
+#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
+msgid "Rename"
+msgstr "Μετονομασία"
+
+#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
+#: ../src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Remove"
+msgstr "Αφαίρεση"
+
+#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
+#: ../src/Widgets/SourceListView.vala:90
+msgid "Export…"
+msgstr "Εξαγωγή..."
+
+#: ../src/Widgets/SourceListView.vala:73
+msgid "Edit…"
+msgstr "Επεξεργασία..."
+
+#: ../src/Widgets/SourceListView.vala:88
+msgid "Save as Playlist"
+msgstr "Αποθήκευση ως λίστα αναπαραγωγής"
+
+#: ../src/Widgets/SourceListView.vala:148
+#: ../src/Views/ListView/Lists/MusicListView.vala:124
+msgid "Import to Library"
+msgstr "Εισαγωγή στη βιβλιοθήκη"
+
+#: ../src/Widgets/SourceListView.vala:156
+msgid "Eject"
+msgstr "Εξαγωγή"
+
+#: ../src/Widgets/SourceListView.vala:161
+#: ../src/Widgets/SourceListView.vala:201
+msgid "New Playlist"
+msgstr "Νέα λίστα αναπαραγωγής"
+
+#: ../src/Widgets/SourceListView.vala:166
+#: ../src/Widgets/SourceListView.vala:202
+msgid "New Smart Playlist"
+msgstr "Νέα έξυπνη λίστα αναπαραγωγής"
+
+#: ../src/Widgets/SourceListView.vala:203
+msgid "Import Playlists"
+msgstr "Εισαγωγή λιστών αναπαραγωγής"
+
+#: ../src/Widgets/SourceListView.vala:313
+msgid "Library"
+msgstr "Βιβλιοθήκη"
+
+#: ../src/Widgets/SourceListView.vala:314
+msgid "Devices"
+msgstr "Συσκευές"
+
+#: ../src/Widgets/SourceListView.vala:315
+msgid "Network"
+msgstr "Δίκτυο"
+
+#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
+msgid "Playlists"
+msgstr "Λίστες αναπαραγωγής"
+
+#: ../src/Widgets/ViewSelector.vala:68
+msgid "View as Albums"
+msgstr "Προβολή σαν άλμπουμ"
+
+#: ../src/Widgets/ViewSelector.vala:72
+msgid "View as List"
+msgstr "Προβολή ως λίστα"
+
+#: ../src/Widgets/ViewSelector.vala:76
+msgid "View in Columns"
+msgstr "Προβολή σε στήλες"
+
+#: ../src/Noise.vala:65
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Basilis Thomopoulos https://launchpad.net/~kolxoz83\n"
+"  Chris Triantafillis https://launchpad.net/~christriant\n"
+"  Daniel Fore https://launchpad.net/~danrabbit\n"
+"  Filippos Kolyvas https://launchpad.net/~fkol-k4\n"
+"  George Chalkitis https://launchpad.net/~chalkitisge\n"
+"  Jim Spentzos https://launchpad.net/~jamesspentzos\n"
+"  Nikos Raptopoulos https://launchpad.net/~nraptopoulos\n"
+"  Nikos Tourvas https://launchpad.net/~nikostourvas\n"
+"  Stefanos Papanatsios https://launchpad.net/~stefan0spapanatsi0s\n"
+"  Theodore Grammenos https://launchpad.net/~theodorewii121\n"
+"  Theodoros Kentistos https://launchpad.net/~theokent\n"
+"  adem https://launchpad.net/~haliladem111\n"
+"  iakovos athanasiadhs https://launchpad.net/~liam21iakovos\n"
+"  oikonomopo https://launchpad.net/~oikonomopo-gmail"
+
+#: ../src/Objects/HistoryPlaylist.vala:40
+msgid "History"
+msgstr "Ιστορικό"
+
+#: ../src/Objects/LyricFetcher.vala:141
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "Οι στίχοι προσκομίζονται από τη σελίδα www.lyricsmania.com"
+
+#: ../src/LibraryWindow.vala:250
+msgid "Import to Library…"
+msgstr "Εισαγωγή στη βιβλιοθήκη..."
+
+#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+#: ../src/LibraryWindow.vala:270
+msgid "Previous"
+msgstr "Προηγούμενο"
+
+#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:972
+msgid "Play"
+msgstr "Αναπαραγωγή"
+
+#: ../src/LibraryWindow.vala:274
+msgid "Next"
+msgstr "Επόμενο"
+
+#: ../src/LibraryWindow.vala:278
+msgid "Search Music"
+msgstr "Αναζήτηση μουσικής"
+
+#: ../src/LibraryWindow.vala:640 ../src/LibraryWindow.vala:744
+#: ../src/Views/DeviceSummaryWidget.vala:99
 msgid "Music"
 msgstr "Μουσική"
 
-#: ../src/Views/DeviceSummaryWidget.vala:253
-msgid "All Music"
-msgstr "Όλη η μουσική"
+#: ../src/LibraryWindow.vala:812
+msgid "No songs in Queue"
+msgstr "Κανένα τραγούδι στην σειρά αναμονής"
 
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid "Sync Failed"
-msgstr "Ο συγχρονισμός απέτυχε"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
+#: ../src/LibraryWindow.vala:812
 msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
 msgstr ""
-"Η λίστα αναπαραγωγής %s χρησιμοποιείται για να συγχρονίσει τη συσκευή %s, "
-"αλλά δεν μπορεί να βρεθεί."
+"Για να προσθέσετε τραγούδια στη σειρά αναμονής, κάνετε <b>δεξί κλικ</b> πάνω "
+"στο τραγούδι που επιθυμείτε να προσθέσετε και επιλέγετε <b>Σειρά "
+"αναμονής</b>. Όταν τελειώνει ένα τραγούδι, τα τραγούδια που βρίσκονται στη "
+"σειρά αναμονής θα αναπαραχθούν πριν από το επόμενο τραγούδι της τρέχουσας "
+"λίστας αναπαραγωγής."
 
-#: ../src/Views/DeviceSummaryWidget.vala:320
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Cannot Sync"
-msgstr "Αδυναμία συγχρονισμού"
+#: ../src/LibraryWindow.vala:815
+msgid "No songs in History"
+msgstr "Κανένα τραγούδι στο ιστορικό"
 
-#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/LibraryWindow.vala:815
 msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
 msgstr ""
-"Αδυναμία συγχρονισμού της συσκευής με τις επιλεγμένες ρυθμίσεις. Ανεπαρκής "
-"χώρος στο δίσκο"
+"Αφού ένα μέρος ενός τραγουδιού έχει αναπαραχθεί, το τραγούδι προστίθεται στη "
+"λίστα του ιστορικού.\n"
+"Μπορείτε να χρησιμοποιήσετε αυτή τη λίστα για να δείτε όλα τα τραγούδια που "
+"έχουν αναπαραχθεί στην τρέχουσα συνεδρία."
 
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Η συσκευή εκτελεί ήδη μια λειτουργία."
+#: ../src/LibraryWindow.vala:966
+msgid "Pause"
+msgstr "Παύση"
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
-msgid "No Songs"
-msgstr "Κανένα τραγούδι"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
-msgid "Updating playlist. Please wait."
-msgstr "Ενημέρωση λίστας αναπαραγωγής. Παρακαλώ περιμένετε."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Για να εισάγετε τραγούδια σε αυτή την λίστα αναπαραγωγής, κάνετε <b>δεξί "
-"κλικ</b> στο τραγούδι που επιθυμείτε και επιλέγετε <b>Προσθήκη στη λίστα "
-"αναπαραγωγής</b>."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid "Edit Smart Playlist"
-msgstr "Επεξεργασία έξυπνης λίστας αναπαραγωγής"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"Αυτή η λίστα αναπαραγωγής θα συμπληρωθεί αυτομάτως με τραγούδια που "
-"ταιριάζουν στις προϋποθέσεις της. Για να μεταβάλετε αυτές τις προϋποθέσεις, "
-"κάνετε <b>δεξί κλικ</b> πάνω της στην πλάγια μπάρα και επιλέγετε "
-"<b>Επεξεργασία</b>. Εναλλακτικά, μπορείτε να κάνετε κλικ στο παρακάτω κουμπί."
-
-#: ../src/Views/Wrappers/ViewWrapper.vala:444
-msgid "No media"
-msgstr "Κανένα μέσο"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Get Some Tunes"
-msgstr "Αποκτήστε μερικά τραγούδια"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
-msgid "Add music to your library."
-msgstr "Προσθέστε μουσική στη βιβλιοθήκη σας."
-
+#: ../src/LibraryWindow.vala:1045
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-#: ../src/LibraryWindow.vala:1086
 msgid "Import Music"
 msgstr "Εισαγωγή μουσικής"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Import music from a source into your library."
-msgstr "Εισαγωγή μουσικής από μια πηγή στη βιβλιοθήκη σας."
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+msgid "Would you like to install the %s plugin?\n"
+msgstr "Θα θέλατε να εγκαταστήσετε το πρόσθετο %s;\n"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Change Music Folder"
-msgstr "Αλλαγή του φακέλου μουσικής"
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
+msgid ""
+"\n"
+"This song cannot be played. The %s plugin is required to play the song."
+msgstr ""
+"\n"
+"Αυτό το τραγούδι δεν μπορεί να αναπαραχθεί. Απαιτείται το πρόσθετο %s για "
+"την αναπαραγωγή του τραγουδιού."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Φορτώστε μουσική από έναν φάκελο, το δίκτυο ή έναν εξωτερικό δίσκο."
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
+msgid "Install Plugin"
+msgstr "Εγκατάσταση Πρόσθετου"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import your Music"
-msgstr "Εισάγετε τη μουσική σας"
+#: ../src/Dialogs/FileNotFoundDialog.vala:53
+msgid "File not found"
+msgstr "Το αρχείο δεν βρέθηκε"
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import all your Music from %s into your library."
-msgstr "Εισάγετε όλα τα μουσικά σας κομμάτια από το %s στη βιβλιοθήκη σας."
+#: ../src/Dialogs/FileNotFoundDialog.vala:59
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr ""
+"Το αρχείο μουσικής για το <b>%s</b> από <b>%s</b> δεν μπόρεσε να βρεθεί."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
-msgid "Select Music Folder"
-msgstr "Επιλέξτε φάκελο μουσικής"
+#: ../src/Dialogs/FileNotFoundDialog.vala:62
+msgid "%i music files could not be found?"
+msgstr "%i αρχεία μουσικής δεν μπόρεσαν να βρεθούν;"
 
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "Δε βρέθηκαν τραγούδια."
+#: ../src/Dialogs/FileNotFoundDialog.vala:85
+msgid "Rescan Library"
+msgstr "Νέα σάρωση βιβλιοθήκης"
 
-#: ../src/Views/ListView/ListView.vala:357
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i κομμάτι"
-msgstr[1] "%i κομμάτια"
+#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Views/ListView/Lists/MusicListView.vala:123
+msgid "Remove Song"
+msgstr "Αφαίρεση τραγουδιού"
 
-#: ../src/Views/ListView/ListView.vala:359
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u τραγούδι"
-msgstr[1] "%u τραγούδια"
+#: ../src/Dialogs/FileNotFoundDialog.vala:88
+msgid "Find Song"
+msgstr "Εύρεση Τραγουδιού"
 
-#: ../src/Views/ListView/ListView.vala:367
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
+#: ../src/Dialogs/FileNotFoundDialog.vala:124
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
+msgid "Choose Music Folder"
+msgstr "Διαλέξτε φάκελο μουσικής"
 
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
-msgid "%i kbps"
-msgstr "%i kbps"
+#: ../src/Dialogs/PreferencesWindow.vala:46
+msgid "Select Music Folder…"
+msgstr "Επιλέξτε φάκελο μουσικής..."
 
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: ../src/Views/ListView/Lists/MusicListView.vala:627
-msgid "Never"
-msgstr "Ποτέ"
+#: ../src/Dialogs/PreferencesWindow.vala:99 ../src/Dialogs/MediaEditor.vala:153
+msgid "Close"
+msgstr "Κλείσιμο"
 
-#: ../src/Views/ListView/Lists/GenericList.vala:118
-msgid "Autosize Columns"
-msgstr "Αυτόματη προσαρμογή μεγέθους των στηλών"
+#: ../src/Dialogs/PreferencesWindow.vala:131
+msgid "General"
+msgstr "Γενικά"
+
+#: ../src/Dialogs/PreferencesWindow.vala:137
+msgid "Music Folder Location"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:145
+msgid "Library Management"
+msgstr "Διαχείριση Βιβλιοθήκης"
+
+#: ../src/Dialogs/PreferencesWindow.vala:152
+msgid "Keep Music folder organized:"
+msgstr "Κρατήστε οργανωμένο τον φάκελο μουσικής σας:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:156
+msgid "Write metadata to file:"
+msgstr "Γράψτε τα μεταδεδομένα στο αρχείο:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:160
+msgid "Copy imported files to Library:"
+msgstr "Αντιγραφή αρχείων που έχουν εισαχθεί στη βιβλιοθήκη"
+
+#: ../src/Dialogs/PreferencesWindow.vala:162
+msgid "Desktop Integration"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:167
+msgid "Continue playback when closed:"
+msgstr "Συνέχεια αναπαραγωγής μετά το κλείσιμο:"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:53
+msgid "Import from Device"
+msgstr "Εισαγωγή από συσκευή"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:70
+msgid "Import media from %s"
+msgstr "Εισαγωγή αρχείων αναπαραγωγής από %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:71
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+"Τα παρακάτω αρχεία βρέθηκαν στο %s, αλλά δεν βρίσκονται στη βιβλιοθήκη. "
+"Επιλέξτε όλα τα αρχεία που θα θέλατε να εισάγετε."
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
+msgid "Import all media"
+msgstr "Εισαγωγή όλων των αρχείων αναπαραγωγής"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:77
+#: ../plugins/Devices/CDRom/CDView.vala:88
+msgid "Import"
+msgstr "Εισαγωγή"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:78
+msgid "Don't Import"
+msgstr "Μην Εισάγεις"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:86
+msgid "Import %i items from %s"
+msgstr "Εισαγωγή %i αντικειμένων από %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:90
+msgid "Import %s from %s"
+msgstr "Εισαγωγή %s από %s"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:118
+msgid "ID"
+msgstr "Ταυτότητα (ID)"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
+#: ../src/Dialogs/SmartPlaylistEditor.vala:276
+msgid "Title"
+msgstr "Τίτλος"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:170
+msgid "Select individual media to import:"
+msgstr "Επιλέξτε μεμονωμένα πολυμέσα για εισαγωγή:"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:188
+msgid "Check Item"
+msgstr "Έλεγχος Αντικειμένου"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:189
+msgid "Check Album"
+msgstr "Έλεγχος Δίσκου"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
+msgid "Check Artist"
+msgstr "Έλεγχος Καλλιτέχνη"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
+msgid "Cannot Import"
+msgstr "Αδυναμία Εισαγωγής"
+
+#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
+msgid ""
+"Noise is already doing file operations. Please wait until those finish to "
+"import from %d"
+msgstr ""
+"Το Noise εκτελεί διεργασίες αρχείων. Παρακαλώ περιμένετε μέχρι να "
+"ολοκληρωθεί η εισαγωγή τους από %d"
+
+#: ../src/Dialogs/MediaEditor.vala:72
+msgid "Title:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:74
+msgid "Artist:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:76
+msgid "Album Artist:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:78
+msgid "Album:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:80
+msgid "Genre:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:82
+msgid "Composer:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:84
+msgid "Grouping:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:86
+msgid "Comment:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:88
+msgid "Track:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:90
+msgid "Disk:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:92
+msgid "Year:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:94
+msgid "Rating:"
+msgstr ""
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
+msgid "Export Playlists"
+msgstr "Εξαγωγή Λιστών Αναπαραγωγής"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
+msgid "Set Music Folder"
+msgstr "Ορισμός Φακέλου Μουσικής"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
+msgid "Set Music Folder?"
+msgstr "Ορισμός Φάκελου Μουσικής;"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Είστε σίγουροι ότι θέλετε να μετακινήσετε την μουσική σας στο %s; Αυτό θα "
+"επαναφέρει τη βιβλιοθήκη σας και θα αφαιρέσει τις λίστες αναπαραγωγής σας."
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:50
+#: ../src/Dialogs/NotImportedWindow.vala:64
+msgid "Move to Trash"
+msgstr "Μετακίνηση στον Κάδο Απορριμμάτων"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:51
+msgid "Remove from %s"
+msgstr "Αφαίρεση από το %s"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:61
+msgid "Remove %d Songs From %s?"
+msgstr "Αφαίρεση %d τραγουδιών από το %s;"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:64
+msgid "Remove \"%s\" From %s?"
+msgstr "Αφαίρεση \"%s\" από το %s;"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:73
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+"Αυτή η ενέργεια θα απομακρύνει το τραγούδι από την βιβλιοθήκη και από κάθε "
+"άλλη συσκευή που συγχρονίζεται αυτόματα με το %s."
+msgstr[1] ""
+"Αυτή η ενέργεια θα απομακρύνει τα τραγούδια από την βιβλιοθήκη και από κάθε "
+"άλλη συσκευή που συγχρονίζεται αυτόματα με το %s."
+
+#: ../src/Dialogs/SyncWarningDialog.vala:57
+msgid "Import media to Library"
+msgstr "Εισαγωγή αρχείων μέσων στη Βιβλιοθήκη"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:58
+msgid "Continue Syncing"
+msgstr "Συνέχεια Συγχρονισμού"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:59
+msgid "Stop Syncing"
+msgstr "Σταμάτημα Συγχρονισμού"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:66
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Αν συνεχίσετε τον συγχρονισμό, τα αρχεία μεσων θα απομακρυνθούν από το %s "
+"αφού δεν βρίσκονται στη λίστα συγχρονισμού. Θα θέλατε να τα εισάγεται πρώτα "
+"στη βιβλιοθήκη σας;"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:72
+msgid "Sync will remove %i items from %s"
+msgstr "Ο συγχρονισμός θα απομακρύνει %i αντικείμενα από το %s"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:75
+msgid "Sync will remove 1 item from %s"
+msgstr "Ο συγχρονισμός θα απομακρύνει 1 αντικείμενο από το %s"
+
+#: ../src/Dialogs/NotImportedWindow.vala:52
+#: ../src/Dialogs/NotImportedWindow.vala:55
+msgid "Unable to import %d items from %s"
+msgstr "Δεν ήταν δυνατή η φόρτωση %d στοιχείων από %s"
+
+#: ../src/Dialogs/NotImportedWindow.vala:56
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr ""
+"%s Αδύνατη η φόρτωση %d στοιχείων. Τα αρχεία μπορεί να είναι φθαρμένα."
+
+#: ../src/Dialogs/NotImportedWindow.vala:59
+msgid "Move all corrupted files to trash"
+msgstr "Μετακίνιση των κατεστραμένων αρχείων στα απορρίματα"
+
+#: ../src/Dialogs/NotImportedWindow.vala:66
+msgid "Ignore"
+msgstr "Αγνόηση"
+
+#: ../src/Dialogs/NotImportedWindow.vala:81
+msgid "del"
+msgstr "διαγρ."
+
+#: ../src/Dialogs/NotImportedWindow.vala:86
+msgid "File Location"
+msgstr "Τοποθεσία Αρχείου"
+
+#: ../src/Dialogs/NotImportedWindow.vala:101
+msgid "Select individual files to move to trash:"
+msgstr "Επιλέξτε μεμονωμένα αρχεία για μετακίνηση στον κάδο:"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:36
+msgid "Smart Playlist Editor"
+msgstr "Επεξεργαστής έξυπνης λίστας αναπαραγωγής"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:48
+#: ../src/Dialogs/SmartPlaylistEditor.vala:56
+msgid "Name of Playlist"
+msgstr "Όνομα λίστας αναπαραγωγής"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:49
+#: ../src/Dialogs/SmartPlaylistEditor.vala:57
+msgid "Rules"
+msgstr "Κανόνες"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:50
+#: ../src/Dialogs/SmartPlaylistEditor.vala:58
+msgid "Options"
+msgstr "Επιλογές"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:62
+msgid "Playlist Title"
+msgstr "Τίτλος λίστας αναπαραγωγής"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:68
+msgid "Match"
+msgstr "Αντιστοιχία"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:70
+msgid "any"
+msgstr "οποιοδήποτε"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:71
+msgid "all"
+msgstr "όλα"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:77
+msgid "of the following:"
+msgstr "από τα παρακάτω:"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:89
+msgid "Add"
+msgstr "Προσθήκη"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:94
+msgid "Limit to"
+msgstr "Περιορισμός σε:"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:96
+msgid "items"
+msgstr "αντικείμενα"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Bitrate"
+msgstr "Ρυθμός μετάδοσης"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:266
+msgid "Comment"
+msgstr "Σχόλιο"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Composer"
+msgstr "Συνθέτης"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:268
+msgid "Date Added"
+msgstr "Ημερομηνία προσθήκης"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Genre"
+msgstr "Είδος"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Grouping"
+msgstr "Ομαδοποίηση"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Last Played"
+msgstr "Τελευταία Αναπαραγωγή"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:272
+#: ../src/Dialogs/SmartPlaylistEditor.vala:406
+msgid "Length"
+msgstr "Διάρκεια"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:273
+msgid "Playcount"
+msgstr "Μετρητής εκτελέσεων"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:274
+msgid "Rating"
+msgstr "Βαθμολογία"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:275
+msgid "Skipcount"
+msgstr "Παράβλεψη καταμέτρησης"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:277
+msgid "Year"
+msgstr "Έτος"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:341
+msgid "is"
+msgstr "είναι"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:342
+msgid "contains"
+msgstr "περιέχει"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:343
+msgid "does not contain"
+msgstr "δεν περιέχει"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:369
+#: ../src/Dialogs/SmartPlaylistEditor.vala:383
+msgid "is exactly"
+msgstr "είναι ακριβώς"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:370
+msgid "is at most"
+msgstr "είναι το πολύ"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:371
+msgid "is at least"
+msgstr "είναι τουλάχιστον"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:384
+msgid "is within"
+msgstr "είναι εντός"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:385
+msgid "is before"
+msgstr "είναι πριν"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:407
+msgid "seconds"
+msgstr "δευτερόλεπα"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:410
+msgid "days ago"
+msgstr "ημέρες πριν"
+
+#: ../src/Dialogs/SmartPlaylistEditor.vala:413
+msgid "kbps"
+msgstr "kbps"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
@@ -543,6 +1109,10 @@ msgctxt "List column title"
 msgid "File Size"
 msgstr "Μέγεθος αρχείου"
 
+#: ../src/Views/ListView/Lists/GenericList.vala:118
+msgid "Autosize Columns"
+msgstr "Αυτόματη προσαρμογή μεγέθους των στηλών"
+
 #: ../src/Views/ListView/Lists/MusicListView.vala:84
 msgid "Remove from Library"
 msgstr "Κατάργηση από τη βιβλιοθήκη"
@@ -559,54 +1129,49 @@ msgstr "Αφαίρεση από την συσκευή"
 msgid "Scroll to Current Song"
 msgstr "Μεταβείτε στο τρέχον κομμάτι"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:117
+#: ../src/Views/ListView/Lists/MusicListView.vala:118
 msgid "Edit Song Info"
 msgstr "Επεξεργασία πληροφοριών τραγουδιού"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:118
+#: ../src/Views/ListView/Lists/MusicListView.vala:119
 msgid "Show in File Browser"
 msgstr "Εμφάνιση στον περιηγητή αρχείων"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:119
+#: ../src/Views/ListView/Lists/MusicListView.vala:120
 msgid "Other actions"
 msgstr "Άλλες ενέργειες"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:120
+#: ../src/Views/ListView/Lists/MusicListView.vala:121
 msgctxt "Action item (verb)"
 msgid "Queue"
 msgstr "Σειρά αναμονής"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:121
+#: ../src/Views/ListView/Lists/MusicListView.vala:122
 msgid "Add to Playlist"
 msgstr "Προσθήκη στη λίστα αναπαραγωγής"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:122
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-msgid "Remove Song"
-msgstr "Αφαίρεση τραγουδιού"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:123
-#: ../src/Widgets/SourceListView.vala:148
-msgid "Import to Library"
-msgstr "Εισαγωγή στη βιβλιοθήκη"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:178
+#: ../src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
 msgstr "Νέα λίστα αναπαραγωγής..."
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:218
+#: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
 msgstr "Εισαγωγή %i από τα %i επιλεγμένα τραγούδια"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:220
+#: ../src/Views/ListView/Lists/MusicListView.vala:229
 msgid "Import %i song"
 msgid_plural "Import %i songs"
 msgstr[0] "Εισαγωγή %i τραγουδιού"
 msgstr[1] "Εισαγωγή %i τραγουδιών"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:612
+#: ../src/Views/ListView/Lists/MusicListView.vala:600
 msgid "1234 kbps"
 msgstr "1234 kbps"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:615
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
+msgid "Never"
+msgstr "Ποτέ"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -615,9 +1180,31 @@ msgstr "1234 kbps"
 #. / of a song title or artist name in your language. The automatic column
 #. / width will depend on the length of this string and the space needed
 #. / by the column's title header.
-#: ../src/Views/ListView/Lists/MusicListView.vala:683
+#: ../src/Views/ListView/Lists/MusicListView.vala:671
 msgid "Sample List String"
 msgstr "Παράδειγμα μήκους κειμένου"
+
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
+msgid "%i kbps"
+msgstr "%i kbps"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
+msgid "On Left"
+msgstr "Στα αριστερά"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+msgid "On Top"
+msgstr "Στην κορυφή"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "Χωρίς αξιολόγηση"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+msgid "%i Star"
+msgid_plural "%i Stars"
+msgstr[0] "%i αστέρι"
+msgstr[1] "%i αστέρια"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
 msgid "Genres"
@@ -646,29 +1233,6 @@ msgstr "Συνθέτες"
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Groupings"
 msgstr "Ομαδοποιήσεις"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
-msgid "Automatic"
-msgstr "Αυτόματα"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
-msgid "On Left"
-msgstr "Στα αριστερά"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
-msgid "On Top"
-msgstr "Στην κορυφή"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Χωρίς αξιολόγηση"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i αστέρι"
-msgstr[1] "%i αστέρια"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -750,321 +1314,210 @@ msgstr "Όλοι οι %i συνθέτες"
 msgid "No Composers"
 msgstr "Κανένας συνθέτης"
 
+#: ../src/Views/ListView/ListView.vala:86
+msgid "No Songs Found."
+msgstr "Δε βρέθηκαν τραγούδια."
+
+#: ../src/Views/ListView/ListView.vala:357
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i κομμάτι"
+msgstr[1] "%i κομμάτια"
+
+#: ../src/Views/ListView/ListView.vala:359
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u τραγούδι"
+msgstr[1] "%u τραγούδια"
+
+#: ../src/Views/ListView/ListView.vala:367
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: ../src/Views/GridView/PopupListView.vala:59
+msgid "Set new album cover"
+msgstr "Ορίστε νέο εξώφυλλο για το άλμπουμ"
+
+#: ../src/Views/GridView/PopupListView.vala:156
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s από %s"
+
+#: ../src/Views/GridView/PopupListView.vala:256
+msgid "_Cancel"
+msgstr "_Ακύρωση"
+
+#: ../src/Views/GridView/PopupListView.vala:256
+msgid "_Open"
+msgstr "_Άνοιγμα"
+
+#: ../src/Views/GridView/PopupListView.vala:259
+msgid "Image files"
+msgstr "Αρχεία εικόνων"
+
+#: ../src/Views/GridView/GridView.vala:44
+msgid "No Albums Found."
+msgstr "Δε βρέθηκαν άλμπουμ."
+
+#: ../src/Views/GridView/GridView.vala:141
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u άλμπουμ"
+msgstr[1] "%u άλμπουμ"
+
+#: ../src/Views/DeviceView.vala:38
+msgid "Cancelling…"
+msgstr "Ακύρωση…"
+
+#: ../src/Views/DeviceView.vala:38
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr ""
+"Η λειτουργία της συσκευής έχει ακυρωθεί και θα σταματήσει μετά από αυτό το "
+"πολυμέσο."
+
+#: ../src/Views/DeviceView.vala:59
+msgid "OK"
+msgstr "Εντάξει"
+
+#: ../src/Views/DeviceView.vala:100
+msgid "No External Songs"
+msgstr "Δεν υπάρχουν εξωτερικά τραγούδια"
+
+#: ../src/Views/DeviceView.vala:100
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr "Όλα τα τραγούδια της συσκευής περιλαμβάνονται στη βιβλιοθήκη."
+
+#: ../src/Views/DeviceSummaryWidget.vala:73
+msgid "Device Name:"
+msgstr "Όνομα συσκευής:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:77
+msgid "Device Name"
+msgstr "Όνομα συσκευής"
+
+#: ../src/Views/DeviceSummaryWidget.vala:79
+msgid "Automatically sync when plugged in:"
+msgstr "Αυτόματος συγχρονισμός όταν συνδέεται στον υπολογιστή:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:86
+msgid "Sync:"
+msgstr "Συγχρονισμός:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:98
+msgid "Other Files"
+msgstr "Άλλα αρχεία"
+
+#: ../src/Views/DeviceSummaryWidget.vala:253
+msgid "All Music"
+msgstr "Όλη η μουσική"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
+msgid "Sync Failed"
+msgstr "Ο συγχρονισμός απέτυχε"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"Η λίστα αναπαραγωγής %s χρησιμοποιείται για να συγχρονίσει τη συσκευή %s, "
+"αλλά δεν μπορεί να βρεθεί."
+
+#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Cannot Sync"
+msgstr "Αδυναμία συγχρονισμού"
+
+#: ../src/Views/DeviceSummaryWidget.vala:320
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Αδυναμία συγχρονισμού της συσκευής με τις επιλεγμένες ρυθμίσεις. Ανεπαρκής "
+"χώρος στο δίσκο"
+
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "Η συσκευή εκτελεί ήδη μια λειτουργία."
+
 #: ../src/Views/ContentView.vala:21
 msgctxt ""
 "Format used on statusbar: $description, $total_duration, $total_file_size"
 msgid "%s, %s, %s"
 msgstr "%s, %s, %s"
 
-#: ../src/Views/GridView/PopupListView.vala:58
-msgid "Set new album cover"
-msgstr "Ορίστε νέο εξώφυλλο για το άλμπουμ"
+#: ../src/Views/Wrappers/ViewWrapper.vala:442
+msgid "No media"
+msgstr "Κανένα μέσο"
 
-#: ../src/Views/GridView/PopupListView.vala:152
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s από %s"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
+msgid "No Songs"
+msgstr "Κανένα τραγούδι"
 
-#: ../src/Views/GridView/PopupListView.vala:248
-msgid "_Cancel"
-msgstr "_Ακύρωση"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
+msgid "Updating playlist. Please wait."
+msgstr "Ενημέρωση λίστας αναπαραγωγής. Παρακαλώ περιμένετε."
 
-#: ../src/Views/GridView/PopupListView.vala:248
-msgid "_Open"
-msgstr "_Άνοιγμα"
-
-#: ../src/Views/GridView/PopupListView.vala:251
-msgid "Image files"
-msgstr "Αρχεία εικόνων"
-
-#: ../src/Views/GridView/GridView.vala:54
-msgid "No Albums Found."
-msgstr "Δε βρέθηκαν άλμπουμ."
-
-#: ../src/Views/GridView/GridView.vala:132
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u άλμπουμ"
-msgstr[1] "%u άλμπουμ"
-
-#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
-msgid "Rename"
-msgstr "Μετονομασία"
-
-#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Remove"
-msgstr "Αφαίρεση"
-
-#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
-#: ../src/Widgets/SourceListView.vala:90
-msgid "Export…"
-msgstr "Εξαγωγή..."
-
-#: ../src/Widgets/SourceListView.vala:73
-msgid "Edit…"
-msgstr "Επεξεργασία..."
-
-#: ../src/Widgets/SourceListView.vala:88
-msgid "Save as Playlist"
-msgstr "Αποθήκευση ως λίστα αναπαραγωγής"
-
-#: ../src/Widgets/SourceListView.vala:156
-msgid "Eject"
-msgstr "Εξαγωγή"
-
-#: ../src/Widgets/SourceListView.vala:161
-#: ../src/Widgets/SourceListView.vala:201
-msgid "New Playlist"
-msgstr "Νέα λίστα αναπαραγωγής"
-
-#: ../src/Widgets/SourceListView.vala:166
-#: ../src/Widgets/SourceListView.vala:202
-msgid "New Smart Playlist"
-msgstr "Νέα έξυπνη λίστα αναπαραγωγής"
-
-#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
-msgid "Sync"
-msgstr "Συγχρονισμός"
-
-#: ../src/Widgets/SourceListView.vala:203
-msgid "Import Playlists"
-msgstr "Εισαγωγή λιστών αναπαραγωγής"
-
-#: ../src/Widgets/SourceListView.vala:313
-msgid "Library"
-msgstr "Βιβλιοθήκη"
-
-#: ../src/Widgets/SourceListView.vala:314
-msgid "Devices"
-msgstr "Συσκευές"
-
-#: ../src/Widgets/SourceListView.vala:315
-msgid "Network"
-msgstr "Δίκτυο"
-
-#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:640
-msgid "Playlists"
-msgstr "Λίστες αναπαραγωγής"
-
-#: ../src/Widgets/PresetList.vala:47
-msgid "Delete Current"
-msgstr "Διαγραφή του τρέχοντος"
-
-#: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
-#: ../src/Widgets/EqualizerPopover.vala:339
-msgid "Off"
-msgstr "Απενεργοποίηση"
-
-#: ../src/Widgets/StatusBar.vala:64
-msgid "Enable Repeat"
-msgstr "Ενεργοποίηση επανάληψης"
-
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Song"
-msgstr "Τραγούδι"
-
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Repeat Song"
-msgstr "Επανάληψη τραγουδιού"
-
-#: ../src/Widgets/StatusBar.vala:66 ../src/Dialogs/MediaEditor.vala:194
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
-#: ../src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Album"
-msgstr "Άλμπουμ"
-
-#: ../src/Widgets/StatusBar.vala:66
-msgid "Repeat Album"
-msgstr "Επανάληψη άλμπουμ"
-
-#: ../src/Widgets/StatusBar.vala:67 ../src/Dialogs/MediaEditor.vala:192
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
-#: ../src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Artist"
-msgstr "Καλλιτέχνης"
-
-#: ../src/Widgets/StatusBar.vala:67
-msgid "Repeat Artist"
-msgstr "Επανάληψη καλλιτέχνη"
-
-#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
-msgid "All"
-msgstr "Όλα"
-
-#: ../src/Widgets/StatusBar.vala:68
-msgid "Disable Repeat"
-msgstr "Ακύρωση Επανάληψης"
-
-#: ../src/Widgets/StatusBar.vala:94
-msgid "Enable Shuffle"
-msgstr "Ενεργοποίηση τυχαίας σειράς αναπαραγωγής"
-
-#: ../src/Widgets/StatusBar.vala:95
-msgid "Disable Shuffle"
-msgstr "Απενεργοποίηση τυχαίας σειράς αναπαραγωγής"
-
-#: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
-msgid "Add Playlist"
-msgstr "Προσθήκη λίστας αναπαραγωγής"
-
-#: ../src/Widgets/StatusBar.vala:140
-msgid "Add Smart Playlist"
-msgstr "Προσθήκη έξυπνης λίστας"
-
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: ../src/Widgets/StatusBar.vala:189
-msgid "Equalizer: %s"
-msgstr ""
-
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Hide"
-msgstr "Απόκρυψη"
-
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Show Info Panel"
-msgstr "Προβολή πίνακα πληροφοριών"
-
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Show"
-msgstr "Προβολή"
-
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Hide Info Panel"
-msgstr "Απόκρυψη πίνακα πληροφοριών"
-
-#: ../src/Widgets/EqualizerPopover.vala:163
-msgid "Save preset"
-msgstr "Αποθήκευση ρύθμισης"
-
-#: ../src/Widgets/EqualizerPopover.vala:426
-msgid "%s (Custom)"
-msgstr "%s (Προσαρμοσμένο)"
-
-#: ../src/Widgets/EqualizerPopover.vala:428
-msgid "%s (Custom %i)"
-msgstr "%s (Προσαρμοσμένο %i)"
-
-#: ../src/Widgets/EqualizerPopover.vala:431
-msgid "Custom Preset"
-msgstr "Προσαρμοσμένη προεπιλογή"
-
-#: ../src/Widgets/EqualizerPopover.vala:433
-msgid "Custom Preset %i"
-msgstr "Προσαρμοσμένη προεπιλογή %i"
-
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "Προβολή σαν άλμπουμ"
-
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "Προβολή ως λίστα"
-
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "Προβολή σε στήλες"
-
-#: ../src/Widgets/SpaceWidget.vala:266
-msgid "Free"
-msgstr "Ελεύθερα"
-
-#: ../src/Widgets/SpaceWidget.vala:383
-msgid "Using %s of %s (%.2f%)"
-msgstr "Χρησιμοποιώντας %s από %s (%.2f%)"
-
-#: ../src/LibraryWindow.vala:250
-msgid "Import to Library…"
-msgstr "Εισαγωγή στη βιβλιοθήκη..."
-
-#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
-msgid "Preferences"
-msgstr "Προτιμήσεις"
-
-#: ../src/LibraryWindow.vala:270
-msgid "Previous"
-msgstr "Προηγούμενο"
-
-#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:1013
-msgid "Play"
-msgstr "Αναπαραγωγή"
-
-#: ../src/LibraryWindow.vala:274
-msgid "Next"
-msgstr "Επόμενο"
-
-#: ../src/LibraryWindow.vala:278
-msgid "Search Music"
-msgstr "Αναζήτηση μουσικής"
-
-#: ../src/LibraryWindow.vala:853
-msgid "No songs in Queue"
-msgstr "Κανένα τραγούδι στην σειρά αναμονής"
-
-#: ../src/LibraryWindow.vala:853
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
 msgstr ""
-"Για να προσθέσετε τραγούδια στη σειρά αναμονής, κάνετε <b>δεξί κλικ</b> πάνω "
-"στο τραγούδι που επιθυμείτε να προσθέσετε και επιλέγετε <b>Σειρά "
-"αναμονής</b>. Όταν τελειώνει ένα τραγούδι, τα τραγούδια που βρίσκονται στη "
-"σειρά αναμονής θα αναπαραχθούν πριν από το επόμενο τραγούδι της τρέχουσας "
-"λίστας αναπαραγωγής."
+"Για να εισάγετε τραγούδια σε αυτή την λίστα αναπαραγωγής, κάνετε <b>δεξί "
+"κλικ</b> στο τραγούδι που επιθυμείτε και επιλέγετε <b>Προσθήκη στη λίστα "
+"αναπαραγωγής</b>."
 
-#: ../src/LibraryWindow.vala:856
-msgid "No songs in History"
-msgstr "Κανένα τραγούδι στο ιστορικό"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid "Edit Smart Playlist"
+msgstr "Επεξεργασία έξυπνης λίστας αναπαραγωγής"
 
-#: ../src/LibraryWindow.vala:856
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
 msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
 msgstr ""
-"Αφού ένα μέρος ενός τραγουδιού έχει αναπαραχθεί, το τραγούδι προστίθεται στη "
-"λίστα του ιστορικού.\n"
-"Μπορείτε να χρησιμοποιήσετε αυτή τη λίστα για να δείτε όλα τα τραγούδια που "
-"έχουν αναπαραχθεί στην τρέχουσα συνεδρία."
+"Αυτή η λίστα αναπαραγωγής θα συμπληρωθεί αυτομάτως με τραγούδια που "
+"ταιριάζουν στις προϋποθέσεις της. Για να μεταβάλετε αυτές τις προϋποθέσεις, "
+"κάνετε <b>δεξί κλικ</b> πάνω της στην πλάγια μπάρα και επιλέγετε "
+"<b>Επεξεργασία</b>. Εναλλακτικά, μπορείτε να κάνετε κλικ στο παρακάτω κουμπί."
 
-#: ../src/LibraryWindow.vala:1007
-msgid "Pause"
-msgstr "Παύση"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Get Some Tunes"
+msgstr "Αποκτήστε μερικά τραγούδια"
 
-#: ../src/LocalBackend/LocalLibrary.vala:184
-msgid "Importing music from %s…"
-msgstr "Εισαγωγή μουσικής από %s..."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
+msgid "Add music to your library."
+msgstr "Προσθέστε μουσική στη βιβλιοθήκη σας."
 
-#: ../src/LocalBackend/LocalLibrary.vala:212
-msgid "Adding files to library…"
-msgstr "Προσθήκη αρχείων στη βιβλιοθήκη..."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr "Εισαγωγή μουσικής από μια πηγή στη βιβλιοθήκη σας."
 
-#: ../src/LocalBackend/LocalLibrary.vala:227
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Εισάγεται<b> μουσική στη βιβλιοθήκη..."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Change Music Folder"
+msgstr "Αλλαγή του φακέλου μουσικής"
 
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "All music files are already in your library"
-msgstr "Όλα τα αρχεία μουσικής βρίσκονται ήδη στη βιβλιοθήκη σας"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Φορτώστε μουσική από έναν φάκελο, το δίκτυο ή έναν εξωτερικό δίσκο."
 
-#: ../src/LocalBackend/LocalLibrary.vala:251
-msgid "No files were imported."
-msgstr "Δεν εισήχθησαν αρχεία"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import your Music"
+msgstr "Εισάγετε τη μουσική σας"
 
-#: ../src/LocalBackend/LocalLibrary.vala:256
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Σάρωση μουσικής για αλλαγές. Αυτό μπορεί να πάρει λίγο χρόνο..."
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import all your Music from %s into your library."
+msgstr "Εισάγετε όλα τα μουσικά σας κομμάτια από το %s στη βιβλιοθήκη σας."
 
-#: ../src/LocalBackend/LocalLibrary.vala:330
-msgid "Added to your queue:"
-msgstr "Προστέθηκε στη σειρά αναμονής"
-
-#: ../src/LocalBackend/LocalLibrary.vala:341
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
+msgid "Select Music Folder"
+msgstr "Επιλέξτε φάκελο μουσικής"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
@@ -1090,507 +1543,77 @@ msgstr "Υπέρ-εκτελεσμένα"
 msgid "Not Recently Played"
 msgstr "Δεν έχουν εκτελεστεί πρόσφατα"
 
-#: ../src/Objects/LyricFetcher.vala:141
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Οι στίχοι προσκομίζονται από τη σελίδα www.lyricsmania.com"
+#: ../src/LocalBackend/LocalLibrary.vala:182
+msgid "Importing music from %s…"
+msgstr "Εισαγωγή μουσικής από %s..."
 
-#: ../src/Objects/HistoryPlaylist.vala:40
-msgid "History"
-msgstr "Ιστορικό"
+#: ../src/LocalBackend/LocalLibrary.vala:210
+msgid "Adding files to library…"
+msgstr "Προσθήκη αρχείων στη βιβλιοθήκη..."
 
-#: ../src/Noise.vala:65
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Basilis Thomopoulos https://launchpad.net/~kolxoz83\n"
-"  Chris Triantafillis https://launchpad.net/~christriant\n"
-"  Daniel Fore https://launchpad.net/~danrabbit\n"
-"  Filippos Kolyvas https://launchpad.net/~fkol-k4\n"
-"  George Chalkitis https://launchpad.net/~chalkitisge\n"
-"  Jim Spentzos https://launchpad.net/~jamesspentzos\n"
-"  Nikos Raptopoulos https://launchpad.net/~nraptopoulos\n"
-"  Nikos Tourvas https://launchpad.net/~nikostourvas\n"
-"  Stefanos Papanatsios https://launchpad.net/~stefan0spapanatsi0s\n"
-"  Theodore Grammenos https://launchpad.net/~theodorewii121\n"
-"  Theodoros Kentistos https://launchpad.net/~theokent\n"
-"  adem https://launchpad.net/~haliladem111\n"
-"  iakovos athanasiadhs https://launchpad.net/~liam21iakovos\n"
-"  oikonomopo https://launchpad.net/~oikonomopo-gmail"
+#: ../src/LocalBackend/LocalLibrary.vala:225
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>Εισάγεται<b> μουσική στη βιβλιοθήκη..."
 
-#: ../src/FileOperator.vala:309
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "All music files are already in your library"
+msgstr "Όλα τα αρχεία μουσικής βρίσκονται ήδη στη βιβλιοθήκη σας"
+
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "No files were imported."
+msgstr "Δεν εισήχθησαν αρχεία"
+
+#: ../src/LocalBackend/LocalLibrary.vala:254
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "Σάρωση μουσικής για αλλαγές. Αυτό μπορεί να πάρει λίγο χρόνο..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:328
+msgid "Added to your queue:"
+msgstr "Προστέθηκε στη σειρά αναμονής"
+
+#: ../src/LocalBackend/LocalLibrary.vala:339
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/FileOperator.vala:307
 msgid "Import Complete"
 msgstr "Η εισαγωγή ολοκληρώθηκε"
 
-#: ../src/FileOperator.vala:309
+#: ../src/FileOperator.vala:307
 msgid "%s has imported your library."
 msgstr "Το %s εισήχθη στη βιβλιοθήκη σας."
 
-#: ../src/FileOperator.vala:322
+#: ../src/FileOperator.vala:320
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Αντιγραφή</b> αρχείων στον <b>Φάκελο μουσικής</b>..."
 
-#: ../src/Dialogs/MediaEditor.vala:83
-msgid "Details"
-msgstr "Λεπτομέρειες"
+#: ../plugins/LastFM/SimilarMediaView.vala:41
+msgid "media"
+msgstr "πολυμέσα"
 
-#: ../src/Dialogs/MediaEditor.vala:85 ../src/Dialogs/MediaEditor.vala:369
-msgid "Lyrics"
-msgstr "Στίχοι"
+#: ../plugins/LastFM/SimilarMediaView.vala:47
+msgid "Similar Media"
+msgstr "Παρόμοια πολυμέσα"
 
-#: ../src/Dialogs/MediaEditor.vala:94 ../src/Dialogs/PreferencesWindow.vala:99
-msgid "Close"
-msgstr "Κλείσιμο"
+#: ../plugins/LastFM/SimilarMedia.vala:37
+msgid "Similar"
+msgstr "Παρόμοιο"
 
-#: ../src/Dialogs/MediaEditor.vala:180 ../src/Dialogs/MediaEditor.vala:343
-msgid "Editing $NAME by $ARTIST"
-msgstr "Επεξεργασία $NAME από τον/την $ARTIST"
+#: ../plugins/LastFM/LastFM.vala:101
+msgid "No similar songs found"
+msgstr "Δε βρέθηκαν παρόμοια τραγούδια"
 
-#: ../src/Dialogs/MediaEditor.vala:182 ../src/Dialogs/MediaEditor.vala:345
-msgid "Editing %s"
-msgstr "Επεξεργασία %s"
-
-#: ../src/Dialogs/MediaEditor.vala:185 ../src/Dialogs/MediaEditor.vala:348
-msgid "Editing %i songs"
-msgstr "Επεξεργασία %i τραγουδιών"
-
-#: ../src/Dialogs/MediaEditor.vala:191
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
-#: ../src/Dialogs/SmartPlaylistEditor.vala:276
-msgid "Title"
-msgstr "Τίτλος"
-
-#: ../src/Dialogs/MediaEditor.vala:193
-msgid "Album Artist"
-msgstr "Καλλιτέχνης άλμπουμ"
-
-#: ../src/Dialogs/MediaEditor.vala:195 ../src/Dialogs/MediaEditor.vala:463
-#: ../src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Genre"
-msgstr "Είδος"
-
-#: ../src/Dialogs/MediaEditor.vala:196
-#: ../src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Composer"
-msgstr "Συνθέτης"
-
-#: ../src/Dialogs/MediaEditor.vala:197 ../src/Dialogs/MediaEditor.vala:463
-#: ../src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Grouping"
-msgstr "Ομαδοποίηση"
-
-#: ../src/Dialogs/MediaEditor.vala:198
-#: ../src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Comment"
-msgstr "Σχόλιο"
-
-#: ../src/Dialogs/MediaEditor.vala:199
-msgid "Track"
-msgstr "Κομμάτι"
-
-#: ../src/Dialogs/MediaEditor.vala:200
-msgid "Disc"
-msgstr "Δίσκος"
-
-#: ../src/Dialogs/MediaEditor.vala:201
-#: ../src/Dialogs/SmartPlaylistEditor.vala:277
-msgid "Year"
-msgstr "Έτος"
-
-#: ../src/Dialogs/MediaEditor.vala:202
-#: ../src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "Rating"
-msgstr "Βαθμολογία"
-
-#: ../src/Dialogs/MediaEditor.vala:292
-msgid "Lyrics not found for %s"
-msgstr "Δε βρέθηκαν στίχοι για %s"
-
-#: ../src/Dialogs/MediaEditor.vala:629
-msgid "Reset"
-msgstr "Επαναφορά"
-
-#: ../src/Dialogs/MediaEditor.vala:633
-msgid "<b>Stats</b>"
-msgstr "<b>Στατιστικά</b>"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:57
-msgid "Import media to Library"
-msgstr "Εισαγωγή αρχείων μέσων στη Βιβλιοθήκη"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:58
-msgid "Continue Syncing"
-msgstr "Συνέχεια Συγχρονισμού"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:59
-msgid "Stop Syncing"
-msgstr "Σταμάτημα Συγχρονισμού"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:66
+#: ../plugins/LastFM/LastFM.vala:101
 msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
+"There are no songs similar to the current song in your library. Make sure "
+"all song info is correct and you are connected to the Internet. Some songs "
+"may not have matches."
 msgstr ""
-"Αν συνεχίσετε τον συγχρονισμό, τα αρχεία μεσων θα απομακρυνθούν από το %s "
-"αφού δεν βρίσκονται στη λίστα συγχρονισμού. Θα θέλατε να τα εισάγεται πρώτα "
-"στη βιβλιοθήκη σας;"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:72
-msgid "Sync will remove %i items from %s"
-msgstr "Ο συγχρονισμός θα απομακρύνει %i αντικείμενα από το %s"
-
-#: ../src/Dialogs/SyncWarningDialog.vala:75
-msgid "Sync will remove 1 item from %s"
-msgstr "Ο συγχρονισμός θα απομακρύνει 1 αντικείμενο από το %s"
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
-msgid "Would you like to install the %s plugin?\n"
-msgstr "Θα θέλατε να εγκαταστήσετε το πρόσθετο %s;\n"
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
-msgid ""
-"\n"
-"This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"\n"
-"Αυτό το τραγούδι δεν μπορεί να αναπαραχθεί. Απαιτείται το πρόσθετο %s για "
-"την αναπαραγωγή του τραγουδιού."
-
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
-msgid "Install Plugin"
-msgstr "Εγκατάσταση Πρόσθετου"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
-#: ../src/Dialogs/NotImportedWindow.vala:64
-msgid "Move to Trash"
-msgstr "Μετακίνηση στον Κάδο Απορριμμάτων"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
-msgid "Remove from %s"
-msgstr "Αφαίρεση από το %s"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
-msgid "Remove %d Songs From %s?"
-msgstr "Αφαίρεση %d τραγουδιών από το %s;"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
-msgid "Remove \"%s\" From %s?"
-msgstr "Αφαίρεση \"%s\" από το %s;"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
-msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
-msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
-msgstr[0] ""
-"Αυτή η ενέργεια θα απομακρύνει το τραγούδι από την βιβλιοθήκη και από κάθε "
-"άλλη συσκευή που συγχρονίζεται αυτόματα με το %s."
-msgstr[1] ""
-"Αυτή η ενέργεια θα απομακρύνει τα τραγούδια από την βιβλιοθήκη και από κάθε "
-"άλλη συσκευή που συγχρονίζεται αυτόματα με το %s."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:53
-msgid "File not found"
-msgstr "Το αρχείο δεν βρέθηκε"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:59
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
-"Το αρχείο μουσικής για το <b>%s</b> από <b>%s</b> δεν μπόρεσε να βρεθεί."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:62
-msgid "%i music files could not be found?"
-msgstr "%i αρχεία μουσικής δεν μπόρεσαν να βρεθούν;"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
-msgid "Rescan Library"
-msgstr "Νέα σάρωση βιβλιοθήκης"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:88
-msgid "Find Song"
-msgstr "Εύρεση Τραγουδιού"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:124
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
-msgid "Choose Music Folder"
-msgstr "Διαλέξτε φάκελο μουσικής"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:53
-msgid "Import from Device"
-msgstr "Εισαγωγή από συσκευή"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:70
-msgid "Import media from %s"
-msgstr "Εισαγωγή αρχείων αναπαραγωγής από %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:71
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Τα παρακάτω αρχεία βρέθηκαν στο %s, αλλά δεν βρίσκονται στη βιβλιοθήκη. "
-"Επιλέξτε όλα τα αρχεία που θα θέλατε να εισάγετε."
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
-msgid "Import all media"
-msgstr "Εισαγωγή όλων των αρχείων αναπαραγωγής"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:77
-#: ../plugins/Devices/CDRom/CDView.vala:90
-msgid "Import"
-msgstr "Εισαγωγή"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:78
-msgid "Don't Import"
-msgstr "Μην Εισάγεις"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:86
-msgid "Import %i items from %s"
-msgstr "Εισαγωγή %i αντικειμένων από %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:90
-msgid "Import %s from %s"
-msgstr "Εισαγωγή %s από %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:118
-msgid "ID"
-msgstr "Ταυτότητα (ID)"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:170
-msgid "Select individual media to import:"
-msgstr "Επιλέξτε μεμονωμένα πολυμέσα για εισαγωγή:"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:188
-msgid "Check Item"
-msgstr "Έλεγχος Αντικειμένου"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:189
-msgid "Check Album"
-msgstr "Έλεγχος Δίσκου"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
-msgid "Check Artist"
-msgstr "Έλεγχος Καλλιτέχνη"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid "Cannot Import"
-msgstr "Αδυναμία Εισαγωγής"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-"Το Noise εκτελεί διεργασίες αρχείων. Παρακαλώ περιμένετε μέχρι να "
-"ολοκληρωθεί η εισαγωγή τους από %d"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
-msgid "Export Playlists"
-msgstr "Εξαγωγή Λιστών Αναπαραγωγής"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
-msgid "Set Music Folder"
-msgstr "Ορισμός Φακέλου Μουσικής"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
-msgid "Set Music Folder?"
-msgstr "Ορισμός Φάκελου Μουσικής;"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Είστε σίγουροι ότι θέλετε να μετακινήσετε την μουσική σας στο %s; Αυτό θα "
-"επαναφέρει τη βιβλιοθήκη σας και θα αφαιρέσει τις λίστες αναπαραγωγής σας."
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:36
-msgid "Smart Playlist Editor"
-msgstr "Επεξεργαστής έξυπνης λίστας αναπαραγωγής"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:48
-#: ../src/Dialogs/SmartPlaylistEditor.vala:56
-msgid "Name of Playlist"
-msgstr "Όνομα λίστας αναπαραγωγής"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:49
-#: ../src/Dialogs/SmartPlaylistEditor.vala:57
-msgid "Rules"
-msgstr "Κανόνες"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:50
-#: ../src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "Options"
-msgstr "Επιλογές"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:62
-msgid "Playlist Title"
-msgstr "Τίτλος λίστας αναπαραγωγής"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:68
-msgid "Match"
-msgstr "Αντιστοιχία"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:70
-msgid "any"
-msgstr "οποιοδήποτε"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:71
-msgid "all"
-msgstr "όλα"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:77
-msgid "of the following:"
-msgstr "από τα παρακάτω:"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:89
-msgid "Add"
-msgstr "Προσθήκη"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Περιορισμός σε:"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "αντικείμενα"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Bitrate"
-msgstr "Ρυθμός μετάδοσης"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:268
-msgid "Date Added"
-msgstr "Ημερομηνία προσθήκης"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Last Played"
-msgstr "Τελευταία Αναπαραγωγή"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:272
-#: ../src/Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Διάρκεια"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Playcount"
-msgstr "Μετρητής εκτελέσεων"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:275
-msgid "Skipcount"
-msgstr "Παράβλεψη καταμέτρησης"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:341
-msgid "is"
-msgstr "είναι"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:342
-msgid "contains"
-msgstr "περιέχει"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:343
-msgid "does not contain"
-msgstr "δεν περιέχει"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:369
-#: ../src/Dialogs/SmartPlaylistEditor.vala:383
-msgid "is exactly"
-msgstr "είναι ακριβώς"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:370
-msgid "is at most"
-msgstr "είναι το πολύ"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:371
-msgid "is at least"
-msgstr "είναι τουλάχιστον"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:384
-msgid "is within"
-msgstr "είναι εντός"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:385
-msgid "is before"
-msgstr "είναι πριν"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "δευτερόλεπα"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "ημέρες πριν"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "kbps"
-msgstr "kbps"
-
-#: ../src/Dialogs/PreferencesWindow.vala:46
-msgid "Select Music Folder…"
-msgstr "Επιλέξτε φάκελο μουσικής..."
-
-#: ../src/Dialogs/PreferencesWindow.vala:131
-msgid "General"
-msgstr "Γενικά"
-
-#: ../src/Dialogs/PreferencesWindow.vala:137
-msgid "Music Folder Location"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:145
-msgid "Library Management"
-msgstr "Διαχείριση Βιβλιοθήκης"
-
-#: ../src/Dialogs/PreferencesWindow.vala:152
-msgid "Keep Music folder organized:"
-msgstr "Κρατήστε οργανωμένο τον φάκελο μουσικής σας:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:156
-msgid "Write metadata to file:"
-msgstr "Γράψτε τα μεταδεδομένα στο αρχείο:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:160
-msgid "Copy imported files to Library:"
-msgstr "Αντιγραφή αρχείων που έχουν εισαχθεί στη βιβλιοθήκη"
-
-#: ../src/Dialogs/PreferencesWindow.vala:162
-msgid "Desktop Integration"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:167
-msgid "Continue playback when closed:"
-msgstr "Συνέχεια αναπαραγωγής μετά το κλείσιμο:"
-
-#: ../src/Dialogs/NotImportedWindow.vala:52
-#: ../src/Dialogs/NotImportedWindow.vala:55
-msgid "Unable to import %d items from %s"
-msgstr "Δεν ήταν δυνατή η φόρτωση %d στοιχείων από %s"
-
-#: ../src/Dialogs/NotImportedWindow.vala:56
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-"%s Αδύνατη η φόρτωση %d στοιχείων. Τα αρχεία μπορεί να είναι φθαρμένα."
-
-#: ../src/Dialogs/NotImportedWindow.vala:59
-msgid "Move all corrupted files to trash"
-msgstr "Μετακίνιση των κατεστραμένων αρχείων στα απορρίματα"
-
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "Ignore"
-msgstr "Αγνόηση"
-
-#: ../src/Dialogs/NotImportedWindow.vala:81
-msgid "del"
-msgstr "διαγρ."
-
-#: ../src/Dialogs/NotImportedWindow.vala:86
-msgid "File Location"
-msgstr "Τοποθεσία Αρχείου"
-
-#: ../src/Dialogs/NotImportedWindow.vala:101
-msgid "Select individual files to move to trash:"
-msgstr "Επιλέξτε μεμονωμένα αρχεία για μετακίνηση στον κάδο:"
+"Δεν υπάρχουν τραγούδια παρόμοια με το τρέχον στην βιβλιοθήκη σας. "
+"Σιγουρευτείτε ότι όλες οι πληροφορίες τραγουδιού είναι σωστές και ότι είστε "
+"συνδεδεμένοι στο διαδίκτυο. Μερικά τραγούδια μπορεί να μην έχουν αντιστοιχία."
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
@@ -1602,43 +1625,35 @@ msgstr "Άδεια συσκευή!"
 msgid "This device does not contain any music."
 msgstr "Αυτή η συσκευή δεν περιέχει μουσική."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:144
+#: ../plugins/Devices/iPod/iPodLibrary.vala:151
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "Προσθήκη του <b>$NAME</b> από τον/την <b>$ARTIST</b> στο $DEVICE"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:192
+#: ../plugins/Devices/iPod/iPodLibrary.vala:199
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 msgid "Syncing <b>%s</b>…"
 msgstr "Συγχρονισμός <b>%s</b>…"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:214
-#: ../plugins/Devices/iPod/iPodLibrary.vala:370
+#: ../plugins/Devices/iPod/iPodLibrary.vala:221
+#: ../plugins/Devices/iPod/iPodLibrary.vala:377
 msgid "Finishing sync process…"
 msgstr "Η διαδικασία συγχρονισμού τελειώνει..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:226
-#: ../plugins/Devices/iPod/iPodLibrary.vala:382
+#: ../plugins/Devices/iPod/iPodLibrary.vala:233
+#: ../plugins/Devices/iPod/iPodLibrary.vala:389
 msgid "Cancelling Sync…"
 msgstr "Ακύρωση συγχρονισμού..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:333
+#: ../plugins/Devices/iPod/iPodLibrary.vala:340
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 msgid "Removing from <b>%s</b>…"
 msgstr "Αφαίρεση από <b>%s</b>..."
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:526
+#: ../plugins/Devices/iPod/iPodLibrary.vala:533
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "Αφαίρεση του <b>$NAME</b> από τον/την <b>$ARTIST</b> από $DEVICE"
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
-msgid "An Error Occured"
-msgstr "Προέκυψε ένα σφάλμα"
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
-msgid "There was an error while loading this Audio CD."
-msgstr "Προέκυψε ένα σφάλμα κατά τη φόρτωση του μουσικού CD"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:85
 msgid "Audio CD Invalid"
@@ -1687,6 +1702,14 @@ msgstr "Η εισαγωγή του CD θα <b>ακυρωθεί</b> μετά τη
 msgid "An error occured during the Import of this CD"
 msgstr "Προέκυψε ένα σφάλμα κατά την εισαγωγή του CD"
 
+#: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
+msgid "An Error Occured"
+msgstr "Προέκυψε ένα σφάλμα"
+
+#: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
+msgid "There was an error while loading this Audio CD."
+msgstr "Προέκυψε ένα σφάλμα κατά τη φόρτωση του μουσικού CD"
+
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
 msgid "Android Phone"
 msgstr "Android τηλέφωνο"
@@ -1694,32 +1717,6 @@ msgstr "Android τηλέφωνο"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
 msgid "Audio Player"
 msgstr "Αναπαραγωγέας ήχου"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:41
-msgid "media"
-msgstr "πολυμέσα"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:47
-msgid "Similar Media"
-msgstr "Παρόμοια πολυμέσα"
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid "No similar songs found"
-msgstr "Δε βρέθηκαν παρόμοια τραγούδια"
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Δεν υπάρχουν τραγούδια παρόμοια με το τρέχον στην βιβλιοθήκη σας. "
-"Σιγουρευτείτε ότι όλες οι πληροφορίες τραγουδιού είναι σωστές και ότι είστε "
-"συνδεδεμένοι στο διαδίκτυο. Μερικά τραγούδια μπορεί να μην έχουν αντιστοιχία."
-
-#: ../plugins/LastFM/SimilarMedia.vala:37
-msgid "Similar"
-msgstr "Παρόμοιο"
 
 #, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
@@ -1786,8 +1783,20 @@ msgstr "Παρόμοιο"
 #~ msgid "Done"
 #~ msgstr "Ολοκληρώθηκε"
 
+#~ msgid "Lyrics"
+#~ msgstr "Στίχοι"
+
 #~ msgid "Metadata"
 #~ msgstr "Μεταδεδομένα"
+
+#~ msgid "Editing %s"
+#~ msgstr "Επεξεργασία %s"
+
+#~ msgid "Track"
+#~ msgstr "Κομμάτι"
+
+#~ msgid "Disc"
+#~ msgstr "Δίσκος"
 
 #~ msgid "Podcast"
 #~ msgstr "Φορητή εκπομπή (Podcast)"
@@ -1852,6 +1861,9 @@ msgstr "Παρόμοιο"
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i αρχεία αναπαραγωγής δε βρέθηκαν. Τι θα θέλατε να κάνετε;"
 
+#~ msgid "Lyrics not found for %s"
+#~ msgstr "Δε βρέθηκαν στίχοι για %s"
+
 #~ msgid "Rescan Music Folder"
 #~ msgstr "Νέα σάρωση φακέλου μουσικής"
 
@@ -1863,6 +1875,12 @@ msgstr "Παρόμοιο"
 
 #~ msgid "Display Album Art"
 #~ msgstr "Προβολή εξωφύλλου άλμπουμ"
+
+#~ msgid "Editing %i songs"
+#~ msgstr "Επεξεργασία %i τραγουδιών"
+
+#~ msgid "Editing $NAME by $ARTIST"
+#~ msgstr "Επεξεργασία $NAME από τον/την $ARTIST"
 
 #~ msgid "Last.fm"
 #~ msgstr "Last.fm"
@@ -1895,6 +1913,9 @@ msgstr "Παρόμοιο"
 
 #~ msgid "Remove Media"
 #~ msgstr "Αφαίρεση μέσου"
+
+#~ msgid "Album Artist"
+#~ msgstr "Καλλιτέχνης άλμπουμ"
 
 #~ msgid "Do Nothing"
 #~ msgstr "Kαμία ενέργεια"
@@ -1950,11 +1971,20 @@ msgstr "Παρόμοιο"
 #~ msgid "Cancelling Import"
 #~ msgstr "Ακύρωση εισαγωγής"
 
+#~ msgid "Reset"
+#~ msgstr "Επαναφορά"
+
 #~ msgid "Notifications:"
 #~ msgstr "Ειδοποιήσεις:"
 
+#~ msgid "<b>Stats</b>"
+#~ msgstr "<b>Στατιστικά</b>"
+
 #~ msgid "Radio Station"
 #~ msgstr "Ραδιοφωνικός Σταθμός"
+
+#~ msgid "Details"
+#~ msgstr "Λεπτομέρειες"
 
 #~ msgid "About Noise"
 #~ msgstr "Σχετικά με το Noise"
