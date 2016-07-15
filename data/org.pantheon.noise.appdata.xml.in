@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2015 elementary, LLC <contact@elementary.io> -->
 <component type="desktop">
-  <id>io.elementary.noise.desktop</id>
+  <id>org.pantheon.noise.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_group>elementary</project_group>
   <project_license>GPL-3.0+</project_license>
   <_name>Music</_name>
+  <_summary>The official elementary music player</_summary>
   <description>
     <_p>
       Music is a fast and beautiful audio player with a focus on
