@@ -152,6 +152,21 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
+    /** Returns true if the code parameter matches the keycode of the keyval parameter for
+    * any keyboard group or level (in order to allow for non-QWERTY keyboards) **/
+    protected bool match_keycode (int keyval, uint code) {
+        Gdk.KeymapKey [] keys;
+        Gdk.Keymap keymap = Gdk.Keymap.get_default ();
+        if (keymap.get_entries_for_keyval (keyval, out keys)) {
+            foreach (var key in keys) {
+                if (code == key.keycode)
+                    return true;
+                }
+            }
+
+        return false;
+    }
+
     public override bool key_press_event (Gdk.EventKey event) {
         // when typing in an editable widget, such as Gtk.Entry, don't block the event
         var focus_widget = get_focus ();
@@ -191,13 +206,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     }
 
                     break;
-                case Gdk.Key.f:
-                    searchField.grab_focus ();
-                    return false;
-                case Gdk.Key.q:
-                case Gdk.Key.w:
-                    this.destroy ();
-                    return true;
+            }
+
+            uint keycode = event.hardware_keycode;
+            if (match_keycode (Gdk.Key.f, keycode)) {
+                searchField.grab_focus ();
+                return false;
+            } else if (match_keycode (Gdk.Key.q, keycode) || match_keycode (Gdk.Key.w, keycode)) {
+                this.destroy ();
+                return true;
             }
         }
 
