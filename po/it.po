@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-07-18 19:54+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2016-07-19 12:10+0000\n"
+"Last-Translator: Michele Galimberti <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-07-19 05:57+0000\n"
+"X-Launchpad-Export-Date: 2016-07-20 05:57+0000\n"
 "X-Generator: Launchpad (build 18147)\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -1407,51 +1407,51 @@ msgstr "kbps"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Titolo:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Artista:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Artista dell'album:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Genere:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Compositore:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Raggruppamento:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Commento:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Traccia:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "Disco:"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "Anno:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Valutazione:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
