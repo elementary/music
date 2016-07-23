@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-07-20 13:44+0000\n"
+"PO-Revision-Date: 2016-07-22 13:35+0000\n"
 "Last-Translator: Mikael Nyberg <mikanybe@gmail.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-07-21 05:39+0000\n"
+"X-Launchpad-Export-Date: 2016-07-23 05:34+0000\n"
 "X-Generator: Launchpad (build 18147)\n"
 "X-Poedit-Language: Swedish\n"
 
@@ -1086,7 +1086,7 @@ msgstr "<b>Importerar</b> musik till bibliotek…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "All music files are already in your library"
-msgstr "All musikfiler är redan i ditt bibliotek"
+msgstr "Alla musikfiler finns redan i ditt bibliotek"
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "No files were imported."
@@ -1391,39 +1391,39 @@ msgstr "kbit/s"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Artist:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Albumartist:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Genre:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Kompositör:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Gruppering:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Kommentar:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Spår:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
@@ -1431,11 +1431,11 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "År:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Betyg:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
