@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2015-12-21 13:42+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2016-07-24 19:55+0000\n"
+"Last-Translator: Jernej Virag <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2016-07-17 06:03+0000\n"
-"X-Generator: Launchpad (build 18140)\n"
+"X-Launchpad-Export-Date: 2016-07-25 05:27+0000\n"
+"X-Generator: Launchpad (build 18147)\n"
 "Language: sl\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -291,7 +291,7 @@ msgstr "Glasba"
 
 #: ../src/LibraryWindow.vala:812
 msgid "No songs in Queue"
-msgstr "Ni pesmi v vrsti"
+msgstr "Ni skladb v vrsti."
 
 #: ../src/LibraryWindow.vala:812
 msgid ""
@@ -305,16 +305,14 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:815
 msgid "No songs in History"
-msgstr "Ni pesmi v zgodovini"
+msgstr "Ni skladb v zgodovini."
 
 #: ../src/LibraryWindow.vala:815
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
 "current session."
-msgstr ""
-"Po delnem predvajanju pesmi se ta doda v seznam zgodovine.\n"
-"Ta seznam lahko uporabite za pogled vseh predvajanih pesmi med trenutno sejo."
+msgstr "Po delnem predvajanju skladbe se le-ta doda v seznam."
 
 #: ../src/LibraryWindow.vala:966
 msgid "Pause"
@@ -401,12 +399,12 @@ msgstr "V redu"
 
 #: ../src/Views/DeviceView.vala:100
 msgid "No External Songs"
-msgstr "Ni zunanjih pesmi"
+msgstr "Ni zunanjih skladb."
 
 #: ../src/Views/DeviceView.vala:100
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr "Na napravi ni bilo najdenih pesmi, ki niso v tvoji knjižnici."
+msgstr "Na napravi ni skladbi ki ne bi bile v knjižnici."
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -543,7 +541,7 @@ msgstr[3] "%i zvezdice"
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
-msgstr "Najdene ni nobene skladbe."
+msgstr "Najdene ni bilo nobene skladbe."
 
 #: ../src/Views/ListView/ListView.vala:357
 msgid "%i track"
@@ -693,11 +691,11 @@ msgstr "Odstrani z naprave"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:114
 msgid "Scroll to Current Song"
-msgstr "Premik do trenutne pesmi"
+msgstr "Prikaži trenutno skladbo"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:118
 msgid "Edit Song Info"
-msgstr "Uredi podatke pesmi"
+msgstr "Uredi podatke"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:119
 msgid "Show in File Browser"
@@ -732,7 +730,7 @@ msgstr "Nov seznam predvajanja ..."
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
-msgstr "Uvoz %i od %i izbranih pesmi"
+msgstr "Uvoz %i od %i izbranih skladb"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:229
 msgid "Import %i song"
@@ -816,7 +814,7 @@ msgstr "Naprava že izvaja opravilo."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
-msgstr "Pridobi nekaj melodij"
+msgstr "Poiščite nekaj glasbe"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:52
 msgid "Add music to your library."
@@ -852,7 +850,7 @@ msgstr "Izberite mapo z glasbo"
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
 msgid "No Songs"
-msgstr "Ni pesmi"
+msgstr "Ni skladb."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
 msgid "Updating playlist. Please wait."
@@ -909,7 +907,7 @@ msgstr "Skladba"
 
 #: ../src/Widgets/StatusBar.vala:65
 msgid "Repeat Song"
-msgstr "Ponovi skladbo"
+msgstr "Ponavljaj skladbo"
 
 #: ../src/Widgets/StatusBar.vala:66
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
@@ -958,7 +956,7 @@ msgstr "Dodaj pametni seznam predvajanja"
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Izenačevalnik: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
@@ -1112,12 +1110,14 @@ msgstr "Dodano v čakalno vrsto:"
 #: ../src/LocalBackend/LocalLibrary.vala:339
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d skladb"
+msgstr[1] "%d skladba"
+msgstr[2] "%d skladbi"
+msgstr[3] "%d skladbe"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
-msgstr "Priljubljene pesmi"
+msgstr "Priljubljene skladbe"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:226
 msgid "Recently Added"
@@ -1137,7 +1137,7 @@ msgstr "Preveč predvajano"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
-msgstr "Dolgo nepredvajano"
+msgstr "Dolgo ni bilo predvajano"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:53
 msgid "Import from Device"
@@ -1247,7 +1247,7 @@ msgstr "Kopiraj uvožene datoteke v knjižnico:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Vključitev v namizje"
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
@@ -1400,51 +1400,51 @@ msgstr "kb/s"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Naslov:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Izvajalec:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Izvajalec albuma:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Zvrst:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Skladatelj:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Združevanje:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Opomba:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Skladba:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "Plošček:"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "Leto:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Ocena:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
@@ -1717,7 +1717,7 @@ msgstr "Podobna predstavnost"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
-msgstr "Ni najdenih podobnih pesmi"
+msgstr "Ni bilo najdenih podobnih skladb."
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid ""
