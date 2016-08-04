@@ -8,32 +8,32 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2015-12-21 13:46+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2016-08-03 21:49+0000\n"
+"Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-07-17 06:02+0000\n"
-"X-Generator: Launchpad (build 18140)\n"
+"X-Launchpad-Export-Date: 2016-08-04 05:37+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: ../core/Utils/PlaylistsUtils.vala:236
 msgid "New playlist"
-msgstr ""
+msgstr "Naujas grojaraštis"
 
 #: ../core/Utils/PlaylistsUtils.vala:247
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr ""
+msgstr "Eksportuoti grojaraštį"
 
 #: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
 #: ../src/LibraryWindow.vala:1047
@@ -47,29 +47,29 @@ msgstr ""
 #: ../src/Dialogs/RemoveFilesDialog.vala:52
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
 msgid "Cancel"
-msgstr ""
+msgstr "Atsisakyti"
 
 #: ../core/Utils/PlaylistsUtils.vala:277
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
 #: ../src/Dialogs/MediaEditor.vala:151
 msgid "Save"
-msgstr ""
+msgstr "Įrašyti"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG versija 3.0 išplėstinis (*.m3u)"
 
 #: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Shoutcast grojaraštis versija 2.0 (*.pls)"
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr ""
+msgstr "Grojaraštis"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
-msgstr ""
+msgstr "Importuoti %s"
 
 #: ../core/Utils/PlaylistsUtils.vala:371 ../src/LibraryWindow.vala:1048
 #: ../src/Views/GridView/PopupListView.vala:255
@@ -77,75 +77,80 @@ msgstr ""
 #: ../src/Dialogs/FileNotFoundDialog.vala:127
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
 msgid "Open"
-msgstr ""
+msgstr "Atverti"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Neatpažintas grojaraščio failas. Importavimas nepavyko."
 
 #: ../core/Utils/FileUtils.vala:294
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekundė"
+msgstr[1] "%d sekundės"
+msgstr[2] "%d sekundžių"
 
 #: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u minutė"
+msgstr[1] "%u minutės"
+msgstr[2] "%u minučių"
 
 #: ../core/Utils/TimeUtils.vala:60
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u sekundė"
+msgstr[1] "%u sekundės"
+msgstr[2] "%u sekundžių"
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:62
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s ir %s"
 
 #: ../core/Utils/TimeUtils.vala:69
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u diena"
+msgstr[1] "%u dienos"
+msgstr[2] "%u dienų"
 
 #: ../core/Utils/TimeUtils.vala:72
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u valanda"
+msgstr[1] "%u valandos"
+msgstr[2] "%u valandų"
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:83
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s ir %s"
 
 #. / days and hours
 #: ../core/Utils/TimeUtils.vala:86
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s ir %s"
 
 #. / days and minutes
 #: ../core/Utils/TimeUtils.vala:91
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s ir %s"
 
 #. / hours and minutes
 #: ../core/Utils/TimeUtils.vala:100
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "%s ir %s"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -183,19 +188,19 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Headphones"
-msgstr ""
+msgstr "Ausinės"
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Large Hall"
-msgstr ""
+msgstr "Didelė salė"
 
 #: ../core/GStreamer/Equalizer.vala:81
 msgid "Live"
-msgstr ""
+msgstr "Gyvai"
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Party"
-msgstr ""
+msgstr "Vakarėlis"
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Pop"
@@ -203,11 +208,11 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Reggae"
-msgstr ""
+msgstr "Regis"
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Rock"
-msgstr ""
+msgstr "Rokas"
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Soft"
@@ -219,7 +224,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Soft Rock"
-msgstr ""
+msgstr "Švelnus rokas"
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Techno"
@@ -228,12 +233,12 @@ msgstr ""
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
 msgid "Unknown"
-msgstr ""
+msgstr "Nežinoma"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:180
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$NAME iš albumo $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: ../core/Media.vala:183
@@ -251,15 +256,15 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
-msgstr ""
+msgstr "Importuoti į biblioteką..."
 
 #: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
 msgid "Preferences"
-msgstr ""
+msgstr "Nuostatos"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "Ankstesnis"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:972
 msgid "Play"
@@ -314,6 +319,7 @@ msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Daniel Fore https://launchpad.net/~danrabbit\n"
+"  Moo https://launchpad.net/~mooo\n"
 "  Simonas Gudjonis https://launchpad.net/~simonas-8"
 
 #: ../src/PlaybackManager.vala:96

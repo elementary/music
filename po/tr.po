@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-07-17 16:13+0000\n"
-"Last-Translator: Sadık Poyraz <sadikpoyraz01@gmail.com>\n"
+"PO-Revision-Date: 2016-08-03 14:41+0000\n"
+"Last-Translator: Melih Güçlü <melihguclu@hotmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-07-18 05:30+0000\n"
-"X-Generator: Launchpad (build 18140)\n"
+"X-Launchpad-Export-Date: 2016-08-04 05:37+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 "Language: tr\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -331,7 +331,9 @@ msgstr ""
 "  Hamza https://launchpad.net/~ckr-hamza\n"
 "  Hasan Yılmaz https://launchpad.net/~hasanyilmaz\n"
 "  Huseyin Erdem https://launchpad.net/~herdem09\n"
+"  Mehmet https://launchpad.net/~darkmehmet3\n"
 "  Mehmet Bozoklu https://launchpad.net/~mehmet-bozoklu\n"
+"  Melih Güçlü https://launchpad.net/~melihguclu\n"
 "  Mustafa Yılmaz https://launchpad.net/~apshalasha\n"
 "  Ramazan Buğdaycı https://launchpad.net/~rbugdayci-g\n"
 "  Sadık Atalay https://launchpad.net/~seaflames\n"
@@ -1124,15 +1126,15 @@ msgstr "Son Beğenilenler"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:242
 msgid "Never Played"
-msgstr "Hiç Çalınmamış"
+msgstr "Hiç Çalınmayan"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
-msgstr "Üzerinde oynandı"
+msgstr "Çok Çalınan"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
-msgstr "Yakınlarda Çalınmayanlar"
+msgstr "Uzun Süredir Çalınmayanlar"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:53
 msgid "Import from Device"
@@ -1395,51 +1397,51 @@ msgstr "Kbyte/saniye"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Parça Adı:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Sanatçı:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Albüm Sanatçısı:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Albüm:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Tarz:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Besteci:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Gruplama:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Yorum:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Parça Numarası:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "Disk:"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "Yıl:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Derecelendirme:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
