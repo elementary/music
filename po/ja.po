@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-08-04 11:39+0000\n"
-"Last-Translator: BALLOON a.k.a. Fu-sen. (Keiichi SHIGA) <Unknown>\n"
+"PO-Revision-Date: 2016-08-06 16:24+0000\n"
+"Last-Translator: Jun Takeda <takeda.jun@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-08-05 05:37+0000\n"
+"X-Launchpad-Export-Date: 2016-08-07 05:28+0000\n"
 "X-Generator: Launchpad (build 18169)\n"
 "Language: ja\n"
 
@@ -784,7 +784,7 @@ msgstr "ミュージックをライブラリへ追加します。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "ソースからライブラリへミュージックを取り込みます。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Change Music Folder"
@@ -792,7 +792,7 @@ msgstr "ミュージックフォルダの変更"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Load music from a folder, a network or an external disk."
-msgstr ""
+msgstr "フォルダ、ネットワークや外部ディスクから読み込みます。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
@@ -1048,7 +1048,7 @@ msgstr "<b>取り込み中</b> ミュージックをライブラリへ…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "すべてのミュージックが既にライブラリにあります"
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "No files were imported."
@@ -1521,17 +1521,19 @@ msgstr[1] ""
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+msgstr "%s プラグインをインストールしますか？\n"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
 msgid ""
 "\n"
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"\n"
+"この曲は再生できません。再生するためには %s プラグインが必要です。"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
 msgid "Install Plugin"
-msgstr ""
+msgstr "プラグインのインストール"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:151
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
@@ -1579,7 +1581,7 @@ msgstr "無効なオーディオCD"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:89
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "このオーディオCDの内容を読み取ることはできません"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:241
 msgid "Could not find Music Folder"
@@ -1594,19 +1596,19 @@ msgstr "CDを取り込む前に音楽フォルダがアクセス可能でマウ�
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
+msgstr "CD上で曲を見つけることができませんでした。曲をインポートすることはできません。"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "オーディオCDから 1 曲のインポートが完了しました。"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of %i songs from Audio CD finished."
-msgstr ""
+msgstr "オーディオCDから %i 曲のインポートが完了しました。"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %i: %s"
-msgstr ""
+msgstr "トラック %i をインポート中: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1614,19 +1616,19 @@ msgstr "CDの取り込みは現在の取り込みの後に<b>キャンセル</b>
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:377
 msgid "An error occured during the Import of this CD"
-msgstr ""
+msgstr "この CD のインポート中にエラーが発生しました"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr ""
+msgstr "エラーが発生"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr ""
+msgstr "このオーディオ CD の読み込み中にエラーが発生しました。"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
 msgid "Android Phone"
-msgstr ""
+msgstr "Android フォン"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
 msgid "Audio Player"

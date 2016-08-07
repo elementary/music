@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-08-05 22:46+0000\n"
+"PO-Revision-Date: 2016-08-06 22:55+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-08-06 05:37+0000\n"
+"X-Launchpad-Export-Date: 2016-08-07 05:28+0000\n"
 "X-Generator: Launchpad (build 18169)\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -156,7 +156,7 @@ msgstr "%s ir %s"
 #. / for more details.
 #: ../core/Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%Y-%m-%e %k:%M"
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
@@ -243,16 +243,17 @@ msgstr "$NAME iš albumo $ALBUM"
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: ../core/Media.vala:183
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$NAME, kurią atlieka $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:189
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$NAME, kurią atlieka $ARTIST iš albumo $ALBUM"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr ""
+"Į biblioteką importuojama <b>$NAME</b>, kurią atlieka <b>$ARTIST</b>…"
 
 #: ../src/LibraryWindow.vala:250
 msgid "Import to Library…"
@@ -352,7 +353,7 @@ msgstr "Nustatyti naują albumo viršelį"
 #: ../src/Views/GridView/PopupListView.vala:156
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr ""
+msgstr "%s pagal %s"
 
 #: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Cancel"
@@ -743,7 +744,7 @@ msgstr "1234 kbps"
 #. / by the column's title header.
 #: ../src/Views/ListView/Lists/MusicListView.vala:671
 msgid "Sample List String"
-msgstr ""
+msgstr "Arnoldas Jalianiauskas"
 
 #: ../src/Views/ContentView.vala:21
 msgctxt ""
@@ -765,15 +766,15 @@ msgstr "Prijungus, automatiškai sinchronizuoti:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:86
 msgid "Sync:"
-msgstr ""
+msgstr "Sinchronizuoti:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:98
 msgid "Other Files"
-msgstr ""
+msgstr "Kiti failai"
 
 #: ../src/Views/DeviceSummaryWidget.vala:253
 msgid "All Music"
-msgstr ""
+msgstr "Visa muzika"
 
 #: ../src/Views/DeviceSummaryWidget.vala:308
 msgid "Sync Failed"
@@ -825,12 +826,12 @@ msgstr "Įkelkite muziką iš aplanko, tinklo ar išorinio disko."
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
 msgid "Import your Music"
-msgstr ""
+msgstr "Importuokite savo muziką"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "Importuoti visą jūsų muziką iš %s į jūsų biblioteką."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:129
 msgid "Select Music Folder"
@@ -865,10 +866,14 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Šis grojaraštis bus automatiškai užpildomas dainomis, atitinkančiomis "
+"taisykles. Norėdami keisti šias taisykles, šoninėje juostoje ant grojaraščio "
+"naudokite <b>antrinį spustelėjimą</b> ir spustelėkite <b>Taisyti</b>. "
+"Pasirinktinai galite spustelėti žemiau esantį mygtuką."
 
 #: ../src/Views/Wrappers/ViewWrapper.vala:442
 msgid "No media"
-msgstr ""
+msgstr "Nėra medijos"
 
 #: ../src/Objects/LyricFetcher.vala:141
 msgid "Lyrics fetched from www.lyricsmania.com"
@@ -998,7 +1003,7 @@ msgstr "Naujas išmanusis grojaraštis"
 
 #: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
 msgid "Sync"
-msgstr ""
+msgstr "Sinchronizavimas"
 
 #: ../src/Widgets/SourceListView.vala:203
 msgid "Import Playlists"
@@ -1034,11 +1039,11 @@ msgstr "Rodyti stulpeliuose"
 
 #: ../src/Widgets/PresetList.vala:47
 msgid "Delete Current"
-msgstr ""
+msgstr "Ištrinti esamą"
 
 #: ../src/Widgets/SpaceWidget.vala:266
 msgid "Free"
-msgstr ""
+msgstr "Laisva"
 
 #: ../src/Widgets/SpaceWidget.vala:383
 msgid "Using %s of %s (%.2f%)"
@@ -1117,11 +1122,11 @@ msgstr "Niekada negrotos"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
-msgstr ""
+msgstr "Per daug grotos"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Paskutiniu metu negrotos"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:53
 msgid "Import from Device"
@@ -1171,7 +1176,7 @@ msgstr "Pavadinimas"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:170
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Pasirinkite atskirą mediją, kurią importuoti:"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:188
 msgid "Check Item"
@@ -1331,7 +1336,7 @@ msgstr "Vertinimas"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:275
 msgid "Skipcount"
-msgstr ""
+msgstr "Praleidimų skaičius"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:277
 msgid "Year"
@@ -1436,11 +1441,11 @@ msgstr "Failas nerastas"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:59
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "Nepavyko rasti muzikinio failo <b>%s</b> pagal <b>%s</b>."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:62
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "Nepavyko rasti %i muzikinių failų?"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:85
 msgid "Rescan Library"
@@ -1472,6 +1477,8 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Jeigu tęsite sinchronizavimą, medija iš %s bus pašalinta, kadangi ji nėra "
+"sinchronizavimo sąraše. Ar norite ją iš pradžių importuoti į savo biblioteką?"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
@@ -1526,7 +1533,7 @@ msgstr "Nepaisyti"
 
 #: ../src/Dialogs/NotImportedWindow.vala:81
 msgid "del"
-msgstr ""
+msgstr "ištr"
 
 #: ../src/Dialogs/NotImportedWindow.vala:86
 msgid "File Location"
@@ -1534,7 +1541,7 @@ msgstr "Failo vieta"
 
 #: ../src/Dialogs/NotImportedWindow.vala:101
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "Pasirinkti atskirus failus, kuriuos perkelti į šiukšlinę:"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -1585,7 +1592,7 @@ msgstr "Įdiegti įskiepį"
 #: ../plugins/Devices/iPod/iPodLibrary.vala:151
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "Į $DEVICE pridedama <b>$NAME</b>, kurią atlieka <b>$ARTIST</b>"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:199
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
@@ -1610,7 +1617,7 @@ msgstr "Šalinama iš <b>%s</b>…"
 #: ../plugins/Devices/iPod/iPodLibrary.vala:533
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "Iš $DEVICE šalinama <b>$NAME</b>, kurią atlieką <b>$ARTIST</b>"
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
@@ -1666,7 +1673,7 @@ msgstr "Po esamo importavimo, CD disko importavimas bus <b>atšauktas</b>."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:377
 msgid "An error occured during the Import of this CD"
-msgstr ""
+msgstr "Šio CD disko importavimo metu įvyko klaida"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
@@ -1686,19 +1693,19 @@ msgstr "Garso grotuvas"
 
 #: ../plugins/LastFM/SimilarMedia.vala:37
 msgid "Similar"
-msgstr ""
+msgstr "Panaši"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
-msgstr ""
+msgstr "medija"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:47
 msgid "Similar Media"
-msgstr ""
+msgstr "Panaši medija"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
-msgstr ""
+msgstr "Panašių dainų nerasta"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid ""
@@ -1706,3 +1713,6 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"Nėra į jūsų bibliotekoje esamą dainą panašių dainų. Įsitikinkite, kad visa "
+"informacija apie dainą yra teisinga ir, kad esate prisijungę prie interneto. "
+"Kai kurios dainos gali neturėti atitikimų."

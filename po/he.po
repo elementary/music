@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-03-20 18:36+0000\n"
-"Last-Translator: Noam Sellam <noam.sellam@hotmail.com>\n"
+"PO-Revision-Date: 2016-08-06 18:28+0000\n"
+"Last-Translator: brigazvi <brigazvi148@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-07-17 06:01+0000\n"
-"X-Generator: Launchpad (build 18140)\n"
+"X-Launchpad-Export-Date: 2016-08-07 05:28+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 "Language: \n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -48,7 +48,7 @@ msgstr "ביטול"
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
 #: ../src/Dialogs/MediaEditor.vala:151
 msgid "Save"
-msgstr "שמור"
+msgstr "שמירה"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
@@ -72,7 +72,7 @@ msgstr "יבוא  %s"
 #: ../src/Dialogs/FileNotFoundDialog.vala:127
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
 msgid "Open"
-msgstr "פתח"
+msgstr "פתיחה"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
@@ -154,7 +154,7 @@ msgstr "שטוח"
 
 #: ../core/GStreamer/Equalizer.vala:73
 msgid "Classical"
-msgstr "קלסית"
+msgstr "קלאסית"
 
 #: ../core/GStreamer/Equalizer.vala:74
 msgid "Club"
@@ -321,6 +321,7 @@ msgstr ""
 "  Roy Elazary https://launchpad.net/~roy-hagever\n"
 "  Uri Damsker  אורי דמסקר https://launchpad.net/~ud1955\n"
 "  Yaron https://launchpad.net/~sh-yaron\n"
+"  brigazvi https://launchpad.net/~brigazvi148\n"
 "  דוביקס https://launchpad.net/~dovix2003-gmail"
 
 #: ../src/PlaybackManager.vala:96
