@@ -64,6 +64,7 @@ namespace Noise {
         "audio/x-mp3",
         "audio/x-mpeg",
         "audio/x-musepack",
+        "audio/x-opus+ogg",
         "audio/x-pn-aiff",
         "audio/x-pn-au",
         "audio/x-pn-realaudio",
