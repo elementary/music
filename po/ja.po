@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-08-07 15:05+0000\n"
+"PO-Revision-Date: 2016-08-10 14:22+0000\n"
 "Last-Translator: Jun Takeda <takeda.jun@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-08-08 05:31+0000\n"
+"X-Launchpad-Export-Date: 2016-08-11 06:00+0000\n"
 "X-Generator: Launchpad (build 18169)\n"
 "Language: ja\n"
 
@@ -327,7 +327,7 @@ msgstr "取り込み完了"
 
 #: ../src/FileOperator.vala:307
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s がライブラリに取り込まれました。"
 
 #: ../src/FileOperator.vala:320
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -802,7 +802,7 @@ msgstr "ミュージックの取り込み"
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "%s からすべてのミュージックがライブラリに取り込まれました。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:129
 msgid "Select Music Folder"
