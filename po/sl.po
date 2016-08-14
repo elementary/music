@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-07-24 19:55+0000\n"
-"Last-Translator: Jernej Virag <Unknown>\n"
+"PO-Revision-Date: 2016-08-13 16:12+0000\n"
+"Last-Translator: MarkoD <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2016-07-25 05:27+0000\n"
-"X-Generator: Launchpad (build 18147)\n"
+"X-Launchpad-Export-Date: 2016-08-14 05:31+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 "Language: sl\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -300,7 +300,7 @@ msgid ""
 "first before the next song in the currently playing list."
 msgstr ""
 "Če želite dodati skladbe v vrsto, uporabite <b>drugotni klik</b> na predmetu "
-"in izberite <b>Vrsta</b>. Ko se skladba konča, bodo najprej predvajane "
+"in izberite <b>V vrsto</b>. Ko se skladba konča, bodo najprej predvajane "
 "skladbe v vrsti pred naslednjo skladbo na trenutno predvajanem seznamu."
 
 #: ../src/LibraryWindow.vala:815
@@ -822,7 +822,7 @@ msgstr "Dodajte glasbo v vašo knjižnico."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr "Uvozi glasbo v knjižnico"
+msgstr "Uvozi glasbo v knjižnico."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Change Music Folder"
