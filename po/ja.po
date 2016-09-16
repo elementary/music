@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-09-13 13:38+0000\n"
-"Last-Translator: Jun Takeda <takeda.jun@gmail.com>\n"
+"PO-Revision-Date: 2016-09-15 16:09+0000\n"
+"Last-Translator: Ryo Nakano <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-09-14 06:04+0000\n"
+"X-Launchpad-Export-Date: 2016-09-16 07:32+0000\n"
 "X-Generator: Launchpad (build 18186)\n"
 "Language: ja\n"
 
@@ -283,6 +283,8 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"再生リストに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>再生リスト</b>を選択します。曲が終わった時、現在の再生リストにある次の"
+"曲の前に再生リストの曲が先に再生されます。"
 
 #: ../src/LibraryWindow.vala:815
 msgid "No songs in History"
@@ -314,7 +316,8 @@ msgstr ""
 "  Joji Bronner https://launchpad.net/~jojiinchrist\n"
 "  Jun Takeda https://launchpad.net/~takeda-jun\n"
 "  Kadopoly https://launchpad.net/~kadopoly\n"
-"  Naoki Kephart https://launchpad.net/~naoki-kephart"
+"  Naoki Kephart https://launchpad.net/~naoki-kephart\n"
+"  Ryo Nakano https://launchpad.net/~uq3-him13de-9spzka7"
 
 #: ../src/PlaybackManager.vala:96
 msgctxt "Name of the playlist"
@@ -331,11 +334,11 @@ msgstr "%s がライブラリに取り込まれました。"
 
 #: ../src/FileOperator.vala:320
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "ファイルを<b>ミュージックフォルダー</b>に<b>コピー</b>しています…"
 
 #: ../src/Views/GridView/PopupListView.vala:59
 msgid "Set new album cover"
-msgstr ""
+msgstr "新しいアルバムカバーを設定"
 
 #: ../src/Views/GridView/PopupListView.vala:156
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -369,7 +372,7 @@ msgstr "キャンセル中…"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "デバイスの操作は中止され、このメディア以降は停止されます。"
 
 #: ../src/Views/DeviceView.vala:59
 msgid "OK"
@@ -377,12 +380,12 @@ msgstr "OK"
 
 #: ../src/Views/DeviceView.vala:100
 msgid "No External Songs"
-msgstr ""
+msgstr "外部の曲がありません"
 
 #: ../src/Views/DeviceView.vala:100
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr ""
+msgstr "ライブラリーではないこのデバイス上に曲は見つかりませんでした。"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -745,7 +748,7 @@ msgstr "同期:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:98
 msgid "Other Files"
-msgstr ""
+msgstr "その他のファイル"
 
 #: ../src/Views/DeviceSummaryWidget.vala:253
 msgid "All Music"
@@ -772,7 +775,7 @@ msgstr "ディスク容量が不足しているため、選択された設定で
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "デバイスはすでに操作を行っています。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
@@ -822,7 +825,7 @@ msgstr "プレイリストを更新しています。お待ちください。"
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr ""
+msgstr "プレイリストに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>プレイリストに追加</b>を選択します。"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid "Edit Smart Playlist"
@@ -835,6 +838,8 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"このプレイリストは法則に合致する場所に自動的に移動させられます。これらの法則を修正するには、サイドバー上で<b>右クリック</b>をして、<b>編集</b"
+">をクリックします。必要に応じて、以下のボタンをクリックできます。"
 
 #: ../src/Views/Wrappers/ViewWrapper.vala:442
 msgid "No media"
@@ -842,7 +847,7 @@ msgstr "メディアなし"
 
 #: ../src/Objects/LyricFetcher.vala:141
 msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr ""
+msgstr "Lyrics は www.lyricsmania.com から呼び出されました"
 
 #: ../src/Objects/HistoryPlaylist.vala:40
 msgid "History"
@@ -1056,7 +1061,7 @@ msgstr "取り込むファイルがありません。"
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
+msgstr "変更があった音楽を再スキャンしています。これには少し時間がかかります…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
@@ -1085,7 +1090,7 @@ msgstr "再生していない曲"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
-msgstr ""
+msgstr "よく再生する曲"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
@@ -1097,13 +1102,13 @@ msgstr "デバイスから取り込む"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:70
 msgid "Import media from %s"
-msgstr ""
+msgstr "%s からメディアを取り込む"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:71
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
-msgstr ""
+msgstr "以下のファイルは %s 上に発見されましたが、ライブラリーにありません。すべてのインポートしたいファイルをクリックしてください。"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import all media"
@@ -1159,7 +1164,7 @@ msgstr "取り込みできません"
 msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %d"
-msgstr ""
+msgstr "Noise はすでにファイル操作を行っています。%s からインポートするこれらの操作が終わるまでお待ちください"
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
@@ -1320,11 +1325,11 @@ msgstr "が完全に一致"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:370
 msgid "is at most"
-msgstr ""
+msgstr "が多くても"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:371
 msgid "is at least"
-msgstr ""
+msgstr "が少なくとも"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:384
 msgid "is within"
@@ -1372,7 +1377,7 @@ msgstr "コンポーザー:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "グループ化:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
@@ -1404,7 +1409,7 @@ msgstr "曲ファイル <b>%s</b> / <b>%s</b> は見つかりません。"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:62
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i の音楽ファイルが見つかりませんか？"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:85
 msgid "Rescan Library"
@@ -1487,7 +1492,7 @@ msgstr "無視する"
 
 #: ../src/Dialogs/NotImportedWindow.vala:81
 msgid "del"
-msgstr ""
+msgstr "削除"
 
 #: ../src/Dialogs/NotImportedWindow.vala:86
 msgid "File Location"
@@ -1516,8 +1521,7 @@ msgid ""
 msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "この操作はライブラリーと %s と自動的に同期されたデバイスから曲を削除します。"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid "Would you like to install the %s plugin?\n"
@@ -1538,12 +1542,12 @@ msgstr "プラグインのインストール"
 #: ../plugins/Devices/iPod/iPodLibrary.vala:151
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "<b>$ARTIST</b> の <b>$NAME</b> を $DEVICE に追加しています"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:199
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "<b>%s</b> を同期しています…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:221
 #: ../plugins/Devices/iPod/iPodLibrary.vala:377
@@ -1563,7 +1567,7 @@ msgstr "<b>%s</b> から削除しています..."
 #: ../plugins/Devices/iPod/iPodLibrary.vala:533
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "<b>$ARTIST</b> の <b>$NAME</b> を $DEVICE から削除しています"
 
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
