@@ -80,6 +80,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
 
     public LibraryWindow () {
+        get_style_context ().add_class ("rounded");
+
         headerbar = new Gtk.HeaderBar ();
         headerbar.show_close_button = true;
         set_titlebar (headerbar);
