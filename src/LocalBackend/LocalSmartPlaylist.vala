@@ -29,8 +29,8 @@
  */
 
 public class Noise.LocalSmartPlaylist : SmartPlaylist {
-    private static const string QUERY_SEPARATOR = "<query_sep>";
-    private static const string VALUE_SEPARATOR = "<val_sep>";
+    private const string QUERY_SEPARATOR = "<query_sep>";
+    private const string VALUE_SEPARATOR = "<val_sep>";
     private Gda.Connection connection;
 
     /**

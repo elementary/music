@@ -32,69 +32,69 @@ namespace Noise.Database {
      * Update those constants when you change the order of columns.
      */
     namespace Playlists {
-        public static const string TABLE_NAME = "playlists";
-        public static const string NAME = "+0";
-        public static const string MEDIA = "+1";
-        public static const string ROWID = "+2";
+        public const string TABLE_NAME = "playlists";
+        public const string NAME = "+0";
+        public const string MEDIA = "+1";
+        public const string ROWID = "+2";
     }
 
     namespace SmartPlaylists {
-        public static const string TABLE_NAME = "smart_playlists";
-        public static const string NAME = "+0";
-        public static const string AND_OR = "+1";
-        public static const string QUERIES = "+2";
-        public static const string LIMITED = "+3";
-        public static const string LIMIT_AMOUNT = "+4";
-        public static const string ROWID = "+5";
+        public const string TABLE_NAME = "smart_playlists";
+        public const string NAME = "+0";
+        public const string AND_OR = "+1";
+        public const string QUERIES = "+2";
+        public const string LIMITED = "+3";
+        public const string LIMIT_AMOUNT = "+4";
+        public const string ROWID = "+5";
     }
 
     namespace Media {
-        public static const string TABLE_NAME = "media";
-        public static const string URI = "+0";
-        public static const string FILE_SIZE = "+1";
-        public static const string TITLE = "+2";
-        public static const string ARTIST = "+3";
-        public static const string COMPOSER = "+4";
-        public static const string ALBUM_ARTIST = "+5";
-        public static const string ALBUM = "+6";
-        public static const string GROUPING = "+7";
-        public static const string GENRE = "+8";
-        public static const string COMMENT = "+9";
-        public static const string LYRICS = "+10";
-        public static const string HAS_EMBEDDED = "+11";
-        public static const string YEAR = "+12";
-        public static const string TRACK = "+13";
-        public static const string TRACK_COUNT = "+14";
-        public static const string ALBUM_NUMBER = "+15";
-        public static const string ALBUM_COUNT = "+16";
-        public static const string BITRATE = "+17";
-        public static const string LENGTH = "+18";
-        public static const string SAMPLERATE = "+19";
-        public static const string RATING = "+20";
-        public static const string PLAYCOUNT = "+21";
-        public static const string SKIPCOUNT = "+22";
-        public static const string DATEADDED = "+23";
-        public static const string LASTPLAYED = "+24";
-        public static const string LASTMODIFIED = "+25";
-        public static const string ROWID = "+26";
+        public const string TABLE_NAME = "media";
+        public const string URI = "+0";
+        public const string FILE_SIZE = "+1";
+        public const string TITLE = "+2";
+        public const string ARTIST = "+3";
+        public const string COMPOSER = "+4";
+        public const string ALBUM_ARTIST = "+5";
+        public const string ALBUM = "+6";
+        public const string GROUPING = "+7";
+        public const string GENRE = "+8";
+        public const string COMMENT = "+9";
+        public const string LYRICS = "+10";
+        public const string HAS_EMBEDDED = "+11";
+        public const string YEAR = "+12";
+        public const string TRACK = "+13";
+        public const string TRACK_COUNT = "+14";
+        public const string ALBUM_NUMBER = "+15";
+        public const string ALBUM_COUNT = "+16";
+        public const string BITRATE = "+17";
+        public const string LENGTH = "+18";
+        public const string SAMPLERATE = "+19";
+        public const string RATING = "+20";
+        public const string PLAYCOUNT = "+21";
+        public const string SKIPCOUNT = "+22";
+        public const string DATEADDED = "+23";
+        public const string LASTPLAYED = "+24";
+        public const string LASTMODIFIED = "+25";
+        public const string ROWID = "+26";
     }
 
     namespace Devices {
-        public static const string TABLE_NAME = "devices";
-        public static const string UNIQUE_ID = "+0";
-        public static const string SYNC_WHEN_MOUNTED = "+1";
-        public static const string SYNC_MUSIC = "+2";
-        public static const string SYNC_ALL_MUSIC = "+3";
-        public static const string MUSIC_PLAYLIST = "+4";
-        public static const string LAST_SYNC_TIME = "+5";
+        public const string TABLE_NAME = "devices";
+        public const string UNIQUE_ID = "+0";
+        public const string SYNC_WHEN_MOUNTED = "+1";
+        public const string SYNC_MUSIC = "+2";
+        public const string SYNC_ALL_MUSIC = "+3";
+        public const string MUSIC_PLAYLIST = "+4";
+        public const string LAST_SYNC_TIME = "+5";
     }
 
     namespace Columns {
-        public static const string TABLE_NAME = "columns";
-        public static const string UNIQUE_ID = "+0";
-        public static const string SORT_COLUMN_ID = "+1";
-        public static const string SORT_DIRECTION = "+2";
-        public static const string COLUMNS = "+3";
+        public const string TABLE_NAME = "columns";
+        public const string UNIQUE_ID = "+0";
+        public const string SORT_COLUMN_ID = "+1";
+        public const string SORT_DIRECTION = "+2";
+        public const string COLUMNS = "+3";
     }
 
     public static GLib.Value? query_field (int64 rowid, Gda.Connection connection, string table, string field) {

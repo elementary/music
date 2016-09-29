@@ -24,7 +24,7 @@
  * the current media playing. Mostly here because of dependence. */
 
 public class LastFM.SimilarMedias : Object {
-    public static const int MAX_FETCHED = 20;
+    public const int MAX_FETCHED = 20;
 
     public signal void similar_retrieved (Gee.LinkedList<int64?> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
 

@@ -21,9 +21,9 @@
 
 public class Noise.FastView : Gtk.TreeView {
 #if HAVE_BUILTIN_SHUFFLE
-    public static const int SHUFFLE_COLUMN_ID = -3;
+    public const int SHUFFLE_COLUMN_ID = -3;
 #endif
-    public static const int OPTIMAL_COLUMN = -2;
+    public const int OPTIMAL_COLUMN = -2;
     FastModel fm;
     Gee.LinkedList<Type> columns = new Gee.LinkedList<Type> ();
     protected Gee.HashMap<int, Media> table = new Gee.HashMap<int, Media> (); // is not the same object as showing.

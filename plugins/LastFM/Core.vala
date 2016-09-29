@@ -30,7 +30,7 @@ public class LastFM.Core : Object {
 
     public bool is_initialized = false;
 
-    private static const string API_URL = "http://ws.audioscrobbler.com/2.0/";
+    private const string API_URL = "http://ws.audioscrobbler.com/2.0/";
     private LastFM.SimilarMedias similarMedias;
     //TODO: make them private and have all transactions in the Core.
     public string api_key;
