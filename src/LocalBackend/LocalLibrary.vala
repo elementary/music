@@ -355,7 +355,7 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override Gee.Collection<StaticPlaylist> get_playlists () {
-        var result = new Gee.TreeSet<Media> ();
+        var result = new Gee.TreeSet<StaticPlaylist> ();
         result.add_all (_playlists);
         return result;
     }
@@ -445,7 +445,7 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override Gee.Collection<SmartPlaylist> get_smart_playlists () {
-        var result = new Gee.TreeSet<Media> ();
+        var result = new Gee.TreeSet<SmartPlaylist> ();
         result.add_all (_smart_playlists);
         return result;
     }
