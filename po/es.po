@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-09-27 08:52+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"PO-Revision-Date: 2016-10-09 15:09+0000\n"
+"Last-Translator: Oscar Miranda <oscarmiranda3615@hotmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-09-28 06:51+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"X-Launchpad-Export-Date: 2016-10-10 07:02+0000\n"
+"X-Generator: Launchpad (build 18227)\n"
 "Language: es\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -296,7 +296,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:815
 msgid "No songs in History"
-msgstr "No hay canciones en el histórico"
+msgstr "No hay canciones en el historial"
 
 #: ../src/LibraryWindow.vala:815
 msgid ""
@@ -334,6 +334,7 @@ msgstr ""
 "  Edisson Reinozo https://launchpad.net/~edisson-35\n"
 "  Ezequiel Sapo https://launchpad.net/~ezesapo\n"
 "  Franco Villar https://launchpad.net/~franco-227-u\n"
+"  Félix Brezo https://launchpad.net/~febrezo\n"
 "  German https://launchpad.net/~gergarcia8\n"
 "  Gerson Alvarado https://launchpad.net/~lewatoto\n"
 "  Gerzon https://launchpad.net/~gerzonz-canario\n"
@@ -1129,7 +1130,7 @@ msgstr "Analizando cambios. Esto puede tomar un tiempo…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
-msgstr "Añadido a su cola:"
+msgstr "Añadido a tu cola de reproducción:"
 
 #: ../src/LocalBackend/LocalLibrary.vala:339
 msgid "%d Track"
@@ -1422,51 +1423,51 @@ msgstr "kbps"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Título:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Intérprete:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Artista del álbum:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Álbum:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Género:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Compositor:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Agrupación:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Comentario:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Pista:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "Disco:"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "Año:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Valoración:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
