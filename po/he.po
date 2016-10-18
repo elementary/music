@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-08-07 23:48+0000\n"
-"Last-Translator: brigazvi <brigazvi148@gmail.com>\n"
+"PO-Revision-Date: 2016-10-17 17:35+0000\n"
+"Last-Translator: Danny Damsky <dannydamsky99@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-09-27 06:50+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"X-Launchpad-Export-Date: 2016-10-18 06:37+0000\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: \n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -85,19 +85,19 @@ msgstr " (%d)"
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "שְׁנִיָה %d"
+msgstr[0] "שנייה אחת"
 msgstr[1] "%d שניות"
 
 #: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] "דקה %u"
+msgstr[0] "דקה אחת"
 msgstr[1] "%u דקות"
 
 #: ../core/Utils/TimeUtils.vala:60
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] "שנייה %u"
+msgstr[0] "שנייה אחת"
 msgstr[1] "%u שניות"
 
 #. / Minutes and seconds
@@ -109,13 +109,13 @@ msgstr "‏%s ו־%s"
 #: ../core/Utils/TimeUtils.vala:69
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] "יום %u"
+msgstr[0] "יום אחד"
 msgstr[1] "%u ימים"
 
 #: ../core/Utils/TimeUtils.vala:72
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] "%u שעה"
+msgstr[0] "שעה אחת"
 msgstr[1] "%u שעות"
 
 #. / days, hours and minutes
@@ -186,23 +186,23 @@ msgstr "אולם גדול"
 
 #: ../core/GStreamer/Equalizer.vala:81
 msgid "Live"
-msgstr "הופעות חיות"
+msgstr "הופעה חיה"
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Party"
-msgstr "מוסיקת מסיבה"
+msgstr "מסיבה"
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Pop"
-msgstr "מוסיקת פופ"
+msgstr "פופ"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Reggae"
-msgstr "מוסיקת רגאיי"
+msgstr "רגאיי"
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Rock"
-msgstr "מוסיקת רוק"
+msgstr "רוק"
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Soft"
@@ -210,7 +210,7 @@ msgstr "מוסיקה רכה"
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Ska"
-msgstr "מוסיקת סקא"
+msgstr "סקא"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Soft Rock"
@@ -218,7 +218,7 @@ msgstr "מוסיקת רוק קל"
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Techno"
-msgstr "מוסיקת טכנו"
+msgstr "טכנו"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -228,17 +228,17 @@ msgstr "לא ידוע"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:180
 msgid "$NAME on $ALBUM"
-msgstr "$NAME באלבום $ALBUM"
+msgstr "$NAME מתוך $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: ../core/Media.vala:183
 msgid "$NAME by $ARTIST"
-msgstr "$NAME של $ARTIST"
+msgstr "$NAME מאת $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:189
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME של $ARTIST ב $ALBUM"
+msgstr "$NAME מאת $ARTIST מתוך $ALBUM"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -254,28 +254,28 @@ msgstr "העדפות"
 
 #: ../src/LibraryWindow.vala:270
 msgid "Previous"
-msgstr ""
+msgstr "הקודם"
 
 #: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:972
 msgid "Play"
-msgstr ""
+msgstr "ניגון"
 
 #: ../src/LibraryWindow.vala:274
 msgid "Next"
-msgstr ""
+msgstr "הבא"
 
 #: ../src/LibraryWindow.vala:278
 msgid "Search Music"
-msgstr "חיפוש מוסיקה"
+msgstr "חיפוש מוזיקה"
 
 #: ../src/LibraryWindow.vala:640 ../src/LibraryWindow.vala:744
 #: ../src/Views/DeviceSummaryWidget.vala:99
 msgid "Music"
-msgstr "מוסיקה"
+msgstr "מוזיקה"
 
 #: ../src/LibraryWindow.vala:812
 msgid "No songs in Queue"
-msgstr "אין שירים בתור"
+msgstr "אין שירים ממתינים"
 
 #: ../src/LibraryWindow.vala:812
 msgid ""
@@ -283,9 +283,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"להוספת שירים לרשימת התורים, נא להשתמש ב <b> לחיצה משנית <b> על פריט ובחירת "
-"<b> המתנה <b>. בסיום שיר, השירים בהמתנה ינוגנו ראשונים ולפני השיר הבא ברשימת "
-"ההשמעה הנוכחית."
+"להוספת שירים לרשימת ההמתנה, נא להשתמש ב<b>לחיצה משנית</b> על פריט ולבחור "
+"<b>המתנה</b>. בסיום השיר, ינוגנו השירים הממתינים ראשונים לפני השיר הבא "
+"ברשימת ההשמעה הנוכחית."
 
 #: ../src/LibraryWindow.vala:815
 msgid "No songs in History"
@@ -298,16 +298,16 @@ msgid ""
 "current session."
 msgstr ""
 "לאחר שחלק משיר כבר נוגן, הוא יתווסף לרשימת ההיסטוריה.\n"
-"ניתן להשתמש ברשימה זו כדי לראות את כל השירים שנוגנו במהלך ההפעלה הנוכחי."
+"ניתן להשתמש ברשימה זו כדי לראות את כל השירים שנוגנו במהלך ההפעלה הנוכחית."
 
 #: ../src/LibraryWindow.vala:966
 msgid "Pause"
-msgstr "השהה"
+msgstr "השהיה"
 
 #: ../src/LibraryWindow.vala:1045
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
 msgid "Import Music"
-msgstr "יבוא מוסיקה"
+msgstr "יבוא מוזיקה"
 
 #: ../src/Noise.vala:65
 msgid "translator-credits"
@@ -317,6 +317,7 @@ msgstr ""
 "  Danny Damsky https://launchpad.net/~dannydamsky99\n"
 "  Dor https://launchpad.net/~dor-gallego\n"
 "  Megolas https://launchpad.net/~ofeklavie\n"
+"  Niv Baehr https://launchpad.net/~rzil\n"
 "  Noam Sellam https://launchpad.net/~noam-sellam\n"
 "  Roy Elazary https://launchpad.net/~roy-hagever\n"
 "  Uri Damsker  אורי דמסקר https://launchpad.net/~ud1955\n"
@@ -343,7 +344,7 @@ msgstr "<b>מעתיק</b> קבצים ל <b>תיקיית מוסיקה</b>…"
 
 #: ../src/Views/GridView/PopupListView.vala:59
 msgid "Set new album cover"
-msgstr "הגדר כריכת אלבום חדשה"
+msgstr "קביעת עטיפת אלבום חדשה"
 
 #: ../src/Views/GridView/PopupListView.vala:156
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -352,15 +353,15 @@ msgstr "%s מאת %s"
 
 #: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Cancel"
-msgstr ""
+msgstr "_ביטול"
 
 #: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Open"
-msgstr ""
+msgstr "_פתיחה"
 
 #: ../src/Views/GridView/PopupListView.vala:259
 msgid "Image files"
-msgstr "קבצי תמונה"
+msgstr "קובצי תמונה"
 
 #: ../src/Views/GridView/GridView.vala:44
 msgid "No Albums Found."
@@ -369,7 +370,7 @@ msgstr "לא נמצאו אלבומים."
 #: ../src/Views/GridView/GridView.vala:141
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] "אלבום %u"
+msgstr[0] "אלבום אחד"
 msgstr[1] "%u אלבומים"
 
 #: ../src/Views/DeviceView.vala:38
@@ -382,7 +383,7 @@ msgstr "פעולת המכשיר בוטלה ותעצור לאחר מדיה זו."
 
 #: ../src/Views/DeviceView.vala:59
 msgid "OK"
-msgstr "כן"
+msgstr "אישור"
 
 #: ../src/Views/DeviceView.vala:100
 msgid "No External Songs"
@@ -411,7 +412,7 @@ msgstr "כל האמנים"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 msgid "All %i Artists"
-msgstr "כל אמנים %i"
+msgstr "כל %i האמנים"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Artists"
@@ -423,7 +424,7 @@ msgstr "כל האלבומים"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 msgid "All %i Albums"
-msgstr "כל האלבומים %i"
+msgstr "כל %i האלבומים"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Albums"
@@ -435,7 +436,7 @@ msgstr "כל השנים"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 msgid "All %i Years"
-msgstr "כל השנים %i"
+msgstr "כל %i השנים"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Years"
@@ -455,7 +456,7 @@ msgstr "כל ההקבצות"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 msgid "All %i Groupings"
-msgstr "כל הקבצות ה- %i"
+msgstr "כל %i ההקבצות"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Groupings"
@@ -467,11 +468,11 @@ msgstr "כל המלחינים"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 msgid "All %i Composers"
-msgstr "כל מלחינים ה-%i"
+msgstr "כל %i המלחינים"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Composers"
-msgstr "ללא מלחינים"
+msgstr "אין מלחינים"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
 msgid "Genres"
@@ -521,7 +522,7 @@ msgstr "לא דורג"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%i Star"
 msgid_plural "%i Stars"
-msgstr[0] "כוכב %i"
+msgstr[0] "כוכב אחד"
 msgstr[1] "%i כוכבים"
 
 #: ../src/Views/ListView/ListView.vala:86
@@ -531,13 +532,13 @@ msgstr "לא נמצאו שירים"
 #: ../src/Views/ListView/ListView.vala:357
 msgid "%i track"
 msgid_plural "%i tracks"
-msgstr[0] "רצועה %i"
+msgstr[0] "רצועה אחת"
 msgstr[1] "%i רצועות"
 
 #: ../src/Views/ListView/ListView.vala:359
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] "שיר %u"
+msgstr[0] "שיר אחד"
 msgstr[1] "%u שירים"
 
 #: ../src/Views/ListView/ListView.vala:367
@@ -552,7 +553,7 @@ msgstr "kbps %i"
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
 msgid "Never"
-msgstr "אף פעם"
+msgstr "לעולם לא"
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
 msgid "Autosize Columns"
@@ -616,12 +617,12 @@ msgstr "קיבוץ"
 #: ../src/Views/ListView/Lists/ListColumn.vala:92
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr "איכות ההקלטה"
+msgstr "קצב סיביות"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:95
 msgctxt "List column title"
 msgid "Rating"
-msgstr "דרוג"
+msgstr "דירוג"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:98
 msgctxt "List column title"
