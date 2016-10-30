@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-09-27 09:09+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2016-10-29 19:52+0000\n"
+"Last-Translator: Guido Pöllmann <guido.poellmann@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-09-28 06:51+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"X-Launchpad-Export-Date: 2016-10-30 06:00+0000\n"
+"X-Generator: Launchpad (build 18246)\n"
 "Language: de\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -330,11 +330,12 @@ msgstr ""
 "  Eduard Gotwig https://launchpad.net/~gotwig\n"
 "  Eduard Stürmer https://launchpad.net/~eduard-stuermer\n"
 "  Ghenrik https://launchpad.net/~henrik-grasshoff-deactivatedaccount\n"
-"  Gregor Santner https://launchpad.net/~gdev\n"
+"  Gregor Santner https://launchpad.net/~gsantner\n"
 "  Guido Pöllmann https://launchpad.net/~guido-poellmann\n"
 "  Joel Hermanns https://launchpad.net/~joel-hermanns\n"
 "  Julien Spautz https://launchpad.net/~julien-spautz\n"
 "  Jörg BUCHMANN https://launchpad.net/~jorg-buchmann\n"
+"  Maciej Krüger https://launchpad.net/~mkg20001\n"
 "  Marijo Mustac https://launchpad.net/~mustacmarijo\n"
 "  Martin Stolle https://launchpad.net/~m-stolle85\n"
 "  Niklas Higi https://launchpad.net/~brainscript\n"
@@ -1413,27 +1414,27 @@ msgstr "kbit/s"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Künstler:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Albumkünstler:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Genre:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Komponist:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
@@ -1441,23 +1442,23 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Kommentar:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Titel:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "Medium:"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "Jahr:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Bewertung:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
