@@ -1,3 +1,9 @@
+noise (0.4.0.2) xenial; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementary.io>  Thu, 01 Dec 2016 05:45:56 -0600
+
 noise (0.4.0.1) xenial; urgency=medium
 
   * New upstream release.
