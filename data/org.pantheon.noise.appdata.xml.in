@@ -15,6 +15,7 @@
     </_p>
   </description>
   <releases>
+    <release timestamp="1480592595" version="0.4.0.2"/>
     <release timestamp="1427915704" version="0.3.1"/>
     <release timestamp="1401003480" version="0.3.0"/>
     <release timestamp="1376719060" version="0.2.4"/>
