@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-03-01 18:49+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2016-12-13 12:06+0000\n"
+"Last-Translator: Marius Albina <marius.albina@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2016-09-27 06:53+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"X-Launchpad-Export-Date: 2016-12-14 05:20+0000\n"
+"X-Generator: Launchpad (build 18293)\n"
 "Language: ro\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
@@ -333,6 +333,7 @@ msgstr ""
 "  Daniel Fore https://launchpad.net/~danrabbit\n"
 "  Dobrescu Cristian https://launchpad.net/~dobrescu-cristian87\n"
 "  Florin https://launchpad.net/~nfcristea\n"
+"  Marius Albina https://launchpad.net/~marius-albina\n"
 "  Marza George https://launchpad.net/~gsmarza2000\n"
 "  Octi https://launchpad.net/~octavianiolu\n"
 "  Radu Adam https://launchpad.net/~raisedfist\n"
@@ -369,15 +370,15 @@ msgstr "%s de %s"
 
 #: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Cancel"
-msgstr ""
+msgstr "_Anulează"
 
 #: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Open"
-msgstr ""
+msgstr "_Deschide"
 
 #: ../src/Views/GridView/PopupListView.vala:259
 msgid "Image files"
-msgstr ""
+msgstr "Fișiere imagine"
 
 #: ../src/Views/GridView/GridView.vala:44
 msgid "No Albums Found."
@@ -402,7 +403,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:59
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/Views/DeviceView.vala:100
 msgid "No External Songs"
@@ -552,8 +553,8 @@ msgstr "Nu a fost găsită nici o melodie."
 #: ../src/Views/ListView/ListView.vala:357
 msgid "%i track"
 msgid_plural "%i tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pista %i"
+msgstr[1] "pistele %i"
 
 #: ../src/Views/ListView/ListView.vala:359
 msgid "%u song"
@@ -633,7 +634,7 @@ msgstr "Anul"
 #: ../src/Views/ListView/Lists/ListColumn.vala:89
 msgctxt "List column title"
 msgid "Grouping"
-msgstr ""
+msgstr "Grupare"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:92
 msgctxt "List column title"
@@ -658,7 +659,7 @@ msgstr "Omiteri"
 #: ../src/Views/ListView/Lists/ListColumn.vala:104
 msgctxt "List column title"
 msgid "Date Added"
-msgstr ""
+msgstr "Data adăugării"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:107
 msgctxt "List column title"
@@ -668,7 +669,7 @@ msgstr "Redat ultima dată"
 #: ../src/Views/ListView/Lists/ListColumn.vala:110
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:113
 msgctxt "List column title (file location)"
@@ -706,7 +707,7 @@ msgstr "Explorează"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:120
 msgid "Other actions"
-msgstr ""
+msgstr "Alte acțiuni"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:121
 msgctxt "Action item (verb)"
@@ -957,7 +958,7 @@ msgstr "Adaugă listă de redare inteligentă"
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Egalizator: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
@@ -977,7 +978,7 @@ msgstr "Ascunde Panoul cu Informații"
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
-msgstr ""
+msgstr "Redenumește"
 
 #: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
 #: ../src/Dialogs/SmartPlaylistEditor.vala:260
@@ -1041,11 +1042,11 @@ msgstr "Arată ca albume"
 
 #: ../src/Widgets/ViewSelector.vala:72
 msgid "View as List"
-msgstr ""
+msgstr "Arată ca listă"
 
 #: ../src/Widgets/ViewSelector.vala:76
 msgid "View in Columns"
-msgstr ""
+msgstr "Afișează in coloane"
 
 #: ../src/Widgets/PresetList.vala:47
 msgid "Delete Current"
@@ -1111,8 +1112,8 @@ msgstr "Adăugat la coadă:"
 #: ../src/LocalBackend/LocalLibrary.vala:339
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pista %d"
+msgstr[1] "Piste %d"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
@@ -1246,7 +1247,7 @@ msgstr "Copiază fişierele importate în bibliotecă:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Integrare desktop"
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
@@ -1399,55 +1400,55 @@ msgstr "kbps"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Titlul:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Artist:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Albumele artistului:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Gen:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Compozitor:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Grupare:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Comentariu:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Pistă:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "Disc:"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "An:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Cotare"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
-msgstr ""
+msgstr "Fișier negăsit"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:59
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
@@ -1673,7 +1674,7 @@ msgstr "S-a terminat importarea a %i melodii de pe CD-ul Audio."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %i: %s"
-msgstr ""
+msgstr "Importare pista %i: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1697,7 +1698,7 @@ msgstr "Telefon Android"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
 msgid "Audio Player"
-msgstr ""
+msgstr "Player audio"
 
 #: ../plugins/LastFM/SimilarMedia.vala:37
 msgid "Similar"
