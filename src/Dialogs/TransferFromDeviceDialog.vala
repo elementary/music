@@ -284,7 +284,7 @@ public class Noise.TransferFromDeviceDialog : Window {
         mediasModel.foreach(createTransferList);
 
         if(libraries_manager.local_library.doing_file_operations()) {
-            NotificationManager.get_default ().show_alert (_("Cannot Import"), _("Noise is already doing file operations. Please wait until those finish to import from %d").printf( d.getDisplayName()));
+            NotificationManager.get_default ().show_alert (_("Cannot Import"), _("Noise is already doing file operations. Please wait until those finish to import from %s").printf( d.getDisplayName()));
         } else {
             libraries_manager.transfer_to_local_library (to_transfer);
             this.destroy();

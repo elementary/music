@@ -121,7 +121,7 @@ public class Noise.CellDataFunctionHelper {
         tree_model.get_value(iter, ListColumn.BITRATE, out val);
         var text_cell = cell as CellRendererText;
         uint n = val.get_uint ();
-        text_cell.text = n <= 0 ? NOT_AVAILABLE : _("%i kbps").printf (n);
+        text_cell.text = n <= 0 ? NOT_AVAILABLE : _("%u kbps").printf (n);
     }
 
     // turns int of seconds into pretty length mm:ss format

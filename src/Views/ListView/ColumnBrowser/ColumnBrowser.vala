@@ -399,7 +399,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                         if (rating < 1)
                             rating_str = _("Unrated");
                         else
-                            rating_str = ngettext ("%i Star", "%i Stars", rating).printf (rating);
+                            rating_str = ngettext ("%u Star", "%u Stars", rating).printf (rating);
 
                         column_set.add (rating_str);
                     }

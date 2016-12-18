@@ -350,7 +350,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     }
 
     private string get_track_status (Media m) {
-        return _("Importing track %i: %s").printf (m.track, m.get_title_markup ());
+        return _("Importing track %u: %s").printf (m.track, m.get_title_markup ());
     }
     
     public void cancel_transfer() {

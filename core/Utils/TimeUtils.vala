@@ -48,7 +48,7 @@ namespace Noise.TimeUtils {
         uint seconds = given_seconds - days * 86400 - hours * 3600 - minutes * 60;
 
         if (given_seconds < SECONDS_PER_MINUTE)
-            return ngettext ("%d second", "%d seconds", seconds).printf (seconds);
+            return ngettext ("%u second", "%u seconds", seconds).printf (seconds);
 
         string days_string = "", hours_string = "", minutes_string = "", seconds_string = "";
 
