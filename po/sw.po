@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-15 12:12-0500\n"
-"PO-Revision-Date: 2016-01-04 18:35+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"PO-Revision-Date: 2016-12-17 19:05+0000\n"
+"Last-Translator: Gakuru Maina <gakurumaina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-09-27 06:54+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"X-Launchpad-Export-Date: 2016-12-18 05:14+0000\n"
+"X-Generator: Launchpad (build 18298)\n"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:236
 msgid "New playlist"
-msgstr ""
+msgstr "Orodha mpya ya kucheza"
 
 #: ../core/Utils/PlaylistsUtils.vala:247
 msgid "%s (%i)"
@@ -27,7 +27,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
-msgstr ""
+msgstr "Hifadhi orodha ya kucheza"
 
 #: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
 #: ../src/LibraryWindow.vala:1047
@@ -41,13 +41,13 @@ msgstr ""
 #: ../src/Dialogs/RemoveFilesDialog.vala:52
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
 msgid "Cancel"
-msgstr ""
+msgstr "Ghairi"
 
 #: ../core/Utils/PlaylistsUtils.vala:277
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
 #: ../src/Dialogs/MediaEditor.vala:151
 msgid "Save"
-msgstr ""
+msgstr "Hifadhi"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
@@ -59,7 +59,7 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr ""
+msgstr "Orodha ya kucheza"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
@@ -71,7 +71,7 @@ msgstr ""
 #: ../src/Dialogs/FileNotFoundDialog.vala:127
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
 msgid "Open"
-msgstr ""
+msgstr "Fungua"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
@@ -84,62 +84,62 @@ msgstr ""
 #: ../core/Utils/TimeUtils.vala:51
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekunde"
+msgstr[1] "%d sekunde"
 
 #: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u dakika"
+msgstr[1] "%d dakika"
 
 #: ../core/Utils/TimeUtils.vala:60
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u sekunde"
+msgstr[1] "%u sekunde"
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:62
 msgctxt "minutes and seconds"
 msgid "%s and %s"
-msgstr ""
+msgstr "dakika na sekunde"
 
 #: ../core/Utils/TimeUtils.vala:69
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u siku"
+msgstr[1] "%u siku"
 
 #: ../core/Utils/TimeUtils.vala:72
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u saa"
+msgstr[1] "%u masaa"
 
 #. / days, hours and minutes
 #: ../core/Utils/TimeUtils.vala:83
 msgctxt "days, hours and minutes"
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "/ siku, saa na dakika"
 
 #. / days and hours
 #: ../core/Utils/TimeUtils.vala:86
 msgctxt "days and hours"
 msgid "%s and %s"
-msgstr ""
+msgstr "siku na masaa"
 
 #. / days and minutes
 #: ../core/Utils/TimeUtils.vala:91
 msgctxt "days and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "siku na dakika"
 
 #. / hours and minutes
 #: ../core/Utils/TimeUtils.vala:100
 msgctxt "hours and minutes"
 msgid "%s and %s"
-msgstr ""
+msgstr "masaa na dakika"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -306,6 +306,8 @@ msgstr ""
 #: ../src/Noise.vala:65
 msgid "translator-credits"
 msgstr ""
+"Launchpad Contributions:\n"
+"  Gakuru Maina https://launchpad.net/~gakurumaina"
 
 #: ../src/PlaybackManager.vala:96
 msgctxt "Name of the playlist"
