@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-07-15 12:12-0500\n"
+"POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2016-07-17 16:24+0000\n"
 "Last-Translator: Maxim Taranov <png2378@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -16,84 +16,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-09-27 06:53+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"X-Launchpad-Export-Date: 2016-12-19 05:24+0000\n"
+"X-Generator: Launchpad (build 18298)\n"
 "Language: ru\n"
 
-#: ../core/Utils/PlaylistsUtils.vala:96
-msgid "%s (%d)"
-msgstr "%s (%d)"
+#: ../core/LibrariesManager.vala:143
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "Импортирование <b>$NAME</b в исполнении <b>$ARTIST</b> в медиатеку…"
 
-#: ../core/Utils/PlaylistsUtils.vala:236
-msgid "New playlist"
-msgstr "Новый список воспроизведения"
-
-#: ../core/Utils/PlaylistsUtils.vala:247
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: ../core/Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "Экспорт списка воспроизведения"
-
-#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
-#: ../src/LibraryWindow.vala:1047
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
-#: ../src/Widgets/TopDisplay.vala:90
-#: ../src/Dialogs/SmartPlaylistEditor.vala:118
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
-#: ../src/Dialogs/FileNotFoundDialog.vala:126
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
-#: ../src/Dialogs/RemoveFilesDialog.vala:52
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
-msgid "Cancel"
-msgstr "Отмена"
-
-#: ../core/Utils/PlaylistsUtils.vala:277
-#: ../src/Dialogs/SmartPlaylistEditor.vala:116
-#: ../src/Dialogs/MediaEditor.vala:151
-msgid "Save"
-msgstr "Сохранить"
-
-#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "Расширенная версия MPEG 3.0 (*.m3u)"
-
-#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Список воспроизведения Shoutcast версии 2.0 (*.pls)"
-
-#: ../core/Utils/PlaylistsUtils.vala:362
-msgid "Playlist"
-msgstr "Список воспроизведения"
-
-#: ../core/Utils/PlaylistsUtils.vala:368
-msgid "Import %s"
-msgstr "Импортировать %s"
-
-#: ../core/Utils/PlaylistsUtils.vala:371 ../src/LibraryWindow.vala:1048
-#: ../src/Views/GridView/PopupListView.vala:255
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
-#: ../src/Dialogs/FileNotFoundDialog.vala:127
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
-msgid "Open"
-msgstr "Открыть"
-
-#: ../core/Utils/PlaylistsUtils.vala:402
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Файл списка воспроизведения не распознан. Импорт не удался."
-
-#: ../core/Utils/FileUtils.vala:294
-msgid " (%d)"
-msgstr " (%d)"
-
-#: ../core/Utils/TimeUtils.vala:51
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d секунда"
-msgstr[1] "%d секунды"
-msgstr[2] "%d секунд"
+#: ../core/Utils/TimeUtils.vala:51 ../core/Utils/TimeUtils.vala:60
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] "%u секунда"
+msgstr[1] "%u секунды"
+msgstr[2] "%u секунд"
 
 #: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
 msgid "%u minute"
@@ -101,13 +37,6 @@ msgid_plural "%u minutes"
 msgstr[0] "%u минута"
 msgstr[1] "%u минуты"
 msgstr[2] "%u минут"
-
-#: ../core/Utils/TimeUtils.vala:60
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u секунда"
-msgstr[1] "%u секунды"
-msgstr[2] "%u секунд"
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:62
@@ -158,6 +87,92 @@ msgstr "%s и %s"
 #: ../core/Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
+
+#: ../core/Utils/PlaylistsUtils.vala:96
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: ../core/Utils/PlaylistsUtils.vala:236
+msgid "New playlist"
+msgstr "Новый список воспроизведения"
+
+#: ../core/Utils/PlaylistsUtils.vala:247
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: ../core/Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr "Экспорт списка воспроизведения"
+
+#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
+#: ../src/Widgets/TopDisplay.vala:90
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
+#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:126
+#: ../src/Dialogs/RemoveFilesDialog.vala:52
+#: ../src/Dialogs/SmartPlaylistEditor.vala:118 ../src/LibraryWindow.vala:1066
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
+msgid "Cancel"
+msgstr "Отмена"
+
+#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
+#: ../src/Dialogs/SmartPlaylistEditor.vala:116
+msgid "Save"
+msgstr "Сохранить"
+
+#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "Расширенная версия MPEG 3.0 (*.m3u)"
+
+#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Список воспроизведения Shoutcast версии 2.0 (*.pls)"
+
+#: ../core/Utils/PlaylistsUtils.vala:362
+msgid "Playlist"
+msgstr "Список воспроизведения"
+
+#: ../core/Utils/PlaylistsUtils.vala:368
+msgid "Import %s"
+msgstr "Импортировать %s"
+
+#: ../core/Utils/PlaylistsUtils.vala:371
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
+#: ../src/Dialogs/FileNotFoundDialog.vala:127 ../src/LibraryWindow.vala:1067
+#: ../src/Views/GridView/PopupListView.vala:255
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
+msgid "Open"
+msgstr "Открыть"
+
+#: ../core/Utils/PlaylistsUtils.vala:402
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Файл списка воспроизведения не распознан. Импорт не удался."
+
+#: ../core/Utils/FileUtils.vala:294
+msgid " (%d)"
+msgstr " (%d)"
+
+#. / Used for unknown titles, artists, or album names.
+#: ../core/Media.vala:34
+msgid "Unknown"
+msgstr "Неизвестный"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME на $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: ../core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME в исполнении $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME из альбома $ALBUM в исполнении $ARTIST"
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
@@ -231,692 +246,79 @@ msgstr "Софт-рок"
 msgid "Techno"
 msgstr "Техно"
 
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:34
-msgid "Unknown"
-msgstr "Неизвестный"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME на $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME в исполнении $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME из альбома $ALBUM в исполнении $ARTIST"
-
-#: ../core/LibrariesManager.vala:143
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Импортирование <b>$NAME</b в исполнении <b>$ARTIST</b> в медиатеку…"
-
-#: ../src/LibraryWindow.vala:250
-msgid "Import to Library…"
-msgstr "Импортировать в медиатеку…"
-
-#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
-msgid "Preferences"
-msgstr "Настройки"
-
-#: ../src/LibraryWindow.vala:270
-msgid "Previous"
-msgstr "Предыдущая композиция"
-
-#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:972
-msgid "Play"
-msgstr "Воспроизвести"
-
-#: ../src/LibraryWindow.vala:274
-msgid "Next"
-msgstr "Следующая композиция"
-
-#: ../src/LibraryWindow.vala:278
-msgid "Search Music"
-msgstr "Поиск музыки"
-
-#: ../src/LibraryWindow.vala:640 ../src/LibraryWindow.vala:744
-#: ../src/Views/DeviceSummaryWidget.vala:99
-msgid "Music"
-msgstr "Музыка"
-
-#: ../src/LibraryWindow.vala:812
-msgid "No songs in Queue"
-msgstr "Нет композиций в очереди"
-
-#: ../src/LibraryWindow.vala:812
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"Чтобы добавить композиции в очередь, щёлкните <b>правой кнопкой мыши</b> по "
-"элементу и выберите пункт <b>Добавить в очередь</b>. Когда композиция "
-"закончится, композиции в очереди будут воспроизведены перед следующей песней "
-"в текущем списке воспроизведения."
-
-#: ../src/LibraryWindow.vala:815
-msgid "No songs in History"
-msgstr "Нет композиций в журнале"
-
-#: ../src/LibraryWindow.vala:815
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"После того, как часть композиции проиграна, она добавлена в журнал.\n"
-"Можно использовать журнал, чтобы увидеть все композиции, воспроизведённые за "
-"этот сеанс."
-
-#: ../src/LibraryWindow.vala:966
-msgid "Pause"
-msgstr "Пауза"
-
-#: ../src/LibraryWindow.vala:1045
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Import Music"
-msgstr "Импорт музыки"
-
-#: ../src/Noise.vala:65
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  0crash0 https://launchpad.net/~0crash0\n"
-"  Aleksey Kabanov https://launchpad.net/~ak099\n"
-"  Alex Ra https://launchpad.net/~asd667\n"
-"  Alexander Kovalenko https://launchpad.net/~darko-nerivar\n"
-"  Alexandr Anciferov https://launchpad.net/~jooow\n"
-"  Andrey Stomakhin https://launchpad.net/~stomandrey\n"
-"  Artem Anufrij https://launchpad.net/~artem-anufrij\n"
-"  Denis Lets https://launchpad.net/~denislets\n"
-"  Eugene Marshal https://launchpad.net/~lowrider\n"
-"  Gigabye https://launchpad.net/~gkc90953\n"
-"  Gladyr Aleksandr https://launchpad.net/~gladyra\n"
-"  Ivlev Denis https://launchpad.net/~den4ik\n"
-"  Khayrullo https://launchpad.net/~khayrullomirzaev\n"
-"  Kirill Ivaha https://launchpad.net/~kirill-ivaha\n"
-"  Maxim Taranov https://launchpad.net/~png2378\n"
-"  Mike Orlov https://launchpad.net/~mike-orlv\n"
-"  Mor1din https://launchpad.net/~post--box\n"
-"  Mukusev Vladimir https://launchpad.net/~damon95\n"
-"  Nikita Putko https://launchpad.net/~ktototam98\n"
-"  Oleg https://launchpad.net/~oopseekoleg\n"
-"  Sergey \"Shnatsel\" Davidoff https://launchpad.net/~shnatsel\n"
-"  Sergii Cynailo https://launchpad.net/~funeral20\n"
-"  Tema Kosakov https://launchpad.net/~kosakov\n"
-"  Victor Martinez https://launchpad.net/~victored\n"
-"  Vinni.Buh https://launchpad.net/~a-vinni-buh\n"
-"  VitalD https://launchpad.net/~vkontakte-vit\n"
-"  Vovk Vladimir https://launchpad.net/~vladimir-vovk-at\n"
-"  Yuly Nesterov https://launchpad.net/~inpr1se\n"
-"  anton https://launchpad.net/~antonshramko\n"
-"  hobagos https://launchpad.net/~hobagos\n"
-"  maximko https://launchpad.net/~maximko\n"
-"  Глория Хрусталёва https://launchpad.net/~gloriya\n"
-"  Дмитрий Мурашкин https://launchpad.net/~mr-dimur\n"
-"  Николай https://launchpad.net/~nicolai-andr12\n"
-"  Николай Авдеев (NickKolok, Nikolay Avdeev) "
-"https://launchpad.net/~nickkolok\n"
-"  Сулейман https://launchpad.net/~umudov-s-i13\n"
-"  михаил https://launchpad.net/~ded-mixei"
-
-#: ../src/PlaybackManager.vala:96
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Очередь"
-
-#: ../src/FileOperator.vala:307
-msgid "Import Complete"
-msgstr "Импортирование завершено"
-
-#: ../src/FileOperator.vala:307
-msgid "%s has imported your library."
-msgstr "%s элементов импортировано в вашу медиатеку."
-
-#: ../src/FileOperator.vala:320
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Копирование</b> файлов в </b>папку с музыкой<b>…"
-
-#: ../src/Views/GridView/PopupListView.vala:59
-msgid "Set new album cover"
-msgstr "Установить новую обложку альбома"
-
-#: ../src/Views/GridView/PopupListView.vala:156
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s в исполнении %s"
-
-#: ../src/Views/GridView/PopupListView.vala:256
-msgid "_Cancel"
-msgstr "_Отмена"
-
-#: ../src/Views/GridView/PopupListView.vala:256
-msgid "_Open"
-msgstr "_Открыть"
-
-#: ../src/Views/GridView/PopupListView.vala:259
-msgid "Image files"
-msgstr "Изображения"
-
-#: ../src/Views/GridView/GridView.vala:44
-msgid "No Albums Found."
-msgstr "Альбомы не найдены."
-
-#: ../src/Views/GridView/GridView.vala:141
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u альбом"
-msgstr[1] "%u альбома"
-msgstr[2] "%u альбомов"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Cancelling…"
-msgstr "Отмена…"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "Операция с устройством была отменена и будет остановлена."
-
-#: ../src/Views/DeviceView.vala:59
-msgid "OK"
-msgstr "OK"
-
-#: ../src/Views/DeviceView.vala:100
-msgid "No External Songs"
-msgstr "Нет внешних композиций"
-
-#: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr "На устройстве нет композиций, отсутствующих в медиатеке."
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Все жанры"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-msgid "All %i Genres"
-msgstr "Все %i жанров"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Нет жанров"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Все исполнители"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-msgid "All %i Artists"
-msgstr "Все %i исполнителей"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Нет исполнителей"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Все альбомы"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-msgid "All %i Albums"
-msgstr "Все %i альбомов"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Нет альбомов"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Все года"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-msgid "All %i Years"
-msgstr "Все %i годов"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Нет годов"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Все оценки"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Нет оценок"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "Все группы"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-msgid "All %i Groupings"
-msgstr "Все %i групп"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "Нет групп"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Все композиторы"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-msgid "All %i Composers"
-msgstr "Всех %i  композиторов"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Нет композиторов"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
-msgid "Genres"
-msgstr "Жанры"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
-msgid "Artists"
-msgstr "Исполнители"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Albums"
-msgstr "Альбомы"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Years"
-msgstr "Годы"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Ratings"
-msgstr "Оценки"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Composers"
-msgstr "Композиторы"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Groupings"
-msgstr "Группы"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 #: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 msgid "Automatic"
 msgstr "Автоматически"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
-msgid "On Left"
-msgstr "Слева"
+#: ../src/Widgets/PresetList.vala:47
+msgid "Delete Current"
+msgstr "Удалить текущий"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
-msgid "On Top"
-msgstr "Сверху"
+#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
+msgid "Rename"
+msgstr "Переименовать"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Без оценки"
+#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
+#: ../src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Remove"
+msgstr "Удалить"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i звезда"
-msgstr[1] "%i звезды"
-msgstr[2] "%i звёзд"
+#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
+#: ../src/Widgets/SourceListView.vala:90
+msgid "Export…"
+msgstr "Экспортировать…"
 
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "Композиции не найдены."
+#: ../src/Widgets/SourceListView.vala:73
+msgid "Edit…"
+msgstr "Изменить…"
 
-#: ../src/Views/ListView/ListView.vala:357
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i композиция"
-msgstr[1] "%i композиции"
-msgstr[2] "%i композиций"
+#: ../src/Widgets/SourceListView.vala:88
+msgid "Save as Playlist"
+msgstr "Сохранить как список воспроизведения"
 
-#: ../src/Views/ListView/ListView.vala:359
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u композиция"
-msgstr[1] "%u композиции"
-msgstr[2] "%u композиций"
-
-#: ../src/Views/ListView/ListView.vala:367
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
-msgid "%i kbps"
-msgstr "%i кбит/с"
-
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: ../src/Views/ListView/Lists/MusicListView.vala:615
-msgid "Never"
-msgstr "Никогда"
-
-#: ../src/Views/ListView/Lists/GenericList.vala:118
-msgid "Autosize Columns"
-msgstr "Авторазмер столбцов"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:59
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:62
-msgctxt "List column title"
-msgid "Track"
-msgstr "Композиция"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:65
-msgctxt "List column title"
-msgid "Title"
-msgstr "Название"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:68
-msgctxt "List column title"
-msgid "Length"
-msgstr "Длительность"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:71
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Исполнитель"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:74
-msgctxt "List column title"
-msgid "Album"
-msgstr "Альбом"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:77
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Исполнитель альбома"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:80
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Композитор"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:83
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Жанр"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:86
-msgctxt "List column title"
-msgid "Year"
-msgstr "Год"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:89
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Группа"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:92
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Качество звука"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:95
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Оценка"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:98
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Воспроизведения"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:101
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Пропуски"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:104
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Дата добавления"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:107
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Последнее воспроизведение"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:110
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "Уд./мин."
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:113
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Расположение"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:116
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Размер файла"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:84
-msgid "Remove from Library"
-msgstr "Удалить из медиатеки"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:91
-msgid "Remove from Queue"
-msgstr "Удалить из очереди"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:101
-msgid "Remove from Device"
-msgstr "Удалить с устройства"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:114
-msgid "Scroll to Current Song"
-msgstr "Прокрутить до текущей композиции"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:118
-msgid "Edit Song Info"
-msgstr "Редактировать информацию о композиции"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:119
-msgid "Show in File Browser"
-msgstr "Показать в обозревателе файлов"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:120
-msgid "Other actions"
-msgstr "Другие действия"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:121
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Поставить в очередь"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:122
-msgid "Add to Playlist"
-msgstr "Добавить в список воспроизведения"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:123
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-msgid "Remove Song"
-msgstr "Удалить композицию"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:124
 #: ../src/Widgets/SourceListView.vala:148
+#: ../src/Views/ListView/Lists/MusicListView.vala:124
 msgid "Import to Library"
 msgstr "Импорт в библиотеку"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:187
-msgid "New Playlist…"
-msgstr "Новый список воспроизведения…"
+#: ../src/Widgets/SourceListView.vala:156
+msgid "Eject"
+msgstr "Извлечь"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:227
-msgid "Import %i of %i selected songs"
-msgstr "Импортировать %i из %i выбранных композиций"
+#: ../src/Widgets/SourceListView.vala:161
+#: ../src/Widgets/SourceListView.vala:201
+msgid "New Playlist"
+msgstr "Новый список воспроизведения"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:229
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Импортирование %i композиции"
-msgstr[1] "Импортирование %i композиций"
-msgstr[2] "Импортирование %i композиций"
+#: ../src/Widgets/SourceListView.vala:166
+#: ../src/Widgets/SourceListView.vala:202
+msgid "New Smart Playlist"
+msgstr "Новый динамический список воспроизведения"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:600
-msgid "1234 kbps"
-msgstr "1234 kbps"
+#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
+msgid "Sync"
+msgstr "Синхронизация"
 
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: ../src/Views/ListView/Lists/MusicListView.vala:671
-msgid "Sample List String"
-msgstr "Простой список"
+#: ../src/Widgets/SourceListView.vala:203
+msgid "Import Playlists"
+msgstr "Импортировать списки воспроизведения"
 
-#: ../src/Views/ContentView.vala:21
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
+#: ../src/Widgets/SourceListView.vala:313
+msgid "Library"
+msgstr "Медиатека"
 
-#: ../src/Views/DeviceSummaryWidget.vala:73
-msgid "Device Name:"
-msgstr "Название устройства:"
+#: ../src/Widgets/SourceListView.vala:314
+msgid "Devices"
+msgstr "Устройства"
 
-#: ../src/Views/DeviceSummaryWidget.vala:77
-msgid "Device Name"
-msgstr "Название устройства"
+#: ../src/Widgets/SourceListView.vala:315
+msgid "Network"
+msgstr "Сеть"
 
-#: ../src/Views/DeviceSummaryWidget.vala:79
-msgid "Automatically sync when plugged in:"
-msgstr "Автоматически синхронизировать при подключении:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Sync:"
-msgstr "Синхронизировать:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Other Files"
-msgstr "Другие файлы"
-
-#: ../src/Views/DeviceSummaryWidget.vala:253
-msgid "All Music"
-msgstr "Вся музыка"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid "Sync Failed"
-msgstr "Синхронизация не удалась"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Список воспроизведения %s используется для синхронизации с устройством %s, "
-"но не был найден."
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Cannot Sync"
-msgstr "Невозможно синхронизировать"
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Невозможно синхронизировать устройство при выбранных параметрах. "
-"Недостаточно места на диске"
-
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Устройство уже занято."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Get Some Tunes"
-msgstr "Настройтесь на мелодию"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
-msgid "Add music to your library."
-msgstr "Добавьте музыку в вашу медиатеку."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Import music from a source into your library."
-msgstr "Импортируйте музыку из источника в вашу медиатеку."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Change Music Folder"
-msgstr "Выбор папки с музыкой"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Загрузите музыку из папки, сети или с внешнего носителя."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import your Music"
-msgstr "Импортируйте свою музыку"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import all your Music from %s into your library."
-msgstr "Импортировать всю вашу музыку из %s в вашу медиатеку."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
-msgid "Select Music Folder"
-msgstr "Выберите папку с музыкой"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
-msgid "No Songs"
-msgstr "Нет композиций"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
-msgid "Updating playlist. Please wait."
-msgstr "Обновление списка произведения. Пожалуйста, подождите."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Чтобы добавить композиции в список воспроизведения, щёлкните <b>правой "
-"кнопкой мыши</b> по элементу и выберите пункт <b>Добавить в список "
-"воспроизведения</b>."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid "Edit Smart Playlist"
-msgstr "Изменить динамический список воспроизведения"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"В этот список воспроизведения автоматически помещаются композиции, "
-"соответствующие его правилам. Чтобы изменить правила, щёлкните <b>правой "
-"кнопкой мыши</b> по элементу на боковой панели и выберите пункт "
-"<b>Изменить</b>. Кроме того, можно щёлкнуть по кнопке ниже."
-
-#: ../src/Views/Wrappers/ViewWrapper.vala:442
-msgid "No media"
-msgstr "Нет диска"
-
-#: ../src/Objects/LyricFetcher.vala:141
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Тексты взяты с www.lyricsmania.com"
-
-#: ../src/Objects/HistoryPlaylist.vala:40
-msgid "History"
-msgstr "Журнал"
+#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
+msgid "Playlists"
+msgstr "Списки воспроизведения"
 
 #: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
 #: ../src/Widgets/EqualizerPopover.vala:339
@@ -1000,90 +402,6 @@ msgstr "Показать"
 msgid "Hide Info Panel"
 msgstr "Скрыть дополнительную информацию"
 
-#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
-msgid "Rename"
-msgstr "Переименовать"
-
-#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Remove"
-msgstr "Удалить"
-
-#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
-#: ../src/Widgets/SourceListView.vala:90
-msgid "Export…"
-msgstr "Экспортировать…"
-
-#: ../src/Widgets/SourceListView.vala:73
-msgid "Edit…"
-msgstr "Изменить…"
-
-#: ../src/Widgets/SourceListView.vala:88
-msgid "Save as Playlist"
-msgstr "Сохранить как список воспроизведения"
-
-#: ../src/Widgets/SourceListView.vala:156
-msgid "Eject"
-msgstr "Извлечь"
-
-#: ../src/Widgets/SourceListView.vala:161
-#: ../src/Widgets/SourceListView.vala:201
-msgid "New Playlist"
-msgstr "Новый список воспроизведения"
-
-#: ../src/Widgets/SourceListView.vala:166
-#: ../src/Widgets/SourceListView.vala:202
-msgid "New Smart Playlist"
-msgstr "Новый динамический список воспроизведения"
-
-#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
-msgid "Sync"
-msgstr "Синхронизация"
-
-#: ../src/Widgets/SourceListView.vala:203
-msgid "Import Playlists"
-msgstr "Импортировать списки воспроизведения"
-
-#: ../src/Widgets/SourceListView.vala:313
-msgid "Library"
-msgstr "Медиатека"
-
-#: ../src/Widgets/SourceListView.vala:314
-msgid "Devices"
-msgstr "Устройства"
-
-#: ../src/Widgets/SourceListView.vala:315
-msgid "Network"
-msgstr "Сеть"
-
-#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
-msgid "Playlists"
-msgstr "Списки воспроизведения"
-
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "Режим просмотра: Альбомы"
-
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "Режим просмотра: Список"
-
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "Режим просмотра: Таблица"
-
-#: ../src/Widgets/PresetList.vala:47
-msgid "Delete Current"
-msgstr "Удалить текущий"
-
-#: ../src/Widgets/SpaceWidget.vala:266
-msgid "Free"
-msgstr "Свободно"
-
-#: ../src/Widgets/SpaceWidget.vala:383
-msgid "Using %s of %s (%.2f%)"
-msgstr "Использовано %s из %s (%.2f%)"
-
 #: ../src/Widgets/EqualizerPopover.vala:163
 msgid "Save preset"
 msgstr "Сохранить профиль"
@@ -1104,65 +422,223 @@ msgstr "Пользовательский профиль"
 msgid "Custom Preset %i"
 msgstr "Пользовательский профиль %i"
 
-#: ../src/LocalBackend/LocalLibrary.vala:182
-msgid "Importing music from %s…"
-msgstr "Импортирование музыки из %s…"
+#: ../src/Widgets/ViewSelector.vala:68
+msgid "View as Albums"
+msgstr "Режим просмотра: Альбомы"
 
-#: ../src/LocalBackend/LocalLibrary.vala:210
-msgid "Adding files to library…"
-msgstr "Добавление файлов в медиатеку…"
+#: ../src/Widgets/ViewSelector.vala:72
+msgid "View as List"
+msgstr "Режим просмотра: Список"
 
-#: ../src/LocalBackend/LocalLibrary.vala:225
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Импортирование</b> музыки в медиатеку…"
+#: ../src/Widgets/ViewSelector.vala:76
+msgid "View in Columns"
+msgstr "Режим просмотра: Таблица"
 
-#: ../src/LocalBackend/LocalLibrary.vala:249
-msgid "All music files are already in your library"
-msgstr "Все музыкальные файлы уже находятся в вашей медиатеке"
+#: ../src/Widgets/SpaceWidget.vala:266
+msgid "Free"
+msgstr "Свободно"
 
-#: ../src/LocalBackend/LocalLibrary.vala:249
-msgid "No files were imported."
-msgstr "Файлы не были импортированы."
+#: ../src/Widgets/SpaceWidget.vala:383
+msgid "Using %s of %s (%.2f%)"
+msgstr "Использовано %s из %s (%.2f%)"
 
-#: ../src/LocalBackend/LocalLibrary.vala:254
-msgid "Rescanning music for changes. This may take a while…"
+#: ../src/PlaybackManager.vala:96
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Очередь"
+
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+msgid "Would you like to install the %s plugin?\n"
+msgstr "Вы хотите установить плагин %s?\n"
+
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
+msgid ""
+"\n"
+"This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"Повторное сканирование музыки на изменения. Это может занять некоторое время…"
+"\n"
+"Воспроизведение композиции невозможно. Требуется плагин %s."
 
-#: ../src/LocalBackend/LocalLibrary.vala:328
-msgid "Added to your queue:"
-msgstr "Добавлено в очередь:"
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
+msgid "Install Plugin"
+msgstr "Установить плагин"
 
-#: ../src/LocalBackend/LocalLibrary.vala:339
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] "%d композиция"
-msgstr[1] "%d композиции"
-msgstr[2] "%d композиций"
+#: ../src/Dialogs/MediaEditor.vala:72
+msgid "Title:"
+msgstr "Заголовок:"
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "Любимые композиции"
+#: ../src/Dialogs/MediaEditor.vala:74
+msgid "Artist:"
+msgstr "Исполнитель:"
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "Недавно добавленные"
+#: ../src/Dialogs/MediaEditor.vala:76
+msgid "Album Artist:"
+msgstr "Исполнитель альбома:"
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "Последние понравившиеся"
+#: ../src/Dialogs/MediaEditor.vala:78
+msgid "Album:"
+msgstr "Альбом:"
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "Не воспроизводившиеся ранее"
+#: ../src/Dialogs/MediaEditor.vala:80
+msgid "Genre:"
+msgstr "Жанр:"
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "Часто воспроизводившиеся"
+#: ../src/Dialogs/MediaEditor.vala:82
+msgid "Composer:"
+msgstr "Композитор:"
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "Воспроизведённые давно"
+#: ../src/Dialogs/MediaEditor.vala:84
+msgid "Grouping:"
+msgstr "Группа:"
+
+#: ../src/Dialogs/MediaEditor.vala:86
+msgid "Comment:"
+msgstr "Комментарий:"
+
+#: ../src/Dialogs/MediaEditor.vala:88
+msgid "Track:"
+msgstr "Дорожка:"
+
+#: ../src/Dialogs/MediaEditor.vala:90
+msgid "Disk:"
+msgstr "Диск:"
+
+#: ../src/Dialogs/MediaEditor.vala:92
+msgid "Year:"
+msgstr "Год:"
+
+#: ../src/Dialogs/MediaEditor.vala:94
+msgid "Rating:"
+msgstr "Оценка:"
+
+#: ../src/Dialogs/MediaEditor.vala:153 ../src/Dialogs/PreferencesWindow.vala:99
+msgid "Close"
+msgstr "Закрыть"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
+msgid "Export Playlists"
+msgstr "Экспортировать списки воспроизведения"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
+msgid "Set Music Folder"
+msgstr "Выбрать папку с музыкой"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
+msgid "Set Music Folder?"
+msgstr "Обозначить папку, как содержащую музыку?"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Вы уверены, что хотите назначить %s папкой с музыкой? Это сбросит сведения о "
+"вашей медиатеке и удалит списки воспроизведения."
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
+#: ../src/Dialogs/FileNotFoundDialog.vala:124
+msgid "Choose Music Folder"
+msgstr "Выберите папку с музыкой"
+
+#: ../src/Dialogs/NotImportedWindow.vala:52
+#: ../src/Dialogs/NotImportedWindow.vala:55
+msgid "Unable to import %d items from %s"
+msgstr "Невозможно импортировать %d элементов из %s"
+
+#: ../src/Dialogs/NotImportedWindow.vala:56
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr ""
+"%s не может импортировать %d элементов. Эти файлы могут быть повреждены."
+
+#: ../src/Dialogs/NotImportedWindow.vala:59
+msgid "Move all corrupted files to trash"
+msgstr "Переместить все повреждённые файлы в корзину"
+
+#: ../src/Dialogs/NotImportedWindow.vala:64
+#: ../src/Dialogs/RemoveFilesDialog.vala:50
+msgid "Move to Trash"
+msgstr "Переместить в корзину"
+
+#: ../src/Dialogs/NotImportedWindow.vala:66
+msgid "Ignore"
+msgstr "Игнорировать"
+
+#: ../src/Dialogs/NotImportedWindow.vala:81
+msgid "del"
+msgstr "удалить"
+
+#: ../src/Dialogs/NotImportedWindow.vala:86
+msgid "File Location"
+msgstr "Расположение файла"
+
+#: ../src/Dialogs/NotImportedWindow.vala:101
+msgid "Select individual files to move to trash:"
+msgstr "Выбрать отдельные файлы для перемещения в корзину:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:46
+msgid "Select Music Folder…"
+msgstr "Выберите папку с музыкой…"
+
+#: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
+msgid "Preferences"
+msgstr "Настройки"
+
+#: ../src/Dialogs/PreferencesWindow.vala:131
+msgid "General"
+msgstr "Общие"
+
+#: ../src/Dialogs/PreferencesWindow.vala:137
+msgid "Music Folder Location"
+msgstr "Расположение папки с музыкой"
+
+#: ../src/Dialogs/PreferencesWindow.vala:145
+msgid "Library Management"
+msgstr "Управление медиатекой"
+
+#: ../src/Dialogs/PreferencesWindow.vala:152
+msgid "Keep Music folder organized:"
+msgstr "Сохранять структуру папки с музыкой:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:156
+msgid "Write metadata to file:"
+msgstr "Записать метаданные в файл:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:160
+msgid "Copy imported files to Library:"
+msgstr "Копировать импортированные файлы в медиатеку:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:162
+msgid "Desktop Integration"
+msgstr "Интеграция с окружением"
+
+#: ../src/Dialogs/PreferencesWindow.vala:167
+msgid "Continue playback when closed:"
+msgstr "Продолжить воспроизведение после закрытия:"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:53
+msgid "File not found"
+msgstr "Файл не найден"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:59
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr "Композиция <b>%s</b> в исполнении <b>%s</b> не найдена."
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:62
+msgid "%i music files could not be found?"
+msgstr "Не найдено %i композиций?"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:85
+msgid "Rescan Library"
+msgstr "Сканировать библиотеку заново"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Views/ListView/Lists/MusicListView.vala:123
+msgid "Remove Song"
+msgstr "Удалить композицию"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:88
+msgid "Find Song"
+msgstr "Поиск музыки"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:53
 msgid "Import from Device"
@@ -1233,50 +709,66 @@ msgstr "Невозможно импортировать"
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:287
 msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
+"import from %s"
 msgstr ""
-"Noise уже выполняет операции с файлами. Пожалуйста, подождите пока не "
-"закончится импортирование из %d"
 
-#: ../src/Dialogs/PreferencesWindow.vala:46
-msgid "Select Music Folder…"
-msgstr "Выберите папку с музыкой…"
+#: ../src/Dialogs/RemoveFilesDialog.vala:51
+msgid "Remove from %s"
+msgstr "Удалить из %s"
 
-#: ../src/Dialogs/PreferencesWindow.vala:99 ../src/Dialogs/MediaEditor.vala:153
-msgid "Close"
-msgstr "Закрыть"
+#: ../src/Dialogs/RemoveFilesDialog.vala:61
+msgid "Remove %d Songs From %s?"
+msgstr "Удалить %d композиций из %s?"
 
-#: ../src/Dialogs/PreferencesWindow.vala:131
-msgid "General"
-msgstr "Общие"
+#: ../src/Dialogs/RemoveFilesDialog.vala:64
+msgid "Remove \"%s\" From %s?"
+msgstr "Удалить «%s» из %s?"
 
-#: ../src/Dialogs/PreferencesWindow.vala:137
-msgid "Music Folder Location"
-msgstr "Расположение папки с музыкой"
+#: ../src/Dialogs/RemoveFilesDialog.vala:73
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+"Это удалит композицию из вашей медиатеки и всех устройств, которые "
+"синхронизируются с %s."
+msgstr[1] ""
+"Это удалит композиции из вашей медиатеки и всех устройств, которые "
+"синхронизируются с %s."
+msgstr[2] ""
+"Это удалит композиции из вашей медиатеки и всех устройств, которые "
+"синхронизируются с %s."
 
-#: ../src/Dialogs/PreferencesWindow.vala:145
-msgid "Library Management"
-msgstr "Управление медиатекой"
+#: ../src/Dialogs/SyncWarningDialog.vala:57
+msgid "Import media to Library"
+msgstr "Импорт данных в медиатеку"
 
-#: ../src/Dialogs/PreferencesWindow.vala:152
-msgid "Keep Music folder organized:"
-msgstr "Сохранять структуру папки с музыкой:"
+#: ../src/Dialogs/SyncWarningDialog.vala:58
+msgid "Continue Syncing"
+msgstr "Продолжить синхронизацию"
 
-#: ../src/Dialogs/PreferencesWindow.vala:156
-msgid "Write metadata to file:"
-msgstr "Записать метаданные в файл:"
+#: ../src/Dialogs/SyncWarningDialog.vala:59
+msgid "Stop Syncing"
+msgstr "Остановить синхронизацию"
 
-#: ../src/Dialogs/PreferencesWindow.vala:160
-msgid "Copy imported files to Library:"
-msgstr "Копировать импортированные файлы в медиатеку:"
+#: ../src/Dialogs/SyncWarningDialog.vala:66
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Если вы продолжите синхронизацию, данные будут удалены с %s, поскольку они "
+"не находятся в списке синхронизации. Вы хотите сперва импортировать их в "
+"вашу медиатеку?"
 
-#: ../src/Dialogs/PreferencesWindow.vala:162
-msgid "Desktop Integration"
-msgstr "Интеграция с окружением"
+#: ../src/Dialogs/SyncWarningDialog.vala:72
+msgid "Sync will remove %i items from %s"
+msgstr "Синхронизация удалит %i элементов из %s"
 
-#: ../src/Dialogs/PreferencesWindow.vala:167
-msgid "Continue playback when closed:"
-msgstr "Продолжить воспроизведение после закрытия:"
+#: ../src/Dialogs/SyncWarningDialog.vala:75
+msgid "Sync will remove 1 item from %s"
+msgstr "Синхронизация удалит 1 элемент из %s"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:36
 msgid "Smart Playlist Editor"
@@ -1423,247 +915,741 @@ msgstr "дней назад"
 msgid "kbps"
 msgstr "кбит/с"
 
-#: ../src/Dialogs/MediaEditor.vala:72
-msgid "Title:"
-msgstr "Заголовок:"
+#: ../src/LibraryWindow.vala:269
+msgid "Import to Library…"
+msgstr "Импортировать в медиатеку…"
 
-#: ../src/Dialogs/MediaEditor.vala:74
-msgid "Artist:"
-msgstr "Исполнитель:"
+#: ../src/LibraryWindow.vala:289
+msgid "Previous"
+msgstr "Предыдущая композиция"
 
-#: ../src/Dialogs/MediaEditor.vala:76
-msgid "Album Artist:"
-msgstr "Исполнитель альбома:"
+#: ../src/LibraryWindow.vala:291 ../src/LibraryWindow.vala:991
+msgid "Play"
+msgstr "Воспроизвести"
 
-#: ../src/Dialogs/MediaEditor.vala:78
-msgid "Album:"
-msgstr "Альбом:"
+#: ../src/LibraryWindow.vala:293
+msgid "Next"
+msgstr "Следующая композиция"
 
-#: ../src/Dialogs/MediaEditor.vala:80
-msgid "Genre:"
-msgstr "Жанр:"
-
-#: ../src/Dialogs/MediaEditor.vala:82
-msgid "Composer:"
-msgstr "Композитор:"
-
-#: ../src/Dialogs/MediaEditor.vala:84
-msgid "Grouping:"
-msgstr "Группа:"
-
-#: ../src/Dialogs/MediaEditor.vala:86
-msgid "Comment:"
-msgstr "Комментарий:"
-
-#: ../src/Dialogs/MediaEditor.vala:88
-msgid "Track:"
-msgstr "Дорожка:"
-
-#: ../src/Dialogs/MediaEditor.vala:90
-msgid "Disk:"
-msgstr "Диск:"
-
-#: ../src/Dialogs/MediaEditor.vala:92
-msgid "Year:"
-msgstr "Год:"
-
-#: ../src/Dialogs/MediaEditor.vala:94
-msgid "Rating:"
-msgstr "Оценка:"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:53
-msgid "File not found"
-msgstr "Файл не найден"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:59
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "Композиция <b>%s</b> в исполнении <b>%s</b> не найдена."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:62
-msgid "%i music files could not be found?"
-msgstr "Не найдено %i композиций?"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
-msgid "Rescan Library"
-msgstr "Сканировать библиотеку заново"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:88
-msgid "Find Song"
+#: ../src/LibraryWindow.vala:297
+msgid "Search Music"
 msgstr "Поиск музыки"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:124
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
-msgid "Choose Music Folder"
+#: ../src/LibraryWindow.vala:659 ../src/LibraryWindow.vala:763
+#: ../src/Views/DeviceSummaryWidget.vala:99
+msgid "Music"
+msgstr "Музыка"
+
+#: ../src/LibraryWindow.vala:831
+msgid "No songs in Queue"
+msgstr "Нет композиций в очереди"
+
+#: ../src/LibraryWindow.vala:831
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Чтобы добавить композиции в очередь, щёлкните <b>правой кнопкой мыши</b> по "
+"элементу и выберите пункт <b>Добавить в очередь</b>. Когда композиция "
+"закончится, композиции в очереди будут воспроизведены перед следующей песней "
+"в текущем списке воспроизведения."
+
+#: ../src/LibraryWindow.vala:834
+msgid "No songs in History"
+msgstr "Нет композиций в журнале"
+
+#: ../src/LibraryWindow.vala:834
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"После того, как часть композиции проиграна, она добавлена в журнал.\n"
+"Можно использовать журнал, чтобы увидеть все композиции, воспроизведённые за "
+"этот сеанс."
+
+#: ../src/LibraryWindow.vala:985
+msgid "Pause"
+msgstr "Пауза"
+
+#: ../src/LibraryWindow.vala:1064
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Import Music"
+msgstr "Импорт музыки"
+
+#: ../src/FileOperator.vala:307
+msgid "Import Complete"
+msgstr "Импортирование завершено"
+
+#: ../src/FileOperator.vala:307
+msgid "%s has imported your library."
+msgstr "%s элементов импортировано в вашу медиатеку."
+
+#: ../src/FileOperator.vala:317
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>Копирование</b> файлов в </b>папку с музыкой<b>…"
+
+#: ../src/Views/GridView/GridView.vala:44
+msgid "No Albums Found."
+msgstr "Альбомы не найдены."
+
+#: ../src/Views/GridView/GridView.vala:141
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u альбом"
+msgstr[1] "%u альбома"
+msgstr[2] "%u альбомов"
+
+#: ../src/Views/GridView/PopupListView.vala:59
+msgid "Set new album cover"
+msgstr "Установить новую обложку альбома"
+
+#: ../src/Views/GridView/PopupListView.vala:156
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "%s в исполнении %s"
+
+#: ../src/Views/GridView/PopupListView.vala:256
+msgid "_Cancel"
+msgstr "_Отмена"
+
+#: ../src/Views/GridView/PopupListView.vala:256
+msgid "_Open"
+msgstr "_Открыть"
+
+#: ../src/Views/GridView/PopupListView.vala:259
+msgid "Image files"
+msgstr "Изображения"
+
+#: ../src/Views/Wrappers/ViewWrapper.vala:442
+msgid "No media"
+msgstr "Нет диска"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
+msgid "No Songs"
+msgstr "Нет композиций"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
+msgid "Updating playlist. Please wait."
+msgstr "Обновление списка произведения. Пожалуйста, подождите."
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+"Чтобы добавить композиции в список воспроизведения, щёлкните <b>правой "
+"кнопкой мыши</b> по элементу и выберите пункт <b>Добавить в список "
+"воспроизведения</b>."
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid "Edit Smart Playlist"
+msgstr "Изменить динамический список воспроизведения"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"В этот список воспроизведения автоматически помещаются композиции, "
+"соответствующие его правилам. Чтобы изменить правила, щёлкните <b>правой "
+"кнопкой мыши</b> по элементу на боковой панели и выберите пункт "
+"<b>Изменить</b>. Кроме того, можно щёлкнуть по кнопке ниже."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Get Some Tunes"
+msgstr "Настройтесь на мелодию"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
+msgid "Add music to your library."
+msgstr "Добавьте музыку в вашу медиатеку."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
+msgstr "Импортируйте музыку из источника в вашу медиатеку."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Change Music Folder"
+msgstr "Выбор папки с музыкой"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Загрузите музыку из папки, сети или с внешнего носителя."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import your Music"
+msgstr "Импортируйте свою музыку"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import all your Music from %s into your library."
+msgstr "Импортировать всю вашу музыку из %s в вашу медиатеку."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
+msgid "Select Music Folder"
 msgstr "Выберите папку с музыкой"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:57
-msgid "Import media to Library"
-msgstr "Импорт данных в медиатеку"
+#: ../src/Views/ContentView.vala:21
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:58
-msgid "Continue Syncing"
-msgstr "Продолжить синхронизацию"
+#: ../src/Views/DeviceView.vala:38
+msgid "Cancelling…"
+msgstr "Отмена…"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:59
-msgid "Stop Syncing"
-msgstr "Остановить синхронизацию"
+#: ../src/Views/DeviceView.vala:38
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "Операция с устройством была отменена и будет остановлена."
 
-#: ../src/Dialogs/SyncWarningDialog.vala:66
+#: ../src/Views/DeviceView.vala:59
+msgid "OK"
+msgstr "OK"
+
+#: ../src/Views/DeviceView.vala:100
+msgid "No External Songs"
+msgstr "Нет внешних композиций"
+
+#: ../src/Views/DeviceView.vala:100
 msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
+"There were no songs found on this device that are not in your library."
+msgstr "На устройстве нет композиций, отсутствующих в медиатеке."
+
+#: ../src/Views/ListView/Lists/GenericList.vala:118
+msgid "Autosize Columns"
+msgstr "Авторазмер столбцов"
+
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
+msgid "%u kbps"
 msgstr ""
-"Если вы продолжите синхронизацию, данные будут удалены с %s, поскольку они "
-"не находятся в списке синхронизации. Вы хотите сперва импортировать их в "
-"вашу медиатеку?"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:72
-msgid "Sync will remove %i items from %s"
-msgstr "Синхронизация удалит %i элементов из %s"
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#: ../src/Views/ListView/Lists/MusicListView.vala:615
+msgid "Never"
+msgstr "Никогда"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:75
-msgid "Sync will remove 1 item from %s"
-msgstr "Синхронизация удалит 1 элемент из %s"
+#: ../src/Views/ListView/Lists/MusicListView.vala:84
+msgid "Remove from Library"
+msgstr "Удалить из медиатеки"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
-msgid "Export Playlists"
-msgstr "Экспортировать списки воспроизведения"
+#: ../src/Views/ListView/Lists/MusicListView.vala:91
+msgid "Remove from Queue"
+msgstr "Удалить из очереди"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
-msgid "Set Music Folder"
-msgstr "Выбрать папку с музыкой"
+#: ../src/Views/ListView/Lists/MusicListView.vala:101
+msgid "Remove from Device"
+msgstr "Удалить с устройства"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
-msgid "Set Music Folder?"
-msgstr "Обозначить папку, как содержащую музыку?"
+#: ../src/Views/ListView/Lists/MusicListView.vala:114
+msgid "Scroll to Current Song"
+msgstr "Прокрутить до текущей композиции"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Вы уверены, что хотите назначить %s папкой с музыкой? Это сбросит сведения о "
-"вашей медиатеке и удалит списки воспроизведения."
+#: ../src/Views/ListView/Lists/MusicListView.vala:118
+msgid "Edit Song Info"
+msgstr "Редактировать информацию о композиции"
 
-#: ../src/Dialogs/NotImportedWindow.vala:52
-#: ../src/Dialogs/NotImportedWindow.vala:55
-msgid "Unable to import %d items from %s"
-msgstr "Невозможно импортировать %d элементов из %s"
+#: ../src/Views/ListView/Lists/MusicListView.vala:119
+msgid "Show in File Browser"
+msgstr "Показать в обозревателе файлов"
 
-#: ../src/Dialogs/NotImportedWindow.vala:56
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-"%s не может импортировать %d элементов. Эти файлы могут быть повреждены."
+#: ../src/Views/ListView/Lists/MusicListView.vala:120
+msgid "Other actions"
+msgstr "Другие действия"
 
-#: ../src/Dialogs/NotImportedWindow.vala:59
-msgid "Move all corrupted files to trash"
-msgstr "Переместить все повреждённые файлы в корзину"
+#: ../src/Views/ListView/Lists/MusicListView.vala:121
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Поставить в очередь"
 
-#: ../src/Dialogs/NotImportedWindow.vala:64
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
-msgid "Move to Trash"
-msgstr "Переместить в корзину"
+#: ../src/Views/ListView/Lists/MusicListView.vala:122
+msgid "Add to Playlist"
+msgstr "Добавить в список воспроизведения"
 
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "Ignore"
-msgstr "Игнорировать"
+#: ../src/Views/ListView/Lists/MusicListView.vala:187
+msgid "New Playlist…"
+msgstr "Новый список воспроизведения…"
 
-#: ../src/Dialogs/NotImportedWindow.vala:81
-msgid "del"
-msgstr "удалить"
+#: ../src/Views/ListView/Lists/MusicListView.vala:227
+msgid "Import %i of %i selected songs"
+msgstr "Импортировать %i из %i выбранных композиций"
 
-#: ../src/Dialogs/NotImportedWindow.vala:86
-msgid "File Location"
-msgstr "Расположение файла"
+#: ../src/Views/ListView/Lists/MusicListView.vala:229
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "Импортирование %i композиции"
+msgstr[1] "Импортирование %i композиций"
+msgstr[2] "Импортирование %i композиций"
 
-#: ../src/Dialogs/NotImportedWindow.vala:101
-msgid "Select individual files to move to trash:"
-msgstr "Выбрать отдельные файлы для перемещения в корзину:"
+#: ../src/Views/ListView/Lists/MusicListView.vala:600
+msgid "1234 kbps"
+msgstr "1234 kbps"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
-msgid "Remove from %s"
-msgstr "Удалить из %s"
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: ../src/Views/ListView/Lists/MusicListView.vala:671
+msgid "Sample List String"
+msgstr "Простой список"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
-msgid "Remove %d Songs From %s?"
-msgstr "Удалить %d композиций из %s?"
+#: ../src/Views/ListView/Lists/ListColumn.vala:59
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
-msgid "Remove \"%s\" From %s?"
-msgstr "Удалить «%s» из %s?"
+#: ../src/Views/ListView/Lists/ListColumn.vala:62
+msgctxt "List column title"
+msgid "Track"
+msgstr "Композиция"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
-msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
-msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
+#: ../src/Views/ListView/Lists/ListColumn.vala:65
+msgctxt "List column title"
+msgid "Title"
+msgstr "Название"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:68
+msgctxt "List column title"
+msgid "Length"
+msgstr "Длительность"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:71
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Исполнитель"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:74
+msgctxt "List column title"
+msgid "Album"
+msgstr "Альбом"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:77
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Исполнитель альбома"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:80
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Композитор"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:83
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Жанр"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:86
+msgctxt "List column title"
+msgid "Year"
+msgstr "Год"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:89
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Группа"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:92
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Качество звука"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:95
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Оценка"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:98
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Воспроизведения"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:101
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Пропуски"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:104
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Дата добавления"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:107
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Последнее воспроизведение"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:110
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "Уд./мин."
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:113
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Расположение"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:116
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Размер файла"
+
+#: ../src/Views/ListView/ListView.vala:86
+msgid "No Songs Found."
+msgstr "Композиции не найдены."
+
+#: ../src/Views/ListView/ListView.vala:357
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i композиция"
+msgstr[1] "%i композиции"
+msgstr[2] "%i композиций"
+
+#: ../src/Views/ListView/ListView.vala:359
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u композиция"
+msgstr[1] "%u композиции"
+msgstr[2] "%u композиций"
+
+#: ../src/Views/ListView/ListView.vala:367
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s, %s"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
+msgid "On Left"
+msgstr "Слева"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+msgid "On Top"
+msgstr "Сверху"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "Без оценки"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+msgid "%u Star"
+msgid_plural "%u Stars"
 msgstr[0] ""
-"Это удалит композицию из вашей медиатеки и всех устройств, которые "
-"синхронизируются с %s."
 msgstr[1] ""
-"Это удалит композиции из вашей медиатеки и всех устройств, которые "
-"синхронизируются с %s."
-msgstr[2] ""
-"Это удалит композиции из вашей медиатеки и всех устройств, которые "
-"синхронизируются с %s."
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
-msgid "Would you like to install the %s plugin?\n"
-msgstr "Вы хотите установить плагин %s?\n"
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "Все жанры"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+msgid "All %i Genres"
+msgstr "Все %i жанров"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "Нет жанров"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "Все исполнители"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+msgid "All %i Artists"
+msgstr "Все %i исполнителей"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "Нет исполнителей"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "Все альбомы"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+msgid "All %i Albums"
+msgstr "Все %i альбомов"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "Нет альбомов"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "Все года"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+msgid "All %i Years"
+msgstr "Все %i годов"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "Нет годов"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "Все оценки"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "Нет оценок"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr "Все группы"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+msgid "All %i Groupings"
+msgstr "Все %i групп"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr "Нет групп"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "Все композиторы"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+msgid "All %i Composers"
+msgstr "Всех %i  композиторов"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "Нет композиторов"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
+msgid "Genres"
+msgstr "Жанры"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
+msgid "Artists"
+msgstr "Исполнители"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Albums"
+msgstr "Альбомы"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Years"
+msgstr "Годы"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Ratings"
+msgstr "Оценки"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Composers"
+msgstr "Композиторы"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Groupings"
+msgstr "Группы"
+
+#: ../src/Views/DeviceSummaryWidget.vala:73
+msgid "Device Name:"
+msgstr "Название устройства:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:77
+msgid "Device Name"
+msgstr "Название устройства"
+
+#: ../src/Views/DeviceSummaryWidget.vala:79
+msgid "Automatically sync when plugged in:"
+msgstr "Автоматически синхронизировать при подключении:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:86
+msgid "Sync:"
+msgstr "Синхронизировать:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:98
+msgid "Other Files"
+msgstr "Другие файлы"
+
+#: ../src/Views/DeviceSummaryWidget.vala:253
+msgid "All Music"
+msgstr "Вся музыка"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
+msgid "Sync Failed"
+msgstr "Синхронизация не удалась"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
 msgid ""
-"\n"
-"This song cannot be played. The %s plugin is required to play the song."
+"The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"\n"
-"Воспроизведение композиции невозможно. Требуется плагин %s."
+"Список воспроизведения %s используется для синхронизации с устройством %s, "
+"но не был найден."
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
-msgid "Install Plugin"
-msgstr "Установить плагин"
+#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Cannot Sync"
+msgstr "Невозможно синхронизировать"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:151
+#: ../src/Views/DeviceSummaryWidget.vala:320
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Невозможно синхронизировать устройство при выбранных параметрах. "
+"Недостаточно места на диске"
+
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "Устройство уже занято."
+
+#: ../src/Noise.vala:65
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  0crash0 https://launchpad.net/~0crash0\n"
+"  Aleksey Kabanov https://launchpad.net/~ak099\n"
+"  Alex Ra https://launchpad.net/~asd667\n"
+"  Alexander Kovalenko https://launchpad.net/~darko-nerivar\n"
+"  Alexandr Anciferov https://launchpad.net/~jooow\n"
+"  Andrey Stomakhin https://launchpad.net/~stomandrey\n"
+"  Artem Anufrij https://launchpad.net/~artem-anufrij\n"
+"  Denis Lets https://launchpad.net/~denislets\n"
+"  Eugene Marshal https://launchpad.net/~lowrider\n"
+"  Gigabye https://launchpad.net/~gkc90953\n"
+"  Gladyr Aleksandr https://launchpad.net/~gladyra\n"
+"  Ivlev Denis https://launchpad.net/~den4ik\n"
+"  Khayrullo https://launchpad.net/~khayrullomirzaev\n"
+"  Kirill Ivaha https://launchpad.net/~kirill-ivaha\n"
+"  Maxim Taranov https://launchpad.net/~png2378\n"
+"  Mike Orlov https://launchpad.net/~mike-orlv\n"
+"  Mor1din https://launchpad.net/~post--box\n"
+"  Mukusev Vladimir https://launchpad.net/~damon95\n"
+"  Nikita Putko https://launchpad.net/~ktototam98\n"
+"  Oleg https://launchpad.net/~oopseekoleg\n"
+"  Sergey \"Shnatsel\" Davidoff https://launchpad.net/~shnatsel\n"
+"  Sergii Cynailo https://launchpad.net/~funeral20\n"
+"  Tema Kosakov https://launchpad.net/~kosakov\n"
+"  Victor Martinez https://launchpad.net/~victored\n"
+"  Vinni.Buh https://launchpad.net/~a-vinni-buh\n"
+"  VitalD https://launchpad.net/~vkontakte-vit\n"
+"  Vovk Vladimir https://launchpad.net/~vladimir-vovk-at\n"
+"  Yuly Nesterov https://launchpad.net/~inpr1se\n"
+"  anton https://launchpad.net/~antonshramko\n"
+"  hobagos https://launchpad.net/~hobagos\n"
+"  maximko https://launchpad.net/~maximko\n"
+"  Глория Хрусталёва https://launchpad.net/~gloriya\n"
+"  Дмитрий Мурашкин https://launchpad.net/~mr-dimur\n"
+"  Николай https://launchpad.net/~nicolai-andr12\n"
+"  Николай Авдеев (NickKolok, Nikolay Avdeev) "
+"https://launchpad.net/~nickkolok\n"
+"  Сулейман https://launchpad.net/~umudov-s-i13\n"
+"  михаил https://launchpad.net/~ded-mixei"
+
+#: ../src/Objects/LyricFetcher.vala:141
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "Тексты взяты с www.lyricsmania.com"
+
+#: ../src/Objects/HistoryPlaylist.vala:40
+msgid "History"
+msgstr "Журнал"
+
+#: ../src/LocalBackend/LocalLibrary.vala:182
+msgid "Importing music from %s…"
+msgstr "Импортирование музыки из %s…"
+
+#: ../src/LocalBackend/LocalLibrary.vala:210
+msgid "Adding files to library…"
+msgstr "Добавление файлов в медиатеку…"
+
+#: ../src/LocalBackend/LocalLibrary.vala:225
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>Импортирование</b> музыки в медиатеку…"
+
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "All music files are already in your library"
+msgstr "Все музыкальные файлы уже находятся в вашей медиатеке"
+
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "No files were imported."
+msgstr "Файлы не были импортированы."
+
+#: ../src/LocalBackend/LocalLibrary.vala:254
+msgid "Rescanning music for changes. This may take a while…"
+msgstr ""
+"Повторное сканирование музыки на изменения. Это может занять некоторое время…"
+
+#: ../src/LocalBackend/LocalLibrary.vala:328
+msgid "Added to your queue:"
+msgstr "Добавлено в очередь:"
+
+#: ../src/LocalBackend/LocalLibrary.vala:339
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] "%d композиция"
+msgstr[1] "%d композиции"
+msgstr[2] "%d композиций"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
+msgid "Favorite Songs"
+msgstr "Любимые композиции"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
+msgid "Recently Added"
+msgstr "Недавно добавленные"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
+msgid "Recent Favorites"
+msgstr "Последние понравившиеся"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
+msgid "Never Played"
+msgstr "Не воспроизводившиеся ранее"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
+msgid "Over Played"
+msgstr "Часто воспроизводившиеся"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
+msgid "Not Recently Played"
+msgstr "Воспроизведённые давно"
+
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
+#: ../plugins/Devices/iPod/iPodLibrary.vala:151
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "Добавление <b>$NAME</b> в исполнении <b>$ARTIST</b> на $DEVICE"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:199
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
+#: ../plugins/Devices/iPod/iPodLibrary.vala:199
 msgid "Syncing <b>%s</b>…"
 msgstr "Синхронизация <b>%s</b>…"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:221
-#: ../plugins/Devices/iPod/iPodLibrary.vala:377
-msgid "Finishing sync process…"
-msgstr "Завершение процесса синхронизации…"
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:233
-#: ../plugins/Devices/iPod/iPodLibrary.vala:389
-msgid "Cancelling Sync…"
-msgstr "Отмена синхронизации…"
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:340
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
-msgid "Removing from <b>%s</b>…"
-msgstr "Удаление из <b>%s</b>…"
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:533
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
+#: ../plugins/Devices/iPod/iPodLibrary.vala:533
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "Удаление <b>$NAME</b> в исполнении <b>$ARTIST</b> из $DEVICE"
 
-#: ../plugins/Devices/iPod/iPodDevice.vala:59
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
+#: ../plugins/Devices/iPod/iPodLibrary.vala:340
+msgid "Removing from <b>%s</b>…"
+msgstr "Удаление из <b>%s</b>…"
+
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
+#: ../plugins/Devices/iPod/iPodDevice.vala:59
 msgid "Empty device!"
 msgstr "Пустое устройство!"
 
-#: ../plugins/Devices/iPod/iPodDevice.vala:63
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
+#: ../plugins/Devices/iPod/iPodDevice.vala:63
 msgid "This device does not contain any music."
 msgstr "В устройстве нет музыкальных файлов."
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
+msgid "Android Phone"
+msgstr "Телефон на Android"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
+msgid "Audio Player"
+msgstr "Аудио-плеер"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:85
 msgid "Audio CD Invalid"
@@ -1701,8 +1687,8 @@ msgid "Importation of %i songs from Audio CD finished."
 msgstr "Импорт %i песен с компакт-диска закончен."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
-msgid "Importing track %i: %s"
-msgstr "Импортирование композиции %i: %s"
+msgid "Importing track %u: %s"
+msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1721,17 +1707,15 @@ msgstr "Произошла ошибка"
 msgid "There was an error while loading this Audio CD."
 msgstr "Ошибка при загрузке этого компакт-диска."
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
-msgid "Android Phone"
-msgstr "Телефон на Android"
+#: ../plugins/Devices/iPod/iPodLibrary.vala:221
+#: ../plugins/Devices/iPod/iPodLibrary.vala:377
+msgid "Finishing sync process…"
+msgstr "Завершение процесса синхронизации…"
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
-msgid "Audio Player"
-msgstr "Аудио-плеер"
-
-#: ../plugins/LastFM/SimilarMedia.vala:37
-msgid "Similar"
-msgstr "Похожие"
+#: ../plugins/Devices/iPod/iPodLibrary.vala:233
+#: ../plugins/Devices/iPod/iPodLibrary.vala:389
+msgid "Cancelling Sync…"
+msgstr "Отмена синхронизации…"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
@@ -1740,6 +1724,10 @@ msgstr "медиа"
 #: ../plugins/LastFM/SimilarMediaView.vala:47
 msgid "Similar Media"
 msgstr "Похожие композиции"
+
+#: ../plugins/LastFM/SimilarMedia.vala:37
+msgid "Similar"
+msgstr "Похожие"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
@@ -1910,6 +1898,9 @@ msgstr ""
 
 #~ msgid "Pulser"
 #~ msgstr "Генератор импульсов"
+
+#~ msgid "%i kbps"
+#~ msgstr "%i кбит/с"
 
 #~ msgid "Import this song"
 #~ msgstr "Импортировать эту композицию"
@@ -2212,6 +2203,12 @@ msgstr ""
 #~ msgid "Last.fm"
 #~ msgstr "Last.fm"
 
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d секунда"
+#~ msgstr[1] "%d секунды"
+#~ msgstr[2] "%d секунд"
+
 #, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Импорт музыки из «%s»..."
@@ -2258,6 +2255,13 @@ msgstr ""
 #~ msgid "Listen to music"
 #~ msgstr "Слушайте музыку"
 
+#~ msgid ""
+#~ "Noise is already doing file operations. Please wait until those finish to "
+#~ "import from %d"
+#~ msgstr ""
+#~ "Noise уже выполняет операции с файлами. Пожалуйста, подождите пока не "
+#~ "закончится импортирование из %d"
+
 #~ msgid "Editing $NAME by $ARTIST"
 #~ msgstr "Редактирование $NAME в исполнении $ARTIST"
 
@@ -2269,6 +2273,15 @@ msgstr ""
 
 #~ msgid "Desktop Integration:"
 #~ msgstr "Интеграция с рабочим столом:"
+
+#~ msgid "%i Star"
+#~ msgid_plural "%i Stars"
+#~ msgstr[0] "%i звезда"
+#~ msgstr[1] "%i звезды"
+#~ msgstr[2] "%i звёзд"
+
+#~ msgid "Importing track %i: %s"
+#~ msgstr "Импортирование композиции %i: %s"
 
 #~ msgid "There is not enough space on Device to complete the Sync…"
 #~ msgstr "Недостаточно места на Устройстве для завершения синхронизации ..."

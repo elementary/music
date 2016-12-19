@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-15 12:12-0500\n"
+"POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -15,92 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-09-27 06:53+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"X-Launchpad-Export-Date: 2016-12-19 05:24+0000\n"
+"X-Generator: Launchpad (build 18298)\n"
 "Language: \n"
 
-#: ../core/Utils/PlaylistsUtils.vala:96
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:236
-msgid "New playlist"
-msgstr "فهرست پخش جدید"
-
-#: ../core/Utils/PlaylistsUtils.vala:247
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: ../core/Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "صادرات فهرست پخش"
-
-#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
-#: ../src/LibraryWindow.vala:1047
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
-#: ../src/Widgets/TopDisplay.vala:90
-#: ../src/Dialogs/SmartPlaylistEditor.vala:118
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
-#: ../src/Dialogs/FileNotFoundDialog.vala:126
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
-#: ../src/Dialogs/RemoveFilesDialog.vala:52
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
-msgid "Cancel"
-msgstr "لغو"
-
-#: ../core/Utils/PlaylistsUtils.vala:277
-#: ../src/Dialogs/SmartPlaylistEditor.vala:116
-#: ../src/Dialogs/MediaEditor.vala:151
-msgid "Save"
+#: ../core/LibrariesManager.vala:143
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr ""
 
-#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "نسخه ۳/۰ گسترش یافته MPEG (*.m3u)"
-
-#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "فهرست پخش شات‌کست نسخه ۲/۰ (*.pls)"
-
-#: ../core/Utils/PlaylistsUtils.vala:362
-msgid "Playlist"
-msgstr "فهرست پخش"
-
-#: ../core/Utils/PlaylistsUtils.vala:368
-msgid "Import %s"
-msgstr "واردات %s"
-
-#: ../core/Utils/PlaylistsUtils.vala:371 ../src/LibraryWindow.vala:1048
-#: ../src/Views/GridView/PopupListView.vala:255
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
-#: ../src/Dialogs/FileNotFoundDialog.vala:127
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
-msgid "Open"
-msgstr ""
-
-#: ../core/Utils/PlaylistsUtils.vala:402
-msgid "Unrecognized playlist file. Import failed."
-msgstr "پرونده فهرست پخش ناشناخته. واردات موفقیت‌آمیز نبود."
-
-#: ../core/Utils/FileUtils.vala:294
-msgid " (%d)"
-msgstr " (%d)"
-
-#: ../core/Utils/TimeUtils.vala:51
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d ثانیه"
+#: ../core/Utils/TimeUtils.vala:51 ../core/Utils/TimeUtils.vala:60
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] "%u ثانیه"
 
 #: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
 msgid "%u minute"
 msgid_plural "%u minutes"
 msgstr[0] "%u دقیقه"
-
-#: ../core/Utils/TimeUtils.vala:60
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u ثانیه"
 
 #. / Minutes and seconds
 #: ../core/Utils/TimeUtils.vala:62
@@ -147,6 +78,92 @@ msgstr "%s و %s"
 #: ../core/Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y/%m/%e %l:%M %p"
+
+#: ../core/Utils/PlaylistsUtils.vala:96
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: ../core/Utils/PlaylistsUtils.vala:236
+msgid "New playlist"
+msgstr "فهرست پخش جدید"
+
+#: ../core/Utils/PlaylistsUtils.vala:247
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: ../core/Utils/PlaylistsUtils.vala:274
+msgid "Export Playlist"
+msgstr "صادرات فهرست پخش"
+
+#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
+#: ../src/Widgets/TopDisplay.vala:90
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
+#: ../src/Dialogs/FileNotFoundDialog.vala:87
+#: ../src/Dialogs/FileNotFoundDialog.vala:126
+#: ../src/Dialogs/RemoveFilesDialog.vala:52
+#: ../src/Dialogs/SmartPlaylistEditor.vala:118 ../src/LibraryWindow.vala:1066
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
+msgid "Cancel"
+msgstr "لغو"
+
+#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
+#: ../src/Dialogs/SmartPlaylistEditor.vala:116
+msgid "Save"
+msgstr ""
+
+#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "نسخه ۳/۰ گسترش یافته MPEG (*.m3u)"
+
+#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "فهرست پخش شات‌کست نسخه ۲/۰ (*.pls)"
+
+#: ../core/Utils/PlaylistsUtils.vala:362
+msgid "Playlist"
+msgstr "فهرست پخش"
+
+#: ../core/Utils/PlaylistsUtils.vala:368
+msgid "Import %s"
+msgstr "واردات %s"
+
+#: ../core/Utils/PlaylistsUtils.vala:371
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
+#: ../src/Dialogs/FileNotFoundDialog.vala:127 ../src/LibraryWindow.vala:1067
+#: ../src/Views/GridView/PopupListView.vala:255
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
+msgid "Open"
+msgstr ""
+
+#: ../core/Utils/PlaylistsUtils.vala:402
+msgid "Unrecognized playlist file. Import failed."
+msgstr "پرونده فهرست پخش ناشناخته. واردات موفقیت‌آمیز نبود."
+
+#: ../core/Utils/FileUtils.vala:294
+msgid " (%d)"
+msgstr " (%d)"
+
+#. / Used for unknown titles, artists, or album names.
+#: ../core/Media.vala:34
+msgid "Unknown"
+msgstr "ناشناخته"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME  از آلبوم $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: ../core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME اثر $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: ../core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME اثر $ARTIST از آلبوم $ALBUM"
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
@@ -220,646 +237,79 @@ msgstr "راک ملایم"
 msgid "Techno"
 msgstr "تکنو"
 
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:34
-msgid "Unknown"
-msgstr "ناشناخته"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME  از آلبوم $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME اثر $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME اثر $ARTIST از آلبوم $ALBUM"
-
-#: ../core/LibrariesManager.vala:143
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
-
-#: ../src/LibraryWindow.vala:250
-msgid "Import to Library…"
-msgstr "درون ریزی به کتابخانه:"
-
-#: ../src/LibraryWindow.vala:253 ../src/Dialogs/PreferencesWindow.vala:86
-msgid "Preferences"
-msgstr "تنظیمات"
-
-#: ../src/LibraryWindow.vala:270
-msgid "Previous"
-msgstr ""
-
-#: ../src/LibraryWindow.vala:272 ../src/LibraryWindow.vala:972
-msgid "Play"
-msgstr ""
-
-#: ../src/LibraryWindow.vala:274
-msgid "Next"
-msgstr ""
-
-#: ../src/LibraryWindow.vala:278
-msgid "Search Music"
-msgstr "جستجوی موسیقی"
-
-#: ../src/LibraryWindow.vala:640 ../src/LibraryWindow.vala:744
-#: ../src/Views/DeviceSummaryWidget.vala:99
-msgid "Music"
-msgstr "موسیقی"
-
-#: ../src/LibraryWindow.vala:812
-msgid "No songs in Queue"
-msgstr "هیچ آهنگی در صف نیست"
-
-#: ../src/LibraryWindow.vala:812
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"برای افزودن آهنگ به صف از <b>کلیک ثانوی</b> روی یک مورد و انتخاب <b>صف</b> "
-"استفاده شود. پس از پایان یک آهنگ، آهنگ‌های صف شده پیش از پخش آهنگ‌های فهرست "
-"پخش، پخش خواهند شد."
-
-#: ../src/LibraryWindow.vala:815
-msgid "No songs in History"
-msgstr "هیچ آهنگی در تاریخچه نیست"
-
-#: ../src/LibraryWindow.vala:815
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"پس از پخش شدن تکه‌ای از یک موسیقی، آن موسیقی به فهرست تاریخچه افزوده خواهد "
-"شد.\n"
-"می‌توانید از آن فهرست برای مشاهده همه آهنگ‌هایی که در اجراء کنونی گوش "
-"داده‌اید، استفاده کنید."
-
-#: ../src/LibraryWindow.vala:966
-msgid "Pause"
-msgstr ""
-
-#: ../src/LibraryWindow.vala:1045
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Import Music"
-msgstr "وارد کردن موسیقی"
-
-#: ../src/Noise.vala:65
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Daniel Fore https://launchpad.net/~danrabbit\n"
-"  Mohammad Zali https://launchpad.net/~mohamadzali-gmail\n"
-"  reza abbasi https://launchpad.net/~rasez-secure"
-
-#: ../src/PlaybackManager.vala:96
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "صف"
-
-#: ../src/FileOperator.vala:307
-msgid "Import Complete"
-msgstr "واردات پایان یافت"
-
-#: ../src/FileOperator.vala:307
-msgid "%s has imported your library."
-msgstr "%s کتابخانه شما را وارد کرد"
-
-#: ../src/FileOperator.vala:320
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>کپی کردن</b> فایل ها به <b>پوشه موزیک</b>…"
-
-#: ../src/Views/GridView/PopupListView.vala:59
-msgid "Set new album cover"
-msgstr ""
-
-#: ../src/Views/GridView/PopupListView.vala:156
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "آلبوم %s اثر %s"
-
-#: ../src/Views/GridView/PopupListView.vala:256
-msgid "_Cancel"
-msgstr ""
-
-#: ../src/Views/GridView/PopupListView.vala:256
-msgid "_Open"
-msgstr ""
-
-#: ../src/Views/GridView/PopupListView.vala:259
-msgid "Image files"
-msgstr ""
-
-#: ../src/Views/GridView/GridView.vala:44
-msgid "No Albums Found."
-msgstr "هیچ آلبومی پیدا نشد."
-
-#: ../src/Views/GridView/GridView.vala:141
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u آلبوم"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Cancelling…"
-msgstr "در حال لغو کردن..."
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "عملیات دستگاه لغو شد و بعد از این رسانه متوقف خواهد شد."
-
-#: ../src/Views/DeviceView.vala:59
-msgid "OK"
-msgstr ""
-
-#: ../src/Views/DeviceView.vala:100
-msgid "No External Songs"
-msgstr "بدون آهنگ بیرونی"
-
-#: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr "هیچ آهنگی که در کتابخانه شما نباشد روی این دستگاه پیدا نشد."
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "همه موضوعات"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-msgid "All %i Genres"
-msgstr "همه %i موضوع"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "بدون موضوع"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "همه هنرمندان"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-msgid "All %i Artists"
-msgstr "همه %i هنرمند"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "بدون هنرمند"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "همه آلبوم‌ها"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-msgid "All %i Albums"
-msgstr "همه %i آلبوم"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "بدون آلبوم"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "همه سال‌ها"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-msgid "All %i Years"
-msgstr "همه %i سال"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "بدون سال"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "همه امتیازها"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "بدون امتیاز"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "همه گروه‌ها"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-msgid "All %i Groupings"
-msgstr "همه %i گروه"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "بدون گروه"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "همه سرایندگان"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-msgid "All %i Composers"
-msgstr "همه %i سراینده"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "بدون سراینده"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
-msgid "Genres"
-msgstr "موضوعات"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
-msgid "Artists"
-msgstr "هنرمندان"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Albums"
-msgstr "آلبوم‌ها"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Years"
-msgstr "سال‌ها"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Ratings"
-msgstr "امتیازها"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Composers"
-msgstr "سرایندگان"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Groupings"
-msgstr "گروه‌ها"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 #: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 msgid "Automatic"
 msgstr "خودکار"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
-msgid "On Left"
-msgstr "در سمت چپ"
+#: ../src/Widgets/PresetList.vala:47
+msgid "Delete Current"
+msgstr "حذف کنونی"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
-msgid "On Top"
-msgstr "در بالا"
+#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
+msgid "Rename"
+msgstr "تغییر نام"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "بی‌امتیاز"
+#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
+#: ../src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Remove"
+msgstr "حذف"
 
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-msgid "%i Star"
-msgid_plural "%i Stars"
-msgstr[0] "%i ستاره"
+#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
+#: ../src/Widgets/SourceListView.vala:90
+msgid "Export…"
+msgstr "برون بری..."
 
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "هیچ آهنگی پیدا نشد."
+#: ../src/Widgets/SourceListView.vala:73
+msgid "Edit…"
+msgstr "ویرایش..."
 
-#: ../src/Views/ListView/ListView.vala:357
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i ترک"
+#: ../src/Widgets/SourceListView.vala:88
+msgid "Save as Playlist"
+msgstr "ذخیره به عنوان فهرست پخش"
 
-#: ../src/Views/ListView/ListView.vala:359
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u آهنگ"
-
-#: ../src/Views/ListView/ListView.vala:367
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s، %s"
-
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
-msgid "%i kbps"
-msgstr "%i کیلوبیت در ثانیه"
-
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: ../src/Views/ListView/Lists/MusicListView.vala:615
-msgid "Never"
-msgstr "هرگز"
-
-#: ../src/Views/ListView/Lists/GenericList.vala:118
-msgid "Autosize Columns"
-msgstr "تطبیق خودکار اندازه ستون‌ها"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:59
-msgctxt "List column title"
-msgid "#"
-msgstr "شماره"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:62
-msgctxt "List column title"
-msgid "Track"
-msgstr "ترک"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:65
-msgctxt "List column title"
-msgid "Title"
-msgstr "عنوان"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:68
-msgctxt "List column title"
-msgid "Length"
-msgstr "طول"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:71
-msgctxt "List column title"
-msgid "Artist"
-msgstr "هنرمند"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:74
-msgctxt "List column title"
-msgid "Album"
-msgstr "آلبوم"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:77
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "صاحب آلبوم"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:80
-msgctxt "List column title"
-msgid "Composer"
-msgstr "سراینده"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:83
-msgctxt "List column title"
-msgid "Genre"
-msgstr "موضوع"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:86
-msgctxt "List column title"
-msgid "Year"
-msgstr "سال"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:89
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "گروه"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:92
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "نرخ بیتی"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:95
-msgctxt "List column title"
-msgid "Rating"
-msgstr "امتیاز"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:98
-msgctxt "List column title"
-msgid "Plays"
-msgstr "پخش‌ها"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:101
-msgctxt "List column title"
-msgid "Skips"
-msgstr "پرش‌ها"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:104
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "تاریخ افزودن"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:107
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "آخرین پخش"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:110
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:113
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "مکان"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:116
-msgctxt "List column title"
-msgid "File Size"
-msgstr "اندازه پرونده"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:84
-msgid "Remove from Library"
-msgstr "حذف کردن از کتابخانه"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:91
-msgid "Remove from Queue"
-msgstr "حذف کردن از صف"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:101
-msgid "Remove from Device"
-msgstr "حذف کردن از دستگاه"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:114
-msgid "Scroll to Current Song"
-msgstr "رفتن به آهنگ کنونی"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:118
-msgid "Edit Song Info"
-msgstr "ویرایش اطلاعات آهنگ"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:119
-msgid "Show in File Browser"
-msgstr "نمایش در مدیر پرونده"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:120
-msgid "Other actions"
-msgstr ""
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:121
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "صف"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:122
-msgid "Add to Playlist"
-msgstr "افزودن به فهرست پخش"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:123
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-msgid "Remove Song"
-msgstr "حذف آهنگ"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:124
 #: ../src/Widgets/SourceListView.vala:148
+#: ../src/Views/ListView/Lists/MusicListView.vala:124
 msgid "Import to Library"
 msgstr "واردات به کتابخانه"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:187
-msgid "New Playlist…"
-msgstr "لیست پخش جدید..."
+#: ../src/Widgets/SourceListView.vala:156
+msgid "Eject"
+msgstr "بیرون دادن"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:227
-msgid "Import %i of %i selected songs"
-msgstr "وارد کردن %i از %i آهنگ انتخاب شده"
+#: ../src/Widgets/SourceListView.vala:161
+#: ../src/Widgets/SourceListView.vala:201
+msgid "New Playlist"
+msgstr "فهرست پخش جدید"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:229
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "وارد کردن %i آهنگ"
+#: ../src/Widgets/SourceListView.vala:166
+#: ../src/Widgets/SourceListView.vala:202
+msgid "New Smart Playlist"
+msgstr "فهرست پخش هوشمند جدید"
 
-#: ../src/Views/ListView/Lists/MusicListView.vala:600
-msgid "1234 kbps"
-msgstr "۱۲۳۴ کیلوبیت در ثانیه"
+#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
+msgid "Sync"
+msgstr "هماهنگ‌سازی"
 
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: ../src/Views/ListView/Lists/MusicListView.vala:671
-msgid "Sample List String"
-msgstr "رشته نمونه فهرست"
+#: ../src/Widgets/SourceListView.vala:203
+msgid "Import Playlists"
+msgstr "وارد کردن فهرست‌های پخش"
 
-#: ../src/Views/ContentView.vala:21
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s، %s، %s"
+#: ../src/Widgets/SourceListView.vala:313
+msgid "Library"
+msgstr "کتابخانه"
 
-#: ../src/Views/DeviceSummaryWidget.vala:73
-msgid "Device Name:"
-msgstr "نام دستگاه:"
+#: ../src/Widgets/SourceListView.vala:314
+msgid "Devices"
+msgstr "دستگاه‌ها"
 
-#: ../src/Views/DeviceSummaryWidget.vala:77
-msgid "Device Name"
-msgstr "نام دستگاه"
+#: ../src/Widgets/SourceListView.vala:315
+msgid "Network"
+msgstr "شبکه"
 
-#: ../src/Views/DeviceSummaryWidget.vala:79
-msgid "Automatically sync when plugged in:"
-msgstr "هماهنگ کردن خودکار در هنگام اتصال:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Sync:"
-msgstr "هماهنگ:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Other Files"
-msgstr "دیگر پرونده‌ها"
-
-#: ../src/Views/DeviceSummaryWidget.vala:253
-msgid "All Music"
-msgstr "همه موسیقی‌ها"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid "Sync Failed"
-msgstr "هماهنگ‌سازی موفقیت‌آمیز نبود"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"فهرست پخشی با نام %s برای هماهنگ شدن با دستگاه %s استفاده شده است، اما "
-"نمی‌توان آن را پیدا کرد."
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Cannot Sync"
-msgstr "نمی‌توان هماهنگ کرد"
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"نمی‌توان دستگاه را با تنظیمات هماهنگی انتخاب شده، هماهنگ کرد. روی دیسک فضای "
-"کافی وجود ندارد"
-
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "دستگاه آمماده انجام عملیات است."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Get Some Tunes"
-msgstr "دریافت آهنگ"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
-msgid "Add music to your library."
-msgstr "افزودن آهنگ به کتابخانه تان"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Import music from a source into your library."
-msgstr ""
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Change Music Folder"
-msgstr "تغییر پوشه آهنگ ها"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
-msgid "Load music from a folder, a network or an external disk."
-msgstr "بارگزاری آهنگ از یک پوشه یک شبکه یا یک دیسک"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import your Music"
-msgstr "واردات موسیقی"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import all your Music from %s into your library."
-msgstr "وارد کردن همه موسیقی‌های شما از %s به کتابخانه شما."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
-msgid "Select Music Folder"
-msgstr "انتخاب پوشه موسیقی"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
-msgid "No Songs"
-msgstr "بدون آهنگ"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
-msgid "Updating playlist. Please wait."
-msgstr ""
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"برای افزودن آهنگ به این فهرست پخش از <b>کلیک ثانویه</b> روی یک مورد و انتخاب "
-"<b>افزودن به فهرست پخش</b> استفاده کنید."
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid "Edit Smart Playlist"
-msgstr "ویرایش فهرست پخش هوشمند"
-
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"این فهرست پخش به طور خودکار با آهنگ‌هایی که مطلبق قوانینش باشند پر می‌شود. "
-"برای تغییر دادن این قوانین از <b>کلیک ثانویه</b> روی هر قانون در نوار کناری "
-"و کلیک گزینه <b>ویرایش</b>، استفاده کنید. همچنین می‌توانید دکمه زیر را فشار "
-"دهید."
-
-#: ../src/Views/Wrappers/ViewWrapper.vala:442
-msgid "No media"
-msgstr "بدون رسانه"
-
-#: ../src/Objects/LyricFetcher.vala:141
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "متن شعر ها از www.lyricsmania.com واکشی می شود."
-
-#: ../src/Objects/HistoryPlaylist.vala:40
-msgid "History"
-msgstr "تاریخچه"
+#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
+msgid "Playlists"
+msgstr "فهرست‌های پخش"
 
 #: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
 #: ../src/Widgets/EqualizerPopover.vala:339
@@ -943,90 +393,6 @@ msgstr "نمایش"
 msgid "Hide Info Panel"
 msgstr "پنهان کردن اطلاعات"
 
-#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
-msgid "Rename"
-msgstr "تغییر نام"
-
-#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Remove"
-msgstr "حذف"
-
-#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
-#: ../src/Widgets/SourceListView.vala:90
-msgid "Export…"
-msgstr "برون بری..."
-
-#: ../src/Widgets/SourceListView.vala:73
-msgid "Edit…"
-msgstr "ویرایش..."
-
-#: ../src/Widgets/SourceListView.vala:88
-msgid "Save as Playlist"
-msgstr "ذخیره به عنوان فهرست پخش"
-
-#: ../src/Widgets/SourceListView.vala:156
-msgid "Eject"
-msgstr "بیرون دادن"
-
-#: ../src/Widgets/SourceListView.vala:161
-#: ../src/Widgets/SourceListView.vala:201
-msgid "New Playlist"
-msgstr "فهرست پخش جدید"
-
-#: ../src/Widgets/SourceListView.vala:166
-#: ../src/Widgets/SourceListView.vala:202
-msgid "New Smart Playlist"
-msgstr "فهرست پخش هوشمند جدید"
-
-#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
-msgid "Sync"
-msgstr "هماهنگ‌سازی"
-
-#: ../src/Widgets/SourceListView.vala:203
-msgid "Import Playlists"
-msgstr "وارد کردن فهرست‌های پخش"
-
-#: ../src/Widgets/SourceListView.vala:313
-msgid "Library"
-msgstr "کتابخانه"
-
-#: ../src/Widgets/SourceListView.vala:314
-msgid "Devices"
-msgstr "دستگاه‌ها"
-
-#: ../src/Widgets/SourceListView.vala:315
-msgid "Network"
-msgstr "شبکه"
-
-#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
-msgid "Playlists"
-msgstr "فهرست‌های پخش"
-
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "نمایش آلبومی"
-
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "نمایش فهرستی"
-
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "نمایش ستونی"
-
-#: ../src/Widgets/PresetList.vala:47
-msgid "Delete Current"
-msgstr "حذف کنونی"
-
-#: ../src/Widgets/SpaceWidget.vala:266
-msgid "Free"
-msgstr "رایگان"
-
-#: ../src/Widgets/SpaceWidget.vala:383
-msgid "Using %s of %s (%.2f%)"
-msgstr "استفاده %s از %s (%.2f%)"
-
 #: ../src/Widgets/EqualizerPopover.vala:163
 msgid "Save preset"
 msgstr "ذخیرهٔ بازنشانده"
@@ -1047,65 +413,220 @@ msgstr ""
 msgid "Custom Preset %i"
 msgstr ""
 
-#: ../src/LocalBackend/LocalLibrary.vala:182
-msgid "Importing music from %s…"
-msgstr "درون ریزی آهنگ از %s ..."
+#: ../src/Widgets/ViewSelector.vala:68
+msgid "View as Albums"
+msgstr "نمایش آلبومی"
 
-#: ../src/LocalBackend/LocalLibrary.vala:210
-msgid "Adding files to library…"
-msgstr "افزودن آهنگ به کتابخانه"
+#: ../src/Widgets/ViewSelector.vala:72
+msgid "View as List"
+msgstr "نمایش فهرستی"
 
-#: ../src/LocalBackend/LocalLibrary.vala:225
-msgid "<b>Importing</b> music to library…"
+#: ../src/Widgets/ViewSelector.vala:76
+msgid "View in Columns"
+msgstr "نمایش ستونی"
+
+#: ../src/Widgets/SpaceWidget.vala:266
+msgid "Free"
+msgstr "رایگان"
+
+#: ../src/Widgets/SpaceWidget.vala:383
+msgid "Using %s of %s (%.2f%)"
+msgstr "استفاده %s از %s (%.2f%)"
+
+#: ../src/PlaybackManager.vala:96
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "صف"
+
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
+msgid "Would you like to install the %s plugin?\n"
 msgstr ""
 
-#: ../src/LocalBackend/LocalLibrary.vala:249
-msgid "All music files are already in your library"
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
+msgid ""
+"\n"
+"This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
 
-#: ../src/LocalBackend/LocalLibrary.vala:249
-msgid "No files were imported."
+#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
+msgid "Install Plugin"
+msgstr "نصب افزونه"
+
+#: ../src/Dialogs/MediaEditor.vala:72
+msgid "Title:"
 msgstr ""
 
-#: ../src/LocalBackend/LocalLibrary.vala:254
-msgid "Rescanning music for changes. This may take a while…"
+#: ../src/Dialogs/MediaEditor.vala:74
+msgid "Artist:"
 msgstr ""
-"بازبینی دوباره آهنگ ها برای دیدن تغییرات جدید. این عمل ممکن است مدت اندکی "
-"طول بکشد..."
 
-#: ../src/LocalBackend/LocalLibrary.vala:328
-msgid "Added to your queue:"
-msgstr "به صف پخش شما اضافه شد."
+#: ../src/Dialogs/MediaEditor.vala:76
+msgid "Album Artist:"
+msgstr ""
 
-#: ../src/LocalBackend/LocalLibrary.vala:339
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+#: ../src/Dialogs/MediaEditor.vala:78
+msgid "Album:"
+msgstr ""
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "آهنگ‌های مورد علاقه"
+#: ../src/Dialogs/MediaEditor.vala:80
+msgid "Genre:"
+msgstr ""
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "به تازه‌گی افزوده شده"
+#: ../src/Dialogs/MediaEditor.vala:82
+msgid "Composer:"
+msgstr ""
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "علائق جدید"
+#: ../src/Dialogs/MediaEditor.vala:84
+msgid "Grouping:"
+msgstr ""
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "هیچ وقت پخش نشده"
+#: ../src/Dialogs/MediaEditor.vala:86
+msgid "Comment:"
+msgstr ""
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "معمولاً پخش شده"
+#: ../src/Dialogs/MediaEditor.vala:88
+msgid "Track:"
+msgstr ""
 
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "به تازه‌گی پخش نشده"
+#: ../src/Dialogs/MediaEditor.vala:90
+msgid "Disk:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:92
+msgid "Year:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:94
+msgid "Rating:"
+msgstr ""
+
+#: ../src/Dialogs/MediaEditor.vala:153 ../src/Dialogs/PreferencesWindow.vala:99
+msgid "Close"
+msgstr ""
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
+msgid "Export Playlists"
+msgstr "صادرات فهرست پخش"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
+msgid "Set Music Folder"
+msgstr "تعیین پوشه موسیقی"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
+msgid "Set Music Folder?"
+msgstr "آیا باید پوشه موسیقی تعیین شود؟"
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"آیا واقعاً می‌خواهید پوشه موسیقی را برابر %s قرار دهید؟ این کار باعث "
+"بازنشانی کتابخانه و حذف همه فهرست‌های پخش شما می‌شود."
+
+#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
+#: ../src/Dialogs/FileNotFoundDialog.vala:124
+msgid "Choose Music Folder"
+msgstr "انتخاب پوشه موسیقی"
+
+#: ../src/Dialogs/NotImportedWindow.vala:52
+#: ../src/Dialogs/NotImportedWindow.vala:55
+msgid "Unable to import %d items from %s"
+msgstr "نمی‌توان %d مورد را از %s وارد کرد"
+
+#: ../src/Dialogs/NotImportedWindow.vala:56
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr "%s نمی‌تواند %d مورد را وارد کند. احتمالاً پرونده‌ها خراب شده‌اند."
+
+#: ../src/Dialogs/NotImportedWindow.vala:59
+msgid "Move all corrupted files to trash"
+msgstr "انتقال همه پرونده‌های خراب شده به زباله‌دان"
+
+#: ../src/Dialogs/NotImportedWindow.vala:64
+#: ../src/Dialogs/RemoveFilesDialog.vala:50
+msgid "Move to Trash"
+msgstr "انتقال به زباله‌دان"
+
+#: ../src/Dialogs/NotImportedWindow.vala:66
+msgid "Ignore"
+msgstr "چشم‌پوشی"
+
+#: ../src/Dialogs/NotImportedWindow.vala:81
+msgid "del"
+msgstr "حذف"
+
+#: ../src/Dialogs/NotImportedWindow.vala:86
+msgid "File Location"
+msgstr "مکان پرونده"
+
+#: ../src/Dialogs/NotImportedWindow.vala:101
+msgid "Select individual files to move to trash:"
+msgstr "انتخاب هر پرونده برای انتقال به زباله‌دان:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:46
+msgid "Select Music Folder…"
+msgstr "انتخاب پوشه آهنگ ها"
+
+#: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
+msgid "Preferences"
+msgstr "تنظیمات"
+
+#: ../src/Dialogs/PreferencesWindow.vala:131
+msgid "General"
+msgstr "عمومی"
+
+#: ../src/Dialogs/PreferencesWindow.vala:137
+msgid "Music Folder Location"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:145
+msgid "Library Management"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:152
+msgid "Keep Music folder organized:"
+msgstr "مرتب نگهداشتن پوشه موسیقی:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:156
+msgid "Write metadata to file:"
+msgstr "نوشتن متاداده‌ها در پرونده:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:160
+msgid "Copy imported files to Library:"
+msgstr "رونویسی پرونده‌های وارد شده در کتابخانه:"
+
+#: ../src/Dialogs/PreferencesWindow.vala:162
+msgid "Desktop Integration"
+msgstr ""
+
+#: ../src/Dialogs/PreferencesWindow.vala:167
+msgid "Continue playback when closed:"
+msgstr ""
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:53
+msgid "File not found"
+msgstr ""
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:59
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr ""
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:62
+msgid "%i music files could not be found?"
+msgstr ""
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:85
+msgid "Rescan Library"
+msgstr "بازپویش کتابخانه"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:86
+#: ../src/Views/ListView/Lists/MusicListView.vala:123
+msgid "Remove Song"
+msgstr "حذف آهنگ"
+
+#: ../src/Dialogs/FileNotFoundDialog.vala:88
+msgid "Find Song"
+msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:53
 msgid "Import from Device"
@@ -1176,50 +697,59 @@ msgstr "نمی‌توان وارد کرد"
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:287
 msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
-"import from %d"
-msgstr ""
-"هم اکنون نویز در حال انجام فرآیندی روی پرونده‌هاست. لطفاً تا پایان واردات  "
-"از %d صبر کنید"
-
-#: ../src/Dialogs/PreferencesWindow.vala:46
-msgid "Select Music Folder…"
-msgstr "انتخاب پوشه آهنگ ها"
-
-#: ../src/Dialogs/PreferencesWindow.vala:99 ../src/Dialogs/MediaEditor.vala:153
-msgid "Close"
+"import from %s"
 msgstr ""
 
-#: ../src/Dialogs/PreferencesWindow.vala:131
-msgid "General"
-msgstr "عمومی"
+#: ../src/Dialogs/RemoveFilesDialog.vala:51
+msgid "Remove from %s"
+msgstr "حذف کردن از %s"
 
-#: ../src/Dialogs/PreferencesWindow.vala:137
-msgid "Music Folder Location"
+#: ../src/Dialogs/RemoveFilesDialog.vala:61
+msgid "Remove %d Songs From %s?"
+msgstr "آیا %d آهنگ باید از %s حذف شود؟"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:64
+msgid "Remove \"%s\" From %s?"
+msgstr "آیا «%s» باید از %s حذف شود؟"
+
+#: ../src/Dialogs/RemoveFilesDialog.vala:73
+msgid ""
+"This will remove the song from your library and from any device that "
+"automatically syncs with %s."
+msgid_plural ""
+"This will remove the songs from your library and from any device that "
+"automatically syncs with %s."
+msgstr[0] ""
+"این کار باعث حذف شدن آهنگ از کتابخانه شما و همچنین از هر دستگاهی که به طور "
+"خودکار با %s هماهنگ شده است، می‌شود."
+
+#: ../src/Dialogs/SyncWarningDialog.vala:57
+msgid "Import media to Library"
+msgstr "وارد کردن رسانه به کتابخانه"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:58
+msgid "Continue Syncing"
+msgstr "ادامه هماهنگ‌سازی"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:59
+msgid "Stop Syncing"
+msgstr "توقف هماهنگ‌سازی"
+
+#: ../src/Dialogs/SyncWarningDialog.vala:66
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
 msgstr ""
+"اگر فرآیند هماهنگ‌سازی را ادامه دهید، رسانه از %s حذف خواهد شد چون در فهرست "
+"هماهنگ‌سازی وجود ندارند. آیا دوست دارید که در ابتدا آنها وارد کتابخانه شوند؟"
 
-#: ../src/Dialogs/PreferencesWindow.vala:145
-msgid "Library Management"
-msgstr ""
+#: ../src/Dialogs/SyncWarningDialog.vala:72
+msgid "Sync will remove %i items from %s"
+msgstr "فرآیند هماهنگ‌سازی %i مورد را از %s حذف خواهد کرد"
 
-#: ../src/Dialogs/PreferencesWindow.vala:152
-msgid "Keep Music folder organized:"
-msgstr "مرتب نگهداشتن پوشه موسیقی:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:156
-msgid "Write metadata to file:"
-msgstr "نوشتن متاداده‌ها در پرونده:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:160
-msgid "Copy imported files to Library:"
-msgstr "رونویسی پرونده‌های وارد شده در کتابخانه:"
-
-#: ../src/Dialogs/PreferencesWindow.vala:162
-msgid "Desktop Integration"
-msgstr ""
-
-#: ../src/Dialogs/PreferencesWindow.vala:167
-msgid "Continue playback when closed:"
-msgstr ""
+#: ../src/Dialogs/SyncWarningDialog.vala:75
+msgid "Sync will remove 1 item from %s"
+msgstr "فرآیند هماهنگ‌سازی ۱ مورد را از %s حذف خواهد کرد"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:36
 msgid "Smart Playlist Editor"
@@ -1366,237 +896,697 @@ msgstr "روز پیش"
 msgid "kbps"
 msgstr "کیلوبیت در ثانیه"
 
-#: ../src/Dialogs/MediaEditor.vala:72
-msgid "Title:"
+#: ../src/LibraryWindow.vala:269
+msgid "Import to Library…"
+msgstr "درون ریزی به کتابخانه:"
+
+#: ../src/LibraryWindow.vala:289
+msgid "Previous"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:74
-msgid "Artist:"
+#: ../src/LibraryWindow.vala:291 ../src/LibraryWindow.vala:991
+msgid "Play"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:76
-msgid "Album Artist:"
+#: ../src/LibraryWindow.vala:293
+msgid "Next"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:78
-msgid "Album:"
+#: ../src/LibraryWindow.vala:297
+msgid "Search Music"
+msgstr "جستجوی موسیقی"
+
+#: ../src/LibraryWindow.vala:659 ../src/LibraryWindow.vala:763
+#: ../src/Views/DeviceSummaryWidget.vala:99
+msgid "Music"
+msgstr "موسیقی"
+
+#: ../src/LibraryWindow.vala:831
+msgid "No songs in Queue"
+msgstr "هیچ آهنگی در صف نیست"
+
+#: ../src/LibraryWindow.vala:831
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"برای افزودن آهنگ به صف از <b>کلیک ثانوی</b> روی یک مورد و انتخاب <b>صف</b> "
+"استفاده شود. پس از پایان یک آهنگ، آهنگ‌های صف شده پیش از پخش آهنگ‌های فهرست "
+"پخش، پخش خواهند شد."
+
+#: ../src/LibraryWindow.vala:834
+msgid "No songs in History"
+msgstr "هیچ آهنگی در تاریخچه نیست"
+
+#: ../src/LibraryWindow.vala:834
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"پس از پخش شدن تکه‌ای از یک موسیقی، آن موسیقی به فهرست تاریخچه افزوده خواهد "
+"شد.\n"
+"می‌توانید از آن فهرست برای مشاهده همه آهنگ‌هایی که در اجراء کنونی گوش "
+"داده‌اید، استفاده کنید."
+
+#: ../src/LibraryWindow.vala:985
+msgid "Pause"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:80
-msgid "Genre:"
+#: ../src/LibraryWindow.vala:1064
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
+msgid "Import Music"
+msgstr "وارد کردن موسیقی"
+
+#: ../src/FileOperator.vala:307
+msgid "Import Complete"
+msgstr "واردات پایان یافت"
+
+#: ../src/FileOperator.vala:307
+msgid "%s has imported your library."
+msgstr "%s کتابخانه شما را وارد کرد"
+
+#: ../src/FileOperator.vala:317
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>کپی کردن</b> فایل ها به <b>پوشه موزیک</b>…"
+
+#: ../src/Views/GridView/GridView.vala:44
+msgid "No Albums Found."
+msgstr "هیچ آلبومی پیدا نشد."
+
+#: ../src/Views/GridView/GridView.vala:141
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] "%u آلبوم"
+
+#: ../src/Views/GridView/PopupListView.vala:59
+msgid "Set new album cover"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:82
-msgid "Composer:"
+#: ../src/Views/GridView/PopupListView.vala:156
+msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+msgid "%s by %s"
+msgstr "آلبوم %s اثر %s"
+
+#: ../src/Views/GridView/PopupListView.vala:256
+msgid "_Cancel"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:84
-msgid "Grouping:"
+#: ../src/Views/GridView/PopupListView.vala:256
+msgid "_Open"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:86
-msgid "Comment:"
+#: ../src/Views/GridView/PopupListView.vala:259
+msgid "Image files"
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:88
-msgid "Track:"
+#: ../src/Views/Wrappers/ViewWrapper.vala:442
+msgid "No media"
+msgstr "بدون رسانه"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
+msgid "No Songs"
+msgstr "بدون آهنگ"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
+msgid "Updating playlist. Please wait."
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:90
-msgid "Disk:"
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+"برای افزودن آهنگ به این فهرست پخش از <b>کلیک ثانویه</b> روی یک مورد و انتخاب "
+"<b>افزودن به فهرست پخش</b> استفاده کنید."
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid "Edit Smart Playlist"
+msgstr "ویرایش فهرست پخش هوشمند"
+
+#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"این فهرست پخش به طور خودکار با آهنگ‌هایی که مطلبق قوانینش باشند پر می‌شود. "
+"برای تغییر دادن این قوانین از <b>کلیک ثانویه</b> روی هر قانون در نوار کناری "
+"و کلیک گزینه <b>ویرایش</b>، استفاده کنید. همچنین می‌توانید دکمه زیر را فشار "
+"دهید."
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
+msgid "Get Some Tunes"
+msgstr "دریافت آهنگ"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
+msgid "Add music to your library."
+msgstr "افزودن آهنگ به کتابخانه تان"
+
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
+msgid "Import music from a source into your library."
 msgstr ""
 
-#: ../src/Dialogs/MediaEditor.vala:92
-msgid "Year:"
-msgstr ""
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Change Music Folder"
+msgstr "تغییر پوشه آهنگ ها"
 
-#: ../src/Dialogs/MediaEditor.vala:94
-msgid "Rating:"
-msgstr ""
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Load music from a folder, a network or an external disk."
+msgstr "بارگزاری آهنگ از یک پوشه یک شبکه یا یک دیسک"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:53
-msgid "File not found"
-msgstr ""
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import your Music"
+msgstr "واردات موسیقی"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:59
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
+msgid "Import all your Music from %s into your library."
+msgstr "وارد کردن همه موسیقی‌های شما از %s به کتابخانه شما."
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:62
-msgid "%i music files could not be found?"
-msgstr ""
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
-msgid "Rescan Library"
-msgstr "بازپویش کتابخانه"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:88
-msgid "Find Song"
-msgstr ""
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:124
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
-msgid "Choose Music Folder"
+#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
+msgid "Select Music Folder"
 msgstr "انتخاب پوشه موسیقی"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:57
-msgid "Import media to Library"
-msgstr "وارد کردن رسانه به کتابخانه"
+#: ../src/Views/ContentView.vala:21
+msgctxt ""
+"Format used on statusbar: $description, $total_duration, $total_file_size"
+msgid "%s, %s, %s"
+msgstr "%s، %s، %s"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:58
-msgid "Continue Syncing"
-msgstr "ادامه هماهنگ‌سازی"
+#: ../src/Views/DeviceView.vala:38
+msgid "Cancelling…"
+msgstr "در حال لغو کردن..."
 
-#: ../src/Dialogs/SyncWarningDialog.vala:59
-msgid "Stop Syncing"
-msgstr "توقف هماهنگ‌سازی"
+#: ../src/Views/DeviceView.vala:38
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "عملیات دستگاه لغو شد و بعد از این رسانه متوقف خواهد شد."
 
-#: ../src/Dialogs/SyncWarningDialog.vala:66
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
+#: ../src/Views/DeviceView.vala:59
+msgid "OK"
 msgstr ""
-"اگر فرآیند هماهنگ‌سازی را ادامه دهید، رسانه از %s حذف خواهد شد چون در فهرست "
-"هماهنگ‌سازی وجود ندارند. آیا دوست دارید که در ابتدا آنها وارد کتابخانه شوند؟"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:72
-msgid "Sync will remove %i items from %s"
-msgstr "فرآیند هماهنگ‌سازی %i مورد را از %s حذف خواهد کرد"
+#: ../src/Views/DeviceView.vala:100
+msgid "No External Songs"
+msgstr "بدون آهنگ بیرونی"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:75
-msgid "Sync will remove 1 item from %s"
-msgstr "فرآیند هماهنگ‌سازی ۱ مورد را از %s حذف خواهد کرد"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
-msgid "Export Playlists"
-msgstr "صادرات فهرست پخش"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
-msgid "Set Music Folder"
-msgstr "تعیین پوشه موسیقی"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
-msgid "Set Music Folder?"
-msgstr "آیا باید پوشه موسیقی تعیین شود؟"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
+#: ../src/Views/DeviceView.vala:100
 msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
+"There were no songs found on this device that are not in your library."
+msgstr "هیچ آهنگی که در کتابخانه شما نباشد روی این دستگاه پیدا نشد."
+
+#: ../src/Views/ListView/Lists/GenericList.vala:118
+msgid "Autosize Columns"
+msgstr "تطبیق خودکار اندازه ستون‌ها"
+
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
+msgid "%u kbps"
 msgstr ""
-"آیا واقعاً می‌خواهید پوشه موسیقی را برابر %s قرار دهید؟ این کار باعث "
-"بازنشانی کتابخانه و حذف همه فهرست‌های پخش شما می‌شود."
 
-#: ../src/Dialogs/NotImportedWindow.vala:52
-#: ../src/Dialogs/NotImportedWindow.vala:55
-msgid "Unable to import %d items from %s"
-msgstr "نمی‌توان %d مورد را از %s وارد کرد"
+#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#: ../src/Views/ListView/Lists/MusicListView.vala:615
+msgid "Never"
+msgstr "هرگز"
 
-#: ../src/Dialogs/NotImportedWindow.vala:56
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s نمی‌تواند %d مورد را وارد کند. احتمالاً پرونده‌ها خراب شده‌اند."
+#: ../src/Views/ListView/Lists/MusicListView.vala:84
+msgid "Remove from Library"
+msgstr "حذف کردن از کتابخانه"
 
-#: ../src/Dialogs/NotImportedWindow.vala:59
-msgid "Move all corrupted files to trash"
-msgstr "انتقال همه پرونده‌های خراب شده به زباله‌دان"
+#: ../src/Views/ListView/Lists/MusicListView.vala:91
+msgid "Remove from Queue"
+msgstr "حذف کردن از صف"
 
-#: ../src/Dialogs/NotImportedWindow.vala:64
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
-msgid "Move to Trash"
-msgstr "انتقال به زباله‌دان"
+#: ../src/Views/ListView/Lists/MusicListView.vala:101
+msgid "Remove from Device"
+msgstr "حذف کردن از دستگاه"
 
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "Ignore"
-msgstr "چشم‌پوشی"
+#: ../src/Views/ListView/Lists/MusicListView.vala:114
+msgid "Scroll to Current Song"
+msgstr "رفتن به آهنگ کنونی"
 
-#: ../src/Dialogs/NotImportedWindow.vala:81
-msgid "del"
-msgstr "حذف"
+#: ../src/Views/ListView/Lists/MusicListView.vala:118
+msgid "Edit Song Info"
+msgstr "ویرایش اطلاعات آهنگ"
 
-#: ../src/Dialogs/NotImportedWindow.vala:86
-msgid "File Location"
-msgstr "مکان پرونده"
+#: ../src/Views/ListView/Lists/MusicListView.vala:119
+msgid "Show in File Browser"
+msgstr "نمایش در مدیر پرونده"
 
-#: ../src/Dialogs/NotImportedWindow.vala:101
-msgid "Select individual files to move to trash:"
-msgstr "انتخاب هر پرونده برای انتقال به زباله‌دان:"
+#: ../src/Views/ListView/Lists/MusicListView.vala:120
+msgid "Other actions"
+msgstr ""
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
-msgid "Remove from %s"
-msgstr "حذف کردن از %s"
+#: ../src/Views/ListView/Lists/MusicListView.vala:121
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "صف"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
-msgid "Remove %d Songs From %s?"
-msgstr "آیا %d آهنگ باید از %s حذف شود؟"
+#: ../src/Views/ListView/Lists/MusicListView.vala:122
+msgid "Add to Playlist"
+msgstr "افزودن به فهرست پخش"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
-msgid "Remove \"%s\" From %s?"
-msgstr "آیا «%s» باید از %s حذف شود؟"
+#: ../src/Views/ListView/Lists/MusicListView.vala:187
+msgid "New Playlist…"
+msgstr "لیست پخش جدید..."
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
-msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
-msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
+#: ../src/Views/ListView/Lists/MusicListView.vala:227
+msgid "Import %i of %i selected songs"
+msgstr "وارد کردن %i از %i آهنگ انتخاب شده"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:229
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "وارد کردن %i آهنگ"
+
+#: ../src/Views/ListView/Lists/MusicListView.vala:600
+msgid "1234 kbps"
+msgstr "۱۲۳۴ کیلوبیت در ثانیه"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: ../src/Views/ListView/Lists/MusicListView.vala:671
+msgid "Sample List String"
+msgstr "رشته نمونه فهرست"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:59
+msgctxt "List column title"
+msgid "#"
+msgstr "شماره"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:62
+msgctxt "List column title"
+msgid "Track"
+msgstr "ترک"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:65
+msgctxt "List column title"
+msgid "Title"
+msgstr "عنوان"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:68
+msgctxt "List column title"
+msgid "Length"
+msgstr "طول"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:71
+msgctxt "List column title"
+msgid "Artist"
+msgstr "هنرمند"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:74
+msgctxt "List column title"
+msgid "Album"
+msgstr "آلبوم"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:77
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "صاحب آلبوم"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:80
+msgctxt "List column title"
+msgid "Composer"
+msgstr "سراینده"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:83
+msgctxt "List column title"
+msgid "Genre"
+msgstr "موضوع"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:86
+msgctxt "List column title"
+msgid "Year"
+msgstr "سال"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:89
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "گروه"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:92
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "نرخ بیتی"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:95
+msgctxt "List column title"
+msgid "Rating"
+msgstr "امتیاز"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:98
+msgctxt "List column title"
+msgid "Plays"
+msgstr "پخش‌ها"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:101
+msgctxt "List column title"
+msgid "Skips"
+msgstr "پرش‌ها"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:104
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "تاریخ افزودن"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:107
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "آخرین پخش"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:110
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:113
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "مکان"
+
+#: ../src/Views/ListView/Lists/ListColumn.vala:116
+msgctxt "List column title"
+msgid "File Size"
+msgstr "اندازه پرونده"
+
+#: ../src/Views/ListView/ListView.vala:86
+msgid "No Songs Found."
+msgstr "هیچ آهنگی پیدا نشد."
+
+#: ../src/Views/ListView/ListView.vala:357
+msgid "%i track"
+msgid_plural "%i tracks"
+msgstr[0] "%i ترک"
+
+#: ../src/Views/ListView/ListView.vala:359
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] "%u آهنگ"
+
+#: ../src/Views/ListView/ListView.vala:367
+msgctxt "Format used on statusbar: $description, $total_duration"
+msgid "%s, %s"
+msgstr "%s، %s"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
+msgid "On Left"
+msgstr "در سمت چپ"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+msgid "On Top"
+msgstr "در بالا"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
+msgid "Unrated"
+msgstr "بی‌امتیاز"
+
+#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
+msgid "%u Star"
+msgid_plural "%u Stars"
 msgstr[0] ""
-"این کار باعث حذف شدن آهنگ از کتابخانه شما و همچنین از هر دستگاهی که به طور "
-"خودکار با %s هماهنگ شده است، می‌شود."
+msgstr[1] ""
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
-msgid "Would you like to install the %s plugin?\n"
-msgstr ""
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
+msgid "All Genres"
+msgstr "همه موضوعات"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
+msgid "All %i Genres"
+msgstr "همه %i موضوع"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
+msgid "No Genres"
+msgstr "بدون موضوع"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Artists"
+msgstr "همه هنرمندان"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+msgid "All %i Artists"
+msgstr "همه %i هنرمند"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Artists"
+msgstr "بدون هنرمند"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Albums"
+msgstr "همه آلبوم‌ها"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+msgid "All %i Albums"
+msgstr "همه %i آلبوم"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Albums"
+msgstr "بدون آلبوم"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Years"
+msgstr "همه سال‌ها"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+msgid "All %i Years"
+msgstr "همه %i سال"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Years"
+msgstr "بدون سال"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Ratings"
+msgstr "همه امتیازها"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+msgid "No Ratings"
+msgstr "بدون امتیاز"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "All Groupings"
+msgstr "همه گروه‌ها"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+msgid "All %i Groupings"
+msgstr "همه %i گروه"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Groupings"
+msgstr "بدون گروه"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Composers"
+msgstr "همه سرایندگان"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+msgid "All %i Composers"
+msgstr "همه %i سراینده"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Composers"
+msgstr "بدون سراینده"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
+msgid "Genres"
+msgstr "موضوعات"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
+msgid "Artists"
+msgstr "هنرمندان"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
+msgid "Albums"
+msgstr "آلبوم‌ها"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
+msgid "Years"
+msgstr "سال‌ها"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
+msgid "Ratings"
+msgstr "امتیازها"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
+msgid "Composers"
+msgstr "سرایندگان"
+
+#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
+msgid "Groupings"
+msgstr "گروه‌ها"
+
+#: ../src/Views/DeviceSummaryWidget.vala:73
+msgid "Device Name:"
+msgstr "نام دستگاه:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:77
+msgid "Device Name"
+msgstr "نام دستگاه"
+
+#: ../src/Views/DeviceSummaryWidget.vala:79
+msgid "Automatically sync when plugged in:"
+msgstr "هماهنگ کردن خودکار در هنگام اتصال:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:86
+msgid "Sync:"
+msgstr "هماهنگ:"
+
+#: ../src/Views/DeviceSummaryWidget.vala:98
+msgid "Other Files"
+msgstr "دیگر پرونده‌ها"
+
+#: ../src/Views/DeviceSummaryWidget.vala:253
+msgid "All Music"
+msgstr "همه موسیقی‌ها"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
+msgid "Sync Failed"
+msgstr "هماهنگ‌سازی موفقیت‌آمیز نبود"
+
+#: ../src/Views/DeviceSummaryWidget.vala:308
 msgid ""
-"\n"
-"This song cannot be played. The %s plugin is required to play the song."
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"فهرست پخشی با نام %s برای هماهنگ شدن با دستگاه %s استفاده شده است، اما "
+"نمی‌توان آن را پیدا کرد."
+
+#: ../src/Views/DeviceSummaryWidget.vala:320
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Cannot Sync"
+msgstr "نمی‌توان هماهنگ کرد"
+
+#: ../src/Views/DeviceSummaryWidget.vala:320
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"نمی‌توان دستگاه را با تنظیمات هماهنگی انتخاب شده، هماهنگ کرد. روی دیسک فضای "
+"کافی وجود ندارد"
+
+#: ../src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "دستگاه آمماده انجام عملیات است."
+
+#: ../src/Noise.vala:65
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Daniel Fore https://launchpad.net/~danrabbit\n"
+"  Mohammad Zali https://launchpad.net/~mohamadzali-gmail\n"
+"  reza abbasi https://launchpad.net/~rasez-secure"
+
+#: ../src/Objects/LyricFetcher.vala:141
+msgid "Lyrics fetched from www.lyricsmania.com"
+msgstr "متن شعر ها از www.lyricsmania.com واکشی می شود."
+
+#: ../src/Objects/HistoryPlaylist.vala:40
+msgid "History"
+msgstr "تاریخچه"
+
+#: ../src/LocalBackend/LocalLibrary.vala:182
+msgid "Importing music from %s…"
+msgstr "درون ریزی آهنگ از %s ..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:210
+msgid "Adding files to library…"
+msgstr "افزودن آهنگ به کتابخانه"
+
+#: ../src/LocalBackend/LocalLibrary.vala:225
+msgid "<b>Importing</b> music to library…"
 msgstr ""
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
-msgid "Install Plugin"
-msgstr "نصب افزونه"
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "All music files are already in your library"
+msgstr ""
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:151
+#: ../src/LocalBackend/LocalLibrary.vala:249
+msgid "No files were imported."
+msgstr ""
+
+#: ../src/LocalBackend/LocalLibrary.vala:254
+msgid "Rescanning music for changes. This may take a while…"
+msgstr ""
+"بازبینی دوباره آهنگ ها برای دیدن تغییرات جدید. این عمل ممکن است مدت اندکی "
+"طول بکشد..."
+
+#: ../src/LocalBackend/LocalLibrary.vala:328
+msgid "Added to your queue:"
+msgstr "به صف پخش شما اضافه شد."
+
+#: ../src/LocalBackend/LocalLibrary.vala:339
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
+msgid "Favorite Songs"
+msgstr "آهنگ‌های مورد علاقه"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
+msgid "Recently Added"
+msgstr "به تازه‌گی افزوده شده"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
+msgid "Recent Favorites"
+msgstr "علائق جدید"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
+msgid "Never Played"
+msgstr "هیچ وقت پخش نشده"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
+msgid "Over Played"
+msgstr "معمولاً پخش شده"
+
+#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
+msgid "Not Recently Played"
+msgstr "به تازه‌گی پخش نشده"
+
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
+#: ../plugins/Devices/iPod/iPodLibrary.vala:151
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "در حال افزودن <b>$NAME</b> اثر <b>$ARTIST</b> به $DEVICE"
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:199
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
+#: ../plugins/Devices/iPod/iPodLibrary.vala:199
 msgid "Syncing <b>%s</b>…"
 msgstr ""
 
-#: ../plugins/Devices/iPod/iPodLibrary.vala:221
-#: ../plugins/Devices/iPod/iPodLibrary.vala:377
-msgid "Finishing sync process…"
-msgstr "پروسه همسان سازی اتمام یافت..."
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:233
-#: ../plugins/Devices/iPod/iPodLibrary.vala:389
-msgid "Cancelling Sync…"
-msgstr "لغو همسان سازی..."
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:340
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
-msgid "Removing from <b>%s</b>…"
-msgstr ""
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:533
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
+#: ../plugins/Devices/iPod/iPodLibrary.vala:533
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr ""
 
-#: ../plugins/Devices/iPod/iPodDevice.vala:59
+#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
+#: ../plugins/Devices/iPod/iPodLibrary.vala:340
+msgid "Removing from <b>%s</b>…"
+msgstr ""
+
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
+#: ../plugins/Devices/iPod/iPodDevice.vala:59
 msgid "Empty device!"
 msgstr "دستگاه خالی!"
 
-#: ../plugins/Devices/iPod/iPodDevice.vala:63
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
+#: ../plugins/Devices/iPod/iPodDevice.vala:63
 msgid "This device does not contain any music."
 msgstr "هیچ سی‌دیی درون این دستگاه نیست."
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
+msgid "Android Phone"
+msgstr "تلفن اندروید"
+
+#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
+msgid "Audio Player"
+msgstr "پخش‌کننده صوتی"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:85
 msgid "Audio CD Invalid"
@@ -1631,8 +1621,8 @@ msgid "Importation of %i songs from Audio CD finished."
 msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
-msgid "Importing track %i: %s"
-msgstr "واردات ترک %i: %s"
+msgid "Importing track %u: %s"
+msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1650,17 +1640,15 @@ msgstr "یک خطا ظاهر شد."
 msgid "There was an error while loading this Audio CD."
 msgstr "یک خطا هنگام بارگزاری این سی دی صوتی به وجود آمد."
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
-msgid "Android Phone"
-msgstr "تلفن اندروید"
+#: ../plugins/Devices/iPod/iPodLibrary.vala:221
+#: ../plugins/Devices/iPod/iPodLibrary.vala:377
+msgid "Finishing sync process…"
+msgstr "پروسه همسان سازی اتمام یافت..."
 
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
-msgid "Audio Player"
-msgstr "پخش‌کننده صوتی"
-
-#: ../plugins/LastFM/SimilarMedia.vala:37
-msgid "Similar"
-msgstr "مشابه"
+#: ../plugins/Devices/iPod/iPodLibrary.vala:233
+#: ../plugins/Devices/iPod/iPodLibrary.vala:389
+msgid "Cancelling Sync…"
+msgstr "لغو همسان سازی..."
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
@@ -1669,6 +1657,10 @@ msgstr "رسانه"
 #: ../plugins/LastFM/SimilarMediaView.vala:47
 msgid "Similar Media"
 msgstr "رسانه مشابه"
+
+#: ../plugins/LastFM/SimilarMedia.vala:37
+msgid "Similar"
+msgstr "مشابه"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
@@ -1685,6 +1677,10 @@ msgstr ""
 
 #~ msgid "Radio Station"
 #~ msgstr "ایستگاه رادیویی"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d ثانیه"
 
 #~ msgid "Rescan Music Folder"
 #~ msgstr "پویش دوباره پوشه موسیقی"
@@ -1720,6 +1716,13 @@ msgstr ""
 
 #~ msgid "Display Album Art"
 #~ msgstr "نمایش تصویر آلبوم"
+
+#~ msgid "%i kbps"
+#~ msgstr "%i کیلوبیت در ثانیه"
+
+#~ msgid "%i Star"
+#~ msgid_plural "%i Stars"
+#~ msgstr[0] "%i ستاره"
 
 #~ msgid "Cancelling Sync"
 #~ msgstr "لغو هماهنگ‌سازی"
@@ -1816,6 +1819,13 @@ msgstr ""
 #~ msgid "Equalizer"
 #~ msgstr "نماهنگ"
 
+#~ msgid ""
+#~ "Noise is already doing file operations. Please wait until those finish to "
+#~ "import from %d"
+#~ msgstr ""
+#~ "هم اکنون نویز در حال انجام فرآیندی روی پرونده‌هاست. لطفاً تا پایان واردات  "
+#~ "از %d صبر کنید"
+
 #~ msgid "Date Released"
 #~ msgstr "تاریخ انتشار"
 
@@ -1888,6 +1898,9 @@ msgstr ""
 #, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s فرآیند واردات یک آهنگ را از سی‌دی صوتی، تمام کرد."
+
+#~ msgid "Importing track %i: %s"
+#~ msgstr "واردات ترک %i: %s"
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "در حال دریافت آهنگ‌های مشابه"
