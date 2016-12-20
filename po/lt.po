@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-08-08 12:39+0000\n"
+"PO-Revision-Date: 2016-12-19 19:37+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-12-19 05:23+0000\n"
+"X-Launchpad-Export-Date: 2016-12-20 04:52+0000\n"
 "X-Generator: Launchpad (build 18298)\n"
 
 #: ../core/LibrariesManager.vala:143
@@ -712,6 +712,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"Noise jau atlieka failų operacijas. Palaukite, kol jos užsibaigs, kad "
+"importuotumėte iš %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -1128,7 +1130,7 @@ msgstr "Automatiškai keisti stulpelių dydį"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1340,8 +1342,9 @@ msgstr "Nevertintos"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u žvaigždutė"
+msgstr[1] "%u žvaigždutės"
+msgstr[2] "%u žvaigždučių"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1651,7 +1654,7 @@ msgstr "%i dainų importavimas iš Garso CD užbaigtas."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Importuojamas takelis %u: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."

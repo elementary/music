@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-07-17 16:24+0000\n"
+"PO-Revision-Date: 2016-12-19 21:20+0000\n"
 "Last-Translator: Maxim Taranov <png2378@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-12-19 05:24+0000\n"
+"X-Launchpad-Export-Date: 2016-12-20 04:53+0000\n"
 "X-Generator: Launchpad (build 18298)\n"
 "Language: ru\n"
 
@@ -711,6 +711,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"Noise уже выполняет операции с файлами. Пожалуйста, подождите пока не "
+"закончится импортирование из %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -1128,7 +1130,7 @@ msgstr "Авторазмер столбцов"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr ""
+msgstr "%u кбит/с"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1340,8 +1342,9 @@ msgstr "Без оценки"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u звезда"
+msgstr[1] "%u звезды"
+msgstr[2] "%u звёзд"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1688,7 +1691,7 @@ msgstr "Импорт %i песен с компакт-диска закончен
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Импортирование композиции %u: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."

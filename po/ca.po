@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-11-19 08:18+0000\n"
+"PO-Revision-Date: 2016-12-19 16:18+0000\n"
 "Last-Translator: Davidmp <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-12-19 05:22+0000\n"
+"X-Launchpad-Export-Date: 2016-12-20 04:52+0000\n"
 "X-Generator: Launchpad (build 18298)\n"
 "Language: ca\n"
 
@@ -708,6 +708,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"El Noise ja està fent operacions de fitxers. Si us plau, espereu fins que "
+"s'acabi la importació des de %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -1124,7 +1126,7 @@ msgstr "Mida de les columnes automàtic"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1333,8 +1335,8 @@ msgstr "Sense valoració"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u estrella"
+msgstr[1] "%u estrelles"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1648,7 +1650,7 @@ msgstr "Ha finalitzat la importació de %i cançons del CD d'àudio."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "S'importa la pista %u: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
