@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-09-17 02:39+0000\n"
+"PO-Revision-Date: 2016-12-26 02:31+0000\n"
 "Last-Translator: Jun Takeda <takeda.jun@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-12-19 05:23+0000\n"
+"X-Launchpad-Export-Date: 2016-12-26 04:48+0000\n"
 "X-Generator: Launchpad (build 18298)\n"
 "Language: ja\n"
 
@@ -696,7 +696,7 @@ msgstr "取り込みできません"
 msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
-msgstr ""
+msgstr "Noise はすでにファイル操作を行っています。 %s からのインポートが終了するまでお待ちください。"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -736,6 +736,7 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"同期を続けると、メディアが同期リストにないので、メディアは %s から削除されます。 あなたのライブラリにまずそれらをインポートしますか?"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
@@ -938,6 +939,8 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"曲の一部が再生された後、その曲は履歴リストに追加されます。\n"
+"このリストを使用して、現在のセッションで再生したすべての曲を表示できます。"
 
 #: ../src/LibraryWindow.vala:985
 msgid "Pause"
@@ -1091,7 +1094,7 @@ msgstr "カラムを自動調整する"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1297,8 +1300,7 @@ msgstr "評価なし"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u スター"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1604,7 +1606,7 @@ msgstr "オーディオCDから %i 曲のインポートが完了しました。
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "トラック %uをインポート中: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1654,6 +1656,8 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
+"あなたのライブラリーの現在の曲に似た曲はありません。 すべての曲情報が正しいこと、インターネットに接続していることを確認してください。 "
+"一部の曲は一致しない場合があります。"
 
 #~ msgid "Done"
 #~ msgstr "完了"
