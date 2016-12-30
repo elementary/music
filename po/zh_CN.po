@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-07-15 18:10+0000\n"
+"PO-Revision-Date: 2016-12-30 03:27+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-12-19 05:26+0000\n"
+"X-Launchpad-Export-Date: 2016-12-30 04:49+0000\n"
 "X-Generator: Launchpad (build 18298)\n"
 
 #: ../core/LibrariesManager.vala:143
@@ -695,7 +695,7 @@ msgstr "无法导入"
 msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
-msgstr ""
+msgstr "程序已在执行文件操作，请等待操作完成后再从 %s 导入"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -1089,7 +1089,7 @@ msgstr "自动调整栏的大小"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1295,8 +1295,7 @@ msgstr "未评分"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u 星"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1458,6 +1457,7 @@ msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Daniel Fore https://launchpad.net/~danrabbit\n"
+"  Ho Zheng Xuan https://launchpad.net/~hozhengxuan\n"
 "  Kevin Liao https://launchpad.net/~kevin-liao\n"
 "  Senzung https://launchpad.net/~chaoyan\n"
 "  Wang Dianjin https://launchpad.net/~tuhaihe\n"
@@ -1602,7 +1602,7 @@ msgstr "音乐 CD %i 歌曲导入完毕。"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "正在导入曲目 %u: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
