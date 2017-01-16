@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-03-01 18:52+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2017-01-15 15:08+0000\n"
+"Last-Translator: Dimitrios Simopoulos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-12-19 05:22+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
+"X-Launchpad-Export-Date: 2017-01-16 05:39+0000\n"
+"X-Generator: Launchpad (build 18302)\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -379,7 +379,7 @@ msgstr "Προσθήκη έξυπνης λίστας"
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Εξισωτής: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
@@ -461,51 +461,51 @@ msgstr "Εγκατάσταση Πρόσθετου"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Τίτλος:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Καλλιτέχνης:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Καλλιτέχνης Άλμπουμ:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Άλμπουμ:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Είδος:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Συνθέτης:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Ομαδοποίηση:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Σχόλιο"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Κομμάτι:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "Δίσκος"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "Έτος:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Αξιολόγηση:"
 
 #: ../src/Dialogs/MediaEditor.vala:153 ../src/Dialogs/PreferencesWindow.vala:99
 msgid "Close"
@@ -585,7 +585,7 @@ msgstr "Γενικά"
 
 #: ../src/Dialogs/PreferencesWindow.vala:137
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Τοποθεσία Φακέλου Μουσικής"
 
 #: ../src/Dialogs/PreferencesWindow.vala:145
 msgid "Library Management"
@@ -605,7 +605,7 @@ msgstr "Αντιγραφή αρχείων που έχουν εισαχθεί σ�
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Ενσωμάτωση στην επιφάνεια εργασίας"
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
@@ -708,6 +708,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"Το noise ήδη εκτελεί διεργασίες. Παρακαλώ περιμένετε έως ότου αυτές "
+"τελειώσουν για να εισαχθούν από το  %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -1125,7 +1127,7 @@ msgstr "Αυτόματη προσαρμογή μεγέθους των στηλώ
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1334,8 +1336,8 @@ msgstr "Χωρίς αξιολόγηση"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Αστέρι"
+msgstr[1] "%u Αστέρια"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1503,6 +1505,7 @@ msgstr ""
 "  Basilis Thomopoulos https://launchpad.net/~kolxoz83\n"
 "  Chris Triantafillis https://launchpad.net/~christriant\n"
 "  Daniel Fore https://launchpad.net/~danrabbit\n"
+"  Dimitrios Simopoulos https://launchpad.net/~dsimop\n"
 "  Filippos Kolyvas https://launchpad.net/~fkol-k4\n"
 "  George Chalkitis https://launchpad.net/~chalkitisge\n"
 "  Jim Spentzos https://launchpad.net/~jamesspentzos\n"
@@ -1554,8 +1557,8 @@ msgstr "Προστέθηκε στη σειρά αναμονής"
 #: ../src/LocalBackend/LocalLibrary.vala:339
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Κομμάτι"
+msgstr[1] "%d Κομμάτια"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
@@ -1656,7 +1659,7 @@ msgstr "Η εισαγωγή %i τραγουδιών από το CD ήχου ολ
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Εισαγωγή κομματιού %u: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
