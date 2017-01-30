@@ -3,19 +3,19 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-01-26 09:21+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2017-01-29 17:27+0000\n"
+"Last-Translator: Rokar <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2017-01-27 06:06+0000\n"
+"X-Launchpad-Export-Date: 2017-01-30 05:44+0000\n"
 "X-Generator: Launchpad (build 18315)\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "hawirdin <b>$NAME</b> by <b>$ARTIST</b> li pirtûkxane…"
 
 #: ../core/Utils/TimeUtils.vala:51 ../core/Utils/TimeUtils.vala:60
 msgid "%u second"
@@ -75,19 +75,19 @@ msgstr "%s û %s"
 #. / for more details.
 #: ../core/Utils/TimeUtils.vala:159
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%m/%e/%Y %l:%M %p"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: ../core/Utils/PlaylistsUtils.vala:236
 msgid "New playlist"
-msgstr ""
+msgstr "Playlîsta nû"
 
 #: ../core/Utils/PlaylistsUtils.vala:247
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: ../core/Utils/PlaylistsUtils.vala:274
 msgid "Export Playlist"
@@ -104,12 +104,12 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:118 ../src/LibraryWindow.vala:1066
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:131
 msgid "Cancel"
-msgstr ""
+msgstr "Betal bike"
 
 #: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
 msgid "Save"
-msgstr ""
+msgstr "Tomar Bike"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
