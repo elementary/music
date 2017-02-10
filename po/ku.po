@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-01-29 17:27+0000\n"
+"PO-Revision-Date: 2017-02-09 10:10+0000\n"
 "Last-Translator: Rokar <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2017-01-30 05:44+0000\n"
-"X-Generator: Launchpad (build 18315)\n"
+"X-Launchpad-Export-Date: 2017-02-10 05:42+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -21,7 +21,7 @@ msgstr "hawirdin <b>$NAME</b> by <b>$ARTIST</b> li pirtûkxane…"
 msgid "%u second"
 msgid_plural "%u seconds"
 msgstr[0] "%u çirke"
-msgstr[1] "%u çarêk"
+msgstr[1] "%u çirke"
 
 #: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
 msgid "%u minute"
@@ -121,11 +121,11 @@ msgstr ""
 
 #: ../core/Utils/PlaylistsUtils.vala:362
 msgid "Playlist"
-msgstr ""
+msgstr "Lîsteya lêdanê"
 
 #: ../core/Utils/PlaylistsUtils.vala:368
 msgid "Import %s"
-msgstr ""
+msgstr "Têxe %s"
 
 #: ../core/Utils/PlaylistsUtils.vala:371
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
@@ -133,7 +133,7 @@ msgstr ""
 #: ../src/Views/GridView/PopupListView.vala:255
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:133
 msgid "Open"
-msgstr ""
+msgstr "Veke"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
@@ -141,12 +141,12 @@ msgstr ""
 
 #: ../core/Utils/FileUtils.vala:294
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
 msgid "Unknown"
-msgstr ""
+msgstr "Nenas"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: ../core/Media.vala:180
@@ -165,19 +165,19 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:72
 msgid "Flat"
-msgstr ""
+msgstr "Dûz"
 
 #: ../core/GStreamer/Equalizer.vala:73
 msgid "Classical"
-msgstr ""
+msgstr "Klasîk"
 
 #: ../core/GStreamer/Equalizer.vala:74
 msgid "Club"
-msgstr ""
+msgstr "Club"
 
 #: ../core/GStreamer/Equalizer.vala:75
 msgid "Dance"
-msgstr ""
+msgstr "Dans"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Full Bass"
@@ -193,7 +193,7 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Headphones"
-msgstr ""
+msgstr "Pêbihîstok"
 
 #: ../core/GStreamer/Equalizer.vala:80
 msgid "Large Hall"
@@ -209,23 +209,23 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Pop"
-msgstr ""
+msgstr "Pop"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Reggae"
-msgstr ""
+msgstr "Reggae"
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Rock"
-msgstr ""
+msgstr "Hişk (rock)"
 
 #: ../core/GStreamer/Equalizer.vala:86
 msgid "Soft"
-msgstr ""
+msgstr "Nerm"
 
 #: ../core/GStreamer/Equalizer.vala:87
 msgid "Ska"
-msgstr ""
+msgstr "Ska"
 
 #: ../core/GStreamer/Equalizer.vala:88
 msgid "Soft Rock"
@@ -233,12 +233,12 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Techno"
-msgstr ""
+msgstr "Tekno"
 
 #: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 msgid "Automatic"
-msgstr ""
+msgstr "Otomatîk"
 
 #: ../src/Widgets/PresetList.vala:47
 msgid "Delete Current"
@@ -246,12 +246,12 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
-msgstr ""
+msgstr "Nav biguherîne"
 
 #: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
 #: ../src/Dialogs/SmartPlaylistEditor.vala:260
 msgid "Remove"
-msgstr ""
+msgstr "Rake"
 
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
@@ -273,7 +273,7 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:156
 msgid "Eject"
-msgstr ""
+msgstr "Bavêje"
 
 #: ../src/Widgets/SourceListView.vala:161
 #: ../src/Widgets/SourceListView.vala:201
@@ -287,32 +287,32 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
 msgid "Sync"
-msgstr ""
+msgstr "Wekhev bike"
 
 #: ../src/Widgets/SourceListView.vala:203
 msgid "Import Playlists"
-msgstr ""
+msgstr "Lîsta lêdanê werbigire"
 
 #: ../src/Widgets/SourceListView.vala:313
 msgid "Library"
-msgstr ""
+msgstr "Pirtûkxane"
 
 #: ../src/Widgets/SourceListView.vala:314
 msgid "Devices"
-msgstr ""
+msgstr "Amûr"
 
 #: ../src/Widgets/SourceListView.vala:315
 msgid "Network"
-msgstr ""
+msgstr "Tor"
 
 #: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
 msgid "Playlists"
-msgstr ""
+msgstr "Lîsteya lêdanê"
 
 #: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
 #: ../src/Widgets/EqualizerPopover.vala:339
 msgid "Off"
-msgstr ""
+msgstr "Girtî"
 
 #: ../src/Widgets/StatusBar.vala:64
 msgid "Enable Repeat"
@@ -330,17 +330,17 @@ msgstr ""
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:121
 #: ../src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Album"
-msgstr ""
+msgstr "Albûm"
 
 #: ../src/Widgets/StatusBar.vala:66
 msgid "Repeat Album"
-msgstr ""
+msgstr "Albumê Dubare Bike"
 
 #: ../src/Widgets/StatusBar.vala:67
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:120
 #: ../src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Artist"
-msgstr ""
+msgstr "Hunermend"
 
 #: ../src/Widgets/StatusBar.vala:67
 msgid "Repeat Artist"
@@ -348,7 +348,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
 msgid "All"
-msgstr ""
+msgstr "Giştî"
 
 #: ../src/Widgets/StatusBar.vala:68
 msgid "Disable Repeat"
@@ -377,7 +377,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
-msgstr ""
+msgstr "Veşêre"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Show Info Panel"
@@ -385,7 +385,7 @@ msgstr ""
 
 #: ../src/Widgets/StatusBar.vala:200
 msgid "Show"
-msgstr ""
+msgstr "Nîşandan"
 
 #: ../src/Widgets/StatusBar.vala:200
 msgid "Hide Info Panel"
@@ -417,7 +417,7 @@ msgstr ""
 
 #: ../src/Widgets/ViewSelector.vala:72
 msgid "View as List"
-msgstr ""
+msgstr "Wekî lîste bibîne"
 
 #: ../src/Widgets/ViewSelector.vala:76
 msgid "View in Columns"
@@ -425,7 +425,7 @@ msgstr ""
 
 #: ../src/Widgets/SpaceWidget.vala:266
 msgid "Free"
-msgstr ""
+msgstr "Azad"
 
 #: ../src/Widgets/SpaceWidget.vala:383
 msgid "Using %s of %s (%.2f%)"
@@ -434,7 +434,7 @@ msgstr ""
 #: ../src/PlaybackManager.vala:96
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "Dor"
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
 msgid "Would you like to install the %s plugin?\n"
@@ -452,11 +452,11 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Sernav:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Hunermend:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
@@ -464,27 +464,27 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Cure:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Bestekar:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Komkirin:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Şîrove:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Stran:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
@@ -492,15 +492,15 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "Sal:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Ecibandin:"
 
 #: ../src/Dialogs/MediaEditor.vala:153 ../src/Dialogs/PreferencesWindow.vala:99
 msgid "Close"
-msgstr ""
+msgstr "Bigire"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
 msgid "Export Playlists"
@@ -541,19 +541,19 @@ msgstr ""
 #: ../src/Dialogs/NotImportedWindow.vala:64
 #: ../src/Dialogs/RemoveFilesDialog.vala:50
 msgid "Move to Trash"
-msgstr ""
+msgstr "Biavêje Çopê"
 
 #: ../src/Dialogs/NotImportedWindow.vala:66
 msgid "Ignore"
-msgstr ""
+msgstr "Nebîne"
 
 #: ../src/Dialogs/NotImportedWindow.vala:81
 msgid "del"
-msgstr ""
+msgstr "Jê bibe"
 
 #: ../src/Dialogs/NotImportedWindow.vala:86
 msgid "File Location"
-msgstr ""
+msgstr "Cihê Pelî"
 
 #: ../src/Dialogs/NotImportedWindow.vala:101
 msgid "Select individual files to move to trash:"
@@ -565,11 +565,11 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
 msgid "Preferences"
-msgstr ""
+msgstr "Vebijêrk"
 
 #: ../src/Dialogs/PreferencesWindow.vala:131
 msgid "General"
-msgstr ""
+msgstr "Gîştî"
 
 #: ../src/Dialogs/PreferencesWindow.vala:137
 msgid "Music Folder Location"
@@ -593,7 +593,7 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Yekkerbûna Sermasê"
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
@@ -601,7 +601,7 @@ msgstr ""
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
-msgstr ""
+msgstr "Pel nehate dîtin"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:59
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
@@ -645,7 +645,7 @@ msgstr ""
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:77
 #: ../plugins/Devices/CDRom/CDView.vala:88
 msgid "Import"
-msgstr ""
+msgstr "Têxe"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:78
 msgid "Don't Import"
@@ -661,12 +661,12 @@ msgstr ""
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:118
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:119
 #: ../src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Title"
-msgstr ""
+msgstr "Sernav"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:170
 msgid "Select individual media to import:"
@@ -759,7 +759,7 @@ msgstr ""
 #: ../src/Dialogs/SmartPlaylistEditor.vala:50
 #: ../src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "Options"
-msgstr ""
+msgstr "Vebijêrk"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:62
 msgid "Playlist Title"
@@ -783,27 +783,27 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Add"
-msgstr ""
+msgstr "Zêde bike"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:94
 msgid "Limit to"
-msgstr ""
+msgstr "Bi sînor bike"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:96
 msgid "items"
-msgstr ""
+msgstr "hêman"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Bitrate"
-msgstr ""
+msgstr "Rêjeya Bit"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Comment"
-msgstr ""
+msgstr "Şîrove"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Composer"
-msgstr ""
+msgstr "Bestekar"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Date Added"
@@ -811,7 +811,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Genre"
-msgstr ""
+msgstr "Cure"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Grouping"
@@ -819,20 +819,20 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Last Played"
-msgstr ""
+msgstr "Lêdanên Dawî yê"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:272
 #: ../src/Dialogs/SmartPlaylistEditor.vala:406
 msgid "Length"
-msgstr ""
+msgstr "Dirêjahî"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Playcount"
-msgstr ""
+msgstr "Hejamra lêdanê"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "Rating"
-msgstr ""
+msgstr "Ecibandin"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:275
 msgid "Skipcount"
@@ -840,19 +840,19 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:277
 msgid "Year"
-msgstr ""
+msgstr "Sal"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:341
 msgid "is"
-msgstr ""
+msgstr "Zimanê Îzlandî"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:342
 msgid "contains"
-msgstr ""
+msgstr "werdigire"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:343
 msgid "does not contain"
-msgstr ""
+msgstr "wernagire"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:369
 #: ../src/Dialogs/SmartPlaylistEditor.vala:383
@@ -873,11 +873,11 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:385
 msgid "is before"
-msgstr ""
+msgstr "pêşî ya"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:407
 msgid "seconds"
-msgstr ""
+msgstr "çirke"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:410
 msgid "days ago"
@@ -885,7 +885,7 @@ msgstr ""
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:413
 msgid "kbps"
-msgstr ""
+msgstr "kbps"
 
 #: ../src/LibraryWindow.vala:269
 msgid "Import to Library…"
@@ -893,15 +893,15 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:289
 msgid "Previous"
-msgstr ""
+msgstr "Paş de"
 
 #: ../src/LibraryWindow.vala:291 ../src/LibraryWindow.vala:991
 msgid "Play"
-msgstr ""
+msgstr "Lê bide"
 
 #: ../src/LibraryWindow.vala:293
 msgid "Next"
-msgstr ""
+msgstr "Pêşve"
 
 #: ../src/LibraryWindow.vala:297
 msgid "Search Music"
@@ -910,7 +910,7 @@ msgstr ""
 #: ../src/LibraryWindow.vala:659 ../src/LibraryWindow.vala:763
 #: ../src/Views/DeviceSummaryWidget.vala:99
 msgid "Music"
-msgstr ""
+msgstr "Mûzîk"
 
 #: ../src/LibraryWindow.vala:831
 msgid "No songs in Queue"
@@ -936,7 +936,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:985
 msgid "Pause"
-msgstr ""
+msgstr "Raweste"
 
 #: ../src/LibraryWindow.vala:1064
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
@@ -972,19 +972,19 @@ msgstr ""
 #: ../src/Views/GridView/PopupListView.vala:156
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
 msgid "%s by %s"
-msgstr ""
+msgstr "%s ji aliyê %s"
 
 #: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Cancel"
-msgstr ""
+msgstr "_Betal"
 
 #: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Open"
-msgstr ""
+msgstr "_Veke"
 
 #: ../src/Views/GridView/PopupListView.vala:259
 msgid "Image files"
-msgstr ""
+msgstr "Pelên wêne"
 
 #: ../src/Views/Wrappers/ViewWrapper.vala:442
 msgid "No media"
@@ -1008,7 +1008,7 @@ msgstr ""
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "Lîsteya Lêdanê yê Biaqil Biguherîne"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
 msgid ""
@@ -1068,7 +1068,7 @@ msgstr ""
 
 #: ../src/Views/DeviceView.vala:59
 msgid "OK"
-msgstr ""
+msgstr "BAŞ E"
 
 #: ../src/Views/DeviceView.vala:100
 msgid "No External Songs"
@@ -1090,7 +1090,7 @@ msgstr ""
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
 msgid "Never"
-msgstr ""
+msgstr "Hîç"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:84
 msgid "Remove from Library"
@@ -1127,7 +1127,7 @@ msgstr ""
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:122
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Têxe Lîsteya Lêxistinê"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
@@ -1161,52 +1161,52 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:62
 msgctxt "List column title"
 msgid "Track"
-msgstr ""
+msgstr "Parçe"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:65
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "Sernav"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:68
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "Dirêjahî"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:71
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "Hunermend"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:74
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "Albûm"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:77
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "Hunermendê Albumê"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:80
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "Bestekar"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:83
 msgctxt "List column title"
 msgid "Genre"
-msgstr ""
+msgstr "Cure"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:86
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "Sal"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:89
 msgctxt "List column title"
@@ -1216,12 +1216,12 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:92
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr ""
+msgstr "Rêjeya Bit"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:95
 msgctxt "List column title"
 msgid "Rating"
-msgstr ""
+msgstr "Ecibandin"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:98
 msgctxt "List column title"
@@ -1241,22 +1241,22 @@ msgstr ""
 #: ../src/Views/ListView/Lists/ListColumn.vala:107
 msgctxt "List column title"
 msgid "Last Played"
-msgstr ""
+msgstr "Lêdanên Dawî yê"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:110
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:113
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr ""
+msgstr "Cîh"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:116
 msgctxt "List column title"
 msgid "File Size"
-msgstr ""
+msgstr "Mezinahiya Pelê"
 
 #: ../src/Views/ListView/ListView.vala:86
 msgid "No Songs Found."
@@ -1277,7 +1277,7 @@ msgstr[1] ""
 #: ../src/Views/ListView/ListView.vala:367
 msgctxt "Format used on statusbar: $description, $total_duration"
 msgid "%s, %s"
-msgstr ""
+msgstr "%s, %s"
 
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
 msgid "On Left"
@@ -1311,7 +1311,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Artists"
-msgstr ""
+msgstr "Hemû Hunermend"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 msgid "All %i Artists"
@@ -1323,7 +1323,7 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Albums"
-msgstr ""
+msgstr "Hemû Album"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 msgid "All %i Albums"
@@ -1379,19 +1379,19 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
 msgid "Genres"
-msgstr ""
+msgstr "Cure"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
 msgid "Artists"
-msgstr ""
+msgstr "Hunermend"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
 msgid "Albums"
-msgstr ""
+msgstr "Albûm"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
 msgid "Years"
-msgstr ""
+msgstr "Sal"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
 msgid "Ratings"
@@ -1399,11 +1399,11 @@ msgstr ""
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
 msgid "Composers"
-msgstr ""
+msgstr "Awazsaz"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
 msgid "Groupings"
-msgstr ""
+msgstr "Dabeşkirin"
 
 #: ../src/Views/DeviceSummaryWidget.vala:73
 msgid "Device Name:"
@@ -1465,7 +1465,7 @@ msgstr ""
 
 #: ../src/Objects/HistoryPlaylist.vala:40
 msgid "History"
-msgstr ""
+msgstr "Dîrok"
 
 #: ../src/LocalBackend/LocalLibrary.vala:182
 msgid "Importing music from %s…"
@@ -1507,7 +1507,7 @@ msgstr ""
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:226
 msgid "Recently Added"
-msgstr ""
+msgstr "Nû Têxistî"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:234
 msgid "Recent Favorites"
@@ -1515,7 +1515,7 @@ msgstr ""
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:242
 msgid "Never Played"
-msgstr ""
+msgstr "ji binî nehatiye lêdan"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
@@ -1626,7 +1626,7 @@ msgstr ""
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
-msgstr ""
+msgstr "medya"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:47
 msgid "Similar Media"
