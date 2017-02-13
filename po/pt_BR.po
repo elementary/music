@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-19 08:39+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2017-02-12 16:57+0000\n"
+"Last-Translator: Antonio Camargo <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-12-20 04:53+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
+"X-Launchpad-Export-Date: 2017-02-13 05:51+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -707,6 +707,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"O Noise já está fazendo operações de arquivo. Aguarde até finalizem para "
+"importar de %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -1123,7 +1125,7 @@ msgstr "Autodimensionar colunas"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1332,8 +1334,8 @@ msgstr "Sem avaliação"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Estrela"
+msgstr[1] "%u Estrelas"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1500,6 +1502,7 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  Adriano Steffler https://launchpad.net/~adrianosteffler\n"
 "  Alex https://launchpad.net/~asw-ijuhy\n"
+"  Antonio Camargo https://launchpad.net/~antoniop-camargo\n"
 "  Belenos https://launchpad.net/~belenos\n"
 "  Daniel Fore https://launchpad.net/~danrabbit\n"
 "  DavyS https://launchpad.net/~davysson\n"
@@ -1522,6 +1525,7 @@ msgstr ""
 "  Rodolpho Carvalho https://launchpad.net/~ro-2342\n"
 "  Thiago Virthus https://launchpad.net/~virthus\n"
 "  Victor Martinez https://launchpad.net/~victored\n"
+"  Vinicius Iank Caldas de Moraes https://launchpad.net/~viniciusiank\n"
 "  Vinícius B. Rodrigues https://launchpad.net/~viniciusbrbio\n"
 "  Vivien Valentine https://launchpad.net/~vivien.valentine\n"
 "  Willams Costa https://launchpad.net/~wlcosta-sh\n"
@@ -1672,7 +1676,7 @@ msgstr "Importação de %i músicas do CD de áudio terminada."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Importando faixa %u: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
