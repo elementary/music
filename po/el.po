@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-01-16 08:33+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
+"PO-Revision-Date: 2017-02-14 10:12+0000\n"
+"Last-Translator: Christos Iatropoulos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2017-01-17 06:42+0000\n"
-"X-Generator: Launchpad (build 18302)\n"
+"X-Launchpad-Export-Date: 2017-02-15 06:28+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -650,8 +650,6 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
-"Τα παρακάτω αρχεία βρέθηκαν στο %s, αλλά δεν βρίσκονται στη βιβλιοθήκη. "
-"Επιλέξτε όλα τα αρχεία που θα θέλατε να εισάγετε."
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import all media"
@@ -664,7 +662,7 @@ msgstr "Εισαγωγή"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:78
 msgid "Don't Import"
-msgstr "Μην Εισάγεις"
+msgstr "Να μη γίνει εισαγωγή"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:86
 msgid "Import %i items from %s"
@@ -701,7 +699,7 @@ msgstr "Έλεγχος Καλλιτέχνη"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:287
 msgid "Cannot Import"
-msgstr "Αδυναμία Εισαγωγής"
+msgstr "Αδυναμία εισαγωγής"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:287
 msgid ""
@@ -739,7 +737,7 @@ msgstr[1] ""
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
-msgstr "Εισαγωγή αρχείων μέσων στη Βιβλιοθήκη"
+msgstr ""
 
 #: ../src/Dialogs/SyncWarningDialog.vala:58
 msgid "Continue Syncing"
@@ -1068,7 +1066,7 @@ msgstr "Προσθέστε μουσική στη βιβλιοθήκη σας."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr "Εισαγωγή μουσικής από μια πηγή στη βιβλιοθήκη σας."
+msgstr "Εισαγωγή μουσικής από κάποια πηγή στη βιβλιοθήκη σας."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Change Music Folder"
@@ -1504,6 +1502,7 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  Basilis Thomopoulos https://launchpad.net/~kolxoz83\n"
 "  Chris Triantafillis https://launchpad.net/~christriant\n"
+"  Christos Iatropoulos https://launchpad.net/~ci4\n"
 "  Daniel Fore https://launchpad.net/~danrabbit\n"
 "  Dimitrios Simopoulos https://launchpad.net/~dsimop\n"
 "  Filippos Kolyvas https://launchpad.net/~fkol-k4\n"
