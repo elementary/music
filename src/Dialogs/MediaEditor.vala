@@ -35,6 +35,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Gtk.Entry composer_entry;
     private Gtk.Entry grouping_entry;
     private Gtk.TextView comment_textview;
+    private Gtk.ScrolledWindow comment_scrolledwindow;
     private Gtk.SpinButton track_spinbutton;
     private Gtk.SpinButton disk_spinbutton;
     private Gtk.SpinButton year_spinbutton;
@@ -100,6 +101,10 @@ public class Noise.MediaEditor : Gtk.Dialog {
         composer_entry = new Gtk.Entry ();
         grouping_entry = new Gtk.Entry ();
         comment_textview = new Gtk.TextView ();
+        comment_textview.set_wrap_mode (Gtk.WrapMode.WORD_CHAR);
+        comment_scrolledwindow = new Gtk.ScrolledWindow (null, null);
+        comment_scrolledwindow.set_policy (Gtk.PolicyType.EXTERNAL, Gtk.PolicyType.AUTOMATIC);
+        comment_scrolledwindow.add (comment_textview);
         track_spinbutton = new Gtk.SpinButton.with_range (0, 500, 1);
         disk_spinbutton = new Gtk.SpinButton.with_range (0, 500, 1);
         var local_time = new DateTime.now_local ();
@@ -109,7 +114,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
 
         var comment_frame = new Gtk.Frame (null);
         comment_frame.expand = true;
-        comment_frame.add (comment_textview);
+        comment_frame.add (comment_scrolledwindow);
 
         grid.attach (title_label, 0, 0, 1, 1);
         grid.attach (title_entry, 0, 1, 1, 1);
