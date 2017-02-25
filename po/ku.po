@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-02-10 20:19+0000\n"
-"Last-Translator: Rokar <Unknown>\n"
+"PO-Revision-Date: 2017-02-24 01:28+0000\n"
+"Last-Translator: Rokar ✌ <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2017-02-11 05:40+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
+"X-Launchpad-Export-Date: 2017-02-25 05:55+0000\n"
+"X-Generator: Launchpad (build 18328)\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -181,15 +181,15 @@ msgstr "Dans"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Full Bass"
-msgstr ""
+msgstr "Dengê zil tijî"
 
 #: ../core/GStreamer/Equalizer.vala:77
 msgid "Full Treble"
-msgstr ""
+msgstr "Dengê sêcar tijî"
 
 #: ../core/GStreamer/Equalizer.vala:78
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Dengê zil tijî + Sêcar"
 
 #: ../core/GStreamer/Equalizer.vala:79
 msgid "Headphones"
@@ -201,11 +201,11 @@ msgstr ""
 
 #: ../core/GStreamer/Equalizer.vala:81
 msgid "Live"
-msgstr ""
+msgstr "Jiyan"
 
 #: ../core/GStreamer/Equalizer.vala:82
 msgid "Party"
-msgstr ""
+msgstr "Cejn"
 
 #: ../core/GStreamer/Equalizer.vala:83
 msgid "Pop"
@@ -260,7 +260,7 @@ msgstr ""
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr ""
+msgstr "Serastbike..."
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
@@ -1457,7 +1457,7 @@ msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Daniel Fore https://launchpad.net/~danrabbit\n"
-"  Rokar https://launchpad.net/~rokarali"
+"  Rokar ✌ https://launchpad.net/~rokarali"
 
 #: ../src/Objects/LyricFetcher.vala:141
 msgid "Lyrics fetched from www.lyricsmania.com"
