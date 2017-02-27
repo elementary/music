@@ -137,7 +137,11 @@ public class Noise.PresetList : Gtk.ComboBox {
 			if(o != null && o is EqualizerPreset && ((EqualizerPreset)o) == last_selected_preset) {
 				if (!((EqualizerPreset)o).is_default) {
 					ncustompresets--;
+#if VALA_0_36
+					store.remove(ref iter);
+#else
 					store.remove(iter);
+#endif
 					break;
 				}
 			}
@@ -250,7 +254,11 @@ public class Noise.PresetList : Gtk.ComboBox {
 			store.get(iter, 1, out text);
 
 			if(text != null && text == DELETE_PRESET) {
+#if VALA_0_36
+				store.remove(ref iter);
+#else
 				store.remove(iter);
+#endif
 				// Also remove the separator ...
 				remove_separator_item(1);
 			}
@@ -267,7 +275,11 @@ public class Noise.PresetList : Gtk.ComboBox {
 			store.get(iter, 1, out text);
 
 			if((nitems - index == count || index == -1) && text != null && text == SEPARATOR_NAME) {
+#if VALA_0_36
+				store.remove(ref iter);
+#else
 				store.remove(iter);
+#endif
 				break;
 			}
 		}
