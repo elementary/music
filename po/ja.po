@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-12-27 04:58+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
+"X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
+"X-Generator: Launchpad (build 18330)\n"
 "Language: ja\n"
 
 #: ../core/LibrariesManager.vala:143
@@ -1829,3 +1829,87 @@ msgstr ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
 #~ msgstr "Noise はすでにファイル操作を行っています。%s からインポートするこれらの操作が終わるまでお待ちください"
+
+#~ msgid "Lyrics"
+#~ msgstr "Lyrics"
+
+#~ msgid "Details"
+#~ msgstr "詳細"
+
+#~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#~ msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+
+#~ msgid "About Noise"
+#~ msgstr "Noise について"
+
+#~ msgid "About Music"
+#~ msgstr "ミュージックについて"
+
+#~ msgid "Editing %s"
+#~ msgstr "%s の編集"
+
+#~ msgid "Listen to music"
+#~ msgstr "音楽を聴きます"
+
+#~ msgid "Music Player"
+#~ msgstr "ミュージックプレーヤー"
+
+#~ msgid "Editing $NAME by $ARTIST"
+#~ msgstr "$ARTIST による $NAME を編集"
+
+#~ msgid "Reset"
+#~ msgstr "リセット"
+
+#~ msgid "<b>Stats</b>"
+#~ msgstr "<b>統計</b>"
+
+#~ msgid "Notifications:"
+#~ msgstr "通知"
+
+#~ msgid "Desktop Integration:"
+#~ msgstr "デスクトップの統合"
+
+#~ msgid "Library Management:"
+#~ msgstr "ライブラリの管理"
+
+#~ msgid "Disc"
+#~ msgstr "ディスク"
+
+#~ msgid "Album Artist"
+#~ msgstr "アルバムアーティスト"
+
+#~ msgid "Lyrics not found for %s"
+#~ msgstr "%s の Lyrics が見つかりませんでした"
+
+#~ msgid "Music Folder Location:"
+#~ msgstr "ミュージックフォルダーの場所"
+
+#~ msgid "Unsuccessful. Click To Try Again."
+#~ msgstr "失敗しました。クリックしてもう一度実行してください。"
+
+#~ msgid "Click to redo the Last.fm login process"
+#~ msgstr "Last.fm のログインの手順をやり直すためにクリックしてください"
+
+#~ msgid "Scrobbling Already Enabled"
+#~ msgstr "Scrobble はすでに有効です"
+
+#~ msgid "Success!"
+#~ msgstr "完了しました！"
+
+#~ msgid "Give %s Permission"
+#~ msgstr "%s に許可"
+
+#~ msgid "Last.fm"
+#~ msgstr "Last.fm"
+
+#~ msgid "Last.fm Integration"
+#~ msgstr "Last.fm の統合"
+
+#~ msgid "Display Album Art"
+#~ msgstr "アルバムアートを表示"
+
+#~ msgid "There is not enough space on Device to complete the Sync…"
+#~ msgstr "同期を完了するための十分なスペースがデバイス上にありません..."
+
+#~ msgid "Write metadata to file"
+#~ msgstr "ファイルにメタデータを書き込む"
