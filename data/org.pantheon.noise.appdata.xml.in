@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2015 elementary, LLC <contact@elementary.io> -->
-<component type="desktop">
+<component type="desktop-application">
     <id>org.pantheon.noise.desktop</id>
     <metadata_license>CC0-1.0</metadata_license>
     <project_group>elementary</project_group>
@@ -15,104 +15,91 @@
         </_p>
     </description>
     <releases>
-
         <release version="0.4.0.2" date="2016-12-01" urgency="medium">
             ⁠<description>
-                <ul>
-                    <_li>Minor Bug Fixes</_li>
-                    <_li>Translations Updates</_li>
-                </ul>
+                <_p>Minor bug fixes and translations updates.</_p>
             ⁠</description>
-        ​</release>
+        </release>
         <release version="0.4.0.1" date="2016-09-20" urgency="medium">
             ⁠<description>
+                <_p>Add rounded bottom window corner.</_p>
                 <ul>
-                    <_li>Add rounded bottom window corners</_li>
-                    <_li>Minor Bug Fixes</_li>
+                    <_li>Apply minor bug fixes</_li>
                     <_li>Translations Updates</_li>
                 </ul>
             ⁠</description>
-        ​</release>
+        </release>
         <release version="0.4.0" date="2016-08-10" urgency="medium">
             ⁠<description>
+                <_p>Release for Loki.</_p>
                 <ul>
-                    <_li>Release for Loki</_li>
                     <_li>Add support for Opus Ogg</_li>
                     <_li>Fix Ctrl+Q support for non-Latin keyboard layouts</_li>
                     <_li>Reorganize media edition layout</_li>
-                    <_li>Port grid to HiDPI</_li>
-                    <_li>Icons updates</_li>
+                    <_li>Port grid to support HiDPI displays</_li>
+                    <_li>Update icons to latest elementary icon release</_li>
                     <_li>Respect privacy mode</_li>
-                    <_li>Minor Bug Fixes</_li>
+                    <_li>Apply minor bug fixes</_li>
                     <_li>Translations Updates</_li>
                 </ul>
             ⁠</description>
-        ​</release>
+        </release>
         <release version="0.3.1" date="2015-04-01" urgency="medium">
             ⁠<description>
+                <_p>Add drag and drop support for playlists and album cover change in cache.</_p>
                 <ul>
-                    <_li>Allow changing album art in the cache</_li>
-                    <_li>Allow dropping songs and albums into playlists</_li>
                     <_li>Offer import at welcome screen</_li>
                     <_li>Check for duplicates before importing</_li>
                     <_li>Move the About menu to the quicklist</_li>
-                    <_li>Minor Bug Fixes</_li>
+                    <_li>Apply minor bug fixes</_li>
                     <_li>Translations Updates</_li>
                 </ul>
             ⁠</description>
-        ​</release>
+        </release>
         <release version="0.3.0" date="2014-05-25" urgency="medium">
             ⁠<description>
+                <_p>Improve device managing and add SMB streaming support.</_p>
                 <ul>
-                <_li>Allow drag and drop on welcome screen</_li>
-                <_li>Add support for streaming over SMB</_li>
-                <_li>Improve device manager</_li>
-                <_li>Watch music folder for changes</_li>
-                <_li>Minor Bug Fixes</_li>
-                <_li>Translations Updates</_li>
+                    <_li>Allow drag and drop on welcome screen</_li>
+                    <_li>Watch music folder for changes</_li>
+                    <_li>Apply minor bug fixes</_li>
+                    <_li>Translations Updates</_li>
                 </ul>
             ⁠</description>
-        ​</release>
+        </release>
         <release version="0.2.4" date="2013-08-17" urgency="medium">
             ⁠<description>
-                <ul>
-                    <_li>Minor Bug Fixes</_li>
-                    <_li>Translations Updates</_li>
-                </ul>
+                <_p>Minor bug fixes and translations updates.</_p>
             ⁠</description>
-        ​</release>
+        </release>
         <release version="0.2.3" date="2013-07-21" urgency="medium">
             ⁠<description>
-                <ul>
-                    <_li>Minor Bug Fixes</_li>
-                    <_li>Translations Updates</_li>
-                </ul>
+                <_p>Minor bug fixes and translations updates.</_p>
             ⁠</description>
-        ​</release>
+        </release>
         <release version="0.2.2" date="2013-06-27" urgency="medium">
             ⁠<description>
+                <_p>Fix playlists display issues and other minor bugs.</_p>
                 <ul>
-                    <_li>Fix problem with playlists not showing correctly</_li>
                     <_li>Fix a crash caused by the lastfm plugin</_li>
-                    <_li>Minor Bug Fixes</_li>
                     <_li>Translations Updates</_li>
                 </ul>
             ⁠</description>
-        ​</release>
+        </release>
         <release version="0.2.1" date="2013-06-10" urgency="medium">
             ⁠<description>
+                <_p>Add support for third-party plugins and apply minor bug fixes.</_p>
                 <ul>
-                    <_li>Add support for third-party plugins</_li>
-                    <_li>Fix device search</_li>
+                    <_li>Fix device search behaviour</_li>
                     <_li>Group albums by artists</_li>
                     <_li>Fix CD import dialogs and media covers</_li>
-                    <_li>Minor Bug Fixes</_li>
                     <_li>Translations Updates</_li>
                 </ul>
             ⁠</description>
-        ​</release>
+        </release>
         <release version="0.2.0" date="2012-12-11" urgency="medium">
             <description>
+                <_p>Improve support for iPod, iPhones and CDs.</_p>
                 <ul>
                     <_li>Started to separate plugins from the application</_li>
                     <_li>Improved performances</_li>
@@ -125,7 +112,6 @@
             </description>
         </release>
         <release version="0.1.0" date="2011-11-01"/>
-
     </releases>
     <provides>
         <binary>noise</binary>
