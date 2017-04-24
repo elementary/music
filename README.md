@@ -10,7 +10,7 @@ You'll need the following dependencies:
 * libdbusmenu-gtk3-dev
 * libdbus-glib-1-dev
 * libindicate-dev
-* libgee-dev
+* libgee-0.8-dev
 * libglib2.0-dev
 * libgpod-dev
 * libgranite-dev
@@ -24,7 +24,7 @@ You'll need the following dependencies:
 * libtagc0-dev
 * libwebkitgtk-dev
 * libxml2-dev
-* libzeitgeist-dev
+* libzeitgeist-2.0-dev
 * valac
 
 It's recommended to create a clean build environment
