@@ -14,8 +14,8 @@ You'll need the following dependencies:
 * libglib2.0-dev
 * libgpod-dev
 * libgranite-dev
-* libgstreamer0.10-dev
-* libgstreamer-plugins-base0.10-dev
+* libgstreamer1.0-dev
+* libgstreamer-plugins-base1.0-dev
 * libgtk-3-dev
 * libjson-glib-dev
 * libnotify-dev
