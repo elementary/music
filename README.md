@@ -10,6 +10,7 @@ You'll need the following dependencies:
 * libdbusmenu-gtk3-dev
 * libdbus-glib-1-dev
 * libindicate-dev
+* libgda-5.0-dev
 * libgee-0.8-dev
 * libglib2.0-dev
 * libgpod-dev
