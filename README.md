@@ -5,17 +5,20 @@
 
 You'll need the following dependencies:
 * cmake
+* libaccounts-glib-dev
 * libclutter-gtk-1.0-dev
 * libdbusmenu-glib-dev
 * libdbusmenu-gtk3-dev
 * libdbus-glib-1-dev
 * libindicate-dev
-* libgee-dev
+* libgda-5.0-dev
+* libgee-0.8-dev
 * libglib2.0-dev
 * libgpod-dev
 * libgranite-dev
-* libgstreamer0.10-dev
-* libgstreamer-plugins-base0.10-dev
+* libgsignon-glib-dev
+* libgstreamer1.0-dev
+* libgstreamer-plugins-base1.0-dev
 * libgtk-3-dev
 * libjson-glib-dev
 * libnotify-dev
@@ -24,7 +27,7 @@ You'll need the following dependencies:
 * libtagc0-dev
 * libwebkitgtk-dev
 * libxml2-dev
-* libzeitgeist-dev
+* libzeitgeist-2.0-dev
 * valac
 
 It's recommended to create a clean build environment
