@@ -5,6 +5,7 @@
 
 You'll need the following dependencies:
 * cmake
+* libaccounts-glib-dev
 * libclutter-gtk-1.0-dev
 * libdbusmenu-glib-dev
 * libdbusmenu-gtk3-dev
@@ -15,6 +16,7 @@ You'll need the following dependencies:
 * libglib2.0-dev
 * libgpod-dev
 * libgranite-dev
+* libgsignon-glib-dev
 * libgstreamer1.0-dev
 * libgstreamer-plugins-base1.0-dev
 * libgtk-3-dev
