@@ -51,10 +51,10 @@ public class Noise.App : Granite.Application {
         app_launcher = "org.pantheon.noise.desktop";
         app_years = "2012-2016";
 
-        main_url = "https://launchpad.net/noise";
-        bug_url = "https://bugs.launchpad.net/noise/+filebug";
+        main_url = "https://github.com/elementary/music";
+        bug_url = "https://github.com/elementary/music/issues";
         help_url = "https://elementary.io/help/noise";
-        translate_url = "https://translations.launchpad.net/noise";
+        translate_url = "https://l10n.elementary.io/projects/music";
 
         about_authors = {"Corentin Noël <corentin@elementary.io>",
                          "Scott Ringwelski <sgringwe@mtu.edu>", null};
