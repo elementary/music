@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-19 16:18+0000\n"
-"Last-Translator: Davidmp <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <ca@li.org>\n"
+"PO-Revision-Date: 2017-05-04 15:04+0000\n"
+"Last-Translator: David M <rbndavid@gmail.com>\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/>"
+"\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
-"Language: ca\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -241,7 +242,7 @@ msgstr "Rock suau"
 
 #: ../core/GStreamer/Equalizer.vala:89
 msgid "Techno"
-msgstr "Techno"
+msgstr "Tecno"
 
 #: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
@@ -983,7 +984,7 @@ msgstr "El %s ha importat la vostra biblioteca."
 
 #: ../src/FileOperator.vala:317
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "S'estan <b>copiant</b> fitxers a la carpeta de música…"
+msgstr "S'estan <b>copiant</b> fitxers a la <b>carpeta de música</b>…"
 
 #: ../src/Views/GridView/GridView.vala:44
 msgid "No Albums Found."
@@ -1037,7 +1038,7 @@ msgid ""
 msgstr ""
 "Per afegir cançons a aquesta llista de reproducció, feu clic amb el <b>botó "
 "secundari</b> sobre un element i seleccioneu <b>«Afegeix a una llista de "
-"reproducció»<b>."
+"reproducció»</b>."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid "Edit Smart Playlist"
@@ -1114,8 +1115,7 @@ msgid "No External Songs"
 msgstr "No hi ha cap cançó externa"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "No s'ha pogut trobar cap cançó al dispositiu que no sigui a la vostra "
 "biblioteca."
@@ -1579,7 +1579,7 @@ msgstr "Reproduccions no recents"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 #: ../plugins/Devices/iPod/iPodLibrary.vala:151
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "S'està afegint <b>$NAME</b> per <b>$ARTIST</b> a $DEVICE…"
+msgstr "S'està afegint <b>$NAME</b> fet per <b>$ARTIST</b> a $DEVICE"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/iPod/iPodLibrary.vala:199
@@ -1589,7 +1589,7 @@ msgstr "S'està sincronitzant <b>%s</b>…"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 #: ../plugins/Devices/iPod/iPodLibrary.vala:533
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "S'està suprimint <b>$NAME</b> per <b>$ARTIST</b> de $DEVICE…"
+msgstr "S'està suprimint <b>$NAME</b> fet per <b>$ARTIST</b> de $DEVICE"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 #: ../plugins/Devices/iPod/iPodLibrary.vala:340
@@ -1599,7 +1599,7 @@ msgstr "S'està suprimint de <b>%s</b>…"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
 msgid "Empty device!"
-msgstr "El dispositiu està buit"
+msgstr "El dispositiu està buit!"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
 #: ../plugins/Devices/iPod/iPodDevice.vala:63
@@ -1637,8 +1637,7 @@ msgstr ""
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"L'aplicació no pot trobar cançons al CD. No es pot importar cap cançó"
+msgstr "L'aplicació no pot trobar cançons al CD. No es pot importar cap cançó"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of a song from Audio CD finished."
@@ -1759,7 +1758,6 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " a "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>S'està important</b> música des de <b>%s</b> a la biblioteca."
 
@@ -1775,7 +1773,6 @@ msgstr ""
 #~ msgid "CD Import Complete"
 #~ msgstr "L'importació del CD s'ha completat"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "S'està imporant la pista %i"
 
@@ -1785,24 +1782,19 @@ msgstr ""
 #~ msgid "Locate"
 #~ msgstr "Troba"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "El %s ja està fent una importació"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr ""
 #~ "El %s no ha pogut trobar cap cançó al CD. No es pot importar cap cançó"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "El %s ha acabat d'importar %i cançons des del CD d'àudio."
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "El %s ha acabat d'importar una cançó des del CD d'àudio."
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1810,7 +1802,6 @@ msgstr ""
 #~ "Si us plau, espereu fins que el %s hagi acabat la importació actual abans "
 #~ "d'importar el CD."
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s per %s"
 
@@ -1832,7 +1823,6 @@ msgstr ""
 #~ msgid "1 Star"
 #~ msgstr "1 estrella"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s estrelles"
 
@@ -1860,14 +1850,12 @@ msgstr ""
 #~ msgid "Device is already being synced."
 #~ msgstr "El dispositiu s'està sincronitzant."
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i àlbums"
 
 #~ msgid "1 album"
 #~ msgstr "1 àlbum"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i cançons"
 
@@ -1877,11 +1865,9 @@ msgstr ""
 #~ msgid "1 track"
 #~ msgstr "1 pista"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i pistes"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i hores"
 
@@ -1894,29 +1880,24 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 segon"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s segons"
 
 #~ msgid "1 minute"
 #~ msgstr "1 minut"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dies"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minuts"
 
 #~ msgid "Unknown Title"
 #~ msgstr "Títol desconegut"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s i %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s i %s"
 
@@ -1984,27 +1965,24 @@ msgstr ""
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "No s'han pogut trobar %i fitxers multimèdia. Què voleu fer?"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "La sincronització amb el dispositiu ha estat cancel·lada. L'operació "
 #~ "s'aturarà després de sincronitzar aquest element."
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "No s'ha pogut trobar la lletra de «%s» per «%s»"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "S'està editant %s per %s"
 
 #~ msgid "Editing %i songs"
 #~ msgstr "S'estan editant %i cançons"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "El nom «%s» ja està en ús"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "El %s no ha pogut trobar la vostra música."
 
@@ -2014,18 +1992,15 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "S'està cancel·lant la importació"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Totes les %i valoracions"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Importa %i cançons"
 
 #~ msgid "Import this song"
 #~ msgstr "Importa aquesta cançó"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Voleu suprimir %d %s de %s?"
 
@@ -2035,14 +2010,12 @@ msgstr ""
 #~ msgid "Audiobook"
 #~ msgstr "Audiollibre"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Similars a %s"
 
 #~ msgid "Similar Song View"
 #~ msgstr "Vista de cançons similars"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "S'estan cercant cançons similars a %s per %s"
 
@@ -2062,11 +2035,9 @@ msgstr ""
 #~ msgid "Fetching similar songs"
 #~ msgstr "Determinant cançons similars"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "El %s no ha pogut llegir el contingut d'aquest CD d'àudio"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
@@ -2075,21 +2046,19 @@ msgstr ""
 #~ msgid "Date Released"
 #~ msgstr "Data de llançament"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "En aquesta vista, el %s trobarà automàticament cançons similars a la que "
 #~ "s'estigui reproduint. Podeu reproduir-les o desar-les com a una llista de "
 #~ "reproducció."
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
 #~ "El %s no ha pogut trobar cap cançó similar a %s per %s a la biblioteca. "
 #~ "Assegureu-vos que la informació de la cançó sigui correcta i que sigueu "
@@ -2100,16 +2069,15 @@ msgstr ""
 #~ "You must wait until previous file operations finish before setting your "
 #~ "music folder"
 #~ msgstr ""
-#~ "Heu d'esperar fins que les operacions amb el fitxer anterior acabin abans de "
-#~ "establir la carpeta de música"
+#~ "Heu d'esperar fins que les operacions amb el fitxer anterior acabin abans "
+#~ "de establir la carpeta de música"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
 #~ msgstr ""
-#~ "Aquesta acció suprimirà el %s de la biblioteca i de qualsevol dispositiu que "
-#~ "se sincronitzi automàticament amb el %s."
+#~ "Aquesta acció suprimirà el %s de la biblioteca i de qualsevol dispositiu "
+#~ "que se sincronitzi automàticament amb el %s."
 
 #~ msgid "Write metadata to file"
 #~ msgstr "Escriu metadades al fitxer"
@@ -2117,7 +2085,6 @@ msgstr ""
 #~ msgid "Keep music folder organized"
 #~ msgstr "Mantén organitzada la carpeta de música"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i elements"
 
@@ -2185,19 +2152,18 @@ msgstr ""
 #~ msgid "Library Management:"
 #~ msgstr "Gestió de la biblioteca:"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "S'està important música des de %s..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "S'està afegint música des de %s a la biblioteca..."
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
-#~ "La importació des del dispositiu ha estat cancel·lada. L'operació s'aturarà "
-#~ "després d'importar aquest element."
+#~ "La importació des del dispositiu ha estat cancel·lada. L'operació "
+#~ "s'aturarà després d'importar aquest element."
 
 #~ msgid "Music Folder Location:"
 #~ msgstr "Ubicació de la carpeta de música:"
@@ -2215,12 +2181,12 @@ msgstr ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
 #~ msgstr ""
-#~ "El Noise ja està fent operacions amb els fitxers. Espereu fins que finalitzi "
-#~ "l'importació des de %d"
+#~ "El Noise ja està fent operacions amb els fitxers. Espereu fins que "
+#~ "finalitzi l'importació des de %d"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "Per permetre la integració amb el Last.fm, heu de donar permisos al %s. "
 #~ "Només s'ha de fer un cop."
@@ -2230,8 +2196,8 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Àudio;Reproductor;MP3;iPod;Play;Reproduir;Llista de "
-#~ "reproducció;Multimèdia;Media;CD;Telèfon;Cançons;"
+#~ "Noise;Àudio;Reproductor;MP3;iPod;Play;Reproduir;Llista de reproducció;"
+#~ "Multimèdia;Media;CD;Telèfon;Cançons;"
 
 #~ msgid "Notifications:"
 #~ msgstr "Notificacions:"
