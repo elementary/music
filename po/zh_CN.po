@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2016-12-30 07:57+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -734,7 +735,9 @@ msgstr "停止同步"
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
-msgstr "如果您继续同步，媒体将从 %s 中移除因为它们不在同步列表中。您先要将它们导入到库中吗？"
+msgstr ""
+"如果您继续同步，媒体将从 %s 中移除因为它们不在同步列表中。您先要将它们导入到"
+"库中吗？"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
@@ -923,7 +926,9 @@ msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
-msgstr "要添加歌曲到队列，使用 <b>右击</b> 条目并选择<b>队列</b>。当歌曲结束时，队列歌曲将先于当前播放列表中的下一首歌曲播放。"
+msgstr ""
+"要添加歌曲到队列，使用 <b>右击</b> 条目并选择<b>队列</b>。当歌曲结束时，队列"
+"歌曲将先于当前播放列表中的下一首歌曲播放。"
 
 #: ../src/LibraryWindow.vala:834
 msgid "No songs in History"
@@ -1007,7 +1012,9 @@ msgstr "正在更新播放列表请，请稍等。"
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr "要添加歌曲到该播放列表，请在条目上使用<b>二次点击</b>，选择<b>添加到播放列表</b>即可。"
+msgstr ""
+"要添加歌曲到该播放列表，请在条目上使用<b>二次点击</b>，选择<b>添加到播放列表"
+"</b>即可。"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid "Edit Smart Playlist"
@@ -1020,7 +1027,8 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"该播放列表将自动按其规则排出歌曲流行度。如果要修改这些规则，请在侧边栏上使用<b>右键点击</b>并点击<b>编辑</b>。或者，您可以点击下方的按钮。"
+"该播放列表将自动按其规则排出歌曲流行度。如果要修改这些规则，请在侧边栏上使用"
+"<b>右键点击</b>并点击<b>编辑</b>。或者，您可以点击下方的按钮。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
@@ -1079,8 +1087,7 @@ msgid "No External Songs"
 msgstr "无外部歌曲"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "该设备上未发现您库中没有的歌曲。"
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1651,7 +1658,9 @@ msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
-msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信息正确并已连接到网络。部分歌曲可能无法匹配。"
+msgstr ""
+"媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信息正确并已连接到网络。部分歌"
+"曲可能无法匹配。"
 
 #~ msgid "Done"
 #~ msgstr "完成"
@@ -1680,15 +1689,12 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid "Podcasts"
 #~ msgstr "播客"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s 星"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "所有 %i 评分"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "类似 %s"
 
@@ -1746,28 +1752,23 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid "Please make sure that your music folder is accessible and mounted."
 #~ msgstr "请确认您的音乐文件夹已被挂载并可访问。"
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "将 <b>%s</b> 中的音乐<b>导入</b>到库中。"
 
 #~ msgid "Import media from device"
 #~ msgstr "从设备导入媒体"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "%s 无法在 CD 上找到任何歌曲。未导入歌曲"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s 已完成音频 CD 中 %i 首歌曲导入。"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
 #~ msgstr "在导入 CD 前请等待 %s 完成当前导入。"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s 已经正在导入"
 
@@ -1777,11 +1778,9 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid "No songs on CD"
 #~ msgstr "CD 上无歌曲"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s 已完成音频 CD 中 1 首歌曲导入。"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "正在导入音轨 %i"
 
@@ -1899,11 +1898,9 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid "Album Artist"
 #~ msgstr "专辑艺术家"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s 作者 %s"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s 貌似无法找到您的音乐。"
 
@@ -1928,7 +1925,6 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid "Unheard Podcasts"
 #~ msgstr "未收听的播客"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i 小时"
 
@@ -1941,69 +1937,57 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid "1 hour"
 #~ msgstr "1 小时"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i 分钟"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i 天"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s 无法读取该音频 CD 的内容"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "正在从 %s... 导入音乐"
 
 #~ msgid "Adding files to library..."
 #~ msgstr "正在添加文件到库..."
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "正在编辑 %s(艺术家 %s)"
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "正在添加 %s 中的音乐到库..."
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "“%s”(艺术家 “%s”)歌词没有找到"
 
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "该设备中的所有歌曲已在您的库中。"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "从 %3$s 中移除 %1$d %2$s 吗？"
 
 #~ msgid "Could not find media file"
 #~ msgstr "无法找到媒体文件"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "名称 %s 已在使用"
 
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i 个媒体文件无法找到。您打算怎么做？"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i 张专辑"
 
 #~ msgid "1 album"
 #~ msgstr "1 张专辑"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i 个条目"
 
 #~ msgid "1 item"
 #~ msgstr "1 个项目"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i 首歌曲"
 
@@ -2013,7 +1997,6 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid "Click on the button to edit playlist rules"
 #~ msgstr "点击按钮编辑播放列表规则"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i 个音轨"
 
@@ -2021,7 +2004,8 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgstr "正在取消导入"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr "从设备导入已经取消。操作将在该媒体导入完成后停止。"
 
 #~ msgid "Cancelling Sync"
@@ -2033,28 +2017,25 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid "1 track"
 #~ msgstr "1 条音轨"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr "设备同步已经取消。操作将在该媒体同步完成后停止。"
 
 #~ msgid "Import this song"
 #~ msgstr "导入该首歌曲"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "导入 %i 首歌曲"
 
 #~ msgid "1 second"
 #~ msgstr "1 秒"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s 秒"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s 和 %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s，%s 和 %s"
 
@@ -2064,13 +2045,11 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid "Unknown Track"
 #~ msgstr "未知音轨"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
 #~ msgstr "这会从任何自动与 %2$s 同步的设备和您的音乐库中移除 %1$s。"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr "无法找到该音乐文件 %s(艺术家-%s)。您打算怎么做？"
@@ -2079,26 +2058,27 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgid_plural "%d seconds"
 #~ msgstr[0] "%d 秒"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "正在查找与 %s (艺人-%s)类似的歌曲"
 
 #~ msgid "Last.fm"
 #~ msgstr "Last.fm"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
-#~ msgstr "在该视图中，%s 将自动查找与正在播放歌曲类似的歌曲。然后您可以播放这些歌曲，或稍后将它们保存为播放列表。"
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
+#~ msgstr ""
+#~ "在该视图中，%s 将自动查找与正在播放歌曲类似的歌曲。然后您可以播放这些歌"
+#~ "曲，或稍后将它们保存为播放列表。"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
-#~ msgstr "%s 无法找到与库中 %s(艺人-%s)类似的歌曲。请确认所有的歌曲信息正确且您已连接到网络。部分歌曲可能无法匹配。"
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "%s 无法找到与库中 %s(艺人-%s)类似的歌曲。请确认所有的歌曲信息正确且您已连"
+#~ "接到网络。部分歌曲可能无法匹配。"
 
 #~ msgid "Unsuccessful. Click To Try Again."
 #~ msgstr "未成功。点击重试。"
@@ -2147,8 +2127,8 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;音频;播放器;播放;播放列表"
-#~ ";媒体;歌曲;"
+#~ "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;音频;播放"
+#~ "器;播放;播放列表;媒体;歌曲;"
 
 #~ msgid "Reset"
 #~ msgstr "重置"
@@ -2181,8 +2161,8 @@ msgstr "媒体库中没有与当前曲目类似的歌曲。确保全部歌曲信
 #~ msgstr "关于音乐"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr "要与 Last.fm 同步，您必须授予 %s 权限。此操作只需执行一次。"
 
 #~ msgid "Library Management:"

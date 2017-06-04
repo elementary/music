@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2017-01-24 10:18+0000\n"
 "Last-Translator: Marius Albina <marius.albina@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,7 +19,6 @@ msgstr ""
 "== 0) && (n != 0))) ? 2: 1));\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
-"Language: ro\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -1116,8 +1116,7 @@ msgid "No External Songs"
 msgstr "Nu există Piese Externe"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Nu au fost găsite piese pe acest dispozitiv care să nu fie în biblioteca ta."
 
@@ -1550,8 +1549,7 @@ msgstr "Nu au fost importate fişiere."
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
-"Rescanând muzica pentru schimbări. Asta s-ar putea să dureze un timp."
+msgstr "Rescanând muzica pentru schimbări. Asta s-ar putea să dureze un timp."
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
@@ -1778,7 +1776,6 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " pornit "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Se importă</b> muzică din <b>%s</b>in bibliotecă."
 
@@ -1795,7 +1792,6 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Importă fișiere de pe dispozitiv"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Importă muzică de la %s..."
 
@@ -1805,7 +1801,6 @@ msgstr ""
 #~ msgid "Unknown Track"
 #~ msgstr "Piesă Necunoscută"
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Adaugă muzică de la %s  în bibliotecă..."
 
@@ -1830,7 +1825,6 @@ msgstr ""
 #~ msgid "Disc"
 #~ msgstr "Disc"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Nu au fost găsite versuri pentru \"%s\" de \"%s\""
 
@@ -1867,11 +1861,9 @@ msgstr ""
 #~ msgid "Station"
 #~ msgstr "Post radio"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Numele %s este utilizat"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s de %s"
 
@@ -1881,21 +1873,18 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Anulează Importarea"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s nu găsesc această piesă."
 
 #~ msgid "Import this song"
 #~ msgstr "Importă această piesă"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Importă %i piese"
 
 #~ msgid "1 Star"
 #~ msgstr "1 stea"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s stele"
 
@@ -1911,14 +1900,12 @@ msgstr ""
 #~ msgid "Unknown Title"
 #~ msgstr "Titlu Necunoscut"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s și %s"
 
 #~ msgid "No songs on CD"
 #~ msgstr "Nicio piesă pe CD"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s și %s"
 
@@ -1931,21 +1918,18 @@ msgstr ""
 #~ msgid "Complete login"
 #~ msgstr "Logare Completă"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s nu s-au putut găsi piese similare ca %s de %s în bibliotecă. Asigură-te "
-#~ "că informațiile piesei sunt corecte și că ești conectat la internet.Unele "
-#~ "piese s-ar putea să nu fie găsite."
+#~ "%s nu s-au putut găsi piese similare ca %s de %s în bibliotecă. Asigură-"
+#~ "te că informațiile piesei sunt corecte și că ești conectat la internet."
+#~ "Unele piese s-ar putea să nu fie găsite."
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Similar ca %s"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Caută piese similare ca %s de %s"
 
@@ -1958,7 +1942,6 @@ msgstr ""
 #~ msgid "Last.fm Integration"
 #~ msgstr "Integrare Last.fm"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Modificare %s de %s"
 
@@ -1984,28 +1967,25 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Toate piesele din acest dispozitiv se găsesc în bibliotecă."
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Elimin %d %s din %s?"
 
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr ""
-#~ "Repetarea scanării pentru schimbări. Acest proces poate să dureze un timp..."
+#~ "Repetarea scanării pentru schimbări. Acest proces poate să dureze un "
+#~ "timp..."
 
 #~ msgid "Not Imported Files"
 #~ msgstr "Fișiere Netransferate"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
 #~ "Fișierul de muzică pentru %s de %s nu a fost găsit. Ce ați vrea să faceți?"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s nu a putut citi conținutul acestui CD Audio"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -2033,24 +2013,21 @@ msgstr ""
 #~ msgid "Locate Media"
 #~ msgstr "Locație Multimedia"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "Sincronizarea dispozitivului a fost anulată. Operațiunea se va opri după "
 #~ "multimedia."
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i piese"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "%s nu a găsit nici o piesă pe CD. Nici o piesă nu a fost importată"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s a finalizat de importat %i piese de pe CD Audio."
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s a finalizat de importat  o piesă de pe CD Audio."
 
@@ -2060,24 +2037,22 @@ msgstr ""
 #~ msgid "Click to redo the Last.fm login process"
 #~ msgstr "Apasă pentru a reface procesul de logare Last.fm"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Importă piesa %i"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
-#~ "Importarea din dispozitiv a fost anulată. Operațiunea se oprește după acest "
-#~ "multimedia."
+#~ "Importarea din dispozitiv a fost anulată. Operațiunea se oprește după "
+#~ "acest multimedia."
 
 #~ msgid "Media Type"
 #~ msgstr "Tip Multimedia"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s importă deja."
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -2094,11 +2069,10 @@ msgstr ""
 #~ msgid "Similar Song View"
 #~ msgstr "Vizualizare Piese Similare"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "În această vizualizare,%s va găsi automat piese similare cu cele curent "
 #~ "redate. Apoi poți să redai aceste piese, sau să le salvezi mai târziu ca "
@@ -2123,7 +2097,8 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audio;Player;MP3;iPod;Redare;Listă de redare;Media;CD;Telefon;Melodii"
+#~ "Noise;Audio;Player;MP3;iPod;Redare;Listă de redare;Media;CD;Telefon;"
+#~ "Melodii"
 
 #~ msgid "Music Player"
 #~ msgstr "Player muzical"
@@ -2169,8 +2144,8 @@ msgstr ""
 #~ "importat din %d"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "Pentru a permite integrarea Last.fm, trebuie să-i dai permisiunea lui %s. "
 #~ "Trebuie să faci asta doar o singură dată."

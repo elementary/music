@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2016-09-15 18:38+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -639,7 +640,8 @@ msgstr "從 %s 匯入媒體"
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
-msgstr "%s 中找到下列檔案，但不在您的珍藏館中。請勾選您想匯入珍藏館的所有檔案。"
+msgstr ""
+"%s 中找到下列檔案，但不在您的珍藏館中。請勾選您想匯入珍藏館的所有檔案。"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import all media"
@@ -734,7 +736,9 @@ msgstr "停止同步"
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
-msgstr "如果您繼續同步，媒體將從 %s 移除，因為它們並不在同步清單中。您想要先把它們匯入您的珍藏館中嗎？"
+msgstr ""
+"如果您繼續同步，媒體將從 %s 移除，因為它們並不在同步清單中。您想要先把它們匯"
+"入您的珍藏館中嗎？"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
@@ -924,7 +928,8 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"要添加歌曲至佇列，必須在曲目上點擊<b>滑鼠第二鍵</b>，並選擇<b>佇列</b>。在目前播放的清單中，當一首歌結束後將優先播放剛佇列的歌曲。"
+"要添加歌曲至佇列，必須在曲目上點擊<b>滑鼠第二鍵</b>，並選擇<b>佇列</b>。在目"
+"前播放的清單中，當一首歌結束後將優先播放剛佇列的歌曲。"
 
 #: ../src/LibraryWindow.vala:834
 msgid "No songs in History"
@@ -1008,7 +1013,9 @@ msgstr "正在更新播放清。請稍候。"
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr "若要添加歌曲至播放清單，請對曲目按下點擊<b>滑鼠第二鍵</b>，並選擇<b>加入至播放清單</b>。"
+msgstr ""
+"若要添加歌曲至播放清單，請對曲目按下點擊<b>滑鼠第二鍵</b>，並選擇<b>加入至播"
+"放清單</b>。"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid "Edit Smart Playlist"
@@ -1021,8 +1028,9 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"本播放清單將自動篩選加入符合規則的音樂。若要修改規則，請在側邊欄對該規則點擊<b>滑鼠第二鍵</b>，並按一下</b>編輯</b>。此外，您也可以點選側邊"
-"欄下方的按鈕並編輯。"
+"本播放清單將自動篩選加入符合規則的音樂。若要修改規則，請在側邊欄對該規則點擊"
+"<b>滑鼠第二鍵</b>，並按一下</b>編輯</b>。此外，您也可以點選側邊欄下方的按鈕並"
+"編輯。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
@@ -1081,8 +1089,7 @@ msgid "No External Songs"
 msgstr "沒有外部的歌曲"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "這部裝置中沒有您珍藏館中沒有的歌曲。"
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1650,7 +1657,9 @@ msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
-msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您所有歌曲的資訊都正確，而且有連線至網際網路。有些歌曲可能沒有與它類似的其他歌曲。"
+msgstr ""
+"您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您所有歌曲的資訊都正確，而且有"
+"連線至網際網路。有些歌曲可能沒有與它類似的其他歌曲。"
 
 #~ msgid "Unknown Album"
 #~ msgstr "未知的專輯"
@@ -1724,7 +1733,6 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "Station"
 #~ msgstr "電臺"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "從 %3$s 移除 %1$d %2$s 嗎？"
 
@@ -1737,14 +1745,12 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "Locate"
 #~ msgstr "定位"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i 張專輯"
 
 #~ msgid "Locate Media"
 #~ msgstr "定位媒體"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "類似於 %s"
 
@@ -1775,7 +1781,6 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "Import this song"
 #~ msgstr "匯入這首歌曲"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s 星"
 
@@ -1797,7 +1802,6 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid " by "
 #~ msgstr " 演出者 "
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i 小時"
 
@@ -1816,18 +1820,15 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "1 second"
 #~ msgstr "1 秒"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s 秒"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i 天"
 
 #~ msgid "Import media from device"
 #~ msgstr "從裝置匯入媒體"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "正從 %s 匯入音樂..."
 
@@ -1837,23 +1838,18 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "正重新掃描音樂的變動。這可能需要一段時間..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "正從 %s 將音樂加入珍藏館..."
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s 已正在匯入"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "%s 在 CD 上找不到任何歌曲。沒有歌曲被匯入"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s 已完成音訊 CD %i 首歌曲的匯入工作。"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1865,14 +1861,12 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "No songs on CD"
 #~ msgstr "CD 上並沒有歌曲"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s 已完成音訊 CD 歌曲的匯入工作。"
 
 #~ msgid "Ripping track 1"
 #~ msgstr "正在擷錄軌道 1"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "正在匯入軌道 %i"
 
@@ -1898,14 +1892,12 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "Metadata"
 #~ msgstr "中介資料"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "正在編輯 %s (演出者%s)"
 
 #~ msgid "Editing %i songs"
 #~ msgstr "正在編輯 %i 首歌曲"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "「%s」(演出者「%s」) 的歌詞沒有找到"
 
@@ -1920,7 +1912,6 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "Could not find media file"
 #~ msgstr "找不到到媒體檔案"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr "找不到音樂檔案 %s (演出者%s)。您想要怎麼做？"
@@ -1928,21 +1919,17 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "找不到 %i 個媒體檔案。您想要怎麼做？"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "名稱 %s 正被使用中"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
 #~ msgstr "這會從您的珍藏館和任何與 %2$s 同步的裝置移除 %1$s。"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s (%s)"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s 似乎找不到您的音樂。"
 
@@ -1952,52 +1939,50 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "1 album"
 #~ msgstr "1 張專輯"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i 首歌曲"
 
 #~ msgid "1 song"
 #~ msgstr "1 首歌曲"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s 無法讀取音訊 CD 的內容"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i 個軌道"
 
 #~ msgid "1 track"
 #~ msgstr "1 個軌道"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "正在尋找類似於 %s (演出者 %s) 的歌曲"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s 無法在您的珍藏館中找到類似 %s (演出者 %s) "
-#~ "的歌曲。請確定所有歌曲的資訊都正確，而且您也連接至網際網路。不過有些歌曲也可能找不到相符的類似歌曲。"
+#~ "%s 無法在您的珍藏館中找到類似 %s (演出者 %s) 的歌曲。請確定所有歌曲的資訊"
+#~ "都正確，而且您也連接至網際網路。不過有些歌曲也可能找不到相符的類似歌曲。"
 
 #~ msgid "Similar Song View"
 #~ msgstr "類似歌曲檢視"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
-#~ msgstr "在這個檢視畫面中，%s 將自動尋找類似您現正在播放歌曲的其他歌曲。您可以接著開始播放它們，或者將它們另存為播放清單供您往後播放。"
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
+#~ msgstr ""
+#~ "在這個檢視畫面中，%s 將自動尋找類似您現正在播放歌曲的其他歌曲。您可以接著"
+#~ "開始播放它們，或者將它們另存為播放清單供您往後播放。"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr "已取消裝置同步。操作將在這個媒體同步完後取消。"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr "已取消從裝置的匯入。操作將在這個媒體同步完後取消。"
 
 #~ msgid "Episode"
@@ -2015,14 +2000,12 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid "Skips"
 #~ msgstr "略過數"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "匯入 %i 首歌曲"
 
 #~ msgid "1 Star"
 #~ msgstr "1 星"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "所有 %i 個評等"
 
@@ -2035,22 +2018,18 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgid " on "
 #~ msgstr " 專輯 "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "正在從 <b>%s</b> <b>匯入</b> 音樂至珍藏館中。"
 
 #~ msgid "Rescanning music folder for changes"
 #~ msgstr "正重新掃描音樂資料夾以瞭解變動狀態"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i 分鐘"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s 和 %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s、%s 和 %s"
 
@@ -2143,8 +2122,8 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 #~ msgstr "裝置上空間不足而無法完成同步..."
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr "若要允許 Last.fm 整合，您必須准許「%s」存取。您只需執行此動作一次。"
 
 #~ msgid "Give %s Permission"
@@ -2152,8 +2131,8 @@ msgstr "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;音樂;音訊;播放器;播放;播"
-#~ "放清單;媒體;光碟;唱片;手機;歌;曲;"
+#~ "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;音樂;音訊;"
+#~ "播放器;播放;播放清單;媒體;光碟;唱片;手機;歌;曲;"
 
 #~ msgid "Notifications:"
 #~ msgstr "通知："
