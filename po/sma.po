@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2015-12-21 13:45+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Southern Sami <sma@li.org>\n"
+"Language: sma\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
-"Language: sma\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -1081,8 +1081,7 @@ msgid "No External Songs"
 msgstr ""
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1653,14 +1652,12 @@ msgid ""
 "may not have matches."
 msgstr ""
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Vïedtjedh musihke %s..."
 
 #~ msgid "Adding files to library..."
 #~ msgstr "File arkivesne vïedtjedh"
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "vïedtjedh musihkeste %s arkivesne"
 
