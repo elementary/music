@@ -11,14 +11,14 @@ msgstr ""
 "PO-Revision-Date: 2016-07-21 06:33+0000\n"
 "Last-Translator: Roman Sytnyk <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
-"Language: uk\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -1114,8 +1114,7 @@ msgid "No External Songs"
 msgstr "Немає зовнішніх композицій"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Не знайдено жодної композиції на цьому пристрої, якої немає у вашій "
 "бібліотеці."
@@ -1741,7 +1740,6 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " з "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Імпортування</b> музики з <b>%s</b> до бібліотеки."
 
@@ -1754,7 +1752,6 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Імпорт музики з аудіо-CD"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Імпорт музики з %s..."
 
@@ -1767,23 +1764,18 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Повторне сканування для пошуку змін. Це може зайняти деякий час..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Додавання музики з «%s» в бібліотеку..."
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s відбувається імпортування"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "%s не знадено жодної пісні на CD. Не має файлів для імпортування."
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s закінчилось імпортування %i пісень з CD ."
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1794,14 +1786,12 @@ msgstr ""
 #~ msgid "CD Import Complete"
 #~ msgstr "CD Імпорт завершений"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s завершелось імпортування пісень з CD."
 
 #~ msgid "Ripping track 1"
 #~ msgstr "Копіювання запису 1"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Імпорт запису %i"
 
@@ -1826,7 +1816,6 @@ msgstr ""
 #~ msgid "Export..."
 #~ msgstr "Експортувати…"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i годин(и)"
 
@@ -1836,7 +1825,6 @@ msgstr ""
 #~ msgid "1 day"
 #~ msgstr "1 день"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s секунд(и)"
 
@@ -1846,19 +1834,15 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 секунда"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i днів"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i хвилин(и)"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s та %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s та %s"
 
@@ -1883,7 +1867,6 @@ msgstr ""
 #~ msgid "Lyrics"
 #~ msgstr "Текст пісні"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Редагування %s з %s"
 
@@ -1924,7 +1907,6 @@ msgstr ""
 #~ msgid "Podcast"
 #~ msgstr "Подкаст"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Слова не знайдено для \"%s\" з \"%s\""
 
@@ -1947,7 +1929,6 @@ msgstr ""
 #~ msgid "is not"
 #~ msgstr "не є"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr "Музичний файл для %s з %s не вдалося знайти. Що ви бажаєте зробити?"
@@ -1955,7 +1936,6 @@ msgstr ""
 #~ msgid "Could not find media file"
 #~ msgstr "Не вдалося знайти медіа-файл"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Ім'я %s вже використовується"
 
@@ -1971,16 +1951,16 @@ msgstr ""
 #~ msgid "Station"
 #~ msgstr "Станція"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Вилучити %d %s з %s?"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
-#~ "Імпортування з пристроя було відмінено. Операція зупиниться після цього медіа"
+#~ "Імпортування з пристроя було відмінено. Операція зупиниться після цього "
+#~ "медіа"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -1994,16 +1974,15 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Відміна імпортування"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
-#~ "Синхронізація пристроїв була відмінена. Операція буде зупинена після цього "
-#~ "медіа."
+#~ "Синхронізація пристроїв була відмінена. Операція буде зупинена після "
+#~ "цього медіа."
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s за %s"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i альбомІв"
 
@@ -2013,7 +1992,6 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Всі пісні, які є на пристрої вже у вашій бібліотеці."
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i композицій"
 
@@ -2035,11 +2013,9 @@ msgstr ""
 #~ msgid "1 track"
 #~ msgstr "1 доріжка"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i доріжок"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s не вдається прочитати вміст цього CD з музикою"
 
@@ -2061,18 +2037,15 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Імпортувати цю пісню"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s зірок"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Імпорт %i пісень"
 
 #~ msgid "1 Star"
 #~ msgstr "1 зірочка"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Всі %i оцінки"
 
@@ -2088,7 +2061,6 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Невідтворені Подкасти"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s не може знайти Вашу музику."
 
@@ -2150,8 +2122,8 @@ msgstr ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
 #~ msgstr ""
-#~ "Noise виконує операції з файлами. Будь ласка зачекайте до закінчення імпорту "
-#~ "з %d"
+#~ "Noise виконує операції з файлами. Будь ласка зачекайте до закінчення "
+#~ "імпорту з %d"
 
 #~ msgid "Click to redo the Last.fm login process"
 #~ msgstr "Натисніть для повторення авторизації на Last.fm"
@@ -2180,8 +2152,8 @@ msgstr ""
 #~ msgstr "Керування Бібліотекою:"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "Для інтеграції з Last.fm, вам необхідно надати \"%s\" дозвіл. Дозвіл "
 #~ "достатньо надати лиш раз."

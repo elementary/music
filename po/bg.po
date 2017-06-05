@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-08-06 00:02+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Bulgarian <bg@li.org>\n"
+"PO-Revision-Date: 2017-05-09 22:27+0000\n"
+"Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
+"Language-Team: Bulgarian "
+"<https://l10n.elementary.io/projects/music/music/bg/>\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
-"Language: bg\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -262,11 +263,11 @@ msgstr "Премахване"
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr "Изнасяне..."
+msgstr "Изнасяне…"
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr "Редактиране..."
+msgstr "Редактиране…"
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
@@ -572,7 +573,7 @@ msgstr "Изберете индивидуални файлове за преме
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
-msgstr "Избиране на папка с музика..."
+msgstr "Избиране на папка с музика…"
 
 #: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
 msgid "Preferences"
@@ -600,7 +601,7 @@ msgstr "Пиши метаданни в файл:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:160
 msgid "Copy imported files to Library:"
-msgstr "Препиши внесените файлове в библотеката"
+msgstr "Копирай внесените файлове в библиотеката:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
@@ -706,6 +707,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"Noise вече извършва операции с файлове. Моля изчакай докато приключи "
+"внасянето от %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -909,7 +912,7 @@ msgstr "кб/сек."
 
 #: ../src/LibraryWindow.vala:269
 msgid "Import to Library…"
-msgstr "Внеси в Библиотеката"
+msgstr "Внеси в Библиотеката…"
 
 #: ../src/LibraryWindow.vala:289
 msgid "Previous"
@@ -1058,7 +1061,7 @@ msgstr "Сдобийте се с няколко песни"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:52
 msgid "Add music to your library."
-msgstr "Добавете музика в библиотеката ви"
+msgstr "Добави музика в библиотеката ти."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
@@ -1094,7 +1097,7 @@ msgstr "%s, %s, %s"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Cancelling…"
-msgstr "Отказване..."
+msgstr "Отказване…"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Device operation has been cancelled and will stop after this media."
@@ -1110,8 +1113,7 @@ msgid "No External Songs"
 msgstr "Няма външни песни"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Не бяха намерени песни на това устройство, които вече не са в библиотеката "
 "ви."
@@ -1122,7 +1124,7 @@ msgstr "Автоматично оразмеряване на колоните"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1168,7 +1170,7 @@ msgstr "Добавяне към списъка за изпълнение"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
-msgstr "Нов списък за изпълнение..."
+msgstr "Нов списък…"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
@@ -1331,8 +1333,8 @@ msgstr "Без оценка"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u звезда"
+msgstr[1] "%u звезди"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1452,7 +1454,7 @@ msgstr "Име на устройство"
 
 #: ../src/Views/DeviceSummaryWidget.vala:79
 msgid "Automatically sync when plugged in:"
-msgstr "Автоматично синхронизиране при свързване"
+msgstr "Автоматично синхронизиране при свързване:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:86
 msgid "Sync:"
@@ -1487,7 +1489,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Устройството не може да се синхронизира с избраните настройки на "
-"синхронизация. Няма достатъчно място на диска."
+"синхронизация. Няма достатъчно място на диска"
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1519,7 +1521,7 @@ msgstr "Внасям музиката от %s…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:210
 msgid "Adding files to library…"
-msgstr "Добавяне на файловете към библиотеката..."
+msgstr "Добавяне на файловете към библиотеката…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -1527,7 +1529,7 @@ msgstr "<b>Внасяне</b> на музика в библиотеката…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "All music files are already in your library"
-msgstr "Всички песни вече са в библиотеката Ви."
+msgstr "Всички песни вече са в библиотеката ти"
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "No files were imported."
@@ -1536,12 +1538,11 @@ msgstr "Не съ внесени песни."
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
-"Извършва се повторно сканиране за музика. Това може да отнеме известно "
-"време..."
+"Извършва се повторно сканиране за музика. Това може да отнеме известно време…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
-msgstr "Добавено в опашката"
+msgstr "Добавено към опашката:"
 
 #: ../src/LocalBackend/LocalLibrary.vala:339
 msgid "%d Track"
@@ -1596,7 +1597,7 @@ msgstr "Премахване от <b>%s</b>…"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
 msgid "Empty device!"
-msgstr "Празно устройство"
+msgstr "Празно устройство!"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
 #: ../plugins/Devices/iPod/iPodDevice.vala:63
@@ -1635,7 +1636,7 @@ msgstr ""
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"Приложението не може да намери песни върху диска. Няма да се вкарат песни."
+"Приложението не може да намери песни върху диска. Няма да се внесат песни"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of a song from Audio CD finished."
@@ -1647,7 +1648,7 @@ msgstr "Вкарването на %i песени от Музикален дис
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Внасяне на песен %u: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1663,17 +1664,17 @@ msgstr "Възникна грешка"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
-msgstr "Имаше грешка докато се зареждаше този музикален диск"
+msgstr "Възникна грешка при зареждането на аудио диска."
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:221
 #: ../plugins/Devices/iPod/iPodLibrary.vala:377
 msgid "Finishing sync process…"
-msgstr "Завършване на синхронизиращия процес..."
+msgstr "Завършване на синхронизиращия процес…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:233
 #: ../plugins/Devices/iPod/iPodLibrary.vala:389
 msgid "Cancelling Sync…"
-msgstr "Отмяна на синхронизирането..."
+msgstr "Отмяна на синхронизирането…"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
@@ -1701,11 +1702,9 @@ msgstr ""
 "че информацията за всички песни е правилна и че сте свързан с интернет. "
 "Някой песни може да нямат подобия."
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s вече импортира в момента"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr ""
 #~ "%s не можа да намери песни на CD-то. Песни не могат да бъдат импортирани."
@@ -1716,11 +1715,9 @@ msgstr ""
 #~ msgid "No songs on CD"
 #~ msgstr "Няма песни на CD-то"
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Добавяне на музика от %s в библиотеката..."
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s завърши импортирането на %i песни от Audio CD."
 
@@ -1730,7 +1727,6 @@ msgstr ""
 #~ msgid "CD Import Complete"
 #~ msgstr "Импортирането на CD завърши"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s завърши импортирането на песен от Audio CD."
 
@@ -1746,7 +1742,6 @@ msgstr ""
 #~ msgid "Ripping track 1"
 #~ msgstr "Извличане на песен 1"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Импортиране на песен %i"
 
@@ -1842,8 +1837,8 @@ msgstr ""
 #~ "You must wait until previous file operations finish before setting your "
 #~ "music folder"
 #~ msgstr ""
-#~ "Необходимо е да изчакате предишни операции с файлове да приключат, преди да "
-#~ "зададете вашата папката за музика"
+#~ "Необходимо е да изчакате предишни операции с файлове да приключат, преди "
+#~ "да зададете вашата папката за музика"
 
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "Щракнете за да направите логин в Last.fm отново"
@@ -1860,20 +1855,19 @@ msgstr ""
 #~ msgid "Station"
 #~ msgstr "Станция"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Премахване на %d %s от %s?"
 
 #~ msgid "Could not find media file"
 #~ msgstr "Не може да се намери медиен файл"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Името %s вече се използва"
 
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr ""
-#~ "%i медийни файлове не можаха да бъдат намерени. Какво желаете да направите?"
+#~ "%i медийни файлове не можаха да бъдат намерени. Какво желаете да "
+#~ "направите?"
 
 #~ msgid "Locate Media"
 #~ msgstr "Намиране на медия"
@@ -1881,7 +1875,6 @@ msgstr ""
 #~ msgid "Remove Media"
 #~ msgstr "Премахване на медия"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -1889,18 +1882,15 @@ msgstr ""
 #~ "Това ще премахне %s от библиотеката ви и от всяко устройство, което "
 #~ "автоматично се синхронизира с %s."
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s на %s"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "Изглежда, че %s не може да намери вашата музика."
 
 #~ msgid "Locate"
 #~ msgstr "Намиране"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i албуми"
 
@@ -1910,14 +1900,12 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Всички песни от това устройство са вече в библиотеката ви."
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i предмета"
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Импортиране на песни от аудио CD"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i песни"
 
@@ -1939,23 +1927,19 @@ msgstr ""
 #~ msgid "1 track"
 #~ msgstr "1 песен"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i песни"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s не успя да прочете съдържанието на това Аудио CD"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Подобни на %s"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "В този изглед, %s автоматично ще търси песни, подобни на тази, която "
 #~ "слушате. Тогава вие можете да слушате тези песни, или да ги запазите в "
@@ -1964,7 +1948,6 @@ msgstr ""
 #~ msgid "Similar Song View"
 #~ msgstr "Изглед на подобни песни"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Намиране на песни, подобни на %s на %s"
 
@@ -1977,13 +1960,15 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Прекъсване на импортирането"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "Синхронизацията с устройството е прекъсната. Операцията ще спре след тази "
 #~ "медия."
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
 #~ "Импортирането от устройството е прекъснато. Операцията ще спре след тази "
 #~ "медия."
@@ -2018,18 +2003,15 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Импортиране на тази песен"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Импортиране на %i песни"
 
 #~ msgid "1 Star"
 #~ msgstr "1 звезда"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s звезди"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Всички %i рейтинга"
 
@@ -2060,11 +2042,9 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " на "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Импортиране</b> на музика от <b>%s</b> в библиотеката."
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i часа"
 
@@ -2077,7 +2057,6 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 секунда"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s секунди"
 
@@ -2087,55 +2066,47 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 час"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i дни"
 
 #~ msgid "1 minute"
 #~ msgstr "1 минута"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i минути"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s и %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s и %s"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Импортиране на музика от %s..."
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
 #~ msgstr ""
-#~ "Моля, изчакайте докато %s свърши с настоящото импортиране преди импортиране "
-#~ "на CD-то."
+#~ "Моля, изчакайте докато %s свърши с настоящото импортиране преди "
+#~ "импортиране на CD-то."
 
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr ""
 #~ "Пресканиране на музиката за промени. Това може да отнеме известно време..."
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Променя се %s на %s"
 
 #~ msgid "Do Nothing"
 #~ msgstr "Да не се прави нищо"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Текстът на \"%s\" на \"%s\" не беше намерен"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "За интеграция с Last.fm, трябва да дадете разрешение на %s. Това е "
 #~ "необходимо само веднъж."
@@ -2150,7 +2121,6 @@ msgstr ""
 #~ msgid "Audiobook"
 #~ msgstr "Аудио книга"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
@@ -2171,11 +2141,10 @@ msgstr ""
 #~ msgid "Last.fm"
 #~ msgstr "Last.fm"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
 #~ "%s не можа да намери песни подобни на %s на %s във вашата библиотека. "
 #~ "Уверете се, че цялата информация за песента е вярна, и че сте свързани с "
@@ -2240,8 +2209,8 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Шум(Noise);Звук;Възпроизведител;МП3;айПод;Пусни;Музикален;Списък;Диск;Телефон"
-#~ ";Песен;"
+#~ "Шум(Noise);Звук;Възпроизведител;МП3;айПод;Пусни;Музикален;Списък;Диск;"
+#~ "Телефон;Песен;"
 
 #~ msgid ""
 #~ "Noise is already doing file operations. Please wait until those finish to "

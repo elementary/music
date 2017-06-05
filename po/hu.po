@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2016-09-27 08:51+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
-"Language: hu\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -1050,8 +1050,8 @@ msgid ""
 msgstr ""
 "Ez a lejátszási lista automatikusan fog felépülni azokból a zeneszámokból "
 "amelyek megfelelnek a szabályoknak. A szabályok megváltoztatásához "
-"kattintson <b>jobb gombbal</b> az oldalsávon, és válassza a "
-"<b>Szerkesztés</b> lehetőséget, vagy rá is kattinthat az alább lévő gombra."
+"kattintson <b>jobb gombbal</b> az oldalsávon, és válassza a <b>Szerkesztés</"
+"b> lehetőséget, vagy rá is kattinthat az alább lévő gombra."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
@@ -1111,8 +1111,7 @@ msgid "No External Songs"
 msgstr "Nincs külső szám"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Nem található olyan zeneszám ezen az eszközön, ami megtalálható lenne a "
 "gyűjteményében."
@@ -1194,8 +1193,7 @@ msgstr "1234 kbps"
 #. / by the column's title header.
 #: ../src/Views/ListView/Lists/MusicListView.vala:671
 msgid "Sample List String"
-msgstr ""
-"Zeneszám címe, előadója, előadó albuma, album előadója, szerző, műfaj"
+msgstr "Zeneszám címe, előadója, előadó albuma, album előadója, szerző, műfaj"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
@@ -1707,7 +1705,6 @@ msgstr ""
 #~ msgid "Done"
 #~ msgstr "Kész"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Zenék importálása innen: %s"
 
@@ -1717,7 +1714,6 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Zenék átvizsgálása változásokért. Ez eltarthat egy darabig..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Zenék hozzáadása a gyűjteményhez innen: %s"
 
@@ -1793,7 +1789,6 @@ msgstr ""
 #~ msgid "Podcast"
 #~ msgstr "Podcast"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Nem található dalszöveg a \"%s\" dalhoz, \"%s\" előadótól"
 
@@ -1827,19 +1822,15 @@ msgstr ""
 #~ msgid "Remove Media"
 #~ msgstr "Média eltávolítása"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i nap"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i óra"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i perc"
 
@@ -1849,7 +1840,6 @@ msgstr ""
 #~ msgid "Station"
 #~ msgstr "Állomás"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s, előadó: %s"
 
@@ -1859,7 +1849,6 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Dalok importálása Hang CD-ről"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i dal"
 
@@ -1872,14 +1861,12 @@ msgstr ""
 #~ msgid "Change your music folder."
 #~ msgstr "Zenemappa megváltoztatása"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i elem"
 
 #~ msgid "1 track"
 #~ msgstr "1 szám"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i szám"
 
@@ -1901,7 +1888,6 @@ msgstr ""
 #~ msgid "1 Star"
 #~ msgstr "1 csillag"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s csillag"
 
@@ -1929,7 +1915,6 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 óra"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s másodperc"
 
@@ -1942,14 +1927,12 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Nemhallott podcastek"
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "Zene <b>importálása</b> a gyűjteménybe, innen: <b>%s</b>"
 
 #~ msgid "Rescanning music folder for changes"
 #~ msgstr "Zenemappa átvizsgálása a változásokért"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Mind a(z) %i értékelés"
 
@@ -1959,7 +1942,6 @@ msgstr ""
 #~ msgid "%i kbps"
 #~ msgstr "%i kbps"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Hasonló ehhez: %s"
 
@@ -1969,27 +1951,22 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Média importálása eszközről"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s és %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s %s és %s"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s már importál"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
 #~ msgstr ""
-#~ "Kérem várjon, amíg a %s befejezi a jelenlegi importálást, mielőtt importálja "
-#~ "a CD-t."
+#~ "Kérem várjon, amíg a %s befejezi a jelenlegi importálást, mielőtt "
+#~ "importálja a CD-t."
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Szám importálása: %i"
 
@@ -2008,7 +1985,6 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Minden dal az eszközről már a gyújteményében van."
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s nem tudja a hang CD tartalmát beolvasni."
 
@@ -2024,21 +2000,20 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Importálás visszavonása"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "Eszköz szinkronizáció visszavonva. Művelet leáll a mostani média után."
 
 #~ msgid "All Podcasts"
 #~ msgstr "Minden Podcast"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "%s, előadó %s szerkesztése"
 
 #~ msgid "is not"
 #~ msgstr "nem"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "%s név már használatban van"
 
@@ -2046,15 +2021,15 @@ msgstr ""
 #~ "You must wait until previous file operations finish before setting your "
 #~ "music folder"
 #~ msgstr ""
-#~ "Meg kell várnia amíg az előző fájl műveletek befejeződnek mielőtt beállítja "
-#~ "a zenemappáját."
+#~ "Meg kell várnia amíg az előző fájl műveletek befejeződnek mielőtt "
+#~ "beállítja a zenemappáját."
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Eltávolítja a %d %s innen: %s?"
 
 #~ msgid "Please make sure that your music folder is accessible and mounted."
-#~ msgstr "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van."
+#~ msgstr ""
+#~ "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van."
 
 #~ msgid "Device is already being synced."
 #~ msgstr "Az eszköz már szinkronizálva van."
@@ -2073,12 +2048,12 @@ msgstr ""
 #~ msgstr "Lejátszási sor"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
 #~ "A beolvasás az eszközről meg lett szakítva. A művelet meg lesz szakítva "
 #~ "ezután a zeneszám után."
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -2086,7 +2061,6 @@ msgstr ""
 #~ "Ez el fogja távolítani %s-t a gyűjteményéből és minden eszközről ami "
 #~ "automatikusan szinkronizál %s eszközzel."
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s nem találta a zenéit"
 
@@ -2110,7 +2084,6 @@ msgstr ""
 #~ msgid "Scrobbling already Enabled"
 #~ msgstr "A továbbítás már engedélyezve van"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr "%s - %s zeneszám nem található. Mit szeretne tenni?"
@@ -2118,7 +2091,6 @@ msgstr ""
 #~ msgid "Pulser"
 #~ msgstr "Pulser"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "%s előadó %s számához hasonló dalok keresése"
 
@@ -2157,33 +2129,28 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Zeneszám importálása"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "%i zeneszám importálása"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "A(z) %s befejezte %i szám importálását a hanglemezről."
 
 #~ msgid "No songs on CD"
 #~ msgstr "Nem található szám a CD-n"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "A(z) %s befejezte egy szám importálását a hanglemezről."
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "Hasonló számok lekérése"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "A(z) %s nem talált számokat a CD-n. Nem lehet számot importálni."
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "Ebben a nézetben a(z) %s automatikusan meg fogja keresni az éppen "
 #~ "lejátszotthoz hasonló számokat. Ezek után elindíthatja, vagy elmentheti "
@@ -2192,11 +2159,10 @@ msgstr ""
 #~ msgid "Similar Song View"
 #~ msgstr "Hasonló szám nézet"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
 #~ "A(z) %s nem talált ehhez hasonló dalokat a gyűjteményében: %s - %s. "
 #~ "Győződjön meg róla, hogy az összes száminformáció helyes, és hogy "
@@ -2225,8 +2191,8 @@ msgstr ""
 #~ msgstr "Nincs elég hely az eszközön a szinkronizálás befejezéséhez..."
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "A Last.fm integráció engedélyezéséhez engedélyt kell adnia ennek: %s. Ezt "
 #~ "csak egyszer kell elvégeznie."
@@ -2236,8 +2202,8 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audió;Lejátszó;MP3;iPod;Lejátszás;Lejátszási "
-#~ "lista;Média;CD;Telefon;Számok;"
+#~ "Noise;Audió;Lejátszó;MP3;iPod;Lejátszás;Lejátszási lista;Média;CD;Telefon;"
+#~ "Számok;"
 
 #~ msgid "Reset"
 #~ msgstr "Visszaállítás"
