@@ -125,9 +125,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.player.current_position_update.connect (current_position_update);
             App.player.player.error_occured.connect (error_occured);
         });
-        
+
         NotificationManager.get_default ().show_alert.connect (doAlert);
-        
+
         match_playlists = new Gee.HashMap<unowned Playlist, int> ();
         match_devices = new Gee.HashMap<string, int> ();
         match_playlist_entry = new Gee.HashMap<unowned Playlist, SourceListEntry> ();
@@ -228,7 +228,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         return base.key_press_event (event);
     }
- 
+
     private inline void setup_window () {
         debug ("setting up main window");
 
@@ -281,7 +281,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         settingsMenu.append (new Gtk.SeparatorMenuItem ());
         settingsMenu.append (editPreferences);
         settingsMenu.show_all ();
-        
+
         var menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
         appMenu.set_image (menu_icon);
         appMenu.popup = settingsMenu;
@@ -365,15 +365,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public void connect_to_sourcelist_signals () {
-        
+
         source_list_view.selection_changed.connect ((page_number) => {
             view_container.set_current_view_from_index (page_number);
         });
-        
+
         source_list_view.activated.connect ( () => {
             search_field_has_focus = false;
         });
-        
+
         source_list_view.item_action_activated.connect ((page_number) => {
             var view = view_container.get_view (page_number);
             if (view is DeviceView) {
@@ -389,7 +389,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 source_list_view.start_editing_item(source_list_view.selected);
             }
         });
-        
+
         source_list_view.playlist_edit_clicked.connect ((page_number) => {
             var view = view_container.get_view (page_number);
             if (view is PlaylistViewWrapper) {
@@ -399,7 +399,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-        
+
         source_list_view.playlist_remove_clicked.connect ((page_number) => {
             var view = view_container.get_view (page_number);
             if (view is PlaylistViewWrapper) {
@@ -411,7 +411,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-        
+
         source_list_view.device_import_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
@@ -420,7 +420,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-        
+
         source_list_view.device_new_playlist_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
@@ -429,7 +429,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-        
+
         source_list_view.device_sync_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
@@ -438,7 +438,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-        
+
         source_list_view.device_eject_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if(page_number == match_devices.get (device.get_unique_identifier())) {
@@ -447,7 +447,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-        
+
         source_list_view.playlist_remove_clicked.connect ((page_number) => {
             var view = view_container.get_view (page_number);
             if (view is PlaylistViewWrapper) {
@@ -459,7 +459,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-        
+
         source_list_view.playlist_save_clicked.connect ((page_number) => {
             var view = view_container.get_view (page_number);
             if (view is PlaylistViewWrapper) {
@@ -475,7 +475,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-        
+
         source_list_view.playlist_export_clicked.connect ((page_number) => {
             var view = view_container.get_view (page_number);
             if (view is PlaylistViewWrapper) {
@@ -668,7 +668,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         debug ("Finished loading playlists");
     }
-    
+
 
     /**
      * SourceList Configuration
@@ -736,7 +736,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         int page_number = match_devices.get (device.get_unique_identifier());
         source_list_view.change_device_name (page_number, device.getDisplayName());
     }
-    
+
     private void remove_device (Device device) {
         if (!match_devices.has_key (device.get_unique_identifier()))
             return;
@@ -763,7 +763,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 debug ("adding device view with %d\n", d.get_library ().get_medias().size);
                 var tvs = new TreeViewSetup (ViewWrapper.Hint.DEVICE_AUDIO);
                 var music_view_wrapper = new DeviceViewWrapper(tvs, d, d.get_library ());
-                
+
                 int subview_number = view_container.add_view (music_view_wrapper);
                 entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), new ThemedIcon ("media-eject-symbolic"), null, d);
                 source_list_view.add_item (subview_number, _("Music"), ViewWrapper.Hint.DEVICE_AUDIO, new ThemedIcon ("library-music"), null, entry as SourceListExpandableItem, d);
@@ -957,7 +957,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         media_considered_played = false;
         added_to_play_count = false;
         media_half_played_sended = false;
-        
+
         update_sensitivities.begin ();
 
         Timeout.add (3000, () => {
@@ -967,7 +967,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     return null;
                 });
             }
-            
+
             return false;
         });
     }
@@ -985,13 +985,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         debug ("playback stopped");
     }
-    
+
     public virtual void playback_started () {
         playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
         playButton.set_tooltip_text (_("Pause"));
         debug ("playback started");
     }
-    
+
     public virtual void playback_paused () {
         playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
         playButton.set_tooltip_text (_("Play"));
@@ -1239,7 +1239,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (!main_settings.privacy_mode_enabled ()) {
             main_settings.search_string = searchField.text;
         }
-        
+
         // Save info pane (context pane) width
         saved_state.more_width = info_panel.get_allocated_width ();
 
