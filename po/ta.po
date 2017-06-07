@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Tamil <ta@li.org>\n"
+"Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1080,8 +1081,7 @@ msgid "No External Songs"
 msgstr ""
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1665,8 +1665,8 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "சத்தம்;ஆடியோ;பிளேயர்;எம்பி3;ஐபாட்;பிளே;பிளேலிஸ்ட்;மீடியா;குறுவட்டு;தொலைபேசி"
-#~ ";பாடல்கள்;"
+#~ "சத்தம்;ஆடியோ;பிளேயர்;எம்பி3;ஐபாட்;பிளே;பிளேலிஸ்ட்;மீடியா;குறுவட்டு;தொலைபேசி;"
+#~ "பாடல்கள்;"
 
 #~ msgid "Unknown Artist"
 #~ msgstr "அறியாத கலைஞர்"

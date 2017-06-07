@@ -30,8 +30,8 @@ msgstr "Musik anhören"
 
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
-"Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;Abspielen;Musi"
-"k;Lied;Stück;"
+"Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;Abspielen;"
+"Musik;Lied;Stück;"
 
 msgid "About Music"
 msgstr "Info zu Musik"

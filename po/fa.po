@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Persian <fa@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
-"Language: \n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -521,8 +521,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"آیا واقعاً می‌خواهید پوشه موسیقی را برابر %s قرار دهید؟ این کار باعث "
-"بازنشانی کتابخانه و حذف همه فهرست‌های پخش شما می‌شود."
+"آیا واقعاً می‌خواهید پوشه موسیقی را برابر %s قرار دهید؟ این کار باعث بازنشانی "
+"کتابخانه و حذف همه فهرست‌های پخش شما می‌شود."
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 #: ../src/Dialogs/FileNotFoundDialog.vala:124
@@ -947,8 +947,8 @@ msgid ""
 msgstr ""
 "پس از پخش شدن تکه‌ای از یک موسیقی، آن موسیقی به فهرست تاریخچه افزوده خواهد "
 "شد.\n"
-"می‌توانید از آن فهرست برای مشاهده همه آهنگ‌هایی که در اجراء کنونی گوش "
-"داده‌اید، استفاده کنید."
+"می‌توانید از آن فهرست برای مشاهده همه آهنگ‌هایی که در اجراء کنونی گوش داده‌اید، "
+"استفاده کنید."
 
 #: ../src/LibraryWindow.vala:985
 msgid "Pause"
@@ -1096,8 +1096,7 @@ msgid "No External Songs"
 msgstr "بدون آهنگ بیرونی"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "هیچ آهنگی که در کتابخانه شما نباشد روی این دستگاه پیدا نشد."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1685,7 +1684,6 @@ msgstr ""
 #~ msgid "Rescan Music Folder"
 #~ msgstr "پویش دوباره پوشه موسیقی"
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>واردات</b> موسیقی از <b>%s</b> به کتابخانه."
 
@@ -1704,7 +1702,6 @@ msgstr ""
 #~ msgid "Device is already being synced."
 #~ msgstr "هم اکنون دستگاه هماهنگ شده است."
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s نمی‌تواند موسیقی شما را پیدا کند."
 
@@ -1727,14 +1724,16 @@ msgstr ""
 #~ msgid "Cancelling Sync"
 #~ msgstr "لغو هماهنگ‌سازی"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr "هماهنگ‌سازی دستگاه لغو شد. فرآیند پس از این رسانه متوقف خواهد شد."
 
 #~ msgid "Cancelling Import"
 #~ msgstr "لغو واردات"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr "وارد کردن از دستگاه لغو شد. فرآیند پس از این رسانه متوقف خواهد شد."
 
 #~ msgid "Listen to music"
@@ -1812,7 +1811,6 @@ msgstr ""
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "نمی‌توان %i پرونده موسیقی را پیدا کرد. قصد انجام چه کاری را دارید؟"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "پیش از این از نام %s استفاده شده است"
 
@@ -1842,14 +1840,12 @@ msgstr ""
 #~ "افزونه پرونده‌های نوع %s نصب نشده است.\n"
 #~ "قصد انجام چه کاری را دارید؟"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "واردات موسیقی از %s..."
 
 #~ msgid "Adding files to library..."
 #~ msgstr "افزودن پرونده‌ها به کتابخانه..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "افزودن موسیقی از %s به کتابخانه..."
 
@@ -1866,23 +1862,19 @@ msgstr ""
 #~ msgid "Unknown Album"
 #~ msgstr "آلبوم ناشناخته"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s نمی‌تواند محتوای این سی‌دی صوتی را بخواند"
 
 #~ msgid "No songs on CD"
 #~ msgstr "هیچ آهنگی روی سی‌دی وجود ندارد"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr ""
 #~ "%s نمی‌تواند هیچ آهنگی را روی سی‌دی پیدا کند. نمی‌توان هیچ آهنگی را وارد کرد"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "هم اکنون %s در حال انجام واردات است"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1891,11 +1883,9 @@ msgstr ""
 #~ msgid "CD Import Complete"
 #~ msgstr "واردات سی‌دی تمام شد"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s فرآیند واردات %i آهنگ را از سی‌دی صوتی، تمام کرد."
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s فرآیند واردات یک آهنگ را از سی‌دی صوتی، تمام کرد."
 
@@ -1905,22 +1895,20 @@ msgstr ""
 #~ msgid "Fetching similar songs"
 #~ msgstr "در حال دریافت آهنگ‌های مشابه"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "مشابه با %s"
 
 #~ msgid "Similar Song View"
 #~ msgstr "نمای آهنگ مشابه"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
-#~ "در این نما، %s آهنگ‌هایی مشابه آنچه در حال گوش دادنش هستید را به طور خودکار "
-#~ "پیدا خواهد کرد. سپس شما می‌توانید آن آهنگ‌ها را نیز گوش دهید و یا اینکه یک "
-#~ "فهرست پخش از آنها بسازید."
+#~ "در این نما، %s آهنگ‌هایی مشابه آنچه در حال گوش دادنش هستید را به طور "
+#~ "خودکار پیدا خواهد کرد. سپس شما می‌توانید آن آهنگ‌ها را نیز گوش دهید و یا "
+#~ "اینکه یک فهرست پخش از آنها بسازید."
 
 #~ msgid "Unsuccessful. Click To Try Again."
 #~ msgstr "موفقیت‌آمیز نبود. برای تلاش دوباره کلیک کنید."
@@ -1944,11 +1932,11 @@ msgstr ""
 #~ msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "برای اسکرابل کردن آهنگ ها با لست اف ام باید اجازه دسترسی به آن را بدهید %s "
-#~ "شما فقط یک بار نیاز به انجام این کار دارید."
+#~ "برای اسکرابل کردن آهنگ ها با لست اف ام باید اجازه دسترسی به آن را بدهید "
+#~ "%s شما فقط یک بار نیاز به انجام این کار دارید."
 
 #~ msgid "There is not enough space on Device to complete the Sync…"
 #~ msgstr "فضای کافی برای همسان سازی بر روی دستگاه مورد نظر وجود ندارد."

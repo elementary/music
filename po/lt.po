@@ -6,23 +6,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-19 19:37+0000\n"
+"PO-Revision-Date: 2017-04-21 13:58+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
-"Language-Team: Lithuanian <lt@li.org>\n"
+"Language-Team: Lithuanian "
+"<https://l10n.elementary.io/projects/music/music/lt/>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
-"Į biblioteką importuojama <b>$NAME</b>, kurią atlieka <b>$ARTIST</b>…"
+msgstr "Į biblioteką importuojama <b>$NAME</b>, kurią atlieka <b>$ARTIST</b>…"
 
 #: ../core/Utils/TimeUtils.vala:51 ../core/Utils/TimeUtils.vala:60
 msgid "%u second"
@@ -267,11 +268,11 @@ msgstr "Šalinti"
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr "Eksportuoti..."
+msgstr "Eksportuoti…"
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr "Taisyti..."
+msgstr "Taisyti…"
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
@@ -548,8 +549,7 @@ msgstr "Nepavyko importuoti %d elementų iš %s"
 
 #: ../src/Dialogs/NotImportedWindow.vala:56
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-"%s nesugebėjo importuoti %d elementų. Gali būti, kad failai pažeisti."
+msgstr "%s nesugebėjo importuoti %d elementų. Gali būti, kad failai pažeisti."
 
 #: ../src/Dialogs/NotImportedWindow.vala:59
 msgid "Move all corrupted files to trash"
@@ -578,7 +578,7 @@ msgstr "Pasirinkti atskirus failus, kuriuos perkelti į šiukšlinę:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
-msgstr "Pasirinkite muzikos aplanką..."
+msgstr "Pasirinkite muzikos aplanką…"
 
 #: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
 msgid "Preferences"
@@ -919,7 +919,7 @@ msgstr "kbps"
 
 #: ../src/LibraryWindow.vala:269
 msgid "Import to Library…"
-msgstr "Importuoti į biblioteką..."
+msgstr "Importuoti į biblioteką…"
 
 #: ../src/LibraryWindow.vala:289
 msgid "Previous"
@@ -1042,8 +1042,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"Norėdami pridėti dainas į šį grojaraštį, naudokite <b>antrinį "
-"spustelėjimą</b> ant elemento ir pasirinkite <b>Pridėti į grojaraštį</b>."
+"Norėdami pridėti dainas į šį grojaraštį, naudokite <b>antrinį spustelėjimą</"
+"b> ant elemento ir pasirinkite <b>Pridėti į grojaraštį</b>."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid "Edit Smart Playlist"
@@ -1067,7 +1067,7 @@ msgstr "Gaukite melodijas"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:52
 msgid "Add music to your library."
-msgstr "Pridėkite muziką į savo biblioteką"
+msgstr "Pridėkite muziką į savo biblioteką."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
@@ -1118,8 +1118,7 @@ msgid "No External Songs"
 msgstr "Išorinių dainų nėra"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Šiame įrenginyje nebuvo rasta jokių dainų, kurių dar nebūtų jūsų "
 "bibliotekoje."
@@ -1176,7 +1175,7 @@ msgstr "Pridėti į grojaraštį"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
-msgstr "Naujas grojaraštis..."
+msgstr "Naujas grojaraštis…"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
@@ -1527,7 +1526,7 @@ msgstr "Importuojama muzika iš %s…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:210
 msgid "Adding files to library…"
-msgstr "Pridedami failai į biblioteką..."
+msgstr "Pridedami failai į biblioteką…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -1543,7 +1542,7 @@ msgstr "Nebuvo importuoti jokie failai."
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Peržvelgiami muzikos pakeitimai. Tai gali šiek tiek užtrukti..."
+msgstr "Peržvelgiami muzikos pakeitimai. Tai gali šiek tiek užtrukti…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
@@ -1641,8 +1640,7 @@ msgstr ""
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Programa CD diske nerado jokių dainų. Dainos negali būti importuotos."
+msgstr "Programa CD diske nerado jokių dainų. Dainos negali būti importuotos"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of a song from Audio CD finished."
@@ -1675,12 +1673,12 @@ msgstr "Įkeliant šį garso CD, įvyko klaida."
 #: ../plugins/Devices/iPod/iPodLibrary.vala:221
 #: ../plugins/Devices/iPod/iPodLibrary.vala:377
 msgid "Finishing sync process…"
-msgstr "Užbaigiamas sinchronizavimo procesas..."
+msgstr "Užbaigiamas sinchronizavimo procesas…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:233
 #: ../plugins/Devices/iPod/iPodLibrary.vala:389
 msgid "Cancelling Sync…"
-msgstr "Atšaukiamas sinchronizavimas..."
+msgstr "Atšaukiamas sinchronizavimas…"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"

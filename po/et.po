@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2016-08-04 00:04+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
-"Language: et\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -942,9 +942,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"Laulude lisamiseks järjekorda tee <b>parempoolne klõps</b> laulul ja vali "
-"<b>\"Lisa järjekorda\"</b>. Käimasoleva laulu lõppedes mängitakse "
-"järjekorras olevad laulud enne esitusloendite laule."
+"Laulude lisamiseks järjekorda tee <b>parempoolne klõps</b> laulul ja vali <b>"
+"\"Lisa järjekorda\"</b>. Käimasoleva laulu lõppedes mängitakse järjekorras "
+"olevad laulud enne esitusloendite laule."
 
 #: ../src/LibraryWindow.vala:834
 msgid "No songs in History"
@@ -1107,8 +1107,7 @@ msgid "No External Songs"
 msgstr "Väliseid laule pole"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "Seadmelt leiti muusikat, mida pole veel sinu kogumikus."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1696,11 +1695,9 @@ msgstr ""
 #~ msgid "Done"
 #~ msgstr "Valmis"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s ja %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s ja %s"
 
@@ -1713,7 +1710,6 @@ msgstr ""
 #~ msgid "Required GStreamer plugin not installed"
 #~ msgstr "Vajaminev GStreamer'i plugin pole paigaldatud."
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s - %s"
 
@@ -1732,14 +1728,12 @@ msgstr ""
 #~ msgid "Export..."
 #~ msgstr "Ekspordi..."
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Loo %i importimine"
 
 #~ msgid "1 track"
 #~ msgstr "1 lugu"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i lugu"
 
@@ -1781,7 +1775,6 @@ msgstr ""
 #~ msgid "Radio Station"
 #~ msgstr "Raadiojaam"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Muusika importimine asukohast %s..."
 
@@ -1794,7 +1787,6 @@ msgstr ""
 #~ msgid "Add Podcast"
 #~ msgstr "Lisa Podcast"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "Laule pole võimalik importida, sest %s ei leia CD-lt ühtegi laulu."
 
@@ -1825,14 +1817,12 @@ msgstr ""
 #~ msgid "Lyrics not found for %s"
 #~ msgstr "%s laulusõnu ei leitud"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "%s - %s"
 
 #~ msgid "Editing %s"
 #~ msgstr "%s"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s ei leia muusikat"
 
@@ -1842,7 +1832,6 @@ msgstr ""
 #~ msgid "Adding files to library..."
 #~ msgstr "Failide lisamine kogumikku..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Muusika lisamine kogumikku asukohast %s..."
 
@@ -1891,14 +1880,14 @@ msgstr ""
 #~ msgid "Fetching similar songs"
 #~ msgstr "Sarnaste laulude hankimine"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
-#~ "Selles vaates otsib %s automaatselt sinu mängitavatele lauludele sarnaseid "
-#~ "laule. Seejärel saad sa neid kuulata või hiljem esitusloenditesse lisada."
+#~ "Selles vaates otsib %s automaatselt sinu mängitavatele lauludele "
+#~ "sarnaseid laule. Seejärel saad sa neid kuulata või hiljem "
+#~ "esitusloenditesse lisada."
 
 #~ msgid "Do Nothing"
 #~ msgstr "Ära tee midagi"
@@ -1909,7 +1898,6 @@ msgstr ""
 #~ msgid "Please make sure that your music folder is accessible and mounted."
 #~ msgstr "Palun veendu, et valitud muusika kaust on kättesaadav ja haagitud."
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "Muusika importimine asukohast <b>%s</b> muusika kogumikku."
 
@@ -1923,7 +1911,8 @@ msgstr ""
 #~ msgstr "Kõik taskuhäälingud"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
 #~ "Importimine seadmelt katkestati. Importimine lõpetatakse peale seda laulu."
 
@@ -1938,10 +1927,11 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Importimise katkestamine"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
-#~ "Sünkroniseerimine seadmega katkestati. Sünkroniseerimine lõpetatakse pärast "
-#~ "seda laulu."
+#~ "Sünkroniseerimine seadmega katkestati. Sünkroniseerimine lõpetatakse "
+#~ "pärast seda laulu."
 
 #~ msgid "Locate Media"
 #~ msgstr "Meedia leidmine"
@@ -1972,8 +1962,8 @@ msgstr ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
 #~ msgstr ""
-#~ "Noise'is on juba toimingud pooleli. Palun oota, kuni importimine asukohast "
-#~ "%d saab valmis"
+#~ "Noise'is on juba toimingud pooleli. Palun oota, kuni importimine "
+#~ "asukohast %d saab valmis"
 
 #~ msgid "Not Imported Files"
 #~ msgstr "Importimata laulud"
@@ -1998,33 +1988,28 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;Esitaja;Esita;"
-#~ "Meedia;Esitusloend;Muusika;Mobla;Mobiiltelefon;Laulud"
+#~ "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;Esitaja;"
+#~ "Esita;Meedia;Esitusloend;Muusika;Mobla;Mobiiltelefon;Laulud"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s juba tegeleb importimisega"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s lõpetas %i laulu importimise audio CD-lt."
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
 #~ msgstr ""
-#~ "Enne, kui saad importida  laule CD-lt, pead ootama, kuni %s lõpetab eelmise "
-#~ "importimise"
+#~ "Enne, kui saad importida  laule CD-lt, pead ootama, kuni %s lõpetab "
+#~ "eelmise importimise"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s lõpetas ühe laulu importimise audio CD-lt."
 
 #~ msgid "Unsuccessful. Click to try again."
 #~ msgstr "Ebaõnnestus, palun proovi uuesti."
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "\"%s\" - \"%s\" jaoks ei leitud sõnu"
 
@@ -2044,11 +2029,11 @@ msgstr ""
 #~ msgstr "Märguanded:"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Selleks, et saaksid kasutada Last.fm'i, tuleb sul vaid korra %s jaoks õigusi "
-#~ "kinnitada."
+#~ "Selleks, et saaksid kasutada Last.fm'i, tuleb sul vaid korra %s jaoks "
+#~ "õigusi kinnitada."
 
 #~ msgid "Give %s Permission"
 #~ msgstr "%s õiguste kinnitamine"

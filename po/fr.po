@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-19 12:37+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
-"Language-Team: Fr <LL@li.org>\n"
+"PO-Revision-Date: 2017-04-25 11:55+0000\n"
+"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
+"Language-Team: French <https://l10n.elementary.io/projects/music/music/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
-"Language: \n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -183,7 +183,7 @@ msgstr "Club"
 
 #: ../core/GStreamer/Equalizer.vala:75
 msgid "Dance"
-msgstr "Dance"
+msgstr "Danse"
 
 #: ../core/GStreamer/Equalizer.vala:76
 msgid "Full Bass"
@@ -570,11 +570,11 @@ msgstr "Emplacement du fichier"
 #: ../src/Dialogs/NotImportedWindow.vala:101
 msgid "Select individual files to move to trash:"
 msgstr ""
-"Sélectionner individuellement des fichiers à déplacer dans la corbeille"
+"Sélectionner individuellement des fichiers à déplacer dans la corbeille :"
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
-msgstr "Sélectionner le Dossier Musique"
+msgstr "Sélectionner le dossier Musique…"
 
 #: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
 msgid "Preferences"
@@ -685,7 +685,7 @@ msgstr "Titre"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:170
 msgid "Select individual media to import:"
-msgstr "Sélectionner individuellement les médias à importer"
+msgstr "Sélectionner individuellement les médias à importer :"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:188
 msgid "Check Item"
@@ -717,7 +717,7 @@ msgstr "Supprimer de %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:61
 msgid "Remove %d Songs From %s?"
-msgstr "Supprimer %d musiques de %s?"
+msgstr "Supprimer %d musiques de %s ?"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:64
 msgid "Remove \"%s\" From %s?"
@@ -909,7 +909,7 @@ msgstr "jours avant aujourd'hui"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:413
 msgid "kbps"
-msgstr "kbps"
+msgstr "ko/s"
 
 #: ../src/LibraryWindow.vala:269
 msgid "Import to Library…"
@@ -989,7 +989,7 @@ msgstr "<b>Copie</b> des fichiers dans le <b>Dossier Musique</b>…"
 
 #: ../src/Views/GridView/GridView.vala:44
 msgid "No Albums Found."
-msgstr "Aucun album n'a été trouvé"
+msgstr "Aucun album n'a été trouvé."
 
 #: ../src/Views/GridView/GridView.vala:141
 msgid "%u album"
@@ -1062,19 +1062,19 @@ msgstr "Obtenez de la musique"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:52
 msgid "Add music to your library."
-msgstr "Ajouter de la musique dans votre bibliothèque"
+msgstr "Ajouter de la musique dans votre bibliothèque."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr "Importer de la musique dans votre bibliothèque depuis une source"
+msgstr "Importer de la musique dans votre bibliothèque depuis une source."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Change Music Folder"
-msgstr "Changer de dossier contenant la musique."
+msgstr "Changer de dossier contenant la musique"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Load music from a folder, a network or an external disk."
-msgstr "Ouvrir depuis un dossier, le réseau ou un disque dur externe"
+msgstr "Ouvrir depuis un dossier, le réseau ou un disque dur externe."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
@@ -1102,8 +1102,7 @@ msgstr "Annulation…"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
-"L'opération de l'appareil a été annulée et sera arrêtée après ce média"
+msgstr "L'opération de l'appareil a été annulée et sera arrêtée après ce média."
 
 #: ../src/Views/DeviceView.vala:59
 msgid "OK"
@@ -1114,8 +1113,7 @@ msgid "No External Songs"
 msgstr "Aucune musique extérieure"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Aucune musique que vous ne possédez pas dans votre bibliothèque n'a été "
 "trouvée."
@@ -1126,7 +1124,7 @@ msgstr "Taille des colonnes automatique"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr "%u kbps"
+msgstr "%u ko/s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1186,7 +1184,7 @@ msgstr[1] "Importer %i musiques"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:600
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 ko/s"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1491,11 +1489,11 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Impossible de synchroniser le périphérique avec les paramètres sélectionnés. "
-"Pas assez de place sur le disque."
+"Pas assez de place sur le disque"
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
-msgstr "L'appareil est déjà occupé"
+msgstr "L'appareil est déjà occupé."
 
 #: ../src/Noise.vala:65
 msgid "translator-credits"
@@ -1551,7 +1549,7 @@ msgstr "Tous les fichiers musicaux sont déjà dans votre bibliothèque"
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "No files were imported."
-msgstr "Aucun fichier importé"
+msgstr "Aucun fichier importé."
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
@@ -1594,12 +1592,12 @@ msgstr "Non écoutés récemment"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 #: ../plugins/Devices/iPod/iPodLibrary.vala:151
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Ajout de <b>$NAME</b> par <b>$ARTIST</b> dans $DEVICE..."
+msgstr "Ajout de <b>$NAME</b> par <b>$ARTIST</b> dans $DEVICE"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/iPod/iPodLibrary.vala:199
 msgid "Syncing <b>%s</b>…"
-msgstr "Synchronisation de <b>%s</b>"
+msgstr "Synchronisation de <b>%s</b>…"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 #: ../plugins/Devices/iPod/iPodLibrary.vala:533
@@ -1670,16 +1668,15 @@ msgstr "Import de la piste %u : %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"L'importation du CD sera <b>annulée</b> après l'importation en cours."
+msgstr "L'importation du CD sera <b>annulée</b> après l'importation en cours."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:377
 msgid "An error occured during the Import of this CD"
-msgstr "Une erreur est survenue lors de l'importation du CD."
+msgstr "Une erreur est survenue lors de l'importation du CD"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
-msgstr "Une erreur est survenue."
+msgstr "Une erreur est survenue"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
 msgid "There was an error while loading this Audio CD."
@@ -1693,7 +1690,7 @@ msgstr "Fin de la synchronisation…"
 #: ../plugins/Devices/iPod/iPodLibrary.vala:233
 #: ../plugins/Devices/iPod/iPodLibrary.vala:389
 msgid "Cancelling Sync…"
-msgstr "Annulation de la synchronisation"
+msgstr "Annulation de la synchronisation…"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
@@ -1781,16 +1778,17 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " dans "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
-#~ msgstr "<b>Importation</b> de musique depuis <b>%s</b> dans la bibliothèque."
+#~ msgstr ""
+#~ "<b>Importation</b> de musique depuis <b>%s</b> dans la bibliothèque."
 
 #~ msgid "Rescanning music folder for changes"
 #~ msgstr "Scan des changements dans le dossier Musique"
 
 #~ msgid "Please make sure that your music folder is accessible and mounted."
 #~ msgstr ""
-#~ "Veuillez vous assurer que votre dossier de musique est accessible et monté."
+#~ "Veuillez vous assurer que votre dossier de musique est accessible et "
+#~ "monté."
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Importer des chansons depuis un CD audio"
@@ -1798,15 +1796,12 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Importer des médias depuis un périphérique"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Toutes les %i évaluations"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s Etoiles"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Ressemblant à %s"
 
@@ -1837,7 +1832,6 @@ msgstr ""
 #~ msgid "CD Import Complete"
 #~ msgstr "Importation du CD terminé"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Importation de la piste %i"
 
@@ -1871,7 +1865,8 @@ msgstr ""
 
 #~ msgid "Required GStreamer plugin not installed"
 #~ msgstr ""
-#~ "Une extension pour GStreamer est requise, mais celle-ci n'est pas installée"
+#~ "Une extension pour GStreamer est requise, mais celle-ci n'est pas "
+#~ "installée"
 
 #~ msgid "Do Nothing"
 #~ msgstr "Ne rien faire"
@@ -1926,14 +1921,12 @@ msgstr ""
 #~ msgid "Lyrics"
 #~ msgstr "Paroles"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Modification de %s par %s"
 
 #~ msgid "Metadata"
 #~ msgstr "Méta-données"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Impossible de trouver des paroles pour \"%s\" par \"%s\""
 
@@ -1952,11 +1945,9 @@ msgstr ""
 #~ msgid "Album Artist"
 #~ msgstr "Artiste de l'album"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Supprimer %d %s de %s?"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s par %s"
 
@@ -1970,20 +1961,18 @@ msgstr ""
 #~ msgstr "Spécifier l'emplacement du fichier"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Pour autoriser l'intégration de Last.fm, vous devez donner l'autorisation à "
-#~ "%s. Vous n'avez besoin de faire cela qu'une seule fois."
+#~ "Pour autoriser l'intégration de Last.fm, vous devez donner l'autorisation "
+#~ "à %s. Vous n'avez besoin de faire cela qu'une seule fois."
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s a fini d'importer une musique depuis le CD audio."
 
 #~ msgid "Equalizer"
 #~ msgstr "Égaliseur"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -1991,7 +1980,6 @@ msgstr ""
 #~ "Cela supprimera %s de votre bibliothèque et de chaque périphérique "
 #~ "automatiquement synchronisé avec %s."
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s n'arrive pas à trouver votre musique."
 
@@ -2001,7 +1989,6 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Podcasts  jamais écouté"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i heures"
 
@@ -2014,33 +2001,27 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 heure"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutes"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i jours"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s ne peut pas lire le contenu de ce CD Audio"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Importation de la musique de %s..."
 
 #~ msgid "Adding files to library..."
 #~ msgstr "Ajout des fichiers à la bibliothèque..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Ajout à la bibliothèque de musique venant de %s..."
 
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Ré-analyse de la musique. Ceci peut prendre du temps ..."
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
@@ -2050,21 +2031,18 @@ msgstr ""
 #~ msgid "Could not find media file"
 #~ msgstr "Impossible de trouver de la musique"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albums"
 
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i éléments"
 
 #~ msgid "1 item"
 #~ msgstr "1 élément"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i musiques"
 
@@ -2074,24 +2052,23 @@ msgstr ""
 #~ msgid "Click on the button to edit playlist rules"
 #~ msgstr "Cliquez sur le bouton pour éditer les règles de la liste de lecture"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i pistes"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
-#~ "L'importation du périphérique a été annulée. L'opération s'arrêtera après ce "
-#~ "titre."
+#~ "L'importation du périphérique a été annulée. L'opération s'arrêtera après "
+#~ "ce titre."
 
 #~ msgid "Cancelling Sync"
 #~ msgstr "Annulation de la synchronisation"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "Dans cette vue, %s recherchera automatiquement des musiques similaires à "
 #~ "celle que vous lirez. Vous pourrez alors lire ces musiques ou les "
@@ -2100,7 +2077,6 @@ msgstr ""
 #~ msgid "Similar Song View"
 #~ msgstr "Vue des musiques similaires"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Recherche de musique similaire à %s par %s"
 
@@ -2110,7 +2086,8 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Annulation de l'importation"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "La synchronisation du périphérique a été annulée. L'opération s'arrêtera "
 #~ "après ce titre."
@@ -2118,22 +2095,18 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Importer cette musique"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Importer %i musiques"
 
 #~ msgid "1 second"
 #~ msgstr "1 seconde"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s secondes"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s et %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s et %s"
 
@@ -2141,37 +2114,33 @@ msgstr ""
 #~ msgstr ""
 #~ "Toutes les musiques de ce périphérique sont déjà dans votre bibliothèque."
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Le nom %s est déjà utilisé"
 
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i pistes n'ont pas été trouvées. Que voulez-vous faire ?"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s n'a pas trouvé de musique similaire à %s par %s dans votre bibliothèque. "
-#~ "Vérifiez que toutes les informations sont correctes et que vous êtes "
-#~ "connecté à internet. Malgré tout, certaines musiques n'obtiennent aucun "
-#~ "résultat."
+#~ "%s n'a pas trouvé de musique similaire à %s par %s dans votre "
+#~ "bibliothèque. Vérifiez que toutes les informations sont correctes et que "
+#~ "vous êtes connecté à internet. Malgré tout, certaines musiques "
+#~ "n'obtiennent aucun résultat."
 
 #~ msgid "%i kbps"
 #~ msgstr "%i kbps"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s est déjà en importation"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr ""
-#~ "%s ne trouve aucune musique sur ce CD. Aucune musique ne peut être importée"
+#~ "%s ne trouve aucune musique sur ce CD. Aucune musique ne peut être "
+#~ "importée"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -2179,7 +2148,6 @@ msgstr ""
 #~ "Veuillez attendre que %s ait terminé avec l'importation en cours avant "
 #~ "d'importer le CD."
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s a fini d'importer %i musiques depuis le CD audio."
 
@@ -2240,7 +2208,8 @@ msgstr ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
 #~ msgstr ""
-#~ "Noise effectue déjà une opération. Veuillez attendre la fin de l'import de %d"
+#~ "Noise effectue déjà une opération. Veuillez attendre la fin de l'import "
+#~ "de %d"
 
 #~ msgid "Editing $NAME by $ARTIST"
 #~ msgstr "Édition de $NAME par $ARTIST"
@@ -2264,8 +2233,8 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de "
-#~ "lecture;Média;CD;Téléphone;Musique;Chanson;"
+#~ "Noise;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de lecture;Média;CD;"
+#~ "Téléphone;Musique;Chanson;"
 
 #~ msgid "Reset"
 #~ msgstr "Réinitialiser"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2017-05-04 19:13+0000\n"
 "Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
