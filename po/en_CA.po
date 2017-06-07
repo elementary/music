@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2016-03-20 18:10+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: English (Canada) <en_CA@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
-"Language: \n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -1105,10 +1105,8 @@ msgid "No External Songs"
 msgstr "No External Songs"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
+msgstr "There were no songs found on this device that are not in your library."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
 msgid "Autosize Columns"
@@ -1718,18 +1716,15 @@ msgstr ""
 #~ msgid "Podcasts"
 #~ msgstr "Podcasts"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s Stars"
 
 #~ msgid "#"
 #~ msgstr "#"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Similar to %s"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "All %i Ratings"
 
@@ -1793,15 +1788,12 @@ msgstr ""
 #~ msgid "CD Import Complete"
 #~ msgstr "CD Import Complete"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s is already doing an import"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "%s could not find any songs on the CD. No songs can be imported"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1812,14 +1804,12 @@ msgstr ""
 #~ msgid "No songs on CD"
 #~ msgstr "No songs on CD"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s has finished importing a song from Audio CD."
 
 #~ msgid "Ripping track 1"
 #~ msgstr "Ripping track 1"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Importing track %i"
 
@@ -1860,7 +1850,6 @@ msgstr ""
 #~ msgid "Do Nothing"
 #~ msgstr "Do Nothing"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s has finished importing %i songs from Audio CD."
 
@@ -1886,11 +1875,11 @@ msgstr ""
 #~ msgstr "Write metadata to file"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 
 #~ msgid "Complete login"
 #~ msgstr "Complete login"
@@ -1932,7 +1921,6 @@ msgstr ""
 #~ msgid "Lyrics"
 #~ msgstr "Lyrics"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Editing %s by %s"
 
@@ -1951,11 +1939,9 @@ msgstr ""
 #~ msgid "Album Artist"
 #~ msgstr "Album Artist"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Remove %d %s from %s?"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Lyrics not found for \"%s\" by \"%s\""
 
@@ -1968,7 +1954,6 @@ msgstr ""
 #~ msgid "Remove Media"
 #~ msgstr "Remove Media"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -1976,15 +1961,12 @@ msgstr ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s by %s"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s can't seem to find your music."
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s could not read the contents of this Audio CD"
 
@@ -1994,7 +1976,6 @@ msgstr ""
 #~ msgid "Rescanning music folder for changes"
 #~ msgstr "Rescanning music folder for changes"
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Importing</b> music from <b>%s</b> to library."
 
@@ -2004,7 +1985,6 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Unheard Podcasts"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i hours"
 
@@ -2017,18 +1997,15 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 hour"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutes"
 
 #~ msgid "Please make sure that your music folder is accessible and mounted."
 #~ msgstr "Please make sure that your music folder is accessible and mounted."
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i days"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Importing music from %s..."
 
@@ -2038,28 +2015,29 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Rescanning music for changes. This may take a while..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Adding music from %s to library..."
 
 #~ msgid "Cancelling Sync"
 #~ msgstr "Cancelling Sync"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "Device Sync has been cancelled. Operation will stop after this media."
 
 #~ msgid "Import this song"
 #~ msgstr "Import this song"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Import %i songs"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 
 #~ msgid "%i kbps"
 #~ msgstr "%i kbps"
@@ -2067,82 +2045,71 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Cancelling Import"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albums"
 
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "All the songs in this device are already in your library."
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 
 #~ msgid "Similar Song View"
 #~ msgstr "Similar Song View"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Finding songs similar to %s by %s"
 
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i songs"
 
 #~ msgid "1 song"
 #~ msgstr "1 song"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s and %s"
 
 #~ msgid "1 second"
 #~ msgstr "1 second"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s seconds"
 
 #~ msgid "1 track"
 #~ msgstr "1 track"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i tracks"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s and %s"
 
 #~ msgid "Could not find media file"
 #~ msgstr "Could not find media file"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "The name %s is already in use"
 
