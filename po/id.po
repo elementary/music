@@ -2,14 +2,13 @@
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # This file is distributed under the same license as the beat-box package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-05-11 20:52+0000\n"
-"Last-Translator: Akbar Hamaminatu <agusmurwanto50@gmail.com>\n"
+"PO-Revision-Date: 2017-06-20 11:51+0700\n"
+"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: Indonesian "
 "<https://l10n.elementary.io/projects/music/music/id/>\n"
 "Language: id\n"
@@ -17,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.13-dev\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: ../core/LibrariesManager.vala:143
@@ -144,7 +143,7 @@ msgstr "Berkas daftar putar tidak dapat dikenali. Impor gagal."
 
 #: ../core/Utils/FileUtils.vala:294
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #. / Used for unknown titles, artists, or album names.
 #: ../core/Media.vala:34
@@ -376,7 +375,7 @@ msgstr "Tambah Daftar Putar Pintar"
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Equalizer: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
@@ -457,51 +456,51 @@ msgstr "Pasang Pengaya"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "Judul:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Artis:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Artis album:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Aliran:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
-msgstr ""
+msgstr "Komposer:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Pengelompokan:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Komentar:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Trek:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "Diska:"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "Tahun:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "Rating:"
 
 #: ../src/Dialogs/MediaEditor.vala:153 ../src/Dialogs/PreferencesWindow.vala:99
 msgid "Close"
@@ -600,7 +599,7 @@ msgstr "Salin berkas yang diimpor ke Pustaka:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:162
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Integrasi destop"
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
@@ -702,6 +701,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"Kebisingan sudah melakukan operasi berkas. Harap tunggu hingga selesai "
+"mengimpor dari %s"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -954,7 +955,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:985
 msgid "Pause"
-msgstr ""
+msgstr "Jeda"
 
 #: ../src/LibraryWindow.vala:1064
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:54
@@ -984,7 +985,7 @@ msgstr[0] "%u album"
 
 #: ../src/Views/GridView/PopupListView.vala:59
 msgid "Set new album cover"
-msgstr ""
+msgstr "Atur sampul album baru"
 
 #: ../src/Views/GridView/PopupListView.vala:156
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -993,15 +994,15 @@ msgstr "%s oleh %s"
 
 #: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Cancel"
-msgstr ""
+msgstr "_Batal"
 
 #: ../src/Views/GridView/PopupListView.vala:256
 msgid "_Open"
-msgstr ""
+msgstr "_Buka"
 
 #: ../src/Views/GridView/PopupListView.vala:259
 msgid "Image files"
-msgstr ""
+msgstr "Berkas gambar"
 
 #: ../src/Views/Wrappers/ViewWrapper.vala:442
 msgid "No media"
@@ -1051,7 +1052,7 @@ msgstr "Tambahkan musik ke dalam Pustaka"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:55
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Impor musik dari sumber ke pustaka Anda."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Change Music Folder"
@@ -1109,7 +1110,7 @@ msgstr "Ukuran Kolom Otomatis"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1315,8 +1316,7 @@ msgstr "Tanpa peringkat"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Bintang"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1519,11 +1519,11 @@ msgstr "<b>mengimpor</b> musik ke library..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "All music files are already in your library"
-msgstr ""
+msgstr "Semua berkas musik sudah ada di pustaka Anda"
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "No files were imported."
-msgstr ""
+msgstr "Tidak ada berkas yang diimpor"
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
@@ -1536,8 +1536,7 @@ msgstr "Telah ditambahkan pada antrian:"
 #: ../src/LocalBackend/LocalLibrary.vala:339
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Trek"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
@@ -1637,7 +1636,7 @@ msgstr "Pengimporan %i lagu dari Audio CD telah selesai."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Mengimpor lagu %u: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
