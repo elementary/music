@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-06-22 02:55+0000\n"
+"PO-Revision-Date: 2017-06-22 02:57+0000\n"
 "Last-Translator: Malte Kiefer <malte.kiefer@mailgermania.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
@@ -1203,7 +1203,7 @@ msgstr "1234 kbit/s"
 #. / by the column's title header.
 #: ../src/Views/ListView/Lists/MusicListView.vala:671
 msgid "Sample List String"
-msgstr "Sample List String"
+msgstr "Beispielliste String"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
@@ -1213,7 +1213,7 @@ msgstr "#"
 #: ../src/Views/ListView/Lists/ListColumn.vala:62
 msgctxt "List column title"
 msgid "Track"
-msgstr "Nr."
+msgstr "Titel"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:65
 msgctxt "List column title"
