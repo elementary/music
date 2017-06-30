@@ -41,21 +41,30 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
     Gtk.Widget continue_button;
     Gtk.Widget stop_button;
 
-    public SyncWarningDialog (Device d, Gee.Collection<Media> to_sync, Gee.Collection<Media> removed) {
-        this.d = d;
-        this.to_sync.add_all (to_sync);
-        this.to_remove.add_all (removed);
-
-        // set the size based on saved gconf settings
-        //this.window_position = WindowPosition.CENTER;
-        this.type_hint = Gdk.WindowTypeHint.DIALOG;
-        this.modal = true;
-        this.transient_for = App.main_window;
-        this.destroy_with_parent = true;
+    construct {
+        type_hint = Gdk.WindowTypeHint.DIALOG;
+        modal = true;
+        transient_for = App.main_window;
+        destroy_with_parent = true;
 
         set_default_size (475, -1);
         resizable = false;
         border_width = 20;
+
+        // create buttons
+        import_media_button = add_button (_("Import media to Library"), ResponseId.IMPORT_MEDIA);
+        continue_button = add_button (_("Continue Syncing"), ResponseId.CONTINUE);
+        stop_button = add_button (_("Stop Syncing"), ResponseId.STOP);
+        response.connect (on_response);
+
+        import_media_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
+        continue_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
+    }
+
+    public SyncWarningDialog (Device d, Gee.Collection<Media> to_sync, Gee.Collection<Media> removed) {
+        this.d = d;
+        this.to_sync.add_all (to_sync);
+        this.to_remove.add_all (removed);
 
         Gtk.Box content = get_content_area ();
         content.spacing = 10;
@@ -64,11 +73,6 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
         Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
         Gtk.Label title = new Gtk.Label ("");
         Gtk.Label info = new Gtk.Label ("");
-
-        import_media_button = add_button (_("Import media to Library"), ResponseId.IMPORT_MEDIA);
-        continue_button = add_button (_("Continue Syncing"), ResponseId.CONTINUE);
-        stop_button = add_button (_("Stop Syncing"), ResponseId.STOP);
-        response.connect (on_response);
 
         // pretty up labels
         title.halign = Gtk.Align.START;
@@ -79,16 +83,13 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
         info.set_markup (info_text);
 
         // be a bit explicit to make translations better
-        string title_text = to_remove.size > 1
-            ? _("Sync will remove %i items from %s").printf (to_remove.size, d.getDisplayName ())
-            : _("Sync will remove 1 item from %s").printf (d.getDisplayName ());
+        string title_text = ngettext ("Sync will remove 1 item from %s".printf (to_remove.size, d.getDisplayName ()),
+                                      "Sync will remove %i items from %s".printf (d.getDisplayName ()),
+                                      to_remove.size);
 
         string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";
         var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));
         title.set_markup (title_string);
-
-        import_media_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
-        continue_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
 
         /* set up controls layout */
         var information = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -99,9 +100,6 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
         information.pack_start (information_text, true, true, 10);
 
         content.pack_start (information, false, true, 0);
-
-        libraries_manager.local_library.file_operations_started.connect (file_operations_started);
-        libraries_manager.local_library.file_operations_done.connect (file_operations_done);
 
         show_all ();
     }
