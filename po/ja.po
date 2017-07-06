@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-26 02:31+0000\n"
-"Last-Translator: Jun Takeda <takeda.jun@gmail.com>\n"
-"Language-Team: Japanese <ja@li.org>\n"
+"PO-Revision-Date: 2017-05-08 11:55+0000\n"
+"Last-Translator: Ryo Nakano <nscnskichiro0911@gmail.com>\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/>"
+"\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
-"Language: ja\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -258,11 +259,11 @@ msgstr "削除"
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr "エクスポート..."
+msgstr "エクスポート…"
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr "編集..."
+msgstr "編集…"
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
@@ -522,7 +523,9 @@ msgstr "音楽フォルダを設定しますか？"
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
-msgstr "音楽フォルダを %s に設定してもよろしいですか？ この操作はライブラリを初期化し、プレイリストを削除します。"
+msgstr ""
+"音楽フォルダを %s に設定してもよろしいですか？ この操作はライブラリを初期化"
+"し、プレイリストを削除します。"
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 #: ../src/Dialogs/FileNotFoundDialog.vala:124
@@ -536,7 +539,9 @@ msgstr "%d 個の項目を %s から取り込むことができません"
 
 #: ../src/Dialogs/NotImportedWindow.vala:56
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s は %d 個の項目を取り込むことができませんでした。ファイルが壊れている可能性があります。"
+msgstr ""
+"%s は %d 個の項目を取り込むことができませんでした。ファイルが壊れている可能性"
+"があります。"
 
 #: ../src/Dialogs/NotImportedWindow.vala:59
 msgid "Move all corrupted files to trash"
@@ -565,7 +570,7 @@ msgstr "ゴミ箱に移動するファイルを個別に選択する:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
-msgstr "ミュージックフォルダを選択"
+msgstr "ミュージックフォルダを選択…"
 
 #: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
 msgid "Preferences"
@@ -640,7 +645,9 @@ msgstr "%s からメディアを取り込む"
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
-msgstr "以下のファイルは %s 上に発見されましたが、ライブラリーにありません。すべてのインポートしたいファイルをクリックしてください。"
+msgstr ""
+"以下のファイルは %s 上に発見されましたが、ライブラリーにありません。すべての"
+"インポートしたいファイルをクリックしてください。"
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import all media"
@@ -696,7 +703,7 @@ msgstr "取り込みできません"
 msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
-msgstr "Noise はすでにファイル操作を行っています。 %s からのインポートが終了するまでお待ちください。"
+msgstr "Noise はすでにファイル操作を行っています。 %s からのインポートが終了するまでお待ちください"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -717,7 +724,8 @@ msgid ""
 msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
-msgstr[0] "この操作はライブラリーと %s と自動的に同期されたデバイスから曲を削除します。"
+msgstr[0] ""
+"この操作はライブラリーと %s と自動的に同期されたデバイスから曲を削除します。"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
@@ -735,8 +743,7 @@ msgstr "同期を中止"
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
-msgstr ""
-"同期を続けると、メディアが同期リストにないので、メディアは %s から削除されます。 あなたのライブラリにまずそれらをインポートしますか?"
+msgstr "同期を続行すると、メディアが同期リストにないので %s から削除されます。 ライブラリにまずメディアをインポートしますか？"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
@@ -783,7 +790,7 @@ msgstr "すべて"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:77
 msgid "of the following:"
-msgstr "と一致"
+msgstr "一致："
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Add"
@@ -893,7 +900,7 @@ msgstr "kbps"
 
 #: ../src/LibraryWindow.vala:269
 msgid "Import to Library…"
-msgstr "ライブラリへ取り込み..."
+msgstr "ライブラリへ取り込み…"
 
 #: ../src/LibraryWindow.vala:289
 msgid "Previous"
@@ -926,8 +933,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"再生リストに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>再生リスト</b>を選択します。曲が終わった時、現在の再生リストにある次の"
-"曲の前に再生リストの曲が先に再生されます。"
+"再生リストに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>再生リ"
+"スト</b>を選択します。曲が終わった時、現在の再生リストにある次の曲の前に再生"
+"リストの曲が先に再生されます。"
 
 #: ../src/LibraryWindow.vala:834
 msgid "No songs in History"
@@ -965,7 +973,7 @@ msgstr "ファイルを<b>ミュージックフォルダー</b>に<b>コピー</
 
 #: ../src/Views/GridView/GridView.vala:44
 msgid "No Albums Found."
-msgstr "アルバムが見つかりません"
+msgstr "アルバムが見つかりません。"
 
 #: ../src/Views/GridView/GridView.vala:141
 msgid "%u album"
@@ -1011,7 +1019,9 @@ msgstr "プレイリストを更新しています。お待ちください。"
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr "プレイリストに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>プレイリストに追加</b>を選択します。"
+msgstr ""
+"プレイリストに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>プレ"
+"イリストに追加</b>を選択します。"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid "Edit Smart Playlist"
@@ -1024,8 +1034,9 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"このプレイリストは法則に合致する場所に自動的に移動させられます。これらの法則を修正するには、サイドバー上で<b>右クリック</b>をして、<b>編集</b"
-">をクリックします。必要に応じて、以下のボタンをクリックできます。"
+"このプレイリストは法則に合致する場所に自動的に移動させられます。これらの法則"
+"を修正するには、サイドバー上で<b>右クリック</b>をして、<b>編集</b>をクリック"
+"します。必要に応じて、以下のボタンをクリックできます。"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
@@ -1084,8 +1095,7 @@ msgid "No External Songs"
 msgstr "外部の曲がありません"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "ライブラリーではないこのデバイス上に曲は見つかりませんでした。"
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1140,7 +1150,7 @@ msgstr "プレイリストに追加"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
-msgstr "新しいプレイリスト..."
+msgstr "新しいプレイリスト…"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
@@ -1441,7 +1451,8 @@ msgstr "同期失敗"
 #: ../src/Views/DeviceSummaryWidget.vala:308
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
-msgstr "%s のプレイリストがデバイス %s との同期に使われていますが、見つかりません。"
+msgstr ""
+"%s のプレイリストがデバイス %s との同期に使われていますが、見つかりません。"
 
 #: ../src/Views/DeviceSummaryWidget.vala:320
 #: ../src/Views/DeviceSummaryWidget.vala:322
@@ -1451,7 +1462,8 @@ msgstr "同期出来ません"
 #: ../src/Views/DeviceSummaryWidget.vala:320
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr "ディスク容量が不足しているため、選択された設定ではデバイスと同期出来ません"
+msgstr ""
+"ディスク容量が不足しているため、選択された設定ではデバイスと同期出来ません"
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1553,7 +1565,7 @@ msgstr "<b>$ARTIST</b> の <b>$NAME</b> を $DEVICE から削除しています"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 #: ../plugins/Devices/iPod/iPodLibrary.vala:340
 msgid "Removing from <b>%s</b>…"
-msgstr "<b>%s</b> から削除しています..."
+msgstr "<b>%s</b> から削除しています…"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
@@ -1589,12 +1601,14 @@ msgstr "音楽フォルダが見つかりません"
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
-msgstr "CDを取り込む前に音楽フォルダがアクセス可能でマウントされているか確認してください。"
+msgstr ""
+"CDを取り込む前に音楽フォルダがアクセス可能でマウントされているか確認してくだ"
+"さい。"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
-msgstr "CD上で曲を見つけることができませんでした。曲をインポートすることはできません。"
+msgstr "CD上で曲を見つけることができませんでした。曲をインポートすることができません"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of a song from Audio CD finished."
@@ -1632,7 +1646,7 @@ msgstr "同期プロセスを終了しています…"
 #: ../plugins/Devices/iPod/iPodLibrary.vala:233
 #: ../plugins/Devices/iPod/iPodLibrary.vala:389
 msgid "Cancelling Sync…"
-msgstr "同期を取り消しています..."
+msgstr "同期を取り消しています…"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
@@ -1656,8 +1670,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"あなたのライブラリーの現在の曲に似た曲はありません。 すべての曲情報が正しいこと、インターネットに接続していることを確認してください。 "
-"一部の曲は一致しない場合があります。"
+"あなたのライブラリーの現在の曲に似た曲はありません。 すべての曲情報が正しいこ"
+"と、インターネットに接続していることを確認してください。 一部の曲は一致しない"
+"場合があります。"
 
 #~ msgid "Done"
 #~ msgstr "完了"
@@ -1683,18 +1698,15 @@ msgstr ""
 #~ msgid "Podcasts"
 #~ msgstr "ポッドキャスト"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s つ星の評価"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "全 %i 評価"
 
 #~ msgid "Track"
 #~ msgstr "トラック"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "%s と同様"
 
@@ -1719,7 +1731,6 @@ msgstr ""
 #~ msgid "Locate"
 #~ msgstr "見つける"
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>%s</b>から楽曲をライブラリに<b>取り込み中</b>。"
 
@@ -1739,7 +1750,8 @@ msgstr ""
 #~ msgstr "オーディオCDから楽曲を取り込む"
 
 #~ msgid "Please make sure that your music folder is accessible and mounted."
-#~ msgstr "音楽フォルダがマウントされており、アクセス可能である事を確認して下さい。"
+#~ msgstr ""
+#~ "音楽フォルダがマウントされており、アクセス可能である事を確認して下さい。"
 
 #~ msgid "Import media from device"
 #~ msgstr "デバイスからメディアを取り込む"
@@ -1753,15 +1765,14 @@ msgstr ""
 #~ msgid "All Podcasts"
 #~ msgstr "すべてのポッドキャスト"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s は既に取り込みを実行中です"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
-#~ msgstr "%s はCD内に楽曲を見つけることができなかったため、取り込むことができませんでした。"
+#~ msgstr ""
+#~ "%s はCD内に楽曲を見つけることができなかったため、取り込むことができません"
+#~ "でした。"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1770,18 +1781,15 @@ msgstr ""
 #~ msgid "CD Import Complete"
 #~ msgstr "CDの取り込みが完了しました"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s はオーディオCDからの %i 曲 の取り込みを完了しました。"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s はオーディオCDからの 1 曲 の取り込みを完了しました。"
 
 #~ msgid "Ripping track 1"
 #~ msgstr "トラック 1 をリッピング中"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "トラック %i を取り込み中"
 
@@ -1789,13 +1797,13 @@ msgstr ""
 #~ msgstr "ファイルをライブラリに追加しています..."
 
 #~ msgid "Rescanning music for changes. This may take a while..."
-#~ msgstr "楽曲の変更を再スキャンしています。この操作は少し時間がかかることがあります..."
+#~ msgstr ""
+#~ "楽曲の変更を再スキャンしています。この操作は少し時間がかかることがありま"
+#~ "す..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "%s から楽曲をライブラリに追加しています..."
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "%s から楽曲を取り込んでいます..."
 
@@ -1828,7 +1836,9 @@ msgstr ""
 #~ msgid ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
-#~ msgstr "Noise はすでにファイル操作を行っています。%s からインポートするこれらの操作が終わるまでお待ちください"
+#~ msgstr ""
+#~ "Noise はすでにファイル操作を行っています。%s からインポートするこれらの操"
+#~ "作が終わるまでお待ちください"
 
 #~ msgid "Lyrics"
 #~ msgstr "Lyrics"

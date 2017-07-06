@@ -6,16 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2017-01-20 11:43+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
@@ -1115,8 +1116,7 @@ msgid "No External Songs"
 msgstr "Nema vanjskih pjesama."
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Nema pronađenih pjesama na ovom uređaju a koje već nisu u vašoj fonoteci."
 
@@ -1789,8 +1789,8 @@ msgstr ""
 #~ msgstr "Uspješna prijava"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "Za dozvoljavanje Last.fm ugradnje morate dati prava za %s. Ovo se mora "
 #~ "učiniti jednom."
@@ -1828,11 +1828,9 @@ msgstr ""
 #~ msgid "Desktop Integration:"
 #~ msgstr "Integracija sa zaslonom:"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s se već uvozi"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Uvezi glazbu iz %s..."
 
@@ -1845,11 +1843,9 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Pretraživanje promjena u biblioteci glazbe. Ovo može potrajati..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Dodavanje glazbe iz %s u biblioteku..."
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s je dovršio uvoz %i pjesama sa Audio CD-a"
 
@@ -1898,7 +1894,6 @@ msgstr ""
 #~ msgid "is not"
 #~ msgstr "nije"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Ime %s se već koristi"
 
@@ -1917,7 +1912,6 @@ msgstr ""
 #~ msgid "Station"
 #~ msgstr "Stanica"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Ukloni %d %s iz %s?"
 
@@ -1930,21 +1924,18 @@ msgstr ""
 #~ msgid "1 album"
 #~ msgstr "1 album"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i stavki"
 
 #~ msgid "1 item"
 #~ msgstr "1 stavka"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i pjesama"
 
 #~ msgid "1 song"
 #~ msgstr "1 pjesma"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Slično %s"
 
@@ -1972,7 +1963,6 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Uvezi ovu pjesmu"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Uvezi %i pjesama"
 
@@ -1982,7 +1972,6 @@ msgstr ""
 #~ msgid "Device is already being synced."
 #~ msgstr "Uređaj se već sinkronizira."
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s zvijezda"
 
@@ -1992,22 +1981,18 @@ msgstr ""
 #~ msgid "1 day"
 #~ msgstr "1 dan"
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Uvoženje</b>glazbe iz <b>%s</b> u biblioteku."
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekundi"
 
 #~ msgid "1 second"
 #~ msgstr "1 sekunda"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dana"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i sati"
 
@@ -2017,22 +2002,18 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 sat"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minuta"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s i %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s i %s"
 
 #~ msgid "1 track"
 #~ msgstr "1 zapis"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i zapisa"
 

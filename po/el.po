@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2017-02-15 10:01+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,8 +21,7 @@ msgstr ""
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
-"Εισαγωγή του <b>$NAME</b> από τον/την <b>$ARTIST</b> στη βιβλιοθήκη..."
+msgstr "Εισαγωγή του <b>$NAME</b> από τον/την <b>$ARTIST</b> στη βιβλιοθήκη..."
 
 #: ../core/Utils/TimeUtils.vala:51 ../core/Utils/TimeUtils.vala:60
 msgid "%u second"
@@ -543,8 +543,7 @@ msgstr "Δεν ήταν δυνατή η φόρτωση %d στοιχείων α�
 
 #: ../src/Dialogs/NotImportedWindow.vala:56
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-"%s Αδύνατη η φόρτωση %d στοιχείων. Τα αρχεία μπορεί να είναι φθαρμένα."
+msgstr "%s Αδύνατη η φόρτωση %d στοιχείων. Τα αρχεία μπορεί να είναι φθαρμένα."
 
 #: ../src/Dialogs/NotImportedWindow.vala:59
 msgid "Move all corrupted files to trash"
@@ -945,10 +944,10 @@ msgid ""
 "first before the next song in the currently playing list."
 msgstr ""
 "Για να προσθέσετε τραγούδια στη σειρά αναμονής, κάνετε <b>δεξί κλικ</b> πάνω "
-"στο τραγούδι που επιθυμείτε να προσθέσετε και επιλέγετε <b>Σειρά "
-"αναμονής</b>. Όταν τελειώνει ένα τραγούδι, τα τραγούδια που βρίσκονται στη "
-"σειρά αναμονής θα αναπαραχθούν πριν από το επόμενο τραγούδι της τρέχουσας "
-"λίστας αναπαραγωγής."
+"στο τραγούδι που επιθυμείτε να προσθέσετε και επιλέγετε <b>Σειρά αναμονής</"
+"b>. Όταν τελειώνει ένα τραγούδι, τα τραγούδια που βρίσκονται στη σειρά "
+"αναμονής θα αναπαραχθούν πριν από το επόμενο τραγούδι της τρέχουσας λίστας "
+"αναπαραγωγής."
 
 #: ../src/LibraryWindow.vala:834
 msgid "No songs in History"
@@ -1115,8 +1114,7 @@ msgid "No External Songs"
 msgstr "Δεν υπάρχουν εξωτερικά τραγούδια"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "Όλα τα τραγούδια της συσκευής περιλαμβάνονται στη βιβλιοθήκη."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1712,7 +1710,6 @@ msgstr ""
 "Σιγουρευτείτε ότι όλες οι πληροφορίες τραγουδιού είναι σωστές και ότι είστε "
 "συνδεδεμένοι στο διαδίκτυο. Μερικά τραγούδια μπορεί να μην έχουν αντιστοιχία."
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr ""
 #~ "%s δεν μπόρεσε να βρει τραγούδια στο CD. Δεν έγινε εισαγωγή κανενός "
@@ -1724,14 +1721,12 @@ msgstr ""
 #~ msgid "No songs on CD"
 #~ msgstr "Δεν υπάρχουν τραγούδια στο CD"
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Προστείθεται μουσική από %s στη βιβλιοθήκη"
 
 #~ msgid "Adding files to library..."
 #~ msgstr "Προστείθονται αρχεία στη βιβλιοθήκη"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Εισαγωγή μουσικής από  %s..."
 
@@ -1766,7 +1761,6 @@ msgstr ""
 #~ msgid "Unknown Title"
 #~ msgstr "Άγνωστος Τίτλος"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s και %s"
 
@@ -1775,7 +1769,6 @@ msgstr ""
 #~ msgstr[0] "%d δευτερόλεπτo"
 #~ msgstr[1] "%d δευτερόλεπτα"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s και %s"
 
@@ -1806,7 +1799,6 @@ msgstr ""
 #~ msgid "Station"
 #~ msgstr "Σταθμός"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s από %s"
 
@@ -1899,7 +1891,8 @@ msgstr ""
 
 #~ msgid "There is not enough space on Device to complete the Sync…"
 #~ msgstr ""
-#~ "Δεν υπάρχει αρκετός χώρος στη συσκευή για την ολοκλήρωση του συγχρονισμού..."
+#~ "Δεν υπάρχει αρκετός χώρος στη συσκευή για την ολοκλήρωση του "
+#~ "συγχρονισμού..."
 
 #~ msgid ""
 #~ "The plugin for media type %s is not installed.\n"
@@ -1957,8 +1950,8 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Ήχος;Αναπαραγωγέας;MP3;Αναπαραγωγή;Λίστα;Πολυμέσα;Δίσκος;Τηλέφωνο;Τραγο"
-#~ "ύδια;"
+#~ "Noise;Ήχος;Αναπαραγωγέας;MP3;Αναπαραγωγή;Λίστα;Πολυμέσα;Δίσκος;Τηλέφωνο;"
+#~ "Τραγούδια;"
 
 #~ msgid "All Podcasts"
 #~ msgstr "όλες οι φορητές εκπομπές"
@@ -1970,17 +1963,18 @@ msgstr ""
 #~ msgstr "Ενσωμάτωση στο περιβάλλον εργασίας:"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Για να επιτραπεί η ενσωμάτωση με το Last.fm, θα πρέπει να δώσετε άδεια στο "
-#~ "%s. Αυτό χρειάζεται να το κάνετε μόνο μια φορά."
+#~ "Για να επιτραπεί η ενσωμάτωση με το Last.fm, θα πρέπει να δώσετε άδεια "
+#~ "στο %s. Αυτό χρειάζεται να το κάνετε μόνο μια φορά."
 
 #~ msgid "Last.fm Integration"
 #~ msgstr "Ενσωμάτωση με Last.fm"
 
 #~ msgid "Scrobbling Already Enabled"
-#~ msgstr "Το scrobbling (αυτόματη μετάδοση πληροφοριών) έχει ήδη ενεργοποιηθεί"
+#~ msgstr ""
+#~ "Το scrobbling (αυτόματη μετάδοση πληροφοριών) έχει ήδη ενεργοποιηθεί"
 
 #~ msgid "Cancelling Sync"
 #~ msgstr "Ακύρωση συγχρονισμού"

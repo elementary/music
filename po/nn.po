@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2015-12-21 13:42+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Norwegian Nynorsk <nn@li.org>\n"
+"Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
-"Language: nn\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -1103,8 +1103,7 @@ msgid "No External Songs"
 msgstr "Ingen eksterne songar"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "Fann ingen songar på enheiten som ikkje var i biblioteket ditt."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1522,8 +1521,7 @@ msgstr "Ingen filer ble importert."
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
-"Søkjer på nytt etter musikk for endringar. Dette kan teke ei stund..."
+msgstr "Søkjer på nytt etter musikk for endringar. Dette kan teke ei stund..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
@@ -1636,8 +1634,7 @@ msgstr ""
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"Importering av CD vil bli <b>avslutta</b> etter gjeldande importering."
+msgstr "Importering av CD vil bli <b>avslutta</b> etter gjeldande importering."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:377
 msgid "An error occured during the Import of this CD"
@@ -1750,7 +1747,6 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " på "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Importerar</b> musikk frå <b>%s</b> til bibliotek."
 
@@ -1766,7 +1762,6 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Importer musikk frå ein enheit"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Importerar musikk frå %s..."
 
@@ -1776,7 +1771,6 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Leitar etter endringar i musikken. Dette kan ta litt tid..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Legg til musikk frå %s til biblioteket..."
 
@@ -1798,23 +1792,24 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Avbrytar importeringa"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
-#~ "Synkroniseringa med enheiten har blitt avbrote. Stoppar etter dette mediaet."
+#~ "Synkroniseringa med enheiten har blitt avbrote. Stoppar etter dette "
+#~ "mediaet."
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
 #~ "Importeringa frå enheiten har vorte avbrote. Stoppar etter dette mediaet."
 
 #~ msgid "1 Star"
 #~ msgstr "1 stjerne"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s stjerner"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Alle %i vurderingar"
 
@@ -1842,41 +1837,35 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Importer denne songen"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Importer %i songar"
 
 #~ msgid "All Podcasts"
 #~ msgstr "Alle podkastar"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s fann ingen liknande songar på %s av %s i biblioteket ditt. Sjekk at du er "
-#~ "kopla til internett og at song informasjonen er rett."
+#~ "%s fann ingen liknande songar på %s av %s i biblioteket ditt. Sjekk at du "
+#~ "er kopla til internett og at song informasjonen er rett."
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s av %s"
 
 #~ msgid "Device is already being synced."
 #~ msgstr "Enheiten vert allereie synkronisert"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Leitar etter liknande songar på %s av %s"
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "Leitar etter liknande songar"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Liknar på %s"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
@@ -1886,15 +1875,13 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Alle songane på denne enheiten er allereie i biblioteket ditt."
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s finn ikkje musikken din."
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "I denne visninga, finn %s liknande songar som den du spelar heilt "
 #~ "automatisk. Du kan velga om du vil spele forslaga eller lagre dei i ei "
@@ -1939,8 +1926,8 @@ msgstr ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
 #~ msgstr ""
-#~ "Noise gjennomførar allereie filoperasjonar. Ver vennleg og vent til desse er "
-#~ "ferdig importert frå %d"
+#~ "Noise gjennomførar allereie filoperasjonar. Ver vennleg og vent til desse "
+#~ "er ferdig importert frå %d"
 
 #~ msgid "Date Released"
 #~ msgstr "Dato for utgjeving"
@@ -1997,7 +1984,6 @@ msgstr ""
 #~ msgid "Required GStreamer plugin not installed"
 #~ msgstr "Den nødvendige GStreamer-utvidinga er ikkje installert"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Namnet %s er allereie i bruk"
 
@@ -2012,7 +1998,6 @@ msgstr ""
 #~ msgid "No songs on CD"
 #~ msgstr "Ingen songar på plata"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s fann ikkje innholdet på denne lydplata"
 
@@ -2026,8 +2011,8 @@ msgstr ""
 #~ msgstr "Skråbbling allereie på"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "For å tillate Last.fm intergrasjon må du gje løyve til %s. Du treng ikkje "
 #~ "gjere fleire gonger"

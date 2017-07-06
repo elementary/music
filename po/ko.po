@@ -6,21 +6,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-19 20:15+0000\n"
+"PO-Revision-Date: 2017-04-21 10:15+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
-"Language-Team: Korean <ko@li.org>\n"
+"Language-Team: Korean <https://l10n.elementary.io/projects/music/music/ko/>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "<b>$NAME</b> (<b>$ARTIST</b>)를 가져오는 중..."
+msgstr "<b>$NAME</b> (<b>$ARTIST</b>)를 가져오는 중…"
 
 #: ../core/Utils/TimeUtils.vala:51 ../core/Utils/TimeUtils.vala:60
 msgid "%u second"
@@ -257,11 +258,11 @@ msgstr "제거"
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr "내보내기..."
+msgstr "내보내기…"
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr "편집..."
+msgstr "편집…"
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
@@ -521,7 +522,9 @@ msgstr "음악 폴더를 설정하시겠습니까?"
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
-msgstr "정말로 음악 폴더를 %s로 이동시키시겠습니까? 계속하면 라이브러리를 재설정하고, 재생목록을 제거할 것입니다."
+msgstr ""
+"정말로 음악 폴더를 %s로 이동시키시겠습니까? 계속하면 라이브러리를 재설정하"
+"고, 재생목록을 제거할 것입니다."
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 #: ../src/Dialogs/FileNotFoundDialog.vala:124
@@ -539,7 +542,7 @@ msgstr "%s가 %d개의 항목을 가져오지 못했습니다. 파일이 손상�
 
 #: ../src/Dialogs/NotImportedWindow.vala:59
 msgid "Move all corrupted files to trash"
-msgstr "모든 손상된 파일을 휴지통으로 버립니다."
+msgstr "모든 손상된 파일을 휴지통으로 옮깁니다"
 
 #: ../src/Dialogs/NotImportedWindow.vala:64
 #: ../src/Dialogs/RemoveFilesDialog.vala:50
@@ -560,11 +563,11 @@ msgstr "파일 위치"
 
 #: ../src/Dialogs/NotImportedWindow.vala:101
 msgid "Select individual files to move to trash:"
-msgstr "휴지통으로 옮길 파일을 선택하세요."
+msgstr "휴지통으로 옮길 파일을 선택하세요:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
-msgstr "음악 폴더 선택..."
+msgstr "음악 폴더 선택…"
 
 #: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
 msgid "Preferences"
@@ -639,7 +642,9 @@ msgstr "%s로부터 미디어 불러들이기"
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
-msgstr "다음 파일들이 %s에서 발견되었지만, 라이브러리에 존재하지 않습니다. 불러들이고 싶은 모든 파일들을 체크해주십시오."
+msgstr ""
+"다음 파일들이 %s에서 발견되었지만, 라이브러리에 존재하지 않습니다. 불러들이"
+"고 싶은 모든 파일들을 체크해주십시오."
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import all media"
@@ -695,7 +700,9 @@ msgstr "가져올 수 없습니다"
 msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
-msgstr "노이즈가 이미 파일 작업 중입니다. %s에서 가져오기가 마무리될 때까지 기다려주세요"
+msgstr ""
+"노이즈가 이미 파일 작업 중입니다. %s에서 가져오기가 마무리될 때까지 기다려주"
+"세요"
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -716,7 +723,9 @@ msgid ""
 msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
-msgstr[0] "이 작업은 라이브러리와 %s에 자동으로 동기화되는 장비의 모든 곡들을 제거하게 됩니다."
+msgstr[0] ""
+"이 작업은 라이브러리와 %s에 자동으로 동기화되는 장비의 모든 곡들을 제거하게 "
+"됩니다."
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
@@ -735,11 +744,12 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"동기화를 진행할 경우 동기화 목록에 있지않은 미디어들은 %s에서 제거됩니다. 이 미디어들을 라이브러리에 먼저 가져오시겠습니까?"
+"동기화를 진행할 경우 동기화 목록에 있지않은 미디어들은 %s에서 제거됩니다. 이 "
+"미디어들을 라이브러리에 먼저 가져오시겠습니까?"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
-msgstr "동기화를 진행하면 %i개 항목을 %s로부터 제거할 것입니다."
+msgstr "동기화를 진행하면 %i개 항목을 %s에서 제거하게 됩니다"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:75
 msgid "Sync will remove 1 item from %s"
@@ -892,7 +902,7 @@ msgstr "kbps"
 
 #: ../src/LibraryWindow.vala:269
 msgid "Import to Library…"
-msgstr "라이브러리로 가져오기"
+msgstr "라이브러리로 가져오기…"
 
 #: ../src/LibraryWindow.vala:289
 msgid "Previous"
@@ -925,8 +935,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"재생 목록에 음악을 추가하기 위해서, 항목 위에 <b>오른쪽 클릭</b> 버튼을 누르고 <b>재생 목록으로</b>를 선택하세요. 음악이 "
-"끝날 때, 재생 목록에 추가된 음악들이 현재 재생 중인 목록의 다음 음악보다 먼저 재생될 것입니다."
+"재생 목록에 음악을 추가하기 위해서, 항목 위에 <b>오른쪽 클릭</b> 버튼을 누르"
+"고 <b>재생 목록으로</b>를 선택하세요. 음악이 끝날 때, 재생 목록에 추가된 음악"
+"들이 현재 재생 중인 목록의 다음 음악보다 먼저 재생될 것입니다."
 
 #: ../src/LibraryWindow.vala:834
 msgid "No songs in History"
@@ -939,7 +950,8 @@ msgid ""
 "current session."
 msgstr ""
 "음악의 일부가 재생된 후에는, 기록에 추가됩니다.\n"
-"이 리스트를 사용하여 현재 세션에서 당신이 재생했던 모든 음악들을 볼 수 있습니다."
+"이 리스트를 사용하여 현재 세션에서 당신이 재생했던 모든 음악들을 볼 수 있습니"
+"다."
 
 #: ../src/LibraryWindow.vala:985
 msgid "Pause"
@@ -960,7 +972,7 @@ msgstr "%s이 라이브러리에 추가되었습니다."
 
 #: ../src/FileOperator.vala:317
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>음악 폴더</b>에 파일 <b>복사 중...</b>"
+msgstr "<b>음악 폴더</b>에 파일 <b>복사 중</b>…"
 
 #: ../src/Views/GridView/GridView.vala:44
 msgid "No Albums Found."
@@ -1011,7 +1023,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"음악들을 이 재생목록에 추가하기 위해, 항목 위에 <b>오른쪽 클릭</b>을 누른 후 <b>재생목록에 추가</b>를 선택하십시오."
+"음악들을 이 재생목록에 추가하기 위해, 항목 위에 <b>오른쪽 클릭</b>을 누른 후 "
+"<b>재생목록에 추가</b>를 선택하십시오."
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid "Edit Smart Playlist"
@@ -1024,8 +1037,9 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"이 재생목록들은 자동적으로 규칙에 맞는 음악들로 채워질 것입니다. 이 규칙들을 수정하기 위해서, <b>오른쪽 클릭</b> 을 사이드바 "
-"위에서 누른 후, <b>수정</b>을 누르십시오. 다른 방법으로는, 아래에 있는 버튼을 클릭할 수 있습니다."
+"이 재생목록들은 자동적으로 규칙에 맞는 음악들로 채워질 것입니다. 이 규칙들을 "
+"수정하기 위해서, <b>오른쪽 클릭</b> 을 사이드바 위에서 누른 후, <b>수정</b>"
+"을 누르십시오. 다른 방법으로는, 아래에 있는 버튼을 클릭할 수 있습니다."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
@@ -1050,7 +1064,7 @@ msgstr "음악을 폴더, 네트워크, 혹은 외장 장치에서 가져옵니�
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
 msgid "Import your Music"
-msgstr "음악을 불러오십시오."
+msgstr "음악을 가져오세요"
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
@@ -1069,7 +1083,7 @@ msgstr "%s, %s, %s"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Cancelling…"
-msgstr "취소중..."
+msgstr "취소하고 있습니다…"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Device operation has been cancelled and will stop after this media."
@@ -1084,9 +1098,9 @@ msgid "No External Songs"
 msgstr "외부 음악 없음"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr "라이브러리에 추가되어 있지 않은 다른 노래가 장치에서 발견되지 않았습니다."
+msgid "There were no songs found on this device that are not in your library."
+msgstr ""
+"라이브러리에 추가되어 있지 않은 다른 노래가 장치에서 발견되지 않았습니다."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
 msgid "Autosize Columns"
@@ -1140,11 +1154,11 @@ msgstr "재생목록에 추가"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
-msgstr "새로운 재생목록..."
+msgstr "새로운 재생목록…"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
-msgstr "%i (%i개 중) 개의 선택 된 곡을 불러들입니다."
+msgstr "%i (%i개 중) 개의 선택된 곡을 가져옵니다"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:229
 msgid "Import %i song"
@@ -1441,7 +1455,8 @@ msgstr "동기화 실패"
 #: ../src/Views/DeviceSummaryWidget.vala:308
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
-msgstr "재생목록 '%s'가 장치 %s를 동기화하기 위해 사용되지만, 찾을 수 없습니다."
+msgstr ""
+"재생목록 '%s'가 장치 %s를 동기화하기 위해 사용되지만, 찾을 수 없습니다."
 
 #: ../src/Views/DeviceSummaryWidget.vala:320
 #: ../src/Views/DeviceSummaryWidget.vala:322
@@ -1451,7 +1466,7 @@ msgstr "동기화할 수 없음"
 #: ../src/Views/DeviceSummaryWidget.vala:320
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr "현재 설정으로 동기화를 진행할 수 없습니다. 디스크에 용량이 부족합니다."
+msgstr "현재 설정으로 동기화를 진행할 수 없습니다. 디스크에 용량이 부족합니다"
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1480,15 +1495,15 @@ msgstr "재생 기록"
 
 #: ../src/LocalBackend/LocalLibrary.vala:182
 msgid "Importing music from %s…"
-msgstr "%s로부터 음악 불러들이는 중..."
+msgstr "%s에서 음악을 가져오고 있습니다…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:210
 msgid "Adding files to library…"
-msgstr "라이브러리에 파일을 추가하는 중입니다..."
+msgstr "라이브러리에 파일을 추가하고 있습니다…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr "음악을 라이브러리에 </b>불러오는 중...</b>"
+msgstr "음악을 라이브러리에 <b>불러오는 중</b>…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:249
 msgid "All music files are already in your library"
@@ -1500,7 +1515,7 @@ msgstr "아무 파일도 불러오지 않았습니다."
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "추가된 노래를 찾고 있습니다. 잠시만 기다려주세요."
+msgstr "바뀐 음악을 확인하고 있습니다. 잠시만 기다려주세요…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
@@ -1538,22 +1553,22 @@ msgstr "최근 재생하지 않은 항목"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 #: ../plugins/Devices/iPod/iPodLibrary.vala:151
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "<b>$ARTIST</b>의 <b>$NAME<b>을 $DEVICE로 추가합니다."
+msgstr "<b>$ARTIST</b>의<b>$NAME</b> $DEVICE에 추가합니다"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/iPod/iPodLibrary.vala:199
 msgid "Syncing <b>%s</b>…"
-msgstr "<b>%s</b>를 동기화하는 중..."
+msgstr "<b>%s</b>를 동기화 중입니다…"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 #: ../plugins/Devices/iPod/iPodLibrary.vala:533
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "$DEVICE에서 <b>$ARTIST</b>의 <b>$NAME</b>를 삭제합니다."
+msgstr "$DEVICE에서 <b>$ARTIST</b>의 <b>$NAME</b>를 삭제합니다"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 #: ../plugins/Devices/iPod/iPodLibrary.vala:340
 msgid "Removing from <b>%s</b>…"
-msgstr "<b>%s</b>에서 제거 중..."
+msgstr "<b>%s</b>에서 제거 중입니다…"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
@@ -1589,7 +1604,9 @@ msgstr "음악 폴더를 찾을 수 없음"
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
-msgstr "CD를 가져오기전에 음악 폴더에 접근할 수 있는지와 마운트 했는지를 확인해주십시오."
+msgstr ""
+"CD를 가져오기전에 음악 폴더에 접근할 수 있는지와 마운트 했는지를 확인해주십시"
+"오."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
@@ -1627,12 +1644,12 @@ msgstr "CD를 불러오는 도중 오류가 발생했습니다."
 #: ../plugins/Devices/iPod/iPodLibrary.vala:221
 #: ../plugins/Devices/iPod/iPodLibrary.vala:377
 msgid "Finishing sync process…"
-msgstr "동기화 완료 중..."
+msgstr "동기화를 마무리하고 있습니다…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:233
 #: ../plugins/Devices/iPod/iPodLibrary.vala:389
 msgid "Cancelling Sync…"
-msgstr "동기화 취소 중..."
+msgstr "동기화 취소 중…"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
@@ -1656,10 +1673,10 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"라이브러리에 있는 곡과 유사한 곡들을 찾지 못 하였습니다. 곡 정보가 정확한지, 그리고 인터넷에 연결되어있는지 확인해주세요. 어느 곡들은 "
-"일치하는 결과가 없을수도 있습니다."
+"라이브러리에 있는 곡과 유사한 곡들을 찾지 못 하였습니다. 곡 정보가 정확한지, "
+"그리고 인터넷에 연결되어있는지 확인해주세요. 어느 곡들은 일치하는 결과가 없을"
+"수도 있습니다."
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "%s로부터 음악을 가져오는 중입니다..."
 
@@ -1678,7 +1695,6 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "음악을 재검색하고 있습니다.. 잠시 기다려주세요.."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "%s로부터 라이브러리에 음악을 추가하는 중입니다..."
 
@@ -1706,7 +1722,6 @@ msgstr ""
 #~ msgid "Unknown Title"
 #~ msgstr "알 수 없는 제목"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s와 %s"
 
@@ -1714,15 +1729,16 @@ msgstr ""
 #~ msgid_plural "%d seconds"
 #~ msgstr[0] "%d 초"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s, %s"
 
 #~ msgid "Cancelling Sync"
 #~ msgstr "동기화 취소 중"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
-#~ msgstr "장치 동기화가 취소되었습니다. 이 미디어 이후에 활동이 중지될 것입니다."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgstr ""
+#~ "장치 동기화가 취소되었습니다. 이 미디어 이후에 활동이 중지될 것입니다."
 
 #~ msgid "Listen to music"
 #~ msgstr "음악 듣기"
@@ -1731,8 +1747,11 @@ msgstr ""
 #~ msgstr "음악 재생기"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
-#~ msgstr "장치로부터 가져오기가 취소되었습니다. 이 미디어 이후에 활동이 중지될 것입니다."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
+#~ msgstr ""
+#~ "장치로부터 가져오기가 취소되었습니다. 이 미디어 이후에 활동이 중지될 것입"
+#~ "니다."
 
 #~ msgid "Cancelling Import"
 #~ msgstr "가져오기 취소 중"
@@ -1740,7 +1759,6 @@ msgstr ""
 #~ msgid "Device is already being synced."
 #~ msgstr "장치가 이미 동기화되고 있습니다."
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s 가 음악을 찾지 못하고 있습니다."
 
@@ -1789,9 +1807,11 @@ msgstr ""
 #~ msgstr "라이브러리 관리:"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
-#~ msgstr "Last.fm을 통합하려면 %s에게 권한을 주어야합니다. 이 행동은 한번만 하시면 됩니다."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
+#~ msgstr ""
+#~ "Last.fm을 통합하려면 %s에게 권한을 주어야합니다. 이 행동은 한번만 하시면 "
+#~ "됩니다."
 
 #~ msgid "Give %s Permission"
 #~ msgstr "%s에게 권한 주기"
@@ -1808,7 +1828,9 @@ msgstr ""
 #~ msgid ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
-#~ msgstr "이미 파일 작업 중입니다. %d에서 가져오시려면 작업이 끝날때까지 기다려주세요."
+#~ msgstr ""
+#~ "이미 파일 작업 중입니다. %d에서 가져오시려면 작업이 끝날때까지 기다려주세"
+#~ "요."
 
 #~ msgid "Lyrics"
 #~ msgstr "가사"

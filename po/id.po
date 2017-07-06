@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-07-12 21:48+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Indonesian <id@li.org>\n"
+"PO-Revision-Date: 2017-05-11 20:52+0000\n"
+"Last-Translator: Akbar Hamaminatu <agusmurwanto50@gmail.com>\n"
+"Language-Team: Indonesian "
+"<https://l10n.elementary.io/projects/music/music/id/>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
-"Language: id\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -81,7 +82,7 @@ msgstr "%Y/%m/%e %k:%M"
 
 #: ../core/Utils/PlaylistsUtils.vala:96
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: ../core/Utils/PlaylistsUtils.vala:236
 msgid "New playlist"
@@ -611,8 +612,7 @@ msgstr "Berkas tak ditemukan"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:59
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
-"File musik untuk <b>% s </ b> oleh <b>% s </ b> tidak dapat ditemukan."
+msgstr "File musik untuk <b>% s </ b> oleh <b>% s </ b> tidak dapat ditemukan."
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:62
 msgid "%i music files could not be found?"
@@ -1098,8 +1098,7 @@ msgid "No External Songs"
 msgstr "Tidak Ada Lagu Eksternal"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Ada lagu-lagu yang ditemukan pada perangkat yang tidak ada dalam pustaka "
 "Anda."
@@ -1722,7 +1721,6 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Impor beberapa lagu dari CD audio"
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>sedang mengimpor</b> musik dari <b>%s</b> ke pustaka."
 
@@ -1741,18 +1739,15 @@ msgstr ""
 #~ msgid "Export..."
 #~ msgstr "Ekspor..."
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s bintang"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Semua Peringkat %i"
 
 #~ msgid "#"
 #~ msgstr "#"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Sama seperti %s"
 
@@ -1841,8 +1836,8 @@ msgstr ""
 #~ "You must wait until previous file operations finish before setting your "
 #~ "music folder"
 #~ msgstr ""
-#~ "Anda harus menunggu hingga operasi file sebelumnya selesai sebelum mengatur "
-#~ "folder musik anda"
+#~ "Anda harus menunggu hingga operasi file sebelumnya selesai sebelum "
+#~ "mengatur folder musik anda"
 
 #~ msgid "Audiobook"
 #~ msgstr "Buku audio"
@@ -1862,7 +1857,6 @@ msgstr ""
 #~ msgid "Try again"
 #~ msgstr "Coba lagi"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Lirik tidak ditemukan untuk \"%s\" oleh \"%s\""
 
@@ -1881,11 +1875,9 @@ msgstr ""
 #~ msgid "Album Artist"
 #~ msgstr "Artis Album"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Hapus %d %s dari %s?"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s oleh %s"
 
@@ -1901,18 +1893,15 @@ msgstr ""
 #~ msgid "Hide Equalizer"
 #~ msgstr "Sembunyikan Ekualiser"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Mengubah %s oleh %s"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s sudah mulai mengimpor"
 
 #~ msgid "Pulser"
 #~ msgstr "Pulser"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1922,22 +1911,19 @@ msgstr ""
 #~ msgid "Equalizer"
 #~ msgstr "Ekualiser"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i hari"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Untuk integrasi Last.fm, Anda harus memberi izin pada %s. Anda hanya perlu "
-#~ "melakukan ini satu kali."
+#~ "Untuk integrasi Last.fm, Anda harus memberi izin pada %s. Anda hanya "
+#~ "perlu melakukan ini satu kali."
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "Nampaknya %s tidak dapat menemukan musik Anda."
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s tidak dapat membaca isi CD Suara"
 
@@ -1950,7 +1936,6 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Podcast yang belum pernah didengar"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i jam"
 
@@ -1960,18 +1945,15 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 jam"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i menit"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Mengimpor musik dari %s..."
 
 #~ msgid "Adding files to library..."
 #~ msgstr "Menambah berkas ke pustaka..."
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
@@ -1981,11 +1963,9 @@ msgstr ""
 #~ msgid "Could not find media file"
 #~ msgstr "Tidak dapat menemukan berkas media"
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Menambah musik dari %s ke pustaka..."
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
@@ -1995,21 +1975,18 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Semua lagu di perangkat ini sudah ada di pustaka Anda."
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i item"
 
 #~ msgid "1 item"
 #~ msgstr "1 item"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i lagu"
 
 #~ msgid "1 song"
 #~ msgstr "1 lagu"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Nama %s sudah digunakan"
 
@@ -2019,15 +1996,14 @@ msgstr ""
 #~ msgid "Click on the button to edit playlist rules"
 #~ msgstr "Klik tombol untuk menyunting aturan daftar putar"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
-#~ "Dalam tinjauan ini, %s akan menemukan secara otomatis lagu-lagu yang serupa "
-#~ "dengan yang sedang diputar. Kemudian Anda bisa mulai memutar lagu-lagu itu, "
-#~ "atau menyimpannya sebagai sebuah daftar putar."
+#~ "Dalam tinjauan ini, %s akan menemukan secara otomatis lagu-lagu yang "
+#~ "serupa dengan yang sedang diputar. Kemudian Anda bisa mulai memutar lagu-"
+#~ "lagu itu, atau menyimpannya sebagai sebuah daftar putar."
 
 #~ msgid "Cancelling Sync"
 #~ msgstr "Membatalkan Sinkronisasi"
@@ -2035,26 +2011,24 @@ msgstr ""
 #~ msgid "Similar Song View"
 #~ msgstr "Tinjau Lagu Serupa"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Mencari lagu-lagu yang serupa dengan %s melalui %s"
 
 #~ msgid "1 track"
 #~ msgstr "1 lagu"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i lagu"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Impor %i lagu"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
-#~ "Impor dari perangkat telah dibatalkan. Operasi akan berhenti setelah media "
-#~ "berikut."
+#~ "Impor dari perangkat telah dibatalkan. Operasi akan berhenti setelah "
+#~ "media berikut."
 
 #~ msgid "Import this song"
 #~ msgstr "Impor lagu ini"
@@ -2065,31 +2039,27 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Membatalkan Impor"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
-#~ "Sinkronisasi Perangkat telah dibatalkan. Operasi akan berhenti setelah media "
-#~ "berikut."
+#~ "Sinkronisasi Perangkat telah dibatalkan. Operasi akan berhenti setelah "
+#~ "media berikut."
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s detik"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s dan %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s, dan %s"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "%s tak menemukan lagu dalam CD. Tak ada lagu yang diimpor."
 
 #~ msgid "No songs on CD"
 #~ msgstr "Tak ada lagu dalam CD"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s selesai mengimpor %i lagu dari Audio CD."
 
@@ -2102,7 +2072,6 @@ msgstr ""
 #~ msgid "Ripping track 1"
 #~ msgstr "Merenggut trek 1"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Mengimpor trek %i"
 
@@ -2125,11 +2094,10 @@ msgstr ""
 #~ msgid "Required GStreamer plugin not installed"
 #~ msgstr "Pengaya GStreamer tak terpasang"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
 #~ "%s tidak dapat menemukan lagu yang sama dengan %s oleh %s di pustaka. "
 #~ "Pastikan semua informasi lagu sudah benar dan anda tersambung dengan "
@@ -2138,7 +2106,6 @@ msgstr ""
 #~ msgid "%i kbps"
 #~ msgstr "%i kbps"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -2149,7 +2116,6 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Memindai ulang perubahan. Mungkin makan waktu..."
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s selesai mengimpor sebuah lagu dari Audio CD."
 
@@ -2182,8 +2148,8 @@ msgstr ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
 #~ msgstr ""
-#~ "Noise sedang melakukan operasi berkas. Mohon tunggu hingga selesai mengimpor "
-#~ "dari %d"
+#~ "Noise sedang melakukan operasi berkas. Mohon tunggu hingga selesai "
+#~ "mengimpor dari %d"
 
 #~ msgid "Music Folder Location:"
 #~ msgstr "Lokasi Folder Musik"

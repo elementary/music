@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2015-12-21 13:45+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Luxembourgish <lb@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1091,8 +1092,7 @@ msgid "No External Songs"
 msgstr ""
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1687,7 +1687,6 @@ msgstr ""
 #~ msgid "Music Player"
 #~ msgstr "Musekspiller"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Musek vun %s gëtt importéiert ..."
 
@@ -1707,11 +1706,11 @@ msgstr ""
 #~ msgid "Do Nothing"
 #~ msgstr "Näischt maachen"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
-#~ "D'Musekdatei fir %s vun %s konnt net fonnt ginn. Wat géigt dir gäre maachen?"
+#~ "D'Musekdatei fir %s vun %s konnt net fonnt ginn. Wat géigt dir gäre "
+#~ "maachen?"
 
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i Dateie konnte net fonnt ginn. Wat géigt dir gäre maachen?"
@@ -1726,8 +1725,8 @@ msgstr ""
 #~ "You must wait until previous file operations finish before setting your "
 #~ "music folder"
 #~ msgstr ""
-#~ "Dir musst op d'Enn vun Dateioperatiounen waarden, éier dir de Musekuerdner "
-#~ "festleeë kënnt"
+#~ "Dir musst op d'Enn vun Dateioperatiounen waarden, éier dir de "
+#~ "Musekuerdner festleeë kënnt"
 
 #~ msgid "Write metadata to file"
 #~ msgstr "Metadaten an Datei schreiwen"
@@ -1735,7 +1734,6 @@ msgstr ""
 #~ msgid "Lyrics"
 #~ msgstr "Liddtext"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Beaarbechten %s vun %s"
 
@@ -1766,7 +1764,6 @@ msgstr ""
 #~ msgid "Lyrics not found for %s"
 #~ msgstr "Kee Liddtext fir %s fonnt"
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Musek vun %s bäi d'Sammlung derbäimaachen"
 
