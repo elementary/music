@@ -45,22 +45,8 @@ public class Noise.App : Granite.Application {
         program_name = _(Build.APP_NAME);
         exec_name = "noise";
 
-        app_copyright = "2012-2016";
         application_id = "org.pantheon.noise";
-        app_icon = "multimedia-audio-player";
         app_launcher = "org.pantheon.noise.desktop";
-        app_years = "2012-2016";
-
-        main_url = "https://github.com/elementary/music";
-        bug_url = "https://github.com/elementary/music/issues";
-        help_url = "https://elementary.io/help/noise";
-        translate_url = "https://l10n.elementary.io/projects/music";
-
-        about_authors = {"Corentin Noël <corentin@elementary.io>",
-                         "Scott Ringwelski <sgringwe@mtu.edu>", null};
-
-        about_artists = {"Daniel Foré <daniel@elementary.io>", null};
-        about_translators = _("translator-credits");
         
         var present_action = new SimpleAction ("app.present", null);
         present_action.activate.connect (() => {

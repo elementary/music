@@ -12,8 +12,3 @@ StartupNotify=true
 _Keywords=Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;
 X-GNOME-UsesNotifications=true
 X-PulseAudio-Properties=media.role=music
-Actions=AboutDialog;
-
-[Desktop Action AboutDialog]
-Exec=noise --about
-_Name=About @APP_NAME@
