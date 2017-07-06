@@ -55,9 +55,10 @@
         <library>libnoise-core.so.0</library>
     </provides>
     <developer_name>elementary LLC.</developer_name>
-    <url type="homepage">http://elementary.io/</url>
-    <url type="bugtracker">https://bugs.launchpad.net/noise</url>
+    <url type="homepage">https://elementary.io/</url>
+    <url type="bugtracker">https://github.com/elementary/music/issues</url>
     <url type="donation">https://elementary.io/get-involved#funding</url>
     <url type="help">https://elementaryos.stackexchange.com/questions/tagged/noise</url>
+    <url type="translate">https://l10n.elementary.io/projects/music</url>
     <update_contact>contact_at_elementary.io</update_contact>
 </component>
