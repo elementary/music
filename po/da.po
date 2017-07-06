@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-05-23 21:38+0000\n"
+"PO-Revision-Date: 2017-07-01 22:11+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://l10n.elementary.io/projects/music/music/da/>\n"
 "Language: da\n"
@@ -110,7 +110,7 @@ msgstr "Eksportér afspilningsliste"
 #: ../src/Dialogs/SmartPlaylistEditor.vala:118 ../src/LibraryWindow.vala:1066
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:131
 msgid "Cancel"
-msgstr "Annullér"
+msgstr "Annuller"
 
 #: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
