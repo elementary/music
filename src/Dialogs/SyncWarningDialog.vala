@@ -33,9 +33,9 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
         STOP
     }
 
-    Device d;
-    Gee.TreeSet<Media> to_sync = new Gee.TreeSet<Media> ();
-    Gee.TreeSet<Media> to_remove = new Gee.TreeSet<Media> ();
+    public Device device { get; construct; }
+    public Gee.TreeSet<Media> to_sync { get; construct; }
+    public Gee.TreeSet<Media> to_remove { get; construct; }
 
     Gtk.Widget import_media_button;
     Gtk.Widget continue_button;
@@ -46,7 +46,6 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
         modal = true;
         transient_for = App.main_window;
         destroy_with_parent = true;
-
         set_default_size (475, -1);
         resizable = false;
         border_width = 20;
@@ -59,12 +58,6 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
 
         import_media_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
         continue_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
-    }
-
-    public SyncWarningDialog (Device d, Gee.Collection<Media> to_sync, Gee.Collection<Media> removed) {
-        this.d = d;
-        this.to_sync.add_all (to_sync);
-        this.to_remove.add_all (removed);
 
         Gtk.Box content = get_content_area ();
         content.spacing = 10;
@@ -79,29 +72,30 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
         info.halign = Gtk.Align.START;
 
         info.set_line_wrap (true);
-        var info_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + Markup.escape_text (d.getDisplayName ()) + "</b>");
+        var info_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + Markup.escape_text (device.getDisplayName ()) + "</b>");
         info.set_markup (info_text);
 
         // be a bit explicit to make translations better
-        string title_text = ngettext ("Sync will remove 1 item from %s".printf (to_remove.size, d.getDisplayName ()),
-                                      "Sync will remove %i items from %s".printf (d.getDisplayName ()),
-                                      to_remove.size);
+        var title_text = ngettext ("Sync will remove %i item from %s", "Sync will remove %i items from %s", to_remove.size)
+                                .printf (to_remove.size, device.getDisplayName ());
 
-        string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";
+        var MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";
         var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));
         title.set_markup (title_string);
 
         /* set up controls layout */
-        var information = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        var information_text = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        information.pack_start (warning, false, false, 10);
-        information_text.pack_start (title, false, true, 10);
-        information_text.pack_start (info, false, true, 0);
-        information.pack_start (information_text, true, true, 10);
-
+        var information = new Gtk.Grid ();
+        information.column_spacing = 10;
+        information.attach (warning, 0, 0, 1, 2);
+        information.attach (title, 1, 0);
+        information.attach (info, 1, 1);
         content.pack_start (information, false, true, 0);
 
         show_all ();
+    }
+
+    public SyncWarningDialog (Device d, Gee.TreeSet<Media> to_sync, Gee.TreeSet<Media> removed) {
+        Object (device: d, to_sync: to_sync, to_remove: removed);
     }
 
     public void on_response (Gtk.Dialog src, int id) {
@@ -113,7 +107,7 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
                 this.destroy ();
                 break;
             case ResponseId.CONTINUE:
-                d.synchronize ();
+                device.synchronize ();
                 this.destroy ();
                 break;
             case ResponseId.STOP:
