@@ -61,7 +61,7 @@ public class Noise.App : Granite.Application {
 
         about_artists = {"Daniel Foré <daniel@elementary.io>", null};
         about_translators = _("translator-credits");
-
+        
         var present_action = new SimpleAction ("app.present", null);
         present_action.activate.connect (() => {
             if (main_window != null) {
