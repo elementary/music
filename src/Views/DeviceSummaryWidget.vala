@@ -346,7 +346,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                             swd.destroy ();
                             break;
                         case SyncWarningDialog.ResponseId.STOP:
-                            sws.destroy ();
+                            swd.destroy ();
                             break;
                     }
                 });
