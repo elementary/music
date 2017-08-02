@@ -27,7 +27,7 @@
  */
 
 public class Noise.SyncWarningDialog : Gtk.Dialog {
-    private enum ResponseId {
+    public enum ResponseId {
         IMPORT_MEDIA = 1,
         CONTINUE,
         STOP
@@ -54,7 +54,6 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
         import_media_button = add_button (_("Import media to Library"), ResponseId.IMPORT_MEDIA);
         continue_button = add_button (_("Continue Syncing"), ResponseId.CONTINUE);
         stop_button = add_button (_("Stop Syncing"), ResponseId.STOP);
-        response.connect (on_response);
 
         import_media_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
         continue_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
@@ -96,24 +95,6 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
 
     public SyncWarningDialog (Device d, Gee.TreeSet<Media> to_sync, Gee.TreeSet<Media> removed) {
         Object (device: d, to_sync: to_sync, to_remove: removed);
-    }
-
-    public void on_response (Gtk.Dialog src, int id) {
-        switch (id) {
-            case ResponseId.IMPORT_MEDIA:
-                libraries_manager.transfer_to_local_library (to_remove);
-                // TODO: After transfer, do sync
-
-                this.destroy ();
-                break;
-            case ResponseId.CONTINUE:
-                device.synchronize ();
-                this.destroy ();
-                break;
-            case ResponseId.STOP:
-                this.destroy ();
-                break;
-        }
     }
 
     public void file_operations_done () {

@@ -29,28 +29,28 @@
 public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Device dev;
     DevicePreferences preferences;
-    
+
     Gtk.Grid main_grid;
-    
+
     Gtk.Entry device_name_entry;
     Gtk.Switch auto_sync_switch;
-    
+
     Gtk.CheckButton sync_music_check;
     Gtk.ComboBox sync_music_combobox;
     Gtk.ListStore music_list;
-    
+
     Gtk.Image device_image;
     SpaceWidget space_widget;
-    
+
     int files_index;
     int music_index;
-    
+
     public DeviceSummaryWidget (Device d, DevicePreferences preferences) {
         this.dev = d;
         this.preferences = preferences;
         build_ui ();
     }
-    
+
     public void build_ui () {
         main_grid = new Gtk.Grid ();
 
@@ -201,7 +201,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         music_cell.stock_size = Gtk.IconSize.MENU;
         sync_music_combobox.pack_start (music_cell, false);
         sync_music_combobox.add_attribute (music_cell, "gicon", 2);
-        
+
 
         var cell = new Gtk.CellRendererText ();
         cell.ellipsize = Pango.EllipsizeMode.END;
@@ -292,7 +292,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         refresh_space_widget ();
         space_widget.set_sync_button_sensitive (true);
     }
-    
+
     public void sync_clicked () {
         var list = new Gee.TreeSet<Media>();
 
@@ -304,7 +304,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 }
             } else {
                 var p = preferences.music_playlist;
-                
+
                 if (p != null) {
                     foreach (var m in p.medias) {
                         if (m != null)
@@ -312,7 +312,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                     }
                 } else {
                     NotificationManager.get_default ().show_alert (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + preferences.music_playlist.name + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
-                    
+
                     preferences.music_playlist = null;
                     preferences.sync_all_music = true;
                     sync_music_combobox.set_active(0);
@@ -320,7 +320,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 }
             }
         }
-        
+
         bool fits = dev.will_fit (list);
         if (!fits) {
             NotificationManager.get_default ().show_alert (_("Cannot Sync"), _("Cannot sync device with selected sync settings. Not enough space on disk"));
@@ -330,9 +330,26 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             var found = new Gee.TreeSet<int>();
             var not_found = new Gee.TreeSet<Media>();
             libraries_manager.local_library.media_from_name (dev.get_library ().get_medias(), found, not_found);
-            
+
             if(not_found.size > 0) { // hand control over to SWD
                 SyncWarningDialog swd = new SyncWarningDialog(dev, list, not_found);
+                swd.response.connect ((src, id) => {
+                    switch (id) {
+                        case SyncWarningDialog.ResponseId.IMPORT_MEDIA:
+                            libraries_manager.transfer_to_local_library (not_found);
+                            // TODO: After transfer, do sync
+
+                            swd.destroy ();
+                            break;
+                        case SyncWarningDialog.ResponseId.CONTINUE:
+                            dev.synchronize ();
+                            swd.destroy ();
+                            break;
+                        case SyncWarningDialog.ResponseId.STOP:
+                            sws.destroy ();
+                            break;
+                    }
+                });
                 swd.show();
             } else {
                 space_widget.set_sync_button_sensitive(false);
