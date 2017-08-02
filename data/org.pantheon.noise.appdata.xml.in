@@ -15,6 +15,11 @@
         </_p>
     </description>
     <releases>
+        <release version="0.4.1" date="2017-07-27" urgency="medium">
+            <description>
+                <_p>Minor bug fixes.</_p>
+            </description>
+        </release>
         <release version="0.4.0.3" date="2017-04-21" urgency="medium">
             ⁠<description>
                 <_p>Minor bug fixes.</_p>
