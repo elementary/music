@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2017-08-05 16:13+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"Last-Translator: Bart Willems <bwillems@protonmail.com>\n"
 "Language-Team: Dutch <https://weblate.elementary.io/projects/music/music/nl/>"
 "\n"
 "Language: nl\n"
@@ -1334,8 +1334,8 @@ msgstr "Niet beoordeeld"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Ster"
+msgstr[1] "%u Sterren"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1569,8 +1569,8 @@ msgstr "Toegevoegd aan je wachtrij:"
 #: ../src/LocalBackend/LocalLibrary.vala:339
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Nummer"
+msgstr[1] "%d Nummers"
 
 #: ../src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
@@ -1671,7 +1671,7 @@ msgstr "Klaar met het importeren van %i liedjes van audio cd."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Track %u importeren %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
