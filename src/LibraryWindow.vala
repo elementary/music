@@ -263,8 +263,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
         import_menuitem.activate.connect (fileImportMusicClick);
 
-        var preferences_menuitem = new Gtk.ImageMenuItem.from_stock ("preferences-system", null);
-        preferences_menuitem.set_label (_("Preferences"));
+        var preferences_menuitem = new Gtk.MenuItem.with_label (_("Preferences"));
         preferences_menuitem.activate.connect (editPreferencesClick);
 
         var menu = new Gtk.Menu ();
@@ -274,7 +273,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         menu.show_all ();
 
         var menu_button = new Gtk.MenuButton ();
-        menu_button.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
+        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
         menu_button.popup = menu;
 
         previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
