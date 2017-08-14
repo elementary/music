@@ -48,11 +48,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     /* Main layout widgets */
-    private Gtk.Box       verticalBox;
     private Gtk.Paned     view_container_hpaned; // view_container / info_panel
     public InfoPanel      info_panel;
 
-    private Gtk.HeaderBar    headerbar;
     private Gtk.Button       previousButton;
     private Gtk.Button       playButton;
     private Gtk.Button       nextButton;
@@ -66,8 +64,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Widgets.StatusBar statusbar { get; private set; }
 
     /* AppMenu items */
-    private Gtk.MenuButton    appMenu;
-    private Gtk.Menu          settingsMenu;
     private Gtk.MenuItem      fileImportMusic;
     private Gtk.ImageMenuItem editPreferences;
 
@@ -88,9 +84,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public LibraryWindow () {
         get_style_context ().add_class ("rounded");
 
-        headerbar = new Gtk.HeaderBar ();
-        headerbar.show_close_button = true;
-        set_titlebar (headerbar);
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
         main_settings = Settings.Main.get_default ();
 
@@ -268,97 +261,85 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private inline void build_main_widgets () {
         debug ("Building main widgets");
 
-        /** App menu widgets **/
-
-        appMenu                 = new Gtk.MenuButton ();
-        settingsMenu            = new Gtk.Menu ();
-        fileImportMusic         = new Gtk.MenuItem.with_label (_("Import to Library…"));
-        editPreferences         = new Gtk.ImageMenuItem.from_stock ("preferences-system", null);
-
-        editPreferences.set_label (_("Preferences"));
-
-        settingsMenu.append (fileImportMusic);
-        settingsMenu.append (new Gtk.SeparatorMenuItem ());
-        settingsMenu.append (editPreferences);
-        settingsMenu.show_all ();
-        
-        var menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
-        appMenu.set_image (menu_icon);
-        appMenu.popup = settingsMenu;
-
+        fileImportMusic = new Gtk.MenuItem.with_label (_("Import to Library…"));
         fileImportMusic.activate.connect (fileImportMusicClick);
-        editPreferences.activate.connect(editPreferencesClick);
 
-        /** Toolbar widgets **/
+        editPreferences = new Gtk.ImageMenuItem.from_stock ("preferences-system", null);
+        editPreferences.set_label (_("Preferences"));
+        editPreferences.activate.connect (editPreferencesClick);
 
-        previousButton          = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        previousButton.set_tooltip_text (_("Previous"));
-        playButton              = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        playButton.set_tooltip_text (_("Play"));
-        nextButton              = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        nextButton.set_tooltip_text (_("Next"));
-        topDisplay              = new TopDisplay ();
-        viewSelector            = new Widgets.ViewSelector ();
-        searchField             = new Gtk.SearchEntry ();
+        var menu = new Gtk.Menu ();
+        menu.append (fileImportMusic);
+        menu.append (new Gtk.SeparatorMenuItem ());
+        menu.append (editPreferences);
+        menu.show_all ();
+
+        var menu_button = new Gtk.MenuButton ();
+        menu_button.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
+        menu_button.popup = menu;
+
+        previousButton = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        previousButton.tooltip_text = _("Previous");
+
+        playButton = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        playButton.tooltip_text = _("Play");
+
+        nextButton = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        nextButton.tooltip_text = _("Next");
+
+        searchField = new Gtk.SearchEntry ();
         searchField.placeholder_text = _("Search Music");
 
-        // Tweak view selector's size
+        viewSelector = new Widgets.ViewSelector ();
         viewSelector.margin_left = 12;
         viewSelector.margin_right = 6;
-
         viewSelector.valign = Gtk.Align.CENTER;
 
+        topDisplay = new TopDisplay ();
         topDisplay.margin_left = 30;
         topDisplay.margin_right = 30;
 
+        var headerbar = new Gtk.HeaderBar ();
+        headerbar.show_close_button = true;
         headerbar.pack_start (previousButton);
         headerbar.pack_start (playButton);
         headerbar.pack_start (nextButton);
         headerbar.pack_start (viewSelector);
-        headerbar.pack_end (appMenu);
+        headerbar.pack_end (menu_button);
         headerbar.pack_end (searchField);
         headerbar.set_title (((Noise.App) GLib.Application.get_default ()).get_name ());
         headerbar.set_custom_title (topDisplay);
         headerbar.show_all ();
 
-        /** Info Panel **/
-
-        info_panel = new InfoPanel ();
-
-
-        /** Statusbar widgets **/
-
-        statusbar = new Widgets.StatusBar (this);
-
-
-        /** Main layout **/
-
-        verticalBox           = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        main_hpaned           = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        view_container_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        view_container        = new ViewContainer ();
-        source_list_view      = new SourceListView ();
-
         // Set properties of various controls
         var saved_state = Settings.SavedState.get_default ();
-        main_hpaned.position = saved_state.sidebar_width;
         int view_container_pos = saved_state.window_width - saved_state.sidebar_width - saved_state.more_width;
-        view_container_hpaned.set_position (view_container_pos);
 
+        view_container = new ViewContainer ();
+        source_list_view = new SourceListView ();
+        info_panel = new InfoPanel ();
+
+        view_container_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        view_container_hpaned.set_position (view_container_pos);
         view_container_hpaned.pack1 (view_container, true, false);
         view_container_hpaned.pack2 (info_panel, false, false);
 
+        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        main_hpaned.position = saved_state.sidebar_width;
         main_hpaned.pack1 (source_list_view, false, false);
         main_hpaned.pack2 (view_container_hpaned, true, false);
 
-        // Add controls to the GUI
-        verticalBox.pack_start (main_hpaned, true, true, 0);
-        verticalBox.pack_end (statusbar, false, false, 0);
+        statusbar = new Widgets.StatusBar (this);
 
-        this.add (verticalBox);
+        var grid = new Gtk.Grid ();
+        grid.orientation = Gtk.Orientation.VERTICAL;
+        grid.add (main_hpaned);
+        grid.add (statusbar);
+        grid.show_all ();
 
-        // Make all the widgets visible
-        verticalBox.show_all ();
+        add (grid);
+        set_titlebar (headerbar);
+
         connect_to_sourcelist_signals ();
 
         debug ("Done with main widgets");
