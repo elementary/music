@@ -51,9 +51,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.Paned     view_container_hpaned; // view_container / info_panel
     public InfoPanel      info_panel;
 
-    private Gtk.Button       previousButton;
-    private Gtk.Button       playButton;
-    private Gtk.Button       nextButton;
+    private Gtk.Button previous_button;
+    private Gtk.Button play_button;
+    private Gtk.Button next_button;
 
     public Gtk.Paned main_hpaned { get; private set; }
     public SourceListView source_list_view { get; private set; }
@@ -64,8 +64,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Widgets.StatusBar statusbar { get; private set; }
 
     /* AppMenu items */
-    private Gtk.MenuItem      fileImportMusic;
-    private Gtk.ImageMenuItem editPreferences;
+    private Gtk.MenuItem import_menuitem;
 
     /* Window state properties */
     private bool window_maximized = false;
@@ -261,31 +260,31 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private inline void build_main_widgets () {
         debug ("Building main widgets");
 
-        fileImportMusic = new Gtk.MenuItem.with_label (_("Import to Library…"));
-        fileImportMusic.activate.connect (fileImportMusicClick);
+        import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
+        import_menuitem.activate.connect (fileImportMusicClick);
 
-        editPreferences = new Gtk.ImageMenuItem.from_stock ("preferences-system", null);
-        editPreferences.set_label (_("Preferences"));
-        editPreferences.activate.connect (editPreferencesClick);
+        var preferences_menuitem = new Gtk.ImageMenuItem.from_stock ("preferences-system", null);
+        preferences_menuitem.set_label (_("Preferences"));
+        preferences_menuitem.activate.connect (editPreferencesClick);
 
         var menu = new Gtk.Menu ();
-        menu.append (fileImportMusic);
+        menu.append (import_menuitem);
         menu.append (new Gtk.SeparatorMenuItem ());
-        menu.append (editPreferences);
+        menu.append (preferences_menuitem);
         menu.show_all ();
 
         var menu_button = new Gtk.MenuButton ();
         menu_button.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
         menu_button.popup = menu;
 
-        previousButton = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        previousButton.tooltip_text = _("Previous");
+        previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        previous_button.tooltip_text = _("Previous");
 
-        playButton = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        playButton.tooltip_text = _("Play");
+        play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        play_button.tooltip_text = _("Play");
 
-        nextButton = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        nextButton.tooltip_text = _("Next");
+        next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        next_button.tooltip_text = _("Next");
 
         searchField = new Gtk.SearchEntry ();
         searchField.placeholder_text = _("Search Music");
@@ -301,9 +300,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         var headerbar = new Gtk.HeaderBar ();
         headerbar.show_close_button = true;
-        headerbar.pack_start (previousButton);
-        headerbar.pack_start (playButton);
-        headerbar.pack_start (nextButton);
+        headerbar.pack_start (previous_button);
+        headerbar.pack_start (play_button);
+        headerbar.pack_start (next_button);
         headerbar.pack_start (viewSelector);
         headerbar.pack_end (menu_button);
         headerbar.pack_end (searchField);
@@ -540,9 +539,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         /* Connect events to functions */
-        previousButton.clicked.connect (() => {play_previous_media ();});
-        playButton.clicked.connect (() => {play_media ();});
-        nextButton.clicked.connect (() => {play_next_media ();});
+        previous_button.clicked.connect (() => {play_previous_media ();});
+        play_button.clicked.connect (() => {play_media ();});
+        next_button.clicked.connect (() => {play_next_media ();});
 
         searchField.activate.connect (searchFieldActivate);
         searchField.search_changed.connect (() => {if (searchField.text_length != 1) libraries_manager.search_for_string (searchField.get_text ());});
@@ -690,19 +689,19 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool doing_ops = library_manager.doing_file_operations ();
         bool media_active = App.player.current_media != null;
 
-        fileImportMusic.set_sensitive (!doing_ops && folder_set);
+        import_menuitem.sensitive = !doing_ops && folder_set;
 
         // Play, pause, ...
         bool media_available = App.player.get_current_media_list ().size > 0;
-        previousButton.set_sensitive (media_active || media_available);
-        playButton.set_sensitive (media_active || media_available);
-        nextButton.set_sensitive (media_active || media_available);
+        previous_button.set_sensitive (media_active || media_available);
+        play_button.set_sensitive (media_active || media_available);
+        next_button.set_sensitive (media_active || media_available);
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
 
         if(!media_active || have_media && !App.player.playing)
-            playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+            play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
 
         bool show_info_panel = Settings.SavedState.get_default ().more_visible && info_panel.can_show_up;
         info_panel.set_visible (show_info_panel);
@@ -955,7 +954,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     public virtual void playback_stopped (int64 was_playing) {
-        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+        play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
         //reset some booleans
         tested_for_video = false;
         media_considered_previewed = false;
@@ -968,14 +967,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
     
     public virtual void playback_started () {
-        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-        playButton.set_tooltip_text (_("Pause"));
+        play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+        play_button.set_tooltip_text (_("Pause"));
         debug ("playback started");
     }
     
     public virtual void playback_paused () {
-        playButton.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-        playButton.set_tooltip_text (_("Play"));
+        play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+        play_button.set_tooltip_text (_("Play"));
         debug ("playback paused");
     }
 
