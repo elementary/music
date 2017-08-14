@@ -300,6 +300,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplay              = new TopDisplay ();
         viewSelector            = new Widgets.ViewSelector ();
         searchField             = new Gtk.SearchEntry ();
+        searchField.valign = Gtk.Align.CENTER;
         searchField.placeholder_text = _("Search Music");
 
         // Tweak view selector's size

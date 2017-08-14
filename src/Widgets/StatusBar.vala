@@ -180,6 +180,7 @@ namespace Noise.Widgets {
 
             popover = eq_popover;
             add (new Gtk.Image.from_icon_name ("media-eq-symbolic", Gtk.IconSize.MENU));
+            get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         }
 
         private void update_tooltip (string eq_preset_name) {
