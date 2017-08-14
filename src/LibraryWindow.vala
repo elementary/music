@@ -286,6 +286,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         next_button.tooltip_text = _("Next");
 
         searchField = new Gtk.SearchEntry ();
+        searchField.valign = Gtk.Align.CENTER;
         searchField.placeholder_text = _("Search Music");
 
         viewSelector = new Widgets.ViewSelector ();
