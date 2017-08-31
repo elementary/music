@@ -56,8 +56,9 @@ public abstract class Noise.GenericList : FastView {
 
     public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         var types = new Gee.LinkedList<Type> ();
-        foreach (var type in ListColumn.get_all ())
+        foreach (var type in ListColumn.get_all ()) {
             types.add (type.get_data_type ());
+        }
 
         base (types);
 
@@ -104,7 +105,7 @@ public abstract class Noise.GenericList : FastView {
 
         parent_wrapper.library.media_updated.connect (media_updated);
 
-        App.player.current_cleared.connect (current_cleared);
+        App.player.queue_cleared.connect (current_cleared);
         App.player.media_played.connect (media_played);
     }
 
@@ -149,31 +150,23 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void set_media (Gee.Collection<Media> to_add) {
-        var new_table = new Gee.HashMap<int,Noise.Media> (null, null);
-
-        foreach (Media m in to_add) {
-            if (m != null)
-                new_table.set (new_table.size, m);
-        }
+        var new_table = new Gee.ArrayList<Media> ();
+        new_table.add_all (to_add);
 
         // set table and resort
         set_table (new_table, true);
-        
+
         scroll_to_current_media (false);
     }
 
     /* If a Media is in to_remove but not in table, will just ignore */
     public void remove_media (Gee.Collection<Media> to_remove) {
-        var to_remove_set = new Gee.HashSet<Media> (null, null);
-        foreach (var m in to_remove)
-            to_remove_set.add (m);
+        var new_table = new Gee.ArrayList<Media> ();
 
-        var new_table = new Gee.HashMap<int,Noise.Media> (null, null);
-        for (int i = 0; i < table.size; ++i) {
-            var m = table.get (i) as Media;
-            // create a new table. if not in to_remove, and is in table, add it.
-            if (m != null && !to_remove_set.contains (m))
-                new_table.set (new_table.size, m);
+        foreach (Media m in table) {
+            if (!(m in to_remove)) {
+                new_table.add (m);
+            }
         }
 
         // no need to resort, just removing
@@ -182,8 +175,7 @@ public abstract class Noise.GenericList : FastView {
 
     public void add_media (Gee.Collection<Media> to_add) {
         // skip calling set_table and just do it ourselves (faster)
-        foreach (var m in to_add)
-            table.set (table.size, m);
+        table.add_all (to_add);
 
         // resort the new songs in. this will also call do_search
         resort ();
@@ -265,14 +257,14 @@ public abstract class Noise.GenericList : FastView {
         var m = get_media_from_index (int.parse (path.to_string ()));
 
         // We need to first set this as the current list
-        App.player.clearCurrent ();
+        App.player.clear_queue ();
         is_current_list = true;
 
         // Now update current_list and current_index in LM
         set_as_current_list (m);
 
         // Now play the song
-        App.player.playMedia (m, false);
+        App.player.play_media (m);
 
         if (!App.player.playing) {
             App.main_window.play_media ();
@@ -297,11 +289,7 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void set_as_current_list (Media? m = null) {
-        Media to_set;
-        if (m != null)
-            to_set = m;
-        else
-            to_set = App.player.current_media;
+        Media to_set = m == null ? App.player.current_media : m;
 
         is_current_list = true;
         var main_settings = Settings.Main.get_default ();
@@ -320,16 +308,10 @@ public abstract class Noise.GenericList : FastView {
             }
         }
 
-        App.player.clearCurrent ();
-        var vis_table = get_visible_table ();
-        for (int i = 0; i < vis_table.size; ++i) {
-            var test = vis_table.get (i) as Media;
-            App.player.addToCurrent (test);
-
-            if (to_set == test) {
-                App.player.current_index = i;
-            }
-        }
+        App.player.clear_queue ();
+        var queue = get_visible_table ();
+        App.player.queue_medias (queue);
+        App.player.current_index = queue.index_of (to_set);
 
         media_played.begin (App.player.current_media);
     }
@@ -346,7 +328,7 @@ public abstract class Noise.GenericList : FastView {
         return rv;
     }
 
-    protected void mediaScrollToCurrentRequested () {
+    protected void media_scroll_to_current_requested () {
         scroll_to_current_media (true);
     }
 
@@ -387,29 +369,7 @@ public abstract class Noise.GenericList : FastView {
 
                 break;
             }
-
         }
-
-/*
-        if (unfilter_if_not_found) {
-            // At this point, it was not scrolled to. Let's see if it's in ALL the songs
-            // and if so, undo the search and filters and scroll to it.
-            var whole_table = get_table ();
-            for (int i = 0; i < whole_table.size (); ++i) {
-                var m = whole_table.get (i) as Media;
-
-                if (m.rowid == App.player.current_media.rowid) {
-                    // Undo search and filter
-                    parent_wrapper.clear_filters ();
-
-                    // And now scroll to it.
-                    scroll_to_cell (new TreePath.from_string (i.to_string ()), null, false, 0.0f, 0.0f);
-
-                    return;
-                }
-            }
-        }
-*/
     }
 
     /***************************************

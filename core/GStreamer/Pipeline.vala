@@ -29,53 +29,52 @@
 public class Noise.Pipeline : GLib.Object {
     public Gst.Pipeline pipe;
     public Equalizer eq;
-    
+
     public dynamic Gst.Bus bus;
     public Gst.Pad pad;
-    
+
     public dynamic Gst.Element audiosink;
     public dynamic Gst.Element audiosinkqueue;
     public dynamic Gst.Element eq_audioconvert;
-    public dynamic Gst.Element eq_audioconvert2; 
-     
+    public dynamic Gst.Element eq_audioconvert2;
+
     public dynamic Gst.Element playbin;
     public dynamic Gst.Element audiotee;
     public dynamic Gst.Element audiobin;
     public dynamic Gst.Element preamp;
-    
+
     public Pipeline() {
-        
         pipe = new Gst.Pipeline("pipeline");
         playbin = Gst.ElementFactory.make ("playbin", "play");
-        
+
         audiosink = Gst.ElementFactory.make("autoaudiosink", "audio-sink");
-        
+
         audiobin = new Gst.Bin("audiobin"); // this holds the real primary sink
-        
+
         audiotee = Gst.ElementFactory.make("tee", null);
         audiosinkqueue = Gst.ElementFactory.make("queue", null);
-        
+
         eq = new Equalizer();
         if(eq.element != null) {
             eq_audioconvert = Gst.ElementFactory.make("audioconvert", null);
             eq_audioconvert2 = Gst.ElementFactory.make("audioconvert", null);
             preamp = Gst.ElementFactory.make("volume", "preamp");
-            
+
             ((Gst.Bin)audiobin).add_many(eq.element, eq_audioconvert, eq_audioconvert2, preamp);
         }
-        
+
         ((Gst.Bin)audiobin).add_many(audiotee, audiosinkqueue, audiosink);
-        
+
         audiobin.add_pad (new Gst.GhostPad ("sink", audiotee.get_static_pad ("sink")));
-        
+
         if (eq.element != null)
             audiosinkqueue.link_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
         else
             audiosinkqueue.link_many(audiosink); // link the queue with the real audio sink
-        
-        playbin.set("audio-sink", audiobin); 
+
+        playbin.set("audio-sink", audiobin);
         bus = playbin.get_bus();
-        
+
         // Link the first tee pad to the primary audio sink queue
         Gst.Pad sinkpad = audiosinkqueue.get_static_pad ("sink");
         pad = audiotee.get_request_pad ("src_%u");
@@ -89,7 +88,7 @@ public class Noise.Pipeline : GLib.Object {
             audiosinkqueue.link_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
         }
     }
-    
+
     public void disableEqualizer() {
         if (eq.element != null) {
             audiosinkqueue.unlink (eq_audioconvert);

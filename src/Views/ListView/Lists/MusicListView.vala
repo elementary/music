@@ -175,7 +175,7 @@ public class Noise.MusicListView : GenericList {
         mediaRemove.activate.connect(mediaRemoveClicked);
         importToLibrary.activate.connect(importToLibraryClicked);
         mediaRateMedia.activate.connect(mediaRateMediaClicked);
-        mediaScrollToCurrent.activate.connect(mediaScrollToCurrentRequested);
+        mediaScrollToCurrent.activate.connect(media_scroll_to_current_requested);
 
         App.player.playback_stopped.connect (() => {
             mediaScrollToCurrent.sensitive = false;
@@ -184,7 +184,7 @@ public class Noise.MusicListView : GenericList {
         App.player.playback_started.connect (() => {
             mediaScrollToCurrent.sensitive = true;
         });
-                
+
         set_headers_visible (hint != ViewWrapper.Hint.ALBUM_LIST);
 
         update_sensitivities ();
@@ -204,7 +204,7 @@ public class Noise.MusicListView : GenericList {
             // Don't include this playlist in the list of available options
             if (playlist == this.playlist)
                 continue;
-                
+
             if (playlist.read_only == true)
                 continue;
 
@@ -389,13 +389,13 @@ public class Noise.MusicListView : GenericList {
             } catch (Error err) {
                 debug("Could not browse media %s: %s\n", m.uri, err.message);
             }
-            
+
             return;
         }
     }
 
     protected virtual void mediaMenuQueueClicked () {
-        App.player.queue_media (get_selected_medias ().read_only_view);
+        App.player.queue_medias (get_selected_medias ().read_only_view);
     }
 
     protected virtual void mediaMenuNewPlaylistClicked () {

@@ -69,7 +69,7 @@ public class Noise.SmartPlaylist : Playlist {
     }
 
     construct {
-        medias = new Gee.ArrayQueue<Media> ();
+        medias = new Gee.ArrayList<Media> ();
         icon = new ThemedIcon ("playlist-automatic");
         queries = new Gee.TreeSet<SmartQuery>();
     }
@@ -246,7 +246,7 @@ public class Noise.SmartPlaylist : Playlist {
                 var now = new DateTime.now_local ();
                 var played = new DateTime.from_unix_local (s.date_added);
                 played = played.add_days (q.value.get_int ());
-            
+
                 if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) {
                     return (now.get_day_of_year () == played.get_day_of_year () && now.get_year () == played.get_year ());
                 } else if (q.comparator == SmartQuery.ComparatorType.IS_WITHIN) {
@@ -272,7 +272,7 @@ public class Noise.SmartPlaylist : Playlist {
                 }
                 break;
         }
-        
+
         return false;
     }
 
@@ -292,7 +292,7 @@ public class Noise.SmartPlaylist : Playlist {
                         match_count++;
                 }
 
-                if(((conditional == ConditionalType.ALL && match_count == queries.size) || 
+                if(((conditional == ConditionalType.ALL && match_count == queries.size) ||
                     (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
                     if (!medias.contains (m)) {
                         added.add (m);

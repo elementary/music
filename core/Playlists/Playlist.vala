@@ -25,10 +25,10 @@
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
- 
+
 public abstract class Noise.Playlist : Object {
     public signal void request_play ();
-    public virtual Gee.ArrayQueue<Media> medias { get; internal set; }
+    public virtual Gee.ArrayList<Media> medias { get; internal set; }
 
     public int64 rowid { get; set; }
     public GLib.Icon icon;
@@ -36,7 +36,7 @@ public abstract class Noise.Playlist : Object {
     public virtual string name {
         get {
             return _name;
-        } 
+        }
         set {
             string old_name = _name;
             _name = value;
@@ -56,6 +56,17 @@ public abstract class Noise.Playlist : Object {
     public abstract void clear ();
 
     public bool is_empty () {
-        return (medias.size <= 0);
+        return medias.size <= 0;
+    }
+
+    /**
+    * Retrives a Media at an index in this playlist
+    */
+    public new Media get (int index) {
+        return medias[index];
+    }
+
+    public new void set (int index, Media m) {
+        medias[index] = m;
     }
 }

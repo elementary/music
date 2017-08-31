@@ -26,14 +26,14 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Corentin Noël <corentin@elementary.io>
  */
- 
+
 public class Noise.StaticPlaylist : Playlist {
     public bool read_only { get; set; default=false;}
     public bool show_badge { get; set; default=false;}
     public bool allow_duplicate { get; set; default=false;}
 
     public StaticPlaylist () {
-        
+
     }
 
     public StaticPlaylist.with_info (int rowid, string name) {
@@ -42,7 +42,7 @@ public class Noise.StaticPlaylist : Playlist {
     }
 
     construct {
-        medias = new Gee.ArrayQueue<Media>();
+        medias = new Gee.ArrayList<Media>();
         icon = new ThemedIcon ("playlist");
     }
 

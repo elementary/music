@@ -130,7 +130,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // init some booleans
         if (this.library_manager.get_medias ().size > 0) {
-            App.player.clearCurrent();
+            App.player.clear_queue ();
 
             // make sure we don't re-count stats
             if (main_settings.last_media_position > 5)
@@ -553,7 +553,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (last_playing_id >= 0) {
             var last_playing_media = library_manager.media_from_id (last_playing_id);
             if (last_playing_media != null && last_playing_media.file.query_exists ()) {
-                App.player.playMedia (last_playing_media, true);
+                App.player.play_media (last_playing_media);
             }
         }
         libraries_manager.search_for_string (Settings.Main.get_default ().search_string);
@@ -815,7 +815,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         if (p == App.player.queue_playlist) {
             view.set_no_media_alert_message (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."));
-            App.player.queue_media (p.medias);
+            App.player.queue_medias (p.medias);
         } else if (p == App.player.history_playlist) {
             view.set_no_media_alert_message (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."));
         }
@@ -982,7 +982,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if(App.player.current_media == null) {
             debug("No media is currently playing. Starting from the top\n");
 
-            App.player.getNext (true);
+            App.player.get_next (true);
             App.player.start_playback ();
 
             if (!inhibit_notifications)
@@ -1007,40 +1007,36 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             //library_manager.update_media_item (App.player.current_media, false, false);
         }
 
-        Media? m = null;
-        if(App.player.next_gapless_id != 0) {
-            int next_id = App.player.next_gapless_id;
-            m = library_manager.media_from_id (next_id);
-            App.player.playMedia (m, false);
-        } else
-            m = App.player.getNext (true);
+        Media? m = App.player.get_next (true);
 
         /* test to stop playback/reached end */
-        if(m == null) {
+        if (m == null) {
             App.player.stop_playback ();
             update_sensitivities.begin ();
             return;
         }
 
-        if (!inhibit_notifications)
+        if (!inhibit_notifications) {
             notify_current_media_async.begin ();
+        }
     }
 
     public virtual void play_previous_media (bool inhibit_notifications = false) {
         if (App.player.player.get_position () < 5000000000) {
             bool play = true;
-            var prev = App.player.getPrevious(true);
+            var prev = App.player.get_previous (true);
 
             /* test to stop playback/reached end */
-            if(prev == null) {
+            if (prev == null) {
                 App.player.stop_playback ();
                 update_sensitivities.begin ();
                 return;
             } else if (play && !inhibit_notifications) {
                 notify_current_media_async.begin ();
             }
-        } else
+        } else {
             topDisplay.change_value (Gtk.ScrollType.NONE, 0);
+        }
     }
 
     public virtual void fileImportMusicClick () {
@@ -1298,5 +1294,4 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         return base.configure_event (event);
     }
-
 }
