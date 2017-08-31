@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-05-25 21:23+0000\n"
-"Last-Translator: Jörg Habekost <joebeam@t-online.de>\n"
+"PO-Revision-Date: 2017-06-22 19:09+0000\n"
+"Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -452,8 +452,8 @@ msgid ""
 "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
 "\n"
-"Dieses Lied kann nicht wiedergegeben werden. Die »%s«-Erweiterung wird "
-"benötigt, um dieses Lied wiederzugeben."
+"Dieser Titel kann nicht wiedergegeben werden. Das Plugin »%s« ist zur "
+"Wiedergabe des Titels nötig."
 
 #: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
 msgid "Install Plugin"
@@ -485,7 +485,7 @@ msgstr "Komponist:"
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Gruppierung:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
@@ -711,6 +711,8 @@ msgid ""
 "Noise is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"Musik führt bereits Dateioperationen durch. Bitte warten Sie deren Abschluss "
+"ab, ehe Sie %s importieren."
 
 #: ../src/Dialogs/RemoveFilesDialog.vala:51
 msgid "Remove from %s"
@@ -793,7 +795,7 @@ msgstr "Titel der Wiedergabeliste"
 # Übersetzung taucht nicht in der GUI auf. Warum?
 #: ../src/Dialogs/SmartPlaylistEditor.vala:68
 msgid "Match"
-msgstr "Erfülle"
+msgstr "Treffer"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:70
 msgid "any"
@@ -1130,7 +1132,7 @@ msgstr "Spaltenbreite anpassen"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr "%u kbps"
+msgstr "%u kbit/s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1180,13 +1182,13 @@ msgstr "Neue Wiedergabeliste …"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
-msgstr "Importieren von %i aus %i ausgewählten Titeln"
+msgstr "%i aus %i ausgewählten Titeln importieren"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:229
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] "Importieren von einem Musiktitel"
-msgstr[1] "Importieren von %i Musiktiteln"
+msgstr[0] "%i Titel importieren"
+msgstr[1] "%i Titel importieren"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:600
 msgid "1234 kbps"
@@ -1201,7 +1203,7 @@ msgstr "1234 kbit/s"
 #. / by the column's title header.
 #: ../src/Views/ListView/Lists/MusicListView.vala:671
 msgid "Sample List String"
-msgstr "Sample List String"
+msgstr "Beispiellänge Listeneintrag"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:59
 msgctxt "List column title"
@@ -1211,7 +1213,7 @@ msgstr "#"
 #: ../src/Views/ListView/Lists/ListColumn.vala:62
 msgctxt "List column title"
 msgid "Track"
-msgstr "Nr."
+msgstr "Titel"
 
 #: ../src/Views/ListView/Lists/ListColumn.vala:65
 msgctxt "List column title"
@@ -1339,8 +1341,8 @@ msgstr "Nicht bewertet"
 #: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Stern"
+msgstr[1] "%u Sterne"
 
 #: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
 msgid "All Genres"
@@ -1495,7 +1497,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Das Gerät kann mit den ausgewählten Einstellungen nicht synchronisiert "
-"werden, da nicht genug Speicherplatz vorhanden ist."
+"werden, da nicht ausreichend Speicherplatz vorhanden ist."
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1669,12 +1671,12 @@ msgstr ""
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"Die Anwendung konnte keine Lieder auf der CD finden. Es können daher keine "
-"Lieder importiert werden."
+"Die Anwendung konnte keine Titel auf der CD finden. Es kann daher nichts "
+"importiert werden."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of a song from Audio CD finished."
-msgstr "Der Import eines Titels von einer Audio-CD beendet."
+msgstr "Import eines Titels von einer Audio-CD beendet."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:348
 msgid "Importation of %i songs from Audio CD finished."
@@ -1682,7 +1684,7 @@ msgstr "Import von %i Titeln von einer Audio-CD beendet."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:353
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Titel %u importieren: %s"
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:358
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -1690,7 +1692,7 @@ msgstr "Der Import der CD wird nach dem aktuellen Import<b>abgebrochen</b>."
 
 #: ../plugins/Devices/CDRom/CDRomDevice.vala:377
 msgid "An error occured during the Import of this CD"
-msgstr "Während des CD-Imports trat ein fehler auf"
+msgstr "Während des CD-Imports trat ein Fehler auf"
 
 #: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
 msgid "An Error Occured"
@@ -1732,11 +1734,11 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"Es gibt kein Lied in Ihrer Bibliothek, das Ähnlichkeiten mit dem aktuellen "
-"Lied aufweist. \r\n"
-"Stellen Sie sicher, dass alle Informationen korrekt sind und Sie mit dem "
-"Internet verbunden sind. \r\n"
-"Manche Lieder könnten dennoch keine Übereinstimmung haben."
+"Es gibt keinen Titel in Ihrer Bibliothek, das Ähnlichkeiten mit dem "
+"aktuellen Titel aufweist. \n"
+"Stellen Sie sicher, dass alle Informationen korrekt und Sie mit dem Internet "
+"verbunden sind. Für manche Titel finden sich eventuell dennoch keine "
+"Übereinstimmungen."
 
 #~ msgid "Add Podcast"
 #~ msgstr "Podcast hinzufügen"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-05-31 22:22+0000\n"
+"PO-Revision-Date: 2017-07-01 13:12+0000\n"
 "Last-Translator: Jernej Virag <jernej@virag.si>\n"
 "Language-Team: Slovenian "
 "<https://l10n.elementary.io/projects/music/music/sl/>\n"
@@ -229,7 +229,7 @@ msgstr "Pop"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Reggae"
-msgstr "corruptcorruptcorruptcorruptcorruptcorrupt"
+msgstr "Reggae"
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Rock"
@@ -736,13 +736,13 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
-"To bo odstranilo skladbe iz vaše knjižnice in vsake naprave, ki se samodejno "
-"sinhronizira z %s."
-msgstr[1] ""
 "To bo odstranilo skladbo iz vaše knjižnice in vsake naprave, ki se samodejno "
 "sinhronizira z %s."
-msgstr[2] ""
+msgstr[1] ""
 "To bo odstranilo skladbi iz vaše knjižnice in vsake naprave, ki se samodejno "
+"sinhronizira z %s."
+msgstr[2] ""
+"To bo odstranilo skladbe iz vaše knjižnice in vsake naprave, ki se samodejno "
 "sinhronizira z %s."
 msgstr[3] ""
 "To bo odstranilo skladbe iz vaše knjižnice in vsake naprave, ki se samodejno "
@@ -1131,7 +1131,7 @@ msgstr "Samodejna velikost stolpcev"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr "%u kbps"
+msgstr "%u kb/s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1193,7 +1193,7 @@ msgstr[3] "Uvoz %i skladb"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:600
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 kb/s"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-06-03 08:05+0000\n"
-"Last-Translator: renato <renatomonroy.95@outlook.com>\n"
+"PO-Revision-Date: 2017-07-11 06:20+0000\n"
+"Last-Translator: haggen svastian <h2gn@openmailbox.org>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/music/music/es/>"
 "\n"
 "Language: es\n"
@@ -732,10 +732,10 @@ msgid_plural ""
 "automatically syncs with %s."
 msgstr[0] ""
 "Esto eliminará la canción de su biblioteca y de cualquier dispositivo que se "
-"sincronize automáticamente con %s"
+"sincronice automáticamente con %s"
 msgstr[1] ""
 "Esto eliminará las canciones de su biblioteca y de cualquier dispositivo que "
-"se sincronize automáticamente con %s"
+"se sincronice automáticamente con %s"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
@@ -1616,7 +1616,7 @@ msgstr "No reproducidas recientemente"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
 #: ../plugins/Devices/iPod/iPodLibrary.vala:151
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Agregando <b>$NAME</b> de <b>$ARTIST</b> hacia $DEVICE…"
+msgstr "Agregando <b>$NAME</b> de <b>$ARTIST</b> hacia $DEVICE"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/iPod/iPodLibrary.vala:199
@@ -1626,7 +1626,7 @@ msgstr "Sincronizando <b>%s</b>…"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 #: ../plugins/Devices/iPod/iPodLibrary.vala:533
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Eliminando <b>$NAME</b> de <b>$ARTIST</b> en $DEVICE…"
+msgstr "Eliminando <b>$NAME</b> de <b>$ARTIST</b> en $DEVICE"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 #: ../plugins/Devices/iPod/iPodLibrary.vala:340

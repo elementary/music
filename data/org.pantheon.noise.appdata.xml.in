@@ -15,6 +15,11 @@
         </_p>
     </description>
     <releases>
+        <release version="0.4.1" date="2017-07-27" urgency="medium">
+            <description>
+                <_p>Minor bug fixes.</_p>
+            </description>
+        </release>
         <release version="0.4.0.3" date="2017-04-21" urgency="medium">
             ⁠<description>
                 <_p>Minor bug fixes.</_p>
@@ -55,9 +60,10 @@
         <library>libnoise-core.so.0</library>
     </provides>
     <developer_name>elementary LLC.</developer_name>
-    <url type="homepage">http://elementary.io/</url>
-    <url type="bugtracker">https://bugs.launchpad.net/noise</url>
+    <url type="homepage">https://elementary.io/</url>
+    <url type="bugtracker">https://github.com/elementary/music/issues</url>
     <url type="donation">https://elementary.io/get-involved#funding</url>
     <url type="help">https://elementaryos.stackexchange.com/questions/tagged/noise</url>
+    <url type="translate">https://l10n.elementary.io/projects/music</url>
     <update_contact>contact_at_elementary.io</update_contact>
 </component>
