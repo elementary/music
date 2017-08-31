@@ -116,7 +116,7 @@ namespace Noise.Settings {
             base ("org.pantheon.noise.equalizer");
         }
 
-        public Gee.Collection<Noise.EqualizerPreset> getPresets () {
+        public Gee.Collection<Noise.EqualizerPreset> get_presets () {
             var presets_data = new Gee.TreeSet<string> ();
 
             if (custom_presets != null) {

@@ -157,7 +157,7 @@ public class Noise.LocalLibrary : Library {
 
         return false;
     }
-    
+
     public void remove_all_static_playlists () {
         var list = new Gee.TreeSet<int64?> ();
         lock (_playlists) {
@@ -176,13 +176,13 @@ public class Noise.LocalLibrary : Library {
         string m_folder = folder;
         m_folder = m_folder.replace ("/media", "");
         m_folder = m_folder.replace (GLib.Environment.get_home_dir ()+ "/", "");
-        
+
         if (start_file_operations (_("Importing music from %s…").printf ("<b>" + Markup.escape_text (m_folder) + "</b>"))) {
             remove_all_static_playlists ();
 
             clear_medias ();
 
-            App.player.unqueue_media (_medias.values);
+            App.player.unqueue_medias (_medias.values);
 
             // FIXME: these are library window's internals. Shouldn't be here
             App.main_window.update_sensitivities.begin ();
@@ -263,7 +263,7 @@ public class Noise.LocalLibrary : Library {
         // get a list of the current files
         var music_folder_dir = Settings.Main.get_default ().music_folder;
         FileUtils.count_music_files (File.new_for_path (music_folder_dir), files);
-        
+
         foreach (var m in get_medias ()) {
             if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir))
 
@@ -317,10 +317,10 @@ public class Noise.LocalLibrary : Library {
     }
 
     private void media_opened_finished () {
-        App.player.queue_media (open_media_list);
+        App.player.queue_medias (open_media_list);
         if (open_media_list.size > 0) {
             if (!App.player.playing) {
-                App.player.playMedia (open_media_list.first (), false);
+                App.player.play_media (open_media_list.first ());
                 App.main_window.play_media ();
             } else {
                 string primary_text = _("Added to your queue:");
@@ -518,7 +518,7 @@ public class Noise.LocalLibrary : Library {
 
 
     /******************** Media stuff ******************/
-    
+
     public override void search_medias (string search) {
         if (search == "") {
             lock (_searched_medias) {

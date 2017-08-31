@@ -72,7 +72,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     public GridView grid_view { get; protected set; }
     protected Granite.Widgets.EmbeddedAlert embedded_alert { get; set; }
     protected Granite.Widgets.Welcome welcome_screen { get; set; }
- 
+
     public bool has_grid_view { get { return grid_view != null; } }
     public bool has_list_view { get { return list_view != null;  } }
     public bool has_embedded_alert  { get { return embedded_alert != null; } }
@@ -259,7 +259,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         if (!App.main_window.initialization_finished || !App.main_window.viewSelector.sensitive)
             return;
 
-        if ((current_view == ViewType.ALERT && media_count < 1) || 
+        if ((current_view == ViewType.ALERT && media_count < 1) ||
         current_view == ViewType.WELCOME)
             return;
 
@@ -280,11 +280,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         debug ("play_first_media [%s]", hint.to_string());
 
         list_view.set_as_current_list (1);
-        var m = App.player.mediaFromCurrentIndex (0);
+        var m = App.player.media_from_current_index (0);
 
         if (m == null)
            return;
-        App.player.playMedia (m, false);
+        App.player.play_media (m);
         App.player.start_playback ();
     }
 
@@ -329,7 +329,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         debug ("updating statusbar info [%s]", hint.to_string ());
         App.main_window.statusbar.set_info (get_statusbar_text ());
     }
-    
+
     private void search_field_changed () {
         if (!is_current_wrapper)
             return;
@@ -380,14 +380,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             set_active_view (ViewType.ALERT);
         }
 
-        return have_media;   
+        return have_media;
     }
 
     protected virtual void select_proper_content_view () {
-        debug ("Selecting proper content view automatically");
-
         var new_view = (ViewType) App.main_window.viewSelector.selected;
-        debug ("[%s] Showing view: %s", hint.to_string(), new_view.to_string ());
 
         const int N_VIEWS = 2; // list and grid views
         if (new_view < 0 || new_view > N_VIEWS - 1)
@@ -518,8 +515,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     private void add_media (Gee.Collection<Media> new_media) requires (data_initialized) {
         if (new_media.is_empty)
             return;
-
-        debug ("ADDING MEDIA [%s]", hint.to_string());
 
         if (has_list_view) {
             lock (list_view) {

@@ -85,29 +85,21 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         switch (hint) {
             case Hint.READ_ONLY_PLAYLIST:
             case Hint.PLAYLIST:
-                var p = (StaticPlaylist)playlist;
+            case Hint.SMART_PLAYLIST:
+                var p = (Playlist) playlist;
 
                 // Connect to playlist signals
                 if (p != null) {
                     p.media_added.connect (on_playlist_media_added);
                     p.media_removed.connect (on_playlist_media_removed);
                     p.cleared.connect (on_playlist_cleared);
-                    p.request_play.connect (() => {App.player.clearCurrent(); play_first_media (true);App.player.getNext(true);});
+                    p.request_play.connect (() => {
+                        App.player.clear_queue ();
+                        play_first_media (true);
+                        App.player.get_next(true);
+                    });
                 }
-            break;
-            
-            case Hint.SMART_PLAYLIST:
-                var p = (SmartPlaylist)playlist;
-
-                // Connect to smart playlist signals
-                if (p != null) {
-                    p.media_added.connect (on_playlist_media_added);
-                    p.media_removed.connect (on_playlist_media_removed);
-                    p.cleared.connect (on_playlist_cleared);
-                    p.request_play.connect (() => {App.player.clearCurrent(); play_first_media (true);App.player.getNext(true);});
-                }
-            break;
-
+                break;
             default:
                 assert_not_reached ();
         }
@@ -137,4 +129,3 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         yield set_media_async (new Gee.ArrayQueue<Media> ());
     }
 }
-

@@ -29,7 +29,7 @@ set(CLIENT_SOURCE
     Widgets/FastView/FastGrid.vala
     Widgets/FastView/FastGridModel.vala
     Widgets/FastView/FastList.vala
-    Widgets/FastView/FastListModel.vala
+    Widgets/FastView/FastModel.vala
     DataBase.vala
     GStreamer/GStreamerTagger.vala
     GStreamer/CoverImport.vala
