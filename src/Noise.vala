@@ -47,7 +47,7 @@ public class Noise.App : Granite.Application {
 
         application_id = "org.pantheon.noise";
         app_launcher = "org.pantheon.noise.desktop";
-        
+
         var present_action = new SimpleAction ("app.present", null);
         present_action.activate.connect (() => {
             if (main_window != null) {

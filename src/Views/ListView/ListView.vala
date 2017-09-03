@@ -269,15 +269,11 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public Gee.Collection<Media> get_media () {
-        var media_list = new Gee.ArrayQueue<Media> ();
-        media_list.add_all (list_view.get_table ().values);
-        return media_list;
+        return list_view.get_table ();
     }
 
     public Gee.Collection<Media> get_visible_media () {
-        var media_list = new Gee.ArrayQueue<Media> ();
-        media_list.add_all (list_view.get_visible_table ().values);
-        return media_list;
+        return list_view.get_visible_table ();
     }
 
     private void column_browser_changed () {
@@ -385,7 +381,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         return status_text;
     }
 
-    private void view_search_func (string search, Gee.HashMap<int, Media> table, Gee.HashMap<int, Media> showing) {
+    private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {
         list_text_overlay.message_visible = false;
         var result = view_wrapper.library.get_search_result ();
 
@@ -393,33 +389,24 @@ public class Noise.ListView : ContentView, Gtk.Box {
         // because it wil be refreshed after this search based on the new 'showing' table
         // (populated by this method).
         bool obey_column_browser = column_browser_enabled && this.obey_column_browser;
-        int show_index = 0;
-        
-        if (result.size != view_wrapper.library.get_medias ().size) {
-            /* 
-             * Please don't change back to a foreach implementation
-             * until you fully understand the proper behavior
-             * since this change produces the bug 1346678
-             * Leave this "for loop" for now.                   */
-            foreach (var m in table) {
-                if (obey_column_browser && !column_browser.match_media (m))
-                    continue;
 
-                if (result.contains (m)) {
-                    showing.set (show_index++, m);
+        if (result.size != view_wrapper.library.get_medias ().size) {
+            foreach (var m in table) {
+                if (obey_column_browser && !column_browser.match_media (m)) {
+                    continue;
+                }
+
+                if (m in result) {
+                    showing.add (m);
                 }
             }
         } else {
-            /* 
-             * Please don't change back to a foreach implementation
-             * until you fully understand the proper behavior
-             * since this change produces the bug 1346678
-             * Leave this "for loop" for now.                   */
             foreach (var m in table) {
-                if (obey_column_browser && !column_browser.match_media (m))
+                if (obey_column_browser && !column_browser.match_media (m)) {
                     continue;
+                }
 
-                showing.set (show_index++, m);
+                showing.add (m);
             }
         }
 
