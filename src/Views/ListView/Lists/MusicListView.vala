@@ -43,7 +43,7 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
 
     public override void activate () {
         File[] files = {};
-        foreach (Media m in this.medias) {
+        foreach (Media m in medias) {
             files += m.file;
             debug("Added file to pass to Contractor: %s", m.uri);
         }

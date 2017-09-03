@@ -55,13 +55,13 @@ public class Noise.App : Granite.Application {
             }
         });
 
-        this.add_action (present_action);
+        add_action (present_action);
     }
 
     public override void open (File[] files, string hint) {
         // Activate, then play files
         if (library_manager == null) {
-            this.activate ();
+            activate ();
         }
         library_manager.play_files (files);
     }

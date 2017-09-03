@@ -107,7 +107,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             column_browser = new MusicColumnBrowser (view_wrapper);
 
         list_view.set_search_func (view_search_func);
-        view_wrapper.library.search_finished.connect (() => {this.list_view.research_needed = true;});
+        view_wrapper.library.search_finished.connect (() => { list_view.research_needed = true; });
 
         if (has_column_browser) {
             browser_hpane = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
@@ -120,7 +120,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
             // Add hpaned (the most-external wrapper) to the view container
             browser_hpane.expand = true;
-            this.add (browser_hpane);
+            add (browser_hpane);
 
             // Now pack the list view
             browser_vpane.pack2 (list_text_overlay, true, false);
@@ -130,7 +130,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
             // Connect signals once the widget has been realized to avoid writing to settings
             // on startup
-            this.realize.connect (connect_column_browser_ui_signals);
+            realize.connect (connect_column_browser_ui_signals);
 
             column_browser_enabled = Settings.SavedState.get_default ().column_browser_enabled;
 
@@ -138,7 +138,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             column_browser.changed.connect (column_browser_changed);
         }
         else {
-            this.add (list_text_overlay);
+            add (list_text_overlay);
         }
     }
 
@@ -151,7 +151,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         if (actual_position == ColumnBrowser.Position.AUTOMATIC) {
             // Decide what orientation to use based on the view area size
 
-            int view_width = this.get_allocated_width ();
+            int view_width = get_allocated_width ();
             const int MIN_RECOMMENDED_COLUMN_WIDTH = 160;
 
             int visible_columns = 0;
@@ -200,7 +200,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             return;
 
         // For automatic position stuff
-        this.size_allocate.connect (() => {
+        size_allocate.connect (() => {
             if (!App.main_window.initialization_finished)
                 return;
 
@@ -294,13 +294,13 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
     public void add_media (Gee.Collection<Media> to_add) {
         list_view.add_media (to_add);
-        this.list_view.research_needed = true;
+        list_view.research_needed = true;
         refilter ();
     }
 
     public void remove_media (Gee.Collection<Media> to_remove) {
         list_view.remove_media (to_remove);
-        this.list_view.research_needed = true;
+        list_view.research_needed = true;
         refilter ();
     }
 
@@ -308,7 +308,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         obey_column_browser = false;
 
         list_view.set_media (media);
-        this.list_view.research_needed = true;
+        list_view.research_needed = true;
 
         if (has_column_browser)
             column_browser.set_media (media);

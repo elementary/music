@@ -69,7 +69,7 @@ public class Noise.LocalLibrary : Library {
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;
 
-        this.fo = new FileOperator ();
+        fo = new FileOperator ();
     }
 
     public override void initialize_library () {

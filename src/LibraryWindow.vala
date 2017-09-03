@@ -86,14 +86,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
         main_settings = Settings.Main.get_default ();
 
-        this.library_manager.media_added.connect (update_sensitivities);
-        this.library_manager.media_removed.connect (update_sensitivities);
+        library_manager.media_added.connect (update_sensitivities);
+        library_manager.media_removed.connect (update_sensitivities);
 
-        this.library_manager.playlist_added.connect ((p) => {add_playlist (p);});
-        this.library_manager.playlist_removed.connect ((p) => {remove_playlist (p);});
+        library_manager.playlist_added.connect ((p) => {add_playlist (p);});
+        library_manager.playlist_removed.connect ((p) => {remove_playlist (p);});
 
-        this.library_manager.smartplaylist_added.connect ((p) => {add_smartplaylist (p);});
-        this.library_manager.smartplaylist_removed.connect ((p) => {remove_smartplaylist (p);});
+        library_manager.smartplaylist_added.connect ((p) => {add_smartplaylist (p);});
+        library_manager.smartplaylist_removed.connect ((p) => {remove_smartplaylist (p);});
 
         var device_manager = DeviceManager.get_default ();
         device_manager.device_added.connect ((item) => {create_device_source_list (item);});
@@ -129,7 +129,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
 
         // init some booleans
-        if (this.library_manager.get_medias ().size > 0) {
+        if (library_manager.get_medias ().size > 0) {
             App.player.clear_queue ();
 
             // make sure we don't re-count stats
@@ -213,7 +213,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 searchField.grab_focus ();
                 return false;
             } else if (match_keycode (Gdk.Key.q, keycode) || match_keycode (Gdk.Key.w, keycode)) {
-                this.destroy ();
+                destroy ();
                 return true;
             }
         }
@@ -224,26 +224,26 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private inline void setup_window () {
         debug ("setting up main window");
 
-        this.height_request = 350;
-        this.width_request = 400;
-        this.window_position = Gtk.WindowPosition.CENTER;
+        height_request = 350;
+        width_request = 400;
+        window_position = Gtk.WindowPosition.CENTER;
 
         // set the size based on saved settings
         var saved_state = Settings.SavedState.get_default ();
-        this.set_default_size (saved_state.window_width, saved_state.window_height);
+        set_default_size (saved_state.window_width, saved_state.window_height);
 
         // Maximize window if necessary
         switch (saved_state.window_state) {
             case Settings.WindowState.MAXIMIZED:
                 window_maximized = true;
-                this.maximize ();
+                maximize ();
                 break;
             default:
                 break;
         }
 
-        this.title = ((Noise.App) GLib.Application.get_default ()).get_name ();
-        this.icon_name = "multimedia-audio-player";
+        title = ((Noise.App) GLib.Application.get_default ()).get_name ();
+        icon_name = "multimedia-audio-player";
 
         // set up drag dest stuff
         /*
@@ -251,9 +251,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         Gtk.drag_dest_add_uri_targets (this);
         this.drag_data_received.connect (dragReceived);
         */
-        this.destroy.connect (on_quit);
+        destroy.connect (on_quit);
 
-        this.show ();
+        show ();
         debug ("done with main window");
     }
 
@@ -565,8 +565,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public void show_notification (string title, string body, GLib.Icon? icon = null, NotificationPriority priority = GLib.NotificationPriority.LOW, string context = "music") {
         // Don't show notifications if the window is active
-        if (this.is_active)
+        if (is_active) {
             return;
+        }
 
         var notification = new Notification (title);
         notification.set_body (body);

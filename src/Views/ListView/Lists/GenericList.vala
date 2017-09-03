@@ -112,8 +112,8 @@ public abstract class Noise.GenericList : FastView {
     protected abstract void mediaRemoveClicked ();
 
     public void set_parent_wrapper (ViewWrapper parent) {
-        this.parent_wrapper = parent;
-        this.playlist = parent_wrapper.playlist;
+        parent_wrapper = parent;
+        playlist = parent_wrapper.playlist;
     }
 
     protected void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {

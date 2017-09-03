@@ -37,22 +37,22 @@ public class Noise.EqualizerPreset : Object {
     public EqualizerPreset.basic (string name) {
         this.name = name;
         for (int i = 0; i < 10; i++) {
-            this.gains.add (0);
+            gains.add (0);
         }
     }
 
     public EqualizerPreset.with_gains (string name, int[] items) {
         this.name = name;
         for (int i = 0; i < 10; i++) {
-            this.gains.add (items[i]);
+            gains.add (items[i]);
         }
     }
 
     public EqualizerPreset.from_string (string data) {
         var vals = data.split ("/", 0);
-        this.name = vals[0];
+        name = vals[0];
         for (int i = 1; i < vals.length; i++) {
-            this.gains.add (int.parse (vals[i]));
+            gains.add (int.parse (vals[i]));
         }
     }
 

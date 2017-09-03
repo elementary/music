@@ -73,7 +73,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
         if (size == 0 || path_index < 0 || path_index >= size || rows.get (path_index) == null)
             return false;
 
-        iter.stamp = this.stamp;
+        iter.stamp = stamp;
         iter.user_data = (void*) path_index;
 
         return true;
@@ -90,7 +90,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     public void get_value (Gtk.TreeIter iter, int column, out Value val) {
         val = Value (get_column_type (column));
 
-        if (iter.stamp != this.stamp || column < 0 || column >= get_n_columns ())
+        if (iter.stamp != stamp || column < 0 || column >= get_n_columns ())
             return;
 
         int row = (int) iter.user_data;
@@ -123,7 +123,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public bool iter_next (ref Gtk.TreeIter iter) {
-        if(iter.stamp != this.stamp)
+        if(iter.stamp != stamp)
             return false;
 
         int index = (int) iter.user_data;
@@ -165,7 +165,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public void remove (Gtk.TreeIter iter) {
-        if(iter.stamp != this.stamp)
+        if(iter.stamp != stamp)
             return;
 
         int index = (int) iter.user_data;
@@ -217,7 +217,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     public void update_row (int index) {
         Gtk.TreePath path = new Gtk.TreePath.from_string(index.to_string());
         Gtk.TreeIter iter = Gtk.TreeIter();
-        iter.stamp = this.stamp;
+        iter.stamp = stamp;
         iter.user_data = (void*)index;
 
         row_changed(path, iter);
@@ -227,8 +227,8 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
      * off responsibility to sort things to the view.
     **/
     public bool get_sort_column_id (out int sort_column_id, out Gtk.SortType order) {
-        sort_column_id = this.sort_column_id;
-        order = this.sort_direction;
+        this.sort_column_id = sort_column_id;
+        order = sort_direction;
 
         return true;
     }
