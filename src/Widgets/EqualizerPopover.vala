@@ -148,7 +148,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 						if (selected_preset.is_default)
 							on_default_preset_modified ();
 						else
-							selected_preset.setGain (index, val);
+							selected_preset.set_gain (index, val);
 					}
 				}
 			});
@@ -238,7 +238,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 
 				if (selected_preset != null) {
 					for (int i = 0; i < scales.size; ++i)
-						apply_equalizer_gain (i, selected_preset.getGain (i));
+						apply_equalizer_gain (i, selected_preset.get_gain (i));
 				}
 			}
 		} else {
@@ -255,7 +255,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 			preset_combo.addPreset (preset);
 		}
 
-		foreach (var preset in equalizer_settings.getPresets ())
+		foreach (var preset in equalizer_settings.get_presets ())
 			preset_combo.addPreset (preset);
 	}
 
