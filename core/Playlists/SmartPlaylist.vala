@@ -40,13 +40,19 @@ public class Noise.SmartPlaylist : Playlist {
     public virtual bool limit { get; set; default = false; }
     public virtual uint limit_amount { get; set; default = 50; }
 
-    protected Noise.Library library;
+    protected Noise.Library library { get; set; }
 
     /*
      * A SmartPlaylist should be linked to only one library.
      */
     public SmartPlaylist (Noise.Library library) {
-        this.library = library;
+        Object (library: library);
+    }
+
+    construct {
+        icon = new ThemedIcon ("playlist-automatic");
+        queries = new Gee.TreeSet<SmartQuery>();
+
         library.media_added.connect ((medias) => {
             analyse_list (medias);
         });
@@ -66,12 +72,6 @@ public class Noise.SmartPlaylist : Playlist {
 
             media_removed (removed);
         });
-    }
-
-    construct {
-        medias = new Gee.ArrayList<Media> ();
-        icon = new ThemedIcon ("playlist-automatic");
-        queries = new Gee.TreeSet<SmartQuery>();
     }
 
     /*

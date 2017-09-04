@@ -28,7 +28,7 @@
 
 public abstract class Noise.Playlist : Object {
     public signal void request_play ();
-    public virtual Gee.ArrayList<Media> medias { get; internal set; }
+    public virtual Gee.ArrayList<Media> medias { get; internal set; default = new Gee.ArrayList<Media> (); }
 
     public int64 rowid { get; set; }
     public GLib.Icon icon;

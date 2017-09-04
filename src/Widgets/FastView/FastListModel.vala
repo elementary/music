@@ -36,7 +36,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
 
     /* data storage variables */
     Gee.ArrayList<Object> rows = new Gee.ArrayList<Media> ();
-    Gee.LinkedList<Type> columns = new Gee.LinkedList<Type> ();
+    protected Gee.List<Type> columns { get; set; }
 
     private int sort_column_id;
     private Gtk.SortType sort_direction;
@@ -48,9 +48,11 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     public signal void reorder_requested (int column, Gtk.SortType direction);
 
     /** Initialize data storage, columns, etc. **/
-    public FastModel (Gee.Collection<Type> column_types) {
-        columns.add_all (column_types);
+    public FastModel (Gee.List<Type> column_types) {
+        Object (columns: column_types);
+    }
 
+    construct {
         sort_column_id = -2;
         sort_direction = Gtk.SortType.ASCENDING;
 

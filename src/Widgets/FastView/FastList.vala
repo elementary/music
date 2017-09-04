@@ -32,7 +32,7 @@
 public class Noise.FastView : Gtk.TreeView {
     public const int OPTIMAL_COLUMN = -2;
     FastModel fm;
-    Gee.LinkedList<Type> columns = new Gee.LinkedList<Type> ();
+    protected Gee.List<Type> columns { get; set; }
 
     /**
     * A list of all the medias to display
@@ -59,10 +59,12 @@ public class Noise.FastView : Gtk.TreeView {
 
     public signal void rows_reordered ();
 
-    public FastView (Gee.Collection<Type> types) {
-        columns.add_all (types);
-        fm = new FastModel (types);
+    public FastView (Gee.List<Type> types) {
+        Object (columns: types);
+    }
 
+    construct {
+        fm = new FastModel (columns);
         sort_column_id = OPTIMAL_COLUMN;
         sort_direction = Gtk.SortType.ASCENDING;
 

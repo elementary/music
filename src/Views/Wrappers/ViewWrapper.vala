@@ -113,7 +113,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         }
     }
 
-    public Playlist? playlist = null;
+    public Playlist? playlist { get; set; default = null; }
 
     public int media_count {
         get { return (int) list_view.n_media; }
@@ -130,11 +130,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     // No widget is set as active until this is true!
     private bool data_initialized = false;
 
-    public ViewWrapper (Hint hint, Library library)
-    {
-        this.hint = hint;
-        this.library = library;
+    public ViewWrapper (Hint hint, Library library) {
+        Object (hint: hint, library: library);
+    }
 
+    construct {
         orientation = Gtk.Orientation.VERTICAL;
 
         view_container = new ViewContainer ();

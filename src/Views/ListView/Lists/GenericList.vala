@@ -28,7 +28,6 @@
  */
 
 public abstract class Noise.GenericList : FastView {
-
     public signal void import_requested (Gee.Collection<Media> to_import);
 
     public Playlist? playlist { get; set; default = null; }
@@ -45,9 +44,18 @@ public abstract class Noise.GenericList : FastView {
     protected Gtk.Menu column_chooser_menu;
     private Gtk.MenuItem autosize_menu_item;
 
-    protected ViewWrapper parent_wrapper;
+    private ViewWrapper _parent_wrapper;
+    internal ViewWrapper parent_wrapper {
+        get {
+            return _parent_wrapper;
+        }
+        set {
+            parent_wrapper = value;
+            playlist = value.playlist;
+        }
+    }
 
-    protected TreeViewSetup tvs;
+    protected TreeViewSetup tvs { get; set; }
     protected bool is_current_list;
 
     protected bool dragging;
@@ -55,16 +63,13 @@ public abstract class Noise.GenericList : FastView {
     protected CellDataFunctionHelper cell_data_helper;
 
     public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-        var types = new Gee.LinkedList<Type> ();
+        Object (parent_wrapper: view_wrapper, tvs: tvs);
+    }
+
+    construct {
         foreach (var type in ListColumn.get_all ()) {
-            types.add (type.get_data_type ());
+            columns.add (type.get_data_type ());
         }
-
-        base (types);
-
-        this.tvs = tvs;
-
-        set_parent_wrapper (view_wrapper);
 
         cell_data_helper = new CellDataFunctionHelper (this);
 
@@ -110,11 +115,6 @@ public abstract class Noise.GenericList : FastView {
     }
 
     protected abstract void mediaRemoveClicked ();
-
-    public void set_parent_wrapper (ViewWrapper parent) {
-        parent_wrapper = parent;
-        playlist = parent_wrapper.playlist;
-    }
 
     protected void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {
         if (type == ListColumn.TITLE || type == ListColumn.ICON)

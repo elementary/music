@@ -80,7 +80,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gee.HashMap<string, int> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
 
-    public LibraryWindow () {
+    construct {
         get_style_context ().add_class ("rounded");
 
         //FIXME? App.player.player.media_not_found.connect (media_not_found);

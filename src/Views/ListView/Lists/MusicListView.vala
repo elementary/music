@@ -32,13 +32,11 @@
  */
 
 public class Noise.ContractMenuItem : Gtk.MenuItem {
-    private Granite.Services.Contract contract;
-    private Gee.TreeSet<Media> medias = new Gee.TreeSet<Media> ();
+    protected Granite.Services.Contract contract { get; set; }
+    protected Gee.Collection<Media> medias { get; set; }
 
     public ContractMenuItem (Granite.Services.Contract contract, Gee.Collection<Noise.Media> medias) {
-        this.contract = contract;
-        this.medias.add_all (medias);
-        label = contract.get_display_name ();
+        Object (contract: contract, medias: medias, label: contract.get_display_name ());
     }
 
     public override void activate () {
@@ -79,7 +77,9 @@ public class Noise.MusicListView : GenericList {
      */
     public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         base (view_wrapper, tvs);
+    }
 
+    construct {
         // This is vital
         set_value_func (view_value_func);
         set_compare_func (view_compare_func);

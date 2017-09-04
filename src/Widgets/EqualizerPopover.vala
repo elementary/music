@@ -50,7 +50,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 		"60", "170", "310", "600", "1k", "3k", "6k", "12k", "14k", "16k"
 	};
 
-	public EqualizerPopover () {
+	construct {
 		scales = new Gee.ArrayList<Gtk.Scale> ();
 		target_levels = new Gee.ArrayList<int> ();
 	}

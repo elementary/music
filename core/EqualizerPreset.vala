@@ -29,20 +29,20 @@
  */
 
 public class Noise.EqualizerPreset : Object {
-    public string name = "";
+    public string name { get; set; }
     public Gee.ArrayList<int> gains = new Gee.ArrayList<int> ();
 
     public bool is_default { get; set; default = false; }
 
     public EqualizerPreset.basic (string name) {
-        this.name = name;
+        Object (name: name);
         for (int i = 0; i < 10; i++) {
             gains.add (0);
         }
     }
 
     public EqualizerPreset.with_gains (string name, int[] items) {
-        this.name = name;
+        Object (name: name);
         for (int i = 0; i < 10; i++) {
             gains.add (items[i]);
         }
@@ -50,7 +50,7 @@ public class Noise.EqualizerPreset : Object {
 
     public EqualizerPreset.from_string (string data) {
         var vals = data.split ("/", 0);
-        name = vals[0];
+        Object (name: vals[0]);
         for (int i = 1; i < vals.length; i++) {
             gains.add (int.parse (vals[i]));
         }

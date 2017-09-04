@@ -43,7 +43,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     private int browser_hpane_position = -1;
     private int browser_vpane_position = -1;
 
-    private ViewWrapper view_wrapper;
+    protected ViewWrapper view_wrapper { get; set; }
     private ViewTextOverlay list_text_overlay;
 
     private bool obey_column_browser = false;
@@ -82,10 +82,12 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false) {
-        this.view_wrapper = view_wrapper;
+        Object (view_wrapper: view_wrapper,
+                list_view: new MusicListView (view_wrapper, tvs),
+                column_browser: add_browser ? new MusicColumnBrowser (view_wrapper) : null);
+    }
 
-        list_view = new MusicListView (view_wrapper, tvs);
-
+    construct {
         var list_scrolled = new Gtk.ScrolledWindow (null, null);
         list_scrolled.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         list_scrolled.add (list_view);
@@ -102,9 +104,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
         list_view.import_requested.connect ((to_import) => {
             import_requested (to_import);
         });
-
-        if (add_browser)
-            column_browser = new MusicColumnBrowser (view_wrapper);
 
         list_view.set_search_func (view_search_func);
         view_wrapper.library.search_finished.connect (() => { list_view.research_needed = true; });
@@ -136,8 +135,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
             // Connect data signals
             column_browser.changed.connect (column_browser_changed);
-        }
-        else {
+        } else {
             add (list_text_overlay);
         }
     }

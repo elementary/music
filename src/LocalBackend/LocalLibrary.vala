@@ -56,7 +56,7 @@ public class Noise.LocalLibrary : Library {
 
     private const string DB_FILE = "database_0_3_1";
 
-    public LocalLibrary () {
+    construct {
         libraries_manager.local_library = this;
         _playlists = new Gee.TreeSet<StaticPlaylist> ();
         _smart_playlists = new Gee.TreeSet<SmartPlaylist> ();

@@ -27,19 +27,18 @@
  */
 
 public class Noise.PlaylistViewWrapper : ViewWrapper {
-    public TreeViewSetup tvs;
+    public TreeViewSetup tvs { get; set; }
     public signal void button_clicked (Playlist p);
     private Gtk.Action[] actions = null;
     private string message_head;
     private string message_body;
 
     public PlaylistViewWrapper (Playlist playlist, ViewWrapper.Hint hint, TreeViewSetup tvs, Library library) {
-        base (hint, library);
-        this.tvs = tvs;
+        Object (tvs: tvs, playlist: playlist, hint: hint, library: library);
+    }
 
-        this.playlist = playlist;
-
-        list_view = new ListView (this, this.tvs);
+    construct {
+        list_view = new ListView (this, tvs);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
         // Refresh view layout

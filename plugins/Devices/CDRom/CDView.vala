@@ -27,7 +27,7 @@
  */
 
 public class Noise.Plugins.CDView : Gtk.Grid {
-    CDRomDevice dev;
+    protected CDRomDevice dev { get; set; }
 
     Gtk.EventBox main_event_box;
     Gtk.Grid main_grid;
@@ -41,18 +41,19 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     public CDViewWrapper cd_viewwrapper;
 
     public CDView (CDRomDevice d) {
-        this.dev = d;
+        Object (dev: d);
+    }
+
+    construct {
         cd_playlist = new Noise.StaticPlaylist ();
         cd_viewwrapper = new CDViewWrapper (cd_playlist);
 
         build_ui ();
 
         dev.initialized.connect (cd_initialised);
-
     }
 
     public void build_ui () {
-
         main_event_box = new Gtk.EventBox ();
         main_grid = new Gtk.Grid ();
 

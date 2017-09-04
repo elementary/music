@@ -30,7 +30,7 @@
 public class Noise.PopupListView : Gtk.Dialog {
     public const int MIN_SIZE = 500;
 
-    ViewWrapper view_wrapper;
+    protected ViewWrapper view_wrapper { get; set; }
     Widgets.AlbumImage album_cover;
     Gtk.Label album_label;
     Gtk.Label artist_label;
@@ -45,6 +45,10 @@ public class Noise.PopupListView : Gtk.Dialog {
     Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
 
     public PopupListView (GridView grid_view) {
+        Object (view_wrapper: grid_view.parent_view_wrapper);
+    }
+
+    construct {
         // window stuff
         has_resize_grip = false;
         resizable = false;
@@ -52,8 +56,6 @@ public class Noise.PopupListView : Gtk.Dialog {
         skip_taskbar_hint = true;
         set_transient_for (App.main_window);
         window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
-
-        view_wrapper = grid_view.parent_view_wrapper;
 
         delete_event.connect (hide_on_delete);
         App.main_window.close_subwindows.connect (() => { hide_on_delete (); });
@@ -153,7 +155,7 @@ public class Noise.PopupListView : Gtk.Dialog {
 
     public void set_parent_wrapper (ViewWrapper parent_wrapper) {
         view_wrapper = parent_wrapper;
-        list_view.set_parent_wrapper (parent_wrapper);
+        list_view.parent_wrapper = parent_wrapper;
     }
 
     public void set_album (Album album) {
