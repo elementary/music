@@ -267,11 +267,15 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public Gee.Collection<Media> get_media () {
-        return list_view.get_table ();
+        var media = new Gee.ArrayList<Media> ();
+        media.add_all (list_view.get_table ());
+        return media;
     }
 
     public Gee.Collection<Media> get_visible_media () {
-        return list_view.get_visible_table ();
+        var media = new Gee.ArrayList<Media> ();
+        media.add_all (list_view.get_visible_table ());
+        return media;
     }
 
     private void column_browser_changed () {
