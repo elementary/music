@@ -387,7 +387,7 @@ public class Noise.LocalLibrary : Library {
 
     public override void add_playlist (StaticPlaylist p) {
         string rv = "";
-        foreach (var m in p.medias) {
+        foreach (var m in p) {
             if (rv == "") {
                 rv = "%lld".printf (m.rowid);
             } else {
