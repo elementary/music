@@ -333,6 +333,23 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
             if(not_found.size > 0) { // hand control over to SWD
                 SyncWarningDialog swd = new SyncWarningDialog(dev, list, not_found);
+                swd.response.connect ((src, id) => {
+                    switch (id) {
+                        case SyncWarningDialog.ResponseId.IMPORT_MEDIA:
+                            libraries_manager.transfer_to_local_library (not_found);
+                            // TODO: After transfer, do sync
+
+                            swd.destroy ();
+                            break;
+                        case SyncWarningDialog.ResponseId.CONTINUE:
+                            dev.synchronize ();
+                            swd.destroy ();
+                            break;
+                        case SyncWarningDialog.ResponseId.STOP:
+                            swd.destroy ();
+                            break;
+                    }
+                });
                 swd.show();
             } else {
                 space_widget.set_sync_button_sensitive(false);
