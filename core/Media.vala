@@ -31,7 +31,7 @@ public class Noise.Media : Object {
     /// Used for unknown titles, artists, or album names.
     protected static string UNKNOWN = _("Unknown");
 
-    public int64 rowid { get; set; }
+    public int64 rowid { get; construct set; }
 
     public virtual string uri {
         owned get { return file.get_uri (); }
@@ -45,7 +45,7 @@ public class Noise.Media : Object {
 
     public virtual bool isPreview { get; set; default = false; }
     public virtual bool isTemporary { get; set; default = false; }
-    
+
     // TODO: evaluate if there's real need for these fields
     public virtual bool location_unknown { get; set; default = false; }
     public virtual bool has_embedded { get; set; default = false; }
@@ -222,7 +222,7 @@ public class Noise.Media : Object {
         rv.skip_count = skip_count;
         rv.date_added = date_added;
         rv.last_played = last_played;
-        rv.lyrics = lyrics; 
+        rv.lyrics = lyrics;
         rv.isPreview = isPreview;
         rv.isTemporary = isTemporary;
         rv.last_modified = last_modified;

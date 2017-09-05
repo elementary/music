@@ -30,7 +30,7 @@
 public class Noise.PopupListView : Gtk.Dialog {
     public const int MIN_SIZE = 500;
 
-    protected ViewWrapper view_wrapper { get; set; }
+    public ViewWrapper view_wrapper { get; construct set; }
     Widgets.AlbumImage album_cover;
     Gtk.Label album_label;
     Gtk.Label artist_label;

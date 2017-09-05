@@ -45,11 +45,11 @@ public abstract class Noise.GenericList : FastView {
     private Gtk.MenuItem autosize_menu_item;
 
     private ViewWrapper _parent_wrapper;
-    internal ViewWrapper parent_wrapper {
+    public ViewWrapper parent_wrapper {
         get {
             return _parent_wrapper;
         }
-        set {
+        construct set {
             parent_wrapper = value;
             playlist = value.playlist;
         }

@@ -32,7 +32,7 @@
 public class Noise.FastView : Gtk.TreeView {
     public const int OPTIMAL_COLUMN = -2;
     FastModel fm;
-    protected Gee.List<Type> columns { get; set; }
+    public Gee.List<Type> columns { get; construct set; }
 
     /**
     * A list of all the medias to display

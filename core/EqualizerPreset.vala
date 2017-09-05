@@ -29,7 +29,7 @@
  */
 
 public class Noise.EqualizerPreset : Object {
-    public string name { get; set; }
+    public string name { get; construct set; }
     public Gee.ArrayList<int> gains = new Gee.ArrayList<int> ();
 
     public bool is_default { get; set; default = false; }

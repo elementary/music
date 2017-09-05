@@ -31,14 +31,14 @@ public abstract class Noise.Playlist : Object {
 
     public virtual Gee.ArrayList<Media> medias { get; internal set; default = new Gee.ArrayList<Media> (); }
 
-    public int64 rowid { get; set; }
+    public int64 rowid { get; construct set; }
     public GLib.Icon icon;
     internal string _name = "";
     public virtual string name {
         get {
             return _name;
         }
-        set {
+        construct set {
             string old_name = _name;
             _name = value;
             updated (old_name);

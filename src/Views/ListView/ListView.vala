@@ -30,20 +30,19 @@
  * Contains the column browser and list view.
  */
 public class Noise.ListView : ContentView, Gtk.Box {
-
     public signal void reordered ();
 
     // Wrapper for the list view and miller columns
     private Gtk.Paned browser_hpane; // for left mode
     private Gtk.Paned browser_vpane; // for top mode
 
-    public ColumnBrowser column_browser { get; private set; }
-    public MusicListView   list_view    { get; private set; }
+    public ColumnBrowser column_browser { get; private construct set; }
+    public MusicListView   list_view    { get; private construct set; }
 
     private int browser_hpane_position = -1;
     private int browser_vpane_position = -1;
 
-    protected ViewWrapper view_wrapper { get; set; }
+    public ViewWrapper view_wrapper { get; construct set; }
     private ViewTextOverlay list_text_overlay;
 
     private bool obey_column_browser = false;

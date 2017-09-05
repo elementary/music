@@ -27,7 +27,7 @@
  */
 
 public class Noise.PlaylistViewWrapper : ViewWrapper {
-    public TreeViewSetup tvs { get; set; }
+    public TreeViewSetup tvs { get; construct set; }
     public signal void button_clicked (Playlist p);
     private Gtk.Action[] actions = null;
     private string message_head;

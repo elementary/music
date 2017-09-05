@@ -32,8 +32,8 @@
  */
 
 public class Noise.ContractMenuItem : Gtk.MenuItem {
-    protected Granite.Services.Contract contract { get; set; }
-    protected Gee.Collection<Media> medias { get; set; }
+    public Granite.Services.Contract contract { get; construct set; }
+    public Gee.Collection<Media> medias { get; construct set; }
 
     public ContractMenuItem (Granite.Services.Contract contract, Gee.Collection<Noise.Media> medias) {
         Object (contract: contract, medias: medias, label: contract.get_display_name ());

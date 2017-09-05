@@ -40,7 +40,7 @@ public class Noise.SmartPlaylist : Playlist {
     public virtual bool limit { get; set; default = false; }
     public virtual uint limit_amount { get; set; default = 50; }
 
-    protected Noise.Library library { get; set; }
+    public Noise.Library library { get; construct set; }
 
     /*
      * A SmartPlaylist should be linked to only one library.

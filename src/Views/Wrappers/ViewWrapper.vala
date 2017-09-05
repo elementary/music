@@ -104,8 +104,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * This is by far the most important property of this object.
      * It defines how child widgets behave and some other properties.
      */
-    public Hint hint { get; protected set; }
-    public Library library { get; protected set; }
+    public Hint hint { get; protected construct set; }
+    public Library library { get; protected construct set; }
 
     public bool is_current_wrapper {
         get {
@@ -113,7 +113,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         }
     }
 
-    public Playlist? playlist { get; set; default = null; }
+    public Playlist? playlist { get; construct set; default = null; }
 
     public int media_count {
         get { return (int) list_view.n_media; }
