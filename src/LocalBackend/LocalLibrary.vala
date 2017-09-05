@@ -565,11 +565,33 @@ public class Noise.LocalLibrary : Library {
                 sql.select_add_field ("rowid", null, null);
                 Gda.SqlBuilderId[] ids = null;
 
-                string[] fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment"};
-                foreach (var field in fields) {
-                    var id_field = sql.add_id (field);
-                    var id_value = sql.add_expr_value (null, "%"+search+"%");
-                    ids += sql.add_cond (Gda.SqlOperatorType.LIKE, id_field, id_value, 0);
+                /** Enabling directory/path/uri search through SearchEntry **/
+
+                string[] fields = {};
+
+                if(search.len() > 4 && search.substring(0, 4).to_string() == "uri:") { // If search term contains more than 4 chars and starts with "uri:"
+
+                    string new_search = search.substring(4); // then remove trailing "uri:"
+                    new_search = new_search.replace(" ", "%20"); // and replace spaces with %20 and
+                    fields = {"uri"}; // search only uri
+                    
+                    foreach (var field in fields) {
+                        var id_field = sql.add_id (field);
+                        var id_value = sql.add_expr_value (null, "%"+new_search+"%");
+                        ids += sql.add_cond (Gda.SqlOperatorType.LIKE, id_field, id_value, 0);
+                    }
+
+                } else {
+                    
+                    /* Old SQL query generation code */
+                    fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment"};
+        
+                    foreach (var field in fields) {
+                        var id_field = sql.add_id (field);
+                        var id_value = sql.add_expr_value (null, "%"+search+"%");
+                        ids += sql.add_cond (Gda.SqlOperatorType.LIKE, id_field, id_value, 0);
+                    }
+
                 }
 
                 var id_cond = sql.add_cond_v (Gda.SqlOperatorType.OR, ids);
