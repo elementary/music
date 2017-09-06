@@ -131,6 +131,9 @@ namespace Noise.Database {
         sq.value.copy (ref value);
         string field;
         switch (sq.field) {
+            case SmartQuery.FieldType.URI:
+                field = "uri";
+                break;
             case SmartQuery.FieldType.ALBUM:
                 field = "album";
                 break;

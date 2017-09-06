@@ -55,7 +55,8 @@ public class Noise.SmartQuery : Object {
         RATING,
         SKIPCOUNT,
         TITLE,
-        YEAR
+        YEAR,
+        URI
     }
 
     public int rowid { get; set; default = 0; }
