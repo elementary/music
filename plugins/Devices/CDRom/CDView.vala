@@ -27,7 +27,7 @@
  */
 
 public class Noise.Plugins.CDView : Gtk.Grid {
-    protected CDRomDevice dev { get; construct set; }
+    public CDRomDevice dev { get; construct set; }
 
     Gtk.EventBox main_event_box;
     Gtk.Grid main_grid;
