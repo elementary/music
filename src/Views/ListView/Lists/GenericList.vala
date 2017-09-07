@@ -50,12 +50,12 @@ public abstract class Noise.GenericList : FastView {
             return _parent_wrapper;
         }
         construct set {
-            parent_wrapper = value;
+            _parent_wrapper = value;
             playlist = value.playlist;
         }
     }
 
-    protected TreeViewSetup tvs { get; set; }
+    public TreeViewSetup tvs { get; construct set; }
     protected bool is_current_list;
 
     protected bool dragging;
@@ -67,10 +67,6 @@ public abstract class Noise.GenericList : FastView {
     }
 
     construct {
-        foreach (var type in ListColumn.get_all ()) {
-            columns.add (type.get_data_type ());
-        }
-
         cell_data_helper = new CellDataFunctionHelper (this);
 
         // Set sort data from saved session

@@ -60,7 +60,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public Type get_column_type (int col) {
-        return columns.get (col);
+        return columns[col];
     }
 
     public Gtk.TreeModelFlags get_flags () {
@@ -90,20 +90,23 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public void get_value (Gtk.TreeIter iter, int column, out Value val) {
-        val = Value (get_column_type (column));
-
-        if (iter.stamp != stamp || column < 0 || column >= get_n_columns ())
+        if (iter.stamp != stamp || column < 0 || column >= get_n_columns ()) {
             return;
+        }
+
+        val = Value (get_column_type (column));
 
         int row = (int) iter.user_data;
         var object = rows.get (row);
         Value? val_tmp = null;
 
-        if (object != null)
+        if (object != null) {
             val_tmp = value_func (row, column, object);
+        }
 
-        if (val_tmp != null)
+        if (val_tmp != null) {
             val = val_tmp;
+        }
     }
 
     public Object get_object (Gtk.TreeIter iter) {

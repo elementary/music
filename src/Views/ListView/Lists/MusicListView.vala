@@ -76,7 +76,7 @@ public class Noise.MusicListView : GenericList {
      * for sort_id use 0+ for normal, -1 for auto, -2 for none
      */
     public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-        base (view_wrapper, tvs);
+        Object (parent_wrapper: view_wrapper, tvs: tvs);
     }
 
     construct {

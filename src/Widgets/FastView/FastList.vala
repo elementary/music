@@ -31,7 +31,7 @@
 */
 public class Noise.FastView : Gtk.TreeView {
     public const int OPTIMAL_COLUMN = -2;
-    FastModel fm;
+    protected FastModel fm;
     public Gee.List<Type> columns { get; construct set; }
 
     /**
@@ -50,7 +50,7 @@ public class Noise.FastView : Gtk.TreeView {
 
     protected int sort_column_id;
     protected Gtk.SortType sort_direction;
-    public bool research_needed = false;
+    public bool research_needed { get; set; default = false; }
     private unowned SortCompareFunc compare_func;
 
     // search stuff
@@ -64,6 +64,11 @@ public class Noise.FastView : Gtk.TreeView {
     }
 
     construct {
+        columns = new Gee.ArrayList<Type> ();
+        foreach (var type in ListColumn.get_all ()) {
+            columns.add (type.get_data_type ());
+        }
+
         fm = new FastModel (columns);
         sort_column_id = OPTIMAL_COLUMN;
         sort_direction = Gtk.SortType.ASCENDING;

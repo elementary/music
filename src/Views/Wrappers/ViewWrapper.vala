@@ -39,7 +39,6 @@
  * The views it contains implement the {@link Noise.ContentView} interface.
  */
 public abstract class Noise.ViewWrapper : Gtk.Grid {
-
     public enum Hint {
         NONE,
         MUSIC,
@@ -104,7 +103,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * This is by far the most important property of this object.
      * It defines how child widgets behave and some other properties.
      */
-    public Hint hint { get; protected construct set; }
+    public Hint hint { get; construct set; }
     public Library library { get; protected construct set; }
 
     public bool is_current_wrapper {

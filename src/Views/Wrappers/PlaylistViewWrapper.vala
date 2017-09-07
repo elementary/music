@@ -71,7 +71,9 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                 message_head = _("No Songs");
                 message_body = _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below.");
                 break;
-
+            case Hint.NONE:
+                debug ("Hint = NONE");
+                break;
             default:
                 assert_not_reached ();
         }

@@ -36,8 +36,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
     private Gtk.Paned browser_hpane; // for left mode
     private Gtk.Paned browser_vpane; // for top mode
 
-    public ColumnBrowser column_browser { get; private construct set; }
-    public MusicListView   list_view    { get; private construct set; }
+    public ColumnBrowser column_browser { get; construct set; }
+    public MusicListView list_view { get; construct set; }
 
     private int browser_hpane_position = -1;
     private int browser_vpane_position = -1;
@@ -311,8 +311,9 @@ public class Noise.ListView : ContentView, Gtk.Box {
         list_view.set_media (media);
         list_view.research_needed = true;
 
-        if (has_column_browser)
+        if (has_column_browser) {
             column_browser.set_media (media);
+        }
 
         obey_column_browser = true;
     }
