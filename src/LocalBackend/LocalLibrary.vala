@@ -267,7 +267,7 @@ public class Noise.LocalLibrary : Library {
             if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir)) {
                 if (!File.new_for_uri (m.uri).query_exists ())
                     to_remove.add (m);
-                //if media is in files, remove it.
+                // If media is in files, remove it.
                 if (files.contains (m.uri))
                     files.remove (m.uri);
             }
