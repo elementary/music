@@ -297,6 +297,17 @@ public class Noise.LocalMedia : Noise.Media {
         }
     }
 
+    private uint? _dont_show = null;
+    public override uint dont_show {
+        get {
+            common_uint_getter ("dontshow", ref _dont_show);
+            return _dont_show;
+        }
+        set {
+            common_uint_setter ("dontshow", value, ref _dont_show);
+        }
+    }
+
     public override int resume_pos { get; set; default = 0; }
 
     private Gda.Connection connection;
@@ -348,6 +359,7 @@ public class Noise.LocalMedia : Noise.Media {
             col_names.append ("dateadded");
             col_names.append ("lastplayed");
             col_names.append ("lastmodified");
+            col_names.append ("dontshow");
             var values = new GLib.SList<GLib.Value?> ();
             values.append (m.file_size);
             values.append (m.title);
@@ -374,6 +386,7 @@ public class Noise.LocalMedia : Noise.Media {
             values.append (m.date_added);
             values.append (m.last_played);
             values.append (m.last_modified);
+            values.append (m.dont_show);
             connection.update_row_in_table_v (Database.Media.TABLE_NAME, "rowid", last_insert_row.get_holder_value (Database.Media.ROWID), col_names, values);
         } catch (Error e) {
             warning ("Could not save media: %s", e.message);

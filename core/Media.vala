@@ -45,7 +45,7 @@ public class Noise.Media : Object {
 
     public virtual bool isPreview { get; set; default = false; }
     public virtual bool isTemporary { get; set; default = false; }
-    
+
     // TODO: evaluate if there's real need for these fields
     public virtual bool location_unknown { get; set; default = false; }
     public virtual bool has_embedded { get; set; default = false; }
@@ -95,6 +95,7 @@ public class Noise.Media : Object {
     public virtual uint last_modified { get; set; default = 0; }
 
     public virtual int resume_pos { get; set; default = 0; }
+    public virtual uint dont_show { get; set; default = 0; }
 
     public inline string get_display_filename () {
         string? filename = String.locale_to_utf8 (file.get_basename () ?? UNKNOWN);
@@ -222,10 +223,11 @@ public class Noise.Media : Object {
         rv.skip_count = skip_count;
         rv.date_added = date_added;
         rv.last_played = last_played;
-        rv.lyrics = lyrics; 
+        rv.lyrics = lyrics;
         rv.isPreview = isPreview;
         rv.isTemporary = isTemporary;
         rv.last_modified = last_modified;
+        rv.dont_show = dont_show;
         rv.showIndicator = showIndicator;
         rv.unique_status_image = unique_status_image;
         rv.location_unknown = location_unknown;

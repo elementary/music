@@ -157,7 +157,7 @@ public class Noise.LocalLibrary : Library {
 
         return false;
     }
-    
+
     public void remove_all_static_playlists () {
         var list = new Gee.TreeSet<int64?> ();
         lock (_playlists) {
@@ -176,7 +176,7 @@ public class Noise.LocalLibrary : Library {
         string m_folder = folder;
         m_folder = m_folder.replace ("/media", "");
         m_folder = m_folder.replace (GLib.Environment.get_home_dir ()+ "/", "");
-        
+
         if (start_file_operations (_("Importing music from %s…").printf ("<b>" + Markup.escape_text (m_folder) + "</b>"))) {
             remove_all_static_playlists ();
 
@@ -263,10 +263,10 @@ public class Noise.LocalLibrary : Library {
         // get a list of the current files
         var music_folder_dir = Settings.Main.get_default ().music_folder;
         FileUtils.count_music_files (File.new_for_path (music_folder_dir), files);
-        
-        foreach (var m in get_medias ()) {
-            if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir))
 
+        foreach (var m in get_medias ()) {
+            if (!m.isTemporary && !m.isPreview && m.dont_show==0
+                && m.uri.contains (music_folder_dir))
             if (!File.new_for_uri (m.uri).query_exists ())
                 to_remove.add (m);
             if (files.contains (m.uri))
@@ -518,7 +518,7 @@ public class Noise.LocalLibrary : Library {
 
 
     /******************** Media stuff ******************/
-    
+
     public override void search_medias (string search) {
         if (search == "") {
             lock (_searched_medias) {
@@ -817,7 +817,13 @@ public class Noise.LocalLibrary : Library {
 
         foreach (var m in toRemove) {
             try {
-                connection.delete_row_from_table (Database.Media.TABLE_NAME, "rowid", m.rowid);
+                if(trash){
+                    connection.delete_row_from_table (Database.Media.TABLE_NAME, "rowid", m.rowid);
+                }
+                else{
+                    debug("Don't show flag set");
+                    m.dont_show = 1;
+                }
             } catch (Error e) {
                 critical (e.message);
             }
