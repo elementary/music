@@ -80,6 +80,10 @@ public class Noise.LocalLibrary : Library {
         var media_ids = get_rowids_from_table (Database.Media.TABLE_NAME);
         foreach (var media_id in media_ids) {
             var m = new LocalMedia (media_id, connection);
+            if(m.dont_show == 1){
+                remove_media(m, false);
+                continue;
+            }
             _medias.set (m.rowid, m);
             // Append the media into an album.
             if (m.get_album_hashkey () in album_info.keys) {
@@ -264,14 +268,13 @@ public class Noise.LocalLibrary : Library {
         debug ("found %d items in imported folder\n", num_items);
 
         foreach (var m in get_medias()) {
-            if (!m.isTemporary && !m.isPreview && m.dont_show==0
+            if (!m.isTemporary && !m.isPreview
                 && m.uri.contains (music_folder_dir))
                 if (!File.new_for_uri (m.uri).query_exists ())
                     to_remove.add (m);
                 //if media is in files, remove it.
                 if (files.contains (m.uri))
                     files.remove (m.uri);
-            }
         }
 
         //Anything left in files should be imported
