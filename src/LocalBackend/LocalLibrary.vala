@@ -265,15 +265,17 @@ public class Noise.LocalLibrary : Library {
 
         foreach (var m in get_medias()) {
             if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir)) {
-                if (!File.new_for_uri (m.uri).query_exists ())
+                if (!File.new_for_uri (m.uri).query_exists ()) {
                     to_remove.add (m);
-                // If media is in files, remove it.
-                if (files.contains (m.uri))
+                }
+
+                if (files.contains (m.uri)) {
                     files.remove (m.uri);
+                }
             }
         }
 
-        //Anything left in files should be imported
+        // Anything left in files should be imported
         if (!files.is_empty) {
             debug ("Importing %d new songs", files.size);
             fo.resetProgress (files.size - 1);
@@ -283,12 +285,14 @@ public class Noise.LocalLibrary : Library {
             debug ("No new songs to import.");
         }
 
-        if (files.is_empty)
+        if (files.is_empty) {
             finish_file_operations ();
+        }
 
         if (!fo.cancellable.is_cancelled ()) {
-            if(!to_remove.is_empty)
+            if(!to_remove.is_empty) {
                 remove_medias (to_remove, false);
+            }
         }
     }
 
