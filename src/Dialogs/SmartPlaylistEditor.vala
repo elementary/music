@@ -293,7 +293,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
 
         if (needs_value (q.field)) {
             if(q.field == SmartQuery.FieldType.URI) {
-                value_entry.text = q.value.get_string ().replace("%20", " ");
+                value_entry.text = Uri.unescape_string(q.value.get_string ());
             } else {
                 value_entry.text = q.value.get_string ();
             }
@@ -330,7 +330,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         if (needs_value ((SmartQuery.FieldType)field_combobox.get_active ())) {
             var value = Value (typeof (string));
             if(rv.field == SmartQuery.FieldType.URI) {
-                value.set_string (value_entry.text.replace(" ", "%20"));
+                value.set_string (Uri.escape_string(value_entry.text, "/"));
             } else {
                 value.set_string (value_entry.text);
             }

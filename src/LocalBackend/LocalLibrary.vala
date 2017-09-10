@@ -570,7 +570,7 @@ public class Noise.LocalLibrary : Library {
                 string[] fields = {};
                 if(search.has_prefix("uri:")) {
                     new_search = search.substring(4);
-                    new_search = new_search.replace(" ", "%20");
+                    new_search = Uri.escape_string(new_search,"/");
                     fields = {"uri"};
                 } else {
                     fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment"};
