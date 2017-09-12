@@ -80,11 +80,9 @@ public class Noise.LocalLibrary : Library {
         var media_ids = get_rowids_from_table (Database.Media.TABLE_NAME);
         foreach (var media_id in media_ids) {
             var m = new LocalMedia (media_id, connection);
-            if(m.dont_show == 1){
-                remove_media(m, false);
-                continue;
-            }
+
             _medias.set (m.rowid, m);
+
             // Append the media into an album.
             if (m.get_album_hashkey () in album_info.keys) {
                 var album = album_info.get (m.get_album_hashkey ());
@@ -268,6 +266,10 @@ public class Noise.LocalLibrary : Library {
         debug ("Found %d items to import in %s\n", num_items, music_folder_dir);
 
         foreach (var m in get_medias()) {
+            if(m.dont_show){
+                files.remove(m.uri);
+                to_remove.add (m);
+            }
             if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir)) {
                 if (!File.new_for_uri (m.uri).query_exists ()) {
                     to_remove.add (m);
@@ -831,8 +833,7 @@ public class Noise.LocalLibrary : Library {
                     connection.delete_row_from_table (Database.Media.TABLE_NAME, "rowid", m.rowid);
                 }
                 else{
-                    debug("Don't show flag set");
-                    m.dont_show = 1;
+                    m.dont_show = true;
                 }
             } catch (Error e) {
                 critical (e.message);

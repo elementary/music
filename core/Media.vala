@@ -95,7 +95,7 @@ public class Noise.Media : Object {
     public virtual uint last_modified { get; set; default = 0; }
 
     public virtual int resume_pos { get; set; default = 0; }
-    public virtual uint dont_show { get; set; default = 0; }
+    public virtual bool dont_show { get; set; default = false; }
 
     public inline string get_display_filename () {
         string? filename = String.locale_to_utf8 (file.get_basename () ?? UNKNOWN);

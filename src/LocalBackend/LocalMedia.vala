@@ -298,13 +298,13 @@ public class Noise.LocalMedia : Noise.Media {
     }
 
     private uint? _dont_show = null;
-    public override uint dont_show {
+    public override bool dont_show {
         get {
             common_uint_getter ("dontshow", ref _dont_show);
-            return _dont_show;
+            return (_dont_show==1)?true:false;
         }
         set {
-            common_uint_setter ("dontshow", value, ref _dont_show);
+            common_uint_setter ("dontshow", value?1:0, ref _dont_show);
         }
     }
 
