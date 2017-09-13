@@ -42,6 +42,7 @@ public class Noise.LocalLibrary : Library {
     private Gee.HashMap<int64?, Media> _medias;
     private Gee.TreeSet<Media> _searched_medias;
     private Gee.HashMap<uint, Album> album_info;
+    private Gee.TreeSet<string> _dont_show_uri;
 
     public StaticPlaylist p_music;
 
@@ -63,6 +64,7 @@ public class Noise.LocalLibrary : Library {
         _medias = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
                                                   (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
         _searched_medias = new Gee.TreeSet<Media> ();
+        _dont_show_uri = new Gee.TreeSet<string> ();
         album_info = new Gee.HashMap<uint, Album> ();
         tagger = new GStreamerTagger();
         open_media_list = new Gee.TreeSet<Media> ();
@@ -80,6 +82,10 @@ public class Noise.LocalLibrary : Library {
         var media_ids = get_rowids_from_table (Database.Media.TABLE_NAME);
         foreach (var media_id in media_ids) {
             var m = new LocalMedia (media_id, connection);
+            if(m.dont_show){
+              _dont_show_uri.add(m.uri);
+              continue;
+            }
 
             _medias.set (m.rowid, m);
 
@@ -265,11 +271,13 @@ public class Noise.LocalLibrary : Library {
         var num_items = FileUtils.count_music_files (File.new_for_path (music_folder_dir), files);
         debug ("Found %d items to import in %s\n", num_items, music_folder_dir);
 
-        foreach (var m in get_medias()) {
-            if(m.dont_show){
-                files.remove(m.uri);
-                to_remove.add (m);
+        foreach(var ur in _dont_show_uri){
+            if(files.contains(ur)){
+                files.remove(ur);
             }
+        }
+
+        foreach (var m in get_medias()) {
             if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir)) {
                 if (!File.new_for_uri (m.uri).query_exists ()) {
                     to_remove.add (m);
