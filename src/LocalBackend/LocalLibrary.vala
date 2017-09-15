@@ -566,19 +566,14 @@ public class Noise.LocalLibrary : Library {
                 Gda.SqlBuilderId[] ids = null;
 
                 /* Enabling directory/path/uri search through SearchEntry */
-                string new_search = search;
-                string[] fields = {};
-                if(search.has_prefix("uri:")) {
-                    new_search = search.substring(4);
-                    new_search = Uri.escape_string(new_search,"/");
-                    fields = {"uri"};
-                } else {
-                    fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment"};
-                }
+                string[] fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment", "uri"};
 
                 foreach (var field in fields) {
                     var id_field = sql.add_id (field);
-                    var id_value = sql.add_expr_value (null, "%"+new_search+"%");
+                    var id_value = sql.add_expr_value (null, "%"+search+"%");
+                    if(strcmp("uri", field) == 0) {
+                        id_value = sql.add_expr_value (null, "%"+Uri.escape_string(search, "/")+"%");
+                    }
                     ids += sql.add_cond (Gda.SqlOperatorType.LIKE, id_field, id_value, 0);
                 }
 
