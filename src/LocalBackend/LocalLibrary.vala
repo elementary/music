@@ -84,7 +84,6 @@ public class Noise.LocalLibrary : Library {
         foreach (var media_id in media_ids) {
             var m = new LocalMedia (media_id, connection);
             if (m.dont_show){
-                debug ("Don't show: %s\n", m.uri);
                 _dont_show_medias.set (m.rowid, m);
                 continue;
             }
@@ -219,6 +218,7 @@ public class Noise.LocalLibrary : Library {
     private async void add_files_to_library_async (Gee.Collection<string> files) {
         var to_import = new Gee.TreeSet<string> ();
         to_import.add_all (files);
+        debug ("Found %d items to import\n", to_import.size);
         import_files (to_import, FileOperator.ImportType.IMPORT);
     }
 
@@ -341,7 +341,6 @@ public class Noise.LocalLibrary : Library {
         } else {
             finish_file_operations ();
             debug ("No new songs to import.");
-            //App.main_window.show_notification (_("All music files are already in your library"), _("No files were imported."));
         }
     }
 
