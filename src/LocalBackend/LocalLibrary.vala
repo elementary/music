@@ -83,7 +83,7 @@ public class Noise.LocalLibrary : Library {
         var media_ids = get_rowids_from_table (Database.Media.TABLE_NAME);
         foreach (var media_id in media_ids) {
             var m = new LocalMedia (media_id, connection);
-            if(m.dont_show){
+            if (m.dont_show){
                 debug ("Don't show: %s\n", m.uri);
                 _dont_show_medias.set (m.rowid, m);
                 continue;
@@ -264,7 +264,7 @@ public class Noise.LocalLibrary : Library {
         var num_items = FileUtils.count_music_files (File.new_for_path (music_folder_dir), files);
         debug ("Found %d items to import in %s\n", num_items, music_folder_dir);
 
-        foreach (var m in get_medias()) {
+        foreach (var m in get_medias ()) {
             if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir)) {
                 if (!File.new_for_uri (m.uri).query_exists ()) {
                     to_remove.add (m);
@@ -312,24 +312,21 @@ public class Noise.LocalLibrary : Library {
         open_media_list.add (m);
     }
 
-    private void import_files(Gee.TreeSet<string> files, FileOperator.ImportType type){
-        //TODO import as a list
+    private void import_files (Gee.TreeSet<string> files, FileOperator.ImportType type){
         //TODO remove deleted files from database
         var to_reimport = new Gee.TreeSet<Media> ();
-        foreach(Media m in _dont_show_medias.values){
-            if(files.contains (m.uri)){
-                debug("contains: %s\n", m.uri);
+        foreach (Media m in _dont_show_medias.values){
+            if (files.contains (m.uri)){
                 //Change dont_show flag for reimported media we once removed
-                if(type != FileOperator.ImportType.RESCAN){
-                    debug("Re-Importing media: %s\n", m.uri);
-                    to_reimport.add(m);
+                if (type != FileOperator.ImportType.RESCAN){
+                    to_reimport.add (m);
                 }
                 files.remove (m.uri);
             }
         }
 
-        if(!to_reimport.is_empty){
-            debug("Re-Importing %d files\n", to_reimport.size);
+        if (!to_reimport.is_empty){
+            debug ("Re-Importing %d files\n", to_reimport.size);
             add_medias (to_reimport);
             foreach(var m in to_reimport){
                 _dont_show_medias.unset (m.rowid);
@@ -775,8 +772,8 @@ public class Noise.LocalLibrary : Library {
             LocalMedia local_m;
             // Medias with dont_show tag are already in db and should just be
             // added back to album when imported.
-            if(m.dont_show){
-                local_m = new LocalMedia(m.rowid, connection);
+            if (m.dont_show){
+                local_m = new LocalMedia (m.rowid, connection);
                 local_m.dont_show = false;
             }else{
                 local_m = new LocalMedia.from_media (connection, m);
@@ -858,7 +855,7 @@ public class Noise.LocalLibrary : Library {
 
         foreach (var m in toRemove) {
             try {
-                if(trash){
+                if (trash){
                     connection.delete_row_from_table (Database.Media.TABLE_NAME, "rowid", m.rowid);
                 }
                 else{
