@@ -302,7 +302,6 @@ public abstract class Noise.GenericList : FastView {
 
         var queue = new Gee.ArrayList<Media> ();
         queue.add_all (get_visible_table ());
-        debug("Queue size  : %d", queue.size);
         App.player.clear_queue ();
         App.player.queue_medias (queue);
         App.player.current_index = queue.index_of (to_set);

@@ -128,7 +128,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         ordered_queue.add_medias (to_queue);
         reshuffle ();
         media_queued (to_queue);
-        queue_playlist.media_added (to_queue); // we have to manually trigger this signal, because the queue playlist
     }
 
     public void queue_medias_by_id (Gee.Collection<int> ids) {
@@ -233,21 +232,17 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public Media? get_media_at (int position, out int media_index) {
         int index = current_index + position;
         media_index = fix_index (index);
-        debug ("MEDIA_INDEX: %i", media_index);
         Media? res = queue_playlist.medias.size > index > 0 ? queue_playlist[index] : null;
 
         var main_settings = Settings.Main.get_default ();
         switch (main_settings.repeat_mode) {
             case Noise.Settings.Repeat.MEDIA:
-                debug ("get_media_at: \n");
                 return current_media;
             case Noise.Settings.Repeat.ALL:
-                debug ("get_media_at: \n");
 
                 // go back to the beggining, or to the end if needed
                 return res == null ? queue_playlist[fix_index (index)] : res;
             case Noise.Settings.Repeat.OFF:
-                debug ("get_media_at: \n");
 
                 if (res == null) { // end of the queue
                     current_media = null;
@@ -257,7 +252,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
                 return res;
             case Noise.Settings.Repeat.ALBUM:
-                debug ("get_media_at: \n");
 
                 // explore the queue, starting at the current song, and going back to the beggining when the end is reached
                 for (int i = current_index + 1; i != current_index; i += position) {
@@ -269,7 +263,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 }
                 break;
             case Noise.Settings.Repeat.ARTIST:
-                debug ("get_media_at: \n");
 
                 // same logic as above
                 for (int i = current_index + 1; i != current_index; i += position) {
@@ -289,7 +282,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     * Make sure index of media is never out of the queue.
     */
     public int fix_index (int index) {
-        debug ("size: %d, index: %d\n\n", queue_playlist.medias.size, index);
         return (queue_playlist.medias.size + index) % queue_playlist.medias.size;
     }
 
