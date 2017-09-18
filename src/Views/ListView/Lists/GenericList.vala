@@ -252,10 +252,6 @@ public abstract class Noise.GenericList : FastView {
     public override void row_activated (Gtk.TreePath path, Gtk.TreeViewColumn column) {
         var m = get_media_from_index (int.parse (path.to_string ()));
 
-        // We need to first set this as the current list
-        App.player.clear_queue ();
-        is_current_list = true;
-
         // Now update current_list and current_index in LM
         set_as_current_list (m);
 
@@ -304,8 +300,10 @@ public abstract class Noise.GenericList : FastView {
             }
         }
 
+        var queue = new Gee.ArrayList<Media> ();
+        queue.add_all (get_visible_table ());
+        debug("Queue size  : %d", queue.size);
         App.player.clear_queue ();
-        var queue = get_visible_table ();
         App.player.queue_medias (queue);
         App.player.current_index = queue.index_of (to_set);
 
