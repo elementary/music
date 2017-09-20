@@ -304,7 +304,7 @@ public class Noise.LocalMedia : Noise.Media {
             return (_show == 1);
         }
         set {
-            common_uint_setter ("show", value?1:0, ref _show);
+            common_uint_setter ("show", value ? 1 : 0, ref _show);
         }
     }
 

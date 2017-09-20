@@ -83,7 +83,7 @@ public class Noise.LocalLibrary : Library {
         var media_ids = get_rowids_from_table (Database.Media.TABLE_NAME);
         foreach (var media_id in media_ids) {
             var m = new LocalMedia (media_id, connection);
-            if (!m.show){
+            if (!m.show) {
                 _dont_show_medias.set (m.rowid, m);
                 continue;
             }
@@ -280,7 +280,7 @@ public class Noise.LocalLibrary : Library {
         import_files (files, FileOperator.ImportType.RESCAN);
 
         if (!fo.cancellable.is_cancelled ()) {
-            if(!to_remove.is_empty) {
+            if (!to_remove.is_empty) {
                 remove_medias (to_remove, false);
             }
         }
@@ -312,23 +312,23 @@ public class Noise.LocalLibrary : Library {
         open_media_list.add (m);
     }
 
-    private void import_files (Gee.TreeSet<string> files, FileOperator.ImportType type){
+    private void import_files (Gee.TreeSet<string> files, FileOperator.ImportType type) {
         //TODO remove deleted files from database
         var to_reimport = new Gee.TreeSet<Media> ();
-        foreach (Media m in _dont_show_medias.values){
-            if (files.contains (m.uri)){
+        foreach (Media m in _dont_show_medias.values) {
+            if (files.contains (m.uri)) {
                 //Change show flag for reimported media we once removed
-                if (type != FileOperator.ImportType.RESCAN){
+                if (type != FileOperator.ImportType.RESCAN) {
                     to_reimport.add (m);
                 }
                 files.remove (m.uri);
             }
         }
 
-        if (!to_reimport.is_empty){
+        if (!to_reimport.is_empty) {
             debug ("Re-Importing %d files\n", to_reimport.size);
             add_medias (to_reimport);
-            foreach(var m in to_reimport){
+            foreach (var m in to_reimport) {
                 _dont_show_medias.unset (m.rowid);
             }
         }
@@ -771,10 +771,10 @@ public class Noise.LocalLibrary : Library {
             LocalMedia local_m;
             // Medias with show tag are already in db and should just be
             // added back to album when imported.
-            if (!m.show){
+            if (!m.show) {
                 local_m = new LocalMedia (m.rowid, connection);
                 local_m.show = true;
-            }else{
+            } else {
                 local_m = new LocalMedia.from_media (connection, m);
             }
             local_media.set (local_m.rowid, local_m);
@@ -854,10 +854,10 @@ public class Noise.LocalLibrary : Library {
 
         foreach (var m in toRemove) {
             try {
-                if (trash){
+                if (trash) {
                     connection.delete_row_from_table (Database.Media.TABLE_NAME, "rowid", m.rowid);
                 }
-                else{
+                else {
                     m.show = false;
                     _dont_show_medias.set (m.rowid, m);
                 }

@@ -36,7 +36,6 @@ namespace Noise.Database {
         public const string ROWID = "+2";
     }
 
-
     namespace SmartPlaylists {
         public const string TABLE_NAME = "smart_playlists";
         public const string NAME = "+0";
