@@ -565,10 +565,16 @@ public class Noise.LocalLibrary : Library {
                 sql.select_add_field ("rowid", null, null);
                 Gda.SqlBuilderId[] ids = null;
 
-                string[] fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment"};
+                /* Enabling directory/path/uri search through SearchEntry */
+                string[] fields = {"title", "artist", "composer", "album_artist", "album", "grouping", "comment", "uri"};
+
                 foreach (var field in fields) {
                     var id_field = sql.add_id (field);
                     var id_value = sql.add_expr_value (null, "%"+search+"%");
+                    if (field == "uri") {
+                        id_value = sql.add_expr_value (null, "%"+Uri.escape_string (search, "/") + "%");
+                    }
+
                     ids += sql.add_cond (Gda.SqlOperatorType.LIKE, id_field, id_value, 0);
                 }
 

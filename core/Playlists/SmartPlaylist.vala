@@ -138,6 +138,14 @@ public class Noise.SmartPlaylist : Playlist {
 
     public static bool media_matches_query (SmartQuery q, Media s) {
         switch (q.field) {
+            case Noise.SmartQuery.FieldType.URI:
+                if(q.comparator == SmartQuery.ComparatorType.IS)
+                    return q.value.get_string ().down() == s.uri.down();
+                else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
+                    return (q.value.get_string ().down() in s.uri.down());
+                else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
+                    return !(q.value.get_string ().down() in s.uri.down());
+                break;
             case Noise.SmartQuery.FieldType.ALBUM :
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.get_string ().down () == s.album.down();
