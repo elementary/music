@@ -157,7 +157,7 @@ public class Noise.LocalLibrary : Library {
 
         return false;
     }
-    
+
     public void remove_all_static_playlists () {
         var list = new Gee.TreeSet<int64?> ();
         lock (_playlists) {
@@ -176,7 +176,7 @@ public class Noise.LocalLibrary : Library {
         string m_folder = folder;
         m_folder = m_folder.replace ("/media", "");
         m_folder = m_folder.replace (GLib.Environment.get_home_dir ()+ "/", "");
-        
+
         if (start_file_operations (_("Importing music from %s…").printf ("<b>" + Markup.escape_text (m_folder) + "</b>"))) {
             remove_all_static_playlists ();
 
@@ -197,7 +197,7 @@ public class Noise.LocalLibrary : Library {
         var files = new Gee.TreeSet<string> ();
 
         var items = FileUtils.count_music_files (music_folder_file, files);
-        debug ("found %d items to import\n", items);
+        debug ("Found %d items to import in %s\n", items, folder);
 
         fo.resetProgress (files.size - 1);
         Timeout.add (100, doProgressNotificationWithTimeout);
@@ -257,36 +257,42 @@ public class Noise.LocalLibrary : Library {
 
     private async void rescan_music_folder_async () {
         var to_remove = new Gee.TreeSet<Media> ();
-        var to_import = new Gee.TreeSet<string> ();
         var files = new Gee.TreeSet<string> ();
 
-        // get a list of the current files
         var music_folder_dir = Settings.Main.get_default ().music_folder;
-        FileUtils.count_music_files (File.new_for_path (music_folder_dir), files);
-        
-        foreach (var m in get_medias ()) {
-            if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir))
+        var num_items = FileUtils.count_music_files (File.new_for_path (music_folder_dir), files);
+        debug ("Found %d items to import in %s\n", num_items, music_folder_dir);
 
-            if (!File.new_for_uri (m.uri).query_exists ())
-                to_remove.add (m);
-            if (files.contains (m.uri))
-                files.remove (m.uri);
+        foreach (var m in get_medias()) {
+            if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir)) {
+                if (!File.new_for_uri (m.uri).query_exists ()) {
+                    to_remove.add (m);
+                }
+
+                if (files.contains (m.uri)) {
+                    files.remove (m.uri);
+                }
+            }
         }
 
-        if (!to_import.is_empty) {
-            debug ("Importing %d new songs", to_import.size);
-            fo.resetProgress (to_import.size - 1);
+        // Anything left in files should be imported
+        if (!files.is_empty) {
+            debug ("Importing %d new songs", files.size);
+            fo.resetProgress (files.size - 1);
             Timeout.add (100, doProgressNotificationWithTimeout);
-            fo.import_files (to_import, FileOperator.ImportType.RESCAN);
+            fo.import_files (files, FileOperator.ImportType.RESCAN);
         } else {
             debug ("No new songs to import.");
         }
 
-        if (files.is_empty)
+        if (files.is_empty) {
             finish_file_operations ();
+        }
 
         if (!fo.cancellable.is_cancelled ()) {
-            remove_medias (to_remove, false);
+            if(!to_remove.is_empty) {
+                remove_medias (to_remove, false);
+            }
         }
     }
 
@@ -518,7 +524,7 @@ public class Noise.LocalLibrary : Library {
 
 
     /******************** Media stuff ******************/
-    
+
     public override void search_medias (string search) {
         if (search == "") {
             lock (_searched_medias) {

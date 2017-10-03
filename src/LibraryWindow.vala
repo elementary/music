@@ -516,6 +516,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Now set the selected view
         viewSelector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.get_default ().view_mode;
 
+        //rescan music folder for changes made while application not running
+        library_manager.rescan_music_folder();
         initialization_finished = true;
 
         // Set the focus on the current view
