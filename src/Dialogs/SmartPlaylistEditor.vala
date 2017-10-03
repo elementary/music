@@ -285,13 +285,18 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         field_combobox.append_text (_("Skipcount"));
         field_combobox.append_text (_("Title"));
         field_combobox.append_text (_("Year"));
+        field_combobox.append_text (_("URI"));
 
         field_combobox.set_active ((int)q.field);
         debug ("setting filed to %d\n", q.field);
         comparator_combobox.set_active ((int)q.comparator);
 
         if (needs_value (q.field)) {
-            value_entry.text = q.value.get_string ();
+            if (q.field == SmartQuery.FieldType.URI) {
+                value_entry.text = Uri.unescape_string (q.value.get_string ());
+            } else {
+                value_entry.text = q.value.get_string ();
+            }
         } else if (q.field == SmartQuery.FieldType.RATING) {
             _valueRating.rating = q.value.get_int ();
         } else {
@@ -324,7 +329,11 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         rv.comparator = comparators.get (comparator_combobox.get_active ());
         if (needs_value ((SmartQuery.FieldType)field_combobox.get_active ())) {
             var value = Value (typeof (string));
-            value.set_string (value_entry.text);
+            if (rv.field == SmartQuery.FieldType.URI) {
+                value.set_string (Uri.escape_string (value_entry.text, "/"));
+            } else {
+                value.set_string (value_entry.text);
+            }
             rv.value = value;
         } else if (field_combobox.get_active () == SmartQuery.FieldType.RATING) {
             var value = Value (typeof (int));
@@ -439,7 +448,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         return (compared == SmartQuery.FieldType.ALBUM || compared == SmartQuery.FieldType.ARTIST
                 || compared == SmartQuery.FieldType.COMMENT || compared == SmartQuery.FieldType.COMPOSER
                 || compared == SmartQuery.FieldType.GENRE || compared == SmartQuery.FieldType.GROUPING
-                || compared == SmartQuery.FieldType.TITLE);
+                || compared == SmartQuery.FieldType.URI || compared == SmartQuery.FieldType.TITLE);
     }
 
     public bool needs_value_2 (SmartQuery.FieldType compared) {
