@@ -158,7 +158,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 		eq_switch.set_active (equalizer_settings.equalizer_enabled);
 
 		preset_combo = new PresetList ();
-        preset_combo.hexpand = true;
+		preset_combo.hexpand = true;
 
 		side_list = new Gtk.Grid ();
 		side_list.add (preset_combo);
@@ -176,7 +176,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 		});
 
 		var bottom_controls = new Gtk.Grid ();
-        bottom_controls.column_spacing = 12;
+		bottom_controls.column_spacing = 12;
 		bottom_controls.margin = 12;
 		bottom_controls.margin_top = 0;
 		bottom_controls.add (eq_switch);
