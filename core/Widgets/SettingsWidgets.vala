@@ -44,6 +44,7 @@ namespace Noise.SettingsWindow {
             this.name = name;
 
             margin = 12;
+            margin_top = 0;
             hexpand = true;
             column_spacing = 12;
             row_spacing = 6;
@@ -65,11 +66,11 @@ namespace Noise.SettingsWindow {
         }
         
         public void add_option (Gtk.Widget label, Gtk.Widget switcher, ref int row) {
-            label.set_hexpand (true);
-            label.set_halign (Gtk.Align.END);
-            label.set_margin_left (20);
-            switcher.set_halign (Gtk.Align.FILL);
-            switcher.set_hexpand (true);
+            label.halign = Gtk.Align.END;
+            label.hexpand = true;
+            label.margin_start = IDENTATION_MARGIN;
+
+            switcher.hexpand = true;
             
             if (switcher is Gtk.Switch || switcher is Gtk.CheckButton
                 || switcher is Gtk.Entry) { /* then we don't want it to be expanded */
@@ -82,10 +83,8 @@ namespace Noise.SettingsWindow {
         }
         
         public void add_full_option (Gtk.Widget big_widget, ref int row) {
-            big_widget.set_halign (Gtk.Align.FILL);
-            big_widget.set_hexpand (true);
-            big_widget.set_margin_left (20);
-            big_widget.set_margin_right (20);
+            big_widget.hexpand = true;
+            big_widget.margin_start = IDENTATION_MARGIN;
             
             attach (big_widget, 0, row, 4, 1);
             row ++;
