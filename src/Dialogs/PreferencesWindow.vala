@@ -53,6 +53,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
 
         main_stackswitcher = new Gtk.StackSwitcher ();
         main_stackswitcher.halign = Gtk.Align.CENTER;
+        main_stackswitcher.homogeneous = true;
         main_stackswitcher.stack = main_stack;
 
         var main_grid = new Gtk.Grid ();
