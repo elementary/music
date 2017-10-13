@@ -38,7 +38,7 @@ namespace Noise.SettingsWindow {
     public class NoteBook_Page : Gtk.Grid {
         public new string name { get; private set; }
 
-        private const int IDENTATION_MARGIN = 12;
+        private const int INDENTATION_MARGIN = 12;
 
         public NoteBook_Page (string name) {
             this.name = name;
@@ -68,7 +68,7 @@ namespace Noise.SettingsWindow {
         public void add_option (Gtk.Widget label, Gtk.Widget switcher, ref int row) {
             label.halign = Gtk.Align.END;
             label.hexpand = true;
-            label.margin_start = IDENTATION_MARGIN;
+            label.margin_start = INDENTATION_MARGIN;
 
             switcher.hexpand = true;
             
@@ -84,7 +84,7 @@ namespace Noise.SettingsWindow {
         
         public void add_full_option (Gtk.Widget big_widget, ref int row) {
             big_widget.hexpand = true;
-            big_widget.margin_start = IDENTATION_MARGIN;
+            big_widget.margin_start = INDENTATION_MARGIN;
             
             attach (big_widget, 0, row, 4, 1);
             row ++;
