@@ -25,7 +25,6 @@
  */
 
 public class Noise.PreferencesWindow : Gtk.Dialog {
-
     public const int MIN_WIDTH = 420;
     public const int MIN_HEIGHT = 300;
 
@@ -37,22 +36,52 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
     private int index = 0;
 
     public PreferencesWindow () {
-        build_ui ();
+        Object (
+            deletable: false,
+            destroy_with_parent: true,
+            height_request: MIN_HEIGHT,
+            resizable: false,
+            title: _("Preferences"),
+            transient_for: App.main_window,
+            width_request: MIN_WIDTH,
+            window_position: Gtk.WindowPosition.CENTER_ON_PARENT
+        );
+    }
+
+    construct {
+        main_stack = new Gtk.Stack ();
+
+        main_stackswitcher = new Gtk.StackSwitcher ();
+        main_stackswitcher.halign = Gtk.Align.CENTER;
+        main_stackswitcher.homogeneous = true;
+        main_stackswitcher.stack = main_stack;
+
+        var main_grid = new Gtk.Grid ();
+        main_grid.attach (main_stackswitcher, 0, 0, 1, 1);
+        main_grid.attach (main_stack, 0, 1, 1, 1);
+
+        ((Gtk.Container) get_content_area ()).add (main_grid);
+
+        var close_button = add_button (_("Close"), Gtk.ResponseType.CLOSE);
+        ((Gtk.Button) close_button).clicked.connect (() => destroy ());
+
+        get_action_area ().margin = 6;
+
         App.main_window.add_preference_page.connect ((page) => {add_page (page);});
         
         // Add general section
         library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder…"), Gtk.FileChooserAction.SELECT_FOLDER);
         library_filechooser.hexpand = true;
-
         library_filechooser.set_current_folder (Settings.Main.get_default ().music_folder);
-        //library_filechooser.set_local_only (true);
+        library_filechooser.file_set.connect (() => {
+            App.main_window.setMusicFolder (library_filechooser.get_current_folder ());
+        });
+
         var general_section = new Preferences.GeneralPage (library_filechooser);
-        library_filechooser.file_set.connect (() => {App.main_window.setMusicFolder(library_filechooser.get_current_folder ());});
         add_page (general_section.page);
 
         Plugins.Manager.get_default ().hook_preferences_window (this);
     }
-
 
     public int add_page (Noise.SettingsWindow.NoteBook_Page section) {
         return_val_if_fail (section != null, -1);
@@ -77,38 +106,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         var children_number = main_stack.get_children ().length ();
         main_stackswitcher.no_show_all = children_number <= 1;
         main_stackswitcher.visible = children_number > 1;
-    }
-
-    private void build_ui () {
-        // Window properties
-        title = _("Preferences");
-        set_size_request (MIN_WIDTH, MIN_HEIGHT);
-        resizable = false;
-        deletable = false;
-        destroy_with_parent = true;
-        window_position = Gtk.WindowPosition.CENTER;
-        set_transient_for (App.main_window);
-
-        main_stack = new Gtk.Stack ();
-        main_stackswitcher = new Gtk.StackSwitcher ();
-        main_stackswitcher.set_stack (main_stack);
-        main_stackswitcher.halign = Gtk.Align.CENTER;
-
-        var close_button = new Gtk.Button.with_label (_("Close"));
-        close_button.clicked.connect (() => {this.destroy ();});
-
-        var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        button_box.set_layout (Gtk.ButtonBoxStyle.END);
-        button_box.pack_end (close_button);
-        button_box.margin_right = 12;
-
-        // Pack everything into the dialog
-        Gtk.Grid main_grid = new Gtk.Grid ();
-        main_grid.attach (main_stackswitcher, 0, 0, 1, 1);
-        main_grid.attach (main_stack, 0, 1, 1, 1);
-        main_grid.attach (button_box, 0, 2, 1, 1);
-
-        ((Gtk.Container) get_content_area ()).add (main_grid);
     }
 }
 
