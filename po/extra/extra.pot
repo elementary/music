@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2017-10-27 19:42-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,13 +29,7 @@ msgstr ""
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
 
-msgid "About Music"
-msgstr ""
-
 msgid "Noise"
-msgstr ""
-
-msgid "About Noise"
 msgstr ""
 
 msgid "The official elementary music player"
@@ -44,4 +38,37 @@ msgstr ""
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
+msgstr ""
+
+msgid "Minor bug fixes."
+msgstr ""
+
+msgid "Add rounded bottom window corner."
+msgstr ""
+
+msgid "Minor bug fixes"
+msgstr ""
+
+msgid "New translations"
+msgstr ""
+
+msgid "Release for Loki."
+msgstr ""
+
+msgid "Add support for Opus Ogg"
+msgstr ""
+
+msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
+msgstr ""
+
+msgid "Reorganize media edition layout"
+msgstr ""
+
+msgid "Port grid to support HiDPI displays"
+msgstr ""
+
+msgid "Update icons to latest elementary icon release"
+msgstr ""
+
+msgid "Respect privacy mode"
 msgstr ""
