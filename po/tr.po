@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2017-02-10 16:38+0000\n"
 "Last-Translator: İbrahim Ethem Göl <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
-"Language: tr\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -1108,8 +1108,7 @@ msgid "No External Songs"
 msgstr "Harici Şarkı Yok"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "Bu cihazda kütüphanenizde bulunmayan bir şarkı bulunamadı"
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1548,8 +1547,7 @@ msgstr "Dosyalar alınamadı."
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
-"Müzik değişiklikler için yeniden taranıyor. Bu biraz zaman alabilir..."
+msgstr "Müzik değişiklikler için yeniden taranıyor. Bu biraz zaman alabilir..."
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
@@ -1766,7 +1764,6 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " açık "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Müzik  </b> şuradan<b>%s</b> kitaplığa aktarılıyor."
 
@@ -1776,15 +1773,12 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Aygıtdan medyaları aktar"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s zaten bir içe aktarım yapıyor"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "%s CD de hiç müzik tespit edemedi.İçe aktaracak müzik bulunmuyor"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1792,7 +1786,6 @@ msgstr ""
 #~ "Lütfen CDyi içe aktarmadan önce devam eden %s içe aktarmasının bitmesini "
 #~ "bekleyin."
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Müzikler %s ten içeri aktarılıyor..."
 
@@ -1805,28 +1798,24 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Müzik klasörü taranıyor.Bu işlem biraz zaman alabilir..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Müzikler %s ten kütüphaneye ekleniyor..."
 
 #~ msgid "Ripping track 1"
 #~ msgstr "Parça 1 sıkıştırılıyor"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s CD den %i parçayı içe aktarmayı tamamladı."
 
 #~ msgid "CD Import Complete"
 #~ msgstr "CD içe aktarımı tamamlandı"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s CD deki bir parçayı içe aktarmayı tamamladı."
 
 #~ msgid "Unknown Title"
 #~ msgstr "Bilinmeyen Başlık"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "%i Parça içe aktarılıyor"
 
@@ -1921,7 +1910,6 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Bu şarkıyı içe aktar"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s Yıldız"
 
@@ -1943,7 +1931,6 @@ msgstr ""
 #~ msgid "Hide Equalizer"
 #~ msgstr "Ekolayzırı Gizle"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i saat"
 
@@ -1956,22 +1943,18 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 saat"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i dakika"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s ve %s"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s saniye"
 
 #~ msgid "1 second"
 #~ msgstr "%1 saniye"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s ve %s"
 
@@ -1984,15 +1967,12 @@ msgstr ""
 #~ msgid "Station"
 #~ msgstr "İstasyon"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s, %s tarafından"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albüm"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i şarkı"
 
@@ -2005,18 +1985,15 @@ msgstr ""
 #~ msgid "Locate Media"
 #~ msgstr "Medya Bulun"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i parça"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i gün"
 
 #~ msgid "Editing %i songs"
 #~ msgstr "%i şarkı düzenleniyor"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "%s, %s tarafından düzenleniyor"
 
@@ -2024,18 +2001,17 @@ msgstr ""
 #~ msgstr "Bu cihazdaki bütün müzikler zaten kitaplığınızda mevcut"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
 #~ "Bu cihazdan içe akarma iptal edildi.Bu ortamdan sonra işlem durdurulacak."
 
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Duyulmamış Podcastlar"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "%s ismi zaten kullanımda"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "%s ya benzer"
 
@@ -2071,11 +2047,9 @@ msgstr ""
 #~ msgid "Write metadata to file"
 #~ msgstr "Dosyaya medadata yaz"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "%d %s tarafından %s kaldırılsın mı?"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -2086,17 +2060,14 @@ msgstr ""
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i ortam dosyaları bulunamadı. Ne yapmak istersiniz?"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
 #~ "%s tarafından %s için müzik dosyası bulunamadı. Ne yapmak istersiniz?"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s bu Ses CD'sinin içeriğini okuyamadı"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "%i şarkıyı içe aktar"
 
@@ -2121,27 +2092,24 @@ msgstr ""
 #~ msgid "Last.fm Integration"
 #~ msgstr "Last.fm bütünleşmesi"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s kütüphanenizde %s den %s e benzer şarkılar bulamadı. Tüm şarkı bilgisinin "
-#~ "doğru olduğundan ve internete bağlı olduğunuzdan emin olun. Bazı şarkıların "
-#~ "benzerleri olmayabilir."
+#~ "%s kütüphanenizde %s den %s e benzer şarkılar bulamadı. Tüm şarkı "
+#~ "bilgisinin doğru olduğundan ve internete bağlı olduğunuzdan emin olun. "
+#~ "Bazı şarkıların benzerleri olmayabilir."
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "Bu görünümde, %s çalmakta olduğunuz şarkının benzerlerini otomatik olarak "
-#~ "bulacak. Ardından bu şarkıları çalmaya başlayabilirsiniz ya da bunları daha "
-#~ "sonrası için çalma listesi olarak kaydedebilirsiniz."
+#~ "bulacak. Ardından bu şarkıları çalmaya başlayabilirsiniz ya da bunları "
+#~ "daha sonrası için çalma listesi olarak kaydedebilirsiniz."
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "%s den %s e benzer şarkılar bulunuyor"
 
@@ -2160,7 +2128,8 @@ msgstr ""
 #~ msgid "Cancelling Sync"
 #~ msgstr "Senkronize etme durduruluyor"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "Cihaz senkronizasyonu iptal edildi.Bu ortamdan sonra işlem durdurulacak."
 
@@ -2183,7 +2152,6 @@ msgstr ""
 #~ msgid "Editing $NAME by $ARTIST"
 #~ msgstr "$ARTIST tarafından $NAME Düzenleniyor"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "Görünüşe göre %s müziğinizi bulamadı"
 
@@ -2200,11 +2168,11 @@ msgstr ""
 #~ msgstr "Bildirimler:"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Last.fm eşitlenmesine izin verilmesi için %s 'e yetki vermelisin. Bu işleme "
-#~ "tek sefer ihtiyacın olacak."
+#~ "Last.fm eşitlenmesine izin verilmesi için %s 'e yetki vermelisin. Bu "
+#~ "işleme tek sefer ihtiyacın olacak."
 
 #~ msgid "%d second"
 #~ msgid_plural "%d seconds"

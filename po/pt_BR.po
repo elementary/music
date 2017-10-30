@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2017-02-13 09:27+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1113,8 +1114,7 @@ msgid "No External Songs"
 msgstr "Sem Músicas Externas"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Não foi encontrado alguma música neste dispositivo que não está em sua "
 "biblioteca."
@@ -1781,7 +1781,6 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " em "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Importando</b> músicas de <b>%s</b> para a biblioteca."
 
@@ -1800,15 +1799,12 @@ msgstr ""
 #~ msgid "Import Stations"
 #~ msgstr "Importar estações"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s estrelas"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Todas as %i avaliações"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Parecido com %s"
 
@@ -1836,27 +1832,22 @@ msgstr ""
 #~ msgid "Ripping track 1"
 #~ msgstr "Ripando a faixa 1"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Importando a faixa %i"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s já está importando"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr ""
 #~ "%s não foi encontrado músicas no CD. Nenhuma música pode ser importada"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
 #~ msgstr ""
 #~ "Por favor, aguarde até %s esteja terminado para realizar outra importação."
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s terminou de importar"
 
@@ -1866,7 +1857,6 @@ msgstr ""
 #~ msgid "Name"
 #~ msgstr "Nome"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s importou %i músicas do CD"
 
@@ -1921,11 +1911,11 @@ msgstr ""
 #~ msgstr "Transferir automaticamente novos episódios de podcast"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Para permitir a integração do Last.fm, você precisa dar permissão para %s. "
-#~ "Você só precisa fazer isso uma única vez."
+#~ "Para permitir a integração do Last.fm, você precisa dar permissão para "
+#~ "%s. Você só precisa fazer isso uma única vez."
 
 #~ msgid "Last.fm Integration"
 #~ msgstr "Integração com o Last.fm"
@@ -1934,8 +1924,8 @@ msgstr ""
 #~ "You must wait until previous file operations finish before setting your "
 #~ "music folder"
 #~ msgstr ""
-#~ "Você deve esperar até que as operações de arquivo anteriores terminem antes "
-#~ "de definir a sua pasta de música"
+#~ "Você deve esperar até que as operações de arquivo anteriores terminem "
+#~ "antes de definir a sua pasta de música"
 
 #~ msgid "Complete login"
 #~ msgstr "Completar login"
@@ -1958,7 +1948,6 @@ msgstr ""
 #~ msgid "Lyrics"
 #~ msgstr "Letras"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Editando %s por %s"
 
@@ -1968,7 +1957,6 @@ msgstr ""
 #~ msgid "Album Artist"
 #~ msgstr "Artista do álbum"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Não foram encontradas letras para \"%s\" por \"%s\""
 
@@ -1978,15 +1966,13 @@ msgstr ""
 #~ msgid "Disc"
 #~ msgstr "Disco"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
 #~ msgstr ""
-#~ "Isso irá remover %s de sua biblioteca e qualquer dispositivo que sincronize "
-#~ "automaticamente com %s"
+#~ "Isso irá remover %s de sua biblioteca e qualquer dispositivo que "
+#~ "sincronize automaticamente com %s"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Remover %d%s de %s?"
 
@@ -1999,15 +1985,12 @@ msgstr ""
 #~ msgid "Editing %i songs"
 #~ msgstr "Editando %i músicas"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s por %s"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s não consegue encontrar sua música"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s não conseguiu ler o conteúdo deste CD de Áudio"
 
@@ -2020,7 +2003,6 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Podcastas não ouvidos"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i horas"
 
@@ -2030,25 +2012,21 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 hora"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dias"
 
 #~ msgid "1 minute"
 #~ msgstr "1 minuto"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutos"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Importando música de %s..."
 
 #~ msgid "Adding files to library..."
 #~ msgstr "Adicionando arquivos à biblioteca..."
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
@@ -2062,11 +2040,9 @@ msgstr ""
 #~ msgstr ""
 #~ "Escaneando novamente músicas para a mudança. Isso pode demorar um pouco..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Adicionando música de %s à biblioteca..."
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i álbuns"
 
@@ -2076,14 +2052,12 @@ msgstr ""
 #~ msgid "1 item"
 #~ msgstr "1 item"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i músicas"
 
 #~ msgid "1 song"
 #~ msgstr "1 música"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "O nome %s já está em uso"
 
@@ -2099,21 +2073,18 @@ msgstr ""
 #~ msgstr ""
 #~ "Clique no botão para editar as regras de lista de reprodução inteligente"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Encontrando músicas semelhantes para %s por %s"
 
 #~ msgid "1 track"
 #~ msgstr "1 faixa"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i faixas"
 
 #~ msgid "Import this song"
 #~ msgstr "Importar esta música"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Importar %i músicas"
 
@@ -2123,7 +2094,8 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Cancelando importação"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "A sincronização com o dispositivo foi cancelada. A operação irá ser "
 #~ "cancelada depois dessa mídia."
@@ -2137,45 +2109,40 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 segundo"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s segundos"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s e %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s e %s"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s não pode encontrar músicas similares à %s por %s em sua biblioteca. Tenha "
-#~ "certeza que todas as informações da música estão corretas e você está "
-#~ "conectado à internet. Algumas músicas podem não ter resultado."
+#~ "%s não pode encontrar músicas similares à %s por %s em sua biblioteca. "
+#~ "Tenha certeza que todas as informações da música estão corretas e você "
+#~ "está conectado à internet. Algumas músicas podem não ter resultado."
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "Nesta visualização, %s irá encontrar músicas similares às que você está "
 #~ "reproduzindo automaticamente. Você pode então começar a reproduzir estas "
 #~ "músicas, ou salvar em uma lista de reprodução para mais tarde."
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
-#~ "A importação de um dispositivo foi cancelada. A operação irá parar após esta "
-#~ "mídia."
+#~ "A importação de um dispositivo foi cancelada. A operação irá parar após "
+#~ "esta mídia."
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i itens"
 
@@ -2271,8 +2238,8 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Áudio;Reprodutor;MP3;iPod;Tocar;Lista de "
-#~ "reprodução;Mídia;CD;Telefone;Músicas;"
+#~ "Noise;Áudio;Reprodutor;MP3;iPod;Tocar;Lista de reprodução;Mídia;CD;"
+#~ "Telefone;Músicas;"
 
 #~ msgid "Metadata"
 #~ msgstr "Informações"

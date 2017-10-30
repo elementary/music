@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-28 11:48+0000\n"
-"Last-Translator: Jernej Virag <Unknown>\n"
-"Language-Team: Slovenian <sl@li.org>\n"
+"PO-Revision-Date: 2017-07-01 13:12+0000\n"
+"Last-Translator: Jernej Virag <jernej@virag.si>\n"
+"Language-Team: Slovenian "
+"<https://l10n.elementary.io/projects/music/music/sl/>\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
-"n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
-"Language: sl\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -49,9 +50,9 @@ msgstr "%s in %s"
 #: ../core/Utils/TimeUtils.vala:69
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] "%u dni"
-msgstr[1] "%u dan"
-msgstr[2] "%u dni"
+msgstr[0] "%u dan"
+msgstr[1] "%u dneva"
+msgstr[2] "%u dnevi"
 msgstr[3] "%u dni"
 
 #: ../core/Utils/TimeUtils.vala:72
@@ -228,7 +229,7 @@ msgstr "Pop"
 
 #: ../core/GStreamer/Equalizer.vala:84
 msgid "Reggae"
-msgstr "corruptcorruptcorruptcorruptcorruptcorrupt"
+msgstr "Reggae"
 
 #: ../core/GStreamer/Equalizer.vala:85
 msgid "Rock"
@@ -271,7 +272,7 @@ msgstr "Odstrani"
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr "Izvozi ..."
+msgstr "Izvozi…"
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
@@ -302,7 +303,7 @@ msgstr "Nov pameten seznam predvajanja"
 
 #: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
 msgid "Sync"
-msgstr "Uskladi"
+msgstr "Sinhroniziraj"
 
 #: ../src/Widgets/SourceListView.vala:203
 msgid "Import Playlists"
@@ -555,7 +556,7 @@ msgstr "%s ni uspelo uvoziti %d predmetov. Datoteke so lahko poškodovane."
 
 #: ../src/Dialogs/NotImportedWindow.vala:59
 msgid "Move all corrupted files to trash"
-msgstr "Premakni vse pokvarjene datoteke v smeti."
+msgstr "Premakni vse pokvarjene datoteke v smeti"
 
 #: ../src/Dialogs/NotImportedWindow.vala:64
 #: ../src/Dialogs/RemoveFilesDialog.vala:50
@@ -576,11 +577,11 @@ msgstr "Lokacija datoteke"
 
 #: ../src/Dialogs/NotImportedWindow.vala:101
 msgid "Select individual files to move to trash:"
-msgstr "Izberi pozamezne datoteke za premik v smeti."
+msgstr "Izberi pozamezne datoteke za premik v smeti:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
-msgstr "Izberite mapo s skladbami ..."
+msgstr "Izberi mapo s skladbami…"
 
 #: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
 msgid "Preferences"
@@ -735,17 +736,17 @@ msgid_plural ""
 "This will remove the songs from your library and from any device that "
 "automatically syncs with %s."
 msgstr[0] ""
-"To bo odstranilo skladbe iz vaše knjižnice in vsake naprave, ki se samodejno "
-"usklajuje z %s."
-msgstr[1] ""
 "To bo odstranilo skladbo iz vaše knjižnice in vsake naprave, ki se samodejno "
-"usklajuje z %s."
-msgstr[2] ""
+"sinhronizira z %s."
+msgstr[1] ""
 "To bo odstranilo skladbi iz vaše knjižnice in vsake naprave, ki se samodejno "
-"usklajuje z %s."
+"sinhronizira z %s."
+msgstr[2] ""
+"To bo odstranilo skladbe iz vaše knjižnice in vsake naprave, ki se samodejno "
+"sinhronizira z %s."
 msgstr[3] ""
 "To bo odstranilo skladbe iz vaše knjižnice in vsake naprave, ki se samodejno "
-"usklajuje z %s."
+"sinhronizira z %s."
 
 #: ../src/Dialogs/SyncWarningDialog.vala:57
 msgid "Import media to Library"
@@ -753,27 +754,28 @@ msgstr "Uvozi predstavnost v knjižnico"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:58
 msgid "Continue Syncing"
-msgstr "Nadaljuj usklajevanje"
+msgstr "Nadaljuj sinhronizacijo"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:59
 msgid "Stop Syncing"
-msgstr "Ustavi usklajevanje"
+msgstr "Ustavi sinhronizacijo"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:66
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Če nadaljujete z usklajevanjem, bo predstavna vsebina odstranjena iz %s, saj "
-"ni na seznamu usklajevanja. Ali jo želite najprej uvoziti v svojo knjižnico?"
+"Če nadaljujete s sinhronizacijo, bo predstavna vsebina odstranjena iz %s, "
+"saj ni na seznamu usklajevanja. Ali jo želite najprej uvoziti v svojo "
+"knjižnico?"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:72
 msgid "Sync will remove %i items from %s"
-msgstr "Usklajevanje bo odstranilo %i predmetov iz %s"
+msgstr "Sinhronizacija bo odstranila %i predmetov iz %s"
 
 #: ../src/Dialogs/SyncWarningDialog.vala:75
 msgid "Sync will remove 1 item from %s"
-msgstr "Usklajevanje bo odstranilo 1 predmet iz %s"
+msgstr "Sinhronizacija bo odstranila 1 predmet iz %s"
 
 #: ../src/Dialogs/SmartPlaylistEditor.vala:36
 msgid "Smart Playlist Editor"
@@ -922,7 +924,7 @@ msgstr "kb/s"
 
 #: ../src/LibraryWindow.vala:269
 msgid "Import to Library…"
-msgstr "Uvozi v knjižnico ..."
+msgstr "Uvozi v knjižnico…"
 
 #: ../src/LibraryWindow.vala:289
 msgid "Previous"
@@ -947,7 +949,7 @@ msgstr "Glasba"
 
 #: ../src/LibraryWindow.vala:831
 msgid "No songs in Queue"
-msgstr "Ni skladb v vrsti."
+msgstr "Ni skladb v vrsti"
 
 #: ../src/LibraryWindow.vala:831
 msgid ""
@@ -961,7 +963,7 @@ msgstr ""
 
 #: ../src/LibraryWindow.vala:834
 msgid "No songs in History"
-msgstr "Ni skladb v zgodovini."
+msgstr "Ni skladb v zgodovini"
 
 #: ../src/LibraryWindow.vala:834
 msgid ""
@@ -1032,7 +1034,7 @@ msgstr "Ni predstavne vsebine"
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
 msgid "No Songs"
-msgstr "Ni skladb."
+msgstr "Ni skladb"
 
 #: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
 msgid "Updating playlist. Please wait."
@@ -1104,7 +1106,7 @@ msgstr "%s, %s, %s"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Cancelling…"
-msgstr "Preklic ..."
+msgstr "Preklicujem…"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Device operation has been cancelled and will stop after this media."
@@ -1117,11 +1119,10 @@ msgstr "V redu"
 
 #: ../src/Views/DeviceView.vala:100
 msgid "No External Songs"
-msgstr "Ni zunanjih skladb."
+msgstr "Ni zunanjih skladb"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "Na napravi ni skladbi ki ne bi bile v knjižnici."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1130,7 +1131,7 @@ msgstr "Samodejna velikost stolpcev"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
 msgid "%u kbps"
-msgstr "%u kbps"
+msgstr "%u kb/s"
 
 #: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: ../src/Views/ListView/Lists/MusicListView.vala:615
@@ -1176,7 +1177,7 @@ msgstr "Dodaj na seznam predvajanja"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
-msgstr "Nov seznam predvajanja ..."
+msgstr "Nov seznam predvajanja…"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:227
 msgid "Import %i of %i selected songs"
@@ -1185,14 +1186,14 @@ msgstr "Uvoz %i od %i izbranih skladb"
 #: ../src/Views/ListView/Lists/MusicListView.vala:229
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] "Uvoz %i skladb"
-msgstr[1] "Uvoz %i skladbe"
-msgstr[2] "Uvoz %i skladb"
+msgstr[0] "Uvozi %i skladbo"
+msgstr[1] "Uvozi %i skladbi"
+msgstr[2] "Uvozi %i skladbw"
 msgstr[3] "Uvoz %i skladb"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:600
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 kb/s"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1312,8 +1313,8 @@ msgstr "Najdene ni bilo nobene skladbe."
 #: ../src/Views/ListView/ListView.vala:357
 msgid "%i track"
 msgid_plural "%i tracks"
-msgstr[0] "%i sledi"
-msgstr[1] "%i sled"
+msgstr[0] "%i sled"
+msgstr[1] "%i sledi"
 msgstr[2] "%i sledi"
 msgstr[3] "%i sledi"
 
@@ -1468,11 +1469,11 @@ msgstr "Ime naprave"
 
 #: ../src/Views/DeviceSummaryWidget.vala:79
 msgid "Automatically sync when plugged in:"
-msgstr "Samodejno uskladi ob priklopu:"
+msgstr "Samodejno sinhroniziraj ob priklopu:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:86
 msgid "Sync:"
-msgstr "Uskladi:"
+msgstr "Sinhroniziraj:"
 
 #: ../src/Views/DeviceSummaryWidget.vala:98
 msgid "Other Files"
@@ -1484,26 +1485,26 @@ msgstr "Vsa glasba"
 
 #: ../src/Views/DeviceSummaryWidget.vala:308
 msgid "Sync Failed"
-msgstr "Uskladitev spodletela"
+msgstr "Sinhronizacija spodletela"
 
 #: ../src/Views/DeviceSummaryWidget.vala:308
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Seznam predvajanja, imenovan %s, je uporabljen za uskladitev naprave %s, a "
-"je ni mogoče najti."
+"Seznam predvajanja, imenovan %s, je uporabljen za sinhronizacijo naprave %s, "
+"a je ni mogoče najti."
 
 #: ../src/Views/DeviceSummaryWidget.vala:320
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Cannot Sync"
-msgstr "Ni mogoče uskladiti"
+msgstr "Ni mogoče sinhronizirati"
 
 #: ../src/Views/DeviceSummaryWidget.vala:320
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Naprave ni mogoče uskladiti z izbranimi nastavitvami usklajevanja. Na disku "
-"ni dovolj prostora"
+"Naprave ni mogoče sinhronizirati z izbranimi nastavitvami. Na disku ni "
+"dovolj prostora"
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1530,11 +1531,11 @@ msgstr "Zgodovina"
 
 #: ../src/LocalBackend/LocalLibrary.vala:182
 msgid "Importing music from %s…"
-msgstr "Uvažanje glasbe iz %s ..."
+msgstr "Uvažanje glasbe iz %s…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:210
 msgid "Adding files to library…"
-msgstr "Dodajanje datotek v knjižnico ..."
+msgstr "Dodajanje datotek v knjižnico…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -1550,8 +1551,7 @@ msgstr "Nobena datoteka ni bila uvožena."
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
-"Ponovno preiskovanje glasbe zaradi sprememb. To lahko traja nekaj časa ..."
+msgstr "Ponovno preiskovanje glasbe zaradi sprememb. To lahko traja nekaj časa…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
@@ -1597,7 +1597,7 @@ msgstr "Dodajanje <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/iPod/iPodLibrary.vala:199
 msgid "Syncing <b>%s</b>…"
-msgstr "Usklajevanje <b>%s</b> …"
+msgstr "Sinhronizacija <b>%s</b> …"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 #: ../plugins/Devices/iPod/iPodLibrary.vala:533
@@ -1684,12 +1684,12 @@ msgstr "Med nalaganjem zvočnega CD-ja je prišlo do napake."
 #: ../plugins/Devices/iPod/iPodLibrary.vala:221
 #: ../plugins/Devices/iPod/iPodLibrary.vala:377
 msgid "Finishing sync process…"
-msgstr "Končevanje opravila usklajevanja ..."
+msgstr "Končevanje sinhronizacije…"
 
 #: ../plugins/Devices/iPod/iPodLibrary.vala:233
 #: ../plugins/Devices/iPod/iPodLibrary.vala:389
 msgid "Cancelling Sync…"
-msgstr "Preklicevanje usklajevanja ..."
+msgstr "Preklicevanje sinhronizacije…"
 
 #: ../plugins/LastFM/SimilarMediaView.vala:41
 msgid "media"
@@ -1705,7 +1705,7 @@ msgstr "Podobno"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid "No similar songs found"
-msgstr "Ni bilo najdenih podobnih skladb."
+msgstr "Ni bilo najdenih podobnih skladb"
 
 #: ../plugins/LastFM/LastFM.vala:101
 msgid ""
@@ -1741,18 +1741,15 @@ msgstr ""
 #~ msgid "Podcasts"
 #~ msgstr "Poddaje"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s zvezdic"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Vseh %i ocenitev"
 
 #~ msgid "#"
 #~ msgstr "#"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Podobno kot %s"
 
@@ -1780,15 +1777,12 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Uvozi pesmi iz zvočnega CD-ja"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s že uvaža"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s je zaključil uvoz pesmi %i iz avdio CDja."
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1797,14 +1791,12 @@ msgstr ""
 #~ msgid "Ripping track 1"
 #~ msgstr "Kopiranje pesmi 1"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Uvažanje pesmi %i"
 
 #~ msgid "CD Import Complete"
 #~ msgstr "Uvoz CDja je zaključen"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Uvozi glasbo iz %s ..."
 
@@ -1815,7 +1807,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Ponovno preiskovanje glasbe za spremembami. To lahko traja nekaj časa ..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Dodajanje glasbe iz %s v knjižnico ..."
 
@@ -1831,7 +1822,6 @@ msgstr ""
 #~ msgid "Hide Equalizer"
 #~ msgstr "Skrij izenačevalnik"
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Uvažanje</b> glasbe iz <b>%s</b> v knjižnico."
 
@@ -1865,7 +1855,6 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Uvozi to pesem"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Uvoz %i pesmi"
 
@@ -1875,7 +1864,6 @@ msgstr ""
 #~ msgid "Similar Song View"
 #~ msgstr "Pogled podobnih pesmi"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albumov"
 
@@ -1885,7 +1873,6 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Vse pesmi na tej napravi so že v tvoji knjižnici."
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i pesmi"
 
@@ -1898,22 +1885,18 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 sekunda"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekund"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s ne more prebrati vsebine tega zvočnega CD-ja."
 
 #~ msgid "1 track"
 #~ msgstr "1 sled"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i sledi"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i ur"
 
@@ -1923,22 +1906,18 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 ura"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minut"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s in %s"
 
 #~ msgid "Unknown Title"
 #~ msgstr "Neznan naslov"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s in %s"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dni"
 
@@ -2001,7 +1980,8 @@ msgstr ""
 #~ msgstr "Neznana sled"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
 #~ "Uvoz z naprave je bil preklican. Dejanje se bo po tej predstavni vsebini "
 #~ "ustavila."
@@ -2019,7 +1999,8 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Preklic uvoza"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "Usklajevanje naprave je bilo preklicano. Dejanje se bo po tej predstavni "
 #~ "vsebini ustavila."
@@ -2048,7 +2029,6 @@ msgstr ""
 #~ msgid "Lyrics not found for %s"
 #~ msgstr "Besedila niso najdena  za %s"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Ime %s je že v uporabi"
 
@@ -2069,7 +2049,6 @@ msgstr ""
 #~ "Vstavek za predstavno vrsto %s ni nameščen.\n"
 #~ "Kaj želite narediti?"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s je končal z uvozom skladbe z Audio CD-ja."
 
@@ -2088,16 +2067,14 @@ msgstr ""
 #~ msgid "Music Folder Location:"
 #~ msgstr "Mesto mape z glasbo:"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr ""
 #~ "%s ni našel nobene skladbe na CD-ju. Nobene skladbe ni mogoče uvoziti"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "V tem pogledu bo %s samodejno našel skladbe, podobne trenutno predvajani. "
 #~ "Nato lahko začnete predvajati te skladbe ali pa jih shranite kot seznam "
@@ -2121,7 +2098,6 @@ msgstr ""
 #~ msgid "Complete Login"
 #~ msgstr "Celotna prijava"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "Izgleda, da %s ne najde vaše glasbe."
 
@@ -2138,8 +2114,8 @@ msgstr ""
 #~ msgstr "Beleženje poslušanih skladb je že omogočeno"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "Da omogočite integracijo z Last.fm, morate programu %s podati pravice. To "
 #~ "morate narediti samo enkrat."
@@ -2167,5 +2143,5 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audio;Predvajalnik;Glasba;MP3;iPod;Igraj;Media;CD;Play;Phone;Songs;Pesm"
-#~ "i"
+#~ "Noise;Audio;Predvajalnik;Glasba;MP3;iPod;Igraj;Media;CD;Play;Phone;Songs;"
+#~ "Pesmi"

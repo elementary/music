@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-20 07:16+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"PO-Revision-Date: 2017-07-22 23:20+0000\n"
+"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
+"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/>"
+"\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
-"Language: cs\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -266,7 +267,7 @@ msgstr "Odebrat"
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr "Exportovat..."
+msgstr "Exportovat…"
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
@@ -383,7 +384,7 @@ msgstr "Přidat chytrý seznam skladeb"
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Ekvalizér: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
@@ -468,19 +469,19 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "Umělec:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "Umělec alba:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
-msgstr ""
+msgstr "Žánr:"
 
 #: ../src/Dialogs/MediaEditor.vala:82
 msgid "Composer:"
@@ -488,23 +489,23 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:84
 msgid "Grouping:"
-msgstr ""
+msgstr "Seskupení:"
 
 #: ../src/Dialogs/MediaEditor.vala:86
 msgid "Comment:"
-msgstr ""
+msgstr "Komentář:"
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "Sledování:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "Disk:"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "Rok:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
@@ -571,11 +572,11 @@ msgstr "Umístění souboru"
 
 #: ../src/Dialogs/NotImportedWindow.vala:101
 msgid "Select individual files to move to trash:"
-msgstr "Vybrat jednotlivé soubory k přesunutí do koše"
+msgstr "Vybrat jednotlivé soubory k přesunutí do koše:"
 
 #: ../src/Dialogs/PreferencesWindow.vala:46
 msgid "Select Music Folder…"
-msgstr "Vybrat složku s hudbou..."
+msgstr "Vybrat složku s hudbou…"
 
 #: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
 msgid "Preferences"
@@ -611,7 +612,7 @@ msgstr ""
 
 #: ../src/Dialogs/PreferencesWindow.vala:167
 msgid "Continue playback when closed:"
-msgstr "Pokračovat v přehrávání při zavření"
+msgstr "Pokračovat v přehrávání při zavření:"
 
 #: ../src/Dialogs/FileNotFoundDialog.vala:53
 msgid "File not found"
@@ -652,7 +653,7 @@ msgid ""
 "the files you would like to import."
 msgstr ""
 "Tyto soubory byly nalezeny v %s, ale nejsou v knihovně. Označte soubory, "
-"které chcete importovat"
+"které chcete importovat."
 
 #: ../src/Dialogs/TransferFromDeviceDialog.vala:72
 msgid "Import all media"
@@ -980,7 +981,7 @@ msgstr "Import dokončen"
 
 #: ../src/FileOperator.vala:307
 msgid "%s has imported your library."
-msgstr "%s bylo importováno do vaší knihovny"
+msgstr "%s bylo importováno do vaší knihovny."
 
 #: ../src/FileOperator.vala:317
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -999,7 +1000,7 @@ msgstr[2] "%u alb"
 
 #: ../src/Views/GridView/PopupListView.vala:59
 msgid "Set new album cover"
-msgstr "Nastavit nový obrázek alba."
+msgstr "Nastavit nový obrázek alba"
 
 #: ../src/Views/GridView/PopupListView.vala:156
 msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
@@ -1083,7 +1084,7 @@ msgstr "Importujte si hudbu"
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:103
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:119
 msgid "Import all your Music from %s into your library."
-msgstr "Importujte si do knihovny všechnu hudbu z %s"
+msgstr "Importujte si do knihovny všechnu hudbu z %s."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:129
 msgid "Select Music Folder"
@@ -1097,7 +1098,7 @@ msgstr "%s, %s, %s"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Cancelling…"
-msgstr "Probíhá rušení..."
+msgstr "Probíhá rušení…"
 
 #: ../src/Views/DeviceView.vala:38
 msgid "Device operation has been cancelled and will stop after this media."
@@ -1112,8 +1113,7 @@ msgid "No External Songs"
 msgstr "Žádné externí skladby"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "Na zařízení nenalezeny žádné skladby, které by nebyly v knihovně."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1488,12 +1488,12 @@ msgstr "Nelze synchronizovat"
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Nelze synchronizovat zařízení s vybraným nastavením synchronizace. Na disku "
-"není dostatek místa."
+"Nelze synchronizovat zařízení s vybraným nastavením synchronizace. Není "
+"dostatek místa na disku"
 
 #: ../src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
-msgstr "Zařízení již provádí operaci"
+msgstr "Zařízení již provádí operaci."
 
 #: ../src/Noise.vala:65
 msgid "translator-credits"
@@ -1526,11 +1526,11 @@ msgstr "Historie"
 
 #: ../src/LocalBackend/LocalLibrary.vala:182
 msgid "Importing music from %s…"
-msgstr "Přidávání hudby z %s..."
+msgstr "Přidávání hudby z %s…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:210
 msgid "Adding files to library…"
-msgstr "Přidávání souborů do knihovny ..."
+msgstr "Přidávání souborů do knihovny…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -1546,7 +1546,7 @@ msgstr "Nebyly přidány žádné soubory."
 
 #: ../src/LocalBackend/LocalLibrary.vala:254
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Vyhledávání změn ve sbírce. Toto může chvíli trvat..."
+msgstr "Vyhledávání změn ve sbírce. Toto může chvíli trvat…"
 
 #: ../src/LocalBackend/LocalLibrary.vala:328
 msgid "Added to your queue:"
@@ -1590,7 +1590,7 @@ msgstr "Přidávání <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
 #: ../plugins/Devices/iPod/iPodLibrary.vala:199
 msgid "Syncing <b>%s</b>…"
-msgstr "Synchronizace <b>% s </ b> ..."
+msgstr "Synchronizace <b>% s </ b>…"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
 #: ../plugins/Devices/iPod/iPodLibrary.vala:533
@@ -1600,7 +1600,7 @@ msgstr "Odstraňování <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
 #: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
 #: ../plugins/Devices/iPod/iPodLibrary.vala:340
 msgid "Removing from <b>%s</b>…"
-msgstr "Odstraňování z <b>%s </ b> ..."
+msgstr "Odstraňování z <b>%s </ b>…"
 
 #: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
 #: ../plugins/Devices/iPod/iPodDevice.vala:59
@@ -1791,7 +1791,6 @@ msgstr ""
 #~ msgid "Audiobook"
 #~ msgstr "Audiokniha"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Importovat hudbu z %s..."
 
@@ -1801,7 +1800,6 @@ msgstr ""
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Prohledat změny v hudbě. Může to chvíli trvat..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Přidání hudby z %s do databáze..."
 
@@ -1835,7 +1833,6 @@ msgstr ""
 #~ msgid "Album Artist"
 #~ msgstr "Interpret alba"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr "Hudební soubor %s od %s nebyl nalezen. Co chcete dělat?"
@@ -1846,7 +1843,6 @@ msgstr ""
 #~ msgid "Unknown Title"
 #~ msgstr "Neznámý titul"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s a %s"
 
@@ -1856,7 +1852,6 @@ msgstr ""
 #~ msgstr[1] "%d vteřina"
 #~ msgstr[2] "%d vteřiny"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s a %s"
 
@@ -1894,21 +1889,19 @@ msgstr ""
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i soubory médií nebyly nalezeny. Co chcete dělat?"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Odstranit %d %s z %s?"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
 #~ msgstr ""
-#~ "Tímto smažete %s ze své knihovny ze zařízení, které je synchronizováno s %s."
+#~ "Tímto smažete %s ze své knihovny ze zařízení, které je synchronizováno s "
+#~ "%s."
 
 #~ msgid "Cancelling Sync"
 #~ msgstr "Ukončuji synchronizaci"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s od %s"
 
@@ -1921,18 +1914,15 @@ msgstr ""
 #~ msgid "1 track"
 #~ msgstr "1 stopa"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i stopy"
 
 #~ msgid "Import this song"
 #~ msgstr "Importovat tuto skladbu"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Importovat %i skladby"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s hvězdiček"
 
@@ -1945,7 +1935,6 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " na "
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Importuje se</b> hudba z <b>%s</b> do knihovny."
 
@@ -1961,19 +1950,16 @@ msgstr ""
 #~ msgid "Rescanning music folder for changes"
 #~ msgstr "Prohledávám složku s hudbou"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
-#~ msgstr "%s nelze najít žádné skladby na CD. Žádná skladba nebude importována"
+#~ msgstr ""
+#~ "%s nelze najít žádné skladby na CD. Žádná skladba nebude importována"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s momentálně probíhá importování"
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s dokončilo importování %i skladeb z Audio CD."
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s dokončilo importování skladby z Audio CD"
 
@@ -1992,29 +1978,24 @@ msgstr ""
 #~ msgid "Last.fm Integration"
 #~ msgstr "Lastfm integrace"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Podobné %s"
 
 #~ msgid "Similar Song View"
 #~ msgstr "Zobrazení podobných skladeb"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Hledám podobné skladby do %s od %s"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Úprava %s od %s"
 
 #~ msgid "Editing %i songs"
 #~ msgstr "Úprava %i písní"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s nemohl načíst obsah tohoto zvukového CD."
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -2026,29 +2007,27 @@ msgstr ""
 #~ msgid "Ripping track 1"
 #~ msgstr "Kopírování stopy 1"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s nenalezl nenalezl ve vaší knihovně písně podobné %s od %s. Ujistěte se, "
-#~ "že jsou všechny informace o písních v pořádku a že jste připojeni k "
+#~ "%s nenalezl nenalezl ve vaší knihovně písně podobné %s od %s. Ujistěte "
+#~ "se, že jsou všechny informace o písních v pořádku a že jste připojeni k "
 #~ "Internetu. Některé písně se nemusí shodovat."
 
 #~ msgid "Click to redo the Last.fm login process"
 #~ msgstr "Klikněte pro opakování přihlášení k Last.fm"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "U tohoto zobrazení, %s najde automaticky písně podobné té přehrávané. Pak "
-#~ "můžete tyto písně přehrát, nebo je uložit do seznamu pro pozdější přehrání."
+#~ "můžete tyto písně přehrát, nebo je uložit do seznamu pro pozdější "
+#~ "přehrání."
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Importuji stopu %i"
 
@@ -2083,7 +2062,6 @@ msgstr ""
 #~ msgid "Importing track %i: %s"
 #~ msgstr "Importování stopy %i: %s"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s se nepodařilo najít hudbu."
 
@@ -2100,13 +2078,15 @@ msgstr ""
 #~ msgstr "Zobrazit přebal alba"
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr "Import ze zařízení zrušen. Po těchto médiích operace skončí."
 
 #~ msgid "Cancelling Import"
 #~ msgstr "Ruším import"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr "Synchronizace zařízení zrušena. Po těchto médiích operace skončí."
 
 #~ msgid "Export..."
@@ -2124,7 +2104,6 @@ msgstr ""
 #~ msgid "Remove Media"
 #~ msgstr "Odstranit média"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Jméno %s už nese jiný soubor"
 
@@ -2133,7 +2112,8 @@ msgstr ""
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audio;Přehrávač;MP3;iPod;Přehrát;Seznam skladeb;Média;CD;Phone;Skladby;"
+#~ "Noise;Audio;Přehrávač;MP3;iPod;Přehrát;Seznam skladeb;Média;CD;Phone;"
+#~ "Skladby;"
 
 #~ msgid "Reset"
 #~ msgstr "Obnovit"
@@ -2160,8 +2140,8 @@ msgstr ""
 #~ msgstr "<b>Statistika</b>"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
-#~ "Pro integraci s Last.fm musíte udělit %s povolení. Toto stačí provést pouze "
-#~ "jednou."
+#~ "Pro integraci s Last.fm musíte udělit %s povolení. Toto stačí provést "
+#~ "pouze jednou."

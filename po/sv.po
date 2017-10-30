@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
 "PO-Revision-Date: 2016-12-20 22:54+0000\n"
 "Last-Translator: Joachim Johansson <Unknown>\n"
 "Language-Team: Swedish\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1108,8 +1109,7 @@ msgid "No External Songs"
 msgstr "Inga externa låtar"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 "Inga låtar hittades på denna enhet som inte redan fanns i ditt bibliotek."
 
@@ -1770,7 +1770,6 @@ msgstr ""
 #~ msgid "No songs on CD"
 #~ msgstr "Inga låtar på CD:n"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Importerar spår %i"
 
@@ -1841,7 +1840,6 @@ msgstr ""
 #~ msgid "Editing %s"
 #~ msgstr "Redigerar %s"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Låttexten hittades inte för \"%s\" av  \"%s\""
 
@@ -1854,11 +1852,9 @@ msgstr ""
 #~ msgid "Disc"
 #~ msgstr "Skiva"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Ta bort %d %s från %s?"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s av %s"
 
@@ -1884,23 +1880,21 @@ msgstr ""
 #~ "You must wait until previous file operations finish before setting your "
 #~ "music folder"
 #~ msgstr ""
-#~ "Du måste vänta tills den förra operation slutförts innan du väljer musik mapp"
+#~ "Du måste vänta tills den förra operation slutförts innan du väljer musik "
+#~ "mapp"
 
 #~ msgid "Album Artist"
 #~ msgstr "Albumartist"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s Stjärnor"
 
 #~ msgid "1 Star"
 #~ msgstr "1 Stjärna"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Alla %i Betyg"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Liknar to %s"
 
@@ -1913,11 +1907,9 @@ msgstr ""
 #~ msgid "All Podcasts"
 #~ msgstr "Alla poddsändningar"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s gör redan en import"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Importerar musik från %s..."
 
@@ -1942,34 +1934,27 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Importera denna låt"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Importera %i låtar"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s kan inte hitta din musik"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Hittar låtar som liknar %s av %s"
 
 #~ msgid "Adding files to library..."
 #~ msgstr "Lägger till filer till biblioteket..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Lägger till musik från %s till biblioteket..."
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr "%s hittade inga låtar på CD:n. Inga låtar kan importeras."
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s har slutfört importen av %i låtar från Audio CD."
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -1980,7 +1965,6 @@ msgstr ""
 #~ msgid "CD Import Complete"
 #~ msgstr "CD-importen är färdig"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s har slutfört importen av en låt från Audio CD."
 
@@ -1990,11 +1974,9 @@ msgstr ""
 #~ msgid "Similar Song View"
 #~ msgstr "Liknandelåtarvy"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Redigerar %s av %s"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr "Musikfilen för %s av %s kan inte hittas. Vad vill du göra?"
@@ -2002,15 +1984,13 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Importera låtar från ljudskiva"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
 #~ msgstr ""
-#~ "Det här kommer att radera %s från ditt bibliotek och från alla enheter som "
-#~ "automatiskt synkroniseras med %s."
+#~ "Det här kommer att radera %s från ditt bibliotek och från alla enheter "
+#~ "som automatiskt synkroniseras med %s."
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Namnet %s används redan"
 
@@ -2020,7 +2000,6 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Importera media från enhet"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i album"
 
@@ -2030,28 +2009,27 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Alla låtar på den här enheten finns redan i ditt bibliotek."
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i låtar"
 
 #~ msgid "1 song"
 #~ msgstr "1 låt"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s kan inte hitta låtar som liknar %s av %s i ditt bibliotek. Försäkra dig "
-#~ "om att all låtinformation är korrekt och att du är uppkopplad mot Internet. "
-#~ "Vissa låtar kan sakna träffar."
+#~ "%s kan inte hitta låtar som liknar %s av %s i ditt bibliotek. Försäkra "
+#~ "dig om att all låtinformation är korrekt och att du är uppkopplad mot "
+#~ "Internet. Vissa låtar kan sakna träffar."
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
-#~ "Import från enheten har avbrutits. Operationen kommer avslutas efter den här "
-#~ "filen."
+#~ "Import från enheten har avbrutits. Operationen kommer avslutas efter den "
+#~ "här filen."
 
 #~ msgid "Recently Played"
 #~ msgstr "Nyligen Spelade"
@@ -2059,33 +2037,30 @@ msgstr ""
 #~ msgid "1 track"
 #~ msgstr "1 spår"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "I den här vyn kommer %s automatiskt att hitta låtar som liknar den du "
 #~ "spelar. Du kan börja spela de låtarna eller spara dem i en spellista till "
 #~ "senare."
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i spår"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
-#~ "Enhetens synkronisering har avbrutits. Operationen kommer avslutas efter den "
-#~ "här filen."
+#~ "Enhetens synkronisering har avbrutits. Operationen kommer avslutas efter "
+#~ "den här filen."
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s kan inte läsa innehållet på den här musikskivan"
 
 #~ msgid "1 day"
 #~ msgstr "1 dag"
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Importerar</b> musik från <b>%s</b> till biblioteket."
 
@@ -2095,11 +2070,9 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 sekund"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekunder"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i timmar"
 
@@ -2109,19 +2082,15 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 timme"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minuter"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s och %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s och %s"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dagar"
 
@@ -2178,8 +2147,8 @@ msgstr ""
 #~ "Noise is already doing file operations. Please wait until those finish to "
 #~ "import from %d"
 #~ msgstr ""
-#~ "Noise genomför redan filoperationer. Vänligen vänta tills dessa är klara för "
-#~ "att importera från %d."
+#~ "Noise genomför redan filoperationer. Vänligen vänta tills dessa är klara "
+#~ "för att importera från %d."
 
 #~ msgid "Date Released"
 #~ msgstr "Releasedatum"
@@ -2204,7 +2173,6 @@ msgstr ""
 #~ msgid "Click on the button to edit playlist rules"
 #~ msgstr "Klicka på knappen för att redigera regler för spellista"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i objekt"
 
@@ -2230,8 +2198,8 @@ msgstr ""
 #~ msgstr "Skrobbling är redan aktiverat"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "För att kunna integrera Last.fm så måste du ge tillstånd till %s. Detta "
 #~ "behöver du bara göra en gång."

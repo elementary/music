@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-05-07 13:37+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Arabic <ar@li.org>\n"
+"PO-Revision-Date: 2017-04-21 20:32+0000\n"
+"Last-Translator: Abdullah Ibrahim <alfadhel.a@gmail.com>\n"
+"Language-Team: Arabic <https://l10n.elementary.io/projects/music/music/ar/>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
-"3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
-"Language: ar\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -132,7 +132,7 @@ msgstr "إلغاء"
 #: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
 msgid "Save"
-msgstr ""
+msgstr "حفظ"
 
 #: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
 msgid "MPEG Version 3.0 Extended (*.m3u)"
@@ -156,7 +156,7 @@ msgstr "استورد %s"
 #: ../src/Views/GridView/PopupListView.vala:255
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:133
 msgid "Open"
-msgstr ""
+msgstr "فتح"
 
 #: ../core/Utils/PlaylistsUtils.vala:402
 msgid "Unrecognized playlist file. Import failed."
@@ -265,11 +265,11 @@ msgstr "آلي"
 
 #: ../src/Widgets/PresetList.vala:47
 msgid "Delete Current"
-msgstr ""
+msgstr "حذف الحالي"
 
 #: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
 msgid "Rename"
-msgstr ""
+msgstr "اعادة تسمية"
 
 #: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
 #: ../src/Dialogs/SmartPlaylistEditor.vala:260
@@ -279,11 +279,11 @@ msgstr "حذف"
 #: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
 #: ../src/Widgets/SourceListView.vala:90
 msgid "Export…"
-msgstr ""
+msgstr "تصدير…"
 
 #: ../src/Widgets/SourceListView.vala:73
 msgid "Edit…"
-msgstr ""
+msgstr "تحرير…"
 
 #: ../src/Widgets/SourceListView.vala:88
 msgid "Save as Playlist"
@@ -339,7 +339,7 @@ msgstr "إطفاﺀ"
 
 #: ../src/Widgets/StatusBar.vala:64
 msgid "Enable Repeat"
-msgstr ""
+msgstr "تفعيل التكرار"
 
 #: ../src/Widgets/StatusBar.vala:65
 msgid "Song"
@@ -375,7 +375,7 @@ msgstr "الجميع"
 
 #: ../src/Widgets/StatusBar.vala:68
 msgid "Disable Repeat"
-msgstr ""
+msgstr "تعطيل التكرار"
 
 #: ../src/Widgets/StatusBar.vala:94
 msgid "Enable Shuffle"
@@ -436,15 +436,15 @@ msgstr "التعيين التمهيدي المعتاد %i"
 
 #: ../src/Widgets/ViewSelector.vala:68
 msgid "View as Albums"
-msgstr ""
+msgstr "عرض كالبومات"
 
 #: ../src/Widgets/ViewSelector.vala:72
 msgid "View as List"
-msgstr ""
+msgstr "عرض كقائمة"
 
 #: ../src/Widgets/ViewSelector.vala:76
 msgid "View in Columns"
-msgstr ""
+msgstr "عرض في اعمدة"
 
 #: ../src/Widgets/SpaceWidget.vala:266
 msgid "Free"
@@ -475,19 +475,19 @@ msgstr "تنصيب البرنامج الإضافي"
 
 #: ../src/Dialogs/MediaEditor.vala:72
 msgid "Title:"
-msgstr ""
+msgstr "العنوان:"
 
 #: ../src/Dialogs/MediaEditor.vala:74
 msgid "Artist:"
-msgstr ""
+msgstr "الفنان:"
 
 #: ../src/Dialogs/MediaEditor.vala:76
 msgid "Album Artist:"
-msgstr ""
+msgstr "فنان الالبوم:"
 
 #: ../src/Dialogs/MediaEditor.vala:78
 msgid "Album:"
-msgstr ""
+msgstr "الالبوم:"
 
 #: ../src/Dialogs/MediaEditor.vala:80
 msgid "Genre:"
@@ -507,19 +507,19 @@ msgstr ""
 
 #: ../src/Dialogs/MediaEditor.vala:88
 msgid "Track:"
-msgstr ""
+msgstr "المقطوعة:"
 
 #: ../src/Dialogs/MediaEditor.vala:90
 msgid "Disk:"
-msgstr ""
+msgstr "القرص:"
 
 #: ../src/Dialogs/MediaEditor.vala:92
 msgid "Year:"
-msgstr ""
+msgstr "السنة:"
 
 #: ../src/Dialogs/MediaEditor.vala:94
 msgid "Rating:"
-msgstr ""
+msgstr "التقييم:"
 
 #: ../src/Dialogs/MediaEditor.vala:153 ../src/Dialogs/PreferencesWindow.vala:99
 msgid "Close"
@@ -1052,8 +1052,8 @@ msgid ""
 "below."
 msgstr ""
 "سيتم تلقائيا نشر هذه الأغاني مع الأغاني التي تطابق نظامها. لتعديل هذه "
-"القواعد، استخدم <b>secondary click</b> في الشريط الجانبي وانقر على "
-"<b>Edit</b>. اختياريا، يمكنك النقر على الزر أدناه."
+"القواعد، استخدم <b>secondary click</b> في الشريط الجانبي وانقر على <b>Edit</"
+"b>. اختياريا، يمكنك النقر على الزر أدناه."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
@@ -1112,8 +1112,7 @@ msgid "No External Songs"
 msgstr "لا يوجد أغاني خارجية"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "لا توجد اغاني بهذه الجهاز التي ليست موجودة بمكتبتك."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1767,7 +1766,6 @@ msgstr ""
 #~ msgid "is not"
 #~ msgstr "ليس"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s ل%s"
 
@@ -1801,7 +1799,6 @@ msgstr ""
 #~ msgid "All Podcasts"
 #~ msgstr "جميع النشرات الصوتية"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s لا يمكن عثور على الموسيقى الخاصة بك."
 

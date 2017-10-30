@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-03-20 15:13+0000\n"
+"PO-Revision-Date: 2017-07-01 22:11+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
-"Language-Team: Danish <da@li.org>\n"
+"Language-Team: Danish <https://l10n.elementary.io/projects/music/music/da/>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-03-22 06:52+0000\n"
-"X-Generator: Launchpad (build 18334)\n"
-"Language: da\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -110,7 +110,7 @@ msgstr "Eksportér afspilningsliste"
 #: ../src/Dialogs/SmartPlaylistEditor.vala:118 ../src/LibraryWindow.vala:1066
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:131
 msgid "Cancel"
-msgstr "Annullér"
+msgstr "Annuller"
 
 #: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
 #: ../src/Dialogs/SmartPlaylistEditor.vala:116
@@ -528,8 +528,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Er du sikker på at du vil sætte musik mappen til %s? Dette vil nulstille dit "
-"bibliotek og fjerne dine afspilningslister."
+"Er du sikker på, at du vil sætte musik mappen til %s? Dette vil nulstille "
+"dit bibliotek og fjerne dine afspilningslister."
 
 #: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
 #: ../src/Dialogs/FileNotFoundDialog.vala:124
@@ -1110,8 +1110,7 @@ msgid "No External Songs"
 msgstr "Ingen eksterne sange"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "Der er ingen sange på denne enhed, som ikke er i dit bibliotek."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1738,7 +1737,6 @@ msgstr ""
 #~ msgid "Please make sure that your music folder is accessible and mounted."
 #~ msgstr "Venligst sørg for at din musik mappe er tilgængelig og monteret."
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Importerer</b> musik fra <b>%s</b> til bibliotek."
 
@@ -1751,14 +1749,12 @@ msgstr ""
 #~ msgid "Unknown Artist"
 #~ msgstr "Ukendt kunstner"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s stjerner"
 
 #~ msgid "1 Star"
 #~ msgstr "1 stjerne"
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Alle %i bedømmelser"
 
@@ -1804,7 +1800,6 @@ msgstr ""
 #~ msgid "Podcasts"
 #~ msgstr "Podcasts"
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s af %s"
 
@@ -1835,14 +1830,12 @@ msgstr ""
 #~ msgid "1 second"
 #~ msgstr "1 sekund"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s sekunder"
 
 #~ msgid "1 track"
 #~ msgstr "1 nummer"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i timer"
 
@@ -1852,22 +1845,18 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 time"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i minutter"
 
 #~ msgid "Unknown Title"
 #~ msgstr "Ukendt titel"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s og %s"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s og %s"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dage"
 
@@ -1919,7 +1908,6 @@ msgstr ""
 #~ msgid "Add Podcast"
 #~ msgstr "Tilføj podcast"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Importerer musik fra %s..."
 
@@ -1932,12 +1920,12 @@ msgstr ""
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Uhørte podcasts"
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Tilføjer musik fra %s til bibliotek..."
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
 #~ "Importering fra enhed er blevet afbrudt. Handling vil stoppe efter dette "
 #~ "medie."
@@ -1948,7 +1936,8 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Afbryder importering"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
 #~ "Enhed synkronisering er blevet afbrudt. Handling vil stoppe efter dette "
 #~ "medie."
@@ -1956,36 +1945,30 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Importér denne sang"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Importér %i sange"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Finder lignende sange til %s af %s"
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "Henter lignende sange"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Lignende til %s"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
-#~ "%s kunne ikke finde sange der ligner %s af %s i dit bibliotek. Sørg for at "
-#~ "alle sang info er korrekte og at du er tilsluttet til internettet. Nogle "
-#~ "sange har måske ikke nogen lignende sange."
+#~ "%s kunne ikke finde sange der ligner %s af %s i dit bibliotek. Sørg for "
+#~ "at alle sang info er korrekte og at du er tilsluttet til internettet. "
+#~ "Nogle sange har måske ikke nogen lignende sange."
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i albums"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i sange"
 
@@ -1995,11 +1978,9 @@ msgstr ""
 #~ msgid "Not Imported Files"
 #~ msgstr "Ikke importerede filer"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i numre"
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Redigérer %s af %s"
 
@@ -2009,7 +1990,6 @@ msgstr ""
 #~ msgid "Could not find media file"
 #~ msgstr "Kunne ikke finde mediefil"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Lyrik ikke fundet for \"%s\" af \"%s\""
 
@@ -2019,11 +1999,9 @@ msgstr ""
 #~ msgid "All the songs in this device are already in your library."
 #~ msgstr "Alle sangene på denne enhed er allerede i dit bibliotek."
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "%s kan ikke finde din musik."
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s kunne ikke læse indholdet af denne lyd CD"
 
@@ -2036,14 +2014,12 @@ msgstr ""
 #~ msgid "Editing %i songs"
 #~ msgstr "Redigerer %i sange"
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Fjern %d %s fra %s?"
 
 #~ msgid "Date Released"
 #~ msgstr "Dato frigivet"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s importerer allerede"
 
@@ -2056,20 +2032,16 @@ msgstr ""
 #~ msgid "CD Import Complete"
 #~ msgstr "CD importering fuldført"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Importerer nummer %i"
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Navnet %s er allerede i brug"
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr ""
 #~ "%s kunne ikke finde nogen sange på CD'en. Ingen sange kan blive importeret"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
@@ -2077,11 +2049,9 @@ msgstr ""
 #~ "Vent venligst indtil %s er færdigt med den nuværende importering før "
 #~ "importering af CD'en."
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s har færdiggjort importering af en sang fra lyd CD."
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s har færdiggjort at importere %i sange fra lyd CD."
 
@@ -2095,7 +2065,6 @@ msgstr ""
 #~ "Udvidelsen for medie typen %s er ikke installeret.\n"
 #~ "Hvad vil du gerne gøre?"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -2106,14 +2075,13 @@ msgstr ""
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i medie filer kunne ikke findes. Hvad vil du gerne gøre?"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
-#~ "I denne visning, %s vil automatisk finde sange lignende dem du afspiller. Du "
-#~ "kan så starte med at afspille disse sange eller gemme dem som en "
+#~ "I denne visning, %s vil automatisk finde sange lignende dem du afspiller. "
+#~ "Du kan så starte med at afspille disse sange eller gemme dem som en "
 #~ "afspilningsliste til senere."
 
 #~ msgid "Pulser"
@@ -2123,10 +2091,9 @@ msgstr ""
 #~ "You must wait until previous file operations finish before setting your "
 #~ "music folder"
 #~ msgstr ""
-#~ "Du skal vente indtil foregående fil operationer er færdig før du angiver din "
-#~ "musik mappe"
+#~ "Du skal vente indtil foregående fil operationer er færdig før du angiver "
+#~ "din musik mappe"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr "Musik filen for %s af %s kunne ikke findes. Hvad vil du gerne gøre?"
@@ -2210,8 +2177,8 @@ msgstr ""
 #~ msgstr "Ændrer $NAME af $ARTIST"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "For at tillade Last.fm integration, skal du give tilladelse til %s. Dette "
 #~ "behøves kun at blive gjort én gang."

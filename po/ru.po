@@ -6,23 +6,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-19 21:20+0000\n"
-"Last-Translator: Maxim Taranov <png2378@gmail.com>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"PO-Revision-Date: 2017-07-15 08:26+0000\n"
+"Last-Translator: Kirill Romanov <djaler1@gmail.com>\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
+"\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
-"Language: ru\n"
 
 #: ../core/LibrariesManager.vala:143
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Импортирование <b>$NAME</b в исполнении <b>$ARTIST</b> в медиатеку…"
+msgstr "Импортирование <b>$NAME</b> в исполнении <b>$ARTIST</b> в медиатеку…"
 
 #: ../core/Utils/TimeUtils.vala:51 ../core/Utils/TimeUtils.vala:60
 msgid "%u second"
@@ -990,7 +991,7 @@ msgstr "%s элементов импортировано в вашу медиа�
 
 #: ../src/FileOperator.vala:317
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Копирование</b> файлов в </b>папку с музыкой<b>…"
+msgstr "<b>Копирование</b> файлов в <b>папку с музыкой</b>…"
 
 #: ../src/Views/GridView/GridView.vala:44
 msgid "No Albums Found."
@@ -1060,8 +1061,8 @@ msgid ""
 msgstr ""
 "В этот список воспроизведения автоматически помещаются композиции, "
 "соответствующие его правилам. Чтобы изменить правила, щёлкните <b>правой "
-"кнопкой мыши</b> по элементу на боковой панели и выберите пункт "
-"<b>Изменить</b>. Кроме того, можно щёлкнуть по кнопке ниже."
+"кнопкой мыши</b> по элементу на боковой панели и выберите пункт <b>Изменить</"
+"b>. Кроме того, можно щёлкнуть по кнопке ниже."
 
 #: ../src/Views/Wrappers/MusicViewWrapper.vala:51
 msgid "Get Some Tunes"
@@ -1120,8 +1121,7 @@ msgid "No External Songs"
 msgstr "Нет внешних композиций"
 
 #: ../src/Views/DeviceView.vala:100
-msgid ""
-"There were no songs found on this device that are not in your library."
+msgid "There were no songs found on this device that are not in your library."
 msgstr "На устройстве нет композиций, отсутствующих в медиатеке."
 
 #: ../src/Views/ListView/Lists/GenericList.vala:118
@@ -1191,7 +1191,7 @@ msgstr[2] "Импортирование %i композиций"
 
 #: ../src/Views/ListView/Lists/MusicListView.vala:600
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 Кбит/сек"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1543,8 +1543,8 @@ msgstr ""
 "  Глория Хрусталёва https://launchpad.net/~gloriya\n"
 "  Дмитрий Мурашкин https://launchpad.net/~mr-dimur\n"
 "  Николай https://launchpad.net/~nicolai-andr12\n"
-"  Николай Авдеев (NickKolok, Nikolay Avdeev) "
-"https://launchpad.net/~nickkolok\n"
+"  Николай Авдеев (NickKolok, Nikolay Avdeev) https://launchpad.net/"
+"~nickkolok\n"
 "  Сулейман https://launchpad.net/~umudov-s-i13\n"
 "  михаил https://launchpad.net/~ded-mixei"
 
@@ -1776,7 +1776,6 @@ msgstr ""
 #~ msgid "Podcast"
 #~ msgstr "Подкаст"
 
-#, c-format
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s уже делает импорт"
 
@@ -1786,7 +1785,6 @@ msgstr ""
 #~ msgid "Ripping track 1"
 #~ msgstr "Копирование трека 1"
 
-#, c-format
 #~ msgid "Importing track %i"
 #~ msgstr "Импорт трека %i"
 
@@ -1843,7 +1841,6 @@ msgstr ""
 #~ "Повторное сканирование для поиска изменений. Это может занять некоторое "
 #~ "время..."
 
-#, c-format
 #~ msgid "Adding music from %s to library..."
 #~ msgstr "Добавление музыки из «%s» в библиотеку..."
 
@@ -1864,7 +1861,6 @@ msgstr ""
 #~ "Убедитесь, что папка с музыкой доступна, а устройство, на котором она "
 #~ "находится, монтировано."
 
-#, c-format
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>Импорт</b> музыки из «<b>%s</b>» в библиотеку."
 
@@ -1872,7 +1868,8 @@ msgstr ""
 #~ msgstr " в исполнении "
 
 #~ msgid ""
-#~ "Import from device has been cancelled. Operation will stop after this media."
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
 #~ msgstr ""
 #~ "Импорт файлов с устройства был отменён. Операция с этим устройством будет "
 #~ "прекращена."
@@ -1880,7 +1877,6 @@ msgstr ""
 #~ msgid "1 Star"
 #~ msgstr "1 звезда"
 
-#, c-format
 #~ msgid "%s Stars"
 #~ msgstr "%s звезд(ы)"
 
@@ -1890,12 +1886,12 @@ msgstr ""
 #~ msgid "Cancelling Import"
 #~ msgstr "Отмена импорта"
 
-#~ msgid "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
 #~ msgstr ""
-#~ "Синхронизация с устройством была отменена. Операция с этим устройством будет "
-#~ "прекращена."
+#~ "Синхронизация с устройством была отменена. Операция с этим устройством "
+#~ "будет прекращена."
 
-#, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Все %i оценок"
 
@@ -1908,7 +1904,6 @@ msgstr ""
 #~ msgid "Import this song"
 #~ msgstr "Импортировать эту композицию"
 
-#, c-format
 #~ msgid "Import %i songs"
 #~ msgstr "Импортировать %i композиций"
 
@@ -1918,44 +1913,39 @@ msgstr ""
 #~ msgid "All Podcasts"
 #~ msgstr "Все подкасты"
 
-#, c-format
 #~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
 #~ msgstr ""
 #~ "%s не удалось найти композиции, похожие на «%s» в исполнении %s, в "
 #~ "библиотеке. Убедитесь, что вся информация верна и есть подключение к "
 #~ "Интернету. Для некоторых песен может не быть соответствий."
 
-#, c-format
 #~ msgid "%s by %s"
 #~ msgstr "%s в исполнении %s"
 
-#, c-format
 #~ msgid ""
 #~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
 #~ msgstr ""
 #~ "В этом режиме просмотра, %s автоматически найдёт композиции, похожие на "
-#~ "текущую. Затем можно начать их воспроизведение или сохранить в виде списка."
+#~ "текущую. Затем можно начать их воспроизведение или сохранить в виде "
+#~ "списка."
 
 #~ msgid "Similar Song View"
 #~ msgstr "Похожие композиции"
 
-#, c-format
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Получение сведений композициях, похожих на «%s» в исполнении %s"
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "Получение сведений о похожих композициях"
 
-#, c-format
 #~ msgid "Similar to %s"
 #~ msgstr "Похожие на %s"
 
-#, c-format
 #~ msgid "%i albums"
 #~ msgstr "%i альбомов"
 
@@ -1968,7 +1958,6 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Импортировать композиции с звукового компакт-диска"
 
-#, c-format
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "Возможно, %s не нашло музыку."
 
@@ -1981,7 +1970,6 @@ msgstr ""
 #~ msgid "Import media from device"
 #~ msgstr "Импортировать данные с устройства"
 
-#, c-format
 #~ msgid "%i songs"
 #~ msgstr "%i композиций"
 
@@ -1991,15 +1979,12 @@ msgstr ""
 #~ msgid "1 track"
 #~ msgstr "1 дорожка"
 
-#, c-format
 #~ msgid "%i tracks"
 #~ msgstr "%i дорожек"
 
-#, c-format
 #~ msgid "%s could not read the contents of this Audio CD"
 #~ msgstr "%s не удалось воспроизвести содержимое звукового компакт-диска"
 
-#, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i часов"
 
@@ -2009,29 +1994,24 @@ msgstr ""
 #~ msgid "1 hour"
 #~ msgstr "1 час"
 
-#, c-format
 #~ msgid "%i minutes"
 #~ msgstr "%i минут"
 
 #~ msgid "1 second"
 #~ msgstr "1 секунда"
 
-#, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s секунд"
 
-#, c-format
 #~ msgid "%s and %s"
 #~ msgstr "%s и %s"
 
 #~ msgid "1 minute"
 #~ msgstr "1 минута"
 
-#, c-format
 #~ msgid "%i days"
 #~ msgstr "%i дней"
 
-#, c-format
 #~ msgid "%s, %s and %s"
 #~ msgstr "%s, %s и %s"
 
@@ -2051,7 +2031,6 @@ msgstr ""
 #~ "Плагин для воспроизведения формата «%s» не установлен.\n"
 #~ "Каковы дальнейшие действия?"
 
-#, c-format
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr ""
@@ -2073,7 +2052,6 @@ msgstr ""
 #~ msgid "Media Type"
 #~ msgstr "Вид данных"
 
-#, c-format
 #~ msgid "Lyrics not found for \"%s\" by \"%s\""
 #~ msgstr "Текст композиции «%s» в исполнении %s не найден"
 
@@ -2092,7 +2070,6 @@ msgstr ""
 #~ msgid "Audiobook"
 #~ msgstr "Аудиокнига"
 
-#, c-format
 #~ msgid ""
 #~ "This will remove the %s from your library and from any device that "
 #~ "automatically syncs with %s."
@@ -2107,7 +2084,6 @@ msgstr ""
 #~ "Перед установки папки с музыкой необходимо подождать, пока предыдущие "
 #~ "операции с файлами завершатся."
 
-#, c-format
 #~ msgid "The name %s is already in use"
 #~ msgstr "Название «%s» уже используется"
 
@@ -2126,7 +2102,6 @@ msgstr ""
 #~ msgid " on "
 #~ msgstr " из альбома "
 
-#, c-format
 #~ msgid "%s could not find any songs on the CD. No songs can be imported"
 #~ msgstr ""
 #~ "%s не может найти музыкальные композиции на компакт-диске. Нет файлов для "
@@ -2135,15 +2110,12 @@ msgstr ""
 #~ msgid "No songs on CD"
 #~ msgstr "Нет композиций на компакт-диске"
 
-#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s завершил импорт композиции с компакт-диска."
 
-#, c-format
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s завершил импорт %i композиций с компакт-диска."
 
-#, c-format
 #~ msgid "Editing %s by %s"
 #~ msgstr "Изменение сведений о «%s» исполнителя %s"
 
@@ -2180,7 +2152,6 @@ msgstr ""
 #~ msgid "Click on the button to edit playlist rules"
 #~ msgstr "Щёлкните на кнопке для редактирования правил списка воспроизведения"
 
-#, c-format
 #~ msgid "%i items"
 #~ msgstr "%i элементa(ов)"
 
@@ -2188,8 +2159,8 @@ msgstr ""
 #~ msgstr "1 объект"
 
 #~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to %s. You only "
-#~ "need to do this once."
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
 #~ msgstr ""
 #~ "Если вы хотите разрешить интеграцию Last.fm, вам необходимо задать "
 #~ "полномочия %s. Это необходимо сделать единожды."
@@ -2212,11 +2183,9 @@ msgstr ""
 #~ msgstr[1] "%d секунды"
 #~ msgstr[2] "%d секунд"
 
-#, c-format
 #~ msgid "Importing music from %s..."
 #~ msgstr "Импорт музыки из «%s»..."
 
-#, c-format
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Удалить %d %s из «%s»?"
 
@@ -2226,13 +2195,12 @@ msgstr ""
 #~ msgid "Skips"
 #~ msgstr "Число пропусков"
 
-#, c-format
 #~ msgid ""
 #~ "Please wait until %s is finished with the current import before importing "
 #~ "the CD."
 #~ msgstr ""
-#~ "Пожалуйста, подождите, пока %s закончит текущую операцию импорта, прежде чем "
-#~ "импортировать композиции с компакт-диска."
+#~ "Пожалуйста, подождите, пока %s закончит текущую операцию импорта, прежде "
+#~ "чем импортировать композиции с компакт-диска."
 
 #~ msgid "Click to redo the Last.fm login process"
 #~ msgstr "Щёлкните, чтобы повторить вход в Last.fm"
