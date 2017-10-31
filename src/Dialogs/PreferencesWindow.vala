@@ -25,7 +25,6 @@
  */
 
 public class Noise.PreferencesWindow : Gtk.Dialog {
-
     public const int MIN_WIDTH = 420;
     public const int MIN_HEIGHT = 300;
 
@@ -52,7 +51,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         library_filechooser.hexpand = true;
         library_filechooser.set_current_folder (Settings.Main.get_default ().music_folder);
         library_filechooser.file_set.connect (() => {
-            App.main_window.setMusicFolder(library_filechooser.get_current_folder ());
+            App.main_window.setMusicFolder (library_filechooser.get_current_folder ());
         });
         
         var main_settings = Settings.Main.get_default ();
