@@ -45,7 +45,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
             window_position: Gtk.WindowPosition.CENTER_ON_PARENT
         );
     }
-    
+
     construct {
         var library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder…"), Gtk.FileChooserAction.SELECT_FOLDER);
         library_filechooser.hexpand = true;
