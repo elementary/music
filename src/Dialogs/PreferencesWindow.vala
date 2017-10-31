@@ -53,22 +53,22 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         library_filechooser.file_set.connect (() => {
             App.main_window.setMusicFolder (library_filechooser.get_current_folder ());
         });
-        
+
         var main_settings = Settings.Main.get_default ();
-        
+
         var organize_folders_switch = new Gtk.Switch ();
         main_settings.schema.bind("update-folder-hierarchy", organize_folders_switch, "active", SettingsBindFlags.DEFAULT);
-        
+
         var write_file_metadata_switch = new Gtk.Switch ();
         main_settings.schema.bind("write-metadata-to-file", write_file_metadata_switch, "active", SettingsBindFlags.DEFAULT);
-        
+
         var copy_imported_music_switch = new Gtk.Switch ();
         main_settings.schema.bind("copy-imported-music", copy_imported_music_switch, "active", SettingsBindFlags.DEFAULT);
 
         var hide_on_close_switch = new Gtk.Switch ();
         main_settings.schema.bind("close-while-playing", hide_on_close_switch, "active", SettingsBindFlags.INVERT_BOOLEAN);
-        
-        var layout = new Gtk.Grid();
+
+        var layout = new Gtk.Grid ();
         layout.column_spacing = 12;
         layout.margin = 6;
         layout.row_spacing = 6;
@@ -84,17 +84,17 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         layout.attach (new SettingsHeader (_("Desktop Integration")), 0, 6);
         layout.attach (new SettingsLabel (_("Continue playback when closed:")), 0, 7);
         layout.attach (hide_on_close_switch, 1, 7);
-        
+
         var content = get_content_area () as Gtk.Box;
         content.add (layout);
-        
+
         //FIXME: don't know if I can delete this
         Plugins.Manager.get_default ().hook_preferences_window (this);
-        
+
         var close_button = add_button (_("Close"), Gtk.ResponseType.CLOSE);
         ((Gtk.Button) close_button).clicked.connect (() => destroy ());
     }
-    
+
     private class SettingsHeader : Gtk.Label {
         public SettingsHeader (string text) {
             label = text;
