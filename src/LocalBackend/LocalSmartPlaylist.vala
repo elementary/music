@@ -186,6 +186,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
                 case SmartQuery.FieldType.GENRE:
                 case SmartQuery.FieldType.GROUPING:
                 case SmartQuery.FieldType.TITLE:
+                case SmartQuery.FieldType.URI:
                     var val = Value (typeof (string));
                     val.set_string (pieces_of_query[2]);
                     sq.value = val;
@@ -199,7 +200,6 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
             new_queries.add (sq);
         }
-
         add_queries (new_queries);
     }
 

@@ -25,144 +25,90 @@
  */
 
 public class Noise.PreferencesWindow : Gtk.Dialog {
-
     public const int MIN_WIDTH = 420;
     public const int MIN_HEIGHT = 300;
 
     public Gtk.FileChooserButton library_filechooser;
 
     private Gee.Map<int, unowned Noise.SettingsWindow.NoteBook_Page> sections = new Gee.HashMap<int, unowned Noise.SettingsWindow.NoteBook_Page> ();
-    private Gtk.Stack main_stack;
-    private Gtk.StackSwitcher main_stackswitcher;
-    private int index = 0;
 
     public PreferencesWindow () {
-        build_ui ();
-        App.main_window.add_preference_page.connect ((page) => {add_page (page);});
-        
-        // Add general section
-        library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder…"), Gtk.FileChooserAction.SELECT_FOLDER);
+        Object (
+            border_width: 6,
+            deletable: false,
+            destroy_with_parent: true,
+            height_request: MIN_HEIGHT,
+            resizable: false,
+            title: _("Preferences"),
+            transient_for: App.main_window,
+            width_request: MIN_WIDTH,
+            window_position: Gtk.WindowPosition.CENTER_ON_PARENT
+        );
+    }
+
+    construct {
+        var library_filechooser = new Gtk.FileChooserButton (_("Select Music Folder…"), Gtk.FileChooserAction.SELECT_FOLDER);
         library_filechooser.hexpand = true;
-
         library_filechooser.set_current_folder (Settings.Main.get_default ().music_folder);
-        //library_filechooser.set_local_only (true);
-        var general_section = new Preferences.GeneralPage (library_filechooser);
-        library_filechooser.file_set.connect (() => {App.main_window.setMusicFolder(library_filechooser.get_current_folder ());});
-        add_page (general_section.page);
+        library_filechooser.file_set.connect (() => {
+            App.main_window.setMusicFolder (library_filechooser.get_current_folder ());
+        });
 
-        Plugins.Manager.get_default ().hook_preferences_window (this);
-    }
-
-
-    public int add_page (Noise.SettingsWindow.NoteBook_Page section) {
-        return_val_if_fail (section != null, -1);
-
-        // Pack the section
-        main_stack.add_titled (section, "%d".printf (index), section.name);
-        sections.set (index, section);
-        index++;
-
-        section.show_all ();
-        var children_number = main_stack.get_children ().length ();
-        main_stackswitcher.no_show_all = children_number <= 1;
-        main_stackswitcher.visible = children_number > 1;
-
-        return index;
-    }
-
-    public void remove_section (int _index) {
-        var section = sections.get (_index);
-        section.destroy ();
-        sections.unset (_index);
-        var children_number = main_stack.get_children ().length ();
-        main_stackswitcher.no_show_all = children_number <= 1;
-        main_stackswitcher.visible = children_number > 1;
-    }
-
-    private void build_ui () {
-        // Window properties
-        title = _("Preferences");
-        set_size_request (MIN_WIDTH, MIN_HEIGHT);
-        resizable = false;
-        deletable = false;
-        destroy_with_parent = true;
-        window_position = Gtk.WindowPosition.CENTER;
-        set_transient_for (App.main_window);
-
-        main_stack = new Gtk.Stack ();
-        main_stackswitcher = new Gtk.StackSwitcher ();
-        main_stackswitcher.set_stack (main_stack);
-        main_stackswitcher.halign = Gtk.Align.CENTER;
-
-        var close_button = new Gtk.Button.with_label (_("Close"));
-        close_button.clicked.connect (() => {this.destroy ();});
-
-        var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        button_box.set_layout (Gtk.ButtonBoxStyle.END);
-        button_box.pack_end (close_button);
-        button_box.margin_right = 12;
-
-        // Pack everything into the dialog
-        Gtk.Grid main_grid = new Gtk.Grid ();
-        main_grid.attach (main_stackswitcher, 0, 0, 1, 1);
-        main_grid.attach (main_stack, 0, 1, 1, 1);
-        main_grid.attach (button_box, 0, 2, 1, 1);
-
-        ((Gtk.Container) get_content_area ()).add (main_grid);
-    }
-}
-
-
-/**
- * General preferences section
- */
-private class Noise.Preferences.GeneralPage {
-
-    private Gtk.Switch organize_folders_switch;
-    private Gtk.Switch write_file_metadata_switch;
-    private Gtk.Switch copy_imported_music_switch;
-    private Gtk.Switch hide_on_close_switch;
-    public Noise.SettingsWindow.NoteBook_Page page;
-
-    public GeneralPage (Gtk.FileChooserButton library_filechooser) {
-
-        page = new Noise.SettingsWindow.NoteBook_Page (_("General"));
-
-        int row = 0;
-        
-        // Music Folder Location
-        
-        var label = new Gtk.Label (_("Music Folder Location"));
-        page.add_section (label, ref row);
-        
-        var spacer = new Gtk.Label ("");
-        spacer.set_hexpand (true);
-
-        page.add_full_option (library_filechooser, ref row);
-        
-        label = new Gtk.Label (_("Library Management"));
-        page.add_section (label, ref row);
-        
         var main_settings = Settings.Main.get_default ();
-        
-        organize_folders_switch = new Gtk.Switch ();
-        main_settings.schema.bind("update-folder-hierarchy", organize_folders_switch, "active", SettingsBindFlags.DEFAULT);
-        page.add_option (new Gtk.Label (_("Keep Music folder organized:")), organize_folders_switch, ref row);
-        
-        write_file_metadata_switch = new Gtk.Switch ();
-        main_settings.schema.bind("write-metadata-to-file", write_file_metadata_switch, "active", SettingsBindFlags.DEFAULT);
-        page.add_option (new Gtk.Label (_("Write metadata to file:")), write_file_metadata_switch, ref row);
-        
-        copy_imported_music_switch = new Gtk.Switch ();
-        main_settings.schema.bind("copy-imported-music", copy_imported_music_switch, "active", SettingsBindFlags.DEFAULT);
-        page.add_option (new Gtk.Label (_("Copy imported files to Library:")), copy_imported_music_switch, ref row);
-        
-        label = new Gtk.Label (_("Desktop Integration"));
-        page.add_section (label, ref row);
 
-        hide_on_close_switch = new Gtk.Switch ();
+        var organize_folders_switch = new Gtk.Switch ();
+        main_settings.schema.bind("update-folder-hierarchy", organize_folders_switch, "active", SettingsBindFlags.DEFAULT);
+
+        var write_file_metadata_switch = new Gtk.Switch ();
+        main_settings.schema.bind("write-metadata-to-file", write_file_metadata_switch, "active", SettingsBindFlags.DEFAULT);
+
+        var copy_imported_music_switch = new Gtk.Switch ();
+        main_settings.schema.bind("copy-imported-music", copy_imported_music_switch, "active", SettingsBindFlags.DEFAULT);
+
+        var hide_on_close_switch = new Gtk.Switch ();
         main_settings.schema.bind("close-while-playing", hide_on_close_switch, "active", SettingsBindFlags.INVERT_BOOLEAN);
-        page.add_option (new Gtk.Label (_("Continue playback when closed:")), hide_on_close_switch, ref row);
-        
+
+        var layout = new Gtk.Grid ();
+        layout.column_spacing = 12;
+        layout.margin = 6;
+        layout.row_spacing = 6;
+        layout.attach (new SettingsHeader (_("Music Folder Location")), 0, 0);
+        layout.attach (library_filechooser, 0, 1, 2, 1);
+        layout.attach (new SettingsHeader (_("Library Management")), 0, 2);
+        layout.attach (new SettingsLabel (_("Keep Music folder organized:")), 0, 3);
+        layout.attach (organize_folders_switch, 1, 3);
+        layout.attach (new SettingsLabel (_("Write metadata to file:")), 0, 4);
+        layout.attach (write_file_metadata_switch, 1, 4);
+        layout.attach (new SettingsLabel (_("Copy imported files to Library:")), 0, 5);
+        layout.attach (copy_imported_music_switch, 1, 5);
+        layout.attach (new SettingsHeader (_("Desktop Integration")), 0, 6);
+        layout.attach (new SettingsLabel (_("Continue playback when closed:")), 0, 7);
+        layout.attach (hide_on_close_switch, 1, 7);
+
+        var content = get_content_area () as Gtk.Box;
+        content.add (layout);
+
+        //FIXME: don't know if I can delete this
+        Plugins.Manager.get_default ().hook_preferences_window (this);
+
+        var close_button = add_button (_("Close"), Gtk.ResponseType.CLOSE);
+        ((Gtk.Button) close_button).clicked.connect (() => destroy ());
     }
+
+    private class SettingsHeader : Gtk.Label {
+        public SettingsHeader (string text) {
+            label = text;
+            get_style_context ().add_class ("h4");
+            halign = Gtk.Align.START;
+        }
+    }
+
+    private class SettingsLabel : Gtk.Label {
+        public SettingsLabel (string text) {
+            label = text;
+            halign = Gtk.Align.END;
+            margin_start = 12;
+        }
+    }
+
 }
