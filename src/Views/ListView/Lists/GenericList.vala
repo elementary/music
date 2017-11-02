@@ -300,13 +300,39 @@ public abstract class Noise.GenericList : FastView {
             }
         }
 
-        var queue = new Gee.ArrayList<Media> ();
-        queue.add_all (get_visible_table ());
+        var queue = start_at (to_set, get_visible_table ());
+        foreach (var q in queue) {
+            debug ("QUEING: %s", q.title);
+        }
         App.player.clear_queue ();
         App.player.queue_medias (queue);
-        App.player.current_index = queue.index_of (to_set);
+        App.player.current_index = 0;
+
+        // order the queue like this list
+        var queue_view_id = App.main_window.match_playlists[App.player.queue_playlist];
+        var view = (ViewWrapper) App.main_window.view_container.get_view (queue_view_id);
+        view.list_view.list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
 
         media_played.begin (App.player.current_media);
+    }
+
+    /**
+    * Shift a list (of media) to make it start at a given element
+    */
+    private Gee.ArrayList<Media> start_at (Media start, Gee.List<Media> media) {
+        debug ("TO START: %s (size = %d)", start.title, media.size);
+        var res = new Gee.ArrayList<Media> ();
+        int index = media.index_of (start);
+        for (int _ = 0; _ < media.size; _++) {
+            res.add (media[index]);
+            index++;
+
+            if (index == media.size) {
+                index = 0;
+            }
+        }
+
+        return res;
     }
 
     protected Gee.Collection<Media> get_selected_medias () {

@@ -27,6 +27,11 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
+/**
+* Manages song playback, queue, repeating and shuffling
+*
+* Finds the appropriate {@link Noise.Playback} to play a media
+*/
 public class Noise.PlaybackManager : Object, Noise.Player {
     // TODO: Have a correct implementation based on playlists.
     //        Show the next 2 medias in the queue when shuffle mode is enabled and create a playlist to remember shuffled songs
@@ -79,7 +84,10 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     // TODO: REWRITE IT USING THE LIBRARY
     public Library library { get { return libraries_manager.local_library; } }
 
-    public int current_index { get; set; }
+    int _ci;
+    public int current_index { get {
+        return _ci;
+        } set { debug ("Current index: %d", value); _ci = value; } }
 
     public bool playing { get; private set; default = false; }
     private double saved_volume = 1;
@@ -125,8 +133,16 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             return;
         }
 
+        foreach (var q in to_queue) {
+            debug ("QUEUED: %s", q.title);
+        }
+
         ordered_queue.add_medias (to_queue);
         reshuffle ();
+
+        foreach (var q in queue_playlist.medias) {
+            debug ("NEUE QUEUE: %s", q.title);
+        }
         media_queued (to_queue);
     }
 
@@ -184,8 +200,10 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     * Regenerate the shuffled queue if needed
     */
     public void reshuffle () {
+        debug ("Reshuffling");
         queue_playlist.clear ();
         if (is_shuffled) {
+            debug ("Shuffled");
             queue_playlist.medias.add_all (ordered_queue.medias);
 
             //create temp list of all of current's media
@@ -213,6 +231,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
             queue_playlist.media_added (queue_playlist.medias);
         } else {
+            debug ("Not shuffled");
             if (current_media != null) {
                 //make sure we continue playing where we left off
                 current_index = ordered_queue.medias.index_of (current_media);

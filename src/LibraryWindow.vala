@@ -76,7 +76,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     PreferencesWindow? preferences = null;
 
-    private Gee.HashMap<unowned Playlist, int> match_playlists;
+    internal Gee.HashMap<unowned Playlist, int> match_playlists;
     private Gee.HashMap<string, int> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
 

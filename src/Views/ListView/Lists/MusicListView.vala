@@ -57,7 +57,6 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
 }
 
 public class Noise.MusicListView : GenericList {
-
     //for media list right click
     Gtk.Menu mediaActionMenu;
     Gtk.MenuItem mediaEditMedia;
@@ -84,10 +83,15 @@ public class Noise.MusicListView : GenericList {
         set_value_func (view_value_func);
         set_compare_func (view_compare_func);
 
-        build_ui();
+        // Don't reorder the queue
+        /*if (playlist == App.player.queue_playlist) {
+            set_sort_column_id (-2, Gtk.SortType.DESCENDING);
+        }*/
+
+        build_ui ();
     }
 
-    public override void update_sensitivities() {
+    public override void update_sensitivities () {
         mediaActionMenu.show_all();
 
         if (hint == ViewWrapper.Hint.MUSIC) {
@@ -185,7 +189,8 @@ public class Noise.MusicListView : GenericList {
             mediaScrollToCurrent.sensitive = true;
         });
 
-        set_headers_visible (hint != ViewWrapper.Hint.ALBUM_LIST);
+        headers_visible = hint != ViewWrapper.Hint.ALBUM_LIST;
+        headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
 
         update_sensitivities ();
     }
@@ -448,9 +453,12 @@ public class Noise.MusicListView : GenericList {
 
     /**
      * Compares the two given objects based on the sort column.
-     *
      */
     protected int view_compare_func (int column, Gtk.SortType dir, Media media_a, Media media_b, int a_pos, int b_pos) {
+        if (playlist == App.player.queue_playlist) {
+            return 0; // Display the queue in the order it actually is
+        }
+
         int order = 0;
         return_val_if_fail (column >= 0 && column < ListColumn.N_COLUMNS, order);
 
@@ -465,8 +473,9 @@ public class Noise.MusicListView : GenericList {
 
             case ListColumn.LENGTH:
                 order = Compare.standard_unsigned (media_a.length, media_b.length);
-                if (order == 0)
+                if (order == 0) {
                     Compare.titles (media_a, media_b);
+                }
             break;
 
             case ListColumn.ARTIST:
@@ -552,7 +561,6 @@ public class Noise.MusicListView : GenericList {
             order = (order > 0) ? -1 : 1;
 
         return order;
-
     }
 
     protected Value? view_value_func (int row, int column, Object o) {
