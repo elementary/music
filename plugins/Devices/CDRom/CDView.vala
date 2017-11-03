@@ -27,75 +27,76 @@
  */
 
 public class Noise.Plugins.CDView : Gtk.Grid {
-    CDRomDevice dev;
-    
+    public CDRomDevice dev { get; construct set; }
+
     Gtk.EventBox main_event_box;
     Gtk.Grid main_grid;
-    
+
     Widgets.AlbumImage album_image;
-    
+
     Gtk.Label title;
     Gtk.Label author;
-    
+
     Noise.StaticPlaylist cd_playlist;
     public CDViewWrapper cd_viewwrapper;
-    
+
     public CDView (CDRomDevice d) {
-        this.dev = d;
+        Object (dev: d);
+    }
+
+    construct {
         cd_playlist = new Noise.StaticPlaylist ();
         cd_viewwrapper = new CDViewWrapper (cd_playlist);
-        
+
         build_ui ();
-        
+
         dev.initialized.connect (cd_initialised);
-        
     }
-    
+
     public void build_ui () {
-        
         main_event_box = new Gtk.EventBox ();
         main_grid = new Gtk.Grid ();
-        
+
         /* Content view styling */
         main_event_box.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
-        
+
         if ( cd_playlist.is_empty () == false) {
         }
-        
+
         album_image = new Widgets.AlbumImage ();
         album_image.gicon = new ThemedIcon ("albumart");
         album_image.halign = Gtk.Align.CENTER;
         album_image.valign = Gtk.Align.CENTER;
         album_image.set_alignment(0.5f, 1);
-        
+
         title = new Gtk.Label ("");
         title.set_alignment(0.5f, 1);
         title.set_justify(Gtk.Justification.CENTER);
         Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, title);
-        
+
         author = new Gtk.Label ("");
         author.set_alignment(0.5f, 1);
         author.set_justify(Gtk.Justification.CENTER);
         author.sensitive = false;
         Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, author);
-        
+
         var fake_label_1 = new Gtk.Label ("");
         fake_label_1.set_hexpand (true);
         fake_label_1.set_vexpand (true);
-        
+
         var fake_label_2 = new Gtk.Label ("");
         fake_label_2.set_hexpand (true);
         fake_label_2.set_vexpand (true);
-        
+
         var fake_label_3 = new Gtk.Label ("");
         fake_label_3.set_hexpand (true);
-        
+
         var import_grid = new Gtk.Grid ();
         var import_button = new Gtk.Button.with_label (_("Import"));
         import_button.set_alignment(1, 0);
         import_grid.attach (fake_label_3,  0, 0, 1, 1);
         import_grid.attach (import_button, 1, 0, 1, 1);
-        
+
         main_grid.attach (fake_label_1,   0, 0, 1, 7);
         main_grid.attach (album_image,    1, 3, 1, 1);
         main_grid.attach (title,          2, 2, 1, 1);
@@ -103,40 +104,40 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         main_grid.attach (cd_viewwrapper, 2, 3, 2, 1);
         main_grid.attach (import_grid,    3, 4, 1, 1);
         main_grid.attach (fake_label_2,   4, 0, 1, 7);
-        
+
         main_event_box.add (main_grid);
         this.attach (main_event_box,0,0,1,1);
-        
+
         /* Create options */
-        
+
         main_grid.set_hexpand (true);
         main_grid.set_row_spacing (6);
         main_grid.set_column_spacing (12);
         main_grid.set_margin_top (12);
-        
+
         import_button.clicked.connect ( () => {dev.transfer_to_library (cd_playlist.medias);});
-        
+
         show_all ();
     }
-    
+
     public void cd_initialised () {
         cd_playlist.add_medias (dev.get_medias ());
         if ( cd_playlist.is_empty () == false) {
-            var m = cd_playlist.medias.peek ();
+            var m = cd_playlist[0];
             author.set_markup (m.get_display_album_artist (true));
             title.set_markup (m.get_display_album ());
             load_cover ();
         }
         show_all ();
     }
-    
+
     private void load_cover () {
-        var cover_icon = cd_playlist.medias.peek ().album_info.cover_icon;
+        var cover_icon = cd_playlist[0].album_info.cover_icon;
         if (cover_icon != null) {
             album_image.gicon = cover_icon;
         }
     }
-    
+
     public Gtk.Label create_title_label (string title) {
         var label = new Gtk.Label (title);
         label.set_halign (Gtk.Align.START);
@@ -145,7 +146,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         label.set_hexpand (true);
         return label;
     }
-    
+
     public Gtk.Label create_length_label (uint length) {
         var label = new Gtk.Label (TimeUtils.pretty_length_from_ms (length));
         label.set_justify(Gtk.Justification.RIGHT);

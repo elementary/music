@@ -32,18 +32,16 @@
  */
 
 public class Noise.ContractMenuItem : Gtk.MenuItem {
-    private Granite.Services.Contract contract;
-    private Gee.TreeSet<Media> medias = new Gee.TreeSet<Media> ();
+    public Granite.Services.Contract contract { get; construct set; }
+    public Gee.Collection<Media> medias { get; construct set; }
 
     public ContractMenuItem (Granite.Services.Contract contract, Gee.Collection<Noise.Media> medias) {
-        this.contract = contract;
-        this.medias.add_all (medias);
-        label = contract.get_display_name ();
+        Object (contract: contract, medias: medias, label: contract.get_display_name ());
     }
 
     public override void activate () {
         File[] files = {};
-        foreach (Media m in this.medias) {
+        foreach (Media m in medias) {
             files += m.file;
             debug("Added file to pass to Contractor: %s", m.uri);
         }
@@ -59,7 +57,6 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
 }
 
 public class Noise.MusicListView : GenericList {
-
     //for media list right click
     Gtk.Menu mediaActionMenu;
     Gtk.MenuItem mediaEditMedia;
@@ -78,16 +75,23 @@ public class Noise.MusicListView : GenericList {
      * for sort_id use 0+ for normal, -1 for auto, -2 for none
      */
     public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-        base (view_wrapper, tvs);
+        Object (parent_wrapper: view_wrapper, tvs: tvs);
+    }
 
+    construct {
         // This is vital
         set_value_func (view_value_func);
         set_compare_func (view_compare_func);
 
-        build_ui();
+        // Don't reorder the queue
+        /*if (playlist == App.player.queue_playlist) {
+            set_sort_column_id (-2, Gtk.SortType.DESCENDING);
+        }*/
+
+        build_ui ();
     }
 
-    public override void update_sensitivities() {
+    public override void update_sensitivities () {
         mediaActionMenu.show_all();
 
         if (hint == ViewWrapper.Hint.MUSIC) {
@@ -175,7 +179,7 @@ public class Noise.MusicListView : GenericList {
         mediaRemove.activate.connect(mediaRemoveClicked);
         importToLibrary.activate.connect(importToLibraryClicked);
         mediaRateMedia.activate.connect(mediaRateMediaClicked);
-        mediaScrollToCurrent.activate.connect(mediaScrollToCurrentRequested);
+        mediaScrollToCurrent.activate.connect(media_scroll_to_current_requested);
 
         App.player.playback_stopped.connect (() => {
             mediaScrollToCurrent.sensitive = false;
@@ -184,8 +188,9 @@ public class Noise.MusicListView : GenericList {
         App.player.playback_started.connect (() => {
             mediaScrollToCurrent.sensitive = true;
         });
-                
-        set_headers_visible (hint != ViewWrapper.Hint.ALBUM_LIST);
+
+        headers_visible = hint != ViewWrapper.Hint.ALBUM_LIST;
+        headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
 
         update_sensitivities ();
     }
@@ -204,7 +209,7 @@ public class Noise.MusicListView : GenericList {
             // Don't include this playlist in the list of available options
             if (playlist == this.playlist)
                 continue;
-                
+
             if (playlist.read_only == true)
                 continue;
 
@@ -389,13 +394,13 @@ public class Noise.MusicListView : GenericList {
             } catch (Error err) {
                 debug("Could not browse media %s: %s\n", m.uri, err.message);
             }
-            
+
             return;
         }
     }
 
     protected virtual void mediaMenuQueueClicked () {
-        App.player.queue_media (get_selected_medias ().read_only_view);
+        App.player.queue_medias (get_selected_medias ().read_only_view);
     }
 
     protected virtual void mediaMenuNewPlaylistClicked () {
@@ -448,9 +453,12 @@ public class Noise.MusicListView : GenericList {
 
     /**
      * Compares the two given objects based on the sort column.
-     *
      */
     protected int view_compare_func (int column, Gtk.SortType dir, Media media_a, Media media_b, int a_pos, int b_pos) {
+        if (playlist == App.player.queue_playlist) {
+            return 0; // Display the queue in the order it actually is
+        }
+
         int order = 0;
         return_val_if_fail (column >= 0 && column < ListColumn.N_COLUMNS, order);
 
@@ -465,8 +473,9 @@ public class Noise.MusicListView : GenericList {
 
             case ListColumn.LENGTH:
                 order = Compare.standard_unsigned (media_a.length, media_b.length);
-                if (order == 0)
+                if (order == 0) {
                     Compare.titles (media_a, media_b);
+                }
             break;
 
             case ListColumn.ARTIST:
@@ -552,7 +561,6 @@ public class Noise.MusicListView : GenericList {
             order = (order > 0) ? -1 : 1;
 
         return order;
-
     }
 
     protected Value? view_value_func (int row, int column, Object o) {

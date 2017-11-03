@@ -25,19 +25,20 @@
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
- 
+
 public abstract class Noise.Playlist : Object {
     public signal void request_play ();
-    public virtual Gee.ArrayQueue<Media> medias { get; internal set; }
 
-    public int64 rowid { get; set; }
+    public virtual Gee.ArrayList<Media> medias { get; internal set; default = new Gee.ArrayList<Media> (); }
+
+    public int64 rowid { get; construct set; }
     public GLib.Icon icon;
     internal string _name = "";
     public virtual string name {
         get {
             return _name;
-        } 
-        set {
+        }
+        construct set {
             string old_name = _name;
             _name = value;
             updated (old_name);
@@ -56,6 +57,21 @@ public abstract class Noise.Playlist : Object {
     public abstract void clear ();
 
     public bool is_empty () {
-        return (medias.size <= 0);
+        return medias.size <= 0;
+    }
+
+    /**
+    * Retrives a Media at an index in this playlist
+    */
+    public new Media get (int index) {
+        return medias[index];
+    }
+
+    public new void set (int index, Media m) {
+        medias[index] = m;
+    }
+
+    public Gee.Iterator<Media> iterator () {
+        return medias.iterator ();
     }
 }

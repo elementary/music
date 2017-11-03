@@ -56,7 +56,7 @@ public class Noise.LocalLibrary : Library {
 
     private const string DB_FILE = "database_0_3_1";
 
-    public LocalLibrary () {
+    construct {
         libraries_manager.local_library = this;
         _playlists = new Gee.TreeSet<StaticPlaylist> ();
         _smart_playlists = new Gee.TreeSet<SmartPlaylist> ();
@@ -69,7 +69,7 @@ public class Noise.LocalLibrary : Library {
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;
 
-        this.fo = new FileOperator ();
+        fo = new FileOperator ();
     }
 
     public override void initialize_library () {
@@ -182,7 +182,7 @@ public class Noise.LocalLibrary : Library {
 
             clear_medias ();
 
-            App.player.unqueue_media (_medias.values);
+            App.player.unqueue_medias (_medias.values);
 
             // FIXME: these are library window's internals. Shouldn't be here
             App.main_window.update_sensitivities.begin ();
@@ -323,10 +323,10 @@ public class Noise.LocalLibrary : Library {
     }
 
     private void media_opened_finished () {
-        App.player.queue_media (open_media_list);
+        App.player.queue_medias (open_media_list);
         if (open_media_list.size > 0) {
             if (!App.player.playing) {
-                App.player.playMedia (open_media_list.first (), false);
+                App.player.play_media (open_media_list.first ());
                 App.main_window.play_media ();
             } else {
                 string primary_text = _("Added to your queue:");
@@ -393,7 +393,7 @@ public class Noise.LocalLibrary : Library {
 
     public override void add_playlist (StaticPlaylist p) {
         string rv = "";
-        foreach (var m in p.medias) {
+        foreach (var m in p) {
             if (rv == "") {
                 rv = "%lld".printf (m.rowid);
             } else {

@@ -30,7 +30,7 @@
 public class Noise.PopupListView : Gtk.Dialog {
     public const int MIN_SIZE = 500;
 
-    ViewWrapper view_wrapper;
+    public ViewWrapper view_wrapper { get; construct set; }
     Widgets.AlbumImage album_cover;
     Gtk.Label album_label;
     Gtk.Label artist_label;
@@ -45,6 +45,10 @@ public class Noise.PopupListView : Gtk.Dialog {
     Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
 
     public PopupListView (GridView grid_view) {
+        Object (view_wrapper: grid_view.parent_view_wrapper);
+    }
+
+    construct {
         // window stuff
         has_resize_grip = false;
         resizable = false;
@@ -53,10 +57,8 @@ public class Noise.PopupListView : Gtk.Dialog {
         set_transient_for (App.main_window);
         window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 
-        this.view_wrapper = grid_view.parent_view_wrapper;
-
-        this.delete_event.connect (hide_on_delete);
-        App.main_window.close_subwindows.connect (() => { this.hide_on_delete (); });
+        delete_event.connect (hide_on_delete);
+        App.main_window.close_subwindows.connect (() => { hide_on_delete (); });
 
         // cover
         album_cover = new Widgets.AlbumImage ();
@@ -67,17 +69,17 @@ public class Noise.PopupListView : Gtk.Dialog {
 
         cover_action_menu = new Gtk.Menu ();
         cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
-        cover_set_new.activate.connect (() => { this.set_new_cover(); });
-        
+        cover_set_new.activate.connect (() => { set_new_cover (); });
+
         cover_action_menu.append (cover_set_new);
         cover_action_menu.show_all ();
-        
+
         cover_event_box.button_press_event.connect (show_cover_context_menu);
 
         // album artist/album labels
         artist_label = new Gtk.Label (null);
         artist_label.hexpand = true;
-        artist_label.get_style_context ().add_class ("h1"); 
+        artist_label.get_style_context ().add_class ("h1");
         artist_label.wrap = true;
         artist_label.margin_end = 12;
         artist_label.valign = Gtk.Align.END;
@@ -85,7 +87,7 @@ public class Noise.PopupListView : Gtk.Dialog {
 
         album_label = new Gtk.Label (null);
         album_label.hexpand = true;
-        album_label.get_style_context ().add_class ("h2"); 
+        album_label.get_style_context ().add_class ("h2");
         album_label.wrap = true;
         album_label.margin_end = 12;
         album_label.valign = Gtk.Align.START;
@@ -139,7 +141,7 @@ public class Noise.PopupListView : Gtk.Dialog {
         // Reset size request
         set_size (MIN_SIZE);
 
-        if (this.album != null) {
+        if (album != null) {
             album.notify["cover-icon"].disconnect (update_album_cover);
         }
     }
@@ -152,8 +154,8 @@ public class Noise.PopupListView : Gtk.Dialog {
     }
 
     public void set_parent_wrapper (ViewWrapper parent_wrapper) {
-        this.view_wrapper = parent_wrapper;
-        this.list_view.set_parent_wrapper (parent_wrapper);
+        view_wrapper = parent_wrapper;
+        list_view.parent_wrapper = parent_wrapper;
     }
 
     public void set_album (Album album) {
@@ -239,7 +241,7 @@ public class Noise.PopupListView : Gtk.Dialog {
         view_wrapper.library.update_medias (updated, false, true);
     }
 
-    private void view_search_func (string search, Gee.HashMap<int, Media> table, Gee.HashMap<int, Media> showing) {
+    private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {
         uint parsed_rating;
         string parsed_search_string;
 
@@ -250,17 +252,17 @@ public class Noise.PopupListView : Gtk.Dialog {
         // If an external refiltering is going on, we cannot obey the column browser filter
         // because it wil be refreshed after this search based on the new 'showing' table
         // (populated by this method).
-        int show_index = 0;
         foreach (var m in table) {
             if (rating_search) {
-                if (m.rating == (uint) parsed_rating)
-                    showing.set (show_index++, m);
+                if (m.rating == (uint) parsed_rating) {
+                    showing.add (m);
+                }
             } else if (Search.match_string_to_media (m, parsed_search_string)) {
-                showing.set (show_index++, m);
+                showing.add (m);
             }
         }
     }
-    
+
     private void set_new_cover () {
         var file = new Gtk.FileChooserDialog (_("Open"), this, Gtk.FileChooserAction.OPEN,
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
@@ -282,7 +284,7 @@ public class Noise.PopupListView : Gtk.Dialog {
      * Force squared layout
      */
     public void set_size (int size) {
-        this.set_size_request (size, -1);
+        set_size_request (size, -1);
         queue_resize ();
     }
 

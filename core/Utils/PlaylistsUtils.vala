@@ -31,7 +31,7 @@ namespace Noise.PlaylistsUtils {
     public bool save_playlist_m3u (Playlist p, string folder_uri, string without_path) {
         bool rv = false;
         string to_save = get_playlist_m3u_file (p, without_path);
-        
+
         File dest = GLib.File.new_for_uri(folder_uri + "/" + p.name.replace("/", "_") + ".m3u");
         try {
             // find a file path that doesn't exist
@@ -41,9 +41,9 @@ namespace Noise.PlaylistsUtils {
                     i++;
                 }
             }
-            
+
             var file_stream = dest.create(FileCreateFlags.NONE);
-            
+
             // Write text data to file
             var data_stream = new DataOutputStream (file_stream);
             data_stream.put_string(to_save);
@@ -52,52 +52,53 @@ namespace Noise.PlaylistsUtils {
         catch(Error err) {
             warning ("Could not save playlist %s to m3u file %s: %s\n", p.name, dest.get_path(), err.message);
         }
-        
+
         return rv;
     }
 
     public string get_playlist_m3u_file (Playlist p, string without_path) {
         string to_save = "#EXTM3U";
-        
-        foreach(var s in p.medias) {
-            if (s == null)
+
+        foreach (var s in p) {
+            if (s == null) {
                 continue;
+            }
 
             to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + File.new_for_uri(s.uri).get_path();
             to_save = to_save.replace (without_path, "");
         }
-        
+
         return to_save;
     }
-    
+
     public bool save_playlist_pls(Playlist p, string folder_uri) {
         bool rv = false;
         string to_save = "[playlist]\nX-GNOME-Title=%s\nNumberOfEntries=%d\nVersion=2".printf (p.name, p.medias.size);
-        
+
         int index = 1;
-        foreach(var s in p.medias) {
+        foreach(var s in p) {
             if (s == null)
                 continue;
-            
+
             to_save += "\n\nFile%d=%s".printf (index, s.uri.replace (folder_uri, ""));
             to_save += "\nTitle%d=%s".printf (index, s.title);
             to_save += "\nLength%d=%u".printf (index, s.length);
             ++index;
         }
-        
+
         File dest = GLib.File.new_for_uri(folder_uri + "/" + p.name.replace("/", "_") + ".pls");
         try {
             // find a file path that doesn't exist
             int extra = 2;
             if (dest.query_exists() == true) {
-                while((dest = GLib.File.new_for_uri(folder_uri + "/" + 
+                while((dest = GLib.File.new_for_uri(folder_uri + "/" +
                             _("%s (%d)").printf (p.name.replace("/", "_"), extra) + ".pls")).query_exists()) {
                     extra++;
                 }
             }
-            
+
             var file_stream = dest.create(FileCreateFlags.NONE);
-            
+
             // Write text data to file
             var data_stream = new DataOutputStream (file_stream);
             data_stream.put_string(to_save);
@@ -106,7 +107,7 @@ namespace Noise.PlaylistsUtils {
         catch(Error err) {
             warning ("Could not save playlist %s to pls file %s: %s\n", p.name, dest.get_path(), err.message);
         }
-        
+
         return rv;
     }
 
@@ -115,24 +116,24 @@ namespace Noise.PlaylistsUtils {
         // if some files are not found by media_from_file(), ask at end if user would like to import the file to library
         // if so, just do import_individual_files
         // if not, do nothing and accept that music files are scattered.
-        
+
         var file = File.new_for_uri(uri);
         if(!file.query_exists()) {
             critical ("The imported playlist doesn't exist !");
             return false;
         }
-        
+
         try {
             string line;
             string previous_line = "";
             var dis = new DataInputStream(file.read());
-            
+
             while ((line = dis.read_line(null)) != null) {
                 if(line[0] != '#' && line.replace(" ", "").length > 0) {
                     warning ("file://" + line);
                     locals.add("file://" + line);
                 }
-                
+
                 previous_line = line;
             }
         }
@@ -140,7 +141,7 @@ namespace Noise.PlaylistsUtils {
             warning ("Could not load m3u file at %s: %s\n", uri, err.message);
             return false;
         }
-        
+
         return true;
     }
 
@@ -148,16 +149,16 @@ namespace Noise.PlaylistsUtils {
         var files = new Gee.HashMap<int, string>();
         var titles = new Gee.HashMap<int, string>();
         var lengths = new Gee.HashMap<int, string>();
-        
+
         var file = File.new_for_uri(uri);
         if(!file.query_exists())
             return false;
-        
-        
+
+
         try {
             string line;
             var dis = new DataInputStream(file.read());
-            
+
             while ((line = dis.read_line(null)) != null) {
                 if(line.has_prefix("File")) {
                     parse_index_and_value("File", line, ref files);
@@ -176,8 +177,8 @@ namespace Noise.PlaylistsUtils {
             return false;
         }
         locals.add_all(files.values);
-        
-        
+
+
         return true;
     }
 
@@ -185,13 +186,13 @@ namespace Noise.PlaylistsUtils {
         int index;
         string val;
         string[] parts = line.split("=", 2);
-        
+
         index = int.parse(parts[0].replace(prefix,""));
         val = parts[1];
-        
+
         map.set(index, val);
     }
-    
+
     private Gee.Collection<string> convert_paths_to_uris (Gee.Collection<string> paths) {
         var uris = new Gee.TreeSet<string> ();
         foreach (var path in paths) {
@@ -200,9 +201,9 @@ namespace Noise.PlaylistsUtils {
 
         return uris;
     }
-    
+
     public void import_from_playlist_file_info(Gee.HashMap<string, Gee.LinkedList<string>> playlists, Library library) {
-        
+
         foreach (var values in playlists.values) {
             if (values.size > 0) {
                 if (values.get (0).has_prefix ("/")) {
@@ -212,7 +213,7 @@ namespace Noise.PlaylistsUtils {
                 }
             }
         }
-        
+
         foreach (var playlist in playlists.entries) {
             var new_playlist = new StaticPlaylist();
             new_playlist.name = playlist.key;
@@ -265,7 +266,7 @@ namespace Noise.PlaylistsUtils {
     public void export_playlist (Playlist p) {
         if(p == null)
             return;
-        
+
         string file = "";
         string name = "";
         string extension = "";
@@ -273,84 +274,84 @@ namespace Noise.PlaylistsUtils {
                                   Gtk.FileChooserAction.SAVE,
                                   _("Cancel"), Gtk.ResponseType.CANCEL,
                                   _("Save"), Gtk.ResponseType.ACCEPT);
-        
+
         // filters for .m3u and .pls
         var m3u_filter = new Gtk.FileFilter();
         m3u_filter.add_pattern("*.m3u");
         m3u_filter.set_filter_name(_("MPEG Version 3.0 Extended (*.m3u)"));
         file_chooser.add_filter(m3u_filter);
-        
+
         var pls_filter = new Gtk.FileFilter();
         pls_filter.add_pattern("*.pls");
         pls_filter.set_filter_name(_("Shoutcast Playlist Version 2.0 (*.pls)"));
         file_chooser.add_filter(pls_filter);
-        
+
         file_chooser.do_overwrite_confirmation = true;
         file_chooser.set_current_name(p.name + ".m3u");
-        
+
         // set original folder. if we don't, then file_chooser.get_filename() starts as null, which is bad for signal below.
         var main_settings = Settings.Main.get_default ();
         if(File.new_for_path(main_settings.music_folder).query_exists())
             file_chooser.set_current_folder(main_settings.music_folder);
         else
             file_chooser.set_current_folder(Environment.get_home_dir());
-            
-        
+
+
         // listen for filter change
         file_chooser.notify["filter"].connect( () => {
             if(file_chooser.get_filename() == null) // happens when no folder is chosen. need way to get textbox text, rather than filename
                 return;
-            
+
             if(file_chooser.filter == m3u_filter) {
                 message ("changed to m3u\n");
                 var new_file = file_chooser.get_filename().replace(".pls", ".m3u");
-                
+
                 if(new_file.slice(new_file.last_index_of(".", 0), new_file.length).length == 0) {
                     new_file += ".m3u";
                 }
-                
+
                 file_chooser.set_current_name(new_file.slice(new_file.last_index_of("/", 0) + 1, new_file.length));
             }
             else {
                 message ("changed to pls\n");
                 var new_file = file_chooser.get_filename().replace(".m3u", ".pls");
-                
+
                 if(new_file.slice(new_file.last_index_of(".", 0), new_file.length).length == 0) {
                     new_file += ".pls";
                 }
-                
+
                 file_chooser.set_current_name(new_file.slice(new_file.last_index_of("/", 0) + 1, new_file.length));
             }
         });
-        
+
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             file = file_chooser.get_filename();
             extension = file.slice(file.last_index_of(".", 0), file.length);
-            
+
             if(extension.length == 0 || extension[0] != '.') {
                 extension = (file_chooser.filter == m3u_filter) ? ".m3u" : ".pls";
                 file += extension;
             }
-            
+
             name = file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
             message ("name is %s extension is %s\n", name, extension);
         }
-        
+
         file_chooser.destroy ();
-        
+
         string original_name = p.name;
         if(file != "") {
             var f = File.new_for_path(file);
-            
+
             string folder = f.get_parent().get_uri();
             p.name = name; // temporary to save
-            
+
             if(file.has_suffix(".m3u"))
                 save_playlist_m3u(p, folder, "");
             else
                 save_playlist_pls(p, folder);
         }
-        
+
         p.name = original_name;
     }
 
@@ -368,23 +369,23 @@ namespace Noise.PlaylistsUtils {
                                   _("Cancel"), Gtk.ResponseType.CANCEL,
                                   _("Open"), Gtk.ResponseType.ACCEPT);
         file_chooser.set_select_multiple (true);
-        
+
         // filters for .m3u and .pls
         var m3u_filter = new Gtk.FileFilter();
         m3u_filter.add_pattern("*.m3u");
         m3u_filter.set_filter_name(_("MPEG Version 3.0 Extended (*.m3u)"));
         file_chooser.add_filter(m3u_filter);
-        
+
         var pls_filter = new Gtk.FileFilter();
         pls_filter.add_pattern("*.pls");
         pls_filter.set_filter_name(_("Shoutcast Playlist Version 2.0 (*.pls)"));
         file_chooser.add_filter(pls_filter);
-        
+
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             files = file_chooser.get_filenames();
         }
         file_chooser.destroy ();
-        
+
         foreach (var file in files) {
             if(file != "") {
                 var name = GLib.File.new_for_path (file).get_basename ();
@@ -402,7 +403,7 @@ namespace Noise.PlaylistsUtils {
                 playlists.set (name, paths);
             }
         }
-        
+
         return playlists;
     }
 

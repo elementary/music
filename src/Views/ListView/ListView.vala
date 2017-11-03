@@ -30,20 +30,19 @@
  * Contains the column browser and list view.
  */
 public class Noise.ListView : ContentView, Gtk.Box {
-
     public signal void reordered ();
 
     // Wrapper for the list view and miller columns
     private Gtk.Paned browser_hpane; // for left mode
     private Gtk.Paned browser_vpane; // for top mode
 
-    public ColumnBrowser column_browser { get; private set; }
-    public MusicListView   list_view    { get; private set; }
+    public ColumnBrowser column_browser { get; construct set; }
+    public MusicListView list_view { get; construct set; }
 
     private int browser_hpane_position = -1;
     private int browser_vpane_position = -1;
 
-    private ViewWrapper view_wrapper;
+    public ViewWrapper view_wrapper { get; construct set; }
     private ViewTextOverlay list_text_overlay;
 
     private bool obey_column_browser = false;
@@ -82,10 +81,12 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false) {
-        this.view_wrapper = view_wrapper;
+        Object (view_wrapper: view_wrapper,
+                list_view: new MusicListView (view_wrapper, tvs),
+                column_browser: add_browser ? new MusicColumnBrowser (view_wrapper) : null);
+    }
 
-        list_view = new MusicListView (view_wrapper, tvs);
-
+    construct {
         var list_scrolled = new Gtk.ScrolledWindow (null, null);
         list_scrolled.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         list_scrolled.add (list_view);
@@ -103,11 +104,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
             import_requested (to_import);
         });
 
-        if (add_browser)
-            column_browser = new MusicColumnBrowser (view_wrapper);
-
         list_view.set_search_func (view_search_func);
-        view_wrapper.library.search_finished.connect (() => {this.list_view.research_needed = true;});
+        view_wrapper.library.search_finished.connect (() => { list_view.research_needed = true; });
 
         if (has_column_browser) {
             browser_hpane = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
@@ -120,7 +118,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
             // Add hpaned (the most-external wrapper) to the view container
             browser_hpane.expand = true;
-            this.add (browser_hpane);
+            add (browser_hpane);
 
             // Now pack the list view
             browser_vpane.pack2 (list_text_overlay, true, false);
@@ -130,15 +128,14 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
             // Connect signals once the widget has been realized to avoid writing to settings
             // on startup
-            this.realize.connect (connect_column_browser_ui_signals);
+            realize.connect (connect_column_browser_ui_signals);
 
             column_browser_enabled = Settings.SavedState.get_default ().column_browser_enabled;
 
             // Connect data signals
             column_browser.changed.connect (column_browser_changed);
-        }
-        else {
-            this.add (list_text_overlay);
+        } else {
+            add (list_text_overlay);
         }
     }
 
@@ -151,7 +148,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         if (actual_position == ColumnBrowser.Position.AUTOMATIC) {
             // Decide what orientation to use based on the view area size
 
-            int view_width = this.get_allocated_width ();
+            int view_width = get_allocated_width ();
             const int MIN_RECOMMENDED_COLUMN_WIDTH = 160;
 
             int visible_columns = 0;
@@ -200,7 +197,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             return;
 
         // For automatic position stuff
-        this.size_allocate.connect (() => {
+        size_allocate.connect (() => {
             if (!App.main_window.initialization_finished)
                 return;
 
@@ -269,15 +266,15 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public Gee.Collection<Media> get_media () {
-        var media_list = new Gee.ArrayQueue<Media> ();
-        media_list.add_all (list_view.get_table ().values);
-        return media_list;
+        var media = new Gee.ArrayList<Media> ();
+        media.add_all (list_view.get_table ());
+        return media;
     }
 
     public Gee.Collection<Media> get_visible_media () {
-        var media_list = new Gee.ArrayQueue<Media> ();
-        media_list.add_all (list_view.get_visible_table ().values);
-        return media_list;
+        var media = new Gee.ArrayList<Media> ();
+        media.add_all (list_view.get_visible_table ());
+        return media;
     }
 
     private void column_browser_changed () {
@@ -298,13 +295,13 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
     public void add_media (Gee.Collection<Media> to_add) {
         list_view.add_media (to_add);
-        this.list_view.research_needed = true;
+        list_view.research_needed = true;
         refilter ();
     }
 
     public void remove_media (Gee.Collection<Media> to_remove) {
         list_view.remove_media (to_remove);
-        this.list_view.research_needed = true;
+        list_view.research_needed = true;
         refilter ();
     }
 
@@ -312,10 +309,11 @@ public class Noise.ListView : ContentView, Gtk.Box {
         obey_column_browser = false;
 
         list_view.set_media (media);
-        this.list_view.research_needed = true;
+        list_view.research_needed = true;
 
-        if (has_column_browser)
+        if (has_column_browser) {
             column_browser.set_media (media);
+        }
 
         obey_column_browser = true;
     }
@@ -385,7 +383,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         return status_text;
     }
 
-    private void view_search_func (string search, Gee.HashMap<int, Media> table, Gee.HashMap<int, Media> showing) {
+    private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {
         list_text_overlay.message_visible = false;
         var result = view_wrapper.library.get_search_result ();
 
@@ -393,33 +391,24 @@ public class Noise.ListView : ContentView, Gtk.Box {
         // because it wil be refreshed after this search based on the new 'showing' table
         // (populated by this method).
         bool obey_column_browser = column_browser_enabled && this.obey_column_browser;
-        int show_index = 0;
-        
-        if (result.size != view_wrapper.library.get_medias ().size) {
-            /* 
-             * Please don't change back to a foreach implementation
-             * until you fully understand the proper behavior
-             * since this change produces the bug 1346678
-             * Leave this "for loop" for now.                   */
-            foreach (var m in table) {
-                if (obey_column_browser && !column_browser.match_media (m))
-                    continue;
 
-                if (result.contains (m)) {
-                    showing.set (show_index++, m);
+        if (result.size != view_wrapper.library.get_medias ().size) {
+            foreach (var m in table) {
+                if (obey_column_browser && !column_browser.match_media (m)) {
+                    continue;
+                }
+
+                if (m in result) {
+                    showing.add (m);
                 }
             }
         } else {
-            /* 
-             * Please don't change back to a foreach implementation
-             * until you fully understand the proper behavior
-             * since this change produces the bug 1346678
-             * Leave this "for loop" for now.                   */
             foreach (var m in table) {
-                if (obey_column_browser && !column_browser.match_media (m))
+                if (obey_column_browser && !column_browser.match_media (m)) {
                     continue;
+                }
 
-                showing.set (show_index++, m);
+                showing.add (m);
             }
         }
 
