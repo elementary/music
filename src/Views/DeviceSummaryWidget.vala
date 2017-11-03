@@ -306,7 +306,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 var p = preferences.music_playlist;
 
                 if (p != null) {
-                    foreach (var m in p.medias) {
+                    foreach (var m in p) {
                         if (m != null)
                             list.add (m);
                     }

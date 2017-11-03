@@ -30,14 +30,14 @@
 **/
 public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSource {
 	int stamp; // all iters must match this
-	
+
 	/* data storage variables */
 	Gee.HashMap<int, GLib.Object> rows; // internal id -> user specified object
-	
+
 	/** Initialize data storage, columns, etc. **/
 	public FastGridModel () {
 		rows = new Gee.HashMap<int, GLib.Object>();
-		
+
 		stamp = (int)GLib.Random.next_int();
 	}
 
@@ -72,7 +72,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	public Gtk.TreePath? get_path (Gtk.TreeIter iter) {
 		return new Gtk.TreePath.from_string (((int)iter.user_data).to_string());
 	}
-	
+
 	public void get_value (Gtk.TreeIter iter, int column, out Value val) {
 		val = Value(get_column_type(column));
 
@@ -135,18 +135,18 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 
 		return false;
 	}
-	
+
 	public void append (out Gtk.TreeIter iter) {
 		iter = Gtk.TreeIter();
-		
+
 		Gtk.TreePath path = new Gtk.TreePath.from_string((rows.size).to_string());
 		rows.set(rows.size, new GLib.Object());
 		iter.stamp = this.stamp;
 		iter.user_data = (void*)rows.size;
-		
+
 		row_inserted(path, iter);
 	}
-	
+
 	public void remove (Gtk.TreeIter iter) {
 		if(iter.stamp != this.stamp)
 			return;
@@ -154,16 +154,16 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 		var path = new Gtk.TreePath.from_string(((int)iter.user_data).to_string());
 		rows.unset ((int)iter.user_data);
 		row_deleted(path);
-		
+
 		// TODO: swap all indices > this iter's index down to maintain that
 		// the table has row ids 0..n where n is rows.size (consecutive ids)
 	}
-	
+
 	// Not applicable to this custom treemodel
 	public new void set (Gtk.TreeIter iter, ...) {
 		return;
 	}
-	
+
 	public void ref_node (Gtk.TreeIter iter) {}
 	public void unref_node (Gtk.TreeIter iter) {}
 
@@ -173,8 +173,8 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
 	 * calling this, set the tree_view.set_model(fast_model). By doing this
 	 * the treeview will not listen for append events and will recalculate
 	 * and draw when the model is re-added.
-	 * 
-	 * @objects Must be a consecutive ordered hash table with indexes 
+	 *
+	 * @objects Must be a consecutive ordered hash table with indexes
 	 * 0-n where n is size of the hashtable (no gaps).
 	**/
 	public void set_table (Gee.HashMap<int, GLib.Object> table) {
@@ -186,34 +186,34 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
             row_changed (get_path (iter), iter);
         }
 	}
-	
+
 	public void update_row (int index) {
 		Gtk.TreePath path = new Gtk.TreePath.from_string(index.to_string());
 		Gtk.TreeIter iter = Gtk.TreeIter();
 		iter.stamp = this.stamp;
 		iter.user_data = (void*)index;
-		
+
 		row_changed(path, iter);
 	}
-	
+
 	/************************************
 	 * Drag'n'drop
 	 ************************************/
 	bool drag_data_delete(Gtk.TreePath path) {
 		return false;
 	}
-	
+
 	bool drag_data_get(Gtk.TreePath path, Gtk.SelectionData data) {
 		/*string[] old = data.get_uris();
 		string[] cp = new string[old.length + 1];
 		for(int i = 0; i < old.length; ++i)
 			cp[i] = old[i];
-		
+
 		cp[cp.length - 1] = rows[int.parse(path.to_string())].uri;*/
-		
+
 		return true;
 	}
-	
+
 	bool row_draggable(Gtk.TreePath path) {
 		return true;
 	}

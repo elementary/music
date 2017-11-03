@@ -26,23 +26,17 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Corentin Noël <corentin@elementary.io>
  */
- 
-public class Noise.StaticPlaylist : Playlist {
-    public bool read_only { get; set; default=false;}
-    public bool show_badge { get; set; default=false;}
-    public bool allow_duplicate { get; set; default=false;}
 
-    public StaticPlaylist () {
-        
-    }
+public class Noise.StaticPlaylist : Playlist {
+    public bool read_only { get; set; default = false; }
+    public bool show_badge { get; set; default = false; }
+    public bool allow_duplicate { get; set; default = false; }
 
     public StaticPlaylist.with_info (int rowid, string name) {
-        this.rowid = rowid;
-        this.name = name;
+        Object (rowid: rowid, name: name);
     }
 
     construct {
-        medias = new Gee.ArrayQueue<Media>();
         icon = new ThemedIcon ("playlist");
     }
 

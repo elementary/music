@@ -47,7 +47,7 @@ public class Noise.App : Granite.Application {
 
         application_id = "org.pantheon.noise";
         app_launcher = "org.pantheon.noise.desktop";
-        
+
         var present_action = new SimpleAction ("app.present", null);
         present_action.activate.connect (() => {
             if (main_window != null) {
@@ -55,13 +55,13 @@ public class Noise.App : Granite.Application {
             }
         });
 
-        this.add_action (present_action);
+        add_action (present_action);
     }
 
     public override void open (File[] files, string hint) {
         // Activate, then play files
         if (library_manager == null) {
-            this.activate ();
+            activate ();
         }
         library_manager.play_files (files);
     }
