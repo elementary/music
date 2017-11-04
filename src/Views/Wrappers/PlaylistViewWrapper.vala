@@ -27,19 +27,18 @@
  */
 
 public class Noise.PlaylistViewWrapper : ViewWrapper {
-    public TreeViewSetup tvs;
+    public TreeViewSetup tvs { get; construct set; }
     public signal void button_clicked (Playlist p);
     private Gtk.Action[] actions = null;
     private string message_head;
     private string message_body;
 
     public PlaylistViewWrapper (Playlist playlist, ViewWrapper.Hint hint, TreeViewSetup tvs, Library library) {
-        base (hint, library);
-        this.tvs = tvs;
+        Object (tvs: tvs, playlist: playlist, hint: hint, library: library);
+    }
 
-        this.playlist = playlist;
-
-        list_view = new ListView (this, this.tvs);
+    construct {
+        list_view = new ListView (this, tvs);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
         // Refresh view layout
@@ -72,7 +71,9 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                 message_head = _("No Songs");
                 message_body = _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below.");
                 break;
-
+            case Hint.NONE:
+                debug ("Hint = NONE");
+                break;
             default:
                 assert_not_reached ();
         }
@@ -85,29 +86,21 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         switch (hint) {
             case Hint.READ_ONLY_PLAYLIST:
             case Hint.PLAYLIST:
-                var p = (StaticPlaylist)playlist;
+            case Hint.SMART_PLAYLIST:
+                var p = (Playlist) playlist;
 
                 // Connect to playlist signals
                 if (p != null) {
                     p.media_added.connect (on_playlist_media_added);
                     p.media_removed.connect (on_playlist_media_removed);
                     p.cleared.connect (on_playlist_cleared);
-                    p.request_play.connect (() => {App.player.clearCurrent(); play_first_media (true);App.player.getNext(true);});
+                    p.request_play.connect (() => {
+                        App.player.clear_queue ();
+                        play_first_media (true);
+                        App.player.get_next(true);
+                    });
                 }
-            break;
-            
-            case Hint.SMART_PLAYLIST:
-                var p = (SmartPlaylist)playlist;
-
-                // Connect to smart playlist signals
-                if (p != null) {
-                    p.media_added.connect (on_playlist_media_added);
-                    p.media_removed.connect (on_playlist_media_removed);
-                    p.cleared.connect (on_playlist_cleared);
-                    p.request_play.connect (() => {App.player.clearCurrent(); play_first_media (true);App.player.getNext(true);});
-                }
-            break;
-
+                break;
             default:
                 assert_not_reached ();
         }
@@ -137,4 +130,3 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         yield set_media_async (new Gee.ArrayQueue<Media> ());
     }
 }
-

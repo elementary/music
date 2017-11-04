@@ -31,7 +31,7 @@ public class Noise.Media : Object {
     /// Used for unknown titles, artists, or album names.
     protected static string UNKNOWN = _("Unknown");
 
-    public int64 rowid { get; set; }
+    public int64 rowid { get; construct set; }
 
     public virtual string uri {
         owned get { return file.get_uri (); }
