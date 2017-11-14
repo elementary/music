@@ -538,7 +538,6 @@ public class Noise.LocalLibrary : Library {
         uint parsed_rating;
         string parsed_search_string;
         String.base_search_method (search, out parsed_rating, out parsed_search_string);
-        bool rating_search = parsed_rating > 0;
         // If we search for a special rating, don't search for something else.
         try {
             if (parsed_rating > 0) {
