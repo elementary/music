@@ -50,11 +50,11 @@ namespace Noise.Widgets {
 
         public RepeatChooser () {
             // MUST follow the exact same order of Noise.Player.Repeat
-            appendItem (_("Off"), new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.MENU), _("Enable Repeat"));
-            appendItem (_("Song"), new Gtk.Image.from_icon_name ("media-playlist-repeat-song-symbolic", Gtk.IconSize.MENU), _("Repeat Song"));
-            appendItem (_("Album"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Repeat Album"));
-            appendItem (_("Artist"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Repeat Artist"));
-            appendItem (_("All"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Disable Repeat"));
+            append_item (_("Off"), new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.MENU), _("Enable Repeat"));
+            append_item (_("Song"), new Gtk.Image.from_icon_name ("media-playlist-repeat-one-symbolic", Gtk.IconSize.MENU), _("Repeat Song"));
+            append_item (_("Album"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Repeat Album"));
+            append_item (_("Artist"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Repeat Artist"));
+            append_item (_("All"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Disable Repeat"));
 
             update_option ();
 
@@ -63,7 +63,7 @@ namespace Noise.Widgets {
         }
 
         private void update_option () {
-            setOption ((int)Settings.Main.get_default ().repeat_mode);
+            set_option ((int)Settings.Main.get_default ().repeat_mode);
         }
 
         private void on_option_changed () {
@@ -80,8 +80,8 @@ namespace Noise.Widgets {
     private class ShuffleChooser : SimpleOptionChooser {
 
         public ShuffleChooser () {
-            appendItem (_("Off"), new Gtk.Image.from_icon_name ("media-playlist-consecutive-symbolic", Gtk.IconSize.MENU), _("Enable Shuffle"));
-            appendItem (_("All"), new Gtk.Image.from_icon_name ("media-playlist-shuffle-symbolic", Gtk.IconSize.MENU), _("Disable Shuffle"));
+            append_item (_("Off"), new Gtk.Image.from_icon_name ("media-playlist-no-shuffle-symbolic", Gtk.IconSize.MENU), _("Enable Shuffle"));
+            append_item (_("All"), new Gtk.Image.from_icon_name ("media-playlist-shuffle-symbolic", Gtk.IconSize.MENU), _("Disable Shuffle"));
 
             update_mode ();
 
@@ -90,7 +90,7 @@ namespace Noise.Widgets {
         }
 
         private void update_mode () {
-            setOption ((int)Settings.Main.get_default ().shuffle_mode);
+            set_option ((int)Settings.Main.get_default ().shuffle_mode);
         }
 
         private void on_option_changed () {
@@ -179,4 +179,40 @@ namespace Noise.Widgets {
             tooltip_markup = _("Equalizer: %s").printf ("<b>" + Markup.escape_text (eq_preset_name) + "</b>");
         }
     }
+
+    private class InfoPanelChooser : SimpleOptionChooser {
+
+        public InfoPanelChooser () {
+            var info_panel_show = new Gtk.Image.from_icon_name ("pane-show-symbolic", Gtk.IconSize.MENU);
+            var info_panel_hide = new Gtk.Image.from_icon_name ("pane-hide-symbolic", Gtk.IconSize.MENU);
+
+            append_item (_("Hide"), info_panel_show, _("Show Info Panel"));
+            append_item (_("Show"), info_panel_hide, _("Hide Info Panel"));
+
+            on_info_panel_visibility_change ();
+            var info_panel = App.main_window.info_panel;
+            info_panel.show.connect (on_info_panel_visibility_change);
+            info_panel.hide.connect (on_info_panel_visibility_change);
+
+            option_changed.connect (on_option_changed);
+        }
+
+        private void on_info_panel_visibility_change () {
+            set_option (App.main_window.info_panel.visible ? 1 : 0);
+        }
+
+        private void on_option_changed (bool by_user) {
+            int val = current_option;
+
+            bool visible = val == 1;
+            App.main_window.info_panel.visible = visible;
+
+            // We write the new state to settings in this method as this is the only user-facing widget
+            // for hiding and showing the context pane. Any other visibility change we do internally
+            // or elsewhere should not be saved
+            if (by_user)
+                Settings.SavedState.get_default ().more_visible = visible;
+        }
+    }
+
 }
