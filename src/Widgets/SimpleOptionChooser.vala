@@ -26,6 +26,16 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
+public class Noise.SimpleOption : Object {
+	public Gtk.Image icon { get; construct set; }
+	public Gtk.RadioMenuItem menu_item { get; construct set; }
+	public bool click_accessible { get; construct set; }
+
+	public SimpleOption (Gtk.Image icon, Gtk.RadioMenuItem item, bool click_accessible) {
+		Object (icon: icon, menu_item: item, click_accessible: click_accessible);
+	}
+}
+
 /**
 * Base widget displaying an icon, and allowing you to choose between
 * various options, through a menu, or by clicking on it.
@@ -35,15 +45,13 @@
 */
 public class Noise.SimpleOptionChooser : Gtk.EventBox {
 	Gtk.Menu menu;
-	public Gee.LinkedList<Gtk.RadioMenuItem> items;
-	public Gee.LinkedList<Gtk.Image> images;
+	public Gee.ArrayList<SimpleOption> options { get; set; }
 
-	int clicked_index;
-	int previous_index; // for left click
+	int clicked_index = 0;
 
     public int current_option { get { return clicked_index; } }
 
-	public signal void option_changed (bool by_user = false);
+	public signal void option_changed (bool by_user);
 
     public bool menu_only_mode { get; construct set; }
 
@@ -53,72 +61,72 @@ public class Noise.SimpleOptionChooser : Gtk.EventBox {
 
 	construct {
 		menu = new Gtk.Menu ();
-		items = new Gee.LinkedList<Gtk.RadioMenuItem>();
-		images = new Gee.LinkedList<Gtk.Image>();
-
-		clicked_index = 0;
-		previous_index = 0;
+		options = new Gee.ArrayList<SimpleOption> ();
 
 		// make the event box transparent
-		set_above_child(true);
-		set_visible_window(false);
+		above_child = true;
+		visible_window = false;
 	}
 
-	public void set_option (int index) {
-		if (index >= items.size) {
+	public void set_option (int index, bool by_user = false) {
+		if (index >= options.size) {
 			return;
 		}
 
-		items[index].set_active (true);
+		options[index].menu_item.active = true;
 
 		clicked_index = index;
 
-		option_changed ();
+		option_changed (by_user);
 
 		if (get_child () != null) {
 			remove (get_child ());
 		}
 
-		add (images[index]);
+		add (options[index].icon);
 
 		show_all ();
 	}
 
-	public int append_item (string text, Gtk.Image image, string tooltip) {
-		Gtk.RadioMenuItem item = items.size == 0
+	public int append_item (string text, string icon, string tooltip, bool click_accessible = false) {
+		Gtk.RadioMenuItem item = options.size == 0
 			? new Gtk.RadioMenuItem.with_label(new SList<Gtk.RadioMenuItem> (), text)
-	     	: new Gtk.RadioMenuItem.with_label_from_widget (items[0], text);
+	     	: new Gtk.RadioMenuItem.with_label_from_widget (options[0].menu_item, text);
 
-		image.set_tooltip_text (tooltip);
-		items.add (item);
-		images.add (image);
 		menu.append (item);
 
-		item.toggled.connect(() => {
-            if (!item.active) {
-                return;
+
+		var image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.MENU);
+		image.set_tooltip_text (tooltip);
+
+		var option = new SimpleOption (image, item, click_accessible);
+		options.add (option);
+
+		item.toggled.connect (() => {
+			if (item.active) {
+				set_option (options.index_of (option));
 			}
-
-    		set_option (items.index_of (item));
 		});
-
 		item.show ();
-		previous_index = items.size - 1; // my lazy way of making sure the bottom item is the default on/off on click
 
-		return items.size - 1;
+		return options.size - 1;
 	}
 
 	public override bool button_press_event (Gdk.EventButton event) {
 		if (event.type == Gdk.EventType.BUTTON_PRESS) {
 			if (event.button == 1 && !menu_only_mode) {
-				// Silently set the options. We emit the option_changed signal below.
-				if (clicked_index == 0) {
-					set_option (previous_index);
-				} else {
-					previous_index = clicked_index;
-					set_option (0);
+				// Find the next click-activable item
+				for (int i = clicked_index + 1; i != clicked_index; i++) {
+					if (i >= options.size) {
+						i = 0;
+					}
+
+					if (options[i].click_accessible) {
+						set_option (i, true);
+						break;
+					}
 				}
-			} else if (items.size > 1) {
+			} else if (options.size > 1) {
 				menu.popup (null, null, null, 3, event.time);
 			}
 		}
