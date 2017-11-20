@@ -25,7 +25,6 @@
  */
 
 namespace Noise.Widgets {
-
     public class StatusBar : Gtk.ActionBar {
         public Gtk.Widget playlist_item { get; private set; default = new AddPlaylistChooser (); }
         public Gtk.Widget shuffle_item { get; private set; default = new ShuffleChooser (); }
@@ -55,7 +54,6 @@ namespace Noise.Widgets {
 
 
     private class RepeatChooser : SimpleOptionChooser {
-
         construct {
             // MUST follow the exact same order of Noise.Player.Repeat
             append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Enable Repeat"), true);
@@ -86,7 +84,6 @@ namespace Noise.Widgets {
 
 
     private class ShuffleChooser : SimpleOptionChooser {
-
         construct {
             append_item (_("Off"), "media-playlist-no-shuffle-symbolic", _("Enable Shuffle"), true);
             append_item (_("All"), "media-playlist-shuffle-symbolic", _("Disable Shuffle"), true);
@@ -104,15 +101,13 @@ namespace Noise.Widgets {
         private void on_option_changed () {
             int val = current_option;
 
-            if ((int)Settings.Main.get_default ().shuffle_mode == val)
-                return;
-
-            App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val);
+            if ((int)Settings.Main.get_default ().shuffle_mode != val) {
+                App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val);
+            }
         }
     }
 
     private class AddPlaylistChooser : Gtk.ToggleButton {
-
         private Gtk.Menu menu;
 
         construct {
@@ -134,20 +129,21 @@ namespace Noise.Widgets {
 
             menu.attach_widget = this;
 
-            add_pl_menuitem.activate.connect ( () => {
+            add_pl_menuitem.activate.connect (() => {
                 App.main_window.create_new_playlist ();
             });
 
-            add_spl_menuitem.activate.connect ( () => {
+            add_spl_menuitem.activate.connect (() => {
                 App.main_window.show_smart_playlist_dialog ();
             });
         }
 
         public override void toggled () {
-            if (menu.visible)
+            if (menu.visible) {
                 menu.popdown ();
-            else
+            } else {
                 menu.popup (null, null, null, Gdk.BUTTON_PRIMARY, Gtk.get_current_event_time ());
+            }
         }
     }
 
@@ -169,7 +165,6 @@ namespace Noise.Widgets {
     }
 
     private class InfoPanelChooser : SimpleOptionChooser {
-
         construct {
             var info_panel_show = new Gtk.Image.from_icon_name ("pane-show-symbolic", Gtk.IconSize.MENU);
             var info_panel_hide = new Gtk.Image.from_icon_name ("pane-hide-symbolic", Gtk.IconSize.MENU);
@@ -198,8 +193,9 @@ namespace Noise.Widgets {
             // We write the new state to settings in this method as this is the only user-facing widget
             // for hiding and showing the context pane. Any other visibility change we do internally
             // or elsewhere should not be saved
-            if (by_user)
+            if (by_user) {
                 Settings.SavedState.get_default ().more_visible = visible;
+            }
         }
     }
 
