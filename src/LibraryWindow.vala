@@ -328,7 +328,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         main_hpaned.pack1 (source_list_view, false, false);
         main_hpaned.pack2 (view_container_hpaned, true, false);
 
-        statusbar = new Widgets.StatusBar (this);
+        statusbar = new Widgets.StatusBar ();
 
         var grid = new Gtk.Grid ();
         grid.orientation = Gtk.Orientation.VERTICAL;
