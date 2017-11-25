@@ -58,11 +58,12 @@ namespace Noise.Widgets {
     private class RepeatChooser : SimpleOptionChooser {
         construct {
             // MUST follow the exact same order of Noise.Player.Repeat
-            append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Enable Repeat"), true);
-            append_item (_("Song"), "media-playlist-repeat-one-symbolic", _("Repeat Song"), true);
-            append_item (_("Album"), "media-playlist-repeat-symbolic", _("Repeat Album"));
-            append_item (_("Artist"), "media-playlist-repeat-symbolic", _("Repeat Artist"));
+            append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Repeat Song"), true);
+            append_item (_("Song"), "media-playlist-repeat-one-symbolic", _("Enable Repeat"), true);
+            append_item (_("Album"), "media-playlist-repeat-symbolic", _("Enable Repeat"));
+            append_item (_("Artist"), "media-playlist-repeat-symbolic", _("Enable Repeat"));
             append_item (_("All"), "media-playlist-repeat-symbolic", _("Disable Repeat"), true);
+
 
             update_option ();
 
@@ -77,8 +78,9 @@ namespace Noise.Widgets {
         private void on_option_changed () {
             int val = current_option;
 
-            if ((int)Settings.Main.get_default ().repeat_mode == val)
+            if ((int)Settings.Main.get_default ().repeat_mode == val) {
                 return;
+            }
 
             App.player.set_repeat_mode ((Noise.Settings.Repeat)val);
         }
