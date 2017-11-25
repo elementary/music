@@ -740,8 +740,9 @@ public class Noise.LocalLibrary : Library {
     }
 
     public override void add_medias (Gee.Collection<Media> new_media) {
-        if (new_media.is_empty) // happens more often than you would think
+        if (new_media.is_empty) {// happens more often than you would think
             return;
+        }
 
         // make a copy of the media list so that it doesn't get modified before
         // the async code (e.g. updating the smart playlists) is done with it
@@ -752,20 +753,19 @@ public class Noise.LocalLibrary : Library {
                                                   (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
         foreach (var m in media) {
             var local_m = new LocalMedia.from_media (connection, m);
-            local_media.set (local_m.rowid, local_m);
+            local_media[local_m.rowid] = local_m;
             // Append the media into an album.
             if (local_m.get_album_hashkey () in album_info.keys) {
-                var album = album_info.get (local_m.get_album_hashkey ());
+                var album = album_info[local_m.get_album_hashkey ()];
                 album.add_media (local_m);
             }
 
             if (local_m.album_info == null) {
                 var album = new Album.from_media (local_m);
                 album.add_media (local_m);
-                album_info.set (album.get_hashkey (), album);
+                album_info[album.get_hashkey ()] = album;
                 if (album.cover_icon == null) {
-                    var cover_import = new CoverImport (album);
-                    cover_import.start ();
+                    new CoverImport (album);
                 }
             }
         }

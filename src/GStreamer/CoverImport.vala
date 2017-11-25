@@ -35,7 +35,6 @@ public class Noise.CoverImport : GLib.Object {
     construct {
         try {
             discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (DISCOVERER_TIMEOUT * Gst.SECOND));
-            discoverer.discovered.connect (import_media);
         } catch (Error err) {
             critical ("Could not create Gst discoverer object: %s", err.message);
         }
@@ -43,16 +42,18 @@ public class Noise.CoverImport : GLib.Object {
 
     public CoverImport (Album album) {
         this.album = album;
-        foreach (var media in album.get_media ()) {
-            discoverer.discover_uri_async (media.uri);
-        }
+        new Thread<void*>(null, () => {
+            lock (this.album) {
+                foreach (var media in album.get_media ()) {
+                    var info = discoverer.discover_uri (media.uri);
+                    read_info (info);
+                }
+            }
+            return null;
+        });
     }
 
-    public void start () {
-        discoverer.start ();
-    }
-
-    private void import_media (Gst.PbUtils.DiscovererInfo info, Error err) {
+    private void read_info (Gst.PbUtils.DiscovererInfo info) {
         string uri = info.get_uri ();
         bool gstreamer_discovery_successful = false;
         switch (info.get_result ()) {
@@ -65,7 +66,7 @@ public class Noise.CoverImport : GLib.Object {
             break;
 
             case Gst.PbUtils.DiscovererResult.ERROR:
-                warning ("GStreamer could not import '%s': %s", uri, err.message);
+                warning ("GStreamer could not import '%s'", uri);
             break;
 
             case Gst.PbUtils.DiscovererResult.TIMEOUT:
@@ -102,9 +103,9 @@ public class Noise.CoverImport : GLib.Object {
                 if (buffer != null) {
                     pixbuf = get_pixbuf_from_buffer (buffer);
                     if (pixbuf != null) {
-                        album.save_cover_pixbuf (pixbuf);
-                        debug ("Cover imported for '%s'", info.get_uri ());
-                        discoverer.stop ();
+                        lock (album) {
+                            album.save_cover_pixbuf (pixbuf);
+                        }
                     }
                 }
 
@@ -151,9 +152,9 @@ public class Noise.CoverImport : GLib.Object {
         } catch (Error err) {
             warning ("Error processing image data: %s", err.message);
         }
- 
+
         buffer.unmap (map_info);
- 
+
         return pix;
     }
 }
