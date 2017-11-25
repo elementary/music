@@ -26,16 +26,6 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.SimpleOption : Object {
-	public Gtk.Image icon { get; construct set; }
-	public Gtk.RadioMenuItem menu_item { get; construct set; }
-	public bool click_accessible { get; construct set; }
-
-	public SimpleOption (Gtk.Image icon, Gtk.RadioMenuItem item, bool click_accessible) {
-		Object (icon: icon, menu_item: item, click_accessible: click_accessible);
-	}
-}
-
 /**
 * Base widget displaying an icon, and allowing you to choose between
 * various options, through a menu, or by clicking on it.
@@ -44,8 +34,18 @@ public class Noise.SimpleOption : Object {
 * of the main window) to choose the repeat mode.
 */
 public class Noise.SimpleOptionChooser : Gtk.EventBox {
+	private class SimpleOption : Object {
+		public Gtk.Image icon { get; construct set; }
+		public Gtk.RadioMenuItem menu_item { get; construct set; }
+		public bool click_accessible { get; construct set; }
+
+		public SimpleOption (Gtk.Image icon, Gtk.RadioMenuItem item, bool click_accessible) {
+			Object (icon: icon, menu_item: item, click_accessible: click_accessible);
+		}
+	}
+
 	Gtk.Menu menu;
-	public Gee.ArrayList<SimpleOption> options { get; set; }
+	private Gee.ArrayList<SimpleOption> options { get; set; }
 
 	int clicked_index = 0;
 
