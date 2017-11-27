@@ -228,8 +228,8 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     /** The following functions are for implementing TreeSortable. We pass
      * off responsibility to sort things to the view.
     **/
-    public bool get_sort_column_id (out int sort_column_id, out Gtk.SortType order) {
-        this.sort_column_id = sort_column_id;
+    public bool get_sort_column_id (out int column_id, out Gtk.SortType order) {
+        column_id = sort_column_id;
         order = sort_direction;
 
         return true;
