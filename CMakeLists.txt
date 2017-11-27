@@ -74,7 +74,7 @@ set (CORE_PKG
   libpeas-1.0
   libpeas-gtk-1.0
   gtk+-3.0>=3.11.6
-  granite
+  granite>=0.5
   gstreamer-1.0
   gstreamer-tag-1.0
   gstreamer-pbutils-1.0
