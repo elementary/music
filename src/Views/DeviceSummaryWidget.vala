@@ -70,12 +70,11 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         device_name_title_label.set_alignment (1, 0.5f);
         device_name_title_label.margin = 20;
         device_name_title_label.margin_right = 0;
-        Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H1, device_name_title_label);
+        device_name_title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
 
         var device_name_description_label = new Gtk.Label (dev.get_fancy_description () ?? "");
         device_name_description_label.set_alignment (0, 0.5f);
-        Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, device_name_description_label);
-
+        device_name_description_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
         var device_name_label = new Gtk.Label (_("Device Name:"));
         device_name_label.set_alignment (1, 0.5f);
 
