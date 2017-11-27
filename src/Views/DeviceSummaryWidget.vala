@@ -55,7 +55,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         main_grid = new Gtk.Grid ();
 
         /* Content view styling */
-        this.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
+        this.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
         /* Create options */
 

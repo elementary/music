@@ -58,7 +58,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         main_grid = new Gtk.Grid ();
 
         /* Content view styling */
-        main_event_box.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
+        main_event_box.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
         if ( cd_playlist.is_empty () == false) {
         }
