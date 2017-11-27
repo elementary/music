@@ -40,7 +40,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
     private Gtk.Label year_label;
     private int place = 1;
     private Gtk.Grid container;
-    
+
     private const string TITLE_MARKUP = "<span size=\"large\"><b>%s</b></span>";
 
 
@@ -51,17 +51,17 @@ public class Noise.InfoPanel : Gtk.EventBox {
         libraries_manager.local_library.media_updated.connect_after (on_media_updated);
         NotificationManager.get_default ().update_track.connect (on_media_updated);
     }
-    
+
     public int add_view (Gtk.Widget view) {
         container.attach (view, 0, place, 1, 1);
         place++;
         return place-1;
     }
-    
+
     private void buildUI () {
         // add View class
         this.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
-        
+
         container = new Gtk.Grid ();
 
         title = new Gtk.Label("");
@@ -139,7 +139,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
         var year_str = year > 0 ? "<span size=\"x-small\">" + year.to_string () + "</span>" : "";
         year_label.set_markup (year_str);
     }
-    
+
     private void update_cover_art () {
         var cover_icon = current_media.album_info.cover_icon;
         if (cover_icon != null) {
@@ -148,7 +148,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
             coverArt.gicon = new ThemedIcon ("albumart");
         }
     }
-    
+
     private void ratingChanged (int new_rating) {
         if (current_media != null) {
             current_media.rating = new_rating;
