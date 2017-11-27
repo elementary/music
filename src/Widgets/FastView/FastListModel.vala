@@ -90,6 +90,8 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public void get_value (Gtk.TreeIter iter, int column, out Value val) {
+        val = { };
+
         if (iter.stamp != stamp || column < 0 || column >= get_n_columns ()) {
             return;
         }
