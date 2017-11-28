@@ -112,7 +112,7 @@ namespace Noise.String {
      *
      * For example:
      * "This is an input string" => "This Is An Input String"
-     * "example string/text"     => "Example String/Text" 
+     * "example string/text"     => "Example String/Text"
      */
     public inline string to_title_case (string text) {
         bool capitalize_next = true;
@@ -153,7 +153,7 @@ namespace Noise.String {
 
         return string_utf8;
     }
-    
+
     /**
      * Base method used for searches. It does a previous parsing on the search string.
      *
@@ -162,7 +162,7 @@ namespace Noise.String {
      * the value of parsed_search_string.
      *
      * @param search Non-parsed version of the search string.
-     * @param parsed_rating location where the parsed rating it stored, or -1 if the
+     * @param parsed_rating location where the parsed rating it stored, or 0 if the
      * string didn't represent a valid rating.
      * @param parsed_search_string location where the canonicalized version of the
      * search string is stored. Should be passed to the methods in Noise.Search.
@@ -170,12 +170,11 @@ namespace Noise.String {
     public static void base_search_method (string search, out uint parsed_rating,
                                            out string parsed_search_string)
     {
-        var result = Search.get_rating_from_string (search.strip ());
+        parsed_rating = 0;
+        var result = Search.get_rating_from_string (search.strip ()); // guaranteed > 0 or null
 
         if (result != null) {
-            parsed_rating = parsed_rating.clamp (1, 5);
-        } else {
-            parsed_rating = 0;
+            parsed_rating = result.clamp (1, 5);
         }
 
         parsed_search_string = Search.get_valid_search_string (search);
