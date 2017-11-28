@@ -84,11 +84,6 @@ public class Noise.ViewTextOverlay : Gtk.Overlay {
         message_label.ellipsize = Pango.EllipsizeMode.END;
         message_label.use_markup = true;
 
-        // Even though GtkLabels are no-window widgets, we can't forget that the overlay
-        // will add its own background window to this label once we add it. Due to that
-        // reason, we override its background color to force transparency.
-        override_background_color (0, {0, 0, 0, 0});
-
         add_overlay (message_label);
 
         message_visible = false;
