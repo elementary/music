@@ -30,8 +30,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
 
     public Gtk.FileChooserButton library_filechooser;
 
-    private Gee.Map<int, unowned Noise.SettingsWindow.NoteBook_Page> sections = new Gee.HashMap<int, unowned Noise.SettingsWindow.NoteBook_Page> ();
-
     public PreferencesWindow () {
         Object (
             border_width: 6,
@@ -72,16 +70,16 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         layout.column_spacing = 12;
         layout.margin = 6;
         layout.row_spacing = 6;
-        layout.attach (new SettingsHeader (_("Music Folder Location")), 0, 0);
+        layout.attach (new Granite.HeaderLabel (_("Music Folder Location")), 0, 0);
         layout.attach (library_filechooser, 0, 1, 2, 1);
-        layout.attach (new SettingsHeader (_("Library Management")), 0, 2);
+        layout.attach (new Granite.HeaderLabel (_("Library Management")), 0, 2);
         layout.attach (new SettingsLabel (_("Keep Music folder organized:")), 0, 3);
         layout.attach (organize_folders_switch, 1, 3);
         layout.attach (new SettingsLabel (_("Write metadata to file:")), 0, 4);
         layout.attach (write_file_metadata_switch, 1, 4);
         layout.attach (new SettingsLabel (_("Copy imported files to Library:")), 0, 5);
         layout.attach (copy_imported_music_switch, 1, 5);
-        layout.attach (new SettingsHeader (_("Desktop Integration")), 0, 6);
+        layout.attach (new Granite.HeaderLabel (_("Desktop Integration")), 0, 6);
         layout.attach (new SettingsLabel (_("Continue playback when closed:")), 0, 7);
         layout.attach (hide_on_close_switch, 1, 7);
 
@@ -93,14 +91,6 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
 
         var close_button = add_button (_("Close"), Gtk.ResponseType.CLOSE);
         ((Gtk.Button) close_button).clicked.connect (() => destroy ());
-    }
-
-    private class SettingsHeader : Gtk.Label {
-        public SettingsHeader (string text) {
-            label = text;
-            get_style_context ().add_class ("h4");
-            halign = Gtk.Align.START;
-        }
     }
 
     private class SettingsLabel : Gtk.Label {
