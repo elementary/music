@@ -58,7 +58,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         main_grid = new Gtk.Grid ();
 
         /* Content view styling */
-        main_event_box.get_style_context ().add_class (Granite.StyleClass.CONTENT_VIEW);
+        main_event_box.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
         if ( cd_playlist.is_empty () == false) {
         }
@@ -72,13 +72,13 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         title = new Gtk.Label ("");
         title.set_alignment(0.5f, 1);
         title.set_justify(Gtk.Justification.CENTER);
-        Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, title);
+        title.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
         author = new Gtk.Label ("");
         author.set_alignment(0.5f, 1);
         author.set_justify(Gtk.Justification.CENTER);
         author.sensitive = false;
-        Granite.Widgets.Utils.apply_text_style_to_label (Granite.TextStyle.H2, author);
+        author.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
         var fake_label_1 = new Gtk.Label ("");
         fake_label_1.set_hexpand (true);
