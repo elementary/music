@@ -27,6 +27,9 @@
  */
 
 public class Noise.MediaEditor : Gtk.Dialog {
+    public const int MIN_WIDTH = 600;
+    public const int MIN_HEIGHT = 400;
+    
     private Gtk.Entry title_entry;
     private Gtk.Entry artist_entry;
     private Gtk.Entry album_artist_entry;
@@ -51,6 +54,15 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Media current_media;
 
     public MediaEditor (Gee.TreeSet<Media> given_media) {
+        Object (
+            deletable: false,
+            destroy_with_parent: true,
+            height_request: MIN_HEIGHT,
+            resizable: true,
+            transient_for: App.main_window,
+            width_request: MIN_WIDTH,
+            window_position: Gtk.WindowPosition.CENTER_ON_PARENT
+        );
         media_list.add_all (given_media);
         set_media (media_list.first ());
     }
@@ -59,8 +71,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         media_list = new Gee.TreeSet<Media> ();
         temp_list = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash, (Gee.EqualDataFunc<int64?>)GLib.int64_equal, null);
 
-        transient_for = App.main_window;
-        set_default_geometry (600, 400);
         var grid = new Gtk.Grid ();
         grid.expand = true;
         grid.margin_start = 12;
