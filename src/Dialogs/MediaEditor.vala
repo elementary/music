@@ -68,30 +68,18 @@ public class Noise.MediaEditor : Gtk.Dialog {
         grid.column_spacing = 12;
         grid.row_spacing = 6;
 
-        var title_label = new Gtk.Label (_("Title:"));
-        format_label (title_label);
-        var artist_label = new Gtk.Label (_("Artist:"));
-        format_label (artist_label);
-        var album_artist_label = new Gtk.Label (_("Album Artist:"));
-        format_label (album_artist_label);
-        var album_label = new Gtk.Label (_("Album:"));
-        format_label (album_label);
-        var genre_label = new Gtk.Label (_("Genre:"));
-        format_label (genre_label);
-        var composer_label = new Gtk.Label (_("Composer:"));
-        format_label (composer_label);
-        var grouping_label = new Gtk.Label (_("Grouping:"));
-        format_label (grouping_label);
-        var comment_label = new Gtk.Label (_("Comment:"));
-        format_label (comment_label);
-        var track_label = new Gtk.Label (_("Track:"));
-        format_label (track_label);
-        var disk_label = new Gtk.Label (_("Disk:"));
-        format_label (disk_label);
-        var year_label = new Gtk.Label (_("Year:"));
-        format_label (year_label);
-        var rating_label = new Gtk.Label (_("Rating:"));
-        format_label (rating_label);
+        var title_label = new Granite.HeaderLabel (_("Title:"));
+        var artist_label = new Granite.HeaderLabel (_("Artist:"));
+        var album_artist_label = new Granite.HeaderLabel (_("Album Artist:"));
+        var album_label = new Granite.HeaderLabel (_("Album:"));
+        var genre_label = new Granite.HeaderLabel (_("Genre:"));
+        var composer_label = new Granite.HeaderLabel (_("Composer:"));
+        var grouping_label = new Granite.HeaderLabel (_("Grouping:"));
+        var comment_label = new Granite.HeaderLabel (_("Comment:"));
+        var track_label = new Granite.HeaderLabel (_("Track:"));
+        var disk_label = new Granite.HeaderLabel (_("Disk:"));
+        var year_label = new Granite.HeaderLabel (_("Year:"));
+        var rating_label = new Granite.HeaderLabel (_("Rating:"));
 
         title_entry = new Gtk.Entry ();
         artist_entry = new Gtk.Entry ();
@@ -174,12 +162,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         next_button.clicked.connect (next_track);
         close_button.clicked.connect (() => destroy ());
         save_button.clicked.connect (save_and_exit);
-    }
-
-    private void format_label (Gtk.Label label) {
-        label.halign = Gtk.Align.START;
-        label.label = "<b>%s</b>".printf (Markup.escape_text (label.label));
-        label.use_markup = true;
     }
 
     private void previous_track () {
