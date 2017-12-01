@@ -182,7 +182,6 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
     public EmbeddedAlert () {
         var style = this.get_style_context ();
         style.add_class (Gtk.STYLE_CLASS_VIEW);
-        style.add_class (Granite.StyleClass.CONTENT_VIEW);
 
         this.primary_text_label = new Gtk.Label (null);
         this.secondary_text_label = new Gtk.Label (null);

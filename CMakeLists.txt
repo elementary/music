@@ -9,7 +9,7 @@ enable_testing()
 
 set (GETTEXT_PACKAGE ${CMAKE_PROJECT_NAME})
 set (RELEASE_NAME "Luna")
-set (VERSION "0.4.1")
+set (VERSION "0.4.2")
 set (VERSION_INFO "Stable Release")
 
 include (GNUInstallDirs)
@@ -74,7 +74,7 @@ set (CORE_PKG
   libpeas-1.0
   libpeas-gtk-1.0
   gtk+-3.0>=3.11.6
-  granite
+  granite>=0.5
   gstreamer-1.0
   gstreamer-tag-1.0
   gstreamer-pbutils-1.0

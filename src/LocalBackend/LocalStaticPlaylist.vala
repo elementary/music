@@ -41,7 +41,7 @@ public class Noise.LocalStaticPlaylist : StaticPlaylist {
             _name = Database.query_field (rowid, connection, Database.Playlists.TABLE_NAME, "name").dup_string ();
             return _name;
         }
-        construct set {
+        set {
             _name = value;
             Database.set_field (rowid, connection, Database.Playlists.TABLE_NAME, "name", value);
         }

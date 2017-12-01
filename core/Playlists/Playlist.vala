@@ -38,7 +38,7 @@ public abstract class Noise.Playlist : Object {
         get {
             return _name;
         }
-        construct set {
+        set {
             string old_name = _name;
             _name = value;
             updated (old_name);

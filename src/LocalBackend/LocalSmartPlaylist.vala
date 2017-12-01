@@ -43,7 +43,8 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
             _name = Database.query_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "name").dup_string ();
             return _name;
         }
-        construct set {
+
+        set {
             _name = value;
             Database.set_field (rowid, connection, Database.SmartPlaylists.TABLE_NAME, "name", value);
         }
