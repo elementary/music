@@ -66,7 +66,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         grid.margin_start = 12;
         grid.margin_end = 12;
         grid.column_spacing = 12;
-        grid.row_spacing = 6;
 
         title_entry = new Gtk.Entry ();
         artist_entry = new Gtk.Entry ();
