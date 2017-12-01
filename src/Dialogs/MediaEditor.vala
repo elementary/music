@@ -27,6 +27,9 @@
  */
 
 public class Noise.MediaEditor : Gtk.Dialog {
+    public const int MIN_WIDTH = 600;
+    public const int MIN_HEIGHT = 400;
+    
     private Gtk.Entry title_entry;
     private Gtk.Entry artist_entry;
     private Gtk.Entry album_artist_entry;
@@ -51,6 +54,15 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Media current_media;
 
     public MediaEditor (Gee.TreeSet<Media> given_media) {
+        Object (
+            deletable: false,
+            destroy_with_parent: true,
+            height_request: MIN_HEIGHT,
+            resizable: true,
+            transient_for: App.main_window,
+            width_request: MIN_WIDTH,
+            window_position: Gtk.WindowPosition.CENTER_ON_PARENT
+        );
         media_list.add_all (given_media);
         set_media (media_list.first ());
     }
@@ -59,39 +71,11 @@ public class Noise.MediaEditor : Gtk.Dialog {
         media_list = new Gee.TreeSet<Media> ();
         temp_list = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash, (Gee.EqualDataFunc<int64?>)GLib.int64_equal, null);
 
-        transient_for = App.main_window;
-        set_default_geometry (600, 400);
         var grid = new Gtk.Grid ();
         grid.expand = true;
         grid.margin_start = 12;
         grid.margin_end = 12;
         grid.column_spacing = 12;
-        grid.row_spacing = 6;
-
-        var title_label = new Gtk.Label (_("Title:"));
-        format_label (title_label);
-        var artist_label = new Gtk.Label (_("Artist:"));
-        format_label (artist_label);
-        var album_artist_label = new Gtk.Label (_("Album Artist:"));
-        format_label (album_artist_label);
-        var album_label = new Gtk.Label (_("Album:"));
-        format_label (album_label);
-        var genre_label = new Gtk.Label (_("Genre:"));
-        format_label (genre_label);
-        var composer_label = new Gtk.Label (_("Composer:"));
-        format_label (composer_label);
-        var grouping_label = new Gtk.Label (_("Grouping:"));
-        format_label (grouping_label);
-        var comment_label = new Gtk.Label (_("Comment:"));
-        format_label (comment_label);
-        var track_label = new Gtk.Label (_("Track:"));
-        format_label (track_label);
-        var disk_label = new Gtk.Label (_("Disk:"));
-        format_label (disk_label);
-        var year_label = new Gtk.Label (_("Year:"));
-        format_label (year_label);
-        var rating_label = new Gtk.Label (_("Rating:"));
-        format_label (rating_label);
 
         title_entry = new Gtk.Entry ();
         artist_entry = new Gtk.Entry ();
@@ -116,29 +100,29 @@ public class Noise.MediaEditor : Gtk.Dialog {
         comment_frame.expand = true;
         comment_frame.add (comment_scrolledwindow);
 
-        grid.attach (title_label, 0, 0, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Title:")), 0, 0, 1, 1);
         grid.attach (title_entry, 0, 1, 1, 1);
-        grid.attach (artist_label, 1, 0, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Artist:")), 1, 0, 1, 1);
         grid.attach (artist_entry, 1, 1, 1, 1);
-        grid.attach (album_label, 0, 2, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Album:")), 0, 2, 1, 1);
         grid.attach (album_entry, 0, 3, 1, 1);
-        grid.attach (album_artist_label, 1, 2, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Album Artist:")), 1, 2, 1, 1);
         grid.attach (album_artist_entry, 1, 3, 1, 1);
-        grid.attach (composer_label, 0, 4, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Composer:")), 0, 4, 1, 1);
         grid.attach (composer_entry, 0, 5, 1, 1);
-        grid.attach (grouping_label, 1, 4, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Grouping:")), 1, 4, 1, 1);
         grid.attach (grouping_entry, 1, 5, 1, 1);
-        grid.attach (genre_label, 0, 6, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Genre:")), 0, 6, 1, 1);
         grid.attach (genre_entry, 0, 7, 1, 1);
-        grid.attach (year_label, 1, 6, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Year:")), 1, 6, 1, 1);
         grid.attach (year_spinbutton, 1, 7, 1, 1);
-        grid.attach (track_label, 1, 8, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Track:")), 1, 8, 1, 1);
         grid.attach (track_spinbutton, 1, 9, 1, 1);
-        grid.attach (disk_label, 1, 10, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Disk:")), 1, 10, 1, 1);
         grid.attach (disk_spinbutton, 1, 11, 1, 1);
-        grid.attach (rating_label, 1, 12, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Rating:")), 1, 12, 1, 1);
         grid.attach (rating_widget, 1, 13, 1, 1);
-        grid.attach (comment_label, 0, 8, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Comment:")), 0, 8, 1, 1);
         grid.attach (comment_frame, 0, 9, 1, 5);
 
         previous_button = new Gtk.Button.from_icon_name ("go-previous-symbolic");
@@ -174,12 +158,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         next_button.clicked.connect (next_track);
         close_button.clicked.connect (() => destroy ());
         save_button.clicked.connect (save_and_exit);
-    }
-
-    private void format_label (Gtk.Label label) {
-        label.halign = Gtk.Align.START;
-        label.label = "<b>%s</b>".printf (Markup.escape_text (label.label));
-        label.use_markup = true;
     }
 
     private void previous_track () {
