@@ -68,19 +68,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         grid.column_spacing = 12;
         grid.row_spacing = 6;
 
-        var title_label = new Granite.HeaderLabel (_("Title:"));
-        var artist_label = new Granite.HeaderLabel (_("Artist:"));
-        var album_artist_label = new Granite.HeaderLabel (_("Album Artist:"));
-        var album_label = new Granite.HeaderLabel (_("Album:"));
-        var genre_label = new Granite.HeaderLabel (_("Genre:"));
-        var composer_label = new Granite.HeaderLabel (_("Composer:"));
-        var grouping_label = new Granite.HeaderLabel (_("Grouping:"));
-        var comment_label = new Granite.HeaderLabel (_("Comment:"));
-        var track_label = new Granite.HeaderLabel (_("Track:"));
-        var disk_label = new Granite.HeaderLabel (_("Disk:"));
-        var year_label = new Granite.HeaderLabel (_("Year:"));
-        var rating_label = new Granite.HeaderLabel (_("Rating:"));
-
         title_entry = new Gtk.Entry ();
         artist_entry = new Gtk.Entry ();
         album_artist_entry = new Gtk.Entry ();
@@ -104,29 +91,29 @@ public class Noise.MediaEditor : Gtk.Dialog {
         comment_frame.expand = true;
         comment_frame.add (comment_scrolledwindow);
 
-        grid.attach (title_label, 0, 0, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Title:")), 0, 0, 1, 1);
         grid.attach (title_entry, 0, 1, 1, 1);
-        grid.attach (artist_label, 1, 0, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Artist:")), 1, 0, 1, 1);
         grid.attach (artist_entry, 1, 1, 1, 1);
-        grid.attach (album_label, 0, 2, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Album:")), 0, 2, 1, 1);
         grid.attach (album_entry, 0, 3, 1, 1);
-        grid.attach (album_artist_label, 1, 2, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Album Artist:")), 1, 2, 1, 1);
         grid.attach (album_artist_entry, 1, 3, 1, 1);
-        grid.attach (composer_label, 0, 4, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Composer:")), 0, 4, 1, 1);
         grid.attach (composer_entry, 0, 5, 1, 1);
-        grid.attach (grouping_label, 1, 4, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Grouping:")), 1, 4, 1, 1);
         grid.attach (grouping_entry, 1, 5, 1, 1);
-        grid.attach (genre_label, 0, 6, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Genre:")), 0, 6, 1, 1);
         grid.attach (genre_entry, 0, 7, 1, 1);
-        grid.attach (year_label, 1, 6, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Year:")), 1, 6, 1, 1);
         grid.attach (year_spinbutton, 1, 7, 1, 1);
-        grid.attach (track_label, 1, 8, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Track:")), 1, 8, 1, 1);
         grid.attach (track_spinbutton, 1, 9, 1, 1);
-        grid.attach (disk_label, 1, 10, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Disk:")), 1, 10, 1, 1);
         grid.attach (disk_spinbutton, 1, 11, 1, 1);
-        grid.attach (rating_label, 1, 12, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Rating:")), 1, 12, 1, 1);
         grid.attach (rating_widget, 1, 13, 1, 1);
-        grid.attach (comment_label, 0, 8, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Comment:")), 0, 8, 1, 1);
         grid.attach (comment_frame, 0, 9, 1, 5);
 
         previous_button = new Gtk.Button.from_icon_name ("go-previous-symbolic");
