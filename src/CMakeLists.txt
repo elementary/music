@@ -4,7 +4,6 @@ set(CLIENT_SOURCE
     LibraryWindow.vala
     PlaybackManager.vala
     FileOperator.vala
-    Objects/LyricFetcher.vala
     Objects/MediaKeyListener.vala
     Objects/HistoryPlaylist.vala
     LocalBackend/LocalLibrary.vala
