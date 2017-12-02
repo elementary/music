@@ -5,7 +5,7 @@ add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi
                       language: 'vala')
 
 executable (
-    'core',
+    'io.elementary.music',
     'core/PluginManager.vala',
     'core/Settings.vala',
     'core/EqualizerPreset.vala',
@@ -40,23 +40,6 @@ executable (
     'core/GStreamer/Playback.vala',
     'core/Widgets/AlbumImage.vala',
     'core/Widgets/SettingsWidgets.vala',
-    dependencies : [
-        dependency('glib-2.0'),
-        dependency('gio-2.0'),
-        dependency('gee-0.8'),
-        dependency('libpeas-1.0'),
-        dependency('libpeas-gtk-1.0'),
-        dependency('gtk+-3.0'),
-        dependency('granite'),
-        dependency('gstreamer-1.0'),
-        dependency('gstreamer-pbutils-1.0'),
-        dependency('gstreamer-tag-1.0'),
-        meson.get_compiler('vala').find_library('posix')
-    ]
-)
-
-executable (
-    'noise',
     'src/main.vala',
     'src/Noise.vala',
     'src/LibraryWindow.vala',
@@ -124,12 +107,19 @@ executable (
     'src/Dialogs/TransferFromDeviceDialog.vala',
     'src/Dialogs/SyncWarningDialog.vala',
     dependencies : [
+        dependency('glib-2.0'),
+        dependency('gio-2.0'),
+        dependency('gee-0.8'),
+        dependency('libpeas-1.0'),
+        dependency('libpeas-gtk-1.0'),
         dependency('gtk+-3.0'),
         dependency('granite'),
         dependency('gstreamer-1.0'),
         dependency('gstreamer-pbutils-1.0'),
         dependency('gstreamer-tag-1.0'),
         dependency('zeitgeist-2.0'),
+        dependency('libgda-5.0'),
+        dependency('taglib_c'),
         meson.get_compiler('vala').find_library('posix')
     ]
 )
