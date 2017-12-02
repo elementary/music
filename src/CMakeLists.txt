@@ -15,7 +15,6 @@ set(CLIENT_SOURCE
     Widgets/InfoPanel.vala
     Widgets/SimpleOptionChooser.vala
     Widgets/PresetList.vala
-    Widgets/SideBar.vala
     Widgets/SourceListView.vala
     Widgets/StatusBar.vala
     Widgets/RatingWidget.vala
