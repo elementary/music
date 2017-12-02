@@ -63,7 +63,6 @@ set(CLIENT_SOURCE
     Dialogs/RemoveFilesDialog.vala
     Dialogs/NotImportedWindow.vala
     Dialogs/SetMusicFolderConfirmation.vala
-    Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala
 )
 
