@@ -60,7 +60,7 @@ namespace Noise.Widgets {
         public RepeatChooser () {
             // MUST follow the exact same order of Noise.Player.Repeat
             appendItem (_("Off"), new Gtk.Image.from_icon_name ("media-playlist-no-repeat-symbolic", Gtk.IconSize.MENU), _("Enable Repeat"));
-            appendItem (_("Song"), new Gtk.Image.from_icon_name ("media-playlist-repeat-one-symbolic", Gtk.IconSize.MENU), _("Repeat Song"));
+            appendItem (_("Song"), new Gtk.Image.from_icon_name ("media-playlist-repeat-song-symbolic", Gtk.IconSize.MENU), _("Repeat Song"));
             appendItem (_("Album"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Repeat Album"));
             appendItem (_("Artist"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Repeat Artist"));
             appendItem (_("All"), new Gtk.Image.from_icon_name ("media-playlist-repeat-symbolic", Gtk.IconSize.MENU), _("Disable Repeat"));
@@ -89,7 +89,7 @@ namespace Noise.Widgets {
     private class ShuffleChooser : SimpleOptionChooser {
 
         public ShuffleChooser () {
-            appendItem (_("Off"), new Gtk.Image.from_icon_name ("media-playlist-no-shuffle-symbolic", Gtk.IconSize.MENU), _("Enable Shuffle"));
+            appendItem (_("Off"), new Gtk.Image.from_icon_name ("media-playlist-consecutive-symbolic", Gtk.IconSize.MENU), _("Enable Shuffle"));
             appendItem (_("All"), new Gtk.Image.from_icon_name ("media-playlist-shuffle-symbolic", Gtk.IconSize.MENU), _("Disable Shuffle"));
 
             update_mode ();
