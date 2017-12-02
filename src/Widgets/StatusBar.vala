@@ -31,14 +31,12 @@ namespace Noise.Widgets {
         public Gtk.Widget shuffle_item { get; private set; default = new ShuffleChooser (); }
         public Gtk.Widget repeat_item { get; private set; default = new RepeatChooser (); }
         public Gtk.Widget equalizer_item { get; private set; default = new EqualizerChooser (); }
-        public Gtk.Widget info_panel_item { get; private set; default = new InfoPanelChooser (); }
 
         public StatusBar (LibraryWindow lw) {
             pack_start (playlist_item);
             pack_start (shuffle_item);
             pack_start (repeat_item);
             pack_end (equalizer_item);
-            pack_end (info_panel_item);
         }
 
         public void set_info (string message) {
@@ -50,7 +48,6 @@ namespace Noise.Widgets {
         public void update_sensitivities () {
             var local_library = (LocalLibrary) libraries_manager.local_library;
             playlist_item.set_sensitive (local_library.main_directory_set && local_library.get_medias ().size > 0);
-            info_panel_item.set_sensitive (App.main_window.info_panel.can_show_up);
         }
     }
 
@@ -188,40 +185,4 @@ namespace Noise.Widgets {
             tooltip_markup = _("Equalizer: %s").printf ("<b>" + Markup.escape_text (eq_preset_name) + "</b>");
         }
     }
-
-    private class InfoPanelChooser : SimpleOptionChooser {
-
-        public InfoPanelChooser () {
-            var info_panel_show = new Gtk.Image.from_icon_name ("pane-show-symbolic", Gtk.IconSize.MENU);
-            var info_panel_hide = new Gtk.Image.from_icon_name ("pane-hide-symbolic", Gtk.IconSize.MENU);
-
-            appendItem (_("Hide"), info_panel_show, _("Show Info Panel"));
-            appendItem (_("Show"), info_panel_hide, _("Hide Info Panel"));
-
-            on_info_panel_visibility_change ();
-            var info_panel = App.main_window.info_panel;
-            info_panel.show.connect (on_info_panel_visibility_change);
-            info_panel.hide.connect (on_info_panel_visibility_change);
-
-            option_changed.connect (on_option_changed);
-        }
-
-        private void on_info_panel_visibility_change () {
-            setOption (App.main_window.info_panel.visible ? 1 : 0);
-        }
-
-        private void on_option_changed (bool by_user) {
-            int val = current_option;
-
-            bool visible = val == 1;
-            App.main_window.info_panel.visible = visible;
-
-            // We write the new state to settings in this method as this is the only user-facing widget
-            // for hiding and showing the context pane. Any other visibility change we do internally
-            // or elsewhere should not be saved
-            if (by_user)
-                Settings.SavedState.get_default ().more_visible = visible;
-        }
-    }
-
 }
