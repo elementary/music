@@ -130,3 +130,5 @@ executable (
         meson.get_compiler('c').find_library('m', required : false)
     ]
 )
+
+meson.add_install_script('meson/post_install.py')
