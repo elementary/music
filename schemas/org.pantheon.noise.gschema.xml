@@ -124,11 +124,6 @@
       <summary>Whether or not the column browser is enabled</summary>
       <description>Whether or not the column browser is enabled</description>
     </key>
-    <key type="b" name="show-album-art-in-list-view">
-      <default>false</default>
-      <summary>Enables/disables album-art showing in the list view</summary>
-      <description>Whether or not to show album art in the list view</description>
-    </key>
     <key type="i" name="column-browser-width">
       <default>200</default>
       <summary>column-browser column width</summary>
