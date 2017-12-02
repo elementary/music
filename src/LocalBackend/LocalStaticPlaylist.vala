@@ -32,7 +32,7 @@ public class Noise.LocalStaticPlaylist : StaticPlaylist {
     /**
      * Metadata Fields
      */
-    private string _name = null;
+    private new string _name = null;
     public override string name {
         get {
             if (_name != null)

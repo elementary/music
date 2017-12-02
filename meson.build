@@ -1,11 +1,17 @@
 project('io.elementary.music', 'vala', 'c')
 
 app_name = 'io.elementary.music'
+
 add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], 
                       language: 'vala')
 
+i18n = import('i18n')
+
+add_global_arguments('-DGETTEXT_PACKAGE="noise"', language:'c')
+
 executable (
     'io.elementary.music',
+    'core/build.vala',
     'core/PluginManager.vala',
     'core/Settings.vala',
     'core/EqualizerPreset.vala',
@@ -120,6 +126,7 @@ executable (
         dependency('zeitgeist-2.0'),
         dependency('libgda-5.0'),
         dependency('taglib_c'),
-        meson.get_compiler('vala').find_library('posix')
+        meson.get_compiler('vala').find_library('posix'),
+        meson.get_compiler('c').find_library('m', required : false)
     ]
 )
