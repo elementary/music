@@ -129,6 +129,7 @@ executable (
         dependency('gstreamer-1.0'),
         dependency('gstreamer-pbutils-1.0'),
         dependency('gstreamer-tag-1.0'),
+        dependency('zeitgeist-2.0'),
         meson.get_compiler('vala').find_library('posix')
     ]
 )
