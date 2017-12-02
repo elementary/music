@@ -69,7 +69,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public ListView list_view { get; protected set; }
     public GridView grid_view { get; protected set; }
-    protected Granite.Widgets.EmbeddedAlert embedded_alert { get; set; }
+    protected Granite.Widgets.AlertView embedded_alert { get; set; }
     protected Granite.Widgets.Welcome welcome_screen { get; set; }
 
     public bool has_grid_view { get { return grid_view != null; } }
@@ -441,7 +441,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     protected virtual void set_no_media_alert () {
-        embedded_alert.set_alert (_("No media"), "", null, true, Gtk.MessageType.INFO);
+        embedded_alert.icon_name = "dialog-information";
+        embedded_alert.title = _("No media");
     }
 
     public async void set_media_async (Gee.Collection<Media> new_media) {

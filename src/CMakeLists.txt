@@ -13,7 +13,6 @@ set(CLIENT_SOURCE
     LocalBackend/DevicePreferences.vala
     Widgets/TopDisplay.vala
     Widgets/InfoPanel.vala
-    Widgets/EmbeddedAlert.vala
     Widgets/SimpleOptionChooser.vala
     Widgets/PresetList.vala
     Widgets/SideBar.vala

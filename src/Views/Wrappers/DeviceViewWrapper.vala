@@ -34,7 +34,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
         base (tvs.hint, library);
 
         list_view = new ListView (this, tvs);
-        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
+        embedded_alert = new Granite.Widgets.AlertView ("", "", "");
         pack_views ();
 
         list_view.import_requested.connect (import_request);
@@ -46,7 +46,9 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
     }
 
     protected override void set_no_media_alert () {
-        embedded_alert.set_alert (d.getEmptyDeviceTitle(), d.getEmptyDeviceDescription(), null, true, Gtk.MessageType.ERROR);
+        embedded_alert.icon_name = "dialog-error";
+        embedded_alert.title = d.getEmptyDeviceTitle ();
+        embedded_alert.description = d.getEmptyDeviceDescription ();
     }
 
     public virtual void set_device (Device device) {
