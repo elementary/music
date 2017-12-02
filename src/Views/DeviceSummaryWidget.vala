@@ -52,44 +52,32 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     }
 
     public void build_ui () {
-        main_grid = new Gtk.Grid ();
-
-        /* Content view styling */
-        this.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-
-        /* Create options */
-
-        var content_grid = new Gtk.Grid ();
-        content_grid.set_hexpand (true);
-        content_grid.set_vexpand (true);
-        content_grid.set_row_spacing (6);
-        content_grid.set_column_spacing (12);
-        content_grid.set_margin_top (12);
+        get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
         var device_name_title_label = new Gtk.Label (dev.getDisplayName () ?? "");
-        device_name_title_label.set_alignment (1, 0.5f);
+        device_name_title_label.halign = Gtk.Align.END;
         device_name_title_label.margin = 20;
         device_name_title_label.margin_right = 0;
         device_name_title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
 
         var device_name_description_label = new Gtk.Label (dev.get_fancy_description () ?? "");
-        device_name_description_label.set_alignment (0, 0.5f);
+        device_name_description_label.halign = Gtk.Align.START;
         device_name_description_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
+
         var device_name_label = new Gtk.Label (_("Device Name:"));
-        device_name_label.set_alignment (1, 0.5f);
+        device_name_label.halign = Gtk.Align.END;
 
         device_name_entry = new Gtk.Entry ();
         device_name_entry.placeholder_text = _("Device Name");
 
         var auto_sync_label = new Gtk.Label (_("Automatically sync when plugged in:"));
-        auto_sync_label.set_alignment (1, 0.5f);
+        auto_sync_label.halign = Gtk.Align.END;
 
         auto_sync_switch = new Gtk.Switch ();
-        var auto_sync_container = new Gtk.Grid ();
-        auto_sync_container.attach (auto_sync_switch, 0, 0, 1, 1);
+        auto_sync_switch.halign = Gtk.Align.START;
 
         var sync_options_label = new Gtk.Label (_("Sync:"));
-        sync_options_label.set_alignment (1, 0.5f);
+        sync_options_label.halign = Gtk.Align.END;
 
         sync_music_check = new Gtk.CheckButton ();
         sync_music_combobox = new Gtk.ComboBox ();
@@ -105,40 +93,35 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         refresh_space_widget ();
 
+        var content_grid = new Gtk.Grid ();
+        content_grid.expand = true;
+        content_grid.halign = Gtk.Align.CENTER;
+        content_grid.row_spacing = 6;
+        content_grid.column_spacing = 12;
+        content_grid.margin_top = 12;
+
         // device name box
         if (device_name_description_label.label == "") {
-            content_grid.attach (device_name_title_label,       0, 0, 5, 1);
-            device_name_title_label.set_alignment (0.5f, 0.5f);
+            content_grid.attach (device_name_title_label, 0, 0, 5, 1);
+            device_name_title_label.halign = Gtk.Align.FILL;
         } else {
-            content_grid.attach (device_name_title_label,       0, 0, 2, 1);
+            content_grid.attach (device_name_title_label, 0, 0, 2, 1);
         }
 
         content_grid.attach (device_name_description_label, 2, 0, 3, 1);
-        content_grid.attach (device_name_label,   1, 1, 1, 1);
-        content_grid.attach (device_name_entry,   2, 1, 2, 1);
-        content_grid.attach (auto_sync_label,     1, 2, 1, 1);
-        content_grid.attach (auto_sync_container, 2, 2, 2, 1);
-        content_grid.attach (sync_options_label,  1, 3, 1, 1);
-        content_grid.attach (sync_music_check,    2, 3, 1, 1);
+        content_grid.attach (device_name_label, 1, 1, 1, 1);
+        content_grid.attach (device_name_entry, 2, 1, 2, 1);
+        content_grid.attach (auto_sync_label, 1, 2, 1, 1);
+        content_grid.attach (auto_sync_switch, 2, 2, 2, 1);
+        content_grid.attach (sync_options_label, 1, 3, 1, 1);
+        content_grid.attach (sync_music_check, 2, 3, 1, 1);
         content_grid.attach (sync_music_combobox, 3, 3, 1, 1);
 
-        /* Add fake label to be centered */
-        var fake_label_a = new Gtk.Label ("");
-        fake_label_a.set_hexpand (true);
-        content_grid.attach (fake_label_a, 0, 0, 1, 1);
-
-        var fake_label_b = new Gtk.Label ("");
-        fake_label_b.set_hexpand (true);
-        content_grid.attach (fake_label_b, 4, 0, 1, 1);
-
-        /* Put it all together */
+        main_grid = new Gtk.Grid ();
         main_grid.attach (content_grid, 0, 0, 1, 1);
         main_grid.attach (space_widget, 0, 1, 1, 1);
-        main_grid.set_hexpand (true);
-        main_grid.set_vexpand (true);
 
-        /* Pack everything into the eventbox */
-        this.add (main_grid);
+        add (main_grid);
 
         if (dev.getDisplayName () != "")
             device_name_entry.text = dev.getDisplayName ();
