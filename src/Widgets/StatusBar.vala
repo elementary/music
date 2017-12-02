@@ -39,12 +39,6 @@ namespace Noise.Widgets {
             pack_end (equalizer_item);
         }
 
-        public void set_info (string message) {
-            set_center_widget (null);
-            set_center_widget (new Gtk.Label (message));
-            this.show_all ();
-        }
-
         public void update_sensitivities () {
             var local_library = (LocalLibrary) libraries_manager.local_library;
             playlist_item.set_sensitive (local_library.main_directory_set && local_library.get_medias ().size > 0);
