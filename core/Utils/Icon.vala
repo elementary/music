@@ -62,7 +62,7 @@ public class Noise.Icon : Object {
                 // This only works if Build.ICON_DIR contains a sub-directory named "hicolor"
                 // containing all the fallback icons (possibly organized into sub-folders as well),
                 // or if the icons are immediate children of this directory.
-                _theme.append_search_path (Path.build_filename (Build.ICON_DIR));
+                _theme.append_search_path (Path.build_filename ("/usr/share/noise/icons"));
             }
 
             return _theme;

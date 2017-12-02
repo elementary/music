@@ -209,7 +209,7 @@ public class Noise.Plugins.Manager : Object {
 
         /* Let's init the engine */
         engine = Peas.Engine.get_default ();
-        engine.add_search_path (Build.PLUGIN_DIR, null);
+        engine.add_search_path ("/usr/lib/x86_64-linux-gnu/noise/plugins", null);
         
         /* Do not load blacklisted plugins */
         var disabled_plugins = new Gee.LinkedList<string> ();
