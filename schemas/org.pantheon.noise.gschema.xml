@@ -114,20 +114,10 @@
       <summary>Sidebar width</summary>
       <description>Sidebar width</description>
     </key>
-    <key type="i" name="more-width">
-      <default>150</default>
-      <summary>Right panel width</summary>
-      <description>Right panel width</description>
-    </key>
     <key type="i" name="view-mode">
       <default>1</default>
       <summary>Index of which view type to use</summary>
       <description>Index of which view type to use</description>
-    </key>
-    <key type="b" name="more-visible">
-      <default>false</default>
-      <summary>Whether or not the right panel is showing</summary>
-      <description>Whether or not the right panel is showing</description>
     </key>
     <key type="b" name="column-browser-enabled">
       <default>false</default>
