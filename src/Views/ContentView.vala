@@ -46,11 +46,6 @@ public interface Noise.ContentView : Gtk.Widget {
     public abstract Gee.Collection<Media> get_visible_media ();
 
     /**
-     * Text that should be displayed in the statusbar for the view.
-     */
-    public abstract string get_statusbar_text ();
-
-    /**
      * Requests the view to apply a filter to only show the media matching the
      * search string.
      *
