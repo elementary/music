@@ -31,23 +31,15 @@ install (FILES ${GENERIC_IMAGES} DESTINATION ${ICON_DIR})
 set (FALLBACK_THEME_DIR ${ICON_DIR}/hicolor)
 
 set (STATUS_16
-  icons/16x16/status/media-playlist-no-shuffle-symbolic.svg
   icons/16x16/status/media-playlist-no-repeat-symbolic.svg
-  icons/16x16/status/starred.svg
-  icons/16x16/status/non-starred.svg
   icons/16x16/status/process-completed-symbolic.svg
   icons/16x16/status/process-error-symbolic.svg
-  icons/16x16/status/audio-volume-high-symbolic.svg
-  icons/16x16/status/media-playlist-repeat-one-symbolic.svg
-  icons/16x16/status/media-playlist-repeat-symbolic.svg
-  icons/16x16/status/media-playlist-shuffle-symbolic.svg
 )
 
 set (ACTIONS_16
   icons/16x16/actions/pane-show-symbolic.svg
   icons/16x16/actions/pane-hide-symbolic.svg
   icons/16x16/actions/media-eq-symbolic.svg
-  icons/16x16/actions/list-add-symbolic.svg
   icons/16x16/actions/love.svg
   icons/16x16/actions/ban.svg
 )
@@ -57,7 +49,6 @@ set (MIMETYPES_16
   icons/16x16/mimetypes/playlist-automatic.svg
   icons/16x16/mimetypes/playlist-queue.svg
   icons/16x16/mimetypes/library-music.svg
-  icons/16x16/mimetypes/media-cdrom-audio.svg
 )
 
 install (FILES ${STATUS_16} DESTINATION ${FALLBACK_THEME_DIR}/16x16/status)
