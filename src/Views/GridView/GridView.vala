@@ -131,31 +131,6 @@ public class Noise.GridView : ContentView, GridLayout {
         do_search ();
     }
 
-    public string get_statusbar_text () {
-        uint total_items = get_visible_objects ().size;
-
-        if (total_items < 1)
-            return "";
-
-        var all_visible_media = get_visible_media ();
-
-        uint64 total_size = 0, total_time = 0;
-
-        foreach (var media in all_visible_media) {
-            if (media != null) {
-                total_time += media.length;
-                total_size += media.file_size;
-            }
-        }
-
-        string media_description = ngettext ("%u album", "%u albums", total_items).printf (total_items);
-        string time_text = TimeUtils.time_string_from_miliseconds (total_time);
-        string size_text = format_size (total_size);
-
-        var statusbar_format = _(FULL_STATUSBAR_FORMAT);
-        return statusbar_format.printf (media_description, time_text, size_text);
-    }
-
     public void update_media (Gee.Collection<Media> media) {
         var medias_to_update = new Gee.TreeSet<Media> ();
         medias_to_update.add_all (media);
