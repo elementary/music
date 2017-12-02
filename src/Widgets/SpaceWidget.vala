@@ -47,7 +47,7 @@ public class SpaceWidget : Gtk.Grid {
 
         var grid = new Gtk.Grid ();
         grid.column_spacing = 6;
-        grid.margin = 12;
+        grid.margin = 24;
         grid.add (storagebar);
         grid.add (sync_button);
 

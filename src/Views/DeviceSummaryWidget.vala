@@ -93,7 +93,9 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         music_list = new Gtk.ListStore (3, typeof (GLib.Object), typeof (string), typeof (GLib.Icon));
 
         device_image = new Gtk.Image.from_gicon (dev.get_icon (), Gtk.IconSize.DIALOG);
+
         space_widget = new SpaceWidget (dev.get_capacity());
+        space_widget.valign = Gtk.Align.END;
 
         setup_lists ();
 
@@ -131,8 +133,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         /* Put it all together */
         main_grid.attach (content_grid, 0, 0, 1, 1);
         main_grid.attach (space_widget, 0, 1, 1, 1);
-        main_grid.set_hexpand (true);
-        main_grid.set_vexpand (true);
 
         /* Pack everything into the eventbox */
         this.add (main_grid);
