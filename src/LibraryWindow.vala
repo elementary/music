@@ -46,11 +46,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public bool newly_created_playlist      { get; set; default = false; }
 
-
-    /* Main layout widgets */
-    private Gtk.Paned     view_container_hpaned; // view_container / info_panel
-    public InfoPanel      info_panel;
-
     private Gtk.Button previous_button;
     private Gtk.Button play_button;
     private Gtk.Button next_button;
@@ -312,21 +307,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Set properties of various controls
         var saved_state = Settings.SavedState.get_default ();
-        int view_container_pos = saved_state.window_width - saved_state.sidebar_width - saved_state.more_width;
 
         view_container = new ViewContainer ();
         source_list_view = new SourceListView ();
-        info_panel = new InfoPanel ();
-
-        view_container_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        view_container_hpaned.set_position (view_container_pos);
-        view_container_hpaned.pack1 (view_container, true, false);
-        view_container_hpaned.pack2 (info_panel, false, false);
 
         main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         main_hpaned.position = saved_state.sidebar_width;
         main_hpaned.pack1 (source_list_view, false, false);
-        main_hpaned.pack2 (view_container_hpaned, true, false);
+        main_hpaned.pack2 (view_container, true, false);
 
         statusbar = new Widgets.StatusBar (this);
 
@@ -705,9 +693,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         if(!media_active || have_media && !App.player.playing)
             play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-
-        bool show_info_panel = Settings.SavedState.get_default ().more_visible && info_panel.can_show_up;
-        info_panel.set_visible (show_info_panel);
 
         statusbar.update_sensitivities ();
     }
@@ -1218,9 +1203,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (!main_settings.privacy_mode_enabled ()) {
             main_settings.search_string = searchField.text;
         }
-
-        // Save info pane (context pane) width
-        saved_state.more_width = info_panel.get_allocated_width ();
 
         // Save sidebar width
         saved_state.sidebar_width = main_hpaned.position;

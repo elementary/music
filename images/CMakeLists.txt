@@ -37,11 +37,7 @@ set (STATUS_16
 )
 
 set (ACTIONS_16
-  icons/16x16/actions/pane-show-symbolic.svg
-  icons/16x16/actions/pane-hide-symbolic.svg
   icons/16x16/actions/media-eq-symbolic.svg
-  icons/16x16/actions/love.svg
-  icons/16x16/actions/ban.svg
 )
 
 set (MIMETYPES_16
