@@ -1,3 +1,6 @@
+include (GSettings)
+add_schema ("org.pantheon.noise.gschema.xml")
+
 include (Translations)
 
 # We need to create two temporary desktop files in order to have all translations available.
