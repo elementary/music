@@ -25,16 +25,8 @@
  */
 
 public class Noise.MPRIS : GLib.Object {
-    public MprisPlayer player = null;
-    public MprisRoot root = null;
-    // Uncomment this when the bug on the playlist selection is fixed
-    //public MprisPlaylists playlists = null;
-
-    private unowned DBusConnection conn;
-    private uint owner_id;
-
     public void initialize () {
-        owner_id = Bus.own_name (BusType.SESSION,
+        var owner_id = Bus.own_name (BusType.SESSION,
                                 "org.mpris.MediaPlayer2.Noise",
                                 GLib.BusNameOwnerFlags.NONE,
                                 on_bus_acquired,
@@ -44,20 +36,17 @@ public class Noise.MPRIS : GLib.Object {
         if (owner_id == 0) {
             warning ("Could not initialize MPRIS session.\n");
         } else {
-            var soundMenu = new SoundMenuIntegration ();
-            soundMenu.initialize ();
+            var sound_menu = new SoundMenuIntegration ();
+            sound_menu.initialize ();
         }
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {
-        conn = connection;
         try {
-            root = new MprisRoot ();
-            connection.register_object ("/org/mpris/MediaPlayer2", root);
-            player = new MprisPlayer (connection);
-            connection.register_object ("/org/mpris/MediaPlayer2", player);
-            /*playlists = new MprisPlaylists (connection);
-            connection.register_object ("/org/mpris/MediaPlayer2", playlists);*/
+            connection.register_object ("/org/mpris/MediaPlayer2", new MprisRoot ());
+            connection.register_object ("/org/mpris/MediaPlayer2", new MprisPlayer (connection));
+            // Uncomment this when the bug on the playlist selection is fixed
+            // connection.register_object ("/org/mpris/MediaPlayer2", new MprisPlaylists (connection));
         } catch (IOError e) {
             warning ("could not create MPRIS player: %s\n", e.message);
         }
@@ -66,52 +55,52 @@ public class Noise.MPRIS : GLib.Object {
 
 [DBus (name = "org.mpris.MediaPlayer2")]
 public class MprisRoot : GLib.Object {
-    public bool CanQuit {
+    public bool can_quit {
         get {
             return true;
         }
     }
 
-    public bool CanRaise {
+    public bool can_raise {
         get {
             return true;
         }
     }
 
-    public bool HasTrackList {
+    public bool has_track_list {
         get {
             return false;
         }
     }
-    public string DesktopEntry {
+    public string desktop_entry {
         owned get {
             return ((Noise.App) GLib.Application.get_default ()).get_id ();
         }
     }
 
-    public string Identity {
+    public string identity {
         owned get {
             return ((Noise.App) GLib.Application.get_default ()).get_name ();
         }
     }
 
-    public string[] SupportedUriSchemes {
+    public string[] supported_uri_schemes {
         owned get {
             return {"http", "file", "https", "ftp"};
         }
     }
 
-    public string[] SupportedMimeTypes {
+    public string[] supported_mime_types {
         owned get {
             return Noise.MEDIA_CONTENT_TYPES;
         }
     }
 
-    public void Quit () {
+    public void quit () {
         Noise.App.main_window.destroy ();
     }
 
-    public void Raise () {
+    public void raise () {
         Noise.App.main_window.present ();
     }
 }
@@ -172,7 +161,7 @@ public class MprisPlayer : GLib.Object {
 
         update_metadata_source = Timeout.add (300, () => {
             //print ("trigger_metadata_update %s\n", global.current_artist);
-            Variant variant = this.PlaybackStatus;
+            Variant variant = playback_status;
 
             queue_property_for_notification ("PlaybackStatus", variant);
             queue_property_for_notification ("Metadata", _metadata);
@@ -279,7 +268,7 @@ public class MprisPlayer : GLib.Object {
         }
     }
 
-    public string PlaybackStatus {
+    public string playback_status {
         owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
             if (Noise.App.player.playing) {
                 return "Playing";
@@ -293,7 +282,7 @@ public class MprisPlayer : GLib.Object {
         }
     }
 
-    public string LoopStatus {
+    public string loop_status {
         owned get {
             switch (Noise.Settings.Main.get_default ().repeat_mode) {
                 case (Noise.Settings.Repeat.OFF):
@@ -328,14 +317,14 @@ public class MprisPlayer : GLib.Object {
         }
     }
 
-    public double Rate {
+    public double rate {
         get {
             return 1.0;
         }
         set {}
     }
 
-    public bool Shuffle {
+    public bool shuffle {
         get {
             return Noise.Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.ALL;
         }
@@ -351,14 +340,14 @@ public class MprisPlayer : GLib.Object {
         }
     }
 
-    public HashTable<string,Variant>? Metadata { //a{sv}
+    public HashTable<string, Variant>? metadata { //a{sv}
         owned get {
             update_metadata (Noise.App.player.current_media);
             return _metadata;
         }
     }
 
-    public double Volume {
+    public double volume {
         get {
             return Noise.App.player.volume;
         }
@@ -367,122 +356,123 @@ public class MprisPlayer : GLib.Object {
         }
     }
 
-    public int64 Position {
+    public int64 position {
         get {
             return (Noise.App.player.player.get_position () / (int64)Noise.TimeUtils.MILI_INV);
         }
     }
 
-    public bool CanGoNext {
+    public bool can_go_next {
         get {
             return true;
         }
     }
 
-    public bool CanGoPrevious {
+    public bool can_go_previous {
         get {
             return true;
         }
     }
 
-    public bool CanPlay {
+    public bool can_play {
         get {
             return true;
         }
     }
 
-    public bool CanPause {
+    public bool can_pause {
         get {
             return true;
         }
     }
 
-    public bool CanSeek {
+    public bool can_seek {
         get {
             return true;
         }
     }
 
-    public bool CanControl {
+    public bool can_control {
         get {
             return true;
         }
     }
 
-    public signal void Seeked (int64 Position);
+    public signal void seeked (int64 Position);
 
-    public void Next () {
+    public void next () {
         // inhibit notifications
         Noise.App.main_window.play_next_media (true);
     }
 
-    public void Previous () {
+    public void previous () {
         // inhibit notifications
         Noise.App.main_window.play_previous_media (true);
     }
 
-    public void Pause () {
+    public void pause () {
         // inhibit notifications
         if (Noise.App.player.playing) {
             Noise.App.player.pause_playback ();
         }
     }
 
-    public void PlayPause () {
+    public void play_pause () {
         // inhibit notifications
         Noise.App.main_window.play_media (true);
     }
 
-    public void Stop () {
+    public void stop () {
         if (Noise.App.player.playing) {
             Noise.App.player.stop_playback ();
         }
     }
 
-    public void Play () {
+    public void play () {
         // inhibit notifications
         if (!Noise.App.player.playing) {
             Noise.App.player.start_playback ();
         }
     }
 
-    public void Seek (int64 Offset) {
-        int64 position = this.Position + Offset;
-        if (position < 0)
+    public void seek (int64 offset) {
+        int64 position = this.position + offset;
+        if (position < 0) {
             position = 0;
+        }
 
         if (position < Noise.App.player.player.get_duration () / Noise.TimeUtils.MILI_INV) {
-            SetPosition ("", position);
-            Seeked (position);
-        } else if (CanGoNext) {
-            Next ();
+            set_position ("", position);
+            seeked (position);
+        } else if (can_go_next) {
+            next ();
         }
     }
 
-    public void SetPosition (string dobj, int64 Position) {
+    public void set_position (string dobj, int64 Position) {
         Noise.App.player.player.set_position (Position * (int64)Noise.TimeUtils.MILI_INV);
     }
 
-    public void OpenUri (string Uri) {
-
+    public void open_uri (string Uri) {
+        // TODO
     }
 }
 
 [DBus (name = "org.mpris.MediaPlayer2.Playlists")]
 public class MprisPlaylists : GLib.Object {
     public struct MprisPlaylist {
-        ObjectPath Id;
-        string Name;
-        string Icon;
+        ObjectPath id;
+        string name;
+        string icon;
     }
 
     public struct MaybePlaylist {
-        bool Valid;
-        MprisPlaylist Playlist;
+        bool valid;
+        MprisPlaylist playlist;
     }
 
-    private unowned DBusConnection conn;
-    private MaybePlaylist active_playlist;
+    [DBus (visible = false)]
+    public unowned DBusConnection conn { get; construct set; }
     private const string INTERFACE_NAME = "org.mpris.MediaPlayer2.Playlists";
     const string PLAYLIST_ID = "/org/pantheon/noise/Playlists/%d";
 
@@ -490,19 +480,21 @@ public class MprisPlaylists : GLib.Object {
     private HashTable<string,Variant> changed_properties = null;
 
     public MprisPlaylists (DBusConnection conn) {
-        this.conn = conn;
+        Object (conn: conn);
+    }
 
+    construct {
         Noise.libraries_manager.local_library.playlist_added.connect (playlist_added);
         Noise.libraries_manager.local_library.playlist_removed.connect (playlist_removed);
     }
 
     void playlist_added (Noise.Playlist p) {
-        Variant variant = this.PlaylistCount;
+        Variant variant = this.playlist_count;
         queue_property_for_notification ("PlaylistCount", variant);
     }
 
     void playlist_removed (Noise.Playlist p) {
-        Variant variant = this.PlaylistCount;
+        Variant variant = this.playlist_count;
         queue_property_for_notification ("PlaylistCount", variant);
     }
 
@@ -557,7 +549,7 @@ public class MprisPlaylists : GLib.Object {
         return false;
     }
 
-    public void ActivatePlaylist (ObjectPath path) {
+    public void activate_playlist (ObjectPath path) {
         string playlist_id = path.replace ("/org/pantheon/noise/Playlists/", "");
 
         Noise.Playlist p = Noise.libraries_manager.local_library.playlist_from_id (int.parse (playlist_id));
@@ -568,7 +560,7 @@ public class MprisPlaylists : GLib.Object {
         p.request_play ();
     }
 
-    public MprisPlaylist?[] GetPlaylists (uint index, uint maxcount, string playlist_ordering, bool reversed) {
+    public MprisPlaylist?[] get_playlists (uint index, uint maxcount, string playlist_ordering, bool reversed) {
         debug ("Get Playlist called with index %u and maxcount %u\n", index, maxcount);
         var playlists = new Gee.LinkedList<Noise.Playlist>();
 
@@ -586,9 +578,9 @@ public class MprisPlaylists : GLib.Object {
             ObjectPath path = new ObjectPath (PLAYLIST_ID.printf (p.rowid));
 
             MprisPlaylist to_add = MprisPlaylist ();
-            to_add.Id = path;
-            to_add.Name = p.name;
-            to_add.Icon = "file://" + Build.ICON_DIR + "/hicolor/16x16/mimetypes/" + p.icon.to_string () + ".svg";
+            to_add.id = path;
+            to_add.name = p.name;
+            to_add.icon = "file://" + Build.ICON_DIR + "/hicolor/16x16/mimetypes/" + p.icon.to_string () + ".svg";
 
             rv.add (to_add);
             debug ("Added playlist %s %s\n", path, p.name);
@@ -601,44 +593,44 @@ public class MprisPlaylists : GLib.Object {
         return rv.to_array ();
     }
 
-    public signal void PlaylistChanged (Variant playlist);
+    public signal void playlist_changed (Variant playlist);
 
-    public uint PlaylistCount {
+    public uint playlist_count {
         get {
             return (uint)(Noise.libraries_manager.local_library.get_playlists ().size + Noise.libraries_manager.local_library.get_smart_playlists ().size);
         }
     }
 
-    private static string[] all_orderings = { "UserDefined"};
-    public string[] Orderings {
+    private static string[] all_orderings = { "UserDefined" };
+    public string[] orderings {
         get {
             return all_orderings;
         }
     }
 
-    public MaybePlaylist ActivePlaylist {
-        get {
+    public MaybePlaylist active_playlist {
+        owned get {
             // FIXME: Should be a real playlist
             Noise.Playlist p = null;
+            var active_playlist = MaybePlaylist ();
 
             if (p == null) {
-                active_playlist.Valid = true; // Set it to true to force that 'Playlist' shows
-                MprisPlaylist mprisP = MprisPlaylist ();
-                mprisP.Id = new ObjectPath (PLAYLIST_ID.printf (0));
-                mprisP.Name = _ ("Playlists"); // Just a filler, should never show
-                mprisP.Icon = "";
-                active_playlist.Playlist = mprisP;
+                active_playlist.valid = true; // Set it to true to force that 'Playlist' shows
+                MprisPlaylist mpris_p = MprisPlaylist ();
+                mpris_p.id = new ObjectPath (PLAYLIST_ID.printf (0));
+                mpris_p.name = _ ("Playlists"); // Just a filler, should never show
+                mpris_p.icon = "";
+                active_playlist.playlist = mpris_p;
             } else {
-                active_playlist.Valid = true;
-                MprisPlaylist mprisP = MprisPlaylist ();
-                mprisP.Id = new ObjectPath (PLAYLIST_ID.printf (p.rowid));
-                mprisP.Name = p.name;
-                mprisP.Icon = "file://" + Build.ICON_DIR + "/hicolor/16x16/mimetypes/" + p.icon.to_string () + ".svg";
-                active_playlist.Playlist = mprisP;
+                active_playlist.valid = true;
+                MprisPlaylist mpris_p = MprisPlaylist ();
+                mpris_p.id = new ObjectPath (PLAYLIST_ID.printf (p.rowid));
+                mpris_p.name = p.name;
+                mpris_p.icon = "file://" + Build.ICON_DIR + "/hicolor/16x16/mimetypes/" + p.icon.to_string () + ".svg";
+                active_playlist.playlist = mpris_p;
             }
 
             return active_playlist;
         }
     }
-
 }
