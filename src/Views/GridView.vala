@@ -32,11 +32,11 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
     private Gtk.Paned hpaned;
     private FastGrid icon_view;
 
-    private static PopupListView? _popup = null;
-    public PopupListView popup_list_view {
+    private static AlbumListGrid? _popup = null;
+    public AlbumListGrid popup_list_view {
         get {
             if (_popup == null) {
-                _popup = new PopupListView (this);
+                _popup = new AlbumListGrid (parent_view_wrapper);
                 hpaned.pack2 (_popup, false, false);
             }
 

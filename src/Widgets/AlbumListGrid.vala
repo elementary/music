@@ -27,7 +27,7 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.PopupListView : Gtk.Grid {
+public class Noise.AlbumListGrid : Gtk.Grid {
     private ViewWrapper _view_wrapper;
     public ViewWrapper view_wrapper {
         get {
@@ -52,8 +52,8 @@ public class Noise.PopupListView : Gtk.Grid {
     Album album;
     Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
 
-    public PopupListView (GridView grid_view) {
-        Object (view_wrapper: grid_view.parent_view_wrapper);
+    public AlbumListGrid (ViewWrapper view_wrapper) {
+        Object (view_wrapper: view_wrapper);
     }
 
     construct {
