@@ -33,18 +33,31 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
     private Gtk.ScrolledWindow scroll;
 
     public GridLayout (ViewWrapper view_wrapper) {
-        parent_view_wrapper = view_wrapper;
-        build_ui ();
+        Object (parent_view_wrapper: view_wrapper);
+    }
+
+    construct {
+        icon_view = new FastGrid ();
+        icon_view.set_compare_func (compare_func);
+        icon_view.set_columns (-1);
+        icon_view.drag_begin.connect_after (on_drag_begin);
+        icon_view.drag_data_get.connect (on_drag_data_get);
+        icon_view.item_activated.connect (on_item_activated);
+        icon_view.set_search_func (search_func);
+
+        scroll = new Gtk.ScrolledWindow (null, null);
+        scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+        scroll.add (icon_view);
+
+        add (scroll);
+        show_all ();
+
         clear_objects ();
 
-        view_wrapper.library.search_finished.connect (() => {this.icon_view.research_needed = true;});
-        icon_view.set_search_func (search_func);
+        parent_view_wrapper.library.search_finished.connect (() => {this.icon_view.research_needed = true;});
 
         Gtk.TargetEntry te = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
         Gtk.drag_source_set (icon_view, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
-
-        icon_view.drag_begin.connect_after (on_drag_begin);
-        icon_view.drag_data_get.connect (on_drag_data_get);
     }
 
     protected abstract void item_activated (Object? object);
@@ -79,23 +92,6 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
 
     protected Gee.Collection<Object> get_visible_objects () {
         return icon_view.get_visible_table ().values;
-    }
-
-
-    private void build_ui () {
-        scroll = new Gtk.ScrolledWindow (null, null);
-        scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
-        add (scroll);
-
-        icon_view = new FastGrid ();
-        icon_view.set_compare_func (compare_func);
-
-        icon_view.set_columns (-1);
-
-        scroll.add (icon_view);
-        icon_view.item_activated.connect (on_item_activated);
-
-        show_all ();
     }
 
     private void on_item_activated (Gtk.TreePath? path) {
