@@ -72,11 +72,6 @@ public class Noise.App : Granite.Application {
 
     protected override void activate () {
         if (main_window == null) {
-            if (DEBUG)
-                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
-            else
-                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
-
             libraries_manager = new LibrariesManager ();
 
             // Load icon information. Needed until vala supports initialization of static
