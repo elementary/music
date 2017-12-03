@@ -124,8 +124,8 @@ namespace Granite.Widgets {
 
                 // if no cached star pixbufs were found, render them.
                 if (starred_pix == null || not_starred_pix == null) {
-                    var starred = symbolic ? Noise.Icons.STARRED_SYMBOLIC : Noise.Icons.STARRED;
-                    var not_starred = symbolic ? Noise.Icons.NOT_STARRED_SYMBOLIC : Noise.Icons.NOT_STARRED;
+                    var starred = symbolic ? new Noise.Icon ("starred-symbolic") : new Noise.Icon ("starred");
+                    var not_starred = symbolic ? new Noise.Icon ("non-starred-symbolic") : new Noise.Icon ("non-starred");
 
                     starred_pix = starred.render (icon_size, style_context);
                     starred_pixbufs.set (state, starred_pix);
