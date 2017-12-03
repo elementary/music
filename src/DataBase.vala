@@ -75,6 +75,7 @@ namespace Noise.Database {
         public const string LASTPLAYED = "+24";
         public const string LASTMODIFIED = "+25";
         public const string ROWID = "+26";
+        public const string SHOW = "+27";
     }
 
     namespace Devices {
@@ -327,7 +328,8 @@ namespace Noise.Database {
                                                                       "dateadded", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
                                                                       "lastplayed", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
                                                                       "lastmodified", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG);
+                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG,
+                                                                      "show", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG);
         if (e != null) {
             critical (e.message);
         } else {
