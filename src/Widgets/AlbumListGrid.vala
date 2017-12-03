@@ -102,6 +102,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         rating.star_spacing = 12;
         rating.margin_bottom = rating.margin_top = 12;
 
+        width_request = 240;
         attach (cover_event_box, 0, 0, 1, 1);
         attach (album_label, 0, 1, 1, 1);
         attach (artist_label, 0, 2, 1, 1);
@@ -169,9 +170,9 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
     void update_album_cover () {
         if (album.cover_icon != null) {
-            album_cover.gicon = album.cover_icon;
+            album_cover.image.gicon = album.cover_icon;
         } else {
-            album_cover.gicon = new ThemedIcon ("albumart");
+            album_cover.image.gicon = null;
         }
     }
 

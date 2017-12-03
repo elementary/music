@@ -130,6 +130,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
 
         ctx.save ();
         ctx.add_class ("album");
+        ctx.add_class (Granite.STYLE_CLASS_CARD);
         ctx.render_background (cr, x, y, pixbuf.width, pixbuf.height);
         ctx.render_icon (cr, pixbuf, x, y);
         cr.fill_preserve ();
@@ -167,9 +168,15 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         render_prixbuf (ctx);
         var state = ctx.get_state ();
 
+        var border = Gtk.Border ();
+        border.left = 12;
+        border.right = 12;
+        border.bottom = 12;
+        border.top = 12;
+
         ctx.save ();
         ctx.add_class ("album");
-        margin = ctx.get_margin (state);
+        margin = border;
         padding = ctx.get_padding (state);
         border = ctx.get_border (state);
         ctx.restore ();
