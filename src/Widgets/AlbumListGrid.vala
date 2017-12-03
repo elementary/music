@@ -104,7 +104,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         rating.star_spacing = 12;
         rating.margin_bottom = rating.margin_top = 12;
 
-        width_request = 240;
         attach (cover_event_box, 0, 0, 1, 1);
         attach (album_label, 0, 1, 1, 1);
         attach (artist_label, 0, 2, 1, 1);
