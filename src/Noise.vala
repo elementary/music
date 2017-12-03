@@ -97,14 +97,6 @@ public class Noise.App : Granite.Application {
     }
 
     /**
-     * We use this identifier to init everything inside the application.
-     * For instance: libnotify, etc.
-     */
-    public string get_id () {
-        return application_id;
-    }
-
-    /**
      * @return the application's brand name. Should be used for anything that requires
      * branding. For instance: Ubuntu's sound menu, dialog titles, etc.
      */

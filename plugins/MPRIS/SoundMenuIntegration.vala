@@ -40,7 +40,7 @@ public class Noise.SoundMenuIntegration : Object {
 		/* set up the server to connect to music.noise dbus */
 		var app = (Noise.App) GLib.Application.get_default ();
 		server = Indicate.Server.ref_default();
-		server.set ("type", "music" + "." + app.get_id ());
+		server.set ("type", "music" + "." + app.get_application_id ());
 		var desktop_file_path = GLib.Path.build_filename (Build.DATADIR, "applications",
 		                                                  app.get_desktop_file_name ());
 		server.set_desktop_file (desktop_file_path);
