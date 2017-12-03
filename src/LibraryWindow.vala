@@ -76,8 +76,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
 
     construct {
-        get_style_context ().add_class ("rounded");
-
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
         main_settings = Settings.Main.get_default ();
 
@@ -311,20 +309,20 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         view_container = new ViewContainer ();
         source_list_view = new SourceListView ();
 
-        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        main_hpaned.position = saved_state.sidebar_width;
-        main_hpaned.pack1 (source_list_view, false, false);
-        main_hpaned.pack2 (view_container, true, false);
-
-        statusbar = new Widgets.StatusBar (this);
+        statusbar = new Widgets.StatusBar ();
 
         var grid = new Gtk.Grid ();
         grid.orientation = Gtk.Orientation.VERTICAL;
-        grid.add (main_hpaned);
+        grid.add (source_list_view);
         grid.add (statusbar);
-        grid.show_all ();
 
-        add (grid);
+        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        main_hpaned.position = saved_state.sidebar_width;
+        main_hpaned.pack1 (grid, false, false);
+        main_hpaned.pack2 (view_container, true, false);
+        main_hpaned.show_all ();
+
+        add (main_hpaned);
         set_titlebar (headerbar);
 
         connect_to_sourcelist_signals ();

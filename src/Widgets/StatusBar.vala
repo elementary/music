@@ -32,17 +32,11 @@ namespace Noise.Widgets {
         public Gtk.Widget repeat_item { get; private set; default = new RepeatChooser (); }
         public Gtk.Widget equalizer_item { get; private set; default = new EqualizerChooser (); }
 
-        public StatusBar (LibraryWindow lw) {
+        public StatusBar () {
             pack_start (playlist_item);
             pack_start (shuffle_item);
             pack_start (repeat_item);
             pack_end (equalizer_item);
-        }
-
-        public void set_info (string message) {
-            set_center_widget (null);
-            set_center_widget (new Gtk.Label (message));
-            this.show_all ();
         }
 
         public void update_sensitivities () {
