@@ -24,35 +24,32 @@
  * statement from your version.
  */
 
-[ModuleInit]
-public void peas_register_types (TypeModule module) {
-    var objmodule = module as Peas.ObjectModule;
-    objmodule.register_extension_type (typeof (Peas.Activatable), typeof (Noise.Plugins.MPRISPlugin));
+public class Noise.SoundMenuIntegration : Object {
+	private uint watch;
+	private Indicate.Server server;
+
+	public void initialize () {
+		watch = Bus.watch_name(BusType.SESSION,
+		                      "org.ayatana.indicator.sound",
+		                      BusNameWatcherFlags.NONE,
+		                      on_name_appeared,
+		                      on_name_vanished);
+	}
+
+	private void on_name_appeared (DBusConnection conn, string name) {
+		/* set up the server to connect to music.noise dbus */
+		var app = (Noise.App) GLib.Application.get_default ();
+		server = Indicate.Server.ref_default();
+		server.set ("type", "music" + "." + app.get_id ());
+		var desktop_file_path = GLib.Path.build_filename (Build.DATADIR, "applications",
+		                                                  app.get_desktop_file_name ());
+		server.set_desktop_file (desktop_file_path);
+		server.show ();
+	}
+
+	private void on_name_vanished(DBusConnection conn, string name) {
+		if (server != null) {
+			server.hide();
+		}
+	}
 }
-
-public class Noise.Plugins.MPRISPlugin : Peas.ExtensionBase, Peas.Activatable {
-    public GLib.Object object { owned get; construct; }
-
-    private Interface plugins;
-    private Noise.MPRIS mpris;
-
-    public void activate () {
-        message ("Activating MPRIS plugin");
-
-        var value = Value (typeof (Object));
-        get_property ("object", ref value);
-        plugins = (Noise.Plugins.Interface)value.get_object();
-
-        mpris = new Noise.MPRIS ();
-        mpris.initialize ();
-    }
-
-    public void deactivate () {
-        // nothing to do
-    }
-
-    public void update_state () {
-        // nothing to do
-    }
-}
-
