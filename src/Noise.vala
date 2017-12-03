@@ -95,19 +95,4 @@ public class Noise.App : Granite.Application {
 
         main_window.present ();
     }
-
-    /**
-     * @return the application's brand name. Should be used for anything that requires
-     * branding. For instance: Ubuntu's sound menu, dialog titles, etc.
-     */
-    public string get_name () {
-        return program_name;
-    }
-
-    /**
-     * @return the application's desktop file name.
-     */
-    public string get_desktop_file_name () {
-        return app_launcher;
-    }
 }
