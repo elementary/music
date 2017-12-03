@@ -57,7 +57,6 @@ public class Noise.TopDisplay : Gtk.Stack {
         track_label = make_title_label ();
 
         time_grid = new Gtk.Grid ();
-        time_grid.row_spacing = 6;
         time_grid.attach (track_label, 0, 0, 3, 1);
         time_grid.attach (seek_bar, 1, 1, 1, 1);
         time_eventbox = new Gtk.EventBox ();
