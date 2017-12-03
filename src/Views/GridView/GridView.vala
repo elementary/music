@@ -29,6 +29,7 @@
 
 public class Noise.GridView : ContentView, ViewTextOverlay {
     private Gdk.Pixbuf fallback_pixbuf;
+    private Gtk.Paned hpaned;
     private FastGrid icon_view;
 
     private static PopupListView? _popup = null;
@@ -36,13 +37,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         get {
             if (_popup == null) {
                 _popup = new PopupListView (this);
-                _popup.focus_out_event.connect ( () => {
-                    if (_popup.visible && App.main_window.has_focus) {
-                        _popup.show_all ();
-                        _popup.present ();
-                    }
-                    return false;
-                });
+                hpaned.pack2 (_popup, false, false);
             }
 
             return _popup;
@@ -66,7 +61,10 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         scroll.add (icon_view);
 
-        add (scroll);
+        hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        hpaned.pack1 (scroll, true, false);
+
+        add (hpaned);
         show_all ();
 
         message = Markup.escape_text (_("No Albums Found."));
@@ -176,10 +174,6 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         focus_blacklist.add (App.main_window.searchField);
         focus_blacklist.add (App.main_window.source_list_view);
         focus_blacklist.add (App.main_window.statusbar);
-
-        App.main_window.viewSelector.mode_changed.connect ( () => {
-            popup_list_view.hide ();
-        });
 
         foreach (var w in focus_blacklist) {
             w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
@@ -335,7 +329,6 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         popup_list_view.set_parent_wrapper (this.parent_view_wrapper);
         popup_list_view.set_album (album);
         popup_list_view.show_all ();
-        popup_list_view.present ();
     }
 
     protected GLib.Icon? get_icon (Object o) {
