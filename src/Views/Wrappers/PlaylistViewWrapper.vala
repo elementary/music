@@ -29,7 +29,6 @@
 public class Noise.PlaylistViewWrapper : ViewWrapper {
     public TreeViewSetup tvs { get; construct set; }
     public signal void button_clicked (Playlist p);
-    private Gtk.Action[] actions = null;
     private string message_head;
     private string message_body;
 
@@ -39,7 +38,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
     construct {
         list_view = new ListView (this, tvs);
-        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
+        embedded_alert = new Granite.Widgets.AlertView ("", "", "");
 
         // Refresh view layout
         pack_views ();
@@ -56,17 +55,11 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                 message_body = _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>.");
                 break;
             case Hint.SMART_PLAYLIST:
-                var action = new Gtk.Action ("smart-playlist-rules-edit",
-                                             _("Edit Smart Playlist"),
-                                             null,
-                                             null);
-                // Connect to the 'activate' signal
-                action.activate.connect (() => {
+                embedded_alert.show_action (_("Edit Smart Playlist"));
+
+                embedded_alert.action_activated.connect (() => {
                     button_clicked (playlist);
                 });
-
-                actions = new Gtk.Action[1];
-                actions[0] = action;
 
                 message_head = _("No Songs");
                 message_body = _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below.");
@@ -115,7 +108,9 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         // show alert if there's no media
         assert (has_embedded_alert);
 
-        embedded_alert.set_alert (message_head, message_body, actions, true, Gtk.MessageType.INFO);
+        embedded_alert.icon_name = "dialog-information";
+        embedded_alert.title = message_head;
+        embedded_alert.description = message_body;
     }
 
     private async void on_playlist_media_added (Gee.Collection<Media> to_add) {
