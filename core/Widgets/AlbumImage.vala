@@ -45,9 +45,8 @@ public class Noise.Widgets.AlbumImage : Gtk.Grid {
         style_context.add_class ("album");
 
         image = new Gtk.Image ();
-        image.height_request = 128;
-        image.width_request = 128;
-        image.pixel_size = 128;
+        image.height_request = 64;
+        image.width_request = 64;
 
         halign = Gtk.Align.CENTER;
         valign = Gtk.Align.CENTER;
@@ -69,5 +68,6 @@ public class Noise.Widgets.AlbumImage : Gtk.Grid {
 
     public override void get_preferred_height_for_width (int width, out int minimum_height, out int natural_height) {
         minimum_height = natural_height = width;
+        image.pixel_size = width;
     }
 }

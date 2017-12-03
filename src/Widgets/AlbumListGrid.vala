@@ -58,7 +58,9 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
     construct {
         album_cover = new Widgets.AlbumImage ();
-        album_cover.margin = 12;
+        album_cover.width_request = 184;
+        album_cover.margin = 28;
+        album_cover.margin_bottom = 12;
 
         var cover_event_box = new Gtk.EventBox ();
         cover_event_box.add (album_cover);
