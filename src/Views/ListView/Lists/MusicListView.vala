@@ -58,18 +58,16 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
 
 public class Noise.MusicListView : GenericList {
     //for media list right click
-    Gtk.Menu mediaActionMenu;
-    Gtk.MenuItem mediaEditMedia;
-    Gtk.MenuItem mediaFileBrowse;
-    Gtk.MenuItem mediaMenuContractorEntry; // make menu on fly
-    Gtk.MenuItem mediaTopSeparator;
-    Gtk.MenuItem mediaMenuQueue;
-    Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
-    Granite.Widgets.RatingMenuItem mediaRateMedia;
-    Gtk.MenuItem mediaRemove;
-    Gtk.MenuItem importToLibrary;
-    Gtk.MenuItem mediaScrollToCurrent;
-    Gtk.MenuItem mediaScrollToCurrentSeparator;
+    Gtk.Menu media_action_menu;
+    Gtk.MenuItem media_edit_media;
+    Gtk.MenuItem media_file_browse;
+    Gtk.MenuItem media_menu_contractor_entry; // make menu on fly
+    Gtk.MenuItem media_menu_queue;
+    Gtk.MenuItem media_menu_add_to_playlist; // make menu on fly
+    Granite.Widgets.RatingMenuItem media_rate_media;
+    Gtk.MenuItem media_remove;
+    Gtk.MenuItem import_to_library;
+    Gtk.MenuItem media_scroll_to_current;
 
     /**
      * for sort_id use 0+ for normal, -1 for auto, -2 for none
@@ -84,109 +82,73 @@ public class Noise.MusicListView : GenericList {
         set_compare_func (view_compare_func);
 
         // Don't reorder the queue
-        /*if (playlist == App.player.queue_playlist) {
-            set_sort_column_id (-2, Gtk.SortType.DESCENDING);
+        /*if (playlist != App.player.queue_playlist) {
+            set_sort_column_id (1, Gtk.SortType.DESCENDING);
         }*/
 
-        build_ui ();
-    }
+        button_release_event.connect(view_click_release);
 
-    public override void update_sensitivities () {
-        mediaActionMenu.show_all();
+        media_scroll_to_current = new Gtk.MenuItem.with_label(_("Scroll to Current Song"));
+        media_scroll_to_current.sensitive = false;
+        media_scroll_to_current.activate.connect(media_scroll_to_current_requested);
+        
+        media_edit_media = new Gtk.MenuItem.with_label(_("Edit Song Info"));
+        media_edit_media.activate.connect(media_menu_edit_clicked);
+        
+        media_file_browse = new Gtk.MenuItem.with_label(_("Show in File Browser"));
+        media_file_browse.activate.connect(media_file_browse_clicked);
+        
+        media_menu_contractor_entry = new Gtk.MenuItem.with_label(_("Other actions"));
+        
+        media_menu_queue = new Gtk.MenuItem.with_label(C_("Action item (verb)", "Queue"));
+        media_menu_queue.activate.connect(media_menu_queue_clicked);
+        
+        media_menu_add_to_playlist = new Gtk.MenuItem.with_label(_("Add to Playlist"));
+        
+        media_remove = new Gtk.MenuItem.with_label(_("Remove Song"));
+        media_remove.activate.connect(mediaRemoveClicked);
+        
+        import_to_library = new Gtk.MenuItem.with_label(_("Import to Library"));
+        import_to_library.activate.connect(import_to_library_clicked);
+        
+        media_rate_media = new Granite.Widgets.RatingMenuItem ();
+        media_rate_media.activate.connect(media_rate_media_clicked);
 
-        if (hint == ViewWrapper.Hint.MUSIC) {
-            mediaRemove.set_label(_("Remove from Library"));
-            importToLibrary.set_visible(false);
-        } else if (hint == ViewWrapper.Hint.PLAYLIST) {
-            importToLibrary.set_visible(false);
-        } else if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-            importToLibrary.set_visible(false);
-            if (playlist == App.player.queue_playlist) {
-                mediaRemove.set_label(_("Remove from Queue"));
-                mediaMenuQueue.set_visible(false);
-            } else {
-                mediaRemove.set_visible(false);
-            }
-        } else if (hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-            mediaRemove.set_visible(false);
-            importToLibrary.set_visible(false);
-        } else if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
-            mediaEditMedia.set_visible(false);
-            mediaRemove.set_label(_("Remove from Device"));
-            if (parent_wrapper.library.support_playlists () == false) {
-                mediaMenuAddToPlaylist.set_visible(false);
-            }
-        } else {
-            mediaRemove.set_visible(false);
-            importToLibrary.set_visible(false);
-        }
-    }
-
-    public void build_ui () {
-        button_release_event.connect(viewClickRelease);
-
-        mediaScrollToCurrent = new Gtk.MenuItem.with_label(_("Scroll to Current Song"));
-        mediaScrollToCurrent.sensitive = false;
-        mediaScrollToCurrentSeparator = new Gtk.SeparatorMenuItem ();
-        mediaTopSeparator = new Gtk.SeparatorMenuItem ();
-        mediaEditMedia = new Gtk.MenuItem.with_label(_("Edit Song Info"));
-        mediaFileBrowse = new Gtk.MenuItem.with_label(_("Show in File Browser"));
-        mediaMenuContractorEntry = new Gtk.MenuItem.with_label(_("Other actions"));
-        mediaMenuQueue = new Gtk.MenuItem.with_label(C_("Action item (verb)", "Queue"));
-        mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label(_("Add to Playlist"));
-        mediaRemove = new Gtk.MenuItem.with_label(_("Remove Song"));
-        importToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
-        mediaRateMedia = new Granite.Widgets.RatingMenuItem ();
-
-        mediaActionMenu = new Gtk.Menu ();
-        mediaActionMenu.attach_to_widget (this, null);
-
+        media_action_menu = new Gtk.Menu ();
+        media_action_menu.attach_to_widget (this, null);
         if(hint != ViewWrapper.Hint.ALBUM_LIST) {
-            //mediaActionMenu.append(browseSame);
-            mediaActionMenu.append(mediaScrollToCurrent);
-            mediaActionMenu.append(mediaScrollToCurrentSeparator);
+            //media_action_menu.append(browseSame);
+            media_action_menu.append(media_scroll_to_current);
+            media_action_menu.append(new Gtk.SeparatorMenuItem ());
         }
-
         var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
         if (read_only == false) {
-            mediaActionMenu.append(mediaEditMedia);
+            media_action_menu.append(media_edit_media);
         }
-
-        mediaActionMenu.append(mediaFileBrowse);
-        mediaActionMenu.append(mediaMenuContractorEntry);
+        media_action_menu.append(media_file_browse);
+        media_action_menu.append(media_menu_contractor_entry);
         if (read_only == false) {
-            mediaActionMenu.append(mediaRateMedia);
+            media_action_menu.append(media_rate_media);
         }
-
-        mediaActionMenu.append(mediaTopSeparator);
-        mediaActionMenu.append(mediaMenuQueue);
+        media_action_menu.append(new Gtk.SeparatorMenuItem ());
+        media_action_menu.append(media_menu_queue);
         if (read_only == false) {
-            mediaActionMenu.append(mediaMenuAddToPlaylist);
+            media_action_menu.append(media_menu_add_to_playlist);
         }
-
         if (hint != ViewWrapper.Hint.SMART_PLAYLIST &&
             hint != ViewWrapper.Hint.ALBUM_LIST &&
             hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-                mediaActionMenu.append (new Gtk.SeparatorMenuItem ());
+                media_action_menu.append (new Gtk.SeparatorMenuItem ());
         }
-
-        mediaActionMenu.append(mediaRemove);
-        mediaActionMenu.append(importToLibrary);
-
-        mediaEditMedia.activate.connect(mediaMenuEditClicked);
-        mediaFileBrowse.activate.connect(mediaFileBrowseClicked);
-        mediaMenuQueue.activate.connect(mediaMenuQueueClicked);
-        mediaRemove.activate.connect(mediaRemoveClicked);
-        importToLibrary.activate.connect(importToLibraryClicked);
-        mediaRateMedia.activate.connect(mediaRateMediaClicked);
-        mediaScrollToCurrent.activate.connect(media_scroll_to_current_requested);
+        media_action_menu.append(media_remove);
+        media_action_menu.append(import_to_library);
 
         App.player.playback_stopped.connect (() => {
-            mediaScrollToCurrent.sensitive = false;
+            media_scroll_to_current.sensitive = false;
         });
 
         App.player.playback_started.connect (() => {
-            mediaScrollToCurrent.sensitive = true;
+            media_scroll_to_current.sensitive = true;
         });
 
         headers_visible = hint != ViewWrapper.Hint.ALBUM_LIST;
@@ -195,13 +157,44 @@ public class Noise.MusicListView : GenericList {
         update_sensitivities ();
     }
 
+    public override void update_sensitivities () {
+        media_action_menu.show_all();
+
+        if (hint == ViewWrapper.Hint.MUSIC) {
+            media_remove.set_label(_("Remove from Library"));
+            import_to_library.set_visible(false);
+        } else if (hint == ViewWrapper.Hint.PLAYLIST) {
+            import_to_library.set_visible(false);
+        } else if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
+            import_to_library.set_visible(false);
+            if (playlist == App.player.queue_playlist) {
+                media_remove.set_label(_("Remove from Queue"));
+                media_menu_queue.set_visible(false);
+            } else {
+                media_remove.set_visible(false);
+            }
+        } else if (hint == ViewWrapper.Hint.SMART_PLAYLIST) {
+            media_remove.set_visible(false);
+            import_to_library.set_visible(false);
+        } else if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
+            media_edit_media.set_visible(false);
+            media_remove.set_label(_("Remove from Device"));
+            if (parent_wrapper.library.support_playlists () == false) {
+                media_menu_add_to_playlist.set_visible(false);
+            }
+        } else {
+            media_remove.set_visible(false);
+            import_to_library.set_visible(false);
+        }
+    }
+
     public void popup_media_menu (Gee.Collection<Media> selection) {
         // Create add-to-playlist menu
-        var addToPlaylistMenu = new Gtk.Menu ();
+        var add_to_playlist_menu = new Gtk.Menu ();
 
         var mediaMenuNewPlaylist = new Gtk.MenuItem.with_label(_("New Playlist…"));
-        mediaMenuNewPlaylist.activate.connect(mediaMenuNewPlaylistClicked);
-        addToPlaylistMenu.append (mediaMenuNewPlaylist);
+        mediaMenuNewPlaylist.activate.connect(media_menu_new_playlist_clicked);
+        add_to_playlist_menu.append (mediaMenuNewPlaylist);
         if (parent_wrapper.library.support_playlists () == false) {
             mediaMenuNewPlaylist.set_visible(false);
         }
@@ -214,15 +207,15 @@ public class Noise.MusicListView : GenericList {
                 continue;
 
             var playlist_item = new Gtk.MenuItem.with_label (playlist.name);
-            addToPlaylistMenu.append (playlist_item);
+            add_to_playlist_menu.append (playlist_item);
 
             playlist_item.activate.connect (() => {
                 playlist.add_medias (selection.read_only_view);
             });
         }
 
-        addToPlaylistMenu.show_all ();
-        mediaMenuAddToPlaylist.submenu = addToPlaylistMenu;
+        add_to_playlist_menu.show_all ();
+        media_menu_add_to_playlist.submenu = add_to_playlist_menu;
 
         // if all medias are downloaded already, desensitize.
         // if half and half, change text to 'Download %external of %total'
@@ -235,13 +228,13 @@ public class Noise.MusicListView : GenericList {
         }
 
         if (temporary_count < 1) {
-            importToLibrary.set_sensitive (false);
+            import_to_library.set_sensitive (false);
         } else {
-            importToLibrary.set_sensitive (true);
+            import_to_library.set_sensitive (true);
             if (temporary_count != total_count)
-                importToLibrary.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
+                import_to_library.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
             else
-                importToLibrary.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
+                import_to_library.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
         }
 
         int set_rating = -1;
@@ -254,11 +247,11 @@ public class Noise.MusicListView : GenericList {
             }
         }
 
-        mediaRateMedia.rating_value = set_rating;
+        media_rate_media.rating_value = set_rating;
 
         //remove the previous "Other Actions" submenu and create a new one
         var contractorSubMenu = new Gtk.Menu ();
-        mediaMenuContractorEntry.submenu = contractorSubMenu;
+        media_menu_contractor_entry.submenu = contractorSubMenu;
 
         try {
             var files = new Gee.HashSet<File> (); //for automatic deduplication
@@ -285,14 +278,14 @@ public class Noise.MusicListView : GenericList {
                 contractorSubMenu.append (menu_item);
             }
 
-            mediaMenuContractorEntry.sensitive = contractorSubMenu.get_children ().length () > 0;
+            media_menu_contractor_entry.sensitive = contractorSubMenu.get_children ().length () > 0;
             contractorSubMenu.show_all ();
         } catch (Error err) {
             warning ("Failed to obtain Contractor actions: %s", err.message);
-            mediaMenuContractorEntry.sensitive = false;
+            media_menu_contractor_entry.sensitive = false;
         }
 
-        mediaActionMenu.popup (null, null, null, 3, Gtk.get_current_event_time());
+        media_action_menu.popup (null, null, null, 3, Gtk.get_current_event_time());
     }
 
     public override bool button_press_event (Gdk.EventButton event) {
@@ -344,7 +337,7 @@ public class Noise.MusicListView : GenericList {
     }
 
     /* button_release_event */
-    private bool viewClickRelease(Gtk.Widget sender, Gdk.EventButton event) {
+    private bool view_click_release(Gtk.Widget sender, Gdk.EventButton event) {
         /* if we were dragging, then set dragging to false */
         if (dragging && event.button == 1) {
             dragging = false;
@@ -368,7 +361,7 @@ public class Noise.MusicListView : GenericList {
     }
 
     /** media menu popup clicks **/
-    void mediaMenuEditClicked () {
+    void media_menu_edit_clicked () {
         var to_edit_med = new Gee.TreeSet<Media> ();
         to_edit_med.add_all (get_selected_medias ());
 
@@ -387,7 +380,7 @@ public class Noise.MusicListView : GenericList {
         }
     }
 
-    protected void mediaFileBrowseClicked () {
+    protected void media_file_browse_clicked () {
         foreach (Media m in get_selected_medias ()) {
             try {
                 Gtk.show_uri (null, m.file.get_parent ().get_uri (), Gdk.CURRENT_TIME);
@@ -399,19 +392,19 @@ public class Noise.MusicListView : GenericList {
         }
     }
 
-    protected virtual void mediaMenuQueueClicked () {
+    protected virtual void media_menu_queue_clicked () {
         App.player.queue_medias (get_selected_medias ().read_only_view);
     }
 
-    protected virtual void mediaMenuNewPlaylistClicked () {
+    protected virtual void media_menu_new_playlist_clicked () {
         var p = new StaticPlaylist ();
         p.add_medias (get_selected_medias ().read_only_view);
         p.name = PlaylistsUtils.get_new_playlist_name (parent_wrapper.library.get_playlists ());
         parent_wrapper.library.add_playlist (p);
     }
 
-    protected void mediaRateMediaClicked () {
-        int new_rating = mediaRateMedia.rating_value;
+    protected void media_rate_media_clicked () {
+        int new_rating = media_rate_media.rating_value;
         var selected = get_selected_medias ().read_only_view;
         foreach (Media m in selected) {
             m.rating = new_rating;
@@ -435,7 +428,7 @@ public class Noise.MusicListView : GenericList {
         }
     }
 
-    void importToLibraryClicked () {
+    void import_to_library_clicked () {
         import_requested (get_selected_medias ().read_only_view);
     }
 
