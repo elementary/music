@@ -27,8 +27,10 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.GridView : ContentView, GridLayout {
-    // The window used to present album contents
+public class Noise.GridView : ContentView, ViewTextOverlay {
+    private Gdk.Pixbuf fallback_pixbuf;
+    private FastGrid icon_view;
+
     private static PopupListView? _popup = null;
     public PopupListView popup_list_view {
         get {
@@ -47,18 +49,113 @@ public class Noise.GridView : ContentView, GridLayout {
         }
     }
 
-    private Gdk.Pixbuf fallback_pixbuf;
+    public ViewWrapper parent_view_wrapper { get; protected set; }
 
     public GridView (ViewWrapper view_wrapper) {
-        base (view_wrapper);
+        Object (parent_view_wrapper: view_wrapper);
+
+        icon_view = new FastGrid ();
+        icon_view.set_compare_func (compare_func);
+        icon_view.set_columns (-1);
+        icon_view.drag_begin.connect_after (on_drag_begin);
+        icon_view.drag_data_get.connect (on_drag_data_get);
+        icon_view.item_activated.connect (on_item_activated);
+        icon_view.set_search_func (search_func);
+
+        var scroll = new Gtk.ScrolledWindow (null, null);
+        scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+        scroll.add (icon_view);
+
+        add (scroll);
+        show_all ();
+
         message = Markup.escape_text (_("No Albums Found."));
+
+        clear_objects ();
         reset_pixbufs ();
+
         notify["scale-factor"].connect (() => {
             reset_pixbufs ();
             queue_resize ();
         });
 
         setup_focus ();
+
+        parent_view_wrapper.library.search_finished.connect (() => {this.icon_view.research_needed = true;});
+
+        Gtk.TargetEntry te = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
+        Gtk.drag_source_set (icon_view, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
+    }
+
+    protected void set_research_needed (bool value) {
+        this.icon_view.research_needed = value;
+    }
+    
+    protected void add_objects (Gee.Collection<Object> objects) {
+        icon_view.add_objects (objects);
+    }
+
+    protected void do_search () {
+        icon_view.do_search ();
+    }
+
+    protected void remove_objects (Gee.Collection<Object> objects) {
+        icon_view.remove_objects (objects);
+    }
+
+    protected void clear_objects () {
+        icon_view.set_table (new Gee.HashMap<int, Album> (), true);
+    }
+
+    protected Gee.Collection<Object> get_objects () {
+        return icon_view.get_table ().values;
+    }
+
+    protected Gee.Collection<Object> get_visible_objects () {
+        return icon_view.get_visible_table ().values;
+    }
+
+    private void on_item_activated (Gtk.TreePath? path) {
+        if (path == null)
+            item_activated (null);
+
+        var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
+        item_activated (obj);
+    }
+
+    private void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
+        debug ("drag begin");
+
+        var selected_items = icon_view.get_selected_items ();
+
+        if (selected_items.length () > 0)  {
+            var path = selected_items.nth_data (0);
+            var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
+            var drag_icon = get_icon (obj);
+            Gtk.drag_set_icon_gicon (context, drag_icon, 0, 0);
+        }
+    }
+
+    private void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+        string[] uris = null;
+
+        var selected_items = icon_view.get_selected_items ();
+
+        if (selected_items.length () <= 0)
+            return;
+
+        // this code assumes only 1 item can be selected at a time
+        var path = selected_items.nth_data (0);
+        var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
+
+        if (obj == null)
+            return;
+
+        foreach (var m in get_selected_media (obj))
+            uris += m.uri;
+
+        if (uris != null)
+            selection_data.set_uris (uris);
     }
 
     public void reset_pixbufs () {
@@ -129,31 +226,6 @@ public class Noise.GridView : ContentView, GridLayout {
 
     public void refilter () {
         do_search ();
-    }
-
-    public string get_statusbar_text () {
-        uint total_items = get_visible_objects ().size;
-
-        if (total_items < 1)
-            return "";
-
-        var all_visible_media = get_visible_media ();
-
-        uint64 total_size = 0, total_time = 0;
-
-        foreach (var media in all_visible_media) {
-            if (media != null) {
-                total_time += media.length;
-                total_size += media.file_size;
-            }
-        }
-
-        string media_description = ngettext ("%u album", "%u albums", total_items).printf (total_items);
-        string time_text = TimeUtils.time_string_from_miliseconds (total_time);
-        string size_text = format_size (total_size);
-
-        var statusbar_format = _(FULL_STATUSBAR_FORMAT);
-        return statusbar_format.printf (media_description, time_text, size_text);
     }
 
     public void update_media (Gee.Collection<Media> media) {
@@ -248,7 +320,7 @@ public class Noise.GridView : ContentView, GridLayout {
         return -1;
     }
 
-    protected override void item_activated (Object? object) {
+    protected void item_activated (Object? object) {
         if (!App.main_window.initialization_finished)
             return;
 
@@ -289,13 +361,13 @@ public class Noise.GridView : ContentView, GridLayout {
         popup_list_view.present ();
     }
 
-    protected override GLib.Icon? get_icon (Object o) {
+    protected GLib.Icon? get_icon (Object o) {
         var album = o as Album;
         return_val_if_fail (album != null, null);
         return album.cover_icon;
     }
 
-    protected override int compare_func (Object o_a, Object o_b) {
+    protected int compare_func (Object o_a, Object o_b) {
         var album_a = o_a as Album;
         var album_b = o_b as Album;
 
@@ -317,8 +389,7 @@ public class Noise.GridView : ContentView, GridLayout {
         return order;
     }
 
-
-    protected override void search_func (Gee.HashMap<int, Object> showing) {
+    protected void search_func (Gee.HashMap<int, Object> showing) {
         message_visible = false;
         var result = parent_view_wrapper.library.get_search_result ();
         var albums = new Gee.TreeSet<Album> ();
@@ -336,7 +407,7 @@ public class Noise.GridView : ContentView, GridLayout {
         }
     }
 
-    protected override Gee.Collection<Media> get_selected_media (Object obj) {
+    protected Gee.Collection<Media> get_selected_media (Object obj) {
         var album = obj as Album;
         return_val_if_fail (album != null, null);
 
