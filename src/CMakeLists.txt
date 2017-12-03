@@ -39,7 +39,6 @@ set(CLIENT_SOURCE
     Views/DeviceSummaryWidget.vala
     Views/ContentView.vala
     Views/ViewTextOverlay.vala
-    Views/GridView/GridLayout.vala
     Views/GridView/GridView.vala
     Views/GridView/PopupListView.vala
     Views/ListView/ListView.vala
