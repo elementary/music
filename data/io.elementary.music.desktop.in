@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-_Name=@APP_NAME@
+_Name=Music
 _GenericName=Music Player
 _Comment=Listen to music
 Exec=noise %U
