@@ -30,7 +30,6 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
     public ViewWrapper parent_view_wrapper { get; protected set; }
 
     private FastGrid icon_view;
-    private Gtk.ScrolledWindow scroll;
 
     public GridLayout (ViewWrapper view_wrapper) {
         Object (parent_view_wrapper: view_wrapper);
@@ -45,7 +44,7 @@ public abstract class Noise.GridLayout : ViewTextOverlay {
         icon_view.item_activated.connect (on_item_activated);
         icon_view.set_search_func (search_func);
 
-        scroll = new Gtk.ScrolledWindow (null, null);
+        var scroll = new Gtk.ScrolledWindow (null, null);
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         scroll.add (icon_view);
 
