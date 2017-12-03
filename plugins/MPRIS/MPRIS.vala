@@ -103,7 +103,7 @@ public class MprisRoot : GLib.Object {
     
     public string Identity {
         owned get {
-            return ((Noise.App) GLib.Application.get_default ()).get_name ();
+            return ((Noise.App) GLib.Application.get_default ()).program_name;
         }
     }
     

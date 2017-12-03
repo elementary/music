@@ -227,7 +227,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             maximize ();
         }
 
-        title = ((Noise.App) GLib.Application.get_default ()).get_name ();
+        title = ((Noise.App) GLib.Application.get_default ()).program_name;
         icon_name = "multimedia-audio-player";
 
         // set up drag dest stuff
@@ -290,7 +290,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.pack_start (viewSelector);
         headerbar.pack_end (menu_button);
         headerbar.pack_end (searchField);
-        headerbar.set_title (((Noise.App) GLib.Application.get_default ()).get_name ());
+        headerbar.set_title (((Noise.App) GLib.Application.get_default ()).program_name);
         headerbar.set_custom_title (top_display);
         headerbar.show_all ();
 
@@ -1164,7 +1164,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void doAlert(string title, string message) {
         var dialog = new Gtk.MessageDialog (this, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "%s", title);
 
-        dialog.title = ((Noise.App) GLib.Application.get_default ()).get_name ();
+        dialog.title = ((Noise.App) GLib.Application.get_default ()).program_name;
         dialog.secondary_text = message;
         dialog.secondary_use_markup = true;
 
