@@ -5,6 +5,7 @@
 
 You'll need the following dependencies:
 * cmake
+* cmake-elementary
 * libaccounts-glib-dev
 * libclutter-gtk-1.0-dev
 * libdbusmenu-glib-dev
