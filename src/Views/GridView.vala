@@ -29,20 +29,15 @@
 
 public class Noise.GridView : ContentView, ViewTextOverlay {
     private Gdk.Pixbuf fallback_pixbuf;
+    private Gtk.Paned hpaned;
     private FastGrid icon_view;
 
-    private static PopupListView? _popup = null;
-    public PopupListView popup_list_view {
+    private static AlbumListGrid? _popup = null;
+    public AlbumListGrid popup_list_view {
         get {
             if (_popup == null) {
-                _popup = new PopupListView (this);
-                _popup.focus_out_event.connect ( () => {
-                    if (_popup.visible && App.main_window.has_focus) {
-                        _popup.show_all ();
-                        _popup.present ();
-                    }
-                    return false;
-                });
+                _popup = new AlbumListGrid (parent_view_wrapper);
+                hpaned.pack2 (_popup, false, false);
             }
 
             return _popup;
@@ -66,7 +61,10 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         scroll.add (icon_view);
 
-        add (scroll);
+        hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        hpaned.pack1 (scroll, true, false);
+
+        add (hpaned);
         show_all ();
 
         message = Markup.escape_text (_("No Albums Found."));
@@ -177,16 +175,8 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         focus_blacklist.add (App.main_window.source_list_view);
         focus_blacklist.add (App.main_window.statusbar);
 
-        App.main_window.viewSelector.mode_changed.connect ( () => {
-            popup_list_view.hide ();
-        });
-
         foreach (var w in focus_blacklist) {
             w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-            w.button_press_event.connect ( () => {
-                popup_list_view.hide ();
-                return false;
-            });
         }
     }
 
@@ -332,33 +322,9 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         var album = object as Album;
         return_if_fail (album != null);
 
-        popup_list_view.set_parent_wrapper (this.parent_view_wrapper);
+        popup_list_view.view_wrapper = parent_view_wrapper;
         popup_list_view.set_album (album);
-
-        // find window's location
-        int x, y;
-        Gtk.Allocation alloc;
-        App.main_window.get_position (out x, out y);
-        get_allocation (out alloc);
-
-        // move down to icon view's allocation
-        x += App.main_window.main_hpaned.position;
-        y += alloc.y;
-
-        int window_width = 0;
-        int window_height = 0;
-        
-        popup_list_view.get_size (out window_width, out window_height);
-
-        // center it on this icon view
-        x += (alloc.width - window_width) / 2;
-        y += (alloc.height - window_height) / 2 + 60;
-
-        bool was_visible = popup_list_view.visible;
-        if (!was_visible)
-            popup_list_view.move (x, y);
         popup_list_view.show_all ();
-        popup_list_view.present ();
     }
 
     protected GLib.Icon? get_icon (Object o) {
