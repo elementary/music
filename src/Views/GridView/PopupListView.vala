@@ -60,65 +60,56 @@ public class Noise.PopupListView : Gtk.Dialog {
         delete_event.connect (hide_on_delete);
         App.main_window.close_subwindows.connect (() => { hide_on_delete (); });
 
-        // cover
         album_cover = new Widgets.AlbumImage ();
-        album_cover.margin_left = 12;
 
-        Gtk.EventBox cover_event_box = new Gtk.EventBox ();
+        var cover_event_box = new Gtk.EventBox ();
         cover_event_box.add (album_cover);
 
-        cover_action_menu = new Gtk.Menu ();
         cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
         cover_set_new.activate.connect (() => { set_new_cover (); });
 
+        cover_action_menu = new Gtk.Menu ();
         cover_action_menu.append (cover_set_new);
         cover_action_menu.show_all ();
 
         cover_event_box.button_press_event.connect (show_cover_context_menu);
 
-        // album artist/album labels
-        artist_label = new Gtk.Label (null);
-        artist_label.hexpand = true;
-        artist_label.get_style_context ().add_class ("h1");
-        artist_label.wrap = true;
-        artist_label.margin_end = 12;
-        artist_label.valign = Gtk.Align.END;
-        artist_label.set_max_width_chars (30);
-
-        album_label = new Gtk.Label (null);
-        album_label.hexpand = true;
-        album_label.get_style_context ().add_class ("h2");
+        album_label = new Gtk.Label ("");
+        album_label.halign = Gtk.Align.START;
+        album_label.max_width_chars = 30;
         album_label.wrap = true;
-        album_label.margin_end = 12;
-        album_label.valign = Gtk.Align.START;
-        album_label.set_max_width_chars (30);
+        album_label.xalign = 0;
+        album_label.get_style_context ().add_class ("h2");
 
-        // Music List
+        artist_label = new Gtk.Label ("");
+        artist_label.halign = Gtk.Align.START;
+        artist_label.max_width_chars = 30;
+        artist_label.wrap = true;
+        artist_label.xalign = 0;
+
         var tvs = new TreeViewSetup (ViewWrapper.Hint.ALBUM_LIST);
         list_view = new MusicListView (view_wrapper, tvs);
         list_view.set_search_func (view_search_func);
         list_view.expand = true;
+
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
         list_view_scrolled.add (list_view);
 
-        // Rating widget
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
-        // customize rating
         rating.star_spacing = 12;
         rating.margin_top = 12;
         rating.margin_bottom = 6;
 
-        // Add everything
-        var content = get_content_area () as Gtk.Box;
         var grid = new Gtk.Grid ();
         grid.row_spacing = 6;
         grid.column_spacing = 12;
+        grid.attach (cover_event_box, 0, 0, 1, 1);
+        grid.attach (album_label, 0, 1, 1, 1);
+        grid.attach (artist_label, 0, 2, 1, 1);
+        grid.attach (list_view_scrolled, 0, 3, 1, 1);
+        grid.attach (rating, 0, 4, 1, 1);
 
-        grid.attach (cover_event_box, 0, 0, 1, 2);
-        grid.attach (artist_label, 1, 0, 1, 1);
-        grid.attach (album_label, 1, 1, 1, 1);
-        grid.attach (list_view_scrolled, 0, 2, 2, 1);
-        grid.attach (rating, 0, 3, 2, 1);
+        var content = get_content_area () as Gtk.Box;
         content.add (grid);
 
         rating.rating_changed.connect (rating_changed);
