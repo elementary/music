@@ -74,7 +74,7 @@ public class Noise.PopupListView : Gtk.Grid {
 
         album_label = new Gtk.Label ("");
         album_label.halign = Gtk.Align.START;
-        album_label.margin_start = artist_label.margin_end = 28;
+        album_label.margin_start = album_label.margin_end = 28;
         album_label.max_width_chars = 30;
         album_label.wrap = true;
         album_label.xalign = 0;
