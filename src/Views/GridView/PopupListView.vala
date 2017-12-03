@@ -28,7 +28,17 @@
  */
 
 public class Noise.PopupListView : Gtk.Grid {
-    public ViewWrapper view_wrapper { get; construct set; }
+    private ViewWrapper _view_wrapper;
+    public ViewWrapper view_wrapper {
+        get {
+            return _view_wrapper;
+        }
+        construct set {
+            list_view.parent_wrapper = value;
+            _view_wrapper = value;
+        }
+    }
+
     Widgets.AlbumImage album_cover;
     Gtk.Label album_label;
     Gtk.Label artist_label;
@@ -123,11 +133,6 @@ public class Noise.PopupListView : Gtk.Grid {
             cover_action_menu.popup (null, null, null, evt.button, evt.time);
 
         return true;
-    }
-
-    public void set_parent_wrapper (ViewWrapper parent_wrapper) {
-        view_wrapper = parent_wrapper;
-        list_view.parent_wrapper = parent_wrapper;
     }
 
     public void set_album (Album album) {

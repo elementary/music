@@ -177,10 +177,6 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
         foreach (var w in focus_blacklist) {
             w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-            w.button_press_event.connect ( () => {
-                popup_list_view.hide ();
-                return false;
-            });
         }
     }
 
@@ -326,7 +322,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         var album = object as Album;
         return_if_fail (album != null);
 
-        popup_list_view.set_parent_wrapper (this.parent_view_wrapper);
+        popup_list_view.view_wrapper = parent_view_wrapper;
         popup_list_view.set_album (album);
         popup_list_view.show_all ();
     }
