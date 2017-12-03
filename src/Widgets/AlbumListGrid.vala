@@ -27,8 +27,18 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.PopupListView : Gtk.Dialog {
-    public ViewWrapper view_wrapper { get; construct set; }
+public class Noise.AlbumListGrid : Gtk.Grid {
+    private ViewWrapper _view_wrapper;
+    public ViewWrapper view_wrapper {
+        get {
+            return _view_wrapper;
+        }
+        construct set {
+            list_view.parent_wrapper = value;
+            _view_wrapper = value;
+        }
+    }
+
     Widgets.AlbumImage album_cover;
     Gtk.Label album_label;
     Gtk.Label artist_label;
@@ -42,21 +52,13 @@ public class Noise.PopupListView : Gtk.Dialog {
     Album album;
     Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
 
-    public PopupListView (GridView grid_view) {
-        Object (view_wrapper: grid_view.parent_view_wrapper);
+    public AlbumListGrid (ViewWrapper view_wrapper) {
+        Object (view_wrapper: view_wrapper);
     }
 
     construct {
-        destroy_with_parent = true;
-        skip_taskbar_hint = true;
-        set_default_size (500, 550);
-        set_transient_for (App.main_window);
-        window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
-
-        delete_event.connect (hide_on_delete);
-        App.main_window.close_subwindows.connect (() => { hide_on_delete (); });
-
         album_cover = new Widgets.AlbumImage ();
+        album_cover.margin = 12;
 
         var cover_event_box = new Gtk.EventBox ();
         cover_event_box.add (album_cover);
@@ -72,7 +74,7 @@ public class Noise.PopupListView : Gtk.Dialog {
 
         album_label = new Gtk.Label ("");
         album_label.halign = Gtk.Align.START;
-        album_label.margin_start = artist_label.margin_end = 28;
+        album_label.margin_start = album_label.margin_end = 28;
         album_label.max_width_chars = 30;
         album_label.wrap = true;
         album_label.xalign = 0;
@@ -93,22 +95,18 @@ public class Noise.PopupListView : Gtk.Dialog {
         list_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
 
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
-        list_view_scrolled.margin_top = list_view_scrolled.margin_bottom = 12;
+        list_view_scrolled.margin_top = 18;
         list_view_scrolled.add (list_view);
 
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
         rating.star_spacing = 12;
+        rating.margin_bottom = rating.margin_top = 12;
 
-        var grid = new Gtk.Grid ();
-        grid.row_spacing = 6;
-        grid.attach (cover_event_box, 0, 0, 1, 1);
-        grid.attach (album_label, 0, 1, 1, 1);
-        grid.attach (artist_label, 0, 2, 1, 1);
-        grid.attach (list_view_scrolled, 0, 3, 1, 1);
-        grid.attach (rating, 0, 4, 1, 1);
-
-        var content = get_content_area () as Gtk.Box;
-        content.add (grid);
+        attach (cover_event_box, 0, 0, 1, 1);
+        attach (album_label, 0, 1, 1, 1);
+        attach (artist_label, 0, 2, 1, 1);
+        attach (list_view_scrolled, 0, 3, 1, 1);
+        attach (rating, 0, 4, 1, 1);
 
         rating.rating_changed.connect (rating_changed);
     }
@@ -117,8 +115,6 @@ public class Noise.PopupListView : Gtk.Dialog {
      * Resets the window
      */
     public void reset () {
-        // clear labels
-        set_title ("");
         album_label.set_label ("");
         artist_label.set_label ("");
 
@@ -139,20 +135,12 @@ public class Noise.PopupListView : Gtk.Dialog {
         return true;
     }
 
-    public void set_parent_wrapper (ViewWrapper parent_wrapper) {
-        view_wrapper = parent_wrapper;
-        list_view.parent_wrapper = parent_wrapper;
-    }
-
     public void set_album (Album album) {
         reset ();
         this.album = album;
         lock (media_list) {
             string name = album.get_display_name ();
             string artist = album.get_display_artist ();
-
-            string title_format = C_("Title format used on Album View Popup: $ALBUM by $ARTIST", "%s by %s");
-            set_title (title_format.printf (name, artist));
 
             album_label.set_label (name);
             artist_label.set_label (artist);
@@ -250,7 +238,7 @@ public class Noise.PopupListView : Gtk.Dialog {
     }
 
     private void set_new_cover () {
-        var file = new Gtk.FileChooserDialog (_("Open"), this, Gtk.FileChooserAction.OPEN,
+        var file = new Gtk.FileChooserDialog (_("Open"), null, Gtk.FileChooserAction.OPEN,
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
 
         var image_filter = new Gtk.FileFilter ();
