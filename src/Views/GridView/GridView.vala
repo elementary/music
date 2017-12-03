@@ -53,9 +53,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
     public GridView (ViewWrapper view_wrapper) {
         Object (parent_view_wrapper: view_wrapper);
-    }
 
-    construct {
         icon_view = new FastGrid ();
         icon_view.set_compare_func (compare_func);
         icon_view.set_columns (-1);
