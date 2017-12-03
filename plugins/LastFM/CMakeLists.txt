@@ -16,8 +16,6 @@ vala_precompile(LAST_FM_VALA_C ${TARGET_NAME}
     Tag.vala
     SimilarMedia.vala
     SimilarMediaView.vala
-    SimilarMediaWidget.vala
-    LoveBanButtons.vala
 PACKAGES
     ${DEPS_PACKAGES}
     json-glib-1.0

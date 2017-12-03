@@ -26,31 +26,3 @@ set(GENERIC_IMAGES
 )
 
 install (FILES ${GENERIC_IMAGES} DESTINATION ${ICON_DIR})
-
-# location of the fallback icon theme
-set (FALLBACK_THEME_DIR ${ICON_DIR}/hicolor)
-
-set (STATUS_16
-  icons/16x16/status/media-playlist-no-repeat-symbolic.svg
-  icons/16x16/status/process-completed-symbolic.svg
-  icons/16x16/status/process-error-symbolic.svg
-)
-
-set (ACTIONS_16
-  icons/16x16/actions/pane-show-symbolic.svg
-  icons/16x16/actions/pane-hide-symbolic.svg
-  icons/16x16/actions/media-eq-symbolic.svg
-  icons/16x16/actions/love.svg
-  icons/16x16/actions/ban.svg
-)
-
-set (MIMETYPES_16
-  icons/16x16/mimetypes/playlist.svg
-  icons/16x16/mimetypes/playlist-automatic.svg
-  icons/16x16/mimetypes/playlist-queue.svg
-  icons/16x16/mimetypes/library-music.svg
-)
-
-install (FILES ${STATUS_16} DESTINATION ${FALLBACK_THEME_DIR}/16x16/status)
-install (FILES ${ACTIONS_16} DESTINATION ${FALLBACK_THEME_DIR}/16x16/actions)
-install (FILES ${MIMETYPES_16} DESTINATION ${FALLBACK_THEME_DIR}/16x16/mimetypes)

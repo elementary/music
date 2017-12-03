@@ -46,11 +46,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public bool newly_created_playlist      { get; set; default = false; }
 
-
-    /* Main layout widgets */
-    private Gtk.Paned     view_container_hpaned; // view_container / info_panel
-    public InfoPanel      info_panel;
-
     private Gtk.Button previous_button;
     private Gtk.Button play_button;
     private Gtk.Button next_button;
@@ -58,7 +53,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Gtk.Paned main_hpaned { get; private set; }
     public SourceListView source_list_view { get; private set; }
     public ViewContainer view_container { get; private set; }
-    public TopDisplay topDisplay { get; private set; }
+    public TopDisplay top_display { get; private set; }
     public Widgets.ViewSelector viewSelector { get; private set; }
     public Gtk.SearchEntry searchField { get; private set; }
     public Widgets.StatusBar statusbar { get; private set; }
@@ -67,7 +62,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.MenuItem import_menuitem;
 
     /* Window state properties */
-    private bool window_maximized = false;
     private int window_width = 0;
     private int window_height = 0;
     private Settings.Main main_settings;
@@ -81,8 +75,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
 
     construct {
-        get_style_context ().add_class ("rounded");
-
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
         main_settings = Settings.Main.get_default ();
 
@@ -228,18 +220,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         width_request = 400;
         window_position = Gtk.WindowPosition.CENTER;
 
-        // set the size based on saved settings
         var saved_state = Settings.SavedState.get_default ();
         set_default_size (saved_state.window_width, saved_state.window_height);
 
-        // Maximize window if necessary
-        switch (saved_state.window_state) {
-            case Settings.WindowState.MAXIMIZED:
-                window_maximized = true;
-                maximize ();
-                break;
-            default:
-                break;
+        if (saved_state.window_state == Settings.WindowState.MAXIMIZED) {
+            maximize ();
         }
 
         title = ((Noise.App) GLib.Application.get_default ()).get_name ();
@@ -254,7 +239,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         destroy.connect (on_quit);
 
         show ();
-        debug ("done with main window");
     }
 
     private inline void build_main_widgets () {
@@ -294,9 +278,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         viewSelector.margin_right = 6;
         viewSelector.valign = Gtk.Align.CENTER;
 
-        topDisplay = new TopDisplay ();
-        topDisplay.margin_left = 30;
-        topDisplay.margin_right = 30;
+        top_display = new TopDisplay ();
+        top_display.margin_left = 30;
+        top_display.margin_right = 30;
 
         var headerbar = new Gtk.HeaderBar ();
         headerbar.show_close_button = true;
@@ -307,36 +291,29 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.pack_end (menu_button);
         headerbar.pack_end (searchField);
         headerbar.set_title (((Noise.App) GLib.Application.get_default ()).get_name ());
-        headerbar.set_custom_title (topDisplay);
+        headerbar.set_custom_title (top_display);
         headerbar.show_all ();
 
         // Set properties of various controls
         var saved_state = Settings.SavedState.get_default ();
-        int view_container_pos = saved_state.window_width - saved_state.sidebar_width - saved_state.more_width;
 
         view_container = new ViewContainer ();
         source_list_view = new SourceListView ();
-        info_panel = new InfoPanel ();
 
-        view_container_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        view_container_hpaned.set_position (view_container_pos);
-        view_container_hpaned.pack1 (view_container, true, false);
-        view_container_hpaned.pack2 (info_panel, false, false);
-
-        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        main_hpaned.position = saved_state.sidebar_width;
-        main_hpaned.pack1 (source_list_view, false, false);
-        main_hpaned.pack2 (view_container_hpaned, true, false);
-
-        statusbar = new Widgets.StatusBar (this);
+        statusbar = new Widgets.StatusBar ();
 
         var grid = new Gtk.Grid ();
         grid.orientation = Gtk.Orientation.VERTICAL;
-        grid.add (main_hpaned);
+        grid.add (source_list_view);
         grid.add (statusbar);
-        grid.show_all ();
 
-        add (grid);
+        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        main_hpaned.position = saved_state.sidebar_width;
+        main_hpaned.pack1 (grid, false, false);
+        main_hpaned.pack2 (view_container, true, false);
+        main_hpaned.show_all ();
+
+        add (main_hpaned);
         set_titlebar (headerbar);
 
         connect_to_sourcelist_signals ();
@@ -517,7 +494,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         viewSelector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.get_default ().view_mode;
 
         //rescan music folder for changes made while application not running
-        library_manager.rescan_music_folder();
+        library_manager.rescan_music_folder ();
         initialization_finished = true;
 
         // Set the focus on the current view
@@ -643,7 +620,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Add Music Library View
         var music_tvs = new TreeViewSetup (ViewWrapper.Hint.MUSIC, "library:main", library_manager.connection);
-        var music_view_wrapper = new MusicViewWrapper (music_tvs, library_manager, topDisplay);
+        var music_view_wrapper = new MusicViewWrapper (music_tvs, library_manager, top_display);
         int view_number = view_container.add_view (music_view_wrapper);
         var entry = source_list_view.add_item (view_number, _("Music"), ViewWrapper.Hint.MUSIC, new ThemedIcon ("library-music"));
         match_playlist_entry.set (library_manager.p_music, entry);
@@ -705,9 +682,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         if(!media_active || have_media && !App.player.playing)
             play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-
-        bool show_info_panel = Settings.SavedState.get_default ().more_visible && info_panel.can_show_up;
-        info_panel.set_visible (show_info_panel);
 
         statusbar.update_sensitivities ();
     }
@@ -932,7 +906,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      */
     public void media_played (Media m) {
         //reset the media position
-        topDisplay.set_media (App.player.current_media);
+        top_display.update_media ();
 
         //reset some booleans
         tested_for_video = false;
@@ -1038,7 +1012,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 notify_current_media_async.begin ();
             }
         } else {
-            topDisplay.change_value (Gtk.ScrollType.NONE, 0);
+            top_display.change_value (Gtk.ScrollType.NONE, 0);
         }
     }
 
@@ -1219,18 +1193,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             main_settings.search_string = searchField.text;
         }
 
-        // Save info pane (context pane) width
-        saved_state.more_width = info_panel.get_allocated_width ();
-
-        // Save sidebar width
         saved_state.sidebar_width = main_hpaned.position;
 
-
-        // Save window state
-        if (window_maximized)
+        if (is_maximized) {
             saved_state.window_state = Settings.WindowState.MAXIMIZED;
-        else
+        } else {
             saved_state.window_state = Settings.WindowState.NORMAL;
+        }
 
         saved_state.window_width = window_width;
         saved_state.window_height = window_height;
@@ -1289,11 +1258,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public override bool configure_event (Gdk.EventConfigure event) {
-        // Get window dimensions.
-        window_maximized = (get_window ().get_state () == Gdk.WindowState.MAXIMIZED);
-
-        if (window_maximized == false)
+        if (is_maximized == false) {
             get_size (out window_width, out window_height);
+        }
 
         return base.configure_event (event);
     }
