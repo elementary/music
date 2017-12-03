@@ -49,6 +49,7 @@ public class Noise.PopupListView : Gtk.Dialog {
     construct {
         destroy_with_parent = true;
         skip_taskbar_hint = true;
+        set_default_size (500, 550);
         set_transient_for (App.main_window);
         window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 
@@ -71,33 +72,35 @@ public class Noise.PopupListView : Gtk.Dialog {
 
         album_label = new Gtk.Label ("");
         album_label.halign = Gtk.Align.START;
+        album_label.margin_start = artist_label.margin_end = 28;
         album_label.max_width_chars = 30;
         album_label.wrap = true;
         album_label.xalign = 0;
-        album_label.get_style_context ().add_class ("h2");
+        album_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
         artist_label = new Gtk.Label ("");
         artist_label.halign = Gtk.Align.START;
+        artist_label.margin_start = artist_label.margin_end = 28;
         artist_label.max_width_chars = 30;
         artist_label.wrap = true;
         artist_label.xalign = 0;
+        artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
         var tvs = new TreeViewSetup (ViewWrapper.Hint.ALBUM_LIST);
         list_view = new MusicListView (view_wrapper, tvs);
-        list_view.set_search_func (view_search_func);
         list_view.expand = true;
+        list_view.set_search_func (view_search_func);
+        list_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
 
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
+        list_view_scrolled.margin_top = list_view_scrolled.margin_bottom = 12;
         list_view_scrolled.add (list_view);
 
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
         rating.star_spacing = 12;
-        rating.margin_top = 12;
-        rating.margin_bottom = 6;
 
         var grid = new Gtk.Grid ();
         grid.row_spacing = 6;
-        grid.column_spacing = 12;
         grid.attach (cover_event_box, 0, 0, 1, 1);
         grid.attach (album_label, 0, 1, 1, 1);
         grid.attach (artist_label, 0, 2, 1, 1);
