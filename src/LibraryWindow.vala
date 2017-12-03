@@ -62,7 +62,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.MenuItem import_menuitem;
 
     /* Window state properties */
-    private bool window_maximized = false;
     private int window_width = 0;
     private int window_height = 0;
     private Settings.Main main_settings;
@@ -221,18 +220,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         width_request = 400;
         window_position = Gtk.WindowPosition.CENTER;
 
-        // set the size based on saved settings
         var saved_state = Settings.SavedState.get_default ();
         set_default_size (saved_state.window_width, saved_state.window_height);
 
-        // Maximize window if necessary
-        switch (saved_state.window_state) {
-            case Settings.WindowState.MAXIMIZED:
-                window_maximized = true;
-                maximize ();
-                break;
-            default:
-                break;
+        if (saved_state.window_state == Settings.WindowState.MAXIMIZED) {
+            maximize ();
         }
 
         title = ((Noise.App) GLib.Application.get_default ()).get_name ();
@@ -247,7 +239,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         destroy.connect (on_quit);
 
         show ();
-        debug ("done with main window");
     }
 
     private inline void build_main_widgets () {
@@ -1202,15 +1193,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             main_settings.search_string = searchField.text;
         }
 
-        // Save sidebar width
         saved_state.sidebar_width = main_hpaned.position;
 
-
-        // Save window state
-        if (window_maximized)
+        if (is_maximized) {
             saved_state.window_state = Settings.WindowState.MAXIMIZED;
-        else
+        } else {
             saved_state.window_state = Settings.WindowState.NORMAL;
+        }
 
         saved_state.window_width = window_width;
         saved_state.window_height = window_height;
@@ -1269,11 +1258,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public override bool configure_event (Gdk.EventConfigure event) {
-        // Get window dimensions.
-        window_maximized = (get_window ().get_state () == Gdk.WindowState.MAXIMIZED);
-
-        if (window_maximized == false)
+        if (is_maximized == false) {
             get_size (out window_width, out window_height);
+        }
 
         return base.configure_event (event);
     }
