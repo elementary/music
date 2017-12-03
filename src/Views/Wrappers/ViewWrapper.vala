@@ -69,7 +69,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public ListView list_view { get; protected set; }
     public GridView grid_view { get; protected set; }
-    protected Granite.Widgets.EmbeddedAlert embedded_alert { get; set; }
+    protected Granite.Widgets.AlertView embedded_alert { get; set; }
     protected Granite.Widgets.Welcome welcome_screen { get; set; }
 
     public bool has_grid_view { get { return grid_view != null; } }
@@ -250,8 +250,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             if (App.main_window.viewSelector.selected != (int)last_used_view && (int)last_used_view <= 1)
                 App.main_window.viewSelector.selected = (Widgets.ViewSelector.Mode)last_used_view;
         }
-
-        update_statusbar_info ();
     }
 
     public void view_selector_changed () {
@@ -304,29 +302,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         update_visible_media ();
         check_have_media ();
         update_library_window_widgets ();
-    }
-
-    protected string get_statusbar_text () {
-        string status_text = "";
-
-        // Get data based on the current view
-        if (current_view == ViewType.GRID) {
-            if (has_grid_view)
-                status_text = grid_view.get_statusbar_text ();
-        } else if (current_view == ViewType.LIST) {
-            if (has_list_view)
-                status_text = list_view.get_statusbar_text ();
-        }
-
-        return status_text;
-    }
-
-    public void update_statusbar_info () {
-        if (!is_current_wrapper)
-            return;
-
-        debug ("updating statusbar info [%s]", hint.to_string ());
-        App.main_window.statusbar.set_info (get_statusbar_text ());
     }
 
     private void search_field_changed () {
@@ -436,12 +411,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
                 grid_view.refilter ();
             }
         }
-
-        update_statusbar_info ();
     }
 
     protected virtual void set_no_media_alert () {
-        embedded_alert.set_alert (_("No media"), "", null, true, Gtk.MessageType.INFO);
+        embedded_alert.icon_name = "dialog-information";
+        embedded_alert.title = _("No media");
     }
 
     public async void set_media_async (Gee.Collection<Media> new_media) {

@@ -30,14 +30,12 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
     public TreeViewSetup tvs;
     private string message_head;
     private string message_body;
-    private Gtk.MessageType message_type;
 
     public CDViewWrapper (Noise.StaticPlaylist p) {
         base (ViewWrapper.Hint.READ_ONLY_PLAYLIST, libraries_manager.local_library);
         tvs = new TreeViewSetup (ViewWrapper.Hint.PLAYLIST);
         message_head = _("An Error Occured");
         message_body = _("There was an error while loading this Audio CD.");
-        message_type = Gtk.MessageType.ERROR;
 
         build_async.begin (p);
         p.media_added.connect (on_playlist_media_added);
@@ -52,7 +50,7 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
         yield;
 
         list_view = new ListView (this, tvs, false);
-        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
+        embedded_alert = new Granite.Widgets.AlertView ("", "", "");
 
         // Refresh view layout
         pack_views ();
@@ -63,17 +61,18 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
 
     }
 
-    public void set_no_media_alert_message (string head, string body, Gtk.MessageType? type = Gtk.MessageType.INFO) {
+    public void set_no_media_alert_message (string head, string body) {
         message_head = head;
         message_body = body;
-        message_type = type;
     }
 
     protected override void set_no_media_alert () {
         // show alert if there's no media
         assert (has_embedded_alert);
 
-        embedded_alert.set_alert (message_head, message_body, null, true, message_type);
+        embedded_alert.icon_name = "dialog-error";
+        embedded_alert.title = message_head;
+        embedded_alert.description = message_body;
     }
 
     private async void on_playlist_media_added (Gee.Collection<Media> to_add) {

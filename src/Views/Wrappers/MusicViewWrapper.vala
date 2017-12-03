@@ -66,7 +66,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         welcome_screen.activated.connect (welcome_screen_activated);
         _devices = new Gee.HashMap<Device, int> ();
 
-        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
+        embedded_alert = new Granite.Widgets.AlertView ("", "", "");
         
         // Drag n drop in welcome widget
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
