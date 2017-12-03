@@ -42,9 +42,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Gtk.Image device_image;
     SpaceWidget space_widget;
 
-    int files_index;
-    int music_index;
-
     public DeviceSummaryWidget (Device d, DevicePreferences preferences) {
         this.dev = d;
         this.preferences = preferences;
@@ -84,12 +81,14 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         music_list = new Gtk.ListStore (3, typeof (GLib.Object), typeof (string), typeof (GLib.Icon));
 
         device_image = new Gtk.Image.from_gicon (dev.get_icon (), Gtk.IconSize.DIALOG);
+
         space_widget = new SpaceWidget (dev.get_capacity());
+        space_widget.valign = Gtk.Align.END;
 
         setup_lists ();
 
-        files_index = space_widget.add_item (_("Other Files"), 0, SpaceWidget.ItemColor.GREEN);
-        music_index = space_widget.add_item (_("Music"), 0, SpaceWidget.ItemColor.BLUE);
+        space_widget.storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, 0);
+        space_widget.storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, 0);
 
         refresh_space_widget ();
 
@@ -170,8 +169,8 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         }
         other_files_size = dev.get_used_space () - music_size;
 
-        space_widget.update_item_size (music_index, music_size);
-        space_widget.update_item_size (files_index, other_files_size);
+        space_widget.storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, other_files_size);
+        space_widget.storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, music_size);
     }
 
     private void setup_lists() {
