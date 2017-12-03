@@ -74,10 +74,6 @@ public class Noise.App : Granite.Application {
         if (main_window == null) {
             libraries_manager = new LibrariesManager ();
 
-            // Load icon information. Needed until vala supports initialization of static
-            // members. See https://bugzilla.gnome.org/show_bug.cgi?id=543189
-            Icons.init ();
-
             library_manager = new LocalLibrary ();
             player = new PlaybackManager ();
             library_manager.initialize_library ();

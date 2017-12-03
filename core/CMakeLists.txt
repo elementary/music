@@ -40,10 +40,9 @@ set (CORE_SOURCE
   Utils/CompareFunctionHolder.vala
   Utils/Utils.vala
   Utils/PlaylistsUtils.vala
-  Utils/Icon.vala
-  Utils/Icons.vala
   Utils/Search.vala
   Utils/PixbufUtils.vala
+  Utils/Icon.vala
   GStreamer/Pipeline.vala
   GStreamer/Equalizer.vala
   GStreamer/Playback.vala
