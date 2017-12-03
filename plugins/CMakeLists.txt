@@ -10,7 +10,6 @@ if (BUILD_PLUGINS AND BUILD_SHARED_LIBS)
   include_directories (${CMAKE_BINARY_DIR}/src)
 
   add_subdirectory (Devices)
-  add_subdirectory (LastFM)
   add_subdirectory (MPRIS)
 else ()
   message ("-- Plugins disabled")
