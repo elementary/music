@@ -28,8 +28,6 @@
  */
 
 public class Noise.PopupListView : Gtk.Dialog {
-    public const int MIN_SIZE = 500;
-
     public ViewWrapper view_wrapper { get; construct set; }
     Widgets.AlbumImage album_cover;
     Gtk.Label album_label;
@@ -49,9 +47,6 @@ public class Noise.PopupListView : Gtk.Dialog {
     }
 
     construct {
-        // window stuff
-        has_resize_grip = false;
-        resizable = false;
         destroy_with_parent = true;
         skip_taskbar_hint = true;
         set_transient_for (App.main_window);
@@ -128,9 +123,6 @@ public class Noise.PopupListView : Gtk.Dialog {
         list_view.get_selection ().unselect_all (); // Unselect rows
         media_list.clear ();
         list_view.set_media (media_list);
-
-        // Reset size request
-        set_size (MIN_SIZE);
 
         if (album != null) {
             album.notify["cover-icon"].disconnect (update_album_cover);
@@ -269,24 +261,5 @@ public class Noise.PopupListView : Gtk.Dialog {
         }
 
         file.destroy ();
-    }
-
-    /**
-     * Force squared layout
-     */
-    public void set_size (int size) {
-        set_size_request (size, -1);
-        queue_resize ();
-    }
-
-    public override Gtk.SizeRequestMode get_request_mode () {
-        return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
-    }
-
-    public override void get_preferred_height_for_width (int width,
-                                                         out int minimum_height,
-                                                         out int natural_height)
-    {
-        minimum_height = natural_height = width;
     }
 }
