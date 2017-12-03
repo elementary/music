@@ -334,29 +334,6 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
         popup_list_view.set_parent_wrapper (this.parent_view_wrapper);
         popup_list_view.set_album (album);
-
-        // find window's location
-        int x, y;
-        Gtk.Allocation alloc;
-        App.main_window.get_position (out x, out y);
-        get_allocation (out alloc);
-
-        // move down to icon view's allocation
-        x += App.main_window.main_hpaned.position;
-        y += alloc.y;
-
-        int window_width = 0;
-        int window_height = 0;
-        
-        popup_list_view.get_size (out window_width, out window_height);
-
-        // center it on this icon view
-        x += (alloc.width - window_width) / 2;
-        y += (alloc.height - window_height) / 2 + 60;
-
-        bool was_visible = popup_list_view.visible;
-        if (!was_visible)
-            popup_list_view.move (x, y);
         popup_list_view.show_all ();
         popup_list_view.present ();
     }
