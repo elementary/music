@@ -29,6 +29,7 @@
 namespace Noise.TimeUtils {
     public const uint64 NANO_INV = 1000000000;
     public const uint64 MILI_INV = 1000;
+    public const uint64 SEC_INV = 1;
 
     public const uint SECONDS_PER_MINUTE = 60;
     public const uint SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE;
@@ -176,5 +177,13 @@ namespace Noise.TimeUtils {
 
     public inline uint64 miliseconds_to_nanoseconds (uint miliseconds) {
         return (uint64) miliseconds * NANO_INV / MILI_INV;
+    }
+
+    public inline uint nanoseconds_to_seconds (uint64 nanoseconds) {
+        return (uint) (nanoseconds * SEC_INV / NANO_INV);
+    }
+
+    public inline uint64 seconds_to_nanoseconds (uint64 seconds) {
+        return (uint64) (seconds * NANO_INV / SEC_INV);
     }
 }

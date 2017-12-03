@@ -53,7 +53,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Gtk.Paned main_hpaned { get; private set; }
     public SourceListView source_list_view { get; private set; }
     public ViewContainer view_container { get; private set; }
-    public TopDisplay topDisplay { get; private set; }
+    public TopDisplay top_display { get; private set; }
     public Widgets.ViewSelector viewSelector { get; private set; }
     public Gtk.SearchEntry searchField { get; private set; }
     public Widgets.StatusBar statusbar { get; private set; }
@@ -278,9 +278,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         viewSelector.margin_right = 6;
         viewSelector.valign = Gtk.Align.CENTER;
 
-        topDisplay = new TopDisplay ();
-        topDisplay.margin_left = 30;
-        topDisplay.margin_right = 30;
+        top_display = new TopDisplay ();
+        top_display.margin_left = 30;
+        top_display.margin_right = 30;
 
         var headerbar = new Gtk.HeaderBar ();
         headerbar.show_close_button = true;
@@ -291,7 +291,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.pack_end (menu_button);
         headerbar.pack_end (searchField);
         headerbar.set_title (((Noise.App) GLib.Application.get_default ()).get_name ());
-        headerbar.set_custom_title (topDisplay);
+        headerbar.set_custom_title (top_display);
         headerbar.show_all ();
 
         // Set properties of various controls
@@ -620,7 +620,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Add Music Library View
         var music_tvs = new TreeViewSetup (ViewWrapper.Hint.MUSIC, "library:main", library_manager.connection);
-        var music_view_wrapper = new MusicViewWrapper (music_tvs, library_manager, topDisplay);
+        var music_view_wrapper = new MusicViewWrapper (music_tvs, library_manager, top_display);
         int view_number = view_container.add_view (music_view_wrapper);
         var entry = source_list_view.add_item (view_number, _("Music"), ViewWrapper.Hint.MUSIC, new ThemedIcon ("library-music"));
         match_playlist_entry.set (library_manager.p_music, entry);
@@ -906,7 +906,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      */
     public void media_played (Media m) {
         //reset the media position
-        topDisplay.set_media (App.player.current_media);
+        top_display.update_media ();
 
         //reset some booleans
         tested_for_video = false;
@@ -1012,7 +1012,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 notify_current_media_async.begin ();
             }
         } else {
-            topDisplay.change_value (Gtk.ScrollType.NONE, 0);
+            top_display.change_value (Gtk.ScrollType.NONE, 0);
         }
     }
 
