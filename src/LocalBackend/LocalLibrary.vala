@@ -55,7 +55,7 @@ public class Noise.LocalLibrary : Library {
 
     public Gda.Connection connection { public get; private set; }
 
-    private const string DB_FILE = "database_0_3_1";
+    private const string DB_FILE = "database_0_3_2";
 
     construct {
         libraries_manager.local_library = this;
