@@ -118,9 +118,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             // make sure we don't re-count stats
             if (main_settings.last_media_position > 5)
                 media_considered_previewed = true;
-            if(main_settings.last_media_position > 30)
+            if (main_settings.last_media_position > 30)
                 media_considered_played = true;
-            if(App.player.current_media != null && (double)(main_settings.last_media_position/(double)App.player.current_media.length) > 0.90)
+            if (App.player.current_media != null && (double)(main_settings.last_media_position/(double)App.player.current_media.length) > 0.90)
                 added_to_play_count = true;
         }
     }
@@ -289,7 +289,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.item_action_activated.connect ((page_number) => {
             var view = view_container.get_view (page_number);
             if (view is DeviceView) {
-                ((DeviceView)view).d.eject();
+                ((DeviceView)view).d.eject ();
             }
         });
         source_list_view.edited.connect (playlist_name_edited);
@@ -326,8 +326,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         source_list_view.device_import_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
-                if(page_number == match_devices.get (device.get_unique_identifier())) {
-                    libraries_manager.transfer_to_local_library (device.get_library().get_medias ());
+                if (page_number == match_devices.get (device.get_unique_identifier ())) {
+                    libraries_manager.transfer_to_local_library (device.get_library ().get_medias ());
                     break;
                 }
             }
@@ -335,8 +335,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         source_list_view.device_new_playlist_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
-                if(page_number == match_devices.get (device.get_unique_identifier())) {
-                    create_new_playlist (device.get_library());
+                if (page_number == match_devices.get (device.get_unique_identifier ())) {
+                    create_new_playlist (device.get_library ());
                     break;
                 }
             }
@@ -344,7 +344,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         source_list_view.device_sync_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
-                if(page_number == match_devices.get (device.get_unique_identifier())) {
+                if (page_number == match_devices.get (device.get_unique_identifier ())) {
                     device.synchronize ();
                     break;
                 }
@@ -353,8 +353,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         source_list_view.device_eject_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
-                if(page_number == match_devices.get (device.get_unique_identifier())) {
-                    device.eject();
+                if (page_number == match_devices.get (device.get_unique_identifier ())) {
+                    device.eject ();
                     break;
                 }
             }
@@ -573,11 +573,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private void load_playlists () {
         debug ("Loading playlists");
 
-        foreach (SmartPlaylist p in library_manager.get_smart_playlists()) {
+        foreach (SmartPlaylist p in library_manager.get_smart_playlists ()) {
             add_smartplaylist (p);
         }
 
-        foreach (StaticPlaylist p in library_manager.get_playlists()) {
+        foreach (StaticPlaylist p in library_manager.get_playlists ()) {
             add_playlist (p);
         }
 
@@ -609,7 +609,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private void update_playlist_badge (Playlist playlist) {
         var entry = match_playlist_entry.get (playlist);
         int media_count = playlist.medias.size;
-        string new_badge = media_count > 0 ? media_count.to_string() : "";
+        string new_badge = media_count > 0 ? media_count.to_string () : "";
         entry.badge = new_badge;
     }
 
@@ -646,7 +646,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
 
-        if(!media_active || have_media && !App.player.playing)
+        if (!media_active || have_media && !App.player.playing)
             play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
 
         statusbar.update_sensitivities ();
@@ -656,18 +656,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * Devices
      */
     private void change_device_name (Device device) {
-        int page_number = match_devices.get (device.get_unique_identifier());
-        source_list_view.change_device_name (page_number, device.getDisplayName());
+        int page_number = match_devices.get (device.get_unique_identifier ());
+        source_list_view.change_device_name (page_number, device.getDisplayName ());
     }
 
     private void remove_device (Device device) {
-        if (!match_devices.has_key (device.get_unique_identifier()))
+        if (!match_devices.has_key (device.get_unique_identifier ()))
             return;
-        int page_number = match_devices.get (device.get_unique_identifier());
+        int page_number = match_devices.get (device.get_unique_identifier ());
         foreach (int number in source_list_view.remove_device(page_number)) {
             remove_view_and_update (number);
         }
-        match_devices.unset (device.get_unique_identifier());
+        match_devices.unset (device.get_unique_identifier ());
         remove_view_and_update (page_number);
     }
 
@@ -679,16 +679,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             int view_number = view_container.add_view (dv);
             match_devices.set (d.get_unique_identifier (), view_number);
             if (d.only_use_custom_view ()) {
-                message("new custom device (probably a CD) added with %d songs.\n", d.get_library ().get_medias().size);
+                message("new custom device (probably a CD) added with %d songs.\n", d.get_library ().get_medias ().size);
 
-                entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), new ThemedIcon ("media-eject-symbolic"), null, d);
+                entry = source_list_view.add_item  (view_number, d.getDisplayName (), ViewWrapper.Hint.DEVICE, d.get_icon (), new ThemedIcon ("media-eject-symbolic"), null, d);
             } else {
-                debug ("adding device view with %d\n", d.get_library ().get_medias().size);
+                debug ("adding device view with %d\n", d.get_library ().get_medias ().size);
                 var tvs = new TreeViewSetup (ViewWrapper.Hint.DEVICE_AUDIO);
                 var music_view_wrapper = new DeviceViewWrapper(tvs, d, d.get_library ());
 
                 int subview_number = view_container.add_view (music_view_wrapper);
-                entry = source_list_view.add_item  (view_number, d.getDisplayName(), ViewWrapper.Hint.DEVICE, d.get_icon(), new ThemedIcon ("media-eject-symbolic"), null, d);
+                entry = source_list_view.add_item  (view_number, d.getDisplayName (), ViewWrapper.Hint.DEVICE, d.get_icon (), new ThemedIcon ("media-eject-symbolic"), null, d);
                 source_list_view.add_item (subview_number, _("Music"), ViewWrapper.Hint.DEVICE_AUDIO, new ThemedIcon ("library-music"), null, entry as SourceListExpandableItem, d);
                 if (d.get_library ().support_playlists () == true) {
                     foreach (var p in d.get_library ().get_playlists ()) {
@@ -922,7 +922,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void play_media (bool inhibit_notifications = false) {
-        if(App.player.current_media == null) {
+        if (App.player.current_media == null) {
             debug("No media is currently playing. Starting from the top\n");
 
             App.player.get_next (true);
@@ -931,7 +931,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             if (!inhibit_notifications)
                 notify_current_media_async.begin ();
         } else {
-            if(App.player.playing) {
+            if (App.player.playing) {
                 App.player.pause_playback ();
             } else {
                 App.player.start_playback ();
@@ -943,7 +943,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public virtual void play_next_media (bool inhibit_notifications = false) {
         // if not 90% done, skip it
-        if(!added_to_play_count) {
+        if (!added_to_play_count) {
             App.player.current_media.skip_count++;
         }
 
@@ -980,7 +980,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void fileImportMusicClick () {
-        if(!library_manager.doing_file_operations()) {
+        if (!library_manager.doing_file_operations ()) {
 
             var folders = new Gee.TreeSet<string> ();
             var file_chooser = new Gtk.FileChooserDialog (_("Import Music"), this,
@@ -990,7 +990,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             file_chooser.set_select_multiple (true);
             file_chooser.set_local_only (true);
             if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-                foreach (var folder in file_chooser.get_filenames()) {
+                foreach (var folder in file_chooser.get_filenames ()) {
                     folders.add (folder);
                 }
             }
@@ -1010,7 +1010,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    public void editPreferencesClick() {
+    public void editPreferencesClick () {
         if (preferences == null)
             preferences = new PreferencesWindow ();
         preferences.show_all ();
@@ -1029,7 +1029,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (!library_manager.get_medias ().is_empty || library_manager.playlist_count_without_read_only () > 0) {
             var smfc = new SetMusicFolderConfirmation(folder);
             smfc.finished.connect( (cont) => {
-                if(cont) {
+                if (cont) {
                     library_manager.set_music_folder.begin (folder);
                 }
             });
@@ -1039,12 +1039,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    public virtual void end_of_stream() {
+    public virtual void end_of_stream () {
         play_next_media ();
     }
 
     public virtual void error_occured () {
-        if(App.player.current_media != null) {
+        if (App.player.current_media != null) {
             play_media ();
         }
     }
@@ -1056,37 +1056,37 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         double sec = ((double)position/1000000000);
         double media_length = ((double)App.player.current_media.length/1000);
 
-        if(App.player.file_player.set_resume_pos)
+        if (App.player.file_player.set_resume_pos)
             App.player.current_media.resume_pos = (int)sec;
 
         // at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
-        if(sec > 3 && !media_considered_previewed) {
+        if (sec > 3 && !media_considered_previewed) {
             media_considered_previewed = true;
             update_media_info (App.player.current_media);
         }
 
         //at 30 seconds in, we consider the media as played
-        if(sec > 30 && !media_considered_played) {
+        if (sec > 30 && !media_considered_played) {
             media_considered_played = true;
             App.player.current_media.last_played = (int)time_t ();
 
             library_manager.update_media (App.player.current_media, false, false);
 
             // add to the already played list
-            if(!App.player.history_playlist.medias.contains (App.player.current_media)) {
+            if (!App.player.history_playlist.medias.contains (App.player.current_media)) {
                 var temp_media = new Gee.TreeSet<Media>();
                 temp_media.add (App.player.current_media);
                 App.player.history_playlist.add_medias (temp_media);
             }
         }
 
-        if((sec/media_length > 0.50) && (media_half_played_sended == false)) {
+        if ((sec/media_length > 0.50) && (media_half_played_sended == false)) {
             media_half_played (App.player.current_media);
             media_half_played_sended = true;
         }
 
         // at 80% done with media, add 1 to play count
-        if(sec/media_length > 0.80 && !added_to_play_count) {
+        if (sec/media_length > 0.80 && !added_to_play_count) {
             added_to_play_count = true;
             App.player.current_media.play_count++;
             library_manager.update_media (App.player.current_media, false, false);
@@ -1097,7 +1097,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 // XXX FIXME TODO Don't depend on ids
 #if 0
         var not_found = new FileNotFoundDialog(library_manager, this, id);
-        not_found.show();
+        not_found.show ();
 #endif
     }
 
@@ -1131,8 +1131,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         dialog.secondary_text = message;
         dialog.secondary_use_markup = true;
 
-        dialog.run();
-        dialog.destroy();
+        dialog.run ();
+        dialog.destroy ();
     }
 
     private void on_quit () {
@@ -1140,12 +1140,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             // Save media position and info
             main_settings.last_media_position = (int)((double)App.player.player.get_position
             ()/TimeUtils.NANO_INV);
-            if(App.player.current_media != null) {
-                App.player.current_media.resume_pos = (int)((double)App.player.player.get_position()/TimeUtils.NANO_INV);
+            if (App.player.current_media != null) {
+                App.player.current_media.resume_pos = (int)((double)App.player.player.get_position ()/TimeUtils.NANO_INV);
                 library_manager.update_media (App.player.current_media, false, false);
             }
         }
-        App.player.player.pause();
+        App.player.player.pause ();
 
         // Now set the selected view
         var saved_state = Settings.SavedState.get_default ();
