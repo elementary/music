@@ -55,15 +55,19 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         var main_settings = Settings.Main.get_default ();
 
         var organize_folders_switch = new Gtk.Switch ();
+        organize_folders_switch.halign = Gtk.Align.START;
         main_settings.schema.bind("update-folder-hierarchy", organize_folders_switch, "active", SettingsBindFlags.DEFAULT);
 
         var write_file_metadata_switch = new Gtk.Switch ();
+        write_file_metadata_switch.halign = Gtk.Align.START;
         main_settings.schema.bind("write-metadata-to-file", write_file_metadata_switch, "active", SettingsBindFlags.DEFAULT);
 
         var copy_imported_music_switch = new Gtk.Switch ();
+        copy_imported_music_switch.halign = Gtk.Align.START;
         main_settings.schema.bind("copy-imported-music", copy_imported_music_switch, "active", SettingsBindFlags.DEFAULT);
 
         var hide_on_close_switch = new Gtk.Switch ();
+        hide_on_close_switch.halign = Gtk.Align.START;
         main_settings.schema.bind("close-while-playing", hide_on_close_switch, "active", SettingsBindFlags.INVERT_BOOLEAN);
 
         var layout = new Gtk.Grid ();
@@ -97,6 +101,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         public SettingsLabel (string text) {
             label = text;
             halign = Gtk.Align.END;
+            hexpand = true;
             margin_start = 12;
         }
     }
