@@ -26,29 +26,46 @@
 
 namespace Noise.Widgets {
     public class StatusBar : Gtk.ActionBar {
-        public Gtk.Widget playlist_item { get; private set; default = new AddPlaylistChooser (); }
+        private Gtk.MenuButton playlist_menubutton;
         public Gtk.Widget shuffle_item { get; private set; default = new ShuffleChooser (); }
         public Gtk.Widget repeat_item { get; private set; default = new RepeatChooser (); }
         public Gtk.Widget equalizer_item { get; private set; default = new EqualizerChooser (); }
 
-        construct {
-            pack_start (playlist_item);
+        public StatusBar () {
+            var add_pl_menuitem = new Gtk.MenuItem.with_label (_("Add Playlist"));
+            var add_spl_menuitem = new Gtk.MenuItem.with_label (_("Add Smart Playlist"));
+
+            var menu = new Gtk.Menu ();
+            menu.append (add_pl_menuitem);
+            menu.append (add_spl_menuitem);
+            menu.show_all ();
+
+            playlist_menubutton = new Gtk.MenuButton ();
+            playlist_menubutton.direction = Gtk.ArrowType.UP;
+            playlist_menubutton.margin_right = 12;
+            playlist_menubutton.popup = menu;
+            playlist_menubutton.tooltip_text = _("Add Playlist");
+            playlist_menubutton.add (new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU));
+            playlist_menubutton.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+
+            pack_start (playlist_menubutton);
             pack_start (shuffle_item);
             pack_start (repeat_item);
 
             pack_end (equalizer_item);
-            pack_end (info_panel_item);
-        }
 
-        public void set_info (string message) {
-            set_center_widget (null);
-            set_center_widget (new Gtk.Label (message));
-            show_all ();
+            add_pl_menuitem.activate.connect (() => {
+                App.main_window.create_new_playlist ();
+            });
+
+            add_spl_menuitem.activate.connect (() => {
+                App.main_window.show_smart_playlist_dialog ();
+            });
         }
 
         public void update_sensitivities () {
             var local_library = (LocalLibrary) libraries_manager.local_library;
-            playlist_item.set_sensitive (local_library.main_directory_set && local_library.get_medias ().size > 0);
+            playlist_menubutton.set_sensitive (local_library.main_directory_set && local_library.get_medias ().size > 0);
         }
     }
 
@@ -105,46 +122,6 @@ namespace Noise.Widgets {
 
             if ((int)Settings.Main.get_default ().shuffle_mode != val) {
                 App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val);
-            }
-        }
-    }
-
-    private class AddPlaylistChooser : Gtk.ToggleButton {
-        private Gtk.Menu menu;
-
-        construct {
-            margin_right = 12;
-
-            tooltip_text = _("Add Playlist");
-
-            relief = Gtk.ReliefStyle.NONE;
-
-            add (new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU));
-
-            var add_pl_menuitem = new Gtk.MenuItem.with_label (_("Add Playlist"));
-            var add_spl_menuitem = new Gtk.MenuItem.with_label (_("Add Smart Playlist"));
-
-            menu = new Gtk.Menu ();
-            menu.append (add_pl_menuitem);
-            menu.append (add_spl_menuitem);
-            menu.show_all ();
-
-            menu.attach_widget = this;
-
-            add_pl_menuitem.activate.connect (() => {
-                App.main_window.create_new_playlist ();
-            });
-
-            add_spl_menuitem.activate.connect (() => {
-                App.main_window.show_smart_playlist_dialog ();
-            });
-        }
-
-        public override void toggled () {
-            if (menu.visible) {
-                menu.popdown ();
-            } else {
-                menu.popup (null, null, null, Gdk.BUTTON_PRIMARY, Gtk.get_current_event_time ());
             }
         }
     }
