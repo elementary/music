@@ -101,6 +101,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         public SettingsLabel (string text) {
             label = text;
             halign = Gtk.Align.END;
+            hexpand = true;
             margin_start = 12;
         }
     }
