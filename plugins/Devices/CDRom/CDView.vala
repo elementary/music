@@ -64,10 +64,9 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         }
 
         album_image = new Widgets.AlbumImage ();
-        album_image.gicon = new ThemedIcon ("albumart");
+        album_image.image.gicon = new ThemedIcon ("albumart");
         album_image.halign = Gtk.Align.CENTER;
         album_image.valign = Gtk.Align.CENTER;
-        album_image.set_alignment(0.5f, 1);
 
         title = new Gtk.Label ("");
         title.set_alignment(0.5f, 1);
@@ -134,7 +133,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     private void load_cover () {
         var cover_icon = cd_playlist[0].album_info.cover_icon;
         if (cover_icon != null) {
-            album_image.gicon = cover_icon;
+            album_image.image.gicon = cover_icon;
         }
     }
 
