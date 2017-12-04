@@ -45,7 +45,6 @@ set (CORE_SOURCE
   GStreamer/Equalizer.vala
   GStreamer/Playback.vala
   Widgets/AlbumImage.vala
-  Widgets/SettingsWidgets.vala
 )
 
 if  (BUILD_SHARED_LIBS)
