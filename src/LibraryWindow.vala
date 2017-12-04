@@ -1244,7 +1244,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      */
     public static bool minimize_on_close () {
         bool minimize_on_close = false;
-        string? current_shell = Utils.get_desktop_shell ();
+        string? current_shell = Environment.get_variable ("XDG_CURRENT_DESKTOP");
 
         if (current_shell != null) {
             debug ("Current shell: %s", current_shell);

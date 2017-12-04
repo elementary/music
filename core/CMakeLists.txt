@@ -37,7 +37,6 @@ set (CORE_SOURCE
   Utils/TimeUtils.vala
   Utils/String.vala
   Utils/CompareFunctionHolder.vala
-  Utils/Utils.vala
   Utils/PlaylistsUtils.vala
   Utils/Search.vala
   Utils/Icon.vala

@@ -462,12 +462,14 @@ namespace Granite.Widgets {
             int old_n_stars = n_stars;
 
             // Only draw stars of 0-rating if the cursor is over the cell
-            if (_rating == 0 && !Noise.Utils.flags_set (state, Gtk.StateFlags.SELECTED) && !Noise.Utils.flags_set (state, Gtk.StateFlags.PRELIGHT))
+            if (_rating == 0 && ((state & Gtk.StateFlags.SELECTED) != state) && ((state & Gtk.StateFlags.PRELIGHT) != state)) {
                 return;
+            }
 
             // Only show the filled stars if the row is neither selected nor mouseovered
-            if(0 < _rating && !Noise.Utils.flags_set (state, Gtk.StateFlags.SELECTED) && !Noise.Utils.flags_set (state, Gtk.StateFlags.PRELIGHT))
+            if(0 < _rating && ((state & Gtk.StateFlags.SELECTED) != state) && ((state & Gtk.StateFlags.PRELIGHT) != state)) {
                 n_stars = (int)rating;
+            }
             
             renderer.style_context = style_context;
             renderer.render ();
