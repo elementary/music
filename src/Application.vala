@@ -96,3 +96,26 @@ public class Noise.App : Granite.Application {
         main_window.present ();
     }
 }
+
+public static int main (string[] args) {
+    Gtk.init (ref args);
+    Gda.init ();
+
+    try {
+        Gst.init_check (ref args);
+    } catch (Error err) {
+        error ("Could not init GStreamer: %s", err.message);
+    }
+
+    // Init internationalization support before anything else
+    string package_name = Build.GETTEXT_PACKAGE;
+    string langpack_dir = Path.build_filename (Build.DATADIR, "locale");
+    Intl.setlocale (LocaleCategory.ALL, "");
+    Intl.bindtextdomain (package_name, langpack_dir);
+    Intl.bind_textdomain_codeset (package_name, "UTF-8");
+    Intl.textdomain (package_name);
+    GLib.Environ.set_variable ({"PULSE_PROP_media.role"}, "audio", "true");
+
+    var app = new Noise.App ();
+    return app.run (args);
+}
