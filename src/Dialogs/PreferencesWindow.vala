@@ -68,6 +68,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
 
         var layout = new Gtk.Grid ();
         layout.column_spacing = 12;
+        layout.halign = Gtk.Align.CENTER;
         layout.margin = 6;
         layout.row_spacing = 6;
         layout.attach (new Granite.HeaderLabel (_("Music Folder Location")), 0, 0);
