@@ -242,7 +242,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
             _("_Cancel"), Gtk.ResponseType.CANCEL,
             _("_Open"), Gtk.ResponseType.ACCEPT
         );
-
         file.add_filter (image_filter);
 
         if (file.run () == Gtk.ResponseType.ACCEPT) {
