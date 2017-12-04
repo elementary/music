@@ -25,7 +25,6 @@ You'll need the following dependencies:
 * libpeas-dev
 * libsoup2.4-dev
 * libtagc0-dev
-* libwebkitgtk-dev
 * libxml2-dev
 * libzeitgeist-2.0-dev
 * valac
