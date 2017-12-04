@@ -72,16 +72,7 @@ public class Noise.App : Granite.Application {
 
     protected override void activate () {
         if (main_window == null) {
-            if (DEBUG)
-                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
-            else
-                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
-
             libraries_manager = new LibrariesManager ();
-
-            // Load icon information. Needed until vala supports initialization of static
-            // members. See https://bugzilla.gnome.org/show_bug.cgi?id=543189
-            Icons.init ();
 
             library_manager = new LocalLibrary ();
             player = new PlaybackManager ();
@@ -102,27 +93,27 @@ public class Noise.App : Granite.Application {
 
         main_window.present ();
     }
+}
 
-    /**
-     * We use this identifier to init everything inside the application.
-     * For instance: libnotify, etc.
-     */
-    public string get_id () {
-        return application_id;
+public static int main (string[] args) {
+    Gtk.init (ref args);
+    Gda.init ();
+
+    try {
+        Gst.init_check (ref args);
+    } catch (Error err) {
+        error ("Could not init GStreamer: %s", err.message);
     }
 
-    /**
-     * @return the application's brand name. Should be used for anything that requires
-     * branding. For instance: Ubuntu's sound menu, dialog titles, etc.
-     */
-    public string get_name () {
-        return program_name;
-    }
+    // Init internationalization support before anything else
+    string package_name = Build.GETTEXT_PACKAGE;
+    string langpack_dir = Path.build_filename (Build.DATADIR, "locale");
+    Intl.setlocale (LocaleCategory.ALL, "");
+    Intl.bindtextdomain (package_name, langpack_dir);
+    Intl.bind_textdomain_codeset (package_name, "UTF-8");
+    Intl.textdomain (package_name);
+    GLib.Environ.set_variable ({"PULSE_PROP_media.role"}, "audio", "true");
 
-    /**
-     * @return the application's desktop file name.
-     */
-    public string get_desktop_file_name () {
-        return app_launcher;
-    }
+    var app = new Noise.App ();
+    return app.run (args);
 }

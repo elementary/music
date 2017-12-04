@@ -80,7 +80,7 @@ public class MprisRoot : GLib.Object {
 
     public string identity {
         owned get {
-            return ((Noise.App) GLib.Application.get_default ()).get_name ();
+            return ((Noise.App) GLib.Application.get_default ()).program_name;
         }
     }
 
@@ -136,7 +136,7 @@ public class MprisPlayer : GLib.Object {
         Noise.libraries_manager.local_library.media_updated.connect_after (refresh_current_media);
         Noise.App.main_window.playPauseChanged.connect_after (playing_changed);
 
-        var default_image = Noise.Icons.DEFAULT_ALBUM_ART_2.get_file ();
+        var default_image = new Noise.Icon ("albumart_2").get_file ();
         default_image_url = default_image != null ? default_image.get_uri () : "";
 
         // initial update

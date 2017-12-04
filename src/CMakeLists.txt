@@ -1,6 +1,5 @@
 set(CLIENT_SOURCE
-    main.vala
-    Noise.vala
+    Application.vala
     LibraryWindow.vala
     PlaybackManager.vala
     FileOperator.vala
@@ -13,6 +12,7 @@ set(CLIENT_SOURCE
     LocalBackend/LocalSmartPlaylist.vala
     LocalBackend/LocalStaticPlaylist.vala
     LocalBackend/DevicePreferences.vala
+    Widgets/AlbumListGrid.vala
     Widgets/TopDisplay.vala
     Widgets/SimpleOptionChooser.vala
     Widgets/PresetList.vala
@@ -41,8 +41,7 @@ set(CLIENT_SOURCE
     Views/DeviceSummaryWidget.vala
     Views/ContentView.vala
     Views/ViewTextOverlay.vala
-    Views/GridView/GridView.vala
-    Views/GridView/PopupListView.vala
+    Views/GridView.vala
     Views/ListView/ListView.vala
     Views/ListView/ColumnBrowser/BrowserColumnModel.vala
     Views/ListView/ColumnBrowser/BrowserColumn.vala
