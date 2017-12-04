@@ -218,9 +218,10 @@ public class Noise.ListView : ContentView, Gtk.Box {
             }
         });
 
-        App.main_window.viewSelector.column_browser_toggled.connect (  (enabled) => {
-            if (enabled != column_browser_enabled)
+        App.main_window.view_selector.column_browser_toggled.connect ((enabled) => {
+            if (enabled != column_browser_enabled) {
                 column_browser_enabled = enabled;
+            }
         });
 
         column_browser.position_changed.connect (set_column_browser_position);
