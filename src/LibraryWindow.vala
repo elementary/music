@@ -31,44 +31,36 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void playPauseChanged ();
     public signal void close_subwindows ();
 
+    public bool dragging_from_music { get; set; default = false; }
+    public bool initialization_finished { get; private set; default = false; }
+    public bool newly_created_playlist { get; set; default = false; }
+
+    public SourceListView source_list_view { get; private set; }
+    public ViewContainer view_container { get; private set; }
+    public Widgets.ViewSelector viewSelector { get; private set; }
+    public Gtk.SearchEntry searchField { get; private set; }
+    public Widgets.StatusBar statusbar { get; private set; }
     public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
 
-    /* Info related to the media being played */
-    private bool media_considered_played    { get; set; default = false; } // whether or not we have updated last played and added to already played list
-    private bool added_to_play_count        { get; set; default = false; } // whether or not we have added one to play count on playing media
-    private bool tested_for_video           { get; set; default = false; } // whether or not we have tested if media is video and shown video
+    private bool media_considered_played { get; set; default = false; } // whether or not we have updated last played and added to already played list
+    private bool added_to_play_count { get; set; default = false; } // whether or not we have added one to play count on playing media
+    private bool tested_for_video { get; set; default = false; } // whether or not we have tested if media is video and shown video
     private bool media_considered_previewed { get; set; default = false; }
-    private bool media_half_played_sended   { get; set; default = false; }
-    private bool search_field_has_focus     { get; set; default = true; }
+    private bool media_half_played_sended { get; set; default = false; }
+    private bool search_field_has_focus { get; set; default = true; }
 
-    public bool dragging_from_music         { get; set; default = false; }
-    public bool initialization_finished     { get; private set; default = false; }
-
-    public bool newly_created_playlist      { get; set; default = false; }
+    private int window_width = 0;
+    private int window_height = 0;
 
     private Gtk.Button previous_button;
     private Gtk.Button play_button;
     private Gtk.Button next_button;
-
-    public Gtk.Paned main_hpaned { get; private set; }
-    public SourceListView source_list_view { get; private set; }
-    public ViewContainer view_container { get; private set; }
-    public TopDisplay top_display { get; private set; }
-    public Widgets.ViewSelector viewSelector { get; private set; }
-    public Gtk.SearchEntry searchField { get; private set; }
-    public Widgets.StatusBar statusbar { get; private set; }
-
-    /* AppMenu items */
     private Gtk.MenuItem import_menuitem;
-
-    /* Window state properties */
-    private int window_width = 0;
-    private int window_height = 0;
-    private Settings.Main main_settings;
-
+    private Gtk.Paned main_hpaned;
     private Cancellable notification_cancellable;
-
-    PreferencesWindow? preferences = null;
+    private PreferencesWindow? preferences = null;
+    private Settings.Main main_settings;
+    private TopDisplay top_display;
 
     internal Gee.HashMap<unowned Playlist, int> match_playlists;
     private Gee.HashMap<string, int> match_devices;
