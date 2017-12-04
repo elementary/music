@@ -28,7 +28,7 @@
  */
 
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
-    private signal void play_pause_changed ();
+    public signal void play_pause_changed ();
     public signal void close_subwindows ();
 
     public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
@@ -522,8 +522,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         play_button.clicked.connect (() => {play_media ();});
         next_button.clicked.connect (() => {play_next_media ();});
 
-        search_entry.activate.connect (search_entryActivate);
-        search_entry.search_changed.connect (() => {if (search_entry.text_length != 1) libraries_manager.search_for_string (search_entry.get_text ());});
+        search_entry.activate.connect (search_entry_activate);
+        search_entry.search_changed.connect (() => {
+            if (search_entry.text_length != 1) {
+                libraries_manager.search_for_string (search_entry.text);
+            }
+        });
         search_entry.text = main_settings.search_string;
 
         debug ("DONE WITH USER INTERFACE");
@@ -1138,7 +1142,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 #endif
     }
 
-    public void search_entryActivate() {
+    public void search_entry_activate () {
         var vw = view_container.get_current_view ();
 
         if (vw != null && vw is ViewWrapper) {
