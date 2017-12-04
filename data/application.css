@@ -1,0 +1,68 @@
+/*
+* Copyright (c) 2017 elementary LLC. (https://elementary.io)
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License version 3, as published by the Free Software Foundation.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this program; if not, write to the
+* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+* Boston, MA 02110-1301 USA
+*/
+
+.album {
+    background-image:
+        linear-gradient(
+            170deg,
+            alpha (
+                #fff,
+                0.1
+            ),
+            alpha (
+                #fff,
+                0.2
+            ) 40%,
+            transparent 40%
+        ),
+        -gtk-icontheme("audio-x-generic-symbolic"),
+        linear-gradient(
+            to bottom,
+            #fafafa,
+            #f4f4f4
+        );
+    background-size: cover, 50%, cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow:
+        inset 0 0 0 1px alpha (@bg_highlight_color, 0.1),
+        inset 0 1px 0 0 alpha (@bg_highlight_color, 0.90),
+        inset 0 -1px 0 0 alpha (@bg_highlight_color, 0.3),
+        0 0 0 1px alpha (#000, 0.05),
+        0 3px 3px alpha (#000, 0.22);
+    color: #d4d4d4;
+}
+
+.album:hover {
+    box-shadow:
+        inset 0 0 0 1px alpha (@bg_highlight_color, 0.1),
+        inset 0 1px 0 0 alpha (@bg_highlight_color, 0.90),
+        inset 0 -1px 0 0 alpha (@bg_highlight_color, 0.3),
+        0 0 1px 1px alpha (#000, 0.05),
+        0 4px 4px alpha (#000, 0.22);
+}
+
+.album:focus {
+    box-shadow:
+        inset 0 0 0 1px alpha (@bg_highlight_color, 0.1),
+        inset 0 1px 0 0 alpha (@bg_highlight_color, 0.90),
+        inset 0 -1px 0 0 alpha (@bg_highlight_color, 0.3),
+        0 0 0 4px @colorAccent,
+        0 0 0 1px alpha (#000, 0.05),
+        0 3px 3px alpha (#000, 0.22);
+}
