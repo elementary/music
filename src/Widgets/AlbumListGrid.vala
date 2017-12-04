@@ -39,18 +39,14 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         }
     }
 
-    Widgets.AlbumImage album_cover;
-    Gtk.Label album_label;
-    Gtk.Label artist_label;
-
-    Gtk.Menu cover_action_menu;
-    Gtk.MenuItem cover_set_new;
-
-    Granite.Widgets.Rating rating;
-    GenericList list_view;
-
-    Album album;
-    Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
+    private Album album;
+    private Widgets.AlbumImage album_cover;
+    private Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
+    private GenericList list_view;
+    private Gtk.Label album_label;
+    private Gtk.Label artist_label;
+    private Gtk.Menu cover_action_menu;
+    private Granite.Widgets.Rating rating;
 
     public AlbumListGrid (ViewWrapper view_wrapper) {
         Object (view_wrapper: view_wrapper);
@@ -65,14 +61,11 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         var cover_event_box = new Gtk.EventBox ();
         cover_event_box.add (album_cover);
 
-        cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
-        cover_set_new.activate.connect (() => { set_new_cover (); });
+        var cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
 
         cover_action_menu = new Gtk.Menu ();
         cover_action_menu.append (cover_set_new);
         cover_action_menu.show_all ();
-
-        cover_event_box.button_press_event.connect (show_cover_context_menu);
 
         album_label = new Gtk.Label ("");
         album_label.halign = Gtk.Align.START;
@@ -110,6 +103,8 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         attach (list_view_scrolled, 0, 3, 1, 1);
         attach (rating, 0, 4, 1, 1);
 
+        cover_event_box.button_press_event.connect (show_cover_context_menu);
+        cover_set_new.activate.connect (set_new_cover);
         rating.rating_changed.connect (rating_changed);
     }
 
@@ -240,17 +235,20 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     }
 
     private void set_new_cover () {
-        var file = new Gtk.FileChooserDialog (_("Open"), null, Gtk.FileChooserAction.OPEN,
-            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
-
         var image_filter = new Gtk.FileFilter ();
         image_filter.set_filter_name (_("Image files"));
         image_filter.add_mime_type ("image/*");
 
+        var file = new Gtk.FileChooserDialog (
+            _("Open"), (Gtk.Window) get_parent_window (), Gtk.FileChooserAction.OPEN,
+            _("_Cancel"), Gtk.ResponseType.CANCEL,
+            _("_Open"), Gtk.ResponseType.ACCEPT
+        );
         file.add_filter (image_filter);
 
         if (file.run () == Gtk.ResponseType.ACCEPT) {
             album.save_cover_file (file.get_file ());
+            update_album_cover ();
         }
 
         file.destroy ();
