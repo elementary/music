@@ -51,6 +51,10 @@ public class Noise.App : Granite.Application {
         weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
         default_theme.add_resource_path ("/io/elementary/music");
 
+        var provider = new Gtk.CssProvider ();
+        provider.load_from_resource ("io/elementary/music/application.css");
+        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
         var present_action = new SimpleAction ("app.present", null);
         present_action.activate.connect (() => {
             if (main_window != null) {

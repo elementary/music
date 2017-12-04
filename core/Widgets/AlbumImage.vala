@@ -27,16 +27,6 @@
  */
 
 public class Noise.Widgets.AlbumImage : Gtk.Grid {
-    private const string STYLESHEET = """
-        .album {
-            background-image: -gtk-icontheme("audio-x-generic-symbolic");
-            background-size: 50%;
-            background-repeat: no-repeat;
-            background-position: center center;
-            color: #abacae;
-        }
-    """;
-
     public Gtk.Image image;
 
     construct {
@@ -52,14 +42,6 @@ public class Noise.Widgets.AlbumImage : Gtk.Grid {
         valign = Gtk.Align.CENTER;
         margin = 12;
         add (image);
-
-        var provider = new Gtk.CssProvider ();
-        try {
-            provider.load_from_buffer (STYLESHEET.data);
-            style_context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-        } catch (GLib.Error e) {
-            critical (e.message);
-        }
     }
 
     public override Gtk.SizeRequestMode get_request_mode () {
