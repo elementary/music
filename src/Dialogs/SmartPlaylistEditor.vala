@@ -243,7 +243,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
     public Gtk.Grid grid;
     private Gtk.ComboBoxText field_combobox;
     private Gtk.ComboBoxText comparator_combobox;
-    private Granite.Widgets.Rating _valueRating;
     private Gtk.SpinButton _valueNumerical;
     private Gtk.ComboBoxText _valueOption;
     private Gtk.Label _units;
@@ -266,7 +265,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         value_entry.changed.connect (() => {changed ();});
         _valueNumerical = new Gtk.SpinButton.with_range (0, 9999, 1);
         _valueOption = new Gtk.ComboBoxText ();
-        _valueRating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
         remove_button = new Gtk.Button.with_label (_("Remove"));
         remove_button.halign = Gtk.Align.END;
 
@@ -281,7 +279,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         field_combobox.append_text (_("Last Played"));
         field_combobox.append_text (_("Length"));
         field_combobox.append_text (_("Playcount"));
-        field_combobox.append_text (_("Rating"));
         field_combobox.append_text (_("Skipcount"));
         field_combobox.append_text (_("Title"));
         field_combobox.append_text (_("Year"));
@@ -297,8 +294,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
             } else {
                 value_entry.text = q.value.get_string ();
             }
-        } else if (q.field == SmartQuery.FieldType.RATING) {
-            _valueRating.rating = q.value.get_int ();
         } else {
             _valueNumerical.set_value (q.value.get_int ());
         }
@@ -311,7 +306,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         grid.attach (comparator_combobox, 1, 0, 1, 1);
         grid.attach (value_entry, 2, 0, 1, 1);
         grid.attach (_valueOption, 3, 0, 1, 1);
-        grid.attach (_valueRating, 3, 0, 1, 1);
         grid.attach (_valueNumerical, 3, 0, 1, 1);
         grid.attach (_units, 4, 0, 1, 1);
         grid.attach (remove_button, 5, 0, 1, 1);
@@ -335,10 +329,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
                 value.set_string (value_entry.text);
             }
             rv.value = value;
-        } else if (field_combobox.get_active () == SmartQuery.FieldType.RATING) {
-            var value = Value (typeof (int));
-            value.set_int (_valueRating.rating);
-            rv.value = value;
         } else {
             var value = Value (typeof (int));
             value.set_int ((int)_valueNumerical.value);
@@ -351,7 +341,6 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
     public virtual void field_changed (bool from_user = true) {
         _valueNumerical.hide ();
         _valueOption.hide ();
-        _valueRating.hide ();
         value_entry.hide ();
         field_combobox.show ();
         if (needs_value ( (SmartQuery.FieldType)field_combobox.get_active ())) {
@@ -377,11 +366,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
                     break;
             }
         } else {
-            if (is_rating ((SmartQuery.FieldType)field_combobox.get_active ())) {
-                _valueRating.show ();
-            } else {
-                _valueNumerical.show ();
-            }
+            _valueNumerical.show ();
 
             if (needs_value_2 ((SmartQuery.FieldType)field_combobox.get_active ())) {
                 comparator_combobox.remove_all ();
@@ -453,13 +438,9 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
 
     public bool needs_value_2 (SmartQuery.FieldType compared) {
         return (compared == SmartQuery.FieldType.BITRATE || compared == SmartQuery.FieldType.YEAR
-                || compared == SmartQuery.FieldType.RATING || compared == SmartQuery.FieldType.PLAYCOUNT
+                || compared == SmartQuery.FieldType.PLAYCOUNT
                 || compared == SmartQuery.FieldType.SKIPCOUNT || compared == SmartQuery.FieldType.LENGTH
                 || compared == SmartQuery.FieldType.TITLE);
-    }
-
-    public bool is_rating (SmartQuery.FieldType compared) {
-        return compared == SmartQuery.FieldType.RATING;
     }
 
     public bool is_date (SmartQuery.FieldType compared) {
