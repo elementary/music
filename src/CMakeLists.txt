@@ -1,6 +1,5 @@
 set(CLIENT_SOURCE
-    main.vala
-    Noise.vala
+    Application.vala
     LibraryWindow.vala
     PlaybackManager.vala
     FileOperator.vala

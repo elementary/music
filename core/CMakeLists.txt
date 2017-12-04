@@ -36,12 +36,10 @@ set (CORE_SOURCE
   Utils/FileUtils.vala
   Utils/TimeUtils.vala
   Utils/String.vala
-  Utils/UI.vala
   Utils/CompareFunctionHolder.vala
   Utils/Utils.vala
   Utils/PlaylistsUtils.vala
   Utils/Search.vala
-  Utils/PixbufUtils.vala
   Utils/Icon.vala
   GStreamer/Pipeline.vala
   GStreamer/Equalizer.vala
