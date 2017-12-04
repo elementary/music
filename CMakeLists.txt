@@ -86,16 +86,12 @@ set (DEPS_PACKAGES
   libgda-5.0
   taglib_c
   zeitgeist-2.0
-  Indicate-0.7
-  Dbusmenu-0.4
 )
 
 set (DEPS_PKG
   libgda-5.0
   taglib_c
   zeitgeist-2.0
-  dbusmenu-glib-0.4
-  indicate-0.7
 )
 
 find_package (PkgConfig)

@@ -6,7 +6,6 @@ set(CLIENT_SOURCE
     Objects/MediaKeyListener.vala
     Objects/HistoryPlaylist.vala
     Objects/MPRIS.vala
-    Objects/SoundMenuIntegration.vala
     LocalBackend/LocalLibrary.vala
     LocalBackend/LocalMedia.vala
     LocalBackend/LocalSmartPlaylist.vala

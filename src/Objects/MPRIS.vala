@@ -35,9 +35,6 @@ public class Noise.MPRIS : GLib.Object {
 
         if (owner_id == 0) {
             warning ("Could not initialize MPRIS session.\n");
-        } else {
-            var sound_menu = new SoundMenuIntegration ();
-            sound_menu.initialize ();
         }
     }
 
@@ -74,7 +71,7 @@ public class MprisRoot : GLib.Object {
     }
     public string desktop_entry {
         owned get {
-            return ((Noise.App) GLib.Application.get_default ()).get_id ();
+            return ((Noise.App) GLib.Application.get_default ()).application_id;
         }
     }
 
