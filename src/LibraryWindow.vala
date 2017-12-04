@@ -67,7 +67,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
 
     construct {
-        //FIXME? App.player.player.media_not_found.connect (media_not_found);
         main_settings = Settings.Main.get_default ();
 
         library_manager.media_added.connect (update_sensitivities);
@@ -124,10 +123,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             if(App.player.current_media != null && (double)(main_settings.last_media_position/(double)App.player.current_media.length) > 0.90)
                 added_to_play_count = true;
         }
-
-        /*if(!File.new_for_path(settings.getMusicFolder()).query_exists() && settings.getMusicFolder() != "") {
-            doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using Noise.");
-        }*/
     }
 
     private void change_view (Widgets.ViewSelector.Mode mode) {
@@ -222,12 +217,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         title = ((Noise.App) GLib.Application.get_default ()).program_name;
         icon_name = "multimedia-audio-player";
 
-        // set up drag dest stuff
-        /*
-        Gtk.drag_dest_set (this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
-        Gtk.drag_dest_add_uri_targets (this);
-        this.drag_data_received.connect (dragReceived);
-        */
         destroy.connect (on_quit);
 
         show ();
@@ -479,7 +468,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         build_main_widgets ();
 
         load_playlists ();
-        //sideTree.resetView ();
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
 
         // Now set the selected view
@@ -971,9 +959,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // if not 90% done, skip it
         if(!added_to_play_count) {
             App.player.current_media.skip_count++;
-
-            // don't update, it will be updated eventually
-            //library_manager.update_media_item (App.player.current_media, false, false);
         }
 
         Media? m = App.player.get_next (true);
