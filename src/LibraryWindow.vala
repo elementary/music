@@ -28,6 +28,7 @@
  */
 
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
+    private signal void play_pause_changed ();
     public signal void close_subwindows ();
 
     public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
@@ -970,6 +971,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 App.player.start_playback ();
             }
         }
+
+        play_pause_changed ();
     }
 
     public virtual void play_next_media (bool inhibit_notifications = false) {
