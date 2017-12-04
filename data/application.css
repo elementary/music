@@ -17,9 +17,52 @@
 */
 
 .album {
-    background-image: -gtk-icontheme("audio-x-generic-symbolic");
-    background-size: 50%;
+    background-image:
+        linear-gradient(
+            170deg,
+            alpha (
+                #fff,
+                0.1
+            ),
+            alpha (
+                #fff,
+                0.2
+            ) 40%,
+            transparent 40%
+        ),
+        -gtk-icontheme("audio-x-generic-symbolic"),
+        linear-gradient(
+            to bottom,
+            #fafafa,
+            #f4f4f4
+        );
+    background-size: cover, 50%, cover;
     background-repeat: no-repeat;
     background-position: center center;
-    color: #abacae;
+    box-shadow:
+        inset 0 0 0 1px alpha (@bg_highlight_color, 0.1),
+        inset 0 1px 0 0 alpha (@bg_highlight_color, 0.90),
+        inset 0 -1px 0 0 alpha (@bg_highlight_color, 0.3),
+        0 0 0 1px alpha (#000, 0.05),
+        0 3px 3px alpha (#000, 0.22);
+    color: #d4d4d4;
+}
+
+.album:hover {
+    box-shadow:
+        inset 0 0 0 1px alpha (@bg_highlight_color, 0.1),
+        inset 0 1px 0 0 alpha (@bg_highlight_color, 0.90),
+        inset 0 -1px 0 0 alpha (@bg_highlight_color, 0.3),
+        0 0 1px 1px alpha (#000, 0.05),
+        0 4px 4px alpha (#000, 0.22);
+}
+
+.album:focus {
+    box-shadow:
+        inset 0 0 0 1px alpha (@bg_highlight_color, 0.1),
+        inset 0 1px 0 0 alpha (@bg_highlight_color, 0.90),
+        inset 0 -1px 0 0 alpha (@bg_highlight_color, 0.3),
+        0 0 0 4px @colorAccent,
+        0 0 0 1px alpha (#000, 0.05),
+        0 3px 3px alpha (#000, 0.22);
 }
