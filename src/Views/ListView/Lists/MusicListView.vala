@@ -438,7 +438,7 @@ public class Noise.MusicListView : GenericList {
                 });
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
-                DeviceViewWrapper dvw = (DeviceViewWrapper)parent_wrapper;
+                var dvw = (DeviceViewWrapper) parent_wrapper;
                 dvw.library.remove_medias (selected_media, true);
                 break;
             case ViewWrapper.Hint.PLAYLIST:
