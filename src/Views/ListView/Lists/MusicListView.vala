@@ -81,67 +81,62 @@ public class Noise.MusicListView : GenericList {
         set_value_func (view_value_func);
         set_compare_func (view_compare_func);
 
-        // Don't reorder the queue
-        /*if (playlist != App.player.queue_playlist) {
-            set_sort_column_id (1, Gtk.SortType.DESCENDING);
-        }*/
+        button_release_event.connect (view_click_release);
 
-        button_release_event.connect(view_click_release);
-
-        media_scroll_to_current = new Gtk.MenuItem.with_label(_("Scroll to Current Song"));
+        media_scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
         media_scroll_to_current.sensitive = false;
-        media_scroll_to_current.activate.connect(media_scroll_to_current_requested);
+        media_scroll_to_current.activate.connect media_scroll_to_current_requested);
         
-        media_edit_media = new Gtk.MenuItem.with_label(_("Edit Song Info"));
-        media_edit_media.activate.connect(media_menu_edit_clicked);
+        media_edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info"));
+        media_edit_media.activate.connect (media_menu_edit_clicked);
         
-        media_file_browse = new Gtk.MenuItem.with_label(_("Show in File Browser"));
-        media_file_browse.activate.connect(media_file_browse_clicked);
+        media_file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser"));
+        media_file_browse.activate.connect (media_file_browse_clicked);
         
-        media_menu_contractor_entry = new Gtk.MenuItem.with_label(_("Other actions"));
+        media_menu_contractor_entry = new Gtk.MenuItem.with_label (_("Other actions"));
         
-        media_menu_queue = new Gtk.MenuItem.with_label(C_("Action item (verb)", "Queue"));
-        media_menu_queue.activate.connect(media_menu_queue_clicked);
+        media_menu_queue = new Gtk.MenuItem.with_label (_("Action item (verb)", "Queue"));
+        media_menu_queue.activate.connect (media_menu_queue_clicked);
         
-        media_menu_add_to_playlist = new Gtk.MenuItem.with_label(_("Add to Playlist"));
+        media_menu_add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
         
-        media_remove = new Gtk.MenuItem.with_label(_("Remove Song"));
+        media_remove = new Gtk.MenuItem.with_label (_("Remove Song"));
         media_remove.activate.connect(mediaRemoveClicked);
         
-        import_to_library = new Gtk.MenuItem.with_label(_("Import to Library"));
-        import_to_library.activate.connect(import_to_library_clicked);
+        import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
+        import_to_library.activate.connect (import_to_library_clicked);
         
         media_rate_media = new Granite.Widgets.RatingMenuItem ();
-        media_rate_media.activate.connect(media_rate_media_clicked);
+        media_rate_media.activate.connect (media_rate_media_clicked);
 
         media_action_menu = new Gtk.Menu ();
         media_action_menu.attach_to_widget (this, null);
         if(hint != ViewWrapper.Hint.ALBUM_LIST) {
-            //media_action_menu.append(browseSame);
-            media_action_menu.append(media_scroll_to_current);
-            media_action_menu.append(new Gtk.SeparatorMenuItem ());
+            //media_action_menu.append (browseSame);
+            media_action_menu.append (media_scroll_to_current);
+            media_action_menu.append (new Gtk.SeparatorMenuItem ());
         }
         var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
         if (read_only == false) {
-            media_action_menu.append(media_edit_media);
+            media_action_menu.append (media_edit_media);
         }
-        media_action_menu.append(media_file_browse);
-        media_action_menu.append(media_menu_contractor_entry);
+        media_action_menu.append (media_file_browse);
+        media_action_menu.append (media_menu_contractor_entry);
         if (read_only == false) {
             media_action_menu.append(media_rate_media);
         }
-        media_action_menu.append(new Gtk.SeparatorMenuItem ());
-        media_action_menu.append(media_menu_queue);
+        media_action_menu.append (new Gtk.SeparatorMenuItem ());
+        media_action_menu.append (media_menu_queue);
         if (read_only == false) {
-            media_action_menu.append(media_menu_add_to_playlist);
+            media_action_menu.append (media_menu_add_to_playlist);
         }
         if (hint != ViewWrapper.Hint.SMART_PLAYLIST &&
             hint != ViewWrapper.Hint.ALBUM_LIST &&
             hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
                 media_action_menu.append (new Gtk.SeparatorMenuItem ());
         }
-        media_action_menu.append(media_remove);
-        media_action_menu.append(import_to_library);
+        media_action_menu.append (media_remove);
+        media_action_menu.append (import_to_library);
 
         App.player.playback_stopped.connect (() => {
             media_scroll_to_current.sensitive = false;
@@ -161,29 +156,29 @@ public class Noise.MusicListView : GenericList {
         media_action_menu.show_all();
 
         if (hint == ViewWrapper.Hint.MUSIC) {
-            media_remove.set_label(_("Remove from Library"));
-            import_to_library.set_visible(false);
+            media_remove.set_label (_("Remove from Library"));
+            import_to_library.set_visible (false);
         } else if (hint == ViewWrapper.Hint.PLAYLIST) {
-            import_to_library.set_visible(false);
+            import_to_library.set_visible (false);
         } else if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-            import_to_library.set_visible(false);
+            import_to_library.set_visible (false);
             if (playlist == App.player.queue_playlist) {
                 media_remove.set_label(_("Remove from Queue"));
-                media_menu_queue.set_visible(false);
+                media_menu_queue.set_visible (false);
             } else {
-                media_remove.set_visible(false);
+                media_remove.set_visible (false);
             }
         } else if (hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-            media_remove.set_visible(false);
-            import_to_library.set_visible(false);
+            media_remove.set_visible (false);
+            import_to_library.set_visible (false);
         } else if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
-            media_edit_media.set_visible(false);
-            media_remove.set_label(_("Remove from Device"));
+            media_edit_media.set_visible (false);
+            media_remove.set_label (_("Remove from Device"));
             if (parent_wrapper.library.support_playlists () == false) {
-                media_menu_add_to_playlist.set_visible(false);
+                media_menu_add_to_playlist.set_visible (false);
             }
         } else {
-            media_remove.set_visible(false);
+            media_remove.set_visible (false);
             import_to_library.set_visible(false);
         }
     }
@@ -679,7 +674,7 @@ public class Noise.MusicListView : GenericList {
                 /// of a song title or artist name in your language. The automatic column
                 /// width will depend on the length of this string and the space needed
                 /// by the column's title header.
-                test_strings += _ ("Sample List String");
+                test_strings += _("Sample List String");
             break;
 
             case ListColumn.BPM:
