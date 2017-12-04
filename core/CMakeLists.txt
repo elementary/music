@@ -40,7 +40,6 @@ set (CORE_SOURCE
   Utils/Utils.vala
   Utils/PlaylistsUtils.vala
   Utils/Search.vala
-  Utils/PixbufUtils.vala
   Utils/Icon.vala
   GStreamer/Pipeline.vala
   GStreamer/Equalizer.vala
