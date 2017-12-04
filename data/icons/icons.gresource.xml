@@ -6,6 +6,7 @@
     <file alias="media-playlist-no-repeat-symbolic.svg" compressed="true" preprocess="xml-stripblanks">media-playlist-no-repeat-symbolic.svg</file>
     <file alias="playlist.svg" compressed="true" preprocess="xml-stripblanks">playlist.svg</file>
     <file alias="playlist-automatic.svg" compressed="true" preprocess="xml-stripblanks">playlist-automatic.svg</file>
+    <file alias="playlist-similar.svg" compressed="true" preprocess="xml-stripblanks">playlist-similar.svg</file>
     <file alias="playlist-queue.svg" compressed="true" preprocess="xml-stripblanks">playlist-queue.svg</file>
     <file alias="process-completed-symbolic.svg" compressed="true" preprocess="xml-stripblanks">process-completed-symbolic.svg</file>
     <file alias="process-error-symbolic.svg" compressed="true" preprocess="xml-stripblanks">process-error-symbolic.svg</file>
