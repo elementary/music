@@ -28,7 +28,7 @@
  */
 
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
-    public signal void playPauseChanged ();
+    public signal void play_pause_changed ();
     public signal void close_subwindows ();
 
     public bool dragging_from_music { get; set; default = false; }
@@ -37,8 +37,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public SourceListView source_list_view { get; private set; }
     public ViewContainer view_container { get; private set; }
-    public Widgets.ViewSelector viewSelector { get; private set; }
-    public Gtk.SearchEntry searchField { get; private set; }
+    public Widgets.ViewSelector view_selector { get; private set; }
+    public Gtk.SearchEntry search_entry { get; private set; }
     public Widgets.StatusBar statusbar { get; private set; }
     public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
 
@@ -126,8 +126,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void change_view (Widgets.ViewSelector.Mode mode) {
-        if (viewSelector.get_sensitive ()) {
-            viewSelector.selected = mode;
+        if (view_selector.get_sensitive ()) {
+            view_selector.selected = mode;
         }
     }
 
@@ -156,20 +156,20 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool modifiers_active = (event.state & modifiers) != 0;
 
         if (!modifiers_active && search_field_has_focus) {
-            if (event.keyval == Gdk.Key.space && !searchField.has_focus && !source_list_view.editing) {
+            if (event.keyval == Gdk.Key.space && !search_entry.has_focus && !source_list_view.editing) {
                 play_media (); // toggle play/pause
                 return true;
             }
 
             var typed_unichar = event.str.get_char ();
             // Redirect valid key presses to the search entry
-            if (typed_unichar.validate () && searchField.sensitive && !searchField.has_focus) {
+            if (typed_unichar.validate () && search_entry.sensitive && !search_entry.has_focus) {
                 unichar[] special_chars = {'&', '.', '-', '\\', '%', '(', ')', '=', '@',
                                            '#', '+', '<', '>', ';', ':', '¿', '?', '¡',
                                            '_', '¨', '*', '$', '"', '[', ']', '!', '~'};
 
                 if (typed_unichar.isalnum () || typed_unichar in special_chars)
-                    searchField.grab_focus ();
+                    search_entry.grab_focus ();
             }
         } else if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
             switch (event.keyval) {
@@ -180,7 +180,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     change_view (Widgets.ViewSelector.Mode.LIST);
                     break;
                 case Gdk.Key.@3:
-                    if (viewSelector.get_column_browser_toggle_visible ()) {
+                    if (view_selector.get_column_browser_toggle_visible ()) {
                         change_view (Widgets.ViewSelector.Mode.COLUMN);
                     }
 
@@ -189,7 +189,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
             uint keycode = event.hardware_keycode;
             if (match_keycode (Gdk.Key.f, keycode)) {
-                searchField.grab_focus ();
+                search_entry.grab_focus ();
                 return false;
             } else if (match_keycode (Gdk.Key.q, keycode) || match_keycode (Gdk.Key.w, keycode)) {
                 destroy ();
@@ -226,14 +226,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
         next_button.tooltip_text = _("Next");
 
-        searchField = new Gtk.SearchEntry ();
-        searchField.valign = Gtk.Align.CENTER;
-        searchField.placeholder_text = _("Search Music");
+        search_entry = new Gtk.SearchEntry ();
+        search_entry.valign = Gtk.Align.CENTER;
+        search_entry.placeholder_text = _("Search Music");
 
-        viewSelector = new Widgets.ViewSelector ();
-        viewSelector.margin_left = 12;
-        viewSelector.margin_right = 6;
-        viewSelector.valign = Gtk.Align.CENTER;
+        view_selector = new Widgets.ViewSelector ();
+        view_selector.margin_left = 12;
+        view_selector.margin_right = 6;
+        view_selector.valign = Gtk.Align.CENTER;
 
         top_display = new TopDisplay ();
         top_display.margin_left = 30;
@@ -244,9 +244,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.pack_start (previous_button);
         headerbar.pack_start (play_button);
         headerbar.pack_start (next_button);
-        headerbar.pack_start (viewSelector);
+        headerbar.pack_start (view_selector);
         headerbar.pack_end (menu_button);
-        headerbar.pack_end (searchField);
+        headerbar.pack_end (search_entry);
         headerbar.set_title (((Noise.App) GLib.Application.get_default ()).program_name);
         headerbar.set_custom_title (top_display);
         headerbar.show_all ();
@@ -457,7 +457,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         load_playlists ();
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
 
-        viewSelector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.get_default ().view_mode;
+        view_selector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.get_default ().view_mode;
 
         library_manager.rescan_music_folder ();
         initialization_finished = true;
@@ -486,9 +486,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         play_button.clicked.connect (() => {play_media ();});
         next_button.clicked.connect (() => {play_next_media ();});
 
-        searchField.activate.connect (searchFieldActivate);
-        searchField.search_changed.connect (() => {if (searchField.text_length != 1) libraries_manager.search_for_string (searchField.get_text ());});
-        searchField.text = main_settings.search_string;
+        search_entry.activate.connect (search_entry_activate);
+        search_entry.search_changed.connect (() => {
+            if (search_entry.text_length != 1) {
+                libraries_manager.search_for_string (search_entry.text);
+            }
+        });
+        search_entry.text = main_settings.search_string;
 
         int64 last_playing_id = main_settings.last_media_playing;
         if (last_playing_id >= 0) {
@@ -934,7 +938,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
         }
 
-        playPauseChanged();
+        play_pause_changed ();
     }
 
     public virtual void play_next_media (bool inhibit_notifications = false) {
@@ -1097,7 +1101,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 #endif
     }
 
-    public void searchFieldActivate() {
+    public void search_entry_activate () {
         var vw = view_container.get_current_view ();
 
         if (vw != null && vw is ViewWrapper) {
@@ -1145,11 +1149,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // Now set the selected view
         var saved_state = Settings.SavedState.get_default ();
-        saved_state.view_mode = viewSelector.selected;
+        saved_state.view_mode = view_selector.selected;
 
         // Search
         if (!main_settings.privacy_mode_enabled ()) {
-            main_settings.search_string = searchField.text;
+            main_settings.search_string = search_entry.text;
         }
 
         saved_state.sidebar_width = main_hpaned.position;

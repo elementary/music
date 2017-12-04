@@ -113,12 +113,12 @@ public class Noise.ViewContainer : Gtk.Stack {
         if (visible_child == null)
             return;
 
-        if (visible_child is ViewWrapper)
+        if (visible_child is ViewWrapper) {
             ((ViewWrapper) visible_child).set_as_current_view ();
-        else if (visible_child is Gtk.Grid) {
-            App.main_window.viewSelector.selected = Noise.Widgets.ViewSelector.Mode.LIST;
-            App.main_window.viewSelector.set_sensitive (false);
-            App.main_window.searchField.set_sensitive (false);
+        } else if (visible_child is Gtk.Grid) {
+            App.main_window.view_selector.selected = Noise.Widgets.ViewSelector.Mode.LIST;
+            App.main_window.view_selector.set_sensitive (false);
+            App.main_window.search_entry.set_sensitive (false);
         }
     }
 }

@@ -802,12 +802,12 @@ public class Noise.LocalLibrary : Library {
         _medias.set_all (local_media);
 
         // Update search results
-        if (App.main_window.searchField.text == "") {
+        if (App.main_window.search_entry.text == "") {
             _searched_medias.add_all (local_media.values);
         } else {
             uint parsed_rating;
             string parsed_search_string;
-            String.base_search_method (App.main_window.searchField.text, out parsed_rating, out parsed_search_string);
+            String.base_search_method (App.main_window.search_entry.text, out parsed_rating, out parsed_search_string);
             bool rating_search = parsed_rating > 0;
             foreach (var m in local_media.values) {
                 if (rating_search) {

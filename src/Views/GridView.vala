@@ -170,8 +170,8 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
     public void setup_focus () {
         var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
-        focus_blacklist.add (App.main_window.viewSelector);
-        focus_blacklist.add (App.main_window.searchField);
+        focus_blacklist.add (App.main_window.view_selector);
+        focus_blacklist.add (App.main_window.search_entry);
         focus_blacklist.add (App.main_window.source_list_view);
         focus_blacklist.add (App.main_window.statusbar);
 
