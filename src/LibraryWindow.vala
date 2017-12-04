@@ -200,31 +200,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         return base.key_press_event (event);
     }
 
-    private inline void setup_window () {
-        debug ("setting up main window");
-
-        height_request = 350;
-        width_request = 400;
-        window_position = Gtk.WindowPosition.CENTER;
-
-        var saved_state = Settings.SavedState.get_default ();
-        set_default_size (saved_state.window_width, saved_state.window_height);
-
-        if (saved_state.window_state == Settings.WindowState.MAXIMIZED) {
-            maximize ();
-        }
-
-        title = ((Noise.App) GLib.Application.get_default ()).program_name;
-        icon_name = "multimedia-audio-player";
-
-        destroy.connect (on_quit);
-
-        show ();
-    }
-
     private inline void build_main_widgets () {
-        debug ("Building main widgets");
-
         import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
         import_menuitem.activate.connect (fileImportMusicClick);
 
@@ -298,8 +274,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         set_titlebar (headerbar);
 
         connect_to_sourcelist_signals ();
-
-        debug ("Done with main widgets");
     }
 
     public void connect_to_sourcelist_signals () {
@@ -461,19 +435,30 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public void build_ui () {
-        debug ("BUILDING USER INTERFACE");
+        height_request = 350;
+        width_request = 400;
+        icon_name = "multimedia-audio-player";
+        title = ((Noise.App) GLib.Application.get_default ()).program_name;
+        window_position = Gtk.WindowPosition.CENTER;
 
-        setup_window ();
+        var saved_state = Settings.SavedState.get_default ();
+        set_default_size (saved_state.window_width, saved_state.window_height);
+
+        if (saved_state.window_state == Settings.WindowState.MAXIMIZED) {
+            maximize ();
+        }
+
+        destroy.connect (on_quit);
+
+        show ();
 
         build_main_widgets ();
 
         load_playlists ();
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
 
-        // Now set the selected view
         viewSelector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.get_default ().view_mode;
 
-        //rescan music folder for changes made while application not running
         library_manager.rescan_music_folder ();
         initialization_finished = true;
 
@@ -497,7 +482,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             show_playlist_view (library_manager.p_music);
         }
 
-        /* Connect events to functions */
         previous_button.clicked.connect (() => {play_previous_media ();});
         play_button.clicked.connect (() => {play_media ();});
         next_button.clicked.connect (() => {play_next_media ();});
@@ -505,8 +489,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         searchField.activate.connect (searchFieldActivate);
         searchField.search_changed.connect (() => {if (searchField.text_length != 1) libraries_manager.search_for_string (searchField.get_text ());});
         searchField.text = main_settings.search_string;
-
-        debug ("DONE WITH USER INTERFACE");
 
         int64 last_playing_id = main_settings.last_media_playing;
         if (last_playing_id >= 0) {
