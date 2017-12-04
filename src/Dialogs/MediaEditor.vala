@@ -42,7 +42,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Gtk.SpinButton track_spinbutton;
     private Gtk.SpinButton disk_spinbutton;
     private Gtk.SpinButton year_spinbutton;
-    private Granite.Widgets.Rating rating_widget;
 
     private Gtk.Button previous_button;
     private Gtk.Button next_button;
@@ -93,8 +92,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         disk_spinbutton = new Gtk.SpinButton.with_range (0, 500, 1);
         var local_time = new DateTime.now_local ();
         year_spinbutton = new Gtk.SpinButton.with_range (0, local_time.get_year (), 1);
-        rating_widget = new Granite.Widgets.Rating (false, Gtk.IconSize.MENU);
-        rating_widget.hexpand = true;
 
         var comment_frame = new Gtk.Frame (null);
         comment_frame.expand = true;
@@ -120,8 +117,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         grid.attach (track_spinbutton, 1, 9, 1, 1);
         grid.attach (new Granite.HeaderLabel (_("Disk:")), 1, 10, 1, 1);
         grid.attach (disk_spinbutton, 1, 11, 1, 1);
-        grid.attach (new Granite.HeaderLabel (_("Rating:")), 1, 12, 1, 1);
-        grid.attach (rating_widget, 1, 13, 1, 1);
         grid.attach (new Granite.HeaderLabel (_("Comment:")), 0, 8, 1, 1);
         grid.attach (comment_frame, 0, 9, 1, 5);
 
@@ -195,7 +190,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         m.track = (int) track_spinbutton.value;
         m.album_number = (int) disk_spinbutton.value;
         m.year = (int) year_spinbutton.value;
-        m.rating = (uint) rating_widget.rating;
         temp_list.set (current_media.rowid, m);
     }
 
@@ -216,7 +210,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
                 m.track = copy.track;
                 m.album_number = copy.album_number;
                 m.year = copy.year;
-                m.rating = copy.rating;
             }
         }
 
@@ -244,7 +237,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         track_spinbutton.value = considered_media.track;
         disk_spinbutton.value = considered_media.album_number;
         year_spinbutton.value = considered_media.year;
-        rating_widget.rating = (int) considered_media.rating;
         var iterator = (Gee.BidirIterator<Media>) media_list.iterator_at (current_media);
         previous_button.sensitive = iterator.has_previous ();
         next_button.sensitive = iterator.has_next ();

@@ -46,7 +46,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     Gtk.Menu cover_action_menu;
     Gtk.MenuItem cover_set_new;
 
-    Granite.Widgets.Rating rating;
     GenericList list_view;
 
     Album album;
@@ -98,17 +97,10 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         list_view_scrolled.margin_top = 18;
         list_view_scrolled.add (list_view);
 
-        rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
-        rating.star_spacing = 12;
-        rating.margin_bottom = rating.margin_top = 12;
-
         attach (cover_event_box, 0, 0, 1, 1);
         attach (album_label, 0, 1, 1, 1);
         attach (artist_label, 0, 2, 1, 1);
         attach (list_view_scrolled, 0, 3, 1, 1);
-        attach (rating, 0, 4, 1, 1);
-
-        rating.rating_changed.connect (rating_changed);
     }
 
     /**
@@ -161,10 +153,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         if (list_view.get_realized ())
             list_view.columns_autosize ();
-
-        // Set rating
-        update_album_rating ();
-        view_wrapper.library.media_updated.connect (update_album_rating);
     }
 
     void update_album_cover () {
@@ -173,46 +161,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         } else {
             album_cover.gicon = new ThemedIcon ("albumart");
         }
-    }
-
-    void update_album_rating () {
-        // We don't want to set the overall_rating as each media's rating.
-        // See rating_changed() in case you want to figure out what would happen.
-        rating.rating_changed.disconnect (rating_changed);
-
-        // Use average rating for the album
-        int total_rating = 0, n_media = 0;
-        foreach (var media in media_list) {
-            if (media == null)
-                continue;
-            n_media ++;
-            total_rating += (int)media.rating;
-        }
-
-        float average_rating = (float)total_rating / (float)n_media;
-
-        // fix approximation and set new rating
-        rating.rating = (int) GLib.Math.roundf (average_rating);
-
-        // connect again ...
-        rating.rating_changed.connect (rating_changed);
-    }
-
-    void rating_changed (int new_rating) {
-        var updated = new Gee.LinkedList<Media> ();
-        lock (media_list) {
-
-            foreach (var media in media_list) {
-                if (media == null)
-                    continue;
-
-                media.rating = (uint)new_rating;
-                updated.add (media);
-            }
-
-        }
-
-        view_wrapper.library.update_medias (updated, false, true);
     }
 
     private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {

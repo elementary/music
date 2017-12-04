@@ -65,7 +65,6 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem mediaTopSeparator;
     Gtk.MenuItem mediaMenuQueue;
     Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
-    Granite.Widgets.RatingMenuItem mediaRateMedia;
     Gtk.MenuItem mediaRemove;
     Gtk.MenuItem importToLibrary;
     Gtk.MenuItem mediaScrollToCurrent;
@@ -136,7 +135,6 @@ public class Noise.MusicListView : GenericList {
         mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label(_("Add to Playlist"));
         mediaRemove = new Gtk.MenuItem.with_label(_("Remove Song"));
         importToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
-        mediaRateMedia = new Granite.Widgets.RatingMenuItem ();
 
         mediaActionMenu = new Gtk.Menu ();
         mediaActionMenu.attach_to_widget (this, null);
@@ -154,10 +152,6 @@ public class Noise.MusicListView : GenericList {
 
         mediaActionMenu.append(mediaFileBrowse);
         mediaActionMenu.append(mediaMenuContractorEntry);
-        if (read_only == false) {
-            mediaActionMenu.append(mediaRateMedia);
-        }
-
         mediaActionMenu.append(mediaTopSeparator);
         mediaActionMenu.append(mediaMenuQueue);
         if (read_only == false) {
@@ -178,7 +172,6 @@ public class Noise.MusicListView : GenericList {
         mediaMenuQueue.activate.connect(mediaMenuQueueClicked);
         mediaRemove.activate.connect(mediaRemoveClicked);
         importToLibrary.activate.connect(importToLibraryClicked);
-        mediaRateMedia.activate.connect(mediaRateMediaClicked);
         mediaScrollToCurrent.activate.connect(media_scroll_to_current_requested);
 
         App.player.playback_stopped.connect (() => {
@@ -243,18 +236,6 @@ public class Noise.MusicListView : GenericList {
             else
                 importToLibrary.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
         }
-
-        int set_rating = -1;
-        foreach (Media m in selection) {
-            if (set_rating == -1) {
-                set_rating = (int) m.rating;
-            } else if (set_rating != m.rating) {
-                set_rating = 0;
-                break;
-            }
-        }
-
-        mediaRateMedia.rating_value = set_rating;
 
         //remove the previous "Other Actions" submenu and create a new one
         var contractorSubMenu = new Gtk.Menu ();
@@ -410,15 +391,6 @@ public class Noise.MusicListView : GenericList {
         parent_wrapper.library.add_playlist (p);
     }
 
-    protected void mediaRateMediaClicked () {
-        int new_rating = mediaRateMedia.rating_value;
-        var selected = get_selected_medias ().read_only_view;
-        foreach (Media m in selected) {
-            m.rating = new_rating;
-        }
-        parent_wrapper.library.update_medias (selected, false, true);
-    }
-
     protected override void mediaRemoveClicked () {
         if (hint == ViewWrapper.Hint.MUSIC) {
             var dialog = new RemoveFilesDialog (get_selected_medias ().read_only_view, hint);
@@ -512,10 +484,6 @@ public class Noise.MusicListView : GenericList {
 
             case ListColumn.BITRATE:
                 order = Compare.standard_unsigned (media_a.bitrate, media_b.bitrate);
-            break;
-
-            case ListColumn.RATING:
-                order = Compare.standard_unsigned (media_a.rating, media_b.rating);
             break;
 
             case ListColumn.PLAY_COUNT:
@@ -631,17 +599,6 @@ public class Noise.MusicListView : GenericList {
                 tvc.set_cell_data_func (renderer, CellDataFunctionHelper.date_func);
                 test_strings += CellDataFunctionHelper.get_date_func_sample_string ();
                 test_strings += _ ("Never");
-            break;
-
-            case ListColumn.RATING:
-                var rating_renderer = new Granite.Widgets.CellRendererRating ();
-                rating_renderer.rating_changed.connect (on_rating_cell_changed);
-
-                renderer = rating_renderer;
-                tvc.set_cell_data_func (rating_renderer, CellDataFunctionHelper.rating_func);
-
-                column_resizable = false;
-                column_width = rating_renderer.width + 5;
             break;
 
             case ListColumn.NUMBER:

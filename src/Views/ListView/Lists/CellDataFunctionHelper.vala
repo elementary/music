@@ -158,12 +158,5 @@ public class Noise.CellDataFunctionHelper {
     private static inline string get_date_string (uint n) {
         return n == 0 ? _("Never") : TimeUtils.pretty_timestamp_from_time (Time.local (n));
     }
-
-    public static inline void rating_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
-        Value val;
-        tree_model.get_value(iter, ListColumn.RATING, out val);
-        var rating_cell = cell as Granite.Widgets.CellRendererRating;
-        rating_cell.rating = val.get_uint ();
-    }
 }
 
