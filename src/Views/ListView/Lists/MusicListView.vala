@@ -320,8 +320,8 @@ public class Noise.MusicListView : GenericList {
      * @return //true// if the event should be passed to the default handler; false otherwise.
      */
     private bool check_selection_event (Gdk.EventButton event) requires (event.window == get_bin_window ()) {
-        if (Utils.flags_set (event.state, Gdk.ModifierType.CONTROL_MASK)
-         || Utils.flags_set (event.state, Gdk.ModifierType.SHIFT_MASK))
+        if ((event.state & Gdk.ModifierType.CONTROL_MASK) == event.state
+         || (event.state & Gdk.ModifierType.SHIFT_MASK) == event.state)
         {
             return true;
         }
