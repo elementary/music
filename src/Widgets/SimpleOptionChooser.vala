@@ -75,7 +75,9 @@ public class Noise.SimpleOptionChooser : Gtk.EventBox {
 
 		options[index].menu_item.active = true;
 
-		clicked_index = index;
+        if (notify) {
+            option_changed ();
+        }
 
 		option_changed (by_user);
 
@@ -85,8 +87,8 @@ public class Noise.SimpleOptionChooser : Gtk.EventBox {
 
 		add (options[index].icon);
 
-		show_all ();
-	}
+    public int append_item (string text, string icon_name, string tooltip) {
+        Gtk.RadioMenuItem item;
 
 	public int append_item (string text, string icon, string tooltip, bool click_accessible = false) {
 		Gtk.RadioMenuItem item = options.size == 0
@@ -131,7 +133,12 @@ public class Noise.SimpleOptionChooser : Gtk.EventBox {
 			}
 		}
 
-		return false;
-	}
+                option_changed (true); // #true since the user made the change
+            } else if (menu != null && items.size > 1) {
+                menu.popup (null, null, null, 3, event.time);
+            }
+        }
 
+        return false;
+    }
 }
