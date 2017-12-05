@@ -126,9 +126,9 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     }
 
     public bool show_cover_context_menu (Gtk.Widget sender, Gdk.EventButton evt) {
-        if (evt.type == Gdk.EventType.BUTTON_PRESS && evt.button == 3)
+        if (evt.type == Gdk.EventType.BUTTON_PRESS) {
             cover_action_menu.popup (null, null, null, evt.button, evt.time);
-
+        }
         return true;
     }
 
