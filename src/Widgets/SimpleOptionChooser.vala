@@ -28,109 +28,57 @@
 
 /**
 * Base widget displaying an icon, and allowing you to choose between
-* various options, through a menu, or by clicking on it.
+* various options by clicking on it.
 *
-* For instance, it's the widget used in the status bar (at the bottom
-* of the main window) to choose the repeat mode.
+* For instance, it's the widget used to choose the repeat mode.
 */
 public class Noise.SimpleOptionChooser : Gtk.EventBox {
-	private class SimpleOption : Object {
-		public Gtk.Image icon { get; construct set; }
-		public Gtk.RadioMenuItem menu_item { get; construct set; }
-		public bool click_accessible { get; construct set; }
+	private Gee.ArrayList<Gtk.Image> options { get; set; }
 
-		public SimpleOption (Gtk.Image icon, Gtk.RadioMenuItem item, bool click_accessible) {
-			Object (icon: icon, menu_item: item, click_accessible: click_accessible);
-		}
-	}
+    public int current_option { get; private set; }
 
-	Gtk.Menu menu;
-	private Gee.ArrayList<SimpleOption> options { get; set; }
-
-	int clicked_index = 0;
-
-    public int current_option { get { return clicked_index; } }
-
-	public signal void option_changed (bool by_user);
-
-    public bool menu_only_mode { get; construct set; }
-
-	public SimpleOptionChooser (bool menu_only_mode = false) {
-		Object (menu_only_mode: menu_only_mode);
-	}
+	public signal void option_changed ();
 
 	construct {
-		menu = new Gtk.Menu ();
-		options = new Gee.ArrayList<SimpleOption> ();
+		options = new Gee.ArrayList<Gtk.Image> ();
+		current_option = 0;
 
 		// make the event box transparent
 		above_child = true;
 		visible_window = false;
 	}
 
-	public void set_option (int index, bool by_user = false) {
+	public void set_option (int index) {
 		if (index >= options.size) {
 			return;
 		}
 
-		options[index].menu_item.active = true;
-
-        if (notify) {
-            option_changed ();
-        }
-
-		option_changed (by_user);
+        option_changed ();
 
 		if (get_child () != null) {
 			remove (get_child ());
 		}
+		add (options[index]);
+		show_all ();
 
-		add (options[index].icon);
+		current_option = index;
+	}
 
-    public int append_item (string text, string icon_name, string tooltip) {
-        Gtk.RadioMenuItem item;
-
-	public int append_item (string text, string icon, string tooltip, bool click_accessible = false) {
-		Gtk.RadioMenuItem item = options.size == 0
-			? new Gtk.RadioMenuItem.with_label(new SList<Gtk.RadioMenuItem> (), text)
-	     	: new Gtk.RadioMenuItem.with_label_from_widget (options[0].menu_item, text);
-
-		menu.append (item);
-
-
+	public int append_item (string icon, string tooltip) {
 		var image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.MENU);
 		image.set_tooltip_text (tooltip);
 
-		var option = new SimpleOption (image, item, click_accessible);
-		options.add (option);
-
-		item.toggled.connect (() => {
-			if (item.active) {
-				set_option (options.index_of (option));
-			}
-		});
-		item.show ();
+		options.add (image);
 
 		return options.size - 1;
 	}
 
 	public override bool button_press_event (Gdk.EventButton event) {
 		if (event.type == Gdk.EventType.BUTTON_PRESS) {
-			if (event.button == 1 && !menu_only_mode) {
-				// Find the next click-activable item
-				for (int i = clicked_index + 1; i != clicked_index; i++) {
-					if (i >= options.size) {
-						i = 0;
-					}
-
-					if (options[i].click_accessible) {
-						set_option (i, true);
-						break;
-					}
-				}
-			} else if (options.size > 1) {
-				menu.popup (null, null, null, 3, event.time);
-			}
+			var next = current_option + 1 < options.size
+				? current_option + 1
+				: 0;
+			set_option (next);
 		}
 
                 option_changed (true); // #true since the user made the change

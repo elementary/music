@@ -73,12 +73,9 @@ namespace Noise.Widgets {
     private class RepeatChooser : SimpleOptionChooser {
         construct {
             // MUST follow the exact same order of Noise.Player.Repeat
-            append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Repeat Song"), true);
-            append_item (_("Song"), "media-playlist-repeat-one-symbolic", _("Enable Repeat"), true);
-            append_item (_("Album"), "media-playlist-repeat-symbolic", _("Enable Repeat"));
-            append_item (_("Artist"), "media-playlist-repeat-symbolic", _("Enable Repeat"));
-            append_item (_("All"), "media-playlist-repeat-symbolic", _("Disable Repeat"), true);
-
+            append_item ("media-playlist-no-repeat-symbolic", _("Enable Repeat"));
+            append_item ("media-playlist-repeat-song-symbolic", _("Repeat Song"));
+            append_item ("media-playlist-repeat-symbolic", _("Disable Repeat"));
 
             update_option ();
 
@@ -104,8 +101,8 @@ namespace Noise.Widgets {
 
     private class ShuffleChooser : SimpleOptionChooser {
         construct {
-            append_item (_("Off"), "media-playlist-no-shuffle-symbolic", _("Enable Shuffle"), true);
-            append_item (_("All"), "media-playlist-shuffle-symbolic", _("Disable Shuffle"), true);
+            append_item ("media-playlist-consecutive-symbolic", _("Enable Shuffle"));
+            append_item ("media-playlist-shuffle-symbolic", _("Disable Shuffle"));
 
             update_mode ();
 
