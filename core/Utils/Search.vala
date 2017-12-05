@@ -57,7 +57,7 @@ namespace Noise.Search {
         results = new Gee.TreeSet<Media> ();
 
         foreach (var media in to_search) {
-            if (Utils.is_cancelled (cancellable))
+            if (cancellable != null && cancellable.is_cancelled ())
                 break;
 
             if (match_fields_to_media (media, album_artist, album, genre, grouping, composer, year, rating))
