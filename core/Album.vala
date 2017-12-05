@@ -49,7 +49,7 @@ public class Noise.Album : Object {
 
     //public uint rating { get; set; default = 0; }
     //public Date release_date { get; set; }
-    
+
     // store release year, date is overkill and not stored in most tags.
     public uint year { get; set; default = 0; }
 
