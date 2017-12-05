@@ -78,7 +78,7 @@ public class Noise.MusicListView : GenericList {
         set_value_func (view_value_func);
         set_compare_func (view_compare_func);
 
-        button_release_event.connect(view_click_release);
+        button_release_event.connect (view_click_release);
 
         media_scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
         media_scroll_to_current.activate.connect (media_scroll_to_current_requested);
@@ -119,7 +119,7 @@ public class Noise.MusicListView : GenericList {
         media_action_menu.append (media_file_browse);
         media_action_menu.append (media_menu_contractor_entry);
         if (read_only == false) {
-            media_action_menu.append(media_rate_media);
+            media_action_menu.append (media_rate_media);
         }
         media_action_menu.append (new Gtk.SeparatorMenuItem ());
         media_action_menu.append (media_menu_queue);
@@ -149,33 +149,33 @@ public class Noise.MusicListView : GenericList {
     }
 
     public override void update_sensitivities () {
-        media_action_menu.show_all();
+        media_action_menu.show_all ();
 
         if (hint == ViewWrapper.Hint.MUSIC) {
-            media_remove.set_label(_("Remove from Library"));
-            import_to_library.set_visible(false);
+            media_remove.label = _("Remove from Library");
+            import_to_library.visible = false;
         } else if (hint == ViewWrapper.Hint.PLAYLIST) {
-            import_to_library.set_visible(false);
+            import_to_library.visible = false;
         } else if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-            import_to_library.set_visible(false);
+            import_to_library.visible = false;
             if (playlist == App.player.queue_playlist) {
-                media_remove.set_label(_("Remove from Queue"));
-                media_menu_queue.set_visible(false);
+                media_remove.label = _("Remove from Queue");
+                media_menu_queue.visible = false;
             } else {
-                media_remove.set_visible(false);
+                media_remove.visible = false;
             }
         } else if (hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-            media_remove.set_visible(false);
-            import_to_library.set_visible(false);
+            media_remove.visible = false;
+            import_to_library.visible = false;
         } else if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
-            media_edit_media.set_visible(false);
-            media_remove.set_label(_("Remove from Device"));
+            media_edit_media.visible = false;
+            media_remove.label = _("Remove from Device");
             if (parent_wrapper.library.support_playlists () == false) {
-                media_menu_add_to_playlist.set_visible(false);
+                media_menu_add_to_playlist.visible = false;
             }
         } else {
-            media_remove.set_visible(false);
-            import_to_library.set_visible(false);
+            media_remove.visible = false;
+            import_to_library.visible = false;
         }
     }
 
@@ -186,7 +186,7 @@ public class Noise.MusicListView : GenericList {
         var add_to_playlist_menu = new Gtk.Menu ();
         add_to_playlist_menu.append (media_menu_new_playlist);
         if (parent_wrapper.library.support_playlists () == false) {
-            media_menu_new_playlist.set_visible (false);
+            media_menu_new_playlist.visible = false;
         }
         foreach (var playlist in parent_wrapper.library.get_playlists ()) {
             // Don't include this playlist in the list of available options
@@ -217,9 +217,9 @@ public class Noise.MusicListView : GenericList {
         }
 
         if (temporary_count < 1) {
-            import_to_library.set_sensitive (false);
+            import_to_library.sensitive = false;
         } else {
-            import_to_library.set_sensitive (true);
+            import_to_library.sensitive = true;
             if (temporary_count != total_count)
                 import_to_library.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
             else
@@ -326,7 +326,7 @@ public class Noise.MusicListView : GenericList {
     }
 
     /* button_release_event */
-    private bool view_click_release(Gtk.Widget sender, Gdk.EventButton event) {
+    private bool view_click_release (Gtk.Widget sender, Gdk.EventButton event) {
         /* if we were dragging, then set dragging to false */
         if (dragging && event.button == 1) {
             dragging = false;
