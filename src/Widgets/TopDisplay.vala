@@ -136,11 +136,9 @@ public class Noise.TopDisplay : Gtk.Stack {
     private class RepeatChooser : SimpleOptionChooser {
         public RepeatChooser () {
             // MUST follow the exact same order of Noise.Player.Repeat
-            append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Enable Repeat"));
-            append_item (_("Song"), "media-playlist-repeat-song-symbolic", _("Repeat Song"));
-            append_item (_("Album"), "media-playlist-repeat-symbolic", _("Repeat Album"));
-            append_item (_("Artist"), "media-playlist-repeat-symbolic", _("Repeat Artist"));
-            append_item (_("All"), "media-playlist-repeat-symbolic", _("Disable Repeat"));
+            append_item ("media-playlist-no-repeat-symbolic", _("Enable Repeat"));
+            append_item ("media-playlist-repeat-song-symbolic", _("Repeat Song"));
+            append_item ("media-playlist-repeat-symbolic", _("Disable Repeat"));
 
             update_option ();
 
@@ -166,8 +164,8 @@ public class Noise.TopDisplay : Gtk.Stack {
 
     private class ShuffleChooser : SimpleOptionChooser {
         public ShuffleChooser () {
-            append_item (_("Off"), "media-playlist-consecutive-symbolic", _("Enable Shuffle"));
-            append_item (_("All"), "media-playlist-shuffle-symbolic", _("Disable Shuffle"));
+            append_item ("media-playlist-consecutive-symbolic", _("Enable Shuffle"));
+            append_item ("media-playlist-shuffle-symbolic", _("Disable Shuffle"));
 
             update_mode ();
 
