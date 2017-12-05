@@ -313,7 +313,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             libraries_manager.local_library.media_from_name (dev.get_library ().get_medias(), found, not_found);
 
             if(not_found.size > 0) { // hand control over to SWD
-                SyncWarningDialog swd = new SyncWarningDialog(dev, list, not_found);
+                var swd = new SyncWarningDialog (dev, list, not_found);
                 swd.response.connect ((src, id) => {
                     switch (id) {
                         case SyncWarningDialog.ResponseId.IMPORT_MEDIA:
@@ -331,7 +331,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                             break;
                     }
                 });
-                swd.show();
             } else {
                 space_widget.set_sync_button_sensitive(false);
                 dev.synchronize ();
