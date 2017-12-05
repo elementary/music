@@ -45,8 +45,12 @@ public class Noise.CoverImport : GLib.Object {
         new Thread<void*>(null, () => {
             lock (this.album) {
                 foreach (var media in album.get_media ()) {
-                    var info = discoverer.discover_uri (media.uri);
-                    read_info (info);
+                    try {
+                        var info = discoverer.discover_uri (media.uri);
+                        read_info (info);
+                    } catch (Error err) {
+                        critical ("Error while importing cover for %s: %s", album.name, err.message);
+                    }
                 }
             }
             return null;
