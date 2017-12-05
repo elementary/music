@@ -248,7 +248,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         if (file.run () == Gtk.ResponseType.ACCEPT) {
             album.save_cover_file (file.get_file ());
-            update_album_cover ();
         }
 
         file.destroy ();
