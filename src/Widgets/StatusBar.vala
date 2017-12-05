@@ -28,8 +28,6 @@ namespace Noise.Widgets {
 
     public class StatusBar : Gtk.ActionBar {
         private Gtk.MenuButton playlist_menubutton;
-        public Gtk.Widget shuffle_item { get; private set; default = new ShuffleChooser (); }
-        public Gtk.Widget repeat_item { get; private set; default = new RepeatChooser (); }
         public Gtk.Widget equalizer_item { get; private set; default = new EqualizerChooser (); }
 
         public StatusBar () {
@@ -43,15 +41,12 @@ namespace Noise.Widgets {
 
             playlist_menubutton = new Gtk.MenuButton ();
             playlist_menubutton.direction = Gtk.ArrowType.UP;
-            playlist_menubutton.margin_right = 12;
             playlist_menubutton.popup = menu;
             playlist_menubutton.tooltip_text = _("Add Playlist");
             playlist_menubutton.add (new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU));
             playlist_menubutton.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
             pack_start (playlist_menubutton);
-            pack_start (shuffle_item);
-            pack_start (repeat_item);
             pack_end (equalizer_item);
 
             add_pl_menuitem.activate.connect (() => {
@@ -66,64 +61,6 @@ namespace Noise.Widgets {
         public void update_sensitivities () {
             var local_library = (LocalLibrary) libraries_manager.local_library;
             playlist_menubutton.set_sensitive (local_library.main_directory_set && local_library.get_medias ().size > 0);
-        }
-    }
-
-
-    private class RepeatChooser : SimpleOptionChooser {
-
-        public RepeatChooser () {
-            // MUST follow the exact same order of Noise.Player.Repeat
-            append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Enable Repeat"));
-            append_item (_("Song"), "media-playlist-repeat-song-symbolic", _("Repeat Song"));
-            append_item (_("Album"), "media-playlist-repeat-symbolic", _("Repeat Album"));
-            append_item (_("Artist"), "media-playlist-repeat-symbolic", _("Repeat Artist"));
-            append_item (_("All"), "media-playlist-repeat-symbolic", _("Disable Repeat"));
-
-            update_option ();
-
-            option_changed.connect (on_option_changed);
-            App.player.notify["repeat"].connect (update_option);
-        }
-
-        private void update_option () {
-            set_option ((int)Settings.Main.get_default ().repeat_mode);
-        }
-
-        private void on_option_changed () {
-            int val = current_option;
-
-            if ((int)Settings.Main.get_default ().repeat_mode == val)
-                return;
-
-            App.player.set_repeat_mode ((Noise.Settings.Repeat)val);
-        }
-    }
-
-
-    private class ShuffleChooser : SimpleOptionChooser {
-
-        public ShuffleChooser () {
-            append_item (_("Off"), "media-playlist-consecutive-symbolic", _("Enable Shuffle"));
-            append_item (_("All"), "media-playlist-shuffle-symbolic", _("Disable Shuffle"));
-
-            update_mode ();
-
-            option_changed.connect (on_option_changed);
-            App.player.notify["shuffle"].connect (update_mode);
-        }
-
-        private void update_mode () {
-            set_option ((int)Settings.Main.get_default ().shuffle_mode);
-        }
-
-        private void on_option_changed () {
-            int val = current_option;
-
-            if ((int)Settings.Main.get_default ().shuffle_mode == val)
-                return;
-
-            App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val);
         }
     }
 

@@ -120,6 +120,6 @@ public class Noise.SimpleOptionChooser : Gtk.EventBox {
             }
         }
 
-        return false;
+        return true;
     }
 }
