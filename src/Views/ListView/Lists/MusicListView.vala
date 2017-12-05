@@ -150,33 +150,40 @@ public class Noise.MusicListView : GenericList {
 
     public override void update_sensitivities () {
         media_action_menu.show_all ();
-
-        if (hint == ViewWrapper.Hint.MUSIC) {
-            media_remove.label = _("Remove from Library");
-            import_to_library.visible = false;
-        } else if (hint == ViewWrapper.Hint.PLAYLIST) {
-            import_to_library.visible = false;
-        } else if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-            import_to_library.visible = false;
-            if (playlist == App.player.queue_playlist) {
-                media_remove.label = _("Remove from Queue");
-                media_menu_queue.visible = false;
-            } else {
+        
+        switch (hint) {
+            case ViewWrapper.Hint.MUSIC:
+                media_remove.label = _("Remove from Library");
+                import_to_library.visible = false;
+                break;
+            case ViewWrapper.Hint.PLAYLIST:
+                import_to_library.visible = false;
+                break;
+            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+                import_to_library.visible = false;
+                if (playlist == App.player.queue_playlist) {
+                    media_remove.label = _("Remove from Queue");
+                    media_menu_queue.visible = false;
+                } else {
+                    media_remove.visible = false;
+                }
+                break;
+            case ViewWrapper.Hint.SMART_PLAYLIST:
                 media_remove.visible = false;
-            }
-        } else if (hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-            media_remove.visible = false;
-            import_to_library.visible = false;
-        } else if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
-            media_edit_media.visible = false;
-            media_remove.label = _("Remove from Device");
-            if (parent_wrapper.library.support_playlists () == false) {
-                media_menu_add_to_playlist.visible = false;
-            }
-        } else {
-            media_remove.visible = false;
-            import_to_library.visible = false;
-        }
+                import_to_library.visible = false;
+                break;
+            case ViewWrapper.Hint.DEVICE_AUDIO:
+                 media_edit_media.visible = false;
+                media_remove.label = _("Remove from Device");
+                if (parent_wrapper.library.support_playlists () == false) {
+                    media_menu_add_to_playlist.visible = false;
+                }
+                break;
+            default:
+                media_remove.visible = false;
+                import_to_library.visible = false;
+                break;
+        }         
     }
 
     public void popup_media_menu (Gee.Collection<Media> selection) {
