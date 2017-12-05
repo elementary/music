@@ -98,7 +98,7 @@ public class Noise.MusicListView : GenericList {
         media_menu_add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
         
         media_remove = new Gtk.MenuItem.with_label (_("Remove Song"));
-        media_remove.activate.connect(mediaRemoveClicked);
+        media_remove.activate.connect (mediaRemoveClicked);
         
         import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
         import_to_library.activate.connect (import_to_library_clicked);
@@ -168,12 +168,8 @@ public class Noise.MusicListView : GenericList {
                     media_remove.visible = false;
                 }
                 break;
-            case ViewWrapper.Hint.SMART_PLAYLIST:
-                media_remove.visible = false;
-                import_to_library.visible = false;
-                break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
-                 media_edit_media.visible = false;
+                media_edit_media.visible = false;
                 media_remove.label = _("Remove from Device");
                 if (parent_wrapper.library.support_playlists () == false) {
                     media_menu_add_to_playlist.visible = false;
@@ -281,7 +277,7 @@ public class Noise.MusicListView : GenericList {
             media_menu_contractor_entry.sensitive = false;
         }
 
-        media_action_menu.popup (null, null, null, 3, Gtk.get_current_event_time());
+        media_action_menu.popup (null, null, null, 3, Gtk.get_current_event_time ());
     }
 
     public override bool button_press_event (Gdk.EventButton event) {
