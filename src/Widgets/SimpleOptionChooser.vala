@@ -26,99 +26,60 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
+/**
+* Base widget displaying an icon, and allowing you to choose between
+* various options by clicking on it.
+*
+* For instance, it's the widget used to choose the repeat mode.
+*/
 public class Noise.SimpleOptionChooser : Gtk.EventBox {
-    public Gee.LinkedList<Gtk.RadioMenuItem> items;
-    public Gee.LinkedList<Gtk.Image> images;
+	private Gee.ArrayList<Gtk.Image> options { get; set; }
 
-    private int clicked_index;
-    private int previous_index; // for left click
-    private bool toggling;
+    public int current_option { get; private set; }
 
-    private Gtk.Menu? menu = null;
+	public signal void option_changed ();
 
-    public int current_option { get { return clicked_index; } }
+	construct {
+		options = new Gee.ArrayList<Gtk.Image> ();
+		current_option = 0;
 
-    public signal void option_changed (bool by_user = false);
+		// make the event box transparent
+		above_child = true;
+		visible_window = false;
+	}
 
-    public SimpleOptionChooser () {
-        items = new Gee.LinkedList<Gtk.RadioMenuItem> ();
-        images = new Gee.LinkedList<Gtk.Image> ();
-        toggling = false;
+	public void set_option (int index) {
+		if (index >= options.size) {
+			return;
+		}
 
-        clicked_index = 0;
-        previous_index = 0;
-    }
+        option_changed ();
 
-    public void set_option (int index, bool notify = true) {
-        if (index >= items.size) {
-            return;
-        }
+		if (get_child () != null) {
+			remove (get_child ());
+		}
+		add (options[index]);
+		show_all ();
 
-        items.get (index).set_active (true);
+		current_option = index;
+	}
 
-        clicked_index = index;
+	public int append_item (string icon, string tooltip) {
+		var image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.MENU);
+		image.set_tooltip_text (tooltip);
 
-        if (notify) {
-            option_changed ();
-        }
+		options.add (image);
 
-        if (get_child () != null) {
-            remove (get_child ());
-        }
+		return options.size - 1;
+	}
 
-        add (images.get (index));
-
-        show_all ();
-    }
-
-    public int append_item (string text, string icon_name, string tooltip) {
-        Gtk.RadioMenuItem item;
-
-        if (items.size == 0) {
-            item = new Gtk.RadioMenuItem.with_label (new SList<Gtk.RadioMenuItem>(), text);
-        } else {
-            item = new Gtk.RadioMenuItem.with_label_from_widget (items.get(0), text);
-        }
-
-        var image = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.MENU);
-        image.tooltip_text = tooltip;
-
-        items.add (item);
-        images.add (image);
-
-        if (menu == null) {
-            menu = new Gtk.Menu ();
-        }
-        menu.append (item);
-
-        item.toggled.connect (() => {
-            if (item.active) {
-                set_option (items.index_of (item));
-            }
-        });
-
-        item.show ();
-        previous_index = items.size - 1; // my lazy way of making sure the bottom item is the default on/off on click
-
-        return items.size - 1;
-    }
-
-    public override bool button_press_event (Gdk.EventButton event) {
-        if (event.type == Gdk.EventType.BUTTON_PRESS) {
-            if (event.button == 1) {
-                // Silently set the options. We emit the option_changed signal below.
-                if (clicked_index == 0) {
-                    set_option (previous_index, false);
-                } else {
-                    previous_index = clicked_index;
-                    set_option (0, false);
-                }
-
-                option_changed (true); // #true since the user made the change
-            } else if (menu != null && items.size > 1) {
-                menu.popup (null, null, null, 3, event.time);
-            }
-        }
+	public override bool button_press_event (Gdk.EventButton event) {
+		if (event.type == Gdk.EventType.BUTTON_PRESS) {
+			var next = current_option + 1 < options.size
+				? current_option + 1
+				: 0;
+			set_option (next);
+		}
 
         return false;
     }

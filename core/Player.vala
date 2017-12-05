@@ -38,8 +38,6 @@ public interface Noise.Player : Object {
     public enum Repeat {
         OFF,
         MEDIA,
-        ALBUM,
-        ARTIST,
         ALL
     }
 

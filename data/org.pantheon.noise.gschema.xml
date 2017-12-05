@@ -3,9 +3,7 @@
   <enum id="org.pantheon.noise.repeat">
     <value value="0" nick="off"/>
     <value value="1" nick="media"/>
-    <value value="2" nick="album"/>
-    <value value="3" nick="artist"/>
-    <value value="4" nick="all"/>
+    <value value="2" nick="all"/>
   </enum>
   <enum id="org.pantheon.noise.shuffle">
     <value value="0" nick="off"/>

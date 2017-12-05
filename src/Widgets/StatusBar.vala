@@ -25,7 +25,6 @@
  */
 
 namespace Noise.Widgets {
-
     public class StatusBar : Gtk.ActionBar {
         private Gtk.MenuButton playlist_menubutton;
         public Gtk.Widget shuffle_item { get; private set; default = new ShuffleChooser (); }
@@ -52,6 +51,7 @@ namespace Noise.Widgets {
             pack_start (playlist_menubutton);
             pack_start (shuffle_item);
             pack_start (repeat_item);
+
             pack_end (equalizer_item);
 
             add_pl_menuitem.activate.connect (() => {
@@ -71,14 +71,11 @@ namespace Noise.Widgets {
 
 
     private class RepeatChooser : SimpleOptionChooser {
-
-        public RepeatChooser () {
+        construct {
             // MUST follow the exact same order of Noise.Player.Repeat
-            append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Enable Repeat"));
-            append_item (_("Song"), "media-playlist-repeat-song-symbolic", _("Repeat Song"));
-            append_item (_("Album"), "media-playlist-repeat-symbolic", _("Repeat Album"));
-            append_item (_("Artist"), "media-playlist-repeat-symbolic", _("Repeat Artist"));
-            append_item (_("All"), "media-playlist-repeat-symbolic", _("Disable Repeat"));
+            append_item ("media-playlist-no-repeat-symbolic", _("Enable Repeat"));
+            append_item ("media-playlist-repeat-song-symbolic", _("Repeat Song"));
+            append_item ("media-playlist-repeat-symbolic", _("Disable Repeat"));
 
             update_option ();
 
@@ -93,8 +90,9 @@ namespace Noise.Widgets {
         private void on_option_changed () {
             int val = current_option;
 
-            if ((int)Settings.Main.get_default ().repeat_mode == val)
+            if ((int)Settings.Main.get_default ().repeat_mode == val) {
                 return;
+            }
 
             App.player.set_repeat_mode ((Noise.Settings.Repeat)val);
         }
@@ -102,10 +100,9 @@ namespace Noise.Widgets {
 
 
     private class ShuffleChooser : SimpleOptionChooser {
-
-        public ShuffleChooser () {
-            append_item (_("Off"), "media-playlist-consecutive-symbolic", _("Enable Shuffle"));
-            append_item (_("All"), "media-playlist-shuffle-symbolic", _("Disable Shuffle"));
+        construct {
+            append_item ("media-playlist-consecutive-symbolic", _("Enable Shuffle"));
+            append_item ("media-playlist-shuffle-symbolic", _("Disable Shuffle"));
 
             update_mode ();
 
@@ -120,15 +117,14 @@ namespace Noise.Widgets {
         private void on_option_changed () {
             int val = current_option;
 
-            if ((int)Settings.Main.get_default ().shuffle_mode == val)
-                return;
-
-            App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val);
+            if ((int)Settings.Main.get_default ().shuffle_mode != val) {
+                App.player.set_shuffle_mode ((Noise.Settings.Shuffle)val);
+            }
         }
     }
 
     private class EqualizerChooser : Gtk.MenuButton {
-        public EqualizerChooser () {
+        construct {
             var eq_popover = new EqualizerPopover ();
             eq_popover.preset_changed.connect (update_tooltip);
             eq_popover.init ();
