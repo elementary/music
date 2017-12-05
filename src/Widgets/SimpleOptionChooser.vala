@@ -27,103 +27,99 @@
  */
 
 public class Noise.SimpleOptionChooser : Gtk.EventBox {
-	Gtk.Menu? menu = null;
-	public Gee.LinkedList<Gtk.RadioMenuItem> items;
-	public Gee.LinkedList<Gtk.Image> images;
+    public Gee.LinkedList<Gtk.RadioMenuItem> items;
+    public Gee.LinkedList<Gtk.Image> images;
 
-	int clicked_index;
-	int previous_index; // for left click
-	bool toggling;
+    private int clicked_index;
+    private int previous_index; // for left click
+    private bool toggling;
+
+    private Gtk.Menu? menu = null;
 
     public int current_option { get { return clicked_index; } }
 
-	public signal void option_changed (bool by_user = false);
+    public signal void option_changed (bool by_user = false);
 
-    private bool menu_only_mode;
+    public SimpleOptionChooser () {
+        items = new Gee.LinkedList<Gtk.RadioMenuItem> ();
+        images = new Gee.LinkedList<Gtk.Image> ();
+        toggling = false;
 
-	public SimpleOptionChooser (bool menu_only_mode = false) {
-        this.menu_only_mode = menu_only_mode;
+        clicked_index = 0;
+        previous_index = 0;
+    }
 
-		items = new Gee.LinkedList<Gtk.RadioMenuItem>();
-		images = new Gee.LinkedList<Gtk.Image>();
-		toggling = false;
+    public void set_option (int index, bool notify = true) {
+        if (index >= items.size) {
+            return;
+        }
 
-		clicked_index = 0;
-		previous_index = 0;
+        items.get (index).set_active (true);
 
-		// make the event box transparent
-		set_above_child(true);
-		set_visible_window(false);
-	}
+        clicked_index = index;
 
-	public void setOption(int index, bool notify = true) {
-		if(index >= items.size)
-			return;
+        if (notify) {
+            option_changed ();
+        }
 
-		items.get(index).set_active(true);
+        if (get_child () != null) {
+            remove (get_child ());
+        }
 
-		clicked_index = index;
+        add (images.get (index));
 
-        if (notify)
-    		option_changed ();
+        show_all ();
+    }
 
-		if (get_child () != null)
-			remove (get_child ());
+    public int append_item (string text, string icon_name, string tooltip) {
+        Gtk.RadioMenuItem item;
 
-		add (images.get(index));
+        if (items.size == 0) {
+            item = new Gtk.RadioMenuItem.with_label (new SList<Gtk.RadioMenuItem>(), text);
+        } else {
+            item = new Gtk.RadioMenuItem.with_label_from_widget (items.get(0), text);
+        }
 
-		show_all ();
-	}
+        var image = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.MENU);
+        image.tooltip_text = tooltip;
 
-	public int appendItem(string text, Gtk.Image image, string tooltip) {
-		if (menu == null)
-			menu = new Gtk.Menu();
+        items.add (item);
+        images.add (image);
 
-		Gtk.RadioMenuItem item;
-		if (items.size == 0)
-		    item = new Gtk.RadioMenuItem.with_label(new SList<Gtk.RadioMenuItem>(), text);
-	    else
-	        item = new Gtk.RadioMenuItem.with_label_from_widget (items.get(0), text);
-		Gtk.Image item_image = image;
-		image.set_tooltip_text (tooltip);
-		items.add(item);
-		images.add(item_image);
-		menu.append(item);
+        if (menu == null) {
+            menu = new Gtk.Menu ();
+        }
+        menu.append (item);
 
-		item.toggled.connect( () => {
-            if (!item.active)
-                return;
+        item.toggled.connect (() => {
+            if (item.active) {
+                set_option (items.index_of (item));
+            }
+        });
 
-    		setOption (items.index_of (item));
-		});
+        item.show ();
+        previous_index = items.size - 1; // my lazy way of making sure the bottom item is the default on/off on click
 
-		item.show();
-		previous_index = items.size - 1; // my lazy way of making sure the bottom item is the default on/off on click
+        return items.size - 1;
+    }
 
-		return items.size - 1;
-	}
+    public override bool button_press_event (Gdk.EventButton event) {
+        if (event.type == Gdk.EventType.BUTTON_PRESS) {
+            if (event.button == 1) {
+                // Silently set the options. We emit the option_changed signal below.
+                if (clicked_index == 0) {
+                    set_option (previous_index, false);
+                } else {
+                    previous_index = clicked_index;
+                    set_option (0, false);
+                }
 
-	public override bool button_press_event (Gdk.EventButton event) {
-		if (event.type == Gdk.EventType.BUTTON_PRESS) {
-			if(event.button == 1 && !menu_only_mode) {
-				// Silently set the options. We emit the option_changed signal below.
-				if(clicked_index == 0) {
-					setOption(previous_index, false);
-				}
-				else {
-					previous_index = clicked_index;
-					setOption(0, false);
-				}
+                option_changed (true); // #true since the user made the change
+            } else if (menu != null && items.size > 1) {
+                menu.popup (null, null, null, 3, event.time);
+            }
+        }
 
-				option_changed (true); // #true since the user made the change
-			}
-			else if (menu != null && items.size > 1) {
-				menu.popup (null, null, null, 3, event.time);
-			}
-		}
-
-		return false;
-	}
-
+        return false;
+    }
 }
-
