@@ -142,7 +142,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
             album_label.set_label (name);
             artist_label.set_label (artist);
             update_album_cover ();
-            album.notify["cover-icon"].disconnect (update_album_cover);
+            album.notify["cover-icon"].connect (update_album_cover);
 
             // Make a copy. Otherwise the list won't work if some elements are
             // removed from the parent wrapper while the window is showing
@@ -248,7 +248,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         if (file.run () == Gtk.ResponseType.ACCEPT) {
             album.save_cover_file (file.get_file ());
-            update_album_cover ();
         }
 
         file.destroy ();
