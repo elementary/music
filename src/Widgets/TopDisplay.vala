@@ -39,14 +39,19 @@ public class Noise.TopDisplay : Gtk.Stack {
     construct {
         seek_bar = new Granite.SeekBar (0.0);
 
+        var shuffle_chooser = new ShuffleChooser ();
+        var repeat_chooser = new RepeatChooser ();
         var track_label = new TitleLabel ("");
 
-        var time_grid = new Gtk.Grid ();
-        time_grid.attach (track_label, 0, 0, 1, 1);
-        time_grid.attach (seek_bar, 0, 1, 1, 1);
+        var track_eventbox = new Gtk.EventBox ();
+        track_eventbox.add (track_label);
 
-        var time_eventbox = new Gtk.EventBox ();
-        time_eventbox.add (time_grid);
+        var time_grid = new Gtk.Grid ();
+        time_grid.column_spacing = 12;
+        time_grid.attach (shuffle_chooser, 0, 0, 1, 1);
+        time_grid.attach (track_eventbox, 1, 0, 1, 1);
+        time_grid.attach (repeat_chooser, 2, 0, 1, 1);
+        time_grid.attach (seek_bar, 0, 1, 3, 1);
 
         var action_label = new TitleLabel ("");
 
@@ -69,13 +74,13 @@ public class Noise.TopDisplay : Gtk.Stack {
 
         transition_type = Gtk.StackTransitionType.CROSSFADE;
         add_named (action_grid, "action");
-        add_named (time_eventbox, "time");
+        add_named (time_grid, "time");
         add_named (empty_grid, "empty");
         show_all ();
 
         visible_child = empty_grid;
 
-        time_eventbox.button_press_event.connect ((e) => {
+        track_eventbox.button_press_event.connect ((e) => {
             if (e.button == Gdk.BUTTON_SECONDARY) {
                 var current = new Gee.TreeSet<Media> ();
                 if (App.player.current_media != null) {
@@ -124,6 +129,63 @@ public class Noise.TopDisplay : Gtk.Stack {
             hexpand = true;
             justify = Gtk.Justification.CENTER;
             ellipsize = Pango.EllipsizeMode.END;
+        }
+    }
+
+    private class RepeatChooser : SimpleOptionChooser {
+        public RepeatChooser () {
+            // MUST follow the exact same order of Noise.Player.Repeat
+            append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Enable Repeat"));
+            append_item (_("Song"), "media-playlist-repeat-song-symbolic", _("Repeat Song"));
+            append_item (_("Album"), "media-playlist-repeat-symbolic", _("Repeat Album"));
+            append_item (_("Artist"), "media-playlist-repeat-symbolic", _("Repeat Artist"));
+            append_item (_("All"), "media-playlist-repeat-symbolic", _("Disable Repeat"));
+
+            update_option ();
+
+            option_changed.connect (on_option_changed);
+            App.player.notify["repeat"].connect (update_option);
+        }
+
+        private void update_option () {
+            set_option ((int)Settings.Main.get_default ().repeat_mode);
+        }
+
+        private void on_option_changed () {
+            int val = current_option;
+
+            if ((int) Settings.Main.get_default ().repeat_mode == val) {
+                return;
+            }
+
+            App.player.set_repeat_mode ((Noise.Settings.Repeat)val);
+        }
+    }
+
+
+    private class ShuffleChooser : SimpleOptionChooser {
+        public ShuffleChooser () {
+            append_item (_("Off"), "media-playlist-consecutive-symbolic", _("Enable Shuffle"));
+            append_item (_("All"), "media-playlist-shuffle-symbolic", _("Disable Shuffle"));
+
+            update_mode ();
+
+            option_changed.connect (on_option_changed);
+            App.player.notify["shuffle"].connect (update_mode);
+        }
+
+        private void update_mode () {
+            set_option ((int)Settings.Main.get_default ().shuffle_mode);
+        }
+
+        private void on_option_changed () {
+            int val = current_option;
+
+            if ((int) Settings.Main.get_default ().shuffle_mode == val) {
+                return;
+            }
+
+            App.player.set_shuffle_mode ((Noise.Settings.Shuffle) val);
         }
     }
 
