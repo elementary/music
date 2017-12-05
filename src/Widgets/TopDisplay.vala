@@ -27,54 +27,53 @@
  */
 
 public class Noise.TopDisplay : Gtk.Stack {
-    MusicListView list_view;
-
-    Gtk.Grid empty_grid;
-
-    // Time Grid
-    Gtk.EventBox time_eventbox;
-    Gtk.Grid time_grid;
-    Gtk.Label track_label;
-    Granite.SeekBar seek_bar;
-
-    // Action Grid
-    Gtk.Grid action_grid;
-    Gtk.Label action_label;
-    Gtk.ProgressBar progress_bar;
-    Gtk.Button cancel_button;
-
-    private uint change_timeout_id = 0;
-    private uint progress_timeout_id = 0;
+    public MusicListView list_view { get; set; }
 
     public signal void scale_value_changed (Gtk.ScrollType scroll, double val);
 
-    construct {
-        /* GUI */
-        transition_type = Gtk.StackTransitionType.CROSSFADE;
+    private Gtk.ProgressBar progress_bar;
+    private Granite.SeekBar seek_bar;
+    private uint change_timeout_id = 0;
+    private uint progress_timeout_id = 0;
 
+    construct {
         seek_bar = new Granite.SeekBar (0.0);
 
-        track_label = make_title_label ();
+        var track_label = new TitleLabel ("");
 
-        time_grid = new Gtk.Grid ();
-        time_grid.attach (track_label, 0, 0, 3, 1);
-        time_grid.attach (seek_bar, 1, 1, 1, 1);
-        time_eventbox = new Gtk.EventBox ();
+        var time_grid = new Gtk.Grid ();
+        time_grid.attach (track_label, 0, 0, 1, 1);
+        time_grid.attach (seek_bar, 0, 1, 1, 1);
+
+        var time_eventbox = new Gtk.EventBox ();
         time_eventbox.add (time_grid);
 
-        action_grid = new Gtk.Grid ();
-        action_grid.column_spacing = 6;
-        action_grid.row_spacing = 6;
-        action_label = make_title_label ();
+        var action_label = new TitleLabel ("");
+
         progress_bar = new Gtk.ProgressBar ();
         progress_bar.fraction = 1;
-        cancel_button = new Gtk.Button.from_icon_name ("process-stop-symbolic", Gtk.IconSize.MENU);
+
+        var cancel_button = new Gtk.Button.from_icon_name ("process-stop-symbolic", Gtk.IconSize.MENU);
         cancel_button.halign = cancel_button.valign = Gtk.Align.CENTER;
         cancel_button.vexpand = true;
         cancel_button.tooltip_text = _("Cancel");
+
+        var action_grid = new Gtk.Grid ();
+        action_grid.column_spacing = 6;
+        action_grid.row_spacing = 6;
         action_grid.attach (action_label, 0, 0, 1, 1);
         action_grid.attach (progress_bar, 0, 1, 1, 1);
         action_grid.attach (cancel_button, 1, 0, 1, 2);
+
+        var empty_grid = new Gtk.Grid ();
+
+        transition_type = Gtk.StackTransitionType.CROSSFADE;
+        add_named (action_grid, "action");
+        add_named (time_eventbox, "time");
+        add_named (empty_grid, "empty");
+        show_all ();
+
+        visible_child = empty_grid;
 
         time_eventbox.button_press_event.connect ((e) => {
             if (e.button == Gdk.BUTTON_SECONDARY) {
@@ -88,16 +87,6 @@ public class Noise.TopDisplay : Gtk.Stack {
 
             return false;
         });
-
-        empty_grid = new Gtk.Grid ();
-
-        add_named (action_grid, "action");
-        add_named (time_eventbox, "time");
-        add_named (empty_grid, "empty");
-        show_all ();
-        set_visible_child (empty_grid);
-
-        /* signals */
 
         cancel_button.clicked.connect (() => {
             NotificationManager.get_default ().progress_canceled ();
@@ -129,15 +118,14 @@ public class Noise.TopDisplay : Gtk.Stack {
         libraries_manager.local_library.media_updated.connect (media_updated);
     }
 
-    private Gtk.Label make_title_label () {
-        var label = new Gtk.Label ("");
-        label.hexpand = true;
-        label.justify = Gtk.Justification.CENTER;
-        label.single_line_mode = false;
-        label.ellipsize = Pango.EllipsizeMode.END;
-        return label;
+    private class TitleLabel : Gtk.Label {
+        public TitleLabel (string label) {
+            Object (label: label);
+            hexpand = true;
+            justify = Gtk.Justification.CENTER;
+            ellipsize = Pango.EllipsizeMode.END;
+        }
     }
-
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
         base.get_preferred_width (out minimum_width, out natural_width);
@@ -147,11 +135,6 @@ public class Noise.TopDisplay : Gtk.Stack {
         }
     }
 
-    public void set_list_view (MusicListView list_view) {
-        this.list_view = list_view;
-    }
-
-    // automatically shows/hides progress bar/seek_bar based on progress's value
     public void set_progress_value (double progress) {
         progress_bar.fraction = progress;
         update_view ();
@@ -206,22 +189,21 @@ public class Noise.TopDisplay : Gtk.Stack {
     private void update_current_media () {
         var notification_manager = NotificationManager.get_default ();
 
-        // Set the title
         var m = App.player.current_media;
         if (m != null) {
             notification_manager.update_track (m.get_title_markup ());
             seek_bar.playback_duration = ((double) m.length) / 1000.0;
-            set_visible_child (time_eventbox);
+            visible_child_name = "time";
         }
     }
 
     private void update_view () {
         if (progress_bar.fraction >= 0.0 && progress_bar.fraction < 1.0) {
-            set_visible_child (action_grid);
+            visible_child_name = "action";
         } else if (App.player.current_media != null) {
-            set_visible_child (time_eventbox);
+            visible_child_name = "time";
         } else {
-            set_visible_child (empty_grid);
+            visible_child_name = "empty";
         }
     }
 }

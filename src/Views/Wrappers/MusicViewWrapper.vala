@@ -51,7 +51,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         }
 
         list_view = new ListView (this, music_setup, true);
-        topDisplay.set_list_view(list_view.list_view);
+        topDisplay.list_view = list_view.list_view;
 
         // Welcome screen
         welcome_screen = new Granite.Widgets.Welcome (_("Get Some Tunes"),

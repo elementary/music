@@ -33,8 +33,6 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     private Gtk.Border padding;
     private Gtk.Border border;
     private Gdk.Pixbuf pixbuf;
-    private Gdk.Pixbuf fallback_pixbuf;
-    private int fallback_pixbuf_scale = 1;
 
     public TileRenderer () {
         notify["album"].connect (() => {
@@ -130,16 +128,21 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
 
         ctx.save ();
         ctx.add_class ("album");
-        ctx.render_background (cr, x, y, pixbuf.width, pixbuf.height);
-        ctx.render_icon (cr, pixbuf, x, y);
+        ctx.add_class (Granite.STYLE_CLASS_CARD);
+        ctx.render_background (cr, x, y, 128, 128);
+
+        if (pixbuf != null) {
+            ctx.render_icon (cr, pixbuf, x, y);
+        }
+
         cr.fill_preserve ();
-        ctx.render_frame (cr, x - border.left, y - border.top, pixbuf.width + border.left + border.right, pixbuf.height + border.top + border.bottom);
+        ctx.render_frame (cr, x - border.left, y - border.top, 128 + border.left + border.right, 128 + border.top + border.bottom);
         ctx.restore ();
 
         y += image_height;
 
         // move x to the start of the actual image
-        x += (image_width - pixbuf.width) / 2 - margin.left;
+        x += (image_width - 128) / 2 - margin.left;
     }
 
     private void render_title (Gtk.StyleContext ctx, Cairo.Context cr, int x,
@@ -164,12 +167,19 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
 
     private void update_layout_properties (Gtk.Widget widget) {
         var ctx = widget.get_style_context ();
-        render_prixbuf (ctx);
         var state = ctx.get_state ();
+
+        pixbuf = album.get_cached_cover_pixbuf (1);
+
+        var border = Gtk.Border ();
+        border.left = 12;
+        border.right = 12;
+        border.bottom = 12;
+        border.top = 12;
 
         ctx.save ();
         ctx.add_class ("album");
-        margin = ctx.get_margin (state);
+        margin = border;
         padding = ctx.get_padding (state);
         border = ctx.get_border (state);
         ctx.restore ();
@@ -180,7 +190,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         subtitle_text_layout.set_font_description (font_description);
         subtitle_text_layout.set_ellipsize (Pango.EllipsizeMode.END);
         subtitle_text_layout.set_alignment (Pango.Alignment.LEFT);
-        int text_width = pixbuf != null ? pixbuf.width * Pango.SCALE : 0;
+        int text_width = 128 * Pango.SCALE;
         subtitle_text_layout.set_width (text_width);
 
         ctx.save ();
@@ -195,27 +205,10 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     }
 
     private int compute_total_image_width () {
-        return pixbuf != null ? pixbuf.width + margin.left + margin.right : 0;
+        return 128 + margin.left + margin.right;
     }
 
     private int compute_total_image_height () {
-        return pixbuf != null ? pixbuf.height + margin.top + margin.bottom : 0;
-    }
-
-    private void render_prixbuf (Gtk.StyleContext ctx) {
-        var scale = ctx.get_scale ();
-        if (fallback_pixbuf == null || fallback_pixbuf_scale != scale) {
-            var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (new ThemedIcon ("albumart"), 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
-            try {
-                fallback_pixbuf = icon_info.load_icon ();
-            } catch (Error e) {
-                critical (e.message);
-            }
-        }
-
-        pixbuf = album.get_cached_cover_pixbuf (scale);
-        if (pixbuf == null) {
-            pixbuf = fallback_pixbuf;
-        }
+        return 128 + margin.top + margin.bottom;
     }
 }
