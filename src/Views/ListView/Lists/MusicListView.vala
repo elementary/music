@@ -152,6 +152,7 @@ public class Noise.MusicListView : GenericList {
         media_action_menu.show_all ();
         
         switch (hint) {
+            case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
                 media_remove.label = _("Remove from Library");
                 import_to_library.visible = false;
@@ -405,19 +406,29 @@ public class Noise.MusicListView : GenericList {
     }
 
     protected override void mediaRemoveClicked () {
-        if (hint == ViewWrapper.Hint.MUSIC) {
-            var dialog = new RemoveFilesDialog (get_selected_medias ().read_only_view, hint);
-            dialog.remove_media.connect ( (delete_files) => {
-                parent_wrapper.library.remove_medias (get_selected_medias ().read_only_view, delete_files);
-            });
-        } else if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
-            DeviceViewWrapper dvw = (DeviceViewWrapper)parent_wrapper;
-            dvw.library.remove_medias (get_selected_medias ().read_only_view, true);
-        } else if (hint == ViewWrapper.Hint.PLAYLIST) {
-            playlist.remove_medias (get_selected_medias ().read_only_view);
-        } else if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST && playlist == App.player.queue_playlist) {
-            playlist.remove_medias (get_selected_medias ().read_only_view);
-        }
+        var selected_media = get_selected_medias ().read_only_view;
+
+        switch (hint) {
+            case ViewWrapper.Hint.ALBUM_LIST:
+            case ViewWrapper.Hint.MUSIC:
+                var dialog = new RemoveFilesDialog (selected_media, hint);
+                dialog.remove_media.connect ((delete_files) => {
+                    parent_wrapper.library.remove_medias (selected_media, delete_files);
+                });
+                break;
+            case ViewWrapper.Hint.DEVICE_AUDIO:
+                var dvw = (DeviceViewWrapper) parent_wrapper;
+                dvw.library.remove_medias (selected_media, true);
+                break;
+            case ViewWrapper.Hint.PLAYLIST:
+                playlist.remove_medias (selected_media); 
+                break;
+            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+                if (playlist == App.player.queue_playlist) {
+                    playlist.remove_medias (selected_media);
+                }
+                break;
+          }
     }
 
     void import_to_library_clicked () {
