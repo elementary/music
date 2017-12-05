@@ -33,7 +33,6 @@ public class Noise.Widgets.TileView : Gtk.IconView {
     construct {
         cell_renderer = new TileRenderer ();
         pack_start (cell_renderer, false);
-        AlbumImage.apply_album_style (this);
         activate_on_single_click = true;
         add_attribute (cell_renderer, "album", 0);
         tooltip_column = 1;
