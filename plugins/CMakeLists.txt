@@ -11,7 +11,6 @@ if (BUILD_PLUGINS AND BUILD_SHARED_LIBS)
 
   add_subdirectory (Devices)
   add_subdirectory (LastFM)
-  add_subdirectory (MPRIS)
 else ()
   message ("-- Plugins disabled")
 endif ()

@@ -119,7 +119,6 @@ ensure_vala_version ("0.26" MINIMUM)
 include (ValaPrecompile)
 
 set (DEPS_LIBRARIES ${DEPS_LIBRARIES} -lm)
-add_subdirectory (schemas)
 add_subdirectory (core)
 
 # 'src' and 'plugins' depend on the core library

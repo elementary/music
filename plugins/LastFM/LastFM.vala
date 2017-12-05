@@ -30,7 +30,6 @@ namespace Noise.Plugins {
         public GLib.Object object { owned get; construct; }
 
         private Interface plugins;
-        private Noise.SimilarMediasWidget similar_media_widget;
 
         private Ag.Manager manager;
         private bool added_view = false;
@@ -85,7 +84,6 @@ namespace Noise.Plugins {
                     core.initialize (client_id, client_secret, token);
                     App.main_window.source_list_added.connect (source_list_added);
                     libraries_manager.add_headless_playlist (core.get_similar_playlist ());
-                    similar_media_widget = new Noise.SimilarMediasWidget (core);
                     added_view = true;
                 } catch (Error e) {
                     critical (e.message);
@@ -104,7 +102,6 @@ namespace Noise.Plugins {
             if (added_view) {
                 added_view = false;
                 libraries_manager.local_library.remove_playlist (LastFM.Core.get_default ().get_similar_playlist ().rowid);
-                similar_media_widget.destroy ();
             }
         }
 

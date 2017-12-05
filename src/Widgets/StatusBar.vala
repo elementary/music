@@ -26,31 +26,46 @@
 
 namespace Noise.Widgets {
     public class StatusBar : Gtk.ActionBar {
-        public Gtk.Widget playlist_item { get; private set; default = new AddPlaylistChooser (); }
+        private Gtk.MenuButton playlist_menubutton;
         public Gtk.Widget shuffle_item { get; private set; default = new ShuffleChooser (); }
         public Gtk.Widget repeat_item { get; private set; default = new RepeatChooser (); }
         public Gtk.Widget equalizer_item { get; private set; default = new EqualizerChooser (); }
-        public Gtk.Widget info_panel_item { get; private set; default = new InfoPanelChooser (); }
 
-        construct {
-            pack_start (playlist_item);
+        public StatusBar () {
+            var add_pl_menuitem = new Gtk.MenuItem.with_label (_("Add Playlist"));
+            var add_spl_menuitem = new Gtk.MenuItem.with_label (_("Add Smart Playlist"));
+
+            var menu = new Gtk.Menu ();
+            menu.append (add_pl_menuitem);
+            menu.append (add_spl_menuitem);
+            menu.show_all ();
+
+            playlist_menubutton = new Gtk.MenuButton ();
+            playlist_menubutton.direction = Gtk.ArrowType.UP;
+            playlist_menubutton.margin_right = 12;
+            playlist_menubutton.popup = menu;
+            playlist_menubutton.tooltip_text = _("Add Playlist");
+            playlist_menubutton.add (new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU));
+            playlist_menubutton.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+
+            pack_start (playlist_menubutton);
             pack_start (shuffle_item);
             pack_start (repeat_item);
 
             pack_end (equalizer_item);
-            pack_end (info_panel_item);
-        }
 
-        public void set_info (string message) {
-            set_center_widget (null);
-            set_center_widget (new Gtk.Label (message));
-            show_all ();
+            add_pl_menuitem.activate.connect (() => {
+                App.main_window.create_new_playlist ();
+            });
+
+            add_spl_menuitem.activate.connect (() => {
+                App.main_window.show_smart_playlist_dialog ();
+            });
         }
 
         public void update_sensitivities () {
             var local_library = (LocalLibrary) libraries_manager.local_library;
-            playlist_item.set_sensitive (local_library.main_directory_set && local_library.get_medias ().size > 0);
-            info_panel_item.set_sensitive (App.main_window.info_panel.can_show_up);
+            playlist_menubutton.set_sensitive (local_library.main_directory_set && local_library.get_medias ().size > 0);
         }
     }
 
@@ -58,12 +73,11 @@ namespace Noise.Widgets {
     private class RepeatChooser : SimpleOptionChooser {
         construct {
             // MUST follow the exact same order of Noise.Player.Repeat
-            append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Repeat Song"), true);
-            append_item (_("Song"), "media-playlist-repeat-one-symbolic", _("Enable Repeat"), true);
-            append_item (_("Album"), "media-playlist-repeat-symbolic", _("Enable Repeat"));
-            append_item (_("Artist"), "media-playlist-repeat-symbolic", _("Enable Repeat"));
-            append_item (_("All"), "media-playlist-repeat-symbolic", _("Disable Repeat"), true);
-
+            append_item (_("Off"), "media-playlist-no-repeat-symbolic", _("Enable Repeat"));
+            append_item (_("Song"), "media-playlist-repeat-song-symbolic", _("Repeat Song"));
+            append_item (_("Album"), "media-playlist-repeat-symbolic", _("Repeat Album"));
+            append_item (_("Artist"), "media-playlist-repeat-symbolic", _("Repeat Artist"));
+            append_item (_("All"), "media-playlist-repeat-symbolic", _("Disable Repeat"));
 
             update_option ();
 
@@ -88,9 +102,10 @@ namespace Noise.Widgets {
 
 
     private class ShuffleChooser : SimpleOptionChooser {
-        construct {
-            append_item (_("Off"), "media-playlist-no-shuffle-symbolic", _("Enable Shuffle"), true);
-            append_item (_("All"), "media-playlist-shuffle-symbolic", _("Disable Shuffle"), true);
+
+        public ShuffleChooser () {
+            append_item (_("Off"), "media-playlist-consecutive-symbolic", _("Enable Shuffle"));
+            append_item (_("All"), "media-playlist-shuffle-symbolic", _("Disable Shuffle"));
 
             update_mode ();
 
@@ -111,46 +126,6 @@ namespace Noise.Widgets {
         }
     }
 
-    private class AddPlaylistChooser : Gtk.ToggleButton {
-        private Gtk.Menu menu;
-
-        construct {
-            margin_right = 12;
-
-            tooltip_text = _("Add Playlist");
-
-            relief = Gtk.ReliefStyle.NONE;
-
-            add (new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU));
-
-            var add_pl_menuitem = new Gtk.MenuItem.with_label (_("Add Playlist"));
-            var add_spl_menuitem = new Gtk.MenuItem.with_label (_("Add Smart Playlist"));
-
-            menu = new Gtk.Menu ();
-            menu.append (add_pl_menuitem);
-            menu.append (add_spl_menuitem);
-            menu.show_all ();
-
-            menu.attach_widget = this;
-
-            add_pl_menuitem.activate.connect (() => {
-                App.main_window.create_new_playlist ();
-            });
-
-            add_spl_menuitem.activate.connect (() => {
-                App.main_window.show_smart_playlist_dialog ();
-            });
-        }
-
-        public override void toggled () {
-            if (menu.visible) {
-                menu.popdown ();
-            } else {
-                menu.popup (null, null, null, Gdk.BUTTON_PRIMARY, Gtk.get_current_event_time ());
-            }
-        }
-    }
-
     private class EqualizerChooser : Gtk.MenuButton {
         construct {
             var eq_popover = new EqualizerPopover ();
@@ -167,40 +142,4 @@ namespace Noise.Widgets {
             tooltip_markup = _("Equalizer: %s").printf ("<b>" + Markup.escape_text (eq_preset_name) + "</b>");
         }
     }
-
-    private class InfoPanelChooser : SimpleOptionChooser {
-        construct {
-            var info_panel_show = new Gtk.Image.from_icon_name ("pane-show-symbolic", Gtk.IconSize.MENU);
-            var info_panel_hide = new Gtk.Image.from_icon_name ("pane-hide-symbolic", Gtk.IconSize.MENU);
-
-            append_item (_("Hide"), "pane-show-symbolic", _("Show Info Panel"), true);
-            append_item (_("Show"), "pane-hide-symbolic", _("Hide Info Panel"), true);
-
-            on_info_panel_visibility_change ();
-            var info_panel = App.main_window.info_panel;
-            info_panel.show.connect (on_info_panel_visibility_change);
-            info_panel.hide.connect (on_info_panel_visibility_change);
-
-            option_changed.connect (on_option_changed);
-        }
-
-        private void on_info_panel_visibility_change () {
-            set_option (App.main_window.info_panel.visible ? 1 : 0);
-        }
-
-        private void on_option_changed (bool by_user) {
-            int val = current_option;
-
-            bool visible = val == 1;
-            App.main_window.info_panel.visible = visible;
-
-            // We write the new state to settings in this method as this is the only user-facing widget
-            // for hiding and showing the context pane. Any other visibility change we do internally
-            // or elsewhere should not be saved
-            if (by_user) {
-                Settings.SavedState.get_default ().more_visible = visible;
-            }
-        }
-    }
-
 }

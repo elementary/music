@@ -16,8 +16,6 @@ vala_precompile(LAST_FM_VALA_C ${TARGET_NAME}
     Tag.vala
     SimilarMedia.vala
     SimilarMediaView.vala
-    SimilarMediaWidget.vala
-    LoveBanButtons.vala
 PACKAGES
     ${DEPS_PACKAGES}
     json-glib-1.0
@@ -35,9 +33,6 @@ add_dependencies(${TARGET_NAME} ${SRC_TARGET})
 
 install(TARGETS ${TARGET_NAME} DESTINATION ${PLUGIN_DIR}/LastFM/)
 install(FILES lastfm.plugin DESTINATION ${PLUGIN_DIR}/LastFM/)
-# location of the fallback icon theme
-set(FALLBACK_THEME_DIR ${ICON_DIR}/hicolor)
-install(FILES icons/playlist-similar.svg DESTINATION ${FALLBACK_THEME_DIR}/16x16/mimetypes)
 install(FILES noise-lastfm.application DESTINATION ${CMAKE_INSTALL_PREFIX}/share/accounts/applications/)
 
 else ()

@@ -44,10 +44,10 @@ public class Noise.SimpleOptionChooser : Gtk.EventBox {
 		}
 	}
 
-	Gtk.Menu menu;
+	private Gtk.Menu menu;
 	private Gee.ArrayList<SimpleOption> options { get; set; }
 
-	int clicked_index = 0;
+	private int clicked_index = 0;
 
     public int current_option { get { return clicked_index; } }
 
@@ -75,7 +75,9 @@ public class Noise.SimpleOptionChooser : Gtk.EventBox {
 
 		options[index].menu_item.active = true;
 
-		clicked_index = index;
+        if (notify) {
+            option_changed ();
+        }
 
 		option_changed (by_user);
 
@@ -84,7 +86,6 @@ public class Noise.SimpleOptionChooser : Gtk.EventBox {
 		}
 
 		add (options[index].icon);
-
 		show_all ();
 	}
 
@@ -131,7 +132,6 @@ public class Noise.SimpleOptionChooser : Gtk.EventBox {
 			}
 		}
 
-		return false;
-	}
-
+        return false;
+    }
 }

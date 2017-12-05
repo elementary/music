@@ -218,9 +218,10 @@ public class Noise.ListView : ContentView, Gtk.Box {
             }
         });
 
-        App.main_window.viewSelector.column_browser_toggled.connect (  (enabled) => {
-            if (enabled != column_browser_enabled)
+        App.main_window.view_selector.column_browser_toggled.connect ((enabled) => {
+            if (enabled != column_browser_enabled) {
                 column_browser_enabled = enabled;
+            }
         });
 
         column_browser.position_changed.connect (set_column_browser_position);
@@ -281,7 +282,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
         if (App.main_window.initialization_finished) {
             // This is supposed to take the browser's filter into account because obey_column_browser is #false
             list_view.do_search (null);
-            view_wrapper.update_statusbar_info ();
         }
     }
 
@@ -339,48 +339,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
         if (has_column_browser)
             column_browser.set_media (view_wrapper.library.get_search_result ());
-    }
-
-    public string get_statusbar_text () {
-        var all_visible_media = get_visible_media ();
-
-        bool is_cd = view_wrapper.hint == ViewWrapper.Hint.CDROM;
-        uint total_items = 0;
-        uint64 total_size = 0, total_time = 0;
-
-        foreach (var media in all_visible_media) {
-            if (media != null) {
-                total_items ++;
-                total_time += media.length;
-                total_size += media.file_size;
-            }
-        }
-
-        if (total_items < 1)
-            return "";
-
-        string media_description;
-
-        if (is_cd)
-            media_description = ngettext ("%i track", "%i tracks", total_items).printf ((int) total_items);
-        else
-            media_description = ngettext ("%u song", "%u songs", total_items).printf (total_items);
-
-        string time_text = TimeUtils.time_string_from_miliseconds (total_time);
-
-        string status_text;
-
-        // ignore file size field for audio CDs
-        if (is_cd) {
-            var statusbar_format = C_("Format used on statusbar: $description, $total_duration", "%s, %s");
-            status_text = statusbar_format.printf (media_description, time_text);
-        } else {
-            string size_text = format_size (total_size);
-            var statusbar_format = _(FULL_STATUSBAR_FORMAT);
-            status_text = statusbar_format.printf (media_description, time_text, size_text);
-        }
-
-        return status_text;
     }
 
     private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {

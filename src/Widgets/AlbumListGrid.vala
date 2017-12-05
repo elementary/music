@@ -27,100 +27,84 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.PopupListView : Gtk.Dialog {
-    public const int MIN_SIZE = 500;
+public class Noise.AlbumListGrid : Gtk.Grid {
+    private ViewWrapper _view_wrapper;
+    public ViewWrapper view_wrapper {
+        get {
+            return _view_wrapper;
+        }
+        construct set {
+            list_view.parent_wrapper = value;
+            _view_wrapper = value;
+        }
+    }
 
-    public ViewWrapper view_wrapper { get; construct set; }
-    Widgets.AlbumImage album_cover;
-    Gtk.Label album_label;
-    Gtk.Label artist_label;
+    private Album album;
+    private Widgets.AlbumImage album_cover;
+    private Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
+    private GenericList list_view;
+    private Gtk.Label album_label;
+    private Gtk.Label artist_label;
+    private Gtk.Menu cover_action_menu;
+    private Granite.Widgets.Rating rating;
 
-    Gtk.Menu cover_action_menu;
-    Gtk.MenuItem cover_set_new;
-
-    Granite.Widgets.Rating rating;
-    GenericList list_view;
-
-    Album album;
-    Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
-
-    public PopupListView (GridView grid_view) {
-        Object (view_wrapper: grid_view.parent_view_wrapper);
+    public AlbumListGrid (ViewWrapper view_wrapper) {
+        Object (view_wrapper: view_wrapper);
     }
 
     construct {
-        // window stuff
-        has_resize_grip = false;
-        resizable = false;
-        destroy_with_parent = true;
-        skip_taskbar_hint = true;
-        set_transient_for (App.main_window);
-        window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
-
-        delete_event.connect (hide_on_delete);
-        App.main_window.close_subwindows.connect (() => { hide_on_delete (); });
-
-        // cover
         album_cover = new Widgets.AlbumImage ();
-        album_cover.margin_left = 12;
+        album_cover.width_request = 184;
+        album_cover.margin = 28;
+        album_cover.margin_bottom = 12;
 
-        Gtk.EventBox cover_event_box = new Gtk.EventBox ();
+        var cover_event_box = new Gtk.EventBox ();
         cover_event_box.add (album_cover);
 
-        cover_action_menu = new Gtk.Menu ();
-        cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
-        cover_set_new.activate.connect (() => { set_new_cover (); });
+        var cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
 
+        cover_action_menu = new Gtk.Menu ();
         cover_action_menu.append (cover_set_new);
         cover_action_menu.show_all ();
 
-        cover_event_box.button_press_event.connect (show_cover_context_menu);
-
-        // album artist/album labels
-        artist_label = new Gtk.Label (null);
-        artist_label.hexpand = true;
-        artist_label.get_style_context ().add_class ("h1");
-        artist_label.wrap = true;
-        artist_label.margin_end = 12;
-        artist_label.valign = Gtk.Align.END;
-        artist_label.set_max_width_chars (30);
-
-        album_label = new Gtk.Label (null);
-        album_label.hexpand = true;
-        album_label.get_style_context ().add_class ("h2");
+        album_label = new Gtk.Label ("");
+        album_label.halign = Gtk.Align.START;
+        album_label.margin_start = album_label.margin_end = 28;
+        album_label.max_width_chars = 30;
         album_label.wrap = true;
-        album_label.margin_end = 12;
-        album_label.valign = Gtk.Align.START;
-        album_label.set_max_width_chars (30);
+        album_label.xalign = 0;
+        album_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
-        // Music List
+        artist_label = new Gtk.Label ("");
+        artist_label.halign = Gtk.Align.START;
+        artist_label.margin_start = artist_label.margin_end = 28;
+        artist_label.max_width_chars = 30;
+        artist_label.wrap = true;
+        artist_label.xalign = 0;
+        artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+
         var tvs = new TreeViewSetup (ViewWrapper.Hint.ALBUM_LIST);
         list_view = new MusicListView (view_wrapper, tvs);
-        list_view.set_search_func (view_search_func);
         list_view.expand = true;
+        list_view.set_search_func (view_search_func);
+        list_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
+        list_view_scrolled.margin_top = 18;
         list_view_scrolled.add (list_view);
 
-        // Rating widget
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
-        // customize rating
         rating.star_spacing = 12;
-        rating.margin_top = 12;
-        rating.margin_bottom = 6;
+        rating.margin_bottom = rating.margin_top = 12;
 
-        // Add everything
-        var content = get_content_area () as Gtk.Box;
-        var grid = new Gtk.Grid ();
-        grid.row_spacing = 6;
-        grid.column_spacing = 12;
+        attach (cover_event_box, 0, 0, 1, 1);
+        attach (album_label, 0, 1, 1, 1);
+        attach (artist_label, 0, 2, 1, 1);
+        attach (list_view_scrolled, 0, 3, 1, 1);
+        attach (rating, 0, 4, 1, 1);
 
-        grid.attach (cover_event_box, 0, 0, 1, 2);
-        grid.attach (artist_label, 1, 0, 1, 1);
-        grid.attach (album_label, 1, 1, 1, 1);
-        grid.attach (list_view_scrolled, 0, 2, 2, 1);
-        grid.attach (rating, 0, 3, 2, 1);
-        content.add (grid);
-
+        cover_event_box.button_press_event.connect (show_cover_context_menu);
+        cover_set_new.activate.connect (set_new_cover);
         rating.rating_changed.connect (rating_changed);
     }
 
@@ -128,8 +112,6 @@ public class Noise.PopupListView : Gtk.Dialog {
      * Resets the window
      */
     public void reset () {
-        // clear labels
-        set_title ("");
         album_label.set_label ("");
         artist_label.set_label ("");
 
@@ -137,9 +119,6 @@ public class Noise.PopupListView : Gtk.Dialog {
         list_view.get_selection ().unselect_all (); // Unselect rows
         media_list.clear ();
         list_view.set_media (media_list);
-
-        // Reset size request
-        set_size (MIN_SIZE);
 
         if (album != null) {
             album.notify["cover-icon"].disconnect (update_album_cover);
@@ -153,11 +132,6 @@ public class Noise.PopupListView : Gtk.Dialog {
         return true;
     }
 
-    public void set_parent_wrapper (ViewWrapper parent_wrapper) {
-        view_wrapper = parent_wrapper;
-        list_view.parent_wrapper = parent_wrapper;
-    }
-
     public void set_album (Album album) {
         reset ();
         this.album = album;
@@ -165,13 +139,10 @@ public class Noise.PopupListView : Gtk.Dialog {
             string name = album.get_display_name ();
             string artist = album.get_display_artist ();
 
-            string title_format = C_("Title format used on Album View Popup: $ALBUM by $ARTIST", "%s by %s");
-            set_title (title_format.printf (name, artist));
-
             album_label.set_label (name);
             artist_label.set_label (artist);
             update_album_cover ();
-            album.notify["cover-icon"].disconnect (update_album_cover);
+            album.notify["cover-icon"].connect (update_album_cover);
 
             // Make a copy. Otherwise the list won't work if some elements are
             // removed from the parent wrapper while the window is showing
@@ -182,7 +153,7 @@ public class Noise.PopupListView : Gtk.Dialog {
             list_view.set_media (media_list);
 
             // Search again to match the view wrapper's search
-            list_view.do_search (App.main_window.searchField.text);
+            list_view.do_search (App.main_window.search_entry.text);
         }
 
         if (list_view.get_realized ())
@@ -195,9 +166,9 @@ public class Noise.PopupListView : Gtk.Dialog {
 
     void update_album_cover () {
         if (album.cover_icon != null) {
-            album_cover.gicon = album.cover_icon;
+            album_cover.image.gicon = album.cover_icon;
         } else {
-            album_cover.gicon = new ThemedIcon ("albumart");
+            album_cover.image.gicon = null;
         }
     }
 
@@ -264,13 +235,15 @@ public class Noise.PopupListView : Gtk.Dialog {
     }
 
     private void set_new_cover () {
-        var file = new Gtk.FileChooserDialog (_("Open"), this, Gtk.FileChooserAction.OPEN,
-            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.ACCEPT);
-
         var image_filter = new Gtk.FileFilter ();
         image_filter.set_filter_name (_("Image files"));
         image_filter.add_mime_type ("image/*");
 
+        var file = new Gtk.FileChooserDialog (
+            _("Open"), (Gtk.Window) get_parent_window (), Gtk.FileChooserAction.OPEN,
+            _("_Cancel"), Gtk.ResponseType.CANCEL,
+            _("_Open"), Gtk.ResponseType.ACCEPT
+        );
         file.add_filter (image_filter);
 
         if (file.run () == Gtk.ResponseType.ACCEPT) {
@@ -278,24 +251,5 @@ public class Noise.PopupListView : Gtk.Dialog {
         }
 
         file.destroy ();
-    }
-
-    /**
-     * Force squared layout
-     */
-    public void set_size (int size) {
-        set_size_request (size, -1);
-        queue_resize ();
-    }
-
-    public override Gtk.SizeRequestMode get_request_mode () {
-        return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
-    }
-
-    public override void get_preferred_height_for_width (int width,
-                                                         out int minimum_height,
-                                                         out int natural_height)
-    {
-        minimum_height = natural_height = width;
     }
 }

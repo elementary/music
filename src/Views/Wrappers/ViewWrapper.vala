@@ -60,8 +60,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * Values *must* match the index of the respective view in the view selector.
      */
     public enum ViewType {
-        GRID    = 0,   // Matches index 0 of the view in lw.viewSelector
-        LIST    = 1,   // Matches index 1 of the view in lw.viewSelector
+        GRID    = 0,   // Matches index 0 of the view in lw.view_selector
+        LIST    = 1,   // Matches index 1 of the view in lw.view_selector
         ALERT   = 2,   // For embedded alerts
         WELCOME = 3,   // For welcome screens
         NONE    = 4    // Nothing showing
@@ -69,7 +69,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public ListView list_view { get; protected set; }
     public GridView grid_view { get; protected set; }
-    protected Granite.Widgets.EmbeddedAlert embedded_alert { get; set; }
+    protected Granite.Widgets.AlertView embedded_alert { get; set; }
     protected Granite.Widgets.Welcome welcome_screen { get; set; }
 
     public bool has_grid_view { get { return grid_view != null; } }
@@ -139,7 +139,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         view_container = new ViewContainer ();
         add (view_container);
 
-        App.main_window.viewSelector.mode_changed.connect (view_selector_changed);
+        App.main_window.view_selector.mode_changed.connect (view_selector_changed);
         library.search_finished.connect (search_field_changed);
     }
 
@@ -227,12 +227,12 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         // Search field
         // Insensitive if there's no media to search (applies to ALERT/WELCOME views)
-        App.main_window.searchField.set_sensitive (media_count > 0);
+        App.main_window.search_entry.set_sensitive (media_count > 0);
 
         // View switcher
         // Insensitive if the current view is the welcome/alert screen or if both views
         // are not available (in the queue, device, or playlist sources).
-        App.main_window.viewSelector.set_sensitive (has_grid_view && has_list_view
+        App.main_window.view_selector.set_sensitive (has_grid_view && has_list_view
                                                     && current_view != ViewType.WELCOME
                                                     && current_view != ViewType.ALERT);
 
@@ -240,22 +240,20 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         // that it is not null because the column_browser is not guaranteed to
         // exist. This is done separately from below because of ViewSelector's
         // poor API.
-        App.main_window.viewSelector.set_column_browser_toggle_active (list_view.column_browser != null
+        App.main_window.view_selector.set_column_browser_toggle_active (list_view.column_browser != null
                                                                        && list_view.column_browser.visible);
 
         // select the right view in the view selector if it's one of the three views.
         // The order is important here. The sensitivity set above must be set before this,
         // as view_selector_changed() depends on that.
-        if (!App.main_window.viewSelector.get_column_browser_toggle_active ()) {
-            if (App.main_window.viewSelector.selected != (int)last_used_view && (int)last_used_view <= 1)
-                App.main_window.viewSelector.selected = (Widgets.ViewSelector.Mode)last_used_view;
+        if (!App.main_window.view_selector.get_column_browser_toggle_active ()) {
+            if (App.main_window.view_selector.selected != (int)last_used_view && (int)last_used_view <= 1)
+                App.main_window.view_selector.selected = (Widgets.ViewSelector.Mode)last_used_view;
         }
-
-        update_statusbar_info ();
     }
 
     public void view_selector_changed () {
-        if (!App.main_window.initialization_finished || !App.main_window.viewSelector.sensitive)
+        if (!App.main_window.initialization_finished || !App.main_window.view_selector.sensitive)
             return;
 
         if ((current_view == ViewType.ALERT && media_count < 1) ||
@@ -264,7 +262,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         debug ("view_selector_changed [%s]", hint.to_string());
 
-        var selected_view = (ViewType) App.main_window.viewSelector.selected;
+        var selected_view = (ViewType) App.main_window.view_selector.selected;
 
         if (is_current_wrapper) {
             set_active_view (selected_view);
@@ -304,29 +302,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         update_visible_media ();
         check_have_media ();
         update_library_window_widgets ();
-    }
-
-    protected string get_statusbar_text () {
-        string status_text = "";
-
-        // Get data based on the current view
-        if (current_view == ViewType.GRID) {
-            if (has_grid_view)
-                status_text = grid_view.get_statusbar_text ();
-        } else if (current_view == ViewType.LIST) {
-            if (has_list_view)
-                status_text = list_view.get_statusbar_text ();
-        }
-
-        return status_text;
-    }
-
-    public void update_statusbar_info () {
-        if (!is_current_wrapper)
-            return;
-
-        debug ("updating statusbar info [%s]", hint.to_string ());
-        App.main_window.statusbar.set_info (get_statusbar_text ());
     }
 
     private void search_field_changed () {
@@ -383,7 +358,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     protected virtual void select_proper_content_view () {
-        var new_view = (ViewType) App.main_window.viewSelector.selected;
+        var new_view = (ViewType) App.main_window.view_selector.selected;
 
         const int N_VIEWS = 2; // list and grid views
         if (new_view < 0 || new_view > N_VIEWS - 1)
@@ -436,12 +411,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
                 grid_view.refilter ();
             }
         }
-
-        update_statusbar_info ();
     }
 
     protected virtual void set_no_media_alert () {
-        embedded_alert.set_alert (_("No media"), "", null, true, Gtk.MessageType.INFO);
+        embedded_alert.icon_name = "dialog-information";
+        embedded_alert.title = _("No media");
     }
 
     public async void set_media_async (Gee.Collection<Media> new_media) {

@@ -1,23 +1,20 @@
 set(CLIENT_SOURCE
-    main.vala
-    Noise.vala
+    Application.vala
     LibraryWindow.vala
     PlaybackManager.vala
     FileOperator.vala
-    Objects/LyricFetcher.vala
     Objects/MediaKeyListener.vala
     Objects/HistoryPlaylist.vala
+    Objects/MPRIS.vala
     LocalBackend/LocalLibrary.vala
     LocalBackend/LocalMedia.vala
     LocalBackend/LocalSmartPlaylist.vala
     LocalBackend/LocalStaticPlaylist.vala
     LocalBackend/DevicePreferences.vala
+    Widgets/AlbumListGrid.vala
     Widgets/TopDisplay.vala
-    Widgets/InfoPanel.vala
-    Widgets/EmbeddedAlert.vala
     Widgets/SimpleOptionChooser.vala
     Widgets/PresetList.vala
-    Widgets/SideBar.vala
     Widgets/SourceListView.vala
     Widgets/StatusBar.vala
     Widgets/RatingWidget.vala
@@ -43,9 +40,7 @@ set(CLIENT_SOURCE
     Views/DeviceSummaryWidget.vala
     Views/ContentView.vala
     Views/ViewTextOverlay.vala
-    Views/GridView/GridLayout.vala
-    Views/GridView/GridView.vala
-    Views/GridView/PopupListView.vala
+    Views/GridView.vala
     Views/ListView/ListView.vala
     Views/ListView/ColumnBrowser/BrowserColumnModel.vala
     Views/ListView/ColumnBrowser/BrowserColumn.vala
@@ -64,7 +59,6 @@ set(CLIENT_SOURCE
     Dialogs/RemoveFilesDialog.vala
     Dialogs/NotImportedWindow.vala
     Dialogs/SetMusicFolderConfirmation.vala
-    Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala
 )
 
@@ -89,9 +83,12 @@ vala_precompile (CLIENT_VALA_C ${SRC_TARGET}
 
 set (EXEC_NAME ${SRC_TARGET})
 
+include (GResource)
+glib_compile_resources (GLIB_RESOURCES_ICONS SOURCE ../data/icons/icons.gresource.xml)
+
 add_definitions (${DEPS_CFLAGS})
 link_directories (${DEPS_LIBRARY_DIRS})
-add_executable (${EXEC_NAME} ${CLIENT_VALA_C})
+add_executable (${EXEC_NAME} ${CLIENT_VALA_C} ${GLIB_RESOURCES_ICONS})
 
 target_link_libraries (${EXEC_NAME} ${DEPS_LIBRARIES})
 
