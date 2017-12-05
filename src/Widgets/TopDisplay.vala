@@ -148,7 +148,7 @@ public class Noise.TopDisplay : Gtk.Stack {
         }
 
         private void update_option () {
-            set_option ((int)Settings.Main.get_default ().repeat_mode);
+            set_option ((int) Settings.Main.get_default ().repeat_mode);
         }
 
         private void on_option_changed () {
@@ -175,7 +175,7 @@ public class Noise.TopDisplay : Gtk.Stack {
         }
 
         private void update_mode () {
-            set_option ((int)Settings.Main.get_default ().shuffle_mode);
+            set_option ((int) Settings.Main.get_default ().shuffle_mode);
         }
 
         private void on_option_changed () {
