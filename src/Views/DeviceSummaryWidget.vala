@@ -33,7 +33,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     private Gtk.Button sync_button;
     private Granite.Widgets.StorageBar storagebar;
 
-    Gtk.Entry device_name_entry;
     Gtk.Switch auto_sync_switch;
 
     Gtk.CheckButton sync_music_check;
@@ -63,7 +62,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         var device_name_label = new Gtk.Label (_("Device Name:"));
         device_name_label.halign = Gtk.Align.END;
 
-        device_name_entry = new Gtk.Entry ();
+        var device_name_entry = new Gtk.Entry ();
         device_name_entry.placeholder_text = _("Device Name");
 
         var auto_sync_label = new Gtk.Label (_("Automatically sync when plugged in:"));
@@ -157,7 +156,10 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_check.toggled.connect (save_preferences);
         sync_music_combobox.changed.connect (save_preferences);
 
-        device_name_entry.changed.connect (device_name_changed);
+        device_name_entry.changed.connect (() => {
+            device.setDisplayName (device_name_entry.text);
+        });
+
         sync_button.clicked.connect (sync_clicked);
         device.get_library ().file_operations_done.connect (sync_finished);
         libraries_manager.local_library.playlist_added.connect (() => {refresh_lists ();});
@@ -205,10 +207,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         string sep = "";
         model.get (iter, 1, out sep);
         return sep == "<separator_item_unique_name>";
-    }
-
-    private void device_name_changed () {
-        device.setDisplayName (device_name_entry.text);
     }
 
     private void save_preferences () {
