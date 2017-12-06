@@ -27,9 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gtk;
-
-public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
+public class Noise.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable {
     /* all iters must match this */
     private int stamp = (int)Random.next_int ();
 
@@ -39,12 +37,12 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
     private Sequence<string> rows;
 
     /* first iter. This helps us to track the "All" row */
-    TreeIter? first_iter;
+    Gtk.TreeIter? first_iter;
 
     /* treesortable stuff */
     private int sort_column_id;
-    private SortType sort_direction;
-    private unowned TreeIterCompareFunc default_sort_func;
+    private Gtk.SortType sort_direction;
+    private unowned Gtk.TreeIterCompareFunc default_sort_func;
 
     private BrowserColumn.Category category;
 
@@ -55,17 +53,17 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
         this.category = category;
 
         sort_column_id = -2;
-        sort_direction = SortType.ASCENDING;
+        sort_direction = Gtk.SortType.ASCENDING;
     }
 
     /** Returns a set of flags supported by this interface **/
-    public TreeModelFlags get_flags () {
-        return TreeModelFlags.LIST_ONLY;
+    public Gtk.TreeModelFlags get_flags () {
+        return Gtk.TreeModelFlags.LIST_ONLY;
     }
 
     /** Sets iter to a valid iterator pointing to path **/
-    public bool get_iter (out TreeIter iter, TreePath path) {
-        iter = TreeIter ();
+    public bool get_iter (out Gtk.TreeIter iter, Gtk.TreePath path) {
+        iter = Gtk.TreeIter ();
         int path_index = path.get_indices ()[0];
 
         if (rows.get_length () == 0 || path_index < 0 || path_index >= rows.get_length ())
@@ -91,12 +89,12 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
     }
 
     /** Returns a newly-created Gtk.TreePath referenced by iter. **/
-    public TreePath? get_path (TreeIter iter) {
-        return new TreePath.from_string ( ( (SequenceIter)iter.user_data).get_position ().to_string ());
+    public Gtk.TreePath? get_path (Gtk.TreeIter iter) {
+        return new Gtk.TreePath.from_string ( ( (SequenceIter)iter.user_data).get_position ().to_string ());
     }
 
     /** Initializes and sets value to that at column. **/
-    public void get_value (TreeIter iter, int column, out Value val) {
+    public void get_value (Gtk.TreeIter iter, int column, out Value val) {
         val = Value (typeof (string));
         if (iter.stamp != this.stamp || column < 0 || column >= 1)
             return;
@@ -106,20 +104,20 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
     }
 
     /** Sets iter to point to the first child of parent. **/
-    public bool iter_children (out TreeIter iter, TreeIter? parent) {
-        iter = TreeIter ();
+    public bool iter_children (out Gtk.TreeIter iter, Gtk.TreeIter? parent) {
+        iter = Gtk.TreeIter ();
 
         return false;
     }
 
     /** Returns true if iter has children, false otherwise. **/
-    public bool iter_has_child (TreeIter iter) {
+    public bool iter_has_child (Gtk.TreeIter iter) {
 
         return false;
     }
 
     /** Returns the number of children that iter has. **/
-    public int iter_n_children (TreeIter? iter) {
+    public int iter_n_children (Gtk.TreeIter? iter) {
         if (iter == null)
             return rows.get_length ();
 
@@ -127,7 +125,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
     }
 
     /** Sets iter to point to the node following it at the current level. **/
-    public bool iter_next (ref TreeIter iter) {
+    public bool iter_next (ref Gtk.TreeIter iter) {
         if (iter.stamp != this.stamp)
             return false;
 
@@ -140,8 +138,8 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
     }
 
     /** Sets iter to be the child of parent, using the given index. **/
-    public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
-        iter = TreeIter ();
+    public bool iter_nth_child (out Gtk.TreeIter iter, Gtk.TreeIter? parent, int n) {
+        iter = Gtk.TreeIter ();
         if (n < 0 || n >= rows.get_length () || parent != null)
             return false;
 
@@ -152,21 +150,21 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
     }
 
     /** Sets iter to be the parent of child. **/
-    public bool iter_parent (out TreeIter iter, TreeIter child) {
-        iter = TreeIter ();
+    public bool iter_parent (out Gtk.TreeIter iter, Gtk.TreeIter child) {
+        iter = Gtk.TreeIter ();
 
         return false;
     }
 
     /** Lets the tree ref the node. **/
-    public void ref_node (TreeIter iter) {}
+    public void ref_node (Gtk.TreeIter iter) {}
 
     /** Lets the tree unref the node. **/
-    public void unref_node (TreeIter iter) {}
+    public void unref_node (Gtk.TreeIter iter) {}
 
     /** simply adds iter to the model **/
-    public void append (out TreeIter iter) {
-        iter = TreeIter ();
+    public void append (out Gtk.TreeIter iter) {
+        iter = Gtk.TreeIter ();
         SequenceIter<string> added = rows.append ("");
         iter.stamp = this.stamp;
         iter.user_data = added;
@@ -181,8 +179,8 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
             SequenceIter<string> added = rows.append (s);
 
             if (emit) {
-                var path = new TreePath.from_string (added.get_position ().to_string ());
-                var iter = TreeIter ();
+                var path = new Gtk.TreePath.from_string (added.get_position ().to_string ());
+                var iter = Gtk.TreeIter ();
 
                 iter.stamp = this.stamp;
                 iter.user_data = added;
@@ -198,7 +196,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
     private void add_first_element () {
         SequenceIter<string> added = rows.append ("All");
 
-        first_iter = TreeIter ();
+        first_iter = Gtk.TreeIter ();
 
         first_iter.stamp = this.stamp;
         first_iter.user_data = added;
@@ -281,7 +279,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
     }
 
 
-    public new void set (TreeIter iter, ...) {
+    public new void set (Gtk.TreeIter iter, ...) {
         if (iter.stamp != this.stamp)
             return;
 
@@ -298,18 +296,18 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
         }
     }
 
-    public void remove (TreeIter iter) {
+    public void remove (Gtk.TreeIter iter) {
         if (iter.stamp != this.stamp)
             return;
 
         var sequence_iter = (SequenceIter<string>)iter.user_data;
-        var path = new TreePath.from_string (sequence_iter.get_position ().to_string ());
+        var path = new Gtk.TreePath.from_string (sequence_iter.get_position ().to_string ());
         sequence_iter.remove ();
         row_deleted (path);
     }
 
     /** Fills in sort_column_id and order with the current sort column and the order. **/
-    public bool get_sort_column_id (out int sort_column_id, out SortType order) {
+    public bool get_sort_column_id (out int sort_column_id, out Gtk.SortType order) {
         sort_column_id = this.sort_column_id;
         order = sort_direction;
 
@@ -322,12 +320,12 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
     }
 
     /** Sets the default comparison function used when sorting to be sort_func. **/
-    public void set_default_sort_func (owned TreeIterCompareFunc sort_func) {
+    public void set_default_sort_func (owned Gtk.TreeIterCompareFunc sort_func) {
         default_sort_func = sort_func;
     }
 
     /** Sets the current sort column to be sort_column_id. **/
-    public void set_sort_column_id (int sort_column_id, SortType order) {
+    public void set_sort_column_id (int sort_column_id, Gtk.SortType order) {
         bool changed = (this.sort_column_id != sort_column_id || order != sort_direction);
 
         this.sort_column_id = sort_column_id;
@@ -341,7 +339,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
         }
     }
 
-    public void set_sort_func (int sort_column_id, owned TreeIterCompareFunc sort_func) {
+    public void set_sort_func (int sort_column_id, owned Gtk.TreeIterCompareFunc sort_func) {
 
     }
 
@@ -371,7 +369,7 @@ public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
             }
         }
 
-        if (sort_direction == SortType.DESCENDING)
+        if (sort_direction == Gtk.SortType.DESCENDING)
             rv = (rv > 0) ? -1 : 1;
 
         return rv;
