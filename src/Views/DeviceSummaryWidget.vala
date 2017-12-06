@@ -30,7 +30,8 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Device dev;
     DevicePreferences preferences;
 
-    Gtk.Grid main_grid;
+    private Gtk.Button sync_button;
+    private Granite.Widgets.StorageBar storagebar;
 
     Gtk.Entry device_name_entry;
     Gtk.Switch auto_sync_switch;
@@ -38,9 +39,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Gtk.CheckButton sync_music_check;
     Gtk.ComboBox sync_music_combobox;
     Gtk.ListStore music_list;
-
-    Gtk.Image device_image;
-    SpaceWidget space_widget;
 
     public DeviceSummaryWidget (Device d, DevicePreferences preferences) {
         this.dev = d;
@@ -80,15 +78,26 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_combobox = new Gtk.ComboBox ();
         music_list = new Gtk.ListStore (3, typeof (GLib.Object), typeof (string), typeof (GLib.Icon));
 
-        device_image = new Gtk.Image.from_gicon (dev.get_icon (), Gtk.IconSize.DIALOG);
-
-        space_widget = new SpaceWidget (dev.get_capacity());
-        space_widget.valign = Gtk.Align.END;
-
         setup_lists ();
 
-        space_widget.storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, 0);
-        space_widget.storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, 0);
+        storagebar = new Granite.Widgets.StorageBar (dev.get_capacity());
+        storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, 0);
+        storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, 0);
+
+        sync_button = new Gtk.Button.with_label (_("Sync"));
+        sync_button.valign = Gtk.Align.CENTER;
+        sync_button.width_request = 80;
+
+        var storage_grid = new Gtk.Grid ();
+        storage_grid.column_spacing = 6;
+        storage_grid.margin = 24;
+        storage_grid.add (storagebar);
+        storage_grid.add (sync_button);
+
+        var storage_toolbar = new Gtk.Grid ();
+        storage_toolbar.valign = Gtk.Align.END;
+        storage_toolbar.add (storage_grid);
+        storage_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
 
         refresh_space_widget ();
 
@@ -116,9 +125,9 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         content_grid.attach (sync_music_check, 2, 3, 1, 1);
         content_grid.attach (sync_music_combobox, 3, 3, 1, 1);
 
-        main_grid = new Gtk.Grid ();
+        var main_grid = new Gtk.Grid ();
         main_grid.attach (content_grid, 0, 0, 1, 1);
-        main_grid.attach (space_widget, 0, 1, 1, 1);
+        main_grid.attach (storage_toolbar, 0, 1, 1, 1);
 
         add (main_grid);
 
@@ -149,7 +158,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_combobox.changed.connect (save_preferences);
 
         device_name_entry.changed.connect (device_name_changed);
-        space_widget.sync_clicked.connect (sync_clicked);
+        sync_button.clicked.connect (sync_clicked);
         dev.get_library ().file_operations_done.connect (sync_finished);
         libraries_manager.local_library.playlist_added.connect (() => {refresh_lists ();});
         libraries_manager.local_library.playlist_name_updated.connect (() => {refresh_lists ();});
@@ -169,8 +178,8 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         }
         other_files_size = dev.get_used_space () - music_size;
 
-        space_widget.storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, other_files_size);
-        space_widget.storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, music_size);
+        storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, other_files_size);
+        storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, music_size);
     }
 
     private void setup_lists() {
@@ -271,7 +280,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
     private void sync_finished () {
         refresh_space_widget ();
-        space_widget.set_sync_button_sensitive (true);
+        sync_button.sensitive = true;
     }
 
     public void sync_clicked () {
@@ -332,7 +341,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                     }
                 });
             } else {
-                space_widget.set_sync_button_sensitive(false);
+                sync_button.sensitive = false;
                 dev.synchronize ();
             }
         }
