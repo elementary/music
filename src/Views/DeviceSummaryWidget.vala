@@ -43,10 +43,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     public DeviceSummaryWidget (Device d, DevicePreferences preferences) {
         this.dev = d;
         this.preferences = preferences;
-        build_ui ();
-    }
 
-    public void build_ui () {
         get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
         var device_name_title_label = new Gtk.Label (dev.getDisplayName () ?? "");
