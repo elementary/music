@@ -35,17 +35,11 @@
  * The icon is searched in the available icon themes.
  */
 public class Noise.Icon : Object {
-
     private static Gtk.IconTheme? _theme;
     public static Gtk.IconTheme theme {
         get {
             if (_theme == null) {
                 _theme = Gtk.IconTheme.get_default ();
-
-                // This only works if Build.ICON_DIR contains a sub-directory named "hicolor"
-                // containing all the fallback icons (possibly organized into sub-folders as well),
-                // or if the icons are immediate children of this directory.
-                _theme.append_search_path (Path.build_filename (Build.ICON_DIR));
             }
 
             return _theme;
@@ -54,7 +48,6 @@ public class Noise.Icon : Object {
 
     public string? name { get; private set; }
     public GLib.Icon gicon { get; private set; }
-
 
     /**
      * Creates a new icon object.
@@ -67,19 +60,8 @@ public class Noise.Icon : Object {
         gicon = new ThemedIcon (this.name);
     }
 
-
     public Gtk.IconInfo? get_icon_info (int size) {
         return theme.lookup_by_gicon (gicon, size, Gtk.IconLookupFlags.USE_BUILTIN);
-    }
-
-    /**
-     * Returns a file representing the icon in the filesystem.
-     * @param size Icon size to query.
-     * @return A {@link GLib.File} representing the icon, or //null// if none is found.
-     */
-    public File? get_file (int size = 16) {
-        var info = get_icon_info (size);
-        return info != null ? File.new_for_path (info.get_filename ()) : null;
     }
 
     /**
