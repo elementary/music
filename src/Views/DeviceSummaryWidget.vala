@@ -31,13 +31,11 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     public DevicePreferences preferences { get; construct; }
 
     private Gtk.Button sync_button;
+    private Gtk.CheckButton sync_music_check;
+    private Gtk.ComboBox sync_music_combobox;
+    private Gtk.ListStore music_list;
+    private Gtk.Switch auto_sync_switch;
     private Granite.Widgets.StorageBar storagebar;
-
-    Gtk.Switch auto_sync_switch;
-
-    Gtk.CheckButton sync_music_check;
-    Gtk.ComboBox sync_music_combobox;
-    Gtk.ListStore music_list;
 
     public DeviceSummaryWidget (Device device, DevicePreferences preferences) {
         Object (
