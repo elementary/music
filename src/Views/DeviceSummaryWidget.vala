@@ -27,8 +27,8 @@
  */
 
 public class Noise.DeviceSummaryWidget : Gtk.EventBox {
-    Device dev;
-    DevicePreferences preferences;
+    public Device device { get; construct; }
+    public DevicePreferences preferences { get; construct; }
 
     private Gtk.Button sync_button;
     private Granite.Widgets.StorageBar storagebar;
@@ -40,19 +40,23 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     Gtk.ComboBox sync_music_combobox;
     Gtk.ListStore music_list;
 
-    public DeviceSummaryWidget (Device d, DevicePreferences preferences) {
-        this.dev = d;
-        this.preferences = preferences;
+    public DeviceSummaryWidget (Device device, DevicePreferences preferences) {
+        Object (
+            device: device,
+            preferences: preferences
+        );
+    }
 
+    construct {
         get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
-        var device_name_title_label = new Gtk.Label (dev.getDisplayName () ?? "");
+        var device_name_title_label = new Gtk.Label (device.getDisplayName () ?? "");
         device_name_title_label.halign = Gtk.Align.END;
         device_name_title_label.margin = 20;
         device_name_title_label.margin_right = 0;
         device_name_title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
 
-        var device_name_description_label = new Gtk.Label (dev.get_fancy_description () ?? "");
+        var device_name_description_label = new Gtk.Label (device.get_fancy_description () ?? "");
         device_name_description_label.halign = Gtk.Align.START;
         device_name_description_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
@@ -77,7 +81,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         setup_lists ();
 
-        storagebar = new Granite.Widgets.StorageBar (dev.get_capacity());
+        storagebar = new Granite.Widgets.StorageBar (device.get_capacity());
         storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, 0);
         storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, 0);
 
@@ -128,8 +132,8 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         add (main_grid);
 
-        if (dev.getDisplayName () != "")
-            device_name_entry.text = dev.getDisplayName ();
+        if (device.getDisplayName () != "")
+            device_name_entry.text = device.getDisplayName ();
 
         refresh_lists();
 
@@ -142,7 +146,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         else {
             bool success = sync_music_combobox.set_active_id (preferences.music_playlist.name);
             if (!success) {
-                //NotificationManager.get_default ().show_alert ("Missing Sync Playlist", "The playlist named <b>" + preferences.music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
                 preferences.music_playlist = null;
                 preferences.sync_all_music = true;
                 sync_music_combobox.set_active (0);
@@ -156,7 +159,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         device_name_entry.changed.connect (device_name_changed);
         sync_button.clicked.connect (sync_clicked);
-        dev.get_library ().file_operations_done.connect (sync_finished);
+        device.get_library ().file_operations_done.connect (sync_finished);
         libraries_manager.local_library.playlist_added.connect (() => {refresh_lists ();});
         libraries_manager.local_library.playlist_name_updated.connect (() => {refresh_lists ();});
         libraries_manager.local_library.playlist_removed.connect (() => {refresh_lists ();});
@@ -169,11 +172,11 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     private void refresh_space_widget () {
         uint64 other_files_size = 0;
         uint64 music_size = 0;
-        foreach (var m in dev.get_library ().get_medias ()) {
+        foreach (var m in device.get_library ().get_medias ()) {
             if (m != null)
                 music_size += m.file_size;
         }
-        other_files_size = dev.get_used_space () - music_size;
+        other_files_size = device.get_used_space () - music_size;
 
         storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, other_files_size);
         storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, music_size);
@@ -205,7 +208,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     }
 
     private void device_name_changed () {
-        dev.setDisplayName (device_name_entry.text);
+        device.setDisplayName (device_name_entry.text);
     }
 
     private void save_preferences () {
@@ -298,7 +301,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                             list.add (m);
                     }
                 } else {
-                    NotificationManager.get_default ().show_alert (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + preferences.music_playlist.name + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
+                    NotificationManager.get_default ().show_alert (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + preferences.music_playlist.name + "</b>", "<b>" + device.getDisplayName() + "</b>"));
 
                     preferences.music_playlist = null;
                     preferences.sync_all_music = true;
@@ -308,18 +311,18 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             }
         }
 
-        bool fits = dev.will_fit (list);
+        bool fits = device.will_fit (list);
         if (!fits) {
             NotificationManager.get_default ().show_alert (_("Cannot Sync"), _("Cannot sync device with selected sync settings. Not enough space on disk"));
-        } else if(dev.get_library ().doing_file_operations ()) {
+        } else if(device.get_library ().doing_file_operations ()) {
             NotificationManager.get_default ().show_alert (_("Cannot Sync"), _("Device is already doing an operation."));
         } else {
             var found = new Gee.TreeSet<int>();
             var not_found = new Gee.TreeSet<Media>();
-            libraries_manager.local_library.media_from_name (dev.get_library ().get_medias(), found, not_found);
+            libraries_manager.local_library.media_from_name (device.get_library ().get_medias(), found, not_found);
 
             if(not_found.size > 0) { // hand control over to SWD
-                var swd = new SyncWarningDialog (dev, list, not_found);
+                var swd = new SyncWarningDialog (device, list, not_found);
                 swd.response.connect ((src, id) => {
                     switch (id) {
                         case SyncWarningDialog.ResponseId.IMPORT_MEDIA:
@@ -329,7 +332,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                             swd.destroy ();
                             break;
                         case SyncWarningDialog.ResponseId.CONTINUE:
-                            dev.synchronize ();
+                            device.synchronize ();
                             swd.destroy ();
                             break;
                         case SyncWarningDialog.ResponseId.STOP:
@@ -339,7 +342,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 });
             } else {
                 sync_button.sensitive = false;
-                dev.synchronize ();
+                device.synchronize ();
             }
         }
     }
