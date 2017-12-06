@@ -121,7 +121,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 			scale.inverted = true;
             scale.vexpand = true;
 
-			var label = new Gtk.Label (decibel);
+            var label = new Gtk.Label (decibel);
 
 			var holder = new Gtk.Grid ();
 			holder.orientation = Gtk.Orientation.VERTICAL;
