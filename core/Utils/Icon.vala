@@ -65,6 +65,16 @@ public class Noise.Icon : Object {
     }
 
     /**
+     * Returns a file representing the icon in the filesystem.
+     * @param size Icon size to query.
+     * @return A {@link GLib.File} representing the icon, or //null// if none is found.
+     */
+    public File? get_file (int size = 16) {
+        var info = get_icon_info (size);
+        return info != null ? File.new_for_path (info.get_filename ()) : null;
+    }
+
+    /**
      * Creates a new {@link Gdk.Pixbuf} from the icon at the specified icon size.
      *
      * @param size The pixbuf's icon size.
