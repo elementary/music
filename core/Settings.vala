@@ -28,7 +28,6 @@
 
 namespace Noise.Settings {
     public class SavedState : Granite.Services.Settings {
-        public int view_mode { get; set; }
         public int column_browser_width { get; set; }
         public int column_browser_height { get; set; }
         public bool column_browser_enabled { get; set; }

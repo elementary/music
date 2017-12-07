@@ -453,7 +453,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         load_playlists ();
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
 
-        view_selector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.get_default ().view_mode;
+        view_selector.selected = (Widgets.ViewSelector.Mode) saved_state_settings.get_int ("view-mode");
 
         library_manager.rescan_music_folder ();
         initialization_finished = true;
