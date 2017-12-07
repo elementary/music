@@ -64,6 +64,19 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         }
     }
 
+    public bool column_browser_active {
+        get {
+            return mode == Mode.COLUMN;
+        }
+        set {
+            if (value) {
+                selected = Mode.COLUMN;
+            } else if (column_browser_active) {
+                selected = Mode.LIST;
+            }
+        }
+    }
+
     public bool column_browser_toggle_visible {
         get {
             return mode_button.get_children ().nth_data ((int) Mode.COLUMN).visible;
@@ -103,21 +116,5 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
                 selected = mode; // restore last valid mode
             }
         });
-    }
-
-    // CRAPPY API
-    // XXX ugly workaround to avoid dealing with API breaks, since there's no time
-    // to come up with a fancy solution. Needs rewrite
-
-    public bool get_column_browser_toggle_active () {
-        return mode == Mode.COLUMN;
-    }
-
-    public void set_column_browser_toggle_active (bool active) {
-        if (active) {
-            selected = Mode.COLUMN;
-        } else if (get_column_browser_toggle_active ()) {
-            selected = Mode.LIST;
-        }
     }
 }
