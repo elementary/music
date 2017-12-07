@@ -34,6 +34,16 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         COLUMN = 2;
     }
 
+    public new bool sensitive {
+        get {
+            return mode_button.get_sensitive ();
+        }
+        set {
+            mode_button.sensitive = value;
+            mode_button.selected = value ? (int) mode : -1;
+        }
+    }
+
     // The COLUMN mode is still not considered as a single mode, and thus it's
     // never returned by @selected. See complementary API below
     public Mode selected {
@@ -93,16 +103,6 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
                 selected = mode; // restore last valid mode
             }
         });
-    }
-
-    // De-select items when the widget is made insensitive, for appearance reasons
-    public new void set_sensitive (bool sensitive) {
-        mode_button.sensitive = sensitive;
-        mode_button.selected = sensitive ? (int)mode : -1;
-    }
-
-    public new bool get_sensitive () {
-        return mode_button.get_sensitive ();
     }
 
     // CRAPPY API
