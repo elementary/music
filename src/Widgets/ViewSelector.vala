@@ -95,6 +95,16 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         });
     }
 
+    // De-select items when the widget is made insensitive, for appearance reasons
+    public new void set_sensitive (bool sensitive) {
+        mode_button.sensitive = sensitive;
+        mode_button.selected = sensitive ? (int)mode : -1;
+    }
+
+    public new bool get_sensitive () {
+        return mode_button.get_sensitive ();
+    }
+
     // CRAPPY API
     // XXX ugly workaround to avoid dealing with API breaks, since there's no time
     // to come up with a fancy solution. Needs rewrite
