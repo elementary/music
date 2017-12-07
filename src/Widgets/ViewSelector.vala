@@ -101,7 +101,6 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
 
         mode_button = new Granite.Widgets.ModeButton ();
         mode_button.valign = Gtk.Align.CENTER;
-        mode_button.halign = Gtk.Align.START;
         mode_button.append (image);
         mode_button.append (list);
         mode_button.append (column);
