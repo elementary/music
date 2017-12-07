@@ -49,9 +49,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool media_half_played_sended { get; set; default = false; }
     private bool search_field_has_focus { get; set; default = true; }
 
-    private int window_width = 0;
-    private int window_height = 0;
-
     private Gtk.Button previous_button;
     private Gtk.Button play_button;
     private Gtk.Button next_button;
@@ -60,6 +57,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Cancellable notification_cancellable;
     private PreferencesWindow? preferences = null;
     private Settings.Main main_settings;
+    private GLib.Settings saved_state_settings;
     private TopDisplay top_display;
 
     internal Gee.HashMap<unowned Playlist, int> match_playlists;
@@ -251,9 +249,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.set_custom_title (top_display);
         headerbar.show_all ();
 
-        // Set properties of various controls
-        var saved_state = Settings.SavedState.get_default ();
-
         view_container = new ViewContainer ();
         source_list_view = new SourceListView ();
 
@@ -265,7 +260,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         grid.add (statusbar);
 
         main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        main_hpaned.position = saved_state.sidebar_width;
+        main_hpaned.position = saved_state_settings.get_int ("sidebar-width");
         main_hpaned.pack1 (grid, false, false);
         main_hpaned.pack2 (view_container, true, false);
         main_hpaned.show_all ();
@@ -439,12 +434,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         width_request = 400;
         icon_name = "multimedia-audio-player";
         title = ((Noise.App) GLib.Application.get_default ()).program_name;
-        window_position = Gtk.WindowPosition.CENTER;
 
-        var saved_state = Settings.SavedState.get_default ();
-        set_default_size (saved_state.window_width, saved_state.window_height);
+        saved_state_settings = new GLib.Settings ("org.pantheon.noise.saved-state");
 
-        if (saved_state.window_state == Settings.WindowState.MAXIMIZED) {
+        set_default_size (saved_state_settings.get_int ("window-width"), saved_state_settings.get_int ("window-height"));
+
+        if (saved_state_settings.get_enum ("window-state") == 1) {
             maximize ();
         }
 
@@ -1147,25 +1142,19 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
         App.player.player.pause ();
 
-        // Now set the selected view
-        var saved_state = Settings.SavedState.get_default ();
-        saved_state.view_mode = view_selector.selected;
-
         // Search
         if (!main_settings.privacy_mode_enabled ()) {
             main_settings.search_string = search_entry.text;
         }
 
-        saved_state.sidebar_width = main_hpaned.position;
+        saved_state_settings.set_int ("sidebar-width", main_hpaned.position);
+        saved_state_settings.set_int ("view-mode", view_selector.selected);
 
         if (is_maximized) {
-            saved_state.window_state = Settings.WindowState.MAXIMIZED;
+            saved_state_settings.set_enum ("window-state", 1);
         } else {
-            saved_state.window_state = Settings.WindowState.NORMAL;
+            saved_state_settings.set_enum ("window-state", 0);
         }
-
-        saved_state.window_width = window_width;
-        saved_state.window_height = window_height;
     }
 
     /**
@@ -1222,7 +1211,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public override bool configure_event (Gdk.EventConfigure event) {
         if (is_maximized == false) {
+            int window_width, window_height;
             get_size (out window_width, out window_height);
+            saved_state_settings.set_int ("window-height", window_height);
+            saved_state_settings.set_int ("window-width", window_width);
         }
 
         return base.configure_event (event);

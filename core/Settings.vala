@@ -28,11 +28,6 @@
 
 namespace Noise.Settings {
     public class SavedState : Granite.Services.Settings {
-
-        public int window_width { get; set; }
-        public int window_height { get; set; }
-        public WindowState window_state { get; set; }
-        public int sidebar_width { get; set; }
         public int view_mode { get; set; }
         public int column_browser_width { get; set; }
         public int column_browser_height { get; set; }
@@ -143,11 +138,5 @@ namespace Noise.Settings {
         ALBUM,
         ARTIST,
         ALL
-    }
-
-    public enum WindowState {
-        NORMAL,
-        MAXIMIZED,
-        FULLSCREEN
     }
 }
