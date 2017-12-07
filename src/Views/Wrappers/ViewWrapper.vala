@@ -232,9 +232,9 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         // View switcher
         // Insensitive if the current view is the welcome/alert screen or if both views
         // are not available (in the queue, device, or playlist sources).
-        App.main_window.view_selector.set_sensitive (has_grid_view && has_list_view
+        App.main_window.view_selector.sensitive = has_grid_view && has_list_view
                                                     && current_view != ViewType.WELCOME
-                                                    && current_view != ViewType.ALERT);
+                                                    && current_view != ViewType.ALERT;
 
         // Set active mode to column view if it is visible. We have to ensure
         // that it is not null because the column_browser is not guaranteed to
