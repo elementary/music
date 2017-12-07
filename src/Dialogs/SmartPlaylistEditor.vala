@@ -201,7 +201,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
 
     public virtual void save_click () {
         sp.clear_queries ();
-        sp.clear();
+        sp.clear ();
         var queries = new Gee.TreeSet<SmartQuery> ();
         foreach (SmartPlaylistEditorQuery speq in queries_list) {
             var query = speq.get_query ();
