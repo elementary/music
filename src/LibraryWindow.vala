@@ -260,10 +260,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         grid.add (statusbar);
 
         main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        main_hpaned.position = saved_state_settings.get_int ("sidebar-width");
         main_hpaned.pack1 (grid, false, false);
         main_hpaned.pack2 (view_container, true, false);
         main_hpaned.show_all ();
+
+        saved_state_settings.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
 
         add (main_hpaned);
         set_titlebar (headerbar);
@@ -1147,7 +1148,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             main_settings.search_string = search_entry.text;
         }
 
-        saved_state_settings.set_int ("sidebar-width", main_hpaned.position);
         saved_state_settings.set_int ("view-mode", view_selector.selected);
 
         if (is_maximized) {
