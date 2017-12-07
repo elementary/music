@@ -54,28 +54,12 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             this.sp = sp;
         }
 
-        /* start out by creating all category labels */
-        var name_label = new Gtk.Label (_("Name of Playlist"));
-        var rules_label = new Gtk.Label (_("Rules"));
-        var options_label = new Gtk.Label (_("Options"));
-
-        /* make them look good */
-        name_label.halign = Gtk.Align.START;
-        rules_label.halign = Gtk.Align.START;
-        options_label.halign = Gtk.Align.START;
-        name_label.set_markup ("<b>" + Markup.escape_text (_("Name of Playlist"), -1) + "</b>");
-        rules_label.set_markup ("<b>" + Markup.escape_text (_("Rules"), -1) + "</b>");
-        options_label.set_markup ("<b>" + Markup.escape_text (_("Options"), -1) + "</b>");
-
-        /* add the name entry */
         name_entry = new Gtk.Entry ();
+        name_entry.changed.connect (name_changed);
         name_entry.placeholder_text = _("Playlist Title");
         if (is_new == false)
             name_entry.text = sp.name;
 
-        var match_grid = new Gtk.Grid ();
-        match_grid.column_spacing = 12;
-        var match_label = new Gtk.Label (_("Match"));
         match_combobox = new Gtk.ComboBoxText ();
         match_combobox.insert_text (0, _("any"));
         match_combobox.insert_text (1, _("all"));
@@ -84,10 +68,11 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         else
             match_combobox.set_active (0);
 
-        var match_following_label = new Gtk.Label (_("of the following:"));
-        match_grid.attach (match_label, 0, 0, 1, 1);
+        var match_grid = new Gtk.Grid ();
+        match_grid.column_spacing = 12;
+        match_grid.attach (new Gtk.Label (_("Match")), 0, 0, 1, 1);
         match_grid.attach (match_combobox, 1, 0, 1, 1);
-        match_grid.attach (match_following_label, 2, 0, 1, 1);
+        match_grid.attach (new Gtk.Label (_("of the following:")), 2, 0, 1, 1);
 
         /* create rule list */
         queries_list = new Gee.ArrayList<SmartPlaylistEditorQuery> ();
@@ -103,7 +88,6 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         limiter_grid.column_spacing = 12;
         limit_check = new Gtk.CheckButton.with_label (_("Limit to"));
         limit_spin = new Gtk.SpinButton.with_range (0, 500, 10);
-        var limit_label = new Gtk.Label (_("items"));
 
         if (is_new == false) {
             limit_check.set_active (sp.limit);
@@ -118,36 +102,35 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
 
         limiter_grid.attach (limit_check, 0, 0, 1, 1);
         limiter_grid.attach (limit_spin, 1, 0, 1, 1);
-        limiter_grid.attach (limit_label, 2, 0, 1, 1);
-
-        /* add the Save button on bottom */
-        var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        button_box.spacing = 6;
+        limiter_grid.attach (new Gtk.Label (_("items")), 2, 0, 1, 1);
+        
         save_button = new Gtk.Button.with_label (_("Save"));
+        save_button.clicked.connect (save_click);
         save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+        
         var close_button = new Gtk.Button.with_label (_("Cancel"));
-        button_box.set_layout (Gtk.ButtonBoxStyle.END);
+        close_button.clicked.connect (close_click);
+        
+        var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        button_box.layout_style = Gtk.ButtonBoxStyle.END;
         button_box.pack_end (close_button, false, false, 0);
         button_box.pack_end (save_button, false, false, 0);
-
+        button_box.spacing = 6;
+        
         main_grid = new Gtk.Grid ();
         main_grid.expand = true;
         main_grid.margin_left = main_grid.margin_right = 12;
         main_grid.column_spacing = 12;
         main_grid.row_spacing = 6;
-        main_grid.attach (name_label, 0, 0, 3, 1);
+        main_grid.attach (new Granite.HeaderLabel (_("Name of Playlist")), 0, 0, 3, 1);
         main_grid.attach (name_entry, 0, 1, 3, 1);
-        main_grid.attach (rules_label, 0, 2, 3, 1);
+        main_grid.attach (new Granite.HeaderLabel (_("Rules")), 0, 2, 3, 1);
         main_grid.attach (match_grid, 0, 3, 3, 1);
         main_grid.attach (queries_grid, 0, 4, 3, 1);
-        main_grid.attach (options_label, 0, 5, 3, 1);
+        main_grid.attach (new Granite.HeaderLabel (_("Options")), 0, 5, 3, 1);
         main_grid.attach (limiter_grid, 0, 6, 3, 1);
         main_grid.attach (button_box, 0, 7, 3, 1);
         ((Gtk.Container) get_content_area ()).add (main_grid);
-
-        save_button.clicked.connect (save_click);
-        close_button.clicked.connect (close_click);
-        name_entry.changed.connect (name_changed);
     }
 
     public void load_smart_playlist () {
@@ -218,6 +201,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
 
     public virtual void save_click () {
         sp.clear_queries ();
+        sp.clear();
         var queries = new Gee.TreeSet<SmartQuery> ();
         foreach (SmartPlaylistEditorQuery speq in queries_list) {
             var query = speq.get_query ();
@@ -237,6 +221,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         this.destroy ();
     }
 }
+
 public class Noise.SmartPlaylistEditorQuery : GLib.Object {
     private SmartQuery _q;
 
