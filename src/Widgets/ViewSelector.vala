@@ -87,22 +87,12 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
 
         mode_button.mode_changed.connect (() => {
             int new_mode = mode_button.selected;
-            if (new_mode != -1) { 
+            if (new_mode != -1) {
                 selected = (Mode) new_mode;
             } else if (mode_button.sensitive) {
                 selected = mode; // restore last valid mode
             }
         });
-    }
-
-    // De-select items when the widget is made insensitive, for appearance reasons
-    public new void set_sensitive (bool sensitive) {
-        mode_button.sensitive = sensitive;
-        mode_button.selected = sensitive ? (int)mode : -1;
-    }
-
-    public new bool get_sensitive () {
-        return mode_button.get_sensitive ();
     }
 
     // CRAPPY API
