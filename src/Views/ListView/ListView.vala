@@ -88,7 +88,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
     construct {
         var list_scrolled = new Gtk.ScrolledWindow (null, null);
-        list_scrolled.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         list_scrolled.add (list_view);
         list_scrolled.expand = true;
 
@@ -108,21 +107,15 @@ public class Noise.ListView : ContentView, Gtk.Box {
         view_wrapper.library.search_finished.connect (() => { list_view.research_needed = true; });
 
         if (has_column_browser) {
-            browser_hpane = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
             browser_vpane = new Gtk.Paned (Gtk.Orientation.VERTICAL);
+            browser_vpane.pack2 (list_text_overlay, true, false);
 
-            // Fix theming
-            browser_vpane.get_style_context ().add_class (Gtk.STYLE_CLASS_VERTICAL);
-
+            browser_hpane = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+            browser_hpane.expand = true;
+            browser_hpane.pack1 (column_browser, false, false);
             browser_hpane.pack2 (browser_vpane, true, false);
 
-            // Add hpaned (the most-external wrapper) to the view container
-            browser_hpane.expand = true;
             add (browser_hpane);
-
-            // Now pack the list view
-            browser_vpane.pack2 (list_text_overlay, true, false);
-            browser_hpane.pack1 (column_browser, false, false);
 
             set_column_browser_position (column_browser.position);
 
@@ -153,8 +146,9 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
             int visible_columns = 0;
             foreach (var column in column_browser.columns) {
-                if (column.visible)
+                if (column.visible) {
                     ++ visible_columns;
+                }
             }
 
 
@@ -162,15 +156,16 @@ public class Noise.ListView : ContentView, Gtk.Box {
             int required_width = MIN_RECOMMENDED_COLUMN_WIDTH * visible_columns;
             int n_cols = 0;
             foreach (var column in list_view.get_columns ()) {
-                if (column.visible)
+                if (column.visible) {
                     n_cols ++;
+                }
             }
 
-            if (view_width - required_width < list_view.get_allocated_width () && n_cols > 2
-                    && visible_columns > 2)
+            if (view_width - required_width < list_view.get_allocated_width () && n_cols > 2 && visible_columns > 2) {
                 actual_position = ColumnBrowser.Position.TOP;
-            else
+            } else {
                 actual_position = ColumnBrowser.Position.LEFT;
+            }
         }
 
         column_browser.actual_position = actual_position;
@@ -178,43 +173,49 @@ public class Noise.ListView : ContentView, Gtk.Box {
         if (actual_position == ColumnBrowser.Position.LEFT) {
             if (browser_hpane.get_child1 () == null && browser_vpane.get_child1 () == column_browser) {
                 browser_vpane.remove (column_browser);
-                browser_hpane.pack1 (column_browser, false, false);
 
+                browser_hpane.pack1 (column_browser, false, false);
                 browser_hpane.position = browser_hpane_position;
             }
         } else if (actual_position == ColumnBrowser.Position.TOP) {
             if (browser_vpane.get_child1 () == null && browser_hpane.get_child1 () == column_browser) {
                 browser_hpane.remove (column_browser);
-                browser_vpane.pack1 (column_browser, false, false);
 
+                browser_vpane.pack1 (column_browser, false, false);
                 browser_vpane.set_position (browser_vpane_position);
             }
         }
     }
 
     private void connect_column_browser_ui_signals () {
-        if (!has_column_browser)
+        if (!has_column_browser) {
             return;
+        }
 
         // For automatic position stuff
         size_allocate.connect (() => {
-            if (!App.main_window.initialization_finished)
+            if (!App.main_window.initialization_finished) {
                 return;
+            }
 
-            if (column_browser.position == ColumnBrowser.Position.AUTOMATIC)
+            if (column_browser.position == ColumnBrowser.Position.AUTOMATIC) {
                 set_column_browser_position (ColumnBrowser.Position.AUTOMATIC);
+            }
         });
 
         column_browser.size_allocate.connect (() => {
-            if (!App.main_window.initialization_finished || !column_browser_enabled)
+            if (!App.main_window.initialization_finished || !column_browser_enabled) {
                 return;
+            }
 
             if (column_browser.actual_position == ColumnBrowser.Position.LEFT) {
-                if (browser_hpane.position > 0)
+                if (browser_hpane.position > 0) {
                     browser_hpane_position = browser_hpane.position;
+                }
             } else if (column_browser.actual_position == ColumnBrowser.Position.TOP) {
-                if (browser_vpane.position > 0)
+                if (browser_vpane.position > 0) {
                     browser_vpane_position = browser_vpane.position;
+                }
             }
         });
 
