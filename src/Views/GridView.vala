@@ -28,7 +28,6 @@
  */
 
 public class Noise.GridView : ContentView, ViewTextOverlay {
-    private Gdk.Pixbuf fallback_pixbuf;
     private Gtk.Paned hpaned;
     private FastGrid icon_view;
 
@@ -157,14 +156,6 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
     }
 
     public void reset_pixbufs () {
-        var scale = get_style_context ().get_scale ();
-        var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (new ThemedIcon ("albumart"), 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
-        try {
-            fallback_pixbuf = icon_info.load_icon ();
-        } catch (Error e) {
-            critical (e.message);
-        }
-
         queue_draw ();
     }
 
