@@ -161,7 +161,7 @@ public class Noise.Album : Object {
             return null;
         }
 
-        var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (cover_icon, 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+        var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (cover_icon, 128, scale, 0);
         icon_info.load_icon_async.begin (null, (obj, res) => {
             try {
                 cover_pixbuf = icon_info.load_icon_async.end (res);
