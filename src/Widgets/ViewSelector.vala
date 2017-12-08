@@ -89,14 +89,6 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         });
     }
 
-    private void set_mode_visible (Mode mode, bool visible) {
-        mode_button.set_item_visible ((int)mode, visible);
-    }
-
-    private bool get_mode_visible (Mode mode) {
-        return mode_button.get_children ().nth_data ((int)mode).visible;
-    }
-
     // De-select items when the widget is made insensitive, for appearance reasons
     public new void set_sensitive (bool sensitive) {
         // select fourth invisible mode to appear as de-selected
@@ -122,13 +114,5 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         } else if (get_column_browser_toggle_active ()) {
             selected = Mode.LIST;
         }
-    }
-
-    public bool get_column_browser_toggle_visible () {
-        return get_mode_visible (Mode.COLUMN);
-    }
-
-    public void set_column_browser_toggle_visible (bool val) {
-        set_mode_visible (Mode.COLUMN, val);
     }
 }
