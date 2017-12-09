@@ -55,37 +55,29 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
     private Mode mode;
 
     public ViewSelector () {
-        // Allocate enough space for all the buttons
-        set_size_request (90, -1);
-
-        mode_button = new Granite.Widgets.ModeButton ();
-        mode_button.valign = Gtk.Align.CENTER;
-        mode_button.halign = Gtk.Align.START;
-
         var image = new Gtk.Image.from_icon_name ("view-grid-symbolic", Gtk.IconSize.MENU);
         image.tooltip_text = _("View as Albums");
-        mode_button.append (image);
 
         var list = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.MENU);
         list.tooltip_text = _("View as List");
-        mode_button.append (list);
         
         var column = new Gtk.Image.from_icon_name ("view-column-symbolic", Gtk.IconSize.MENU);
         column.tooltip_text = _("View in Columns");
-        mode_button.append (column);
 
-        // extra invisible mode to allow apparent de-selection
-        mode_button.append_text ("");
-        mode_button.set_item_visible (3, false);
+        mode_button = new Granite.Widgets.ModeButton ();
+        mode_button.append (image);
+        mode_button.append (list);
+        mode_button.append (column);
 
         add (mode_button);
 
-        mode_button.mode_changed.connect ( () => {
+        mode_button.mode_changed.connect (() => {
             int new_mode = mode_button.selected;
-            if (new_mode <= 2) // only consider first 3 items
-                selected = (Mode)new_mode;
-            else if (mode_button.sensitive)
+            if (new_mode <= 2) { // only consider first 3 items
+                selected = (Mode) new_mode;
+            } else if (mode_button.sensitive) {
                 selected = mode; // restore last valid mode
+            }
         });
     }
 
@@ -93,7 +85,7 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
     public new void set_sensitive (bool sensitive) {
         // select fourth invisible mode to appear as de-selected
         mode_button.set_sensitive (sensitive);
-        mode_button.set_active (sensitive ? (int)mode : 3);
+        mode_button.set_active (sensitive ? (int)mode : -1);
     }
 
     public new bool get_sensitive () {
