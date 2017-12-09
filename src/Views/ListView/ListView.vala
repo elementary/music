@@ -35,6 +35,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     // Wrapper for the list view and miller columns
     private Gtk.Paned browser_hpane; // for left mode
     private Gtk.Paned browser_vpane; // for top mode
+    private GLib.Settings saved_state_settings;
 
     public ColumnBrowser column_browser { get; construct set; }
     public MusicListView list_view { get; construct set; }
@@ -87,6 +88,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     construct {
+        saved_state_settings = new GLib.Settings ("org.pantheon.noise.saved-state");
+
         var list_scrolled = new Gtk.ScrolledWindow (null, null);
         list_scrolled.add (list_view);
         list_scrolled.expand = true;
@@ -123,7 +126,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             // on startup
             realize.connect (connect_column_browser_ui_signals);
 
-            column_browser_enabled = Settings.SavedState.get_default ().column_browser_enabled;
+            column_browser_enabled = saved_state_settings.get_boolean ("column-browser-enabled");
 
             // Connect data signals
             column_browser.changed.connect (column_browser_changed);
@@ -228,9 +231,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
         column_browser.position_changed.connect (set_column_browser_position);
 
         // Read Paned position from settings
-        var saved_state = Settings.SavedState.get_default ();
-        browser_hpane_position = saved_state.column_browser_width;
-        browser_vpane_position = saved_state.column_browser_height;
+        browser_hpane_position = saved_state_settings.get_int ("column-browser-width");
+        browser_vpane_position = saved_state_settings.get_int ("column-browser-height");
 
         browser_hpane.position = browser_hpane_position;
         browser_vpane.position = browser_vpane_position;
@@ -243,15 +245,14 @@ public class Noise.ListView : ContentView, Gtk.Box {
     private void save_column_browser_settings () {
         // Need to add a proper fix later ... Something similar to TreeViewSetup
         if (has_column_browser) {
-            var saved_state = Settings.SavedState.get_default ();
             if (column_browser.visible) {
-                if (column_browser.actual_position == ColumnBrowser.Position.LEFT)
-                    saved_state.column_browser_width = browser_hpane_position;
-                else if (column_browser.actual_position == ColumnBrowser.Position.TOP)
-                    saved_state.column_browser_height = browser_vpane_position;
+                if (column_browser.actual_position == ColumnBrowser.Position.LEFT) {
+                    saved_state_settings.set_int ("column-browser-width", browser_hpane_position);
+                } else if (column_browser.actual_position == ColumnBrowser.Position.TOP) {
+                    saved_state_settings.set_int ("column-browser-height", browser_vpane_position);
+                }
             }
-
-            saved_state.column_browser_enabled = column_browser_enabled;
+            saved_state_settings.set_boolean ("column-browser-enabled", column_browser_enabled);
         }
     }
 
