@@ -439,7 +439,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var window_x = saved_state_settings.get_int ("window-x");
         var window_y = saved_state_settings.get_int ("window-y");
         if (window_x != -1 ||  window_y != -1) {
-          move (saved_state_settings.get_int ("window-x"), saved_state_settings.get_int ("window-y"));
+            move (saved_state_settings.get_int ("window-x"), saved_state_settings.get_int ("window-y"));
         }
         
         if (saved_state_settings.get_enum ("window-state") == 1) {
