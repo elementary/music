@@ -28,7 +28,7 @@
 
 public class Noise.DeviceView : Gtk.Grid {
     public Device device { get; construct; }
-    public DevicePreferences preferences { get; construct;}
+    public DevicePreferences preferences { get; construct; }
 
     public DeviceView (Noise.Device device, DevicePreferences preferences) {
         Object (
@@ -67,7 +67,7 @@ public class Noise.DeviceView : Gtk.Grid {
             }
         });
 
-        device.device_unmounted.connect ( () => {
+        device.device_unmounted.connect (() => {
             message ("device unmounted\n");
             device.disconnect (connector);
         });
