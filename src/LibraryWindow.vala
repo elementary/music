@@ -40,7 +40,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Widgets.ViewSelector view_selector { get; private set; }
     public Gtk.SearchEntry search_entry { get; private set; }
     public Widgets.StatusBar statusbar { get; private set; }
-    public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
+    public Noise.LocalLibrary library_manager {
+        get {
+            return (Noise.LocalLibrary) libraries_manager.local_library;
+        }
+    }
 
     private bool media_considered_played { get; set; default = false; } // whether or not we have updated last played and added to already played list
     private bool added_to_play_count { get; set; default = false; } // whether or not we have added one to play count on playing media
@@ -643,11 +647,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
+        statusbar.playlist_menubutton_sensitive = have_media;
 
         if (!media_active || have_media && !App.player.playing)
             play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-
-        statusbar.update_sensitivities ();
     }
 
     /**
