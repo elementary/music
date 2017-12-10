@@ -26,14 +26,14 @@
 
 namespace Noise.Widgets {
     public class StatusBar : Gtk.ActionBar {
-        public Gtk.Widget equalizer_item { get; private set; default = new EqualizerChooser (); }
-
         private Gtk.MenuButton playlist_menubutton;
         public bool playlist_menubutton_sensitive {
             set {
                 playlist_menubutton.sensitive = value;
             }
         }
+
+        public Gtk.Widget equalizer_item { get; private set; default = new EqualizerChooser (); }
 
         public StatusBar () {
             var add_pl_menuitem = new Gtk.MenuItem.with_label (_("Add Playlist"));
