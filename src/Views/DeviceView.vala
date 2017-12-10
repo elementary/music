@@ -36,7 +36,7 @@ public class Noise.DeviceView : Gtk.Grid {
             preferences: preferences
         );
     }
-    
+
     construct {
         var infobar_label = new Gtk.Label ("");
 
@@ -58,7 +58,7 @@ public class Noise.DeviceView : Gtk.Grid {
         }
 
         show_all ();
-        
+
         infobar.hide ();
 
         ulong connector = NotificationManager.get_default ().progress_canceled.connect (() => {
