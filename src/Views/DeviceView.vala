@@ -27,71 +27,65 @@
  */
 
 public class Noise.DeviceView : Gtk.Grid {
-    public Device d;
-    DeviceSummaryWidget summary;
-
-    Gtk.InfoBar infobar;
-    Gtk.Label infobar_label;
+    public Device device { get; construct; }
+    public DevicePreferences preferences { get; construct;}
+    
+    private DeviceSummaryWidget summary;
 
     public DeviceView (Noise.Device device, DevicePreferences preferences) {
-        this.orientation = Gtk.Orientation.VERTICAL;
-        this.d = device;
-
-        buildUI (preferences);
-
-        ulong connector = NotificationManager.get_default ().progress_canceled.connect ( () => {
-            if (d.get_library ().doing_file_operations ()) {
-                NotificationManager.get_default ().show_alert (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
-            }
-        });
-        d.device_unmounted.connect ( () => {
-            message ("device unmounted\n");
-            d.disconnect (connector);
-        });
-
-        if (preferences.sync_when_mounted)
-            syncClicked ();
+        Object (
+            device: device,
+            preferences: preferences
+        );
     }
+    
+    construct {
+        var infobar_label = new Gtk.Label ("");
 
-    void buildUI (DevicePreferences preferences) {
+        var infobar = new Gtk.InfoBar ();
+        infobar.hexpand = true;
+        infobar.add_button (_("Close"), 0);
+        infobar.get_content_area ().add (infobar_label);
 
-        /* create infobar */
+        summary = new DeviceSummaryWidget (device, preferences);
 
-        infobar = new Gtk.InfoBar();
-        infobar.get_style_context ().add_class (Gtk.STYLE_CLASS_INFO);
-        infobar.set_hexpand (true);
-        infobar_label = new Gtk.Label ("");
-        (infobar.get_content_area () as Gtk.Container).add (infobar_label);
-        infobar.add_button (_("OK"), 0);
-        infobar.response.connect ( (self, response) => {
-            infobar.hide ();
-        });
-        summary = new DeviceSummaryWidget (d, preferences);
-
+        orientation = Gtk.Orientation.VERTICAL;
         attach (infobar, 0, 0, 1, 1);
-        if (d.get_custom_view () != null) {
-            attach (d.get_custom_view (), 0, 1, 1, 1);
+
+        var custom_view = device.get_custom_view ();
+        if (custom_view != null) {
+            attach (custom_view, 0, 1, 1, 1);
         } else {
             attach (summary, 0, 1, 1, 1);
         }
 
         show_all ();
+        
         infobar.hide ();
-        d.infobar_message.connect (infobar_message_sended);
-    }
 
+        ulong connector = NotificationManager.get_default ().progress_canceled.connect (() => {
+            if (device.get_library ().doing_file_operations ()) {
+                NotificationManager.get_default ().show_alert (_("Cancelling…"), _("Device operation has been cancelled and will stop after this media."));
+            }
+        });
 
-    public void set_as_current_view () {
-        summary.refresh_lists ();
-    }
+        device.device_unmounted.connect ( () => {
+            message ("device unmounted\n");
+            device.disconnect (connector);
+        });
 
-    void infobar_message_sended (string message, Gtk.MessageType type) {
-        infobar_label.set_label (message);
-        infobar.set_message_type (type);
-        infobar.show_all ();
-    }
+        device.infobar_message.connect ((label, message_type) => {
+            infobar_label.label = label;
+            infobar.message_type = message_type;
+            infobar.show_all ();
+        });
 
-    public void syncClicked () {
-        summary.sync_clicked ();
+        infobar.response.connect ((self, response) => {
+            infobar.hide ();
+        });
+
+        if (preferences.sync_when_mounted) {
+            summary.sync_clicked ();
+        }
     }
 }

@@ -282,7 +282,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.item_action_activated.connect ((page_number) => {
             var view = view_container.get_view (page_number);
             if (view is DeviceView) {
-                ((DeviceView)view).d.eject ();
+                ((DeviceView) view).device.eject ();
             }
         });
         source_list_view.edited.connect (playlist_name_edited);
