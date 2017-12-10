@@ -29,8 +29,6 @@
 public class Noise.DeviceView : Gtk.Grid {
     public Device device { get; construct; }
     public DevicePreferences preferences { get; construct;}
-    
-    private DeviceSummaryWidget summary;
 
     public DeviceView (Noise.Device device, DevicePreferences preferences) {
         Object (
@@ -47,7 +45,7 @@ public class Noise.DeviceView : Gtk.Grid {
         infobar.add_button (_("Close"), 0);
         infobar.get_content_area ().add (infobar_label);
 
-        summary = new DeviceSummaryWidget (device, preferences);
+        var summary = new DeviceSummaryWidget (device, preferences);
 
         orientation = Gtk.Orientation.VERTICAL;
         attach (infobar, 0, 0, 1, 1);
