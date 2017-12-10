@@ -77,15 +77,6 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         }
     }
 
-    public bool column_browser_toggle_visible {
-        get {
-            return mode_button.get_children ().nth_data ((int) Mode.COLUMN).visible;
-        }
-        set {
-            mode_button.set_item_visible (Mode.COLUMN, value);
-        }
-    }
-
     private Granite.Widgets.ModeButton mode_button;
     private Mode mode;
 
@@ -100,7 +91,6 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         column.tooltip_text = _("View in Columns");
 
         mode_button = new Granite.Widgets.ModeButton ();
-        mode_button.valign = Gtk.Align.CENTER;
         mode_button.append (image);
         mode_button.append (list);
         mode_button.append (column);
@@ -109,7 +99,7 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
 
         mode_button.mode_changed.connect (() => {
             int new_mode = mode_button.selected;
-            if (new_mode != -1) {
+            if (new_mode <= 2) { // only consider first 3 items
                 selected = (Mode) new_mode;
             } else if (mode_button.sensitive) {
                 selected = mode; // restore last valid mode
