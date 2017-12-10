@@ -436,7 +436,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         saved_state_settings = new GLib.Settings ("org.pantheon.noise.saved-state");
 
         set_default_size (saved_state_settings.get_int ("window-width"), saved_state_settings.get_int ("window-height"));
-
+        move (saved_state_settings.get_int ("window-x"), saved_state_settings.get_int ("window-y"));
         if (saved_state_settings.get_enum ("window-state") == 1) {
             maximize ();
         }
@@ -1210,8 +1210,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (is_maximized == false) {
             int window_width, window_height;
             get_size (out window_width, out window_height);
+            get_position (out window_x, out window_y);
             saved_state_settings.set_int ("window-height", window_height);
             saved_state_settings.set_int ("window-width", window_width);
+            saved_state_setttings.set_int ("window-x" , window_x);
+            saved_state_setttings.set_int ("window-y" , window_y);
         }
 
         return base.configure_event (event);

@@ -102,6 +102,16 @@
       <summary>Window height</summary>
       <description>Window height</description>
     </key>
+    <key type="i" name="window-x">
+      <default>-1</default>
+      <summary>Window x position</summary>
+      <description>Window x position</description>
+    </key>
+    <key type="i" name="window-y">
+      <default>-1</default>
+      <summary>Window y position</summary>
+      <description>Window y position</description>
+    </key>
     <key enum="org.pantheon.noise.windowstate" name="window-state">
       <default>'normal'</default>
       <summary>The saved state of the window.</summary>
