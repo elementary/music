@@ -1208,13 +1208,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public override bool configure_event (Gdk.EventConfigure event) {
         if (is_maximized == false) {
-            int window_width, window_height;
+            int window_width, window_height, window_x, window_y;
             get_size (out window_width, out window_height);
             get_position (out window_x, out window_y);
             saved_state_settings.set_int ("window-height", window_height);
             saved_state_settings.set_int ("window-width", window_width);
-            saved_state_setttings.set_int ("window-x" , window_x);
-            saved_state_setttings.set_int ("window-y" , window_y);
+            saved_state_settings.set_int ("window-x" , window_x);
+            saved_state_settings.set_int ("window-y" , window_y);
         }
 
         return base.configure_event (event);
