@@ -67,46 +67,30 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
     private Mode mode;
 
     public ViewSelector () {
-        // Allocate enough space for all the buttons
-        set_size_request (90, -1);
-
-        mode_button = new Granite.Widgets.ModeButton ();
-        mode_button.valign = Gtk.Align.CENTER;
-        mode_button.halign = Gtk.Align.START;
-
         var image = new Gtk.Image.from_icon_name ("view-grid-symbolic", Gtk.IconSize.MENU);
         image.tooltip_text = _("View as Albums");
-        mode_button.append (image);
 
         var list = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.MENU);
         list.tooltip_text = _("View as List");
-        mode_button.append (list);
         
         var column = new Gtk.Image.from_icon_name ("view-column-symbolic", Gtk.IconSize.MENU);
         column.tooltip_text = _("View in Columns");
-        mode_button.append (column);
 
-        // extra invisible mode to allow apparent de-selection
-        mode_button.append_text ("");
-        mode_button.set_item_visible (3, false);
+        mode_button = new Granite.Widgets.ModeButton ();
+        mode_button.append (image);
+        mode_button.append (list);
+        mode_button.append (column);
 
         add (mode_button);
 
-        mode_button.mode_changed.connect ( () => {
+        mode_button.mode_changed.connect (() => {
             int new_mode = mode_button.selected;
-            if (new_mode <= 2) // only consider first 3 items
-                selected = (Mode)new_mode;
-            else if (mode_button.sensitive)
+            if (new_mode <= 2) { // only consider first 3 items
+                selected = (Mode) new_mode;
+            } else if (mode_button.sensitive) {
                 selected = mode; // restore last valid mode
+            }
         });
-    }
-
-    private void set_mode_visible (Mode mode, bool visible) {
-        mode_button.set_item_visible ((int)mode, visible);
-    }
-
-    private bool get_mode_visible (Mode mode) {
-        return mode_button.get_children ().nth_data ((int)mode).visible;
     }
 
     // CRAPPY API
@@ -123,13 +107,5 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         } else if (get_column_browser_toggle_active ()) {
             selected = Mode.LIST;
         }
-    }
-
-    public bool get_column_browser_toggle_visible () {
-        return get_mode_visible (Mode.COLUMN);
-    }
-
-    public void set_column_browser_toggle_visible (bool val) {
-        set_mode_visible (Mode.COLUMN, val);
     }
 }
