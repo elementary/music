@@ -27,6 +27,7 @@
  */
 
 public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
+    private GLib.Settings saved_state_settings;
 
     public MusicColumnBrowser (ViewWrapper view_wrapper) {
         var columns = new BrowserColumn.Category [0];
@@ -39,6 +40,8 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
         columns += BrowserColumn.Category.ALBUM;
 
         base (view_wrapper, columns);
+
+        saved_state_settings = new GLib.Settings ("org.pantheon.noise.saved-state");
 
         // set visible columns ...
         restore_saved_state ();
@@ -53,21 +56,19 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
            visible_categories += ((int)col_cat).to_string ();
         }
 
-        var saved_state = Settings.SavedState.get_default ();
-        saved_state.column_browser_visible_columns = visible_categories;
-        saved_state.column_browser_position = (int) position;
+        saved_state_settings.set_strv ("column-browser-visible-columns", visible_categories);
+        saved_state_settings.set_int ("column-browser-position", (int) position);
     }
 
     private void restore_saved_state () {
         // Read visible columns from settings
         var visible_categories = new Gee.TreeSet<BrowserColumn.Category> ();
 
-        var saved_state = Settings.SavedState.get_default ();
-        foreach (var col_n in saved_state.column_browser_visible_columns) {
+        foreach (var col_n in saved_state_settings.get_strv ("column-browser-visible-columns")) {
             visible_categories.add ((BrowserColumn.Category)int.parse (col_n));
         }
 
         visible_columns = visible_categories;
-        position = (ColumnBrowser.Position) saved_state.column_browser_position;
+        position = (ColumnBrowser.Position) saved_state_settings.get_int ("column-browser-position");
     }
 }
