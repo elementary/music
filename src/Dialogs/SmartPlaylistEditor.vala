@@ -254,9 +254,10 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         _valueOption = new Gtk.ComboBoxText ();
         _valueRating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
         
-        remove_button = new Gtk.Button.with_label (_("Remove"));
+        //remove_button = new Gtk.Button.with_label (_("Remove"));
+        remove_button = new Gtk.Button.from_icon_name ("process-stop-symbolic");
         remove_button.clicked.connect (remove_clicked);
-        remove_button.halign = Gtk.Align.END;
+        remove_button.get_style_context ().remove_class ("button");
         
         field_combobox = new Gtk.ComboBoxText ();
         field_combobox.append_text (_("Album"));
@@ -296,14 +297,15 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         grid = new Gtk.Grid ();
         grid.column_spacing = 6;
         grid.hexpand = true;
-        grid.attach (field_combobox, 0, 0, 1, 1);
-        grid.attach (comparator_combobox, 1, 0, 1, 1);
-        grid.attach (value_entry, 2, 0, 1, 1);
-        grid.attach (_valueOption, 3, 0, 1, 1);
-        grid.attach (_valueRating, 3, 0, 1, 1);
-        grid.attach (_valueNumerical, 3, 0, 1, 1);
-        grid.attach (_units, 4, 0, 1, 1);
-        grid.attach (remove_button, 5, 0, 1, 1);
+        grid.attach (remove_button, 0, 0, 1, 1);
+        grid.attach (field_combobox, 1, 0, 1, 1);
+        grid.attach (comparator_combobox, 2, 0, 1, 1);
+        grid.attach (value_entry, 3, 0, 1, 1);
+        grid.attach (_valueOption, 4, 0, 1, 1);
+        grid.attach (_valueRating, 4, 0, 1, 1);
+        grid.attach (_valueNumerical, 4, 0, 1, 1);
+        grid.attach (_units, 5, 0, 1, 1);
+        
 
         field_changed (false);
 
