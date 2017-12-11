@@ -309,6 +309,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
 
 
         field_combobox.changed.connect (() => {field_changed (true);});
+        remove_button.show();
     }
 
     public SmartQuery get_query () {
