@@ -258,6 +258,9 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             
             value_rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
             value_rating.rating_changed.connect (() => {
+                var query_value = Value (typeof (int));
+                query_value.set_int (value_rating.rating);
+                query.value = query_value;
                 
             }); 
             
