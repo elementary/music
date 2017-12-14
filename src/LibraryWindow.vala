@@ -114,10 +114,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.clear_queue ();
 
             // make sure we don't re-count stats
-            if (main_settings.last_media_position > 5)
+            if (main_settings.last_media_position > 5) {
                 media_considered_previewed = true;
-            if (main_settings.last_media_position > 30)
-                media_considered_played = true;
+
+                if (main_settings.last_media_position > 30) {
+                    media_considered_played = true;
+                }
+            }
+
             if (App.player.current_media != null && (double)(main_settings.last_media_position/(double)App.player.current_media.length) > 0.90)
                 added_to_play_count = true;
         }
