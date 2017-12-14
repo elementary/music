@@ -643,7 +643,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
-        statusbar.playlist_menubutton_sensitive = have_media;
+        statusbar.playlist_menubutton_sensitive = folder_set && have_media;
 
         if (!media_active || have_media && !App.player.playing)
             play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
