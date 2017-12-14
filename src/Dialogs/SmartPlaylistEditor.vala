@@ -220,8 +220,6 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
     }
 
     private class SmartPlaylistEditorQuery : GLib.Object {
-        private SmartQuery _q;
-
         public Gtk.Grid grid;
         private Gtk.ComboBoxText field_combobox;
         private Gtk.ComboBoxText comparator_combobox;
@@ -256,6 +254,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
                 }
                 return _query;
             }
+                set {_query = value;}
         }
 
         private GLib.HashTable<int, SmartQuery.ComparatorType> comparators;
@@ -264,7 +263,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         public signal void changed ();
 
         public SmartPlaylistEditorQuery (SmartQuery q) {
-            _q = q;
+            Object (query:q);
 
             comparators = new GLib.HashTable<int, SmartQuery.ComparatorType> (null, null);
 
@@ -299,21 +298,21 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             field_combobox.append_text (_("Title"));
             field_combobox.append_text (_("Year"));
             field_combobox.append_text (_("URI"));
-            field_combobox.set_active ((int)q.field);
+            field_combobox.set_active ((int)_query.field);
             
-            debug ("setting filed to %d\n", q.field);
-            comparator_combobox.set_active ((int)q.comparator);
+            debug ("setting filed to %d\n", _query.field);
+            comparator_combobox.set_active ((int)_query.comparator);
 
-            if (is_string_field (q.field)) {
-                if (q.field == SmartQuery.FieldType.URI) {
-                    value_entry.text = Uri.unescape_string (q.value.get_string ());
+            if (is_string_field (_query.field)) {
+                if (_query.field == SmartQuery.FieldType.URI) {
+                    value_entry.text = Uri.unescape_string (_query.value.get_string ());
                 } else {
-                    value_entry.text = q.value.get_string ();
+                    value_entry.text = _query.value.get_string ();
                 }
-            } else if (q.field == SmartQuery.FieldType.RATING) {
-                _valueRating.rating = q.value.get_int ();
+            } else if (_query.field == SmartQuery.FieldType.RATING) {
+                _valueRating.rating = _query.value.get_int ();
             } else {
-                _valueNumerical.set_value (q.value.get_int ());
+                _valueNumerical.set_value (_query.value.get_int ());
             }
 
             _units = new Gtk.Label ("");
@@ -352,7 +351,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
                 comparators.insert (1, SmartQuery.ComparatorType.CONTAINS);
                 comparators.insert (2, SmartQuery.ComparatorType.NOT_CONTAINS);
 
-                switch (_q.comparator) {
+                switch (_query.comparator) {
                     case SmartQuery.ComparatorType.CONTAINS:
                         comparator_combobox.set_active (1);
                         break;
@@ -379,8 +378,8 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
                     comparators.insert (0, SmartQuery.ComparatorType.IS_EXACTLY);
                     comparators.insert (1, SmartQuery.ComparatorType.IS_AT_MOST);
                     comparators.insert (2, SmartQuery.ComparatorType.IS_AT_LEAST);
-                    if ((int)_q.comparator >= 4)
-                        comparator_combobox.set_active ((int)_q.comparator-4);
+                    if ((int)_query.comparator >= 4)
+                        comparator_combobox.set_active ((int)_query.comparator-4);
                     else
                         comparator_combobox.set_active (0);
 
@@ -393,7 +392,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
                     comparators.insert (0, SmartQuery.ComparatorType.IS_EXACTLY);
                     comparators.insert (1, SmartQuery.ComparatorType.IS_WITHIN);
                     comparators.insert (2, SmartQuery.ComparatorType.IS_BEFORE);
-                    switch (_q.comparator) {
+                    switch (_query.comparator) {
                         case SmartQuery.ComparatorType.IS_WITHIN:
                             comparator_combobox.set_active (1);
                             break;
