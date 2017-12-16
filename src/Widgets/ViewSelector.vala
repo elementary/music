@@ -51,6 +51,18 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         }
     }
 
+    // De-select items when the widget is made insensitive, for appearance reasons
+    public new bool sensitive {
+        get {
+            return mode_button.sensitive;
+        }
+        set {
+            // select fourth invisible mode to appear as de-selected
+            mode_button.sensitive = value;
+            mode_button.set_active (value ? (int) mode : -1);
+        }
+    }
+
     private Granite.Widgets.ModeButton mode_button;
     private Mode mode;
 
@@ -79,17 +91,6 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
                 selected = mode; // restore last valid mode
             }
         });
-    }
-
-    // De-select items when the widget is made insensitive, for appearance reasons
-    public new void set_sensitive (bool sensitive) {
-        // select fourth invisible mode to appear as de-selected
-        mode_button.set_sensitive (sensitive);
-        mode_button.set_active (sensitive ? (int)mode : -1);
-    }
-
-    public new bool get_sensitive () {
-        return mode_button.get_sensitive ();
     }
 
     // CRAPPY API
