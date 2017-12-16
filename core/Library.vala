@@ -34,10 +34,10 @@ public abstract class Noise.Library : GLib.Object {
     public signal void file_operations_started ();
     public signal void file_operations_done ();
 
-    public signal void media_added (Gee.Collection<Medium> medias);
-    public signal void media_updated (Gee.Collection<Medium> medias);
-    public signal void media_removed (Gee.Collection<Medium> medias);
-    public signal void media_imported (Gee.Collection<Medium> medias); // Only sent at the end of import.
+    public signal void media_added (Gee.Collection<Medium> media);
+    public signal void media_updated (Gee.Collection<Medium> media);
+    public signal void media_removed (Gee.Collection<Medium> media);
+    public signal void media_imported (Gee.Collection<Medium> media); // Only sent at the end of import.
     public signal void search_finished ();
 
     public signal void playlist_added (StaticPlaylist playlist);
@@ -51,25 +51,25 @@ public abstract class Noise.Library : GLib.Object {
     public abstract void initialize_library ();
     public abstract void add_files_to_library (Gee.Collection<string> files);
 
-    public abstract Gee.Collection<Medium> get_medias ();
+    public abstract Gee.Collection<Medium> get_media ();
     public abstract Gee.Collection<StaticPlaylist> get_playlists ();
     public abstract Gee.Collection<SmartPlaylist> get_smart_playlists ();
 
-    public abstract void search_medias (string search);
+    public abstract void search_media (string search);
     public abstract Gee.Collection<Medium> get_search_result ();
 
-    public abstract void add_media (Medium s);
-    public abstract void add_medias (Gee.Collection<Medium> new_media);
-    public abstract Medium? find_media (Medium to_find);
-    public abstract Medium? media_from_file (File file);
-    public abstract Medium? media_from_uri (string uri);
-    public abstract Medium? media_from_id (int64 id);
-    public abstract Gee.Collection<Medium> medias_from_uris (Gee.Collection<string> uris);
-    public abstract Gee.Collection<Medium> medias_from_ids (Gee.Collection<int64?> ids);
-    public abstract void update_media (Medium s, bool updateMeta, bool record_time);
-    public abstract void update_medias (Gee.Collection<Medium> updates, bool updateMeta, bool record_time);
-    public abstract void remove_media (Medium s, bool trash);
-    public abstract void remove_medias (Gee.Collection<Medium> toRemove, bool trash);
+    public abstract void add_medium (Medium s);
+    public abstract void add_media (Gee.Collection<Medium> new_media);
+    public abstract Medium? find_medium (Medium to_find);
+    public abstract Medium? medium_from_file (File file);
+    public abstract Medium? medium_from_uri (string uri);
+    public abstract Medium? medium_from_id (int64 id);
+    public abstract Gee.Collection<Medium> media_from_uris (Gee.Collection<string> uris);
+    public abstract Gee.Collection<Medium> media_from_ids (Gee.Collection<int64?> ids);
+    public abstract void update_medium (Medium s, bool updateMeta, bool record_time);
+    public abstract void update_media (Gee.Collection<Medium> updates, bool updateMeta, bool record_time);
+    public abstract void remove_medium (Medium s, bool trash);
+    public abstract void remove_media (Gee.Collection<Medium> toRemove, bool trash);
 
     public abstract bool support_smart_playlists ();
     public abstract void add_smart_playlist (SmartPlaylist p);
@@ -98,9 +98,9 @@ public abstract class Noise.Library : GLib.Object {
 
     public void media_from_name (Gee.Collection<Medium> tests, Gee.Collection<int64?> found, Gee.Collection<Medium> not_found) {
         foreach (Medium test in tests) {
-            var media_found = find_media (test);
-            if (media_found != null) {
-                found.add (media_found.rowid);
+            var medium_found = find_medium (test);
+            if (medium_found != null) {
+                found.add (medium_found.rowid);
             } else {
                 not_found.add (test);
             }

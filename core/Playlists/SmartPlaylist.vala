@@ -53,19 +53,19 @@ public class Noise.SmartPlaylist : Playlist {
         icon = new ThemedIcon ("playlist-automatic");
         queries = new Gee.TreeSet<SmartQuery>();
 
-        library.media_added.connect ((medias) => {
-            analyse_list (medias);
+        library.media_added.connect ((media) => {
+            analyse_list (media);
         });
 
-        library.media_updated.connect ((medias) => {
-            analyse_list (medias);
+        library.media_updated.connect ((media) => {
+            analyse_list (media);
         });
 
-        library.media_removed.connect ((medias) => {
+        library.media_removed.connect ((media) => {
             var removed = new Gee.LinkedList<Medium> ();
-            foreach (var m in medias) {
-                if (this.medias.contains (m)) {
-                    this.medias.remove (m);
+            foreach (var m in media) {
+                if (this.media.contains (m)) {
+                    this.media.remove (m);
                     removed.add (m);
                 }
             }
@@ -78,24 +78,24 @@ public class Noise.SmartPlaylist : Playlist {
      * Common Playlist Functions.
      */
 
-    public override void add_media (Medium m) {
+    public override void add_medium (Medium m) {
+        warning ("Trying to force the medium addition to a smart playlist!");
+    }
+
+    public override void add_media (Gee.Collection<Medium> to_add) {
         warning ("Trying to force the media addition to a smart playlist!");
     }
 
-    public override void add_medias (Gee.Collection<Medium> to_add) {
-        warning ("Trying to force the media addition to a smart playlist!");
+    public override void remove_medium (Medium to_remove) {
+        warning ("Trying to force the medium removal from a smart playlist!");
     }
 
-    public override void remove_media (Medium to_remove) {
-        warning ("Trying to force the media removal from a smart playlist!");
-    }
-
-    public override void remove_medias (Gee.Collection<Medium> to_remove) {
+    public override void remove_media (Gee.Collection<Medium> to_remove) {
         warning ("Trying to force the media removal from a smart playlist!");
     }
 
     public virtual void analyse_all () {
-        analyse_list (library.get_medias ());
+        analyse_list (library.get_media ());
     }
 
     /*
@@ -128,7 +128,7 @@ public class Noise.SmartPlaylist : Playlist {
 
     // FIXME: Clearing a Smart Playlist ???
     public override void clear() {
-        medias.clear ();
+        media.clear ();
         cleared ();
     }
 
@@ -136,7 +136,7 @@ public class Noise.SmartPlaylist : Playlist {
      * Smart Playlist Helpers
      */
 
-    public static bool media_matches_query (SmartQuery q, Medium s) {
+    public static bool medium_matches_query (SmartQuery q, Medium s) {
         switch (q.field) {
             case Noise.SmartQuery.FieldType.URI:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
@@ -290,34 +290,36 @@ public class Noise.SmartPlaylist : Playlist {
             var removed = new Gee.TreeSet<Medium> ();
 
             foreach (var m in given_library) {
-                if (m == null)
+                if (m == null) {
                     continue;
-
-                int match_count = 0; //if OR must be greater than 0. if AND must = queries.size.
-
-                foreach (var q in queries) {
-                    if (media_matches_query (q, m))
-                        match_count++;
                 }
 
-                if(((conditional == ConditionalType.ALL && match_count == queries.size) ||
-                    (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
-                    if (!medias.contains (m)) {
-                        added.add (m);
-                        medias.add (m);
+                int match_count = 0; // if OR must be greater than 0. if AND must = queries.size.
+
+                foreach (var q in queries) {
+                    if (medium_matches_query (q, m)) {
+                        match_count++;
                     }
-                } else if (medias.contains (m)) {
+                }
+
+                if (((conditional == ConditionalType.ALL && match_count == queries.size) ||
+                    (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
+                    if (!media.contains (m)) {
+                        added.add (m);
+                        media.add (m);
+                    }
+                } else if (media.contains (m)) {
                     // a media which was part of the previous set no longer matches
                     // the query, and it must be removed
-                    medias.remove (m);
+                    media.remove (m);
                     removed.add (m);
                 }
 
-                if (limit && limit_amount <= medias.size)
+                if (limit && limit_amount <= media.size)
                     break;
             }
 
-            Idle.add( () => {
+            Idle.add (() => {
                 // Emit signal to let views know about the change
                 media_added (added);
                 media_removed (removed);

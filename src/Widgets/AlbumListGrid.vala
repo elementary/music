@@ -209,7 +209,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         }
 
-        view_wrapper.library.update_medias (updated, false, true);
+        view_wrapper.library.update_media (updated, false, true);
     }
 
     private void view_search_func (string search, Gee.ArrayList<Medium> table, Gee.ArrayList<Medium> showing) {

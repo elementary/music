@@ -73,30 +73,28 @@ public class Noise.LibrariesManager : GLib.Object {
     }
 
     public void search_for_string (string search) {
-        if (old_search == search)
-            return;
-        old_search = search;
-        foreach (var library in libraries.keys) {
-            library.search_medias (search);
+        if (old_search != search) {
+            old_search = search;
+            foreach (var library in libraries.keys) {
+                library.search_media (search);
+            }
         }
     }
 
     public void transfer_to_local_library (Gee.Collection<Medium> to_transfer) {
         if (local_library == null)
             return;
-        if(to_transfer == null || to_transfer.size == 0) {
+        if (to_transfer == null || to_transfer.size == 0) {
             warning("No songs in transfer list\n");
             return;
         }
 
-        debug ("Found %d medias to import.", to_transfer.size);
-
-        transfer_medias_async.begin (to_transfer);
+        transfer_media_async.begin (to_transfer);
         return;
     }
 
-    public async void transfer_medias_async (Gee.Collection<Medium> list) {
-        if(list == null || list.size == 0)
+    public async void transfer_media_async (Gee.Collection<Medium> list) {
+        if (list == null || list.size == 0)
             return;
 
         int index = 0;
@@ -129,12 +127,12 @@ public class Noise.LibrariesManager : GLib.Object {
                         copied_list.add (copy);
                     }
                     else {
-                        warning("Failure: Could not copy imported media %s to media folder %s", m.uri, dest.get_path());
+                        warning("Failure: Could not copy imported medium %s to media folder %s", m.uri, dest.get_path());
                         break;
                     }
                 }
                 catch(Error err) {
-                    warning("Could not copy imported media %s to media folder: %s\n", m.uri, err.message);
+                    warning("Could not copy imported medium %s to media folder: %s\n", m.uri, err.message);
                     break;
                 }
 
@@ -142,7 +140,7 @@ public class Noise.LibrariesManager : GLib.Object {
                 current_operation = current_operation.replace ("$NAME", m.get_display_title ());
                 current_operation = current_operation.replace ("$ARTIST", m.get_display_artist ());
             } else {
-                message ("Skipped transferring media %s. Either already in library, or has invalid file path.\n", m.get_display_title ());
+                message ("Skipped transferring medium %s. Either already in library, or has invalid file path.\n", m.get_display_title ());
             }
             index++;
             progress = (double)index/total;
@@ -151,13 +149,12 @@ public class Noise.LibrariesManager : GLib.Object {
         progress = 1;
 
         Idle.add( () => {
-            local_library.add_medias (copied_list);
+            local_library.add_media (copied_list);
             return false;
         });
     }
 
     public bool do_progress_notification_with_timeout () {
-
         NotificationManager.get_default ().update_progress (current_operation.replace("&", "&amp;"), progress);
 
         if (progress < 1) {

@@ -29,7 +29,7 @@
 public abstract class Noise.Playlist : Object {
     public signal void request_play ();
 
-    public virtual Gee.ArrayList<Medium> medias { get; internal set; default = new Gee.ArrayList<Medium> (); }
+    public virtual Gee.ArrayList<Medium> media { get; internal set; default = new Gee.ArrayList<Medium> (); }
 
     public int64 rowid { get; construct set; }
     public GLib.Icon icon;
@@ -50,28 +50,28 @@ public abstract class Noise.Playlist : Object {
     public signal void updated (string? old_name = null);
     public signal void cleared ();
 
-    public abstract void add_media (Medium to_remove);
-    public abstract void add_medias (Gee.Collection<Medium> to_add);
-    public abstract void remove_media (Medium to_remove);
-    public abstract void remove_medias (Gee.Collection<Medium> to_remove);
+    public abstract void add_medium (Medium to_remove);
+    public abstract void add_media (Gee.Collection<Medium> to_add);
+    public abstract void remove_medium (Medium to_remove);
+    public abstract void remove_media (Gee.Collection<Medium> to_remove);
     public abstract void clear ();
 
     public bool is_empty () {
-        return medias.size <= 0;
+        return media.size <= 0;
     }
 
     /**
     * Retrives a Medium at an index in this playlist
     */
     public new Medium get (int index) {
-        return medias[index];
+        return media[index];
     }
 
     public new void set (int index, Medium m) {
-        medias[index] = m;
+        media[index] = m;
     }
 
     public Gee.Iterator<Medium> iterator () {
-        return medias.iterator ();
+        return media.iterator ();
     }
 }

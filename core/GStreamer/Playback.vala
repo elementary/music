@@ -36,7 +36,7 @@ public interface Noise.Playback : GLib.Object {
 
     public signal void end_of_stream ();
     public signal void current_position_update (int64 position);
-    public signal void media_not_found ();
+    public signal void medium_not_found ();
     public signal void error_occured ();
 
     /*
@@ -46,7 +46,7 @@ public interface Noise.Playback : GLib.Object {
     public abstract void play ();
     public abstract void pause ();
     public abstract void set_state (Gst.State s);
-    public abstract void set_media (Medium media);
+    public abstract void set_medium (Medium medium);
     public abstract void set_position (int64 pos);
     public abstract int64 get_position ();
     public abstract int64 get_duration ();

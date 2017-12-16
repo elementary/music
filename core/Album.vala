@@ -78,7 +78,7 @@ public class Noise.Album : Object {
         }
     }
 
-    public Album.from_media (Medium m) {
+    public Album.from_medium (Medium m) {
         name = m.album;
         artist = m.album_artist;
         year = m.year;
@@ -125,12 +125,12 @@ public class Noise.Album : Object {
             return false;
     }
 
-    public void remove_media (Medium m) {
+    public void remove_medium (Medium m) {
         m.album_info = null;
         media.remove (m);
     }
 
-    public void add_media (Medium m) {
+    public void add_medium (Medium m) {
         media.add (m);
         m.album_info = this;
     }

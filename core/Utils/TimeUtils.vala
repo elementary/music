@@ -166,7 +166,7 @@ namespace Noise.TimeUtils {
     /**
      * Convert from nanoseconds (10E-9) to miliseconds (10E-3);
      *
-     * This is used extensively because {@link Noise.Media} stores
+     * This is used extensively because {@link Noise.Medium} stores
      * miliseconds, while GStreamer uses nanoseconds.
      *
      * The method does its best to avoid losing precision.

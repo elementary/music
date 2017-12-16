@@ -27,7 +27,7 @@
  */
 
 /**
-* A widget display a list of medias.
+* A widget display a list of media.
 */
 public class Noise.FastView : Gtk.TreeView {
     public const int OPTIMAL_COLUMN = -2;
@@ -35,7 +35,7 @@ public class Noise.FastView : Gtk.TreeView {
     public Gee.List<Type> columns { get; construct set; }
 
     /**
-    * A list of all the medias to display
+    * A list of all the media to display
     */
     protected Gee.ArrayList<Medium> table = new Gee.ArrayList<Medium> (); // is not the same object as showing.
 

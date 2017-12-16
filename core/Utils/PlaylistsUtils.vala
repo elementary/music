@@ -72,7 +72,7 @@ namespace Noise.PlaylistsUtils {
 
     public bool save_playlist_pls(Playlist p, string folder_uri) {
         bool rv = false;
-        string to_save = "[playlist]\nX-GNOME-Title=%s\nNumberOfEntries=%d\nVersion=2".printf (p.name, p.medias.size);
+        string to_save = "[playlist]\nX-GNOME-Title=%s\nNumberOfEntries=%d\nVersion=2".printf (p.name, p.media.size);
 
         int index = 1;
         foreach(var s in p) {
@@ -144,7 +144,7 @@ namespace Noise.PlaylistsUtils {
         return true;
     }
 
-    public static bool parse_paths_from_pls(string uri, ref Gee.LinkedList<string> locals, ref string title) {
+    public static bool parse_paths_from_pls (string uri, ref Gee.LinkedList<string> locals, ref string title) {
         var files = new Gee.HashMap<int, string>();
         var titles = new Gee.HashMap<int, string>();
         var lengths = new Gee.HashMap<int, string>();
@@ -215,14 +215,14 @@ namespace Noise.PlaylistsUtils {
         foreach (var playlist in playlists.entries) {
             var new_playlist = new StaticPlaylist ();
             new_playlist.name = playlist.key;
-            var medias_to_use = playlist.value;
+            var media_to_use = playlist.value;
             var to_add = new Gee.LinkedList<Medium> ();
-            foreach (var media in library.get_medias ()) {
-                if (medias_to_use.contains (media.file.get_path ()) || medias_to_use.contains (media.file.get_uri ())) {
-                    to_add.add (media);
+            foreach (var medium in library.get_media ()) {
+                if (media_to_use.contains (medium.file.get_path ()) || media_to_use.contains (medium.file.get_uri ())) {
+                    to_add.add (medium);
                 }
             }
-            new_playlist.add_medias (to_add);
+            new_playlist.add_media (to_add);
             library.add_playlist (new_playlist);
         }
     }
@@ -256,7 +256,7 @@ namespace Noise.PlaylistsUtils {
 
     public StaticPlaylist static_playlist_from_smartplaylist (SmartPlaylist sp) {
         var p = new StaticPlaylist();
-        p.add_medias (sp.medias);
+        p.add_media (sp.media);
         p.name = sp.name;
         return p;
     }
