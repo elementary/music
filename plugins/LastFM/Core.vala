@@ -27,11 +27,13 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-/* Merely a place holder for multiple pieces of information regarding
- * the current media playing. Mostly here because of dependence. */
+/*
+* Merely a place holder for multiple pieces of information regarding
+* the current medium playing. Mostly here because of dependence.
+*/
 
 public class LastFM.Core : Object {
-    public signal void similar_retrieved (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
+    public signal void similar_retrieved (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Medium> similarDont);
     public signal void loved (string title, string artist);
     public signal void baned (string title, string artist);
 
@@ -57,9 +59,9 @@ public class LastFM.Core : Object {
     private Core () {
         fetch_cancellable = new GLib.Cancellable ();
         similarMedias = new LastFM.SimilarMedias ();
-        Noise.App.main_window.update_media_info.connect ((media) => {postNowPlaying (media);});
-        Noise.App.main_window.media_half_played.connect ((media) => {postScrobbleTrack (media);});
-        Noise.libraries_manager.local_library.media_added.connect ((medias) => {fetch_albums_slowly.begin (medias);});
+        Noise.App.main_window.update_medium_info.connect (postNowPlaying);
+        Noise.App.main_window.medium_half_played.connect (postScrobbleTrack);
+        Noise.libraries_manager.local_library.media_added.connect ((media) => { fetch_albums_slowly.begin (media); });
         similarMedias.similar_retrieved.connect(similar_retrieved_signal);
     }
 
@@ -121,12 +123,12 @@ public class LastFM.Core : Object {
     /** Fetches the current track's info from last.fm
      */
 
-    public async void fetch_albums_slowly (Gee.Collection<Noise.Media> new_medias) {
+    public async void fetch_albums_slowly (Gee.Collection<Noise.Medium> new_media) {
         var albums = new Gee.TreeSet<Noise.Album> ();
-        foreach (var media in new_medias) {
-            if (!(media.album_info in albums)) {
-                albums.add (media.album_info);
-                get_album_infos.begin (media.album_info, fetch_cancellable);
+        foreach (var medium in new_media) {
+            if (!(medium.album_info in albums)) {
+                albums.add (medium.album_info);
+                get_album_infos.begin (medium.album_info, fetch_cancellable);
             }
         }
     }
@@ -134,7 +136,7 @@ public class LastFM.Core : Object {
     /** Update's the user's currently playing track on last.fm
      *
      */
-    public void postNowPlaying (Noise.Media m) {
+    public void postNowPlaying (Noise.Medium m) {
         debug ("Sound send as now_playing");
         var uri = new Soup.URI (API_URL);
         uri.set_query_from_fields ("method", "track.updateNowPlaying",
@@ -154,8 +156,8 @@ public class LastFM.Core : Object {
     /**
      * Scrobbles the currently playing track to last.fm
      */
-    public void postScrobbleTrack (Noise.Media m) {
-        if (Noise.App.player.current_media == null)
+    public void postScrobbleTrack (Noise.Medium m) {
+        if (Noise.App.player.current_medium == null)
             return;
 
         debug ("Sound Scrobbled");
@@ -168,7 +170,7 @@ public class LastFM.Core : Object {
                                    "timestamp", timestamp.to_string(),
                                    "sk", session_key,
                                    "api_sig", generate_trackscrobble_signature (m.artist, m.title, timestamp));
-   
+
         var session = new Soup.Session ();
         Soup.Message message = new Soup.Message.from_uri ("POST", uri);
 
@@ -177,22 +179,23 @@ public class LastFM.Core : Object {
     }
 
     public void fetchCurrentSimilarSongs () {
-        similarMedias.query_for_similar (Noise.App.player.current_media);
+        similarMedias.query_for_similar (Noise.App.player.current_medium);
     }
 
-    private void similar_retrieved_signal (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Media> similarDont) {
+    private void similar_retrieved_signal (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Medium> similarDont) {
         similar_retrieved (similarIDs, similarDont);
     }
 
 
-    /** Gets similar medias
-     * @param artist The artist of media to get similar to
-     * @param title The title of media to get similar to
-     * @return The media that are similar
-     */
-    public async Gee.TreeSet<Noise.Media> get_similar_tracks (string title, string artist, GLib.Cancellable cancellable) {
-        var returned_medias = new Gee.TreeSet<Noise.Media> ();
-        
+    /**
+    * Gets similar media
+    * @param artist The artist of medium to get similar to
+    * @param title The title of medium to get similar to
+    * @return The media that are similar
+    */
+    public async Gee.TreeSet<Noise.Medium> get_similar_tracks (string title, string artist, GLib.Cancellable cancellable) {
+        var returned_media = new Gee.TreeSet<Noise.Medium> ();
+
         var uri = new Soup.URI (API_URL);
         uri.set_query_from_fields ("method", "track.getsimilar",
                                    "api_key", api_key,
@@ -209,15 +212,15 @@ public class LastFM.Core : Object {
             parser.load_from_stream (stream);
             weak Json.Object parser_object = parser.get_root ().get_object ();
             if (parser_object == null || parser_object.has_member ("similartracks") == false)
-                return returned_medias;
+                return returned_media;
 
             weak Json.Object similartracks = parser_object.get_object_member ("similartracks");
             if (similartracks.has_member ("track") && similartracks.get_member ("track").get_node_type () == Json.NodeType.ARRAY) {
                 List<unowned Json.Node> similar_tracks_values = similartracks.get_array_member ("track").get_elements ();
                 foreach (unowned Json.Node element in similar_tracks_values) {
                     weak Json.Object track_object = element.get_object ();
-                    var similar_to_add = new Noise.Media ("");
-                    returned_medias.add (similar_to_add);
+                    var similar_to_add = new Noise.Medium ("");
+                    returned_media.add (similar_to_add);
                     similar_to_add.title = track_object.get_string_member ("name");
                     if (track_object.has_member ("url"))
                         similar_to_add.comment = track_object.get_string_member ("url");
@@ -232,7 +235,7 @@ public class LastFM.Core : Object {
             critical (e.message);
         }
 
-        return returned_medias;
+        return returned_media;
     }
 
     public async void get_album_infos (Noise.Album album, Cancellable cancellable) {

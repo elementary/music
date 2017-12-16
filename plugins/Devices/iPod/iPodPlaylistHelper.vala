@@ -53,7 +53,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
         var rv = new GPod.Playlist (pl.name, false);
         rv.itdb = db;
         int32 index = 0;
-        foreach (var m in pl.medias) {
+        foreach (var m in pl.media) {
             foreach (var entry in library.entries) {
                 if (entry.value == m) {
                     rv.add_track (entry.key, index);
@@ -66,9 +66,9 @@ public class Noise.Plugins.iPodPlaylistHelper {
         return rv;
     }
 
-    public static Gee.Collection<unowned GPod.Track> get_gpod_tracks_from_medias (Gee.Collection<Media> medias, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
+    public static Gee.Collection<unowned GPod.Track> get_gpod_tracks_from_media (Gee.Collection<Media> media, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
         var list = new Gee.LinkedList <unowned GPod.Track> ();
-        foreach (var m in medias) {
+        foreach (var m in media) {
             foreach (var entry in library.entries) {
                 if (entry.value == m) {
                     list.add (entry.key);
@@ -82,11 +82,11 @@ public class Noise.Plugins.iPodPlaylistHelper {
 
     public static Noise.Playlist? get_playlist_from_gpod_playlist (GPod.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
         if (pl.is_spl) {
-            
+
         } else if (pl.is_podcasts () == false && pl.is_audiobooks () == false && pl.is_mpl() == false) {
             var playlist = new StaticPlaylist.with_info (0, pl.name);
             foreach (var track in pl.members) {
-                playlist.add_media (library.get (track));
+                playlist.add_medium (library.get (track));
             }
 
             return playlist;
@@ -368,7 +368,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
             } else if (comparator == SmartQuery.ComparatorType.IS_BEFORE) {
                 rule.action = GPod.SPLAction.IS_LESS_THAN;
             }
-            
+
             message ("in smartplaylist  has rule and string %s\n", rule.@string);
         }
 

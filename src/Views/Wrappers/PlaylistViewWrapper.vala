@@ -71,7 +71,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                 assert_not_reached ();
         }
 
-        set_media_async.begin (playlist.medias);
+        set_media_async.begin (playlist.media);
         connect_data_signals ();
     }
 
@@ -89,7 +89,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                     p.cleared.connect (on_playlist_cleared);
                     p.request_play.connect (() => {
                         App.player.clear_queue ();
-                        play_first_media (true);
+                        play_first_medium (true);
                         App.player.get_next(true);
                     });
                 }

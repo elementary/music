@@ -37,7 +37,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     /* Signals are now in the Playback interface !
     public signal void end_of_stream ();
     public signal void current_position_update (int64 position);
-    public signal void media_not_found ();
+    public signal void medium_not_found ();
     public signal void error_occured (); */
 
     public Streamer () {
@@ -59,12 +59,12 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     }
 
     public bool update_position () {
-        if(set_resume_pos || (App.player.current_media != null && get_position() >= (int64)(App.player.current_media.resume_pos - 1) * 1000000000)) {
+        if(set_resume_pos || (App.player.current_medium != null && get_position() >= (int64)(App.player.current_medium.resume_pos - 1) * 1000000000)) {
             set_resume_pos = true;
             current_position_update(get_position());
         }
-        else if (App.player.current_media != null) {
-            pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
+        else if (App.player.current_medium != null) {
+            pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_medium.resume_pos * 1000000000);
         }
 
         return true;
@@ -83,16 +83,16 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
         pipe.playbin.set_state (s);
     }
 
-    public void set_media (Medium media) {
+    public void set_medium (Medium medium) {
         set_state (Gst.State.READY);
-        debug ("set uri to %s\n", media.uri);
+        debug ("set uri to %s\n", medium.uri);
         //pipe.playbin.uri = uri.replace("#", "%23");
-        pipe.playbin.set_property ("uri", media.uri.replace("#", "%23"));
+        pipe.playbin.set_property ("uri", medium.uri.replace("#", "%23"));
 
         set_state (Gst.State.PLAYING);
 
-        debug ("setURI seeking to %d\n", App.player.current_media.resume_pos);
-        pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
+        debug ("setURI seeking to %d\n", App.player.current_medium.resume_pos);
+        pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_medium.resume_pos * 1000000000);
 
         play ();
     }

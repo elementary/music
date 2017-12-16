@@ -29,12 +29,12 @@
 
 public class Noise.SimilarMediasView : Gtk.TreeView {
     private new Gtk.ListStore model;
-    private Gee.LinkedList<Media> medias;
+    private Gee.LinkedList<Media> media;
 
     private Gee.LinkedList<string> urlsToOpen;//queue for opening urls
 
     public SimilarMediasView () {
-        medias = new Gee.LinkedList<Media> ();
+        media = new Gee.LinkedList<Media> ();
         urlsToOpen = new Gee.LinkedList<string> ();
 
         /* id is always first and is stored as an int. Then the rest are (1)
@@ -58,11 +58,11 @@ public class Noise.SimilarMediasView : Gtk.TreeView {
     }
 
     public void populateView (Gee.Collection<Media> nMedias) {
-        medias.clear ();
+        media.clear ();
         model.clear ();
         int count = 0;
         foreach (Media s in nMedias) {
-            medias.add (s);
+            media.add (s);
 
             Gtk.TreeIter iter;
             model.append (out iter);
@@ -99,7 +99,7 @@ public class Noise.SimilarMediasView : Gtk.TreeView {
             try {
                 GLib.AppInfo.launch_default_for_uri (s.comment, null);
             } catch (Error err) {
-                message ("Couldn't open the similar media's last fm page: %s", err.message);
+                message ("Couldn't open the similar medium's last fm page: %s", err.message);
             }
         }
 

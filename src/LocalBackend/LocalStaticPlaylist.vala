@@ -52,7 +52,7 @@ public class Noise.LocalStaticPlaylist : StaticPlaylist {
         this.connection = connection;
         var all = Database.query_field (rowid, connection, Database.Playlists.TABLE_NAME, "media").dup_string ();
         foreach (var id in all.split (";")) {
-            medias.add (libraries_manager.local_library.media_from_id (int64.parse (id)));
+            media.add (libraries_manager.local_library.medium_from_id (int64.parse (id)));
         }
     }
 
@@ -70,7 +70,7 @@ public class Noise.LocalStaticPlaylist : StaticPlaylist {
         col_names.append ("media");
         var values = new GLib.SList<Value?> ();
         var sb = new StringBuilder ();
-        foreach (var m in medias) {
+        foreach (var m in media) {
             if (sb.len != 0)
                 sb.append_c (';');
 

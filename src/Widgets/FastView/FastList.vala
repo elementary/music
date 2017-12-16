@@ -27,7 +27,7 @@
  */
 
 /**
-* A widget display a list of media.
+* A widget display a list of medium.
 */
 public class Noise.FastView : Gtk.TreeView {
     public const int OPTIMAL_COLUMN = -2;

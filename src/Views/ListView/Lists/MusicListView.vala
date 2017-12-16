@@ -33,15 +33,15 @@
 
 public class Noise.ContractMenuItem : Gtk.MenuItem {
     public Granite.Services.Contract contract { get; construct set; }
-    public Gee.Collection<Medium> medias { get; construct set; }
+    public Gee.Collection<Medium> media { get; construct set; }
 
-    public ContractMenuItem (Granite.Services.Contract contract, Gee.Collection<Noise.Medium> medias) {
-        Object (contract: contract, medias: medias, label: contract.get_display_name ());
+    public ContractMenuItem (Granite.Services.Contract contract, Gee.Collection<Noise.Medium> media) {
+        Object (contract: contract, media: media, label: contract.get_display_name ());
     }
 
     public override void activate () {
         File[] files = {};
-        foreach (Medium m in medias) {
+        foreach (Medium m in media) {
             files += m.file;
             debug("Added file to pass to Contractor: %s", m.uri);
         }
@@ -57,17 +57,17 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
 }
 
 public class Noise.MusicListView : GenericList {
-    //for media list right click
-    Gtk.Menu media_action_menu;
-    Gtk.MenuItem media_edit_media;
-    Gtk.MenuItem media_file_browse;
-    Gtk.MenuItem media_menu_contractor_entry; // make menu on fly
-    Gtk.MenuItem media_menu_queue;
-    Gtk.MenuItem media_menu_add_to_playlist; // make menu on fly
-    Granite.Widgets.RatingMenuItem media_rate_media;
-    Gtk.MenuItem media_remove;
-    Gtk.MenuItem import_to_library;
-    Gtk.MenuItem media_scroll_to_current;
+    //for medium list right click
+    Gtk.Menu medium_action_menu;
+    Gtk.MenuItem medium_menu_edit;
+    Gtk.MenuItem medium_menu_file_browse;
+    Gtk.MenuItem medium_menu_contractor_entry; // make menu on fly
+    Gtk.MenuItem medium_menu_queue;
+    Gtk.MenuItem medium_menu_add_to_playlist; // make menu on fly
+    Granite.Widgets.RatingMenuItem medium_menu_rate;
+    Gtk.MenuItem medium_menu_remove;
+    Gtk.MenuItem medium_menu_import_to_library;
+    Gtk.MenuItem medium_menu_scroll_to_current;
 
     public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         Object (parent_wrapper: view_wrapper, tvs: tvs);
@@ -80,66 +80,66 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        media_scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
-        media_scroll_to_current.activate.connect (media_scroll_to_current_requested);
-        media_scroll_to_current.sensitive = false;
+        medium_menu_scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
+        medium_menu_scroll_to_current.activate.connect (medium_scroll_to_current_requested);
+        medium_menu_scroll_to_current.sensitive = false;
 
-        media_edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info"));
-        media_edit_media.activate.connect (media_edit_media_clicked);
+        medium_menu_edit = new Gtk.MenuItem.with_label (_("Edit Song Info"));
+        medium_menu_edit.activate.connect (medium_edit_medium_clicked);
 
-        media_file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser"));
-        media_file_browse.activate.connect (media_file_browse_clicked);
+        medium_menu_file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser"));
+        medium_menu_file_browse.activate.connect (medium_file_browse_clicked);
 
-        media_menu_contractor_entry = new Gtk.MenuItem.with_label (_("Other actions"));
+        medium_menu_contractor_entry = new Gtk.MenuItem.with_label (_("Other actions"));
 
-        media_menu_queue = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
-        media_menu_queue.activate.connect (media_menu_queue_clicked);
+        medium_menu_queue = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
+        medium_menu_queue.activate.connect (medium_menu_queue_clicked);
 
-        media_menu_add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
+        medium_menu_add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
 
-        media_remove = new Gtk.MenuItem.with_label (_("Remove Song"));
-        media_remove.activate.connect (mediaRemoveClicked);
+        medium_menu_remove = new Gtk.MenuItem.with_label (_("Remove Song"));
+        medium_menu_remove.activate.connect (medium_remove_clicked);
 
-        import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
-        import_to_library.activate.connect (import_to_library_clicked);
+        medium_menu_import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
+        medium_menu_import_to_library.activate.connect (medium_menu_import_to_library_clicked);
 
-        media_rate_media = new Granite.Widgets.RatingMenuItem ();
-        media_rate_media.activate.connect (media_rate_media_clicked);
+        medium_menu_rate = new Granite.Widgets.RatingMenuItem ();
+        medium_menu_rate.activate.connect (medium_menu_rate_clicked);
 
-        media_action_menu = new Gtk.Menu ();
-        media_action_menu.attach_to_widget (this, null);
+        medium_action_menu = new Gtk.Menu ();
+        medium_action_menu.attach_to_widget (this, null);
         if(hint != ViewWrapper.Hint.ALBUM_LIST) {
-            media_action_menu.append (media_scroll_to_current);
-            media_action_menu.append (new Gtk.SeparatorMenuItem ());
+            medium_action_menu.append (medium_menu_scroll_to_current);
+            medium_action_menu.append (new Gtk.SeparatorMenuItem ());
         }
         var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
         if (read_only == false) {
-            media_action_menu.append (media_edit_media);
+            medium_action_menu.append (medium_menu_edit);
         }
-        media_action_menu.append (media_file_browse);
-        media_action_menu.append (media_menu_contractor_entry);
+        medium_action_menu.append (medium_menu_file_browse);
+        medium_action_menu.append (medium_menu_contractor_entry);
         if (read_only == false) {
-            media_action_menu.append (media_rate_media);
+            medium_action_menu.append (medium_menu_rate);
         }
-        media_action_menu.append (new Gtk.SeparatorMenuItem ());
-        media_action_menu.append (media_menu_queue);
+        medium_action_menu.append (new Gtk.SeparatorMenuItem ());
+        medium_action_menu.append (medium_menu_queue);
         if (read_only == false) {
-            media_action_menu.append (media_menu_add_to_playlist);
+            medium_action_menu.append (medium_menu_add_to_playlist);
         }
         if (hint != ViewWrapper.Hint.SMART_PLAYLIST &&
             hint != ViewWrapper.Hint.ALBUM_LIST &&
             hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-                media_action_menu.append (new Gtk.SeparatorMenuItem ());
+                medium_action_menu.append (new Gtk.SeparatorMenuItem ());
         }
-        media_action_menu.append (media_remove);
-        media_action_menu.append (import_to_library);
+        medium_action_menu.append (medium_menu_remove);
+        medium_action_menu.append (medium_menu_import_to_library);
 
         App.player.playback_stopped.connect (() => {
-            media_scroll_to_current.sensitive = false;
+            medium_menu_scroll_to_current.sensitive = false;
         });
 
         App.player.playback_started.connect (() => {
-            media_scroll_to_current.sensitive = true;
+            medium_menu_scroll_to_current.sensitive = true;
         });
 
         headers_visible = hint != ViewWrapper.Hint.ALBUM_LIST;
@@ -149,48 +149,48 @@ public class Noise.MusicListView : GenericList {
     }
 
     public override void update_sensitivities () {
-        media_action_menu.show_all ();
+        medium_action_menu.show_all ();
 
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
-                media_remove.label = _("Remove from Library");
-                import_to_library.visible = false;
+                medium_menu_remove.label = _("Remove from Library");
+                medium_menu_import_to_library.visible = false;
                 break;
             case ViewWrapper.Hint.PLAYLIST:
-                import_to_library.visible = false;
+                medium_menu_import_to_library.visible = false;
                 break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                import_to_library.visible = false;
+                medium_menu_import_to_library.visible = false;
                 if (playlist == App.player.queue_playlist) {
-                    media_remove.label = _("Remove from Queue");
-                    media_menu_queue.visible = false;
+                    medium_menu_remove.label = _("Remove from Queue");
+                    medium_menu_queue.visible = false;
                 } else {
-                    media_remove.visible = false;
+                    medium_menu_remove.visible = false;
                 }
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
-                media_edit_media.visible = false;
-                media_remove.label = _("Remove from Device");
+                medium_menu_edit.visible = false;
+                medium_menu_remove.label = _("Remove from Device");
                 if (parent_wrapper.library.support_playlists () == false) {
-                    media_menu_add_to_playlist.visible = false;
+                    medium_menu_add_to_playlist.visible = false;
                 }
                 break;
             default:
-                media_remove.visible = false;
-                import_to_library.visible = false;
+                medium_menu_remove.visible = false;
+                medium_menu_import_to_library.visible = false;
                 break;
         }
     }
 
-    public void popup_media_menu (Gee.Collection<Medium> selection) {
-        var media_menu_new_playlist = new Gtk.MenuItem.with_label (_("New Playlist…"));
-        media_menu_new_playlist.activate.connect (media_menu_new_playlist_clicked);
+    public void popup_medium_menu (Gee.Collection<Medium> selection) {
+        var medium_menu_new_playlist = new Gtk.MenuItem.with_label (_("New Playlist…"));
+        medium_menu_new_playlist.activate.connect (medium_menu_new_playlist_clicked);
 
         var add_to_playlist_menu = new Gtk.Menu ();
-        add_to_playlist_menu.append (media_menu_new_playlist);
+        add_to_playlist_menu.append (medium_menu_new_playlist);
         if (parent_wrapper.library.support_playlists () == false) {
-            media_menu_new_playlist.visible = false;
+            medium_menu_new_playlist.visible = false;
         }
         foreach (var playlist in parent_wrapper.library.get_playlists ()) {
             // Don't include this playlist in the list of available options
@@ -204,13 +204,13 @@ public class Noise.MusicListView : GenericList {
             add_to_playlist_menu.append (playlist_item);
 
             playlist_item.activate.connect (() => {
-                playlist.add_medias (selection.read_only_view);
+                playlist.add_media (selection.read_only_view);
             });
         }
         add_to_playlist_menu.show_all ();
-        media_menu_add_to_playlist.submenu = add_to_playlist_menu;
+        medium_menu_add_to_playlist.submenu = add_to_playlist_menu;
 
-        // if all medias are downloaded already, desensitize.
+        // if all mediums are downloaded already, desensitize.
         // if half and half, change text to 'Download %external of %total'
         int temporary_count = 0;
         int total_count = 0;
@@ -221,13 +221,13 @@ public class Noise.MusicListView : GenericList {
         }
 
         if (temporary_count < 1) {
-            import_to_library.sensitive = false;
+            medium_menu_import_to_library.sensitive = false;
         } else {
-            import_to_library.sensitive = true;
+            medium_menu_import_to_library.sensitive = true;
             if (temporary_count != total_count)
-                import_to_library.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
+                medium_menu_import_to_library.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
             else
-                import_to_library.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
+                medium_menu_import_to_library.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
         }
 
         int set_rating = -1;
@@ -240,28 +240,28 @@ public class Noise.MusicListView : GenericList {
             }
         }
 
-        media_rate_media.rating_value = set_rating;
+        medium_menu_rate.rating_value = set_rating;
 
         //remove the previous "Other Actions" submenu and create a new one
         var contractorSubMenu = new Gtk.Menu ();
-        media_menu_contractor_entry.submenu = contractorSubMenu;
+        medium_menu_contractor_entry.submenu = contractorSubMenu;
 
         try {
             var files = new Gee.HashSet<File> (); //for automatic deduplication
-            debug ("Number of selected medias obtained by MusicListView class: %u\n", selection.size);
-            foreach (var media in selection) {
-                if (media.file.query_exists ()) {
-                    files.add (media.file);
+            debug ("Number of selected mediums obtained by MusicListView class: %u\n", selection.size);
+            foreach (var medium in selection) {
+                if (medium.file.query_exists ()) {
+                    files.add (medium.file);
                     //if the file was marked nonexistent, update its status
-                    if (media.location_unknown && media.unique_status_image != null) {
-                        media.unique_status_image = null;
-                        media.location_unknown = false;
+                    if (medium.location_unknown && medium.unique_status_image != null) {
+                        medium.unique_status_image = null;
+                        medium.location_unknown = false;
                     }
                 } else {
-                    warning ("File %s does not exist, ignoring it", media.uri);
+                    warning ("File %s does not exist, ignoring it", medium.uri);
                     //indicate that the file doesn't exist in the UI
-                    media.unique_status_image = new ThemedIcon ("process-error-symbolic");
-                    media.location_unknown = true;
+                    medium.unique_status_image = new ThemedIcon ("process-error-symbolic");
+                    medium.location_unknown = true;
                 }
             }
 
@@ -271,14 +271,14 @@ public class Noise.MusicListView : GenericList {
                 contractorSubMenu.append (menu_item);
             }
 
-            media_menu_contractor_entry.sensitive = contractorSubMenu.get_children ().length () > 0;
+            medium_menu_contractor_entry.sensitive = contractorSubMenu.get_children ().length () > 0;
             contractorSubMenu.show_all ();
         } catch (Error err) {
             warning ("Failed to obtain Contractor actions: %s", err.message);
-            media_menu_contractor_entry.sensitive = false;
+            medium_menu_contractor_entry.sensitive = false;
         }
 
-        media_action_menu.popup (null, null, null, 3, Gtk.get_current_event_time ());
+        medium_action_menu.popup (null, null, null, 3, Gtk.get_current_event_time ());
     }
 
     public override bool button_press_event (Gdk.EventButton event) {
@@ -290,7 +290,7 @@ public class Noise.MusicListView : GenericList {
             base.button_press_event (event);
 
         if (event.button == Gdk.BUTTON_SECONDARY) {
-            popup_media_menu (get_selected_medias ());
+            popup_medium_menu (get_selected_media ());
             return true;
         }
 
@@ -353,18 +353,18 @@ public class Noise.MusicListView : GenericList {
         }
     }
 
-    /** media menu popup clicks **/
-    void media_edit_media_clicked () {
+    /** medium menu popup clicks **/
+    void medium_edit_medium_clicked () {
         var to_edit_med = new Gee.TreeSet<Medium> ();
-        to_edit_med.add_all (get_selected_medias ());
+        to_edit_med.add_all (get_selected_media ());
 
         if (to_edit_med.is_empty)
             return;
 
-        Medium first_media = to_edit_med.first ();
+        Medium first_medium = to_edit_med.first ();
         string music_folder_uri = File.new_for_path (Settings.Main.get_default ().music_folder).get_uri ();
-        if (to_edit_med.size == 1 && !first_media.file.query_exists () && first_media.uri.has_prefix (music_folder_uri)) {
-            first_media.unique_status_image = new ThemedIcon ("process-error-symbolic");
+        if (to_edit_med.size == 1 && !first_medium.file.query_exists () && first_medium.uri.has_prefix (music_folder_uri)) {
+            first_medium.unique_status_image = new ThemedIcon ("process-error-symbolic");
             var fnfd = new FileNotFoundDialog (to_edit_med);
             fnfd.present ();
         } else {
@@ -373,72 +373,72 @@ public class Noise.MusicListView : GenericList {
         }
     }
 
-    protected void media_file_browse_clicked () {
-        foreach (Medium m in get_selected_medias ()) {
+    protected void medium_file_browse_clicked () {
+        foreach (Medium m in get_selected_media ()) {
             try {
                 Gtk.show_uri (null, m.file.get_parent ().get_uri (), Gdk.CURRENT_TIME);
             } catch (Error err) {
-                debug("Could not browse media %s: %s\n", m.uri, err.message);
+                debug("Could not browse medium %s: %s\n", m.uri, err.message);
             }
 
             return;
         }
     }
 
-    protected virtual void media_menu_queue_clicked () {
-        App.player.queue_medias (get_selected_medias ().read_only_view);
+    protected virtual void medium_menu_queue_clicked () {
+        App.player.queue_media (get_selected_media ().read_only_view);
     }
 
-    protected virtual void media_menu_new_playlist_clicked () {
+    protected virtual void medium_menu_new_playlist_clicked () {
         var p = new StaticPlaylist ();
-        p.add_medias (get_selected_medias ().read_only_view);
+        p.add_media (get_selected_media ().read_only_view);
         p.name = PlaylistsUtils.get_new_playlist_name (parent_wrapper.library.get_playlists ());
         parent_wrapper.library.add_playlist (p);
     }
 
-    protected void media_rate_media_clicked () {
-        int new_rating = media_rate_media.rating_value;
-        var selected = get_selected_medias ().read_only_view;
+    protected void medium_menu_rate_clicked () {
+        int new_rating = medium_menu_rate.rating_value;
+        var selected = get_selected_media ().read_only_view;
         foreach (Medium m in selected) {
             m.rating = new_rating;
         }
-        parent_wrapper.library.update_medias (selected, false, true);
+        parent_wrapper.library.update_media (selected, false, true);
     }
 
-    protected override void mediaRemoveClicked () {
-        var selected_media = get_selected_medias ().read_only_view;
+    protected override void medium_remove_clicked () {
+        var selected_media = get_selected_media ().read_only_view;
 
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
                 var dialog = new RemoveFilesDialog (selected_media, hint);
                 dialog.remove_media.connect ((delete_files) => {
-                    parent_wrapper.library.remove_medias (selected_media, delete_files);
+                    parent_wrapper.library.remove_media (selected_media, delete_files);
                 });
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
                 var dvw = (DeviceViewWrapper) parent_wrapper;
-                dvw.library.remove_medias (selected_media, true);
+                dvw.library.remove_media (selected_media, true);
                 break;
             case ViewWrapper.Hint.PLAYLIST:
-                playlist.remove_medias (selected_media);
+                playlist.remove_media (selected_media);
                 break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
                 if (playlist == App.player.queue_playlist) {
-                    playlist.remove_medias (selected_media);
+                    playlist.remove_media (selected_media);
                 }
                 break;
           }
     }
 
-    void import_to_library_clicked () {
-        import_requested (get_selected_medias ().read_only_view);
+    void medium_menu_import_to_library_clicked () {
+        import_requested (get_selected_media ().read_only_view);
     }
 
     protected virtual void onDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
-        foreach (Medium m in get_selected_medias ()) {
+        foreach (Medium m in get_selected_media ()) {
             debug ("adding %s", m.uri);
             uris += (m.uri);
         }
@@ -450,7 +450,7 @@ public class Noise.MusicListView : GenericList {
     /**
      * Compares the two given objects based on the sort column.
      */
-    protected int view_compare_func (int column, Gtk.SortType dir, Medium media_a, Medium media_b, int a_pos, int b_pos) {
+    protected int view_compare_func (int column, Gtk.SortType dir, Medium medium_a, Medium medium_b, int a_pos, int b_pos) {
         if (playlist == App.player.queue_playlist) {
             return 0; // Display the queue in the order it actually is
         }
@@ -464,93 +464,93 @@ public class Noise.MusicListView : GenericList {
             break;
 
             case ListColumn.TITLE:
-                order = Compare.titles (media_a, media_b);
+                order = Compare.titles (medium_a, medium_b);
             break;
 
             case ListColumn.LENGTH:
-                order = Compare.standard_unsigned (media_a.length, media_b.length);
+                order = Compare.standard_unsigned (medium_a.length, medium_b.length);
                 if (order == 0) {
-                    Compare.titles (media_a, media_b);
+                    Compare.titles (medium_a, medium_b);
                 }
             break;
 
             case ListColumn.ARTIST:
-                order = Compare.artists (media_a, media_b);
+                order = Compare.artists (medium_a, medium_b);
             break;
 
             case ListColumn.ALBUM:
-                order = Compare.albums (media_a, media_b);
+                order = Compare.albums (medium_a, medium_b);
             break;
 
 
-            // Typically, when users choose to sort their media collection by track numbers,
+            // Typically, when users choose to sort their medium collection by track numbers,
             // what they actually want is ordering their albums, which means that this is
             // equivalent to sorting by album_artists.
             case ListColumn.TRACK:
             case ListColumn.ALBUM_ARTIST:
-                order = Compare.album_artists (media_a, media_b);
+                order = Compare.album_artists (medium_a, medium_b);
             break;
 
             case ListColumn.COMPOSER:
-                order = String.compare (media_a.get_display_composer (), media_b.get_display_composer ());
+                order = String.compare (medium_a.get_display_composer (), medium_b.get_display_composer ());
             break;
 
             case ListColumn.GROUPING:
-                order = String.compare (media_a.grouping, media_b.grouping);
+                order = String.compare (medium_a.grouping, medium_b.grouping);
             break;
             case ListColumn.GENRE:
-                order = Compare.genres (media_a, media_b);
+                order = Compare.genres (medium_a, medium_b);
             break;
 
             case ListColumn.YEAR:
-                order = Compare.standard_unsigned (media_a.year, media_b.year);
+                order = Compare.standard_unsigned (medium_a.year, medium_b.year);
             break;
 
             case ListColumn.BITRATE:
-                order = Compare.standard_unsigned (media_a.bitrate, media_b.bitrate);
+                order = Compare.standard_unsigned (medium_a.bitrate, medium_b.bitrate);
             break;
 
             case ListColumn.RATING:
-                order = Compare.standard_unsigned (media_a.rating, media_b.rating);
+                order = Compare.standard_unsigned (medium_a.rating, medium_b.rating);
             break;
 
             case ListColumn.PLAY_COUNT:
-                order = Compare.standard_unsigned (media_a.play_count, media_b.play_count);
+                order = Compare.standard_unsigned (medium_a.play_count, medium_b.play_count);
             break;
 
             case ListColumn.SKIP_COUNT:
-                order = Compare.standard_unsigned (media_a.skip_count, media_b.skip_count);
+                order = Compare.standard_unsigned (medium_a.skip_count, medium_b.skip_count);
             break;
 
             case ListColumn.DATE_ADDED:
-                order = Compare.standard_unsigned (media_a.date_added, media_b.date_added);
+                order = Compare.standard_unsigned (medium_a.date_added, medium_b.date_added);
             break;
 
             case ListColumn.LAST_PLAYED:
-                order = Compare.standard_unsigned (media_a.last_played, media_b.last_played);
+                order = Compare.standard_unsigned (medium_a.last_played, medium_b.last_played);
             break;
 
             case ListColumn.BPM:
-                order = Compare.standard_unsigned (media_a.bpm, media_b.bpm);
+                order = Compare.standard_unsigned (medium_a.bpm, medium_b.bpm);
             break;
 
             case ListColumn.FILE_SIZE:
-                order = Compare.standard_64 ((int64) media_a.file_size, (int64) media_b.file_size);
+                order = Compare.standard_64 ((int64) medium_a.file_size, (int64) medium_b.file_size);
             break;
 
             case ListColumn.FILE_LOCATION:
-                order = String.compare (media_a.get_display_location (), media_b.get_display_location ());
+                order = String.compare (medium_a.get_display_location (), medium_b.get_display_location ());
             break;
         }
 
         // When order is zero, we'd like to jump into sorting by genre, but that'd
         // be a performance killer. Let's compare titles and that's it.
         if (order == 0 && column != ListColumn.GENRE && column != ListColumn.ARTIST)
-            order = Noise.Compare.titles (media_a, media_b);
+            order = Noise.Compare.titles (medium_a, medium_b);
 
         // If still 0, fall back to comparing URIS
         if (order == 0)
-            order = String.compare (media_a.uri, media_b.uri);
+            order = String.compare (medium_a.uri, medium_b.uri);
 
         // Invert order if ordering is descending
         if (dir == Gtk.SortType.DESCENDING && order != 0)
@@ -564,7 +564,7 @@ public class Noise.MusicListView : GenericList {
         return_val_if_fail (m != null, null);
 
         var list_column = (ListColumn) column;
-        return list_column.get_value_for_media (m, row);
+        return list_column.get_value_for_medium (m, row);
     }
 
     protected override void add_column (Gtk.TreeViewColumn tvc, ListColumn type) {

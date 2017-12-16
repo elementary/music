@@ -25,14 +25,14 @@
  */
 
 public class Noise.Plugins.iPodMediaHelper {
-    public static Media media_from_track (string uri, GPod.Track track) {
-        Media rv = null;
+    public static Medium medium_from_track (string uri, GPod.Track track) {
+        Medium rv = null;
         if (uri.has_suffix ("/")) {
-            rv = new Media (uri.slice (0, uri.char_count ()-1) + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
+            rv = new Medium (uri.slice (0, uri.char_count ()-1) + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
         }
 
         if (rv == null)
-            rv = new Media (uri + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
+            rv = new Medium (uri + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
 
         rv.isTemporary = true;
         rv.title = track.title;
@@ -68,7 +68,7 @@ public class Noise.Plugins.iPodMediaHelper {
         return rv;
     }
 
-    public static void update_track (ref unowned GPod.Track t, Media m) {
+    public static void update_track (ref unowned GPod.Track t, Medium m) {
         if(t == null)
             return;
 
@@ -110,7 +110,7 @@ public class Noise.Plugins.iPodMediaHelper {
     /**
      * caller *must* set ipod_path
      */
-    public static GPod.Track track_from_media (Media m) {
+    public static GPod.Track track_from_medium (Medium m) {
         GPod.Track t = new GPod.Track();
         unowned GPod.Track tu = t;
         update_track (ref tu, m);

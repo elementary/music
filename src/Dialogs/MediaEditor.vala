@@ -49,9 +49,9 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Gtk.Button save_button;
     private Gtk.Button close_button;
 
-    private Gee.TreeSet<Medium> media_list;
+    private Gee.TreeSet<Medium> medium_list;
     private Gee.HashMap<int64?, Medium> temp_list;
-    private Medium current_media;
+    private Medium current_medium;
 
     public MediaEditor (Gee.TreeSet<Medium> given_media) {
         Object (
@@ -63,12 +63,12 @@ public class Noise.MediaEditor : Gtk.Dialog {
             width_request: MIN_WIDTH,
             window_position: Gtk.WindowPosition.CENTER_ON_PARENT
         );
-        media_list.add_all (given_media);
-        set_media (media_list.first ());
+        medium_list.add_all (given_media);
+        set_medium (medium_list.first ());
     }
 
     construct {
-        media_list = new Gee.TreeSet<Medium> ();
+        medium_list = new Gee.TreeSet<Medium> ();
         temp_list = new Gee.HashMap<int64?, Medium> ((Gee.HashDataFunc<int64?>)GLib.int64_hash, (Gee.EqualDataFunc<int64?>)GLib.int64_equal, null);
 
         var grid = new Gtk.Grid ();
@@ -161,29 +161,29 @@ public class Noise.MediaEditor : Gtk.Dialog {
     }
 
     private void previous_track () {
-        var iterator = (Gee.BidirIterator<Medium>) media_list.iterator_at (current_media);
+        var iterator = (Gee.BidirIterator<Medium>) medium_list.iterator_at (current_medium);
         if (iterator.has_previous ()) {
             save_track ();
             iterator.previous ();
-            set_media (iterator.get ());
+            set_medium (iterator.get ());
         } else {
             previous_button.sensitive = false;
         }
     }
 
     private void next_track () {
-        var iterator = media_list.iterator_at (current_media);
+        var iterator = medium_list.iterator_at (current_medium);
         if (iterator.has_next ()) {
             save_track ();
             iterator.next ();
-            set_media (iterator.get ());
+            set_medium (iterator.get ());
         } else {
             next_button.sensitive = false;
         }
     }
 
     private void save_track () {
-        var m = current_media.copy ();
+        var m = current_medium.copy ();
         m.title = title_entry.text;
         m.artist = artist_entry.text;
         m.album_artist = album_artist_entry.text;
@@ -196,13 +196,13 @@ public class Noise.MediaEditor : Gtk.Dialog {
         m.album_number = (int) disk_spinbutton.value;
         m.year = (int) year_spinbutton.value;
         m.rating = (uint) rating_widget.rating;
-        temp_list.set (current_media.rowid, m);
+        temp_list.set (current_medium.rowid, m);
     }
 
-    // We create temporary media that will be saved once the save button is clicked.
+    // We create temporary medium that will be saved once the save button is clicked.
     private void save_and_exit () {
         save_track ();
-        foreach (var m in media_list) {
+        foreach (var m in medium_list) {
             if (temp_list.has_key (m.rowid)) {
                 var copy = temp_list.get (m.rowid);
                 m.title = copy.title;
@@ -220,32 +220,32 @@ public class Noise.MediaEditor : Gtk.Dialog {
             }
         }
 
-        media_list.clear ();
-        current_media = null;
+        medium_list.clear ();
+        current_medium = null;
         temp_list.clear ();
         destroy ();
     }
 
-    private void set_media (Medium m) {
-        current_media = m;
-        var considered_media = current_media;
-        if (temp_list.has_key (current_media.rowid)) {
-            considered_media = temp_list.get (current_media.rowid);
+    private void set_medium (Medium m) {
+        current_medium = m;
+        var considered_medium = current_medium;
+        if (temp_list.has_key (current_medium.rowid)) {
+            considered_medium = temp_list.get (current_medium.rowid);
         }
 
-        title_entry.text = considered_media.title;
-        artist_entry.text = considered_media.artist;
-        album_artist_entry.text = considered_media.album_artist;
-        album_entry.text = considered_media.album;
-        genre_entry.text = considered_media.genre;
-        composer_entry.text = considered_media.composer;
-        grouping_entry.text = considered_media.grouping;
-        comment_textview.buffer.text = considered_media.comment;
-        track_spinbutton.value = considered_media.track;
-        disk_spinbutton.value = considered_media.album_number;
-        year_spinbutton.value = considered_media.year;
-        rating_widget.rating = (int) considered_media.rating;
-        var iterator = (Gee.BidirIterator<Medium>) media_list.iterator_at (current_media);
+        title_entry.text = considered_medium.title;
+        artist_entry.text = considered_medium.artist;
+        album_artist_entry.text = considered_medium.album_artist;
+        album_entry.text = considered_medium.album;
+        genre_entry.text = considered_medium.genre;
+        composer_entry.text = considered_medium.composer;
+        grouping_entry.text = considered_medium.grouping;
+        comment_textview.buffer.text = considered_medium.comment;
+        track_spinbutton.value = considered_medium.track;
+        disk_spinbutton.value = considered_medium.album_number;
+        year_spinbutton.value = considered_medium.year;
+        rating_widget.rating = (int) considered_medium.rating;
+        var iterator = (Gee.BidirIterator<Medium>) medium_list.iterator_at (current_medium);
         previous_button.sensitive = iterator.has_previous ();
         next_button.sensitive = iterator.has_next ();
     }

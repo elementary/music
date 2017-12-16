@@ -96,7 +96,7 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
         content.attach (bottomButtons, 0, 2, 2, 1);
 
         var local_library = libraries_manager.local_library;
-        savePlaylists.set_sensitive (!local_library.get_medias ().is_empty && local_library.playlist_count_without_read_only () > 0);
+        savePlaylists.set_sensitive (!local_library.get_media ().is_empty && local_library.playlist_count_without_read_only () > 0);
 
         savePlaylists.clicked.connect (savePlaylistsClicked);
         cancel.clicked.connect (cancel_clicked);

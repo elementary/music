@@ -72,11 +72,11 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
     }
 
     public bool update_position () {
-        if (first_start || (App.player.current_media != null && get_position() >= (int64)(App.player.current_media.resume_pos - 1) * 1000000000)) {
+        if (first_start || (App.player.current_medium != null && get_position() >= (int64)(App.player.current_medium.resume_pos - 1) * 1000000000)) {
             first_start = false;
             current_position_update (get_position());
-        } else if (App.player.current_media != null) {
-            pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
+        } else if (App.player.current_medium != null) {
+            pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_medium.resume_pos * 1000000000);
         }
 
         return true;
@@ -95,15 +95,15 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
         pipe.playbin.set_state (s);
     }
 
-    public void set_media (Medium media) {
+    public void set_medium (Medium medium) {
         set_state (Gst.State.READY);
-        debug ("set track number to %u\n", media.track);
-        pipe.playbin.set ("uri", "cdda://%u".printf(media.track));
+        debug ("set track number to %u\n", medium.track);
+        pipe.playbin.set ("uri", "cdda://%u".printf(medium.track));
 
         set_state (Gst.State.PLAYING);
 
-        debug ("setURI seeking to %d\n", App.player.current_media.resume_pos);
-        pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
+        debug ("setURI seeking to %d\n", App.player.current_medium.resume_pos);
+        pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_medium.resume_pos * 1000000000);
 
         play ();
     }
@@ -195,7 +195,7 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
                 if (tag_list.get_tag_size (Gst.Tags.TITLE) > 0) {
                     string title = "";
                     tag_list.get_string (Gst.Tags.TITLE, out title);
-                    NotificationManager.get_default ().update_track (App.player.current_media.album_artist + "\n" + title);
+                    NotificationManager.get_default ().update_track (App.player.current_medium.album_artist + "\n" + title);
                 }
             }
             break;

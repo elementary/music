@@ -323,7 +323,7 @@ public class Noise.LocalMedia : Noise.Medium {
     }
 
     // To use this method, the rowid should exist in the database.
-    public LocalMedia.from_media (Gda.Connection connection, Medium m) {
+    public LocalMedia.from_medium (Gda.Connection connection, Medium m) {
         try {
             var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
             builder.set_table (Database.Media.TABLE_NAME);
@@ -389,7 +389,7 @@ public class Noise.LocalMedia : Noise.Medium {
             values.append (m.show);
             connection.update_row_in_table_v (Database.Media.TABLE_NAME, "rowid", last_insert_row.get_holder_value (Database.Media.ROWID), col_names, values);
         } catch (Error e) {
-            warning ("Could not save media: %s", e.message);
+            warning ("Could not save medium: %s", e.message);
         }
 
         var query = Database.query_field (rowid, connection, Database.Media.TABLE_NAME, "uri");

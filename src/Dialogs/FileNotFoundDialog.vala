@@ -94,7 +94,7 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
                     remove_media_clicked ();
                     break;
                 case 3:
-                    locate_media_clicked ();
+                    locate_medium_clicked ();
                     break;
                 case Gtk.ResponseType.CLOSE:
                     destroy ();
@@ -109,14 +109,14 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
     }
 
     void remove_media_clicked () {
-        libraries_manager.local_library.remove_medias (media_list, false);
+        libraries_manager.local_library.remove_media (media_list, false);
 
         this.destroy ();
     }
 
-    void locate_media_clicked () {
+    void locate_medium_clicked () {
         Medium m = media_list.get (0);
-        int64 media_id = m.rowid;
+        int64 medium_id = m.rowid;
 
         string file = "";
         var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,
@@ -125,7 +125,7 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
                                                       _("Open"), Gtk.ResponseType.ACCEPT);
 
         // try and help user by setting a sane default folder
-        var invalid_file = File.new_for_uri (libraries_manager.local_library.media_from_id (media_id).uri);
+        var invalid_file = File.new_for_uri (libraries_manager.local_library.medium_from_id (medium_id).uri);
         var music_folder = Settings.Main.get_default ().music_folder;
 
         if (invalid_file.get_parent ().query_exists ()) {
@@ -152,7 +152,7 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
             m.unique_status_image = null;
 
             // TODO: lm.lw.media_found(m.rowid);
-            libraries_manager.local_library.update_media (m, false, false);
+            libraries_manager.local_library.update_medium (m, false, false);
 
             this.destroy ();
         }

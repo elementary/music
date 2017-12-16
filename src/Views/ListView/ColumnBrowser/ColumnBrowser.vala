@@ -231,7 +231,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
     }
 
     private void column_row_activated () {
-        view_wrapper.play_first_media ();
+        view_wrapper.play_first_medium ();
     }
 
     private void column_selection_changed (BrowserColumn.Category category, string val) {
@@ -248,8 +248,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                      out grouping, out composer);
 
         // Perform search
-        Search.search_in_media_list (media, out search_results, album_artist, album,
-                                     genre, grouping, composer, year, rating, null);
+        Search.search_in_media (media, out search_results, album_artist, album, genre, grouping, composer, year, rating, null);
     }
 
     private void get_filters (BrowserColumn.Category parent_category,
@@ -430,7 +429,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         update_search_results (column.category);
     }
 
-    public bool match_media (Medium m) {
+    public bool match_medium (Medium m) {
 #if 0
         // No need to search again. Querying the hash set is efficient too
         return search_results.contains (m);
@@ -442,7 +441,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                      out album_artist, out album, out grouping, out composer);
 
         // Perform search
-        return Search.match_fields_to_media (m, album_artist, album, genre, grouping, composer, year, rating);
+        return Search.match_fields_to_medium (m, album_artist, album, genre, grouping, composer, year, rating);
 #endif
     }
 

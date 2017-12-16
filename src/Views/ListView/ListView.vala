@@ -287,8 +287,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
         }
     }
 
-    public void set_as_current_list (int media_id) {
-        list_view.set_as_current_list (view_wrapper.library.media_from_id (media_id));
+    public void set_as_current_list (int medium_id) {
+        list_view.set_as_current_list (view_wrapper.library.medium_from_id (medium_id));
     }
 
     public bool get_is_current_list ()  {
@@ -352,9 +352,9 @@ public class Noise.ListView : ContentView, Gtk.Box {
         // (populated by this method).
         bool obey_column_browser = column_browser_enabled && this.obey_column_browser;
 
-        if (result.size != view_wrapper.library.get_medias ().size) {
+        if (result.size != view_wrapper.library.get_media ().size) {
             foreach (var m in table) {
-                if (obey_column_browser && !column_browser.match_media (m)) {
+                if (obey_column_browser && !column_browser.match_medium (m)) {
                     continue;
                 }
 
@@ -364,7 +364,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             }
         } else {
             foreach (var m in table) {
-                if (obey_column_browser && !column_browser.match_media (m)) {
+                if (obey_column_browser && !column_browser.match_medium (m)) {
                     continue;
                 }
 

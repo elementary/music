@@ -89,7 +89,7 @@ public abstract class Noise.GenericList : FastView {
 
         key_press_event.connect ((event) => {
                 if (event.keyval == Gdk.Key.Delete)
-                    mediaRemoveClicked ();
+                    medium_remove_clicked ();
 
                 return false;
         });
@@ -107,10 +107,10 @@ public abstract class Noise.GenericList : FastView {
         parent_wrapper.library.media_updated.connect (media_updated);
 
         App.player.queue_cleared.connect (current_cleared);
-        App.player.media_played.connect (media_played);
+        App.player.medium_played.connect (medium_played);
     }
 
-    protected abstract void mediaRemoveClicked ();
+    protected abstract void medium_remove_clicked ();
 
     protected void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {
         if (type == ListColumn.TITLE || type == ListColumn.ICON)
@@ -152,7 +152,7 @@ public abstract class Noise.GenericList : FastView {
         // set table and resort
         set_table (new_table, true);
 
-        scroll_to_current_media (false);
+        scroll_to_current_medium (false);
     }
 
     /* If a Medium is in to_remove but not in table, will just ignore */
@@ -216,14 +216,14 @@ public abstract class Noise.GenericList : FastView {
             add_column (tvc, TreeViewSetup.get_column_type (tvc));
     }
 
-    public Medium? get_media_from_index (int index) {
+    public Medium? get_medium_from_index (int index) {
         return get_object_from_index (index);
     }
 
     // When the user clicks over a cell in the rating column, that cell renderer
     // emits the rating_changed signal. We need to update that rating...
     protected void on_rating_cell_changed (int new_rating, Gtk.Widget widget, string path) {
-        var m = get_media_from_index (int.parse (path));
+        var m = get_medium_from_index (int.parse (path));
 
         return_if_fail (m != null);
 
@@ -231,7 +231,7 @@ public abstract class Noise.GenericList : FastView {
 
         var to_update = new Gee.TreeSet<Medium> ();
         to_update.add (m);
-        parent_wrapper.library.update_medias (to_update, true, true);
+        parent_wrapper.library.update_media (to_update, true, true);
     }
 
     protected bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
@@ -244,32 +244,32 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void on_rows_reordered () {
-        scroll_to_current_media (false);
+        scroll_to_current_medium (false);
         if (is_current_list)
             set_as_current_list ();
     }
 
     public override void row_activated (Gtk.TreePath path, Gtk.TreeViewColumn column) {
-        var m = get_media_from_index (int.parse (path.to_string ()));
+        var m = get_medium_from_index (int.parse (path.to_string ()));
 
         // Now update current_list and current_index in LM
         set_as_current_list (m);
 
         // Now play the song
-        App.player.play_media (m);
+        App.player.play_medium (m);
 
         if (!App.player.playing) {
-            App.main_window.play_media ();
+            App.main_window.play_medium ();
         }
     }
 
-    private async void media_played (Medium m) {
+    private async void medium_played (Medium m) {
         queue_draw ();
 
-        Idle.add_full (Priority.HIGH_IDLE + 10, media_played.callback);
+        Idle.add_full (Priority.HIGH_IDLE + 10, medium_played.callback);
         yield;
 
-        scroll_to_current_media (false);
+        scroll_to_current_medium (false);
     }
 
     public void media_updated (Gee.Collection<int> ids) {
@@ -281,7 +281,7 @@ public abstract class Noise.GenericList : FastView {
     }
 
     public void set_as_current_list (Medium? m = null) {
-        Medium to_set = m == null ? App.player.current_media : m;
+        Medium to_set = m == null ? App.player.current_medium : m;
 
         is_current_list = true;
         var main_settings = Settings.Main.get_default ();
@@ -305,7 +305,7 @@ public abstract class Noise.GenericList : FastView {
             debug ("QUEING: %s", q.title);
         }
         App.player.clear_queue ();
-        App.player.queue_medias (queue);
+        App.player.queue_media (queue);
         App.player.current_index = 0;
 
         // order the queue like this list
@@ -313,14 +313,13 @@ public abstract class Noise.GenericList : FastView {
         var view = (ViewWrapper) App.main_window.view_container.get_view (queue_view_id);
         view.list_view.list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
 
-        media_played.begin (App.player.current_media);
+        medium_played.begin (App.player.current_medium);
     }
 
     /**
     * Shift a list (of media) to make it start at a given element
     */
     private Gee.ArrayList<Medium> start_at (Medium start, Gee.List<Medium> media) {
-        debug ("TO START: %s (size = %d)", start.title, media.size);
         var res = new Gee.ArrayList<Medium> ();
         int index = media.index_of (start);
         for (int _ = 0; _ < media.size; _++) {
@@ -335,30 +334,30 @@ public abstract class Noise.GenericList : FastView {
         return res;
     }
 
-    protected Gee.Collection<Medium> get_selected_medias () {
+    protected Gee.Collection<Medium> get_selected_media () {
         var rv = new Gee.ArrayQueue<Medium> ();
         Gtk.TreeModel temp;
 
         foreach (Gtk.TreePath path in get_selection ().get_selected_rows (out temp)) {
-            var m = get_media_from_index (int.parse (path.to_string ()));
+            var m = get_medium_from_index (int.parse (path.to_string ()));
             rv.add (m);
         }
 
         return rv;
     }
 
-    protected void media_scroll_to_current_requested () {
-        scroll_to_current_media (true);
+    protected void medium_scroll_to_current_requested () {
+        scroll_to_current_medium (true);
     }
 
-    public void scroll_to_current_media (bool unfilter_if_not_found) {
-        if (App.player.current_media == null)
+    public void scroll_to_current_medium (bool unfilter_if_not_found) {
+        if (App.player.current_medium == null)
             return;
 
         for (int i = 0; i < get_visible_table ().size; ++i) {
-            var m = get_media_from_index (i);
+            var m = get_medium_from_index (i);
 
-            if (m == App.player.current_media) {
+            if (m == App.player.current_medium) {
                 var path = new Gtk.TreePath.from_indices (i, -1);
 
                 // Only scroll to the middle (true) if the cell *is not within the visible range*;
@@ -400,7 +399,7 @@ public abstract class Noise.GenericList : FastView {
     }
 
     /** **********************************************************
-     * Drag and drop support. GenericList is a source for media and can
+     * Drag and drop support. GenericList is a source for medium and can
      * be dragged to a playlist in the sidebar. No support for reordering
      * is implemented yet.
     ***************************************************************/
@@ -419,7 +418,7 @@ public abstract class Noise.GenericList : FastView {
     void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
-        foreach (Medium m in get_selected_medias ())
+        foreach (Medium m in get_selected_media ())
             uris += m.uri;
 
         if (uris != null)

@@ -89,9 +89,9 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
 
     public override void analyse_all () {
         if (queries.is_empty) {
-            var meds = library.get_medias ();
-            medias.add_all (meds);
-            media_added (meds);
+            var med = library.get_media ();
+            media.add_all (med);
+            media_added (med);
             return;
         }
 
@@ -122,8 +122,8 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
                 rowids.add (val.get_int64 ());
             }
 
-            var meds = library.medias_from_ids (rowids);
-            medias.add_all (meds);
+            var meds = library.media_from_ids (rowids);
+            media.add_all (meds);
             media_added (meds);
         } catch (Error e) {
             critical ("Could not query media for smart playlist %s: %s", name, e.message);

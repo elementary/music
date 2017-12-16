@@ -33,8 +33,8 @@
  *
  * A ViewWrapper triggers searches, status info updates, and also handles
  * view switching. It also works as a proxy for setting the media contained
- * by all the views. Please see set_media(), update_media(), remove_media()
- * and add_media().
+ * by all the views. Please see set_media (), update_media (), remove_media ()
+ * and add_media ().
  *
  * The views it contains implement the {@link Noise.ContentView} interface.
  */
@@ -178,7 +178,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             case ViewType.LIST:
                 if (has_list_view) {
                     successful = view_container.set_current_view (list_view);
-                    list_view.list_view.scroll_to_current_media (true);
+                    list_view.list_view.scroll_to_current_medium (true);
                 } else {
                     successful = false;
                 }
@@ -189,7 +189,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
                 } else {
                     if (has_list_view) {
                         successful = view_container.set_current_view (list_view);
-                        list_view.list_view.scroll_to_current_media (true);
+                        list_view.list_view.scroll_to_current_medium (true);
                     }
                     successful = false;
                 }
@@ -270,18 +270,16 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             last_used_view = selected_view;
     }
 
-    public void play_first_media (bool? force=false) {
+    public void play_first_medium (bool? force=false) {
         if (!has_list_view)
             return;
 
-        debug ("play_first_media [%s]", hint.to_string());
-
         list_view.set_as_current_list (1);
-        var m = App.player.media_from_current_index (0);
+        var m = App.player.medium_from_current_index (0);
 
         if (m == null)
            return;
-        App.player.play_media (m);
+        App.player.play_medium (m);
         App.player.start_playback ();
     }
 
@@ -370,7 +368,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             set_active_view (ViewType.GRID);
         else if (has_list_view) {
             view_container.set_current_view (list_view);
-            list_view.list_view.scroll_to_current_media (true);
+            list_view.list_view.scroll_to_current_medium (true);
         } else if (has_grid_view)
             view_container.set_current_view (grid_view);
     }
@@ -378,7 +376,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     /**
      * @return A collection containing ALL the media associated to this view.
      */
-    public Gee.Collection<Medium> get_media_list () {
+    public Gee.Collection<Medium> get_medium_list () {
         return list_view.get_media ();
     }
 

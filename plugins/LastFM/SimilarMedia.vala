@@ -60,25 +60,25 @@ public class LastFM.SimilarMedias : Object {
 
         similar_async.begin (s);
     }
-    
+
     public async void similar_async (Noise.Media s) {
         debug ("In the similar thread");
         cancellable.reset ();
-        var similar_medias = yield Core.get_default ().get_similar_tracks (s.title, s.artist, cancellable);
+        var similar_media = yield Core.get_default ().get_similar_tracks (s.title, s.artist, cancellable);
         if (cancellable.is_cancelled ())
             return;
 
         var similarIDs = new Gee.LinkedList<int64?> ();
         var similarDont = new Gee.LinkedList<Noise.Media> ();
-        Noise.libraries_manager.local_library.media_from_name (similar_medias, similarIDs, similarDont);
+        Noise.libraries_manager.local_library.medium_from_name (similar_media, similarIDs, similarDont);
         if (cancellable.is_cancelled ())
             return;
 
         similarIDs.offer_head (s.rowid);
-        var found_medias = Noise.libraries_manager.local_library.medias_from_ids (similarIDs);
-        found_medias.remove (s);
-        similar_playlist.add_medias (found_medias);
+        var found_media = Noise.libraries_manager.local_library.media_from_ids (similarIDs);
+        found_media.remove (s);
+        similar_playlist.add_media (found_media);
         similar_retrieved (similarIDs, similarDont);
     }
-    
+
 }

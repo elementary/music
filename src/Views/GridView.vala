@@ -210,11 +210,11 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
     }
 
     public void update_media (Gee.Collection<Medium> media) {
-        var medias_to_update = new Gee.TreeSet<Medium> ();
-        medias_to_update.add_all (media);
-        var medias_to_add = new Gee.TreeSet<Medium> ();
+        var media_to_update = new Gee.TreeSet<Medium> ();
+        media_to_update.add_all (media);
+        var media_to_add = new Gee.TreeSet<Medium> ();
         var albums_to_remove = new Gee.TreeSet<Album> ();
-        foreach (var m in medias_to_update) {
+        foreach (var m in media_to_update) {
             if (m == null)
                 continue;
 
@@ -223,8 +223,8 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
                 continue;
 
             if (!album.is_compatible (m)) {
-                medias_to_add.add (m);
-                album.remove_media (m);
+                media_to_add.add (m);
+                album.remove_medium (m);
                 if (album.is_empty == true) {
                     album.cover_rendered.disconnect (queue_draw);
                     album.notify["cover-icon"].disconnect (queue_draw);
@@ -235,7 +235,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         }
 
         remove_objects (albums_to_remove);
-        add_media (medias_to_add);
+        add_media (media_to_add);
         set_research_needed (true);
     }
 
@@ -246,11 +246,11 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
     // Check for already existing albums, only add the missing ones.
     public void add_media (Gee.Collection<Medium> media) {
-        var medias_to_add = new Gee.TreeSet<Medium> ();
-        medias_to_add.add_all (media);
+        var media_to_add = new Gee.TreeSet<Medium> ();
+        media_to_add.add_all (media);
         var albums_to_append = new Gee.TreeSet<Album> ();
         var albums = get_albums ();
-        foreach (var m in medias_to_add) {
+        foreach (var m in media_to_add) {
             var album = m.album_info;
             if (!(album in albums)) {
                 albums_to_append.add (album);
@@ -282,7 +282,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
             if (album == null)
                 continue;
 
-            album.remove_media (m);
+            album.remove_medium (m);
             if (album.is_empty == true) {
                 album.cover_rendered.disconnect (queue_draw);
                 album.notify["cover-icon"].disconnect (queue_draw);

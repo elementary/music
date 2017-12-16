@@ -41,7 +41,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
     private Album album;
     private Widgets.AlbumImage album_cover;
-    private Gee.TreeSet<Medium> media_list = new Gee.TreeSet<Medium> ();
+    private Gee.TreeSet<Medium> medium_list = new Gee.TreeSet<Medium> ();
     private GenericList list_view;
     private Gtk.Label album_label;
     private Gtk.Label artist_label;
@@ -115,10 +115,10 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         album_label.set_label ("");
         artist_label.set_label ("");
 
-        // clear treeview and media list
+        // clear treeview and medium list
         list_view.get_selection ().unselect_all (); // Unselect rows
-        media_list.clear ();
-        list_view.set_media (media_list);
+        medium_list.clear ();
+        list_view.set_media (medium_list);
 
         if (album != null) {
             album.notify["cover-icon"].disconnect (update_album_cover);
@@ -135,7 +135,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     public void set_album (Album album) {
         reset ();
         this.album = album;
-        lock (media_list) {
+        lock (medium_list) {
             string name = album.get_display_name ();
             string artist = album.get_display_artist ();
 
@@ -147,10 +147,10 @@ public class Noise.AlbumListGrid : Gtk.Grid {
             // Make a copy. Otherwise the list won't work if some elements are
             // removed from the parent wrapper while the window is showing
             foreach (var m in album.get_media ()) {
-                media_list.add (m);
+                medium_list.add (m);
             }
 
-            list_view.set_media (media_list);
+            list_view.set_media (medium_list);
 
             // Search again to match the view wrapper's search
             list_view.do_search (App.main_window.search_entry.text);
@@ -179,11 +179,11 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         // Use average rating for the album
         int total_rating = 0, n_media = 0;
-        foreach (var media in media_list) {
-            if (media == null)
+        foreach (var medium in medium_list) {
+            if (medium == null)
                 continue;
-            n_media ++;
-            total_rating += (int)media.rating;
+            n_media++;
+            total_rating += (int) medium.rating;
         }
 
         float average_rating = (float)total_rating / (float)n_media;
@@ -197,14 +197,14 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
     void rating_changed (int new_rating) {
         var updated = new Gee.LinkedList<Medium> ();
-        lock (media_list) {
+        lock (medium_list) {
 
-            foreach (var media in media_list) {
-                if (media == null)
+            foreach (var medium in medium_list) {
+                if (medium == null)
                     continue;
 
-                media.rating = (uint)new_rating;
-                updated.add (media);
+                medium.rating = (uint)new_rating;
+                updated.add (medium);
             }
 
         }
@@ -228,7 +228,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
                 if (m.rating == (uint) parsed_rating) {
                     showing.add (m);
                 }
-            } else if (Search.match_string_to_media (m, parsed_search_string)) {
+            } else if (Search.match_string_to_medium (m, parsed_search_string)) {
                 showing.add (m);
             }
         }

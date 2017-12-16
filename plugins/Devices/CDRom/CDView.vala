@@ -114,13 +114,13 @@ public class Noise.Plugins.CDView : Gtk.Grid {
         main_grid.set_column_spacing (12);
         main_grid.set_margin_top (12);
 
-        import_button.clicked.connect ( () => {dev.transfer_to_library (cd_playlist.medias);});
+        import_button.clicked.connect ( () => {dev.transfer_to_library (cd_playlist.media);});
 
         show_all ();
     }
 
     public void cd_initialised () {
-        cd_playlist.add_medias (dev.get_medias ());
+        cd_playlist.add_media (dev.get_media ());
         if ( cd_playlist.is_empty () == false) {
             var m = cd_playlist[0];
             author.set_markup (m.get_display_album_artist (true));

@@ -54,7 +54,7 @@ public class Noise.MediaKeyListener : Object {
         } catch (IOError e) {
             warning ("Mediakeys error: %s", e.message);
         }
-        
+
         if(media_object != null) {
             media_object.MediaPlayerKeyPressed.connect(mediaKeyPressed);
             try {
@@ -65,7 +65,7 @@ public class Noise.MediaKeyListener : Object {
             }
         }
     }
-    
+
     public void releaseMediaKeys() {
         try {
             media_object.ReleaseMediaPlayerKeys (((Noise.App) GLib.Application.get_default ()).exec_name);
@@ -74,19 +74,19 @@ public class Noise.MediaKeyListener : Object {
             warning("Could not release media player keys: %s", err.message);
         }
     }
-    
+
     private void mediaKeyPressed(dynamic Object bus, string application, string key) {
         if (application != ((Noise.App) GLib.Application.get_default ()).exec_name)
             return;
 
         if(key == "Previous") {
-            App.main_window.play_previous_media ();
+            App.main_window.play_previous_medium ();
         }
         else if(key == "Play") {
-            App.main_window.play_media ();
+            App.main_window.play_medium ();
         }
         else if(key == "Next") {
-            App.main_window.play_next_media ();
+            App.main_window.play_next_medium ();
         }
         else if(key == "Pause") {
             // TODO
@@ -96,4 +96,3 @@ public class Noise.MediaKeyListener : Object {
         }
     }
 }
-

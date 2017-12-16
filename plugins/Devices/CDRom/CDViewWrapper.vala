@@ -57,8 +57,7 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
 
         // Do initial population. Further additions and removals will be handled
         // by the handlers connected below through connect_data_signals()
-        yield set_media_async (p.medias);
-
+        yield set_media_async (p.media);
     }
 
     public void set_no_media_alert_message (string head, string body) {

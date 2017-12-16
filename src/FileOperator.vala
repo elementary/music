@@ -60,7 +60,7 @@ public class Noise.FileOperator : Object {
         monitors = new Gee.HashMap<string, GLib.FileMonitor> (null, null);
         tagger = new GStreamerTagger (cancellable);
 
-        tagger.media_imported.connect (media_imported);
+        tagger.medium_imported.connect (medium_imported);
         tagger.import_error.connect (import_error);
         tagger.queue_finished.connect (queue_finished);
         // Use right encoding
@@ -168,11 +168,11 @@ public class Noise.FileOperator : Object {
                 // wait to update media when out of thread
                 if (emit_update) {
                     Idle.add ( () => {
-                        libraries_manager.local_library.update_media (s, false, false); return false;
+                        libraries_manager.local_library.update_medium (s, false, false); return false;
                     });
                 }
             } else {
-                warning("Failure: Could not copy imported media %s to media folder %s", s.uri, dest.get_path());
+                warning("Failure: Could not copy imported medium %s to medium folder %s", s.uri, dest.get_path());
                 return false;
             }
 
@@ -188,7 +188,7 @@ public class Noise.FileOperator : Object {
                 }
             }
         } catch (Error err) {
-            warning ("Could not copy imported media %s to media folder: %s\n", s.uri, err.message);
+            warning ("Could not copy imported medium %s to medium folder: %s\n", s.uri, err.message);
             return false;
         }
 
@@ -220,18 +220,18 @@ public class Noise.FileOperator : Object {
     private void file_monitored_changed (GLib.File file, GLib.File? other_file, GLib.FileMonitorEvent event_type) {
         switch (event_type) {
             case GLib.FileMonitorEvent.DELETED:
-                var media = libraries_manager.local_library.media_from_file (file);
-                if (media != null)
-                    libraries_manager.local_library.remove_media (media, false);
+                var medium = libraries_manager.local_library.medium_from_file (file);
+                if (medium != null)
+                    libraries_manager.local_library.remove_medium (medium, false);
                 var monitor = monitors.get (file.get_uri ());
                 if (monitor != null) {
-                    var medias_to_remove = new Gee.TreeSet<Noise.Medium> ();
-                    foreach (var m in libraries_manager.local_library.get_medias ()) {
+                    var media_to_remove = new Gee.TreeSet<Noise.Medium> ();
+                    foreach (var m in libraries_manager.local_library.get_media ()) {
                         if (m.uri.has_prefix (file.get_uri ()))
-                            medias_to_remove.add (m);
+                            media_to_remove.add (m);
                     }
 
-                    libraries_manager.local_library.remove_medias (medias_to_remove, false);
+                    libraries_manager.local_library.remove_media (media_to_remove, false);
                     monitor.cancel ();
                     monitors.unset (file.get_uri ());
                 }
@@ -255,9 +255,9 @@ public class Noise.FileOperator : Object {
 
                 break;
             case GLib.FileMonitorEvent.MOVED:
-                var media = libraries_manager.local_library.media_from_file (file);
-                media.file = other_file;
-                libraries_manager.local_library.update_media (media, true, false);
+                var medium = libraries_manager.local_library.medium_from_file (file);
+                medium.file = other_file;
+                libraries_manager.local_library.update_medium (medium, true, false);
                 break;
         }
     }
@@ -276,9 +276,9 @@ public class Noise.FileOperator : Object {
         }
     }
 
-    void media_imported (Medium m) {
+    void medium_imported (Medium m) {
         all_new_imports.add (m);
-        libraries_manager.local_library.add_media (m);
+        libraries_manager.local_library.add_medium (m);
 
         index++;
         if (index == queue_size) {
@@ -305,7 +305,7 @@ public class Noise.FileOperator : Object {
             App.main_window.show_notification (_("Import Complete"), _("%s has imported your library.").printf (((Noise.App) GLib.Application.get_default ()).program_name));
 
         if (import_type == ImportType.PLAYLIST) {
-            new_playlist.add_medias (all_new_imports);
+            new_playlist.add_media (all_new_imports);
             new_playlist.name = PlaylistsUtils.get_new_playlist_name (libraries_manager.local_library.get_playlists (), new_playlist.name);
             libraries_manager.local_library.add_playlist (new_playlist);
         }

@@ -55,7 +55,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
         this.d = device;
         library.file_operations_done.connect (sync_finished);
 
-        set_media_async.begin (library.get_medias ());
+        set_media_async.begin (library.get_media ());
     }
 
     private void import_request (Gee.Collection<Medium> to_import) {
@@ -66,6 +66,6 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
 
     private void sync_finished () {
         if (hint == ViewWrapper.Hint.DEVICE_AUDIO)
-            set_media_async.begin (library.get_medias ());
+            set_media_async.begin (library.get_media ());
     }
 }

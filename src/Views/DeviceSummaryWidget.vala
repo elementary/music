@@ -315,7 +315,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         } else {
             var found = new Gee.TreeSet<int>();
             var not_found = new Gee.TreeSet<Medium>();
-            libraries_manager.local_library.media_from_name (device.get_library ().get_media(), found, not_found);
+            libraries_manager.local_library.media_from_name (device.get_library ().get_media (), found, not_found);
 
             if (not_found.size > 0) { // hand control over to SWD
                 var swd = new SyncWarningDialog (device, list, not_found);
