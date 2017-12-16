@@ -113,7 +113,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                     no_column_enabled = false;
             }
 
-            // In case no column is visible 
+            // In case no column is visible
             if (no_column_enabled) {
                 var col = columns.first ();
                 if (col != null)
@@ -127,11 +127,11 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
     public Gee.TreeSet<BrowserColumn> columns { get; private set; }
 
     // All the media. We search within this media collection
-    private Gee.LinkedList<Media> media = new Gee.LinkedList<Media> ();
+    private Gee.LinkedList<Medium> media = new Gee.LinkedList<Medium> ();
 
     // Filtered media results (media that matches the current set of filters).
     // We provide the data. No need to search again outside
-    private Gee.Collection<Media> search_results = new Gee.LinkedList<Media> ();
+    private Gee.Collection<Medium> search_results = new Gee.LinkedList<Medium> ();
 
     private Gtk.Menu column_chooser_menu;
     private Gtk.RadioMenuItem top_menu_item;
@@ -216,17 +216,17 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         return column;
     }
 
-    public void set_media (Gee.Collection<Media> media) {
+    public void set_media (Gee.Collection<Medium> media) {
         this.media.clear ();
         this.media.add_all (media);
         //reset_filters ();
         search_results.clear ();
         search_results.add_all (media); // equivalent to resetting filters without losing column selections
-        
+
         var highest_category = BrowserColumn.Category.first ();
         //update_search_results (highest_category);
         populate_columns (highest_category, true);
-        
+
         changed ();
     }
 
@@ -317,7 +317,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                         // Avoid changing uint_from_string()'s behavior at all cost.
                         rating = String.is_empty (selected, false) ? -1 : (int) String.uint_from_string (selected);
                     break;
-                    
+
                     default:
                         assert_not_reached ();
                 }
@@ -362,7 +362,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
             case BrowserColumn.Category.GROUPING:
                 foreach (var m in search_results) {
                     string grouping = m.grouping;
-                    
+
                     // TODO XXX If grouping is an empty string, append "Ungrouped" instead
                     if (!String.is_empty (grouping, false) && !column_set.contains (grouping))
                         column_set.add (grouping);
@@ -430,7 +430,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         update_search_results (column.category);
     }
 
-    public bool match_media (Media m) {
+    public bool match_media (Medium m) {
 #if 0
         // No need to search again. Querying the hash set is efficient too
         return search_results.contains (m);

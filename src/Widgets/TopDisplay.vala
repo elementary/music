@@ -83,7 +83,7 @@ public class Noise.TopDisplay : Gtk.Stack {
 
         track_eventbox.button_press_event.connect ((e) => {
             if (e.button == Gdk.BUTTON_SECONDARY) {
-                var current = new Gee.TreeSet<Media> ();
+                var current = new Gee.TreeSet<Medium> ();
                 if (App.player.current_media != null) {
                     current.add (App.player.current_media);
                 }

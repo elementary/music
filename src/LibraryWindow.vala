@@ -445,7 +445,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (window_x != -1 ||  window_y != -1) {
             move (saved_state_settings.get_int ("window-x"), saved_state_settings.get_int ("window-y"));
         }
-        
+
         if (saved_state_settings.get_enum ("window-state") == 1) {
             maximize ();
         }
@@ -529,7 +529,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         GLib.Application.get_default ().send_notification (context, notification);
     }
 
-    public async void show_notification_from_media_async (Media media) {
+    public async void show_notification_from_media_async (Medium media) {
         if (media == null)
             return;
 
@@ -871,7 +871,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * XXX: this doesn't belong here, but to the playback manager
      * @param s The media that is now playing
      */
-    public void media_played (Media m) {
+    public void media_played (Medium m) {
         //reset the media position
         top_display.update_media ();
 
@@ -948,7 +948,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.current_media.skip_count++;
         }
 
-        Media? m = App.player.get_next (true);
+        Medium? m = App.player.get_next (true);
 
         /* test to stop playback/reached end */
         if (m == null) {
@@ -1075,7 +1075,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
             // add to the already played list
             if (!App.player.history_playlist.medias.contains (App.player.current_media)) {
-                var temp_media = new Gee.TreeSet<Media>();
+                var temp_media = new Gee.TreeSet<Medium>();
                 temp_media.add (App.player.current_media);
                 App.player.history_playlist.add_medias (temp_media);
             }

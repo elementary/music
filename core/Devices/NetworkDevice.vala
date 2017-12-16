@@ -25,13 +25,13 @@
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
- 
+
 public interface Noise.NetworkDevice : GLib.Object {
 	public signal void initialized();
 	public signal void device_unmounted();
 	public signal void progress_notification(string? message, double progress);
 	public signal void sync_finished(bool success);
-	
+
 	public abstract bool start_initialization();
 	public abstract void finish_initialization();
 	public abstract string getContentType();
@@ -45,10 +45,10 @@ public interface Noise.NetworkDevice : GLib.Object {
 	public abstract void get_device_type();
 	public abstract bool supports_podcasts();
 	public abstract bool supports_audiobooks();
-	public abstract Gee.Collection<Media> get_medias();
-	public abstract Gee.Collection<Media> get_songs();
-	public abstract Gee.Collection<Media> get_podcasts();
-	public abstract Gee.Collection<Media> get_audiobooks();
+	public abstract Gee.Collection<Medium> get_medias();
+	public abstract Gee.Collection<Medium> get_songs();
+	public abstract Gee.Collection<Medium> get_podcasts();
+	public abstract Gee.Collection<Medium> get_audiobooks();
 	public abstract Gee.Collection<Playlist> get_playlists();
 	public abstract Gee.Collection<SmartPlaylist> get_smart_playlists();
 }

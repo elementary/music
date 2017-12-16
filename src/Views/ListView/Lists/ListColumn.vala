@@ -174,7 +174,7 @@ public enum Noise.ListColumn {
      *
      * media_row_index is only necessary for {@link ListColumn.NUMBER}.
      */
-    public Value? get_value_for_media (Media m, int media_row_index = -1) {
+    public Value? get_value_for_media (Medium m, int media_row_index = -1) {
         switch (this) {
             case ICON:
                 GLib.Icon? icon;

@@ -28,11 +28,11 @@
  */
 
 public class Noise.FileNotFoundDialog : Gtk.Dialog {
-    Gee.LinkedList<Media> media_list = new Gee.LinkedList<Media> ();
+    Gee.LinkedList<Medium> media_list = new Gee.LinkedList<Medium> ();
 
     Gtk.Button rescanLibrary;
 
-    public FileNotFoundDialog (Gee.Collection<Media> _media_list) {
+    public FileNotFoundDialog (Gee.Collection<Medium> _media_list) {
         this.media_list.add_all (_media_list);
 
         this.set_modal (true);
@@ -115,7 +115,7 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
     }
 
     void locate_media_clicked () {
-        Media m = media_list.get (0);
+        Medium m = media_list.get (0);
         int64 media_id = m.rowid;
 
         string file = "";

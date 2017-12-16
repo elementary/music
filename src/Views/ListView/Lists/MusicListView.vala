@@ -33,15 +33,15 @@
 
 public class Noise.ContractMenuItem : Gtk.MenuItem {
     public Granite.Services.Contract contract { get; construct set; }
-    public Gee.Collection<Media> medias { get; construct set; }
+    public Gee.Collection<Medium> medias { get; construct set; }
 
-    public ContractMenuItem (Granite.Services.Contract contract, Gee.Collection<Noise.Media> medias) {
+    public ContractMenuItem (Granite.Services.Contract contract, Gee.Collection<Noise.Medium> medias) {
         Object (contract: contract, medias: medias, label: contract.get_display_name ());
     }
 
     public override void activate () {
         File[] files = {};
-        foreach (Media m in medias) {
+        foreach (Medium m in medias) {
             files += m.file;
             debug("Added file to pass to Contractor: %s", m.uri);
         }
@@ -83,26 +83,26 @@ public class Noise.MusicListView : GenericList {
         media_scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
         media_scroll_to_current.activate.connect (media_scroll_to_current_requested);
         media_scroll_to_current.sensitive = false;
-        
+
         media_edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info"));
         media_edit_media.activate.connect (media_edit_media_clicked);
-        
+
         media_file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser"));
         media_file_browse.activate.connect (media_file_browse_clicked);
-        
+
         media_menu_contractor_entry = new Gtk.MenuItem.with_label (_("Other actions"));
-        
+
         media_menu_queue = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
         media_menu_queue.activate.connect (media_menu_queue_clicked);
-        
+
         media_menu_add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
-        
+
         media_remove = new Gtk.MenuItem.with_label (_("Remove Song"));
         media_remove.activate.connect (mediaRemoveClicked);
-        
+
         import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
         import_to_library.activate.connect (import_to_library_clicked);
-        
+
         media_rate_media = new Granite.Widgets.RatingMenuItem ();
         media_rate_media.activate.connect (media_rate_media_clicked);
 
@@ -150,7 +150,7 @@ public class Noise.MusicListView : GenericList {
 
     public override void update_sensitivities () {
         media_action_menu.show_all ();
-        
+
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
@@ -180,13 +180,13 @@ public class Noise.MusicListView : GenericList {
                 media_remove.visible = false;
                 import_to_library.visible = false;
                 break;
-        }         
+        }
     }
 
-    public void popup_media_menu (Gee.Collection<Media> selection) {
+    public void popup_media_menu (Gee.Collection<Medium> selection) {
         var media_menu_new_playlist = new Gtk.MenuItem.with_label (_("New Playlist…"));
         media_menu_new_playlist.activate.connect (media_menu_new_playlist_clicked);
-        
+
         var add_to_playlist_menu = new Gtk.Menu ();
         add_to_playlist_menu.append (media_menu_new_playlist);
         if (parent_wrapper.library.support_playlists () == false) {
@@ -231,7 +231,7 @@ public class Noise.MusicListView : GenericList {
         }
 
         int set_rating = -1;
-        foreach (Media m in selection) {
+        foreach (Medium m in selection) {
             if (set_rating == -1) {
                 set_rating = (int) m.rating;
             } else if (set_rating != m.rating) {
@@ -355,13 +355,13 @@ public class Noise.MusicListView : GenericList {
 
     /** media menu popup clicks **/
     void media_edit_media_clicked () {
-        var to_edit_med = new Gee.TreeSet<Media> ();
+        var to_edit_med = new Gee.TreeSet<Medium> ();
         to_edit_med.add_all (get_selected_medias ());
 
         if (to_edit_med.is_empty)
             return;
 
-        Media first_media = to_edit_med.first ();
+        Medium first_media = to_edit_med.first ();
         string music_folder_uri = File.new_for_path (Settings.Main.get_default ().music_folder).get_uri ();
         if (to_edit_med.size == 1 && !first_media.file.query_exists () && first_media.uri.has_prefix (music_folder_uri)) {
             first_media.unique_status_image = new ThemedIcon ("process-error-symbolic");
@@ -374,7 +374,7 @@ public class Noise.MusicListView : GenericList {
     }
 
     protected void media_file_browse_clicked () {
-        foreach (Media m in get_selected_medias ()) {
+        foreach (Medium m in get_selected_medias ()) {
             try {
                 Gtk.show_uri (null, m.file.get_parent ().get_uri (), Gdk.CURRENT_TIME);
             } catch (Error err) {
@@ -399,7 +399,7 @@ public class Noise.MusicListView : GenericList {
     protected void media_rate_media_clicked () {
         int new_rating = media_rate_media.rating_value;
         var selected = get_selected_medias ().read_only_view;
-        foreach (Media m in selected) {
+        foreach (Medium m in selected) {
             m.rating = new_rating;
         }
         parent_wrapper.library.update_medias (selected, false, true);
@@ -421,7 +421,7 @@ public class Noise.MusicListView : GenericList {
                 dvw.library.remove_medias (selected_media, true);
                 break;
             case ViewWrapper.Hint.PLAYLIST:
-                playlist.remove_medias (selected_media); 
+                playlist.remove_medias (selected_media);
                 break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
                 if (playlist == App.player.queue_playlist) {
@@ -438,7 +438,7 @@ public class Noise.MusicListView : GenericList {
     protected virtual void onDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
-        foreach (Media m in get_selected_medias ()) {
+        foreach (Medium m in get_selected_medias ()) {
             debug ("adding %s", m.uri);
             uris += (m.uri);
         }
@@ -450,7 +450,7 @@ public class Noise.MusicListView : GenericList {
     /**
      * Compares the two given objects based on the sort column.
      */
-    protected int view_compare_func (int column, Gtk.SortType dir, Media media_a, Media media_b, int a_pos, int b_pos) {
+    protected int view_compare_func (int column, Gtk.SortType dir, Medium media_a, Medium media_b, int a_pos, int b_pos) {
         if (playlist == App.player.queue_playlist) {
             return 0; // Display the queue in the order it actually is
         }
@@ -560,7 +560,7 @@ public class Noise.MusicListView : GenericList {
     }
 
     protected Value? view_value_func (int row, int column, Object o) {
-        var m = o as Media;
+        var m = o as Medium;
         return_val_if_fail (m != null, null);
 
         var list_column = (ListColumn) column;

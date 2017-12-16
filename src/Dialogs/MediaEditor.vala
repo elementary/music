@@ -29,7 +29,7 @@
 public class Noise.MediaEditor : Gtk.Dialog {
     public const int MIN_WIDTH = 600;
     public const int MIN_HEIGHT = 400;
-    
+
     private Gtk.Entry title_entry;
     private Gtk.Entry artist_entry;
     private Gtk.Entry album_artist_entry;
@@ -49,11 +49,11 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Gtk.Button save_button;
     private Gtk.Button close_button;
 
-    private Gee.TreeSet<Media> media_list;
-    private Gee.HashMap<int64?, Media> temp_list;
-    private Media current_media;
+    private Gee.TreeSet<Medium> media_list;
+    private Gee.HashMap<int64?, Medium> temp_list;
+    private Medium current_media;
 
-    public MediaEditor (Gee.TreeSet<Media> given_media) {
+    public MediaEditor (Gee.TreeSet<Medium> given_media) {
         Object (
             deletable: false,
             destroy_with_parent: true,
@@ -68,8 +68,8 @@ public class Noise.MediaEditor : Gtk.Dialog {
     }
 
     construct {
-        media_list = new Gee.TreeSet<Media> ();
-        temp_list = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash, (Gee.EqualDataFunc<int64?>)GLib.int64_equal, null);
+        media_list = new Gee.TreeSet<Medium> ();
+        temp_list = new Gee.HashMap<int64?, Medium> ((Gee.HashDataFunc<int64?>)GLib.int64_hash, (Gee.EqualDataFunc<int64?>)GLib.int64_equal, null);
 
         var grid = new Gtk.Grid ();
         grid.expand = true;
@@ -161,7 +161,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
     }
 
     private void previous_track () {
-        var iterator = (Gee.BidirIterator<Media>) media_list.iterator_at (current_media);
+        var iterator = (Gee.BidirIterator<Medium>) media_list.iterator_at (current_media);
         if (iterator.has_previous ()) {
             save_track ();
             iterator.previous ();
@@ -226,7 +226,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
         destroy ();
     }
 
-    private void set_media (Media m) {
+    private void set_media (Medium m) {
         current_media = m;
         var considered_media = current_media;
         if (temp_list.has_key (current_media.rowid)) {
@@ -245,7 +245,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
         disk_spinbutton.value = considered_media.album_number;
         year_spinbutton.value = considered_media.year;
         rating_widget.rating = (int) considered_media.rating;
-        var iterator = (Gee.BidirIterator<Media>) media_list.iterator_at (current_media);
+        var iterator = (Gee.BidirIterator<Medium>) media_list.iterator_at (current_media);
         previous_button.sensitive = iterator.has_previous ();
         next_button.sensitive = iterator.has_next ();
     }

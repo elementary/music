@@ -27,7 +27,6 @@
  */
 
 namespace Noise.Search {
-
     /**
      * Linear exact-string-matching search method.
      *
@@ -35,7 +34,7 @@ namespace Noise.Search {
      * -1 for integer parameters.
      *
      * Please note that this method compares against the values returned by
-     * Media.get_display_*(), and not the real fields. This means that a value
+     * Medium.get_display_*(), and not the real fields. This means that a value
      * like 'Unknown' will have a matching media even if the actual field is empty.
      *
      *
@@ -43,8 +42,8 @@ namespace Noise.Search {
      *
      * /!\ Modify carefully.
      */
-    public void search_in_media_list (Gee.Collection<Media> to_search,
-                                      out Gee.Collection<Media> results,
+    public void search_in_media_list (Gee.Collection<Medium> to_search,
+                                      out Gee.Collection<Medium> results,
                                       string album_artist = "",
                                       string album = "",
                                       string genre = "",
@@ -54,7 +53,7 @@ namespace Noise.Search {
                                       int rating = -1,
                                       Cancellable? cancellable = null)
     {
-        results = new Gee.TreeSet<Media> ();
+        results = new Gee.TreeSet<Medium> ();
 
         foreach (var media in to_search) {
             if (cancellable != null && cancellable.is_cancelled ())
@@ -70,7 +69,7 @@ namespace Noise.Search {
      *
      * /!\ Modify carefully.
      */
-    public inline bool match_fields_to_media (Media media,
+    public inline bool match_fields_to_media (Medium media,
                                               string album_artist = "",
                                               string album = "",
                                               string genre = "",
@@ -125,7 +124,7 @@ namespace Noise.Search {
         return rating;
     }
 
-    public inline bool match_string_to_media (Media m, string search) {
+    public inline bool match_string_to_media (Medium m, string search) {
         return search == m.year.to_string ()
             || search in get_valid_search_string (m.get_display_title ())
             || search in get_valid_search_string (m.album)

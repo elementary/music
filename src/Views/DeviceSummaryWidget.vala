@@ -280,7 +280,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     }
 
     public void sync_clicked () {
-        var list = new Gee.TreeSet<Media>();
+        var list = new Gee.TreeSet<Medium>();
 
         if (preferences.sync_music) {
             if (preferences.sync_all_music) {
@@ -314,7 +314,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             NotificationManager.get_default ().show_alert (_("Cannot Sync"), _("Device is already doing an operation."));
         } else {
             var found = new Gee.TreeSet<int>();
-            var not_found = new Gee.TreeSet<Media>();
+            var not_found = new Gee.TreeSet<Medium>();
             libraries_manager.local_library.media_from_name (device.get_library ().get_medias(), found, not_found);
 
             if(not_found.size > 0) { // hand control over to SWD

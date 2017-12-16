@@ -41,19 +41,19 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
         log = Zeitgeist.Log.get_default ();
     }
 
-    public override void add_media (Media m) {
+    public override void add_media (Medium m) {
         base.add_media (m);
         log_interaction.begin (m);
     }
 
-    public override void add_medias (Gee.Collection<Media> to_add) {
+    public override void add_medias (Gee.Collection<Medium> to_add) {
         base.add_medias (to_add);
         foreach (var m in to_add) {
             log_interaction.begin (m);
         }
     }
 
-    private async void log_interaction (Media song) {
+    private async void log_interaction (Medium song) {
         var time = new DateTime.now_local ().to_unix () * 1000;
 
         FileInfo? info = null;
@@ -100,8 +100,8 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
         z_event.add_subject (z_subject);
 
         event_templates.add (z_event);
-        var added_media = new Gee.LinkedList<Media> ();
-        var new_medias = new Gee.ArrayQueue<Media>();
+        var added_media = new Gee.LinkedList<Medium> ();
+        var new_medias = new Gee.ArrayQueue<Medium>();
 
         try {
             var events = yield log.find_events (timerange, event_templates, Zeitgeist.StorageState.ANY, 0, Zeitgeist.ResultType.MOST_RECENT_EVENTS, null);
@@ -270,18 +270,18 @@ namespace SecurityPrivacy {
             var event = new Zeitgeist.Event ();
             event.manifestation = Zeitgeist.ZG.USER_ACTIVITY;
             event.actor = "application://%s".printf (id);
-            
+
             var events = new GenericArray<Zeitgeist.Event> ();
             events.add (event);
-            
+
             var event2 = new Zeitgeist.Event ();
             event2.manifestation = Zeitgeist.ZG.USER_ACTIVITY;
             var subj = new Zeitgeist.Subject ();
             subj.uri = "application://%s".printf (id);
             event2.add_subject (subj);
-            
+
             events.add (event2);
-            
+
             try {
                 uint32[] results = yield log.find_event_ids (new Zeitgeist.TimeRange.anytime (),
                                                     events,
@@ -289,7 +289,7 @@ namespace SecurityPrivacy {
                                                     0,
                                                     Zeitgeist.ResultType.MOST_RECENT_EVENTS,
                                                     null);
-                                                    
+
                 var counter = results.length/100;
                 store.set_value (iter, 5, counter);
             } catch (Error e) {

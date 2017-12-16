@@ -113,15 +113,15 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         embedded_alert.description = message_body;
     }
 
-    private async void on_playlist_media_added (Gee.Collection<Media> to_add) {
+    private async void on_playlist_media_added (Gee.Collection<Medium> to_add) {
         yield add_media_async (to_add);
     }
 
-    private async void on_playlist_media_removed (Gee.Collection<Media> to_remove) {
+    private async void on_playlist_media_removed (Gee.Collection<Medium> to_remove) {
         yield remove_media_async (to_remove);
     }
 
     private async void on_playlist_cleared () {
-        yield set_media_async (new Gee.ArrayQueue<Media> ());
+        yield set_media_async (new Gee.ArrayQueue<Medium> ());
     }
 }

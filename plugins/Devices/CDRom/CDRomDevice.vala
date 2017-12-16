@@ -32,7 +32,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     string display_name = "";
 
     CDRipper ripper;
-    Noise.Media media_being_ripped;
+    Noise.Medium media_being_ripped;
     int current_list_index;
 
     bool _is_transferring;
@@ -43,8 +43,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     int index;
     int total;
 
-    Gee.LinkedList<Noise.Media> medias;
-    Gee.LinkedList<Noise.Media> list;
+    Gee.LinkedList<Noise.Medium> medias;
+    Gee.LinkedList<Noise.Medium> list;
     CDPlayer cdplayer;
 
     CDView cdview;
@@ -57,8 +57,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         this.icon = new GLib.ThemedIcon ("media-optical");
         this.display_name = mount.get_name();
 
-        list = new Gee.LinkedList<Noise.Media>();
-        medias = new Gee.LinkedList<Noise.Media>();
+        list = new Gee.LinkedList<Noise.Medium>();
+        medias = new Gee.LinkedList<Noise.Medium>();
 
         cdview = new CDView (this);
         cdplayer = new CDPlayer (mount);
@@ -215,11 +215,11 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return libraries_manager.local_library;
     }
 
-    public Gee.Collection<Noise.Media> get_medias() {
+    public Gee.Collection<Noise.Medium> get_medias() {
         return medias;
     }
 
-    public bool sync_medias (Gee.Collection<Noise.Media> list) {
+    public bool sync_medias (Gee.Collection<Noise.Medium> list) {
         message ("Burning not supported on CDRom's.\n");
         return false;
     }
@@ -228,7 +228,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 
     }
 
-    public bool will_fit(Gee.Collection<Noise.Media> list) {
+    public bool will_fit(Gee.Collection<Noise.Medium> list) {
         return false;
     }
 
@@ -236,7 +236,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return transfer_to_library (medias);
     }
 
-    public bool transfer_to_library(Gee.Collection<Noise.Media> trans_list) {
+    public bool transfer_to_library(Gee.Collection<Noise.Medium> trans_list) {
         this.list.clear ();
         this.list.add_all (trans_list);
         if(list.size == 0)
@@ -262,7 +262,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         current_importation (1);
 
         current_list_index = 0;
-        Noise.Media s = list.get(current_list_index);
+        Noise.Medium s = list.get(current_list_index);
         media_being_ripped = s;
         s.showIndicator = true;
 
@@ -307,14 +307,14 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return false;
     }
 
-    public void mediaRipped(Noise.Media s) {
+    public void mediaRipped(Noise.Medium s) {
         s.showIndicator = false;
 
         // Create a copy and add it to the library
-        Noise.Media lib_copy = s.copy();
+        Noise.Medium lib_copy = s.copy();
         lib_copy.isTemporary = false;
         lib_copy.unique_status_image = null;
-        var copied_list = new Gee.ArrayList<Media> ();
+        var copied_list = new Gee.ArrayList<Medium> ();
         copied_list.add (lib_copy);
 
         // update media in cdrom list to show as completed
@@ -339,7 +339,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         // do it again on next track
         if (current_list_index < (list.size - 1) && !user_cancelled) {
             ++current_list_index;
-            Noise.Media next = list.get(current_list_index);
+            Noise.Medium next = list.get(current_list_index);
             current_importation (current_list_index+1);
             media_being_ripped = next;
             ripper.rip_media(next.track, next);
@@ -355,7 +355,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         }
     }
 
-    private string get_track_status (Media m) {
+    private string get_track_status (Medium m) {
         return _("Importing track %u: %s").printf (m.track, m.get_title_markup ());
     }
 

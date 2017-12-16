@@ -378,7 +378,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     /**
      * @return A collection containing ALL the media associated to this view.
      */
-    public Gee.Collection<Media> get_media_list () {
+    public Gee.Collection<Medium> get_media_list () {
         return list_view.get_media ();
     }
 
@@ -418,32 +418,32 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         embedded_alert.title = _("No media");
     }
 
-    public async void set_media_async (Gee.Collection<Media> new_media) {
+    public async void set_media_async (Gee.Collection<Medium> new_media) {
         if (!widgets_ready)
             return;
         set_media (new_media);
     }
 
-    public async void add_media_async (Gee.Collection<Media> to_add) {
+    public async void add_media_async (Gee.Collection<Medium> to_add) {
         if (!widgets_ready)
             return;
         add_media (to_add);
         update_visible_media ();
     }
 
-    public async void remove_media_async (Gee.Collection<Media> to_remove) {
+    public async void remove_media_async (Gee.Collection<Medium> to_remove) {
         if (!widgets_ready)
             return;
         remove_media (to_remove);
     }
 
-    public async void update_media_async (Gee.Collection<Media> to_update) {
+    public async void update_media_async (Gee.Collection<Medium> to_update) {
         if (!widgets_ready)
             return;
         update_media (to_update);
     }
 
-    private void set_media (Gee.Collection<Media> new_media) {
+    private void set_media (Gee.Collection<Medium> new_media) {
         debug ("SETTING MEDIA [%s]", hint.to_string());
 
         if (has_list_view) {
@@ -464,7 +464,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         update_widget_state ();
     }
 
-    private void update_media (Gee.Collection<Media> media) requires (data_initialized) {
+    private void update_media (Gee.Collection<Medium> media) requires (data_initialized) {
         if (media.is_empty)
             return;
 
@@ -485,7 +485,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         update_widget_state ();
     }
 
-    private void add_media (Gee.Collection<Media> new_media) requires (data_initialized) {
+    private void add_media (Gee.Collection<Medium> new_media) requires (data_initialized) {
         if (new_media.is_empty)
             return;
 
@@ -504,7 +504,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         update_widget_state ();
     }
 
-    private void remove_media (Gee.Collection<Media> media) requires (data_initialized) {
+    private void remove_media (Gee.Collection<Medium> media) requires (data_initialized) {
         if (media.is_empty)
             return;
 

@@ -87,7 +87,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
     protected void set_research_needed (bool value) {
         this.icon_view.research_needed = value;
     }
-    
+
     protected void add_objects (Gee.Collection<Object> objects) {
         icon_view.add_objects (objects);
     }
@@ -175,8 +175,8 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         return parent_view_wrapper.hint;
     }
 
-    public Gee.Collection<Media> get_visible_media () {
-        var all_visible_media = new Gee.TreeSet<Media> ();
+    public Gee.Collection<Medium> get_visible_media () {
+        var all_visible_media = new Gee.TreeSet<Medium> ();
 
         foreach (var album in get_visible_albums ()) {
             var album_media = album.get_media ();
@@ -186,8 +186,8 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         return all_visible_media;
     }
 
-    public Gee.Collection<Media> get_media () {
-        var all_media = new Gee.TreeSet<Media> ();
+    public Gee.Collection<Medium> get_media () {
+        var all_media = new Gee.TreeSet<Medium> ();
 
         foreach (var album in get_albums ()) {
             var album_media = album.get_media ();
@@ -209,10 +209,10 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         do_search ();
     }
 
-    public void update_media (Gee.Collection<Media> media) {
-        var medias_to_update = new Gee.TreeSet<Media> ();
+    public void update_media (Gee.Collection<Medium> media) {
+        var medias_to_update = new Gee.TreeSet<Medium> ();
         medias_to_update.add_all (media);
-        var medias_to_add = new Gee.TreeSet<Media> ();
+        var medias_to_add = new Gee.TreeSet<Medium> ();
         var albums_to_remove = new Gee.TreeSet<Album> ();
         foreach (var m in medias_to_update) {
             if (m == null)
@@ -239,14 +239,14 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         set_research_needed (true);
     }
 
-    public void set_media (Gee.Collection<Media> to_add) {
+    public void set_media (Gee.Collection<Medium> to_add) {
         clear_objects ();
         add_media (to_add);
     }
 
     // Check for already existing albums, only add the missing ones.
-    public void add_media (Gee.Collection<Media> media) {
-        var medias_to_add = new Gee.TreeSet<Media> ();
+    public void add_media (Gee.Collection<Medium> media) {
+        var medias_to_add = new Gee.TreeSet<Medium> ();
         medias_to_add.add_all (media);
         var albums_to_append = new Gee.TreeSet<Album> ();
         var albums = get_albums ();
@@ -272,7 +272,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
      * contains song1, song2, song5, and song3. Then we shouldn't remove
      * the album because it still contains a song (song3).
      */
-    public void remove_media (Gee.Collection<Media> to_remove) {
+    public void remove_media (Gee.Collection<Medium> to_remove) {
         var albums_to_remove = new Gee.TreeSet<Album> ();
         foreach (var m in to_remove) {
             if (m == null)
@@ -334,7 +334,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
         if (album_b == null)
             return 1;
-        
+
         int order = String.compare (album_a.get_display_artist (), album_b.get_display_artist ());
 
         if (order == 0)
@@ -364,7 +364,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         }
     }
 
-    protected Gee.Collection<Media> get_selected_media (Object obj) {
+    protected Gee.Collection<Medium> get_selected_media (Object obj) {
         var album = obj as Album;
         return_val_if_fail (album != null, null);
 

@@ -30,7 +30,7 @@
 public class Noise.GStreamerTagger : Object {
     private const int DISCOVERER_TIMEOUT = 5;
 
-    public signal void media_imported (Media m);
+    public signal void media_imported (Medium m);
     public signal void import_error (string file_uri, Error error);
     public signal void queue_finished ();
 
@@ -137,7 +137,7 @@ public class Noise.GStreamerTagger : Object {
             return;
         }
 
-        var m = new Media (uri);
+        var m = new Medium (uri);
         // Get length in nanoseconds. We use the tag length as fallback
         uint64 duration = info.get_duration ();
 
@@ -205,7 +205,7 @@ public class Noise.GStreamerTagger : Object {
 
             uint rating;
             if (tags.get_uint (Gst.Tags.USER_RATING, out rating))
-                m.rating = rating; // Noise.Media will clamp the value
+                m.rating = rating; // Noise.Medium will clamp the value
 
             // Get the year, try datetime first, otherwise try date
             // NOTE: date might be superfluous, it was the original method,

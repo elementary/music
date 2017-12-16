@@ -39,10 +39,10 @@ public class Noise.LocalLibrary : Library {
 
     private Gee.TreeSet<StaticPlaylist> _playlists;
     private Gee.TreeSet<SmartPlaylist> _smart_playlists;
-    private Gee.HashMap<int64?, Media> _medias;
-    private Gee.TreeSet<Media> _searched_medias;
+    private Gee.HashMap<int64?, Medium> _medias;
+    private Gee.TreeSet<Medium> _searched_medias;
     private Gee.HashMap<uint, Album> album_info;
-    private Gee.HashMap<int64?, Media> _dont_show_medias;
+    private Gee.HashMap<int64?, Medium> _dont_show_medias;
 
     public StaticPlaylist p_music;
 
@@ -50,7 +50,7 @@ public class Noise.LocalLibrary : Library {
         get { return !String.is_empty (Settings.Main.get_default ().music_folder, true); }
     }
 
-    private Gee.TreeSet<Media> open_media_list;
+    private Gee.TreeSet<Medium> open_media_list;
     private bool _doing_file_operations = false;
 
     public Gda.Connection connection { public get; private set; }
@@ -61,14 +61,14 @@ public class Noise.LocalLibrary : Library {
         libraries_manager.local_library = this;
         _playlists = new Gee.TreeSet<StaticPlaylist> ();
         _smart_playlists = new Gee.TreeSet<SmartPlaylist> ();
-        _medias = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
+        _medias = new Gee.HashMap<int64?, Medium> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
                                                   (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
-        _dont_show_medias = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
+        _dont_show_medias = new Gee.HashMap<int64?, Medium> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
                                                   (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
-        _searched_medias = new Gee.TreeSet<Media> ();
+        _searched_medias = new Gee.TreeSet<Medium> ();
         album_info = new Gee.HashMap<uint, Album> ();
         tagger = new GStreamerTagger();
-        open_media_list = new Gee.TreeSet<Media> ();
+        open_media_list = new Gee.TreeSet<Medium> ();
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;
 
@@ -257,7 +257,7 @@ public class Noise.LocalLibrary : Library {
     }
 
     private async void rescan_music_folder_async () {
-        var to_remove = new Gee.TreeSet<Media> ();
+        var to_remove = new Gee.TreeSet<Medium> ();
         var files = new Gee.TreeSet<string> ();
 
         var music_folder_dir = Settings.Main.get_default ().music_folder;
@@ -307,15 +307,15 @@ public class Noise.LocalLibrary : Library {
         }
     }
 
-    private void media_opened_imported (Media m) {
+    private void media_opened_imported (Medium m) {
         m.isTemporary = true;
         open_media_list.add (m);
     }
 
     private void import_files (Gee.TreeSet<string> files, FileOperator.ImportType type) {
         //TODO remove deleted files from database
-        var to_reimport = new Gee.TreeSet<Media> ();
-        foreach (Media m in _dont_show_medias.values) {
+        var to_reimport = new Gee.TreeSet<Medium> ();
+        foreach (Medium m in _dont_show_medias.values) {
             if (files.contains (m.uri)) {
                 //Change show flag for reimported media we once removed
                 if (type != FileOperator.ImportType.RESCAN) {
@@ -545,7 +545,7 @@ public class Noise.LocalLibrary : Library {
     }
 
 
-    /******************** Media stuff ******************/
+    /******************** Medium stuff ******************/
 
     public override void search_medias (string search) {
         if (search == "") {
@@ -634,8 +634,8 @@ public class Noise.LocalLibrary : Library {
         });
     }
 
-    public override Gee.Collection<Media> get_search_result () {
-        var result = new Gee.TreeSet<Media> ();
+    public override Gee.Collection<Medium> get_search_result () {
+        var result = new Gee.TreeSet<Medium> ();
         result.add_all (_searched_medias);
         return result;
     }
@@ -645,7 +645,7 @@ public class Noise.LocalLibrary : Library {
 
         // We really only want to clear the songs that are permanent and on the file system
         // Dont clear podcasts that link to a url, device media, temporary media, previews, songs
-        var unset = new Gee.LinkedList<Media> ();
+        var unset = new Gee.LinkedList<Medium> ();
         foreach (var s in _medias.values) {
             if (!s.isTemporary && !s.isPreview)
                 unset.add (s);
@@ -655,23 +655,23 @@ public class Noise.LocalLibrary : Library {
         debug ("--- MEDIAS CLEARED ---");
     }
 
-    public override Gee.Collection<Media> get_medias () {
-        var result = new Gee.TreeSet<Media> ();
+    public override Gee.Collection<Medium> get_medias () {
+        var result = new Gee.TreeSet<Medium> ();
         result.add_all (_medias.values);
         return result;
     }
 
-    public override void update_media (Media s, bool updateMeta, bool record_time) {
-        var one = new Gee.TreeSet<Media> ();
+    public override void update_media (Medium s, bool updateMeta, bool record_time) {
+        var one = new Gee.TreeSet<Medium> ();
         one.add (s);
         update_medias (one, updateMeta, record_time);
     }
 
-    public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
-        var updated = new Gee.TreeSet<Media> ();
+    public override void update_medias (Gee.Collection<Medium> updates, bool updateMeta, bool record_time) {
+        var updated = new Gee.TreeSet<Medium> ();
         updated.add_all (updates);
         if (record_time) {
-            foreach (Media s in updated) {
+            foreach (Medium s in updated) {
                 s.last_modified = (int)time_t ();
             }
         }
@@ -689,12 +689,12 @@ public class Noise.LocalLibrary : Library {
      * consistency
      */
 
-    public override Media? media_from_id (int64 id) {
+    public override Medium? media_from_id (int64 id) {
         return _medias.get (id);
     }
 
-    public override Media? find_media (Media to_find) {
-        Media? found = null;
+    public override Medium? find_media (Medium to_find) {
+        Medium? found = null;
         lock (_medias) {
             foreach (var m in _medias.values) {
                 if (to_find.title.down () == m.title.down () && to_find.artist.down () == m.artist.down ()) {
@@ -707,7 +707,7 @@ public class Noise.LocalLibrary : Library {
         return found;
     }
 
-    public override Media? media_from_file (File file) {
+    public override Medium? media_from_file (File file) {
         lock (_medias) {
             foreach (var m in _medias.values) {
                 if (m != null && m.file.equal (file))
@@ -718,7 +718,7 @@ public class Noise.LocalLibrary : Library {
         return null;
     }
 
-    public override Media? media_from_uri (string uri) {
+    public override Medium? media_from_uri (string uri) {
         lock (_medias) {
             foreach (var m in _medias.values) {
                 if (m != null && m.uri == uri)
@@ -729,8 +729,8 @@ public class Noise.LocalLibrary : Library {
         return null;
     }
 
-    public override Gee.Collection<Media> medias_from_ids (Gee.Collection<int64?> ids) {
-        var media_collection = new Gee.TreeSet<Media> ();
+    public override Gee.Collection<Medium> medias_from_ids (Gee.Collection<int64?> ids) {
+        var media_collection = new Gee.TreeSet<Medium> ();
         foreach (var id in ids) {
             var m = _medias.get (id);
             if (m != null) {
@@ -741,8 +741,8 @@ public class Noise.LocalLibrary : Library {
         return media_collection;
     }
 
-    public override Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris) {
-        var media_collection = new Gee.LinkedList<Media> ();
+    public override Gee.Collection<Medium> medias_from_uris (Gee.Collection<string> uris) {
+        var media_collection = new Gee.LinkedList<Medium> ();
         lock (_medias) {
             foreach (var m in _medias.values) {
                 if (uris.contains (m.uri))
@@ -755,20 +755,20 @@ public class Noise.LocalLibrary : Library {
         return media_collection;
     }
 
-    public override void add_media (Media s) {
-        var coll = new Gee.TreeSet<Media> ();
+    public override void add_media (Medium s) {
+        var coll = new Gee.TreeSet<Medium> ();
         coll.add (s);
         add_medias (coll);
     }
 
-    public override void add_medias (Gee.Collection<Media> new_media) {
+    public override void add_medias (Gee.Collection<Medium> new_media) {
         if (new_media.is_empty) {// happens more often than you would think
             return;
         }
 
         // make a copy of the media list so that it doesn't get modified before
         // the async code (e.g. updating the smart playlists) is done with it
-        var media = new Gee.TreeSet<Media> ();
+        var media = new Gee.TreeSet<Medium> ();
         media.add_all (new_media);
 
         var local_media = new Gee.HashMap<int64?, LocalMedia> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
@@ -826,14 +826,14 @@ public class Noise.LocalLibrary : Library {
         media_added (local_media.values.read_only_view);
     }
 
-    public override void remove_media (Media s, bool trash) {
-        var coll = new Gee.TreeSet<Media> ();
+    public override void remove_media (Medium s, bool trash) {
+        var coll = new Gee.TreeSet<Medium> ();
         coll.add (s);
         remove_medias (coll, trash);
     }
 
-    public override void remove_medias (Gee.Collection<Media> to_remove, bool trash) {
-        var toRemove = new Gee.TreeSet<Media> ();
+    public override void remove_medias (Gee.Collection<Medium> to_remove, bool trash) {
+        var toRemove = new Gee.TreeSet<Medium> ();
         toRemove.add_all (to_remove);
         if (App.player.current_media in toRemove)
             App.player.stop_playback ();
@@ -846,7 +846,7 @@ public class Noise.LocalLibrary : Library {
         media_removed (toRemove.read_only_view);
 
         lock (_medias) {
-            foreach (Media s in toRemove) {
+            foreach (Medium s in toRemove) {
                 _searched_medias.remove (s);
                 _medias.unset (s.rowid);
             }
@@ -874,8 +874,8 @@ public class Noise.LocalLibrary : Library {
         search_finished ();
     }
 
-    public Gee.TreeSet<Noise.Media> answer_to_device_sync (Device device) {
-        var medias_to_sync = new Gee.TreeSet<Noise.Media> ();
+    public Gee.TreeSet<Medium> answer_to_device_sync (Device device) {
+        var medias_to_sync = new Gee.TreeSet<Medium> ();
         var prefs = get_preferences_for_device (device);
         if (prefs.sync_music == true) {
             if (prefs.sync_all_music == true) {

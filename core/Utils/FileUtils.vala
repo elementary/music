@@ -28,7 +28,6 @@
  */
 
 namespace Noise.FileUtils {
-
     public const string APP_NAME = "noise";
 
     public File get_data_directory () {
@@ -119,7 +118,7 @@ namespace Noise.FileUtils {
 
         return false;
     }
-    
+
     public int count_music_files (File music_folder, Gee.Collection<string> files) {
         FileInfo file_info = null;
         int index = 0;
@@ -142,13 +141,13 @@ namespace Noise.FileUtils {
 
         return index;
     }
-    
-    public File? get_new_destination(Media s) {
+
+    public File? get_new_destination (Medium s) {
         File dest;
-        
+
         try {
             File original = File.new_for_uri(s.uri);
-            
+
             var ext = "";
             if (s.uri.has_prefix("cdda://")) {
                 ext = ".mp3";
@@ -156,7 +155,7 @@ namespace Noise.FileUtils {
                 ext = s.uri.slice (s.uri.last_index_of (".", 0), s.uri.length);
             }
 
-            
+
             /* Available translations are $ALBUM $ARTIST $ALBUM_ARTIST $TITLE $TRACK*/
             var main_settings = Settings.Main.get_default ();
             string path = main_settings.path_string;
@@ -170,21 +169,21 @@ namespace Noise.FileUtils {
             path = path.replace ("$ALBUM", s.get_display_album ().replace("/", "_"));
             path = path.replace ("$TITLE", s.get_display_title ().replace("/", "_"));
             path = path.replace ("$TRACK", s.track.to_string());
-            
+
             dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + ext));
-            
+
             if (original.get_path ().contains (dest.get_path ())) {
                 debug("File is already in correct location\n");
                 return null;
             }
-            
+
             if (dest.query_exists ()) {
                 int number = 2;
                 while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + _(" (%d)").printf (number) + ext))).query_exists()) {
                     number++;
                 }
             }
-            
+
             /* make sure that the parent folders exist */
             if(!dest.get_parent().query_exists()) {
                 dest.get_parent().make_directory_with_parents(null);
@@ -192,7 +191,7 @@ namespace Noise.FileUtils {
         } catch(Error err) {
             debug("Could not find new destination!: %s\n", err.message);
         }
-        
+
         return dest;
     }
 

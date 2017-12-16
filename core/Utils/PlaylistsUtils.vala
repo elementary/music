@@ -27,7 +27,6 @@
  */
 
 namespace Noise.PlaylistsUtils {
-
     public bool save_playlist_m3u (Playlist p, string folder_uri, string without_path) {
         bool rv = false;
         string to_save = get_playlist_m3u_file (p, without_path);
@@ -203,10 +202,9 @@ namespace Noise.PlaylistsUtils {
     }
 
     public void import_from_playlist_file_info(Gee.HashMap<string, Gee.LinkedList<string>> playlists, Library library) {
-
         foreach (var values in playlists.values) {
             if (values.size > 0) {
-                if (values.get (0).has_prefix ("/")) {
+                if (values[0].has_prefix ("/")) {
                     library.add_files_to_library (convert_paths_to_uris (values));
                 } else {
                     library.add_files_to_library (values);
@@ -215,12 +213,12 @@ namespace Noise.PlaylistsUtils {
         }
 
         foreach (var playlist in playlists.entries) {
-            var new_playlist = new StaticPlaylist();
+            var new_playlist = new StaticPlaylist ();
             new_playlist.name = playlist.key;
             var medias_to_use = playlist.value;
-            var to_add = new Gee.LinkedList<Media> ();
+            var to_add = new Gee.LinkedList<Medium> ();
             foreach (var media in library.get_medias ()) {
-                if (medias_to_use.contains (media.file.get_path()) || medias_to_use.contains (media.file.get_uri())) {
+                if (medias_to_use.contains (media.file.get_path ()) || medias_to_use.contains (media.file.get_uri ())) {
                     to_add.add (media);
                 }
             }

@@ -30,26 +30,26 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     Noise.Pipeline pipe;
 
     InstallGstreamerPluginsDialog dialog;
-    
+
     public Gst.Element cdda;
     public bool set_resume_pos;
-    
+
     /* Signals are now in the Playback interface !
     public signal void end_of_stream ();
     public signal void current_position_update (int64 position);
     public signal void media_not_found ();
     public signal void error_occured (); */
-    
+
     public Streamer () {
         pipe = new Noise.Pipeline();
 
         pipe.bus.add_watch (GLib.Priority.DEFAULT, bus_callback);
         //pipe.playbin.about_to_finish.connect(about_to_finish);
-        
+
 
         Timeout.add (200, update_position);
     }
-    
+
     public Gee.Collection<string> get_supported_uri () {
         var uris = new Gee.LinkedList<string> ();
         uris.add ("file://");
@@ -66,85 +66,85 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
         else if (App.player.current_media != null) {
             pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
         }
-        
+
         return true;
     }
-    
+
     /* Basic playback functions */
     public void play () {
         set_state (Gst.State.PLAYING);
     }
-    
+
     public void pause () {
         set_state (Gst.State.PAUSED);
     }
-    
+
     public void set_state (Gst.State s) {
         pipe.playbin.set_state (s);
     }
-    
-    public void set_media (Media media) {
+
+    public void set_media (Medium media) {
         set_state (Gst.State.READY);
         debug ("set uri to %s\n", media.uri);
         //pipe.playbin.uri = uri.replace("#", "%23");
         pipe.playbin.set_property ("uri", media.uri.replace("#", "%23"));
 
         set_state (Gst.State.PLAYING);
-        
+
         debug ("setURI seeking to %d\n", App.player.current_media.resume_pos);
         pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
-        
+
         play ();
     }
-    
+
     public void set_position (int64 pos) {
         pipe.playbin.seek (1.0,
         Gst.Format.TIME, Gst.SeekFlags.FLUSH,
         Gst.SeekType.SET, pos,
         Gst.SeekType.NONE, get_duration ());
     }
-    
+
     public int64 get_position () {
         int64 rv = (int64)0;
         Gst.Format f = Gst.Format.TIME;
-        
+
         pipe.playbin.query_position (f, out rv);
-        
+
         return rv;
     }
-    
+
     public int64 get_duration () {
         int64 rv = (int64)0;
         Gst.Format f = Gst.Format.TIME;
-        
+
         pipe.playbin.query_duration (f, out rv);
-        
+
         return rv;
     }
-    
+
     public void set_volume (double val) {
         pipe.playbin.set_property ("volume", val);
     }
-    
+
     public double get_volume () {
         var val = GLib.Value (typeof(double));
         pipe.playbin.get_property ("volume", ref val);
         return (double)val;
     }
-    
+
     /* Extra stuff */
     public void enable_equalizer () {
         pipe.enableEqualizer ();
     }
-    
+
     public void disable_equalizer() {
         pipe.disableEqualizer ();
     }
-    
+
     public void set_equalizer_gain (int index, int val) {
         pipe.eq.setGain (index, val);
     }
-    
+
     /* Callbacks */
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
         switch (message.type) {
@@ -172,12 +172,12 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
 
             if(newstate != Gst.State.PLAYING)
                 break;
-            
-            
+
+
             break;
         case Gst.MessageType.TAG:
             Gst.TagList tag_list;
-            
+
             message.parse_tag (out tag_list);
             if (tag_list != null) {
                 if (tag_list.get_tag_size (Gst.Tags.TITLE) > 0) {
@@ -189,7 +189,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
         default:
             break;
         }
- 
+
         return true;
     }
 }

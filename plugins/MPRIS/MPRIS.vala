@@ -29,10 +29,10 @@ public class Noise.MPRIS : GLib.Object {
     public MprisRoot root = null;
     // Uncomment this when the bug on the playlist selection is fixed
     //public MprisPlaylists playlists = null;
-    
+
     private unowned DBusConnection conn;
     private uint owner_id;
-    
+
     public void initialize () {
         owner_id = Bus.own_name(BusType.SESSION,
                                 "org.mpris.MediaPlayer2.Noise",
@@ -49,7 +49,7 @@ public class Noise.MPRIS : GLib.Object {
             soundMenu.initialize ();
         }
     }
-    
+
     private void on_bus_acquired (DBusConnection connection, string name) {
         this.conn = connection;
         debug ("bus acquired");
@@ -68,7 +68,7 @@ public class Noise.MPRIS : GLib.Object {
 
     private void on_name_acquired(DBusConnection connection, string name) {
         debug ("name acquired");
-    }    
+    }
 
     private void on_name_lost(DBusConnection connection, string name) {
         debug ("name_lost");
@@ -78,42 +78,42 @@ public class Noise.MPRIS : GLib.Object {
 [DBus(name = "org.mpris.MediaPlayer2")]
 public class MprisRoot : GLib.Object {
 
-    public bool CanQuit { 
+    public bool CanQuit {
         get {
             return true;
-        } 
+        }
     }
 
-    public bool CanRaise { 
+    public bool CanRaise {
         get {
             return true;
-        } 
+        }
     }
-    
+
     public bool HasTrackList {
         get {
             return false;
         }
     }
-    public string DesktopEntry { 
+    public string DesktopEntry {
         owned get {
             return "org.pantheon.noise";
-        } 
+        }
     }
-    
+
     public string Identity {
         owned get {
             return ((Noise.App) GLib.Application.get_default ()).program_name;
         }
     }
-    
+
     public string[] SupportedUriSchemes {
         owned get {
             string[] sa = {"http", "file", "https", "ftp"};
             return sa;
         }
     }
-    
+
     public string[] SupportedMimeTypes {
         owned get {
             return Noise.MEDIA_CONTENT_TYPES;
@@ -123,7 +123,7 @@ public class MprisRoot : GLib.Object {
     public void Quit () {
         Noise.App.main_window.destroy ();
     }
-    
+
     public void Raise () {
         Noise.App.main_window.present ();
     }
@@ -145,7 +145,7 @@ public class MprisPlayer : GLib.Object {
         PREVIOUS,
         STOP
     }
-    
+
     public MprisPlayer(DBusConnection conn) {
         this.conn = conn;
         _metadata = new HashTable<string,Variant>(str_hash, str_equal);
@@ -172,7 +172,7 @@ public class MprisPlayer : GLib.Object {
     private void playing_changed() {
         trigger_metadata_update ();
     }
-    
+
     private void trigger_metadata_update() {
         if(update_metadata_source != 0)
             Source.remove(update_metadata_source);
@@ -180,7 +180,7 @@ public class MprisPlayer : GLib.Object {
         update_metadata_source = Timeout.add(300, () => {
             //print("trigger_metadata_update %s\n", global.current_artist);
             Variant variant = this.PlaybackStatus;
-            
+
             queue_property_for_notification("PlaybackStatus", variant);
             queue_property_for_notification("Metadata", _metadata);
             update_metadata_source = 0;
@@ -188,14 +188,14 @@ public class MprisPlayer : GLib.Object {
         });
     }
 
-    private void on_media_played (Noise.Media? s) {
+    private void on_media_played (Noise.Medium? s) {
         if (s != Noise.App.player.current_media)
             return;
 
         update_metadata (s);
     }
 
-    private void update_metadata (Noise.Media? s) {
+    private void update_metadata (Noise.Medium? s) {
         if (s == null)
             _metadata.remove_all ();
         else
@@ -204,7 +204,7 @@ public class MprisPlayer : GLib.Object {
         trigger_metadata_update ();
     }
 
-    private void set_media_metadata (Noise.Media s) {
+    private void set_media_metadata (Noise.Medium s) {
         _metadata = new HashTable<string, Variant> (null, null);
 
         _metadata.insert("mpris:trackid", get_track_id (s));
@@ -235,33 +235,33 @@ public class MprisPlayer : GLib.Object {
         return array;
     }
 
-    private ObjectPath get_track_id (Noise.Media m) {
+    private ObjectPath get_track_id (Noise.Medium m) {
         return new ObjectPath ("/org/pantheon/noise/Track/%lld".printf (m.rowid));
     }
 
     private bool send_property_change() {
-        
+
         if(changed_properties == null)
             return false;
-        
+
         var builder             = new VariantBuilder(VariantType.ARRAY);
         var invalidated_builder = new VariantBuilder(new VariantType("as"));
-        
+
         foreach(string name in changed_properties.get_keys()) {
             Variant variant = changed_properties.lookup(name);
             builder.add("{sv}", name, variant);
         }
-        
+
         changed_properties = null;
-        
+
         try {
             conn.emit_signal (null,
-                              "/org/mpris/MediaPlayer2", 
-                              "org.freedesktop.DBus.Properties", 
-                              "PropertiesChanged", 
-                              new Variant("(sa{sv}as)", 
-                                         INTERFACE_NAME, 
-                                         builder, 
+                              "/org/mpris/MediaPlayer2",
+                              "org.freedesktop.DBus.Properties",
+                              "PropertiesChanged",
+                              new Variant("(sa{sv}as)",
+                                         INTERFACE_NAME,
+                                         builder,
                                          invalidated_builder)
                              );
         }
@@ -271,20 +271,20 @@ public class MprisPlayer : GLib.Object {
         send_property_source = 0;
         return false;
     }
-    
+
     private void queue_property_for_notification(string property, Variant val) {
         // putting the properties into a hashtable works as akind of event compression
-        
+
         if(changed_properties == null)
             changed_properties = new HashTable<string,Variant>(str_hash, str_equal);
-        
+
         changed_properties.insert(property, val);
-        
+
         if(send_property_source == 0) {
             send_property_source = Idle.add(send_property_change);
         }
     }
-    
+
     public string PlaybackStatus {
         owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
             if(Noise.App.player.playing)
@@ -297,7 +297,7 @@ public class MprisPlayer : GLib.Object {
                 return "Stopped";
         }
     }
-    
+
     public string LoopStatus {
         owned get {
             switch(Noise.Settings.Main.get_default ().repeat_mode) {
@@ -310,7 +310,7 @@ public class MprisPlayer : GLib.Object {
                 case(Noise.Settings.Repeat.ALL):
                     return "Playlist";
             }
-            
+
             return "Playlist";
         }
         set {
@@ -328,12 +328,12 @@ public class MprisPlayer : GLib.Object {
                     Noise.App.player.set_repeat_mode (Noise.Settings.Repeat.ALL);
                     break;
             }
-            
+
             Variant variant = value;
             queue_property_for_notification("LoopStatus", variant);
         }
     }
-    
+
     public double Rate {
         get {
             return (double)1.0;
@@ -341,7 +341,7 @@ public class MprisPlayer : GLib.Object {
         set {
         }
     }
-    
+
     public bool Shuffle {
         get {
             if (Noise.Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.ALL)
@@ -355,19 +355,19 @@ public class MprisPlayer : GLib.Object {
             else {
                 Noise.App.player.set_shuffle_mode (Noise.Settings.Shuffle.OFF);
             }
-            
+
             Variant variant = value;
             queue_property_for_notification ("Shuffle", variant);
         }
     }
-    
+
     public HashTable<string,Variant>? Metadata { //a{sv}
         owned get {
             update_metadata (Noise.App.player.current_media);
             return _metadata;
         }
     }
-    
+
     public double Volume {
         get{
             return Noise.App.player.volume;
@@ -376,13 +376,13 @@ public class MprisPlayer : GLib.Object {
             Noise.App.player.volume = value;
         }
     }
-    
+
     public int64 Position {
         get {
             return (Noise.App.player.player.get_position()/(int64)Noise.TimeUtils.MILI_INV);
         }
     }
-    
+
     /*public double MinimumRate {
         get {
             return (double)1.0;
@@ -400,49 +400,49 @@ public class MprisPlayer : GLib.Object {
             return true;
         }
     }
-    
+
     public bool CanGoPrevious {
         get {
             return true;
         }
     }
-    
+
     public bool CanPlay {
         get {
             return true;
         }
     }
-    
+
     public bool CanPause {
         get {
             return true;
         }
     }
-    
+
     public bool CanSeek {
         get {
             return true;
         }
     }
-    
+
     public bool CanControl {
         get {
             return true;
         }
     }
-    
+
     public signal void Seeked(int64 Position);
 
     public void Next() {
         // inhibit notifications
         Noise.App.main_window.play_next_media(true);
     }
-    
+
     public void Previous() {
         // inhibit notifications
         Noise.App.main_window.play_previous_media(true);
     }
-    
+
     public void Pause() {
         // inhibit notifications
         if(Noise.App.player.playing)
@@ -458,7 +458,7 @@ public class MprisPlayer : GLib.Object {
         if(Noise.App.player.playing)
             Noise.App.player.stop_playback();
     }
-    
+
     public void Play() {
         // inhibit notifications
         if(!Noise.App.player.playing)
@@ -477,16 +477,16 @@ public class MprisPlayer : GLib.Object {
             Next ();
         }
     }
-    
+
     public void SetPosition(string dobj, int64 Position) {
         Noise.App.player.player.set_position(Position * (int64)Noise.TimeUtils.MILI_INV);
     }
-    
+
     public void OpenUri(string Uri) {
-        
+
     }
 }
-    
+
 [DBus(name = "org.mpris.MediaPlayer2.Playlists")]
 public class MprisPlaylists : GLib.Object {
     public struct MprisPlaylist {
@@ -556,12 +556,12 @@ public class MprisPlaylists : GLib.Object {
 
         try {
             conn.emit_signal(null,
-                             "/org/mpris/MediaPlayer2", 
-                             "org.freedesktop.DBus.Properties", 
-                             "PropertiesChanged", 
-                             new Variant("(sa{sv}as)", 
-                                         INTERFACE_NAME, 
-                                         builder, 
+                             "/org/mpris/MediaPlayer2",
+                             "org.freedesktop.DBus.Properties",
+                             "PropertiesChanged",
+                             new Variant("(sa{sv}as)",
+                                         INTERFACE_NAME,
+                                         builder,
                                          invalidated_builder)
                              );
             message("Sent properties changed signal\n");

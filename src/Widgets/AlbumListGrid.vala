@@ -41,7 +41,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
     private Album album;
     private Widgets.AlbumImage album_cover;
-    private Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
+    private Gee.TreeSet<Medium> media_list = new Gee.TreeSet<Medium> ();
     private GenericList list_view;
     private Gtk.Label album_label;
     private Gtk.Label artist_label;
@@ -196,7 +196,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     }
 
     void rating_changed (int new_rating) {
-        var updated = new Gee.LinkedList<Media> ();
+        var updated = new Gee.LinkedList<Medium> ();
         lock (media_list) {
 
             foreach (var media in media_list) {
@@ -212,7 +212,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         view_wrapper.library.update_medias (updated, false, true);
     }
 
-    private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {
+    private void view_search_func (string search, Gee.ArrayList<Medium> table, Gee.ArrayList<Medium> showing) {
         uint parsed_rating;
         string parsed_search_string;
 

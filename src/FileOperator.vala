@@ -40,7 +40,7 @@ public class Noise.FileOperator : Object {
 
     ImportType import_type;
     StaticPlaylist new_playlist;
-    Gee.TreeSet<Media> all_new_imports;
+    Gee.TreeSet<Medium> all_new_imports;
     Gee.TreeSet<string> import_errors;
     Gee.HashMap<string, GLib.FileMonitor> monitors;
 
@@ -55,7 +55,7 @@ public class Noise.FileOperator : Object {
         TagLib.ID3v2.set_default_text_encoding (TagLib.ID3v2.Encoding.UTF8);
 
         cancellable = new GLib.Cancellable ();
-        all_new_imports = new Gee.TreeSet<Media> ();
+        all_new_imports = new Gee.TreeSet<Medium> ();
         import_errors = new Gee.TreeSet<string> ();
         monitors = new Gee.HashMap<string, GLib.FileMonitor> (null, null);
         tagger = new GStreamerTagger (cancellable);
@@ -114,11 +114,11 @@ public class Noise.FileOperator : Object {
     }
 
     // TODO: Rewrite it using GStreamer's TagSetter
-    public async void save_media (Gee.Collection<Media> to_save) {
-        var copy = new Gee.TreeSet<Media> ();
+    public async void save_media (Gee.Collection<Medium> to_save) {
+        var copy = new Gee.TreeSet<Medium> ();
         copy.add_all (to_save);
         var main_settings = Settings.Main.get_default ();
-        foreach (Media s in copy) {
+        foreach (Medium s in copy) {
             if (s.isTemporary || s.isPreview || File.new_for_uri (s.uri).get_path ().has_prefix (main_settings.music_folder) == false)
                 continue;
 
@@ -145,7 +145,7 @@ public class Noise.FileOperator : Object {
         }
     }
 
-    public bool update_file_hierarchy (Media s, bool delete_old, bool emit_update) {
+    public bool update_file_hierarchy (Medium s, bool delete_old, bool emit_update) {
         try {
             File dest = FileUtils.get_new_destination (s);
             if (dest == null)
@@ -195,7 +195,7 @@ public class Noise.FileOperator : Object {
         return true;
     }
 
-    public void remove_media (Gee.Collection<Media> toRemove) {
+    public void remove_media (Gee.Collection<Medium> toRemove) {
         var dummy_list = new Gee.TreeSet<string> ();
         foreach (var s in toRemove) {
             try {
@@ -225,7 +225,7 @@ public class Noise.FileOperator : Object {
                     libraries_manager.local_library.remove_media (media, false);
                 var monitor = monitors.get (file.get_uri ());
                 if (monitor != null) {
-                    var medias_to_remove = new Gee.TreeSet<Noise.Media> ();
+                    var medias_to_remove = new Gee.TreeSet<Noise.Medium> ();
                     foreach (var m in libraries_manager.local_library.get_medias ()) {
                         if (m.uri.has_prefix (file.get_uri ()))
                             medias_to_remove.add (m);
@@ -276,7 +276,7 @@ public class Noise.FileOperator : Object {
         }
     }
 
-    void media_imported (Media m) {
+    void media_imported (Medium m) {
         all_new_imports.add (m);
         libraries_manager.local_library.add_media (m);
 
@@ -325,7 +325,7 @@ public class Noise.FileOperator : Object {
 
     public async void copy_imports_async () {
         resetProgress (all_new_imports.size);
-        foreach (Media s in all_new_imports) {
+        foreach (Medium s in all_new_imports) {
             if (!cancellable.is_cancelled ()) {
                 update_file_hierarchy (s, false, true);
             }

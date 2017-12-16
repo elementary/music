@@ -57,9 +57,9 @@ public interface Noise.Device : GLib.Object {
     public abstract Gtk.Widget? get_custom_view (); // If it's null, use the standard device view
     public abstract bool read_only ();
     public abstract Library get_library ();
-    
-    public Gee.Collection<Noise.Media> delete_doubles (Gee.Collection<Noise.Media> source_list, Gee.Collection<Noise.Media> to_remove) {
-        var new_list = new Gee.LinkedList<Noise.Media> ();
+
+    public Gee.Collection<Noise.Medium> delete_doubles (Gee.Collection<Noise.Medium> source_list, Gee.Collection<Noise.Medium> to_remove) {
+        var new_list = new Gee.LinkedList<Noise.Medium> ();
         foreach(var m in source_list) {
             if (m != null) {
                 bool needed = true;
@@ -82,20 +82,20 @@ public interface Noise.Device : GLib.Object {
                     new_list.add (m);
             }
         }
-        
+
         return new_list;
     }
-    
-    public bool will_fit(Gee.Collection<Noise.Media> list) {
+
+    public bool will_fit(Gee.Collection<Noise.Medium> list) {
         uint64 list_size = 0;
         foreach(var m in list) {
             list_size += m.file_size;
         }
-        
+
         return get_capacity() > list_size;
     }
-    
-    public bool will_fit_without(Gee.Collection<Noise.Media> list, Gee.Collection<Noise.Media> without) {
+
+    public bool will_fit_without(Gee.Collection<Noise.Medium> list, Gee.Collection<Noise.Medium> without) {
         uint64 list_size = 0;
         uint64 without_size = 0;
         foreach (var m in list) {
@@ -124,7 +124,7 @@ public interface Noise.Device : GLib.Object {
             if(uuid != null && uuid != "") {
                 rv += ("/" + uuid);
             }
-            
+
             return rv;
         } else {
             return get_uri();

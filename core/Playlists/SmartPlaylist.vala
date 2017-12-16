@@ -62,7 +62,7 @@ public class Noise.SmartPlaylist : Playlist {
         });
 
         library.media_removed.connect ((medias) => {
-            var removed = new Gee.LinkedList<Media> ();
+            var removed = new Gee.LinkedList<Medium> ();
             foreach (var m in medias) {
                 if (this.medias.contains (m)) {
                     this.medias.remove (m);
@@ -78,19 +78,19 @@ public class Noise.SmartPlaylist : Playlist {
      * Common Playlist Functions.
      */
 
-    public override void add_media (Media m) {
+    public override void add_media (Medium m) {
         warning ("Trying to force the media addition to a smart playlist!");
     }
 
-    public override void add_medias (Gee.Collection<Media> to_add) {
+    public override void add_medias (Gee.Collection<Medium> to_add) {
         warning ("Trying to force the media addition to a smart playlist!");
     }
 
-    public override void remove_media (Media to_remove) {
+    public override void remove_media (Medium to_remove) {
         warning ("Trying to force the media removal from a smart playlist!");
     }
 
-    public override void remove_medias (Gee.Collection<Media> to_remove) {
+    public override void remove_medias (Gee.Collection<Medium> to_remove) {
         warning ("Trying to force the media removal from a smart playlist!");
     }
 
@@ -136,7 +136,7 @@ public class Noise.SmartPlaylist : Playlist {
      * Smart Playlist Helpers
      */
 
-    public static bool media_matches_query (SmartQuery q, Media s) {
+    public static bool media_matches_query (SmartQuery q, Medium s) {
         switch (q.field) {
             case Noise.SmartQuery.FieldType.URI:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
@@ -284,10 +284,10 @@ public class Noise.SmartPlaylist : Playlist {
         return false;
     }
 
-    private void analyse_list (Gee.Collection<Media> given_library) {
+    private void analyse_list (Gee.Collection<Medium> given_library) {
         new Thread<void*> (null, () => {
-            var added = new Gee.TreeSet<Media> ();
-            var removed = new Gee.TreeSet<Media> ();
+            var added = new Gee.TreeSet<Medium> ();
+            var removed = new Gee.TreeSet<Medium> ();
 
             foreach (var m in given_library) {
                 if (m == null)

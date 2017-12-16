@@ -33,9 +33,9 @@ public class Noise.CDDA : Object {
     private const string FILE_ATTRIBUTE_GENRE = "xattr::org.gnome.audio.genre";
     private const string FILE_ATTRIBUTE_DURATION = "xattr::org.gnome.audio.duration";
 
-	public static Gee.LinkedList<Media> getMediaList (File device_file) {
-		var rv = new Gee.LinkedList<Media> ();
-		
+	public static Gee.LinkedList<Medium> getMediaList (File device_file) {
+		var rv = new Gee.LinkedList<Medium> ();
+
 		try {
             var query_attributes = new string[0];
             query_attributes += FILE_ATTRIBUTE_TITLE;
@@ -60,9 +60,9 @@ public class Noise.CDDA : Object {
             message ("CD ALBUM_ARTIST: %s", album_artist);
             message ("CD ALBUM_GENRE: %s", album_genre);
 
-            bool valid_album_artist = Media.is_valid_string_field (album_artist);
-			bool valid_album_name = Media.is_valid_string_field (album_name);
-			bool valid_album_genre = Media.is_valid_string_field (album_genre);
+            bool valid_album_artist = Medium.is_valid_string_field (album_artist);
+			bool valid_album_name = Medium.is_valid_string_field (album_name);
+			bool valid_album_genre = Medium.is_valid_string_field (album_genre);
 
             query_attributes += FILE_ATTRIBUTE_DURATION;
 			var enumerator = device_file.enumerate_children (string.joinv (",", query_attributes),
@@ -73,7 +73,7 @@ public class Noise.CDDA : Object {
 
 			for (track_info = enumerator.next_file (); track_info != null; track_info = enumerator.next_file ()) {
                 // GStreamer's CDDA library handles tracks with URI format: cdda://$TRACK_NUMBER
-                var s = new Media (enumerator.get_container ().get_uri() + track_info.get_name ());
+                var s = new Medium (enumerator.get_container ().get_uri() + track_info.get_name ());
 
 				s.isTemporary = true;
 
@@ -101,13 +101,13 @@ public class Noise.CDDA : Object {
 				s.track = index;
                 s.length = (uint) (length * TimeUtils.MILI_INV); // no need to check, it's our best guess either way
 
-				if (Media.is_valid_string_field (title))
+				if (Medium.is_valid_string_field (title))
 					s.title = title;
 
-				if (Media.is_valid_string_field (artist))
+				if (Medium.is_valid_string_field (artist))
 					s.artist = artist;
 
-				if (Media.is_valid_string_field (genre))
+				if (Medium.is_valid_string_field (genre))
 					s.genre = genre;
 
 				// remove artist name from title
@@ -128,7 +128,7 @@ public class Noise.CDDA : Object {
 		} catch (Error err) {
 			warning ("Could not enumerate CD tracks or access album info: %s", err.message);
 		}
-		
+
 		return rv;
 	}
 
@@ -138,7 +138,7 @@ public class Noise.CDDA : Object {
 		int needle_index = orig.down ().index_of (artist.down ());
 
 		if (needle_index != -1) {
-            
+
 
 			new_title = orig.replace (artist, "");
 			s = s.strip();

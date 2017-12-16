@@ -33,13 +33,13 @@ public class Noise.CDRipper : GLib.Object {
     public dynamic Gst.Element filter;
     public dynamic Gst.Element sink;
 
-    Noise.Media current_media; // media currently being processed/ripped
+    Noise.Medium current_media; // media currently being processed/ripped
     private string _device;
     public int track_count;
     public int track_index;
     private Gst.Format _format;
 
-    public signal void media_ripped (Noise.Media s, bool success);
+    public signal void media_ripped (Noise.Medium s, bool success);
     public signal void progress_notification (double progress);
     public signal void error (string err, Gst.Message message);
 
@@ -163,7 +163,7 @@ public class Noise.CDRipper : GLib.Object {
         return true;
     }
 
-    public void rip_media (uint track, Noise.Media s) {
+    public void rip_media (uint track, Noise.Medium s) {
         var f = FileUtils.get_new_destination (s);
 
         sink.set_state (Gst.State.NULL);

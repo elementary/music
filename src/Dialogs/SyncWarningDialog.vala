@@ -34,8 +34,8 @@ public class Noise.SyncWarningDialog : Granite.MessageDialog {
     }
 
     public Device device { get; construct; }
-    public Gee.TreeSet<Media> to_sync { get; construct; }
-    public Gee.TreeSet<Media> to_remove { get; construct; }
+    public Gee.TreeSet<Medium> to_sync { get; construct; }
+    public Gee.TreeSet<Medium> to_remove { get; construct; }
 
     private Gtk.Widget import_media_button;
     private Gtk.Widget continue_button;
@@ -68,7 +68,7 @@ public class Noise.SyncWarningDialog : Granite.MessageDialog {
         show_all ();
     }
 
-    public SyncWarningDialog (Device d, Gee.TreeSet<Media> to_sync, Gee.TreeSet<Media> removed) {
+    public SyncWarningDialog (Device d, Gee.TreeSet<Medium> to_sync, Gee.TreeSet<Medium> removed) {
         Object (device: d, to_sync: to_sync, to_remove: removed);
     }
 

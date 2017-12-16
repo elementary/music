@@ -28,19 +28,18 @@
  */
 
 namespace Noise.Compare {
-    
-    public inline int titles (Media a, Media b) {
+    public inline int titles (Medium a, Medium b) {
         return String.compare (a.get_display_title (), b.get_display_title ());
     }
 
-    public inline int genres (Media a, Media b) {
+    public inline int genres (Medium a, Medium b) {
         int order = String.compare (a.get_display_genre (), b.get_display_genre ());
         if (order == 0)
             order = album_artists (a, b);
         return order;
     }
 
-    public inline int artists (Media a, Media b) {
+    public inline int artists (Medium a, Medium b) {
         int order = String.compare (a.get_display_artist (), b.get_display_artist ());
         // secondarily compare by year
         if (order == 0)
@@ -50,14 +49,14 @@ namespace Noise.Compare {
         return order;
     }
 
-    public inline int album_artists (Media a, Media b) {
+    public inline int album_artists (Medium a, Medium b) {
         int order = String.compare (a.get_display_album_artist (true), b.get_display_album_artist (true));
         if (order == 0)
             order = albums (a, b);
         return order;
     }
 
-    public inline int albums (Media a, Media b) {
+    public inline int albums (Medium a, Medium b) {
         int order = String.compare (a.get_display_album (), b.get_display_album ());
         if (order == 0)
             order = standard_unsigned (a.album_number, b.album_number);
@@ -66,7 +65,7 @@ namespace Noise.Compare {
         return order;
     }
 
-    public inline int track_numbers (Media a, Media b) {
+    public inline int track_numbers (Medium a, Medium b) {
         return standard_unsigned (a.track, b.track);
     }
 

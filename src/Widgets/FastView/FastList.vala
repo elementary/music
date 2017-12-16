@@ -37,15 +37,15 @@ public class Noise.FastView : Gtk.TreeView {
     /**
     * A list of all the medias to display
     */
-    protected Gee.ArrayList<Media> table = new Gee.ArrayList<Media> (); // is not the same object as showing.
+    protected Gee.ArrayList<Medium> table = new Gee.ArrayList<Medium> (); // is not the same object as showing.
 
     /**
     * The media that are presently shown (some of them can be absent because of search)
     */
-    protected Gee.ArrayList<Media> showing = new Gee.ArrayList<Media> (); // should never point to table.
+    protected Gee.ArrayList<Medium> showing = new Gee.ArrayList<Medium> (); // should never point to table.
 
     /* sortable stuff */
-    public delegate int SortCompareFunc (int sort_column_id, Gtk.SortType sort_direction, Media a, Media b,
+    public delegate int SortCompareFunc (int sort_column_id, Gtk.SortType sort_direction, Medium a, Medium b,
                                          int index_a, int index_b); // position of items in the view's @table
 
     protected int sort_column_id;
@@ -54,7 +54,7 @@ public class Noise.FastView : Gtk.TreeView {
     private unowned SortCompareFunc compare_func;
 
     // search stuff
-    public delegate void ViewSearchFunc (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing);
+    public delegate void ViewSearchFunc (string search, Gee.ArrayList<Medium> table, Gee.ArrayList<Medium> showing);
     private unowned ViewSearchFunc search_func;
 
     public signal void rows_reordered ();
@@ -80,12 +80,12 @@ public class Noise.FastView : Gtk.TreeView {
     }
 
     /** Should not be manipulated by client */
-    public Gee.BidirList<Media> get_table () {
+    public Gee.BidirList<Medium> get_table () {
         return table.read_only_view;
     }
 
     /** Should not be manipulated by client */
-    public Gee.BidirList<Media> get_visible_table () {
+    public Gee.BidirList<Medium> get_visible_table () {
         return showing.read_only_view;
     }
 
@@ -93,7 +93,7 @@ public class Noise.FastView : Gtk.TreeView {
         return (int) iter.user_data;
     }
 
-    public Media? get_object_from_index (int index) {
+    public Medium? get_object_from_index (int index) {
         return index < showing.size ? showing[index] : null;
     }
 
@@ -101,7 +101,7 @@ public class Noise.FastView : Gtk.TreeView {
         fm.set_value_func (func);
     }
 
-    public void set_table (Gee.ArrayList<Media> table, bool do_resort) {
+    public void set_table (Gee.ArrayList<Medium> table, bool do_resort) {
         this.table = table;
 
         if (do_resort) {

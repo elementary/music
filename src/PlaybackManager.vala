@@ -38,9 +38,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     //        Get the current filter (search, playlist) to be able to store and set it back when restart.
 
     public signal void queue_cleared ();
-    public signal void media_queued (Gee.Collection<Media> queued);
+    public signal void media_queued (Gee.Collection<Medium> queued);
 
-    public signal void media_played (Media played_media);
+    public signal void media_played (Medium played_media);
     public signal void playback_stopped (int64 was_playing);
     public signal void playback_started ();
     public signal void playback_paused ();
@@ -101,9 +101,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         }
     }
 
-    public Noise.Streamer file_player;
-    public Noise.Playback player;
-    public Noise.Media current_media { private set; get; }
+    public Streamer file_player;
+    public Playback player;
+    public Medium current_media { private set; get; }
 
     construct {
         history_playlist = new HistoryPlaylist ();
@@ -120,15 +120,15 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         player = file_player;
     }
 
-    public void add_playback (Noise.Playback playback) {
+    public void add_playback (Playback playback) {
         playbacks.add (playback);
     }
 
-    public void queue_media (Media to_queue) {
-        queue_medias (new Gee.ArrayList<Media>.wrap ({ to_queue }));
+    public void queue_media (Medium to_queue) {
+        queue_medias (new Gee.ArrayList<Medium>.wrap ({ to_queue }));
     }
 
-    public void queue_medias (Gee.Collection<Media> to_queue) {
+    public void queue_medias (Gee.Collection<Medium> to_queue) {
         if (to_queue.size < 1) {
             return;
         }
@@ -150,11 +150,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         queue_medias (library.medias_from_ids (ids));
     }
 
-    public void unqueue_media (Media to_unqueue) {
-        unqueue_medias (new Gee.ArrayList<Media>.wrap ({ to_unqueue }));
+    public void unqueue_media (Medium to_unqueue) {
+        unqueue_medias (new Gee.ArrayList<Medium>.wrap ({ to_unqueue }));
     }
 
-    public void unqueue_medias (Gee.Collection<Media> to_unqueue) {
+    public void unqueue_medias (Gee.Collection<Medium> to_unqueue) {
         ordered_queue.remove_medias (to_unqueue);
         reshuffle ();
         queue_playlist.media_removed (to_unqueue);
@@ -173,11 +173,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         reshuffle ();
     }
 
-    public Media media_from_current_index (int index_in_current) {
+    public Medium media_from_current_index (int index_in_current) {
         return queue_playlist[index_in_current];
     }
 
-    public Gee.Collection<Media> get_current_media_list () {
+    public Gee.Collection<Medium> get_current_media_list () {
         return queue_playlist.medias;
     }
 
@@ -207,7 +207,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             queue_playlist.medias.add_all (ordered_queue.medias);
 
             //create temp list of all of current's media
-            var temp = new Gee.ArrayList<Media> ();
+            var temp = new Gee.ArrayList<Medium> ();
             temp.add_all (ordered_queue.medias);
 
             //loop through all current media id's and pick a random one remaining
@@ -248,10 +248,10 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     *
     * For instance, calling this method with position = -1 will return the media just before the current one.
     */
-    public Media? get_media_at (int position, out int media_index) {
+    public Medium? get_media_at (int position, out int media_index) {
         int index = current_index + position;
         media_index = fix_index (index);
-        Media? res = queue_playlist.medias.size > index > 0 ? queue_playlist[index] : null;
+        Medium? res = queue_playlist.medias.size > index > 0 ? queue_playlist[index] : null;
 
         var main_settings = Settings.Main.get_default ();
         switch (main_settings.repeat_mode) {
@@ -304,7 +304,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         return (queue_playlist.medias.size + index) % queue_playlist.medias.size;
     }
 
-    public Media? get_next (bool play) {
+    public Medium? get_next (bool play) {
         int index;
         var next = get_media_at (1, out index);
         if (play) {
@@ -319,7 +319,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         return next;
     }
 
-    public Media? get_previous (bool play) {
+    public Medium? get_previous (bool play) {
         int index;
         var prev = get_media_at (-1, out index);
         if (play) {
@@ -335,7 +335,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
 
-    public void play_media (Media m) {
+    public void play_media (Medium m) {
         // set the current media
         current_media = m;
 

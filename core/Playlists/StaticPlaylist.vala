@@ -40,8 +40,8 @@ public class Noise.StaticPlaylist : Playlist {
         icon = new ThemedIcon ("playlist");
     }
 
-    public override void add_media (Media m) {
-        var added_media = new Gee.LinkedList<Media> ();
+    public override void add_media (Medium m) {
+        var added_media = new Gee.LinkedList<Medium> ();
         if (allow_duplicate || medias.contains (m) == false) {
             medias.add (m);
             added_media.add (m);
@@ -51,9 +51,9 @@ public class Noise.StaticPlaylist : Playlist {
         updated ();
     }
 
-    public override void add_medias (Gee.Collection<Media> to_add) {
-        var added_media = new Gee.LinkedList<Media> ();
-        foreach (Media m in to_add) {
+    public override void add_medias (Gee.Collection<Medium> to_add) {
+        var added_media = new Gee.LinkedList<Medium> ();
+        foreach (Medium m in to_add) {
             if (allow_duplicate || medias.contains (m) == false) {
                 medias.add (m);
                 added_media.add (m);
@@ -64,9 +64,9 @@ public class Noise.StaticPlaylist : Playlist {
         media_added (added_media);
     }
 
-    public override void remove_media (Media to_remove) {
+    public override void remove_media (Medium to_remove) {
         if (to_remove != null && medias.contains (to_remove)) {
-            var removed_media = new Gee.LinkedList<Media> ();
+            var removed_media = new Gee.LinkedList<Medium> ();
             removed_media.add (to_remove);
             medias.remove (to_remove);
             media_removed (removed_media);
@@ -75,8 +75,8 @@ public class Noise.StaticPlaylist : Playlist {
         updated ();
     }
 
-    public override void remove_medias (Gee.Collection<Media> to_remove) {
-        var removed_media = new Gee.LinkedList<Media> ();
+    public override void remove_medias (Gee.Collection<Medium> to_remove) {
+        var removed_media = new Gee.LinkedList<Medium> ();
         foreach (var m in to_remove) {
             if (m != null && medias.contains (m)) {
                 removed_media.add (m);

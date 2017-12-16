@@ -29,7 +29,7 @@
 public abstract class Noise.Playlist : Object {
     public signal void request_play ();
 
-    public virtual Gee.ArrayList<Media> medias { get; internal set; default = new Gee.ArrayList<Media> (); }
+    public virtual Gee.ArrayList<Medium> medias { get; internal set; default = new Gee.ArrayList<Medium> (); }
 
     public int64 rowid { get; construct set; }
     public GLib.Icon icon;
@@ -45,15 +45,15 @@ public abstract class Noise.Playlist : Object {
         }
     }
 
-    public signal void media_added (Gee.Collection<Media> media);
-    public signal void media_removed (Gee.Collection<Media> media);
+    public signal void media_added (Gee.Collection<Medium> media);
+    public signal void media_removed (Gee.Collection<Medium> media);
     public signal void updated (string? old_name = null);
     public signal void cleared ();
 
-    public abstract void add_media (Media to_remove);
-    public abstract void add_medias (Gee.Collection<Media> to_add);
-    public abstract void remove_media (Media to_remove);
-    public abstract void remove_medias (Gee.Collection<Media> to_remove);
+    public abstract void add_media (Medium to_remove);
+    public abstract void add_medias (Gee.Collection<Medium> to_add);
+    public abstract void remove_media (Medium to_remove);
+    public abstract void remove_medias (Gee.Collection<Medium> to_remove);
     public abstract void clear ();
 
     public bool is_empty () {
@@ -61,17 +61,17 @@ public abstract class Noise.Playlist : Object {
     }
 
     /**
-    * Retrives a Media at an index in this playlist
+    * Retrives a Medium at an index in this playlist
     */
-    public new Media get (int index) {
+    public new Medium get (int index) {
         return medias[index];
     }
 
-    public new void set (int index, Media m) {
+    public new void set (int index, Medium m) {
         medias[index] = m;
     }
 
-    public Gee.Iterator<Media> iterator () {
+    public Gee.Iterator<Medium> iterator () {
         return medias.iterator ();
     }
 }

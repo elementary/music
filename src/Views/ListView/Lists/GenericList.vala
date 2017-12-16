@@ -28,7 +28,7 @@
  */
 
 public abstract class Noise.GenericList : FastView {
-    public signal void import_requested (Gee.Collection<Media> to_import);
+    public signal void import_requested (Gee.Collection<Medium> to_import);
 
     public Playlist? playlist { get; set; default = null; }
     public ViewWrapper.Hint hint {
@@ -145,8 +145,8 @@ public abstract class Noise.GenericList : FastView {
         });
     }
 
-    public void set_media (Gee.Collection<Media> to_add) {
-        var new_table = new Gee.ArrayList<Media> ();
+    public void set_media (Gee.Collection<Medium> to_add) {
+        var new_table = new Gee.ArrayList<Medium> ();
         new_table.add_all (to_add);
 
         // set table and resort
@@ -155,11 +155,11 @@ public abstract class Noise.GenericList : FastView {
         scroll_to_current_media (false);
     }
 
-    /* If a Media is in to_remove but not in table, will just ignore */
-    public void remove_media (Gee.Collection<Media> to_remove) {
-        var new_table = new Gee.ArrayList<Media> ();
+    /* If a Medium is in to_remove but not in table, will just ignore */
+    public void remove_media (Gee.Collection<Medium> to_remove) {
+        var new_table = new Gee.ArrayList<Medium> ();
 
-        foreach (Media m in table) {
+        foreach (Medium m in table) {
             if (!(m in to_remove)) {
                 new_table.add (m);
             }
@@ -169,7 +169,7 @@ public abstract class Noise.GenericList : FastView {
         set_table (new_table, false);
     }
 
-    public void add_media (Gee.Collection<Media> to_add) {
+    public void add_media (Gee.Collection<Medium> to_add) {
         // skip calling set_table and just do it ourselves (faster)
         table.add_all (to_add);
 
@@ -216,7 +216,7 @@ public abstract class Noise.GenericList : FastView {
             add_column (tvc, TreeViewSetup.get_column_type (tvc));
     }
 
-    public Media? get_media_from_index (int index) {
+    public Medium? get_media_from_index (int index) {
         return get_object_from_index (index);
     }
 
@@ -229,7 +229,7 @@ public abstract class Noise.GenericList : FastView {
 
         m.rating = new_rating;
 
-        var to_update = new Gee.TreeSet<Media> ();
+        var to_update = new Gee.TreeSet<Medium> ();
         to_update.add (m);
         parent_wrapper.library.update_medias (to_update, true, true);
     }
@@ -263,7 +263,7 @@ public abstract class Noise.GenericList : FastView {
         }
     }
 
-    private async void media_played (Media m) {
+    private async void media_played (Medium m) {
         queue_draw ();
 
         Idle.add_full (Priority.HIGH_IDLE + 10, media_played.callback);
@@ -280,8 +280,8 @@ public abstract class Noise.GenericList : FastView {
         is_current_list = false;
     }
 
-    public void set_as_current_list (Media? m = null) {
-        Media to_set = m == null ? App.player.current_media : m;
+    public void set_as_current_list (Medium? m = null) {
+        Medium to_set = m == null ? App.player.current_media : m;
 
         is_current_list = true;
         var main_settings = Settings.Main.get_default ();
@@ -319,9 +319,9 @@ public abstract class Noise.GenericList : FastView {
     /**
     * Shift a list (of media) to make it start at a given element
     */
-    private Gee.ArrayList<Media> start_at (Media start, Gee.List<Media> media) {
+    private Gee.ArrayList<Medium> start_at (Medium start, Gee.List<Medium> media) {
         debug ("TO START: %s (size = %d)", start.title, media.size);
-        var res = new Gee.ArrayList<Media> ();
+        var res = new Gee.ArrayList<Medium> ();
         int index = media.index_of (start);
         for (int _ = 0; _ < media.size; _++) {
             res.add (media[index]);
@@ -335,8 +335,8 @@ public abstract class Noise.GenericList : FastView {
         return res;
     }
 
-    protected Gee.Collection<Media> get_selected_medias () {
-        var rv = new Gee.ArrayQueue<Media> ();
+    protected Gee.Collection<Medium> get_selected_medias () {
+        var rv = new Gee.ArrayQueue<Medium> ();
         Gtk.TreeModel temp;
 
         foreach (Gtk.TreePath path in get_selection ().get_selected_rows (out temp)) {
@@ -419,7 +419,7 @@ public abstract class Noise.GenericList : FastView {
     void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
-        foreach (Media m in get_selected_medias ())
+        foreach (Medium m in get_selected_medias ())
             uris += m.uri;
 
         if (uris != null)

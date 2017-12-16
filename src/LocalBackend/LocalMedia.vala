@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.LocalMedia : Noise.Media {
+public class Noise.LocalMedia : Noise.Medium {
     private uint64? _file_size = null;
     public override uint64 file_size {
         get {
@@ -323,7 +323,7 @@ public class Noise.LocalMedia : Noise.Media {
     }
 
     // To use this method, the rowid should exist in the database.
-    public LocalMedia.from_media (Gda.Connection connection, Media m) {
+    public LocalMedia.from_media (Gda.Connection connection, Medium m) {
         try {
             var builder = new Gda.SqlBuilder (Gda.SqlStatementType.INSERT);
             builder.set_table (Database.Media.TABLE_NAME);
