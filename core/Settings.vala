@@ -27,23 +27,6 @@
  */
 
 namespace Noise.Settings {
-    public class SavedState : Granite.Services.Settings {
-        public string[] column_browser_visible_columns { get; set; }
-        public int column_browser_position { get; set; }
-
-        private static SavedState? saved_state = null;
-
-        public static SavedState get_default () {
-            if (saved_state == null)
-                saved_state = new SavedState ();
-            return saved_state;
-        }
-
-        private SavedState () {
-            base ("org.pantheon.noise.saved-state");
-        }
-    }
-
     public class Main : Granite.Services.Settings {
 
         public string music_mount_name { get; set; }

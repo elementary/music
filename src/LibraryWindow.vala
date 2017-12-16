@@ -114,10 +114,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.clear_queue ();
 
             // make sure we don't re-count stats
-            if (main_settings.last_media_position > 5)
+            if (main_settings.last_media_position > 5) {
                 media_considered_previewed = true;
-            if (main_settings.last_media_position > 30)
-                media_considered_played = true;
+
+                if (main_settings.last_media_position > 30) {
+                    media_considered_played = true;
+                }
+            }
+
             if (App.player.current_media != null && (double)(main_settings.last_media_position/(double)App.player.current_media.length) > 0.90)
                 added_to_play_count = true;
         }
@@ -643,11 +647,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
+        statusbar.playlist_menubutton_sensitive = folder_set && have_media;
 
         if (!media_active || have_media && !App.player.playing)
             play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-
-        statusbar.update_sensitivities ();
     }
 
     /**
