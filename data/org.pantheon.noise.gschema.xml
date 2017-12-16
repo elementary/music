@@ -44,11 +44,6 @@
       <summary>Whether to close the player's window instead of hiding/minimizing it when a song is still playing. The window can be brought back by activating its desktop file.</summary>
       <description>When enabled, the window will be closed even if a song is still being played (i.e. close = quit). Otherwise, if a song is being played, the application will not be closed, but minimized/hidden. The player is minimized or hidden depending on the values of the minimize-while-playing-shells key.</description>
     </key>
-    <key type="as" name="minimize-while-playing-shells">
-      <default>['GNOME']</default>
-      <summary>List of desktop shells for which the player's window will be minimized instead of hidden when the close-while-playing option is set to false.</summary>
-      <description>For the Pantheon and GNOME desktop shells, the player's window is simply minimized due to the lack of a minimize button; the window is hidden for all the rest of desktop shells, unless they are added to this key. In fact, any dock-based shell should be part of this key, except those that lack a sound menu or in which the dock space is often limited (e.g. Unity). See the description of close-while-playing for more information.</description>
-    </key>
     <key type="s" name="last-playlist-playing">
       <default>''</default>
       <summary>'s' for smart playlist or 'p' for static playlist + ID of last playlist playing</summary>

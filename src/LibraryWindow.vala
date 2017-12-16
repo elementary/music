@@ -1173,45 +1173,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // if playing a song, don't allow closing
         if (!main_settings.close_while_playing && playing) {
-            if (minimize_on_close ()) {
-                close_subwindows ();
-                iconify (); // i.e. minimize
-            } else {
-                close_subwindows ();
-                hide ();
-            }
+            close_subwindows ();
+            hide ();
 
             return true;
         }
 
         return false; // can exit
-    }
-
-    /**
-     * Checks whether the window should be hidden or minimized when closing the
-     * application. The caller is responsible for checking whether there's an active
-     * song and whether the close_while_playing option is enabled on settings. This
-     * method assumes that both are true and returns a value based on that.
-     *
-     * @return true if the window should be minimized; false if it should be hidden.
-     */
-    public static bool minimize_on_close () {
-        bool minimize_on_close = false;
-        string? current_shell = Environment.get_variable ("XDG_CURRENT_DESKTOP");
-
-        if (current_shell != null) {
-            debug ("Current shell: %s", current_shell);
-
-            foreach (string shell in Settings.Main.get_default ().minimize_while_playing_shells) {
-                if (current_shell == shell) {
-                    debug ("Using supported minimize_on_close shell");
-                    minimize_on_close = true;
-                    break;
-                }
-            }
-        }
-
-        return minimize_on_close;
     }
 
     public override bool configure_event (Gdk.EventConfigure event) {
