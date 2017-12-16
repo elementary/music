@@ -43,7 +43,6 @@ namespace Noise.Settings {
         public string search_string { get; set; }
         public string path_string { get; set; }
         public string[] plugins_disabled { get; set;}
-        public string[] minimize_while_playing_shells { get; set; }
 
         private static Main? main_settings = null;
 
