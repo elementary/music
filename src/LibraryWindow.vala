@@ -114,10 +114,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.clear_queue ();
 
             // make sure we don't re-count stats
-            if (main_settings.last_media_position > 5)
+            if (main_settings.last_media_position > 5) {
                 media_considered_previewed = true;
-            if (main_settings.last_media_position > 30)
-                media_considered_played = true;
+
+                if (main_settings.last_media_position > 30) {
+                    media_considered_played = true;
+                }
+            }
+
             if (App.player.current_media != null && (double)(main_settings.last_media_position/(double)App.player.current_media.length) > 0.90)
                 added_to_play_count = true;
         }
@@ -643,11 +647,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
+        statusbar.playlist_menubutton_sensitive = folder_set && have_media;
 
         if (!media_active || have_media && !App.player.playing)
             play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-
-        statusbar.update_sensitivities ();
     }
 
     /**
@@ -1170,45 +1173,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // if playing a song, don't allow closing
         if (!main_settings.close_while_playing && playing) {
-            if (minimize_on_close ()) {
-                close_subwindows ();
-                iconify (); // i.e. minimize
-            } else {
-                close_subwindows ();
-                hide ();
-            }
+            close_subwindows ();
+            hide ();
 
             return true;
         }
 
         return false; // can exit
-    }
-
-    /**
-     * Checks whether the window should be hidden or minimized when closing the
-     * application. The caller is responsible for checking whether there's an active
-     * song and whether the close_while_playing option is enabled on settings. This
-     * method assumes that both are true and returns a value based on that.
-     *
-     * @return true if the window should be minimized; false if it should be hidden.
-     */
-    public static bool minimize_on_close () {
-        bool minimize_on_close = false;
-        string? current_shell = Environment.get_variable ("XDG_CURRENT_DESKTOP");
-
-        if (current_shell != null) {
-            debug ("Current shell: %s", current_shell);
-
-            foreach (string shell in Settings.Main.get_default ().minimize_while_playing_shells) {
-                if (current_shell == shell) {
-                    debug ("Using supported minimize_on_close shell");
-                    minimize_on_close = true;
-                    break;
-                }
-            }
-        }
-
-        return minimize_on_close;
     }
 
     public override bool configure_event (Gdk.EventConfigure event) {
