@@ -25,9 +25,14 @@
  */
 
 namespace Noise.Widgets {
-
     public class StatusBar : Gtk.ActionBar {
         private Gtk.MenuButton playlist_menubutton;
+        public bool playlist_menubutton_sensitive {
+            set {
+                playlist_menubutton.sensitive = value;
+            }
+        }
+
         public Gtk.Widget equalizer_item { get; private set; default = new EqualizerChooser (); }
 
         public StatusBar () {
@@ -56,11 +61,6 @@ namespace Noise.Widgets {
             add_spl_menuitem.activate.connect (() => {
                 App.main_window.show_smart_playlist_dialog ();
             });
-        }
-
-        public void update_sensitivities () {
-            var local_library = (LocalLibrary) libraries_manager.local_library;
-            playlist_menubutton.set_sensitive (local_library.main_directory_set && local_library.get_medias ().size > 0);
         }
     }
 
