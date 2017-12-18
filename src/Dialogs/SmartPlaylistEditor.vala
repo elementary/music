@@ -150,10 +150,6 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             add_row ();
         }
 
-        foreach (SmartPlaylistEditorQuery speq in queries_list) {
-            speq.field_changed (false);
-        }
-
         adding_button.clicked.connect (add_row);
         adding_button.show ();
         // Validate initial state
@@ -193,7 +189,6 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         editor_query.grid.show ();
         row++;
         queries_grid.attach (adding_button, 0, row, 1, 1);
-        editor_query.field_changed (false);
     }
 
     public virtual void save_playlist () {
@@ -202,6 +197,9 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         var queries = new Gee.TreeSet<SmartQuery> ();
         foreach (SmartPlaylistEditorQuery speq in queries_list) {
             queries.add (speq.query);
+            debug ("QUERY FIELD SAVED: %s", speq.query.field.to_string());
+            debug ("QUERY COMPARATOR SAVED: %s", speq.query.comparator.to_string());
+            debug ("QUERY VALUE SAVED: %s", (string) speq.query.value);
         }
 
         smart_playlist.add_queries (queries);
@@ -256,6 +254,17 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         }
 
         construct {
+            debug ("QUERY FIELD: %s", query.field.to_string());
+            debug ("QUERY COMPARATOR: %s", query.comparator.to_string());
+            debug ("QUERY VALUE: %s", (string)query.value);
+            
+            remove_button = new Gtk.Button.from_icon_name ("process-stop-symbolic");
+            remove_button.clicked.connect (() => {
+                removed ();
+                grid.hide ();
+            });
+            remove_button.get_style_context ().add_class ("button");
+            
             value_entry = new Gtk.Entry ();
             value_entry.changed.connect (() => {
                 query.value = query.field == SmartQuery.FieldType.URI
@@ -272,13 +281,25 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             value_rating.rating_changed.connect (() => {
                 query.value = value_rating.rating;
             });
+            
+            if (query.field in string_fields) {
+                value_entry.text = query.field == SmartQuery.FieldType.URI
+                    ? Uri.unescape_string (query.value.get_string ())
+                    : query.value.get_string ();
+            } else if (query.field == SmartQuery.FieldType.RATING) {
+                value_rating.rating = query.value.get_int ();
+            } else {
+                value_numerical.value = query.value.get_int ();
+            }
+            
+            comparators = new GLib.HashTable<int, SmartQuery.ComparatorType> (null, null);
 
-            remove_button = new Gtk.Button.from_icon_name ("process-stop-symbolic");
-            remove_button.clicked.connect (() => {
-                removed ();
-                grid.hide ();
+            comparator_combobox = new Gtk.ComboBoxText ();
+            comparator_combobox.changed.connect (() => {
+                //FIXME: this lamda is not stable enough to do the correct assignment
+                //the changed signal is triggered multiple times in field_changed
+                query.comparator = comparators[comparator_combobox.active];
             });
-            remove_button.get_style_context ().add_class ("button");
 
             field_combobox = new Gtk.ComboBoxText ();
             field_combobox.append_text (_("Album"));
@@ -297,29 +318,11 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             field_combobox.append_text (_("Title"));
             field_combobox.append_text (_("Year"));
             field_combobox.append_text (_("URI"));
-            field_combobox.active = (int) query.field;
             field_combobox.changed.connect (() => {
                 query.field = (SmartQuery.FieldType) field_combobox.active;
                 field_changed (true);
             });
-
-            comparators = new GLib.HashTable<int, SmartQuery.ComparatorType> (null, null);
-
-            comparator_combobox = new Gtk.ComboBoxText ();
-            comparator_combobox.active = (int) query.comparator;
-            comparator_combobox.changed.connect (() => {
-                query.comparator = comparators[comparator_combobox.active];
-            });
-
-            if (query.field in string_fields) {
-                value_entry.text = query.field == SmartQuery.FieldType.URI
-                    ? Uri.unescape_string (query.value.get_string ())
-                    : query.value.get_string ();
-            } else if (query.field == SmartQuery.FieldType.RATING) {
-                value_rating.rating = query.value.get_int ();
-            } else {
-                value_numerical.value = query.value.get_int ();
-            }
+            field_combobox.active = (int) query.field;
 
             units = new Gtk.Label ("");
 
@@ -339,12 +342,12 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             field_combobox.show ();
         }
 
-        public virtual void field_changed (bool from_user = true) {
+        private void field_changed (bool from_user = true) {
             value_numerical.hide ();
             value_rating.hide ();
             value_entry.hide ();
 
-            if (((SmartQuery.FieldType) field_combobox.active) in string_fields) {
+            if (query.field in string_fields) {
                 value_entry.show ();
                 comparator_combobox.remove_all ();
                 comparator_combobox.append_text (_("is"));
@@ -354,7 +357,6 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
                 comparators.insert (0, SmartQuery.ComparatorType.IS);
                 comparators.insert (1, SmartQuery.ComparatorType.CONTAINS);
                 comparators.insert (2, SmartQuery.ComparatorType.NOT_CONTAINS);
-
                 switch (query.comparator) {
                     case SmartQuery.ComparatorType.CONTAINS:
                         comparator_combobox.active = 1;
@@ -362,18 +364,18 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
                     case SmartQuery.ComparatorType.NOT_CONTAINS:
                         comparator_combobox.active = 2;
                         break;
-                    default: // SmartQuery.ComparatorType.IS or unset
+                    case default: // SmartQuery.ComparatorType.IS or unset
                         comparator_combobox.active = 0;
                         break;
                 }
             } else {
-                if (((SmartQuery.FieldType) field_combobox.active) in rating_fields) {
+                if (query.field in rating_fields) {
                     value_rating.show ();
                 } else {
                     value_numerical.show ();
                 }
 
-                if (((SmartQuery.FieldType) field_combobox.active) in number_fields) {
+                if (query.field in number_fields) {
                     comparator_combobox.remove_all ();
                     comparator_combobox.append_text (_("is exactly"));
                     comparator_combobox.append_text (_("is at most"));
@@ -388,7 +390,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
                         comparator_combobox.active = 0;
                     }
 
-                } else if (((SmartQuery.FieldType) field_combobox.active) in date_fields) {
+                } else if (query.field in date_fields) {
                     comparator_combobox.remove_all ();
                     comparator_combobox.append_text (_("is exactly"));
                     comparator_combobox.append_text (_("is within"));
@@ -426,7 +428,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             } else {
                 units.hide ();
             }
-
+            
             if (from_user) {
                 changed ();
             }
