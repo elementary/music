@@ -171,7 +171,6 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
 
         pixbuf = album.get_cached_cover_pixbuf (1);
 
-        var border = Gtk.Border ();
         border.left = 12;
         border.right = 12;
         border.bottom = 12;
