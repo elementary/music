@@ -34,16 +34,19 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         COLUMN = 2;
     }
 
-
     // The COLUMN mode is still not considered as a single mode, and thus it's
     // never returned by @selected. See complementary API below
     public Mode selected {
-        get { return (mode != Mode.COLUMN) ? mode : Mode.LIST; }
+        get {
+            return (mode != Mode.COLUMN) ? mode : Mode.LIST;
+        }
         set {
-            if (this.mode == value)
+            if (mode == value) {
                 return;
-            this.mode = value;
-            mode_button.set_active ((int)value);
+            }
+
+            mode = value;
+            mode_button.selected = (int) value;
 
             bool is_column_mode = value == Mode.COLUMN;
             column_browser_toggled (is_column_mode);
