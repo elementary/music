@@ -34,20 +34,35 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         COLUMN = 2;
     }
 
-
     // The COLUMN mode is still not considered as a single mode, and thus it's
     // never returned by @selected. See complementary API below
     public Mode selected {
-        get { return (mode != Mode.COLUMN) ? mode : Mode.LIST; }
+        get {
+            return (mode != Mode.COLUMN) ? mode : Mode.LIST;
+        }
         set {
-            if (this.mode == value)
+            if (mode == value) {
                 return;
-            this.mode = value;
-            mode_button.set_active ((int)value);
+            }
+
+            mode = value;
+            mode_button.selected = (int) value;
 
             bool is_column_mode = value == Mode.COLUMN;
             column_browser_toggled (is_column_mode);
             mode_changed (is_column_mode ? Mode.LIST : value);
+        }
+    }
+
+    // De-select items when the widget is made insensitive, for appearance reasons
+    public new bool sensitive {
+        get {
+            return mode_button.sensitive;
+        }
+        set {
+            // select fourth invisible mode to appear as de-selected
+            mode_button.sensitive = value;
+            mode_button.set_active (value ? (int) mode : -1);
         }
     }
 
@@ -79,17 +94,6 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
                 selected = mode; // restore last valid mode
             }
         });
-    }
-
-    // De-select items when the widget is made insensitive, for appearance reasons
-    public new void set_sensitive (bool sensitive) {
-        // select fourth invisible mode to appear as de-selected
-        mode_button.set_sensitive (sensitive);
-        mode_button.set_active (sensitive ? (int)mode : -1);
-    }
-
-    public new bool get_sensitive () {
-        return mode_button.get_sensitive ();
     }
 
     // CRAPPY API
