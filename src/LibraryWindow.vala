@@ -568,10 +568,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             (view as ViewWrapper).set_as_current_view ();
     }
 
-    public void remove_view_and_update (int index) {
-        view_container.remove_view (view_container.get_view (index));
-    }
-
     private void load_playlists () {
         debug ("Loading playlists");
 
@@ -662,14 +658,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void remove_device (Device device) {
-        if (!match_devices.has_key (device.get_unique_identifier ()))
+        if (!match_devices.has_key (device.get_unique_identifier ())) {
             return;
-        int page_number = match_devices.get (device.get_unique_identifier ());
-        foreach (int number in source_list_view.remove_device(page_number)) {
-            remove_view_and_update (number);
         }
+
+        int page_number = match_devices.get (device.get_unique_identifier ());
+
+        foreach (int number in source_list_view.remove_device (page_number)) {
+            view_container.remove_view (view_container.get_view (number));
+        }
+
         match_devices.unset (device.get_unique_identifier ());
-        remove_view_and_update (page_number);
+        view_container.remove_view (view_container.get_view (page_number));
     }
 
     private void create_device_source_list (Device d) {
@@ -716,7 +716,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             match_playlist_entry.unset (playlist);
             match_playlists.unset (playlist);
         }
-        remove_view_and_update (page_number);
+
+        view_container.remove_view (view_container.get_view (page_number));
     }
 
     public void create_new_playlist (Library? library = library_manager) {
@@ -796,7 +797,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             source_list_view.remove_playlist(page_number);
             match_playlists.unset (smartplaylist);
         }
-        remove_view_and_update (page_number);
+
+        view_container.remove_view (view_container.get_view (page_number));
     }
 
     private void playlist_name_edited (int page_number, string new_name) {
