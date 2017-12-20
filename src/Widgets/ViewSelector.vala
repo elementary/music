@@ -34,6 +34,16 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         COLUMN = 2;
     }
 
+    public new bool sensitive {
+        get {
+            return mode_button.get_sensitive ();
+        }
+        set {
+            mode_button.sensitive = value;
+            mode_button.selected = value ? (int) mode : -1;
+        }
+    }
+
     // The COLUMN mode is still not considered as a single mode, and thus it's
     // never returned by @selected. See complementary API below
     public Mode selected {
@@ -54,15 +64,16 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         }
     }
 
-    // De-select items when the widget is made insensitive, for appearance reasons
-    public new bool sensitive {
+    public bool column_browser_active {
         get {
-            return mode_button.sensitive;
+            return mode == Mode.COLUMN;
         }
         set {
-            // select fourth invisible mode to appear as de-selected
-            mode_button.sensitive = value;
-            mode_button.set_active (value ? (int) mode : -1);
+            if (value) {
+                selected = Mode.COLUMN;
+            } else if (column_browser_active) {
+                selected = Mode.LIST;
+            }
         }
     }
 
@@ -94,21 +105,5 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
                 selected = mode; // restore last valid mode
             }
         });
-    }
-
-    // CRAPPY API
-    // XXX ugly workaround to avoid dealing with API breaks, since there's no time
-    // to come up with a fancy solution. Needs rewrite
-
-    public bool get_column_browser_toggle_active () {
-        return mode == Mode.COLUMN;
-    }
-
-    public void set_column_browser_toggle_active (bool active) {
-        if (active) {
-            selected = Mode.COLUMN;
-        } else if (get_column_browser_toggle_active ()) {
-            selected = Mode.LIST;
-        }
     }
 }
