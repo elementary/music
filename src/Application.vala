@@ -88,7 +88,7 @@ public class Noise.App : Granite.Application {
 
             MediaKeyListener.instance.init ();
 
-            new MPRIS ().initialize ();
+            MPRIS.initialize ();
 
             var plugins = Plugins.Manager.get_default ();
             plugins.hook_app (this);

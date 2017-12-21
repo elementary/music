@@ -24,7 +24,7 @@
  * statement from your version.
  */
 
-public class Noise.MPRIS : GLib.Object {
+namespace Noise.MPRIS {
     public void initialize () {
         var owner_id = Bus.own_name (BusType.SESSION,
                                 "org.mpris.MediaPlayer2.Noise",
