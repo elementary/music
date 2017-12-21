@@ -52,52 +52,41 @@ public class Noise.PresetList : Gtk.ComboBox {
 	private static string AUTOMATIC_MODE = _("Automatic");
 	private static string DELETE_PRESET = _("Delete Current");
 
-	public PresetList() {
-		ncustompresets = 0;
-		modifying_list = false;
-		automatic_selected = false;
+    public PresetList () {
+        ncustompresets = 0;
+        modifying_list = false;
+        automatic_selected = false;
 
-		store = new Gtk.ListStore(2, typeof(GLib.Object), typeof(string));
+        store = new Gtk.ListStore (2, typeof (GLib.Object), typeof (string));
 
-		buildUI();
+        set_model (store);
+        set_id_column (1);
 
-		clearList();
-		addAutomaticMode();
-	}
+        set_row_separator_func ((model, iter) => {
+            string content = "";
+            model.get (iter, 1, out content);
 
-	public void buildUI() {
-		this.set_model(store);
+            return content == SEPARATOR_NAME;
+        });
 
-		this.set_id_column(1);
-		this.set_row_separator_func( (model, iter) => {
-			string content = "";
-			model.get(iter, 1, out content);
+        var cell = new Gtk.CellRendererText ();
+        cell.ellipsize = Pango.EllipsizeMode.END;
 
-			return content == SEPARATOR_NAME;
-		});
+        pack_start (cell, true);
+        add_attribute (cell, "text", 1);
 
-		var cell = new Gtk.CellRendererText();
-		cell.ellipsize = Pango.EllipsizeMode.END;
-		this.pack_start(cell, true);
-		this.add_attribute(cell, "text", 1);
+        changed.connect (listSelectionChange);
 
-		this.changed.connect(listSelectionChange);
+        show_all ();
 
-		this.show_all();
-	}
+        store.clear ();
 
-	private void clearList() {
-		store.clear();
-	}
+        Gtk.TreeIter iter;
+        store.append (out iter);
+        store.set (iter, 0, null, 1, AUTOMATIC_MODE);
 
-	public void addAutomaticMode() {
-		Gtk.TreeIter iter;
-
-		store.append(out iter);
-		store.set(iter, 0, null, 1, AUTOMATIC_MODE);
-
-		addSeparator ();
-	}
+        addSeparator ();
+    }
 
 	public void addSeparator () {
 		Gtk.TreeIter iter;
